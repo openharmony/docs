@@ -68,7 +68,7 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 
 - 限定词的取值范围：每类限定词的取值必须符合限定词取值要求表中的条件，如表2。否则，将无法匹配目录中的资源文件。
 
-**表2** 限定词取值要求
+表2 限定词取值要求
 
 | 限定词类型       | 含义与取值说明                                  |
 | ----------- | ---------------------------------------- |
@@ -89,9 +89,9 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 
 资源组目类型包括element、media、profile，用于存放特定类型的资源文件。
 
-  **表3** 资源组目录说明
+  表3 资源组目录说明
 
-| 目录   | 说明                                     | 资源文件                                     |
+| 目录类型   | 说明                                     | 资源文件                                     |
 | ------- | ---------------------------------------- | ---------------------------------------- |
 | element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征（目录下仅支持文件类型）。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型<br/>-&nbsp;pattern，样式<br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串 | element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<br/>-&nbsp;pattern.json<br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
 | media   | 表示媒体资源，包括图片、音频、视频等非文本格式的文件（目录下只支持文件类型），图片和音视频的类型说明间表4和表5。              | 文件名可自定义，例如：icon.png。                     |
@@ -99,7 +99,7 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 
 **媒体资源类型说明**
 
-**表4** 图片资源类型说明
+表4 图片资源类型说明
 
 | 格式   | 文件后缀名 |
 | ---- | ----- |
@@ -110,7 +110,7 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 | WEBP | .webp |
 | BMP  | .bmp  |
 
-**表5** 音视频资源类型说明
+表5 音视频资源类型说明
 
 | 格式                                   | 支持的文件类型         |
 | ------------------------------------ | --------------- |
@@ -202,27 +202,27 @@ plural.json文件的内容如下：
 }
 ```
 
-## 创建资源文件
+## 创建资源目录和资源文件
 
-在resources目录下，可按照限定词目录和资源组目录的说明创建子目录和目录内的文件。
+在resources目录下，可按照限定词目录命名规则，以及资源组目录支持的文件类型和说明，创建资源目录和资源组目录，添加特定类型资源。DevEco Studio支持同时创建资源目录和资源文件，有支持单独创建资源目录或资源文件。
 
-同时，DevEco Studio也提供了创建资源目录和资源文件的界面。
+### 创建资源目录和资源文件
 
-- 创建资源目录及资源文件
+在resources目录右键菜单选择“New > Resource File”，可同时创建目录和文件，文件默认创建在base目录的对应资源组下。如果选择了限定词，则会按照命名规范自动生成限定词和资源组目录，并将文件创建在限定词目录中。
 
-  在resources目录右键菜单选择“New > Resource File”，此时可同时创建目录和文件。文件默认创建在base目录的对应资源组下。如果选择了限定词，则会按照命名规范自动生成限定词+资源组目录，并将文件创建在目录中。图中Avaliable qualifiers为供选择的限定词目录，通过右边的小箭头可添加或者删除。File name为需要创建的文件名，Resource type为资源组类型，默认是element。Root Element为资源类型。创建的目录名自动生成，格式固定为“限定词.资源组”，例如：创建一个限定词为dark的element目录，自动生成的目录名称为“dark.element”。
+图中File name为需要创建的文件名。Resource type为资源组类型，默认是element。Root Element为资源类型。Avaliable qualifiers为供选择的限定词目录，通过右边的小箭头可添加或者删除。创建的目录名自动生成，格式固定为“限定词.资源组”，例如：创建一个限定词为dark的element目录，自动生成的目录名称为“dark.element”。
 
   ![create-resource-file-1](figures/create-resource-file-1.png)
 
-- 创建资源目录
+### 创建资源目录
 
-  在resources目录右键菜单选择“New > Resource Directory”，此时可创建资源目录。资源目录创建的是base目录，也可根据需求创建其它限定词目录。确定限定词后，选择资源组类型，当前资源组类型支持Element、Media、Profile三种，创建后自动生成目录名称。
+在resources目录右键菜单选择“New > Resource Directory”，可创建资源目录，默认创建的是base目录。如果选择了限定词，则会按照命名规范自动生成限定词和资源组目录。确定限定词后，选择资源组类型，当前资源组类型支持Element、Media、Profile三种，创建后生成资源目录。
 
   ![create-resource-file-2](figures/create-resource-file-2.png)
 
-- 创建资源文件
+### 创建资源文件
 
-  在资源目录的右键菜单选择“New > XXX Resource File”，即可创建对应资源组目录的资源文件。例如，在element目录下可新建Element Resource File。
+在资源目录（element、media、profile）的右键菜单选择“New > XXX Resource File”，即可创建对应资源组目录的资源文件。例如，在element目录下可新建Element Resource File。
 
   ![create-resource-file-3](figures/create-resource-file-3.png)
 
