@@ -13,7 +13,7 @@
 | --------- | ---------------------------------------- | ----- |
 | onGestureJudgeBegin | callback: (gestureInfo: [GestureInfo](#gestureinfo类型说明), event: [BaseGestureEvent](#basegestureevent类型说明)) => [GestureJudgeResult](ts-appendix-enums.md#gesturejudgeresult11) | 给组件绑定自定义手势判定回调，当绑定到该组件的手势被接受时，会触发用户定义的回调来获取结果。|
 
-## GestureInfo类型说明
+## GestureInfo对象说明
 
 | 名称            | 类型                        | 描述         |
 | ---------------  | -------------------------   | -----------|
@@ -21,30 +21,35 @@
 | type             | [GestureControl.GestureType](ts-appendix-enums.md#gesturetype11)  | 手势类型。 |
 | isSystemGesture  | boolean                     | 判断当前手势是否为系统手势。|
 
-## BaseGestureEvent类型说明
-
+## BaseEvent对象说明
+| 名称    | 类型                                      | 描述         |
+| ---------| ----------------------------------------  | -----------|
+| target   | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象显示区域。  |
+| timestamp| number | 事件时间戳。  |
+| source   | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。  |
+| pressure | number | 按压的压力大小。  |
+| titleX | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。  |
+| titleY | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。  |
+| sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明) | 事件输入源。  |
+## BaseGestureEvent对象说明
+继承于[BaseEvent](#baseevent对象说明)。
 | 名称      | 类型                                      | 描述         |
 | ---------  | ----------------------------------------  | -----------|
 | fingerList | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明) | 触发事件的所有手指信息。  |
 
 ## TapGestureEvent类型说明
-该类型继承自BaseGestureEvent。
-| 名称      | 类型                                      | 描述         |
-| ---------  | ----------------------------------------  | -----------|
-| fingerList | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明) | 触发事件的所有手指信息。  |
+继承于[BaseGestureEvent](#basegestureevent对象说明)。
 
 ## LongPressGestureEvent类型说明
-该类型继承自BaseGestureEvent。
+继承于[BaseGestureEvent](#basegestureevent对象说明)。
 | 名称      | 类型                                      | 描述         |
 | ---------  | ----------------------------------------  | -----------|
-| fingerList | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明) | 触发事件的所有手指信息。  |
 | repeat     | boolean | 是否为重复触发事件。  |
 
 ## PanGestureEvent类型说明
-该类型继承自BaseGestureEvent。
+继承于[BaseGestureEvent](#basegestureevent对象说明)。
 | 名称      | 类型                                      | 描述         |
 | ---------  | ----------------------------------------  | -----------|
-| fingerList | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明) | 触发事件的所有手指信息。  |
 | offsetX    | number | 手势事件x轴相对当前组件元素原始区域的偏移量，单位为vp，从左向右滑动offsetX为正，反之为负。  |
 | offsetY    | number | 手势事件y轴相对当前组件元素原始区域的偏移量，单位为vp，从上向下滑动offsetY为正，反之为负。  |
 | velocityX  | number | 获取当前手势的x轴方向速度。坐标轴原点为屏幕左上角，分正负方向速度，从左往右为正，反之为负。  |
@@ -52,26 +57,23 @@
 | velocity   | number | 获取当前的主方向速度。为xy轴方向速度的平方和的算术平方根。  |
 
 ## PinchGestureEvent类型说明
-该类型继承自BaseGestureEvent。
+继承于[BaseGestureEvent](#basegestureevent对象说明)。
 | 名称         | 类型                                      | 描述         |
 | ------------  | ----------------------------------------  | -----------|
-| fingerList    | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明) | 触发事件的所有手指信息。  |
 | scale         | number | 缩放比例。  |
 | pinchCenterX  | number | 捏合手势中心点相对于当前组件元素原始区域左上角x轴坐标，单位为vp。  |
 | pinchCenterY  | number | 捏合手势中心点相对于当前组件元素原始区域左上角y轴坐标，单位为vp。  |
 
 ## RotationGestureEvent类型说明
-该类型继承自BaseGestureEvent。
+继承于[BaseGestureEvent](#basegestureevent对象说明)。
 | 名称         | 类型                                      | 描述         |
 | ------------  | ----------------------------------------  | -----------|
-| fingerList    | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明) | 触发事件的所有手指信息。  |
 | angle         | number | 表示旋转角度，单位为deg。<br/>**说明：**<br/>角度计算方式：滑动手势被识别到后，连接两根手指之间的线被识别为起始线条，随着手指的滑动，手指之间的线条会发生旋转，根据起始线条两端点和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角，最后arctan2(cy2-cy1,cx2-cx1)-arctan2(y2-y1,x2-x1)为旋转的角度。以起始线条为坐标系，顺时针旋转为0到180度，逆时针旋转为-180到0度。  |
 
 ## SwipeGestureEvent类型说明
-该类型继承自BaseGestureEvent。
+继承于[BaseGestureEvent](#basegestureevent对象说明)。
 | 名称         | 类型                                      | 描述         |
 | ------------  | ----------------------------------------  | -----------|
-| fingerList    | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明) | 触发事件的所有手指信息。  |
 | angle         | number | 表示滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数，单位为deg。<br/>**说明：**<br/>角度计算方式：滑动手势被识别到后，连接两根手指之间的线被识别为起始线条，随着手指的滑动，手指之间的线条会发生旋转，根据起始线条两端点和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角，最后arctan2(cy2-cy1,cx2-cx1)-arctan2(y2-y1,x2-x1)为旋转的角度。以起始线条为坐标系，顺时针旋转为0到180度，逆时针旋转为-180到0度。|
 | speed         | number | 滑动手势速度，即所有手指相对当前组件元素原始区域滑动的平均速度，单位为vp/秒。  |
 ## 示例
