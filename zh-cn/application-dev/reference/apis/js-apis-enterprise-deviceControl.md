@@ -47,10 +47,12 @@ resetFactory(admin: Want, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import deviceControl from '@ohos.enterprise.deviceControl';
 import Want from '@ohos.app.ability.Want';
+
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 deviceControl.resetFactory(wantTemp, (err) => {
@@ -98,11 +100,13 @@ resetFactory(admin: Want): Promise\<void>
 **示例：**
 
 ```ts
+import deviceControl from '@ohos.enterprise.deviceControl';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
+
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 deviceControl.resetFactory(wantTemp).then(() => {

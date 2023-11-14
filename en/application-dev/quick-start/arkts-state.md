@@ -29,7 +29,7 @@ An @State decorated variable, like all other decorated variables in the declarat
 | ------------------ | ------------------------------------------------------------ |
 | Decorator parameters        | None.                                                          |
 | Synchronization type          | Does not synchronize with any type of variable in the parent component.                            |
-| Allowed variable types| Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>The type must be specified.<br>**any** is not supported. A combination of simple and complex types is not supported. The **undefined** and **null** values are not allowed.<br>**NOTE**<br>The Length, ResourceStr, and ResourceColor types are a combination of simple and complex types and therefore not supported.|
+| Allowed variable types| Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>**undefined** or **null**.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>Union type of the preceding types, for example, string \| number, string \| undefined, or ClassA \| null. For details, see [Union Type @State](#union-type-state).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, **@State a: string \| undefined = undefined** is recommended; **@State a: string = undefined** is not recommended.<br>The union types Length, ResourceStr, and ResourceColor defined by the AkrUI framework are supported.<br>The type must be specified.<br>**any** is not supported. |
 | Initial value for the decorated variable| Local initialization is required.                                              |
 
 
@@ -307,3 +307,38 @@ From this example, we learn the initialization process of an \@State decorated v
    let obj = new C1(1, 2)
    MyComponent(obj)
    ```
+
+## Union Type @State
+
+@State supports **undefined**, **null**, and union types. In the following example, the type of **count** is number | undefined. If the attribute or type of **count** is changed when the button is clicked, the change will be synced to the view.
+
+```ts
+@Entry
+@Component
+struct EntryComponent {
+
+  build() {
+    Column() {
+      MyComponent()
+    }
+  }
+}
+
+@Component
+struct MyComponent {
+  @State  count: number | undefined = 0;
+
+  build() {
+    Column() {
+      Text(`count(${this.count})`)
+      Button('change')
+        .onClick(() => {
+          this.count = undefined;
+        })
+    }
+  }
+}
+
+```
+
+<!--no_check-->

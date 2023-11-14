@@ -1,6 +1,6 @@
 # @ohos.data.uniformTypeDescriptor (标准化数据定义与描述)
 
-本模块描述OpenHarmony标准化数据类型的抽象定义。
+本模块对OpenHarmony标准化数据类型进行了抽象定义与描述。
 
 > **说明：**
 >
@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 ```
 

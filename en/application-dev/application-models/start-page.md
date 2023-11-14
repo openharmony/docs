@@ -54,7 +54,7 @@ export class GlobalContext {
 ```
 
 ```ts
-import Want from '@ohos.application.Want';
+import Want from '@ohos.app.ability.Want';
 import { GlobalContext } from './GlobalContext';
 
 class EntryAbility {  
@@ -70,7 +70,7 @@ export default new EntryAbility()
 Obtain the **want** parameter that contains the page information from the custom component of the target PageAbility and process the route based on the URI.
 
 ```ts
-import Want from '@ohos.application.Want';
+import Want from '@ohos.app.ability.Want';
 import router from '@ohos.router';
 import { GlobalContext } from '../GlobalContext';
 

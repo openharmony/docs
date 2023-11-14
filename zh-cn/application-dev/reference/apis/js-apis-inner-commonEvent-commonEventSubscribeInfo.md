@@ -17,3 +17,4 @@
 | publisherDeviceId   | string         | 是  | 否  | 表示设备ID，该值必须是同一ohos网络上的现有设备ID。             |
 | userId              | number         | 是  | 否  | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。 |
 | priority            | number         | 是  | 否  | 表示订阅者的优先级。值的范围是-100到1000，超过上下限的优先级将被设置为上下限值。                 |
+| publisherBundleName<sup>11+</sup> | string         | 是  | 否  | 表示要订阅的发布者的bundleName。                 |

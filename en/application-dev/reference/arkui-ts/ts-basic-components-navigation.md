@@ -355,28 +355,15 @@ constructor(name: string, param: unknown)
 ```ts
 // xxx.ets
 class A {
-text:string=''
-num:number=0
+  text: string = ''
+  num: number = 0
 }
+
 @Entry
 @Component
 struct NavigationExample {
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   @State currentIndex: number = 0
-  @State Build: Array<Object> = [
-    {
-      text: 'add',
-      num: 0
-    } as A,
-    {
-      text: 'app',
-      num: 1
-    } as A,
-    {
-      text: 'collect',
-      num: 2
-    } as A
-  ]
 
   @Builder NavigationTitle() {
     Column() {
@@ -396,39 +383,18 @@ struct NavigationExample {
 
   @Builder NavigationMenus() {
     Row() {
-      Image('common/navigation_icon1.svg')
+      Image('common/ic_public_add.svg')
         .width(24)
         .height(24)
-      Image('common/navigation_icon1.svg')
+      Image('common/ic_public_add.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
-      Image('common/navigation_icon2.svg')
+      Image('common/ic_public_more.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
     }
-  }
-
-  @Builder NavigationToolbar() {
-    Row() {
-      ForEach(this.Build, (item:A) => {
-        Column() {
-          Image(this.currentIndex == item.num ? 'common/public_icon_selected.svg' : 'common/public_icon.svg')
-            .width(24)
-            .height(24)
-          Text(item.text)
-            .fontColor(this.currentIndex == item.num ? '#007DFF' : '#182431')
-            .fontSize(10)
-            .lineHeight(14)
-            .fontWeight(500)
-            .margin({ top: 3 })
-        }.width(104).height(56)
-        .onClick(() => {
-          this.currentIndex = item.num
-        })
-      })
-    }.margin({ left: 24 })
   }
 
   build() {
@@ -441,7 +407,7 @@ struct NavigationExample {
           .margin({ top: 8 })
 
         List({ space: 12, initialIndex: 0 }) {
-          ForEach(this.arr, (item:number) => {
+          ForEach(this.arr, (item: number) => {
             ListItem() {
               Text('' + item)
                 .width('90%')
@@ -452,7 +418,7 @@ struct NavigationExample {
                 .fontWeight(500)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-        }, (item:number) => item.toString())
+          }, (item: number) => item.toString())
         }
         .height(324)
         .width('100%')
@@ -461,7 +427,20 @@ struct NavigationExample {
       .title(this.NavigationTitle)
       .menus(this.NavigationMenus)
       .titleMode(NavigationTitleMode.Full)
-      .toolBar(this.NavigationToolbar)
+      .toolbarConfiguration([
+        {
+          value: $r("app.string.navigation_toolbar_add"),
+          icon: $r("app.media.ic_public_highlightsed")
+        },
+        {
+          value: $r("app.string.navigation_toolbar_app"),
+          icon: $r("app.media.ic_public_highlights")
+        },
+        {
+          value: $r("app.string.navigation_toolbar_collect"),
+          icon: $r("app.media.ic_public_highlights")
+        }
+      ])
       .hideTitleBar(false)
       .hideToolBar(false)
       .onTitleModeChange((titleModel: NavigationTitleMode) => {
@@ -472,7 +451,7 @@ struct NavigationExample {
 }
 ```
 
-![en-us_image_0000001192655288](figures/en-us_image_0000001192655288.gif)
+![en-us_image_navigation](figures/en-us_image_navigation.png)
 
 
 

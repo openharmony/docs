@@ -377,7 +377,7 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: AsyncCallbac
 | 参数名     | 类型                                      | 必填 | 说明                                                   |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number                                    | 是   | 输入设备id，同一个物理设备反复插拔，设备id会发生变化。 |
-| keys     | Array&lt;KeyCode&gt;                      | 是   | 需要查询的键码值，最多支持5个按键查询。                |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode)  | 是   | 需要查询的键码值，最多支持5个按键查询。                |
 | callback | AsyncCallback&lt;Array&lt;boolean&gt;&gt; | 是   | 回调函数，异步返回查询结果。                           |
 
 **示例**：
@@ -406,7 +406,7 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;b
 | 参数名     | 类型                 | 必填 | 说明                                                   |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number               | 是   | 输入设备id，同一个物理设备反复插拔，设备id会发生变化。 |
-| keys     | Array&lt;KeyCode&gt; | 是   | 需要查询的键码值，最多支持5个按键查询。                |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode) | 是   | 需要查询的键码值，最多支持5个按键查询。                |
 
 **返回值**：
 
@@ -440,7 +440,7 @@ supportKeysSync(deviceId: number, keys: Array&lt;KeyCode&gt;): Array&lt;boolean&
 | 参数名     | 类型                 | 必填 | 说明                                                   |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number               | 是   | 输入设备id，同一个物理设备反复插拔，设备id会发生变化。 |
-| keys     | Array&lt;KeyCode&gt; | 是   | 需要查询的键码值，最多支持5个按键查询。                |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode) | 是   | 需要查询的键码值，最多支持5个按键查询。                |
 
 **返回值**：
 
@@ -496,7 +496,7 @@ try {
 
 getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 
-获取输入设备的键盘类型，使用AsyncCallback异步方式返回结果。
+获取输入设备的键盘类型，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 

@@ -25,20 +25,22 @@ The PageAbility component in the FA model corresponds to the UIAbility component
    ![pageability-switch](figures/pageability-switch.png)
 
 3. Adjust the migrated code, since the methods of loading pages are different.
+   
+- In the FA model, page loading is configured by setting page information in **config.json**.
+   
+   - In the stage model, page loading is triggered through **windowStage.loadContent** in the **onWindowStageCreate** callback.
 
-   - In the FA model, you can configure the page to be loaded by setting page information in **config.json**.
-   - In the stage model, call **windowStage.loadContent** in the **onWindowStageCreate** callback to load a page.
-
-   For example, to load the **pages/Index** page after the ability is started, use the following code in the **config.json** file in the FA model:
+   The following uses the task of displaying the **pages/Index** page after the ability is started as an example. 
+   
+   In the FA model, add the following code in the **config.json** file:
    
    
       ```json
-      "pages" : [
           "pages/Index"
       ]
       ```
-
-   In the stage model, implement the following method in **MainAbility**:
+   
+   In the stage model, implement the following API in **MainAbility**:
    
    
       ```ts
@@ -56,3 +58,13 @@ The PageAbility component in the FA model corresponds to the UIAbility component
          }
        }
       ```
+   
+   Then configure the page to load in the **resources/base/profile/main_pages.json** file.
+   
+     ```json
+     {
+       "src": [
+         "pages/Index"
+       ]
+     }
+     ```

@@ -2,21 +2,9 @@
 
 ## A
 
-- ### Ability
+- ### abc文件
 
-    应用的基本组成部分，是应用所具备能力的抽象。Ability是系统调度应用的最小单元，是能够完成一个独立功能的组件，一个应用可以包含一个或多个Ability。 在FA模型与Stage模型，分别定义了不同类型的Ability。
-
-- ### AMS
-
-    Ability Manager Service，Ability管理服务。
-    
-- ### App Pack
-
-    上架应用市场的应用包的组织方式，包含一个或多个hap包，后缀名为.app。
-    
-- ### App Component
-
-    应用组件，每个Ability就是一个应用级组件。
+    方舟字节码（ArkCompiler Bytecode）文件，是ArkCompiler的编译工具链以源代码作为输入编译生成的产物，其文件后缀名为.abc。在发布态，abc文件会被打包到HAP中。
 
 - ### ArkCompiler
 
@@ -30,10 +18,6 @@
 
   OpenHarmony上原生UI框架。是一套极简、高性能、跨设备应用设计研发的UI开发框架，支撑开发者高效地构建跨设备应用UI界面。详情可参考[方舟开发框架开发指导](application-dev/ui/arkui-overview.md)。
 
-- ### Atomic Service
-
-    原子化服务，OpenHarmony提供的一种全新应用形态。具有独立入口，用户可通过点击、碰一碰、扫一扫等方式直接触发，无需显示安装，由系统静默安装后即可使用，为用户提供便捷服务。
-
 
 ## B
 
@@ -43,37 +27,35 @@
 
 ## C
 
-- ### C API
+- ### CES
 
-    OpenHarmony SDK 提供的native开发接口。
+    Common Event Service，OpenHarmony中负责处理公共事件的订阅、发布和退订的系统服务。
 
-- ### Continuation
-
-    流转，OpenHarmony系统提供的分布式操作，包括了跨端迁移和多端协同两种场景。
 
 ## D
-
-- ### Derivative Framework
-
-    衍生框架，指桥接到原生框架上的三方框架。
-
-- ### DevEco Device Tool
-
-    面向智能设备开发者，提供一站式的开发环境、一站式资源获取通道，实现了从芯片模板工程创建到开发资源挑选定制，再到编码、编译、调试、调优、烧录环节的全流程覆盖，帮助开发者实现智能硬件设备的高效开发。
 
 - ### DMS
 
     Distributed Management Service，分布式管理服务。
 
+
+## E
+
+- ### ExtensionAbility
+
+    Stage模型中的组件类型名，即ExtensionAbility组件，提供特定场景（如卡片、输入法）的扩展能力，满足更多的使用场景。
+
+
 ## F
 
 - ### FA
 
-    Feature Ability，是FA模型的Ability框架下具有UI界面的Ability类型，用于与用户进行交互。Feature Ability唯一对应一种模板，即Page模板（Page Ability）。
+    Feature Ability，在FA模型中代表有界面的Ability，用于与用户进行交互。
     
 - ### FA模型
 
-    Ability框架提供的一种开发模型。API version 8及更早版本的应用开发仅支持FA模型。FA模型将Ability分为[FA（Feature Ability）](#fa)和[PA（Particle Ability）](#pa)两种类型，其中FA支持Page Ability模板，PA支持Service ability、Data ability、以及Form ability模板。详情可参考[FA模型综述](application-dev/application-models/fa-model-development-overview.md)。
+    API version 8及更早版本支持的应用模型，已经不再主推。建议使用新的Stage模型进行开发。
+
 
 ## H
 
@@ -110,32 +92,23 @@
 
     Intelligent Distributed Networking，是OpenHarmony特有的分布式组网能力单元。开发者可以通过IDN获取分布式网络内的设备列表和设备状态信息，以及注册分布式网络内设备的在网状态变化信息。
 
-## N
-
-- ### Native Framework
-
-    原生框架，指系统自带的开发框架。非原生的框架即三方框架。
-
 
 ## P
 
 - ### PA
 
-    Particle Ability，是在FA模型的Ability框架下无界面的Ability，主要为Feature Ability提供服务与支持，例如作为后台服务提供计算能力，或作为数据仓库提供数据访问能力。Particle Ability有三种模板，分别为Service模板（Service Ability）、Data模板（Data Ability）、以及Form模板（Form Ability）。
+    Particle Ability，在FA模型中代表无界面的Ability，主要为Feature Ability提供支持，例如作为后台服务提供计算能力，或作为数据仓库提供数据访问能力。
+
 
 ## S
 
-- ### SA
+- ### Service widget，服务卡片
 
-    System Ability的简称，这是由系统开发者编写的系统级组件。
-
-- ### Secondary Framework
-
-    次生框架，指不依赖原生框架实现的三方开框架。
+    将用户应用程序的重要信息以服务卡片的形式展示在桌面，用户可通过快捷手势使用卡片，以达到服务直达、减少层级跳转的目的。
 
 - ### Stage模型
 
-    Ability框架自API version 9提供的开发模型。Stage模型将Ability分为UIAbility和ExtensionAbility两大类，其中ExtensionAbility又被扩展为ServiceExtensionAbility、FormExtensionAbility、DataShareExtensionAbility等等一系列ExtensionAbility。
+    API version 9开始新增的应用模型，提供UIAbility、ExtensionAbility两大类应用组件。由于该模型还提供了AbilityStage、WindowStage等类作为应用组件和Window窗口的“舞台”，因此称之为Stage模型。
 
 - ### Super virtual device，超级虚拟终端
 
@@ -143,7 +116,7 @@
 
 - ### SysCap
 
-    全称是System Capability，指OpenHarmony中每个相对独立的特性，如蓝牙，WiFi，NFC，摄像头等，都是系统能力之一。每个系统能力对应多个API，每个API定义上包含了相应的SysCap标签。
+    全称System Capability，即系统能力。不同值用于指代OpenHarmony中各个相对独立的特性/系统能力，如蓝牙、Wi-Fi、NFC等。每个特性/系统能力对应多个API，每个API定义上包含了相应的SysCap标签。
 
 - ### System Type，系统类型
     - Mini System，轻量系统：面向MCU（Microcontroller Unit，微控制单元）类处理器，例如ARM Cortex-M、RISC-V 32位的设备，资源极其有限，参考内存≥128KiB，提供丰富的近距连接能力以及丰富的外设总线访问能力。典型产品有智能家居领域的联接类模组、传感器设备等。
@@ -152,12 +125,6 @@
 
 ## U
 
-- ### UI Component
+- ### UIAbility
 
-    UI组件，组成用户界面的一部分，可提供用户交互的能力。
-
-## X
-
-- ### XComponent
-
-    ArkUI提供的组件接口，满足开发者自渲染的需求。
+    Stage模型中的组件类型名，即UIAbility组件，包含UI，提供展示UI的能力，主要用于和用户交互。

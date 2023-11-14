@@ -793,6 +793,19 @@ Describes the device connection status and device information.
 | type              | [DeviceChangeType](#devicechangetype)             | Yes  | Device connection status.|
 | deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes  | Device information.        |
 
+## ChannelBlendMode<sup>11+</sup>
+
+Enumerates the audio channel blending modes.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+| Name                                        |  Value    | Description                  |
+| :------------------------------------------- | :----- | :--------------------- |
+| MODE_DEFAULT<sup>11+</sup>                          | 0     | The audio channels are not blended. |
+| MODE_BLEND_LR<sup>11+</sup>                              | 1      | The left and right audio channels are blended.|
+| MODE_ALL_LEFT<sup>11+</sup>   | 2      | The left channel is replicated into the right channel. |
+| MODE_ALL_RIGHT<sup>11+</sup> | 3 | The right channel is replicated into the left channel.|
+
 ## DeviceChangeType
 
 Enumerates the device connection statuses.
@@ -835,7 +848,7 @@ Enumerates the audio source types.
 | SOURCE_TYPE_MIC                              | 0      | Mic source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | Voice recognition source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup>   | 2 | Internal audio recording source.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture|
-| SOURCE_TYPE_WAKEUP <sup>10+</sup>            | 3 | Audio recording source in voice wakeup scenarios.<br>**System capability**: SystemCapability.Multimedia.Audio.Core<br>**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE <br> This is a system API.|
+| SOURCE_TYPE_WAKEUP <sup>10+</sup>            | 3 | Audio recording source in voice wake-up scenarios.<br>**System capability**: SystemCapability.Multimedia.Audio.Core<br>**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE <br> This is a system API.|
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | Voice communication source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 
 ## AudioPlaybackCaptureConfig<sup>10+</sup><a name="audioplaybackcaptureconfig"></a>
@@ -2138,7 +2151,7 @@ Currently, when multiple **AudioManager** instances are used in a single process
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | Yes  | Event type. The value **'volumeChange'** means the system volume change event, which is triggered when a system volume change is detected.|
+| type     | string                                 | Yes  | Event type. The event **'volumeChange'** is triggered when the system volume is changed.|
 | callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -2169,7 +2182,7 @@ Subscribes to ringer mode change events.
 
 | Name  | Type                                     | Mandatory| Description                                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                    | Yes  | Event type. The value **'ringerModeChange'** means the ringer mode change event, which is triggered when a ringer mode change is detected.|
+| type     | string                                    | Yes  | Event type. The event **'ringerModeChange'** is triggered when the ringer mode is changed.|
 | callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -2196,7 +2209,7 @@ Subscribes to device change events. When a device is connected or disconnected, 
 
 | Name  | Type                                                | Mandatory| Description                                      |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | Yes  | Event type. The value **'deviceChange'** means the device change event, which is triggered when a device connection status change is detected.|
+| type     | string                                               | Yes  | Event type. The event **'deviceChange'** is triggered when the device connection status is changed.|
 | callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | Yes  | Callback used to return the device update details.                        |
 
 **Example**
@@ -2226,7 +2239,7 @@ Unsubscribes from device change events.
 
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | Yes  | Event type. The value **'deviceChange'** means the device change event, which is triggered when a device connection status change is detected.|
+| type     | string                                              | Yes  | Event type. The event **'deviceChange'** is triggered when the device connection status is changed.|
 | callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No  | Callback used to return the device update details.                        |
 
 **Example**
@@ -2249,7 +2262,7 @@ Same as [on('audioInterrupt')](#onaudiointerrupt9), this API is used to listen f
 
 | Name   | Type                                         | Mandatory| Description                                                        |
 | --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type      | string                                        | Yes  | Event type. The value **'interrupt'** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application.|
+| type      | string                                        | Yes  | Event type. The event **'interrupt'** is triggered when the audio playback of the current application is interrupted by another application.|
 | interrupt | AudioInterrupt                                | Yes  | Audio interruption event type.                                    |
 | callback  | Callback<[InterruptAction](#interruptactiondeprecated)> | Yes  | Callback invoked for the audio interruption event.                                      |
 
@@ -2286,7 +2299,7 @@ Unsubscribes from audio interruption events.
 
 | Name   | Type                                         | Mandatory| Description                                                        |
 | --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type      | string                                        | Yes  | Event type. The value **'interrupt'** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application.|
+| type      | string                                        | Yes  | Event type. The event **'interrupt'** is triggered when the audio playback of the current application is interrupted by another application.|
 | interrupt | AudioInterrupt                                | Yes  | Audio interruption event type.                                    |
 | callback  | Callback<[InterruptAction](#interruptactiondeprecated)> | No  | Callback invoked for the audio interruption event.                                      |
 
@@ -2531,7 +2544,7 @@ Subscribes to system volume change events. This API uses an asynchronous callbac
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | Yes  | Event type. The value **'volumeChange'** means the system volume change event, which is triggered when the system volume changes.|
+| type     | string                                 | Yes  | Event type. The event **'volumeChange'** is triggered when the system volume is changed.|
 | callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -3245,7 +3258,7 @@ Subscribes to ringer mode change events.
 
 | Name  | Type                                     | Mandatory| Description                                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                    | Yes  | Event type. The value **'ringerModeChange'** means the ringer mode change event, which is triggered when a ringer mode change is detected.|
+| type     | string                                    | Yes  | Event type. The event **'ringerModeChange'** is triggered when the ringer mode is changed.|
 | callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -3414,7 +3427,7 @@ Currently, when multiple **AudioManager** instances are used in a single process
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | Yes  | Event type. The value **'micStateChange'** means the system microphone state change event, which is triggered when the system microphone state changes.|
+| type     | string                                 | Yes  | Event type. The event **'micStateChange'** is triggered when the system microphone state is changed.|
 | callback | Callback<[MicStateChangeEvent](#micstatechangeevent9)> | Yes  | Callback used to return the changed microphone state.                                                  |
 
 **Error codes**
@@ -4057,7 +4070,7 @@ Subscribes to audio renderer change events.
 
 | Name     | Type                                                         | Mandatory | Description                                                  |
 | -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes       | Event type. The event `'audioRendererChange'` is triggered when the audio renderer changes. |
+| type     | string                                                       | Yes       | Event type. The event `'audioRendererChange'` is triggered when the audio renderer is changed. |
 | callback | Callback<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)> | Yes       | Callback used to return the result.                          |
 
 **Error codes**
@@ -4107,7 +4120,7 @@ Unsubscribes from audio renderer change events.
 
 | Name | Type   | Mandatory | Description                                                  |
 | ---- | ------ | --------- | ------------------------------------------------------------ |
-| type | string | Yes       | Event type. The event `'audioRendererChange'` is triggered when the audio renderer changes. |
+| type | string | Yes       | Event type. The event `'audioRendererChange'` is triggered when the audio renderer is changed. |
 
 **Error codes**
 
@@ -4136,7 +4149,7 @@ Subscribes to audio capturer change events.
 
 | Name     | Type                                                         | Mandatory | Description                                                  |
 | -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes       | Event type. The event `'audioCapturerChange'` is triggered when the audio capturer changes. |
+| type     | string                                                       | Yes       | Event type. The event `'audioCapturerChange'` is triggered when the audio capturer is changed. |
 | callback | Callback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | Yes       | Callback used to return the result.                          |
 
 **Error codes**
@@ -4186,7 +4199,7 @@ Unsubscribes from audio capturer change events.
 
 | Name | Type   | Mandatory | Description                                                  |
 | ---- | ------ | --------- | ------------------------------------------------------------ |
-| type | string | Yes       | Event type. The event `'audioCapturerChange'` is triggered when the audio capturer changes. |
+| type | string | Yes       | Event type. The event `'audioCapturerChange'` is triggered when the audio capturer is changed. |
 
 **Error codes**
 
@@ -4546,7 +4559,7 @@ Subscribes to device change events. When a device is connected or disconnected, 
 
 | Name       | Type                                                 | Mandatory | Description                                                  |
 | :--------- | :--------------------------------------------------- | :-------- | :----------------------------------------------------------- |
-| type       | string                                               | Yes       | Event type. The value **'deviceChange'** means the device change event, which is triggered when a device connection status change is detected. |
+| type       | string                                               | Yes       | Event type. The event **'deviceChange'** is triggered when the device connection status is changed. |
 | deviceFlag | [DeviceFlag](#deviceflag)                            | Yes       | Audio device flag.                                           |
 | callback   | Callback<[DeviceChangeAction](#devicechangeaction)\> | Yes       | Callback used to return the device update details.           |
 
@@ -4582,7 +4595,7 @@ Unsubscribes from device change events.
 
 | Name     | Type                                                | Mandatory | Description                                                  |
 | -------- | --------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | string                                              | Yes       | Event type. The value **'deviceChange'** means the device change event, which is triggered when a device connection status change is detected. |
+| type     | string                                              | Yes       | Event type. The event **'deviceChange'** is triggered when the device connection status is changed. |
 | callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No        | Callback used to return the device update details.           |
 
 **Error codes**
@@ -4743,7 +4756,7 @@ Sets a communication device to the active state. This API uses a promise to retu
 
 | Name       | Type                                                 | Mandatory | Description                                                  |
 | ---------- | ---------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| deviceType | [CommunicationDeviceType](#communicationdevicetype9) | Yes       | Communication device type.                                    |
+| deviceType | [CommunicationDeviceType](#communicationdevicetype9) | Yes       | Communication device type.                                   |
 | active     | boolean                                              | Yes       | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite. |
 
 **Return value**
@@ -4773,7 +4786,7 @@ Checks whether a communication device is active. This API uses an asynchronous c
 
 | Name       | Type                                                 | Mandatory | Description                                             |
 | ---------- | ---------------------------------------------------- | --------- | ------------------------------------------------------- |
-| deviceType | [CommunicationDeviceType](#communicationdevicetype9) | Yes       | Communication device type.                               |
+| deviceType | [CommunicationDeviceType](#communicationdevicetype9) | Yes       | Communication device type.                              |
 | callback   | AsyncCallback&lt;boolean&gt;                         | Yes       | Callback used to return the active state of the device. |
 
 **Example**
@@ -4800,8 +4813,8 @@ Checks whether a communication device is active. This API uses a promise to retu
 
 **Parameters**
 
-| Name       | Type                                                 | Mandatory | Description               |
-| ---------- | ---------------------------------------------------- | --------- | ------------------------- |
+| Name       | Type                                                 | Mandatory | Description                |
+| ---------- | ---------------------------------------------------- | --------- | -------------------------- |
 | deviceType | [CommunicationDeviceType](#communicationdevicetype9) | Yes       | Communication device type. |
 
 **Return value**
@@ -4829,8 +4842,8 @@ Checks whether a communication device is active. This API returns the result syn
 
 **Parameters**
 
-| Name       | Type                                                 | Mandatory | Description               |
-| ---------- | ---------------------------------------------------- | --------- | ------------------------- |
+| Name       | Type                                                 | Mandatory | Description                |
+| ---------- | ---------------------------------------------------- | --------- | -------------------------- |
 | deviceType | [CommunicationDeviceType](#communicationdevicetype9) | Yes       | Communication device type. |
 
 **Return value**
@@ -5084,9 +5097,9 @@ async function selectOutputDeviceByFilter(){
 
 ```
 
-### getPreferredOutputDeviceForRendererInfo<sup>10+</sup>
+### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
 
-getPreferredOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
+getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
 
 Obtains the output device with the highest priority based on the audio renderer information. This API uses an asynchronous callback to return the result.
 
@@ -5118,8 +5131,8 @@ let rendererInfo: audio.AudioRendererInfo = {
   rendererFlags : 0
 }
 
-async function getPreferredOutputDevice() {
-  audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo, (err: BusinessError, desc: audio.AudioDeviceDescriptors) => {
+async function getPreferOutputDevice() {
+  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err: BusinessError, desc: audio.AudioDeviceDescriptors) => {
     if (err) {
       console.error(`Result ERROR: ${err}`);
     } else {
@@ -5130,9 +5143,9 @@ async function getPreferredOutputDevice() {
 
 ```
 
-### getPreferredOutputDeviceForRendererInfo<sup>10+</sup>
+### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
 
-getPreferredOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&lt;AudioDeviceDescriptors&gt;
+getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&lt;AudioDeviceDescriptors&gt;
 
 Obtains the output device with the highest priority based on the audio renderer information. This API uses a promise to return the result.
 
@@ -5169,8 +5182,8 @@ let rendererInfo: audio.AudioRendererInfo = {
   rendererFlags : 0
 }
 
-async function getPreferredOutputDevice() {
-  audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
+async function getPreferOutputDevice() {
+  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
     console.info(`device descriptor: ${desc}`);
   }).catch((err: BusinessError) => {
     console.error(`Result ERROR: ${err}`);
@@ -5228,9 +5241,9 @@ try {
 
 ```
 
-### on('preferredOutputDeviceChangeForRendererInfo')<sup>10+</sup>
+### on('preferOutputDeviceChangeForRendererInfo')<sup>10+</sup>
 
-on(type: 'preferredOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererInfo, callback: Callback<AudioDeviceDescriptors\>): void
+on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererInfo, callback: Callback<AudioDeviceDescriptors\>): void
 
 Subscribes to the change of the output device with the highest priority. This API uses an asynchronous callback to return the result.
 
@@ -5240,7 +5253,7 @@ Subscribes to the change of the output device with the highest priority. This AP
 
 | Name         | Type                                                         | Mandatory | Description                                                  |
 | :----------- | :----------------------------------------------------------- | :-------- | :----------------------------------------------------------- |
-| type         | string                                                       | Yes       | Event type. The value **'preferredOutputDeviceChangeForRendererInfo'** means the output device change event, which is triggered when the output device with the highest priority is changed. |
+| type         | string                                                       | Yes       | Event type. The event **'preferOutputDeviceChangeForRendererInfo'** is triggered when the output device with the highest priority is changed. |
 | rendererInfo | [AudioRendererInfo](#audiorendererinfo8)                     | Yes       | Audio renderer information.                                  |
 | callback     | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | Yes       | Callback used to return the information about the output device with the highest priority. |
 
@@ -5261,15 +5274,15 @@ let rendererInfo: audio.AudioRendererInfo = {
   rendererFlags : 0
 }
 
-audioRoutingManager.on('preferredOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
+audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
   console.info(`device descriptor: ${desc}`);
 });
 
 ```
 
-### off('preferredOutputDeviceChangeForRendererInfo')<sup>10+</sup>
+### off('preferOutputDeviceChangeForRendererInfo')<sup>10+</sup>
 
-off(type: 'preferredOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDeviceDescriptors\>): void
+off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDeviceDescriptors\>): void
 
 Unsubscribes from the change of the output device with the highest priority.
 
@@ -5279,7 +5292,7 @@ Unsubscribes from the change of the output device with the highest priority.
 
 | Name     | Type                                                        | Mandatory | Description                                                  |
 | -------- | ----------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | string                                                      | Yes       | Event type. The value **'preferredOutputDeviceChangeForRendererInfo'** means the output device change event, which is triggered when the output device with the highest priority is changed. |
+| type     | string                                                      | Yes       | Event type. The event **'preferOutputDeviceChangeForRendererInfo'** is triggered when the output device with the highest priority is changed. |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | No        | Callback used for unsubscription.                            |
 
 **Error codes**
@@ -5293,7 +5306,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-audioRoutingManager.off('preferredOutputDeviceChangeForRendererInfo');
+audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
 
 ```
 
@@ -5449,7 +5462,7 @@ Subscribes to the change of the input device with the highest priority. This API
 
 | Name         | Type                                                         | Mandatory | Description                                                  |
 | :----------- | :----------------------------------------------------------- | :-------- | :----------------------------------------------------------- |
-| type         | string                                                       | Yes       | Event type. The value **'preferredInputDeviceChangeForCapturerInfo'** means the input device change event, which is triggered when the input device with the highest priority is changed. |
+| type         | string                                                       | Yes       | Event type. The event **'preferredInputDeviceChangeForCapturerInfo'** is triggered when the input device with the highest priority is changed. |
 | capturerInfo | [AudioCapturerInfo](#audiocapturerinfo8)                     | Yes       | Audio capturer information.                                  |
 | callback     | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | Yes       | Callback used to return the information about the input device with the highest priority. |
 
@@ -5488,7 +5501,7 @@ Unsubscribes from the change of the input device with the highest priority.
 
 | Name     | Type                                                        | Mandatory | Description                                                  |
 | -------- | ----------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | string                                                      | Yes       | Event type. The value **'preferredInputDeviceChangeForCapturerInfo'** means the input device change event, which is triggered when the input device with the highest priority is changed. |
+| type     | string                                                      | Yes       | Event type. The event **'preferredInputDeviceChangeForCapturerInfo'** is triggered when the input device with the highest priority is changed. |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | No        | Callback used for unsubscription.                            |
 
 **Error codes**
@@ -5577,13 +5590,14 @@ Describes the audio capturer change event.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-| Name              | Type                                              | Readable | Writable | Description                                                |
-| ----------------- | ------------------------------------------------- | -------- | -------- | ---------------------------------------------------------- |
-| streamId          | number                                            | Yes      | No       | Unique ID of an audio stream.                              |
-| clientUid         | number                                            | Yes      | No       | UID of the audio capturer client.<br>This is a system API. |
-| capturerInfo      | [AudioCapturerInfo](#audiocapturerinfo8)          | Yes      | No       | Audio capturer information.                                |
-| capturerState     | [AudioState](#audiostate)                         | Yes      | No       | Audio state.<br>This is a system API.                      |
-| deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes      | No       | Audio device description.                                  |
+| Name                | Type                                              | Readable | Writable | Description                                                  |
+| ------------------- | ------------------------------------------------- | -------- | -------- | ------------------------------------------------------------ |
+| streamId            | number                                            | Yes      | No       | Unique ID of an audio stream.                                |
+| clientUid           | number                                            | Yes      | No       | UID of the audio capturer client.<br>This is a system API.   |
+| capturerInfo        | [AudioCapturerInfo](#audiocapturerinfo8)          | Yes      | No       | Audio capturer information.                                  |
+| capturerState       | [AudioState](#audiostate)                         | Yes      | No       | Audio state.<br>This is a system API.                        |
+| deviceDescriptors   | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes      | No       | Audio device description.                                    |
+| muted<sup>11+</sup> | boolean                                           | Yes      | No       | Whether the audio capturer is muted. The value **true** means that the audio capturer is muted, and **false** means the opposite. |
 
 **Example**
 
@@ -5636,20 +5650,21 @@ Describes an audio device.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
-| Name                          | Type                      | Readable | Writable | Description                                                  |
-| ----------------------------- | ------------------------- | -------- | -------- | ------------------------------------------------------------ |
-| deviceRole                    | [DeviceRole](#devicerole) | Yes      | No       | Device role.                                                 |
-| deviceType                    | [DeviceType](#devicetype) | Yes      | No       | Device type.                                                 |
-| id<sup>9+</sup>               | number                    | Yes      | No       | Device ID, which is unique.                                  |
-| name<sup>9+</sup>             | string                    | Yes      | No       | Device name.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission. |
-| address<sup>9+</sup>          | string                    | Yes      | No       | Device address.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission. |
-| sampleRates<sup>9+</sup>      | Array&lt;number&gt;       | Yes      | No       | Supported sampling rates.                                    |
-| channelCounts<sup>9+</sup>    | Array&lt;number&gt;       | Yes      | No       | Number of channels supported.                                |
-| channelMasks<sup>9+</sup>     | Array&lt;number&gt;       | Yes      | No       | Supported channel masks.                                     |
-| displayName<sup>10+</sup>     | string                    | Yes      | No       | Display name of the device.                                  |
-| networkId<sup>9+</sup>        | string                    | Yes      | No       | ID of the device network.<br>This is a system API.           |
-| interruptGroupId<sup>9+</sup> | number                    | Yes      | No       | ID of the interruption group to which the device belongs.<br>This is a system API. |
-| volumeGroupId<sup>9+</sup>    | number                    | Yes      | No       | ID of the volume group to which the device belongs.<br>This is a system API. |
+| Name                          | Type                                                  | Readable | Writable | Description                                                  |
+| ----------------------------- | ----------------------------------------------------- | -------- | -------- | ------------------------------------------------------------ |
+| deviceRole                    | [DeviceRole](#devicerole)                             | Yes      | No       | Device role.                                                 |
+| deviceType                    | [DeviceType](#devicetype)                             | Yes      | No       | Device type.                                                 |
+| id<sup>9+</sup>               | number                                                | Yes      | No       | Device ID, which is unique.                                  |
+| name<sup>9+</sup>             | string                                                | Yes      | No       | Device name.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission. |
+| address<sup>9+</sup>          | string                                                | Yes      | No       | Device address.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission. |
+| sampleRates<sup>9+</sup>      | Array&lt;number&gt;                                   | Yes      | No       | Supported sampling rates.                                    |
+| channelCounts<sup>9+</sup>    | Array&lt;number&gt;                                   | Yes      | No       | Number of channels supported.                                |
+| channelMasks<sup>9+</sup>     | Array&lt;number&gt;                                   | Yes      | No       | Supported channel masks.                                     |
+| displayName<sup>10+</sup>     | string                                                | Yes      | No       | Display name of the device.                                  |
+| networkId<sup>9+</sup>        | string                                                | Yes      | No       | ID of the device network.<br>This is a system API.           |
+| interruptGroupId<sup>9+</sup> | number                                                | Yes      | No       | ID of the interruption group to which the device belongs.<br>This is a system API. |
+| volumeGroupId<sup>9+</sup>    | number                                                | Yes      | No       | ID of the volume group to which the device belongs.<br>This is a system API. |
+| encodingTypes<sup>11+</sup>   | Array&lt;[AudioEncodingType](#audioencodingtype8)&gt; | Yes      | No       | Supported encoding types.                                    |
 
 **Example**
 
@@ -7317,6 +7332,39 @@ try {
 
 ```
 
+### setChannelBlendMode<sup>11+</sup>
+
+setChannelBlendMode(mode: ChannelBlendMode): void
+
+Sets the audio channel blending mode. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name | Type                                    | Mandatory | Description                  |
+| ---- | --------------------------------------- | --------- | ---------------------------- |
+| mode | [ChannelBlendMode](#channelblendmode11) | Yes       | Audio channel blending mode. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID      | Error Message                          |
+| ------- | -------------------------------------- |
+| 6800101 | Input parameter value error.           |
+| 6800103 | Operation not permit at current state. |
+
+**Example**
+
+```js
+let mode = audio.ChannelBlendMode.MODE_DEFAULT;
+
+audioRenderer.setChannelBlendMode(mode);
+console.info(`BlendMode: ${mode}`);
+
+```
+
 ### on('audioInterrupt')<sup>9+</sup>
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
@@ -7331,7 +7379,7 @@ Same as [on('interrupt')](#oninterrupt), this API is used to listen for focus ch
 
 | Name     | Type                                           | Mandatory | Description                                                  |
 | -------- | ---------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | string                                         | Yes       | Event type. The value **'audioInterrupt'** means the audio interruption event, which is triggered when audio rendering is interrupted. |
+| type     | string                                         | Yes       | Event type. The event **'audioInterrupt'** is triggered when audio rendering is interrupted. |
 | callback | Callback\<[InterruptEvent](#interruptevent9)\> | Yes       | Callback used to return the audio interruption event.        |
 
 **Error codes**
@@ -7555,7 +7603,7 @@ Subscribes to audio output device change events.
 
 | Name     | Type                                                         | Mandatory | Description                                                  |
 | :------- | :----------------------------------------------------------- | :-------- | :----------------------------------------------------------- |
-| type     | string                                                       | Yes       | Event type. The value **'outputDeviceChange'** means the audio output device change event, which is triggered when the audio output device changes. |
+| type     | string                                                       | Yes       | Event type. The event **'outputDeviceChange'** is triggered when the audio output device is changed. |
 | callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | Yes       | Callback used to return the audio output device change.      |
 
 **Error codes**
@@ -7579,7 +7627,7 @@ audioRenderer.on('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptors
 
 off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void;
 
-Unsubscribes from audio output device event changes.
+Unsubscribes from audio output device change events.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -7587,7 +7635,7 @@ Unsubscribes from audio output device event changes.
 
 | Name     | Type                                                         | Mandatory | Description                                                  |
 | :------- | :----------------------------------------------------------- | :-------- | :----------------------------------------------------------- |
-| type     | string                                                       | Yes       | Event type. The value **'outputDeviceChange'** means the audio output device change event, which is triggered when the audio output device changes. |
+| type     | string                                                       | Yes       | Event type. The event **'outputDeviceChange'** is triggered when the audio output device is changed. |
 | callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | No        | Callback used for unsubscription.                            |
 
 **Error codes**
@@ -8315,6 +8363,70 @@ try {
 
 ```
 
+### getCurrentInputDevices<sup>11+</sup>
+
+getCurrentInputDevices(): AudioDeviceDescriptors
+
+Obtains the descriptors of the current input devices. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Return value**
+
+| Type                                              | Description                               |
+| ------------------------------------------------- | ----------------------------------------- |
+| [AudioDeviceDescriptors](#audiodevicedescriptors) | An array of the audio device descriptors. |
+
+**Example**
+
+```js
+let deviceDescriptors: audio.AudioDeviceDescriptors = audioCapturer.getCurrentInputDevices();
+console.info(`Device id: ${deviceDescriptors[0].id}`);
+console.info(`Device type: ${deviceDescriptors[0].deviceType}`);
+console.info(`Device role: ${deviceDescriptors[0].deviceRole}`);
+console.info(`Device name: ${deviceDescriptors[0].name}`);
+console.info(`Device address: ${deviceDescriptors[0].address}`);
+console.info(`Device samplerates: ${deviceDescriptors[0].sampleRates[0]}`);
+console.info(`Device channelcounts: ${deviceDescriptors[0].channelCounts[0]}`);
+console.info(`Device channelmask: ${deviceDescriptors[0].channelMasks[0]}`);
+console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
+
+```
+
+### getCurrentAudioCapturerChangeInfo<sup>11+</sup>
+
+getCurrentAudioCapturerChangeInfo(): AudioCapturerChangeInfo
+
+Obtains the configuration changes of the current audio capturer. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Return value**
+
+| Type                                                 | Description                                  |
+| :--------------------------------------------------- | :------------------------------------------- |
+| [AudioCapturerChangeInfo](#audiocapturerchangeinfo9) | Configuration changes of the audio capturer. |
+
+**Example**
+
+```js
+let info: audio.AudioCapturerChangeInfo = audioCapturer.getCurrentAudioCapturerChangeInfo();
+console.info(`Info streamId: ${info.streamId}`);
+console.info(`Info source: ${info.capturerInfo.source}`);
+console.info(`Info capturerFlags: ${info.capturerInfo.capturerFlags}`);
+console.info(`Info capturerState: ${info.capturerState}`);
+console.info(`Info muted: ${info.muted}`);
+console.info(`Info type: ${info.deviceDescriptors[0].deviceType}`);
+console.info(`Info role: ${info.deviceDescriptors[0].deviceRole}`);
+console.info(`Info name: ${info.deviceDescriptors[0].name}`);
+console.info(`Info address: ${info.deviceDescriptors[0].address}`);
+console.info(`Info samplerates: ${info.deviceDescriptors[0].sampleRates[0]}`);
+console.info(`Info channelcounts: ${info.deviceDescriptors[0].channelCounts[0]}`);
+console.info(`Info channelmask: ${info.deviceDescriptors[0].channelMasks[0]}`);
+console.info(`Info encodingTypes: ${info.deviceDescriptors[0].encodingTypes[0]}`);
+
+```
+
 ### on('audioInterrupt')<sup>10+</sup>
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
@@ -8329,7 +8441,7 @@ Same as [on('interrupt')](#oninterrupt), this API is used to listen for focus ch
 
 | Name     | Type                                           | Mandatory | Description                                                  |
 | -------- | ---------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | string                                         | Yes       | Event type. The value **'audioInterrupt'** means the audio interruption event, which is triggered when audio capturing is interrupted. |
+| type     | string                                         | Yes       | Event type. The event **'audioInterrupt'** is triggered when audio capturing is interrupted. |
 | callback | Callback\<[InterruptEvent](#interruptevent9)\> | Yes       | Callback used to return the audio interruption event.        |
 
 **Error codes**
@@ -8405,7 +8517,7 @@ Unsubscribes from audio interruption events.
 
 | Name | Type   | Mandatory | Description                                                  |
 | ---- | ------ | --------- | ------------------------------------------------------------ |
-| type | string | Yes       | Event type. The value **'audioInterrupt'** means the audio interruption event, which is triggered when audio capturing is interrupted. |
+| type | string | Yes       | Event type. The event **'audioInterrupt'** is triggered when audio capturing is interrupted. |
 
 **Error codes**
 
@@ -8422,6 +8534,125 @@ audioCapturer.off('audioInterrupt');
 
 ```
 
+### on('inputDeviceChange')<sup>11+</sup>
+
+on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
+
+Subscribes to audio input device change events.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name     | Type                                                         | Mandatory | Description                                                  |
+| :------- | :----------------------------------------------------------- | :-------- | :----------------------------------------------------------- |
+| type     | string                                                       | Yes       | Event type. The event **'inputDeviceChange'** is triggered when the audio input device is changed. |
+| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | Yes       | Callback used to return the result.                          |
+
+**Error codes**
+
+| ID      | Error Message                |
+| ------- | ---------------------------- |
+| 6800101 | Input parameter value error. |
+
+**Example**
+
+```js
+audioCapturer.on('inputDeviceChange', (deviceChangeInfo: audio.AudioDeviceDescriptors) => {
+  console.info(`inputDevice id: ${deviceChangeInfo[0].id}`);
+  console.info(`inputDevice deviceRole: ${deviceChangeInfo[0].deviceRole}`);
+  console.info(`inputDevice deviceType: ${deviceChangeInfo[0].deviceType}`);
+});
+
+```
+
+### off('inputDeviceChange')<sup>11+</sup>
+
+off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void
+
+Unsubscribes from audio input device change events.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name     | Type                                                         | Mandatory | Description                                                  |
+| :------- | :----------------------------------------------------------- | :-------- | :----------------------------------------------------------- |
+| type     | string                                                       | Yes       | Event type. The event **'inputDeviceChange'** is triggered when the audio input device is changed. |
+| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | No        | Callback used for unsubscription.                            |
+
+**Error codes**
+
+| ID      | Error Message                |
+| ------- | ---------------------------- |
+| 6800101 | Input parameter value error. |
+
+**Example**
+
+```js
+audioCapturer.off('inputDeviceChange');
+
+```
+
+### on('audioCapturerChange')<sup>11+</sup>
+
+on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): void
+
+Subscribes to audio capturer change events.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name     | Type                                                         | Mandatory | Description                                                  |
+| :------- | :----------------------------------------------------------- | :-------- | :----------------------------------------------------------- |
+| type     | string                                                       | Yes       | Event type. The event **'audioCapturerChange'** is triggered when the audio capturer is changed. |
+| callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | Yes       | Callback used to return the result.                          |
+
+**Error codes**
+
+| ID      | Error Message                |
+| ------- | ---------------------------- |
+| 6800101 | Input parameter value error. |
+
+**Example**
+
+```js
+audioCapturer.on('audioCapturerChange', (capturerChangeInfo: audio.AudioCapturerChangeInfo) => {
+  console.info(`audioCapturerChange id: ${capturerChangeInfo[0].id}`);
+  console.info(`audioCapturerChange deviceRole: ${capturerChangeInfo[0].deviceRole}`);
+  console.info(`audioCapturerChange deviceType: ${capturerChangeInfo[0].deviceType}`);
+});
+
+```
+
+### off('audioCapturerChange')<sup>11+</sup>
+
+off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>): void
+
+Unsubscribes from audio capturer change events.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name     | Type                                                         | Mandatory | Description                                                  |
+| :------- | :----------------------------------------------------------- | :-------- | :----------------------------------------------------------- |
+| type     | string                                                       | Yes       | Event type. The event **'audioCapturerChange'** is triggered when the audio capturer is changed. |
+| callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | No        | Callback used for unsubscription.                            |
+
+**Error codes**
+
+| ID      | Error Message                |
+| ------- | ---------------------------- |
+| 6800101 | Input parameter value error. |
+
+**Example**
+
+```js
+audioCapturer.off('audioCapturerChange');
+
+```
 
 ### on('markReach')<sup>8+</sup>
 

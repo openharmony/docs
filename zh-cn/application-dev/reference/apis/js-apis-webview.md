@@ -22,7 +22,7 @@ import web_webview from '@ohos.web.webview';
 
 ## once
 
-once(type: string, headers: Callback\<void\>): void
+once(type: string, callback: Callback\<void\>): void
 
 订阅一次指定类型Web事件的回调。
 
@@ -33,7 +33,7 @@ once(type: string, headers: Callback\<void\>): void
 | 参数名  | 类型              | 必填 | 说明                  |
 | ------- | ---------------- | ---- | -------------------- |
 | type     | string          | 是   | Web事件的类型，目前支持："webInited"（Web初始化完成）。      |
-| headers | Callback\<void\> | 是   | 所订阅的回调函数。 |
+| callback | Callback\<void\> | 是   | 所订阅的回调函数。 |
 
 **示例：**
 
@@ -1047,7 +1047,7 @@ onActive(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1092,7 +1092,7 @@ onInactive(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1136,7 +1136,7 @@ refresh(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1193,7 +1193,7 @@ accessStep(step: number): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1291,7 +1291,7 @@ getHitTest(): WebHitTestType
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1345,7 +1345,7 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1359,6 +1359,7 @@ class testObj {
   }
 
   test(): string {
+    console.log('ArkUI Web Component');
     return "ArkUI Web Component";
   }
 
@@ -1367,11 +1368,26 @@ class testObj {
   }
 }
 
+class webObj {
+  constructor() {
+  }
+
+  webTest(): string {
+    console.log('Web test');
+    return "Web test";
+  }
+
+  webString(): void {
+    console.log('Web test toString');
+  }
+}
+
 @Entry
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   @State testObjtest: testObj = new testObj();
+  @State webTestObj: webObj = new webObj();
   build() {
     Column() {
       Button('refresh')
@@ -1387,6 +1403,7 @@ struct Index {
         .onClick(() => {
           try {
             this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString"]);
+            this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -1408,12 +1425,19 @@ struct Index {
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
+      <p id="webDemo"></p>
     </body>
     <script type="text/javascript">
     function htmlTest() {
+      // This function call expects to return "ArkUI Web Component"
       let str=objName.test();
       document.getElementById("demo").innerHTML=str;
       console.log('objName.test result:'+ str)
+
+      // This function call expects to return "Web test"
+      let webStr = objTestName.webTest();
+      document.getElementById("webDemo").innerHTML=webStr;
+      console.log('objTestName.webTest result:'+ webStr)
     }
 </script>
 </html>
@@ -1440,7 +1464,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1530,7 +1554,7 @@ runJavaScript(script: string): Promise\<string>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1609,7 +1633,7 @@ runJavaScriptExt(script: string, callback : AsyncCallback\<JsMessageExt>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1735,7 +1759,7 @@ runJavaScriptExt(script: string): Promise\<JsMessageExt>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1846,7 +1870,7 @@ deleteJavaScriptRegister(name: string): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100008 | Cannot delete JavaScriptProxy.                               |
 
 **示例：**
@@ -1935,7 +1959,7 @@ struct WebComponent {
 
 zoom(factor: number): void
 
-调整当前网页的缩放比例。
+调整当前网页的缩放比例，[zoomAccess](../arkui-ts/ts-basic-components-web.md#zoomaccess)需为true。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1951,7 +1975,7 @@ zoom(factor: number): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100004 | Function not enable.                                         |
 
 **示例：**
@@ -1979,6 +2003,7 @@ struct WebComponent {
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
+        .zoomAccess(true)
     }
   }
 }
@@ -2004,7 +2029,7 @@ searchAllAsync(searchString: string): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2067,7 +2092,7 @@ clearMatches(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2120,7 +2145,7 @@ searchNext(forward: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2167,7 +2192,7 @@ clearSslCache(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2212,7 +2237,7 @@ clearClientAuthenticationCache(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2261,7 +2286,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 | 类型                   | 说明              |
 | ---------------------- | ----------------- |
-| [WebMessagePort](#webmessageport) | web消息端口列表。 |
+| Array\<[WebMessagePort](#webmessageport)> | web消息端口列表。 |
 
 **错误码：**
 
@@ -2306,7 +2331,7 @@ struct WebComponent {
 
 postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
-发送Web消息端口到HTML5。
+发送Web消息端口到HTML。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3510,9 +3535,7 @@ struct WebComponent {
 
 setNetworkAvailable(enable: boolean): void
 
-设置JavaScript中的window.navigator.isOnLine属性。
-
-**需要权限：** ohos.permission.GET_NETWORK_INFO
+设置JavaScript中的window.navigator.onLine属性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3520,7 +3543,7 @@ setNetworkAvailable(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable | boolean | 是   | 是否使能window.navigator.isOnLine。 |
+| enable | boolean | 是   | 是否使能window.navigator.onLine。 |
 
 **错误码：**
 
@@ -3567,9 +3590,15 @@ struct WebComponent {
 <body>
 <h1>online 属性</h1>
 <p id="demo"></p>
+<button onclick="func()">click</button>
 <script>
     let online = navigator.onLine;
     document.getElementById("demo").innerHTML = "浏览器在线：" + online;
+
+    function func(){
+      var online = navigator.onLine;
+      document.getElementById("demo").innerHTML = "浏览器在线：" + online;
+    }
 </script>
 </body>
 </html>
@@ -3595,7 +3624,7 @@ hasImage(callback: AsyncCallback\<boolean>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -3652,7 +3681,7 @@ hasImage(): Promise\<boolean>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -3958,7 +3987,6 @@ struct WebComponent {
 ```ts
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 
@@ -4045,7 +4073,6 @@ struct WebComponent {
 ```ts
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 
@@ -4114,7 +4141,7 @@ struct WebComponent {
 
 getCertificate(): Promise<Array<cert.X509Cert>>
 
-获取当前网站的证书信息。使用web组件加载https网站，会进行SSL证书校验，该接口会通过Promise异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert定义](./js-apis-cert.md)），便于开发者展示网站证书信息。
+获取当前网站的证书信息。使用web组件加载https网站，会进行SSL证书校验，该接口会通过Promise异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert](./js-apis-cert.md#x509cert)定义），便于开发者展示网站证书信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4635,6 +4662,68 @@ struct WebComponent {
 }
 ```
 
+### startDownload<sup>11+</sup>
+
+startDownload(url: string): void
+
+使用Web组件的下载能力来下载指定的url, 比如下载网页中指定的图片。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| url      | string  | 是   | 下载地址。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100002 | Invalid url. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### getCustomUserAgent<sup>10+</sup>
 
 getCustomUserAgent(): string
@@ -4696,11 +4785,15 @@ struct WebComponent {
 >
 > 目前调用WebCookieManager下的方法，都需要先加载Web组件。
 
-### getCookie
+### getCookie<sup>(deprecated)</sup>
 
 static getCookie(url: string): string
 
 获取指定url对应cookie的值。
+
+> **说明：**
+>
+> 从API version9开始支持，从API version 11开始废弃。建议使用[fetchCookieSync](###fetchCookieSync11)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4754,11 +4847,15 @@ struct WebComponent {
 }
 ```
 
-### setCookie
+### setCookie<sup>(deprecated)</sup>
 
 static setCookie(url: string, value: string): void
 
 为指定url设置单个cookie的值。
+
+> **说明：**
+>
+> 从API version9开始支持，从API version 11开始废弃。建议使用[configCookieSync](###configCookieSync11+)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4796,6 +4893,59 @@ struct WebComponent {
         .onClick(() => {
           try {
             web_webview.WebCookieManager.setCookie('https://www.example.com', 'a=b');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### configCookieSync<sup>11+</sup>
+
+static configCookieSync(url: string, value: string): void
+
+为指定url设置单个cookie的值。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要设置的cookie所属的url，建议使用完整的url。 |
+| value  | string | 是   | 要设置的cookie的值。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 17100002 | Invalid url.                                           |
+| 17100005 | Invalid cookie value.                                  |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('configCookieSync')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -5103,11 +5253,15 @@ struct WebComponent {
 }
 ```
 
-### deleteEntireCookie
+### deleteEntireCookie<sup>(deprecated)</sup>
 
 static deleteEntireCookie(): void
 
 清除所有cookie。
+
+> **说明：**
+>
+> 从API version9开始支持，从API version 11开始废弃。建议使用[clearAllCookiesSync](###clearAllCookiesSync11+)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5134,11 +5288,15 @@ struct WebComponent {
 }
 ```
 
-### deleteSessionCookie
+### deleteSessionCookie<sup>(deprecated)</sup>
 
 static deleteSessionCookie(): void
 
 清除所有会话cookie。
+
+> **说明：**
+>
+> 从API version9开始支持，从API version 11开始废弃。建议使用[clearSessionCookiesync](###clearSessionCookieSync11+)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6874,3 +7032,212 @@ Web组件使用HTTPDNS的模式。
 | OFF                                  | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。|
 | AUTO                                 | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。|
 | SECURE_ONLY                          | 2 |强制使用设定的HTTPDNS服务器进行域名解析。|
+
+### getMethod<sup>11+</sup>
+
+getMethod(): string
+
+获取下载任务的请求方式。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| string | 下载的请求方式。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download， method:" + webDownloadItem.getMethod());
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getMimeType<sup>11+</sup>
+
+getMimeType(): string
+
+获取下载的媒体类型（例如，一个声音文件可能被标记为 audio/ogg ，一个图像文件可能是 image/png）。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| string | 下载的媒体类型（例如，一个声音文件可能被标记为 audio/ogg ，一个图像文件可能是 image/png）。|
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download， mime type:" + webDownloadItem.getMimeType());
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getUrl<sup>9+</sup>
+
+getUrl(): string
+
+获取下载的请求地址。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| string | 下载的请求地址。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download, url:" + webDownloadItem.getUrl());
+              // 传入一个下载路径，并开始下载。
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```

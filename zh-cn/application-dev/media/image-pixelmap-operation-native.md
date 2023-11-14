@@ -72,7 +72,7 @@ EXTERN_C_END
     ```
 2. 根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的 **PixelMap** 对象。
     ```c++
-    napi_value CreateAlphaPixelMap(napi_env, napi_callback_info info) {
+    napi_value CreateAlphaPixelMap(napi_env env, napi_callback_info info) {
         napi_value udfVar = nullptr;
         napi_value thisVar = nullptr;
         napi_value argValue[1] = {0};
@@ -87,7 +87,7 @@ EXTERN_C_END
             return udfVar;
         }
         int32_t res = OH_PixelMap_CreateAlphaPixelMap(env, argValue[0], &alphaPixelmap);
-        if (res != IMAGE_RESULT_SUCCESS || alphaPixelmap == nulllptr) {
+        if (res != IMAGE_RESULT_SUCCESS || alphaPixelmap == nullptr) {
             return udfVar;
         }
         return alphaPixelmap;
@@ -168,7 +168,7 @@ EXTERN_C_END
         // flipY: 垂直翻转，0为不翻转，1为翻转。
         int32_t flipX = 0;
         int32_t flipY = 1;
-        OH_PixelMap_Flip(native, filpX, filpY);
+        OH_PixelMap_Flip(native, flipX, flipY);
 
         // 设置裁剪区域。
         // cropX: 裁剪起始点横坐标。

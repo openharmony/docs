@@ -7,7 +7,6 @@ The **ExtensionAbilityInfo** module defines the ExtensionAbility information. A 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## ExtensionAbilityInfo
-
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                | Type                                                        | Readable| Writable| Description                                                |
@@ -26,3 +25,4 @@ The **ExtensionAbilityInfo** module defines the ExtensionAbility information. A 
 | enabled              | boolean                                                      | Yes  | No  | Whether the ExtensionAbility is enabled.                          |
 | readPermission       | string                                                       | Yes  | No  | Permission required for reading data from the ExtensionAbility.                |
 | writePermission      | string                                                       | Yes  | No  | Permission required for writing data to the ExtensionAbility.                |
+| extensionAbilityType<sup>11</sup>      | string                                                       | Yes  | No  | Type of the ExtensionAbility.                |

@@ -241,6 +241,8 @@ static setSystemLanguage(language: string): void
 
 设置系统语言。当前调用该接口不支持系统界面语言的实时刷新。
 
+若设置系统语言后，需要[监听事件](./commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED，可以[订阅](./js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1)该事件。
+
 **系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
@@ -264,13 +266,34 @@ static setSystemLanguage(language: string): void
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
+  import CommonEventManager from '@ohos.commonEventManager';
 
+  // 设置系统语言
   try {
     I18n.System.setSystemLanguage('zh'); // 设置系统当前语言为 "zh"
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
+ 
+  // 订阅公共事件
+  let subscriber: CommonEventManager.CommonEventSubscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+  let subscribeInfo: CommonEventManager.CommonEventSubscribeInfo = { // 订阅者信息
+    events: [CommonEventManager.Support.COMMON_EVENT_LOCALE_CHANGED]
+  };
+  CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:CommonEventManager.CommonEventSubscriber) => { // 创建订阅者
+      console.info("createSubscriber");
+      subscriber = commonEventSubscriber;
+      CommonEventManager.subscribe(subscriber, (err, data) => {
+        if (err) {
+          console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
+          return;
+        }
+        console.info("the subscribed event has occurred."); // 订阅的事件发生时执行
+      })
+  }).catch((err: BusinessError) => {
+      console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  });  
   ```
 
 ### getSystemRegion<sup>9+</sup>
@@ -600,6 +623,40 @@ static getFirstPreferredLanguage(): string
   }
   ```
 
+### setAppPreferredLanguage<sup>11+</sup>
+
+static setAppPreferredLanguage(language: string): void
+
+设置应用的偏好语言。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明    |
+| -------- | ------ | ---- | ----- |
+| language | string | 是    | 语言ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | param value not valid |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    I18n.System.setAppPreferredLanguage('zh'); // 设置应用当前语言为 "zh"
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
 ### getAppPreferredLanguage<sup>9+</sup>
 
 static getAppPreferredLanguage(): string
@@ -744,6 +801,75 @@ getCalendar(locale: string, type? : string): Calendar
   I18n.getCalendar("zh-Hans", "chinese"); // 获取中国农历日历对象
   ```
 
+## EntityRecognizer<sup>11+</sup>
+
+### constructor<sup>11+</sup>
+
+constructor(locale?: string)
+
+创建实体识别对象。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明                |
+| ---- | ---- | ---- | ----------------- |
+| locale | string | 否    | 区域ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | param value not valid |
+
+**示例：**
+  ```ts
+  let entityRecognizer: I18n.EntityRecognizer = new I18n.EntityRecognizer("zh-CN");
+  ```
+
+### findEntityInfo<sup>11+</sup>
+
+findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
+
+识别文本中的实体信息。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明                |
+| ---- | ---- | ---- | ----------------- |
+| text | string | 是    | 用于识别实体的文本。 |
+
+**返回值：**
+
+| 类型   | 说明                |
+| ---- | ----------------- |
+| Array&lt;[EntityInfoItem](#entityinfoitem11)&gt; | 识别的实体对象列表。 |
+
+**示例：**
+  ```ts
+  let entityRecognizer: I18n.EntityRecognizer = new I18n.EntityRecognizer("zh-CN");
+  let text1: string = "如有疑问，请联系158****2312";
+  let result1: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text1); // result[0].type = "phone_number", result[0].begin = 8, result[0].end = 19
+  let text2: string = "我们2023年12月1日一起吃饭吧。";
+  let result2: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text2); // result[0].type = "date", result[0].begin = 2, result[0].end = 12
+  ```
+
+## EntityInfoItem<sup>11+</sup>
+
+实体信息对象。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称  | 类型   | 可读   | 可写   | 说明                |
+| ---- | ---- | ---- | ---- | ----------------- |
+| type | string | 是    | 是    | 实体的类型，当前支持"phone_number"和"date"。 |
+| begin | number | 是    | 是    | 实体的起始位置。 |
+| end | number | 是    | 是    | 实体的终止位置。 |
 
 ## Calendar<sup>8+</sup>
 
@@ -1627,7 +1753,7 @@ getTimeZone(zoneID?: string): TimeZone
 
 | 类型       | 说明           |
 | -------- | ------------ |
-| TimeZone | 时区ID对应的时区对象。 |
+| [TimeZone](#timezone) | 时区ID对应的时区对象。 |
 
 **示例：**
   ```ts
@@ -1715,6 +1841,12 @@ getOffset(date?: number): number
 获取某一时刻时区对象表示的时区与UTC时区的偏差。
 
 **系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明     |
+| ------ | ------ | ---- | ------ |
+| date | number | 否    | 待计算偏差的时刻 |
 
 **返回值：**
 

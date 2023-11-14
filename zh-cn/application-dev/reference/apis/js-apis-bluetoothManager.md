@@ -13,7 +13,6 @@
 
 ```js
 import bluetoothManager from '@ohos.bluetoothManager';
-import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -42,6 +41,7 @@ enableBluetooth(): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     bluetoothManager.enableBluetooth();
 } catch (err) {
@@ -75,6 +75,7 @@ disableBluetooth(): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     bluetoothManager.disableBluetooth();
 } catch (err) {
@@ -114,6 +115,7 @@ getLocalName(): string
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let localName: string = bluetoothManager.getLocalName();
 } catch (err) {
@@ -153,6 +155,7 @@ getState(): BluetoothState
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let state: bluetoothManager.BluetoothState = bluetoothManager.getState();
 } catch (err) {
@@ -193,6 +196,7 @@ getBtConnectionState(): ProfileConnectionState
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let connectionState: bluetoothManager.ProfileConnectionState = bluetoothManager.getBtConnectionState();
 } catch (err) {
@@ -233,6 +237,7 @@ setLocalName(name: string): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     bluetoothManager.setLocalName('device_name');
 } catch (err) {
@@ -273,6 +278,7 @@ pairDevice(deviceId: string): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     // 实际的地址可由扫描流程获取
     bluetoothManager.pairDevice("XX:XX:XX:XX:XX:XX");
@@ -321,6 +327,7 @@ getProfileConnectionState(profileId: ProfileId): ProfileConnectionState
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let result: bluetoothManager.ProfileConnectionState = bluetoothManager.getProfileConnectionState(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE);
 } catch (err) {
@@ -363,6 +370,7 @@ cancelPairedDevice(deviceId: string): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     bluetoothManager.cancelPairedDevice("XX:XX:XX:XX:XX:XX");
 } catch (err) {
@@ -409,6 +417,7 @@ getRemoteDeviceName(deviceId: string): string
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let remoteDeviceName: string = bluetoothManager.getRemoteDeviceName("XX:XX:XX:XX:XX:XX");
 } catch (err) {
@@ -455,6 +464,7 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let remoteDeviceClass: bluetoothManager.DeviceClass  = bluetoothManager.getRemoteDeviceClass("XX:XX:XX:XX:XX:XX");
 } catch (err) {
@@ -495,6 +505,7 @@ getPairedDevices(): Array&lt;string&gt;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let devices: Array<string> = bluetoothManager.getPairedDevices();
 } catch (err) {
@@ -536,6 +547,7 @@ setBluetoothScanMode(mode: ScanMode, duration: number): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     // 设置为可连接可发现才可被远端设备扫描到，可以连接。
     bluetoothManager.setBluetoothScanMode(bluetoothManager.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
@@ -577,6 +589,7 @@ getBluetoothScanMode(): ScanMode
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let scanMode: bluetoothManager.ScanMode = bluetoothManager.getBluetoothScanMode();
 } catch (err) {
@@ -611,6 +624,7 @@ startBluetoothDiscovery(): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let deviceId: Array<string>;
 function onReceiveEvent(data: Array<string>) {
     deviceId = data;
@@ -650,6 +664,7 @@ stopBluetoothDiscovery(): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     bluetoothManager.stopBluetoothDiscovery();
 } catch (err) {
@@ -691,6 +706,7 @@ setDevicePairingConfirmation(device: string, accept: boolean): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // 订阅“pinRequired”配对请求事件，收到远端配对请求后设置配对确认
 function onReceivePinRequiredEvent(data: bluetoothManager.PinRequiredParam) { // data为配对请求的入参，配对请求参数
     console.info('pin required  = '+ JSON.stringify(data));
@@ -735,6 +751,7 @@ on(type: "bluetoothDeviceFind", callback: Callback&lt;Array&lt;string&gt;&gt;): 
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<string>) { // data为蓝牙设备地址集合
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -777,6 +794,7 @@ off(type: "bluetoothDeviceFind", callback?: Callback&lt;Array&lt;string&gt;&gt;)
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<string>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -820,6 +838,7 @@ on(type: "pinRequired", callback: Callback&lt;PinRequiredParam&gt;): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.PinRequiredParam) { // data为配对请求参数
     console.info('pin required = '+ JSON.stringify(data));
 }
@@ -862,6 +881,7 @@ off(type: "pinRequired", callback?: Callback&lt;PinRequiredParam&gt;): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.PinRequiredParam) {
     console.info('pin required = '+ JSON.stringify(data));
 }
@@ -905,6 +925,7 @@ on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.BondStateParam) { // data为回调函数入参，表示配对的状态
     console.info('pair state = '+ JSON.stringify(data));
 }
@@ -947,6 +968,7 @@ off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.BondStateParam) {
     console.info('bond state = '+ JSON.stringify(data));
 }
@@ -990,6 +1012,7 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
@@ -1032,6 +1055,7 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
@@ -1079,6 +1103,7 @@ sppListen(name: string, option: SppOption, callback: AsyncCallback&lt;number&gt;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let serverNumber = -1;
 function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
@@ -1129,6 +1154,7 @@ sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let serverNumber = -1;
 function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
@@ -1189,10 +1215,11 @@ sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1237,6 +1264,7 @@ sppCloseServerSocket(socket: number): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let serverNumber = -1;
 function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
@@ -1283,9 +1311,10 @@ sppCloseClientSocket(socket: number): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1330,9 +1359,10 @@ sppWrite(clientSocket: number, data: ArrayBuffer): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1381,9 +1411,10 @@ on(type: "sppRead", clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1424,9 +1455,10 @@ off(type: "sppRead", clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1463,6 +1495,7 @@ getProfileInstance(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGate
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hidHost: bluetoothManager.HidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST);
 } catch (err) {
@@ -1523,6 +1556,7 @@ createGattClientDevice(deviceId: string): GattClientDevice
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: bluetoothManager.GattClientDevice = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -1563,6 +1597,7 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let result: Array<string>  = bluetoothManager.BLE.getConnectedBLEDevices();
 } catch (err) {
@@ -1604,6 +1639,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<bluetoothManager.ScanResult>) {
     console.info('BLE scan device find result = '+ JSON.stringify(data));
 }
@@ -1652,6 +1688,7 @@ stopBLEScan(): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     bluetoothManager.BLE.stopBLEScan();
 } catch (err) {
@@ -1691,6 +1728,7 @@ on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): vo
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<bluetoothManager.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -1733,6 +1771,7 @@ off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<bluetoothManager.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -1783,6 +1822,7 @@ getConnectionDevices(): Array&lt;string&gt;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
     let retArray: Array<string> = a2dpSrc.getConnectionDevices();
@@ -1830,6 +1870,7 @@ getDeviceState(device: string): ProfileConnectionState
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
     let ret: bluetoothManager.ProfileConnectionState = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
@@ -1880,6 +1921,7 @@ connect(device: string): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
     a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
@@ -1922,6 +1964,7 @@ disconnect(device: string): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
     a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
@@ -1956,11 +1999,16 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
+try {
 let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
 ```
 
 
@@ -1989,12 +2037,17 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
+try {
 let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 a2dpSrc.off('connectionStateChange', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
 ```
 
 
@@ -2035,6 +2088,7 @@ getPlayingState(device: string): PlayingState
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
     let state: bluetoothManager.PlayingState  = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
@@ -2085,6 +2139,7 @@ connect(device: string): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hfpAg: bluetoothManager.HandsFreeAudioGatewayProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as bluetoothManager.HandsFreeAudioGatewayProfile;
     hfpAg.connect('XX:XX:XX:XX:XX:XX');
@@ -2127,6 +2182,7 @@ disconnect(device: string): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hfpAg: bluetoothManager.HandsFreeAudioGatewayProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as bluetoothManager.HandsFreeAudioGatewayProfile;
     hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
@@ -2157,12 +2213,17 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
+try {
 let hfpAg: bluetoothManager.HandsFreeAudioGatewayProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
   bluetoothManager.HandsFreeAudioGatewayProfile;
 hfpAg.on('connectionStateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -2187,13 +2248,18 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
+try {
 let hfpAg: bluetoothManager.HandsFreeAudioGatewayProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
   bluetoothManager.HandsFreeAudioGatewayProfile;
 hfpAg.on('connectionStateChange', onReceiveEvent);
 hfpAg.off('connectionStateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -2237,6 +2303,7 @@ connect(device: string): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hidHostProfile: bluetoothManager.HidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
@@ -2281,6 +2348,7 @@ disconnect(device: string): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hidHostProfile: bluetoothManager.HidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');
@@ -2311,11 +2379,16 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
+try {
 let hidHost: bluetoothManager.HidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -2340,12 +2413,17 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
+try {
 let hidHost: bluetoothManager.HidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 hidHost.off('connectionStateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -2392,6 +2470,7 @@ disconnect(device: string): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let panProfile: bluetoothManager.PanProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.disconnect('XX:XX:XX:XX:XX:XX');
@@ -2422,11 +2501,16 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
     console.info('pan state = '+ JSON.stringify(data));
 }
+try {
 let panProfile: bluetoothManager.PanProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -2451,12 +2535,17 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
     console.info('pan state = '+ JSON.stringify(data));
 }
+try {
 let panProfile: bluetoothManager.PanProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 panProfile.off('connectionStateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -2495,6 +2584,7 @@ setTethering(enable: boolean): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let panProfile: bluetoothManager.PanProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.setTethering(true);
@@ -2526,6 +2616,7 @@ isTetheringOn(): boolean
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let panProfile: bluetoothManager.PanProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.isTetheringOn();
@@ -2577,6 +2668,7 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -2648,6 +2740,7 @@ stopAdvertising(): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let server = bluetoothManager.BLE.createGattServer();
 try {
     server.stopAdvertising();
@@ -2689,6 +2782,7 @@ server端添加服务。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // 创建descriptors
 let descriptors: Array<bluetoothManager.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -2755,6 +2849,7 @@ removeService(serviceUuid: string): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let server = bluetoothManager.BLE.createGattServer();
 try {
     server.removeService('00001810-0000-1000-8000-00805F9B34FB');
@@ -2790,6 +2885,7 @@ close(): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let server = bluetoothManager.BLE.createGattServer();
 try {
     server.close();
@@ -2832,6 +2928,7 @@ server端特征值发生变化时，主动通知已连接的client设备。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // 创建descriptors
 let descriptors: Array<bluetoothManager.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -2887,6 +2984,7 @@ server端回复client端的读写请求。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 /* send response */
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
@@ -2931,6 +3029,7 @@ server端订阅特征值读请求事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1123;
@@ -2977,8 +3076,13 @@ server端取消订阅特征值读请求事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("characteristicRead");
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -3005,6 +3109,7 @@ server端订阅特征值写请求事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 function WriteCharacteristicReq(characteristicWriteRequest: bluetoothManager.CharacteristicWriteRequest) {
@@ -3054,8 +3159,13 @@ server端取消订阅特征值写请求事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("characteristicWrite");
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -3082,6 +3192,7 @@ server端订阅描述符读请求事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 descValue[0] = 1101;
@@ -3128,8 +3239,13 @@ server端取消订阅描述符读请求事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("descriptorRead");
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -3156,6 +3272,7 @@ server端订阅描述符写请求事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 function WriteDescriptorReq(descriptorWriteRequest: bluetoothManager.DescriptorWriteRequest) {
@@ -3205,8 +3322,13 @@ server端取消订阅描述符写请求事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("descriptorWrite");
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -3233,13 +3355,17 @@ server端订阅BLE连接状态变化事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function Connected(BLEConnectChangedState: bluetoothManager.BLEConnectChangedState) {
   let deviceId: string = BLEConnectChangedState.deviceId;
   let status: bluetoothManager.ProfileConnectionState  = BLEConnectChangedState.state;
 }
-
+try {
 let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.on("connectStateChange", Connected);
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -3266,8 +3392,13 @@ server端取消订阅BLE连接状态变化事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("connectStateChange");
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -3305,6 +3436,7 @@ client端发起连接远端蓝牙低功耗设备。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.connect();
@@ -3340,6 +3472,7 @@ client端断开与远端蓝牙低功耗设备的连接。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.disconnect();
@@ -3375,6 +3508,7 @@ close(): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.close();
@@ -3417,6 +3551,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // callkback 模式
 function getServices(code: BusinessError, gattServices: Array<bluetoothManager.GattService>) {
   if (code.code == 0) {
@@ -3471,6 +3606,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Promise 模式
 try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
@@ -3517,6 +3653,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function readCcc(code: BusinessError, BLECharacteristic: bluetoothManager.BLECharacteristic) {
     if (code.code != 0) {
         return;
@@ -3589,6 +3726,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let descriptors: Array<bluetoothManager.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -3647,6 +3785,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function readDesc(code: BusinessError, BLEDescriptor: bluetoothManager.BLEDescriptor) {
     if (code.code != 0) {
         return;
@@ -3712,6 +3851,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
@@ -3762,6 +3902,7 @@ client端向低功耗蓝牙设备写入特定的特征值。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let descriptors: Array<bluetoothManager.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -3819,6 +3960,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
@@ -3868,6 +4010,7 @@ client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmiss
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.setBLEMtuSize(128);
@@ -3909,6 +4052,7 @@ setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolea
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // 创建descriptors
 let descriptors: Array<bluetoothManager.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
@@ -3958,6 +4102,7 @@ on(type: "BLECharacteristicChange", callback: Callback&lt;BLECharacteristic&gt;)
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function CharacteristicChange(characteristicChangeReq: ble.BLECharacteristic) {
     let serviceUuid: string = characteristicChangeReq.serviceUuid;
     let characteristicUuid: string = characteristicChangeReq.characteristicUuid;
@@ -3995,6 +4140,7 @@ off(type: "BLECharacteristicChange", callback?: Callback&lt;BLECharacteristic&gt
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLECharacteristicChange');
@@ -4027,6 +4173,7 @@ client端订阅蓝牙低功耗设备的连接状态变化事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function ConnectStateChanged(state: bluetoothManager.BLEConnectChangedState) {
     console.log('bluetooth connect state changed');
     let connectState: bluetoothManager.ProfileConnectionState = state.state;
@@ -4063,6 +4210,7 @@ off(type: "BLEConnectionStateChange", callback?: Callback&lt;BLEConnectChangedSt
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLEConnectionStateChange');
@@ -4103,6 +4251,7 @@ client获取远端蓝牙低功耗设备名。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // callback
 try {
     let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -4148,6 +4297,7 @@ client获取远端蓝牙低功耗设备名。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // promise
 try {
     let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -4191,6 +4341,7 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // callback
 try {
     let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -4235,6 +4386,7 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // promise
 try {
     let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");

@@ -293,7 +293,7 @@ Prints files. This API uses an asynchronous callback to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | Yes| List of files to print. Image (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported.|
+| file | Array&lt;string&gt; | Yes| List of files to print. Images in .jpg, .png, .gif, .bmp, or .webp format are supported.|
 | callback | AsyncCallback&lt;PrintTask&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -331,7 +331,7 @@ Prints files. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | Yes| List of files to print. Image (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported.|
+| file | Array&lt;string&gt; | Yes| List of files to print. Images in .jpg, .png, .gif, .bmp, or .webp format are supported.|
 
 **Return value**
 | **Type**| **Description**|
@@ -1320,9 +1320,14 @@ Unregisters the listener for printer state change events. This API uses a callba
 
 ```ts
 import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
 
-print.off('printerStateChange', (data: boolean) => {
-    console.log('off printerStateChange data : ' + JSON.stringify(data));
+print.off('printerStateChange', (err: BusinessError, data: boolean) => {
+    if (err) {
+        console.log('off printerStateChange failed, because : ' + JSON.stringify(err));
+    } else {
+        console.log('off printerStateChange data : ' + JSON.stringify(data));
+    }
 })
 ```
 
@@ -1376,9 +1381,14 @@ Unregisters the listener for print job state change events. This API uses a call
 
 ```ts
 import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
 
-print.off('jobStateChange', (data: boolean) => {
-    console.log('offJobStateChanged data : ' + JSON.stringify(data));
+print.off('jobStateChange', (err: BusinessError, data: boolean) => {
+    if (err) {
+        console.log('offJobStateChanged failed, because : ' + JSON.stringify(err));
+    } else {
+        console.log('offJobStateChanged data : ' + JSON.stringify(data));
+    }
 })
 ```
 
@@ -1432,9 +1442,14 @@ Unregisters the listener for printer extension information change events. This A
 
 ```ts
 import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
 
 print.off('extInfoChange', (err: BusinessError, data: boolean) => {
-    console.log('offExtInfoChange data : ' + JSON.stringify(data));
+    if (err) {
+        console.log('offExtInfoChange failed, because : ' + JSON.stringify(err));
+    } else {
+        console.log('offExtInfoChange data : ' + JSON.stringify(data));
+    }
 })
 ```
 

@@ -49,7 +49,6 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 | ----- | ------- | ---- | --------------------- |
 | regularSize  | [number, number]  | 是    | 大小规则的GridItem在Grid中占的行数和列数，只支持占1行1列即[1, 1]。   |
 | irregularIndexes | number[] | 否    | 大小不规则的GridItem在Grid所有子节点中的索引值。onGetIrregularSizeByIndex不设置时irregularIndexes中的GridItem默认占垂直滚动Grid的一整行或水平滚动Grid的一整列。 |
-| onGetIrregularSizeByIndex | (index: number) => [number, number] | 否    | 获取不规则GridItem占用的行数和列数，布局过程中针对irregularIndexes中的index调用，开发者应返回index对应GridItem占用的行数和列数。垂直滚动Grid不支持GridItem占多行，水平滚动Grid不支持GridItem占多列。 |
 
 ## 属性
 
@@ -64,14 +63,14 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10的默认值为BarState.Auto。 |
 | scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 设置滚动条的颜色。 |
 | scrollBarWidth | string \| number    | 设置滚动条的宽度。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。<br/>默认值：4<br/>单位：vp |
-| cachedCount | number                                   | 设置预加载的GridItem的数量，只在[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)中生效。具体使用可参考[减少应用白块说明](../../ui/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<br/>默认值：1<br/>**说明：** <br>设置缓存后会在Grid显示区域上下各缓存cachedCount*列数个GridItem。<br/>[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)超出显示和缓存范围的GridItem会被释放。<br/>设置为小于0的值时，按默认值显示。 |
+| cachedCount | number                                   | 设置预加载的GridItem的数量，只在[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)中生效。具体使用可参考[减少应用白块说明](../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<br/>默认值：1<br/>**说明：** <br>设置缓存后会在Grid显示区域上下各缓存cachedCount*列数个GridItem。<br/>[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)超出显示和缓存范围的GridItem会被释放。<br/>设置为小于0的值时，按默认值显示。 |
 | editMode <sup>8+</sup>                   | boolean | 设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部[GridItem](ts-container-griditem.md)。<br/>默认值：flase |
 | layoutDirection<sup>8+</sup>             | [GridDirection](#griddirection8枚举说明) | 设置布局的主轴方向。<br/>默认值：GridDirection.Row |
 | maxCount<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示可显示的最大列数<br/>当layoutDirection是Column/ColumnReverse时，表示可显示的最大行数。<br/>默认值：Infinity<br/>**说明：** <br/>当maxCount小于minCount时，maxCount和minCount都按默认值处理。<br/>设置为小于1的值时，按默认值显示。 |
 | minCount<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示可显示的最小列数。<br/>当layoutDirection是Column/ColumnReverse时，表示可显示的最小行数。<br/>默认值：1<br/>**说明：** <br/>设置为小于1的值时，按默认值显示。 |
 | cellLength<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示一行的高度。<br/>当layoutDirection是Column/ColumnReverse时，表示一列的宽度。<br/>默认值：第一个元素的大小 |
 | multiSelectable<sup>8+</sup> | boolean | 是否开启鼠标框选。<br/>默认值：false<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。<br/>**说明：**<br/> 开启框选后，可以配合Griditem的selected属性和onSelect事件获取GridItem的选中状态，还可以设置[选中态样式](./ts-universal-attributes-polymorphic-style.md)（无默认选中样式）。 |
-| supportAnimation<sup>8+</sup> | boolean | 是否支持动画。当前支持GridItem拖拽动画。<br/>默认值：false |
+| supportAnimation<sup>8+</sup> | boolean | 是否支持动画。当前支持GridItem拖拽动画。<br/>默认值：false<br/>**说明：**<br/> 仅在滚动模式下（只设置rowsTemplate、columnsTemplate其中一个）支持动画。|
 | edgeEffect<sup>10+</sup> | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 设置组件的滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.None<br/> |
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true      |
 | nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10对象说明)         | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。 |
@@ -322,84 +321,3 @@ struct GridExample {
 网格子组件1与子组件6拖拽交换位置后：
 
 ![gridDrag](figures/gridDrag2.png)
-
-### 示例3
-
-使用GridLayoutOptions
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct GridExample {
-  @State Number: String[] = ['0', '1', '2', '3', '4']
-  scroller: Scroller = new Scroller()
-  layoutOptions1: GridLayoutOptions = {
-    regularSize: [1, 1],        // 只支持[1, 1]
-    irregularIndexes: [0, 6],   // 索引为0和6的GridItem占用一行
-  }
-
-  layoutOptions2: GridLayoutOptions = {
-    regularSize: [1, 1],
-    irregularIndexes: [0, 7],   // 索引为0和7的GridItem占用的列数由onGetIrregularSizeByIndex指定
-    onGetIrregularSizeByIndex: (index: number) => {
-      if (index === 0) {
-        return [1, 5]
-      }
-      return [1, index % 6 + 1]
-    }
-  }
-
-  build() {
-    Column({ space: 5 }) {
-      Grid(this.scroller, this.layoutOptions1) {
-        ForEach(this.Number, (day: string) => {
-          ForEach(this.Number, (day: string) => {
-            GridItem() {
-              Text(day)
-                .fontSize(16)
-                .backgroundColor(0xF9CF93)
-                .width('100%')
-                .height(80)
-                .textAlign(TextAlign.Center)
-            }
-          }, (day: string) => day)
-        }, (day: string) => day)
-      }
-      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
-      .columnsGap(10)
-      .rowsGap(10)
-      .scrollBar(BarState.Off)
-      .width('90%')
-      .backgroundColor(0xFAEEE0)
-      .height(300)
-
-      Text('scroll').fontColor(0xCCCCCC).fontSize(9).width('90%')
-      // 不使用scroll，需要undefined占位
-      Grid(undefined, this.layoutOptions2) {
-        ForEach(this.Number, (day: string) => {
-          ForEach(this.Number, (day: string) => {
-            GridItem() {
-              Text(day)
-                .fontSize(16)
-                .backgroundColor(0xF9CF93)
-                .width('100%')
-                .height(80)
-                .textAlign(TextAlign.Center)
-            }
-          }, (day: string) => day)
-        }, (day: string) => day)
-      }
-      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
-      .columnsGap(10)
-      .rowsGap(10)
-      .scrollBar(BarState.Off)
-      .width('90%')
-      .backgroundColor(0xFAEEE0)
-      .height(300)
-    }.width('100%').margin({ top: 5 })
-  }
-}
-```
-
-![gridLayoutOptions](figures/gridLayoutOptions.png)

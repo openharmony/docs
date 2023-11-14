@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import { Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '@ohos.multimodalInput.gestureEvent';
+import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '@ohos.multimodalInput.gestureEvent';
 ```
 
 ## Pinch

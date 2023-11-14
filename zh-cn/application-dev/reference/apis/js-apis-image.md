@@ -36,14 +36,14 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
+image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
   console.log('Succeeded in creating pixelmap.');
 }).catch((error : BusinessError) => {
-  console.log('Failed to create pixelmap.');
+  console.error('Failed to create pixelmap.');
 })
 ```
 
@@ -66,11 +66,11 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (error : BusinessError, pixelmap : image.PixelMap) => {
+image.createPixelMap(color, opts, (error : BusinessError, pixelMap : image.PixelMap) => {
     if(error) {
         console.log('Failed to create pixelmap.');
     } else {
@@ -114,12 +114,12 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const readBuffer : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-pixelmap.readPixelsToBuffer(readBuffer).then(() => {
+pixelMap.readPixelsToBuffer(readBuffer).then(() => {
     console.log('Succeeded in reading image pixel data.');  //符合条件则进入 
 }).catch((error : BusinessError) => {
-    console.log('Failed to read image pixel data.');  //不符合条件则进入
+    console.error('Failed to read image pixel data.');  //不符合条件则进入
 })
 ```
 
@@ -141,11 +141,11 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const readBuffer : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-pixelmap.readPixelsToBuffer(readBuffer, (err : BusinessError, res : Object) => {
+pixelMap.readPixelsToBuffer(readBuffer, (err : BusinessError, res : void) => {
     if(err) {
-        console.log('Failed to read image pixel data.');  //不符合条件则进入
+        console.error('Failed to read image pixel data.');  //不符合条件则进入
     } else {
         console.log('Succeeded in reading image pixel data.');  //符合条件则进入
     }
@@ -175,17 +175,17 @@ readPixels(area: PositionArea): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const area : image.PositionArea = {
     pixels: new ArrayBuffer(8),
     offset: 0,
     stride: 8,
     region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
 }
-pixelmap.readPixels(area).then(() => {
+pixelMap.readPixels(area).then(() => {
     console.log('Succeeded in reading the image data in the area.'); //符合条件则进入
 }).catch((error : BusinessError) => {
-    console.log('Failed to read the image data in the area.'); //不符合条件则进入
+    console.error('Failed to read the image data in the area.'); //不符合条件则进入
 })
 ```
 
@@ -207,23 +207,23 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (err : BusinessError, pixelmap : image.PixelMap) => {
-    if(pixelmap == undefined){
+image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
+    if(pixelMap == undefined){
         console.info('createPixelMap failed.');
     } else {
         const area : image.PositionArea = { pixels: new ArrayBuffer(8),
             offset: 0,
             stride: 8,
             region: { size: { height: 1, width: 2 }, x: 0, y: 0 }};
-        pixelmap.readPixels(area, (err : BusinessError) => {
+        pixelMap.readPixels(area, (err : BusinessError) => {
             if (err != undefined) {
-		   console.info('Failed to read pixelmap from the specified area.');
+	        console.error('Failed to read pixelmap from the specified area.');
 	    } else {
-		   console.info('Succeeded to read pixelmap from the specified area.');
+	        console.info('Succeeded to read pixelmap from the specified area.');
 	    }
         })
     }
@@ -253,13 +253,13 @@ writePixels(area: PositionArea): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
-    .then( (pixelmap : image.PixelMap)  => {
-        if (pixelmap == undefined) {
+    .then( (pixelMap : image.PixelMap)  => {
+        if (pixelMap == undefined) {
             console.info('createPixelMap failed.');
         }
         const area : image.PositionArea = { pixels: new ArrayBuffer(8),
@@ -272,11 +272,11 @@ image.createPixelMap(color, opts)
             bufferArr[i] = i + 1;
         }
 
-        pixelmap.writePixels(area).then(() => {
-		    console.info('Succeeded to write pixelmap into the specified area.');
+        pixelMap.writePixels(area).then(() => {
+            console.info('Succeeded to write pixelmap into the specified area.');
         })
     }).catch((error : BusinessError) => {
-        console.log('error: ' + error);
+        console.error('error: ' + error);
     })
 ```
 
@@ -298,7 +298,7 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const area : image.PositionArea = { pixels: new ArrayBuffer(8),
     offset: 0,
     stride: 8,
@@ -308,9 +308,9 @@ let bufferArr : Uint8Array = new Uint8Array(area.pixels);
 for (let i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
 }
-pixelmap.writePixels(area, (error : BusinessError) => {
+pixelMap.writePixels(area, (error : BusinessError) => {
     if (error != undefined) {
-        console.info('Failed to write pixelmap into the specified area.');
+        console.error('Failed to write pixelmap into the specified area.');
     } else {
         console.info('Succeeded to write pixelmap into the specified area.');
     }
@@ -340,13 +340,13 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr : Uint8Array = new Uint8Array(color);
 for (let i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
 }
-pixelmap.writeBufferToPixels(color).then(() => {
+pixelMap.writeBufferToPixels(color).then(() => {
     console.log("Succeeded in writing data from a buffer to a PixelMap.");
 }).catch((error : BusinessError) => {
     console.error("Failed to write data from a buffer to a PixelMap.");
@@ -371,19 +371,19 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr : Uint8Array = new Uint8Array(color);
 for (let i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
 }
-pixelmap.writeBufferToPixels(color, (err : BusinessError) => {
+pixelMap.writeBufferToPixels(color, (err : BusinessError) => {
     if (err != undefined) {
         console.error("Failed to write data from a buffer to a PixelMap.");
         return;
     } else {
-		console.log("Succeeded in writing data from a buffer to a PixelMap.");
-	}
+	console.log("Succeeded in writing data from a buffer to a PixelMap.");
+    }
 });
 ```
 
@@ -406,11 +406,11 @@ getImageInfo(): Promise\<ImageInfo>
 ```ts
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 2, size: { height: 6, width: 8 } }
-image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
-    if (pixelmap == undefined) {
+image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
+    if (pixelMap == undefined) {
         console.error("Failed to obtain the image pixel map information.");
     }
-    pixelmap.getImageInfo().then((imageInfo : image.ImageInfo) => {
+    pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
         if (imageInfo == undefined) {
             console.error("Failed to obtain the image pixel map information.");
         }
@@ -438,14 +438,14 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 **示例:**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (err : BusinessError, pixelmap : image.PixelMap) => {
-    if (pixelmap == undefined) {
+image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
+    if (pixelMap == undefined) {
         console.error("Failed to obtain the image pixel map information.");
     }
-    pixelmap.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => {
+    pixelMap.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => {
         if (imageInfo == undefined) {
             console.error("Failed to obtain the image pixel map information.");
         }
@@ -473,12 +473,12 @@ getBytesNumberPerRow(): number
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (err : BusinessError, pixelmap : image.PixelMap) => {
-    let rowCount : number = pixelmap.getBytesNumberPerRow();
+image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
+    let rowCount : number = pixelMap.getBytesNumberPerRow();
 })
 ```
 
@@ -499,7 +499,7 @@ getPixelBytesNumber(): number
 **示例：**
 
 ```ts
-let pixelBytesNumber : number = pixelmap.getPixelBytesNumber();
+let pixelBytesNumber : number = pixelMap.getPixelBytesNumber();
 ```
 
 ### getDensity<sup>9+</sup>
@@ -519,7 +519,7 @@ getDensity():number
 **示例：**
 
 ```ts
-let getDensity : number = pixelmap.getDensity();
+let getDensity : number = pixelMap.getDensity();
 ```
 
 ### opacity<sup>9+</sup>
@@ -540,9 +540,9 @@ opacity(rate: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 let rate = 0.5;
-pixelmap.opacity(rate, (err : BusinessError) => {
+pixelMap.opacity(rate, (err : BusinessError) => {
 	if (err) {
         console.error("Failed to set opacity.");
         return;
@@ -576,7 +576,7 @@ opacity(rate: number): Promise\<void>
 
 ```ts
 async function Demo() {
-    await pixelmap.opacity(0.5);
+    await pixelMap.opacity(0.5);
 }
 ```
 
@@ -598,7 +598,7 @@ createAlphaPixelmap(): Promise\<PixelMap>
 
 ```ts
 async function Demo() {
-    await pixelmap.createAlphaPixelmap();
+    await pixelMap.createAlphaPixelmap();
 }   
 ```
 
@@ -619,10 +619,10 @@ createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
-pixelmap.createAlphaPixelmap((err : BusinessError, alphaPixelMap : image.PixelMap) => {
+import {BusinessError} from '@ohos.base';
+pixelMap.createAlphaPixelmap((err : BusinessError, alphaPixelMap : image.PixelMap) => {
     if (alphaPixelMap == undefined) {
-        console.info('Failed to obtain new pixel map.');
+        console.error('Failed to obtain new pixel map.');
     } else {
         console.info('Succeed in obtaining new pixel map.');
     }
@@ -649,7 +649,7 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
 ```ts
 async function Demo() {
-	await pixelmap.scale(2.0, 1.0);
+    await pixelMap.scale(2.0, 1.0);
 }
 ```
 
@@ -678,7 +678,7 @@ scale(x: number, y: number): Promise\<void>
 
 ```ts
 async function Demo() {
-	await pixelmap.scale(2.0, 1.0);
+    await pixelMap.scale(2.0, 1.0);
 }
 ```
 
@@ -702,7 +702,7 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
 ```ts
 async function Demo() {
-	await pixelmap.translate(3.0, 1.0);
+    await pixelMap.translate(3.0, 1.0);
 }
 ```
 
@@ -731,7 +731,7 @@ translate(x: number, y: number): Promise\<void>
 
 ```ts
 async function Demo() {
-	await pixelmap.translate(3.0, 1.0);
+    await pixelMap.translate(3.0, 1.0);
 }
 ```
 
@@ -753,15 +753,15 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 let angle = 90.0;
-pixelmap.rotate(angle, (err : BusinessError) => {
+pixelMap.rotate(angle, (err : BusinessError) => {
     if (err != undefined) {
         console.error("Failed to set rotation.");
         return;
     } else {
         console.log("Succeeded in setting rotation.");
-	}
+    }
 })
 ```
 
@@ -789,7 +789,7 @@ rotate(angle: number): Promise\<void>
 
 ```ts
 async function Demo() {
-    await pixelmap.rotate(90.0);
+    await pixelMap.rotate(90.0);
 }
 ```
 
@@ -813,7 +813,7 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 
 ```ts
 async function Demo() {
-    await pixelmap.flip(false, true);
+    await pixelMap.flip(false, true);
 }
 ```
 
@@ -842,7 +842,7 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
 ```ts
 async function Demo() {
-    await pixelmap.flip(false, true);
+    await pixelMap.flip(false, true);
 }
 ```
 
@@ -865,7 +865,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 
 ```ts
 async function Demo() {
-    await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
+    await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
 }
 ```
 
@@ -893,7 +893,7 @@ crop(region: Region): Promise\<void>
 
 ```ts
 async function Demo() {
-    await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
+    await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
 }
 ```
 
@@ -926,7 +926,7 @@ getColorSpace(): colorSpaceManager.ColorSpaceManager
 ```ts
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 async function Demo() {
-    let csm : Object = pixelmap.getColorSpace();
+    let csm : Object = pixelMap.getColorSpace();
 }
 ```
 
@@ -960,7 +960,7 @@ import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let csm : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    pixelmap.setColorSpace(csm);
+    pixelMap.setColorSpace(csm);
 }
 ```
 
@@ -990,12 +990,12 @@ marshalling(sequence: rpc.MessageSequence): void
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image'
-import rpc from '@ohos.rpc'
+import image from '@ohos.multimedia.image';
+import rpc from '@ohos.rpc';
 class MySequence implements rpc.Parcelable {
-    pixel_map;
-    constructor(pixelmap : image.PixelMap) {
-        this.pixel_map = pixelmap;
+    pixel_map : image.PixelMap;
+    constructor(conPixelMap : image.PixelMap) {
+        this.pixel_map = conPixelMap;
     }
     marshalling(messageSequence : rpc.MessageSequence) {
         this.pixel_map.marshalling(messageSequence);
@@ -1027,8 +1027,8 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap : image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
-      pixelMap = pixelmap;
+   await image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
+      pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
      // 序列化
@@ -1077,12 +1077,12 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image'
-import rpc from '@ohos.rpc'
+import image from '@ohos.multimedia.image';
+import rpc from '@ohos.rpc';
 class MySequence implements rpc.Parcelable {
-    pixel_map;
-    constructor(pixelmap : image.PixelMap) {
-        this.pixel_map = pixelmap;
+    pixel_map : image.PixelMap;
+    constructor(conPixelMap : image.PixelMap) {
+        this.pixel_map = conPixelMap;
     }
     marshalling(messageSequence : rpc.MessageSequence) {
         this.pixel_map.marshalling(messageSequence);
@@ -1114,8 +1114,8 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap : image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
-      pixelMap = pixelmap;
+   await image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
+      pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
      // 序列化
@@ -1148,11 +1148,11 @@ release():Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
-pixelmap.release().then(() => {
-	console.log('Succeeded in releasing pixelmap object.');
+import {BusinessError} from '@ohos.base';
+pixelMap.release().then(() => {
+    console.log('Succeeded in releasing pixelmap object.');
 }).catch((error : BusinessError) => {
-	console.log('Failed to release pixelmap object.');
+    console.error('Failed to release pixelmap object.');
 })
 ```
 
@@ -1173,10 +1173,10 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
-pixelmap.release((err : BusinessError) => {
+import {BusinessError} from '@ohos.base';
+pixelMap.release((err : BusinessError) => {
     if (err != undefined) {
-        console.log('Failed to release pixelmap object.');
+        console.error('Failed to release pixelmap object.');
     } else {
         console.log('Succeeded in releasing pixelmap object.');
     }
@@ -1216,7 +1216,7 @@ const imageSourceApi : image.ImageSource = image.createImageSource(path);
 //FA模型
 import featureAbility from '@ohos.ability.featureAbility';
 
-const context : _Context = featureAbility.getContext();
+const context : featureAbility.Context = featureAbility.getContext();
 const path : string = context.getCacheDir() + "/test.jpg";
 const imageSourceApi : image.ImageSource = image.createImageSource(path);
 ```
@@ -1349,7 +1349,8 @@ createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 
 ```ts
 const data : ArrayBuffer= new ArrayBuffer(112);
-const imageSourceApi : image.ImageSource = image.createImageSource(data);
+let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
+const imageSourceApi : image.ImageSource = image.createImageSource(data, sourceOptions);
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
@@ -1466,7 +1467,11 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 ```ts
 import {BusinessError} from '@ohos.base'
 imageSourceApi.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => { 
-    console.log('Succeeded in obtaining the image information.');
+    if (err != undefined) {
+        console.error(`Failed to obtaining the image information.code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.log('Succeeded in obtaining the image information.');
+    }
 })
 ```
 
@@ -1615,8 +1620,8 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 
 ```ts
 imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
-    imageSourceApi.getImageProperty("ImageWidth").then( (w : string) => {
-        console.info('w', w);
+    imageSourceApi.getImageProperty("ImageWidth").then((width : string) => {
+        console.info(`ImageWidth is :${width}`);
     })
 })
 ```
@@ -1678,8 +1683,10 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number)
 ```ts
 import {BusinessError} from '@ohos.base'
 const array : ArrayBuffer = new ArrayBuffer(100);
-imageSourceApi.updateData(array, false, 0, 10).then((data : Object) => {
+imageSourceApi.updateData(array, false, 0, 10).then(() => {
     console.info('Succeeded in updating data.');
+}).catch((err: BusinessError) => {
+    console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1707,9 +1714,11 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number,
 ```ts
 import {BusinessError} from '@ohos.base'
 const array : ArrayBuffer = new ArrayBuffer(100);
-imageSourceApi.updateData(array, false, 0, 10,(error : BusinessError, data : Object)=> {
-    if(data !== undefined){
-        console.info('Succeeded in updating data.');     
+imageSourceApi.updateData(array, false, 0, 10, (err: BusinessError) => {
+    if (err != undefined) {
+        console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
+    } else {
+        console.info('Succeeded in updating data.');
     }
 })
 ```
@@ -1836,7 +1845,8 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>;
 **示例：**
 
 ```ts
-let decodeOpts : image.DecodingOptions = {
+import {BusinessError} from '@ohos.base'
+let decodeOpts: image.DecodingOptions = {
     sampleSize: 1,
     editable: true,
     desiredSize: { width: 198, height: 202 },
@@ -1844,7 +1854,11 @@ let decodeOpts : image.DecodingOptions = {
     desiredPixelFormat: 3,
     index: 0,
 };
-let pixelmaplist : Array<image.PixelMap> = await imageSourceApi.createPixelMapList(decodeOpts);
+imageSourceApi.createPixelMapList(decodeOpts).then((pixelmaplist: Array<image.PixelMap>) => {
+    console.log('Succeeded in creating pixelmaplist object.');
+}).catch((err: BusinessError) => {
+    console.error(`Failed to create pixelmaplist object.code is ${err.code},message is ${err.message}`);
+})
 ```
 
 ### createPixelMapList<sup>10+</sup>
@@ -1876,8 +1890,13 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 **示例：**
 
 ```ts
-imageSourceApi.createPixelMapList( (pixelmaplist : Array<image.PixelMap>) => {
-    console.info('Succeeded in creating pixelmaplist object.');
+import {BusinessError} from '@ohos.base'
+imageSourceApi.createPixelMapList((err: BusinessError, pixelmaplist: Array<image.PixelMap>) => {
+    if (err != undefined) {
+        console.error(`Failed to create pixelmaplist object.code is ${err.code},message is ${err.message}`);
+    } else {
+        console.info('Succeeded in creating pixelmaplist object.');
+    }
 })
 ```
 
@@ -1920,8 +1939,12 @@ let decodeOpts : image.DecodingOptions = {
     desiredPixelFormat: 3,
     index: 0,
 };
-imageSourceApi.createPixelMapList(decodeOpts, (err : BusinessError, pixelmaplist : Array<image.PixelMap>) => { 
-    console.log('Succeeded in creating pixelmaplist object.');
+imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelmaplist: Array<image.PixelMap>) => {
+    if (err != undefined) {
+        console.error(`Failed to create pixelmaplist object.code is ${err.code},message is ${err.message}`);
+    } else {
+        console.log('Succeeded in creating pixelmaplist object.');
+    }
 })
 ```
 
@@ -1957,9 +1980,13 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void;
 
 ```ts
 import {BusinessError} from '@ohos.base'
-imageSourceApi.getDelayTimeList((err : BusinessError, delayTimes : Array<number>) => {
-    console.log('Succeeded in getting delay time.');
-});
+imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) => {
+    if (err != undefined) {
+        console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
+    } else {
+        console.log('Succeeded in delayTimes object.');
+    }
+})
 ```
 
 ### getDelayTimeList<sup>10+</sup>
@@ -1993,7 +2020,11 @@ getDelayTimeList(): Promise<Array\<number>>;
 **示例：**
 
 ```ts
-let delayTimes : Array<number> = await imageSourceApi.getDelayTimeList();
+imageSourceApi.getDelayTimeList().then((delayTimes : Array<number>) => {
+    console.log('Succeeded in delayTimes object.');
+}).catch((err: BusinessError) => {
+    console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
+})
 ```
 
 ### getFrameCount<sup>10+</sup>
@@ -2028,9 +2059,13 @@ getFrameCount(callback: AsyncCallback\<number>): void;
 
 ```ts
 import {BusinessError} from '@ohos.base'
-imageSourceApi.getFrameCount((err : BusinessError, frameCount : number) => {
-    console.log('Succeeded in getting frame count.');
-});
+imageSourceApi.getFrameCount((err: BusinessError, frameCount: number) => {
+    if (err != undefined) {
+        console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
+    } else {
+        console.log('Succeeded in getting frame count.');
+    }
+})
 ```
 
 ### getFrameCount<sup>10+</sup>
@@ -2064,7 +2099,11 @@ getFrameCount(): Promise\<number>;
 **示例：**
 
 ```ts
-let frameCount : number = await imageSourceApi.getFrameCount();
+imageSourceApi.getFrameCount().then((frameCount: number) => {
+    console.log('Succeeded in getting frame count.');
+}).catch((err : BusinessError) => {
+    console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
+})
 ```
 
 ### release
@@ -3123,7 +3162,7 @@ PixelMap的初始化选项。
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
 | format  | string | 是   | 是   | 目标格式。</br>当前只支持jpg、webp 和 png。 |
 | quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
-| bufferSize<sup>9+</sup> | number | 是   | 是   | 用于设置图片大小，默认为10M。 |
+| bufferSize<sup>9+</sup> | number | 是   | 是   | 接收编码数据的缓冲区大小，单位为Byte。默认为10MB。bufferSize需大于编码后图片大小。 |
 
 ## GetImagePropertyOptions<sup>7+</sup>
 
@@ -3181,7 +3220,6 @@ PixelMap的初始化选项。
 | FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"    | 焦距35毫米胶片，当前为只读属性。    |
 | CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"       | 捕获模式，当前为只读属性。    |
 | PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"  | 物理孔径,光圈大小，当前为只读属性。   |
-
 ## ImageFormat<sup>9+</sup>
 
 枚举，图片格式。

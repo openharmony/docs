@@ -1432,7 +1432,7 @@ off(type: 'extInfoChange', callback?: Callback&lt;boolean&gt;): void
 ```ts
 import print from '@ohos.print';
 
-print.off('extInfoChange', (err: BusinessError, data: boolean) => {
+print.off('extInfoChange', (data: boolean) => {
     console.log('offExtInfoChange data : ' + JSON.stringify(data));
 })
 ```
@@ -1957,8 +1957,8 @@ import print from '@ohos.print';
 import { BusinessError } from '@ohos.base';
 
 print.queryAllPrintJobs().then((data : void) => {
-    console.log('update print job state data : ' + JSON.stringify(data));
+    console.log('queryAllPrintJobs success, data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('update print job state error : ' + JSON.stringify(error));
+    console.log('queryAllPrintJobs failed, error : ' + JSON.stringify(error));
 })
 ```

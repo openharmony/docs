@@ -97,7 +97,7 @@ CodecBase模块提供运行音视频编解码通用的结构体、字符常量�
 | \*[OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type) | 提供统一容器，用于存储媒体描述。 | 
 | \*[OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime) | 编解码器mime类型的键，值类型为字符串。 | 
 | \*[OH_MD_KEY_DURATION](#oh_md_key_duration) | 持续时间键，值类型为int64_t。 | 
-| \*[OH_MD_KEY_BITRATE](#oh_md_key_bitrate) | 比特率的键，值类型为uint32_t。 | 
+| \*[OH_MD_KEY_BITRATE](#oh_md_key_bitrate) | 比特率的键，值类型为uint32_t。视频编码需要额外设置 [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) 以完成比特率设置。 | 
 | \*[OH_MD_KEY_MAX_INPUT_SIZE](#oh_md_key_max_input_size) | 最大输入大小的键，值类型为uint32_t | 
 | \*[OH_MD_KEY_WIDTH](#oh_md_key_width) | 视频宽度的键，值类型为uint32_t | 
 | \*[OH_MD_KEY_HEIGHT](#oh_md_key_height) | 视频高度键，值类型为uint32_t | 
@@ -118,7 +118,7 @@ CodecBase模块提供运行音视频编解码通用的结构体、字符常量�
 | \*[OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame) | 请求立即编码I帧的键。值类型为布尔值 | 
 | \*[OH_MD_KEY_QUALITY](#oh_md_key_quality) | 所需编码质量的键。值类型为uint32_t，此键仅适用于配置在恒定质量模式下的编码器 | 
 | \*[OH_MD_KEY_CHANNEL_LAYOUT](#oh_md_key_channel_layout) | 所需编码通道布局的键。值类型为int64_t，此键仅适用于编码器。 | 
-| \*[OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为uint32_t，支持flac编码器，请参见\@OH_BitsPerSample。 | 
+| \*[OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为uint32_t，支持flac编码器，请参见 [OH_BitsPerSample](#oh_bitspersample)。 | 
 | \*[OH_MD_KEY_AAC_IS_ADTS](#oh_md_key_aac_is_adts) | aac格式的键，值类型为uint32_t,aac解码器支持。 | 
 | \*[OH_MD_KEY_SBR](#oh_md_key_sbr) | aac sbr模式的键，值类型为uint32_t,aac编码器支持。 | 
 | \*[OH_MD_KEY_COMPLIANCE_LEVEL](#oh_md_key_compliance_level) | flac合规性级别的键，值类型为int32_t。 | 
@@ -296,6 +296,12 @@ typedef void (*OH_AVCodecOnStreamChanged) (OH_AVCodec *codec, OH_AVFormat *forma
 | format | 新输出流描述信息 | 
 | userData | 用户特定数据 | 
 
+**format 携载字段：**
+| Key                    | 描述             |
+| ---------------------- | ---------------  |
+| OH_MD_KEY_WIDTH        | 视频输出宽度     |
+| OH_MD_KEY_HEIGHT       | 视频输出高度     |
+| OH_MD_KEY_PIXEL_FORMAT | 视频输出像素格式 |
 
 ### OH_AVCProfile
 
@@ -840,7 +846,7 @@ const char* OH_MD_KEY_BITRATE
 
 **描述：**
 
-比特率的键，值类型为uint32_t。
+比特率的键，值类型为uint32_t。视频编码需要额外设置 [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) 以完成比特率设置。
 
 
 ### OH_MD_KEY_BITS_PER_CODED_SAMPLE

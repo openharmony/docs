@@ -25,7 +25,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
 
 ### 开发步骤 
 
-本文以[DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568)为例介绍电池温度保护机制的定制方法。
+本文以[DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568)为例介绍关机充电动画的定制方法。
 
 1. 在产品目录[（/vendor/hihope/rk3568）](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568)下创建animation文件夹。
 
@@ -206,8 +206,8 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
             "//vendor/hihope/rk3568/resourceschedule:resourceschedule",
             "//vendor/hihope/rk3568/etc:product_etc_conf",
             "//vendor/hihope/rk3568/battery/profile:battery_config",
-            "//vendor/hihope/rk3568/animation/profile:animation_config"   #添加animation_config的编译
-            "//vendor/hihope/rk3568/animation/resource/resources_config0" #添加图片资源的编译
+            "//vendor/hihope/rk3568/animation/profile:animation_config", #添加animation_config的编译
+            "//vendor/hihope/rk3568/animation/resource/resources_config" #添加图片资源的编译
         ]
         }
     },
@@ -315,7 +315,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
 
     ![animation_charging_power2](figures/animation_charging_power2.jpg)
 
-    2. %3电量状态。
+    2. 3%电量状态。
 
     ![animation_initial_power2](figures/animation_initial_power2.jpg)
 

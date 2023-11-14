@@ -13,8 +13,17 @@ PersistentStorage将选定的AppStorage属性保留在设备磁盘上。应用�
 
 PersistentStorage和AppStorage中的属性建立双向同步。应用开发通常通过AppStorage访问PersistentStorage，另外还有一些接口可以用于管理持久化属性，但是业务逻辑始终是通过AppStorage获取和设置属性的。
 
-
 ## 限制条件
+
+PersistentStorage允许的类型和值有：
+
+- `number, string, boolean, enum` 等简单类型。
+- 可以被`JSON.stringify()`和`JSON.parse()`重构的对象。例如`Date, Map, Set`等内置类型则不支持，以及对象的属性方法不支持持久化。
+
+PersistentStorage不允许的类型和值有：
+
+- 不支持嵌套对象（对象数组，对象的属性是对象等）。因为目前框架无法检测AppStorage中嵌套对象（包括数组）值的变化，所以无法写回到PersistentStorage中。
+- 不支持`undefined` 和 `null` 。
 
 持久化数据是一个相对缓慢的操作，应用程序应避免以下情况：
 
@@ -22,7 +31,7 @@ PersistentStorage和AppStorage中的属性建立双向同步。应用开发通�
 
 - 持久化经常变化的变量。
 
-当持久化更改的过程变得太繁重时，PersistentStorage实现可能会限制持久化属性更改的频率。
+PersistentStorage的持久化变量最好是小于2kb的数据，不要大量的数据持久化，因为PersistentStorage写入磁盘的操作是同步的，大量的数据本地化读写会同步在UI线程中执行，影响UI渲染性能。如果开发者需要存储大量的数据，建议使用数据库api。
 
 PersistentStorage和UIContext相关联，需要在[UIContext](../reference/apis/js-apis-arkui-UIContext.md#uicontext)明确的时候才可以调用，可以通过在[runScopedTask](../reference/apis/js-apis-arkui-UIContext.md#runscopedtask)里明确上下文。如果没有在UIContext明确的地方调用，将导致无法持久化数据。
 

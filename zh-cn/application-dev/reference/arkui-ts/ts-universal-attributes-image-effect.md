@@ -52,6 +52,7 @@
 | OUTER_FLOATING_SM | 浮动小阴影。 |
 | OUTER_FLOATING_MD | 浮动中阴影。 |
 
+
 ## 示例
 
 ### 示例1
@@ -101,50 +102,57 @@ struct BlurEffectsExample {
 @Component
 struct ImageEffectsExample {
   build() {
-    Column({ space: 10 }) {
+    Column({ space: 5 }) {
       // 添加阴影效果，图片效果不变
       Text('shadow').fontSize(15).fontColor(0xCCCCCC).width('90%')
       Image($r('app.media.image'))
         .width('90%')
-        .height(40)
-        .shadow({ radius: 10, color: Color.Green, offsetX: 20, offsetY: 30 })
+        .height(30)
+        .shadow({ radius: 10, color: Color.Green, offsetX: 20, offsetY: 20 })
+
+      // 添加内部阴影效果
+      Text('shadow').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      Image($r('app.media.image'))
+        .width('90%')
+        .height(30)
+        .shadow({ radius: 5, color: Color.Green, offsetX: 20, offsetY: 20,fill:true }).opacity(0.5)
 
       // 灰度效果0~1，越接近1，灰度越明显
       Text('grayscale').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.image')).width('90%').height(40).grayscale(0.3)
-      Image($r('app.media.image')).width('90%').height(40).grayscale(0.8)
+      Image($r('app.media.image')).width('90%').height(30).grayscale(0.3)
+      Image($r('app.media.image')).width('90%').height(30).grayscale(0.8)
 
       // 高光效果，1为正常图片，<1变暗，>1亮度增大
       Text('brightness').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.image')).width('90%').height(40).brightness(1.2)
+      Image($r('app.media.image')).width('90%').height(30).brightness(1.2)
 
       // 饱和度，原图为1
       Text('saturate').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.image')).width('90%').height(40).saturate(2.0)
-      Image($r('app.media.image')).width('90%').height(40).saturate(0.7)
+      Image($r('app.media.image')).width('90%').height(30).saturate(2.0)
+      Image($r('app.media.image')).width('90%').height(30).saturate(0.7)
 
       // 对比度，1为原图，>1值越大越清晰，<1值越小越模糊
       Text('contrast').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.image')).width('90%').height(40).contrast(2.0)
-      Image($r('app.media.image')).width('90%').height(40).contrast(0.8)
+      Image($r('app.media.image')).width('90%').height(30).contrast(2.0)
+      Image($r('app.media.image')).width('90%').height(30).contrast(0.8)
 
       // 图像反转比例
       Text('invert').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.image')).width('90%').height(40).invert(0.2)
-      Image($r('app.media.image')).width('90%').height(40).invert(0.8)
+      Image($r('app.media.image')).width('90%').height(30).invert(0.2)
+      Image($r('app.media.image')).width('90%').height(30).invert(0.8)
 
       // 叠色添加
       Text('colorBlend').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.image')).width('90%').height(40).colorBlend(Color.Green)
-      Image($r('app.media.image')).width('90%').height(40).colorBlend(Color.Blue)
+      Image($r('app.media.image')).width('90%').height(30).colorBlend(Color.Green)
+      Image($r('app.media.image')).width('90%').height(30).colorBlend(Color.Blue)
 
       // 深褐色
       Text('sepia').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.image')).width('90%').height(40).sepia(0.8)
+      Image($r('app.media.image')).width('90%').height(30).sepia(0.8)
 
       // 色相旋转
       Text('hueRotate').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.image')).width('90%').height(40).hueRotate(90)
+      Image($r('app.media.image')).width('90%').height(30).hueRotate(90)
     }.width('100%').margin({ top: 5 })
   }
 }
@@ -276,6 +284,7 @@ struct PixelStretchExample {
         .fontSize(12)
         .border({ width: 1 })
         .padding(10)
+        .clip(false)
         .width('50%')
         .pixelStretchEffect({top:10,left:10,right:10,bottom:10 })
     }.alignContent(Alignment.Center).width("100%").height("100%")

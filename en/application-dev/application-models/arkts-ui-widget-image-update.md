@@ -10,9 +10,7 @@ Typically, a widget includes local images or online images downloaded from the n
    
    ```ts
    import formBindingData from '@ohos.app.form.formBindingData';
-   import formProvider from '@ohos.app.form.formProvider';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import request from '@ohos.request';
    import fs from '@ohos.file.fs';
    import Want from '@ohos.app.ability.Want';
    import Base from '@ohos.base';

@@ -5193,6 +5193,8 @@ Obtains the remote object of an authenticator. This API cannot be overloaded.
 **Example**
 
   ```ts
+  import rpc from '@ohos.rpc';
+  
   class MyAuthenticator extends account_appAccount.Authenticator {
     addAccountImplicitly(authType: string, callerBundleName: string,
       options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
@@ -5245,7 +5247,7 @@ Obtains the remote object of an authenticator. This API cannot be overloaded.
   }
 
   export default {
-    onConnect(want): rpc.RemoteObject { // serviceAbility lifecycle function.
+    onConnect(want: Want): rpc.RemoteObject { // serviceAbility lifecycle function.
       let authenticator = new MyAuthenticator();
       return authenticator.getRemoteObject();
     }

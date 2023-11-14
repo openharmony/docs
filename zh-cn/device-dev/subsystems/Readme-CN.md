@@ -116,6 +116,7 @@
         - [电量与LED灯颜色的定制开发指导](subsys-power-level-LED-color.md)
         - [电池温度保护定制开发指导](subsys-power-temperature-protection.md)
         - [电量等级定制开发指导](subsys-power-battery-level-customization.md)
+        - [充电振动定制开发指导](subsys-power-battery-vibrator-customization.md)
         - [充电限流限压定制开发指导](subsys-power-charge-current-voltage-limit.md)
         - [充电类型定制开发指导](subsys-power-charge-type-customization.md)
         - [关机充电动画开发指导](subsys-power-poweroff-charge-animation.md)
@@ -133,3 +134,4 @@
         - [电源模式定制开发指导](subsys-power-mode-customization.md)
         - [电源默认休眠行为定制开发指导](subsys-power-default-sleep-behavior-customization.md)
         - [唤醒源定制开发指导](subsys-power-wakeup-source-customization.md)
+        - [关机振动定制开发指导](subsys-power-vibrator-customization.md)

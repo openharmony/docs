@@ -1,6 +1,6 @@
 # @ohos.telephony.sim (SIM Management)
 
-The **sim** module provides basic SIM card management functions. You can obtain the name, number, ISO country code, home PLMN number, service provider name, SIM card status, type, installation status, activation status, and lock status of the SIM card in the specified slot. Besides, you can set the name, number, and lock status of the SIM card, activate or deactivate the SIM card, and change the PIN or unlock the PIN or PUK of the SIM card.
+The **sim** module provides basic SIM card management functions. You can obtain the name, number, ISO country code, home PLMN ID, service provider name, SIM card status, type, installation status, activation status, and lock status of the SIM card in the specified slot. Besides, you can set the name, number, and lock status of the SIM card, activate or deactivate the SIM card, and change the PIN or unlock the PIN or PUK of the SIM card.
 
 >**NOTE**
 >
@@ -10,7 +10,6 @@ The **sim** module provides basic SIM card management functions. You can obtain 
 ## Modules to Import
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 ```
 
@@ -27,7 +26,7 @@ Checks whether the SIM card in the specified slot is activated. This API uses an
 | Name  | Type                       | Mandatory| Description                                  |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result, which is a Boolean value indicating whether the SIM card in the specified slot is activated. The value **true** means yes and the value **false** means no.                            |
 
 **Example**
 
@@ -117,7 +116,7 @@ Obtains the default slot ID of the SIM card that provides voice services. This A
 
 | Name  | Type                       | Mandatory| Description      |
 | -------- | --------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: card slot not set or service not unavailable|
 
 **Example**
 
@@ -142,7 +141,7 @@ Obtains the default slot ID of the SIM card that provides voice services. This A
 
 | Type             | Description                                   |
 | ----------------- | --------------------------------------- |
-| Promise\<number\> | Promise used to return the result.|
+| Promise\<number\> | Promise used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: card slot not set or service not unavailable|
 
 **Example**
 
@@ -170,7 +169,7 @@ Checks whether the application (caller) has been granted the operator permission
 | Name  | Type                    | Mandatory| Description                                    |
 | -------- | ------------------------ | ---- | ---------------------------------------- |
 | slotId   | number                   | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                              |
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                               |
 
 **Error codes**
 
@@ -344,7 +343,7 @@ Obtains the ISO country code of the SIM card in the specified slot.
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| string | ISO country code of the SIM card in the specified card slot, for example, **CN** (China).|
+| string | ISO country code of the SIM card in the specified slot, for example, **CN** (China).|
 
 
 **Example**
@@ -362,7 +361,7 @@ console.log(`the country ISO is:` + countryCode);
 
 getSimOperatorNumeric\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the home public land mobile network \(PLMN\) ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the home public land mobile network (PLMN) ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -371,7 +370,7 @@ Obtains the home public land mobile network \(PLMN\) ID of the SIM card in the s
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                           |
 
 **Error codes**
 
@@ -489,7 +488,7 @@ Obtains the service provider name (SPN) of the SIM card in the specified slot. T
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                              |
 
 **Error codes**
 
@@ -671,7 +670,7 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
-sim.getSimState(0).then((data: sim.simstate) => {
+sim.getSimState(0).then((data: sim.SimState) => {
     console.log(`getSimState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.log(`getSimState failed, promise: err->${JSON.stringify(err)}`);
@@ -945,7 +944,7 @@ console.log(`has sim card: ` + hasSimCard);
 
 getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): void
 
-Obtains SIM card account information. This API uses an asynchronous callback to return the result.
+Obtains account information of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 >**NOTE**
 >
@@ -960,7 +959,7 @@ Obtains SIM card account information. This API uses an asynchronous callback to 
 | Name  | Type                                               | Mandatory| Description                                  |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                              | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[IccAccountInfo](#iccaccountinfo7)\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<[IccAccountInfo](#iccaccountinfo10)\> | Yes  | Callback used to return the result.                              |
 
 **Error codes**
 
@@ -992,7 +991,7 @@ sim.getSimAccountInfo(0, (err:BusinessError , data: sim.IccAccountInfo) => {
 
 getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
-Obtains SIM card account information. This API uses a promise to return the result.
+Obtains account information of the SIM card in the specified slot. This API uses a promise to return the result.
 
 >**NOTE**
 >
@@ -1012,7 +1011,7 @@ Obtains SIM card account information. This API uses a promise to return the resu
 
 | Type                                        | Description                                      |
 | -------------------------------------------- | ------------------------------------------ |
-| Promise<[IccAccountInfo](#iccaccountinfo7)\> | Promise used to return the result.|
+| Promise<[IccAccountInfo](#iccaccountinfo10)\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -1034,7 +1033,7 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
-sim.getSimAccountInfo(0).then((data: IccAccountInfo) => {
+sim.getSimAccountInfo(0).then((data: sim.IccAccountInfo) => {
     console.log(`getSimAccountInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.log(`getSimAccountInfo failed, promise: err->${JSON.stringify(err)}`);
@@ -1045,7 +1044,7 @@ sim.getSimAccountInfo(0).then((data: IccAccountInfo) => {
 
 getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\): void
 
-Obtains the account information list of the active SIM card. This API uses an asynchronous callback to return the result.
+Obtains the list of activated SIM card accounts. This API uses an asynchronous callback to return the result.
 
 >**NOTE**
 >
@@ -1059,7 +1058,7 @@ Obtains the account information list of the active SIM card. This API uses an as
 
 | Name  | Type                                                       | Mandatory| Description      |
 | -------- | ----------------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array<[IccAccountInfo](#iccaccountinfo10)\>\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -1079,7 +1078,7 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
-sim.getActiveSimAccountInfoList((err: BusinessError, data: Array<sim.IccAccountInfo) => {
+sim.getActiveSimAccountInfoList((err: BusinessError, data: Array<sim.IccAccountInfo>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1089,7 +1088,7 @@ sim.getActiveSimAccountInfoList((err: BusinessError, data: Array<sim.IccAccountI
 
 getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 
-Obtains the account information list of the active SIM card. This API uses a promise to return the result.
+Obtains the list of activated SIM card accounts. This API uses a promise to return the result.
 
 >**NOTE**
 >
@@ -1103,7 +1102,7 @@ Obtains the account information list of the active SIM card. This API uses a pro
 
 | Type                                                | Description                                          |
 | ---------------------------------------------------- | ---------------------------------------------- |
-| Promise<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | Promise used to return the result.|
+| Promise<Array<[IccAccountInfo](#iccaccountinfo10)\>\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -1323,8 +1322,7 @@ import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let name: string = "ShowName";
-let promise: string = sim.setShowName(0, name);
-promise.then(() => {
+sim.setShowName(0, name).then(() => {
     console.log(`setShowName success.`);
 }).catch((err: BusinessError) => {
     console.log(`setShowName failed, promise: err->${JSON.stringify(err)}`);
@@ -1348,7 +1346,7 @@ Obtains the name of the SIM card in the specified slot. This API uses an asynchr
 | Name  | Type                       | Mandatory| Description                                  |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                              |
 
 **Error codes**
 
@@ -1548,7 +1546,7 @@ Obtains the display number of the SIM card in the specified slot. This API uses 
 | Name  | Type                       | Mandatory| Description                                  |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                              |
 
 **Error codes**
 
@@ -1633,7 +1631,7 @@ sim.getShowNumber(0).then((data: string) => {
 
 activateSim\(slotId: number, callback: AsyncCallback\<void\>\): void
 
-Activates a SIM card in a specified card slot. This API uses an asynchronous callback to return the result.
+Activates a SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -4325,7 +4323,7 @@ import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 try {
-    let data: string = sim.getOpKey(0);
+    let data: Promise<string> = sim.getOpKey(0);
     console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
 } catch (error) {
     console.log(`getOpKey failed, promise: err->${JSON.stringify(error)}`);
@@ -4450,7 +4448,7 @@ import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 try {
-    let data: string = sim.getOpName(0);
+    let data: Promise<string> = sim.getOpName(0);
     console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
 } catch (error) {
     console.log(`getOpName failed, promise: err->${JSON.stringify(error)}`);
@@ -4688,11 +4686,9 @@ Defines the personalized lock information.
 | lockType | [PersoLockType](#persolocktype8) |  Yes | Personalized lock type.|
 | password | string                           |  Yes | Password.       |
 
-## IccAccountInfo<sup>7+</sup>
+## IccAccountInfo<sup>10+</sup>
 
 ICC account information.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 

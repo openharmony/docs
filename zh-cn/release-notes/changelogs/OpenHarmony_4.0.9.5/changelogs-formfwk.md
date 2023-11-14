@@ -32,7 +32,7 @@
 
 **示例：**
 ```js
-import formObserver from @ohos.app.form.formObserver.d.ts;
+import formObserver from '@ohos.app.form.formObserver';
 
 try {
   formObserver.getRunningFormInfos((error, data) => {
@@ -132,7 +132,7 @@ function off(
 
 **示例：**
 ```js
-import formObserver from @ohos.app.form.formObserver.d.ts;
+import formObserver from '@ohos.app.form.formObserver';
 
 let bundleName = 'ohos.samples.FormApplication';
 let callback = function(data) {

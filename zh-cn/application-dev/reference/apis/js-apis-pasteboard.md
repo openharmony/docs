@@ -62,15 +62,15 @@ createData(mimeType: string, value: ValueType): PasteData
 **示例1：**
 
   ```ts
-  let dataXml = new ArrayBuffer(256);
-  let pasteData: pasteboard.PasteData = pasteboard.createData('app/xml', dataXml);
+let dataXml = new ArrayBuffer(256);
+let pasteData: pasteboard.PasteData = pasteboard.createData('app/xml', dataXml);
   ```
 
 **示例2：**
 
   ```ts
- let dataText = 'hello';
- let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, dataText);
+let dataText = 'hello';
+let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, dataText);
   ```
 
 
@@ -213,7 +213,7 @@ createPlainTextData(text: string): PasteData
 构建一个纯文本剪贴板内容对象。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createData](#pasteboardcreatedata9)替代。
+> 从 API Version 6 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createData](#pasteboardcreatedata9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -688,9 +688,9 @@ addRecord(mimeType: string, value: ValueType): void
 **示例：**
 
   ```ts
-  let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
-  let dataXml = new ArrayBuffer(256);
-  pasteData.addRecord('app/xml', dataXml);
+let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
+let dataXml = new ArrayBuffer(256);
+pasteData.addRecord('app/xml', dataXml);
   ```
 
 ### getMimeTypes<sup>7+</sup>
@@ -1730,7 +1730,7 @@ setPasteData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 将数据写入系统剪贴板，使用callback异步回调。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[setData](#setdata9)替代。
+> 从 API Version 6 开始支持，从 API Version 9 开始废弃，建议使用[setData](#setdata9)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1761,7 +1761,7 @@ setPasteData(data: PasteData): Promise&lt;void&gt;
 将数据写入系统剪贴板，使用Promise异步回调。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[setData](#setdata9-1)替代。
+> 从 API Version 6 开始支持，从 API Version 9 开始废弃，建议使用[setData](#setdata9-1)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 

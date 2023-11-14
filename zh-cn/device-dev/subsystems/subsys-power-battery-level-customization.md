@@ -25,7 +25,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
 
 ### 开发步骤 
 
-本文以[DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568)为例介绍电池温度保护机制的定制方法。
+本文以[DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568)为例介绍电量等级的定制方法。
 
 1. 在产品目录[（/vendor/hihope/rk3568）](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568)下创建battery文件夹。
 

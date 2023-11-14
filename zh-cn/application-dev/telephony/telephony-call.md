@@ -32,14 +32,14 @@
 |                                  接口名                                             | 描述                                                         |
 | ----------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | hasVoiceCapability(): boolean;                                                      | 判断是否具有语音功能。                                        |
-| dialCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void                   | 拨号。该接口为系统接口。                                      |
-| makeCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void                  | 转到拨号屏幕，显示被叫号码。                                  |
+| dialCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void                 | 拨号。该接口为系统接口。                                      |
+| makeCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void                 | 转到拨号屏幕，显示被叫号码。                                  |
 
 observer模块为开发者提供订阅和取消订阅通话业务状态的功能。具体API说明详见[接口文档](../reference/apis/js-apis-observer.md)。
 
 | 接口名                                                       | 描述               |
 | ------------------------------------------------------------ | ------------------ |
-| on(type: 'callStateChange', options: { slotId: number }, callback: Callback<{ state: CallState, number: string }>): void | 监听通话状态变化。 |
+| on(type: 'callStateChange', options: { slotId: number }, callback: Callback<{ state: CallState, number: string }>): void; | 监听通话状态变化。 |
 
 ## 开发步骤
 
@@ -54,8 +54,8 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
 5. （可选）订阅通话业务状态变化。
    ```ts
     // import需要的模块
-    import call from '@ohos.telephony.call'
-    import observer from '@ohos.telephony.observer'
+    import call from '@ohos.telephony.call';
+    import observer from '@ohos.telephony.observer';
     import { BusinessError } from '@ohos.base';
 
     // 调用查询能力接口
@@ -63,14 +63,14 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
     if (isSupport) {
         // 如果设备支持呼叫能力，调用以下接口进行拨号
         call.dialCall("13xxxx", (err: BusinessError) => {
-            console.log(`callback: dial call err->${JSON.stringify(err)}`)
+            console.log(`callback: dial call err->${JSON.stringify(err)}`);
         })
 
         // 订阅通话业务状态变化（可选）
         class SlotId {slotId: number = 0}
         class CallStateCallback {
             state: call.CallState = call.CallState.CALL_STATE_UNKNOWN;
-            number: string = ""
+            number: string = "";
         }
         let slotId: SlotId = {slotId: 0}
         observer.on("callStateChange", slotId, (data: CallStateCallback) => {
@@ -89,8 +89,8 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
 
    ```ts
     // import需要的模块
-    import call from '@ohos.telephony.call'
-    import observer from '@ohos.telephony.observer' 
+    import call from '@ohos.telephony.call';
+    import observer from '@ohos.telephony.observer';
     import { BusinessError } from '@ohos.base';
    
     // 调用查询能力接口
@@ -108,7 +108,7 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
         class SlotId {slotId: number = 0}
         class CallStateCallback {
             state: call.CallState = call.CallState.CALL_STATE_UNKNOWN;
-            number: string = ""
+            number: string = "";
         }
         let slotId: SlotId = {slotId: 0}
         observer.on("callStateChange", slotId, (data: CallStateCallback) => {

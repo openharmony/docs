@@ -1927,6 +1927,7 @@ Requests data from the widget provider. This API uses an asynchronous callback t
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formId | string | Yes  | Widget ID.|
+| callback | AsyncCallback<{[key: string]: Object} | Yes  | Callback used to return the API call result and the shared data.|
 
 **Error codes**
 

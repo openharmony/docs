@@ -457,7 +457,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.forEach((value: number, index?: number) => {
-  console.log("hyq value:" + value, "index:" + index);
+  console.log("value:" + value, "index:" + index);
 });
 ```
 
@@ -770,6 +770,10 @@ arrayList.trimToCurrentLength();
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 Obtains an iterator, each item of which is a JavaScript object.
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
 
 **System capability**: SystemCapability.Utils.Lang
 

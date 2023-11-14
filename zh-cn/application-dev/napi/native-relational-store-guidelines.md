@@ -44,8 +44,9 @@ RelationalStore提供了一套完整的对本地数据库进行管理的机制�
 **添加动态链接库**
 
 CMakeLists.txt中添加以下lib。
+
 ```txt
-native_rdb_ndk_header.so
+libnative_rdb_ndk.z.so
 ```
 
 **头文件**

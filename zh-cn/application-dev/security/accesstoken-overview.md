@@ -155,7 +155,7 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 
 ### 权限组和子权限
 
-为了仅可能减少系统弹出的权限弹窗数量，优化交互体验，系统将逻辑紧密相关的user_grant权限组合在一起，形成多个权限组。
+为了尽可能减少系统弹出的权限弹窗数量，优化交互体验，系统将逻辑紧密相关的user_grant权限组合在一起，形成多个权限组。
 
 当应用请求权限时，同一个权限组的权限将会在一个弹窗内一起请求用户授权。权限组中的某个权限，称之为该权限组的子权限。
 
@@ -189,7 +189,7 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 **注意事项：**
 
 - 每次执行需要目标权限的操作时，应用都必须检查自己是否已经具有该权限。
-- 如需检查用户是否已向您的应用授予特定权限，可以使用[checkAccessToken](../reference/apis/js-apis-abilityAccessCtrl.md#checkaccesstoken9)函数，此方法会返回  [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md)或[PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md)。具体的示例代码可以查看[访问控制开发指导](accesstoken-guidelines.md#向用户申请授权)。
+- 如需检查用户是否已向您的应用授予特定权限，可以使用[checkAccessToken](../reference/apis/js-apis-abilityAccessCtrl.md#checkaccesstoken9)函数，此方法会返回  [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md#grantstatus)或[PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md#grantstatus)。具体的示例代码可以查看[访问控制开发指导](accesstoken-guidelines.md#向用户申请授权)。
 - user_grant权限授权要基于用户可知可控的原则，需要应用在运行时主动调用系统动态申请权限的接口，系统弹框由用户授权，用户结合应用运行场景的上下文，识别出应用申请相应敏感权限的合理性，从而做出正确的选择。
 - 即使用户向应用授予过请求的权限，应用在调用受此权限管控的接口前，也应该先检查自己有无此权限，而不能把之前授予的状态持久化，因为用户在动态授予后还可以通过设置取消应用的权限。
 

@@ -14,13 +14,14 @@ The **restoreId** attribute identifies a component in distributed migration scen
 
 ## Components with Distributed Migration Support
 
-| Name     | Initial API Version| Migration Status                                    |
+| Name     | Initial API Version| Description                                    |
 | --------- | ---- | ---------------------------------------- |
 | List      | 8    | The index of the list item displayed at the top of the list on the current device will be migrated to the remote device. After the migration, the list item that matches the index is displayed at the top of the list on the remote device.|
 | Grid      | 9    | The index of the grid item displayed at the top of the grid on the current device will be migrated to the remote device. After the migration, the grid item that matches the index is displayed at the top of the grid on the remote device. The position of the scrollbar cannot be migrated.|
-| Scroll    | 9    | The absolute distance with the top edge for scrolling will be migrated. Due to layout inconsistency resulting from differences in the display specifications between devices, the migration effect may be affected.|
-| TextArea  | 9    | The text content and the position of the caret will be migrated.                         |
-| TextInput | 9    | The text content and the position of the caret will be migrated.                         |
+| Scroll    | 9    | The absolute distance with the top edge for scrolling will be migrated. The migration effect may be affected by the layout inconsistency resulting from differences in the display specifications between devices.|
+| TextArea  | 9    | The text content and caret position will be migrated.                         |
+| TextInput | 9    | The text content and caret position will be migrated.                         |
+| WaterFlow | 11   | The index of the **\<FlowItem>** component (child) displayed at the top of the **\<WaterFlow>** component (parent) on the current device, along with the offset (in vp) of the child relative to the main axis of the parent, will be migrated to the remote device. After the migration, the **\<FlowItem>** component that matches the migrated index is displayed on the top of the **\<WaterFlow>** component on the remote device.|
 
 ## Example
 

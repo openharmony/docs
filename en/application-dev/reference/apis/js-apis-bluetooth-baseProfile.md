@@ -12,7 +12,6 @@ The **baseProfile** module provides APIs for using basic Bluetooth profiles.
 
 ```js
 import baseProfile from '@ohos.bluetooth.baseProfile';
-import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -77,6 +76,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
@@ -127,6 +127,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
@@ -173,6 +174,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
@@ -222,6 +224,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
@@ -266,6 +269,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
@@ -312,6 +316,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
@@ -342,6 +347,7 @@ Subscribes to profile connection state changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import a2dp from '@ohos.bluetooth.a2dp';
 function onReceiveEvent(data: baseProfile.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
@@ -375,6 +381,7 @@ Unsubscribes from profile connection state changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 import a2dp from '@ohos.bluetooth.a2dp';
 function onReceiveEvent(data: baseProfile.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));

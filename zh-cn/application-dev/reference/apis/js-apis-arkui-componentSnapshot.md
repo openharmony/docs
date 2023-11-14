@@ -147,7 +147,7 @@ struct SnapshotExample {
 
 createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>): void
 
-在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过回调返回结果。
+在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过回调返回结果并支持在回调中获取离屏组件绘制区域坐标和大小。
 
 > **说明：** 
 >
@@ -176,6 +176,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 ```ts
 import componentSnapshot from '@ohos.arkui.componentSnapshot'
 import image from '@ohos.multimedia.image'
+import componentUtils from '@ohos.arkui.componentUtils'
 
 @Entry
 @Component
@@ -196,7 +197,9 @@ struct OffscreenSnapshotExample {
         .width(100)
         .height(50)
         .textAlign(TextAlign.Center)
-    }.width(100)
+    }
+    .width(100)
+    .id("builder")
   }
 
   build() {
@@ -208,6 +211,9 @@ struct OffscreenSnapshotExample {
               this.pixmap = pixmap
               // save pixmap to file
               // ....
+              // get component size and location
+              let info = componentUtils.getRectangleById("builder")
+              console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             })
         })
     }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
@@ -220,7 +226,7 @@ struct OffscreenSnapshotExample {
 
 createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 
-在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过Promise返回结果。
+在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过Promise返回结果并支持获取离屏组件绘制区域坐标和大小。
 
 > **说明：** 
 >
@@ -253,6 +259,7 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 ```ts
 import componentSnapshot from '@ohos.arkui.componentSnapshot'
 import image from '@ohos.multimedia.image'
+import componentUtils from '@ohos.arkui.componentUtils'
 
 @Entry
 @Component
@@ -273,7 +280,9 @@ struct OffscreenSnapshotExample {
         .width(100)
         .height(50)
         .textAlign(TextAlign.Center)
-    }.width(100)
+    }
+    .width(100)
+    .id("builder")
   }
 
   build() {
@@ -285,6 +294,9 @@ struct OffscreenSnapshotExample {
               this.pixmap = pixmap
               // save pixmap to file
               // ....
+              // get component size and location
+              let info = componentUtils.getRectangleById("builder")
+              console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             })
         })
     }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)

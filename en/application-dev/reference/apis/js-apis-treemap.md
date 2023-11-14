@@ -22,7 +22,7 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import TreeMap from '@ohos.util.TreeMap';  
+import TreeMap from '@ohos.util.TreeMap';
 ```
 
 ## TreeMap
@@ -683,6 +683,10 @@ while(!t.done) {
 
 Obtains an iterator, each item of which is a JavaScript object.
 
+> **NOTE**
+>
+> This API cannot be used in .ets files.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -701,7 +705,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 
@@ -711,6 +715,7 @@ let t: IteratorResult<Object[]> = it.next();
 while(!t.done) {
   console.log("TreeMap" + t.value);
   t = it.next()
+}
 
 // Method 2:
 let iter = treeMap[Symbol.iterator]();

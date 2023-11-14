@@ -171,6 +171,8 @@ domStorageAccess(domStorageAccess: boolean)
 
 设置是否开启文档对象模型存储接口（DOM Storage API）权限，默认未开启。
 
+**系统能力：** SystemCapability.Web.Webview.Core
+
 **参数：**
 
 | 参数名              | 参数类型    | 必填   | 默认值   | 参数描述                                 |
@@ -262,7 +264,7 @@ imageAccess(imageAccess: boolean)
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
     controller: WebviewController | WebController})
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。
+注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](../apis/js-apis-webview.md#registerjavascriptproxy)。
 
 **参数：**
 
@@ -661,7 +663,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 | 参数名         | 参数类型    | 必填   | 默认值   | 参数描述         |
 | ----------- | ------- | ---- | ----- | ------------ |
-| verticalScrollBarAccess | boolean | 是    | true | 设置是否显示纵向滚动条。 |
+| verticalScrollBar | boolean | 是    | true | 设置是否显示纵向滚动条。 |
 
 **示例：**
 
@@ -815,13 +817,13 @@ textZoomRatio(textZoomRatio: number)
 
 initialScale(percent: number)
 
-设置整体页面的缩放百分比，默认为100%。
+设置整体页面的缩放百分比，默认为100。
 
 **参数：**
 
 | 参数名     | 参数类型   | 必填   | 默认值  | 参数描述            |
 | ------- | ------ | ---- | ---- | --------------- |
-| percent | number | 是    | 100  | 要设置的整体页面的缩放百分比。 |
+| percent | number | 是    | 100  | 要设置的整体页面的缩放百分比。<br>取值范围：1-100 |
 
 **示例：**
 
@@ -1319,19 +1321,19 @@ pinchSmooth(isEnabled: boolean)
 **示例：**
 
   ```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
-        .pinchSmooth(true)
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .pinchSmooth(true)
+      }
     }
   }
-}
   ```
 
 ### allowWindowOpenMethod<sup>10+</sup>
@@ -1455,7 +1457,7 @@ mediaOptions(options: WebMediaOptions)
 
 ## 事件
 
-不支持通用事件。
+不支持[通用事件](ts-universal-events-click.md)。
 
 ### onAlert
 
@@ -1644,7 +1646,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，触发默认弹窗。 |
 
 **示例：**
 
@@ -2390,7 +2392,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 
 | 参数名  | 参数类型                                     | 参数描述      |
 | ---- | ---------------------------------------- | --------- |
-| data | string | [WebResourceRequest](#webresourcerequest) | url的相关信息。 |
+| data | string \| [WebResourceRequest](#webresourcerequest) | url的相关信息。 |
 
 **返回值：**
 
@@ -2617,7 +2619,7 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
 
 ### onClientAuthenticationRequest<sup>9+</sup>
 
-onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string>, issuers : Array<string>}) => void)
+onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string\>, issuers : Array<string\>}) => void)
 
 通知用户收到SSL客户端证书请求事件。
 
@@ -4869,11 +4871,13 @@ cancel(): void
 let webController: WebController = new WebController()
 ```
 
-### getCookieManager<sup>9+</sup>
+### getCookieManager<sup>(deprecated)</sup>
 
 getCookieManager(): WebCookie
 
 获取web组件cookie管理对象。
+
+从API version 9开始不再维护，建议使用[getCookie](../apis/js-apis-webview.md#getcookie)代替。
 
 **返回值：**
 
@@ -5489,7 +5493,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
         Text(this.webResult).fontSize(20)
         Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
-        .onPageEnd(e => {
+        .onPageEnd(() => {
           this.controller.runJavaScript({
             script: 'test()',
             callback: (result: string)=> {

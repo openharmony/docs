@@ -17,6 +17,8 @@ import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 
 Defines the values of **deviceType** used in **RootInfo**.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System capability**: SystemCapability.FileManagement.UserFileService
 
 | Name| Value| Description|
@@ -33,6 +35,8 @@ Defines the values of **deviceType** used in **RootInfo**.
 
 Defines the values of **deviceFlags** used in **RootInfo**. **deviceFlags** is used to determine whether a capability is available through the AND operation.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System capability**: SystemCapability.FileManagement.UserFileService
 
 ### Attributes
@@ -45,6 +49,8 @@ Defines the values of **deviceFlags** used in **RootInfo**. **deviceFlags** is u
 ## fileExtensionInfo.DocumentFlag
 
 Defines the values of **mode** used in **FileInfo**.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 

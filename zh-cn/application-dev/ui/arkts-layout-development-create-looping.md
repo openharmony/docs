@@ -17,7 +17,7 @@ Swiper作为一个容器组件，在自身尺寸属性未被设置时，会自�
 
 当loop为true时，在显示第一页或最后一页时，可以继续往前切换到前一页或者往后切换到后一页。如果loop为false，则在第一页或最后一页时，无法继续向前或者向后切换页面。
 
-  loop为true：
+- loop为true
 
 ```ts
 ...
@@ -50,7 +50,7 @@ Swiper(this.swiperController) {
 
 ![loop_true](figures/loop_true.gif)
 
-  loop为false：
+- loop为false
 
 ```ts
 Swiper(this.swiperController) {
@@ -86,8 +86,6 @@ Swiper(this.swiperController) {
 Swiper通过设置autoPlay属性，控制是否自动轮播子组件。该属性默认值为false。
 
 autoPlay为true时，会自动切换播放子组件，子组件与子组件之间的播放间隔通过interval属性设置。interval属性默认值为3000，单位毫秒。
-
-  autoPlay为true：
 
 ```ts
 Swiper(this.swiperController) {
@@ -126,7 +124,7 @@ Swiper提供了默认的导航点样式，导航点默认显示在Swiper下方�
 
 通过indicatorStyle属性，开发者可以设置导航点相对于Swiper组件上下左右四个方位的位置，同时也可以设置每个导航点的尺寸、颜色、蒙层和被选中导航点的颜色。
 
-  导航点使用默认样式：
+- 导航点使用默认样式
 
 ```ts
 Swiper(this.swiperController) {
@@ -155,7 +153,9 @@ Swiper(this.swiperController) {
 
 ![indicator](figures/indicator.PNG)
 
-  自定义导航点样式（示例：导航点直径设为30VP，左边距为0，导航点颜色设为红色）：
+- 自定义导航点样式
+
+导航点直径设为30vp，左边距为0，导航点颜色设为红色。
 
 ```ts
 let swco:Record<string,number|Color> = {'size':30,'left':0,'color':Color.Red}
@@ -189,9 +189,7 @@ Swiper(this.swiperController) {
 
 ## 页面切换方式
 
-Swiper支持三种页面切换方式：手指滑动、点击导航点和通过控制器。
-
-  通过控制器切换页面：
+Swiper支持手指滑动、点击导航点和通过控制器三种方式切换页面，以下示例展示通过控制器切换页面的方法。
 
 ```ts
 @Entry
@@ -249,7 +247,7 @@ Swiper支持水平和垂直方向上进行轮播，主要通过vertical属性控
 当vertical为true时，表示在垂直方向上进行轮播；为false时，表示在水平方向上进行轮播。vertical默认值为false。
 
 
-  设置水平方向上轮播：
+- 设置水平方向上轮播。
 
 ```ts
 Swiper(this.swiperController) {
@@ -263,7 +261,7 @@ Swiper(this.swiperController) {
 ![截图2](figures/截图2.PNG)
 
 
-  设置垂直方向轮播：
+- 设置垂直方向轮播。
 
 ```ts
 Swiper(this.swiperController) {
@@ -280,8 +278,6 @@ Swiper(this.swiperController) {
 ## 每页显示多个子页面
 
 Swiper支持在一个页面内同时显示多个子组件，通过[displayCount](../reference/arkui-ts/ts-container-swiper.md#属性)属性设置。
-
-  设置一个页面内显示两个子组件：
 
 ```ts
 Swiper(this.swiperController) {

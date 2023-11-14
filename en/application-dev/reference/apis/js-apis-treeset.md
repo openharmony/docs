@@ -555,6 +555,10 @@ while(!t.done) {
 
 Obtains an iterator, each item of which is a JavaScript object.
 
+> **NOTE**
+>
+> This API cannot be used in .ets files.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -574,7 +578,6 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-
 let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");

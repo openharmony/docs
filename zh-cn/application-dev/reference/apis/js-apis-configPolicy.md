@@ -190,4 +190,3 @@ getCfgDirList(): Promise&lt;Array&lt;string&gt;&gt;
       console.log("getCfgDirList promise " + error);
   });
   ```
-

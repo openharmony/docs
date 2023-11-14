@@ -1,11 +1,11 @@
-# MDNS Management
+# mDNS Management
 
 ## Overview
 
 Multicast DNS (mDNS) provides functions such as adding, removing, discovering, and resolving local services on a LAN.
 - Local service: a service provider on a LAN, for example, a printer or scanner.
 
-Typical MDNS management scenarios include:
+Typical mDNS management scenarios include:
 
 - Managing local services on a LAN, such as adding, removing, and resolving local services.
 - Discovering local services and listening to the status changes of local services of the specified type through the **DiscoveryService** object.
@@ -44,12 +44,13 @@ For the complete list of APIs and example code, see [mDNS Management](../referen
 4. (Optional) Call **resolveLocalService** to resolve the local service for the IP address of the local network.
 5. Call **removeLocalService** to remove the local service.
 
-```js
+```ts
 // Import the mdns namespace from @ohos.net.mdns.
-import mdns from '@ohos.net.mdns'
+import mdns from '@ohos.net.mdns';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import featureAbility from '@ohos.ability.featureAbility';
+import window from '@ohos.window';
 
 // Construct a singleton object.
 export class GlobalContext {
@@ -75,8 +76,8 @@ export class GlobalContext {
 
 // Obtain the context of the stage model.
 class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:string): void{
+  value: number = 0;
+  onWindowStageCreate(windowStage: window.WindowStage): void{
     GlobalContext.getContext().setObject("value", this.value);
   }
 }
@@ -84,34 +85,34 @@ let context = GlobalContext.getContext().getObject("value");
 
 class ServiceAttribute {
   key: string = "111"
-  value: Array = [1]
+  value: Array<number> = [1]
 }
 
 // Create a LocalService object.
 let localServiceInfo: mdns.LocalServiceInfo = {
-  serviceType: "_print._tcp"
-  serviceName: "servicename"
-  port: 5555
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
   host: {
     address: "10.14.**.***"
-  }
+  },
   serviceAttribute: [{key: "111", value: [1]}]
 }
 
 // Call addLocalService to add a local service.
-mdns.addLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
+mdns.addLocalService(context as Context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 
 // (Optional) Call resolveLocalService to resolve the local service.
-mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
+mdns.resolveLocalService(context as Context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 
 // Call removeLocalService to remove the local service.
-mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
+mdns.removeLocalService(context as Context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -127,12 +128,13 @@ mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: 
 6. Stop searching for mDNS services on the LAN.
 7. Unsubscribe from mDNS service discovery status changes.
 
-```js
+```ts
 // Import the mdns namespace from @ohos.net.mdns.
-import mdns from '@ohos.net.mdns'
+import mdns from '@ohos.net.mdns';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import featureAbility from '@ohos.ability.featureAbility';
+import window from '@ohos.window';
 
 // Construct a singleton object.
 export class GlobalContext {
@@ -159,19 +161,20 @@ export class GlobalContext {
 // Obtain the context of the stage model.
 class EntryAbility extends UIAbility {
   value:number = 0;
-  onWindowStageCreate(windowStage:string): void{
+  onWindowStageCreate(windowStage: window.WindowStage): void{
     GlobalContext.getContext().setObject("value", this.value);
   }
 }
+
 let context = GlobalContext.getContext().getObject("value");
 
 // Create a DiscoveryService object, which is used to discover mDNS services of the specified type.
 let serviceType = "_print._tcp";
-let discoveryService: Object = mdns.createDiscoveryService(context, serviceType);
+let discoveryService = mdns.createDiscoveryService(context as Context, serviceType);
 
 class DataServiceInfo{
-  serviceInfo: mdns.LocalServiceInfo = {}
-  errorCode?: mdns.MdnsError = INTERNAL_ERROR
+  serviceInfo: mdns.LocalServiceInfo|null = null
+  errorCode?: mdns.MdnsError = mdns.MdnsError.INTERNAL_ERROR
 }
 // Subscribe to mDNS service discovery status changes.
 discoveryService.on('discoveryStart', (data: DataServiceInfo) => {

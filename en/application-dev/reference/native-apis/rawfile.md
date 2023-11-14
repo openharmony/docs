@@ -3,6 +3,7 @@
 
 Provides APIs for operating the **rawfile** directory and its files, including traversing the **rawfile** directory and opening, searching for, reading, and closing a file in it.
 
+
 **Since**
 
 
@@ -16,9 +17,9 @@ Provides APIs for operating the **rawfile** directory and its files, including t
 
 | Name                                    | Description                |
 | ---------------------------------------- | ------------------ |
-| [raw_dir.h](raw__dir_8h.md)              | Provides functions related to the **rawfile** directory.<br>File to include: \<rawfile/raw_dir.h>  |
-| [raw_file.h](raw__file_8h.md)            | Provides functions related to the files in the **rawfile** directory.<br>File to include: \<rawfile/raw_file.h> |
-| [raw_file_manager.h](raw__file__manager_8h.md) | Provides file management functions for the **rawfile** directory.<br>File to import: \<rawfile/raw_file_manager.h>|
+| [raw_dir.h](raw__dir_8h.md)              | Provides functions related to the **rawfile** directory.<br>**File to include**: \<rawfile/raw_dir.h><br>**Library**: librawfile.z.so|
+| [raw_file.h](raw__file_8h.md)            | Provides functions related to the files in the **rawfile** directory.<br>**File to include**: \<rawfile/raw_file.h><br>**Library**: librawfile.z.so|
+| [raw_file_manager.h](raw__file__manager_8h.md) | Provides file management functions for the **rawfile** directory.<br>**File to include**: \<rawfile/raw_file_manager.h><br>**Library**: librawfile.z.so|
 
 
 ### Structs
@@ -39,16 +40,16 @@ Provides APIs for operating the **rawfile** directory and its files, including t
 
 ### Functions
 
-| Name                                                         | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [OH_ResourceManager_GetRawFileName](#oh_resourcemanager_getrawfilename) ([RawDir](#rawdir) \*rawDir, int index) | Obtains the name of a file in **rawfile** based on the index. |
-| [OH_ResourceManager_GetRawFileCount](#oh_resourcemanager_getrawfilecount) ([RawDir](#rawdir) \*rawDir) | Obtains the number of files in a [RawDir](#rawdir).          |
-| [OH_ResourceManager_CloseRawDir](#oh_resourcemanager_closerawdir) ([RawDir](#rawdir) \*rawDir) | Closes a [RawDir](#rawdir) and releases all associated resources. |
-| [OH_ResourceManager_ReadRawFile](#oh_resourcemanager_readrawfile) (const [RawFile](#rawfile) \*rawFile, void \*buf, size_t length) | Reads data from a file in **rawfile**.                       |
-| [OH_ResourceManager_SeekRawFile](#oh_resourcemanager_seekrawfile) (const [RawFile](#rawfile) \*rawFile, long offset, int whence) | Seeks for the data read/write position in a file in **rawfile** based on the specified offset. |
-| [OH_ResourceManager_GetRawFileSize](#oh_resourcemanager_getrawfilesize) ([RawFile](#rawfile) \*rawFile) | Obtains the size of a file in **rawfile**.                   |
-| [OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile) ([RawFile](#rawfile) \*rawFile) | Closes a [RawFile](#rawfile) and releases all associated resources. |
-| [OH_ResourceManager_GetRawFileOffset](#oh_resourcemanager_getrawfileoffset) (const [RawFile](#rawfile) \*rawFile) | Obtains the current offset of a file in **rawfile**.         |
+| Name                                    | Description                                      |
+| ---------------------------------------- | ---------------------------------------- |
+| [OH_ResourceManager_GetRawFileName](#oh_resourcemanager_getrawfilename) ([RawDir](#rawdir) \*rawDir, int index) | Obtains the name of a file in **rawfile** based on the index.                      |
+| [OH_ResourceManager_GetRawFileCount](#oh_resourcemanager_getrawfilecount) ([RawDir](#rawdir) \*rawDir) | Obtains the number of files in a [RawDir](#rawdir).         |
+| [OH_ResourceManager_CloseRawDir](#oh_resourcemanager_closerawdir) ([RawDir](#rawdir) \*rawDir) | Closes a [RawDir](#rawdir) and releases all associated resources.      |
+| [OH_ResourceManager_ReadRawFile](#oh_resourcemanager_readrawfile) (const [RawFile](#rawfile) \*rawFile, void \*buf, size_t length) | Reads data from a file in **rawfile**.                              |
+| [OH_ResourceManager_SeekRawFile](#oh_resourcemanager_seekrawfile) (const [RawFile](#rawfile) \*rawFile, long offset, int whence) | Seeks for the data read/write position in a file in **rawfile** based on the specified offset.       |
+| [OH_ResourceManager_GetRawFileSize](#oh_resourcemanager_getrawfilesize) ([RawFile](#rawfile) \*rawFile) | Obtains the size of a file in **rawfile**.                 |
+| [OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile) ([RawFile](#rawfile) \*rawFile) | Closes a [RawFile](#rawfile) and releases all associated resources.  |
+| [OH_ResourceManager_GetRawFileOffset](#oh_resourcemanager_getrawfileoffset) (const [RawFile](#rawfile) \*rawFile) | Obtains the current offset of a file in **rawfile**.          |
 | [OH_ResourceManager_GetRawFileDescriptor](#oh_resourcemanager_getrawfiledescriptor) (const [RawFile](#rawfile) \*rawFile, [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | Opens a file in **rawfile** based on the offset and file length and obtains the FD. |
 | [OH_ResourceManager_ReleaseRawFileDescriptor](#oh_resourcemanager_releaserawfiledescriptor) (const [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | Releases an FD.                                               |
 | [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager) (napi_env env, napi_value jsResMgr) | Initializes a Native resource manager using the JavaScript resource manager. You can use the Native resource manager obtained to implement operations related to **rawfile**. |
@@ -434,7 +435,7 @@ You can use this function to read data of the specified length from the current 
 
 **Returns**
 
-Returns the number of bytes read. If the read length exceeds the length of the file end, **0** will be returned.
+Returns the number of bytes read. If the read length is less than the file length, **0** is returned.
 
 **Since**
 
@@ -478,8 +479,8 @@ To prevent FD leakage, you are advised to release an FD immediately after use.
 
 **Parameters**
 
-| Name       | Description                                                  |
-| ---------- | ------------------------------------------------------------ |
+| Name       | Description                                                |
+| ---------- | ---------------------------------------------------- |
 | descriptor | File descriptor to close. It contains the FD, start position in the HAP, and file length. |
 
 **Returns**
@@ -512,7 +513,7 @@ Seeks for the data read/write position in a file in **rawfile** based on the spe
 
 **Returns**
 
-Returns the read/write position if the operation is successful; returns **(long) -1** otherwise.
+If the operation is successful, **0** is returned and the **rawFile** pointer is directed to the new read/write position. If an error occurs, **(long) -1** is returned.
 
 **Since**
 

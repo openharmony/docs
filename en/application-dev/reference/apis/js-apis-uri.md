@@ -8,7 +8,7 @@
 ## Modules to Import
 
 ```ts
-import uri from '@ohos.uri'  
+import uri from '@ohos.uri'
 ```
 
 ## URI

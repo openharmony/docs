@@ -9,22 +9,22 @@
 ![portraitgraphing Development Process](figures/portrait-capture-development-process.png)
 
 ## 完整示例
-[各类Context的获取方式](../application-models/application-context-stage.md)
+[BaseContext获取方式](../reference/apis/js-apis-inner-application-baseContext.md)。
 ```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-async function cameraModeCase(context: featureAbility.Context, surfaceId: string): Promise<void> {
+async function cameraModeCase(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
   // 创建CameraManager对象
-  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+  let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   if (!cameraManager) {
     console.error("camera.getCameraManager error");
     return;
   }
   // 创建ModeManager对象
-  let modeManager: camera.ModeManager = camera.getModeManager(context);
+  let modeManager: camera.ModeManager = camera.getModeManager(baseContext);
   if (!cameraManager) {
     console.error("camera.getModeManager error");
     return;

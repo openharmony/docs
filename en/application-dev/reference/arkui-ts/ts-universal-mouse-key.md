@@ -4,11 +4,12 @@
 
 # Mouse Event
 
-If an action triggers multiple events, the order of these events is fixed. By default, mouse events are transmitted transparently.
+If a mouse action triggers multiple events, the order of these events is fixed. By default, mouse events are transmitted transparently.
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>  - The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>  - For the time being, a mouse event can be triggered only by an external mouse.
 
 
 ## Events

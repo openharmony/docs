@@ -4,7 +4,7 @@ During application development, you may need to use different resources, such as
 
 - Application resources: Configure device- or configuration-specific resources in the resource files.
 
-- System resources: Use the preset resource definitions (that is, [layered parameters](../../design/ux-design/design-resources.md), with which a resource with the same ID has different values under different configurations, including device types and color modes).
+- System resources: Use the preset resource definitions (that is, layered parameters), with which a resource with the same ID has different values under different configurations, including device types and color modes).
 
 ## Resource Categories
 
@@ -77,7 +77,7 @@ The name of a qualifiers subdirectory consists of one or more qualifiers that re
 | Text         | Indicates the script type used by the device. The value starts with one uppercase letter followed by three lowercase letters. For example, **Hans** indicates simplified Chinese, and **Hant** indicates traditional Chinese.<br>For details about the value range, refer to **ISO 15924** (codes for the representation of names of scripts).|
 | Country/Region      | Indicates the country or region where the user is located. The value consists of two or three uppercase letters or three digits. For example, **CN** indicates China, and **GB** indicates the United Kingdom.<br>For details about the value range, refer to **ISO 3166-1** (codes for the representation of names of countries and their subdivisions).|
 | Screen orientation        | Indicates the screen orientation of the device. The value can be:<br>- **vertical**: portrait orientation<br>- **horizontal**: landscape orientation|
-| Device type       | Indicates the device type. The value can be:<br>- **car**: head unit<br>- **tv**: smart TV<br>- **wearable**: smart wearable|
+| Device type       | Indicates the device type. The value can be:<br>- **car**: head unit<br>- **tablet**: tablet<br>- **tv**: smart TV<br>- **wearable**: smart wearable<br>- **2in1** |
 | Color mode       | Indicates the color mode of the device. The value can be:<br>- **dark**: dark mode<br>- **light**: light mode|
 | Screen density       | Indicates the screen density of the device, in dpi. The value can be:<br>- **sdpi**: screen density with small-scale dots per inch (SDPI). This value is applicable for devices with a DPI range of (0, 120].<br>- **mdpi**: medium-scale screen density (Medium-scale Dots Per Inch), applicable to DPI whose value is (120,  160] device.<br>- **ldpi**: screen density with large-scale dots per inch (LDPI). This value is applicable for devices with a DPI range of (160, 240].<br>- **xldpi**: screen density with extra-large-scale dots per inch (XLDPI). This value is applicable for devices with a DPI range of (240, 320].<br>- **xxldpi**: screen density with extra-extra-large-scale dots per inch (XXLDPI). This value is applicable for devices with a DPI range of (320, 480].<br>- **xxxldpi**: screen density with extra-extra-extra-large-scale dots per inch (XXXLDPI). This value is applicable for devices with a DPI range of (480, 640].|
 
@@ -284,14 +284,13 @@ System resources include colors, rounded corners, fonts, spacing, character stri
 
 To reference a system resource, use the **"$r('sys.type.resource_id')"** format. Wherein: **sys** indicates a system resource; **type** indicates the resource type, which can be **color**, **float**, **string**, or **media**; **resource_id** indicates the resource ID.
 
-For details about the supported system resource IDs and their values under different configurations, see [Resources in Application UX Design](../../design/ux-design/design-resources.md).
 
 > **NOTE**
 >
 > - The use of system resources is supported in the declarative development paradigm, but not in the web-like development paradigm.
 >
 > - For details about the implementation of preconfigured resources, visit the [OpenHarmony/resources repository](https://gitee.com/openharmony/resources/tree/master/systemres/main/resources). The directory structure there is similar to that of the **resources** directory in the project. Resource qualifiers are used to match resources with different devices and device states.
-> - For details about the use cases, IDs, and parameters of system resources, see [OpenHarmony System Resource Layer Design V1.0.xlsm](../../design/ux-design/design-resources.md).
+
 
 ```ts
 Text('Hello')
@@ -312,4 +311,3 @@ Image($r('sys.media.ohos_app_icon'))
   .height(200)
   .width(300)
 ```
-<!--no_check-->

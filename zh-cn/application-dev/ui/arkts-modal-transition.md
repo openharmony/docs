@@ -4,8 +4,7 @@
 模态转场是新的界面覆盖在旧的界面上，旧的界面不消失的一种转场方式。
 
 
-  **表1** 模态转场接口
-
+**表1** 模态转场接口
 | 接口                                       | 说明                | 使用场景                                     |
 | ---------------------------------------- | ----------------- | ---------------------------------------- |
 | [bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md) | 弹出全屏的模态组件。        | 用于自定义全屏的模态展示界面，结合转场动画和共享元素动画可实现复杂转场动画效果，如缩略图片点击后查看大图。 |
@@ -51,7 +50,7 @@
      // 通过选定的模态接口，绑定模态展示界面，ModalTransition是内置的ContentCover转场动画类型，这里选择None代表系统不加默认动画
      .bindContentCover(this.isPresent, this.MyBuilder, ModalTransition.NONE)
      .onClick(() => {
-       // 改变状态变量，让模态界面显示
+       // 改变状态变量，显示模态界面
        let setPre:PresentTmp = new PresentTmp()
        setPre.set()
      })
@@ -117,7 +116,7 @@ struct BindContentCoverDemo {
       }
       // 第三步：通过模态接口调起模态展示界面，通过转场动画或者共享元素动画去实现对应的动画效果
       .onClick(() => {
-        // 改变状态变量，让模态界面显示
+        // 改变状态变量，显示模态界面
         this.isPresent = !this.isPresent;
       })
       // 通过选定的模态接口，绑定模态展示界面，ModalTransition是内置的ContentCover转场动画类型，这里选择DEFAULT代表设置上下切换动画效果。
@@ -172,7 +171,7 @@ struct BindSheetDemo {
         .margin(10)
         .fontSize(20)
         .onClick(() => {
-          this.sheetHeight = null;
+          this.sheetHeight = -1;
         })
 
       Button("close dragbar")
@@ -395,7 +394,7 @@ struct BindPopupDemo {
 
 ## 使用if实现模态转场
 
-上述模态转场接口需要绑定到其他组件上，通过监听状态变量改变调起模态界面。实际上，也可以通过if范式，通过新增/删除组件，实现模态转场效果。
+上述模态转场接口需要绑定到其他组件上，通过监听状态变量改变调起模态界面。同时，也可以通过if范式，通过新增/删除组件实现模态转场效果。
 
 完整示例和代码如下。
 

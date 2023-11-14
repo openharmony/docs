@@ -41,6 +41,8 @@ Publishes a reminder through the reminder agent. This API uses an asynchronous c
 
 **Example**
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let timer:reminderAgent.ReminderRequestTimer = {
   reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
   triggerTimeInSeconds: 10
@@ -111,6 +113,8 @@ Cancels the reminder with the specified ID. This API uses an asynchronous callba
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 reminderAgent.cancelReminder(1, (err: BusinessError, data: void) => {
   console.log("cancelReminder callback");
 });
@@ -170,19 +174,22 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 reminderAgent.getValidReminders((err: BusinessError, reminders: Array<reminderAgent.ReminderRequest>) => {
   console.log("callback, getValidReminders length = " + reminders.length);
   for (let i = 0; i < reminders.length; i++) {
     console.log("getValidReminders = " + reminders[i]);
     console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
-    for (let j = 0; j < reminders[i].actionButton.length; j++) {
-      console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
-      console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
+    const actionButton = reminders[i].actionButton || [];
+    for (let j = 0; j < actionButton.length; j++) {
+      console.log("getValidReminders, actionButton.title = " + actionButton[j]?.title);
+      console.log("getValidReminders, actionButton.type = " + actionButton[j]?.type);
     }
-    console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
-    console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
-    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
-    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
+    console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
+    console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
+    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
+    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
     console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
     console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
     console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
@@ -223,14 +230,15 @@ reminderAgent.getValidReminders().then((reminders: Array<reminderAgent.ReminderR
   for (let i = 0; i < reminders.length; i++) {
     console.log("getValidReminders = " + reminders[i]);
     console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
-    for (let j = 0; j < reminders[i].actionButton.length; j++) {
-      console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
-      console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
+    const actionButton = reminders[i].actionButton || [];
+    for (let j = 0; j < actionButton.length; j++) {
+      console.log("getValidReminders, actionButton.title = " + actionButton[j]?.title);
+      console.log("getValidReminders, actionButton.type = " + actionButton[j]?.type);
     }
-    console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
-    console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
-    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
-    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
+    console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
+    console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
+    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
+    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
     console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
     console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
     console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
@@ -267,6 +275,8 @@ Cancels all reminders set by the current application. This API uses an asynchron
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 reminderAgent.cancelAllReminders((err: BusinessError, data: void) =>{
   console.log("cancelAllReminders callback")
 })
@@ -322,6 +332,7 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 
 ```ts
 import notification from '@ohos.notificationManager'
+import { BusinessError } from '@ohos.base';
 
 let mySlot:notification.NotificationSlot = {
   type: notification.SlotType.SOCIAL_COMMUNICATION
@@ -393,6 +404,7 @@ Removes a notification slot of a specified type. This API uses an asynchronous c
 
 ```ts
 import notification from '@ohos.notification'
+import { BusinessError } from '@ohos.base';
 
 reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err: BusinessError, data: void) => {
   console.log("removeNotificationSlot callback");

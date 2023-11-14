@@ -143,6 +143,8 @@ Creates an **X509Cert** instance. This API uses an asynchronous callback to retu
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message     |
 | -------- | ------------- |
 | 19020001 | memory error. |
@@ -209,6 +211,8 @@ Creates an **X509Cert** instance. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message     |
 | -------- | ------------- |
 | 19020001 | memory error. |
@@ -272,6 +276,8 @@ Verifies the signature of an X.509 certificate. This API uses an asynchronous ca
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -357,6 +363,8 @@ Verifies the signature of an X.509 certificate. This API uses a promise to retur
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 19030001 | crypto operation error.      |
@@ -428,6 +436,8 @@ Obtains the serialized X.509 certificate data. This API uses an asynchronous cal
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
@@ -497,6 +507,8 @@ Obtains the serialized X.509 certificate data. This API uses a promise to return
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
@@ -562,6 +574,8 @@ Obtains the public key of this X.509 certificate. This API uses an asynchronous 
 | cryptoFramework.PubKey | Public key of the X509 certificate obtained. This object is used only for **verify()** of **X509Cert**.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
@@ -630,6 +644,8 @@ Checks the validity period of this X.509 certificate. This API uses an asynchron
 | date     | string         | Yes  | Date in the YYMMDDHHMMSSZ or YYYYMMDDHHMMSSZ format. The date must end with **Z**, which indicates the UTC.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
@@ -817,6 +833,8 @@ Obtains the X.509 certificate serial number.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020002 | runtime error.                                    |
@@ -883,6 +901,8 @@ Obtains the X.509 certificate issuer.
 | [DataBlob](#datablob) | X.509 certificate issuer obtained.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
@@ -953,6 +973,8 @@ Obtains the subject of this X.509 certificate.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
@@ -1022,6 +1044,8 @@ Obtains the start time of this X.509 certificate.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
@@ -1090,6 +1114,8 @@ Obtains the expiration time of this X.509 certificate.
 | string | Expiration time of the X509 certificate validity period, in the YYMMDDHHMMSSZ or YYYYMMDDHHMMSSZ format. The value must end with **Z**, which indicates the UTC.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
@@ -1161,6 +1187,8 @@ Obtains the signature data of this X.509 certificate.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
@@ -1230,6 +1258,8 @@ Obtains the signing algorithm of this X.509 certificate.
 | string | X.509 certificate signing algorithm obtained.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
@@ -1301,6 +1331,8 @@ Obtains the object identifier (OID) of the X.509 certificate signing algorithm. 
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
@@ -1369,6 +1401,8 @@ Obtains the signing algorithm parameters of this X.509 certificate.
 | [DataBlob](#datablob) | X.509 certificate signing algorithm parameters obtained.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
@@ -1439,6 +1473,8 @@ Obtains the key usage of this X.509 certificate.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                    |
@@ -1506,6 +1542,8 @@ Obtains the usage of the extended key of this X.509 certificate.
 | [DataArray](#dataarray) | Usage of the extended key obtained.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
@@ -1631,6 +1669,8 @@ Obtains the Subject Alternative Names (SANs) of this X.509 certificate.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
@@ -1700,6 +1740,8 @@ Obtains the Issuer Alternative Names (IANs) of this X.509 certificate.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
@@ -1768,6 +1810,8 @@ Obtains the fields in the X.509 certificate.
 | [DataBlob](#datablob) | Returns the obtained fields in DER format.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -1840,6 +1884,8 @@ Creates a **CertExtension** instance. This API uses an asynchronous callback to 
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message     |
 | -------- | ------------- |
 | 19020001 | memory error. |
@@ -1899,6 +1945,8 @@ Creates a **CertExtension** instance. This API uses a promise to return the resu
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message     |
 | -------- | ------------- |
 | 19020001 | memory error. |
@@ -1954,6 +2002,8 @@ Obtains the serialized data of the certificate extensions.
 | [EncodingBlob](#encodingblob) | Returns the serialized data obtained.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -2022,6 +2072,8 @@ Obtains the OIDs of the certificate extensions.
 | [DataArray](#dataarray) | Returns a list of the OIDs obtained.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -2092,6 +2144,8 @@ Obtains the certificate extension object information.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -2159,6 +2213,8 @@ Checks whether the certificate is a CA certificate.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -2220,6 +2276,8 @@ Creates an **X509Crl** instance. This API uses an asynchronous callback to retur
 | callback | AsyncCallback\<[X509Crl](#x509crl)> | Yes  | Callback invoked to return the result. Promise used to return the **X509Crl** instance created.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
@@ -2285,6 +2343,8 @@ Creates an **X509Crl** instance. This API uses a promise to return the result.
 | Promise\<[X509Crl](#x509crl)> | Promise used to return the **X509Crl** instance created.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
@@ -2489,6 +2549,8 @@ Obtains the serialized X.509 CRL data. This API uses an asynchronous callback to
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -2557,6 +2619,8 @@ Obtains the serialized X.509 CRL data. This API uses a promise to return the res
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -2622,6 +2686,8 @@ Verifies the signature of the X.509 CRL. This API uses an asynchronous callback 
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -2774,6 +2840,8 @@ Verifies the signature of the X.509 CRL. This API uses a promise to return the r
 | Promise\<void> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -2970,6 +3038,8 @@ Obtains the issuer of the X.509 CRL.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -3038,6 +3108,8 @@ Obtains the date when the X.509 CRL was last updated.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -3105,6 +3177,8 @@ Obtains the date when the CRL will be updated the next time.
 | string | Next update date obtained.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -3180,6 +3254,8 @@ Obtains the revoked X.509 certificate based on the specified serial number of th
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -3253,6 +3329,8 @@ Obtains the revoked X.509 certificate based on the specified certificate. This A
 | [X509CrlEntry](#x509crlentry) | Promise used to return the revoked X.509 certificate obtained.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -3343,6 +3421,8 @@ Obtains all the revoked X.509 certificates. This API uses an asynchronous callba
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -3411,6 +3491,8 @@ Obtains all the revoked X.509 certificates. This API uses a promise to return th
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -3474,6 +3556,8 @@ Obtains the DER-encoded CRL information, the **tbsCertList** from this CRL. This
 | [DataBlob](#datablob) | Promise used to return the **tbsCertList** information obtained.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -3543,6 +3627,8 @@ Obtains the signature data of the X.509 CRL.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -3610,6 +3696,8 @@ Obtains the signing algorithm of the X.509 CRL.
 | string | Signing algorithm obtained.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -3679,6 +3767,8 @@ Obtains the OID of the X.509 CRL signing algorithm. OIDs are allocated by the In
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -3746,6 +3836,8 @@ Obtains the parameters of the X.509 CRL signing algorithm.
 | [DataBlob](#datablob) | Algorithm parameters obtained.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -3821,6 +3913,8 @@ Creates a **CertChainValidator** object.
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -3872,6 +3966,8 @@ The certificate chain validator does not verify the certificate validity period 
 | callback  | AsyncCallback\<void>            | Yes  | Callback invoked to return the result. If **error** is **null**, the X.509 certificate chain is valid. If **error** is not **null**, the X.509 certificate chain is not valid.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
@@ -3939,6 +4035,8 @@ The certificate chain validator does not verify the certificate validity period 
 | Promise\<void> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
@@ -4031,6 +4129,8 @@ Obtains the serialized data of this revoked certificate. This API uses an asynch
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
@@ -4106,6 +4206,8 @@ Obtains the serialized data of this revoked certificate. This API uses a promise
 | Promise\<[EncodingBlob](#encodingblob)> | Promise used to return the serialized data of the revoked certificate obtained.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -4243,6 +4345,8 @@ Obtains the issuer of this revoked certificate. This API uses an asynchronous ca
 
 **Error codes**
 
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
+
 | ID| Error Message      |
 | -------- | -------------- |
 | 19020001 | memory error.  |
@@ -4311,6 +4415,8 @@ Obtains the date when the certificate was revoked. This API uses an asynchronous
 | string | Promise used to return the certificate revocation date obtained.|
 
 **Error codes**
+
+For details about the error codes, see [Certificate Error Codes](../errorcodes/errorcode-cert.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |

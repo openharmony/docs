@@ -238,7 +238,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   let packageName: string = "";
-  storageStatistics.getBundleStats(packageName).then((BundleStats: storageStatistics.Bundlestats) => {
+  storageStatistics.getBundleStats(packageName).then((BundleStats: storageStatistics.BundleStats) => {
     console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
   }).catch((err: BusinessError) => {
     console.info("getBundleStats failed with error:" + JSON.stringify(err));
@@ -282,7 +282,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
   ```ts
   import { BusinessError } from '@ohos.base';
   let packageName: string = "";
-  storageStatistics.getBundleStats(packageName, (error: BusinessError, BundleStats: storageStatistics.Bundlestats) => {
+  storageStatistics.getBundleStats(packageName, (error: BusinessError, BundleStats: storageStatistics.BundleStats) => {
     // do something
     console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
   });
@@ -316,7 +316,7 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  storageStatistics.getCurrentBundleStats().then((BundleStats: storageStatistics.Bundlestats) => {
+  storageStatistics.getCurrentBundleStats().then((BundleStats: storageStatistics.BundleStats) => {
     console.info("getCurrentBundleStats successfully:" + JSON.stringify(BundleStats));
   }).catch((err: BusinessError) => {
     console.info("getCurrentBundleStats failed with error:"+ JSON.stringify(err));
@@ -351,7 +351,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  storageStatistics.getCurrentBundleStats((error: BusinessError, bundleStats: storageStatistics.Bundlestats) => {
+  storageStatistics.getCurrentBundleStats((error: BusinessError, bundleStats: storageStatistics.BundleStats) => {
     // do something
     console.info("getCurrentBundleStats successfully:" + JSON.stringify(bundleStats));
   });
@@ -479,9 +479,8 @@ getTotalSizeSync(): number
   try {
     let number = storageStatistics.getTotalSizeSync();
     console.info("getTotalSizeSync successfully:" + JSON.stringify(number));
-  } catch (error) {
-    let error: BusinessError = err as BusinessError;
-    console.info("getTotalSizeSync failed with error:" + JSON.stringify(err));
+  } catch (err: BusinessError) {
+    console.info("getTotalSizeSync failed with error:" + err.message);
   }
   ```
 
@@ -597,9 +596,9 @@ getFreeSizeSync(): number
   try {
     let number = storageStatistics.getFreeSizeSync();
     console.info("getFreeSizeSync successfully:" + JSON.stringify(number));
-  } catch (error) {
+  } catch (err) {
     let error: BusinessError = err as BusinessError;
-    console.info("getFreeSizeSync failed with error:" + JSON.stringify(err));
+    console.info("getFreeSizeSync failed with error:" + JSON.stringify(error));
   }
   ```
 
