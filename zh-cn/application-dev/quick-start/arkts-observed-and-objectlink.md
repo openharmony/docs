@@ -38,7 +38,7 @@
 | ----------------- | ---------------------------------------- |
 | 装饰器参数             | 无                                        |
 | 同步类型              | 不与父组件中的任何类型同步变量。                         |
-| 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>不支持简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date或者Array的class实例，示例见[观察变化](#观察变化)。<br/>支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
+| 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>不支持简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date或者Array的class实例，示例见[观察变化](#观察变化)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
 | 被装饰变量的初始值         | 不允许。                                     |
 
 \@ObjectLink装饰的数据为可读示例。
@@ -470,85 +470,6 @@ struct IndexPage {
           }
         })
     }
-  }
-}
-```
-
-## ObjectLink支持联合类型
-
-@ObjectLink支持@Observed装饰类和undefined或null组成的联合类型，在下面的示例中，count类型为ClassA | ClassB | undefined，点击父组件Page2中的Button改变count的属性或者类型，Child中也会对应刷新。
-
-```ts
-class ClassA {
-  public a: number;
-
-  constructor(a: number) {
-    this.a = a;
-  }
-}
-
-class ClassB {
-  public b: number;
-
-  constructor(b: number) {
-    this.b = b;
-  }
-}
-
-@Entry
-@Component
-struct Page2 {
-  @State count: ClassA | ClassB | undefined = new ClassA(10)
-
-  build() {
-    Column() {
-      Child({ count: this.count })
-
-      Button('change count property')
-        .onClick(() => {
-          // 判断count的类型，做属性的更新
-          if (this.count instanceof ClassA) {
-            this.count.a += 1
-          } else if (this.count instanceof ClassB) {
-            this.count.b += 1
-          } else {
-            console.info('count is undefined, cannot change property')
-          }
-        })
-
-      Button('change count to ClassA')
-        .onClick(() => {
-          // 赋值为ClassA的实例
-          this.count = new ClassA(100)
-        })
-
-      Button('change count to ClassB')
-        .onClick(() => {
-          // 赋值为ClassA的实例
-          this.count = new ClassB(100)
-        })
-
-      Button('change count to undefined')
-        .onClick(() => {
-          // 赋值为undefined
-          this.count = undefined
-        })
-    }.width('100%')
-  }
-}
-
-@Component
-struct Child {
-  @ObjectLink count: ClassA | ClassB | undefined
-
-  build() {
-    Column() {
-      Text(`count is instanceof ${this.count instanceof ClassA ? 'ClassA' : this.count instanceof ClassB ? 'ClassB' : 'undefined'}`)
-        .fontSize(30)
-
-      Text(`count's property is  ${this.count instanceof ClassA ? this.count.a : this.count?.b}`).fontSize(15)
-
-    }.width('100%')
   }
 }
 ```

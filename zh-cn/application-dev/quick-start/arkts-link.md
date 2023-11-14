@@ -25,8 +25,7 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 装饰器参数                                                   | 无                                                           |
 | 同步类型                                                     | 双向同步。<br/>父组件中\@State,&nbsp;\@StorageLink和\@Link&nbsp;和子组件\@Link可以建立双向数据同步，反之亦然。 |
-| 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。支持类型的场景请参考[观察变化](#观察变化)。<br/>支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Link a : string \| undefined`。 |
-| <br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>类型必须被指定，且和双向绑定状态变量的类型相同。<br/>不支持any。 |                                                              |
+| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。支持类型的场景请参考[观察变化](#观察变化)。<br/>类型必须被指定，且和双向绑定状态变量的类型相同。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>**说明：**<br/>不支持Length、ResourceStr、ResourceColor类型，Length、ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。 |
 | 被装饰变量的初始值                                           | 无，禁止本地初始化。                                         |
 
 
@@ -245,58 +244,6 @@ struct Parent {
 
 
 上文所述，ArkUI框架可以观察到数组元素的添加，删除和替换。在该示例中\@State和\@Link的类型是相同的number[]，不允许将\@Link定义成number类型（\@Link item : number），并在父组件中用\@State数组中每个数据项创建子组件。如果要使用这个场景，可以参考[\@Prop](arkts-prop.md)和\@Observed。
-
-## Link支持联合类型实例
-
-@Link支持联合类型和undefined和null，在下面的示例中，name类型为string | undefined，点击父组件Index中的Button改变name的属性或者类型，Child中也会对应刷新。
-
-```ts
-
-@Component
-struct Child {
-  @Link name: string | undefined
-
-  build() {
-    Column() {
-
-      Button('Child change name to Bob')
-        .onClick(() => {
-          this.name = "Bob"
-        })
-
-      Button('Child change animal to undefined')
-        .onClick(() => {
-          this.name = undefined
-        })
-
-    }.width('100%')
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  @State name: string | undefined  = "mary"
-
-  build() {
-    Column() {
-      Text(`The name is  ${this.name}`).fontSize(30)
-
-      Child({name: this.name})
-
-      Button('Parents change name to Peter')
-        .onClick(() => {
-          this.name = "Peter"
-        })
-
-      Button('Parents change name to undefined')
-        .onClick(() => {
-          this.name = undefined
-        })
-    }
-  }
-}
-```
 
 ## 常见问题
 

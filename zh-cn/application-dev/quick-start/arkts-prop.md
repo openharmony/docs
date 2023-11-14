@@ -32,8 +32,7 @@
 | ----------- | ---------------------------------------- |
 | 装饰器参数       | 无                                        |
 | 同步类型        | 单向同步：对父组件状态变量值的修改，将同步给子组件\@Prop装饰的变量，子组件\@Prop变量的修改不会同步到父组件的状态变量上。嵌套类型的场景请参考[观察变化](#观察变化)。 |
-| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，支持undefined和null。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Prop支持联合类型实例](#prop支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Prop a : string \| undefined = undefiend`是推荐的，不推荐`@Prop a: string = undefined`。 |
-|<br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。 <br/>必须指定类型。<br/>**说明** ：<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)；<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 ||
+| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>必须指定类型。<br/>**说明** ：<br/>不支持Length、ResourceStr、ResourceColor类型，Length，ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。<br/>在父组件中，传递给\@Prop装饰的值不能为undefined或者null，反例如下所示。<br/>CompA&nbsp;({&nbsp;aProp:&nbsp;undefined&nbsp;})<br/>CompA&nbsp;({&nbsp;aProp:&nbsp;null&nbsp;})<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)；<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 |
 | 嵌套传递层数        | 在组件复用场景，建议@Prop深度嵌套数据不要超过5层，嵌套太多会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题，此时更建议使用[\@ObjectLink](arkts-observed-and-objectlink.md)。如果子组件的数据不想同步回父组件，建议采用@Reusable中的aboutToReuse，实现父组件向子组件传递数据，具体用例请参考[组件复用场景](arkts-state-management-best-practices.md)。 |
 | 被装饰变量的初始值   | 允许本地初始化。                                 |
 
@@ -428,7 +427,7 @@ class Book {
 
 @Component
 struct ReaderComp {
-  @Prop book: Book = new Book();
+  @Prop book: Book = new Book("", 1);
 
   build() {
     Row() {
@@ -451,10 +450,10 @@ struct Library {
       ReaderComp({ book: this.allBooks[2] })
       Divider()
       Text('Books on loaan to a reader')
-      ForEach(this.allBooks, (book: void) => {
+      ForEach(this.allBooks, (book: Book) => {
         ReaderComp({ book: book })
       },
-        (book: number): number => book.id)
+        (book: Book) => book.id.toString())
       Button('Add new')
         .onClick(() => {
           this.allBooks.push(new Book("The C++ Standard Library", 512));
@@ -640,75 +639,6 @@ struct Child1 {
   }
 }
 ```
-
-## Prop支持联合类型实例
-
-@Prop支持联合类型和undefined和null，在下面的示例中，count类型为ClassA | undefined，点击父组件Library中的Button改变count的属性或者类型，Child中也会对应刷新。
-
-```ts
-class Animals {
-  public name: string;
-
-  constructor(name: string) {
-    this.name = name;
-  }
-}
-
-@Component
-struct Child {
-  @Prop animal: Animals | undefined;
-
-  build() {
-    Column() {
-      Text(`Child's animal is  ${this.animal instanceof Animals ? this.animal.name : 'undefined'}`).fontSize(30)
-
-      Button('Child change animals into tigers')
-        .onClick(() => {
-          // 赋值为Animals的实例
-          this.animal = new Animals("Tiger")
-        })
-
-      Button('Child change animal to undefined')
-        .onClick(() => {
-          // 赋值为undefined
-          this.animal = undefined
-        })
-
-    }.width('100%')
-  }
-}
-
-@Entry
-@Component
-struct Library {
-  @State animal: Animals | undefined = new Animals("lion");
-
-  build() {
-    Column() {
-      Text(`Parents' animals are  ${this.animal instanceof Animals ? this.animal.name : 'undefined'}`).fontSize(30)
-
-      Child({animal: this.animal})
-
-      Button('Parents change animals into dogs')
-        .onClick(() => {
-          // 判断animal的类型，做属性的更新
-          if (this.animal instanceof Animals) {
-            this.animal.name = "Dog"
-          } else {
-            console.info('num is undefined, cannot change property')
-          }
-        })
-
-      Button('Parents change animal to undefined')
-        .onClick(() => {
-          // 赋值为undefined
-          this.animal = undefined
-        })
-    }
-  }
-}
-```
-
 
 ## 常见问题
 
