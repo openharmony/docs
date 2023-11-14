@@ -125,7 +125,8 @@ Use **Worker** when you want to schedule a series of synchronous tasks using the
                w.postMessage({'type': 0, 'data': 'data'})
                // Send a Get message to the worker thread.
                w.postMessage({'type': 1})
-               // Destroy the worker thread.
+                // ...
+                // Select a time to destroy the thread based on the actual situation.
                w.terminate()
              })
          }
