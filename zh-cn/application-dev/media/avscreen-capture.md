@@ -199,7 +199,7 @@ int main()
     };
     OH_VideoCaptureInfo videocapinfo = {
         .videoFrameWidth = 720,
-        .videoFrameHeight = 1280,
+        .videoFrameHeight = 1080,
         .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
     };
     OH_AudioInfo audioinfo = {
@@ -224,6 +224,179 @@ int main()
     int32_t ret = OH_ScreenCapture_StopScreenCapture(capture);
     //释放ScreenCapture
     int32_t ret = OH_ScreenCapture_Realease(capture);
+    return 0;
+}
+```
+
+### 录屏存文件开发步骤及注意事项
+
+开发者可以通过以下几个步骤来实现一个简单的屏幕录制存文件的功能。
+
+1. 创建AVScreenCapture实例capture。
+
+    ```c++
+    OH_AVScreenCapture* capture = OH_AVScreenCapture_Create();
+    ```
+
+2. 配置屏幕录制参数。
+      创建AVScreenCapture实例capture后，可以设置屏幕录制所需要的参数。
+
+    ```c++
+    //录屏时获取麦克风或者内录，二者选择其一，如果都设置了，优先取内录的参数设置，如果内录参数设置失败，取麦克风的参数设置
+    OH_AudioCaptureInfo innerCapInfo = {
+        .audioSampleRate = 48000,
+        .audioChannels = 2,
+        .audioSource = OH_ALL_PLAYBACK
+    };
+
+    OH_AudioEncInfo audioEncInfo = {
+        .audioBitrate = 48000,
+        .audioCodecformat = OH_AAC_LC
+    };
+
+    OH_VideoCaptureInfo videoCapInfo = {
+        .videoFrameWidth = 720,
+        .videoFrameHeight = 1080,
+        .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
+    };
+
+    OH_VideoEncInfo videoEncInfo = {
+        .videoCodec = OH_MPEG4,
+        .videoBitrate = 2000000,
+        .videoFrameRate = 30
+    };
+
+    OH_AudioInfo audioInfo = {
+        .innerCapInfo = innerCapInfo,
+        .audioEncInfo = audioEncInfo
+    };
+
+    OH_VideoInfo videoInfo = {
+        .videoCapInfo = videoCapInfo,
+        .videoEncInfo = videoEncInfo
+    };
+
+    config = {
+        .captureMode = OH_CAPTURE_HOME_SCREEN,
+        .dataType = OH_CAPTURE_FILE,
+        .audioInfo = audioInfo,
+        .videoInfo = videoInfo,
+    };
+
+    OH_AVScreenCapture_Init(capture, config);
+    ```
+
+3. 设置麦克风开关。
+     
+    录屏存文件仅仅能够在OH_AVScreenCapture_Init时期设置是否录制麦克风音频，在录制的过程中，无法控制麦克风的开启与关闭。
+
+4. 回调函数的设置。
+     
+    录屏存文件无需设置回调函数。
+
+5. 调用StartScreenCapture方法开始进行屏幕录制。
+     
+    ```c++
+    OH_AVScreenCapture_StartScreenCapture(capture);
+    ```
+
+6. 调用StopScreenCapture()方法停止录制。
+     
+    ```c++
+    OH_AVScreenCapture_StopScreenCapture(capture);
+    ```
+
+7. 调用release()方法销毁实例，释放资源。
+     
+    ```c++
+    OH_AVScreenCapture_Release(capture);
+    ```
+
+### 录屏存文件完整示例
+
+下面展示了使用AVScreenCapture屏幕录制存文件的完整示例代码。
+  
+```c++
+
+#include "multimedia/player_framework/native_avscreen_capture.h"
+#include "multimedia/player_framework/native_avscreen_capture_base.h"
+#include "multimedia/player_framework/native_avscreen_capture_errors.h"
+
+void SetConfig(OH_AVScreenCaptureConfig &config)
+{
+    OH_AudioCaptureInfo innerCapInfo = {
+        .audioSampleRate = 48000,
+        .audioChannels = 2,
+        .audioSource = OH_ALL_PLAYBACK
+    };
+
+    OH_AudioEncInfo audioEncInfo = {
+        .audioBitrate = 48000,
+        .audioCodecformat = OH_AudioCodecFormat::OH_AAC_LC
+    };
+
+    OH_VideoCaptureInfo videoCapInfo = {
+        .videoFrameWidth = 720,
+        .videoFrameHeight = 1080,
+        .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
+    };
+
+    OH_VideoEncInfo videoEncInfo = {
+        .videoCodec = OH_VideoCodecFormat::OH_MPEG4,
+        .videoBitrate = 2000000,
+        .videoFrameRate = 30
+    };
+
+    OH_AudioInfo audioInfo = {
+        .innerCapInfo = innerCapInfo,
+        .audioEncInfo = audioEncInfo
+    };
+
+    OH_VideoInfo videoInfo = {
+        .videoCapInfo = videoCapInfo,
+        .videoEncInfo = videoEncInfo
+    };
+
+    config = {
+        .captureMode = OH_CAPTURE_HOME_SCREEN,
+        .dataType = OH_CAPTURE_FILE,
+        .audioInfo = audioInfo,
+        .videoInfo = videoInfo,
+    };
+}
+
+int main()
+{
+    //实例化ScreenCapture
+    struct OH_AVScreenCapture* capture = OH_AVScreenCapture_Create(void);
+
+    //初始化录屏参数，传入配置信息OH_AVScreenRecorderConfig
+    OH_AVScreenCaptureConfig config;
+    SetConfig(config);
+    OH_RecorderInfo recorderInfo;
+    const std::string SCREEN_CAPTURE_ROOT = "/data/test/media/";
+    int32_t outputFd = open((SCREEN_CAPTURE_ROOT + "screen_capture_ndk_file_01.mp4").c_str(),
+        O_RDWR | O_CREAT, 0777);
+    std::string fileUrl = "fd://" + to_string(outputFd);
+    recorderInfo.url = const_cast<char *>(fileUrl.c_str());
+    recorderInfo.fileFormat = OH_ContainerFormatType::CFT_MPEG_4;
+    config.recorderInfo = recorderInfo;
+
+    //进行初始化操作
+    int32_t ret = OH_AVScreenCapture_Init(capture, config);
+
+    //开始录屏
+    int32_t ret = OH_AVScreenCapture_StartScreenCapture(capture);
+
+    //录制10s
+    sleep(10); 
+
+    //结束录屏
+    int32_t ret = OH_ScreenCapture_StopScreenCapture(capture);
+
+    //释放ScreenCapture
+    int32_t ret = OH_ScreenCapture_Realease(capture);
+
     return 0;
 }
 ```
