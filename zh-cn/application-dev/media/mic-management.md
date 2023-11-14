@@ -21,7 +21,7 @@
    }
    ```
 
-2. 调用on('micStateChange')监听麦克风状态变化，当麦克风静音状态发生变化时将通知应用。**(仅对系统应用开放)**
+2. **(仅对系统应用开放)** 调用on('micStateChange')监听麦克风状态变化，当麦克风静音状态发生变化时将通知应用。
    
    目前此订阅接口在单进程多AudioManager实例的使用场景下，仅最后一个实例的订阅生效，其他实例的订阅会被覆盖（即使最后一个实例没有进行订阅），因此推荐使用单一AudioManager实例进行开发。
 
@@ -43,7 +43,7 @@
    }
    ```
 
-4. 根据查询结果的实际情况，调用setMicrophoneMute设置麦克风静音状态，入参输入true为静音，false为非静音。
+4. **(仅对系统应用开放)** 根据查询结果的实际情况，调用setMicrophoneMute设置麦克风静音状态，入参输入true为静音，false为非静音。
      
    ```ts
    async function setMicrophoneMuteTrue() { //设置麦克风静音，入参为true
