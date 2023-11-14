@@ -850,7 +850,7 @@ on\(type: 'simStateChange', options: ObserverOptions, callback: Callback\<SimSta
 
 **示例：**
 
-```js
+```ts
 let options: observer.ObserverOptions = {
     slotId: 0
 }
