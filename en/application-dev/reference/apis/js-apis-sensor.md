@@ -3625,9 +3625,9 @@ Describes the proximity sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name    | Type  | Readable| Writable| Description                                                  |
-| -------- | ------ | ---- | ---- | ------------------------------------------------------ |
-| distance | number | Yes  | Yes  | Proximity between the visible object and the device monitor. The value **0** means the two are close to each other, and **1** means that they are far away from each other.|
+| Name    | Type  | Readable| Writable| Description                                                      |
+| -------- | ------ | ---- | ---- | ---------------------------------------------------------- |
+| distance | number | Yes  | Yes  | Proximity between the visible object and the device monitor. The value **0** means the two are close to each other, and a value greater than 0 means that they are far away from each other.|
 
 
 ## LightResponse
@@ -3740,9 +3740,9 @@ Describes the barometer sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name    | Type  | Readable| Writable| Description                    |
-| -------- | ------ | ---- | ---- | ------------------------ |
-| pressure | number | Yes  | Yes  | Atmospheric pressure, in hPa. |
+| Name    | Type  | Readable| Writable| Description                  |
+| -------- | ------ | ---- | ---- | ---------------------- |
+| pressure | number | Yes  | Yes  | Atmospheric pressure, in hPa.|
 
 
 ## HeartRateResponse
@@ -5675,7 +5675,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getGe
 | timeMillis      | number                              | Yes   | Time for obtaining the magnetic declination, in milliseconds.|
 
 **Return value**
-
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
 | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field.|
