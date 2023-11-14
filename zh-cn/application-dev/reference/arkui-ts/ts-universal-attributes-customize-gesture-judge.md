@@ -11,7 +11,7 @@
 
 | 名称      | 参数类型                                | 描述    |
 | --------- | ---------------------------------------- | ----- |
-| onGestureJudgeBegin | callback: (gestureInfo: [GestureInfo](#gestureinfo类型说明), event: [BaseGestureEvent](#basegestureevent类型说明)) => [GestureJudgeResult](ts-appendix-enums.md#gesturejudgeresult11) | 给组件绑定自定义手势判定回调，当绑定到该组件的手势被接受时，会触发用户定义的回调来获取结果。|
+| onGestureJudgeBegin | callback: (gestureInfo: [GestureInfo](#gestureinfo对象说明), event: [BaseGestureEvent](#basegestureevent对象说明)) => [GestureJudgeResult](ts-appendix-enums.md#gesturejudgeresult11) | 给组件绑定自定义手势判定回调，当绑定到该组件的手势被接受时，会触发用户定义的回调来获取结果。|
 
 ## GestureInfo对象说明
 
@@ -37,16 +37,16 @@
 | ---------  | ----------------------------------------  | -----------|
 | fingerList | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明) | 触发事件的所有手指信息。  |
 
-## TapGestureEvent类型说明
+## TapGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。
 
-## LongPressGestureEvent类型说明
+## LongPressGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。
 | 名称      | 类型                                      | 描述         |
 | ---------  | ----------------------------------------  | -----------|
 | repeat     | boolean | 是否为重复触发事件。  |
 
-## PanGestureEvent类型说明
+## PanGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。
 | 名称      | 类型                                      | 描述         |
 | ---------  | ----------------------------------------  | -----------|
@@ -56,7 +56,7 @@
 | velocityY  | number | 获取当前手势的y轴方向速度。坐标轴原点为屏幕左上角，分正负方向速度，从上往下为正，反之为负。|
 | velocity   | number | 获取当前的主方向速度。为xy轴方向速度的平方和的算术平方根。  |
 
-## PinchGestureEvent类型说明
+## PinchGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。
 | 名称         | 类型                                      | 描述         |
 | ------------  | ----------------------------------------  | -----------|
@@ -64,13 +64,13 @@
 | pinchCenterX  | number | 捏合手势中心点相对于当前组件元素原始区域左上角x轴坐标，单位为vp。  |
 | pinchCenterY  | number | 捏合手势中心点相对于当前组件元素原始区域左上角y轴坐标，单位为vp。  |
 
-## RotationGestureEvent类型说明
+## RotationGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。
 | 名称         | 类型                                      | 描述         |
 | ------------  | ----------------------------------------  | -----------|
 | angle         | number | 表示旋转角度，单位为deg。<br/>**说明：**<br/>角度计算方式：滑动手势被识别到后，连接两根手指之间的线被识别为起始线条，随着手指的滑动，手指之间的线条会发生旋转，根据起始线条两端点和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角，最后arctan2(cy2-cy1,cx2-cx1)-arctan2(y2-y1,x2-x1)为旋转的角度。以起始线条为坐标系，顺时针旋转为0到180度，逆时针旋转为-180到0度。  |
 
-## SwipeGestureEvent类型说明
+## SwipeGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。
 | 名称         | 类型                                      | 描述         |
 | ------------  | ----------------------------------------  | -----------|
