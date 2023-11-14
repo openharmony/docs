@@ -66,8 +66,7 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 | onActionUpdate(event:&nbsp;(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势移动过程中回调。 |
 | onActionEnd(event:&nbsp;(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，手指抬起后触发回调。 |
 | onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，接收到触摸取消事件触发回调。 |
-
-
+| tag(tag: string) | 设置Pan手势标志。 |
 ## 示例
 
 ```ts

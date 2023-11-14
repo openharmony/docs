@@ -24,7 +24,7 @@ TapGesture(value?: { count?: number, fingers?: number })
 | 名称 | 功能描述 |
 | -------- | -------- |
 | onAction(event: (event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Tap手势识别成功回调。 |
-
+| tag(tag: string) | 设置Tap手势标志。 |
 
 ## 示例
 
