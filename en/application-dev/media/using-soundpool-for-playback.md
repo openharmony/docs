@@ -8,7 +8,7 @@ Currently, the **SoundPool** APIs can be used to play an audio file that is less
 
 This topic walks you through on how to use the **SoundPool** APIs to implement low-latency playback. For details about the API, see [SoundPool](../reference/apis/js-apis-inner-multimedia-soundPool.md).
 
-The full process includes creating a **SoundPool** instance, loading a sound (including decapsulation and decoding), setting playback parameters (playback rate, loop mode, and priority), playing the sound, stopping the playback, and releasing the instance. (For details about the decoding formats, see [Audio Decoding](audio-decoding.md).)
+The full process includes creating a **SoundPool** instance, loading a sound (including decapsulation and decoding), setting playback parameters (loop mode, and playback priority), playing the sound, stopping the playback, and releasing the instance. (For details about the decoding formats, see [Audio Decoding](audio-decoding.md).)
 
 During application development, you must subscribe to playback state changes and call the APIs in the defined sequence. Otherwise, an exception or undefined behavior may occur.  
 
@@ -19,7 +19,6 @@ During application development, you must subscribe to playback state changes and
     ```ts
     let soundPool: media.SoundPool;
     let audioRendererInfo: audio.AudioRendererInfo = {
-        content : audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
         usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
         rendererFlags : 1
     }
@@ -119,21 +118,7 @@ During application development, you must subscribe to playback state changes and
     soundPool.setPriority(streamID, 1);
     ```
 
-9. Call **setRate()** to set the playback rate.
-
-    ```ts
-    let streamID: number;
-    let selectedAudioRendererRate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL; // The sound is played at the original frequency.
-    // Call play() to obtain the stream ID.
-
-    soundPool.setRate(streamID, selectedAudioRendererRate).then(() => {
-      console.info('setRate success');
-    }).catch((err: BusinessError) => {
-      console.error('soundpool setRate failed and catch error is ' + err.message);
-    });
-    ```
-
-10. Call **setVolume()** to set the playback volume.
+9. Call **setVolume()** to set the playback volume.
 
     ```ts
     let streamID: number;
@@ -146,7 +131,7 @@ During application development, you must subscribe to playback state changes and
     });
     ```
 
-11. Call **stop()** to stop the playback.
+10. Call **stop()** to stop the playback.
      
     ```ts
     let streamID: number;
@@ -159,7 +144,7 @@ During application development, you must subscribe to playback state changes and
     });
     ```
 
-12. Call **unload()** to unload a sound.
+11. Call **unload()** to unload a sound.
 
     ```ts
     let soundID: number;
@@ -172,25 +157,25 @@ During application development, you must subscribe to playback state changes and
     });
     ```
 
-13. Call **off('loadComplete')** to stop listening for the completion of sound loading.
+12. Call **off('loadComplete')** to stop listening for the completion of sound loading.
 
     ```ts
     soundPool.off('loadComplete');
     ```
 
-14. Call **off('playFinished')** to stop listening for the completion of sound playing.
+13. Call **off('playFinished')** to stop listening for the completion of sound playing.
 
     ```ts
     soundPool.off('playFinished');
     ```
 
-15. Call **off('error')** to stop listening for errors.
+14. Call **off('error')** to stop listening for errors.
 
     ```ts
     soundPool.off('error');
     ```
 
-16. Call **release()** to release the **SoundPool** instance.
+15. Call **release()** to release the **SoundPool** instance.
 
     ```ts
     soundPool.release().then(() => {
@@ -214,7 +199,6 @@ struct Soundpool {
   private streamId: number = 0;
   private soundId: number = 0;
   private audioRendererInfo: audio.AudioRendererInfo = {
-    content: audio.ContentType.CONTENT_TYPE_SPEECH,
     usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags: 1
   }
@@ -268,8 +252,6 @@ struct Soundpool {
     this.soundPool.setLoop (this.streamId, 2); // The sound is played three times (two loops).
     // Set the priority.
     this.soundPool.setPriority(this.streamId, 1);
-    // Set the playback rate.
-    this.soundPool.setRate(this.streamId, audio.AudioRendererRate.RENDER_RATE_HALF); // The sound is played at half its original frequency.
     // Set the volume.
     this.soundPool.setVolume(this.streamId, 0.5, 0.5);
   }
