@@ -1,15 +1,22 @@
 # @ohos.app.ability.Ability (Ability Base Class)
 
-This is the base class of [UIAbility](js-apis-app-ability-uiAbility.md) and [ExtensionAbility](js-apis-app-ability-extensionAbility.md). It provides the callbacks for system configuration updates and memory level updates. You cannot inherit from this base class.
+This is the base class of [UIAbility](js-apis-app-ability-uiAbility.md) and [ExtensionAbility](js-apis-app-ability-extensionAbility.md). It provides the callbacks for system configuration updates and memory level updates.
+
 
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
 
+## Modules to Import
+
+```ts
+import Ability from '@ohos.app.ability.Ability';
+```
+
 ## Ability.onConfigurationUpdate
 
-onConfigurationUpdate(newConfig: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void
 
 Called when the configuration of the environment where the ability is running is updated.
 
@@ -17,45 +24,40 @@ Called when the configuration of the environment where the ability is running is
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| newConfig | [Configuration](js-apis-app-ability-configuration.md) | Yes| New configuration.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | newConfig | [Configuration](js-apis-app-ability-configuration.md) | Yes| New configuration.| 
 
 **Example**
+    
   ```ts
-// You are not allowed to inherit from the top-level base class Ability. Therefore, the derived class UIAbility is used as an example.
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-class MyUIAbility extends UIAbility {
-    onConfigurationUpdate(config) {
-        console.log('onConfigurationUpdate, config:' + JSON.stringify(config));
-    }
-}
+  class myAbility extends Ability {
+      onConfigurationUpdate(config) {
+          console.log('onConfigurationUpdate, config:' + JSON.stringify(config));
+      }
+  }
   ```
 
 ## Ability.onMemoryLevel
 
-onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
+onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
-Called when the system adjusts the memory level.
+Called when the system has decided to adjust the memory level. For example, this API can be used when there is not enough memory to run as many background processes as possible.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | Yes| New memory level.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | Yes| Memory level that indicates the memory usage status. When the specified memory level is reached, a callback will be invoked and the system will start adjustment.| 
 
 **Example**
-
+    
   ```ts
-// You are not allowed to inherit from the top-level base class Ability. Therefore, the derived class UIAbility is used as an example.
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-class MyUIAbility extends UIAbility {
+  class myAbility extends Ability {
     onMemoryLevel(level) {
         console.log('onMemoryLevel, level:' + JSON.stringify(level));
     } 
-}
+  }
   ```
