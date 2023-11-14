@@ -21,14 +21,14 @@
 
 
 ```ts
-@Builder MyBuilderFunction({ ... })
+@Builder MyBuilderFunction(){ ... }
 ```
 
 使用方法：
 
 
 ```ts
-this.MyBuilderFunction({ ... })
+this.MyBuilderFunction(){ ... }
 ```
 
 - 允许在自定义组件内定义一个或多个@Builder方法，该方法被认为是该组件的私有、特殊类型的成员函数。
@@ -44,7 +44,7 @@ this.MyBuilderFunction({ ... })
 
 
 ```ts
-@Builder function MyGlobalBuilderFunction({ ... })
+@Builder function MyGlobalBuilderFunction(){ ... }
 ```
 
 使用方法：
