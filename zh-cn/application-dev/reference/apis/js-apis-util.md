@@ -1741,6 +1741,10 @@ for (let value of arrayValue) {
 
 返回一个键值对形式的二维数组。
 
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
