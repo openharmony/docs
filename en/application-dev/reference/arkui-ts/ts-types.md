@@ -121,6 +121,17 @@ The **Offset** type is used to describe the offset coordinates of a component in
 | dx   | [Length](#length) | Yes   | X coordinate of the offset.|
 | dy   | [Length](#length) | Yes   | Y coordinate of the offset.|
 
+## RectResult<sup>10+</sup>
+
+The **RectResult** type is used to describe the position, width, and height of a component.
+
+| Name     | Type    | Description|
+| ------- | ------ | ----------------------- |
+| x     | number | Horizontal coordinate.|
+| y     | number | Vertical coordinate.|
+| width | number | Content width.|
+| height | number | Content height.|
+
 ## ResourceColor
 
 The **ResourceColor** type is used to describe the color types of resources.
@@ -341,3 +352,12 @@ The **SafeAreaEdge** type is used to define the edge for expanding the safe area
 | BOTTOM | Bottom edge.|
 | START  | Start edge.|
 | END    | End edge.|
+
+## KeyboardAvoidMode<sup>11+</sup>
+
+Enumerates the avoidance modes for the virtual keyboard.
+
+| Name  | Description      |
+| ------ | ---------- |
+| OFFSET | Avoid the virtual keyboard through offset.|
+| RESIZE | Avoid the virtual keyboard through resizing.|
