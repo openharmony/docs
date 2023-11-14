@@ -977,7 +977,7 @@ answerCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明                                            |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
 | callId   | number                    | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回接听电话的结果。            |
 
 **错误码：**
 
@@ -1071,7 +1071,7 @@ answerCall\(callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回接听电话的结果。 |
 
 **错误码：**
 
@@ -1115,7 +1115,7 @@ hangUpCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明                                            |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
 | callId   | number                    | 是   | 呼叫id。可以通过订阅callDetailsChange事件获得。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回挂断电话的结果。                                      |
 
 **错误码：**
 
@@ -1209,7 +1209,7 @@ hangUpCall\(callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回挂断电话的结果。 |
 
 **错误码：**
 
@@ -1254,7 +1254,7 @@ rejectCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明                                            |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
 | callId   | number                    | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回拒接电话的结果。                           |
 
 **错误码：**
 
@@ -1300,7 +1300,7 @@ rejectCall\(callId: number, options: RejectMessageOptions, callback: AsyncCallba
 | -------- | ---------------------------------------------- | ---- | ----------------------------------------------- |
 | callId   | number                                         | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
 | options  | [RejectMessageOptions](#rejectmessageoptions7) | 是   | 拒绝消息选项。                                  |
-| callback | AsyncCallback&lt;void&gt;                      | 是   | 回调函数。                                      |
+| callback | AsyncCallback&lt;void&gt;                      | 是   | 以回调函数的方式返回拒接电话的结果。                                      |
 
 **错误码：**
 
@@ -1401,7 +1401,7 @@ rejectCall\(callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回拒接电话的结果。 |
 
 **错误码：**
 
@@ -1445,7 +1445,7 @@ rejectCall\(options: RejectMessageOptions, callback: AsyncCallback\<void\>\): vo
 | 参数名   | 类型                                           | 必填 | 说明           |
 | -------- | ---------------------------------------------- | ---- | -------------- |
 | options  | [RejectMessageOptions](#rejectmessageoptions7) | 是   | 拒绝消息选项。 |
-| callback | AsyncCallback&lt;void&gt;                      | 是   | 回调函数。     |
+| callback | AsyncCallback&lt;void&gt;                      | 是   | 以回调函数的方式返回拒接电话的结果。     |
 
 **错误码：**
 
@@ -1492,7 +1492,7 @@ holdCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回保持电话的结果。 |
 
 **错误码：**
 
@@ -1586,7 +1586,7 @@ unHoldCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回取消保持电话的结果。 |
 
 **错误码：**
 
@@ -1680,7 +1680,7 @@ switchCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回交换电话的结果。 |
 
 **错误码：**
 
@@ -1772,7 +1772,7 @@ combineConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回合并会议的结果。 |
 
 **错误码：**
 
@@ -1782,6 +1782,7 @@ combineConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1827,6 +1828,7 @@ combineConference\(callId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1860,7 +1862,7 @@ kickOutFromConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回移出会议的结果。 |
 
 **错误码：**
 
@@ -1961,6 +1963,7 @@ getMainCallId\(callId: number, callback: AsyncCallback\<number\>\): void
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2007,6 +2010,7 @@ getMainCallId\(callId: number\): Promise\<number\>
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2049,6 +2053,7 @@ getSubCallIdList\(callId: number, callback: AsyncCallback\<Array\<string\>\>\): 
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2094,6 +2099,7 @@ getSubCallIdList\(callId: number\): Promise\<Array\<string\>\>
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2135,6 +2141,7 @@ getCallIdListForConference\(callId: number, callback: AsyncCallback\<Array\<stri
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2180,6 +2187,7 @@ getCallIdListForConference\(callId: number\): Promise\<Array\<string\>\>
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2308,7 +2316,7 @@ setCallWaiting\(slotId: number, activate: boolean, callback: AsyncCallback\<void
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
 | activate | boolean              | 是   | 呼叫等待是否处于启用状态。<br/>- false：禁用呼叫等待<br/>- true：启用呼叫等待 |
-| callback | AsyncCallback<void\> | 是   | 回调函数。                                                   |
+| callback | AsyncCallback<void\> | 是   | 以回调函数的方式返回设置呼叫等待的结果。                                                   |
 
 **错误码：**
 
@@ -2402,7 +2410,7 @@ startDTMF\(callId: number, character: string, callback: AsyncCallback\<void\>\):
 | --------- | -------------------- | ---- | ---------- |
 | callId    | number               | 是   | 呼叫Id。   |
 | character | string               | 是   | DTMF码。   |
-| callback  | AsyncCallback<void\> | 是   | 回调函数。 |
+| callback  | AsyncCallback<void\> | 是   | 以回调函数的方式返回启动双音多频的结果。 |
 
 **错误码：**
 
@@ -2412,6 +2420,7 @@ startDTMF\(callId: number, character: string, callback: AsyncCallback\<void\>\):
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2458,6 +2467,7 @@ startDTMF\(callId: number, character: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2489,7 +2499,7 @@ stopDTMF\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回停止双音多频的结果。 |
 
 **错误码：**
 
@@ -2499,6 +2509,7 @@ stopDTMF\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2544,6 +2555,7 @@ stopDTMF\(callId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2576,7 +2588,7 @@ isInEmergencyCall\(callback: AsyncCallback\<boolean\>\): void
 
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 以回调函数的方式返回结果，true表示紧急号码，false表示非紧急号码。 |
 
 **错误码：**
 
@@ -2619,7 +2631,7 @@ isInEmergencyCall\(\): Promise\<boolean\>
 
 | 类型                   | 说明                        |
 | ---------------------- | --------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回结果。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回结果，true表示正在处于紧急呼叫，false表示不处于紧急呼叫。 |
 
 **错误码：**
 
@@ -3072,7 +3084,7 @@ isNewCallAllowed\(callback: AsyncCallback\<boolean\>\): void
 
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 以回调函数的方式返回结果，true表示允许拨打，false表示不可拨打。 |
 
 **错误码：**
 
@@ -3112,7 +3124,7 @@ isNewCallAllowed\(\): Promise\<boolean\>
 
 | 类型                   | 说明                        |
 | ---------------------- | --------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回结果。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回结果，true表示允许拨打，false表示不可拨打。 |
 
 **错误码：**
 
@@ -3152,7 +3164,7 @@ separateConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回分离会议电话的结果。 |
 
 **错误码：**
 
@@ -3339,7 +3351,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo, callback: AsyncCa
 | -------- | ------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | info     | [CallRestrictionInfo](#callrestrictioninfo8) | 是   | 呼叫限制信息。                         |
-| callback | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;void&gt;                   | 是   | 以回调函数的方式返回设置呼叫限制状态的结果。                             |
 
 **错误码：**
 
@@ -3638,7 +3650,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo, callback: AsyncCallback
 | -------- | ------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | info     | [CallTransferInfo](#calltransferinfo8) | 是   | 呼叫转移信息。                        |
-| callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;void&gt;             | 是   | 以回调函数的方式返回设置呼叫转移信息的结果。                             |
 
 **错误码：**
 
@@ -3742,7 +3754,7 @@ isRinging\(callback: AsyncCallback\<boolean\>\): void
 
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 以回调函数的方式返回是否正在响铃的结果，true表示正在响铃，false表示没有在响铃。 |
 
 **错误码：**
 
@@ -3785,7 +3797,7 @@ isRinging\(\): Promise\<boolean\>
 
 | 类型                   | 说明                        |
 | ---------------------- | --------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回结果。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回结果，true表示正在响铃，false表示没有响铃。 |
 
 **错误码：**
 
@@ -3825,7 +3837,7 @@ setMuted\(callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回设置通话中的静音的结果。 |
 
 **错误码：**
 
@@ -3904,7 +3916,7 @@ cancelMuted\(callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回取消通话中的静音的结果。 |
 
 **错误码：**
 
@@ -3986,7 +3998,7 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
 | device   | [AudioDevice](#audiodevice10)| 是   | 音频设备。 |
-| callback | AsyncCallback&lt;void&gt;    | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt;    | 是   | 以回调函数的方式返回设置通话音频设备的结果。 |
 
 **错误码：**
 
@@ -4084,7 +4096,7 @@ joinConference\(mainCallId: number, callNumberList: Array\<string\>, callback: A
 | -------------- | ------------------------- | ---- | --------------- |
 | mainCallId     | number                    | 是   | 主通话Id。      |
 | callNumberList | Array<string\>            | 是   | 呼叫号码列表。 |
-| callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。      |
+| callback       | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回加入会议的结果。      |
 
 **错误码：**
 
@@ -4179,7 +4191,7 @@ updateImsCallMode\(callId: number, mode: ImsCallMode, callback: AsyncCallback\<v
 | -------- | ---------------------------- | ---- | -------------- |
 | callId   | number                       | 是   | 呼叫Id。       |
 | mode     | [ImsCallMode](#imscallmode8) | 是   | Ims呼叫模式。 |
-| callback | AsyncCallback&lt;void&gt;    | 是   | 回调函数。     |
+| callback | AsyncCallback&lt;void&gt;    | 是   | 以回调函数的方式返回更新Ims呼叫模式的结果。     |
 
 **错误码：**
 
@@ -4269,7 +4281,7 @@ enableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明                                   |
 | -------- | ------------------------- | ---- | -------------------------------------- |
 | slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回启用Ims开关的结果。                             |
 
 **错误码：**
 
@@ -4362,7 +4374,7 @@ disableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明                                   |
 | -------- | ------------------------- | ---- | -------------------------------------- |
 | slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回禁用Ims开关的结果。                             |
 
 **错误码：**
 
@@ -4453,7 +4465,7 @@ isImsSwitchEnabled\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 参数名   | 类型                         | 必填 | 说明                                   |
 | -------- | ---------------------------- | ---- | -------------------------------------- |
 | slotId   | number                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 以回调函数的方式返回判断Ims开关是否启用的结果。                             |
 
 **错误码：**
 
@@ -4498,7 +4510,7 @@ isImsSwitchEnabled\(slotId: number\): Promise\<boolean\>
 
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回结果。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回结果，true表示Ims开关启用，false表示未启用。 |
 
 **错误码：**
 
@@ -4543,7 +4555,7 @@ closeUnfinishedUssd\(slotId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明                                    |
 | -------- | ------------------------- | ---- | -------------------------------------- |
 | slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2  |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                              |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回取消未激活完成的非结构化补充数据业务的结果。                              |
 
 **错误码：**
 
@@ -4640,7 +4652,7 @@ setVoNRState\(slotId: number, state: VoNRState, callback: AsyncCallback\<void\>\
 | ----------- | ----------------------------- | ---- | ---------------------------------------------------- |
 | slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                |
 | state       | [VoNRState](#vonrstate10)     | 是   | 开关状态。                                            |
-| callback    | AsyncCallback&lt;void&gt;  | 是   | 回调函数。 |
+| callback    | AsyncCallback&lt;void&gt;  | 是   | 以回调函数的方式返回设置NR语音的开关状态的结果。 |
 
 **错误码：**
 
@@ -4934,7 +4946,7 @@ inputDialerSpecialCode\(inputCode: string, callback: AsyncCallback\<void\>\): vo
 | 参数名      | 类型                         | 必填 | 说明                                       |
 | ----------- | ---------------------------- | ---- | ----------------------------------------- |
 | inputCode   | string                       | 是   | 暗码。支持暗码字段, 如：2846579(工程菜单)。 |
-| callback    | AsyncCallback&lt;void&gt;    | 是   | 回调函数                                   |
+| callback    | AsyncCallback&lt;void&gt;    | 是   | 以回调函数的方式返回暗码广播的结果。                                   |
 
 **错误码：**
 
@@ -5026,7 +5038,7 @@ removeMissedIncomingCallNotification\(callback: AsyncCallback\<void\>\): void
 
 | 参数名      | 类型                         | 必填 | 说明                                      |
 | ----------- | ---------------------------- | ---- | ---------------------------------------   |
-| callback    | AsyncCallback&lt;void&gt;    | 是   | 回调函数                                  |
+| callback    | AsyncCallback&lt;void&gt;    | 是   | 以回调函数的方式返回删除未接来电通知的结果。                                  |
 
 **错误码：**
 
@@ -5263,7 +5275,7 @@ IP多媒体系统调用模式。
 | settingType              | [CallTransferSettingType](#calltransfersettingtype8) | 是   | 设置呼叫转移类型 |
 | startHour<sup>9+</sup>   | number                                               | 否   | 开始时间的小时数 |
 | startMinute<sup>9+</sup> | number                                               | 否   | 开始时间的分钟数 |
-| endHour<sup>9+</sup>     | number                                               | 否   | 结束时间的分钟数 |
+| endHour<sup>9+</sup>     | number                                               | 否   | 结束时间的小时数 |
 | endMinute<sup>9+</sup>   | number                                               | 否   | 结束时间的分钟数 |
 
 ## CallTransferType<sup>8+</sup>
@@ -5486,7 +5498,7 @@ IP多媒体系统调用模式。
 | number                   | string                             |  是  | 号码             |
 | startHour<sup>9+</sup>   | number                             |  是  | 开始时间的小时数 |
 | startMinute<sup>9+</sup> | number                             |  是  | 开始时间的分钟数 |
-| endHour<sup>9+</sup>     | number                             |  是  | 结束时间的分钟数 |
+| endHour<sup>9+</sup>     | number                             |  是  | 结束时间的小时数 |
 | endMinute<sup>9+</sup>   | number                             |  是  | 结束时间的分钟数 |
 
 ## CallWaitingStatus<sup>7+</sup>
