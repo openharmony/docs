@@ -193,108 +193,11 @@ struct CompA {
 }
 ```
 
-### 以持久化方式订阅某个事件并接收事件回调
+### 不建议借助@StorageLink的双向同步机制实现事件通知
 
-推荐使用持久化方式订阅某个事件并接收事件回调，可以减少开销，增强代码的可读性。
+不建议开发者使用@StorageLink和AppStorage的双向同步的机制来实现事件通知，AppStorage是和UI相关的数据存储，改变会带来UI的刷新，相对于一般的事件通知，UI刷新的成本较大。
 
-
-```ts
-// xxx.ets
-import emitter from '@ohos.events.emitter';
-
-let NextID: number = 0;
-
-class ViewData {
-  title: string;
-  uri: Resource;
-  color: Color = Color.Black;
-  id: number;
-
-  constructor(title: string, uri: Resource) {
-    this.title = title;
-    this.uri = uri
-    this.id = NextID++;
-  }
-}
-
-@Entry
-@Component
-struct Gallery2 {
-  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
-  scroller: Scroller = new Scroller()
-  private preIndex: number = -1
-
-  build() {
-    Column() {
-      Grid(this.scroller) {
-        ForEach(this.dataList, (item: ViewData) => {
-          GridItem() {
-            TapImage({
-              uri: item.uri,
-              index: item.id
-            })
-          }.aspectRatio(1)
-          .onClick(() => {
-            if (this.preIndex === item.id) {
-              return
-            }
-            var innerEvent = { eventId: item.id }
-            // 选中态：黑变红
-            var eventData = {
-              data: {
-                "colorTag": 1
-              }
-            }
-            emitter.emit(innerEvent, eventData)
-
-            if (this.preIndex != -1) {
-              console.info(`preIndex: ${this.preIndex}, index: ${item.id}, black`)
-              var innerEvent = { eventId: this.preIndex }
-              // 取消选中态：红变黑
-              var eventData = {
-                data: {
-                  "colorTag": 0
-                }
-              }
-              emitter.emit(innerEvent, eventData)
-            }
-            this.preIndex = item.id
-          })
-
-        }, (item: ViewData) => JSON.stringify(item))
-      }.columnsTemplate('1fr 1fr')
-    }
-
-  }
-}
-
-@Component
-export struct TapImage {
-  @State tapColor: Color = Color.Black;
-  private index: number;
-  private uri: Resource;
-
-  onTapIndexChange(colorTag: emitter.EventData) {
-    this.tapColor = colorTag.data.colorTag ? Color.Red : Color.Black
-  }
-
-  aboutToAppear() {
-    //定义事件ID
-    var innerEvent = { eventId: this.index }
-    emitter.on(innerEvent, this.onTapIndexChange.bind(this))
-  }
-
-  build() {
-    Column() {
-      Image(this.uri)
-        .objectFit(ImageFit.Cover)
-        .border({ width: 5, style: BorderStyle.Dotted, color: this.tapColor })
-    }
-  }
-}
-```
-
-以下示例为消息机制方式订阅事件，会导致回调监听的节点数较多，非常耗时，不推荐以此来实现应用代码。
+TapImage中的点击事件，会触发AppStorage中tapIndex对应属性的改变。因为@StorageLink是双向同步，修改会同步会AppStorage中，所以，所有绑定AppStorage的tapIndex自定义组件都会被通知UI刷新。UI刷新带来的成本是巨大的，因此不建议开发者使用此方式来实现基本的事件通知功能。
 
 
 ```ts
@@ -340,8 +243,13 @@ struct Gallery2 {
 export struct TapImage {
   @StorageLink('tapIndex') @Watch('onTapIndexChange') tapIndex: number = -1;
   @State tapColor: Color = Color.Black;
-  private index: number;
-  private uri: Resource;
+  private index: number = 0;
+  private uri: Resource = {
+    id: 0,
+    type: 0,
+    moduleName: "",
+    bundleName: ""
+  };
 
   // 判断是否被选中
   onTapIndexChange() {
@@ -368,13 +276,192 @@ export struct TapImage {
 }
 ```
 
+开发者可以使用emit订阅某个事件并接收事件回调，可以减少开销，增强代码的可读性。
+
+
+```ts
+// xxx.ets
+import emitter from '@ohos.events.emitter';
+
+let NextID: number = 0;
+
+class ViewData {
+  title: string;
+  uri: Resource;
+  color: Color = Color.Black;
+  id: number;
+
+  constructor(title: string, uri: Resource) {
+    this.title = title;
+    this.uri = uri
+    this.id = NextID++;
+  }
+}
+
+@Entry
+@Component
+struct Gallery2 {
+  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
+  scroller: Scroller = new Scroller()
+  private preIndex: number = -1
+
+  build() {
+    Column() {
+      Grid(this.scroller) {
+        ForEach(this.dataList, (item: ViewData) => {
+          GridItem() {
+            TapImage({
+              uri: item.uri,
+              index: item.id
+            })
+          }.aspectRatio(1)
+          .onClick(() => {
+            if (this.preIndex === item.id) {
+              return
+            }
+            let innerEvent: emitter.InnerEvent = { eventId: item.id }
+            // 选中态：黑变红
+            let eventData: emitter.EventData = {
+              data: {
+                "colorTag": 1
+              }
+            }
+            emitter.emit(innerEvent, eventData)
+
+            if (this.preIndex != -1) {
+              console.info(`preIndex: ${this.preIndex}, index: ${item.id}, black`)
+              let innerEvent: emitter.InnerEvent = { eventId: this.preIndex }
+              // 取消选中态：红变黑
+              let eventData: emitter.EventData = {
+                data: {
+                  "colorTag": 0
+                }
+              }
+              emitter.emit(innerEvent, eventData)
+            }
+            this.preIndex = item.id
+          })
+        }, (item: ViewData) => JSON.stringify(item))
+      }.columnsTemplate('1fr 1fr')
+    }
+
+  }
+}
+
+@Component
+export struct TapImage {
+  @State tapColor: Color = Color.Black;
+  private index: number = 0;
+  private uri: Resource = {
+    id: 0,
+    type: 0,
+    moduleName: "",
+    bundleName: ""
+  };
+
+  onTapIndexChange(colorTag: emitter.EventData) {
+    if (colorTag.data != null) {
+      this.tapColor = colorTag.data.colorTag ? Color.Red : Color.Black
+    }
+  }
+
+  aboutToAppear() {
+    //定义事件ID
+    let innerEvent: emitter.InnerEvent = { eventId: this.index }
+    emitter.on(innerEvent, data => {
+    this.onTapIndexChange(data)
+    })
+  }
+
+  build() {
+    Column() {
+      Image(this.uri)
+        .objectFit(ImageFit.Cover)
+        .border({ width: 5, style: BorderStyle.Dotted, color: this.tapColor })
+    }
+  }
+}
+```
+
+以上通知事件逻辑简单，也可以简化成三元表达式。
+
+```
+// xxx.ets
+class ViewData {
+  title: string;
+  uri: Resource;
+  color: Color = Color.Black;
+
+  constructor(title: string, uri: Resource) {
+    this.title = title;
+    this.uri = uri
+  }
+}
+
+@Entry
+@Component
+struct Gallery2 {
+  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
+  scroller: Scroller = new Scroller()
+
+  build() {
+    Column() {
+      Grid(this.scroller) {
+        ForEach(this.dataList, (item: ViewData, index?: number) => {
+          GridItem() {
+            TapImage({
+              uri: item.uri,
+              index: index
+            })
+          }.aspectRatio(1)
+
+        }, (item: ViewData, index?: number) => {
+          return JSON.stringify(item) + index;
+        })
+      }.columnsTemplate('1fr 1fr')
+    }
+
+  }
+}
+
+@Component
+export struct TapImage {
+  @StorageLink('tapIndex') tapIndex: number = -1;
+  @State tapColor: Color = Color.Black;
+  private index: number = 0;
+  private uri: Resource = {
+    id: 0,
+    type: 0,
+    moduleName: "",
+    bundleName: ""
+  };
+
+  build() {
+    Column() {
+      Image(this.uri)
+        .objectFit(ImageFit.Cover)
+        .onClick(() => {
+          this.tapIndex = this.index;
+        })
+        .border({
+          width: 5,
+          style: BorderStyle.Dotted,
+          color: (this.tapIndex >= 0 && this.index === this.tapIndex) ? Color.Red : Color.Black
+        })
+    }
+  }
+}
+```
+
+
 
 ## 限制条件
 
 AppStorage与[PersistentStorage](arkts-persiststorage.md)以及[Environment](arkts-environment.md)配合使用时，需要注意以下几点：
 
-- 在AppStorage中创建属性后，调用PersistentStorage.PersistProp()接口时，会使用在AppStorage中已经存在的值，并覆盖PersistentStorage中的同名属性，所以建议要使用相反的调用顺序，反例可见[在PersistentStorage之前访问AppStorage中的属性](arkts-persiststorage.md#在persistentstorage之前访问appstorage中的属性)；
-- 如果在AppStorage中已经创建属性后，再调用Environment.EnvProp()创建同名的属性，会调用失败。因为AppStorage已经有同名属性，Environment环境变量不会再写入AppStorage中，所以建议AppStorage中属性不要使用Environment预置环境变量名。
-- 状态装饰器装饰的变量，改变会引起UI的渲染更新，如果改变的变量不是用于UI更新，只是用于消息传递，推荐使用 emitter方式。例子可见[以持久化方式订阅某个事件并接收事件回调](#以持久化方式订阅某个事件并接收事件回调)。
+- 在AppStorage中创建属性后，调用PersistentStorage.persistProp()接口时，会使用在AppStorage中已经存在的值，并覆盖PersistentStorage中的同名属性，所以建议要使用相反的调用顺序，反例可见[在PersistentStorage之前访问AppStorage中的属性](arkts-persiststorage.md#在persistentstorage之前访问appstorage中的属性)；
 
+- 如果在AppStorage中已经创建属性后，再调用Environment.envProp()创建同名的属性，会调用失败。因为AppStorage已经有同名属性，Environment环境变量不会再写入AppStorage中，所以建议AppStorage中属性不要使用Environment预置环境变量名。
+
+- 状态装饰器装饰的变量，改变会引起UI的渲染更新，如果改变的变量不是用于UI更新，只是用于消息传递，推荐使用 emitter方式。例子可见[不建议借助@StorageLink的双向同步机制实现事件通知](#不建议借助storagelink的双向同步机制实现事件通知)。
 <!--no_check-->
