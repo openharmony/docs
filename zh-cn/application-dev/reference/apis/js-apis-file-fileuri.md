@@ -107,9 +107,13 @@ toString(): string
 
 ### getFullDirectoryUri<sup>11+</sup>
 
-getFullDirectoryUri(): string;
+getFullDirectoryUri(): string
 
-以同步方法通过URI获取获取所在路径URI，文件获取所在路径URI，目录获取当前路径URI。
+通过文件或文件夹URI获取当前所在路径的URI。
+
+如果当前FileUri指向文件，将返回文件所在路径URI。如`xxx/example.txt`，将返回`xxx`。
+
+如果当前FileUri指向目录，将返回当前路径URI。
 
 **系统能力**：SystemCapability.FileManagement.AppFileService
 
