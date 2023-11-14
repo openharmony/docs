@@ -4,7 +4,7 @@ The **cloudData** module provides the capability of synchronizing the structured
 
 This module provides the following common functions:
 
-- [Config](#config): provides methods for configuring device-cloud synergy, including enabling and disabling cloud synchronization, clearing data, and notifying data changes.
+- [Config](#config): provides APIs for configuring device-cloud synergy, including enabling and disabling cloud synchronization, clearing data, and notifying data changes.
 
 > **NOTE**
 >
@@ -35,7 +35,7 @@ Provides APIs for implementing device-cloud synergy, including enabling and disa
 
 ### enableCloud
 
-static enableCloud(accountId: string, switches: {[bundleName: string]: boolean}, callback: AsyncCallback&lt;void&gt;):void
+static enableCloud(accountId: string, switches: { [bundleName: string]: boolean }, callback: AsyncCallback&lt;void&gt;): void
 
 Enables device-cloud synergy. This API uses an asynchronous callback to return the result.
 
@@ -74,7 +74,7 @@ try {
 
 ### enableCloud
 
-static enableCloud(accountId: string, switches: {[bundleName: string]: boolean}): Promise&lt;void&gt;
+static enableCloud(accountId: string, switches: { [bundleName: string]: boolean }): Promise&lt;void&gt;
 
 Enables device-cloud synergy. This API uses a promise to return the result.
 
@@ -116,7 +116,7 @@ try {
 
 ### disableCloud
 
-static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;):void
+static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;): void
 
 Disables device-cloud synergy. This API uses an asynchronous callback to return the result.
 
@@ -193,7 +193,7 @@ try {
 
 ### changeAppCloudSwitch
 
-static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean, callback: AsyncCallback&lt;void&gt;):void
+static changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Changes the device-cloud synergy switch for an application. This API uses an asynchronous callback to return the result.
 
@@ -233,7 +233,7 @@ try {
 
 ### changeAppCloudSwitch
 
-static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean): Promise&lt;void&gt;
+static changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean): Promise&lt;void&gt;
 
 Changes the device-cloud synergy switch for an application. This API uses a promise to return the result.
 
@@ -276,7 +276,7 @@ try {
 
 ### notifyDataChange
 
-static notifyDataChange(accountId: string,bundleName:string, callback: AsyncCallback&lt;void&gt;):void
+static notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 Notifies the data changes in the cloud. This API uses an asynchronous callback to return the result.
 
@@ -315,7 +315,7 @@ try {
 
 ### notifyDataChange
 
-static notifyDataChange(accountId: string,bundleName:string): Promise&lt;void&gt;
+static notifyDataChange(accountId: string,bundleName: string): Promise&lt;void&gt;
 
 Notifies the data changes in the cloud. This API uses a promise to return the result.
 
@@ -357,7 +357,7 @@ try {
 
 ###  clear
 
-static clear(accountId: string, appActions: {[bundleName: string]: ClearAction},  callback: AsyncCallback&lt;void&gt;):void
+static clear(accountId: string, appActions: { [bundleName: string]: ClearAction },  callback: AsyncCallback&lt;void&gt;): void
 
 Clears the cloud data locally. This API uses an asynchronous callback to return the result.
 
@@ -378,12 +378,11 @@ Clears the cloud data locally. This API uses an asynchronous callback to return 
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let action = cloudData.ClearAction;
 let account = "test_id";
 type dataType = Record<string, cloudData.ClearAction>
 let appActions: dataType = {
-  'test_bundleName1': action.CLEAR_CLOUD_INFO,
-  'test_bundleName2': action.CLEAR_CLOUD_DATA_AND_INFO
+  'test_bundleName1': cloudData.ClearAction.CLEAR_CLOUD_INFO,
+  'test_bundleName2': cloudData.ClearAction.CLEAR_CLOUD_DATA_AND_INFO
 };
 try {
   cloudData.Config.clear(account, appActions, (err) => {
@@ -401,7 +400,7 @@ try {
 
 ### clear
 
-static clear(accountId: string, appActions: {[bundleName: string]: ClearAction}): Promise&lt;void&gt;
+static clear(accountId: string, appActions: { [bundleName: string]: ClearAction }): Promise&lt;void&gt;
 
 Clears the cloud data locally. This API uses a promise to return the result.
 
@@ -427,12 +426,11 @@ Clears the cloud data locally. This API uses a promise to return the result.
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let action = cloudData.ClearAction;
 let account = "test_id";
 type dataType = Record<string, cloudData.ClearAction>;
 let appActions: dataType = {
-  'test_bundleName1': action.CLEAR_CLOUD_INFO,
-  'test_bundleName2': action.CLEAR_CLOUD_DATA_AND_INFO
+  'test_bundleName1': cloudData.ClearAction.CLEAR_CLOUD_INFO,
+  'test_bundleName2': cloudData.ClearAction.CLEAR_CLOUD_DATA_AND_INFO
 };
 try {
   cloudData.Config.clear(account, appActions).then(() => {
