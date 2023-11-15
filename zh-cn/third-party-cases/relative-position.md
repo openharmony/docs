@@ -17,7 +17,8 @@ OpenHarmony为开发者提供了丰富的组件布局能力，当开发者在布
 
 ![position](figures/position.png)
 
-**示例**
+**示例：**
+
 本例在一个Row组件中添加一个Text子组件，如果希望Text组件相对于Row组件左上角向右下方偏移到（30,20）的位置，使用position实现的代码如下：
 ```js
 Row() {
@@ -48,6 +49,7 @@ Row() {
     ![markAnchor](figures/markAnchor.png)
 
   **示例:**
+
   本例在一个Column组件中添加一个Text子组件，由于Column组件默认子组件顶部对齐，所以坐标原点为Column组件的左上角。如果希望Text组件相对于Column组件左上角向左上方偏移到（25,25）的位置，使用markAnchor实现的代码如下：
 
     ```js
@@ -71,6 +73,7 @@ Row() {
     ![markAnchor-with-position](figures/markAnchor-with-position.png)
     
     **示例:**
+
     本例在一个Stack组件中添加一个Text子组件，同时给Text组件添加position属性和markAnchor属性。Text组件会先采用position的坐标系，以Stack组件左上角为原点，移动到（50,50）的位置，再以（50,50）为坐标原点，采用markAnchor的坐标系移动到（25,25）的位置，代码如下：
     ```js
     Stack({ alignContent: Alignment.TopStart }) {
@@ -98,7 +101,8 @@ Row() {
 
 ![offset](figures/offset.png)
 
-**示例**
+**示例：**
+
 本例在一个Row组件中添加A、B两个Text子组件，如果希望B相对于A的左上角偏移到（30,0）的位置，使用offset实现的代码如下：
 ```js
 Row() {
