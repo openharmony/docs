@@ -1,12 +1,12 @@
 # 录像(Native)
 
-录像也是相机应用的最重要功能之一，录像是循环帧的捕获。对于录像的流畅度，开发者可以参考[拍照](native-camera-shooting.md)中的步骤4，设置分辨率、闪光灯、焦距、照片质量及旋转角度等信息。
+录像也是相机应用的最重要功能之一，录像是循环帧的捕获。对于录像的流畅度，开发者可以参考拍照中的步骤4，设置分辨率、闪光灯、焦距、照片质量及旋转角度等信息。
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../reference/native-apis/native-apis-camera.md)。
+详细的API说明请参考[Camera API参考]。
 
-1. 导入media模块。创建拍照输出流的SurfaceId以及拍照输出的数据，都需要用到系统提供的[media接口](../reference/apis/js-apis-media.md)能力，导入media接口的方法如下。
+1. 导入media模块。创建拍照输出流的SurfaceId以及拍照输出的数据，都需要用到系统提供的media接口能力，导入media接口的方法如下。
      
    ```ts
    // ts侧需要导入media接口
@@ -190,7 +190,7 @@
   }
   ```
 
-- 通过注册固定的error回调函数获取监听录像输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
+- 通过注册固定的error回调函数获取监听录像输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera_ErrorCode]。
     
   ```c++
   void VideoOutputOnError(Camera_VideoOutput* videoOutput, Camera_ErrorCode errorCode)

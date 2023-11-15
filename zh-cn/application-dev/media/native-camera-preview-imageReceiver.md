@@ -1,10 +1,10 @@
 # 预览流二次处理(Native)
 
-通过ImageReceiver创建预览输出，获取预览流实时数据，可供后续执行图像二次处理
+通过ImageReceiver创建预览输出，获取预览流实时数据，以供后续进行图像二次处理，比如应用可以对其添加滤镜算法等。
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../reference/native-apis/native-apis-camera.md)。
+详细的API说明请参考[Camera API参考]。
 
 1. 导入NDK接口，接口中提供了相机相关的属性和方法，导入方法如下。
      
@@ -54,7 +54,7 @@
     }
    ```
 
-5. 使能。通过start()方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
+5. 使能。通过start()方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode]。
      
    ```c++
     ret = OH_PreviewOutput_Start(previewOutput);
@@ -99,7 +99,7 @@
     }
   ```
 
-- 通过注册固定的error回调函数获取监听预览输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
+- 通过注册固定的error回调函数获取监听预览输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera_ErrorCode]。
     
   ```c++
     void PreviewOutputOnError(Camera_PreviewOutput* previewOutput, Camera_ErrorCode errorCode)
