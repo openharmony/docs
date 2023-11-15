@@ -1,4 +1,4 @@
-# 自定义弹窗
+# 自定义弹窗（CustomDialog）
 
 通过CustomDialogController类显示自定义弹窗。使用弹窗组件时，可优先考虑自定义弹窗，便于自定义弹窗的样式与内容。
 
