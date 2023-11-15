@@ -11,10 +11,8 @@
 - GridCol是Gridrow的子组件，可以根据屏幕大小设置其所覆盖的列数，那么GridCol中的子组件就可以相应的随屏幕的大小变化而变化。比如界面中有一个搜索框，我们希望其长度在小屏设备上占2列，中屏设备占4列，大屏设备占8列，那么就可以将搜索框放在一个GridCol组件中，并设置GridCol组件在小、中、大设备上所占的列数分别为2、4、8。
 
   可参考如下GridRow和GridCol的示意图理解两者之间的关系：
-
-  
-
-  ![adaptive-ui](D:\harmonyOS\2023\满意度提升专项\案例\DocsCase\Cases\figures\adaptive-ui.png)
+ 
+  ![adaptive-ui](figures/adaptive-ui.png)
 
 
 ## 一个小示例
@@ -29,7 +27,7 @@
 
 效果图如下：
 
-![adaptive-ui1](D:\harmonyOS\2023\满意度提升专项\案例\DocsCase\Cases\figures\adaptive-ui1.gif)
+![adaptive-ui1](figures/adaptive-ui1.gif)
 
 ### 开发步骤
 接下来我们来看如何完成上述效果的开发。开发步骤中仅展示相关步骤代码，全量代码请参考完整代码章节的内容。
