@@ -72,6 +72,7 @@
     - [预置应用配置指导](subsys-preinstall-app-config-guide.md)
 - 启动恢复
     - [启动恢复子系统概述](subsys-boot-overview.md)
+    - [整机启动流程](subsys-boot-deviceboot.md)
     - init启动引导组件
       - [引导启动配置文件](subsys-boot-init-cfg.md)
       - [jobs管理](subsys-boot-init-jobs.md)
@@ -83,10 +84,10 @@
       - [init运行日志规范化](subsys-boot-init-log.md)
       - [Seccomp策略使能开发指导](subsys-boot-init-seccomp.md)
       - [DeviceInfo适配说明](subsys-boot-init-deviceInfo.md)
+      - [ueventd介绍说明](subsys-boot-init-ueventd.md)
     - [appspawn应用孵化组件](subsys-boot-appspawn.md)
     - [bootstrap服务启动组件](subsys-boot-bootstrap.md)
     - [init常见问题指导](subsys-boot-init-faqs.md)
-    - [参考](subsys-boot-ref.md)
 - DFX
     - [DFX概述](subsys-dfx-overview.md)
     - [HiLog开发指导](subsys-dfx-hilog-rich.md)
