@@ -6465,7 +6465,7 @@ getArray(): Array\<string | number | boolean\>
 
 | 类型           | 说明          |
 | --------------| ------------- |
-| Array\<string | number | boolean\> | 返回数组类型的数据。 |
+| Array\<string \| number \| boolean\> | 返回数组类型的数据。 |
 
 **错误码：**
 
@@ -6592,7 +6592,7 @@ getArray(): Array\<string | number | boolean\>
 
 | 类型           | 说明          |
 | --------------| ------------- |
-| Array\<string | number | boolean\> | 返回数组类型的数据。 |
+| Array\<string \| number \| boolean\> | 返回数组类型的数据。 |
 
 **错误码：**
 
