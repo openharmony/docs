@@ -3445,6 +3445,7 @@ if(store != undefined) {
 beginTransaction():void
 
 在开始执行SQL语句之前，开始事务。
+此接口不支持在多进程或多线程中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3499,6 +3500,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
 commit():void
 
 提交已执行的SQL语句。
+此接口不支持在多进程或多线程中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3543,6 +3545,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
 rollBack():void
 
 回滚已经执行的SQL语句。
+此接口不支持在多进程或多线程中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 

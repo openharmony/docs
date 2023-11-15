@@ -37,7 +37,6 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 ```ts
 import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
   console.log('Succeeded in creating pixelmap.');
@@ -67,7 +66,6 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 ```ts
 import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (error : BusinessError, pixelMap : image.PixelMap) => {
     if(error) {
@@ -299,7 +297,6 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 ```ts
 import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
     if(pixelMap == undefined){
@@ -345,7 +342,6 @@ writePixels(area: PositionArea): Promise\<void>
 ```ts
 import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then( (pixelMap : image.PixelMap)  => {
@@ -565,7 +561,6 @@ getBytesNumberPerRow(): number
 ```ts
 import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
     let rowCount : number = pixelMap.getBytesNumberPerRow();
@@ -1442,6 +1437,40 @@ createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 const data : ArrayBuffer= new ArrayBuffer(112);
 let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
 const imageSourceApi : image.ImageSource = image.createImageSource(data, sourceOptions);
+```
+
+## image.createImageSource<sup>10+</sup>
+
+createImageSource(rawFileDescriptor: resourceManager.RawFileDescriptor, options: SourceOptions): ImageSource
+
+通过图像资源文件的RawFileDescriptor创建图片源实例。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名 | 类型                             | 必填 | 说明                                 |
+| ------ | -------------------------------- | ---- | ------------------------------------ |
+| rawFileDescriptor | [resourceManager.RawFileDescriptor](js-apis-resource-manager.md#rawfiledescriptor8) | 是 | 图像资源文件的RawFileDescriptor。 |
+| options | [SourceOptions](#sourceoptions9) | 是 | 图片属性，包括图片序号与默认属性值。 |
+
+**返回值：**
+
+| 类型                        | 说明                                         |
+| --------------------------- | -------------------------------------------- |
+| [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回undefined。 |
+
+**示例：**
+
+Stage模型
+
+```ts
+// Stage模型
+const context : Context = getContext(this);
+// 获取resourceManager资源管理器
+const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
+const rawFileDescriptor : resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
+const imageSourceApi : image.ImageSource = image.createImageSource(rawFileDescriptor);
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
@@ -2362,7 +2391,6 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 ```ts
 import {BusinessError} from '@ohos.base'
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
     let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
@@ -2398,7 +2426,6 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 ```ts
 import {BusinessError} from '@ohos.base'
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
     let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
@@ -2463,6 +2490,159 @@ imagePackerApi.release().then(()=>{
 }) 
 ```
 
+### packToFile<sup>11+</sup>
+
+packToFile(source: ImageSource, fd: number, option: PackingOption, callback: AsyncCallback\<void>): void
+
+指定打包参数，将ImageSource图片源编码后直接打包进文件。使用callback形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
+
+**参数：**
+
+| 参数名   | 类型                            | 必填 | 说明                           |
+| -------- | ------------------------------- | ---- | ------------------------------ |
+| source   | [ImageSource](#imagesource)     | 是   | 打包的图片源。                 |
+| fd       | number                          | 是   | 文件描述符。                   |
+| option   | [PackingOption](#packingoption) | 是   | 设置打包参数。                 |
+| callback | AsyncCallback\<void>            | 是   | 获取回调，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base'
+import fs from '@ohos.file.fs'
+
+const context : Context = getContext(this);
+const path : string = context.filesDir + "/test.png";
+const imageSourceApi : image.ImageSource = image.createImageSource(path);
+let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 };
+const filePath : string = context.cacheDir + "/image_source.jpg";
+let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+const imagePackerApi : image.ImagePacker = image.createImagePacker();
+imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err : BusinessError) => {})
+```
+
+### packToFile<sup>11+</sup>
+
+packToFile (source: ImageSource, fd: number, option: PackingOption): Promise\<void>
+
+指定打包参数，将ImageSource图片源编码后直接打包进文件。使用Promise形式返回结果。
+
+**参数：**
+
+| 参数名 | 类型                            | 必填 | 说明           |
+| ------ | ------------------------------- | ---- | -------------- |
+| source | [ImageSource](#imagesource)     | 是   | 打包的图片源。 |
+| fd     | number                          | 是   | 文件描述符。   |
+| option | [PackingOption](#packingoption) | 是   | 设置打包参数。 |
+
+**返回值：**
+
+| 类型           | 说明                              |
+| -------------- | --------------------------------- |
+| Promise\<void> | Promise实例，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base'
+import fs from '@ohos.file.fs'
+
+const context : Context = getContext(this);
+const path : string = context.filesDir + "/test.png";
+const imageSourceApi : image.ImageSource = image.createImageSource(path);
+let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 };
+const filePath : string = context.cacheDir + "/image_source.jpg";
+let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+const imagePackerApi : image.ImagePacker = image.createImagePacker();
+imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(()=>{
+    console.log('Succeeded in packToFile.');
+}).catch((error : BusinessError)=>{ 
+    console.log('Failed to packToFile.'); 
+}) 
+```
+
+### packToFile<sup>11+</sup>
+
+packToFile (source: Pixelmap, fd: number, option: PackingOption,  callback: AsyncCallback\<void>): void;
+
+指定打包参数，将PixelMap图片源编码后直接打包进文件。使用callback形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
+
+**参数：**
+
+| 参数名   | 类型                            | 必填 | 说明                           |
+| -------- | ------------------------------- | ---- | ------------------------------ |
+| source   | [PixelMap](#pixelmap7)          | 是   | 打包的PixelMap资源。           |
+| fd       | number                          | 是   | 文件描述符。                   |
+| option   | [PackingOption](#packingoption) | 是   | 设置打包参数。                 |
+| callback | AsyncCallback\<void>            | 是   | 获取回调，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base'
+import fs from '@ohos.file.fs'
+
+const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+let bufferArr : Uint8Array = new Uint8Array(color);
+let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
+    let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 }
+    const context : Context = getContext(this);
+	const path : string = context.cacheDir + "/pixel_map.jpg";
+    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    const imagePackerApi : image.ImagePacker = image.createImagePacker();
+    imagePackerApi.packToFile(pixelmap, file.fd, packOpts, (err : BusinessError) => {})
+})
+```
+
+### packToFile<sup>11+</sup>
+
+packToFile (source: Pixelmap, fd: number, option: PackingOption): Promise\<void>
+
+指定打包参数，将PixelMap图片源编码后直接打包进文件。使用Promise形式返回结果。
+
+**参数：**
+
+| 参数名 | 类型                            | 必填 | 说明                 |
+| ------ | ------------------------------- | ---- | -------------------- |
+| source | [PixelMap](#pixelmap7)          | 是   | 打包的PixelMap资源。 |
+| fd     | number                          | 是   | 文件描述符。         |
+| option | [PackingOption](#packingoption) | 是   | 设置打包参数。       |
+
+**返回值：**
+
+| 类型           | 说明                              |
+| -------------- | --------------------------------- |
+| Promise\<void> | Promise实例，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base'
+import fs from '@ohos.file.fs'
+
+const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+let bufferArr : Uint8Array = new Uint8Array(color);
+let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
+    let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 }
+    const context : Context = getContext(this);
+    const path : string = context.cacheDir + "/pixel_map.jpg";
+    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    const imagePackerApi : image.ImagePacker = image.createImagePacker();
+    imagePackerApi.packToFile(pixelmap, file.fd, packOpts)
+        .then(() => {
+            console.log('Succeeded in packToFile.');
+        }).catch((error : BusinessError) => {
+            console.log('Failed to packToFile.');
+        })
+})
+```
+
 ## image.createImageReceiver<sup>9+</sup>
 
 createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
@@ -2477,7 +2657,7 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 | -------- | ------ | ---- | ---------------------- |
 | width    | number | 是   | 图像的默认宽度。       |
 | height   | number | 是   | 图像的默认高度。       |
-| format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG 和 4）。  |
+| format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。  |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
 **返回值：**
@@ -2489,7 +2669,7 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 **示例：**
 
 ```ts
-let receiver : image.ImageReceiver = image.createImageReceiver(8192, 8, 2000, 8);
+let receiver : image.ImageReceiver = image.createImageReceiver(8192, 8, image.ImageFormat.JPEG, 8);
 ```
 
 ## ImageReceiver<sup>9+</sup>
@@ -2757,7 +2937,7 @@ createImageCreator(width: number, height: number, format: number, capacity: numb
 **示例：**
 
 ```ts
-let creator : image.ImageCreator = image.createImageCreator(8192, 8, 4, 8);
+let creator : image.ImageCreator = image.createImageCreator(8192, 8, image.ImageFormat.JPEG, 8);
 ```
 
 ## ImageCreator<sup>9+</sup>
