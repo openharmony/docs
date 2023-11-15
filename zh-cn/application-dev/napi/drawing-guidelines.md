@@ -361,6 +361,8 @@ libnative_drawing.so
 3. 使用系统mmap接口拿到bufferHandle的内存虚拟地址。
     ```c++
     mappedAddr_ = static_cast<uint32_t *>(
+        // 使用系统接口mmap将bufferHandle对应的共享内存映射到用户空间，可以通过映射出来的虚拟地址向bufferHandle中写入图像数据
+        // bufferHandle->virAddr是bufferHandle在共享内存中的起始地址，bufferHandle->size是bufferHandle在共享内存中的内存占用大小
         mmap(bufferHandle_->virAddr, bufferHandle_->size, PROT_READ | PROT_WRITE, MAP_SHARED, bufferHandle_->fd, 0));
     if (mappedAddr_ == MAP_FAILED) {
         DRAWING_LOGE("mmap failed");
