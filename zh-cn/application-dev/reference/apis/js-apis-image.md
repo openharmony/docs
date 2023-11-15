@@ -1439,7 +1439,7 @@ let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
 const imageSourceApi : image.ImageSource = image.createImageSource(data, sourceOptions);
 ```
 
-## image.createImageSource<sup>10+</sup>
+## image.createImageSource<sup>11+</sup>
 
 createImageSource(rawFileDescriptor: resourceManager.RawFileDescriptor, options: SourceOptions): ImageSource
 
