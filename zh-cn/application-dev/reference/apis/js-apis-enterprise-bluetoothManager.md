@@ -68,7 +68,7 @@ try {
 
 ## BluetoothInfo
 
-设备管理应用的企业信息。
+设备的蓝牙信息。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
