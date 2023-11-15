@@ -52,8 +52,7 @@ Advanced Notification Manager（通知管理工具，简称anm）是实现通知
 
 * **介绍**
 
-  设置通知参数（Setting相关命令只在eng版本支持）。
-
+  设置通知参数。setting命令区分eng/user版本，setting设置仅在eng版本中支持，在user版本中使用会出现报错error: user version cannot use setting。
 * **用法**
 
   ```bash
