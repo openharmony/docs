@@ -58,11 +58,7 @@ The thread that creates the worker thread is referred to as the host thread (not
 
 ## Precautions for TaskPool
 
-- A task function must be decorated with **\@Concurrent** and can be used only in .ets files.
-
-- A task function must be a common function or async function, but not a class member function or anonymous function.
-
-- A task function can use imported variables and input parameter variables only in a project created on the stage model. In a project created on the FA model, it can use input parameter variables only.
+- A task function must be decorated with [\@Concurrent](arkts-concurrent.md) and can be used only in .ets files.
 
 - Input parameter types in a task function must be those supported by serialization. For details, see [Common Objects](multi-thread-concurrency-overview.md#common-objects).
 
