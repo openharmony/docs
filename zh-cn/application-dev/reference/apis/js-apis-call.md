@@ -14,7 +14,7 @@
 import call from '@ohos.telephony.call';
 ```
 
-## call.dialCall<sup>9+</sup><a id="dialCall1"></a>
+## call.dialCall<sup>9+</sup>
 
 dialCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 
@@ -64,7 +64,7 @@ call.dialCall("138xxxxxxxx", (err: BusinessError) => {
 ```
 
 
-## call.dialCall<sup>9+</sup><a id="dialCall2"></a>
+## call.dialCall<sup>9+</sup>
 
 dialCall\(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback\<void\>\): void
 
@@ -121,7 +121,7 @@ call.dialCall("138xxxxxxxx", dialCallOptions, (err: BusinessError) => {
 ```
 
 
-## call.dialCall<sup>9+</sup><a id="dialCall3"></a>
+## call.dialCall<sup>9+</sup>
 
 dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise\<void\>
 
@@ -188,7 +188,7 @@ dial\(phoneNumber: string, callback: AsyncCallback\<boolean\>\): void
 
 > **说明：**
 >
-> 从API version 6 开始支持，从API version 9 开始废弃。请使用[dialCall](#dialCall1)替代，替代接口能力仅对系统应用开放。
+> 从API version 6 开始支持，从API version 9 开始废弃。请使用[dialCall](#calldialcall9)替代，替代接口能力仅对系统应用开放。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
@@ -220,7 +220,7 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback\<boolea
 
 > **说明：**
 >
-> 从API version 6 开始支持，从API version 9 开始废弃。请使用[dialCall](#dialCall2)替代，替代接口能力仅对系统应用开放。
+> 从API version 6 开始支持，从API version 9 开始废弃。请使用[dialCall](#calldialcall9-1)替代，替代接口能力仅对系统应用开放。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
@@ -255,7 +255,7 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise\<boolean\>
 
 > **说明：**
 >
-> 从API version 6 开始支持，从API version 9 开始废弃。请使用[dialCall](#dialCall3)替代，替代接口能力仅对系统应用开放。
+> 从API version 6 开始支持，从API version 9 开始废弃。请使用[dialCall](#calldialcall9-2)替代，替代接口能力仅对系统应用开放。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
