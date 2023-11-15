@@ -82,7 +82,7 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 | ------ | ---------------------------------- |
 | None   | ListItemGroup的header不吸顶，footer不吸底。 |
 | Header | ListItemGroup的header吸顶，footer不吸底。  |
-| Footer | ListItemGroup的footer吸底，header不吸底。  |
+| Footer | ListItemGroup的footer吸底，header不吸顶。  |
 
 > **说明：** 
 >
