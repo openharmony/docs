@@ -126,7 +126,7 @@
 | setSessionId(callback: AsyncCallback&lt;void&gt;): void | 退出所有已加入的session。 |
 | on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void | 监听分布式数据对象的数据变更。 |
 | off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void): void | 取消监听分布式数据对象的数据变更。 |
-| on(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \| 'offline' \| 'restored' ) => void): void | 监听分布式数据对象的上下线和恢复。 |
+| on(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void): void | 监听分布式数据对象的上下线。 |
 | off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'online' \|'offline' ) => void): void | 取消监听分布式数据对象的上下线。 |
 | save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | 保存分布式数据对象。 |
 | revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | 撤回保存的分布式数据对象。 |
@@ -299,10 +299,10 @@
    localObject.off('change'); 
    ```
 
-9. 监听分布式数据对象的上下线和恢复。可以监听对端分布式数据对象的上下线和恢复。
+9. 监听分布式数据对象的上下线。可以监听对端分布式数据对象的上下线。
 
    ```ts
-   localObject.on('status', (sessionId: string, networkId: string, status: 'online' | 'offline' | 'restored') => {
+   localObject.on('status', (sessionId: string, networkId: string, status: 'online' | 'offline') => {
      console.info("status changed " + sessionId + " " + status + " " +  networkId);
      // 业务处理
    });

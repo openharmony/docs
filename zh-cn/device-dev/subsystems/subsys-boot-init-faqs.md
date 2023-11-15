@@ -71,9 +71,9 @@
 
        2. 查看 ramdisk.img 中是否存在fstab.required文件。
 
-  4. 原因分析：图形服务没有启动， 导致无开机动画。
+  4. 原因分析：com.ohos.launcher 没有启动， 导致无开机动画。
 
-     1. ps -ef 查看图形服务是否存在。
+     1. ps -ef 查看com.ohos.launcher是否存在。
 
      解决方案：根据日志具体分析。
 

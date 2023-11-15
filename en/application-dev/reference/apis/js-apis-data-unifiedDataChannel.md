@@ -1,6 +1,6 @@
 # @ohos.data.unifiedDataChannel (Unified Data Channel)
 
-As a part of the Unified Data Management Framework (UDMF), the **unifiedDataChannel** module provides unified data channels and standard data access interfaces for many-to-many data sharing across applications. It also provides standard definitions for data types, such as text and image, to streamline data interaction between different applications and minimize the workload of data type adaptation.
+As a part of the Unified Data Management Framework (UDMF), the **unifiedDataChannel** module provides unified data channels and standard data access interfaces for many-to-many data sharing across applications. It also provides definitions for uniform data types, such as text and image, to streamline data interaction between different applications and minimize the workload of data type adaptation.
 
 > **NOTE**
 >
@@ -346,7 +346,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(sdr);
 
 ## SystemDefinedForm
 
-Represents the widget data. It is a child class of [SystemDefinedRecord](#systemdefinedrecord).
+Represents the service widget data defined by the system, which is a child class of [SystemDefinedRecord](#systemdefinedrecord).
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -354,7 +354,7 @@ Represents the widget data. It is a child class of [SystemDefinedRecord](#system
 | ----------- | ------ | ---- | ---- |----------------|
 | formId      | number | Yes  | Yes  | Service widget ID.         |
 | formName    | string | Yes  | Yes  | Widget name.         |
-| bundleName  | string | Yes  | Yes  | Name of the bundle to which a widget belongs.  |
+| bundleName  | string | Yes  | Yes  | Name of the bundle to which the widget belongs.  |
 | abilityName | string | Yes  | Yes  | Ability name corresponding to the widget.|
 | module      | string | Yes  | Yes  | Name of the module to which the widget belongs.  |
 

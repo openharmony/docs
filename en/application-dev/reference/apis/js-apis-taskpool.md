@@ -461,7 +461,7 @@ setTransferList(transfer?: ArrayBuffer[]): void
 Sets the task transfer list. Before using this API, you must create a **Task** instance.
 
 > **NOTE**<br>
-> This API is used to set the task transfer list in the form of **ArrayBuffer** in the task pool. The **ArrayBuffer** instance does not copy the content in the task to the worker thread during transfer. Instead, it transfers the buffer control right to the worker thread. After the transfer, the **ArrayBuffer** instance becomes invalid.
+> This API is used to set the task transfer list in the form of **ArrayBuffer** in the task pool. The **ArrayBuffer** instance does not copy the content in the task to the worker thread during transfer. Instead, it transfers the buffer control right to the worker thread. After the transfer, the **ArrayBuffer** instance becomes invalid. An empty **ArrayBuffer** will not be transferred.
 
 **System capability**: SystemCapability.Utils.Lang
 

@@ -6,8 +6,6 @@ The **adminManager** module provides enterprise device management capabilities s
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs of this module can be used only in the stage model.
->
 > - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts).
 
 ## Modules to Import
@@ -27,6 +25,8 @@ Enables a device administrator application for the current user. The super devic
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
 **System API**: This is a system API.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -80,6 +80,8 @@ Enables a device administrator application for the specified user. The super dev
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
 **System API**: This is a system API.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -135,6 +137,8 @@ Enables a device administrator application for the current or specified user. Th
 
 **System API**: This is a system API.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Parameters**
 
 | Name           | Type                                 | Mandatory  | Description                          |
@@ -142,7 +146,7 @@ Enables a device administrator application for the current or specified user. Th
 | admin          | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application to enable.                     |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.                |
 | type           | [AdminType](#admintype)             | Yes   | Type of the device administrator application to enable.                  |
-| userId         | number                              | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the application of the specified user is enabled.<br> - If **userId** is not passed in, the application of the current user is enabled.|
+| userId         | number                              | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the application of the specified user is enabled.<br>- If **userId** is not passed in, the application of the current user is enabled.|
 
 **Return value**
 
@@ -192,6 +196,8 @@ Disables a common administrator application for the current user. This API uses 
 
 **System API**: This is a system API.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Parameters**
 
 | Name     | Type                                 | Mandatory  | Description                 |
@@ -236,6 +242,8 @@ Disables a common administrator application for the specified user. This API use
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
 **System API**: This is a system API.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -283,12 +291,14 @@ Disables a common administrator application for the current or specified user. T
 
 **System API**: This is a system API.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Parameters**
 
 | Name   | Type                                 | Mandatory  | Description                          |
 | ------ | ----------------------------------- | ---- | ---------------------------- |
 | admin  | [Want](js-apis-app-ability-want.md) | Yes   | Common administrator application to disable.                   |
-| userId | number                              | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the application of the specified user is disabled.<br> - If **userId** is not passed in, the application of the current user is disabled.|
+| userId | number                              | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the application of the specified user is disabled.<br>- If **userId** is not passed in, the application of the current user is disabled.|
 
 **Return value**
 
@@ -330,6 +340,8 @@ Disables a super administrator application for the administrator based on **bund
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
 **System API**: This is a system API.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -373,6 +385,8 @@ Disables a super administrator application for the administrator based on **bund
 
 **System API**: This is a system API.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Parameters**
 
 | Name       | Type    | Mandatory  | Description          |
@@ -415,6 +429,8 @@ Checks whether a device administrator application of the current user is enabled
 
 **System API**: This is a system API.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Parameters**
 
 | Name     | Type                                 | Mandatory  | Description                  |
@@ -450,12 +466,14 @@ Checks whether a device administrator application of the specified user is enabl
 
 **System API**: This is a system API.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Parameters**
 
 | Name     | Type                                 | Mandatory  | Description                          |
 | -------- | ----------------------------------- | ---- | ---------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application to check.                     |
-| userId   | number                              | Yes   | User ID, which must be greater than or equal to 0.<br> The default value is the user ID of the caller. |
+| userId   | number                              | Yes   | User ID, which must be greater than or equal to 0.<br>The default value is the user ID of the caller. |
 | callback | AsyncCallback\<boolean>             | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.     |
 
 **Example**
@@ -486,12 +504,14 @@ Checks whether a device administrator application of the current or specified us
 
 **System API**: This is a system API.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Parameters**
 
 | Name   | Type                                 | Mandatory  | Description                          |
 | ------ | ----------------------------------- | ---- | ---------------------------- |
 | admin  | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application to check.                     |
-| userId | number                              | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the application of the specified user is checked.<br> - If **userId** is not passed in, the application of the current user is checked.|
+| userId | number                              | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the application of the specified user is checked.<br>- If **userId** is not passed in, the application of the current user is checked.|
 
 **Return value**
 
@@ -526,6 +546,8 @@ Checks whether a super administrator application of the administrator is enabled
 
 **System API**: This is a system API.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Parameters**
 
 | Name       | Type                     | Mandatory  | Description                  |
@@ -557,6 +579,8 @@ Checks whether a super administrator application of the administrator is enabled
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
 **System API**: This is a system API.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -595,6 +619,8 @@ Sets enterprise information for a device administrator application. This API use
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
 **System API**: This is a system API.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -646,6 +672,8 @@ Sets enterprise information for a device administrator application. This API use
 
 **System API**: This is a system API.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Parameters**
 
 | Name           | Type                                 | Mandatory  | Description          |
@@ -696,6 +724,8 @@ Obtains the enterprise information of a device administrator application. This A
 
 **System API**: This is a system API.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Parameters**
 
 | Name     | Type                                      | Mandatory  | Description                      |
@@ -738,6 +768,8 @@ Obtains the enterprise information of a device administrator application. This A
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
 **System API**: This is a system API.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -788,6 +820,8 @@ Subscribes to system management events of a device administrator application. Th
 
 **System API**: This is a system API.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Parameters**
 
 | Name  | Type                                 | Mandatory  | Description     |
@@ -835,6 +869,8 @@ Subscribes to system management events of a device administrator application. Th
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
 **System API**: This is a system API.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -887,6 +923,8 @@ Unsubscribes from system management events of a device administrator application
 
 **System API**: This is a system API.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Parameters**
 
 | Name  | Type                                 | Mandatory  | Description     |
@@ -934,6 +972,8 @@ Unsubscribes from system management events of a device administrator application
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
 **System API**: This is a system API.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -986,6 +1026,8 @@ Authorizes the administrator rights to an application through the specified devi
 
 **System API**: This is a system API.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Parameters**
 
 | Name  | Type                                 | Mandatory  | Description     |
@@ -1034,6 +1076,8 @@ Authorizes the administrator rights to an application through the specified devi
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
 **System API**: This is a system API.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 

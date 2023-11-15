@@ -6108,7 +6108,6 @@ setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation. |
 
 **示例：**
 

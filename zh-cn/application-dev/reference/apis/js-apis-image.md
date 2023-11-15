@@ -37,7 +37,6 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 ```ts
 import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
   console.log('Succeeded in creating pixelmap.');
@@ -67,7 +66,6 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 ```ts
 import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (error : BusinessError, pixelMap : image.PixelMap) => {
     if(error) {
@@ -299,7 +297,6 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 ```ts
 import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
     if(pixelMap == undefined){
@@ -345,7 +342,6 @@ writePixels(area: PositionArea): Promise\<void>
 ```ts
 import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then( (pixelMap : image.PixelMap)  => {
@@ -565,7 +561,6 @@ getBytesNumberPerRow(): number
 ```ts
 import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
     let rowCount : number = pixelMap.getBytesNumberPerRow();
@@ -1444,6 +1439,40 @@ let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
 const imageSourceApi : image.ImageSource = image.createImageSource(data, sourceOptions);
 ```
 
+## image.createImageSource<sup>10+</sup>
+
+createImageSource(rawFileDescriptor: resourceManager.RawFileDescriptor, options: SourceOptions): ImageSource
+
+通过图像资源文件的RawFileDescriptor创建图片源实例。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名 | 类型                             | 必填 | 说明                                 |
+| ------ | -------------------------------- | ---- | ------------------------------------ |
+| rawFileDescriptor | [resourceManager.RawFileDescriptor](js-apis-resource-manager.md#rawfiledescriptor8) | 是 | 图像资源文件的RawFileDescriptor。 |
+| options | [SourceOptions](#sourceoptions9) | 是 | 图片属性，包括图片序号与默认属性值。 |
+
+**返回值：**
+
+| 类型                        | 说明                                         |
+| --------------------------- | -------------------------------------------- |
+| [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回undefined。 |
+
+**示例：**
+
+Stage模型
+
+```ts
+// Stage模型
+const context : Context = getContext(this);
+// 获取resourceManager资源管理器
+const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
+const rawFileDescriptor : resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
+const imageSourceApi : image.ImageSource = image.createImageSource(rawFileDescriptor);
+```
+
 ## image.CreateIncrementalSource<sup>9+</sup>
 
 CreateIncrementalSource(buf: ArrayBuffer): ImageSource
@@ -1558,7 +1587,11 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 ```ts
 import {BusinessError} from '@ohos.base'
 imageSourceApi.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => { 
-    console.log('Succeeded in obtaining the image information.');
+    if (err != undefined) {
+        console.error(`Failed to obtaining the image information.code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.log('Succeeded in obtaining the image information.');
+    }
 })
 ```
 
@@ -1707,8 +1740,8 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 
 ```ts
 imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
-    imageSourceApi.getImageProperty("ImageWidth").then( (w : string) => {
-        console.info('w', w);
+    imageSourceApi.getImageProperty("ImageWidth").then((width : string) => {
+        console.info(`ImageWidth is :${width}`);
     })
 })
 ```
@@ -2358,7 +2391,6 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 ```ts
 import {BusinessError} from '@ohos.base'
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
     let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
@@ -2394,7 +2426,6 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 ```ts
 import {BusinessError} from '@ohos.base'
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
     let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
@@ -2473,7 +2504,7 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 | -------- | ------ | ---- | ---------------------- |
 | width    | number | 是   | 图像的默认宽度。       |
 | height   | number | 是   | 图像的默认高度。       |
-| format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG 和 4）。  |
+| format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。  |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
 **返回值：**
@@ -2485,7 +2516,7 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 **示例：**
 
 ```ts
-let receiver : image.ImageReceiver = image.createImageReceiver(8192, 8, 2000, 8);
+let receiver : image.ImageReceiver = image.createImageReceiver(8192, 8, image.ImageFormat.JPEG, 8);
 ```
 
 ## ImageReceiver<sup>9+</sup>
@@ -2753,7 +2784,7 @@ createImageCreator(width: number, height: number, format: number, capacity: numb
 **示例：**
 
 ```ts
-let creator : image.ImageCreator = image.createImageCreator(8192, 8, 4, 8);
+let creator : image.ImageCreator = image.createImageCreator(8192, 8, image.ImageFormat.JPEG, 8);
 ```
 
 ## ImageCreator<sup>9+</sup>
@@ -3249,7 +3280,7 @@ PixelMap的初始化选项。
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
 | format  | string | 是   | 是   | 目标格式。</br>当前只支持jpg、webp 和 png。 |
 | quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
-| bufferSize<sup>9+</sup> | number | 是   | 是   | 用于设置图片大小，默认为10M。 |
+| bufferSize<sup>9+</sup> | number | 是   | 是   | 接收编码数据的缓冲区大小，单位为Byte。默认为10MB。bufferSize需大于编码后图片大小。 |
 
 ## GetImagePropertyOptions<sup>7+</sup>
 

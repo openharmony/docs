@@ -405,7 +405,7 @@ formObserver.off('notifyInvisible', bundleName, (data: formInfo.RunningFormInfo[
 
 getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;, hostBundleName?: string): void
 
-Obtains information about all non-temporary widgets running on the device. This API uses an asynchronous callback to return the result.
+Obtains the information about all non-temporary widgets running on the device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.OBSERVE_FORM_RUNNING
 
@@ -446,11 +446,58 @@ try {
 }
 ```
 
+## getRunningFormInfos<sup>11+</sup>
+
+getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;, isUnusedIncluded: boolean, hostBundleName?: string): void
+
+Obtains the information about all widgets. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.OBSERVE_FORM_RUNNING
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| callback | AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is **undefined** and **data** is the information obtained.|
+| isUnusedIncluded | boolean | Yes|  Whether an unused widget is included.|
+| hostBundleName | string | No|  Name of the bundle that functions as the widget host. If a value is passed in, only the information about the non-temporary widgets that are running under the widget host is returned.<br> If no value is passed in, information about all running non-temporary widgets on the device is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+
+**Example**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
+
+try {
+  formObserver.getRunningFormInfos((error: Base.BusinessError, data: formInfo.RunningFormInfo[]) => {
+    if (error) {
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
+    } else {
+      console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
+    }
+  }, true, 'com.example.ohos.formjsdemo');
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+
 ## getRunningFormInfos
 
 getRunningFormInfos(hostBundleName?: string):  Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
 
-Obtains information about all non-temporary widgets running on the device. This API uses a promise to return the result.
+Obtains the information about all non-temporary widgets running on the device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.OBSERVE_FORM_RUNNING
 
@@ -485,6 +532,56 @@ import Base from '@ohos.base';
 
 try {
   formObserver.getRunningFormInfos('com.example.ohos.formjsdemo').then((data: formInfo.RunningFormInfo[]) => {
+    console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+
+## getRunningFormInfos<sup>11+</sup>
+
+getRunningFormInfos(isUnusedIncluded: boolean, hostBundleName?: string):  Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
+
+Obtains the information about all non-temporary widgets running on the device. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.OBSERVE_FORM_RUNNING
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| isUnusedIncluded | boolean | Yes|  Whether an unused widget is included.|
+| hostBundleName | string | No|  Name of the bundle that functions as the widget host. If a value is passed in, only the information about the non-temporary widgets that are running under the widget host is returned.<br> If no value is passed in, information about all running non-temporary widgets on the device is returned.|
+
+**Return value**
+
+| Type                                                        | Description                               |
+| :----------------------------------------------------------- | :---------------------------------- |
+| Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+
+**Example**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
+
+try {
+  formObserver.getRunningFormInfos(true, 'com.example.ohos.formjsdemo').then((data: formInfo.RunningFormInfo[]) => {
     console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
   }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
@@ -667,6 +764,60 @@ try {
 }
 ```
 
+## getRunningFormInfoById<sup>11+</sup>
+
+getRunningFormInfoById(formId: string, isUnusedIncluded: boolean): Promise&lt;formInfo.RunningFormInfo&gt;
+
+
+Obtains the information about widget hosts based on the widget ID. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Required permissions**: ohos.permission.OBSERVE_FORM_RUNNING
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name     | Type           | Mandatory| Description                            |
+| ----------- | --------------- | ---- | -------------------------------- |
+| formId     | string | Yes  | Widget ID.|
+| isUnusedIncluded     | boolean | Yes  | Whether an unused widget is included.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt; | Promise used to return the widget host information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000  | An internal functional error occurred. |
+
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
+
+let formId: string = '12400633174999288';
+try {
+  formObserver.getRunningFormInfoById(formId, true).then((data: formInfo.RunningFormInfo) => {
+    console.info('formObserver getRunningFormInfoById success, data:' + JSON.stringify(data));
+  }).catch((error: Base.BusinessError) => {
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+
 ## getRunningFormInfoById
 
 getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;formInfo.RunningFormInfo&gt;): void
@@ -707,6 +858,55 @@ import Base from '@ohos.base';
 let formId: string = '12400633174999288';
 try {
   formObserver.getRunningFormInfoById(formId,(error: Base.BusinessError, data: formInfo.RunningFormInfo) => {
+    if (error) {
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
+    } else {
+      console.log(`formObserver getRunningFormInfoById, data: ${JSON.stringify(data)}`);
+    }
+  });
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+
+## getRunningFormInfoById<sup>11+</sup>
+
+getRunningFormInfoById(formId: string, isUnusedIncluded: boolean, callback: AsyncCallback&lt;formInfo.RunningFormInfo&gt;): void
+
+Obtains the information about widget hosts based on the widget ID. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Required permissions**: ohos.permission.OBSERVE_FORM_RUNNING
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name     | Type           | Mandatory| Description                            |
+| ----------- | --------------- | ---- | -------------------------------- |
+| formId     | string | Yes  | Widget ID.|
+| isUnusedIncluded     | boolean | Yes  | Whether an unused widget is included.|
+| callback | AsyncCallback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt; | Yes| Callback used to return the result. If the widget host information is obtained, **error** is **undefined** and **data** is the information obtained; otherwise, **error** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000  | An internal functional error occurred. |
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
+
+let formId: string = '12400633174999288';
+try {
+  formObserver.getRunningFormInfoById(formId, true, (error: Base.BusinessError, data: formInfo.RunningFormInfo) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {

@@ -68,7 +68,6 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 ```ts
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 
@@ -86,9 +85,7 @@ export default function abilityTest() {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
       }
-      await delegator.startAbility(want, (err: BusinessError, data: void) => {
-        console.info('Uitest, start ability failed: ' + err)
-      });
+      await delegator.startAbility(want);
       await sleep(1000);
       //check top display ability
       await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
@@ -147,7 +144,6 @@ struct Index {
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest'
-import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
@@ -165,9 +161,7 @@ export default function abilityTest() {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
       }
-      await delegator.startAbility(want, (err: BusinessError, data: void) => {
-        console.info('Uitest, start ability failed: ' + err)
-      });
+      await delegator.startAbility(want);
       await sleep(1000);
       //check top display ability
       await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
@@ -176,7 +170,7 @@ export default function abilityTest() {
       })
       //ui test code
       //init driver
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(1000);
       //find button on text 'Next'
       let button = await driver.findComponent(ON.text('Next'));
@@ -494,15 +488,15 @@ hdc shell uitest uiInput dircFling 3
 hdc shell uitest uiInput inputText 100 100 hello
 ```
 
-示例代码12：执行返回主页操作。
+示例代码11：执行返回主页操作。
 ```shell  
 hdc shell uitest uiInput keyEvent home
 ```
-示例代码13：执行返回上一步操作。
+示例代码12：执行返回上一步操作。
 ```shell  
 hdc shell uitest uiInput keyEvent back
 ```
-示例代码14：执行组合键复制粘贴操作。
+示例代码13：执行组合键复制粘贴操作。
 ```shell  
 hdc shell uitest uiInput keyEvent 2072 2038
 ```

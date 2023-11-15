@@ -320,7 +320,7 @@ isExtendedApduSupported(): Promise&lt;boolean&gt;
 
 ```js
 import tag from '@ohos.nfc.tag';
-import {BussinessError} from '@ohos.base';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'isoDep' correctly.
 

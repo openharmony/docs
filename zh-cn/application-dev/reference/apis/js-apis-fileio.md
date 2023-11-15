@@ -3242,7 +3242,7 @@ stop(): Promise&lt;void&gt;
 
   ```ts
   let filePath = pathDir + "/test.txt";
-  fileio.createWatcher(filePath, 1, async (event: number) => {
+  let watcher = fileio.createWatcher(filePath, 1, (event: number) => {
     console.info("event: " + event);
   });
   watcher.stop().then(() => {
@@ -3269,7 +3269,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   ```ts
   let filePath = pathDir + "/test.txt";
-  fileio.createWatcher(filePath, 1, async (event: number) => {
+  let watcher = fileio.createWatcher(filePath, 1, async(event: number) => {
     console.info("event: " + event);
   });
   watcher.stop(() => {

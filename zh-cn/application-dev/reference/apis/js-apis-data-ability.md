@@ -17,7 +17,7 @@ import dataAbility from '@ohos.data.dataAbility';
 
 createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates): rdb.RdbPredicates
 
-从DataAbilityPredicates对象创建RdbPredicates对象。
+通过表名和DataAbility谓词对象创建Rdb谓词对象。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
@@ -47,11 +47,19 @@ createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates):
 
 提供用于实现不同查询方法的谓词。
 
+**初始化：**
+
+  ```js
+  let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
+  ```
+  
 ### equalTo
 
 equalTo(field: string, value: ValueType): DataAbilityPredicates
 
-配置谓词以匹配数据类型为ValueType且值等于指定值的字段。
+配置谓词以匹配数据，数据的指定字段数据类型为ValueType且值等于指定值。
+
+此方法类似于SQL语句的“=”。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
@@ -78,7 +86,9 @@ equalTo(field: string, value: ValueType): DataAbilityPredicates
 
 notEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
-配置谓词以匹配数据类型为ValueType且值不等于指定值的字段。
+配置谓词以匹配数据，数据的指定字段数据类型为ValueType且不等于指定值。
+
+此方法类似于SQL语句的“!=”。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
@@ -105,7 +115,7 @@ notEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
 beginWrap(): DataAbilityPredicates
 
-向谓词添加左括号。
+在谓词中添加左括号。此方法类似于SQL语句的“(”，需要与endWrap一起使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
@@ -130,7 +140,7 @@ beginWrap(): DataAbilityPredicates
 
 endWrap(): DataAbilityPredicates
 
-向谓词添加右括号。
+在谓词中添加右括号。此方法类似于SQL语句的“)”，需要和beginWrap一起使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
@@ -156,6 +166,8 @@ endWrap(): DataAbilityPredicates
 or(): DataAbilityPredicates
 
 将或条件添加到谓词中。
+
+此方法类似于SQL语句“or”。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
@@ -228,6 +240,8 @@ beginsWith(field: string, value: string): DataAbilityPredicates
 
 配置谓词以匹配数据类型为string且值以指定字符串开头的字段。
 
+此方法类似于SQL语句的“%”。
+
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
 **参数：**
@@ -254,6 +268,8 @@ beginsWith(field: string, value: string): DataAbilityPredicates
 endsWith(field: string, value: string): DataAbilityPredicates
 
 配置谓词以匹配数据类型为string且值以指定字符串结尾的字段。
+
+此方法类似于SQL语句的“%”。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
@@ -334,6 +350,8 @@ like(field: string, value: string): DataAbilityPredicates
 
 配置谓词以匹配数据类型为string且值类似于指定字符串的字段。
 
+此方法类似于SQL语句“like”。
+
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
 **参数：**
@@ -359,7 +377,7 @@ like(field: string, value: string): DataAbilityPredicates
 
 glob(field: string, value: string): DataAbilityPredicates
 
-配置谓词以匹配数据类型为string的指定字段。
+配置谓词以匹配数据类型为string的指定字段。与like方法不同，该方法的输入参数区分大小写。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
@@ -380,6 +398,12 @@ glob(field: string, value: string): DataAbilityPredicates
 
   ```js
   dataAbilityPredicates.glob("NAME", "?h*g")
+
+  // 仅可匹配到"name"字段值为“Lisa” 
+  dataAbilityPredicates.glob("NAME", "Lisa")
+
+  // 仅可以匹配到"name"字段值为“lisa” 
+  dataAbilityPredicates.glob("NAME", "lisa")
   ```
 
 ### between
@@ -550,7 +574,7 @@ lessThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
 orderByAsc(field: string): DataAbilityPredicates
 
-配置谓词以匹配其值按升序排序的列。
+配置谓词以匹配其值按升序排序的列。当有多个orderByAsc使用时，最先使用的具有最高优先级。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
@@ -569,14 +593,15 @@ orderByAsc(field: string): DataAbilityPredicates
 **示例：**
 
   ```js
-  dataAbilityPredicates.orderByAsc("NAME")
+  // 先按“name”字段排序，相同时按“AGE”字段排序，其次按“SALARY”排序
+  dataAbilityPredicates.orderByAsc("NAME").orderByAsc("AGE").orderByAsc("SALARY")
   ```
 
 ### orderByDesc
 
 orderByDesc(field: string): DataAbilityPredicates
 
-配置谓词以匹配其值按降序排序的列。
+配置谓词以匹配其值按降序排序的列。当有多个orderByDesc使用时，最先使用的具有最高优先级。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
@@ -595,7 +620,8 @@ orderByDesc(field: string): DataAbilityPredicates
 **示例：**
 
   ```js
-  dataAbilityPredicates.orderByDesc("AGE")
+  // 优先按“AGE”排序，相同时按“SALARY”排序
+  dataAbilityPredicates.orderByDesc("AGE").orderByDesc("SALARY")
   ```
 
 ### distinct
@@ -648,7 +674,7 @@ limitAs(value: number): DataAbilityPredicates
 
 offsetAs(rowOffset: number): DataAbilityPredicates
 
-配置谓词以指定返回结果的起始位置。
+配置谓词以指定返回结果的起始位置。将此方法必须与limitAs一起使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
@@ -667,7 +693,8 @@ offsetAs(rowOffset: number): DataAbilityPredicates
 **示例：**
 
   ```js
-  dataAbilityPredicates.equalTo("NAME", "Rose").offsetAs(3)
+  // 跳过前三条数据，显示后续三条数据
+  dataAbilityPredicates.equalTo("NAME", "Rose").offsetAs(3).limitAs(3)
   ```
 
 
@@ -701,7 +728,7 @@ groupBy(fields: Array&lt;string&gt;): DataAbilityPredicates
 
 indexedBy(field: string): DataAbilityPredicates
 
-配置谓词以指定索引列。
+配置谓词以指定索引列。在使用此方法之前，您需要创建一个索引列。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
@@ -720,7 +747,38 @@ indexedBy(field: string): DataAbilityPredicates
 **示例：**
 
   ```js
-  dataAbilityPredicates.indexedBy("SALARY_INDEX")
+  import rdb from '@ohos.data.rdb'; // 导入模块
+  import featureAbility from '@ohos.ability.featureAbility';
+  import dataAbility from '@ohos.data.dataAbility';
+
+  let context = getContext(this);
+
+  const STORE_CONFIG : rdb.StoreConfig= {
+      name: 'RdbTest.db', // 数据库文件名
+  };
+  // 表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
+  const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // 建表Sql语句
+  rdb.getRdbStore(this.context, STORE_CONFIG, 3, async (err, store) => {
+    if (err) {
+      console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+      return;
+    }
+    console.info('Succeeded in getting RdbStore.');
+
+
+    await store.executeSql(SQL_CREATE_TABLE); // 创建数据表
+
+
+    // 创建索引
+    const SQL_CREATE_INDEX = 'CREATE INDEX SALARY_INDEX ON EMPLOYEE(SALARY)'
+    await store.executeSql(SQL_CREATE_INDEX);
+    // ...
+
+    let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
+    dataAbilityPredicates.indexedBy("SALARY_INDEX")
+
+    //  ...
+  })
   ```
 
 ### in

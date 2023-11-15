@@ -160,7 +160,7 @@ On提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多
 
 ```ts
 import { ON } from '@ohos.UiTest';
-ON.text('123').type('button');
+ON.text('123').type('Button');
 ```
 
 ### text<sup>9+</sup>
@@ -243,7 +243,7 @@ type(tp: string): On
 
 ```ts
 import { ON } from '@ohos.UiTest';
-let on = ON.type('button'); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
+let on = ON.type('Button'); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
 ```
 
 
@@ -488,7 +488,9 @@ isBefore(on: On): On
 
 ```ts
 import { ON } from '@ohos.UiTest';
-let on = ON.isBefore(ON.text('123')); // 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之前。
+
+// 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之前。
+let on = ON.type('Button').isBefore(ON.text('123'));  // 查找text为123之前的第一个Button组件
 ```
 
 ### isAfter<sup>9+</sup>
@@ -515,7 +517,9 @@ isAfter(on: On): On
 
 ```ts
 import { ON } from '@ohos.UiTest';
-let on = ON.isAfter(ON.text('123')); // 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之后。
+
+// 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之后。
+let on = ON.type('Text').isAfter(ON.text('123'))  // 查找 text为123之后的第一个Text组件
 ```
 
 ### within<sup>10+</sup>
@@ -542,7 +546,8 @@ within(on: On): On
 
 ```ts
 import { ON } from '@ohos.UiTest';
-let on = ON.within(ON.type('List')); // 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之内。
+// 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之内。
+let on = ON.text('java').within(ON.type('Scroll'));  // 查找Scroller里面的text为java的子组件
 ```
 
 ### inWindow<sup>10+</sup>
@@ -600,7 +605,7 @@ click(): Promise\<void>
 import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
+    let button = await driver.findComponent(ON.type('Button'));
     await button.click();
 }
 ```
@@ -628,7 +633,7 @@ doubleClick(): Promise\<void>
 import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
+    let button = await driver.findComponent(ON.type('Button'));
     await button.doubleClick();
 }
 ```
@@ -656,7 +661,7 @@ longClick(): Promise\<void>
 import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
+    let button = await driver.findComponent(ON.type('Button'));
     await button.longClick();
 }
 ```
@@ -690,8 +695,8 @@ getId(): Promise\<string>
 import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
-    let num = await button.getId();
+    let button = await driver.findComponent(ON.type('Button'));
+    let id = await button.getId();
 }
 ```
 
@@ -724,7 +729,7 @@ getText(): Promise\<string>
 import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
+    let button = await driver.findComponent(ON.type('Button'));
     let text = await button.getText();
 }
 ```
@@ -758,7 +763,7 @@ getType(): Promise\<string>
 import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
+    let button = await driver.findComponent(ON.type('Button'));
     let type = await button.getType();
 }
 ```
@@ -792,7 +797,7 @@ getBounds(): Promise\<Rect>
 import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
+    let button = await driver.findComponent(ON.type('Button'));
     let rect = await button.getBounds();
 }
 ```
@@ -826,7 +831,7 @@ getBoundsCenter(): Promise\<Point>
 import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
+    let button = await driver.findComponent(ON.type('Button'));
     let point = await button.getBoundsCenter();
 }
 ```
@@ -860,7 +865,7 @@ isClickable(): Promise\<boolean>
 import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
+    let button = await driver.findComponent(ON.type('Button'));
     if(await button.isClickable()) {
         console.info('This button can be Clicked');
     } else {
@@ -898,7 +903,7 @@ isLongClickable(): Promise\<boolean>
 import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
+    let button = await driver.findComponent(ON.type('Button'));
     if(await button.isLongClickable()) {
         console.info('This button can longClick');
     } else {
@@ -1051,7 +1056,7 @@ isEnabled(): Promise\<boolean>
 import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
+    let button = await driver.findComponent(ON.type('Button'));
     if(await button.isEnabled()) {
         console.info('This button can be operated');
     } else {
@@ -1090,7 +1095,7 @@ isFocused(): Promise\<boolean>
 import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
+    let button = await driver.findComponent(ON.type('Button'));
     if(await button.isFocused()) {
         console.info('This button is focused');
     } else {
@@ -1128,7 +1133,7 @@ isSelected(): Promise\<boolean>
 import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
+    let button = await driver.findComponent(ON.type('Button'));
     if(await button.isSelected()) {
         console.info('This button is selected');
 	} else {
@@ -1334,7 +1339,7 @@ dragTo(target: Component): Promise\<void>
 import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
+    let button = await driver.findComponent(ON.type('Button'));
     let text = await driver.findComponent(ON.text('hello world'));
     await button.dragTo(text);
     }
@@ -1369,7 +1374,7 @@ pinchOut(scale: number): Promise\<void>
 import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let image = await driver.findComponent(ON.type('image'));
+    let image = await driver.findComponent(ON.type('Image'));
     await image.pinchOut(1.5);
     }
 ```
@@ -1403,7 +1408,7 @@ pinchIn(scale: number): Promise\<void>
 import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let image = await driver.findComponent(ON.type('image'));
+    let image = await driver.findComponent(ON.type('Image'));
     await image.pinchIn(0.5);
     }
 ```
@@ -3308,7 +3313,7 @@ By提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多
 
 ```ts
 import { BY } from '@ohos.UiTest';
-BY.text('123').type('button');
+BY.text('123').type('Button');
 ```
 
 ### text<sup>(deprecated)</sup>
@@ -3428,7 +3433,7 @@ type(tp: string): By
 
 ```ts
 import { BY } from '@ohos.UiTest';
-let by = BY.type('button'); // 使用静态构造器BY创建by对象，指定目标控件的控件类型属性。
+let by = BY.type('Button'); // 使用静态构造器BY创建by对象，指定目标控件的控件类型属性。
 ```
 
 
@@ -3604,7 +3609,9 @@ isBefore(by: By): By
 
 ```ts
 import { BY } from '@ohos.UiTest';
-let by = BY.isBefore(BY.text('123')); // 使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之前。
+
+ // 使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之前。
+ let by = BY.type('Button').isBefore(BY.text('123')); // 查找text为123之前的第一个Button组件
 ```
 
 ### isAfter<sup>(deprecated)</sup>
@@ -3633,7 +3640,9 @@ isAfter(by: By): By
 
 ```ts
 import { BY } from '@ohos.UiTest';
-let by = BY.isAfter(BY.text('123')); // 使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之后。
+
+// 使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之后。
+let by = BY.type('Text').isAfter(BY.text('123')); // 查找 text为123之后的第一个Text组件
 ```
 
 ## UiComponent<sup>(deprecated)</sup>
@@ -3659,7 +3668,7 @@ click(): Promise\<void>
 import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
+    let button = await driver.findComponent(BY.type('Button'));
     await button.click();
 }
 ```
@@ -3680,7 +3689,7 @@ doubleClick(): Promise\<void>
 import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
+    let button = await driver.findComponent(BY.type('Button'));
     await button.doubleClick();
 }
 ```
@@ -3701,7 +3710,7 @@ longClick(): Promise\<void>
 import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
+    let button = await driver.findComponent(BY.type('Button'));
     await button.longClick();
 }
 ```
@@ -3728,8 +3737,8 @@ getId(): Promise\<number>
 import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
-    let num = await button.getId();
+    let button = await driver.findComponent(BY.type('Button'));
+    let id = await button.getId();
 }
 ```
 
@@ -3755,7 +3764,7 @@ getKey(): Promise\<string>
 import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
+    let button = await driver.findComponent(BY.type('Button'));
     let str_key = await button.getKey();
 }
 ```
@@ -3782,7 +3791,7 @@ getText(): Promise\<string>
 import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
+    let button = await driver.findComponent(BY.type('Button'));
     let text = await button.getText();
 }
 ```
@@ -3809,7 +3818,7 @@ getType(): Promise\<string>
 import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
+    let button = await driver.findComponent(BY.type('Button'));
     let type = await button.getType();
 }
 ```
@@ -3836,7 +3845,7 @@ isClickable(): Promise\<boolean>
 import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
+    let button = await driver.findComponent(BY.type('Button'));
     if(await button.isClickable()) {
         console.info('This button can be Clicked');
     } else {
@@ -3899,7 +3908,7 @@ isEnabled(): Promise\<boolean>
 import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
+    let button = await driver.findComponent(BY.type('Button'));
     if(await button.isEnabled()) {
         console.info('This button can be operated');
     } else {
@@ -3931,7 +3940,7 @@ isFocused(): Promise\<boolean>
 import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
+    let button = await driver.findComponent(BY.type('Button'));
     if(await button.isFocused()) {
         console.info('This button is focused');
     } else {
@@ -3962,7 +3971,7 @@ isSelected(): Promise\<boolean>
 import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
+    let button = await driver.findComponent(BY.type('Button'));
     if(await button.isSelected()) {
         console.info('This button is selected');
     } else {

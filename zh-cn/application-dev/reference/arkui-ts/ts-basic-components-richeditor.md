@@ -36,8 +36,9 @@ RichEditor(value: RichEditorOptions)
 | 名称                      | 参数类型                                                     | 描述                                                         |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘。 | 
-| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType:TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}<br/>**说明：**<br/>当前spanType参数设置不会生效，不区分类型。|
+| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType:TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}|
 | copyOptions | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice <br/>**说明：** <br/>设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按组件内容，会弹出文本默认选择菜单，可选中内容并进行复制、全选操作。<br/>设置copyOptions为CopyOptions.None，复制、剪切功能不生效。  |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -45,11 +46,12 @@ RichEditor(value: RichEditorOptions)
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onReady(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 富文本组件初始化完成后，触发回调。 |
-| onSelect(callback:&nbsp;(value:&nbsp;[RichEditorSelection](#richeditorselection))&nbsp;=&gt;&nbsp;void) | 鼠标左键按下选择，松开左键后触发回调。<br />- value：选中的所有span信息。 |
+| onSelect(callback:&nbsp;(value:&nbsp;[RichEditorSelection](#richeditorselection))&nbsp;=&gt;&nbsp;void) | 鼠标左键按下选择，松开左键后触发回调。<br />- 用手指选择时，松开手指触发回调。 <br />- value：选中的所有span信息。 |
 | aboutToIMEInput(callback:&nbsp;(value:&nbsp;[RichEditorInsertValue](#richeditorinsertvalue))&nbsp;=&gt;&nbsp;boolean) | 输入法输入内容前，触发回调。<br />- value：输入法将要输入内容信息。|
 | onIMEInputComplete(callback:&nbsp;(value:&nbsp;[RichEditorTextSpanResult](#richeditortextspanresult))&nbsp;=&gt;&nbsp;void) | 输入法输完成输入后，触发回调。<br />- value：输入法完成输入后的文本Span信息。 |
 | aboutToDelete(callback:&nbsp;(value:&nbsp;[RichEditorDeleteValue](#richeditordeletevalue))&nbsp;=&gt;&nbsp;boolean) | 输入法删除内容前，触发回调。 <br />- value：准备删除的内容所在的文本Span信息。|
 | onDeleteComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 输入法完成删除后，触发回调。 |
+| onPaste<sup>11+</sup>(callback: (event?: [PasteEvent](#pasteevent)) => void) | 完成粘贴前，触发回调。 |
 
 ## RichEditorInsertValue
 
@@ -112,7 +114,6 @@ Span类型信息。
 | IMAGE | number  | 是 | Span为图像类型。|
 | MIXED | number  | 是 | Span为图文混合类型。|
 
-
 ## RichEditorTextStyleResult
 
 后端返回的文本样式信息。
@@ -125,7 +126,6 @@ Span类型信息。
 | fontWeight |  number | 是 | 字体粗细。 |
 | fontFamily  |  string | 是 | 字体列表。 |
 | decoration  | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 是 | 文本装饰线样式及其颜色。 |
-
 
 ## RichEditorImageSpanResult
 
@@ -225,6 +225,29 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 | ----------------------- | ---------------- |
 | number | 添加完成的imageSpan所在的位置。 |
 
+### getTypingStyle<sup>11+</sup>
+
+getTypingStyle(): RichEditorTextStyle
+
+获得用户预设的样式。
+
+**返回值：**
+
+| 类型                      | 说明               |
+| ----------------------- | ---------------- |
+| [RichEditorTextStyle](#richeditortextstyle) | 用户预设样式。 |
+
+### setTypingStyle<sup>11+</sup>
+
+setTypingStyle(value: RichEditorTextStyle): void
+
+设置用户预设的样式。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| value  | [RichEditorTextStyle](#richeditortextstyle) | 是 | 预设样式。 |
 
 ### updateSpanStyle
 
@@ -238,6 +261,17 @@ updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateIm
 | ------ | -------- | ---- | -------------------------------------- |
 | value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdatetextspanstyleoptions) | 是 | 文本或者图片的样式选项信息。 |
 
+### updateParagraphStyle<sup>11+</sup>
+
+updateParagraphStyle(value: RichEditorParagraphStyleOptions): void
+
+更新段落的样式。
+
+**参数：**
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| value | [RichEditorParagraphStyleOptions](#richeditorparagraphstyleoptions11) | 是 | 段落的样式选项信息。 |
 
 ### getSpans
 
@@ -268,6 +302,24 @@ deleteSpans(value?: RichEditorRange): void
 | 参数名 | 参数类型 | 必填 | 参数描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | value | [RichEditorRange](#richeditorrange) | 否 | 删除范围。省略时，删除所有文本和图片。|
+
+### getParagraphs<sup>11+</sup>
+
+getParagraphs(value?: RichEditorRange): Array<RichEditorParagraphResult>;
+
+获得指定返回的段落。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| value | [RichEditorRange](#richeditorrange) | 否 | 需要获取段落的范围。|
+
+**返回值：**
+
+| 类型                      | 说明               |
+| ----------------------- | ---------------- |
+| Array<[RichEditorParagraphResult](#richeditorparagraphresult11) | 选中段落的信息。 |
 
 ### closeSelectionMenu
 
@@ -306,6 +358,42 @@ closeSelectionMenu(): void
 | end | number | 否 | 需要更新样式的图片结束位置，省略或者超出文本范围时表示到结尾。 |
 | imageStyle | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 是 | 图片样式。 |
 
+## RichEditorParagraphStyleOptions<sup>11+</sup>
+
+段落样式选项
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| start | number   | 否 | 需要更新样式的段落起始位置，省略或者设置负值时表示从0开始。 |
+| end | number | 否 | 需要更新样式的段落结束位置，省略、负数或者超出文本范围时表示到结尾。 |
+| style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 是 | 段落样式。 |
+
+## RichEditorParagraphStyle<sup>11+</sup>
+
+段落样式。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| textAlign | [TextAlign](ts-appendix-enums.md#textalign) | 否 | 设置文本段落在水平方向的对齐方式。 |
+| leadingMargin | [Dimension]((ts-types.md#dimension10)) \| [LeadingMarginPlaceholderr](#leadingmarginplaceholder11) | 否 | 设置缩进。 |
+
+## LeadingMarginPlaceholder<sup>11+</sup>
+
+前导边距跨度。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| pixelMap | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 是 | 图片内容。 |
+| size | \[[Dimension]((ts-types.md#dimension10)), [Dimension]((ts-types.md#dimension10))\] | 是 | 图片大小。 |
+
+## RichEditorParagraphResult<sup>11+</sup>
+
+后端返回的段落信息。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 是 | 段落样式。 |
+| range | \[number, number\] | 是 | 段落起始位置。 |
 
 ## RichEditorTextSpanOptions
 
@@ -315,6 +403,8 @@ closeSelectionMenu(): void
 | ------ | -------- | ---- | -------------------------------------- |
 | offset  | number   | 否   | 添加文本的位置。省略时，添加到所有文本字符串的最后。 |
 | style  | [RichEditorTextStyle](#richeditortextstyle)   | 否   | 文本样式信息。省略时，使用系统默认文本信息。|
+| paragraphStyle<sup>11+</sup>  | [RichEditorParagraphStyle](#richeditorparagraphstyle11)   | 否   | 段落样式。|
+| gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | 否   | 行为触发回调。省略时，仅使用系统默认行为。|
 
 ## RichEditorTextStyle
 
@@ -338,6 +428,7 @@ closeSelectionMenu(): void
 | ------ | -------- | ---- | -------------------------------------- |
 | offset  | number   | 否   | 添加图片的位置。省略时，添加到所有文本字符串的最后。 |
 | imageStyle  | [RichEditorImageSpanStyle](#richeditorimagespanstyle)   | 否   | 图片样式信息。省略时，使用系统默认图片信息。|
+| gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | 否   | 行为触发回调。省略时，仅使用系统默认行为。|
 
 ## RichEditorImageSpanStyle
 
@@ -358,7 +449,7 @@ closeSelectionMenu(): void
 | start | number   | 否 | 起始位置，省略或者设置负值时表示从0开始。 |
 | end | number | 否 | 结束位置，省略或者超出文本范围时表示到结尾。 |
 
-## SelectionMenuOptions
+## SelectionMenuOptions<sup>11+</sup>
 
 范围信息。
 
@@ -367,6 +458,41 @@ closeSelectionMenu(): void
 | onAppear | ?(() => void) | 否 | 自定义选择菜单弹出时回调。 |
 | onDisappear | ?(() => void) | 否 | 自定义选择菜单关闭时回调。 |
 
+## PasteEvent<sup>11+</sup>
+
+定义用户粘贴事件。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| preventDefault | ?(() => void) | 否 | 用户自定义粘贴事件。<br/> 存在时会覆盖系统粘贴事件。 |
+
+## RichEditorGesture<sup>11+</sup>
+
+用户行为回调。
+
+### onClick<sup>11+</sup>
+
+onClick(callback: (event?: ClickEvent) => void)
+
+点击完成时回调事件。
+
+**参数:**
+
+| 参数名   | 参数类型   | 必填   | 描述                            |
+| ----- | ------ | ---- | ---------------------------------------- |
+| event | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) | 否    | 用户点击事件。 |
+
+### onLongPress<sup>11+</sup>
+
+onLongPress(callback: (event?: GestureEvent) => void )
+
+长按完成时回调事件。
+
+**参数:**
+
+| 参数名   | 参数类型   | 必填   | 描述                            |
+| ----- | ------ | ---- | ---------------------------------------- |
+| event | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明) | 否    | 用户长按事件。 |
 
 ## 示例
 
@@ -596,7 +722,7 @@ struct SelectionMenu {
   options: RichEditorOptions = { controller: this.controller }
   private iconArr: Array<Resource> =
     [$r('app.media.icon'), $r("app.media.icon"), $r('app.media.icon'),
-    $r("app.media.icon"), $r('app.media.icon')]
+      $r("app.media.icon"), $r('app.media.icon')]
   private listArr: Array<Object> =
     [{ imageSrc: $r('sys.media.ohos_ic_public_cut'), id: '剪切', label: "Ctrl+X" } as info,
       { imageSrc: $r('sys.media.ohos_ic_public_copy'), id: '复制', label: "Ctrl+C" } as info,
@@ -620,6 +746,9 @@ struct SelectionMenu {
             this.controller.addTextSpan(this.message, { style: { fontColor: Color.Orange, fontSize: 30 } })
           })
           .onSelect((value: RichEditorSelection) => {
+            if (value.selection[0] == -1 && value.selection[1] == -1) {
+              return
+            }
             this.start = value.selection[0]
             this.end = value.selection[1]
           })
@@ -630,26 +759,20 @@ struct SelectionMenu {
           .borderColor(Color.Red)
           .width(200)
           .height(200)
-          .position({ x: 150, y: 100 })
-      }.width('100').backgroundColor(Color.White)
-    }.height('100')
+      }.width('100%').backgroundColor(Color.White)
+    }.height('100%')
   }
 
   @Builder
   panel() {
     Column() {
-      Menu() {
-        MenuItem({ builder: this.iconPanel() })
-      }.shadow(ShadowStyle.OUTER_DEFAULT_MD).margin({ bottom: 8 }).height(56).width(256)
-
-      Menu() {
-        if (!this.sliderShow) {
-          MenuItem({ builder: this.listPanel() })
-        } else {
-          MenuItem({ builder: this.sliderPanel() })
-        }
-      }.width(256).shadow(ShadowStyle.OUTER_DEFAULT_MD)
-    }.width(256).backgroundColor(Color.Transparent)
+      this.iconPanel()
+      if (!this.sliderShow) {
+        this.listPanel()
+      } else {
+        this.sliderPanel()
+      }
+    }.width(256)
   }
 
   @Builder iconPanel() {
@@ -708,7 +831,7 @@ struct SelectionMenu {
             if(isHover != undefined) {
               this.iconBgColor[index as number] = $r('sys.color.ohos_id_color_hover')
             }else{
-                this.listBgColor[index as number] = this.colorTransparent
+              this.listBgColor[index as number] = this.colorTransparent
             }
           })
           .onFocus(() => {
@@ -721,10 +844,11 @@ struct SelectionMenu {
         })
       }
     }
-    .backgroundColor(this.colorTransparent)
     .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
     .width(248)
     .height(48)
+    .margin({ bottom: 8 })
+    .shadow(ShadowStyle.OUTER_DEFAULT_MD)
   }
 
   @Builder listPanel() {
@@ -740,7 +864,6 @@ struct SelectionMenu {
             })
               .onClick(() => {
                 let sysBoard = pasteboard.getSystemPasteboard()
-                this.controller.closeSelectionMenu()
                 let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, '')
                 this.controller.getSpans({ start: this.start, end: this.end })
                   .forEach((item, i) => {
@@ -855,6 +978,7 @@ struct SelectionMenu {
     .width(248)
     .backgroundColor(this.colorTransparent)
     .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
+    .shadow(ShadowStyle.OUTER_DEFAULT_MD)
   }
 
   @Builder sliderPanel() {

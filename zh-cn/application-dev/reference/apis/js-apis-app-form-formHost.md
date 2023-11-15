@@ -969,6 +969,12 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 
 **系统能力**：SystemCapability.Ability.Form
 
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。当获取设备上所有应用提供的卡片信息成功，error为undefined，data为查询到的卡片信息；否则为错误对象。 |
+
 **错误码：**
 
 | 错误码ID | 错误信息 |
@@ -982,11 +988,6 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 
 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。当获取设备上所有应用提供的卡片信息成功，error为undefined，data为查询到的卡片信息；否则为错误对象。 |
 
 **示例：**
 
@@ -1017,6 +1018,12 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 
 **系统能力**：SystemCapability.Ability.Form
 
+**返回值：**
+
+| 类型                                                         | 说明                                |
+| :----------------------------------------------------------- | :---------------------------------- |
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
+
 **错误码：**
 
 | 错误码ID | 错误信息 |
@@ -1028,12 +1035,6 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
-
-**返回值：**
-
-| 类型                                                         | 说明                                |
-| :----------------------------------------------------------- | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
 
 **示例：**
 
@@ -1460,8 +1461,6 @@ on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-
 formHost.on('formUninstall', (formId: string) => {
   console.log(`formHost on formUninstall, formId: ${formId}`);
 });
@@ -1494,8 +1493,6 @@ off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-
 formHost.off('formUninstall', (formId: string) => {
   console.log(`formHost on formUninstall, formId: ${formId}`);
 });
