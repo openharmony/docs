@@ -25,7 +25,7 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
   | 参数名 | 类型    | 必填 | 说明                                   |
   | ------ | ------ | ---- | ------------------------------------- |
   | formId | string | 是   | 卡片标识。                               |
-  | minute | number | 是   | 指定多久之后更新，单位分钟，大于等于5。     |
+  | minute | number | 是   | 指定多久之后更新。单位分钟，大于等于5。     |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **示例：**
@@ -54,7 +54,7 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
   | 参数名 | 类型    | 必填 | 说明                                   |
   | ------ | ------ | ---- | ------------------------------------- |
   | formId | string | 是   | 卡片标识。                               |
-  | minute | number | 是   | 指定多久之后更新，单位分钟，大于等于5。     |
+  | minute | number | 是   | 指定多久之后更新。单位分钟，大于等于5。     |
 
 **返回值：**
 
@@ -66,6 +66,7 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
   ```ts
   import Base from '@ohos.base';
+  import formProvider from '@ohos.application.formProvider';
 
   let formId: string = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
@@ -96,6 +97,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
   ```ts
   import Base from '@ohos.base';
   import formBindingData from '@ohos.application.formBindingData';
+  import formProvider from '@ohos.application.formProvider';
 
   let formId: string = '12400633174999288';
   let param: Record<string, string> = {
