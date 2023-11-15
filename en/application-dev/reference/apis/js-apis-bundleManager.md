@@ -43,7 +43,6 @@ Enumerates the bundle flags, which indicate the type of bundle information to ob
 | GET_BUNDLE_INFO_WITH_METADATA             | 0x00000020 | Used to obtain the metadata contained in the application, HAP module, ability, or ExtensionAbility information. It must be used together with **GET_BUNDLE_INFO_WITH_APPLICATION**, **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.|
 | GET_BUNDLE_INFO_WITH_DISABLE              | 0x00000040 | Used to obtain the information about disabled bundles and abilities of a bundle. The obtained information does not contain information about the signature, application, HAP module, ability, ExtensionAbility, or permission.|
 | GET_BUNDLE_INFO_WITH_SIGNATURE_INFO       | 0x00000080 | Used to obtain the bundle information with signature information. The obtained information does not contain information about the application, HAP module, ability, ExtensionAbility, or permission.|
-| GET_BUNDLE_INFO_WITH_MENU                 | 0x00000100 | Used to obtain the bundle information with the file context menu. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**. If this flag is passed in to **GetBundleInfo** or **GetBundleInfoForSelf**, the HAP module information returned contains only the module information for which the file context menu is configured. If this flag is passed in to **GetAllBundleInfo**, the bundle information returned contains only the bundle information of applications for which the file context menu is configured.|
 
 ### ApplicationFlag
 
@@ -100,12 +99,12 @@ Enumerates the types of ExtensionAbilities.
 
 | Name| Value| Description|
 |:----------------:|:---:|-----|
-| FORM             | 0   | [FormExtensionAbility](../../application-models/service-widget-overview.md): provides APIs for widget development.|
-| WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../../task-management/work-scheduler.md): enables applications to execute non-real-time tasks when the system is idle.|
+| FORM             | 0   | [FormExtensionAbility](js-apis-app-form-formExtensionAbility.md): provides APIs for widget development.|
+| WORK_SCHEDULER   | 1   | provides APIs for widget development.: enables applications to execute non-real-time tasks when the system is idle.|
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](js-apis-inputmethod-extension-ability.md): provides APIs for developing input method applications.|
-| SERVICE          | 3   | [ServiceExtensionAbility](../../application-models/serviceextensionability.md): enables applications to run in the background and provide services.|
+| SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility.md): enables applications to run in the background and provide services.|
 | ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](js-apis-application-accessibilityExtensionAbility.md): provides accessibility for access to and operations on the UI.|
-| DATA_SHARE       | 5   | [DataShareExtensionAbility](../../database/share-data-by-datashareextensionability.md): enables applications to read and write data.|
+| DATA_SHARE       | 5   | [DataShareExtensionAbility](js-apis-application-dataShareExtensionAbility.md): enables applications to read and write data.|
 | FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved.|
 | STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](js-apis-application-staticSubscriberExtensionAbility.md): provides APIs for processing static events, such as the startup event.|
 | WALLPAPER        | 8   | WallpaperExtensionAbility: provides APIs to implement the home screen wallpaper. This ability is reserved.|
@@ -117,7 +116,7 @@ Enumerates the types of ExtensionAbilities.
 | PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. Printing documents is not supported yet.|
 | SHARE<sup>10+</sup> | 16 | [ShareExtensionAbility](js-apis-app-ability-shareExtensionAbility.md): provides sharing service templates based on UIExtensionAbilities.|
 | PUSH<sup>10+</sup> | 17 | PushExtensionAbility: provides APIs for pushing scenario-specific messages. This ability is reserved.|
-| DRIVER<sup>10+</sup> | 18 | DriverExtensionAbility: provides APIs for the peripheral driver. This type of ability is not supported yet.|
+| DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](js-apis-app-ability-driverExtensionAbility.md): provides APIs for the peripheral driver. This type of ability is not supported yet.|
 | ACTION<sup>10+</sup> | 19 | [ActionExtensionAbility](js-apis-app-ability-actionExtensionAbility.md): provides custom action service templates based on UIExtensionAbilities.|
 | UNSPECIFIED      | 255 | No type is specified. It is used together with **queryExtensionAbilityInfo** to query all types of ExtensionAbilities.|
 
@@ -225,18 +224,6 @@ Enumerates the bundle types.
 | -------------- | ---- | --------------- |
 | APP            | 0    | The bundle is a common application.   |
 | ATOMIC_SERVICE | 1    | The bundle is an atomic service.|
-
-### ProfileType<sup>11+</sup>
-
-Enumerates the types of profiles (also called application files).
-
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
- **System API**: This is a system API.
-
-| Name          | Value  | Description           |
-| -------------- | ---- | --------------- |
-| INTENT_PROFILE  | 1    | Profile of the intent framework.   |
 
 ## APIs
 
@@ -1205,7 +1192,7 @@ try {
 
 queryAbilityInfoSync(want: Want, abilityFlags: [number](#abilityflag), userId?: number): Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>;
 
-Obtains the ability information based on the given want, ability flags, and user ID. This API is a synchronous API.
+Obtains the ability information based on the given want, ability flags, and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -1254,7 +1241,7 @@ let want: Want = {
 };
 
 try {
-
+    
     let infos = bundleManager.queryAbilityInfoSync(want, abilityFlags, userId);
     hilog.info(0x0000, 'testTag', 'queryAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(infos));
 } catch (err) {
@@ -1498,7 +1485,7 @@ try {
 
 queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: [ExtensionAbilityType](#extensionabilitytype), extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>;
 
-Obtains the ExtensionAbility information based on the given want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API is a synchronous API.
+Obtains the ExtensionAbility information based on the given want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -1681,7 +1668,7 @@ try {
 
 getBundleNameByUidSync(uid: number): string;
 
-Obtains the bundle name based on the given UID. This API is a synchronous API.
+Obtains the bundle name based on the given UID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -1834,7 +1821,7 @@ try {
 
 getBundleArchiveInfoSync(hapFilePath: string, bundleFlags: number): BundleInfo;
 
-Obtains the bundle information based on the given HAP file path and bundle flags. This API is a synchronous API.
+Obtains the bundle information based on the given HAP file path and bundle flags. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2091,7 +2078,7 @@ try {
 
 setApplicationEnabledSync(bundleName: string, isEnabled: boolean): void;
 
-Enables or disables an application. This API is a synchronous API.
+Enables or disables an application. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2266,7 +2253,7 @@ try {
 
 setAbilityEnabledSync(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isEnabled: boolean): void;
 
-Enables or disables an ability. This API is a synchronous API.
+Enables or disables an ability. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2426,7 +2413,7 @@ try {
 
 isApplicationEnabledSync(bundleName: string): boolean;
 
-Checks whether an application is enabled. This API is a synchronous API.
+Checks whether an application is enabled. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2598,7 +2585,7 @@ try {
 
 isAbilityEnabledSync(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)): boolean;
 
-Checks whether an ability is enabled. This API is a synchronous API.
+Checks whether an ability is enabled. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2824,7 +2811,7 @@ try {
 
 getLaunchWantForBundleSync(bundleName: string, userId?: number): Want;
 
-Obtains the Want used to launch the bundle based on the given bundle name and user ID. This API is a synchronous API.
+Obtains the Want used to launch the bundle based on the given bundle name and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2897,10 +2884,6 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 Obtains the JSON strings of the profile based on the given module name, ability name, and metadata name. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> 
-> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
-
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **Parameters**
@@ -2953,10 +2936,6 @@ try {
 getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>;
 
 Obtains the JSON strings of the profile based on the given module name, ability name, and metadata name. This API uses a promise to return the result.
-
-> **NOTE**
-> 
-> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3030,11 +3009,7 @@ try {
 
 getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: string): Array\<string\>;
 
-Obtains the JSON strings of the profile based on the given module name, ability name, and metadata name. This API is a synchronous API.
-
-> **NOTE**
-> 
-> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
+Obtains the JSON strings of the profile based on the given module name, ability name, and metadata name. This API returns the result synchronously.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3104,10 +3079,6 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 Obtains the JSON strings of the profile based on the given module name, ExtensionAbility name, and metadata name. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> 
-> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
-
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **Parameters**
@@ -3159,10 +3130,6 @@ try {
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string\>\>;
 
 Obtains the JSON strings of the profile based on the given module name, ExtensionAbility name, and metadata name. This API uses a promise to return the result.
-
-> **NOTE**
-> 
-> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3228,11 +3195,7 @@ try {
 
 getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: string, metadataName?: string): Array\<string\>;
 
-Obtains the JSON strings of the profile based on the given module name, ExtensionAbility name, and metadata name. This API is a synchronous API.
-
-> **NOTE**
-> 
-> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
+Obtains the JSON strings of the profile based on the given module name, ExtensionAbility name, and metadata name. This API returns the result synchronously.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3391,7 +3354,7 @@ try {
 
 getPermissionDefSync(permissionName: string): [PermissionDef](js-apis-bundleManager-permissionDef.md);
 
-Obtains the **PermissionDef** struct based on the given permission name. This API is a synchronous API.
+Obtains the **PermissionDef** struct based on the given permission name. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -3556,7 +3519,7 @@ try {
 
 getAbilityLabelSync(bundleName: string, moduleName: string, abilityName: string): string;
 
-Obtains the ability label based on the given bundle name, module name, and ability name. This API is a synchronous API.
+Obtains the ability label based on the given bundle name, module name, and ability name. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -3613,7 +3576,7 @@ try {
 
 getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
 
-Obtains the application information based on the given bundle name, application flags, and user ID. This API is a synchronous API.
+Obtains the application information based on the given bundle name, application flags, and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -3668,7 +3631,7 @@ try {
 
 getApplicationInfoSync(bundleName: string, applicationFlags: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
 
-Obtains the application information based on the given bundle name and application flags. This API is a synchronous API.
+Obtains the application information based on the given bundle name and application flags. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -3720,7 +3683,7 @@ try {
 
 getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId: number): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
 
-Obtains the bundle information based on the given bundle name, bundle flags, and user ID. This API is a synchronous API.
+Obtains the bundle information based on the given bundle name, bundle flags, and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -3775,7 +3738,7 @@ try {
 
 getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
 
-Obtains the bundle information based on the given bundle name and bundle flags. This API is a synchronous API.
+Obtains the bundle information based on the given bundle name and bundle flags. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -4178,7 +4141,7 @@ try {
 
 getAppProvisionInfoSync(bundleName: string, userId?: number): AppProvisionInfo;
 
-Obtains the provision profile based on the given bundle name and user ID. This API is a synchronous API.
+Obtains the provision profile based on the given bundle name and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -4363,143 +4326,5 @@ try {
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'getBundleInfoForSelfSync failed: %{public}s', message);
-}
-```
-
-### bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>
-
-queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>;
-
-Obtains the ExtensionAbility information based on the given want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API returns the result synchronously.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-**Parameters**
-
-| Name               | Type                           | Mandatory| Description                                                     |
-| --------------------- | ------------------------------- | ---- | --------------------------------------------------------- |
-| want                  | Want                            | Yes  | Want containing the bundle name to query.                   |
-| extensionAbilityType  | string                          | Yes  | Type of the custom ExtensionAbility.                       |
-| extensionAbilityFlags | [number](#extensionabilityflag) | Yes  | Information flags to be contained in the returned **ExtensionAbilityInfo** object.|
-| userId                | number                          | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.|
-
-**Return value**
-
-| Type                                                        | Description                                  |
-| ------------------------------------------------------------ | -------------------------------------- |
-| Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | An array of **ExtensionAbilityInfo** objects.|
-
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
-
-| ID| Error Message                                    |
-| -------- | -------------------------------------------- |
-| 17700001 | The specified bundleName is not found.       |
-| 17700003 | The specified extensionAbility is not found. |
-| 17700004 | The specified userId is invalid.             |
-| 17700026 | The specified bundle is disabled.            |
-
-**Example**
-
-```ts
-// Call the API with the userId parameter specified.
-import bundleManager from '@ohos.bundle.bundleManager';
-import hilog from '@ohos.hilog';
-
-let extensionAbilityType = "form";
-let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
-let userId = 100;
-let want = {
-    bundleName : "com.example.myapplication",
-    abilityName : "EntryAbility"
-};
-
-try {
-    var data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityType, extensionFlags, userId)
-    hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(data));
-} catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed.');
-}
-```
-
-```ts
-// Call the API without passing in the userId parameter.
-import bundleManager from '@ohos.bundle.bundleManager';
-import hilog from '@ohos.hilog';
-
-let extensionAbilityType = "form";
-let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
-let want = {
-    bundleName : "com.example.myapplication",
-    abilityName : "EntryAbility"
-};
-
-try {
-    let data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityType, extensionFlags);
-    hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(data));
-} catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed.');
-}
-```
-
-### bundleManager.getJsonProfile<sup>11+</sup>
-
-getJsonProfile(profileType: [ProfileType](#profiletype11), bundleName: string, moduleName?: string): string;
-
-Obtains the JSON strings of the profile based on the given profile type, bundle name, and module name. This API returns the result synchronously.
-
-No permission is required for obtaining the caller's own profile.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-**Parameters**
-
-| Name               | Type                           | Mandatory| Description                                                     |
-| --------------------- | ------------------------------- | ---- | --------------------------------------------------------- |
-| profileType           | [ProfileType](#profiletype11)     | Yes  | Type of the profile.                                  |
-| bundleName            | string                          | Yes  | Bundle name of the application.                                 |
-| moduleName            | string                          | No  | Module name of the application. If this parameter is not passed in, the entry module is used.           |
-
-**Return value**
-
-| Type  | Description                     |
-| ------ | ------------------------ |
-| string | JSON string of the profile.|
-
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
-
-| ID| Error Message                                    |
-| -------- | -------------------------------------------- |
-| 17700001 | The specified bundleName is not found.       |
-| 17700002 | The specified moduleName is not found.       |
-| 17700024 | Failed to get the profile because the specified profile is not found in the HAP. |
-| 17700026 | The specified bundle is disabled.            |
-
-**Example**
-
-```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import hilog from '@ohos.hilog';
-
-let bundleName = 'com.example.myapplication';
-let moduleName = 'entry';
-let profileType = bundleManager.ProfileType.INTENT_PROFILE;
-
-try {
-    let data = bundleManager.getJsonProfile(profileType, bundleName, moduleName)
-    hilog.info(0x0000, 'testTag', 'getJsonProfile successfully. Data: %{public}s', data);
-} catch (err) {
-    hilog.error(0x0000, 'testTag', 'getJsonProfile failed.');
 }
 ```

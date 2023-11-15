@@ -4637,6 +4637,7 @@ The listening takes effect after **enableQuickThumbnail(true)** is called.
 ```ts
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 async function registerQuickThumbnail(context: common.BaseContext, photoProfile: camera.Profile, surfaceId: string): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);

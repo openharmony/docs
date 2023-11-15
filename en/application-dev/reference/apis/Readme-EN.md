@@ -130,7 +130,7 @@
   - [@ohos.events.emitter (Emitter)](js-apis-emitter.md)
   - [@ohos.notificationManager (NotificationManager) (Recommended)](js-apis-notificationManager.md)
   - [@ohos.notificationSubscribe (NotificationSubscribe) (Recommended)](js-apis-notificationSubscribe.md)
-  - [@ohos.application.StaticSubscriberExtensionContext (NotificationSubscribe) (Recommended)](js-apis-application-StaticSubscriberExtensionContext.md)
+  - [@ohos.application.StaticSubscriberExtensionContext (StaticSubscriberExtensionContext) (Recommended)](js-apis-application-StaticSubscriberExtensionContext.md)
   - [System Common Events (To Be Deprecated Soon)](commonEvent-definitions.md)
   - [@ohos.commonEvent (Common Event) (To Be Deprecated Soon)](js-apis-commonEvent.md)
   - [@ohos.notification (Notification) (To Be Deprecated Soon)](js-apis-notification.md)
@@ -219,7 +219,7 @@
   - [@ohos.promptAction (Prompt)](js-apis-promptAction.md)
   - [@ohos.router (Page Routing)](js-apis-router.md)
   - [@ohos.uiAppearance (UI Appearance)](js-apis-uiappearance.md)
-
+  
 - Graphics
   - [@ohos.animation.windowAnimationManager (Window Animation Management)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](js-apis-application-windowExtensionAbility.md)
@@ -383,7 +383,7 @@
   - [@ohos.logLibrary (Log Library)](js-apis-loglibrary.md)
   - [@ohos.pasteboard (Pasteboard)](js-apis-pasteboard.md)
   - [@ohos.print (Print)](js-apis-print.md)
-  - [@ohos.screenLock (Screenlock)](js-apis-screen-lock.md)
+  - [@ohos.screenLock (Screen Lock)](js-apis-screen-lock.md)
   - [@ohos.systemDateTime (System Time and Time Zone)](js-apis-system-date-time.md)
   - [@ohos.systemTimer (System Timer)](js-apis-system-timer.md)
   - [@ohos.wallpaper (Wallpaper)](js-apis-wallpaper.md)
@@ -400,6 +400,7 @@
   - [@ohos.batteryInfo (Battery Information)](js-apis-battery-info.md)
   - [@ohos.batteryStatistics (Battery Statistics)](js-apis-batteryStatistics.md)
   - [@ohos.brightness (Screen Brightness)](js-apis-brightness.md)
+  - [@ohos.calendarManager (Calendar Manager)](js-apis-calendarManager.md)
   - [@ohos.charger (Charging Type)](js-apis-charger.md)
   - [@ohos.cooperate (Screen Hopping)](js-apis-devicestatus-cooperate.md)
   - [@ohos.deviceAttest (Device Attestation)](js-apis-deviceAttest.md)
@@ -424,7 +425,7 @@
   - [@ohos.multimodalInput.shortKey (Shortcut Key)](js-apis-shortKey.md)
   - [@ohos.power (System Power Management)](js-apis-power.md)
   - [@ohos.resourceschedule.deviceStandby (Device Standby)](js-apis-resourceschedule-deviceStandby.md)
-  - [@ohos.runningLock (Runninglock)](js-apis-runninglock.md)
+  - [@ohos.runningLock (Running Lock)](js-apis-runninglock.md)
   - [@ohos.sensor (Sensor)](js-apis-sensor.md)
   - [@ohos.settings (Data Item Settings)](js-apis-settings.md)
   - [@ohos.stationary (Device Status Awareness Framework)](js-apis-stationary.md)
@@ -483,8 +484,7 @@
   - [@ohos.util.Stack (Linear Container Stack)](js-apis-stack.md)
   - [@ohos.util.TreeMap (Nonlinear Container TreeMap)](js-apis-treemap.md)
   - [@ohos.util.TreeSet (Nonlinear Container TreeSet)](js-apis-treeset.md)
-  - [@ohos.util.Vector (Linear Container Vector)](js-apis-vector.md)
-  - [@ohos.worker (Worker Startup)](js-apis-worker.md)
+  - [@ohos.worker (Starting the Worker)](js-apis-worker.md)
   - [@ohos.xml (XML Parsing and Generation)](js-apis-xml.md)
 
 - Application services
@@ -516,6 +516,7 @@
   - [@ohos.systemParameter (System Parameter)](js-apis-system-parameter.md)
   - [@ohos.systemTime (System Time and Time Zone)](js-apis-system-time.md)
   - [@ohos.usb (USB Management)](js-apis-usb-deprecated.md)
+  - [@ohos.util.Vector (Linear Container Vector)](js-apis-vector.md)
   - [@system.app (Application Context)](js-apis-system-app.md)
   - [@system.battery (Battery Information)](js-apis-system-battery.md)
   - [@system.bluetooth (Bluetooth)](js-apis-system-bluetooth.md)
