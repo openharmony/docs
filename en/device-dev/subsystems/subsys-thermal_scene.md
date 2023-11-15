@@ -24,11 +24,11 @@ For details about the requirements on the Linux environment, see [Quick Start](.
 
 ### Getting Started with Development
 
-The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568) as an example to illustrate thermal scene customization.
+The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568) as an example to illustrate thermal scene customization.
 
-1. Create the `thermal` folder in the product directory [/vendor/hihope/rk3568](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568).
+1. Create the `thermal` folder in the product directory [/vendor/hihope/rk3568](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568).
 
-2. Create a target folder by referring to the [default thermal scene configuration folder](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile), and install it in `//vendor/hihope/rk3568/thermal`. The content is as follows:
+2. Create a target folder by referring to the [default thermal scene configuration folder](https://gitee.com/openharmony/powermgr_thermal_manager/tree/master/services/native/profile), and install it in `//vendor/hihope/rk3568/thermal`. The content is as follows:
      
     ```text
     profile
@@ -36,7 +36,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/blob/ma
     ├── thermal_service_config.xml
     ```
 
-3. Write the custom `thermal_service_config.xml` file by referring to the [thermal_service_config.xml](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/thermal_service_config.xml) file in the default thermal scene configuration folder. The following table describes the related configuration items.
+3. Write the custom `thermal_service_config.xml` file by referring to the [thermal_service_config.xml](https://gitee.com/openharmony/powermgr_thermal_manager/tree/master/services/native/profile/thermal_service_config.xml) file in the default thermal scene configuration folder. The following table describes the related configuration items.
 
     **Table 1** Configuration items for the thermal scene
 
@@ -63,7 +63,7 @@ bool UpdateThermalState(const std::string& tag, const std::string& val, bool isI
 | val | Scenario status value.| string |
 | isImmed | Whether to update the thermal control action value immediately.| bool |
 
-5. Write the `BUILD.gn` file by referring to the [BUILD.gn](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/BUILD.gn) file in the default thermal scene configuration folder to pack the `thermal_service_config.xml` file to the `/vendor/etc/thermal_config` directory. The configuration is as follows:
+5. Write the `BUILD.gn` file by referring to the [BUILD.gn](https://gitee.com/openharmony/powermgr_thermal_manager/tree/master/services/native/profile/BUILD.gn) file in the default thermal scene configuration folder to pack the `thermal_service_config.xml` file to the `/vendor/etc/thermal_config` directory. The configuration is as follows:
 
     ```shell
     import("//build/ohos.gni")                      # Reference build/ohos.gni.
@@ -76,7 +76,7 @@ bool UpdateThermalState(const std::string& tag, const std::string& val, bool isI
     }
     ```
 
-6. Add the build target to `module_list` in [ohos.build](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/ohos.build). For example:
+6. Add the build target to `module_list` in [ohos.build](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568/ohos.build). For example:
 
     ```json
     {
@@ -129,6 +129,6 @@ bool UpdateThermalState(const std::string& tag, const std::string& val, bool isI
     ```
 
 ## Reference
-During development, you can refer to the [default thermal scene configuration](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/thermal_service_config.xml).
+During development, you can refer to the [default thermal scene configuration](https://gitee.com/openharmony/powermgr_thermal_manager/tree/master/services/native/profile/thermal_service_config.xml).
 
 Packing path: `/vendor/etc/thermal_config/hdf`
