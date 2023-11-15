@@ -16,7 +16,7 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 | 参数名称 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | fingers | number | 否 | 触发捏合的最少手指数,&nbsp;最小为2指，最大为5指。<br/>默认值：2 |
-| distance | number | 否 | 最小识别距离，单位为vp。<br/>默认值：3 |
+| distance | number | 否 | 最小识别距离，单位为vp。<br/>默认值：5 |
 
 
 ## 事件
