@@ -121,6 +121,8 @@
         - [充电限流限压定制开发指导](subsys-power-charge-current-voltage-limit.md)
         - [充电类型定制开发指导](subsys-power-charge-type-customization.md)
         - [关机充电动画开发指导](subsys-power-poweroff-charge-animation.md)
+        - [电池读写内核节点通用框架开发指导](subsys-power-charge-common-framework-guide.md)
+        - [uevent事件定制开发指导](subsys-power-battery-uevent-customization.md)
     - 耗电统计
         - [耗电统计定制开发指导](subsys-power-stats-power-average-customization.md)
     - 热管理
