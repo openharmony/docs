@@ -74,4 +74,4 @@
 
 **适配指导**
 
-需要使用新的替代接口。
+建议使用新模块的接口进行开发，参见[@ohos.distributedDeviceManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-distributedDeviceManager.md)。
