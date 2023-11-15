@@ -77,6 +77,28 @@
       // 获取图片的ArrayBuffer
       const buffer = fileData.buffer;
       ```
+   - 方法四：通过资源管理器获取资源文件的RawFileDescriptor。具体请参考[ResourceManager API参考文档](../reference/apis/js-apis-resource-manager.md#getrawfd9-1)。
+        
+      ```ts
+      // Stage模型
+      const context : Context = getContext(this);
+      // 获取resourceManager资源管理器
+      const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
+      ```
+
+      ```ts
+      // FA模型
+      // 导入resourceManager资源管理器
+      import resourceManager from '@ohos.resourceManager';
+      const resourceMgr = await resourceManager.getResourceManager();
+      ```
+
+      不同模型获取资源管理器的方式不同，获取资源管理器后，再调用resourceMgr.getRawFd()获取资源文件的RawFileDescriptor。
+
+      ```ts
+      const rawFileDescriptor : resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
+      ```
+
 
 3. 创建ImageSource实例。
    - 方法一：通过沙箱路径创建ImageSource。沙箱路径可以通过步骤2的方法一获取。
@@ -95,6 +117,11 @@
         
       ```ts
       const imageSource : image.ImageSource = image.createImageSource(buffer);
+      ```
+   - 方法四：通过资源文件的RawFileDescriptor创建ImageSource。缓冲区数组可以通过步骤2的方案四获取。
+        
+      ```ts
+      const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
       ```
 
 4. 设置解码参数DecodingOptions，解码获取PixelMap图片对象。
@@ -125,27 +152,29 @@
    const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
    ```
 
-2. 获取rawfile文件夹下test.jpg的ArrayBuffer。
-     
-   ```ts
-   const fileData : Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
-   // 获取图片的ArrayBuffer
-   const buffer = fileData.buffer;
-   ```
+2. 创建ImageSource。
+   - 通过rawfile文件夹下test.jpg的ArrayBuffer创建。
+     ```ts
+     const fileData : Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
+     // 获取图片的ArrayBuffer
+     const buffer = fileData.buffer;
 
-3. 创建imageSource。
-     
-   ```ts
-   const imageSource : image.ImageSource = image.createImageSource(buffer);
-   ```
+     const imageSource : image.ImageSource = image.createImageSource(buffer);
+     ```
 
-4. 创建PixelMap。
+   - 通过rawfile文件夹下test.jpg的RawFileDescriptor创建。
+     ```ts
+     const rawFileDescriptor : resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
+
+     const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
+     ```
+3. 创建PixelMap。
      
    ```ts
    const pixelMap : image.PixelMap = await imageSource.createPixelMap();
    ```
 
-5. 释放pixelMap。
+4. 释放pixelMap。
    ```ts
    pixelMap.release();
    ```
