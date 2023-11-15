@@ -38,7 +38,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | caretColor               | [ResourceColor](ts-types.md#resourcecolor)    | 设置输入框光标颜色。<br/>默认值：'#007DFF'。                                |
 | maxLength                | number                                   | 设置文本的最大输入字符数。                            |
 | inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>error?:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void<br/>} | 正则表达式，匹配表达式的输入允许显示，不匹配的输入将被过滤。目前仅支持单个字符匹配，不支持字符串匹配。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被过滤的内容。 |
-| copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。<br/>默认值：CopyOptions.LocalDevice，支持设备内复制。<br/>设置CopyOptions.None时，当前TextInput中的文字无法被复制或剪切，仅支持粘贴。<br/> 从API Version 11开始，支持设置CopyOptions.CROSS_DEVICE。 |
+| copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。<br/>默认值：CopyOptions.LocalDevice，支持设备内复制。<br/>设置CopyOptions.None时，当前TextInput中的文字无法被复制或剪切，仅支持粘贴。<br/> |
 | showPasswordIcon<sup>9+</sup> | boolean | 密码输入模式时，输入框末尾的图标是否显示。<br/>默认值：true |
 | style<sup>9+</sup> | [TextInputStyle](#textinputstyle9枚举说明) \| [TextContentStyle](ts-appendix-enums.md#textcontentstyle10) | 设置输入框为默认风格或内联输入风格（内联输入风格只支持InputType.Normal类型）。<br/>默认值：TextInputStyle.Default |
 | textAlign<sup>9+</sup>   | [TextAlign](ts-appendix-enums.md#textalign) | 设置文本在输入框中的水平对齐方式。<br/>默认值：TextAlign.Start<br/>**说明：**<br/>仅支持TextAlign.Start、TextAlign.Center和TextAlign.End。<br/>可通过[align](ts-universal-attributes-location.md)属性控制文本段落在垂直方向上的位置，此组件中不可通过align属性控制文本段落在水平方向上的位置，即align属性中Alignment.TopStart、Alignment.Top、Alignment.TopEnd效果相同，控制内容在顶部，Alignment.Start、Alignment.Center、Alignment.End效果相同，控制内容垂直居中，Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd效果相同，控制内容在底部。  |
@@ -188,7 +188,7 @@ getTextContentLineCount(): number
 | number| 已编辑文本内容行数。 |
 ### getCaretOffset<sup>11+</sup>
 
-getCaretOffset(): [CaretOffset](#caretoffset11对象说明)
+getCaretOffset(): CaretOffset
 
 返回当前光标所在位置信息。
 
@@ -196,14 +196,14 @@ getCaretOffset(): [CaretOffset](#caretoffset11对象说明)
 
 | 类型                      | 说明               |
 | ----------------------- | ---------------- |
-| [CaretOffset](#caretoffset11对象说明) | 光标相对输入框的位置 |
+| [CaretOffset](#caretoffset11对象说明) | 光标相对输入框的位置。 |
 
 ## CaretOffset<sup>11+ </sup>对象说明
 | 参数名   | 类型   | 描述              |
 | ----- | ------ | ----------------- |
-| index | number | 光标所在位置的索引值|
-| x | number | 光标相对输入框的x坐标位值|
-| y | number | 光标相对输入框的y坐标位值|
+| index | number | 光标所在位置的索引值。 |
+| x | number | 光标相对输入框的x坐标位值。 |
+| y | number | 光标相对输入框的y坐标位值。 |
 
 ## 示例
 
@@ -215,6 +215,7 @@ getCaretOffset(): [CaretOffset](#caretoffset11对象说明)
 @Component
 struct TextInputExample {
   @State text: string = ''
+  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
   controller: TextInputController = new TextInputController()
 
   build() {
@@ -240,6 +241,7 @@ struct TextInputExample {
         .onClick(() => {
           // 将光标移动至第一个字符后
           this.controller.caretPosition(1)
+          this.positionInfo = this.controller.getCaretOffset()
         })
       // 密码输入框
       TextInput({ placeholder: 'input your password...' })
