@@ -14,9 +14,11 @@ OpenHarmony为开发者提供了丰富的组件布局能力，当开发者在布
 开发者可以通过position属性来固定组件的位置。以父组件的左上角为坐标原点，添加了position属性的子组件左上角固定在参数x、y指定的坐标点。x，y均延坐标箭头方向递增。
 
 参考坐标图如下（以x>0，y>0为例）：
+
 ![position](figures/position.png)
 
-**示例**
+**示例：**
+
 本例在一个Row组件中添加一个Text子组件，如果希望Text组件相对于Row组件左上角向右下方偏移到（30,20）的位置，使用position实现的代码如下：
 ```js
 Row() {
@@ -27,6 +29,7 @@ Row() {
 ......
 ```
 示例图如下：
+
 ![position-sample](figures/position-sample.PNG)
 
 ## markAnchor
@@ -44,7 +47,9 @@ Row() {
   以父组件中子组件顶部对齐为例，参考坐标图如下（以x>0，y>0为例）：
 
     ![markAnchor](figures/markAnchor.png)
+
   **示例:**
+
   本例在一个Column组件中添加一个Text子组件，由于Column组件默认子组件顶部对齐，所以坐标原点为Column组件的左上角。如果希望Text组件相对于Column组件左上角向左上方偏移到（25,25）的位置，使用markAnchor实现的代码如下：
 
     ```js
@@ -64,9 +69,11 @@ Row() {
     > 由于position的坐标系不受父组件中子组件的对齐方式影响，所以当和position属性一起使用时，markAnchor的坐标系也不受父组件中子组件的对齐方式影响。
 
     其坐标图如下（以x>0，y>0为例）：
+
     ![markAnchor-with-position](figures/markAnchor-with-position.png)
     
     **示例:**
+
     本例在一个Stack组件中添加一个Text子组件，同时给Text组件添加position属性和markAnchor属性。Text组件会先采用position的坐标系，以Stack组件左上角为原点，移动到（50,50）的位置，再以（50,50）为坐标原点，采用markAnchor的坐标系移动到（25,25）的位置，代码如下：
     ```js
     Stack({ alignContent: Alignment.TopStart }) {
@@ -78,6 +85,7 @@ Row() {
     ......
     ```
     示例图如下：
+
     ![markAnchor-with-position-sample](figures/markAnchor-with-position-sample.PNG)
 
 ## offset
@@ -90,9 +98,11 @@ Row() {
 开发者可以通过offset属性设置组件相对于前一个组件的偏移量。添加了offset属性的组件以前一个组件的右上角为坐标原点进行偏移，其左上角偏移到（x，y）坐标点。x，y均延坐标箭头方向递增。
 
 参考坐标图如下（以x>0，y>0为例）：
+
 ![offset](figures/offset.png)
 
-**示例**
+**示例：**
+
 本例在一个Row组件中添加A、B两个Text子组件，如果希望B相对于A的左上角偏移到（30,0）的位置，使用offset实现的代码如下：
 ```js
 Row() {
@@ -106,6 +116,7 @@ Row() {
 ```
 
 示例图如下：
+
 ![offset-sample](figures/offset-sample.PNG)
 
 ## 参考
