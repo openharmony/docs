@@ -29,7 +29,7 @@ init.cfg文件内容不符合JSON语法格式。
 
 **可能原因**
 
-init服务中定义“importance”的属性（详见[参数说明](../subsystems/subsys-boot-init-service.md#参数说明)描述）。
+init服务中定义“importance”的属性（详见[参数说明](../subsystems/subsys-boot-init-service.md#服务进程配置文件说明)描述）。
 
 - 属性值为0时，表示当前服务进程退出，设备不重启。
 
