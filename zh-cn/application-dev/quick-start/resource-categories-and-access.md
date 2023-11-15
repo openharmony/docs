@@ -4,7 +4,7 @@
 
 - 应用资源：借助资源文件能力，开发者在应用中自定义资源，自行管理这些资源在不同的设备或配置中的表现。
 
-- 系统资源：开发者直接使用系统预置的资源定义（即[分层参数](../../../design/ux-design/design-resources.md)，同一资源ID在设备类型、深浅色等不同配置下有不同的取值）。
+- 系统资源：开发者直接使用系统预置的资源定义（即[分层参数](../../design/ux-design/design-resources.md)，同一资源ID在设备类型、深浅色等不同配置下有不同的取值）。
 
 ## 资源分类
 
@@ -230,9 +230,9 @@ plural.json文件的内容如下：
 
 ### 应用资源
 
-- 对于应用资源，在工程中，通过```"$r('app.type.name')"```形式引用。其中，app为应用内resources目录中定义的资源；type为资源类型或资源的存放位置，取值包含“color”、“float”、“string”、“plural”、“media”；name为资源命名，由开发者定义资源时确定。// 是上面图中的filename吗
+- 对于应用资源，在工程中，通过```"$r('app.type.name')"```形式引用。其中，app为应用内resources目录中定义的资源；type为资源类型或资源的存放位置，取值包含“color”、“float”、“string”、“plural”、“media”；name为资源命名，由开发者定义资源时确定。
 
-- 对于rawfile目录资源，通过```"$rawfile('filename')"```形式引用。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以以"/"开头。// 补充举例
+- 对于rawfile目录资源，通过```"$rawfile('filename')"```形式引用。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以以"/"开头。
 
 - 对于rawfile目录的descriptor，可通过资源管理的[getRawFd](../reference/apis/js-apis-resource-manager.md#getrawfd9)接口引用，其返回值descriptor.fd为hap包的fd。此时，访问rawfile文件需要结合{fd, offset, length}一起使用。
 
@@ -240,7 +240,7 @@ plural.json文件的内容如下：
 > 
 > 资源描述符不能拼接使用，仅支持普通字符串如`'app.type.name'`。
 >
-> `$r`返回值为Resource对象，可通过[getStringValue](../reference/apis/js-apis-resource-manager.md#getstringvalue9) 方法获取对应的字符串。//这个说明是针对那种情况的
+> `$r`返回值为Resource对象，可通过[getStringValue](../reference/apis/js-apis-resource-manager.md#getstringvalue9) 方法获取对应的字符串。
 
 [资源组目录](#资源组目录)下的“资源文件示例”显示了.json文件内容，包含color.json文件、string.json文件和plural.json文件，访问应用资源时需先了解.json文件的使用规范。<br/>资源的具体使用方法如下：
 
