@@ -1,7 +1,7 @@
 # ForEach：循环渲染
 
 
-ForEach接口基于数组类型数据来进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在ForEach父容器组件中的子组件。例如，ListItem组件要求ForEach的父容器组件必须为[List组件](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V4/arkts-layout-development-create-list-0000001630265229-V4?catalogVersion=V4)。
+ForEach接口基于数组类型数据来进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在ForEach父容器组件中的子组件。例如，ListItem组件要求ForEach的父容器组件必须为[List组件](../reference/arkui-ts/ts-container-list.md)。
 
 > **说明：**
 >
