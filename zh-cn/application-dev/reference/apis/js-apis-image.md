@@ -2467,7 +2467,7 @@ imagePackerApi.release().then(()=>{
 
 packToFile(source: ImageSource, fd: number, option: PackingOption, callback: AsyncCallback\<void>): void
 
-按给定格式编码进文件，使用callback形式返回结果。
+指定打包参数，将ImageSource图片源编码后直接打包进文件。使用callback形式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -2485,22 +2485,22 @@ packToFile(source: ImageSource, fd: number, option: PackingOption, callback: Asy
 ```ts
 import {BusinessError} from '@ohos.base'
 import fs from '@ohos.file.fs'
-import featureAbility from '@ohos.ability.featureAbility'
 
-const context : _Context = featureAbility.getContext();
-const path : string = context.getCacheDir() + "/test.png";
+const context : Context = getContext(this);
+const path : string = context.filesDir + "/test.png";
 const imageSourceApi : image.ImageSource = image.createImageSource(path);
 let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 };
-const filePath : string = context.getCacheDir() + "/image_source.jpg";
+const filePath : string = context.cacheDir + "/image_source.jpg";
 let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err : BusinessError => {})
+const imagePackerApi : image.ImagePacker = image.createImagePacker();
+imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err : BusinessError) => {})
 ```
 
 ### packToFile<sup>11+</sup>
 
 packToFile (source: ImageSource, fd: number, option: PackingOption): Promise\<void>
 
-按给定格式编码进文件，使用promise形式返回结果。
+指定打包参数，将ImageSource图片源编码后直接打包进文件。使用Promise形式返回结果。
 
 **参数：**
 
@@ -2521,14 +2521,14 @@ packToFile (source: ImageSource, fd: number, option: PackingOption): Promise\<vo
 ```ts
 import {BusinessError} from '@ohos.base'
 import fs from '@ohos.file.fs'
-import featureAbility from '@ohos.ability.featureAbility'
 
-const context : _Context = featureAbility.getContext();
-const path : string = context.getCacheDir() + "/test.png";
+const context : Context = getContext(this);
+const path : string = context.filesDir + "/test.png";
 const imageSourceApi : image.ImageSource = image.createImageSource(path);
 let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 };
-const filePath : string = context.getCacheDir() + "/image_source.jpg";
+const filePath : string = context.cacheDir + "/image_source.jpg";
 let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+const imagePackerApi : image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(()=>{
     console.log('Succeeded in packToFile.');
 }).catch((error : BusinessError)=>{ 
@@ -2540,7 +2540,7 @@ imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(()=>{
 
 packToFile (source: Pixelmap, fd: number, option: PackingOption,  callback: AsyncCallback\<void>): void;
 
-按给定格式编码进文件，使用callback形式返回结果。
+指定打包参数，将PixelMap图片源编码后直接打包进文件。使用callback形式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -2558,16 +2558,16 @@ packToFile (source: Pixelmap, fd: number, option: PackingOption,  callback: Asyn
 ```ts
 import {BusinessError} from '@ohos.base'
 import fs from '@ohos.file.fs'
-import featureAbility from '@ohos.ability.featureAbility'
 
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
     let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 }
-    const context : _Context = featureAbility.getContext();
-	const path : string = context.getCacheDir() + "pixel_map.jpg";
+    const context : Context = getContext(this);
+	const path : string = context.cacheDir + "/pixel_map.jpg";
     let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    const imagePackerApi : image.ImagePacker = image.createImagePacker();
     imagePackerApi.packToFile(pixelmap, file.fd, packOpts, (err : BusinessError) => {})
 })
 ```
@@ -2576,7 +2576,7 @@ image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
 
 packToFile (source: Pixelmap, fd: number, option: PackingOption): Promise\<void>
 
-按给定格式编码进文件，使用promise形式返回结果。
+指定打包参数，将PixelMap图片源编码后直接打包进文件。使用Promise形式返回结果。
 
 **参数：**
 
@@ -2597,16 +2597,16 @@ packToFile (source: Pixelmap, fd: number, option: PackingOption): Promise\<void>
 ```ts
 import {BusinessError} from '@ohos.base'
 import fs from '@ohos.file.fs'
-import featureAbility from '@ohos.ability.featureAbility'
 
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
     let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 }
-    const context : _Context = featureAbility.getContext();
-	const path : string = context.getCacheDir() + "pixel_map.jpg";
+    const context : Context = getContext(this);
+    const path : string = context.cacheDir + "/pixel_map.jpg";
     let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    const imagePackerApi : image.ImagePacker = image.createImagePacker();
     imagePackerApi.packToFile(pixelmap, file.fd, packOpts)
         .then(() => {
             console.log('Succeeded in packToFile.');
