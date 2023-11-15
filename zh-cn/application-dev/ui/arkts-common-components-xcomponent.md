@@ -29,7 +29,7 @@ XComponent设置为surface类型时，通常用于EGL/OpenGLES和媒体数据写
 
 ### native侧代码开发要点
 
-OpenHarmony的应用如果要通过js来桥接native，一般需要使用napi接口来处理js交互，XComponent同样不例外，具体使用请参考[Native API在应用工程中的使用指导](../napi/napi-guidelines.md)。
+应用如果要通过js来桥接native，一般需要使用napi接口来处理js交互，XComponent同样不例外，具体使用请参考[Native API在应用工程中的使用指导](../napi/napi-guidelines.md)。
 
 Native侧处理js逻辑的文件类型为so：
 
@@ -221,7 +221,7 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
 
 XComponent所持有的NativeWindow符合“生产者-消费者”模型。
 
-OpenHarmony上Camera、AVPlayer等符合生产者设计的部件都可以将数据写入XComponent持有的NativeWindow并通过XComponent显示。
+Camera、AVPlayer等符合生产者设计的部件都可以将数据写入XComponent持有的NativeWindow并通过XComponent显示。
 
 ![图片1](figures/图片1.png)
 
