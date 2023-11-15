@@ -13,6 +13,7 @@ import xml from '@ohos.xml';
 
 ## XmlSerializer
 
+**XmlSerializer** provides APIs to generate an XML file.
 
 ### constructor
 
@@ -364,6 +365,7 @@ console.log(view1) // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
 
 ## XmlPullParser
 
+Implements XML file parsing.
 
 ### constructor
 

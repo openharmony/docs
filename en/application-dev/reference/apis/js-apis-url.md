@@ -11,6 +11,8 @@ import Url from '@ohos.url'
 ```
 ## URLParams<sup>9+</sup>
 
+Defines APIs for handling URL query strings.
+
 ### constructor<sup>9+</sup>
 
 constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLParams)
@@ -367,6 +369,8 @@ console.log(params.toString());
 
 ## URL
 
+Provides APIs for parsing, constructing, and encoding URL strings.
+
 ### Attributes
 
 **System capability**: SystemCapability.Utils.Lang
@@ -505,6 +509,8 @@ let result = url.toJSON();
 ```
 
 ## URLSearchParams<sup>(deprecated)</sup>
+
+Defines APIs for handling URL query strings. This class is deprecated since API version 9. You are advised to use [URLParams](#urlparams9) instead.
 
 ### constructor<sup>(deprecated)</sup>
 
