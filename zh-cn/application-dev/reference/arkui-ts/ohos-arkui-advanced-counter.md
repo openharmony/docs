@@ -104,7 +104,7 @@ NumberStyleOptions定义Number style（列表型Counter和紧凑型Counter）的
 
 | 名称            | 类型                                                         | 必填 | 默认值 | 说明                                          |
 | --------------- | ------------------------------------------------------------ | ---- | ------ | --------------------------------------------- |
-| label           | [ResourceStr](https://gitee.com/openharmony/docs/blob/c23a0074a8941ce5329069079e1c96d5fc07cca8/zh-cn/application-dev/reference/arkui-ts/ts-types.md#resourcestr) | 否   | -      | 设置Counter的说明文本。                       |
+| label           | [ResourceStr](ts-types.md#resourcestr) | 否   | -      | 设置Counter的说明文本。                       |
 | onFocusIncrease | () =>void                                                    | 否   | -      | 当前Counter组件增加按钮获取焦点时触发的回调。 |
 | onFocusDecrease | () =>void                                                    | 否   | -      | 当前Counter组件减小按钮获取焦点时触发的回调。 |
 | onBlurIncrease  | () =>void                                                    | 否   | -      | 当前Counter组件增加按钮失去焦点时触发的回调。 |
