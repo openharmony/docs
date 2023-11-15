@@ -263,7 +263,7 @@ You can also obtain the database from the daily dayu200-db build.
 
 Operation primitives for system parameters
 
-![System parameter operation primitives](figure/system-parameter-operation-primitives.png)
+![System parameter operation primitives](figures/system-parameter-operation-primitives.png)
 
 Description of operation primitives
 
