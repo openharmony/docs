@@ -93,10 +93,10 @@ Sets the visible status of the mouse pointer. This API returns the result synchr
 
 ```js
 try {
-  pointer.setPointerVisibleSync(false)
-  console.log(`Set pointer visible success`)
+  pointer.setPointerVisibleSync(false);
+  console.log(`Set pointer visible success`);
 } catch (error) {
-  console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
+  console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -118,7 +118,7 @@ Checks the visible status of the mouse pointer. This API uses an asynchronous ca
 
 ```js
 try {
-  pointer.isPointerVisible((error: Error, visible: Boolean) => {
+  pointer.isPointerVisible((error: Error, visible: boolean) => {
     if (error) {
       console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -148,7 +148,7 @@ Checks the visible status of the mouse pointer. This API uses a promise to retur
 
 ```js
 try {
-  pointer.isPointerVisible().then((visible: Boolean) => {
+  pointer.isPointerVisible().then((visible: boolean) => {
     console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
   });
 } catch (error) {
@@ -174,10 +174,10 @@ Obtains the visible status of the mouse pointer. This API returns the result syn
 
 ```js
 try {
-  let visible: boolean = pointer.isPointerVisibleSync()
-  console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`)
+  let visible: boolean = pointer.isPointerVisibleSync();
+  console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
 } catch (error) {
-  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
+  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -295,7 +295,7 @@ Obtains the moving speed of the mouse pointer. This API uses an asynchronous cal
 
 ```js
 try {
-  pointer.getPointerSpeed((error: Error, speed: Number) => {
+  pointer.getPointerSpeed((error: Error, speed: number) => {
     if (error) {
       console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -449,7 +449,7 @@ Obtains the status of the mouse hover scroll switch. This API uses an asynchrono
 
 ```js
 try {
-  pointer.getHoverScrollState((error: Error, state: Boolean) => {
+  pointer.getHoverScrollState((error: Error, state: boolean) => {
     console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -477,7 +477,7 @@ Obtains the status of the mouse hover scroll switch. This API uses a promise to 
 
 ```js
 try {
-  pointer.getHoverScrollState().then((state: Boolean) => {
+  pointer.getHoverScrollState().then((state: boolean) => {
     console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -706,7 +706,7 @@ Obtains the number of mouse scroll rows. This API uses an asynchronous callback 
 
 ```js
 try {
-  pointer.getMouseScrollRows((error: Error, rows: Number) => {
+  pointer.getMouseScrollRows((error: Error, rows: number) => {
     console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
   });
 } catch (error) {
@@ -734,7 +734,7 @@ Obtains the moving speed of the mouse pointer. This API uses a promise to return
 
 ```js
 try {
-  pointer.getMouseScrollRows().then((rows: Number) => {
+  pointer.getMouseScrollRows().then((rows: number) => {
     console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
   });
 } catch (error) {
@@ -855,10 +855,10 @@ Obtains the mouse pointer style. This API returns the result synchronously.
 
 ```js
 try {
-  let style: pointer.PointerStyle = pointer.getPointerStyleSync(-1)
-  console.log(`Get pointer style success, style: ${JSON.stringify(style)}`)
+  let style: pointer.PointerStyle = pointer.getPointerStyleSync(-1);
+  console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
 } catch (error) {
-  console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
+  console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1124,7 +1124,7 @@ Obtains the scroll switch status of the touchpad. This API uses an asynchronous 
 
 ```js
 try {
-  pointer.getTouchpadScrollSwitch((error: Error, state: Boolean) => {
+  pointer.getTouchpadScrollSwitch((error: Error, state: boolean) => {
     console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1247,7 +1247,7 @@ Obtains the scroll direction of the touchpad. This API uses an asynchronous call
 
 ```js
 try {
-  pointer.getTouchpadScrollDirection ((error: Error, state: Boolean) => {
+  pointer.getTouchpadScrollDirection ((error: Error, state: boolean) => {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1275,7 +1275,7 @@ Obtains the scroll direction of the touchpad. This API uses a promise to return 
 
 ```js
 try {
-  pointer.getTouchpadScrollDirection().then((state: Boolean) => {
+  pointer.getTouchpadScrollDirection().then((state: boolean) => {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1370,7 +1370,7 @@ Obtains the tap switch status of the touchpad. This API uses an asynchronous cal
 
 ```js
 try {
-  pointer.getTouchpadTapSwitch((error: Error, state: Boolean) => {
+  pointer.getTouchpadTapSwitch((error: Error, state: boolean) => {
     console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1398,7 +1398,7 @@ Obtains the tap switch status of the touchpad. This API uses a promise to return
 
 ```js
 try {
-  pointer.getTouchpadTapSwitch().then((state: Boolean) => {
+  pointer.getTouchpadTapSwitch().then((state: boolean) => {
     console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1493,7 +1493,7 @@ Obtains the mouse pointer moving speed of the touchpad. This API uses an asynchr
 
 ```js
 try {
-  pointer.getTouchpadPointerSpeed((error: Error, speed: Number) => {
+  pointer.getTouchpadPointerSpeed((error: Error, speed: number) => {
     console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
@@ -1521,7 +1521,7 @@ Obtains the mouse pointer moving speed of the touchpad. This API uses a promise 
 
 ```js
 try {
-  pointer.getTouchpadPointerSpeed().then((speed: Number) => {
+  pointer.getTouchpadPointerSpeed().then((speed: number) => {
     console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
@@ -1616,7 +1616,7 @@ Obtains the pinch switch status of the touchpad. This API uses an asynchronous c
 
 ```js
 try {
-  pointer.getTouchpadPinchSwitch((error: Error, state: Boolean) => {
+  pointer.getTouchpadPinchSwitch((error: Error, state: boolean) => {
     console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1644,7 +1644,7 @@ Obtains the pinch switch status of the touchpad. This API uses a promise to retu
 
 ```js
 try {
-  pointer.getTouchpadPinchSwitch().then((state: Boolean) => {
+  pointer.getTouchpadPinchSwitch().then((state: boolean) => {
     console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1739,7 +1739,7 @@ Obtains the multi-finger swipe switch status of the touchpad. This API uses an a
 
 ```js
 try {
-  pointer.getTouchpadSwipeSwitch((error: Error, state: Boolean) => {
+  pointer.getTouchpadSwipeSwitch((error: Error, state: boolean) => {
     console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -1767,7 +1767,7 @@ Obtains the multi-finger swipe switch status of the touchpad. This API uses a pr
 
 ```js
 try {
-  pointer.getTouchpadSwipeSwitch().then((state: Boolean) => {
+  pointer.getTouchpadSwipeSwitch().then((state: boolean) => {
     console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
@@ -2024,7 +2024,7 @@ Obtains the pointer size. This API uses an asynchronous callback to return the r
 
 ```js
 try {
-  pointer.getPointerSize((error: Error, size: Number) => {
+  pointer.getPointerSize((error: Error, size: number) => {
     console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
   });
 } catch (error) {
@@ -2052,7 +2052,7 @@ Obtains the pointer size. This API uses a promise to return the result.
 
 ```js
 try {
-  pointer.getPointerSize().then((size: Number) => {
+  pointer.getPointerSize().then((size: number) => {
     console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
   });
 } catch (error) {
@@ -2201,7 +2201,7 @@ Obtains the pointer color. This API uses an asynchronous callback to return the 
 
 ```js
 try {
-  pointer.getPointerColor((error: Error, color: Number) => {
+  pointer.getPointerColor((error: Error, color: number) => {
     console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
   });
 } catch (error) {
@@ -2229,7 +2229,7 @@ Obtains the pointer color. This API uses a promise to return the result.
 
 ```js
 try {
-  pointer.getPointerColor().then((color: Number) => {
+  pointer.getPointerColor().then((color: number) => {
     console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
   });
 } catch (error) {

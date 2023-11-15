@@ -853,8 +853,10 @@ Recognizes entities in text.
 **Example**
   ```ts
   let entityRecognizer: I18n.EntityRecognizer = new I18n.EntityRecognizer("zh-CN");
-  let text: string = " If you have any questions, call us by phone 12345678";
-  let result: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text); // result[0].type = "phone_number", result[0].begin = 8, result[0].end = 19
+  let text1: string = " If you have any questions, call us by phone 12345678";
+  let result1: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text1); // result[0].type = "phone_number", result[0].begin = 8, result[0].end = 19
+  let text2: string = "Let's have dinner on December 1, 2023."
+  let result2: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text2); // result[0].type = "date", result[0].begin = 2, result[0].end = 12
   ```
 
 ## EntityInfoItem<sup>11+</sup>
@@ -865,7 +867,7 @@ Defines an entity information object.
 
 | Name | Type  | Readable  | Writable  | Description               |
 | ---- | ---- | ---- | ---- | ----------------- |
-| type | string | Yes   | Yes   | Entity type. Currently, only **phone_number** is supported.|
+| type | string | Yes   | Yes   | Entity type, which can be **phone_number** or **date**.|
 | begin | number | Yes   | Yes   | Start position of an entity.|
 | end | number | Yes   | Yes   | End position of an entity.|
 
@@ -2775,14 +2777,17 @@ Determines whether the specified date is a holiday.
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
     let isHoliday = holidayManager.isHoliday();
-    console.log(isHoliday);
+    console.log(isHoliday.toString());
     let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25));
-    console.log(isHoliday2);
+    console.log(isHoliday2.toString());
   } catch(error) {
-    console.error(`call holidayManager.isHoliday failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call holidayManager.isHoliday failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2817,6 +2822,8 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 
 **Example**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
     let holidayInfoItemArray = holidayManager.getHolidayInfoItemArray(2023);
@@ -2824,7 +2831,8 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
         console.log(JSON.stringify(holidayInfoItemArray[i]));
     }
   } catch(error) {
-    console.error(`call holidayManager.getHolidayInfoItemArray failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call holidayManager.getHolidayInfoItemArray failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
