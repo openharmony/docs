@@ -5,6 +5,7 @@
 
 ## 效果呈现
 本例最终效果图如下。
+
 效果说明：点击头像处的相机，拉起用户图库，选择要上传的图片，点击上传，头像随即更新为上传后的图片。
 
 ![photo-pixelmap-transfer](figures/photo-pixelmap-transfer.gif)
