@@ -30,6 +30,8 @@
 - [像素单位转换](pixel-format-transfer.md)
 - [如何在UIAbility间进行跳转](jump-between-UIAbilities.md)
 - [转场动画](transition-animation.md)
+- [如何为组件的不同触摸区域添加不同交互动作](different-touch-target-event.md)
+- [组件布局中相对定位的分类和使用](relative-position.md)
 
 ### 装饰器
 - [控制页面刷新范围](overall-and-part-refresh.md)
@@ -37,6 +39,9 @@
 
 ### 网络管理
 - [如何请求并加载网络图片](how-to-load-images-from-internet.md)
+
+### 文件管理
+- [获取用户图库中的图片并显示在Image组件中](photo-pixelmap-transfer.md)
 
 ### 窗口管理
 - [如何实现沉浸模式](immersion-mode.md)
@@ -53,6 +58,7 @@
 
 ### 一次开发，多端部署
 - [Navigation如何实现多场景UI适配](multi-device-app-dev.md)
+- [如何用GridRow和GridCol组件开发自适应布局](adaptive-ui-development.md)
 
 
 
