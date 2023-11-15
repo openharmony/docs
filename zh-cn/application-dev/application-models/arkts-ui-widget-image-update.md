@@ -7,7 +7,7 @@
 1. 下载网络图片需要使用到网络能力，需要申请ohos.permission.INTERNET权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md)。
 
 2. 在EntryFormAbility中的onAddForm生命周期回调中实现本地文件的刷新。
-   
+
    ```ts
    import formBindingData from '@ohos.app.form.formBindingData';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
@@ -15,7 +15,7 @@
    import Want from '@ohos.app.ability.Want';
    import Base from '@ohos.base';
    import fileFs from '@ohos.file.fs';
-   
+
    export default class EntryFormAbility extends FormExtensionAbility {
      ...
     // 在添加卡片时，打开一个本地图片并将图片内容传递给卡片页面显示
@@ -44,13 +44,13 @@
       // 将fd封装在formData中并返回至卡片页面
       return formBindingData.createFormBindingData(formData);
     }
-   
+
      ...
    }
    ```
 
 3. 在EntryFormAbility中的onFormEvent生命周期回调中实现网络文件的刷新。
-   
+
    ```ts
     import formBindingData from '@ohos.app.form.formBindingData';
     import formProvider from '@ohos.app.form.formProvider';
@@ -171,5 +171,7 @@
 
 > **说明：**
 > - Image组件通过入参(**memory://fileName**)中的**memory://**标识来进行远端内存图片显示，其中**fileName**需要和EntryFormAbility传递对象(**'formImages': {key: fd})**中的**key**相对应。
-> 
+>
 > - Image组件通过传入的参数是否有变化来决定是否刷新图片，因此EntryFormAbility每次传递过来的**imgName**都需要不同，连续传递两个相同的**imgName**时，图片不会刷新。
+>
+> - 文件使用完成后必须关闭，否则会出现内存泄漏问题。系统不会自动关闭文件，开发者可以使用[fs.closeSync](../reference/apis/js-apis-file-fs.md#fsclosesync)来关闭文件。
