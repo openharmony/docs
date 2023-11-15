@@ -85,7 +85,7 @@
       - [DeviceInfo适配说明](subsys-boot-init-deviceInfo.md)
     - [appspawn应用孵化组件](subsys-boot-appspawn.md)
     - [bootstrap服务启动组件](subsys-boot-bootstrap.md)
-    - [常见问题](subsys-boot-faqs.md)
+    - [init常见问题指导](subsys-boot-init-faqs.md)
     - [参考](subsys-boot-ref.md)
 - DFX
     - [DFX概述](subsys-dfx-overview.md)
