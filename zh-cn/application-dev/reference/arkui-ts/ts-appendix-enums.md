@@ -451,6 +451,14 @@
 | LongPress  | 通过长按触发菜单弹出。   |
 | RightClick | 通过鼠标右键触发菜单弹出。 |
 
+## RichEditorResponseType<sup>11+</sup>
+
+| 名称         | 描述            |
+| ---------- | ------------- |
+| LONG_PRESS  | 通过长按触发菜单弹出。   |
+| RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
+| SELECT | 通过鼠标选中触发菜单弹出。 |
+
 ## HoverEffect<sup>8+</sup>
 
 | 名称        | 描述             |

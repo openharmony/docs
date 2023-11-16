@@ -177,6 +177,7 @@
   - [@ohos.arkui.advanced.Filter (多条件筛选)](ts-composite-components-filter.md)
   - [@ohos.arkui.advanced.ProgressButton (下载按钮)](ts-composite-components-progressbutton.md)
   - [@ohos.arkui.advanced.SegmentButton (分段按钮)](ohos-arkui-advanced-segmentbutton.md)
+  - [@ohos.arkui.advanced.SelectionMenu(文本选择菜单)](ts-composite-components-selectionmenu.md)
   - [@ohos.arkui.advanced.SelectTitleBar (下拉菜单标题栏)](ts-composite-components-selecttitlebar.md)
   - [@ohos.arkui.advanced.SplitLayout (上下结构布局)](ts-composite-components-splitlayout.md)
   - [@ohos.arkui.advanced.SubHeader (子标题)](ts-composite-components-subheader.md)

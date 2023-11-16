@@ -35,10 +35,9 @@ RichEditor(value: RichEditorOptions)
 
 | 名称                      | 参数类型                                                     | 描述                                                         |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘。 |
-| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType:TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}|
-| copyOptions | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice。<br>**说明：** <br/>设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按组件内容，会弹出文本默认选择菜单，可选中内容并进行复制、全选操作。<br/>设置copyOptions为CopyOptions.None，复制、剪切功能不生效。 |
-
+| customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘。 | 
+| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp;\| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType:TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}|
+| copyOptions | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice <br/>**说明：** <br/>设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按组件内容，会弹出文本默认选择菜单，可选中内容并进行复制、全选操作。<br/>设置copyOptions为CopyOptions.None，复制、剪切功能不生效。  |
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -326,6 +325,45 @@ getParagraphs(value?: RichEditorRange): Array<RichEditorParagraphResult>;
 closeSelectionMenu(): void
 
 关闭自定义选择菜单或系统默认选择菜单。
+
+### setSelection<sup>11+</sup>
+
+setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number)
+
+支持设置文本选中，选中部分背板高亮。
+
+selectionStart和selectionEnd均为-1时表示全选。
+
+接口调用前有带手柄菜单弹出时则调用后不主动关闭菜单，且调整菜单位置。
+
+接口调用前有不带手柄菜单弹出时则调用后不主动关闭菜单，且保持菜单原来位置。
+
+接口调用前无菜单弹出，则调用后也无菜单弹出。
+
+未获焦时调用该接口不产生选中效果。
+
+使用[示例](ts-composite-components-selectionmenu.md#示例)。
+
+**参数：**
+
+| 参数名 | 参数类型                            | 必填 | 参数描述         |
+| ------ | ----------------------------------- | ---- | ---------------- |
+| selectionStart  | number | 是   | 选中开始位置。 |
+| selectionEnd  | number | 是   | 选中结束位置。 |
+
+### getSelection<sup>11+</sup>
+
+getSelection(): RichEditorSelection
+
+获取选中文本内容。
+
+使用[示例](ts-composite-components-selectionmenu.md#示例)。
+
+**返回值：**
+
+| 类型                      | 说明               |
+| ----------------------- | ---------------- |
+| [RichEditorSelection](#richeditorselection) | 选中内容信息。 |
 
 ## RichEditorSelection
 
