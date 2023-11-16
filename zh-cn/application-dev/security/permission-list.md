@@ -3405,3 +3405,15 @@
 **ACL使能**: TRUE
 
 **起始版本**: 11
+
+## ohos.permission.STORE_PERSISTENT_DATA
+
+允许应用存储持久化的数据，该数据直到设备恢复出厂设置或重装系统才会被清除。
+
+**授权级别**: normal
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
+
+**起始版本**: 11
