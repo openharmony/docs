@@ -5620,6 +5620,8 @@ IP多媒体系统调用模式。
 | EVENT_INVALID_FDN_NUMBER              | 2    | 无效的FDN号事件 |
 | EVENT_HOLD_CALL_FAILED<sup>11+</sup>  | 3    | 保持通话失败事件 |
 | EVENT_SWAP_CALL_FAILED<sup>11+</sup>  | 4    | 保持当前通话并接听等待中电话失败事件 |
+| EVENT_COMBINE_CALL_FAILED<sup>11+</sup>  | 5 | 合并通话失败 |
+| EVENT_SPLIT_CALL_FAILED<sup>11+</sup> | 6    | 分离通话失败 |
 
 ## DialScene<sup>8+</sup>
 
