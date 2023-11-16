@@ -95,6 +95,7 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 13200002  | the screenlock management service is abnormal.         |
+| 13200003  | illegal use.         |
 
 **示例：** 
 
@@ -109,6 +110,10 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
     console.info(`Succeeded in unlocking the screen. result: ${data}`);
   });
   ```
+
+> **说明：**
+>
+> 在 api11 中 增加错误码`13200003 illegal use` 。
 
 ## screenLock.unlock<sup>9+</sup>
 
@@ -133,6 +138,7 @@ unlock(): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 13200002  | the screenlock management service is abnormal.         |
+| 13200003  | illegal use.         |
 
 **示例：** 
 
@@ -145,6 +151,10 @@ unlock(): Promise&lt;boolean&gt;
     console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
   });
   ```
+
+> **说明：**
+>
+> 在 api11 中 增加错误码`13200003 illegal use` 。
 
 ## screenLock.lock<sup>9+</sup>
 
