@@ -95,8 +95,8 @@
        url: 'fd://35',
        rotation: 90 // 90°为默认竖屏显示角度，如果由于设备原因或应用期望以其他方式显示等原因，请根据实际情况调整该参数
      };
-  ```
-  ```c++
+   ```
+   ```c++
     // 获取相机设备支持的输出流能力
     ret = OH_CameraManager_GetSupportedCameraOutputCapability(cameraManager, &cameras[cameraDeviceIndex],
                                                                 &cameraOutputCapability);

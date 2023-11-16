@@ -71,7 +71,7 @@
      }
      return videoSurfaceId;
    }
-  ```
+   ```
 3. 在CMake脚本中链接Camera NDK动态库。
 
    ```txt

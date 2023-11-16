@@ -26,7 +26,13 @@
     #include "multimedia/camera_framework/camera_manager.h"
    ```
 
-2. 调用cameraManager类中的OH_CameraManager_CreateCaptureSession方法创建一个会话。
+2. 在CMake脚本中链接Camera NDK动态库。
+
+   ```txt
+    target_link_libraries(PUBLIC libohcamera.so)
+   ```
+
+3. 调用cameraManager类中的OH_CameraManager_CreateCaptureSession方法创建一个会话。
      
    ```c++
     Camera_CaptureSession* captureSession = nullptr;
@@ -36,7 +42,7 @@
     }
    ```
 
-3. 调用captureSession类中的OH_CaptureSession_BeginConfig方法配置会话。
+4. 调用captureSession类中的OH_CaptureSession_BeginConfig方法配置会话。
      
    ```c++
     ret = OH_CaptureSession_BeginConfig(captureSession);
@@ -45,7 +51,7 @@
     }
    ```
 
-4. 使能。向会话中添加相机的输入流和输出流，调用OH_CaptureSession_AddInput添加相机的输入流；调用OH_CaptureSession_AddPreviewOutput/OH_CaptureSession_AddPhotoOutput添加相机的输出流。以下示例代码以添加预览流previewOutput和拍照流photoOutput为例，即当前模式支持拍照和预览。
+5. 使能。向会话中添加相机的输入流和输出流，调用OH_CaptureSession_AddInput添加相机的输入流；调用OH_CaptureSession_AddPreviewOutput/OH_CaptureSession_AddPhotoOutput添加相机的输出流。以下示例代码以添加预览流previewOutput和拍照流photoOutput为例，即当前模式支持拍照和预览。
 
      调用captureSession类中的commitConfig()和start()方法提交相关配置，并启动会话。
      
@@ -81,7 +87,7 @@
     }
    ```
 
-5. 会话控制。调用captureSession类中的stop()方法可以停止当前会话。调用removeOutput()和addOutput()方法可以完成会话切换控制。以下示例代码以移除拍照流photoOutput，添加视频流videoOutput为例，完成了拍照到录像的切换。
+6. 会话控制。调用captureSession类中的stop()方法可以停止当前会话。调用removeOutput()和addOutput()方法可以完成会话切换控制。以下示例代码以移除拍照流photoOutput，添加视频流videoOutput为例，完成了拍照到录像的切换。
      
    ```c++
     ret = OH_CaptureSession_Stop(captureSession);

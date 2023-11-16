@@ -54,7 +54,7 @@
     }
    ```
 
-5. 使能。通过start()方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode]。
+5. 使能。当session完成CommitConfig后通过调用start()方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode]。
      
    ```c++
     ret = OH_PreviewOutput_Start(previewOutput);
@@ -63,6 +63,14 @@
     }
    ```
 
+6. 通过stop()方法停止预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode]。
+     
+   ```c++
+    ret = OH_PreviewOutput_Stop(previewOutput);
+    if (ret != CAMERA_OK) {
+        OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_Stop failed.");
+    }
+   ```
 
 ## 状态监听
 

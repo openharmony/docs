@@ -4,8 +4,7 @@
 
 在获取到相机支持的输出流能力后，开始创建录像流，开发流程如下。
 
-![Recording Development Process](figures/recording-ndk-development-process.png)
-
+![Recording Development Process](figures/recording-ndk-imageReceiver-development-process.png)
 
 ## 完整示例
 
