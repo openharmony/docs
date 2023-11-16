@@ -1483,6 +1483,243 @@ async function example() {
 }
 ```
 
+### saveFormInfo<sup>11+</sup>
+
+saveFormInfo(info:FormInfo, callback: AsyncCallback&lt;void&gt;):void
+
+将图库卡片相关信息保存到数据库中，使用callback方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [FormInfo](#forminfo11)        | 是   | 图库卡片信息，包括图库卡片的id和卡片绑定的图片的uri。              |
+| callback |  AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401   | if the argument is invalid.         |
+| 14000011       | System inner fail.         |
+
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('saveFormInfoDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+  let info: photoAccessHelper.FormInfo = {
+    //formId是一个由纯数字组成的字符串，uri为图库中存在的图片的uri信息，图库中无图片创建卡片时uri需为空字符串
+    formId : "20230116123",
+    uri: photoAsset.uri,
+  }
+
+  phAccessHelper.saveFormInfo(info, async (err: BusinessError) => {
+    if (err == undefined) {
+      console.info('saveFormInfo success');
+    } else {
+      console.error('saveFormInfo fail' + err);
+    }
+  });
+}
+```
+
+### saveFormInfo<sup>11+</sup>
+
+saveFormInfo(info:FormInfo):Promise&lt;void&gt;
+
+将图库卡片相关信息保存到数据库中，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [FormInfo](#forminfo11)        | 是   | 图库卡片信息，包括图库卡片的id和卡片绑定的图片的uri。              |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401   | if the argument is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('saveFormInfoDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+  let info: photoAccessHelper.FormInfo = {
+    //formId是一个由纯数字组成的字符串，uri为图库中存在的图片的uri信息，图库中无图片创建卡片时uri需为空字符串
+    formId: "20230116123",
+    uri: photoAsset.uri,
+  }
+
+  phAccessHelper.saveFormInfo(info).then(() => {
+    console.info('saveFormInfo successfully');
+  }).catch((err: BusinessError) => {
+    console.info('saveFormInfo failed' + err);
+  });
+}
+```
+
+### removeFormInfo<sup>11+</sup>
+
+removeFormInfo(info:FormInfo, callback: AsyncCallback&lt;void&gt;):void
+
+从数据库中删除图库卡片信息，使用callback方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [FormInfo](#forminfo11)        | 是   |  图库卡片信息，包括图库卡片的id和卡片绑定的图片的uri。              |
+| callback |  AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401   | if the argument is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('removeFormInfoDemo');
+  let info: photoAccessHelper.FormInfo = {
+    //formId是一个由纯数字组成的字符串，移除卡片的时候uri填空即可
+    formId: "20230116123",
+    uri: "",
+  }
+
+  phAccessHelper.removeFormInfo(info, async (err: BusinessError) => {
+    if (err == undefined) {
+      console.info('removeFormInfo success');
+    } else {
+      console.error('removeFormInfo fail' + err);
+    }
+  });
+}
+```
+
+### removeFormInfo<sup>11+</sup>
+
+removeFormInfo(info:FormInfo):Promise&lt;void&gt;
+
+从数据库中删除图库卡片信息，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [FormInfo](#forminfo11)        | 是   |  图库卡片信息，包括图库卡片的id和卡片绑定的图片的uri。              |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401   | if the argument is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('removeFormInfoDemo');
+  let info: photoAccessHelper.FormInfo = {
+    //formId是一个由纯数字组成的字符串，移除卡片的时候uri填空即可
+    formId: "20230116123",
+    uri: "",
+  }
+
+  phAccessHelper.removeFormInfo(info).then(() => {
+    console.info('removeFormInfo successfully');
+  }).catch((err: BusinessError) => {
+    console.info('removeFormInfo failed' + err);
+  });
+}
+```
+
 ### release
 
 release(callback: AsyncCallback&lt;void&gt;): void
@@ -3594,7 +3831,7 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 async function example01() {
-  try {  
+  try {
     let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
     PhotoSelectOptions.maxSelectNumber = 5;
@@ -5315,6 +5552,19 @@ async function example() {
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
 | fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、photoType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
 | predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 是   | 谓词查询，显示过滤条件。 |
+
+## FormInfo<sup>11+</sup>
+
+图库卡片相关信息。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                | 必填 | 说明                                              |
+| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
+|formId       |string  |是 | 卡片的ID，由图库创建卡片时提供。 |
+|uri          |string  |是 | 卡片绑定的图片的uri。创建卡片时uri可为空或图片的uri，移除卡片时uri不做校验，传空即可。  |
 
 ## ChangeData
 
