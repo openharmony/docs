@@ -61,9 +61,13 @@ struct SnapshotExample {
       Button("click to generate UI snapshot")
         .onClick(() => {
           componentSnapshot.get("root", (error: Error, pixmap: image.PixelMap) => {
-                 this.pixmap = pixmap
-                 // save pixmap to file
-                 // ....
+                if(error){
+                  console.log("error: " + JSON.stringfy(error))
+                  return;
+                }
+                this.pixmap = pixmap
+                // save pixmap to file
+                // ....
              })
         })
     }
@@ -128,6 +132,10 @@ struct SnapshotExample {
         .onClick(() => {
           componentSnapshot.get("root")
             .then((pixmap: image.PixelMap) => {
+              if(error){
+                  console.log("error: " + JSON.stringfy(error))
+                  return;
+              }
               this.pixmap = pixmap
               // save pixmap to file
               // ....
@@ -208,6 +216,10 @@ struct OffscreenSnapshotExample {
         .onClick(() => {
           componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()},
             (error: Error, pixmap: image.PixelMap) => {
+              if(error){
+                  console.log("error: " + JSON.stringfy(error))
+                  return;
+              }
               this.pixmap = pixmap
               // save pixmap to file
               // ....
@@ -297,7 +309,9 @@ struct OffscreenSnapshotExample {
               // get component size and location
               let info = componentUtils.getRectangleById("builder")
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
-            })
+            }).catch(err:Error){
+              console.log("error: " + err)
+            }
         })
     }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
     .border({ color: '#880606', width: 2 })
