@@ -110,7 +110,7 @@ let optionsNew: AnimatorOptions = {
 };
 try {
   let animatorResult:AnimatorResult|undefined = animator.create(options)
-  animatorResult.reset(options);
+  animatorResult.reset(optionsNew);
 } catch(error) {
   let message = (error as BusinessError).message
   let code = (error as BusinessError).code
@@ -585,7 +585,7 @@ This API is deprecated since API version 9. You are advised to use [create<sup>9
 
 ```ts
 import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
-let options: AnimatorOptions = { // The explicit type AnimatorOptions does not need to be emphasized in the xxx.js file.
+let options: AnimatorOptions = { // The explicit type AnimatorOptions does not need to be emphasized in a .js file.
   duration: 1500,
   easing: "friction",
   delay: 0,
