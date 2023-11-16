@@ -1778,13 +1778,14 @@ combineConference\(callId: number, callback: AsyncCallback\<void\>\): void
 
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
+| 错误码ID              | 错误信息                                          |
+| --------------------- | ------------------------------------------------- |
+| 202                   | Non-system applications use system APIs.          |
+| 401                   | Parameter error.                                  |
+| 8300001               | Invalid parameter value.                          |
+| 8300002               | Operation failed. Cannot connect to service.      |
+| 8300003               | System internal error.                            |
+| 8300007<sup>11+</sup> | The number of conference calls exceeds the limit. |
 
 **示例：**
 
@@ -1823,13 +1824,14 @@ combineConference\(callId: number\): Promise\<void\>
 
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
+| 错误码ID              | 错误信息                                          |
+| --------------------- | ------------------------------------------------- |
+| 202                   | Non-system applications use system APIs.          |
+| 401                   | Parameter error.                                  |
+| 8300001               | Invalid parameter value.                          |
+| 8300002               | Operation failed. Cannot connect to service.      |
+| 8300003               | System internal error.                            |
+| 8300007<sup>11+</sup> | The number of conference calls exceeds the limit. |
 
 **示例：**
 
@@ -3341,14 +3343,15 @@ separateConference\(callId: number, callback: AsyncCallback\<void\>\): void
 
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID              | 错误信息                                     |
+| --------------------- | -------------------------------------------- |
+| 202                   | Non-system applications use system APIs.     |
+| 401                   | Parameter error.                             |
+| 8300001               | Invalid parameter value.                     |
+| 8300002               | Operation failed. Cannot connect to service. |
+| 8300003               | System internal error.                       |
+| 8300008<sup>11+</sup> | Conference call is not active.               |
+| 8300999               | Unknown error code.                          |
 
 **示例：**
 
@@ -3387,14 +3390,15 @@ separateConference\(callId: number\): Promise\<void\>
 
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 错误码ID              | 错误信息                                     |
+| --------------------- | -------------------------------------------- |
+| 202                   | Non-system applications use system APIs.     |
+| 401                   | Parameter error.                             |
+| 8300001               | Invalid parameter value.                     |
+| 8300002               | Operation failed. Cannot connect to service. |
+| 8300003               | System internal error.                       |
+| 8300008<sup>11+</sup> | Conference call is not active.               |
+| 8300999               | Unknown error code.                          |
 
 **示例：**
 
