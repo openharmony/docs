@@ -28,7 +28,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 
 1. Create the `thermal` folder in the product directory [/vendor/hihope/rk3568](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568).
 
-2. Create a target folder by referring to the [default thermal control configuration folder](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile), and install it in `//vendor/hihope/rk3568/thermal`. The content is as follows:
+2. Create a target folder by referring to the [default thermal control configuration folder](https://gitee.com/openharmony/powermgr_thermal_manager/tree/master/services/native/profile), and install it in `//vendor/hihope/rk3568/thermal`. The content is as follows:
      
     ```text
     profile
