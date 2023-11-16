@@ -121,10 +121,6 @@ struct Index {
         .tag("pan1")
     )
     .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent) => {
-      // If the gesture type is tap, convert event to TapGestureEvent
-      if (gestureInfo.type == GestureControl.GestureType.TAP_GESTURE) {
-        let tapEvent = event as TapGestureEvent;
-      }
       // If the gesture type is longPress, convert event to LongPressGestureEvent
       if (gestureInfo.type == GestureControl.GestureType.LONG_PRESS_GESTURE) {
         let longPressEvent = event as LongPressGestureEvent;
@@ -156,7 +152,7 @@ struct Index {
 ### 示例2
 ```ts
 // xxx.ets
-import prompt from '@ohos.prompt';
+import promptAction from '@ohos.promptAction';
 
 @Entry
 @Component
@@ -177,7 +173,7 @@ struct Index {
           // The lower layer of the Stack is the image layer bound with drag and drop
           Image($r('sys.media.ohos_app_icon'))
             .onDragStart(()=>{
-              prompt.showToast({ message: "Drag 下半区蓝色区域，Image响应" })
+              promptAction.showToast({ message: "Drag 下半区蓝色区域，Image响应" })
             })
             .width('200vp').height('200vp')
           // The upper layer of the Stack is a floating layer bound with a long press
@@ -208,7 +204,7 @@ struct Index {
           .gesture(GestureGroup(GestureMode.Parallel,
             LongPressGesture()
               .onAction((event: GestureEvent) => {
-                prompt.showToast({ message: "LongPressGesture 长按上半区 红色区域，红色区域响应" })
+                promptAction.showToast({ message: "LongPressGesture 长按上半区 红色区域，红色区域响应" })
               })
               .tag("tap111")
           ))
