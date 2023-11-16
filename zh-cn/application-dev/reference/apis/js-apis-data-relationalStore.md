@@ -504,7 +504,7 @@ class EntryAbility extends UIAbility {
 | dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | isSearchable<sup>11+</sup> | boolean | 否 | 指定数据库是否支持搜索，true表示支持搜索，false表示不支持搜索，默认不支持搜索。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| autoCleanDirtyData<sup>11+<sup> | boolean | 否 | 指定是否自动清理云端删除的同步到本地的脏数据，默认自动清理。<br/> true:自动清理。<br/> false:手动清理。<br/> 对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理，手动清理可以通过CleanDirtyData接口清理<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| autoCleanDirtyData<sup>11+<sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData](#cleandirtydata)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## SecurityLevel
 
@@ -646,7 +646,7 @@ class EntryAbility extends UIAbility {
 | CLOUD       | -   | 表示云端同步的数据。请使用枚举名称而非枚举值。     |
 | REMOTE      | -   | 表示端端同步的数据。请使用枚举名称而非枚举值。 |
 
-## Field <sup>11+</sup>
+## Field<sup>11+</sup>
 
 表示特殊用途的字段。
 
@@ -4906,8 +4906,8 @@ cleanDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
 
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| table     | string                        | 是   | 表示当前数据库的表的名称。           |
-| cursor    | number                        | 否   | 表示数据游标，小于此游标的脏数据将被清理。当此参数不填时，清理当前表的所有脏数据。 |
+| table     | string           | 是   | 表示当前数据库的表的名称。           |
+| cursor    | number           | 否   | 整数类型，表示数据游标，小于此游标的脏数据将被清理。当此参数不填时，清理当前表的所有脏数据。 |
 
 **返回值：**
 | 参数名    | 说明                                               |
@@ -4926,10 +4926,10 @@ cleanDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
 
 ```ts
 if(store != undefined) {
-  (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100).then(() => {
-      console.info('clean dirty data  succeeded');
-    }).catch((err) => {
-      console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
+    (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100).then(() => {
+        console.info('clean dirty data  succeeded');
+    }).catch ((err: BusinessError) => {
+        console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
     })
 }
 ```
