@@ -11,6 +11,7 @@ The **inputMethod** module is oriented to common foreground applications (third-
 
 ```ts
 import inputMethod from '@ohos.inputMethod';
+import { BusinessError } from '@ohos.base';
 ```
 
 ## Constants<sup>8+</sup>
@@ -31,10 +32,10 @@ Describes the input method application attributes.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| name<sup>9+</sup>  | string | Yes| No| Mandatory. Internal name of the input method.|
+| name<sup>9+</sup>  | string | Yes| No| Mandatory. Name of the input method package.|
 | id<sup>9+</sup>    | string | Yes| No| Mandatory. Unique ID of the input method.|
 | label<sup>9+</sup>    | string | Yes| No| Optional. External name of the input method.|
-| labelId<sup>10+</sup>    | string | Yes| No| Optional. External ID of the input method.|
+| labelId<sup>10+</sup>    | number | Yes| No| Optional. External ID of the input method.|
 | icon<sup>9+</sup>    | string | Yes| No| Optional. Icon of the input method. It can be obtained by using **iconId**. This parameter is reserved.|
 | iconId<sup>9+</sup>    | number | Yes| No| Optional. Icon ID of the input method.|
 | extra<sup>9+</sup>    | object | Yes| Yes| Extra information about the input method. This parameter is reserved and currently has no specific meaning.<br>- API version 10 and later: optional<br>- API version 9: mandatory|
@@ -45,15 +46,15 @@ Describes the input method application attributes.
 
 getController(): InputMethodController
 
-Obtains an **[InputMethodController](#inputmethodcontroller)** instance.
+Obtains an [InputMethodController](#inputmethodcontroller) instance.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
-| Type                                           | Description                    |
-| ----------------------------------------------- | ------------------------ |
-| [InputMethodController](#inputmethodcontroller) | Current **InputMethodController** instance.|
+| Type                                           | Description                  |
+| ----------------------------------------------- | ---------------------- |
+| [InputMethodController](#inputmethodcontroller) | **InputMethodController** instance.|
 
 **Error codes**
 
@@ -69,19 +70,83 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 let inputMethodController = inputMethod.getController();
 ```
 
-## inputMethod.getSetting<sup>9+</sup>
+## inputMethod.getDefaultInputMethod<sup>11+</sup>
 
-getSetting(): InputMethodSetting
+getDefaultInputMethod(): InputMethodProperty
 
-Obtains an **[InputMethodSetting](#inputmethodsetting8)** instance.
+Obtains the default input method.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
-| Type                                     | Description                        |
-| ----------------------------------------- | ---------------------------- |
-| [InputMethodSetting](#inputmethodsetting8) | Current **InputMethodSetting** instance.|
+| Type                                        | Description                    |
+| -------------------------------------------- | ------------------------ |
+| [InputMethodProperty](#inputmethodproperty8) | Default input method.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800008 | input method manager service error. |
+
+**Example**
+
+```ts
+try {
+  let defaultIme = inputMethod.getDefaultInputMethod();
+} catch(err: BusinessError) {
+  console.error(`Failed to getDefaultInputMethod: ${JSON.stringify(err)}`);
+}
+```
+
+## inputMethod.getSystemInputMethodConfigAbility<sup>11+</sup>
+
+getSystemInputMethodConfigAbility(): ElementName
+
+Obtains the information about the input method configuration page ability.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type                                        | Description                    |
+| -------------------------------------------- | ------------------------ |
+| [ElementName](./js-apis-bundleManager-elementName.md) | Element name of the input method configuration page ability.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800008 | input method manager service error. |
+
+**Example**
+
+```ts
+try {
+  let inputMethodConfig = inputMethod.getSystemInputMethodConfigAbility();
+} catch(err: BusinessError) {
+  console.error(`Failed to get getSystemInputMethodConfigAbility: ${JSON.stringify(err)}`);
+}
+```
+
+## inputMethod.getSetting<sup>9+</sup>
+
+getSetting(): InputMethodSetting
+
+Obtains an [InputMethodSetting](#inputmethodsetting8) instance.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type                                     | Description                      |
+| ----------------------------------------- | -------------------------- |
+| [InputMethodSetting](#inputmethodsetting8) | **InputMethodSetting** instance.|
 
 **Error codes**
 
@@ -139,7 +204,7 @@ try{
       console.error('Failed to switchInputMethod.');
     }
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
 }
 ```
@@ -154,15 +219,15 @@ Switches to another input method. This API can be called by system applications 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-|target |  [InputMethodProperty](#inputmethodproperty8)| Yes| Target input method.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  |target |  [InputMethodProperty](#inputmethodproperty8)| Yes| Target input method.|
 
 **Return value**
 
-| Type                                     | Description                        |
-| ----------------------------------------- | ---------------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
+  | Type                                     | Description                        |
+  | ----------------------------------------- | ---------------------------- |
+  | Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
 
 **Error codes**
 
@@ -187,7 +252,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
   })
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
 }
 ```
@@ -268,7 +333,7 @@ try {
       console.error('Failed to switchCurrentInputMethodSubtype');
     }
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to switchCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -332,7 +397,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to switchCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -361,7 +426,11 @@ let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
 
 switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype, callback: AsyncCallback\<boolean>): void
 
-Switches to a specified subtype of a specified input method. This API can be called by system applications only. This API uses an asynchronous callback to return the result.
+Switches to a specified subtype of a specified input method. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> In API versions 9 and 10, this API can be called only by system applications. Since API version 11, calling this API requires the **ohos.permission.CONNECT_IME_ABILITY** permission; the input method application that calls this API must be the one in use.
 
 **Required permissions**: ohos.permission.CONNECT_IME_ABILITY
 
@@ -401,7 +470,7 @@ try {
       console.error('Failed to switchCurrentInputMethodAndSubtype.');
     }
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to switchCurrentInputMethodAndSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -410,7 +479,11 @@ try {
 
 switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype): Promise&lt;boolean&gt;
 
-Switches to a specified subtype of a specified input method. This API can be called by system applications only. This API uses a promise to return the result.
+Switches to a specified subtype of a specified input method. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> In API versions 9 and 10, this API can be called only by system applications. Since API version 11, calling this API requires the **ohos.permission.CONNECT_IME_ABILITY** permission; the input method application that calls this API must be the one in use.
 
 **Required permissions**: ohos.permission.CONNECT_IME_ABILITY
 
@@ -453,7 +526,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchCurrentInputMethodAndSubtype: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to switchCurrentInputMethodAndSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -486,7 +559,7 @@ let inputMethodController = inputMethod.getInputMethodController();
 
 getInputMethodSetting(): InputMethodSetting
 
-Obtains an **[InputMethodSetting](#inputmethodsetting8)** instance.
+Obtains an [InputMethodSetting](#inputmethodsetting8) instance.
 
 > **NOTE**
 >
@@ -496,9 +569,9 @@ Obtains an **[InputMethodSetting](#inputmethodsetting8)** instance.
 
 **Return value**
 
-| Type                                     | Description                        |
-| ----------------------------------------- | ---------------------------- |
-| [InputMethodSetting](#inputmethodsetting8) | Current **InputMethodSetting** instance.|
+| Type                                     | Description                      |
+| ----------------------------------------- | -------------------------- |
+| [InputMethodSetting](#inputmethodsetting8) | **InputMethodSetting** instance.|
 
 **Example**
 
@@ -711,7 +784,7 @@ try {
     }
     console.log('Succeeded in attaching the inputMethod.');
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to attach: ${JSON.stringify(err)}`);
 }
 ```
@@ -765,7 +838,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to attach: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to attach: ${JSON.stringify(err)}`);
 }
 ```
@@ -1039,7 +1112,7 @@ try {
     }
     console.log('Succeeded in setting callingWindow.');
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
 }
 ```
@@ -1088,7 +1161,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
 }
 ```
@@ -1130,7 +1203,7 @@ try {
     }
     console.log('Succeeded in updating cursorInfo.');
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
 }
 ```
@@ -1175,7 +1248,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
 }
 ```
@@ -1184,7 +1257,7 @@ try {
 
 changeSelection(text: string, start: number, end: number, callback: AsyncCallback&lt;void&gt;): void
 
-Updates the information of selected text in this edit box, to notify the input method when the selected text content or text range changes. This API uses an asynchronous callback to return the result.
+Updates the information about the selected text in this edit box, to notify the input method when the selected text content or text range changes. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1218,7 +1291,7 @@ try {
     }
     console.log('Succeeded in changing selection.');
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
 }
 ```
@@ -1264,7 +1337,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
 }
 ```
@@ -1306,7 +1379,7 @@ try {
     }
     console.log('Succeeded in updating attribute.');
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
 }
 ```
@@ -1351,7 +1424,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
 }
 ```
@@ -1398,7 +1471,7 @@ try {
       console.error('Failed to stopInputSession.');
     }
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to stopInputSession: ${JSON.stringify(err)}`);
 }
 ```
@@ -1443,7 +1516,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to stopInputSession: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to stopInputSession: ${JSON.stringify(err)}`);
 }
 ```
@@ -1626,7 +1699,7 @@ Ends this input session. This API uses an asynchronous callback to return the re
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1680,7 +1753,7 @@ inputMethodController.stopInput().then((result: boolean) => {
 
 ### on('insertText')<sup>10+</sup>
 
-on(type: 'insertText', callback: (text: string) => void): void;
+on(type: 'insertText', callback: (text: string) => void): void
 
 Enables listening for the text insertion event of the input method. This API uses an asynchronous callback to return the result.
 
@@ -1704,11 +1777,22 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+function callback1(text: string) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(text));
+}
+
+function callback2(text: string) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(text));
+}
+
 try {
-  inputMethodController.on('insertText', (text: string) => {
-    console.log(`Succeeded in subscribing insertText: ${text}`);
-  });
-} catch(err) {
+  inputMethodController.on('insertText', callback1);
+  inputMethodController.on('insertText', callback2);
+  // Cancel only callback1 of insertText.
+  inputMethodController.off('insertText', callback1);
+  // Cancel all callbacks of insertText.
+  inputMethodController.off('insertText');
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe insertText: ${JSON.stringify(err)}`);
 }
 ```
@@ -1768,7 +1852,7 @@ try {
   inputMethodController.on('deleteLeft', (length: number) => {
     console.log(`Succeeded in subscribing deleteLeft, length: ${length}`);
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe deleteLeft: ${JSON.stringify(err)}`);
 }
 ```
@@ -1828,7 +1912,7 @@ try {
   inputMethodController.on('deleteRight', (length: number) => {
     console.log(`Succeeded in subscribing deleteRight, length: ${length}`);
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe deleteRight: ${JSON.stringify(err)}`);
 }
 ```
@@ -1888,7 +1972,7 @@ try {
   inputMethodController.on('sendKeyboardStatus', (keyboardStatus: inputMethod.KeyboardStatus) => {
     console.log(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe sendKeyboardStatus: ${JSON.stringify(err)}`);
 }
 ```
@@ -1948,7 +2032,7 @@ try {
   inputMethodController.on('sendFunctionKey', (functionKey: inputMethod.FunctionKey) => {
     console.log(`Succeeded in subscribing sendFunctionKey, functionKey.enterKeyType: ${functionKey.enterKeyType}`);
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe sendFunctionKey: ${JSON.stringify(err)}`);
 }
 ```
@@ -2008,7 +2092,7 @@ try {
   inputMethodController.on('moveCursor', (direction: inputMethod.Direction) => {
     console.log(`Succeeded in subscribing moveCursor, direction: ${direction}`);
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe moveCursor: ${JSON.stringify(err)}`);
 }
 ```
@@ -2068,7 +2152,7 @@ try {
   inputMethodController.on('handleExtendAction', (action: inputMethod.ExtendAction) => {
     console.log(`Succeeded in subscribing handleExtendAction, action: ${action}`);
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe handleExtendAction: ${JSON.stringify(err)}`);
 }
 ```
@@ -2091,11 +2175,15 @@ Disables listening for the extended action handling event of the input method. T
 **Example**
 
 ```ts
-let onHandleExtendActionCallback = (action: inputMethod.ExtendAction) => {
+try {
+  let onHandleExtendActionCallback = (action: inputMethod.ExtendAction) => {
     console.log(`Succeeded in subscribing handleExtendAction, action: ${action}`);
-};
-inputMethodController.off('handleExtendAction', onHandleExtendActionCallback);
-inputMethodController.off('handleExtendAction');
+  };
+  inputMethodController.off('handleExtendAction', onHandleExtendActionCallback);
+  inputMethodController.off('handleExtendAction');
+} catch(err: BusinessError) {
+  console.error(`Failed to subscribe handleExtendAction: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('selectByRange')<sup>10+</sup>
@@ -2116,9 +2204,13 @@ Enables listening for the select-by-range event. This API uses an asynchronous c
 **Example**
 
 ```ts
-inputMethodController.on('selectByRange', (range: inputMethod.Range) => {
-  console.log(`Succeeded in subscribing selectByRange: start: ${range.start} , end: ${range.end}`);
-});
+try {
+  inputMethodController.on('selectByRange', (range: inputMethod.Range) => {
+    console.log(`Succeeded in subscribing selectByRange: start: ${range.start} , end: ${range.end}`);
+  });
+} catch(err: BusinessError) {
+  console.error(`Failed to subscribe selectByRange: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('selectByRange')<sup>10+</sup>
@@ -2139,11 +2231,15 @@ Disables listening for the select-by-range event. This API uses an asynchronous 
 **Example**
 
 ```ts
-let onSelectByRangeCallback = (range: inputMethod.Range) => {
+try {
+  let onSelectByRangeCallback = (range: inputMethod.Range) => {
     console.log(`Succeeded in subscribing selectByRange, range: ${JSON.stringify(range)}`);
-};
-inputMethodController.off('selectByRange', onSelectByRangeCallback);
-inputMethodController.off('selectByRange');
+  };
+  inputMethodController.off('selectByRange', onSelectByRangeCallback);
+  inputMethodController.off('selectByRange');
+} catch(err: BusinessError) {
+  console.error(`Failed to subscribe selectByRange: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('selectByMovement')<sup>10+</sup>
@@ -2164,9 +2260,13 @@ Enables listening for the select-by-cursor-movement event. This API uses an asyn
 **Example**
 
 ```ts
-inputMethodController.on('selectByMovement', (movement: inputMethod.Movement) => {
-  console.log('Succeeded in subscribing selectByMovement: direction: ' + movement.direction);
-});
+try {
+  inputMethodController.on('selectByMovement', (movement: inputMethod.Movement) => {
+    console.log('Succeeded in subscribing selectByMovement: direction: ' + movement.direction);
+  });
+} catch(err: BusinessError) {
+  console.error(`Failed to subscribe selectByMovement: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('selectByMovement')<sup>10+</sup>
@@ -2187,16 +2287,20 @@ Disables listening for the select-by-cursor-movement event. This API uses an asy
 **Example**
 
 ```ts
-let onSelectByMovementCallback = (movement: inputMethod.Movement) => {
+try {
+  let onSelectByMovementCallback = (movement: inputMethod.Movement) => {
     console.log(`Succeeded in subscribing selectByMovement, movement.direction: ${movement.direction}`);
-};
-inputMethodController.off('selectByMovement', onSelectByMovementCallback);
-inputMethodController.off('selectByMovement');
+  };
+  inputMethodController.off('selectByMovement', onSelectByMovementCallback);
+  inputMethodController.off('selectByMovement');
+} catch(err: BusinessError) {
+  console.error(`Failed to unsubscribing selectByMovement: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('getLeftTextOfCursor')<sup>10+</sup>
 
-on(type: 'getLeftTextOfCursor', callback: (length: number) => string): void;
+on(type: 'getLeftTextOfCursor', callback: (length: number) => string): void
 
 Enables listening for the event of obtaining the length of text deleted leftward. This API uses an asynchronous callback to return the result.
 
@@ -2226,14 +2330,14 @@ try {
     let text:string = "";
     return text;
   });
-} catch(err) {
-  console.error(`Failed to subscribe getLeftTextOfCursor. err: ${JSON.stringify(err)}`);
+} catch(err: BusinessError) {
+  console.error(`Failed to unsubscribing getLeftTextOfCursor. err: ${JSON.stringify(err)}`);
 }
 ```
 
 ### off('getLeftTextOfCursor')<sup>10+</sup>
 
-off(type: 'getLeftTextOfCursor', callback?: (length: number) => string): void;
+off(type: 'getLeftTextOfCursor', callback?: (length: number) => string): void
 
 Disables listening for the event of obtaining the length of text deleted leftward. This API uses an asynchronous callback to return the result.
 
@@ -2257,14 +2361,14 @@ try {
   };
   inputMethodController.off('getLeftTextOfCursor', getLeftTextOfCursorCallback);
   inputMethodController.off('getLeftTextOfCursor');
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to unsubscribing getLeftTextOfCursor. err: ${JSON.stringify(err)}`);
 }
 ```
 
 ### on('getRightTextOfCursor')<sup>10+</sup>
 
-on(type: 'getRightTextOfCursor', callback: (length: number) => string): void;
+on(type: 'getRightTextOfCursor', callback: (length: number) => string): void
 
 Enables listening for the event of obtaining the length of text deleted rightward. This API uses an asynchronous callback to return the result.
 
@@ -2294,14 +2398,14 @@ try {
     let text:string = "";
     return text;
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe getRightTextOfCursor. err: ${JSON.stringify(err)}`);
 }
 ```
 
 ### off('getRightTextOfCursor')<sup>10+</sup>
 
-off(type: 'getRightTextOfCursor', callback?: (length: number) => string): void;
+off(type: 'getRightTextOfCursor', callback?: (length: number) => string): void
 
 Disables listening for the event of obtaining the length of text deleted rightward. This API uses an asynchronous callback to return the result.
 
@@ -2325,14 +2429,14 @@ try {
   };
   inputMethodController.off('getRightTextOfCursor', getRightTextOfCursorCallback);
   inputMethodController.off('getRightTextOfCursor');
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to unsubscribing getRightTextOfCursor. err: ${JSON.stringify(err)}`);
 }
 ```
 
 ### on('getTextIndexAtCursor')<sup>10+</sup>
 
-on(type: 'getTextIndexAtCursor', callback: () => number): void;
+on(type: 'getTextIndexAtCursor', callback: () => number): void
 
 Enables listening for the event of obtaining the index of text at the cursor. This API uses an asynchronous callback to return the result.
 
@@ -2362,14 +2466,14 @@ try {
     let index:number = 0;
     return index;
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to subscribe getTextIndexAtCursor. err: ${JSON.stringify(err)}`);
 }
 ```
 
 ### off('getTextIndexAtCursor')<sup>10+</sup>
 
-off(type: 'getTextIndexAtCursor', callback?: () => number): void;
+off(type: 'getTextIndexAtCursor', callback?: () => number): void
 
 Disables listening for the event of obtaining the index of text at the cursor. This API uses an asynchronous callback to return the result.
 
@@ -2393,7 +2497,7 @@ try {
   };
   inputMethodController.off('getTextIndexAtCursor', getTextIndexAtCursorCallback);
   inputMethodController.off('getTextIndexAtCursor');
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to unsubscribing getTextIndexAtCursor. err: ${JSON.stringify(err)}`);
 }
 ```
@@ -2420,10 +2524,14 @@ Enables listening for the input method and subtype change event. This API uses a
 **Example**
 
 ```ts
-import InputMethodSubtype from '@ohos.InputMethodSubtype';
-inputMethodSetting.on('imeChange', (inputMethodProperty: inputMethod.InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => {
-  console.log('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) + " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
-});
+try {
+  import InputMethodSubtype from '@ohos.InputMethodSubtype';
+  inputMethodSetting.on('imeChange', (inputMethodProperty: inputMethod.InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => {
+    console.log('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) + " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
+  });
+} catch(err: BusinessError) {
+  console.error(`Failed to unsubscribing inputMethodProperty. err: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('imeChange')<sup>9+</sup>
@@ -2467,9 +2575,13 @@ Enables listening for the show event of the soft keyboard. This API uses an asyn
 **Example**
 
 ```ts
-inputMethodSetting.on('imeShow', (info: Array<inputMethod.InputWindowInfo>) => {
+try {
+  inputMethodSetting.on('imeShow', (info: Array<inputMethod.InputWindowInfo>) => {
     console.info('Succeeded in subscribing imeShow event.');
-});
+  });
+} catch(err: BusinessError) {
+  console.error(`Failed to unsubscribing imeShow. err: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('imeHide')<sup>10+</sup>
@@ -2492,9 +2604,13 @@ Enables listening for the hide event of the soft keyboard. This API uses an asyn
 **Example**
 
 ```ts
-inputMethodSetting.on('imeHide', (info: Array<inputMethod.InputWindowInfo>) => {
+try {
+  inputMethodSetting.on('imeHide', (info: Array<inputMethod.InputWindowInfo>) => {
     console.info('Succeeded in subscribing imeHide event.');
-});
+  });
+} catch(err: BusinessError) {
+  console.error(`Failed to unsubscribing imeHide. err: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('imeShow')<sup>10+</sup>
@@ -2517,7 +2633,11 @@ Disables listening for the show event of the soft keyboard.
 **Example**
 
 ```ts
-inputMethodSetting.off('imeShow');
+try {
+  inputMethodSetting.off('imeShow');
+} catch(err: BusinessError) {
+  console.error(`Failed to unsubscribing imeShow. err: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('imeHide')<sup>10+</sup>
@@ -2540,7 +2660,57 @@ Disables listening for the hide event of the soft keyboard.
 **Example**
 
 ```ts
-inputMethodSetting.off('imeHide');
+try {
+  inputMethodSetting.off('imeHide');
+} catch(err: BusinessError) {
+  console.error(`Failed to unsubscribing imeHide. err: ${JSON.stringify(err)}`);
+}
+```
+
+### isPanelShown<sup>11+</sup>
+
+isPanelShown(panelInfo: PanelInfo): boolean
+
+Checks whether the input method panel of a specified type is shown.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name   | Type                                                 | Mandatory| Description              |
+| --------- | ----------------------------------------------------- | ---- | ------------------ |
+| panelInfo | [PanelInfo](./js-apis-inputmethod-panel.md#panelinfo) | Yes  | Information about the input method panel.|
+
+**Return value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | Whether the input method panel is shown.<br>- The value **true** means that the input method panel is shown.<br>- The value **false** means that the input method panel is hidden.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 12800008 | input method manager service error. |
+
+**Example**
+
+```ts
+import panel from '@ohos.inputMethod.Panel';
+let info: panel.PanelInfo = {
+  type: panel.PanelType.SOFT_KEYBOARD,
+  flag: panel.PanelFlag.FLAG_FIXED
+}
+try {
+  let result = inputMethodSetting.isPanelShown(info);
+  console.log('Succeeded in querying isPanelShown, result: ' + result);
+} catch (err: BusinessError) {
+  console.error(`Failed to query isPanelShown: ${JSON.stringify(err)}`);
+}
 ```
 
 ### listInputMethodSubtype<sup>9+</sup>
@@ -2570,12 +2740,13 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import InputMethodSubtype from '@ohos.InputMethodSubtype';
+
 let inputMethodProperty: inputMethod.InputMethodProperty = {
-  packageName: 'com.example.kikakeyboard',
   name: 'InputMethodExAbility',
-  methodId: '',
   id: 'propertyId',
 }
+let inputMethodSetting = inputMethod.getSetting();
 try {
   inputMethodSetting.listInputMethodSubtype(inputMethodProperty, (err: BusinessError, data: Array<InputMethodSubtype>) => {
     if (err) {
@@ -2584,7 +2755,7 @@ try {
     }
     console.log('Succeeded in listing inputMethodSubtype.');
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -2621,19 +2792,20 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import InputMethodSubtype from '@ohos.InputMethodSubtype';
+
 let inputMethodProperty: inputMethod.InputMethodProperty = {
-  packageName: 'com.example.kikakeyboard',
   name: 'InputMethodExAbility',
-  methodId: '',
   id: 'propertyId',
 }
+let inputMethodSetting = inputMethod.getSetting();
 try {
   inputMethodSetting.listInputMethodSubtype(inputMethodProperty).then((data: Array<InputMethodSubtype>) => {
     console.log('Succeeded in listing inputMethodSubtype.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -2664,6 +2836,9 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import InputMethodSubtype from '@ohos.InputMethodSubtype';
+
+let inputMethodSetting = inputMethod.getSetting();
 try {
   inputMethodSetting.listCurrentInputMethodSubtype((err: BusinessError, data: Array<InputMethodSubtype>) => {
     if (err) {
@@ -2672,7 +2847,7 @@ try {
     }
     console.log('Succeeded in listing currentInputMethodSubtype.');
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -2703,13 +2878,16 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import InputMethodSubtype from '@ohos.InputMethodSubtype';
+
+let inputMethodSetting = inputMethod.getSetting();
 try {
   inputMethodSetting.listCurrentInputMethodSubtype().then((data: Array<InputMethodSubtype>) => {
     console.log('Succeeded in listing currentInputMethodSubtype.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
   })
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -2722,8 +2900,9 @@ Obtains a list of activated or deactivated input methods. This API uses an async
 
 > **NOTE**
 > 
-> In the current version, an activated input method is the input method in use, and a deactivated one is any of the installed input methods except the one in use.
+> An activated input method refers to an input method that is enabled. The default input method is enabled by default. Other input methods can be enabled or disabled as needed.
 > 
+> The list of activated input methods includes the default input method and enabled input methods. The list of deactivated input methods includes all installed input methods except the enabled ones.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -2738,14 +2917,15 @@ Obtains a list of activated or deactivated input methods. This API uses an async
 
 For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
 
-| ID| Error Message                            |
-| -------- | -------------------------------------- |
-| 12800001 | package manager error.                 |
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 12800001 | package manager error.              |
 | 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
+
 try {
   inputMethodSetting.getInputMethods(true, (err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
     if (err) {
@@ -2754,7 +2934,7 @@ try {
     }
     console.log('Succeeded in getting inputMethods.');
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -2767,8 +2947,9 @@ Obtains a list of activated or deactivated input methods. This API uses a promis
 
 > **NOTE**
 > 
-> In the current version, an activated input method is the input method in use, and a deactivated one is any of the installed input methods except the one in use.
+> An activated input method refers to an input method that is enabled. The default input method is enabled by default. Other input methods can be enabled or disabled as needed.
 > 
+> The list of activated input methods includes the default input method and enabled input methods. The list of deactivated input methods includes all installed input methods except the enabled ones.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -2777,6 +2958,62 @@ Obtains a list of activated or deactivated input methods. This API uses a promis
 | Name| Type   | Mandatory| Description                   |
 | ------ | ------- | ---- | ----------------------- |
 | enable | boolean | Yes  |Whether to return a list of activated input methods. The value **true** means to return a list of activated input methods, and **false** means to return a list of deactivated input methods.|
+
+**Return value**
+
+| Type                                                        | Description                                      |
+| ------------------------------------------------------------ | ------------------------------------------ |
+| Promise\<Array\<[InputMethodProperty](#inputmethodproperty8)>> | Promise used to return a list of activated or deactivated input methods.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 12800001 | package manager error.              |
+| 12800008 | input method manager service error. |
+
+**Example**
+
+```ts
+
+try {
+  inputMethodSetting.getInputMethods(true).then((data: Array<inputMethod.InputMethodProperty>) => {
+    console.log('Succeeded in getting inputMethods.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
+  })
+} catch(err: BusinessError) {
+  console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
+}
+```
+
+### getInputMethodsSync<sup>11+</sup>
+
+getInputMethodsSync(enable: boolean): Array&lt;InputMethodProperty&gt;
+
+Obtains a list of activated or deactivated input methods. This API returns the result synchronously.
+
+> **NOTE**
+>
+> An activated input method refers to an input method that is enabled. The default input method is enabled by default. Other input methods can be enabled or disabled as needed.
+>
+> The list of activated input methods includes the default input method and enabled input methods. The list of deactivated input methods includes all installed input methods except the enabled ones.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                   |
+| ------ | ------- | ---- | ----------------------- |
+| enable | boolean | Yes  |Whether to return a list of activated input methods. The value **true** means to return a list of activated input methods, and **false** means to return a list of deactivated input methods.|
+
+**Return value**
+
+| Type                                                | Description                         |
+| ---------------------------------------------------- | ----------------------------- |
+| Array\<[InputMethodProperty](#inputmethodproperty8)> | List of activated or deactivated input methods.|
 
 **Error codes**
 
@@ -2787,23 +3024,122 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | 12800001 | package manager error.                 |
 | 12800008 |input method manager service error. |
 
-**Return value**
+**Example**
 
-| Type                                                        | Description                         |
-| ------------------------------------------------------------ | ----------------------------- |
-| Promise\<Array\<[InputMethodProperty](#inputmethodproperty8)>> | Promise used to return a list of activated or deactivated input methods.|
+```ts
+
+try {
+  let imeProp = inputMethodSetting.getInputMethodsSync(true);
+} catch(err: BusinessError) {
+  console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
+}
+```
+
+### getAllInputMethods<sup>11+</sup>
+
+getAllInputMethods(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;): void
+
+Obtains a list of all input methods. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                          |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; | Yes  | Callback used to return a list of all input methods.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 12800001 | package manager error.              |
+| 12800008 | input method manager service error. |
 
 **Example**
 
 ```ts
+
 try {
-  inputMethodSetting.getInputMethods(true).then((data: Array<inputMethod.InputMethodProperty>) => {
-    console.log('Succeeded in getting inputMethods.');
-  }).catch((err: Error) => {
-    console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
-  })
-} catch(err) {
-  console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
+  inputMethodSetting.getAllInputMethods((err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
+    if (err) {
+      console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.log('Succeeded in getting all inputMethods.');
+  });
+} catch (err: BusinessError) {
+  console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
+}
+```
+
+### getAllInputMethods<sup>11+</sup>
+
+getAllInputMethods(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
+
+Obtains a list of all input methods. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type                                                        | Description                             |
+| ------------------------------------------------------------ | --------------------------------- |
+| Promise\<Array\<[InputMethodProperty](#inputmethodproperty8)>> | Promise used to return a list of all input methods.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 12800001 | package manager error.              |
+| 12800008 | input method manager service error. |
+
+**Example**
+
+```ts
+
+inputMethodSetting.getAllInputMethods().then((data: Array<inputMethod.InputMethodProperty>) => {
+  console.log('Succeeded in getting all inputMethods.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
+})
+```
+
+### getAllInputMethodsSync<sup>11+</sup>
+
+getAllInputMethodsSync(): Array&lt;InputMethodProperty&gt;
+
+Obtains a list of all input methods. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type                                                | Description              |
+| ---------------------------------------------------- | ------------------ |
+| Array\<[InputMethodProperty](#inputmethodproperty8)> | List of all input methods.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 12800001 | package manager error.              |
+| 12800008 | input method manager service error. |
+
+**Example**
+
+```ts
+
+try {
+  let imeProp = inputMethodSetting.getAllInputMethodsSync();
+} catch(err: BusinessError) {
+  console.error(`Failed to getAllInputMethodsSync: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2840,7 +3176,7 @@ try {
     }
     console.log('Succeeded in showing optionalInputMethods.');
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -2857,7 +3193,7 @@ Displays a dialog box for selecting an input method. This API uses a promise to 
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the operation is successful, and **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2872,7 +3208,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```ts
 inputMethodSetting.showOptionalInputMethods().then((data: boolean) => {
   console.log('Succeeded in showing optionalInputMethods.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
 })
 ```
@@ -2930,7 +3266,7 @@ Obtains a list of installed input methods. This API uses a promise to return the
 ```ts
 inputMethodSetting.listInputMethod().then((data: Array<inputMethod.InputMethodProperty>) => {
   console.log('Succeeded in listing inputMethod.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to listInputMethod: ${JSON.stringify(err)}`);
 })
 ```
@@ -2988,7 +3324,7 @@ Displays a dialog box for selecting an input method. This API uses a promise to 
 ```ts
 inputMethodSetting.displayOptionalInputMethod().then(() => {
   console.log('Succeeded in displaying optionalInputMethod.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to displayOptionalInputMethod: ${JSON.stringify(err)}`);
 })
 ```
