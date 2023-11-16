@@ -24,13 +24,23 @@ UIExtensionComponent用于支持在本页面内嵌入其他应用提供的UI。�
 
 ## 接口
 
-UIExtensionComponent(want: Want)
+UIExtensionComponent(want: Want, options?: UIExtensionOptions)
 
 **参数：**
 
-| 参数名  | 参数类型                                     | 必填   | 参数描述            |
-| ---- | ---------------------------------------- | ---- | --------------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是    | 要加载的Ability。 |
+| 参数名                | 参数类型                                    | 必填 | 参数描述           |
+| ----                  | ----------------------------------------    | ---- | ---------------    |
+| want                  | [Want](../apis/js-apis-app-ability-want.md) | 是   | 要加载的Ability。  |
+| options<sup>11+</sup> | [UIExtensionOptions](#uiextensionoptions11) | 否   | 需要传递的构造项。 |
+
+## UIExtensionOptions<sup>11+</sup>
+用于在UIExtensionComponent进行构造的时传递可选的构造参数。
+
+**参数：**
+
+| 参数名               | 参数类型                                 | 必填 | 参数描述                                                                                                      |
+| ----                 | ---------------------------------------- | ---- | ---------------                                                                                               |
+| isTransferringCaller | boolean                                  | 否   | 在使用UIExtensionComponent嵌套时，设置当前UIExtensionComponent是否转发上一级的Caller信息。</br> 默认值：false |
 
 ## UIExtensionProxy
 

@@ -1,4 +1,4 @@
-# @ohos.application.BackupExtensionAbility (BackupExtensionAbility)
+# @ohos.application.BackupExtensionAbility (备份恢复扩展能力)
 
 BackupExtensionAbility模块提供备份恢复服务相关扩展能力，为应用提供扩展的备份恢复能力。
 
@@ -25,8 +25,19 @@ import BackupExtension from '@ohos.application.BackupExtensionAbility';
 | code | number | 是   | 应用的版本号。   |
 | name | string | 是   | 应用的版本名称。 |
 
+## BackupExtensionAbility
 
-## BackupExtensionAbility.onBackup
+应用接入数据备份恢复需要通过BackupExtensionAbility实现，开发者可以通过[onBackup](#onbackup)，[onRestore](#onrestore)来实现自定义的备份恢复操作。
+
+### 属性
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+| 名称                  | 类型                                                              | 可读 | 可写 | 说明                                                |
+| --------------------- | ----------------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
+| context<sup>11+</sup> | [ExtensionContext](js-apis-inner-application-extensionContext.md) | 是   | 否   | BackupExtensionAbility的上下文环境，继承自Context。 |
+
+### onBackup
 
 onBackup(): void;
 
@@ -45,7 +56,7 @@ Extension生命周期回调，在执行备份数据时回调，由开发者提�
   ```
 
 
-## BackupExtensionAbility.onRestore
+### onRestore
 
 onRestore(bundleVersion: BundleVersion): void;
 
@@ -62,6 +73,8 @@ Extension生命周期回调，在执行恢复数据时回调，由开发者提�
 **示例：**
 
   ```ts
+  import { BundleVersion } from '@ohos.application.BackupExtensionAbility';
+  
   class BackupExt extends BackupExtension {
     async onRestore(bundleVersion : BundleVersion) {
       console.log(`onRestore ok ${JSON.stringify(bundleVersion)}`);

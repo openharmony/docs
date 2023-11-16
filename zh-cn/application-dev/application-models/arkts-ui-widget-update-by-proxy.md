@@ -64,7 +64,7 @@
         "scheduledUpdateTime": "10:30",
         "defaultDimension": "2*2",
         "supportDimensions": ["2*2"],
-        "dataProxyEnabled": true // 使能数据代理功能
+        "dataProxyEnabled": true
       }
     ]
   }
@@ -139,7 +139,7 @@
         "scheduledUpdateTime": "10:30",
         "defaultDimension": "2*2",
         "supportDimensions": ["2*2"],
-        "dataProxyEnabled": true // 使能数据代理功能
+        "dataProxyEnabled": true
       }
     ]
   }
@@ -213,10 +213,10 @@
       .height(this.FULL_HEIGHT_PERCENT)
       .onClick(() => {
         postCardAction(this, {
-          "action": this.ACTION_TYPE,
-          "abilityName": this.ABILITY_NAME,
-          "params": {
-            "message": this.MESSAGE
+          action: this.ACTION_TYPE,
+          abilityName: this.ABILITY_NAME,
+          params: {
+            message: this.MESSAGE
           }
         })
       })

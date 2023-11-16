@@ -6,13 +6,13 @@ HUKS是`OpenHarmony`提供**密钥的全生命周期管理能力**的模块。`H
 
 针对HUKS，常见的开发场景如下：
 
-* 通过`HUKS`提供的Native API接口生成新密钥。
-* 通过`HUKS`提供的Native API接口导入外部密钥。
-* 通过`HUKS`提供的Native API接口使用密钥进行加密解密。
-* 通过`HUKS`提供的Native API接口使用密钥进行签名验签。
-* 通过`HUKS`提供的Native API接口使用密钥进行密钥协商。
-* 通过`HUKS`提供的Native API接口使用密钥进行密钥派生。
-* 通过`HUKS`提供的Native API接口进行密钥证明。
+* 通过`HUKS`提供的Native API接口[生成新密钥](#生成新密钥)。
+* 通过`HUKS`提供的Native API接口[导入外部密钥](#导入外部密钥)。
+* 通过`HUKS`提供的Native API接口使用密钥进行[加密解密](#加密解密)。
+* 通过`HUKS`提供的Native API接口使用密钥进行[签名验签](#签名验签)。
+* 通过`HUKS`提供的Native API接口使用密钥进行[密钥协商](#密钥协商)。
+* 通过`HUKS`提供的Native API接口使用密钥进行[密钥派生](#密钥派生)。
+* 通过`HUKS`提供的Native API接口进行[密钥证明](#密钥证明)。
 
 ## 接口说明
 

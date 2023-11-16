@@ -1,7 +1,5 @@
 # @ohos.distributedHardware.deviceManager (Device Management)
 
-The APIs of this module are deprecated. You are advised to use the APIs of the [@ohos.distributedDeviceManager](js-apis-distributedDeviceManager.md) module instead.
-
 The **deviceManager** module provides APIs for distributed device management.
 
 System applications can call the APIs to do the following:
@@ -17,6 +15,7 @@ System applications can call the APIs to do the following:
 >
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs of this module are system APIs and cannot be called by third-party applications.
+> - The APIs of this module are deprecated since API version 11. You are advised to use [@ohos.distributedDeviceManager](js-apis-distributedDeviceManager.md).
 
 
 ## Modules to Import
@@ -31,6 +30,8 @@ import deviceManager from '@ohos.distributedHardware.deviceManager';
 createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void
 
 Creates a **DeviceManager** instance.
+
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [deviceManager.createDeviceManager](js-apis-distributedDeviceManager.md#devicemanagercreatedevicemanager).
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -47,9 +48,9 @@ Creates a **DeviceManager** instance.
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base'
 
-  let dmInstance: deviceManager.Devicemanager | null = null;
+  let dmInstance: deviceManager.DeviceManager | null = null;
   try {
-    deviceManager.createDeviceManager("ohos.samples.jshelloworld", (err: BusinessError, data: deviceManager.Devicemanager) => {
+    deviceManager.createDeviceManager("ohos.samples.jshelloworld", (err: BusinessError, data: deviceManager.DeviceManager) => {
       if (err) { 
         console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
         return;
@@ -67,6 +68,8 @@ Creates a **DeviceManager** instance.
 
 Defines device information.
 
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [DeviceBasicInfo](js-apis-distributedDeviceManager.md#devicebasicinfo).
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 | Name                    | Type                       | Mandatory  | Description      |
@@ -81,6 +84,8 @@ Defines device information.
 ## DeviceType
 
 Enumerates the device types.
+
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -98,6 +103,8 @@ Enumerates the device types.
 
 Enumerates the device authentication types.
 
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 | Name                | Value | Description            |
@@ -111,6 +118,8 @@ Enumerates the device authentication types.
 
 Enumerates the device states.
 
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [DeviceStateChange](js-apis-distributedDeviceManager.md#devicestatechange).
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 | Name     | Value | Description             |
@@ -123,6 +132,8 @@ Enumerates the device states.
 ## SubscribeInfo
 
 Defines subscription information.
+
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -141,6 +152,8 @@ Defines subscription information.
 
 Enumerates the device discovery modes.
 
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 | Name                   | Value | Description   |
@@ -152,6 +165,8 @@ Enumerates the device discovery modes.
 ## ExchangeMedium 
 
 Enumerates the media used for device discovery.
+
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -165,6 +180,8 @@ Enumerates the media used for device discovery.
 ## ExchangeFreq 
 
 Enumerates the device discovery frequencies.
+
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -180,6 +197,8 @@ Enumerates the device discovery frequencies.
 
 Enumerates the discovery capabilities.
 
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 | Name                       | Value | Description            |
@@ -192,6 +211,8 @@ Enumerates the discovery capabilities.
 
 Defines the authentication parameters.
 
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
+
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 | Name       | Type                  | Mandatory  | Description        |
@@ -202,6 +223,8 @@ Defines the authentication parameters.
 ## AuthInfo
 
 Defines authentication information.
+
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -214,6 +237,8 @@ Defines authentication information.
 ## PublishInfo<sup>9+</sup>
 
 Defines published device information.
+
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -233,6 +258,8 @@ Provides APIs to obtain information about trusted devices and local devices. Bef
 release(): void
 
 Releases this **DeviceManager** instance when it is no longer used.
+
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [deviceManager.releaseDeviceManager](js-apis-distributedDeviceManager.md#devicemanagerreleasedevicemanager).
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -264,6 +291,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 Obtains all trusted devices synchronously.
+
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -302,6 +331,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
 
 Enables the DSoftBus heartbeat mode to quickly bring offline trusted devices online and updates the list of online trusted devices.
+
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -347,6 +378,8 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
 
 Obtains all trusted devices. This API uses an asynchronous callback to return the result.
 
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [getAvailableDeviceList](js-apis-distributedDeviceManager.md#getavailabledevicelist).
+
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
@@ -363,7 +396,7 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base'
   try {
-    dmInstance.getTrustedDeviceList((err: BusinessError, data: deviceManager.DeviceInfo) => {
+    dmInstance.getTrustedDeviceList((err: BusinessError, data: Array<deviceManager.DeviceInfo>) => {
       if (err) {
         console.error("getTrustedDeviceList errCode:" + err.code + ",errMessage:" + err.message);
         return;
@@ -381,6 +414,8 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
 getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 Obtains all trusted devices. This API uses a promise to return the result.
+
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [getAvailableDeviceList](js-apis-distributedDeviceManager.md#getavailabledevicelist-1).
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -410,6 +445,8 @@ Obtains all trusted devices. This API uses a promise to return the result.
 getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 Obtains local device information synchronously.
+
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [getLocalDeviceNetworkId](js-apis-distributedDeviceManager.md#getlocaldevicenetworkid), [getLocalDeviceName](js-apis-distributedDeviceManager.md#getlocaldevicename), [getLocalDeviceType](js-apis-distributedDeviceManager.md#getlocaldevicetype), or [getLocalDeviceId](js-apis-distributedDeviceManager.md#getlocaldeviceid).
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -449,6 +486,8 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 Obtains local device information. This API uses an asynchronous callback to return the result.
 
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [getLocalDeviceNetworkId](js-apis-distributedDeviceManager.md#getlocaldevicenetworkid), [getLocalDeviceName](js-apis-distributedDeviceManager.md#getlocaldevicename), [getLocalDeviceType](js-apis-distributedDeviceManager.md#getlocaldevicetype), or [getLocalDeviceId](js-apis-distributedDeviceManager.md#getlocaldeviceid).
+
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
@@ -486,6 +525,8 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 Obtains local device information. This API uses a promise to return the result.
 
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [getLocalDeviceNetworkId](js-apis-distributedDeviceManager.md#getlocaldevicenetworkid), [getLocalDeviceName](js-apis-distributedDeviceManager.md#getlocaldevicename), [getLocalDeviceType](js-apis-distributedDeviceManager.md#getlocaldevicetype), or [getLocalDeviceId](js-apis-distributedDeviceManager.md#getlocaldeviceid).
+
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
@@ -514,6 +555,8 @@ Obtains local device information. This API uses a promise to return the result.
 getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 Obtains the information about a specific device based on the network ID. This API uses an asynchronous callback to return the result.
+
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [getDeviceName](js-apis-distributedDeviceManager.md#getdevicename),[getDeviceType](js-apis-distributedDeviceManager.md#getdevicetype).
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -554,6 +597,8 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 Obtains the information about a specific device based on the network ID. This API uses a promise to return the result.
 
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [getDeviceName](js-apis-distributedDeviceManager.md#getdevicename) or [getDeviceType](js-apis-distributedDeviceManager.md#getdevicetype).
+
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
@@ -590,6 +635,8 @@ Obtains the information about a specific device based on the network ID. This AP
 startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 Starts to discover peripheral devices. The discovery process automatically stops when 2 minutes have elapsed. A maximum of 99 devices can be discovered.
+
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [startDiscovering](js-apis-distributedDeviceManager.md#startdiscovering).
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -649,6 +696,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 Starts to discover peripheral devices and filters discovered devices. The discovery process automatically stops when 2 minutes have elapsed. A maximum of 99 devices can be discovered.
+
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [startDiscovering](js-apis-distributedDeviceManager.md#startdiscovering).
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -732,6 +781,8 @@ stopDeviceDiscovery(subscribeId: number): void
 
 Stops device discovery.
 
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [stopDiscovering](js-apis-distributedDeviceManager.md#stopdiscovering).
+
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
@@ -770,6 +821,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 Publishes device information for discovery purposes. The publish process automatically stops when 2 minutes have elapsed.
+
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -825,6 +878,8 @@ unPublishDeviceDiscovery(publishId: number): void
 
 Stops publishing device information.
 
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
+
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
@@ -863,6 +918,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback&lt;{deviceId: string, pinToken ?: number}&gt;): void
 
 Authenticates a device.
+
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [bindTarget](js-apis-distributedDeviceManager.md#bindtarget).
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -907,12 +964,13 @@ Authenticates a device.
   }
 
   // Information about the device to authenticate. The information can be obtained from the device discovery result.
-  let deviceInfo: DeviceInfo = {
+  let deviceInfo: deviceManager.DeviceInfo = {
     deviceId: "XXXXXXXX",
     deviceName: "",
     deviceType: 0x0E,
     networkId: "xxxxxxx",
-    range: 0
+    range: 0,
+    authForm: 0
   };
   let extraInfo: ExtraInfo = {
     targetPkgName: 'ohos.samples.xxx',
@@ -946,6 +1004,8 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 Deauthenticates a device.
 
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [unbindTarget](js-apis-distributedDeviceManager.md#unbindtarget).
+
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
@@ -978,12 +1038,13 @@ For details about the error codes, see [Device Management Error Codes](../errorc
   }
 
   try {
-    let deviceInfo: DeviceInfo = {
+    let deviceInfo: deviceManager.DeviceInfo = {
       deviceId: "XXXXXXXX",
       deviceName: "",
       deviceType: 0x0E,
       networkId: "xxxxxxx",
-      range: 0
+      range: 0,
+      authForm: 0
     };
     dmInstance.unAuthenticateDevice(deviceInfo);
   } catch (err) {
@@ -997,6 +1058,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void
 
 Verifies authentication information.
+
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1060,6 +1123,8 @@ setUserOperation(operateAction: number, params: string): void;
 
 Sets a user operation.
 
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [replyUiAction](js-apis-distributedDeviceManager.md#replyuiaction).
+
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
@@ -1099,6 +1164,8 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
 
 Obtains the registration information of the credential.
 
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
+
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
@@ -1128,9 +1195,9 @@ Obtains the registration information of the credential.
     version: "1.2.3",
     userId: "123"
   }
-
   try {
-    dmInstance.requestCredentialRegisterInfo(credentialInfo, (data: Data) => {
+    var jsonCredentialInfo = JSON.stringify(credentialInfo)
+    dmInstance.requestCredentialRegisterInfo(jsonCredentialInfo, (err: BusinessError, data: Data) => {
       if (data) {
           console.info("requestCredentialRegisterInfo result:" + JSON.stringify(data));
       } else {
@@ -1148,6 +1215,8 @@ Obtains the registration information of the credential.
 importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
 
 Imports credential information.
+
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1211,7 +1280,8 @@ Imports credential information.
   }
 
   try {
-    dmInstance.importCredential(credentialInfo, (data: Data) => {
+    var jsonCredentialInfo = JSON.stringify(credentialInfo)
+    dmInstance.importCredential(jsonCredentialInfo, (err: BusinessError, data: Data) => {
       if (data) {
           console.info("importCredential result:" + JSON.stringify(data));
       } else {
@@ -1229,6 +1299,8 @@ Imports credential information.
 deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
 
 Deletes credential information.
+
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1263,7 +1335,8 @@ Deletes credential information.
   }
 
   try {
-    dmInstance.deleteCredential(queryInfo, (data: Data) => {
+    var jsonQueryInfo = JSON.stringify(queryInfo)
+    dmInstance.deleteCredential(jsonQueryInfo, (err: BusinessError, data: Data) => {
       if (data) {
           console.info("deleteCredential result:" + JSON.stringify(data));
       } else {
@@ -1281,6 +1354,8 @@ Deletes credential information.
 on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
 
 Subscribes to UI status changes.
+
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [on('replyResult')](js-apis-distributedDeviceManager.md#onreplyresult).
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1325,6 +1400,8 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
 Unsubscribes from UI status changes.
 
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [off('replyResult')](js-apis-distributedDeviceManager.md#offreplyresult).
+
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
@@ -1354,6 +1431,8 @@ Unsubscribes from UI status changes.
 on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
 
 Subscribes to device state changes.
+
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [on('deviceStateChange')](js-apis-distributedDeviceManager.md#ondevicestatechange).
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1400,6 +1479,8 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 Unsubscribes from device state changes.
 
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [off('deviceStateChange')](js-apis-distributedDeviceManager.md#offdevicestatechange).
+
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
@@ -1445,6 +1526,8 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
 
 Subscribes to device discovery events.
 
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [on('discoverSuccess')](js-apis-distributedDeviceManager.md#ondiscoversuccess).
+
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
@@ -1464,7 +1547,14 @@ Subscribes to device discovery events.
 
   class Data {
     subscribeId: number = 0
-    device: deviceManager.DeviceInfo = {}
+    device: deviceManager.DeviceInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: 0,
+      networkId: "",
+      range: 0,
+      authForm:0,
+    }
   }
 
   try {
@@ -1482,6 +1572,8 @@ Subscribes to device discovery events.
 off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void
 
 Unsubscribes from device discovery events.
+
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [off('discoverSuccess')](js-apis-distributedDeviceManager.md#offdiscoversuccess).
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1528,6 +1620,8 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 
 Subscribes to device discovery failures.
 
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [on('discoverFailure')](js-apis-distributedDeviceManager.md#ondiscoverfailure).
+
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
@@ -1564,6 +1658,8 @@ Subscribes to device discovery failures.
 off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
 
 Unsubscribes from device discovery failures.
+
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [off('discoverFailure')](js-apis-distributedDeviceManager.md#offdiscoverfailure).
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1602,6 +1698,8 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
 
 Subscribes to device information publication success events.
 
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
+
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
@@ -1639,6 +1737,8 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 
 Unsubscribes from device information publication success events.
 
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
+
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
@@ -1674,6 +1774,8 @@ Unsubscribes from device information publication success events.
 on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
 Subscribes to device information publication failures.
+
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -1712,6 +1814,8 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
 
 Unsubscribes from device information publication failures.
 
+> **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
+
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
@@ -1749,6 +1853,8 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 
 Subscribes to dead events of the **DeviceManager** service.
 
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [on('serviceDie')](js-apis-distributedDeviceManager.md#onservicedie).
+
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
@@ -1780,6 +1886,8 @@ Subscribes to dead events of the **DeviceManager** service.
 off(type: 'serviceDie', callback?: () =&gt; void): void
 
 Unsubscribes from dead events of the **DeviceManager** service.
+
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [off('serviceDie')](js-apis-distributedDeviceManager.md#offservicedie).
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 

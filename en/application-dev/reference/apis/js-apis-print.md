@@ -293,7 +293,7 @@ Prints files. This API uses an asynchronous callback to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | Yes| List of files to print. Image (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported.|
+| file | Array&lt;string&gt; | Yes| List of files to print. Images in .jpg, .png, .gif, .bmp, or .webp format are supported.|
 | callback | AsyncCallback&lt;PrintTask&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -331,7 +331,7 @@ Prints files. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | Yes| List of files to print. Image (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported.|
+| file | Array&lt;string&gt; | Yes| List of files to print. Images in .jpg, .png, .gif, .bmp, or .webp format are supported.|
 
 **Return value**
 | **Type**| **Description**|
@@ -1433,7 +1433,7 @@ Unregisters the listener for printer extension information change events. This A
 ```ts
 import print from '@ohos.print';
 
-print.off('extInfoChange', (err: BusinessError, data: boolean) => {
+print.off('extInfoChange', (data: boolean) => {
     console.log('offExtInfoChange data : ' + JSON.stringify(data));
 })
 ```
@@ -1958,8 +1958,8 @@ import print from '@ohos.print';
 import { BusinessError } from '@ohos.base';
 
 print.queryAllPrintJobs().then((data : void) => {
-    console.log('update print job state data : ' + JSON.stringify(data));
+    console.log('queryAllPrintJobs success, data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('update print job state error : ' + JSON.stringify(error));
+    console.log('queryAllPrintJobs failed, error : ' + JSON.stringify(error));
 })
 ```

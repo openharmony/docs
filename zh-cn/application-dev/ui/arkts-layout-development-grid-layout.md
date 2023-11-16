@@ -201,7 +201,7 @@ GridRow中通过columns设置栅格布局的总列数。
 
   ![zh-cn_image_0000001563060689](figures/zh-cn_image_0000001563060689.gif)
 
-  若只设置sm, md的栅格总列数，则较小的尺寸使用默认columns值12，较大的尺寸使用前一个尺寸的columns。这里只设置sm:4, md:8，则较小尺寸的xs:12，较大尺寸的参照md的设置，lg:10, xl:10, xxl:10
+  若只设置sm, md的栅格总列数，则较小的尺寸使用默认columns值12，较大的尺寸使用前一个尺寸的columns。这里只设置sm:4, md:8，则较小尺寸的xs:12，较大尺寸的参照md的设置，lg:8, xl:8, xxl:8
 
 
 ### 排列方向
@@ -312,7 +312,7 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
 
   ![zh-cn_image_0000001511421264](figures/zh-cn_image_0000001511421264.png)
 
-- 当类型为GridColColumnOption时，支持六种不同尺寸（xs, sm, md, lg, xl, xxl）设备中子组件所占列数设置,各个尺寸下数值可不同。
+- 当类型为GridColColumnOption时，支持六种不同尺寸（xs, sm, md, lg, xl, xxl）设备中子组件所占列数设置，各个尺寸下数值可不同。
 
 
   ```ts

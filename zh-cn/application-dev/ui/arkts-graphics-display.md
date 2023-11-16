@@ -1,7 +1,7 @@
 # 显示图片（Image）
 
 
-开发者经常需要在应用中显示一些图片，例如：按钮中的logo、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg和gif，具体用法请参考[Image](../reference/arkui-ts/ts-basic-components-image.md)组件。
+开发者经常需要在应用中显示一些图片，例如：按钮中的icon、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg和gif，具体用法请参考[Image](../reference/arkui-ts/ts-basic-components-image.md)组件。
 
 
 Image通过调用接口来创建，接口调用形式如下：
@@ -67,12 +67,12 @@ Image支持加载存档图、多媒体像素图两种类型。
   调用方式：
 
   ```
-  Image($rawfile('snap'))
+  Image($rawfile('example1'))
   ```
 
 - 媒体库file://data/storage
 
-  支持file://路径前缀的字符串，用于访问通过媒体库提供的图片路径。
+  支持file://路径前缀的字符串，用于访问通过[媒体库](../reference/apis/js-apis-file-picker.md)提供的图片路径。
 
   1. 调用接口获取图库的照片url。
       ```ts
@@ -150,52 +150,60 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
 
 2. 引用多媒体。
 
-   请求网络图片请求，解码编码PixelMap。
+   请求网络图片，解码编码PixelMap。
 
    1. 引用网络权限与媒体库权限。
        ```ts
        import http from '@ohos.net.http';
        import ResponseCode from '@ohos.net.http';
        import image from '@ohos.multimedia.image';
+       import { BusinessError } from '@ohos.base';
        ```
    2. 填写网络图片地址。
        ```ts
+       let OutData: http.HttpResponse
        http.createHttp().request("https://www.example.com/xxx.png",
-         (error:Error) => {
-           if (error){
+         (error: BusinessError, data: http.HttpResponse) => {
+           if (error) {
              console.error(`http reqeust failed with. Code: ${error.code}, message: ${error.message}`);
            } else {
+             OutData = data
            }
          }
        )
        ```
    3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
        ```ts
-       let code:object = data.responseCode;
+       let code: http.ResponseCode | number = OutData.responseCode
        if (ResponseCode.ResponseCode.OK === code) {
-         let imageSource:image = image.createImageSource(data.result);
-         class tmp{
-           height:number = 100
-           width:number = 100
+         let imageSource: image.ImageSource = image.createImageSource(OutData.result.toString());
+       
+         class tmp {
+           height: number = 100
+           width: number = 100
          }
-         let si:tmp = new tmp()
-         let options:Record<string,number|boolean|tmp> = {
+       
+         let si: tmp = new tmp()
+         let options: Record<string, number | boolean | tmp> = {
            'alphaType': 0, // 透明度
            'editable': false, // 是否可编辑
            'pixelFormat': 3, // 像素格式
            'scaleMode': 1, // 缩略值
            'size': { height: 100, width: 100 }
          } // 创建图片大小
-         class imagetmp{
-           image:image
-           set(val:PixelMap){
+       
+         class imagetmp {
+           image: PixelMap
+       
+           set(val: PixelMap) {
              this.image = val
            }
          }
-          imageSource.createPixelMap(options).then((pixelMap:PixelMap) => {
-          let im = new imagetmp()
-            im.set(pixelMap)
-       })
+       
+         imageSource.createPixelMap(options).then((pixelMap: PixelMap) => {
+           let im = new imagetmp()
+           im.set(pixelMap)
+         })
        }
        ```
    4. 显示图片。
@@ -214,7 +222,7 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
            sethtp.set()
          })
        Image(this.image).height(100).width(100)
-       ```
+      ```
 
 
 ## 显示矢量图
@@ -433,7 +441,7 @@ struct MyComponent {
 
 通过sourceSize属性设置图片解码尺寸，降低图片的分辨率。
 
-原图尺寸为1280*960，该示例将图片解码为40*40和90*90。
+原图尺寸为1280\*960，该示例将图片解码为40\*40和90\*90。
 
 
 ```ts

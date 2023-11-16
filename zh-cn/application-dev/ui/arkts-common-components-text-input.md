@@ -1,24 +1,20 @@
 # 文本输入（TextInput/TextArea）
 
 
-TextInput、TextArea是输入框组件，通常用于响应用户的输入操作，比如评论区的输入、聊天框的输入、表格的输入等，也可以结合其它组件构建功能页面，例如登录注册页面。具体用法参考[TextInput](../reference/arkui-ts/ts-basic-components-textinput.md)、[TextArea](../reference/arkui-ts/ts-basic-components-textarea.md)。
+TextInput、TextArea是输入框组件，通常用于响应用户的输入操作，比如评论区的输入、聊天框的输入、表格的输入等，也可以结合其它组件构建功能页面，例如登录注册页面。具体用法请参考[TextInput](../reference/arkui-ts/ts-basic-components-textinput.md)、[TextArea](../reference/arkui-ts/ts-basic-components-textarea.md)。
 
 
 ## 创建输入框
 
 TextInput为单行输入框、TextArea为多行输入框。通过以下接口来创建。
 
-
-```ts
-TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextAreaController})
-```
-
-
-
 ```ts
 TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextInputController})
 ```
 
+```ts
+TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextAreaController})
+```
 
 - 单行输入框
 
@@ -123,7 +119,7 @@ TextInput()
 
 ## 场景示例
 
-用于表单的提交，在用户登录/注册页面，用户的登录或注册的输入操作。
+在登录/注册页面，用户进行登录或注册。
 
 ```ts
 @Entry
@@ -146,7 +142,7 @@ struct TextInputSample {
 ```
 
 
-![TextInputGIF](figures/TextInputGIF.gif)
+![textinput](figures/textinput.gif)
 
 
 ## 相关实例

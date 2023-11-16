@@ -21,33 +21,31 @@
     build() {
       Column() {
         Button('功能A')
-          .margin('20%')
           .onClick(() => {
             console.info('Jump to EntryAbility funA');
             postCardAction(this, {
-              'action': 'router',
-              'abilityName': 'EntryAbility', // 只能跳转到当前应用下的UIAbility
-              'params': {
-                'targetPage': 'funA' // 在EntryAbility中处理这个信息
+              action: 'router',
+              abilityName: 'EntryAbility', // 只能跳转到当前应用下的UIAbility
+              params: {
+                targetPage: 'funA' // 在EntryAbility中处理这个信息
               }
             });
           })
   
         Button('功能B')
-          .margin('20%')
           .onClick(() => {
             console.info('Jump to EntryAbility funB');
             postCardAction(this, {
-              'action': 'router',
-              'abilityName': 'EntryAbility', // 只能跳转到当前应用下的UIAbility
-              'params': {
-                'targetPage': 'funB' // 在EntryAbility中处理这个信息
+              action: 'router',
+              abilityName: 'EntryAbility', // 只能跳转到当前应用下的UIAbility
+              params: {
+                targetPage: 'funB' // 在EntryAbility中处理这个信息
               }
             });
           })
       }
       .width('100%')
-      .height('100%')
+      .height('100%').justifyContent(FlexAlign.SpaceAround)
     }
   }
   ```
@@ -70,7 +68,7 @@
       // 获取router事件中传递的targetPage参数
       console.info("onCreate want:" + JSON.stringify(want));
       if (want.parameters?.params !== undefined) {
-        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters?.params));
+        let params: Record<string, string> = JSON.parse(want.parameters?.params.toString());
         console.info("onCreate router targetPage:" + params.targetPage);
         selectPage = params.targetPage;
       }
@@ -79,7 +77,7 @@
     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
       console.info("onNewWant want:" + JSON.stringify(want));
       if (want.parameters?.params !== undefined) {
-        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters?.params));
+        let params: Record<string, string> = JSON.parse(want.parameters?.params.toString());
         console.info("onNewWant router targetPage:" + params.targetPage);
         selectPage = params.targetPage;
       }

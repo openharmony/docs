@@ -3,46 +3,45 @@
 
 ## When to Use
 
-Security components are a set of ArkUI components provided by OpenHarmony. You can integrate the security components to your app UI. The security components come with automatic authorization, which eliminates authorization popups.
+Security components are a set of ArkUI components provided by OpenHarmony. You can integrate the security components to your app UI. The security components come with automatic authorization, which eliminates authorization dialog boxes.
 
-Currently, OpenHarmony provides security components <**LocationButton**>, <**PasteButton**>, and <**SaveButton**>, with precise positioning, clipboard reading, and media library writing permissions, respectively.
+Currently, OpenHarmony provides security components **\<LocationButton>**, **\<PasteButton>**, and **\<SaveButton>**, with precise positioning, clipboard reading, and media library writing permissions, respectively.
 
-- <**LocationButton**>
+- **\<LocationButton>**
 
-  When <**LocationButton**> is tapped, the app can call the location service to obtain the precise location no matter whether the app has applied for or is granted the precise location permission. The temporary authorization for precise location lasts until the location component is destroyed, the screen is turned off, the app is switched to the background, or the app exits. Then, the authorization state transits to the state (granted, not granted, or not applied) prior to the temporary authorization. During the temporary authorization period, there is no limit on the number of times that the app calls the APIs protected by the permission.
+  When **\<LocationButton>** is tapped, the app can call the location service to obtain the precise location no matter whether the app has applied for or is granted with the precise location permission. The temporary authorization for precise location remains valid until the screen is turned off, the app is switched to the background, or the app exits. Then, the permission state transits to the state prior to the temporary authorization. During the temporary authorization period, there is no limit on the number of times that the app calls the APIs that request the permission.
 
-  You can use the <**LocationButton**> component for apps that may use the location information in certain scenarios, such as city location, clock-in/out, and location sharing. This component is not applicable for location-based apps, such as navigation and health apps. If location information needs to be used for a long period of time or in the background, apply for the location permission for your app.
+  You can use the **\<LocationButton>** component for apps that may use the location information in certain scenarios, such as city location, clock-in/out, and location sharing. This component is not applicable for location-based apps, such as navigation and health apps. If location information needs to be used for a long period of time or in the background, apply for the location permission for your app.
 
-- <**PasteButton**>
+- **\<PasteButton>**
 
-  When <**PasteButton**> is tapped, no toast message is displayed when the app reads data from the clipboard. The temporary authorization for reading data from the clipboard is invalid only when data is written to the clipboard (for example, the user copies new data). The authorization is not affected when the screen is turned off, the app is switched to the background, or the app exits. During the temporary authorization period, there is no limit on the number of times that the app calls the APIs protected by the permission.
+  When **\<PasteButton>** is tapped, the app can call the API to read data from the clipboard. The temporary authorization for reading data from the clipboard remains invalid until the screen is turned off, the app is switched to the background, or the app exits. During the temporary authorization period, there is no limit on the number of times that the app calls the API for reading data from the clipboard.
 
-  You can use the <**PasteButton**> component for apps that need to read data from the clipboard.
+  You can use the **\<PasteButton>** component for apps that need to read data from the clipboard.
 
-- <**SaveButton**>
+- **\<SaveButton>**
 
-  When <**SaveButton**> is tapped, the app can access the **mediaLibrary** APIs once within 5 seconds.
+  When **\<SaveButton>** is tapped, the app can access the privileged APIs of the media library without limitation within 10 seconds.
 
-  When using <**SaveButton**>, observe the following:
+  When using **\<SaveButton>**, observe the following:
 
-  - The interval for calling **onClick()** to trigger a **mediaLibrary** API cannot exceed 5 seconds.
-  - The app obtains one-time authorization only each time <**SaveButton**> is tapped.
+  - The interval for calling **onClick()** to trigger a **mediaLibrary** API cannot exceed 10 seconds after **\<SaveButton>** is tapped.
+  - Each time **\<SaveButton>** is tapped, the app can access the privileged APIs multiple times.
 
-  You can use <**SaveButton**> for apps that need to save files to the media library (such as saving images and videos). The <**SaveButton**> component features simpler and faster operations than **filePicker**, which needs to start the system application and requires the user to select a directory for saving the file.
+You can use **\<SaveButton>** for apps that need to save files to the media library (such as saving images and videos). The **\<SaveButton>** component features simpler and faster operations than **filePicker**, which needs to start the system application and requires the user to select a directory for saving the file.
 
 
-## Creating Security Components 
+## Creating a Security Component
 
-A security component is a button consisting of an icon (**icon**), text (**text**), and background (**buttonType**). Either the icon or text is mandatory, and the background is optional. **icon** and **text** cannot be customized. You can only select from the existing options. When declaring the API for creating a security component, you can determine whether to pass in parameters. If parameters are passed in, the component is created based on the specified parameters. If no parameter is passed in, a component with default icon, text, and background is created.
+A security component is a button consisting of an icon, text, and background. Either the icon or text is mandatory, and the background is optional. The icon and text cannot be customized. You can only select from the existing options. 
 
-The following uses the <**SaveButton**> component as an example.
+When declaring the API for creating a security component, you can determine whether to pass in parameters. If parameters are passed in, the component is created based on the specified parameters. If no parameter is passed in, a component with default icon, text, and background is created.
+
+The following uses the **\<SaveButton>** component as an example.
 
 ```
 /* Create a default <SaveButton>. */
 SaveButton()
-
-/* Create a <SaveButton> with the specified parameters only. All of icon, text, and buttonType are optional. */
-SaveButton(options: SaveButtonOptions)
 
 /* Create a <SaveButton> with the icon only. */
 SaveButton({ icon:SaveIconStyle.FULL_FILLED })
@@ -73,7 +72,7 @@ The following table describes the common UX attributes for security components.
 | borderStyle(value: BorderStyle) | Border style of the security component.|
 | borderWidth(value: Dimension) | Border width of the security component.|
 | borderColor(value: ResourceColor) | Border color of the security component.|
-| borderRadius(value: ResourceColor) | Radius of the rounded border corners of the security component.|
+| borderRadius(value: Dimension) | Radius of the rounded border corners of the security component.|
 | padding(value: Padding \| Dimension) | Inner margins of the security component.|
 | textIconSpace(value: Dimension) | Space between the icon and text on the security component.|
 
@@ -90,7 +89,7 @@ The following table describes the common UX attributes for security components.
       LocationButton().iconSize(40.0)
    ```
 
-3. Register the **onClick** callback for calling the API protected by the permission. The following uses the <**LocationButton**> component as an example.
+3. Register the **onClick** callback for calling the API protected by the permission. The following uses the **\<LocationButton>** component as an example.
    ```
    import geoLocationManager from '@ohos.geoLocationManager';
    import BusinessError from "@ohos.base";

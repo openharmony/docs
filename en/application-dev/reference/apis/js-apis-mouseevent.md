@@ -1,6 +1,6 @@
 # @ohos.multimodalInput.mouseEvent (Mouse Event)
 
-The **mouseEvent** module provides mouse events reported by an input device.
+The **mouseEvent** module provides mouse events reported by a device. It is inherited from [InputEvent](./js-apis-inputevent.md).
 
 >  **NOTE**
 >
@@ -68,7 +68,7 @@ Defines the mouse axis type and axis value.
 
 | Name   | Type  | Readable  | Writable  | Description  |
 | ----- | ------ | ---- | ---- | ---- |
-| axis  | Axis   | Yes   | No   | Axis type. |
+| axis  | [Axis](#axis)   | Yes   | No   | Axis type. |
 | value | number | Yes   | No   | Axis value. |
 
 ## ToolType<sup>11+</sup>
@@ -81,9 +81,8 @@ Enumerates tool types.
 | ------- | ------| ----- |
 | UNKNOWN<sup>11+</sup> | 0 | Unknown. |
 | MOUSE<sup>11+</sup>  | 1 | Mouse.|
-| TOUCHSCREEN<sup>11+</sup> | 2 | Touchscreen.|
+| JOYSTICK<sup>11+</sup> | 2 | Joystick.|
 | TOUCHPAD<sup>11+</sup> | 3 | Touchpad.|
-| JOYSTICK<sup>11+</sup> | 4 | Joystick.|
 
 ## MouseEvent
 
@@ -101,9 +100,9 @@ Defines the mouse event.
 | rawDeltaX      | number      | Yes   | No   | Horizontal coordinate offset relative to the previous reported mouse pointer position.|
 | rawDeltaY      | number      | Yes   | No   | Vertical coordinate offset relative to the previous reported mouse pointer position.                         |
 | button         | [Button](#button)      | Yes   | No   | Mouse button                              
-| pressedButtons | Button[]    | Yes   | No   | Button being pressed.                             |
-| axes           | AxisValue[] | Yes   | No   | All axis data contained in the event.                              |
-| pressedKeys    | KeyCode[]   | Yes   | No   | List of pressed keys.                           |
+| pressedButtons | [Button](#button)[]    | Yes   | No   | Button being pressed.                             |
+| axes           | [AxisValue](#axisvalue)[] | Yes   | No   | All axis data contained in the event.                              |
+| pressedKeys    | [KeyCode](js-apis-keycode.md#keycode)[]   | Yes   | No   | List of pressed keys.                           |
 | ctrlKey        | boolean     | Yes   | No   | Whether ctrlKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.   |
 | altKey         | boolean     | Yes   | No   | Whether altKey is being pressed.                        |
 | shiftKey       | boolean     | Yes   | No   | Whether shiftKey is being pressed.                      |

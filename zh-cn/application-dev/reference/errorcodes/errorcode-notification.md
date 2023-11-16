@@ -168,7 +168,7 @@ Over max number notifications per second.
 
 降低通知发送频率。
 
-## 16000010 分布式操作失败
+## 1600010 分布式操作失败
 
 **错误信息**
 
@@ -186,7 +186,7 @@ Distributed operation failed.
 
 检查分布式连接是否正常。
 
-## 16000011 读模板配置文件错误
+## 1600011 读模板配置文件错误
 
 **错误信息**
 
@@ -204,7 +204,7 @@ Read template config failed.
 
 请检查系统中模板配置文件是否存在，配置文件路径：/system/etc/notification_template/external.json。
 
-## 16000012 内存空间不够
+## 1600012 内存空间不够
 
 **错误信息**
 

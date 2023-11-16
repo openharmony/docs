@@ -6,7 +6,7 @@ The [intl](js-apis-intl.md) module provides basic i18n capabilities through the 
 >  **NOTE**
 >  - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
->  - This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402. For details about the basic I18N capabilities, see [Intl](js-apis-intl.md).
+>  - This module provides system-related or enhanced i18n capabilities, such as locale management, phone number formatting, and calendar, through supplementary i18n APIs that are not defined in ECMA 402. For details about the basic I18N capabilities, see [intl](js-apis-intl.md).
 
 
 ## Modules to Import
@@ -241,6 +241,8 @@ static setSystemLanguage(language: string): void
 
 Sets the system language. Currently, this API does not support real-time updating of the system language.
 
+To listen for [common_event_locale_changed](./commonEventManager-definitions.md#common_event_locale_changed) events after the system language is set, you need to add an [event subscriber](./js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1).
+
 **System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
@@ -264,13 +266,34 @@ For details about the error codes, see [I18N Error Codes](../errorcodes/errorcod
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
+  import CommonEventManager from '@ohos.commonEventManager';
 
+  // Set the system language
   try {
     I18n.System.setSystemLanguage('zh'); // Set the current system language to zh.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
+ 
+  // Subscribe to a common event.
+  let subscriber: CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
+  let subscribeInfo: CommonEventManager.CommonEventSubscribeInfo = { // Define the subscriber information.
+    events: [CommonEventManager.Support.COMMON_EVENT_LOCALE_CHANGED]
+  };
+  CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:CommonEventManager.CommonEventSubscriber) => { // Create a subscriber.
+      console.info("createSubscriber");
+      subscriber = commonEventSubscriber;
+      CommonEventManager.subscribe(subscriber, (err, data) => {
+        if (err) {
+          console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
+          return;
+        }
+        console.info("the subscribed event has occurred."); // Triggered when the subscribed event occurs.
+      })
+  }).catch((err: BusinessError) => {
+      console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  });  
   ```
 
 ### getSystemRegion<sup>9+</sup>
@@ -600,6 +623,40 @@ Obtains the first language in the preferred language list.
   }
   ```
 
+### setAppPreferredLanguage<sup>11+</sup>
+
+static setAppPreferredLanguage(language: string): void
+
+Sets the preferred language of the application.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description   |
+| -------- | ------ | ---- | ----- |
+| language | string | Yes   | Language ID.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | param value not valid |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    I18n.System.setAppPreferredLanguage('zh'); // Set the current language of the application to zh.
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
 ### getAppPreferredLanguage<sup>9+</sup>
 
 static getAppPreferredLanguage(): string
@@ -744,6 +801,73 @@ Obtains a **Calendar** object.
   I18n.getCalendar("zh-Hans", "chinese"); // Obtain the Calendar object for the Chinese lunar calendar.
   ```
 
+## EntityRecognizer<sup>11+</sup>
+
+### constructor<sup>11+</sup>
+
+constructor(locale?: string)
+
+Creates an **entityRecognizer** object.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type  | Mandatory  | Description               |
+| ---- | ---- | ---- | ----------------- |
+| locale | string | No   | Locale ID.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | param value not valid |
+
+**Example**
+  ```ts
+  let entityRecognizer: I18n.EntityRecognizer = new I18n.EntityRecognizer("zh-CN");
+  ```
+
+### findEntityInfo<sup>11+</sup>
+
+findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
+
+Recognizes entities in text.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type  | Mandatory  | Description               |
+| ---- | ---- | ---- | ----------------- |
+| text | string | Yes   | Text for entity recognition.|
+
+**Return value**
+
+| Type  | Description               |
+| ---- | ----------------- |
+| Array&lt;[EntityInfoItem](#entityinfoitem11)&gt; | List of recognized entities.|
+
+**Example**
+  ```ts
+  let entityRecognizer: I18n.EntityRecognizer = new I18n.EntityRecognizer("zh-CN");
+  let text: string = " If you have any questions, call us by phone 12345678";
+  let result: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text); // result[0].type = "phone_number", result[0].begin = 8, result[0].end = 19
+  ```
+
+## EntityInfoItem<sup>11+</sup>
+
+Defines an entity information object.
+
+**System capability**: SystemCapability.Global.I18n
+
+| Name | Type  | Readable  | Writable  | Description               |
+| ---- | ---- | ---- | ---- | ----------------- |
+| type | string | Yes   | Yes   | Entity type. Currently, only **phone_number** is supported.|
+| begin | number | Yes   | Yes   | Start position of an entity.|
+| end | number | Yes   | Yes   | End position of an entity.|
 
 ## Calendar<sup>8+</sup>
 
@@ -1627,7 +1751,7 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
 
 | Type      | Description          |
 | -------- | ------------ |
-| TimeZone | **TimeZone** object corresponding to the time zone ID.|
+| [TimeZone](#timezone) | **TimeZone** object corresponding to the time zone ID.|
 
 **Example**
   ```ts
@@ -1712,15 +1836,21 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 
 getOffset(date?: number): number
 
-Obtains the offset between the time zone represented by a **TimeZone** object and the UTC time zone at a certain time point.
+Obtains the offset between the time zone represented by a **TimeZone** object and the UTC time zone at a certain time.
 
 **System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description    |
+| ------ | ------ | ---- | ------ |
+| date | number | No   | Date and time.|
 
 **Return value**
 
 | Type    | Description                     |
 | ------ | ----------------------- |
-| number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone at a certain time point. The default value is the system time zone.|
+| number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone at a certain time. The default value is the system time.|
 
 **Example**
   ```ts
@@ -3042,7 +3172,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type    | Description                     |
 | ------ | ----------------------- |
-| string | string obtained after formatting based on the measurement unit specified by **toUnit**.|
+| string | String obtained after formatting based on the measurement unit specified by **toUnit**.|
 
 
 ## Character<sup>(deprecated)</sup>

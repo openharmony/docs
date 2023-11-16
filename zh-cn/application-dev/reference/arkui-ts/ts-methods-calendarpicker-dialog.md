@@ -1,4 +1,4 @@
-# 日历选择器弹窗
+# 日历选择器弹窗（CalendarPickerDialog）
 
 点击日期弹出日历选择器弹窗，可选择弹窗内任意日期。
 
@@ -18,7 +18,7 @@ show(options?: [CalendarDialogOptions](#calendardialogoptions))
 
 | 参数名     | 参数类型                                  | 必填 | 参数描述                                                     |
 | ---------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| selected   | Date                                      | 否   | 设置当前选中的日期。 默认值：当前系统日期                    |
+| selected   | Date                                      | 否   | 设置当前选中的日期。选中的日期未设置或日期格式不符合规范则为默认值。<br />默认值：当前系统日期                    |
 | hintRadius | number \|[Resource](ts-types.md#resource) | 否   | 描述日期选中态底板样式。<br/>默认值：底板样式为圆形。<br />**说明：**<br />hintRadius为0，底板样式为直角矩形。hintRadius为0 ~ 16，底板样式为圆角矩形。hintRadius>=16，底板样式为圆形 |
 | onAccept   | (value: Date) => void                     | 否   | 点击弹窗中的“确定”按钮时触发该回调。<br/>value：选中的日期值 |
 | onCancel   | () => void                                | 否   | 点击弹窗中的“取消”按钮时触发该回调。                         |

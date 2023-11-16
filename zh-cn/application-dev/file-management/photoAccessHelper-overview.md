@@ -25,14 +25,15 @@ PhotoAccessHelper提供相册管理模块相关能力，包括创建相册以及
   - 取消指定URI的监听
 
 > **说明：**
+>
 > 本开发指导基于API Version 10，仅适用于Stage模型。
 
 应用需要先获取相册管理模块实例，才能访问和修改相册中的媒体数据信息。相册管理模块涉及用户个人数据信息，所以应用需要向用户申请相册管理模块读写操作权限才能保证功能的正常运行。在使用相册管理模块相关接口时如无其他注明则默认在工程代码的pages/index.ets或者其他自创的ets文件中使用。
 
 开发者在使用PhotoAccessHelper进行功能开发前，请先掌握以下内容：
 
-- [获取相册管理模块实例](#获取相册管理模块实例)
-- [申请相册管理模块功能相关权限](#申请相册管理模块功能相关权限)
+  - [获取相册管理模块实例](#获取相册管理模块实例)
+  - [申请相册管理模块功能相关权限](#申请相册管理模块功能相关权限)
 
 ## 获取相册管理模块实例
 
@@ -63,59 +64,11 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 以上权限的授权方式均为user_grant（用户授权），即开发者在module.json5文件中配置对应的权限后，需要使用接口[abilityAccessCtrl.requestPermissionsFromUser](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)去校验当前用户是否已授权。如果是，应用可以直接访问/操作目标对象；否则需要弹框向用户申请授权。
 
-> **说明：**<br/>即使用户曾经授予权限，应用在调用受此权限保护的接口前，也应该先检查是否有权限。不能把之前授予的状态持久化，因为用户在动态授予后还可以通过“设置”取消应用的权限。
+**开发步骤参考：**
 
-**开发步骤：**
+1. [在配置文件module.json5中声明权限](../security/accesstoken-guidelines.md#stage模型)。
+2. [向用户申请授权](../security/accesstoken-guidelines.md#stage模型-1)。
 
-1. 在配置文件module.json5中声明权限。在配置文件的“module”标签内，增加“requestPermissions”标签，标签内容请根据实际情况填写。标签说明可参考[访问控制（权限）开发指导](../security/accesstoken-guidelines.md)。
-
-  ```json
-  {
-    "module": {
-      "requestPermissions": [
-        {
-          "name": "ohos.permission.READ_IMAGEVIDEO",
-          "reason": "Permissions required for photoAccessHelper related operations",
-          "usedScene": {
-            "abilities": [
-              "EntryAbility"
-            ],
-            "when": "always"
-          }
-        },
-        {
-          "name": "ohos.permission.WRITE_IMAGEVIDEO",
-          "reason": "Permissions required for photoAccessHelper related operations",
-          "usedScene": {
-            "abilities": [
-              "EntryAbility"
-            ],
-            "when": "always"
-          }
-        },
-      ]
-    }
-  }    
-  ```
-
-2. 在Ability.ts中onWindowStageCreate里调用requestPermissionsFromUser进行权限校验，可以选择需要动态申请获取的权限自行添加相应代码。
-
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
-  import window from '@ohos.window';
-
-  export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage:window.WindowStage) {
-      let list : Array<Permissions> = ['ohos.permission.READ_IMAGEVIDEO', 'ohos.permission.WRITE_IMAGEVIDEO'];
-      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-      atManager.requestPermissionsFromUser(this.context, list, (err, result) => {
-        if (err) {
-          console.error('requestPermissionsFromUserError: ' + JSON.stringify(err));
-        } else {
-          console.info('permissionRequestResult: ' + JSON.stringify(result));
-        }
-      });
-    }
-  }
-  ```
+> **说明：**
+>
+> 即使用户曾经授予权限，应用在调用受此权限保护的接口前，也应该先检查是否有权限。不能把之前授予的状态持久化，因为用户在动态授予后还可以通过“设置”取消应用的权限。

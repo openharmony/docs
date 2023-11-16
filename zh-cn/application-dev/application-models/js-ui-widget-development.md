@@ -81,7 +81,7 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
 
 - [配置卡片配置文件](#配置卡片配置文件)：配置应用配置文件module.json5和profile配置文件。
 
-- [卡片信息的持久化](#卡片数据交互)：对卡片信息进行持久化管理。
+- [卡片信息的持久化](#卡片信息的持久化)：对卡片信息进行持久化管理。
 
 - [卡片数据交互](#卡片数据交互)：通过updateForm更新卡片显示的信息。
 
@@ -251,7 +251,6 @@ import dataPreferences from '@ohos.data.preferences';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
 import common from '@ohos.app.ability.common'
-
 
 const DATA_STORAGE_PATH: string = "/data/storage/el2/base/haps/form_store";
 let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: common.FormExtensionContext): Promise<void> => {

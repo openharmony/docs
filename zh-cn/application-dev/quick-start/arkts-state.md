@@ -29,7 +29,7 @@
 | ------------------ | ------------------------------------------------------------ |
 | 装饰器参数         | 无                                                           |
 | 同步类型           | 不与父组件中任何类型的变量同步。                             |
-| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持undefined和null类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@State a : string \| undefined = undefiend`是推荐的，不推荐`@State a: string = undefined`。
+| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持undefined和null类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@State a : string \| undefined = undefiend`是推荐的，不推荐`@State a: string = undefined`。
 <br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。 <br/>类型必须被指定。<br/>不支持any。|
 | 被装饰变量的初始值 | 必须本地初始化。                                               |
 

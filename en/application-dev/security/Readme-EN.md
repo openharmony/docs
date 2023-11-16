@@ -10,6 +10,9 @@
 - Security Component
   - [Security Component Overview](security-component-manager-overview.md)
   - [Security Component Development](security-component-manager-guidelines.md)
+- DLP
+  - [DLP Overview](dlp-overview.md)
+  - [DLP Development](dlp-guidelines.md)
 - User Authentication
   - [User Authentication Overview](userauth-overview.md)
   - [User Authentication Development](userauth-guidelines.md)

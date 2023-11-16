@@ -25,10 +25,11 @@ import common from '@ohos.app.ability.common';
 **Example**
 
   ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import common from '@ohos.app.ability.common';
   import Want from '@ohos.app.ability.Want';
 
-  let want: Want = {
+  let connectWant: Want = {
     bundleName: 'com.example.myapp',
     abilityName: 'MyAbility'
   };
@@ -45,5 +46,9 @@ import common from '@ohos.app.ability.common';
     }
   };
 
-  let connection: number = this.context.connectAbility(want, connectOptions);
+  class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+      let connection: number = this.context.connectServiceExtensionAbility(connectWant, connectOptions);
+    }
+  }
   ```

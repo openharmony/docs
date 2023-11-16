@@ -22,7 +22,10 @@
 
 ## 限制条件
 
-使用\@Observed装饰class会改变class原始的原型链，\@Observed和其他类装饰器装饰同一个class可能会带来问题。
+- 使用\@Observed装饰class会改变class原始的原型链，\@Observed和其他类装饰器装饰同一个class可能会带来问题。
+
+- \@ObjectLink装饰器不能在\@Entry装饰的自定义组件中使用。
+
 
 ## 装饰器说明
 
@@ -35,7 +38,7 @@
 | ----------------- | ---------------------------------------- |
 | 装饰器参数             | 无                                        |
 | 同步类型              | 不与父组件中的任何类型同步变量。                         |
-| 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>不支持简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date或者Array的class实例，示例见[观察变化](#观察变化)。<br/>支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
+| 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>不支持简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date或者Array的class实例，示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
 | 被装饰变量的初始值         | 不允许。                                     |
 
 \@ObjectLink装饰的数据为可读示例。
@@ -549,3 +552,771 @@ struct Child {
   }
 }
 ```
+
+## 常见问题
+
+### 在子组件中给@ObjectLink装饰的变量赋值
+
+在子组件中给@ObjectLink装饰的变量赋值是不允许的。
+
+【反例】
+
+```ts
+@Observed
+class ClassA {
+  public c: number = 0;
+
+  constructor(c: number) {
+    this.c = c;
+  }
+}
+
+@Component
+struct ObjectLinkChild {
+  @ObjectLink testNum: ClassA;
+
+  build() {
+    Text(`ObjectLinkChild testNum ${this.testNum.c}`)
+      .onClick(() => {
+        // ObjectLink不能被赋值
+        this.testNum = new ClassA(47);
+      })
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State testNum: ClassA[] = [new ClassA(1)];
+
+  build() {
+    Column() {
+      Text(`Parent testNum ${this.testNum[0].c}`)
+        .onClick(() => {
+          this.testNum[0].c += 1;
+        })
+        
+      ObjectLinkChild({ testNum: this.testNum[0] })
+    }
+  }
+}
+```
+
+点击ObjectLinkChild给\@ObjectLink装饰的变量赋值：
+
+```
+this.testNum = new ClassA(47); 
+```
+
+这是不允许的，对于实现双向数据同步的\@ObjectLink，赋值相当于要更新父组件中的数组项或者class的属性，这个对于 TypeScript/JavaScript是不能实现的。框架对于这种行为会发生运行时报错。
+
+【正例】
+
+```ts
+@Observed
+class ClassA {
+  public c: number = 0;
+
+  constructor(c: number) {
+    this.c = c;
+  }
+}
+
+@Component
+struct ObjectLinkChild {
+  @ObjectLink testNum: ClassA;
+
+  build() {
+    Text(`ObjectLinkChild testNum ${this.testNum.c}`)
+      .onClick(() => {
+        // 可以对ObjectLink装饰对象的属性赋值
+        this.testNum.c = 47;
+      })
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State testNum: ClassA[] = [new ClassA(1)];
+
+  build() {
+    Column() {
+      Text(`Parent testNum ${this.testNum[0].c}`)
+        .onClick(() => {
+          this.testNum[0].c += 1;
+        })
+        
+      ObjectLinkChild({ testNum: this.testNum[0] })
+    }
+  }
+}
+```
+
+### 基础嵌套对象属性更改失效
+
+在应用开发中，有很多嵌套对象场景，例如，开发者更新了某个属性，但UI没有进行对应的更新。
+
+每个装饰器都有自己可以观察的能力，并不是所有的改变都可以被观察到，只有可以被观察到的变化才会进行UI更新。\@Observed装饰器可以观察到嵌套对象的属性变化，其他装饰器仅能观察到第二层的变化。
+
+【反例】
+
+下面的例子中，一些UI组件并不会更新。
+
+
+```ts
+class ClassA {
+  a: number;
+
+  constructor(a: number) {
+    this.a = a;
+  }
+
+  getA(): number {
+    return this.a;
+  }
+
+  setA(a: number): void {
+    this.a = a;
+  }
+}
+
+class ClassC {
+  c: number;
+
+  constructor(c: number) {
+    this.c = c;
+  }
+
+  getC(): number {
+    return this.c;
+  }
+
+  setC(c: number): void {
+    this.c = c;
+  }
+}
+
+class ClassB extends ClassA {
+  b: number = 47;
+  c: ClassC;
+
+  constructor(a: number, b: number, c: number) {
+    super(a);
+    this.b = b;
+    this.c = new ClassC(c);
+  }
+
+  getB(): number {
+    return this.b;
+  }
+
+  setB(b: number): void {
+    this.b = b;
+  }
+
+  getC(): number {
+    return this.c.getC();
+  }
+
+  setC(c: number): void {
+    return this.c.setC(c);
+  }
+}
+
+
+@Entry
+@Component
+struct MyView {
+  @State b: ClassB = new ClassB(10, 20, 30);
+
+  build() {
+    Column({ space: 10 }) {
+      Text(`a: ${this.b.a}`)
+      Button("Change ClassA.a")
+        .onClick(() => {
+          this.b.a += 1;
+        })
+
+      Text(`b: ${this.b.b}`)
+      Button("Change ClassB.b")
+        .onClick(() => {
+          this.b.b += 1;
+        })
+
+      Text(`c: ${this.b.c.c}`)
+      Button("Change ClassB.ClassC.c")
+        .onClick(() => {
+          // 点击时上面的Text组件不会刷新
+          this.b.c.c += 1;
+        })
+    }
+  }
+}
+```
+
+- 最后一个Text组件Text('c: ${this.b.c.c}')，当点击该组件时UI不会刷新。 因为，\@State b : ClassB 只能观察到this.b属性的变化，比如this.b.a, this.b.b 和this.b.c的变化，但是无法观察嵌套在属性中的属性，即this.b.c.c（属性c是内嵌在b中的对象classC的属性）。
+
+- 为了观察到嵌套于内部的ClassC的属性，需要做如下改变：
+  - 构造一个子组件，用于单独渲染ClassC的实例。 该子组件可以使用\@ObjectLink c : ClassC或\@Prop c : ClassC。通常会使用\@ObjectLink，除非子组件需要对其ClassC对象进行本地修改。
+  - 嵌套的ClassC必须用\@Observed修饰。当在ClassB中创建ClassC对象时（本示例中的ClassB(10, 20, 30）)，它将被包装在ES6代理中，当ClassC属性更改时（this.b.c.c += 1），该代码将修改通知到\@ObjectLink变量。
+
+【正例】
+
+以下示例使用\@Observed/\@ObjectLink来观察嵌套对象的属性更改。
+
+
+```ts
+class ClassA {
+  a: number;
+  constructor(a: number) {
+    this.a = a;
+  }
+  getA() : number {
+    return this.a; }
+  setA( a: number ) : void {
+    this.a = a; }
+}
+
+@Observed
+class ClassC {
+  c: number;
+  constructor(c: number) {
+    this.c = c;
+  }
+  getC() : number {
+    return this.c; }
+  setC(c : number) : void {
+    this.c = c; }
+}
+
+class ClassB extends ClassA {
+  b: number = 47;
+  c: ClassC;
+
+  constructor(a: number, b: number, c: number) {
+    super(a);
+    this.b = b;
+    this.c = new ClassC(c);
+  }
+
+  getB() : number {
+    return this.b; }
+  setB(b : number) : void {
+    this.b = b; }
+  getC() : number {
+    return this.c.getC(); }
+  setC(c : number) : void {
+    return this.c.setC(c); }
+}
+
+@Component
+struct ViewClassC {
+
+    @ObjectLink c : ClassC;
+    build() {
+        Column({space:10}) {
+            Text(`c: ${this.c.getC()}`)
+            Button("Change C")
+                .onClick(() => {
+                    this.c.setC(this.c.getC()+1);
+                })
+        }
+    }
+}
+
+@Entry
+@Component
+struct MyView {
+    @State b : ClassB = new ClassB(10, 20, 30);
+
+    build() {
+        Column({space:10}) {
+            Text(`a: ${this.b.a}`)
+             Button("Change ClassA.a")
+            .onClick(() => {
+                this.b.a +=1;
+            })
+
+            Text(`b: ${this.b.b}`)
+            Button("Change ClassB.b")
+            .onClick(() => {
+                this.b.b += 1;
+            })
+
+            ViewClassC({c: this.b.c})   // Text(`c: ${this.b.c.c}`)的替代写法
+            Button("Change ClassB.ClassC.c")
+            .onClick(() => {
+                this.b.c.c += 1;
+            })
+        }
+     }
+}
+```
+
+### 复杂嵌套对象属性更改失效
+
+【反例】
+
+以下示例创建了一个带有\@ObjectLink装饰变量的子组件，用于渲染一个含有嵌套属性的ParentCounter，用\@Observed装饰嵌套在ParentCounter中的SubCounter。
+
+
+```ts
+let nextId = 1;
+@Observed
+class SubCounter {
+  counter: number;
+  constructor(c: number) {
+    this.counter = c;
+  }
+}
+@Observed
+class ParentCounter {
+  id: number;
+  counter: number;
+  subCounter: SubCounter;
+  incrCounter() {
+    this.counter++;
+  }
+  incrSubCounter(c: number) {
+    this.subCounter.counter += c;
+  }
+  setSubCounter(c: number): void {
+    this.subCounter.counter = c;
+  }
+  constructor(c: number) {
+    this.id = nextId++;
+    this.counter = c;
+    this.subCounter = new SubCounter(c);
+  }
+}
+@Component
+struct CounterComp {
+  @ObjectLink value: ParentCounter;
+  build() {
+    Column({ space: 10 }) {
+      Text(`${this.value.counter}`)
+        .fontSize(25)
+        .onClick(() => {
+          this.value.incrCounter();
+        })
+      Text(`${this.value.subCounter.counter}`)
+        .onClick(() => {
+          this.value.incrSubCounter(1);
+        })
+      Divider().height(2)
+    }
+  }
+}
+@Entry
+@Component
+struct ParentComp {
+  @State counter: ParentCounter[] = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+  build() {
+    Row() {
+      Column() {
+        CounterComp({ value: this.counter[0] })
+        CounterComp({ value: this.counter[1] })
+        CounterComp({ value: this.counter[2] })
+        Divider().height(5)
+        ForEach(this.counter,
+          (item: ParentCounter) => {
+            CounterComp({ value: item })
+          },
+          (item: ParentCounter) => item.id.toString()
+        )
+        Divider().height(5)
+        // 第一个点击事件
+        Text('Parent: incr counter[0].counter')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter[0].incrCounter();
+            // 每次触发时自增10
+            this.counter[0].incrSubCounter(10);
+          })
+        // 第二个点击事件
+        Text('Parent: set.counter to 10')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            // 无法将value设置为10，UI不会刷新
+            this.counter[0].setSubCounter(10);
+          })
+        Text('Parent: reset entire counter')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+          })
+      }
+    }
+  }
+}
+```
+
+对于Text('Parent: incr counter[0].counter')的onClick事件，this.counter[0].incrSubCounter(10)调用incrSubCounter方法使SubCounter的counter值增加10，UI同步刷新。
+
+但是，在Text('Parent: set.counter to 10')的onClick中调用this.counter[0].setSubCounter(10)，SubCounter的counter值却无法重置为10。
+
+incrSubCounter和setSubCounter都是同一个SubCounter的函数。在第一个点击处理时调用incrSubCounter可以正确更新UI，而第二个点击处理调用setSubCounter时却没有更新UI。实际上incrSubCounter和setSubCounter两个函数都不能触发Text('${this.value.subCounter.counter}')的更新，因为\@ObjectLink value : ParentCounter仅能观察其代理ParentCounter的属性，对于this.value.subCounter.counter是SubCounter的属性，无法观察到嵌套类的属性。
+
+但是，第一个click事件调用this.counter[0].incrCounter()将CounterComp自定义组件中\@ObjectLink value: ParentCounter标记为已更改。此时触发Text('${this.value.subCounter.counter}')的更新。 如果在第一个点击事件中删除this.counter[0].incrCounter()，也无法更新UI。
+
+【正例】
+
+对于上述问题，为了直接观察SubCounter中的属性，以便this.counter[0].setSubCounter(10)操作有效，可以利用下面的方法：
+
+
+```ts
+@ObjectLink value：ParentCounter = new ParentCounter(0);
+@ObjectLink subValue：SubCounter = new SubCounter(0);
+```
+
+该方法使得\@ObjectLink分别代理了ParentCounter和SubCounter的属性，这样对于这两个类的属性的变化都可以观察到，即都会对UI视图进行刷新。即使删除了上面所说的this.counter[0].incrCounter()，UI也会进行正确的刷新。
+
+该方法可用于实现“两个层级”的观察，即外部对象和内部嵌套对象的观察。但是该方法只能用于\@ObjectLink装饰器，无法作用于\@Prop（\@Prop通过深拷贝传入对象）。详情参考@Prop与@ObjectLink的差异。
+
+
+```ts
+let nextId = 1;
+@Observed
+class SubCounter {
+  counter: number;
+  constructor(c: number) {
+    this.counter = c;
+  }
+}
+@Observed
+class ParentCounter {
+  id: number;
+  counter: number;
+  subCounter: SubCounter;
+  incrCounter() {
+    this.counter++;
+  }
+  incrSubCounter(c: number) {
+    this.subCounter.counter += c;
+  }
+  setSubCounter(c: number): void {
+    this.subCounter.counter = c;
+  }
+  constructor(c: number) {
+    this.id = nextId++;
+    this.counter = c;
+    this.subCounter = new SubCounter(c);
+  }
+}
+@Component
+struct CounterComp {
+  @ObjectLink value: ParentCounter;
+  @ObjectLink subValue: SubCounter;
+  build() {
+    Column({ space: 10 }) {
+      Text(`${this.value.counter}`)
+        .fontSize(25)
+        .onClick(() => {
+          this.value.incrCounter();
+        })
+      Text(`${this.subValue.counter}`)
+        .onClick(() => {
+          this.subValue.counter += 1;
+        })
+      Divider().height(2)
+    }
+  }
+}
+@Entry
+@Component
+struct ParentComp {
+  @State counter: ParentCounter[] = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+  build() {
+    Row() {
+      Column() {
+        CounterComp({ value: this.counter[0], subValue: this.counter[0].subCounter })
+        CounterComp({ value: this.counter[1], subValue: this.counter[1].subCounter })
+        CounterComp({ value: this.counter[2], subValue: this.counter[2].subCounter })
+        Divider().height(5)
+        ForEach(this.counter,
+          (item: ParentCounter) => {
+            CounterComp({ value: item, subValue: item.subCounter })
+          },
+          (item: ParentCounter) => item.id.toString()
+        )
+        Divider().height(5)
+        Text('Parent: reset entire counter')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+          })
+        Text('Parent: incr counter[0].counter')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter[0].incrCounter();
+            this.counter[0].incrSubCounter(10);
+          })
+        Text('Parent: set.counter to 10')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter[0].setSubCounter(10);
+          })
+      }
+    }
+  }
+}
+```
+
+
+### \@Prop与\@ObjectLink的差异
+
+在下面的示例代码中，\@ObjectLink修饰的变量是对数据源的引用，即在this.value.subValue和this.subValue都是同一个对象的不同引用，所以在点击CounterComp的click handler，改变this.value.subCounter.counter，this.subValue.counter也会改变，对应的组件Text(`this.subValue.counter: ${this.subValue.counter}`)会刷新。
+
+
+```ts
+let nextId = 1;
+
+@Observed
+class SubCounter {
+  counter: number;
+  constructor(c: number) {
+    this.counter = c;
+  }
+}
+
+@Observed
+class ParentCounter {
+  id: number;
+  counter: number;
+  subCounter: SubCounter;
+  incrCounter() {
+    this.counter++;
+  }
+  incrSubCounter(c: number) {
+    this.subCounter.counter += c;
+  }
+  setSubCounter(c: number): void {
+    this.subCounter.counter = c;
+  }
+  constructor(c: number) {
+    this.id = nextId++;
+    this.counter = c;
+    this.subCounter = new SubCounter(c);
+  }
+}
+
+@Component
+struct CounterComp {
+  @ObjectLink value: ParentCounter;
+  @ObjectLink subValue: SubCounter;
+  build() {
+    Column({ space: 10 }) {
+      Text(`this.subValue.counter: ${this.subValue.counter}`)
+        .fontSize(30)
+      Text(`this.value.counter：increase 7 `)
+        .fontSize(30)
+        .onClick(() => {
+          // click handler, Text(`this.subValue.counter: ${this.subValue.counter}`) will update
+          this.value.incrSubCounter(7);
+        })
+      Divider().height(2)
+    }
+  }
+}
+
+@Entry
+@Component
+struct ParentComp {
+  @State counter: ParentCounter[] = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+  build() {
+    Row() {
+      Column() {
+        CounterComp({ value: this.counter[0], subValue: this.counter[0].subCounter })
+        CounterComp({ value: this.counter[1], subValue: this.counter[1].subCounter })
+        CounterComp({ value: this.counter[2], subValue: this.counter[2].subCounter })
+        Divider().height(5)
+        ForEach(this.counter,
+          (item: ParentCounter) => {
+            CounterComp({ value: item, subValue: item.subCounter })
+          },
+          (item: ParentCounter) => item.id.toString()
+        )
+        Divider().height(5)
+        Text('Parent: reset entire counter')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+          })
+        Text('Parent: incr counter[0].counter')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter[0].incrCounter();
+            this.counter[0].incrSubCounter(10);
+          })
+        Text('Parent: set.counter to 10')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter[0].setSubCounter(10);
+          })
+      }
+    }
+  }
+}
+```
+
+\@ObjectLink图示如下：
+
+![zh-cn_image_0000001651665921](figures/zh-cn_image_0000001651665921.png)
+
+【反例】
+
+如果用\@Prop替代\@ObjectLink。点击第一个click handler，UI刷新正常。但是点击第二个onClick事件，\@Prop 对变量做了一个本地拷贝，CounterComp的第一个Text并不会刷新。
+
+  this.value.subCounter和this.subValue并不是同一个对象。所以this.value.subCounter的改变，并没有改变this.subValue的拷贝对象，Text(`this.subValue.counter: ${this.subValue.counter}`)不会刷新。
+
+```ts
+@Component
+struct CounterComp {
+  @Prop value: ParentCounter = new ParentCounter(0);
+  @Prop subValue: SubCounter = new SubCounter(0);
+  build() {
+    Column({ space: 10 }) {
+      Text(`this.subValue.counter: ${this.subValue.counter}`)
+        .fontSize(20)
+        .onClick(() => {
+          // 1st click handler
+          this.subValue.counter += 7;
+        })
+      Text(`this.value.counter：increase 7 `)
+        .fontSize(20)
+        .onClick(() => {
+          // 2nd click handler
+          this.value.incrSubCounter(7);
+        })
+      Divider().height(2)
+    }
+  }
+}
+```
+
+\@Prop拷贝的关系图示如下：
+
+![zh-cn_image_0000001602146116](figures/zh-cn_image_0000001602146116.png)
+
+【正例】
+
+可以通过从ParentComp到CounterComp仅拷贝一份\@Prop value: ParentCounter，同时必须避免再多拷贝一份SubCounter。
+
+- 在CounterComp组件中只使用一个\@Prop counter：Counter。
+
+- 添加另一个子组件SubCounterComp，其中包含\@ObjectLink subCounter: SubCounter。此\@ObjectLink可确保观察到SubCounter对象属性更改，并且UI更新正常。
+
+- \@ObjectLink subCounter: SubCounter与CounterComp中的\@Prop counter：Counter的this.counter.subCounter共享相同的SubCounter对象。
+
+  
+
+```ts
+let nextId = 1;
+
+@Observed
+class SubCounter {
+  counter: number;
+  constructor(c: number) {
+    this.counter = c;
+  }
+}
+
+@Observed
+class ParentCounter {
+  id: number;
+  counter: number;
+  subCounter: SubCounter;
+  incrCounter() {
+    this.counter++;
+  }
+  incrSubCounter(c: number) {
+    this.subCounter.counter += c;
+  }
+  setSubCounter(c: number): void {
+    this.subCounter.counter = c;
+  }
+  constructor(c: number) {
+    this.id = nextId++;
+    this.counter = c;
+    this.subCounter = new SubCounter(c);
+  }
+}
+
+@Component
+struct SubCounterComp {
+  @ObjectLink subValue: SubCounter;
+  build() {
+    Text(`SubCounterComp: this.subValue.counter: ${this.subValue.counter}`)
+      .onClick(() => {
+        // 2nd click handler
+        this.subValue.counter = 7;
+      })
+  }
+}
+@Component
+struct CounterComp {
+  @ObjectLink value: ParentCounter;
+  build() {
+    Column({ space: 10 }) {
+      Text(`this.value.incrCounter(): this.value.counter: ${this.value.counter}`)
+        .fontSize(20)
+        .onClick(() => {
+          // 1st click handler
+          this.value.incrCounter();
+        })
+      SubCounterComp({ subValue: this.value.subCounter })
+      Text(`this.value.incrSubCounter()`)
+        .onClick(() => {
+          // 3rd click handler
+          this.value.incrSubCounter(77);
+        })
+      Divider().height(2)
+    }
+  }
+}
+@Entry
+@Component
+struct ParentComp {
+  @State counter: ParentCounter[] = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+  build() {
+    Row() {
+      Column() {
+        CounterComp({ value: this.counter[0] })
+        CounterComp({ value: this.counter[1] })
+        CounterComp({ value: this.counter[2] })
+        Divider().height(5)
+        ForEach(this.counter,
+          (item: ParentCounter) => {
+            CounterComp({ value: item })
+          },
+          (item: ParentCounter) => item.id.toString()
+        )
+        Divider().height(5)
+        Text('Parent: reset entire counter')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+          })
+        Text('Parent: incr counter[0].counter')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter[0].incrCounter();
+            this.counter[0].incrSubCounter(10);
+          })
+        Text('Parent: set.counter to 10')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter[0].setSubCounter(10);
+          })
+      }
+    }
+  }
+}
+```
+
+
+拷贝关系图示如下：
+
+
+![zh-cn_image_0000001653949465](figures/zh-cn_image_0000001653949465.png)

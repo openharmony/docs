@@ -6,6 +6,7 @@
 
 > **说明：**
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 使用获取开放匿名设备标识符接口，需[申请相关权限](../../security/accesstoken-guidelines.md)：ohos.permission.APP_TRACKING_CONSENT
 
 
 ## 导入模块
@@ -17,11 +18,9 @@ import identifier from '@ohos.identifier.oaid';
 
 ## identifier.getOAID
 
-getOAID():Promise&lt;string&gt;
+getOAID(): Promise&lt;string&gt;
 
-获取开放匿名设备标识符（Open Anonymous Device Identifier, OAID）。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
+获取开放匿名设备标识符（Open Anonymous Device Identifier, OAID），使用Promise异步返回。
 
 **需要权限：** ohos.permission.APP_TRACKING_CONSENT
 
@@ -31,7 +30,7 @@ getOAID():Promise&lt;string&gt;
 
 | 类型 | 说明 | 
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise对象。返回开放匿名设备标识符（Open&nbsp;Anonymous&nbsp;Device&nbsp;Identifier,&nbsp;OAID）。 | 
+| Promise&lt;string&gt; | Promise对象。返回开放匿名设备标识符（Open&nbsp;Anonymous&nbsp;Device&nbsp;Identifier,&nbsp;OAID）。成功返回OAID，失败返回00000000-0000-0000-0000-000000000000。| 
 
 **错误码：**
 
@@ -50,12 +49,12 @@ import { BusinessError } from '@ohos.base';
 try {  
   identifier.getOAID().then((data) => {
     const oaid: string = data;
-    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success`);
+    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by promise success, oaid: ${oaid}`);
   }).catch((err: BusinessError) => {
-    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid failed, message: ${err.message}`);
+    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by promise failed, code: ${err.code}, message: ${err.message}`);
   })
-} catch (err: BusinessError) {
-  hilog.error(0x0000, 'testTag', 'get oaid catch error: %{public}d %{public}s', err.code, err.message);
+} catch (err) {
+  hilog.error(0x0000, 'testTag', '%{public}s', `get oaid by promise catch error: ${err.code} ${err.message}`);
 }
 ```
 
@@ -64,9 +63,7 @@ try {
 
 getOAID(callback: AsyncCallback&lt;string&gt;): void
 
-获取开放匿名设备标识符（Open Anonymous Device Identifier, OAID）。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
+获取开放匿名设备标识符（Open Anonymous Device Identifier, OAID），使用callback异步回调。
 
 **需要权限：** ohos.permission.APP_TRACKING_CONSENT
 
@@ -77,7 +74,7 @@ getOAID(callback: AsyncCallback&lt;string&gt;): void
 
 | **参数**名 | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | 是 | 获取开放匿名设备标识符（Open&nbsp;Anonymous&nbsp;Device&nbsp;Identifier,&nbsp;OAID）的回调函数。 | 
+| callback | AsyncCallback&lt;string&gt; | 是 | 异步获取开放匿名设备标识符（Open&nbsp;Anonymous&nbsp;Device&nbsp;Identifier,&nbsp;OAID）的回调。成功返回OAID，失败返回00000000-0000-0000-0000-000000000000。| 
 
 
 **错误码：**
@@ -98,16 +95,16 @@ import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
  
 try {
-  identifier.getOAID((err: BusinessError, data) => {
+  identifier.getOAID((err: BusinessError, data: string) => {
     if (err.code) {
-      hilog.info(0x0000, 'testTag', '%{public}s', `get oaid failed, message: ${err.message}`);
+      hilog.error(0x0000, 'testTag', '%{public}s', `get oaid by callback failed, error: ${err.code} ${err.message}`);
     } else {
       const oaid: string = data;
-      hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success`);
+      hilog.info(0x0000, 'testTag', '%{public}s', 'get oaid by callback success');
     }
    });
-} catch (err: BusinessError) {
-  hilog.error(0x0000, 'testTag', 'get oaid catch error: %{public}d %{public}s', err.code, err.message);
+} catch (err) {
+  hilog.error(0x0000, 'testTag', '%{public}s', `get oaid by callback catch error: ${err.code} ${err.message}`);
 }
 ```
 
@@ -119,10 +116,6 @@ resetOAID(): void
 重置开放匿名设备标识符（Open Anonymous Device Identifier, OAID）。
 
 **系统接口：** 此接口为系统接口。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**需要权限：** ohos.permission.APP_TRACKING_CONSENT
 
 **系统能力：** SystemCapability.Advertising.OAID
 
@@ -138,11 +131,10 @@ resetOAID(): void
 ```
 import identifier from '@ohos.identifier.oaid';
 import hilog from '@ohos.hilog'; 
-import { BusinessError } from '@ohos.base';
 
 try {
   identifier.resetOAID();
-} catch (err: BusinessError) {
-  hilog.error(0x0000, 'testTag', 'reset oaid catch error: %{public}d %{public}s', err.code, err.message);
+} catch (err) {
+  hilog.error(0x0000, 'testTag', '%{public}s', `reset oaid catch error: ${err.code} ${err.message}`);
 }
 ```

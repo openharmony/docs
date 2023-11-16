@@ -8,8 +8,6 @@
 
 - [应用恢复数据](#应用恢复数据)：根据能力文件提供的应用信息，选择需要恢复的应用数据并进行恢复。
 
-- [应用恢复数据时安装应用](#应用恢复数据时安装应用)：应用恢复数据的拓展功能，当用于恢复数据的应用未安装时，建议使用此功能，设备将先安装应用再恢复数据。
-
 ## 开发说明
 
 备份恢复API的使用指导请参见[API参考](../reference/apis/js-apis-file-backup.md)。
@@ -19,7 +17,7 @@
 1. [申请相关权限](../security/accesstoken-guidelines.md)：`ohos.permission.BACKUP`
 
 2. 导入依赖模块：`@ohos.file.backup`
-   
+
    ```js
    import backup from '@ohos.file.backup';
    ```
@@ -32,59 +30,60 @@
 
 调用`backup.getLocalCapabilities()`获取能力文件。
 
- ```ts
-  import backup from '@ohos.file.backup';
-  import common from '@ohos.app.ability.common';
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+```ts
+import backup from '@ohos.file.backup';
+import common from '@ohos.app.ability.common';
+import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 
-  // 获取应用文件路径
-  let context = getContext(this) as common.UIAbilityContext;
-  let filesDir = context.filesDir;
+// 获取应用文件路径
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
 
-  async function getLocalCapabilities(): Promise<void> {
-    try {
-      let fileData = await backup.getLocalCapabilities();
-      console.info('getLocalCapabilities success');
-      let fpath = filesDir + '/localCapabilities.json';
-      fs.copyFileSync(fileData.fd, fpath);
-      fs.closeSync(fileData.fd);
-    } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
-    }
-  }
- ```
-
- **返回的能力文件内容示例：**
- | 属性名称       | 数据类型 | 必填 | 含义                   |
- | -------------- | -------- | ---- | ---------------------- |
- | bundleInfos    | 数组     | 是   | 应用信息列表           |
- | allToBackup    | 布尔值   | 是   | 是否允许备份恢复       |
- | extensionName  | 字符串   | 是   | 应用的扩展名           |
- | name           | 字符串   | 是   | 应用的包名             |
- | needToInstall  | 布尔值   | 是   | 应用恢复时是否需要安装 |
- | spaceOccupied  | 数值     | 是   | 应用数据占用的空间大小 |
- | versionCode    | 数值     | 是   | 应用的版本号           |
- | versionName    | 字符串   | 是   | 应用的版本名称         |
- | deviceType     | 字符串   | 是   | 设备类型               |
- | systemFullName | 字符串   | 是   | 设备版本               |
-
- ```json
- {
-  "bundleInfos" :[{
-    "allToBackup" : true,
-    "extensionName" : "BackupExtensionAbility",
-    "name" : "com.example.hiworld",
-    "needToInstall" : false,
-    "spaceOccupied" : 0,
-    "versionCode" : 1000000,
-    "versionName" : "1.0.0"
-    }],
-  "deviceType" : "default",
-  "systemFullName" : "OpenHarmony-4.0.0.0"
+async function getLocalCapabilities(): Promise<void> {
+ try {
+   let fileData = await backup.getLocalCapabilities();
+   console.info('getLocalCapabilities success');
+   let fpath = filesDir + '/localCapabilities.json';
+   fs.copyFileSync(fileData.fd, fpath);
+   fs.closeSync(fileData.fd);
+ } catch (error) {
+   let err: BusinessError = error as BusinessError;
+   console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
  }
- ```
+}
+```
+
+**返回的能力文件内容示例：**
+
+| 属性名称       | 数据类型 | 必填 | 含义                   |
+| -------------- | -------- | ---- | ---------------------- |
+| bundleInfos    | 数组     | 是   | 应用信息列表           |
+| &nbsp;&nbsp;&nbsp;&nbsp; allToBackup    | 布尔值   | 是   | 是否允许备份恢复       |
+| &nbsp;&nbsp;&nbsp;&nbsp; extensionName  | 字符串   | 是   | 应用的扩展名           |
+| &nbsp;&nbsp;&nbsp;&nbsp; name           | 字符串   | 是   | 应用的包名             |
+| &nbsp;&nbsp;&nbsp;&nbsp; needToInstall  | 布尔值   | 是   | 应用恢复时是否需要安装 |
+| &nbsp;&nbsp;&nbsp;&nbsp; spaceOccupied  | 数值     | 是   | 应用数据占用的空间大小 |
+| &nbsp;&nbsp;&nbsp;&nbsp; versionCode    | 数值     | 是   | 应用的版本号           |
+| &nbsp;&nbsp;&nbsp;&nbsp; versionName    | 字符串   | 是   | 应用的版本名称         |
+| deviceType     | 字符串   | 是   | 设备类型               |
+| systemFullName | 字符串   | 是   | 设备版本               |
+
+```json
+{
+"bundleInfos" :[{
+ "allToBackup" : true,
+ "extensionName" : "BackupExtensionAbility",
+ "name" : "com.example.hiworld",
+ "needToInstall" : false,
+ "spaceOccupied" : 0,
+ "versionCode" : 1000000,
+ "versionName" : "1.0.0"
+ }],
+"deviceType" : "default",
+"systemFullName" : "OpenHarmony-4.0.0.0"
+}
+```
 
 ## 应用备份数据
 
@@ -109,6 +108,7 @@
   let g_session: backup.SessionBackup;
   function createSessionBackup(): backup.SessionBackup {
     let generalCallbacks: backup.GeneralCallbacks = {
+      // onFileReady为服务回调给应用侧数据完成的通知，建议开发者在该接口内不要进行过多的耗时实现，可以通过异步线程实现file.fd数据的处理
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
           console.info('onFileReady err: ' + JSON.stringify(err));
@@ -118,6 +118,7 @@
           if (!fs.accessSync(bundlePath)) {
             fs.mkdirSync(bundlePath);
           }
+          // 此处执行copyFileSync会多一次内存拷贝，开发者可以直接使用onFileReady的file.fd来进行数据出来，处理完成后close即可，这样会减少内存消耗
           fs.copyFileSync(file.fd, bundlePath + `/${file.uri}`);
           fs.closeSync(file.fd);
           console.info('onFileReady success');
@@ -253,126 +254,4 @@
     await g_session.getFileHandle(handle);
     console.info('getFileHandle success');
   }
- ```
-
-## 应用恢复数据时安装应用
-
-开发者在恢复数据时可以选择先安装应用后再进行恢复应用数据。与[应用恢复数据](#应用恢复数据)相比需要修改[能力文件](#获取能力文件)中`bundleInfos`数组内的`needToInstall`字段修改为`true`。
-
-> **说明：**
-> - [应用备份数据](#应用备份数据)不支持备份应用安装包，因此开发者需要自行准备应用安装包。
-> - 开发者在调用[getFileHandle](../reference/apis/js-apis-file-backup.md#getfilehandle)时，传入固定的`FileMeta.uri`=`"/data/storage/el2/restore/bundle.hap"`，用于获取应用安装包的文件句柄。与应用恢复数据时一致，应用安装包的文件句柄，通过创建实例时注册的回调onFileReady接口返回给开发者，返回的`File.uri`=`"/data/storage/el2/restore/bundle.hap"`。
-
-**示例**
-
- ```ts
-  import backup from '@ohos.file.backup';
-  import common from '@ohos.app.ability.common';
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
-
-  // 获取沙箱路径
-  let context = getContext(this) as common.UIAbilityContext;
-  let filesDir = context.filesDir;
-  // 创建SessionRestore类的实例用于恢复数据
-  let g_session: backup.SessionRestore;
-  async function publishFile(file: backup.File): Promise<void> {
-    let fileMeta: backup.FileMeta = {
-      bundleName: file.bundleName,
-      uri: file.uri
-    }
-    await g_session.publishFile(fileMeta);
-  }
-  function createSessionRestore(): backup.SessionRestore {
-    let generalCallbacks: backup.GeneralCallbacks = {
-      onFileReady: (err: BusinessError, file: backup.File) => {
-        if (err) {
-          console.info('onFileReady err: ' + JSON.stringify(err));
-        }
-        let bundlePath: string = '';
-        if( file.uri == "/data/storage/el2/restore/bundle.hap" )
-        {
-          // 此处开发者请根据实际场景安装包的存放位置进行调整
-        } else {
-          // 此处开发者请根据实际场景待恢复文件存放位置进行调整 bundlePath
-        }
-        if (!fs.accessSync(bundlePath)) {
-          console.info('onFileReady bundlePath err : ' + bundlePath);
-        }
-        fs.copyFileSync(bundlePath, file.fd);
-        fs.closeSync(file.fd);
-        // 恢复数据传输完成后，会通知服务端文件准备就绪
-        publishFile(file);
-        console.info('onFileReady success');
-      },
-      onBundleBegin: (err: BusinessError, bundleName: string) => {
-        if (err) {
-          console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
-        }
-        console.info('onBundleBegin success');
-      },
-      onBundleEnd: (err: BusinessError, bundleName: string) => {
-        if (err) {
-          console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
-        }
-        console.info('onBundleEnd success');
-      },
-      onAllBundlesEnd: (err: BusinessError) => {
-        if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        }
-        console.info('onAllBundlesEnd success');
-      },
-      onBackupServiceDied: () => {
-        console.info('service died');
-      }
-    }
-    let sessionRestore = new backup.SessionRestore(generalCallbacks);
-    return sessionRestore;
-  }
-
-  async function restore02 (): Promise<void> {
-    g_session = createSessionRestore();
-    const restoreApps: string[] = [
-      "com.example.hiworld",
-    ]
-    let fpath = filesDir + '/localCapabilities.json';
-    let file = fs.openSync(fpath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-    let content = "{\"bundleInfos\" :[{\"allToBackup\" : false,\"extensionName\" : \"\"," +
-    "\"name\" : \"cn.openharmony.inputmethodchoosedialog\",\"needToInstall\" : true,\"spaceOccupied\" : 0," +
-    "\"versionCode\" : 1000000,\"versionName\" : \"1.0.0\"}],\"deviceType\" : \"default\",\"systemFullName\"   : \"OpenHarmony-4.0.6.2(Canary1)\"}";
-    fs.writeSync(file.fd, content);
-    fs.fsyncSync(file.fd);
-    await g_session.appendBundles(file.fd, restoreApps);
-    console.info('appendBundles success');
-
-    // 开发者需要请求安装应用的文件句柄
-    let handle: backup.FileMeta = {
-      bundleName: restoreApps[0],
-      uri: "/data/storage/el2/restore/bundle.hap"
-    }
-    await g_session.getFileHandle(handle);
-    handle.uri = "manage.json";
-    await g_session.getFileHandle(handle);
-    handle.uri = "1.tar";
-    await g_session.getFileHandle(handle);
-    console.info('getFileHandle success');
-  }
- ```
-
-  **恢复数据时安装应用所需的能力文件内容示例：**
- ```json
- {
-  "bundleInfos" :[{
-    "allToBackup" : true,
-    "extensionName" : "BackupExtensionAbility",
-    "name" : "com.example.hiworld",
-    "needToInstall" : true,
-    "spaceOccupied" : 0,
-    "versionCode" : 1000000,
-    "versionName" : "1.0.0"
-    }],
-  "deviceType" : "default",
-  "systemFullName" : "OpenHarmony-4.0.0.0"
- }
  ```

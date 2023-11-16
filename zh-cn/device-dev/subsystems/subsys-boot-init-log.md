@@ -14,6 +14,98 @@ init日志根据OpenHarmony版本不同实现方式不同。
 - 对于OpenHarmony LiteOS小型系统版本init日志采用hilog接口实现。
 - 对于OpenHarmony LiteOS轻量系统版本init日志采用printf接口实现。
 
+### 日志类型介绍
+  Init的日志记录主要分为hilog 和demsg, hilog主要记录系统业务流程相关的日志，demsg 记录内核相关的日志。
+### 日志级别的控制
+  init 日志级别分为五级,可以通过设置(INIT_DEBUG_LEVEL)persist.init.debug.loglevel参数来控制
+
+  ```
+  InitLogLevel:
+    INIT_DEBUG = 0,
+    INIT_INFO,
+    INIT_WARN,
+    INIT_ERROR,
+    INIT_FATAL
+  ```
+
+  Kmsg 日志级别：
+
+  ```
+  "<7>" =====> "DEBUG"
+  "<6>" =====> "INFO"
+  "<4>" =====> "WARNING"
+  "<3>" =====> "ERROR"
+  "<3>" =====> "FATAL"
+  ```
+### 日志控制的关键宏
+  INIT_DMESG 控制是否记录内核日志 /dev/kmsg
+  INIT_FILE  控制是否将日志写入文件 /data/init_agent/begetctl.log
+  INIT_AGENT 控制是否走Hilog记录日志
+
+  关键接口：
+  ```
+    void EnableInitLog(InitLogLevel level) 使能log
+  
+    void SetInitLogLevel(InitLogLevel level) 设置log 的级别，控制日志的输出
+
+    void StartupLog(InitLogLevel logLevel, uint32_t domain, const char *tag, const char *fmt, ...) 是init log的入口
+  ```
+  STARTUP_LOGI 是对StartupLog 定义的宏，在头文件/base/startup/init/interfaces/innerkits/include/beget_ext.h中定义，其他log都是基于STARTUP_LOGI这个宏重定义的：
+
+  - deviceInfo模块(init/device_info/idevice_info.h):
+  ```
+    DINFO_LOGI
+    DINFO_LOGE
+    DINFO_LOGV
+  ```
+  - Paran Js接口模块(init/interfaces/kits/jskits/src/native_parameters_js.h)：
+  ```
+    PARAM_JS_LOGI
+    PARAM_JS_LOGE
+    PARAM_JS_LOGV
+    PARAM_JS_LOGW
+  ```
+  - Shell模块(init/services/begetctl/shell/shell_utils.h)：
+  ```
+    BSH_LOGI
+    BSH_LOGE
+    BSH_LOGV
+  ```
+  - LoopEvent模块(init/services/loopevent/utils/le_utils.h)：
+  ```
+    LE_LOGI
+    LE_LOGE
+    LE_LOGV
+  ```
+  - Plugin 模块(init/services/modules/plugin_adapter.h)：
+  ```
+    PLUGIN_LOGI
+    PLUGIN_LOGE
+    PLUGIN_LOGV
+    PLUGIN_LOGW
+  ```
+  - Param 模块(init/services/param/include/param_utils.h)：
+  ```
+    PARAM_LOGI
+    PARAM_LOGE
+    PARAM_LOGV
+    PARAM_LOGW
+  ```
+  - ParameWatcher 模块(init/services/param/watcher/include/watcher_utils.h)：
+  ```
+    WATCHER_LOGI
+    WATCHER_LOGE
+    WATCHER_LOGV
+  ```
+  - Init 流程部分的log 也是直接基于StartupLog 函数定义的宏，主要有(init/services/log/init_log.h)：
+  ```
+    INIT_LOGV
+    INIT_LOGI
+    INIT_LOGW
+    INIT_LOGE
+    INIT_LOGF
+  ```
+
 ### 约束与限制
 无
 

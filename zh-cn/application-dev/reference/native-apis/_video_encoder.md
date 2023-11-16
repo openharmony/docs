@@ -50,13 +50,13 @@ VideoEncoder模块提供用于视频编码功能的函数。
 | [OH_VideoEncoder_Stop](#oh_videoencoder_stop) (OH_AVCodec \*codec) | 停止编码器。 | 
 | [OH_VideoEncoder_Flush](#oh_videoencoder_flush) (OH_AVCodec \*codec) | 清除编码器中缓冲的输入和输出数据。 | 
 | [OH_VideoEncoder_Reset](#oh_videoencoder_reset) (OH_AVCodec \*codec) | 重置编码器。 | 
-| \*[OH_VideoEncoder_GetOutputDescription](#oh_videoencoder_getoutputdescription) (OH_AVCodec \*codec) | 获取编码器输出数据的描述信息，详细信息请参阅 **OH_AVFormat**。 | 
+| \*[OH_VideoEncoder_GetOutputDescription](#oh_videoencoder_getoutputdescription) (OH_AVCodec \*codec) | 获取编码器输出数据的描述信息，详细信息请参阅 [OH_AVFormat](_core.md) 。 | 
 | [OH_VideoEncoder_SetParameter](#oh_videoencoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format) | 为编码器设置动态参数。 | 
 | [OH_VideoEncoder_GetSurface](#oh_videoencoder_getsurface) (OH_AVCodec \*codec, OHNativeWindow \*\*window) | 从视频编码器获取输入Surface，必须在调用Prepare之前调用此接口。 | 
 | [OH_VideoEncoder_FreeOutputData](#oh_videoencoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index) | 将处理后的输出缓冲区返回给编码器。 | 
 | [OH_VideoEncoder_NotifyEndOfStream](#oh_videoencoder_notifyendofstream) (OH_AVCodec \*codec) | 通知视频编码器输入流已结束。建议使用此接口进行通知。 | 
 | [OH_VideoEncoder_PushInputData](#oh_videoencoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, OH_AVCodecBufferAttr attr) | 将填入数据的输入缓冲区提交给视频编码器。 | 
-| \*[OH_VideoEncoder_GetInputDescription](#oh_videoencoder_getinputdescription) (OH_AVCodec \*codec) | 获取视频编码器接收的描述信息，调用Configure后调用此接口，请参阅 **OH_AVFormat** 获取详细信息。 | 
+| \*[OH_VideoEncoder_GetInputDescription](#oh_videoencoder_getinputdescription) (OH_AVCodec \*codec) | 获取视频编码器接收的描述信息，调用Configure后调用此接口，请参阅 [OH_AVFormat](_core.md) 获取详细信息。 | 
 | [OH_VideoEncoder_IsValid](#oh_videoencoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | 检查当前编解码器实例是否有效。 | 
 
 
@@ -355,6 +355,7 @@ OH_AVErrCode OH_VideoEncoder_GetSurface (OH_AVCodec *codec, OHNativeWindow **win
 **描述：**
 
 从视频编码器获取输入Surface，必须在调用Prepare之前调用此接口。
+应用负责管理window的生命周期，结束时调用OH_NativeWindow_DestroyNativeWindow()释放。
 
 \@syscap SystemCapability.Multimedia.Media.VideoEncoder
 

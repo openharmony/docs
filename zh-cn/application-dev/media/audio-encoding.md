@@ -29,13 +29,13 @@
 参考以下示例代码，完成音频编码的全流程，包括：创建编码器，设置编码参数（采样率/码率/声道数等），开始，刷新，重置，销毁资源。
 
 在应用开发过程中，开发者应按一定顺序调用方法，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
-完整代码请参考[示例程序](https://gitee.com/openharmony/multimedia_av_codec/blob/master/test/nativedemo/audio_demo/avcodec_audio_aac_encoder_demo.cpp)。
 
 如下为音频编码调用关系图：
 ![Invoking relationship of audio encode stream](figures/audio-encode.png)
 
 ### 在 CMake 脚本中链接动态库
-``` cmake
+
+```cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
 target_link_libraries(sample PUBLIC libnative_media_aenc.so)
@@ -43,7 +43,16 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
 
 ### 开发步骤
 
-1. 创建编码器实例对象
+1. 添加头文件。
+
+   ```cpp
+   #include <multimedia/player_framework/native_avcodec_audioencoder.h>
+   #include <multimedia/player_framework/avcodec_audio_channel_layout.h>
+   #include <multimedia/player_framework/native_avcapability.h>
+   #include <multimedia/player_framework/native_avcodec_base.h>
+   #include <multimedia/player_framework/native_avformat.h>
+   ```
+2. 创建编码器实例对象
 
    应用可以通过名称或媒体类型创建编码器。
 
@@ -55,10 +64,12 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    const char *name = OH_AVCapability_GetName(capability);
    OH_AVCodec *audioEnc = OH_AudioEncoder_CreateByName(name);
    ```
+
    ```cpp
    //通过媒体类型创建编码器
    OH_AVCodec *audioEnc = OH_AudioEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC); 
    ```
+
    ```cpp
    // 初始化队列
    class AEncSignal {
@@ -77,7 +88,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    };
    AEncSignal *signal_ = new AEncSignal();
    ```
-2. 调用OH_AudioEncoder_SetCallback()设置回调函数。
+3. 调用OH_AudioEncoder_SetCallback()设置回调函数。
 
    注册回调函数指针集合OH_AVCodecAsyncCallback，包括：
 
@@ -137,14 +148,13 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
-3. 调用OH_AudioEncoder_Configure设置编码器
+4. 调用OH_AudioEncoder_Configure设置编码器
    设置必选项：采样率，码率，以及声道数，声道类型、位深；可选项：最大输入长度
    flac编码： 需要额外标识兼容性级别(Compliance Level)和采样精度
-   
+
    例AAC调用流程：
+
    ```cpp
-   #include "avcodec_audio_channel_layout.h"
-   
    int32_t ret;
    // 配置音频采样率（必须）
    constexpr uint32_t DEFAULT_SAMPLERATE = 44100; 
@@ -159,7 +169,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    // 配置音频compliance level (默认值0，取值范围-2~2)
    constexpr int32_t COMPLIANCE_LEVEL = 0;
    // 配置音频精度（必须） SAMPLE_S16LE和SAMPLE_S24LE和SAMPLE_S32LE
-   constexpr uint32_t BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
+   constexpr OH_BitsPerSample BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
    // 配置最大输入长度（可选）
    constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1024*DEFAULT_CHANNEL_COUNT *sizeof(float);//aac
    OH_AVFormat *format = OH_AVFormat_Create();
@@ -176,10 +186,10 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
+
    例FLAC调用流程：
+
    ```cpp
-   #include "avcodec_audio_channel_layout.h"
-   
    int32_t ret;
    // 配置音频采样率（必须）
    constexpr uint32_t DEFAULT_SMAPLERATE = 44100; 
@@ -194,7 +204,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    // 配置音频compliance level (默认值0，取值范围-2~2)
    constexpr int32_t COMPLIANCE_LEVEL = 0;
    // 配置音频精度（必须） SAMPLE_S16LE和SAMPLE_S24LE和SAMPLE_S32LE
-   constexpr uint32_t BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
+   constexpr OH_BitsPerSample BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
    OH_AVFormat *format = OH_AVFormat_Create();
    // 写入format
    OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_CHANNEL_COUNT,DEFAULT_CHANNEL_COUNT);
@@ -210,12 +220,12 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
-4. 调用OH_AudioEncoder_Prepare()，编码器就绪。
+5. 调用OH_AudioEncoder_Prepare()，编码器就绪。
 
    ```c++
    OH_AudioEncoder_Prepare(audioEnc);
    ```
-5. 调用OH_AudioEncoder_Start()启动编码器，进入运行态。
+6. 调用OH_AudioEncoder_Start()启动编码器，进入运行态。
 
    ```c++
    unique_ptr<ifstream> inputFile_ = make_unique<ifstream>();
@@ -230,7 +240,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
-6. 调用OH_AudioEncoder_PushInputData()，写入待编码器的数据。
+7. 调用OH_AudioEncoder_PushInputData()，写入待编码器的数据。
    如果是结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
 
    aac： 样点数(FRAME_SIZE)固定为1024
@@ -276,26 +286,24 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
-7. 调用OH_AudioEncoder_FreeOutputData()，输出编码格式码流
+8. 调用OH_AudioEncoder_FreeOutputData()，输出编码格式码流
 
    ```c++
    OH_AVCodecBufferAttr attr = signal_->attrQueue_.front();
    OH_AVMemory *data = signal_->outBufferQueue_.front();
    uint32_t index = signal_->outQueue_.front();
    // 将编码完成数据data写入到对应输出文件中
-   outFile_->write(reinterpret_cast<char *>(OH_AVMemory_GetAdd(data)), attr.size);
+   outFile_->write(reinterpret_cast<char *>(OH_AVMemory_GetAddr(data)), attr.size);
    // 释放已完成写入的数据
    ret = OH_AudioEncoder_FreeOutputData(audioEnc, index);
    if (ret != AV_ERR_OK) {
        // 异常处理
    }
    if (attr.flags == AVCODEC_BUFFER_FLAGS_EOS) {
-       cout << "decode eos" << endl;
-       isRunning_.store(false);
-       break;
+       // 结束
    }
    ```
-8. （可选）调用OH_AudioEncoder_Flush()刷新编码器。
+9. （可选）调用OH_AudioEncoder_Flush()刷新编码器。
    调用OH_AudioEncoder_Flush()后，编码器处于Flush状态，会将当前编码队列清空。
    此时需要调用OH_AudioEncoder_Start()重新开始编码。
    使用情况：
@@ -315,22 +323,22 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // 异常处理
    }
    ```
-9. （可选）调用OH_AudioEncoder_Reset()重置编码器。
-   调用OH_AudioEncoder_Reset()后，编码器回到初始化的状态，需要调用OH_AudioEncoder_Configure()重新配置，然后调用OH_AudioEncoder_Start()重新开始编码。。
+10. （可选）调用OH_AudioEncoder_Reset()重置编码器。
+    调用OH_AudioEncoder_Reset()后，编码器回到初始化的状态，需要调用OH_AudioEncoder_Configure()重新配置，然后调用OH_AudioEncoder_Start()重新开始编码。
 
-   ```c++
-   // 重置编码器 audioEnc
-   ret = OH_AudioEncoder_Reset(audioEnc);
-   if (ret != AV_ERR_OK) {
-       // 异常处理
-   }
-   // 重新配置编码器参数
-   ret = OH_AudioEncoder_Configure(audioEnc, format);
-   if (ret != AV_ERR_OK) {
-       // 异常处理
-   }
-   ```
-10. 调用OH_AudioEncoder_Stop()停止编码器。
+    ```c++
+    // 重置编码器 audioEnc
+    ret = OH_AudioEncoder_Reset(audioEnc);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    // 重新配置编码器参数
+    ret = OH_AudioEncoder_Configure(audioEnc, format);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    ```
+11. 调用OH_AudioEncoder_Stop()停止编码器。
 
     ```c++
     // 终止编码器 audioEnc
@@ -339,7 +347,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
         // 异常处理
     }
     ```
-11. 调用OH_AudioEncoder_Destroy()销毁编码器实例，释放资源。
+12. 调用OH_AudioEncoder_Destroy()销毁编码器实例，释放资源。
     **注意**：资源不能重复销毁
 
     ```c++
@@ -351,3 +359,9 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
         audioEnc = NULL; //不可重复destroy
     }
     ```
+
+## 相关实例
+
+针对音频编码，有以下相关实例可供参考：
+
+- [音频编码](https://gitee.com/openharmony/multimedia_av_codec/blob/master/test/nativedemo/audio_demo/avcodec_audio_aac_encoder_demo.cpp)

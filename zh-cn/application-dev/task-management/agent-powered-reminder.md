@@ -23,7 +23,7 @@
 
 **表1** 主要接口
 
-以下是代理提醒的相关接口，下表均以Promise形式为例，更多接口及使用方式请见后台代理提醒文档。
+以下是代理提醒的相关接口，下表均以Promise形式为例，更多接口及使用方式请见[后台代理提醒](../reference/apis/js-apis-reminderAgentManager.md)文档。
 | 接口名 | 描述 |
 | -------- | -------- |
 | publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | 发布一个定时提醒类通知 |

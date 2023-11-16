@@ -151,13 +151,13 @@ let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: B
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
 let options: sms.SendMessageOptions = {
-    slotId = 0;
-    content = 'SMS message content';
-    destinationHost = '+861xxxxxxxxxx';
-    serviceCenter = '+861xxxxxxxxxx';
-    destinationPort = 1000;
-    sendCallback = sendCallback;
-    deliveryCallback = deliveryCallback;
+    slotId: 0,
+    content: 'SMS message content';
+    destinationHost: '+861xxxxxxxxxx',
+    serviceCenter: '+861xxxxxxxxxx',
+    destinationPort: 1000,
+    sendCallback: sendCallback,
+    deliveryCallback: deliveryCallback
 };
 sms.sendMessage(options);
 ```
@@ -206,13 +206,13 @@ let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: B
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
 let options: sms.SendMessageOptions = {
-    slotId = 0;
-    content = 'SMS message content';
-    destinationHost = '+861xxxxxxxxxx';
-    serviceCenter = '+861xxxxxxxxxx';
-    destinationPort = 1000;
-    sendCallback = sendCallback;
-    deliveryCallback = deliveryCallback;
+    slotId: 0,
+    content: 'SMS message content';
+    destinationHost: '+861xxxxxxxxxx',
+    serviceCenter: '+861xxxxxxxxxx',
+    destinationPort: 1000,
+    sendCallback: sendCallback,
+    deliveryCallback: deliveryCallback
 };
 sms.sendShortMessage(options, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -268,13 +268,13 @@ let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: B
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
 let options: sms.SendMessageOptions = {
-    slotId = 0;
-    content = 'SMS message content';
-    destinationHost = '+861xxxxxxxxxx';
-    serviceCenter = '+861xxxxxxxxxx';
-    destinationPort = 1000;
-    sendCallback = sendCallback;
-    deliveryCallback = deliveryCallback;
+    slotId: 0,
+    content: 'SMS message content';
+    destinationHost: '+861xxxxxxxxxx',
+    serviceCenter: '+861xxxxxxxxxx',
+    destinationPort: 1000,
+    sendCallback: sendCallback,
+    deliveryCallback: deliveryCallback
 };
 let promise = sms.sendShortMessage(options);
 promise.then(() => {
@@ -337,7 +337,7 @@ const sandBoxPath: string = '/data/storage/el2/base/files/';
 let filePath: string  = sandBoxPath + 'SendReq.mms';
 
 // Options for sending MMS messages (The MMSC is for reference only.)
-let mmsPars: sms.MmsParams = {
+let mmsPars: sms.MmsParam = {
   slotId : 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
@@ -348,13 +348,13 @@ let mmsPars: sms.MmsParams = {
 };
 
 // Call the sendMms API.
-mms.sendMms(context, mmsPars, async(err: BusinessError) =>{
+sms.sendMms(context, mmsPars, async(err: BusinessError) =>{
   if (err) {
-    console.log(`sendMms fail, err : ${toString(err)}`);
+    console.log(`sendMms fail, err : ${String(err)}`);
     return;
   }
   console.log(`sendMms Success`);
-}
+})
 ```
 
 Stage model:
@@ -382,13 +382,13 @@ let mmsPars = {
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-    mms.sendMms(this.context, mmsPars, async(err) =>{
+    sms.sendMms(this.context, mmsPars, async(err) =>{
         if (err) {
-            console.log(`sendMms fail, err : ${toString(err)}`);
+            console.log(`sendMms fail, err : ${String(err)}`);
             return;
         }
         console.log(`sendMms Success`);
-        }
+        })
     }
 }
 ```
@@ -449,7 +449,7 @@ const sandBoxPath: string = '/data/storage/el2/base/files/';
 let filePath: string = sandBoxPath + 'SendReq.mms';
 
 // Options for sending MMS messages (The MMSC is for reference only.)
-let mmsPars: sms.MmsParams = {
+let mmsPars: sms.MmsParam = {
   slotId: 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
@@ -520,7 +520,7 @@ Downloads an MMS message. This API uses an asynchronous callback to return the r
 | Name  | Type                       | Mandatory| Description                                    |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
 | context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
-| mmsParams | [MmsParams](#mmsparams) | Yes  | Parameters (including the callback) for downloading an MMS message. For details, see [MmsParams](#mmsparams).|
+| mmsParams | [MmsParams](#mmsparams) | Yes  | Parameters (including the callback) for downloading MMS messages. For details, see [MmsParams](#mmsparams).|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -556,8 +556,8 @@ let filePath: string = sandBoxPath + 'RetrieveConf.mms';
 // Parse the MMS URL from the WAP Push message.
 let wapPushUrl: string = 'URL';
 
-// Configure the parameters (including the callback) for downloading an MMS message.
-let mmsPars: sms.MmsParams = {
+// Configure the parameters (including the callback) for downloading MMS messages.
+let mmsPars: sms.MmsParam = {
   slotId: 0,
   mmsc: wapPushUrl,
   data: filePath,
@@ -595,7 +595,7 @@ let mmsConf = {
   userAgentProfile: 'uaprof'
 };
 
-// Configure the parameters (including the callback) for downloading an MMS message.
+// Configure the parameters (including the callback) for downloading MMS messages.
 let mmsPars = {
   slotId : DEFAULT_SLOTID,
   mmsc: wapPushUrl,
@@ -674,8 +674,8 @@ let filePath: string = sandBoxPath + 'RetrieveConf.mms';
 // Parse the MMS URL from the WAP Push message.
 let wapPushUrl: string = 'URL';
 
-// Configure the parameters for downloading an MMS message.
-let mmsPars: sms.MmsParams = {
+// Configure the parameters (including the callback) for downloading MMS messages.
+let mmsPars: sms.MmsParam = {
   slotId: 0,
   mmsc: wapPushUrl,
   data: filePath,
@@ -712,7 +712,7 @@ let mmsConf = {
   userAgentProfile: 'uaprof'
 };
 
-// Configure the parameters for downloading an MMS message.
+// Configure the parameters (including the callback) for downloading MMS messages.
 let mmsPars = {
   slotId : DEFAULT_SLOTID,
   mmsc: wapPushUrl,
@@ -1145,7 +1145,7 @@ import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
 let content: string = "long message";
-sms.splitMessage(content, (err: BusinessError, data: string) => {
+sms.splitMessage(content, (err: BusinessError, data: string[]) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1197,7 +1197,7 @@ import { BusinessError } from '@ohos.base';
 
 let content: string = "long message";
 let promise = sms.splitMessage(content);
-promise.then((data: string) => {
+promise.then((data: string[]) => {
     console.log(`splitMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`splitMessage failed, promise: err->${JSON.stringify(err)}`);
@@ -1566,7 +1566,7 @@ import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-sms.getAllSimMessages(slotId, (err: BusinessError, data: sms.SimShortMessage) => {
+sms.getAllSimMessages(slotId, (err: BusinessError, data: sms.SimShortMessage[]) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1618,7 +1618,7 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 let promise = sms.getAllSimMessages(slotId);
-promise.then((data: sim.SimShortMessage) => {
+promise.then((data: sms.SimShortMessage) => {
     console.log(`getAllSimMessages success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getAllSimMessages failed, promise: err->${JSON.stringify(err)}`);
@@ -2145,7 +2145,7 @@ let mmsInformation: sms.MmsInformation = {
     messageType: sms.MessageType.TYPE_MMS_ACKNOWLEDGE_IND,
     mmsType: mmsAcknowledgeInd
 };
-sms.encodeMms(mmsInformation, (err: BusinessError, data: number) => {
+sms.encodeMms(mmsInformation, (err: BusinessError, data: number[]) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2201,7 +2201,7 @@ let mmsInformation: sms.MmsInformation = {
     messageType: sms.MessageType.TYPE_MMS_ACKNOWLEDGE_IND,
     mmsType: mmsAcknowledgeInd
 };
-sms.encodeMms(mmsInformation).then((data: number) => {
+sms.encodeMms(mmsInformation).then((data: number[]) => {
     console.log(`encodeMms success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`encodeMms failed, promise: err->${JSON.stringify(err)}`);

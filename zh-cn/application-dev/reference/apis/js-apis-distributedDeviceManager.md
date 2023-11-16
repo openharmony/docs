@@ -85,8 +85,10 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 
   ```ts
   import { BusinessError } from '@ohos.base'
+  import deviceManager from '@ohos.distributedDeviceManager'
 
   try {
+    let dmInstance = deviceManager.createDeviceManager("ohos.samples.jshelloworld");
     deviceManager.releaseDeviceManager(dmInstance);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -529,15 +531,11 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
     authorizationType: number
   }
 
-  let discoverParam: DiscoverParam = {
-    discoverTargetType: 1
+  let discoverParam: Record<string, number> = {
+    'discoverTargetType': 1
   };
-
-  let filterOptions: FilterOptions = {
-    availableStatus: 1,
-    discoverDistance: 50,
-    authenticationStatus: 0,
-    authorizationType: 0
+  let filterOptions: Record<string, number> = {
+    'availableStatus': 0
   };
 
   try {
@@ -616,23 +614,16 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
     deviceId: string = ""
   }
 
-  interface BindParam {
-    bindType: number, // 认证类型： 1 - 无帐号PIN码认证
-    targetPkgName: string,
-    appName: string,
-    appOperation: string,
-    customDescription: string
-  }
-
   // 认证的设备信息，可以从发现的结果中获取
   let deviceId = "XXXXXXXX";
-  let bindParam: BindParam = {
+  let bindParam: Record<string, string | number> = {
     bindType: 1, // 认证类型： 1 - 无帐号PIN码认证
     targetPkgName: 'xxxx',
     appName: 'xxxx',
     appOperation: 'xxxx',
     customDescription: 'xxxx'
   }
+
   try {
     dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
       if (err) {
@@ -880,12 +871,12 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
   }
 
   try {
-    dmInstance.off('deviceStatusChange', (data: Data) => {
-      console.info('deviceStatusChange' + JSON.stringify(data));
+    dmInstance.off('deviceStateChange', (data: Data) => {
+      console.info('deviceStateChange' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("deviceStatusChange errCode:" + e.code + ",errMessage:" + e.message);
+    console.error("deviceStateChange errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 

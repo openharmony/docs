@@ -2,7 +2,7 @@
 
 The **intl** module provides basic i18n capabilities, such as time and date formatting, number formatting, and string sorting, through the standard i18n APIs defined in ECMA 402. For more details about APIs and their usage, see [intl API Reference](../reference/apis/js-apis-intl.md).
 
-The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced i18n capabilities through supplementary interfaces that are not defined in ECMA 402. It works with the intl module to provide a complete suite of i18n capabilities.
+The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced i18n capabilities through supplementary APIs that are not defined in ECMA 402. It works with the intl module to provide a complete suite of i18n capabilities.
 
 ## Setting Locale Information
 
@@ -30,16 +30,16 @@ Call [Locale](../reference/apis/js-apis-intl.md#locale) APIs to maximize or mini
 
 2. Instantiate a **Locale** object.
 
-   Create a **Locale** object by using the **Locale** constructor. This API receives a string that represents the locale and an optional [attribute](../reference/apis/js-apis-intl.md#localeoptions) list. (Note that **intl** is the name of the imported module.)
+   Create a **Locale** object by using the **Locale** constructor. This API receives a string that represents the locale and an optional [attribute](../reference/apis/js-apis-intl.md#localeoptions) list. (Note that **Intl** is the name of the imported module.)
 
    A **Locale** object consists of four parts: language, script, region, and extension, which are separated by using a hyphen (-).
    -  Language: mandatory. It is represented by a two-letter or three-letter code as defined in ISO-639. For example, **en** indicates English, and **zh** indicates Chinese.
    -  Script: optional. It is represented by a four-letter code as defined in ISO-15924. The first letter is in uppercase, and the remaining three letters are in lowercase. For example, **Hant** represents traditional Chinese, and **Hans** represents simplified Chinese.
    -  Country or region: optional. It is represented by two-letter code as defined in ISO-3166. Both letters are in uppercase. For example, **CN** represents China, and **US** represents the United States.
-   -  Extensions: optional. Each extension consists of two parts, key and value. Currently, the extensions listed in the following table are supported. For details, see BCP 47 Extensions. Extensions can be in any sequence and are written in the format of **-key-value**. They are appended to the language, script, and region by using **-u**. For example, **zh-u-nu-latn-ca-chinese** indicates that the Latin digital system and Chinese calendar system are used. Extensions can also be passed via the second parameter.
+   -  Extensions: optional. Each extension consists of two parts, key and value. Currently, the extensions listed in the following table are supported. For details, see BCP 47 Extensions. Extensions can be in any sequence and are written in the format of **-key-value**. They are appended to the language, script, and region by using **-u**. For example, **zh-u-nu-latn-ca-chinese** indicates that the Latin numbering system and Chinese calendar system are used. Extensions can also be passed via the second parameter.
       | ID| Description|
       | -------- | -------- |
-      | ca | Calendar algorithm.|
+      | ca | Calendar system. |
       | co | Collation type.|
       | hc | Hour cycle.|
       | nu | Numbering system.|
@@ -147,7 +147,7 @@ Call [DateTimeFormat](../reference/apis/js-apis-intl.md#datetimeformat) APIs to 
    ```ts
    let options: Intl.DateTimeOptions = {dateStyle: "full", timeStyle: "full"};
    let dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
-   let resolvedOptions = dateTimeFormat.resolvedOptions(); // resolvedOptions = {"locale": "zh-CN", "calendar": "gregorian", "dateStyle":"full", "timeStyle":"full", "timeZone": "CST"}
+   let resolvedOptions = dateTimeFormat.resolvedOptions(); // resolvedOptions = {"locale": "zh-CN", "calendar": "gregorian", "dateStyle":"full", "timeStyle":"full", "timeZone": "Asia/Shanghai"}
    ```
 
 ## Formatting Numbers
@@ -175,7 +175,7 @@ Call [NumberFormat](../reference/apis/js-apis-intl.md#numberformat) APIs to impl
 
 2. Instantiate a **NumberFormat** object.
 
-   Use the default constructor of **NumberFormat** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **NumberFormat** object. (Note that **intl** is the name of the imported module.)
+   Use the default constructor of **NumberFormat** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **NumberFormat** object. (Note that **Intl** is the name of the imported module.)
 
    ```ts
    let numberFormat = new Intl.NumberFormat();
@@ -206,7 +206,7 @@ Call [NumberFormat](../reference/apis/js-apis-intl.md#numberformat) APIs to impl
    ```ts
    let options: Intl.NumberOptions = {compactDisplay: "short", notation: "compact"};
    let numberFormat = new Intl.NumberFormat("zh-CN", options);
-   let resolvedOptions = numberFormat.resolvedOptions();  // resolvedOptions = {"locale": "zh-CN", "compactDisplay": "short", "notation": "compact", "numberingSystem": "Latn"}
+   let resolvedOptions = numberFormat.resolvedOptions();  // resolvedOptions = {"locale": "zh-CN", "currencySign": "standard", "signDisplay": "auto", "compactDisplay": "short", "notation": "compact", "numberingSystem": "Latn"}
    ```
 
 ## Sorting Strings
@@ -234,14 +234,15 @@ Users in different regions have different requirements for string sorting. You c
 
 2. Instantiate a **Collator** object.
 
-   Use the default constructor of **Collator** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **Collator** object. (Note that **intl** is the name of the imported module.)
+   Use the default constructor of **Collator** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **Collator** object. (Note that **Intl** is the name of the imported module.)
 
    ```ts
    let collator = new Intl.Collator();
    ```
 
      Alternatively, use your own locale and formatting parameters to create a **Collator** object. For a full list of parameters, see [CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions8).
-     The **sensitivity** parameter is used to specify the levels of differences that will be used for string comparison. The value **base** indicates that only characters are compared, but not the accent and capitalization. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **accent** indicates that the accent is considered, but not the capitalization. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **case** indicates that the capitalization is considered, but not the accent. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **variant** indicates that both the accent and capitalization are considered. For example, 'a' != 'b', 'a' == '', 'a'=='A'.
+
+     The **sensitivity** parameter is used to specify the levels of differences that will be used for string comparison. The value **base** indicates that only characters are compared, but not the accent and capitalization. For example, 'a' != 'b'，'a' == 'á'，'a' == 'A'. The value **accent** indicates that the accent is considered, but not the capitalization. For example, 'a' != 'b'，'a' != 'á'，'a' == 'A'. The value **case** indicates that the capitalization is considered, but not the accent. For example, 'a' != 'b'，'a' == 'á'，'a' != 'A'. The value **variant** indicates that both the accent and capitalization are considered. For example, 'a' != 'b'，'a' != 'á'，'a' != 'A'.
    
    ```ts
    let collator= new Intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort", sensitivity: "case"});
@@ -295,7 +296,7 @@ According to the grammar of certain languages, the singular or plural form of a 
 
 2. Instantiate a **PluralRules** object.
 
-   Use the default constructor of **PluralRules** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **PluralRules** object. (Note that **intl** is the name of the imported module.)
+   Use the default constructor of **PluralRules** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **PluralRules** object. (Note that **Intl** is the name of the imported module.)
 
    ```ts
    let pluralRules = new Intl.PluralRules();
@@ -343,7 +344,7 @@ Call [RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8)
 
 2. Instantiate a **RelativeTimeFormat** object.
 
-   Use the default constructor of **RelativeTimeFormat** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **RelativeTimeFormat** object. (Note that **intl** is the name of the imported module.)
+   Use the default constructor of **RelativeTimeFormat** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **RelativeTimeFormat** object. (Note that **Intl** is the name of the imported module.)
    
    ```ts
    let relativeTimeFormat = new Intl.RelativeTimeFormat();
@@ -385,4 +386,3 @@ Call [RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8)
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let options = relativeTimeFormat.resolvedOptions(); // options = {"locale": "zh-CN", "style": "long", "numeric": "always", "numberingSystem": "latn"}
    ```
-

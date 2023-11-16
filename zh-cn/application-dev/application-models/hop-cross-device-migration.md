@@ -315,7 +315,7 @@ export default class EntryAbility extends UIAbility {
 
 ## 验证指导
 
-为方便开发者验证已开发的可迁移应用，当前OpenHarmony提供了一个全局任务中心demo作为迁移的入口。下面介绍通过安装全局任务中心来验证迁移的方式。
+为方便开发者验证已开发的可迁移应用，系统提供了一个全局任务中心demo作为迁移的入口。下面介绍通过安装全局任务中心来验证迁移的方式。
 
 ### 1. 编译安装全局任务中心
 
@@ -331,7 +331,7 @@ public-SDK不支持开发者使用所有的系统API，例如：全局任务中�
 
 #### **编译工程文件**
 
-​	a.新建OpenHarmony 空的工程，找到对应的文件夹替换下载文件  
+​	a.新建一个工程，找到对应的文件夹替换下载文件  
 ![hop-cross-device-migration](figures/hop-cross-device-migration1.png)
 
 ​	b.自动签名，编译安装。

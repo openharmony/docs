@@ -11,7 +11,7 @@
 
 ### 使用组件异步加载特性
 
-OpenHarmony提供的Image组件默认生效异步加载特性，当应用在页面上展示一批本地图片的时候，会先显示空白占位块，当图片在其他线程加载完毕后，再替换占位块。这样图片加载就可以不阻塞页面的显示，给用户带来良好的交互体验。因此，只在加载图片耗时比较短的情况下建议下述代码。 
+当前系统提供的Image组件默认生效异步加载特性，当应用在页面上展示一批本地图片的时候，会先显示空白占位块，当图片在其他线程加载完毕后，再替换占位块。这样图片加载就可以不阻塞页面的显示，给用户带来良好的交互体验。因此，只在加载图片耗时比较短的情况下建议下述代码。 
 
 ```typescript
 @Entry
@@ -61,7 +61,7 @@ struct ImageExample2 {
 
 ### 使用TaskPool线程池异步处理
 
-OpenHarmony提供了[TaskPool线程池](../reference/apis/js-apis-taskpool.md)，相比worker线程，TaskPool提供了任务优先级设置、线程池自动管理机制，示例如下：
+当前系统提供了[TaskPool线程池](../reference/apis/js-apis-taskpool.md)，相比worker线程，TaskPool提供了任务优先级设置、线程池自动管理机制，示例如下：
 
 ```typescript
 import taskpool from '@ohos.taskpool';

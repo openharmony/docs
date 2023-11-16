@@ -26,7 +26,7 @@
       Column() {
         // 展示接收到的来自HTML的内容
         Text(this.receivedFromHtml)
-        // 输入框的内容发送到html
+        // 输入框的内容发送到HTML
         TextInput({placeholder: 'Send this message from ets to HTML'})
           .onChange((value: string) => {
             this.sendFromEts = value;
@@ -107,9 +107,9 @@
   window.addEventListener('message', function (event) {
       if (event.data === '__init_port__') {
           if (event.ports[0] !== null) {
-              h5Port = event.ports[0]; // 1. 保存从ets侧发送过来的端口
+              h5Port = event.ports[0]; // 1. 保存从应用侧发送过来的端口。
               h5Port.onmessage = function (event) {
-                // 2. 接收ets侧发送过来的消息.
+                // 2. 接收ets侧发送过来的消息。
                 var msg = 'Got message from ets:';
                 var result = event.data;
                 if (typeof(result) === 'string') {
@@ -131,7 +131,7 @@
       }
   })
 
-  // 3. 使用h5Port往ets侧发送消息.
+  // 3. 使用h5Port向应用侧发送消息。
   function PostMsgToEts(data) {
       if (h5Port) {
         h5Port.postMessage(data);

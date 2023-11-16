@@ -4,7 +4,7 @@
 开发者使用Web组件将应用侧代码注册到前端页面中，注册完成之后，前端页面中使用注册的对象名称就可以调用应用侧的函数，实现在前端页面中调用应用侧方法。
 
 
-注册应用侧代码有两种方式，一种在Web组件初始化使用调用，使用[javaScriptProxy()](../reference/arkui-ts/ts-basic-components-web.md#javascriptproxy)接口。另外一种在Web组件初始化完成后调用，使用[registerJavaScriptProxy()](../reference/apis/js-apis-webview.md#registerjavascriptproxy)接口。
+注册应用侧代码有两种方式，一种在Web组件初始化调用，使用[javaScriptProxy()](../reference/arkui-ts/ts-basic-components-web.md#javascriptproxy)接口。另外一种在Web组件初始化完成后调用，使用[registerJavaScriptProxy()](../reference/apis/js-apis-webview.md#registerjavascriptproxy)接口。
 
 
 在下面的示例中，将test()方法注册在前端页面中， 该函数可以在前端页面触发运行。

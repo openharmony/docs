@@ -659,11 +659,11 @@ on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>)
 ```js
 import statistics from '@ohos.net.statistics';
 
- class IFace {
-    iFace: string = ""
-    uid?: number = 0
-  }
- statistics.on('netStatsChange', (data:IFace) => {
+class IFace {
+  iface: string = ""
+  uid?: number = 0
+}
+statistics.on('netStatsChange', (data: IFace) => {
   console.log('on netStatsChange' + JSON.stringify(data));
 });
 ```
@@ -704,12 +704,12 @@ off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }
 ```js
 import statistics from '@ohos.net.statistics';
 
- class IFace {
-    iFace: string = ""
-    uid?: number = 0
-  }
-let callback =( data:IFace) => {
-    console.log("on netStatsChange, data:" + JSON.stringify(data));
+class IFace {
+  iface: string = ""
+  uid?: number = 0
+}
+let callback: (data: IFace) => void = (data: IFace) => {
+    console.log("on netStatsChange, iFace:" + data.iface + " uid: " + data.uid);
 }
 statistics.on('netStatsChange', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。

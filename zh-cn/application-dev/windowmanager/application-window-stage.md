@@ -22,6 +22,8 @@
 
 - 设置悬浮窗
 
+- 监听窗口不可交互与可交互事件
+
 以下分别介绍具体开发方式。
 
 ## 接口说明
@@ -33,8 +35,9 @@
 | WindowStage    | getMainWindow(callback: AsyncCallback&lt;Window&gt;): void   | 获取`WindowStage`实例下的主窗口。<br/>此接口仅可在`Stage`模型下使用。 |
 | WindowStage    | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前`WindowStage`的主窗口加载具体页面。<br/>此接口仅可在`Stage`模型下使用。 |
 | WindowStage    | createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void | 创建子窗口。<br/>此接口仅可在`Stage`模型下使用。             |
+| WindowStage    | on(type: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void | 开启WindowStage生命周期变化的监听。<br/>此接口仅可在`Stage`模型下使用。 |
 | window静态方法 | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | 创建系统窗口。<br/>-`config`：创建窗口时的参数。             |
-| Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前窗口加载具体页面。                                     |
+| Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 根据当前工程中某个页面的路径为窗口加载具体的页面内容。                                     |
 | Window         | setWindowBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | 设置窗口的背景色。                                           |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。                                             |
 | Window         | setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口是否为可触状态。                                     |
@@ -396,6 +399,54 @@ export default class EntryAbility extends UIAbility {
     });
   }
 };
+```
+
+## 监听窗口不可交互与可交互事件
+
+应用在前台显示过程中可能会进入某些不可交互的场景，比较典型的是进入多任务界面。此时，对于一些应用可能需要选择暂停某个与用户正在交互的业务，如视频类应用暂停正在播放的视频或者相机暂停预览流等。而当该应用从多任务又切回前台时，又变成了可交互的状态，此时需要恢复被暂停中断的业务，如恢复视频播放或相机预览流等。
+
+### 开发步骤
+
+在创建WindowStage对象后可通过监听`'windowStageEvent'`事件类型，监听到窗口进入前台、后台、前台可交互、前台不可交互等事件，应用可根据这些上报的事件状态进行相应的业务处理。
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    try {
+      windowStage.on('windowStageEvent', (data) => {
+        console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
+          JSON.stringify(data));
+
+        // 根据事件状态类型选择进行相应的处理
+        if (data == window.WindowStageEventType.SHOWN) {
+          console.info('current window stage event is SHOWN');
+          // 应用进入前台，默认为可交互状态
+          // ...
+        } else if (data == window.WindowStageEventType.HIDDEN) {
+          console.info('current window stage event is HIDDEN');
+          // 应用进入后台，默认为不可交互状态
+          // ...
+        } else if (data == window.WindowStageEventType.PAUSED) {
+          console.info('current window stage event is PAUSED');
+          // 前台应用进入多任务，转为不可交互状态
+          // ...
+        } else if (data == window.WindowStageEventType.RESUMED) {
+          console.info('current window stage event is RESUMED');
+          // 进入多任务后又继续返回前台时，恢复可交互状态
+          // ...
+        }
+
+        // ...
+      });
+    } catch (exception) {
+      console.error('Failed to enable the listener for window stage event changes. Cause:' +
+        JSON.stringify(exception));
+    }
+  }
+}
 ```
 
 ## 相关实例

@@ -40,9 +40,10 @@ The following table provides only a simple description of the related APIs. For 
 6. Call **off()** to unsubscribe from HTTP response header events.
 7. Call **httpRequest.destroy()** to release resources after the request is processed.
 
-```js
+```ts
 // Import the http namespace.
 import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
 let httpRequest = http.createHttp();
@@ -57,13 +58,11 @@ httpRequest.request(
   {
     method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
     // You can add header fields based on service requirements.
-    header: {
+    header: [{
       'Content-Type': 'application/json'
-    },
+    }],
     // This field is used to transfer data when the POST request is used.
-    extraData: {
-      "data": "data to send",
-    },
+    extraData: "data to send",
     expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
     usingCache: true, // Optional. The default value is true.
     priority: 1, // Optional. The default value is 1.
@@ -71,7 +70,7 @@ httpRequest.request(
     readTimeout: 60000, // Optional. The default value is 60000, in ms.
     usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
     usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API 10.
-  }, (err, data) => {
+  }, (err: BusinessError, data: http.HttpResponse) => {
     if (!err) {
       // data.result carries the HTTP response. Parse the response based on service requirements.
       console.info('Result:' + JSON.stringify(data.result));
@@ -102,19 +101,20 @@ httpRequest.request(
 6. Call **off()** of the **HttpRequest** object to unsubscribe from the related events.
 7. Call **httpRequest.destroy()** to release resources after the request is processed.
 
-```js
+```ts
 // Import the http namespace.
-import http from '@ohos.net.http'
+import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
 let httpRequest = http.createHttp();
 // Subscribe to HTTP response header events.
-httpRequest.on('headersReceive', (header) => {
+httpRequest.on('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 // Subscribe to events indicating receiving of HTTP streaming responses.
 let res = '';
-httpRequest.on('dataReceive', (data) => {
+httpRequest.on('dataReceive', (data: ArrayBuffer) => {
   res += data;
   console.info('res: ' + res);
 });
@@ -123,42 +123,45 @@ httpRequest.on('dataEnd', () => {
   console.info('No more data in response, data receive end');
 });
 // Subscribe to events indicating progress of receiving HTTP streaming responses.
-httpRequest.on('dataReceiveProgress', (data) => {
+class Data {
+  receiveSize: number = 0;
+  totalSize: number = 0;
+}
+httpRequest.on('dataReceiveProgress', (data: Data) => {
   console.log("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);
 });
+
+let streamInfo: http.HttpRequestOptions = {
+  method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
+  // You can add header fields based on service requirements.
+  header: ['Content-Type', 'application/json'],
+  // This field is used to transfer data when the POST request is used.
+  extraData: ["data", "data to send"],
+  expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
+  usingCache: true, // Optional. The default value is true.
+  priority: 1, // Optional. The default value is 1.
+  connectTimeout: 60000 // Optional. The default value is 60000, in ms.
+  readTimeout: 60000, // Optional. The default value is 60000, in ms. If a large amount of data needs to be transmitted, you are advised to set this parameter to a larger value to ensure normal data transmission.
+  usingProtocol: http.HttpProtocol.HTTP1_1 // Optional. The default protocol type is automatically specified by the system.
+}
 
 httpRequest.requestInStream(
   // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
   "EXAMPLE_URL",
-  {
-    method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
-    // You can add header fields based on service requirements.
-    header: {
-      'Content-Type': 'application/json'
-    },
-    // This field is used to transfer data when the POST request is used.
-    extraData: {
-      "data": "data to send",
-    },
-    expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
-    usingCache: true, // Optional. The default value is true.
-    priority: 1, // Optional. The default value is 1.
-    connectTimeout: 60000 // Optional. The default value is 60000, in ms.
-    readTimeout: 60000, // Optional. The default value is 60000, in ms. If a large amount of data needs to be transmitted, you are advised to set this parameter to a larger value to ensure normal data transmission.
-    usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
-  }, (err, data) => {
-    console.error('error:' + JSON.stringify(err));
-    console.info('ResponseCode :' + JSON.stringify(data));
-    // Unsubscribe from HTTP Response Header events.
-    httpRequest.off('headersReceive');
-    // Unregister the observer for events indicating receiving of HTTP streaming responses.
-    httpRequest.off('dataReceive');
-    // Unregister the observer for events indicating progress of receiving HTTP streaming responses.
-    httpRequest.off('dataReceiveProgress');
-    // Unregister the observer for events indicating completion of receiving HTTP streaming responses.
-    httpRequest.off('dataEnd');
-    // Call the destroy() method to release resources after HttpRequest is complete.
-    httpRequest.destroy();
-  }
+  streamInfo, (err: BusinessError, data: number) => {
+  console.error('error:' + JSON.stringify(err));
+  console.info('ResponseCode :' + JSON.stringify(data));
+  // Unsubscribe from HTTP Response Header events.
+  httpRequest.off('headersReceive');
+  // Unregister the observer for events indicating receiving of HTTP streaming responses.
+  httpRequest.off('dataReceive');
+  // Unregister the observer for events indicating progress of receiving HTTP streaming responses.
+  httpRequest.off('dataReceiveProgress');
+  // Unregister the observer for events indicating completion of receiving HTTP streaming responses.
+  httpRequest.off('dataEnd');
+  // Call the destroy() method to release resources after HttpRequest is complete.
+  httpRequest.destroy();
+}
 );
 ```
+

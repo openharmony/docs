@@ -217,7 +217,7 @@ function tagFunc(name: string, value: string): boolean {
   return true;
 }
 
-function attFunc(name: xml.EventType, value: string): boolean {
+function attFunc(name: string, value: string): boolean {
   str = name + ' ' + value;
   console.info('attri-' + str);
   return true;

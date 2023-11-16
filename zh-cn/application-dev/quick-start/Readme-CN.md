@@ -20,8 +20,7 @@
     - 共享包
       - [共享包概述](shared-guide.md)
       - [HAR](har-package.md)
-      - HSP
-        - [应用内HSP开发指导](in-app-hsp.md)
+      - [HSP](in-app-hsp.md)
     - 应用程序包快速修复
       - [快速修复概述](quickfix-principles.md)
       - [快速修复命令行调试开发指导](quickfix-debug.md)
@@ -80,4 +79,3 @@
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
       - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
       - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
-      - [渲染控制优秀实践](arkts-rendering-control-best-practices.md)

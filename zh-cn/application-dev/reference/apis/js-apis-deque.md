@@ -294,7 +294,7 @@ getFirst(): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回T型 |
+| T | 返回T类型的头元素 |
 
 **错误码：**
 
@@ -327,7 +327,7 @@ getLast(): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回T型 |
+| T | 返回T类型的尾元素 |
 
 **错误码：**
 
@@ -353,6 +353,10 @@ let result = deque.getLast();
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
 
 **系统能力：** SystemCapability.Utils.Lang
 

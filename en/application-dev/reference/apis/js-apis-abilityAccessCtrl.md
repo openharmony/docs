@@ -50,7 +50,7 @@ Checks whether a permission is granted to an application. This API uses a promis
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).            |
-| permissionName | Permissions | Yes  | Permission to check. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
+| permissionName | Permissions | Yes  | Permission to check. You can obtain permission names in the [Application Permission List](../../security/permission-list.md).|
 
 **Return value**
 
@@ -60,7 +60,7 @@ Checks whether a permission is granted to an application. This API uses a promis
 
 **Error codes**
 
-For details about the error codes, see [Application Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -98,7 +98,7 @@ Verifies whether a permission is granted to an application. This API returns the
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).             |
-| permissionName | Permissions | Yes  | Permission to verify. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
+| permissionName | Permissions | Yes  | Permission to verify. You can obtain permission names in the [Application Permission List](../../security/permission-list.md).|
 
 **Return value**
 
@@ -108,7 +108,7 @@ Verifies whether a permission is granted to an application. This API returns the
 
 **Error codes**
 
-For details about the error codes, see [Application Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -142,7 +142,7 @@ Grants a user_grant permission to an application. This API uses a promise to ret
 | Name   | Type               | Mandatory| Description                                                        |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).           |
-| permissionName | Permissions              | Yes  | Permission to grant. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
+| permissionName | Permissions              | Yes  | Permission to grant. You can obtain the valid permission names in the [Application Permission List](../../security/permission-list.md).|
 | permissionFlags  | number | Yes  | Permission flag.<br>- **0**: The permission is not set by the user.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **4**: The permission is authorized by the system and cannot be changed.|
 
 **Return value**
@@ -153,7 +153,7 @@ Grants a user_grant permission to an application. This API uses a promise to ret
 
 **Error codes**
 
-For details about the error codes, see [Application Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -173,7 +173,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
 let permissionFlags: number = 1;
 try {
-    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags).then(() => {
+    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
         console.log('grantUserGrantedPermission success');
     }).catch((err: BusinessError) => {
         console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
@@ -200,13 +200,13 @@ Grants a user_grant permission to an application. This API uses an asynchronous 
 | Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).|
-| permissionName | Permissions              | Yes  | Permission to grant. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
+| permissionName | Permissions              | Yes  | Permission to grant. You can obtain the valid permission names in the [Application Permission List](../../security/permission-list.md).|
 | permissionFlags  | number | Yes  | Permission flag.<br>- **0**: The permission is not set by the user.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **4**: The permission is authorized by the system and cannot be changed.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the permission is granted, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Grants a user_grant permission to an application. If the permission is granted, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Application Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -226,7 +226,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
 let permissionFlags: number = 1;
 try {
-    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags, (err: BusinessError, data: void) => {
+    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
         if (err) {
             console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -255,7 +255,7 @@ Revokes a user_grant permission from an application. This API uses a promise to 
 | Name   | Type               | Mandatory| Description                                                        |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).          |
-| permissionName | Permissions              | Yes  | Permission to revoke. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
+| permissionName | Permissions              | Yes  | Permission to revoke. You can obtain the valid permission names in the [Application Permission List](../../security/permission-list.md).|
 | permissionFlags  | number | Yes  | Permission flag.<br>- **0**: The permission is not set by the user.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **4**: The permission is authorized by the system and cannot be changed.|
 
 **Return value**
@@ -266,7 +266,7 @@ Revokes a user_grant permission from an application. This API uses a promise to 
 
 **Error codes**
 
-For details about the error codes, see [Application Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -286,7 +286,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
 let permissionFlags: number = 1;
 try {
-    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags).then(() => {
+    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
         console.log('revokeUserGrantedPermission success');
     }).catch((err: BusinessError) => {
         console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
@@ -313,13 +313,13 @@ Revokes a user_grant permission from an application. This API uses an asynchrono
 | Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).          |
-| permissionName | Permissions              | Yes  | Permission to revoke. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
+| permissionName | Permissions              | Yes  | Permission to revoke. You can obtain the valid permission names in the [Application Permission List](../../security/permission-list.md).|
 | permissionFlags  | number | Yes  | Permission flag.<br>- **0**: The permission is not set by the user.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **4**: The permission is authorized by the system and cannot be changed.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the permission is revoked, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Application Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -339,7 +339,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
 let permissionFlags: number = 1;
 try {
-    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags, (err: BusinessError, data: void) => {
+    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
         if (err) {
             console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -368,7 +368,7 @@ Obtains the permission flag of an application. This API uses a promise to return
 | Name   | Type               | Mandatory| Description                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).           |
-| permissionName | Permissions              | Yes  | Target permission. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
+| permissionName | Permissions              | Yes  | Target permission. You can obtain the valid permission names in the [Application Permission List](../../security/permission-list.md).|
 
 **Return value**
 
@@ -378,7 +378,7 @@ Obtains the permission flag of an application. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [Application Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -437,7 +437,7 @@ promise.then((data: number) => {
 
 ### on<sup>9+</sup>
 
-on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionList: Array&lt;Permissions&gt;, callback: Callback&lt;PermissionStateChangeInfo&gt;): void;
+on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionList: Array&lt;Permissions&gt;, callback: Callback&lt;PermissionStateChangeInfo&gt;): void
 
 Subscribes to permission state changes of the specified applications and permissions.
 
@@ -462,7 +462,7 @@ If **tokenIDList** and **permissionList** have common values with the  **tokenID
 
 **Error codes**
 
-For details about the error codes, see [Application Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -493,7 +493,7 @@ try {
 
 ### off<sup>9+</sup>
 
-off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;PermissionStateChangeInfo&gt;): void;
+off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;PermissionStateChangeInfo&gt;): void
 
 Unsubscribes from permission grant state changes of the specified applications and permissions. This API uses a callback to return the result.
 
@@ -509,14 +509,14 @@ If no callback is passed in **atManager.off**, all callbacks for **tokenIDList**
 
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
-| type               | string                | Yes  | Event type. The value is **'permissionStateChange'**, which indicates the permission grant state change event. |
+| type               | string         | Yes  | Event type. The value is **'permissionStateChange'**, which indicates the permission grant state change event. |
 | tokenIDList        | Array&lt;number&gt;   | Yes  | List of application token IDs. If this parameter is left empty, the permission grant state changes of all applications will be unsubscribed from. The value must be the same as that passed in **on()**.|
-| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions. If this parameter is left empty, the grant state changes of all permissions will be unsubscribed from. The value must be the same as that passed in **on()**.|
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions. The value must be the same as that of **on()**. If this parameter is left empty, this API unsubscribes from state changes of all permissions. You can obtain permission names in the [Application Permission List](../../security/permission-list.md).|
 | callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | No| Callback for the permission grant state change.|
 
 **Error codes**
 
-For details about the error codes, see [Application Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -559,7 +559,7 @@ Verifies whether a permission is granted to an application. This API uses a prom
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).            |
-| permissionName | Permissions | Yes  | Permission to verify. For details about the permissions, see the [Application Permission List](../../security/permission-list.md). |
+| permissionName | Permissions | Yes  | Permission to verify. You can obtain permission names in the [Application Permission List](../../security/permission-list.md).|
 
 **Return value**
 
@@ -589,7 +589,7 @@ try {
 
 ### requestPermissionsFromUser<sup>9+</sup>
 
-requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void;
+requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void
 
 Requests user authorization in a dialog box opened by a UIAbility. This API uses an asynchronous callback to return the result.
 > **NOTE**
@@ -605,12 +605,12 @@ Requests user authorization in a dialog box opened by a UIAbility. This API uses
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | context | Context | Yes| Context of the UIAbility.|
-| permissionList | Array&lt;Permissions&gt; | Yes| Permissions requested. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
-| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Yes| Callback invoked to return the result.|
+| permissionList | Array&lt;Permissions&gt; | Yes| Permissions requested. You can obtain permission names in the [Application Permission List](../../security/permission-list.md).|
+| requestCallback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Yes| Callback invoked to return the result.|
 
 **Error codes**
 
-For details about the error codes, see [Application Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -620,14 +620,14 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 The ArkTS syntax does not support direct use of **globalThis**. A singleton map is required to enable the use of **globalThis**. You need to perform the following operations:
 
-   a. Import the created singleton object **GlobalThis** to **EntryAbility.ets**.
-      ```ts
-       import {GlobalThis} from '../utils/globalThis'; // Set it based on the path of globalThis.ets.
-      ```
-   b. Add the following to **onCreate**:
-      ```ts
-       GlobalThis.getInstance().setContext('context', this.context);
-      ```
+a. Import the created singleton object **GlobalThis** to **EntryAbility.ets**.
+   ```ts
+   import {GlobalThis} from '../utils/globalThis'; // Set it based on the path of globalThis.ets.
+   ```
+b. Add the following to **onCreate**:
+   ```ts
+   GlobalThis.getInstance().setContext('context', this.context);
+   ```
 
    > **NOTE**
    >
@@ -635,13 +635,13 @@ The ArkTS syntax does not support direct use of **globalThis**. A singleton map 
 
 The sample code of **globalThis.ets** is as follows:
 ```ts
-import common from '@ohos.app.ability.common';
+import { Context } from '@ohos.abilityAccessCtrl';
 
 // Construct a singleton object.
 export class GlobalThis {
     private constructor() {}
     private static instance: GlobalThis;
-    private _uiContexts = new Map<string, common.UIAbilityContext>();
+    private _uiContexts = new Map<string, Context>();
 
     public static getInstance(): GlobalThis {
     if (!GlobalThis.instance) {
@@ -650,11 +650,11 @@ export class GlobalThis {
     return GlobalThis.instance;
     }
 
-    getContext(key: string): common.UIAbilityContext | undefined {
+    getContext(key: string): Context | undefined {
     return this._uiContexts.get(key);
     }
 
-    setContext(key: string, value: common.UIAbilityContext): void {
+    setContext(key: string, value: Context): void {
     this._uiContexts.set(key, value);
     }
 
@@ -663,15 +663,14 @@ export class GlobalThis {
 ```
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl, { Context, PermissionRequestResult } from '@ohos.abilityAccessCtrl';
 import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
 import { GlobalThis } from '../utils/globalThis';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
-    let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
-    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data)=>{
+    let context: Context = GlobalThis.getInstance().getContext('context');
+    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult)=>{
     console.info('data:' + JSON.stringify(data));
     console.info('data permissions:' + data.permissions);
     console.info('data authResults:' + data.authResults);
@@ -683,7 +682,7 @@ try {
 
 ### requestPermissionsFromUser<sup>9+</sup>
 
-requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;) : Promise&lt;PermissionRequestResult&gt;;
+requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;) : Promise&lt;PermissionRequestResult&gt;
 
 Requests user authorization in a dialog box opened by a UIAbility. This API uses a promise to return the result.
 
@@ -700,7 +699,7 @@ Requests user authorization in a dialog box opened by a UIAbility. This API uses
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | context | Context | Yes| Context of the UIAbility.|
-| permissionList | Array&lt;Permissions&gt; | Yes| Permissions requested. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
+| permissionList | Array&lt;Permissions&gt; | Yes| Permissions requested. You can obtain permission names in the [Application Permission List](../../security/permission-list.md).|
 
 **Return value**
 
@@ -710,7 +709,7 @@ Requests user authorization in a dialog box opened by a UIAbility. This API uses
 
 **Error codes**
 
-For details about the error codes, see [Application Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -721,15 +720,14 @@ For details about the error codes, see [Application Access Control Error Codes](
 The procedure for modifying **EntryAbility.ets** and importing **GlobalThis** is the same as the preceding procedure, and omitted here.
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl, { Context, PermissionRequestResult } from '@ohos.abilityAccessCtrl';
 import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
 import { GlobalThis } from '../utils/globalThis';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
-    let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
-    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data) => {
+    let context: Context = GlobalThis.getInstance().getContext('context');
+    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data: PermissionRequestResult) => {
         console.info('data:' + JSON.stringify(data));
         console.info('data permissions:' + data.permissions);
         console.info('data authResults:' + data.authResults);
@@ -758,7 +756,7 @@ Verifies whether a permission is granted to an application. This API uses a prom
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).            |
-| permissionName | string | Yes  | Permission to verify.|
+| permissionName | string | Yes  | Permission to verify. You can obtain permission names in the [Application Permission List](../../security/permission-list.md).|
 
 **Return value**
 
@@ -787,7 +785,7 @@ try {
 
 ### checkAccessTokenSync<sup>10+</sup>
 
-checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus;
+checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
 Checks whether a permission is granted to an application. This API returns the result synchronously.
 
@@ -798,7 +796,7 @@ Checks whether a permission is granted to an application. This API returns the r
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).             |
-| permissionName | Permissions | Yes  | Permission to check. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
+| permissionName | Permissions | Yes  | Permission to check. You can obtain permission names in the [Application Permission List](../../security/permission-list.md).|
 
 **Return value**
 
@@ -808,7 +806,7 @@ Checks whether a permission is granted to an application. This API returns the r
 
 **Error codes**
 
-For details about the error codes, see [Application Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |

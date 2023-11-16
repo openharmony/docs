@@ -549,8 +549,10 @@ Defines the button on the reminder displayed.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | title | string | Yes| Text on the button.|
+| titleResource<sup>11+</sup> | string | No| Resource ID of the title. This parameter is used to read the title information after the system language is switched.|
 | type | [ActionButtonType](#actionbuttontype) | Yes| Button type.|
 | wantAgent<sup>10+</sup> | [WantAgent](#wantagent) | No| Information about the ability that is displayed after the button is clicked.<br>**System API**: This is a system API and cannot be called by third-party applications.|
+| dataShareUpdate<sup>11+</sup> | [DataShareUpdate](#datashareupdate) | No| The application database will be updated after a click on the button.<br>**System API**: This is a system API and cannot be called by third-party applications.|
 
 
 ## WantAgent
@@ -565,6 +567,21 @@ Defines the information about the redirected-to ability.
 | pkgName | string | Yes| Name of the target package.|
 | abilityName | string | Yes| Name of the target ability.|
 | uri<sup>10+</sup> | string | No| URI of the target ability.<br>**System API**: This is a system API and cannot be called by third-party applications.|
+
+## DataShareUpdate<sup>11+</sup>
+
+Defines the parameter information used to update the database.
+
+The data provider needs to set the ID, read/write permissions, and basic information of the table to be shared under **proxyDatas** in the **module.json5** file. For details about the configuration method, see [Data Proxy](../../database/share-data-by-silent-access.md).
+
+**System capability**: SystemCapability.Notification.ReminderAgent
+
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uri | string | Yes| URI of the data, which is the unique identifier for cross-application data access.<br>**System API**: This is a system API and cannot be called by third-party applications.|
+| equalTo | [key: string]: number \| string \| boolean | Yes| Filter criteria. Currently, only equal to is supported.<br>**System API**: This is a system API and cannot be called by third-party applications.|
+| value | [ValueBucket](js-apis-data-valuesBucket.md#valuesbucket) | Yes| New data.<br>**System API**: This is a system API and cannot be called by third-party applications.|
 
 
 ## MaxScreenWantAgent
@@ -588,7 +605,7 @@ Defines the request for publishing a reminder.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertype) | Yes| Type of the reminder.|
-| actionButton<sup></sup> | [ActionButton](#actionbutton) | No| Buttons displayed for the reminder in the notification panel.<br>- For common applications, a maximum of two buttons are supported.<br>- For system applications, a maximum of two buttons are supported in API version 9, and a maximum of three buttons are supported in API version 10 and later versions.|
+| actionButton | [ActionButton](#actionbutton) | No| Buttons displayed for the reminder in the notification panel.<br>- For common applications, a maximum of two buttons are supported.<br>- For system applications, a maximum of two buttons are supported in API version 9, and a maximum of three buttons are supported in API version 10 and later versions.|
 | wantAgent | [WantAgent](#wantagent) | No| Information about the ability that is redirected to when the reminder is clicked.|
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | No| Information about the ability that is started automatically and displayed in full-screen mode when the reminder arrives. If the device is in use, only a notification banner is displayed.<br> This API is reserved.|
 | ringDuration | number | No| Ringing duration, in seconds. The default value is **1**.|
@@ -599,6 +616,7 @@ Defines the request for publishing a reminder.
 | expiredContent | string | No| Content to be displayed after the reminder expires.|
 | snoozeContent | string | No| Content to be displayed when the reminder is snoozing.|
 | notificationId | number | No| Notification ID used by the reminder. If there are reminders with the same notification ID, the later one will overwrite the earlier one.|
+| groupId<sup>11+</sup> | string | No| Group ID used for the reminder. If "Don't ask again" or similar information is selected for the reminder, other reminders with the same group ID are also canceled.|
 | slotType | [notification.SlotType](js-apis-notificationManager.md#slottype) | No| Type of the slot used by the reminder.|
 | tapDismissed<sup>10+</sup> | boolean | No| Whether the reminder is automatically cleared. For details, see [NotificationRequest.tapDismissed](js-apis-inner-notification-notificationRequest.md#notificationrequest). |
 | autoDeletedTime<sup>10+</sup> | number | No| Time when the reminder is automatically cleared. For details, see [NotificationRequest.autoDeletedTime](js-apis-inner-notification-notificationRequest.md#notificationrequest).|
@@ -617,6 +635,7 @@ Defines a reminder for a calendar event.
 | dateTime | [LocalDateTime](#localdatetime) | Yes| Reminder time.|
 | repeatMonths | Array\<number> | No| Month in which the reminder repeats.|
 | repeatDays | Array\<number> | No| Date on which the reminder repeats.|
+| daysOfWeek<sup>11+</sup> | Array\<number> | No| Days of a week when the reminder repeats. The value ranges from 1 to 7, corresponding to the data from Monday to Sunday.|
 
 
 ## ReminderRequestAlarm

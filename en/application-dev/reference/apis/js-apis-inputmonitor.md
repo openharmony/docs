@@ -36,6 +36,7 @@ Enables listening for global touch (touchscreen) events.
 **Example**
 
 ```js
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
 try {
   inputMonitor.on('touch', (touchEvent: TouchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -66,8 +67,10 @@ Enables listening for global mouse events.
   **Example**
 
 ```js
+import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
+
 try {
-  inputMonitor.on('mouse', (mouseEvent) => {
+  inputMonitor.on('mouse', (mouseEvent: MouseEvent) => {
     console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
     return false;
   });
@@ -96,8 +99,9 @@ Disables listening for global touch (touchscreen) events.
 **Example**
 
 ```js
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
 // Disable listening for a single callback.
-let callback = (touchEvent: touchEvent) => {
+let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
   return false;
 };
@@ -111,8 +115,9 @@ try {
 ```
 
 ```js
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
 // Cancel listening for all callbacks.
-let callback = (touchEvent: touchEvent) => {
+let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
   return false;
 };
@@ -145,6 +150,7 @@ Disables listening for global mouse events.
 **Example**
 
 ```js
+import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
 // Disable listening for a single callback.
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -160,6 +166,7 @@ try {
 ```
 
 ```js
+import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
 // Cancel listening for all callbacks.
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -186,7 +193,7 @@ Defines the callback for touch (touchscreen) events.
 
 | Name        | Type                                      | Mandatory  | Description                                      |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| touchEvent | [TouchEvent](../arkui-js/js-components-common-events.md) | Yes   | Touch event.|
+| touchEvent | [TouchEvent](./js-apis-touchevent.md) | Yes   | Touch event.|
 
 **Return value**
 
@@ -197,6 +204,7 @@ Defines the callback for touch (touchscreen) events.
 **Example**
 
 ```js
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
 try {
   inputMonitor.on('touch', touchEvent => {
     if (touchEvent.touches.length == 3) {// Three fingers are pressed.
@@ -229,6 +237,7 @@ Enables listening for global touchpad pinch events.
   **Example**
 
 ```js
+import type { Pinch } from '@ohos.multimodalInput.gestureEvent';
 try {
   inputMonitor.on('pinch', (pinchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
@@ -260,6 +269,8 @@ Disables listening for global touchpad pinch events.
 
 ```js
 // Disable listening for a single callback.
+import { Pinch } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
   return false;
@@ -275,6 +286,8 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
+import { Pinch } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
   return false;
@@ -339,6 +352,8 @@ Disables listening for three-finger swipe events.
 
 ```js
 // Disable listening for a single callback.
+import { ThreeFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
   return false;
@@ -354,6 +369,8 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
+import { ThreeFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
   return false;
@@ -418,6 +435,8 @@ Disables listening for four-finger swipe events.
 
 ```js
 // Disable listening for a single callback.
+import { FourFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (fourFingersSwipe: FourFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
   return false;
@@ -433,6 +452,8 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
+import { FourFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (fourFingersSwipe: FourFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
   return false;
@@ -445,3 +466,176 @@ try {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
+## inputMonitor.on('rotate')<sup>11+</sup>
+
+on(type: 'rotate', fingers: number, receiver: Callback&lt;Rotate&gt;): void
+
+Enables listening for rotation events of the touchpad.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name      | Type                        | Mandatory  | Description                 |
+| -------- | -------------------------- | ---- | ------------------- |
+| type     | string                     | Yes   | Event type. This field has a fixed value of **rotate**.|
+| fingers     | number                     | Yes   | Number of fingers that trigger a rotation. The value must not be greater than **2**.|
+| receiver | Callback&lt;[Rotate](js-apis-multimodalinput-gestureevent.md#rotate)&gt; | Yes   | Callback used to return the rotation event asynchronously. |
+
+  **Example**
+
+```js
+import type { Rotate } from '@ohos.multimodalInput.gestureEvent';
+try {
+  inputMonitor.on('rotate', 2, (rotateEvent: Rotate) => {
+    console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
+    return false;
+  });
+} catch (error) {
+  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.off('rotate')<sup>11+</sup>
+
+off(type: 'rotate', fingers: number, receiver?: Callback&lt;Rotate&gt;): void
+
+Disables listening for rotation events of the touchpad.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name      | Type                        | Mandatory  | Description                 |
+| -------- | -------------------------- | ---- | ------------------- |
+| type     | string                     | Yes   | Event type. This field has a fixed value of **rotate**.|
+| fingers     | number                     | Yes   | Number of fingers that trigger a rotation. The value must not be greater than **2**.|
+| receiver | Callback&lt;[Rotate](js-apis-multimodalinput-gestureevent.md#rotate)&gt; | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+
+**Example**
+
+```js
+// Disable listening for a single callback.
+import { Rotate } from '@ohos.multimodalInput.gestureEvent';
+
+let callback = (rotateEvent: Rotate) => {
+  console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
+  return false;
+};
+try {
+  inputMonitor.on('rotate', 2, callback);
+  inputMonitor.off('rotate', 2, callback);
+  console.log(`Monitor off success`);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+```js
+// Cancel listening for all callbacks.
+import { Rotate } from '@ohos.multimodalInput.gestureEvent';
+
+let callback = (rotateEvent: Rotate) => {
+  console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
+  return false;
+};
+try {
+  inputMonitor.on('rotate', 2, callback);
+  inputMonitor.off('rotate', 2);
+  console.log(`Monitor off success`);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.on('pinch')<sup>11+</sup>
+
+on(type: 'pinch', fingers: number, receiver: Callback&lt;Pinch&gt;): void
+
+Enables listening for global touchpad pinch events.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name      | Type                        | Mandatory  | Description                 |
+| -------- | -------------------------- | ---- | ------------------- |
+| type     | string                     | Yes   | Event type. This field has a fixed value of **pinch**.|
+| fingers     | number                     | Yes   | Number of fingers that trigger the pinch. The value must be greater than or equal to **2**.|
+| receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt; | Yes   | Callback used to return the pinch event asynchronously. |
+
+  **Example**
+
+```js
+import type { Pinch } from '@ohos.multimodalInput.gestureEvent';
+try {
+  inputMonitor.on('pinch', 2, (pinchEvent: Pinch) => {
+    console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
+    return false;
+  });
+} catch (error) {
+  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.off('pinch')<sup>11+</sup>
+
+off(type: 'pinch', fingers: number, receiver?: Callback&lt;Pinch&gt;): void
+
+Disables listening for global touchpad pinch events.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name      | Type                        | Mandatory  | Description                 |
+| -------- | -------------------------- | ---- | ------------------- |
+| type     | string                     | Yes   | Event type. This field has a fixed value of **pinch**.|
+| fingers     | number                     | Yes   | Number of fingers that trigger the pinch. The value must be greater than or equal to **2**.|
+| receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt; | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+
+**Example**
+
+```js
+// Disable listening for a single callback.
+import { Pinch } from '@ohos.multimodalInput.gestureEvent';
+
+let callback = (pinchEvent: Pinch) => {
+  console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
+  return false;
+};
+try {
+  inputMonitor.on('pinch', 2, callback);
+  inputMonitor.off('pinch', 2, callback);
+  console.log(`Monitor off success`);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+```js
+// Cancel listening for all callbacks.
+import { Pinch } from '@ohos.multimodalInput.gestureEvent';
+
+let callback = (pinchEvent: Pinch) => {
+  console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
+  return false;
+};
+try {
+  inputMonitor.on('pinch', 2, callback);
+  inputMonitor.off('pinch', 2);
+  console.log(`Monitor off success`);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+<!--no_check-->

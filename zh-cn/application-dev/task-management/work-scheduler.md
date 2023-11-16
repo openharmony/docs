@@ -68,21 +68,24 @@
 | isLastWorkTimeOut(workId: number): Promise&lt;boolean&gt;; | 获取上次任务是否超时（针对RepeatWork，Promise形式） |
 
 **表3** WorkInfo参数
-| 参数名 | 类型 | 描述 |
-| -------- | -------- | -------- |
-| workId | number | 延迟任务Id（必填） |
-| bundleName | string | 延迟任务包名（必填） |
-| abilityName | string | 延迟任务回调通知的组件名（必填） |
-| networkType | [NetworkType](../reference/apis/js-apis-resourceschedule-workScheduler.md#networktype) | 网络类型 |
-| isCharging | boolean | 是否充电 |
-| chargerType | [ChargingType](../reference/apis/js-apis-resourceschedule-workScheduler.md#chargingtype) | 充电类型 |
-| batteryLevel | number | 电量 |
-| batteryStatus | [BatteryStatus](../reference/apis/js-apis-resourceschedule-workScheduler.md#batterystatus) | 电池状态 |
-| storageRequest | [StorageRequest](../reference/apis/js-apis-resourceschedule-workScheduler.md#storagerequest) | 存储状态 |
-| isRepeat | boolean | 是否循环任务 |
-| repeatCycleTime | number | 循环间隔 |
-| repeatCount | number | 循环次数 |
-| parameters | [key: string]: number \| string \| boolean | 携带参数信息 |
+| 名称             | 类型                                | 必填   | 说明               |
+| --------------- | --------------------------------- | ---- | ---------------- |
+| workId          | number                            | 是    | 延迟任务ID。          |
+| bundleName      | string                            | 是    | 延迟任务包名。           |
+| abilityName     | string                            | 是    | 延迟任务回调通知的组件名。 |
+| networkType     | [NetworkType](../reference/apis/js-apis-resourceschedule-workScheduler.md#networktype)       | 否    | 网络类型。             |
+| isCharging      | boolean                           | 否    | 是否充电。<br>- true表示充电触发延迟回调，false表示不充电触发延迟回调。|
+| chargerType     | [ChargingType](../reference/apis/js-apis-resourceschedule-workScheduler.md#chargingtype)     | 否    | 充电类型。             |
+| batteryLevel    | number                            | 否    | 电量。              |
+| batteryStatus   | [BatteryStatus](../reference/apis/js-apis-resourceschedule-workScheduler.md#batterystatus)   | 否    | 电池状态。             |
+| storageRequest  | [StorageRequest](../reference/apis/js-apis-resourceschedule-workScheduler.md#storagerequest) | 否    | 存储状态。             |
+| isRepeat        | boolean                           | 否    | 是否循环任务。<br>- true表示循环任务，false表示非循环任务。 |
+| repeatCycleTime | number                            | 否    | 循环间隔，单位为毫秒。             |
+| repeatCount     | number                            | 否    | 循环次数。             |
+| isPersisted     | boolean                           | 否    | 是否持久化保存工作。<br>- true表示持久化保存工作。false表示非持久化保存工作。|
+| isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态。<br>- true表示需要，false表示不需要。   |
+| idleWaitTime    | number                            | 否    | 空闲等待时间，单位为毫秒。           |
+| parameters      | [key: string]: number \| string \| boolean  | 否    | 携带参数信息。 |
 
 WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 
@@ -175,6 +178,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 2. 申请延迟任务。
    
    ```ts
+   // 创建workinfo
    const workInfo: workScheduler.WorkInfo = {
      workId: 1,
      networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,
@@ -193,6 +197,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 3. 取消延迟任务。
    
    ```ts
+   // 创建workinfo
    const workInfo: workScheduler.WorkInfo = {
      workId: 1,
      networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,

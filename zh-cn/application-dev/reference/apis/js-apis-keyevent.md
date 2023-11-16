@@ -1,6 +1,6 @@
 # @ohos.multimodalInput.keyEvent (按键输入事件)
 
-设备上报的按键事件。
+设备上报的按键事件，继承自[InputEvent](./js-apis-inputevent.md)。
 
 >  **说明：**
 >
@@ -32,7 +32,7 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 
 | 名称        | 类型 | 可读 | 可写 | 说明           |
 | ----------- | -------- | ---- | ---- | -------------- |
-| code        | KeyCode  | 是   | 否   | 按键码         |
+| code        | [KeyCode](js-apis-keycode.md#keycode)  | 是   | 否   | 按键码         |
 | pressedTime | number   | 是   | 否   | 按键按下时间，单位为微秒（μs） |
 | deviceId    | number   | 是   | 否   | 按键所属设备id   |
 
@@ -47,7 +47,7 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 | action      | [Action](#action)   | 是   | 否   | 按键动作                       |
 | key         | [Key](#key)      | 是   | 否   | 当前上报的按键             |
 | unicodeChar | number   | 是   | 否   | 按键对应的uniCode字符          |
-| keys        | Key[]    | 是   | 否   | 当前处于按下状态的按键列表     |
+| keys        | [Key](#key) []    | 是   | 否   | 当前处于按下状态的按键列表     |
 | ctrlKey     | boolean  | 是   | 否   | 当前ctrlKey是否处于按下状态 <br/>ture表示处于按下状态，false表示处于抬起状态。 |
 | altKey      | boolean  | 是   | 否   | 当前altKey是否处于按下状态     |
 | shiftKey    | boolean  | 是   | 否   | 当前shiftKey是否处于按下状态   |

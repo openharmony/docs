@@ -35,7 +35,7 @@ If a previous record exists, [accessBackward()](../reference/apis/js-apis-webvie
 
 ## Page Redirection
 
-The **Web** component provides the [onUrlLoadIntercept()](../reference/arkui-ts/ts-basic-components-web.md#onurlloadinterceptdeprecated) API to redirect you from one page to another.
+The **Web** component provides the [onUrlLoadIntercept()](../reference/arkui-ts/ts-basic-components-web.md#onurlloadintercept) API to redirect you from one page to another.
 
 In the following example, the frontend page **route.html** is loaded on to the application home page **Index.ets**, and the user is redirected to the application page **ProfilePage.ets** when clicking the link on the **route.html** page.
 

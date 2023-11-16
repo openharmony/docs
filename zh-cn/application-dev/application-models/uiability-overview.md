@@ -7,7 +7,7 @@ UIAbility组件是一种包含UI的应用组件，主要用于和用户交互。
 
 UIAbility的设计理念：
 
-1. 原生支持应用组件级的[跨端迁移](hop-cross-device-migration.md)和[多端协同](hop-multi-device-collaboration.md)。
+1. 原生支持应用组件级的跨端迁移和多端协同。
 
 2. 支持多设备和多窗口形态。
 
@@ -39,7 +39,7 @@ UIAbility组件是系统调度的基本单元，为应用提供绘制界面的�
     "abilities": [
       {
         "name": "EntryAbility", // UIAbility组件的名称
-        "srcEntry": "./ets/entryability/EntryAbility.ts", // UIAbility组件的代码路径
+        "srcEntry": "./ets/entryability/EntryAbility.ets", // UIAbility组件的代码路径
         "description": "$string:EntryAbility_desc", // UIAbility组件的描述信息
         "icon": "$media:icon", // UIAbility组件的图标
         "label": "$string:EntryAbility_label", // UIAbility组件的标签

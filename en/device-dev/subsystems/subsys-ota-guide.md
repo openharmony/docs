@@ -43,6 +43,7 @@ To implement an OTA update, you first need to use the packaging tool to pack the
 - On Windows, download and install the OpenSSL tool and configure environment variables.
 - Prepare the packaging tool.
 - Build version images using the packaging tool.
+- Copy the **diff** file in **out/rk3568/clang_x64/updater/updater/** and the **libext2fs.so**, **e2fsdriod**, **libext2_com_err.so**, and **libext2_misc.so** files in **out/rk3568/clang_x64/thirdparty/e2fsprogs** to the **packaging_tools/lib/** directory of the packaging tool.
 
 
 ## How to Develop
@@ -72,7 +73,7 @@ To implement an OTA update, you first need to use the packaging tool to pack the
 
 
 ### Generating a Public/Private Key Pair
-1. Use the OpenSSL tool to generate a public/private key pair.
+1. Use the OpenSSL tool to generate a public-private key pair. Place the **signing_cert.crt** file in the **packaging_tools/sign_cert/** directory of the packaging tool.
 
 3. Keep the private key file properly as this file stores the private key used to sign the update package. You need to specify the private key file in the command used for preparing the update package. The public key is used to verify the signature of the update package during the update. For the mini and small systems, the generated public key is preset in the code. The vendor needs to implement the **HotaHalGetPubKey** API to obtain the key. For the standard system, the generated public key is stored in the **/hisilicon/hi3516dv300/build/updater\_config/signing\_cert.crt** file in the **device** or **vendor** directory.
 
@@ -118,7 +119,7 @@ To implement an OTA update, you first need to use the packaging tool to pack the
    <?xml version="1.0"?>
    <package>
        <head name="Component header information">
-           <info fileVersion="01" prdID="hisi" softVersion="OpenHarmony x.x" date="202x.xx.xx" time="xx:xx:xx">head info</info>
+           <info fileVersion="02" prdID="hisi" softVersion="OpenHarmony x.x" date="202x.xx.xx" time="xx:xx:xx">head info</info>
        </head>
        <group name="Component information">
        <component compAddr="ota_tag" compId="27" resType="5" compType="0" compVer="1.0">./OTA.tag</component>
@@ -132,16 +133,16 @@ To implement an OTA update, you first need to use the packaging tool to pack the
    
    | Type| Node Name| Node Label| Mandatory| Description| 
    | -------- | -------- | -------- | -------- | -------- |
-   | Header information (head node)| info| / | Yes| Content of this node: head&nbsp;info| 
-   | Header information (head node)| info| fileVersion | Yes| This field is reserved and does not affect the generation of the update package.| 
-   | Header information (head node)| info| prdID | Yes| This field is reserved and does not affect the generation of the update package.| 
+   | Header information (head node)| info| / | Yes| Head node information. Set this field to **head info**.| 
+   | Header information (head node)| info| fileVersion | Yes| Verification mode of the **update.bin** file. Set this field to **02**.|
+   | Header information (head node)| info| prdID | Yes| Reserved. This field does not affect the generation of the update package.| 
    | Header information (head node)| info| softVersion | Yes| Software version number, that is, the version number of the update package. Ensure that the version number is later than the basic version number and OpenHarmony is not followed by any other letter. Otherwise, the update cannot be performed.| 
-   | Header information (head node)| info| *date* | Yes| Date when the update package is generated. This field is reserved and does not affect the generation of the update package.| 
-   | Header information (head node)| info| *time* | Yes| Time when the update package is generated. This field is reserved and does not affect the generation of the update package.|  
+   | Header information (head node)| info| _date_ | Yes| Date when the update package is generated. This field is reserved and does not affect the generation of the update package.| 
+   | Header information (head node)| info| _time_ | Yes| Time when the update package is generated. This field is reserved and does not affect the generation of the update package.|  
    | Component information (group node)| component| / | Yes| Content of this node: path of the component or image file to be packed into the update package. It is the root directory of the version package by default.| 
    | Component information (group node)| component| compAddr | Yes| Name of the partition corresponding to the component, for example, **system** or **vendor**.| 
    | Component information (group node)| component| compId | Yes| Component ID, which must be unique.| 
-   | Component information (group node)| component| resType | Yes| This field is reserved and does not affect the generation of the update package.| 
+   | Component information (group node)| component| resType | Yes| Reserved. This field does not affect the generation of the update package.| 
    | Component information (group node)| component| compType | Yes| Image type, which can be a full or differential package. The value **0** indicates a full package, and value **1** indicates a differential package.| 
 
    > **NOTE**
@@ -329,7 +330,7 @@ Upload the update package to the vendor's OTA server.
 The update package is generated by following the instructions provided in Generating a Public/Private Key Pair and Generating an Update Package.
 
 
-##### How to Develop
+##### **How to Develop**
 
 1. Download the update package for the current device, and then call the **HotaInit** function to initialize the OTA module.
 

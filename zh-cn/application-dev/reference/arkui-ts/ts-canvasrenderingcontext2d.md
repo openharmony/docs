@@ -1679,7 +1679,10 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.beginPath()
-            this.context.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2)
+            this.context.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2, false)
+            this.context.stroke()
+            this.context.beginPath()
+            this.context.ellipse(200, 300, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2, true)
             this.context.stroke()
           })
       }
@@ -2660,10 +2663,10 @@ toDataURL(type?: string, quality?: number): string
 
 **参数：** 
 
-| 参数名     | 参数类型   | 必填   | 描述                                       |
-| ------- | ------ | ---- | ---------------------------------------- |
-| type    | string | 否    | 可选参数，用于指定图像格式，默认格式为image/png。            |
-| quality | number | 否    | 在指定图片格式为image/jpeg或image/webp的情况下，可以从0到1的区间内选择图片的质量。如果超出取值范围，将会使用默认值0.92。 |
+| 参数名     | 参数类型   | 必填   | 默认值          | 描述                                       |
+| ------- | ------ | ---- | ----- | ---------------------------------------- |
+| type    | string | 否    | "image/png"    | 可选参数，用于指定图像格式，默认格式为image/png。            |
+| quality | number | 否    | 0.92    | 在指定图片格式为image/jpeg或image/webp的情况下，可以从0到1的区间内选择图片的质量。如果超出取值范围，将会使用默认值0.92。 |
 
 **返回值：** 
 
@@ -2677,25 +2680,30 @@ toDataURL(type?: string, quality?: number): string
   // xxx.ets
   @Entry
   @Component
-  struct ToDataURL {
+  struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    @State toDataURL: string = ""
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
+          .width(100)
+          .height(100)
           .onReady(() =>{
-            let dataURL = this.context.toDataURL()
+            this.context.fillStyle = "#00ff00"
+            this.context.fillRect(0,0,100,100)
+            this.toDataURL = this.context.toDataURL("image/png", 0.92)
           })
+        Text(this.toDataURL)
       }
       .width('100%')
       .height('100%')
+      .backgroundColor('#ffff00')
     }
   }
   ```
+  ![zh-cn_image_0000001238952387](figures/zh-cn_image_0000001194192441.png)  
 
 
 ### restore

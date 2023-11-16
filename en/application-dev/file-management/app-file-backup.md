@@ -19,7 +19,7 @@ Before using the APIs, you need to:
 1. Apply for the **ohos.permission.BACKUP** permission. For details, see [Apply for Permissions](../security/accesstoken-guidelines.md).
 
 2. Import **@ohos.file.backup**.
-   
+
    ```js
    import backup from '@ohos.file.backup';
    ```
@@ -32,59 +32,60 @@ The capability file of an application contains the device type, device version, 
 
 Use **backup.getLocalCapabilities()** to obtain capability files.
 
- ```ts
-  import backup from '@ohos.file.backup';
-  import common from '@ohos.app.ability.common';
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
+```ts
+import backup from '@ohos.file.backup';
+import common from '@ohos.app.ability.common';
+import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 
-  // Obtain the application file path.
-  let context = getContext(this) as common.UIAbilityContext;
-  let filesDir = context.filesDir;
+// Obtain the application file path.
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
 
-  async function getLocalCapabilities(): Promise<void> {
-    try {
-      let fileData = await backup.getLocalCapabilities();
-      console.info('getLocalCapabilities success');
-      let fpath = filesDir + '/localCapabilities.json';
-      fs.copyFileSync(fileData.fd, fpath);
-      fs.closeSync(fileData.fd);
-    } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
-    }
-  }
- ```
-
- **Capability file example**
- | Name      | Type| Mandatory| Description                  |
- | -------------- | -------- | ---- | ---------------------- |
- | bundleInfos    | Array    | Yes  | Application information.          |
- | allToBackup    | Boolean  | Yes  | Whether to allow backup and restoration.      |
- | extensionName  | String  | Yes  | Extension name of the application.          |
- | name           | String  | Yes  | Bundle name of the application.            |
- | needToInstall  | Boolean  | Yes  | Whether to install the application during data restoration.|
- | spaceOccupied  | Number    | Yes  | Space occupied by the application data.|
- | versionCode    | Number    | Yes  | Application version number.          |
- | versionName    | String  | Yes  | Application version name.        |
- | deviceType     | String  | Yes  | Type of the device.              |
- | systemFullName | String  | Yes  | Device version.              |
-
- ```json
- {
-  "bundleInfos" :[{
-    "allToBackup" : true,
-    "extensionName" : "BackupExtensionAbility",
-    "name" : "com.example.hiworld",
-    "needToInstall" : false,
-    "spaceOccupied" : 0,
-    "versionCode" : 1000000,
-    "versionName" : "1.0.0"
-    }],
-  "deviceType" : "default",
-  "systemFullName" : "OpenHarmony-4.0.0.0"
+async function getLocalCapabilities(): Promise<void> {
+ try {
+   let fileData = await backup.getLocalCapabilities();
+   console.info('getLocalCapabilities success');
+   let fpath = filesDir + '/localCapabilities.json';
+   fs.copyFileSync(fileData.fd, fpath);
+   fs.closeSync(fileData.fd);
+ } catch (error) {
+   let err: BusinessError = error as BusinessError;
+   console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
  }
- ```
+}
+```
+
+**Capability file example**
+
+| Name      | Type| Mandatory| Description                  |
+| -------------- | -------- | ---- | ---------------------- |
+| bundleInfos    | Array    | Yes  | Application information.          |
+| &nbsp;&nbsp;&nbsp;&nbsp; allToBackup    | Boolean  | Yes  | Whether to allow backup and restoration.      |
+| &nbsp;&nbsp;&nbsp;&nbsp; extensionName  | String  | Yes  | Extension name of the application.          |
+| &nbsp;&nbsp;&nbsp;&nbsp; name           | String  | Yes  | Bundle name of the application.            |
+| &nbsp;&nbsp;&nbsp;&nbsp; needToInstall  | Boolean  | Yes  | Whether to install the application during data restoration.|
+| &nbsp;&nbsp;&nbsp;&nbsp; spaceOccupied  | Number    | Yes  | Space occupied by the application data.|
+| &nbsp;&nbsp;&nbsp;&nbsp; versionCode    | Number    | Yes  | Application version number.          |
+| &nbsp;&nbsp;&nbsp;&nbsp; versionName    | String  | Yes  | Application version name.        |
+| deviceType     | String  | Yes  | Type of the device.              |
+| systemFullName | String  | Yes  | Device version.              |
+
+```json
+{
+"bundleInfos" :[{
+ "allToBackup" : true,
+ "extensionName" : "BackupExtensionAbility",
+ "name" : "com.example.hiworld",
+ "needToInstall" : false,
+ "spaceOccupied" : 0,
+ "versionCode" : 1000000,
+ "versionName" : "1.0.0"
+ }],
+"deviceType" : "default",
+"systemFullName" : "OpenHarmony-4.0.0.0"
+}
+```
 
 ## Backing Up Application Data
 
@@ -260,6 +261,7 @@ When all the data of the application is ready, the service starts to restore the
 If the application has not been installed, you can install the application and then restore the application data. To achieve this purpose, the value of **needToInstall** in **bundleInfos** in the [capability file](#obtaining-capability-files) must be **true**.
 
 > **NOTE**
+>
 > - [Application data backup](#backing-up-application-data) does not support backup of the application installation package. Therefore, you need to obtain the application installation package.
 > - To obtain the file handle of an application installation package, call [getFileHandle()](../reference/apis/js-apis-file-backup.md#getfilehandle) with **FileMeta.uri** set to **/data/storage/el2/restore/bundle.hap**. The file handle of the application installation package is returned through the **onFileReady()** callback registered when the instance is created. The returned **File.uri** is **data/storage/el2/restore/bundle.hap**.
 

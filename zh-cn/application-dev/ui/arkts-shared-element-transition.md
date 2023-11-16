@@ -60,7 +60,7 @@
     List() {
       // 通过是否展开状态变量控制兄弟组件的出现或者消失，并配置出现消失转场动画
       if (!this.isExpand) {
-        Text('收起时我出现')
+        Text('收起')
           .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.9) }))
       }
     
@@ -72,7 +72,7 @@
     
       // 通过是否展开状态变量控制兄弟组件的出现或者消失，并配置出现消失转场动画
       if (this.isExpand) {
-        Text('展开时我出现')
+        Text('展开')
           .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion() }))
       }
     }

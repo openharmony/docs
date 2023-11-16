@@ -1,8 +1,7 @@
 # ArkUI动画/交互事件开发常见问题(ArkTS)
 
-## 焦点事件onBlur/onFocus回调无法触发
 
-适用于 OpenHarmony 3.2 Beta5  API 9
+## 焦点事件onBlur/onFocus回调无法触发(API 9)
 
 **问题现象**
 
@@ -16,53 +15,50 @@
 
 [焦点控制](../reference/arkui-ts/ts-universal-attributes-focus.md)
 
-## scroll里面套一个grid，如何禁用grid的滑动事件
 
-适用于 OpenHarmony 3.2 Beta5 API 9
+## scroll里面套一个grid，如何禁用grid的滑动事件(API 9)
 
 可以通过onScrollFrameBegin事件和scrollBy方法实现容器嵌套滚动。
 
-可参考：[容器嵌套滚动样例](../reference/arkui-ts/ts-container-scroll.md#示例2)
+**参考链接**
 
-## 如何实现一个组件不停地旋转
+[容器嵌套滚动样例](../reference/arkui-ts/ts-container-scroll.md#示例2)
 
-适用于 OpenHarmony 3.2 Beta5  API 9
+
+## 如何实现一个组件不停地旋转(API 9)
 
 可以通过[属性动画](../reference/arkui-ts/ts-animatorproperty.md)的方式实现。
 
-## 列表目前无法键盘上下滑动，是否能力不支持
 
-适用于 OpenHarmony 3.2 Beta5  API 9
+## 列表目前无法键盘上下滑动，是否能力不支持(API 9)
 
 **解决措施**
 
 有以下两种方案：
 
-1.  需要在列表子项中添加focusable\(true\)进行获焦。
-2.  在每个item的外层嵌套一个可获焦组件，例如Button。
+1. 需要在列表子项中添加focusable(true)进行获焦。
 
-## 键盘移动焦点对象按下enter，为什么不会触发点击事件
+2. 在每个item的外层嵌套一个可获焦组件，例如Button。
 
-适用于 OpenHarmony 3.2 Beta5  API 9
+
+## 键盘移动焦点对象按下enter，为什么不会触发点击事件(API 9)
 
 组件的内置的点击事件和开发者自定义的onClick点击事件默认会和空格键绑定，并非与enter键绑定（UX规格）。
 
-## 多层组件嵌套button，如何阻止事件传递
 
-适用于 OpenHarmony 3.2 Beta5  API 9
+## 多层组件嵌套button，如何阻止事件传递(API 9)
 
 可以通过将button组件绑定参数stopPropagation来控制冒泡传递。
 
-## 使用router或Navigator实现页面跳转时，如何关闭页面间转场动效
 
-适用于 OpenHarmony 3.2 Beta5  API 9
+## 使用router或Navigator实现页面跳转时，如何关闭页面间转场动效(API 9)
 
-1.  参考[页面间转场示例](../reference/arkui-ts/ts-page-transition-animation.md#示例)在当前页面和目标页面中定义pageTransition方法。
-2.  将页面入场组件PageTransitionEnter和页面退场组件PageTransitionExit的动效参数duration都设置为0。
+1. 参考[页面间转场示例](../reference/arkui-ts/ts-page-transition-animation.md#示例)在当前页面和目标页面中定义pageTransition方法。
 
-## 在容器组件嵌套的场景下，如何解决手势拖拽事件出现错乱的问题
+2. 将页面入场组件PageTransitionEnter和页面退场组件PageTransitionExit的动效参数duration都设置为0。
 
-适用于 OpenHarmony 3.2 Beta5  API 9
+
+## 在容器组件嵌套的场景下，如何解决手势拖拽事件出现错乱的问题(API 9)
 
 PanGesture用于触发拖动手势事件，滑动的最小距离distance默认为5vp时拖动手势识别成功。可以将distance值设为1，使拖动更灵敏，避免造成事件错乱。
 
@@ -70,15 +66,13 @@ PanGesture用于触发拖动手势事件，滑动的最小距离distance默认�
 
 [PanGesture](../reference/arkui-ts/ts-basic-gestures-pangesture.md)
 
-## 基于OpenHarmony开发的应用，是否支持使用fontFamily属性设置不同的字体
 
-适用于：OpenHarmony 3.2 Beta5 API 9
+## 是否支持使用fontFamily属性设置不同的字体(API 9)
 
-基于OpenHarmony开发的应用，默认字体'HarmonyOS Sans'，且当前只支持这种字体。
+默认字体'HarmonyOS Sans'，且当前只支持这种字体。
 
-## 点击输入框时会拉起软键盘，点击button时软键盘关闭要如何实现
 
-适用于 OpenHarmony 3.2 Beta5 API 9
+## 点击输入框时会拉起软键盘，点击button时软键盘关闭要如何实现(API 9)
 
 TextInput获取焦点会弹出输入法，失去焦点就会关闭软键盘，使用focusControl控制焦点即可关闭软键盘。
 
@@ -97,11 +91,10 @@ build() {
 }
 ```
 
-## 当父组件绑定了onTouch，其子组件Button绑定了onClick，如何做到点击Button只响应Button的onClick，而不用响应父组件的onTouch？
 
-适用于 OpenHarmony 3.2 Beta5  API 9
+## 当父组件绑定了onTouch，其子组件Button绑定了onClick，如何做到点击Button只响应Button的onClick，而不用响应父组件的onTouch(API 9)
 
-可以在Button组件中绑定onTouch，并在onTouch中使用stopPropagation\(\)阻止onTouch冒泡传递到父组件阻止冒泡传递。
+可以在Button组件中绑定onTouch，并在onTouch中使用stopPropagation()阻止onTouch冒泡传递到父组件阻止冒泡传递。
 
 **代码示例**
 
@@ -126,23 +119,20 @@ build() {
 }
 ```
 
-## 绑定菜单后无法使用右键触发菜单
 
-适用于：OpenHarmony 3.2 Beta API 9 
+## 绑定菜单后无法使用右键触发菜单(API 9)
 
 **解决措施**
 
 目前菜单仅支持点击、长按触发方式，没有右键方式。
 
-## 点击文本输入框，如何屏蔽系统默认键盘弹起行为？
 
-适用于：OpenHarmony 3.2 Beta5  API 9
+## 点击文本输入框，如何屏蔽系统默认键盘弹起行为(API 9)
 
 设置TextInput组件的focusable属性为false，此组件则不可获焦，就不会拉起系统默认的键盘。
 
-## 如何实现上下切换的页面间跳转动画
 
-适用于：OpenHarmony 3.2 Beta5  API 9
+## 如何实现上下切换的页面间跳转动画(API 9)
 
 **问题现象**
 
@@ -194,11 +184,9 @@ struct PageTransition2 {
 
 **参考链接**
 
-[页面转场动画](../reference/arkui-ts/ts-page-transition-animation.md)
+[页面间转场](../reference/arkui-ts/ts-page-transition-animation.md)
 
-## 自定义组件间如何实现从底部滑入滑出的效果
-
-适用于：OpenHarmony 3.2 Beta5  API 9
+## 自定义组件间如何实现从底部滑入滑出的效果(API 9)
 
 **问题现象**
 
@@ -269,5 +257,21 @@ struct ComponentChild2 {
 
 **参考链接**
 
-[组件内转场动画](../ui/arkts-enter-exit-transition.md)
+[出现/消失转场](../ui/arkts-enter-exit-transition.md)
+
+
+## 文件管理器短按不响应(API 10)
+
+**问题现象**
+
+短按文件夹图标，如点击时长在200-500ms松手会触发文件管理器点击不响应。
+
+**原因分析**
+
+拖拽手势识别逻辑存在异常分支未处理，短按特定时间段松手会导致手势识别器处于pending状态，不再响应用户输入导致文件管理器出现卡死现象。
+
+**解决措施**
+
+长按文件图标或者空白区域即可恢复。
+
 

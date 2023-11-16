@@ -11,7 +11,7 @@ Table 1 Native IPC APIs
 
 | Class| API| Description|
 | -------- | -------- | -------- |
-| [IRemoteBroker](../reference/apis/js-apis-rpc.md#iremotebroker) | sptr&lt;IRemoteObject&gt; AsObject() | Obtains the holder of a remote proxy object. If you call this API on the stub, the **RemoteObject** is returned; if you call this API on the proxy, the proxy object is returned.|
+| IRemoteBroker | sptr&lt;IRemoteObject&gt; AsObject() | Obtains the holder of a remote proxy object. If you call this API on the stub, the **RemoteObject** is returned; if you call this API on the proxy, the proxy object is returned.|
 | IRemoteStub | virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | Called to process a request from the proxy and return the result. Derived classes need to override this API.|
 | IRemoteProxy | Remote()->SendRequest(code, data, reply, option)             | Sends a request to the peer end. Service proxy classes are derived from the **IRemoteProxy** class.|
 
@@ -180,44 +180,45 @@ Table 1 Native IPC APIs
 1. Add dependencies.
 
    ```ts
-   import rpc from '@ohos.rpc';
-   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-   // import featureAbility from "@ohos.ability.featureAbility";
-   ```
+    import rpc from '@ohos.rpc';
+    // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+    // import featureAbility from '@ohos.ability.featureAbility';
+    ```
 
-   If you use the stage model, you need to obtain the context. The sample code is as follows:
+    If you use the stage model, you need to obtain the context. The sample code is as follows:
 
-   ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import Want from '@ohos.app.ability.Want';
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import window from '@ohos.window';
+    ```ts
+    import UIAbility from '@ohos.app.ability.UIAbility';
+    import Want from '@ohos.app.ability.Want';
+    import hilog from '@ohos.hilog';
+    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+    import window from '@ohos.window';
 
-   export default class MainAbility extends UIAbility {
-       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-           console.log("[Demo] MainAbility onCreate");
-           let context = this.context;
-       }
-       onDestroy() {
-           console.log("[Demo] MainAbility onDestroy");
-       }
-       onWindowStageCreate(windowStage: window.WindowStage) {
-           // Main window is created, set main page for this ability
-           console.log("[Demo] MainAbility onWindowStageCreate");
-       }
-       onWindowStageDestroy() {
-           // Main window is destroyed, release UI related resources
-           console.log("[Demo] MainAbility onWindowStageDestroy");
-       }
-       onForeground() {
-           // Ability has brought to foreground
-           console.log("[Demo] MainAbility onForeground");
-       }
-       onBackground() {
-           // Ability has back to background
-           console.log("[Demo] MainAbility onBackground");
-       }
-   }
+    export default class MainAbility extends UIAbility {
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onCreate');
+        let context = this.context;
+      }
+      onDestroy() {
+        hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onDestroy');
+      }
+      onWindowStageCreate(windowStage: window.WindowStage) {
+        // Main window is created, set main page for this ability
+	  	hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageCreate');
+      }
+      onWindowStageDestroy() {
+        // Main window is destroyed, release UI related resources
+	  	hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageDestroy');
+      }
+      onForeground() {
+        // Ability has brought to foreground
+        hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onForeground');
+      }
+      onBackground() {
+        // Ability has back to background
+        hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onBackground');
+      }
+    }
    ```
 
 2. Bind the desired ability.
@@ -225,72 +226,75 @@ Table 1 Native IPC APIs
    Construct the **want** variable, and specify the bundle name and component name of the application where the ability is located. If cross-device communication is involved, also specify the network ID of the target device, which can be obtained through **deviceManager**. Then, construct the **connect** variable, and specify the callback that is called when the binding is successful, the binding fails, or the ability is disconnected. If you use the FA model, call the API provided by **featureAbility** to bind an ability. If you use the stage model, obtain a service instance through **Context**, and then call the API provided by **featureAbility** to bind an ability.
 
    ```ts
-   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-   // import featureAbility from "@ohos.ability.featureAbility";
-   import rpc from '@ohos.rpc';
-   import Want from '@ohos.app.ability.Want';
-   import common from '@ohos.app.ability.common';
-   import deviceManager from '@ohos.distributedHardware.deviceManager';
-   import { BusinessError } from '@ohos.base';
+    // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+    // import featureAbility from "@ohos.ability.featureAbility";
+    import rpc from '@ohos.rpc';
+    import Want from '@ohos.app.ability.Want';
+    import common from '@ohos.app.ability.common';
+    import hilog from '@ohos.hilog';
+    import deviceManager from '@ohos.distributedHardware.deviceManager';
+    import { BusinessError } from '@ohos.base';
 
-   let dmInstance: deviceManager.DeviceManager | undefined;
-   let proxy: rpc.IRemoteObject | undefined = undefined;
-   let connectId: number;
+    let dmInstance: deviceManager.DeviceManager | undefined;
+    let proxy: rpc.IRemoteObject | undefined = undefined;
+    let connectId: number;
 
-   // Bind the ability on a single device.
-   let want: Want = {
-       // Enter the bundle name and ability name.
-       bundleName: "ohos.rpc.test.server",
-       abilityName: "ohos.rpc.test.server.ServiceAbility",
-   };
-   let connect: common.ConnectOptions = {
-       onConnect: (elementName, remote) => {
-           proxy = remote;
-       },
-       onDisconnect: (elementName) => {
-       },
-       onFailed: () => {
-           proxy;
-       }
-   };
-   // Use this method to connect to the ability in the FA model.
-   // connectId = featureAbility.connectAbility(want, connect);
+    // Bind the ability on a single device.
+    let want: Want = {
+      // Enter the bundle name and ability name.
+      bundleName: "ohos.rpc.test.server",
+      abilityName: "ohos.rpc.test.server.ServiceAbility",
+    };
+    let connect: common.ConnectOptions = {
+      onConnect: (elementName, remoteProxy) => {
+        hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+        proxy = remoteProxy;
+      },
+      onDisconnect: (elementName) => {
+        hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+      },
+      onFailed: () => {
+        hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      }
+    };
+    // Use this method to connect to the ability in the FA model.
+    // connectId = featureAbility.connectAbility(want, connect);
 
-   connectId = this.context.connectServiceExtensionAbility(want,connect);
+    connectId = this.context.connectServiceExtensionAbility(want,connect);
 
-   // Cross-device binding
-   let deviceManagerCallback = (err: BusinessError, data: deviceManager.DeviceManager) => {
-       if (err) {
-           console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
-           return;
-       }
-       console.info("createDeviceManager success");
-       dmInstance = data;
-   }
-   try{
-       deviceManager.createDeviceManager("ohos.rpc.test", deviceManagerCallback);
-   } catch(error) {
-       let e: BusinessError = error as BusinessError;
-       console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
-   }
+    // Cross-device binding
+    let deviceManagerCallback = (err: BusinessError, data: deviceManager.DeviceManager) => {
+      if (err) {
+        hilog.error(0x0000, 'testTag', 'createDeviceManager errCode:' + err.code + ', errMessage:' + err.message);
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'createDeviceManager success');
+      dmInstance = data;
+    }
+    try{
+      deviceManager.createDeviceManager("ohos.rpc.test", deviceManagerCallback);
+    } catch(error) {
+      let err: BusinessError = error as BusinessError;
+      hilog.error(0x0000, 'testTag', 'createDeviceManager errCode:' + err.code + ', errMessage:' + err.message);
+    }
 
-   // Use deviceManager to obtain the network ID of the target device.
-   if (dmInstance != undefined) {
-       let deviceList: Array<deviceManager.DeviceInfo> = dmInstance.getTrustedDeviceListSync();
-       let networkId: string = deviceList[0].networkId;
-       let want: Want = {
-           bundleName: "ohos.rpc.test.server",
-           abilityName: "ohos.rpc.test.service.ServiceAbility",
-           deviceId: networkId,
-           flags: 256
-       };
-       // The ID returned after the connection is set up must be saved. The ID will be passed for service disconnection.
-       // Use this method to connect to the ability in the FA model.
-       // connectId = featureAbility.connectAbility(want, connect);
-       
-       // The first parameter specifies the bundle name of the application, and the second parameter specifies the callback used to return the device ID obtained by using DeviceManager.
-       connectId = this.context.connectServiceExtensionAbility(want,connect);
-   }
+    // Use deviceManager to obtain the network ID of the target device.
+    if (dmInstance != undefined) {
+      let deviceList: Array<deviceManager.DeviceInfo> = dmInstance.getTrustedDeviceListSync();
+      let networkId: string = deviceList[0].networkId;
+      let want: Want = {
+        bundleName: "ohos.rpc.test.server",
+        abilityName: "ohos.rpc.test.service.ServiceAbility",
+        deviceId: networkId,
+        flags: 256
+      };
+      // The ID returned after the connection is set up must be saved. The ID will be passed for service disconnection.
+      // Use this method to connect to the ability in the FA model.
+      // connectId = featureAbility.connectAbility(want, connect);
+      
+      // The first parameter specifies the bundle name of the application, and the second parameter specifies the callback used to return the device ID obtained by using DeviceManager.
+      connectId = this.context.connectServiceExtensionAbility(want,connect);
+    }
    ```
 
 3. Process requests sent from the client.
@@ -298,18 +302,21 @@ Table 1 Native IPC APIs
    Call the **onConnect** API to return a proxy object inherited from **rpc.RemoteObject** after the ability is successfully bound. Implement the **onRemoteMessageRequest** API for the proxy object to process requests sent from the client.
 
    ```ts
+    import rpc from '@ohos.rpc';
+    import Want from '@ohos.app.ability.Want';
     class Stub extends rpc.RemoteObject {
-       constructor(descriptor: string) {
-           super(descriptor);
-       }
-       onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-           // Process requests sent from the client based on the code.
-           return true;
-       }
-    }
-    onConnect(want: Want) {
-           const robj: rpc.RemoteObject = new Stub("rpcTestAbility");
-           return robj;
+      constructor(descriptor: string) {
+        super(descriptor);
+      }
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+        // Process requests sent from the client based on the code.
+        return true;
+      }
+
+      onConnect(want: Want) {
+        const robj: rpc.RemoteObject = new Stub("rpcTestAbility");
+        return robj;
+      }
     } 
    ```
 
@@ -318,46 +325,49 @@ Table 1 Native IPC APIs
    Obtain the proxy object from the **onConnect** callback, call **sendRequest** to send a request, and receive the response using a callback or a promise (an object representing the eventual completion or failure of an asynchronous operation and its result value).
 
    ```ts
-   import rpc from '@ohos.rpc';
-   // Use a promise.
-   let option = new rpc.MessageOption();
-   let data = rpc.MessageParcel.create();
-   let reply = rpc.MessageParcel.create();
-   // Write parameters to data.
-   proxy.sendRequest(1, data, reply, option)
-       .then((result: rpc.SendRequestResult) => {
-           if (result.errCode != 0) {
-               console.error("send request failed, errCode: " + result.errCode);
-               return;
-           }
-           // Read the result from result.reply.
-       })
-       .catch((e: Error) => {
-           console.error("send request got exception: " + e);
-       })
-       .finally(() => {
-           data.reclaim();
-           reply.reclaim();
-       })
+    import rpc from '@ohos.rpc';
+    import hilog from '@ohos.hilog';
 
-   // Use a callback.
-   function sendRequestCallback(result: rpc.SendRequestResult) {
-       try {
-           if (result.errCode != 0) {
-               console.error("send request failed, errCode: " + result.errCode);
-               return;
-           }
-           // Read the result from result.reply.
-       } finally {
-           result.data.reclaim();
-           result.reply.reclaim();
-       }
-   }
-   let option = new rpc.MessageOption();
-   let data = rpc.MessageParcel.create();
-   let reply = rpc.MessageParcel.create();
-   // Write parameters to data.
-   proxy.sendRequest(1, data, reply, option, sendRequestCallback);
+    // Use a promise.
+    let option = new rpc.MessageOption();
+    let data = rpc.MessageSequence.create();
+    let reply = rpc.MessageSequence.create();
+    // Write parameters to data.
+    let proxy: rpc.IRemoteObject | undefined = undefined;
+    proxy.sendMessageRequest(1, data, reply, option)
+      .then((result: rpc.RequestResult) => {
+        if (result.errCode != 0) {
+          hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, errCode: ' + result.errCode);
+          return;
+        }
+        // Read the result from result.reply.
+      })
+      .catch((e: Error) => {
+        hilog.error(0x0000, 'testTag', 'sendMessageRequest got exception: ' + e);
+      })
+      .finally(() => {
+        data.reclaim();
+        reply.reclaim();
+      })
+ 
+    // Use a callback.
+    function sendRequestCallback(err: Error, result: rpc.SendRequestResult) {
+      try {
+        if (result.errCode != 0) {
+          hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, errCode: ' + result.errCode);
+          return;
+        }
+        // Read the result from result.reply.
+      } finally {
+          result.data.reclaim();
+          result.reply.reclaim();
+      }
+    }
+    let options = new rpc.MessageOption();
+    let datas = rpc.MessageSequence.create();
+    let replys = rpc.MessageSequence.create();
+    // Write parameters to data.
+    proxy.sendMessageRequest(1, datas, replys, options, sendRequestCallback);
    ```
 
 5. Tear down the connection.
@@ -365,16 +375,43 @@ Table 1 Native IPC APIs
    If you use the FA model, call the API provided by **featureAbility** to tear down the connection when the communication is over. If you use the stage model, obtain a service instance through **Context**, and then call the API provided by **featureAbility** to tear down the connection.
 
    ```ts
-   import rpc from "@ohos.rpc";
-   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
-   // import featureAbility from "@ohos.ability.featureAbility";
+    import rpc from '@ohos.rpc';
+    import Want from '@ohos.app.ability.Want';
+    import hilog from '@ohos.hilog';
+    import common from '@ohos.app.ability.common';
+    // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+    // import featureAbility from "@ohos.ability.featureAbility";
 
-   function disconnectCallback() {
-       console.info("disconnect ability done");
-   }
-   // Use this method to disconnect from the ability in the FA model.
-   // featureAbility.disconnectAbility(connectId, disconnectCallback);
+    function disconnectCallback() {
+      hilog.info(0x0000, 'testTag', 'disconnect ability done');
+    }
+    // Use this method to disconnect from the ability in the FA model.
+    // featureAbility.disconnectAbility(connectId, disconnectCallback);
 
-   this.context.disconnectServiceExtensionAbility(connectId);
+    let proxy: rpc.IRemoteObject | undefined = undefined;
+    let connectId: number;
+
+    // Bind the ability on a single device.
+    let want: Want = {
+      // Enter the bundle name and ability name.
+      bundleName: "ohos.rpc.test.server",
+      abilityName: "ohos.rpc.test.server.ServiceAbility",
+    };
+    let connect: common.ConnectOptions = {
+      onConnect: (elementName, remote) => {
+        proxy = remote;
+      },
+      onDisconnect: (elementName) => {
+      },
+      onFailed: () => {
+        proxy;
+      }
+    };
+    // Use this method to connect to the ability in the FA model.
+    // connectId = featureAbility.connectAbility(want, connect);
+
+    connectId = this.context.connectServiceExtensionAbility(want,connect);
+
+    this.context.disconnectServiceExtensionAbility(connectId);
    ```
 
