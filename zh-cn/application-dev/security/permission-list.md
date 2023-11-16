@@ -3414,7 +3414,7 @@
 
 **授权方式**: system_grant
 
-**ACL使能**: TRUE
+**ACL使能**: FALSE
 
 **起始版本**: 11
 
