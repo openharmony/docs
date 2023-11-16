@@ -206,7 +206,7 @@ PinchGesture(value?:{fingers?:number; distance?:number})
 
 - fingers：用于声明触发捏合手势所需要的最少手指数量，最小值为2，最大值为5，默认值为2。
 
-- distance：用于声明触发捏合手势的最小距离，单位为vp，默认值为3。
+- distance：用于声明触发捏合手势的最小距离，单位为vp，默认值为5。
 
 
 以在Column组件上绑定三指捏合手势为例，可以通过在捏合手势的函数回调中获取缩放比例，实现对组件的缩小或放大：
