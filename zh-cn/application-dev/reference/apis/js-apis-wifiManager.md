@@ -3729,7 +3729,7 @@ off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"hotspotStaJoin"字符串。 |
-| callback | Callback&lt;StationInfo&gt; | 是 | 状态改变回调函数。 |
+| callback | Callback&lt;StationInfo&gt; | 否 | 状态改变回调函数。 |
 
 **错误码：**
 
@@ -3772,7 +3772,7 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"hotspotStaLeave"字符串。 |
-  | callback | Callback&lt;StationInf]&gt; | 否 | 状态改变回调函数。 |
+  | callback | Callback&lt;StationInf]&gt; | 是 | 状态改变回调函数。 |
 
 **错误码：**
 
