@@ -51,7 +51,6 @@ RichEditor(value: RichEditorOptions)
 | onIMEInputComplete(callback:&nbsp;(value:&nbsp;[RichEditorTextSpanResult](#richeditortextspanresult))&nbsp;=&gt;&nbsp;void) | 输入法输完成输入后，触发回调。<br />- value：输入法完成输入后的文本Span信息。 |
 | aboutToDelete(callback:&nbsp;(value:&nbsp;[RichEditorDeleteValue](#richeditordeletevalue))&nbsp;=&gt;&nbsp;boolean) | 输入法删除内容前，触发回调。 <br />- value：准备删除的内容所在的文本Span信息。|
 | onDeleteComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 输入法完成删除后，触发回调。 |
-| onPaste<sup>11+</sup>(callback: (event?: [PasteEvent](#pasteevent)) => void) | 完成粘贴前，触发回调。 |
 
 ## RichEditorInsertValue
 
@@ -225,30 +224,6 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 | ----------------------- | ---------------- |
 | number | 添加完成的imageSpan所在的位置。 |
 
-### getTypingStyle<sup>11+</sup>
-
-getTypingStyle(): RichEditorTextStyle
-
-获得用户预设的样式。
-
-**返回值：**
-
-| 类型                      | 说明               |
-| ----------------------- | ---------------- |
-| [RichEditorTextStyle](#richeditortextstyle) | 用户预设样式。 |
-
-### setTypingStyle<sup>11+</sup>
-
-setTypingStyle(value: RichEditorTextStyle): void
-
-设置用户预设的样式。
-
-**参数：**
-
-| 参数名 | 参数类型 | 必填 | 参数描述                               |
-| ------ | -------- | ---- | -------------------------------------- |
-| value  | [RichEditorTextStyle](#richeditortextstyle) | 是 | 预设样式。 |
-
 ### updateSpanStyle
 
 updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateImageSpanStyleOptions): void
@@ -260,18 +235,6 @@ updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateIm
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdatetextspanstyleoptions) | 是 | 文本或者图片的样式选项信息。 |
-
-### updateParagraphStyle<sup>11+</sup>
-
-updateParagraphStyle(value: RichEditorParagraphStyleOptions): void
-
-更新段落的样式。
-
-**参数：**
-
-| 名称 | 类型 | 必填 | 描述                               |
-| ------ | -------- | ---- | -------------------------------------- |
-| value | [RichEditorParagraphStyleOptions](#richeditorparagraphstyleoptions11) | 是 | 段落的样式选项信息。 |
 
 ### getSpans
 
@@ -302,24 +265,6 @@ deleteSpans(value?: RichEditorRange): void
 | 参数名 | 参数类型 | 必填 | 参数描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | value | [RichEditorRange](#richeditorrange) | 否 | 删除范围。省略时，删除所有文本和图片。|
-
-### getParagraphs<sup>11+</sup>
-
-getParagraphs(value?: RichEditorRange): Array<RichEditorParagraphResult>;
-
-获得指定返回的段落。
-
-**参数：**
-
-| 参数名 | 参数类型 | 必填 | 参数描述                               |
-| ------ | -------- | ---- | -------------------------------------- |
-| value | [RichEditorRange](#richeditorrange) | 否 | 需要获取段落的范围。|
-
-**返回值：**
-
-| 类型                      | 说明               |
-| ----------------------- | ---------------- |
-| Array<[RichEditorParagraphResult](#richeditorparagraphresult11) | 选中段落的信息。 |
 
 ### closeSelectionMenu
 
@@ -358,43 +303,6 @@ closeSelectionMenu(): void
 | end | number | 否 | 需要更新样式的图片结束位置，省略或者超出文本范围时表示到结尾。 |
 | imageStyle | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 是 | 图片样式。 |
 
-## RichEditorParagraphStyleOptions<sup>11+</sup>
-
-段落样式选项
-
-| 名称 | 类型 | 必填 | 描述                               |
-| ------ | -------- | ---- | -------------------------------------- |
-| start | number   | 否 | 需要更新样式的段落起始位置，省略或者设置负值时表示从0开始。 |
-| end | number | 否 | 需要更新样式的段落结束位置，省略、负数或者超出文本范围时表示到结尾。 |
-| style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 是 | 段落样式。 |
-
-## RichEditorParagraphStyle<sup>11+</sup>
-
-段落样式。
-
-| 名称 | 类型 | 必填 | 描述                               |
-| ------ | -------- | ---- | -------------------------------------- |
-| textAlign | [TextAlign](ts-appendix-enums.md#textalign) | 否 | 设置文本段落在水平方向的对齐方式。 |
-| leadingMargin | [Dimension]((ts-types.md#dimension10)) \| [LeadingMarginPlaceholderr](#leadingmarginplaceholder11) | 否 | 设置缩进。 |
-
-## LeadingMarginPlaceholder<sup>11+</sup>
-
-前导边距跨度。
-
-| 名称 | 类型 | 必填 | 描述                               |
-| ------ | -------- | ---- | -------------------------------------- |
-| pixelMap | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 是 | 图片内容。 |
-| size | \[[Dimension]((ts-types.md#dimension10)), [Dimension]((ts-types.md#dimension10))\] | 是 | 图片大小。 |
-
-## RichEditorParagraphResult<sup>11+</sup>
-
-后端返回的段落信息。
-
-| 名称 | 类型 | 必填 | 描述                               |
-| ------ | -------- | ---- | -------------------------------------- |
-| style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 是 | 段落样式。 |
-| range | \[number, number\] | 是 | 段落起始位置。 |
-
 ## RichEditorTextSpanOptions
 
 添加文本的偏移位置和文本样式信息。
@@ -403,7 +311,6 @@ closeSelectionMenu(): void
 | ------ | -------- | ---- | -------------------------------------- |
 | offset  | number   | 否   | 添加文本的位置。省略时，添加到所有文本字符串的最后。 |
 | style  | [RichEditorTextStyle](#richeditortextstyle)   | 否   | 文本样式信息。省略时，使用系统默认文本信息。|
-| paragraphStyle<sup>11+</sup>  | [RichEditorParagraphStyle](#richeditorparagraphstyle11)   | 否   | 段落样式。|
 | gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | 否   | 行为触发回调。省略时，仅使用系统默认行为。|
 
 ## RichEditorTextStyle
@@ -449,7 +356,7 @@ closeSelectionMenu(): void
 | start | number   | 否 | 起始位置，省略或者设置负值时表示从0开始。 |
 | end | number | 否 | 结束位置，省略或者超出文本范围时表示到结尾。 |
 
-## SelectionMenuOptions<sup>11+</sup>
+## SelectionMenuOptions
 
 范围信息。
 
@@ -457,14 +364,6 @@ closeSelectionMenu(): void
 | ------ | -------- | ---- | -------------------------------------- |
 | onAppear | ?(() => void) | 否 | 自定义选择菜单弹出时回调。 |
 | onDisappear | ?(() => void) | 否 | 自定义选择菜单关闭时回调。 |
-
-## PasteEvent<sup>11+</sup>
-
-定义用户粘贴事件。
-
-| 名称 | 类型 | 必填 | 描述                               |
-| ------ | -------- | ---- | -------------------------------------- |
-| preventDefault | ?(() => void) | 否 | 用户自定义粘贴事件。<br/> 存在时会覆盖系统粘贴事件。 |
 
 ## RichEditorGesture<sup>11+</sup>
 
