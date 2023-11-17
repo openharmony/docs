@@ -42,9 +42,9 @@ A context menu – a vertical list of items – can be bound to a component and 
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | offset                | [Position](ts-types.md#position8)                            | No  | Offset for showing the context menu, which should not cause the menu to extend beyond the screen.<br>**NOTE**<br>When the menu is displayed relative to the parent component area, the width or height of the area is automatically counted into the offset based on the **placement** attribute of the menu.<br>When the menu is displayed above the parent component (that is, **placement** is set to **Placement.TopLeft**, **Placement.Top**, or **Placement.TopRight**), a positive value of **x** indicates rightward movement relative to the parent component, and a positive value of **y** indicates upward movement.<br>When the menu is displayed below the parent component (that is, **placement** is set to **Placement.BottomLeft**, **Placement.Bottom**, or **Placement.BottomRight**), a positive value of **x** indicates rightward movement relative to the parent component, and a positive value of **y** indicates downward movement.<br>When the menu is displayed on the left of the parent component (that is, **placement** is set to **Placement.LeftTop**, **Placement.Left**, or **Placement.LeftBottom**), a positive value of **x** indicates leftward movement relative to the parent component, and a positive value of **y** indicates downward movement.<br>When the menu is displayed on the right of the parent component (that is, **placement** is set to **Placement.RightTop**, **Placement.RightTop**, or **Placement.RightBottom**), a positive value of **x** indicates rightward movement relative to the parent component, and a positive value of **y** indicates downward movement.<br>If the display position of the menu is adjusted (different from the main direction of the initial **placement** value), the offset value is invalid.|
 | placement             | [Placement](ts-appendix-enums.md#placement8)                 | No  | Preferred position of the context menu. If the set position is insufficient for holding the component, it will be automatically adjusted.<br>**NOTE**<br>Setting **placement** to **undefined** or **null** is equivalent to not setting it at all, and the context menu is displayed where the mouse is clicked.|
-| enableArrow           | boolean                                                      | No  | Whether to display an arrow. If the size and position of the context menu are insufficient for holding an arrow, no arrow is displayed.<br>Default value: **false**, indicating that no arrow is displayed<br>**NOTE**<br>An arrow is displayed in the position specified by **placement**. If **placement** is not set or its value is invalid, the arrow is displayed above the target. If the position is insufficient for holding the arrow, it is automatically adjusted.|
+| enableArrow           | boolean                                                      | No  | Whether to display an arrow. If the size and position of the context menu are insufficient for holding an arrow, no arrow is displayed.<br>Default value: **false**, indicating that no arrow is displayed<br>**NOTE**<br>When **enableArrow** is **true**, an arrow is displayed in the position specified by **placement**. If **placement** is not set or its value is invalid, the arrow is displayed above the target. If the position is insufficient for holding the arrow, it is automatically adjusted. When **enableArrow** is **undefined**, no arrow is displayed.|
 | arrowOffset           | [Length](ts-types.md#length)                                 | No  | Offset of the arrow relative to the context menu. When the arrow is placed in a horizontal position with the context menu: The value indicates the distance from the arrow to the leftmost; the arrow is centered by default. When the arrow is placed in a vertical position with the context menu: The value indicates the distance from the arrow to the top; the arrow is centered by default. The offset settings take effect only when the value is valid, can be converted to a number greater than 0, and does not cause the arrow to extend beyond the safe area of the context menu. The value of **placement** determines whether the offset is horizontal or vertical.|
-| preview<sup>11+</sup> | [MenuPreviewMode](ts-appendix-enums.md#menupreviewmode-11)\| [CustomBuilder](ts-types.md#custombuilder8) | No  | Preview displayed when the context menu is triggered by a long-press. It can be a screenshot of the target component or custom content.<br>Default value: **MenuPreviewMode.NONE**, indicating no preview.<br>**NOTE**<br>- This parameter is effective only when **responseType** is set to **ResponseType.LongPress**.<br>- If **preview** is set to **MenuPreviewMode.NONE** or is not set, the **enableArrow** parameter is effective.<br>- If **preview** is set to **MenuPreviewMode.IMAGE** or **CustomBuilder**, the **enableArrow** parameter is not effective.|
+| preview<sup>11+</sup> | [MenuPreviewMode](ts-appendix-enums.md#menupreviewmode11)\| [CustomBuilder](ts-types.md#custombuilder8) | No  | Preview displayed when the context menu is triggered by a long-press. It can be a screenshot of the target component or custom content.<br>Default value: **MenuPreviewMode.NONE**, indicating no preview.<br>**NOTE**<br>- This parameter is effective only when **responseType** is set to **ResponseType.LongPress**.<br>- If **preview** is set to **MenuPreviewMode.NONE** or is not set, the **enableArrow** parameter is effective.<br>- If **preview** is set to **MenuPreviewMode.IMAGE** or **CustomBuilder**, no arrow will be displayed even when **enableArrow** is **true**.|
 | onAppear              | () =&gt; void                                      | No  | Callback triggered when the menu is displayed.                                      |
 | onDisappear           | () =&gt; void                                      | No  | Callback triggered when the menu is hidden.                                      |
 
@@ -137,7 +137,7 @@ struct MenuExample {
 
 ### Example 3
 
-Context Menu (Displayed Upon Right-Click)
+Context Menu Displayed Upon Right-Click
 
 ```ts
 // xxx.ets
@@ -173,7 +173,7 @@ struct ContextMenuExample {
 
 ### Example 4
 
-Directive Menu (Displayed Upon Right-Click)
+Directive Menu Displayed Upon Right-Click
 
 ```ts
 // xxx.ets
@@ -213,3 +213,97 @@ struct DirectiveMenuExample {
 ```
 
 ![en-us_image_0000001689126950](figures/en-us_image_0000001689126950.png)
+
+### Example 5
+
+Context Menu Displayed Upon Long-Pressing (with Preview of Component Screenshot)
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  private iconStr: ResourceStr = $r("app.media.icon")
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ startIcon: this.iconStr, content: "Menu option" })
+      MenuItem({ startIcon: this.iconStr, content: "Menu option" })
+      MenuItem({ startIcon: this.iconStr, content: "Menu option" })
+    }
+  }
+
+  build() {
+    Column({ space: 50 }) {
+      Column() {
+        Column() {
+          Text('preview-image')
+            .width(200)
+            .height(100)
+            .textAlign(TextAlign.Center)
+            .margin(100)
+            .fontSize(30)
+            .bindContextMenu(this.MyMenu, ResponseType.LongPress,
+              { preview: MenuPreviewMode.IMAGE })
+            .backgroundColor("#ff3df2f5")
+        }
+      }.width('100%')
+    }
+  }
+}
+```
+
+![preview-image](figures/preview-image.png)
+
+### Example 6
+
+Context Menu Displayed Upon Long-Pressing (with Preview of Custom Content)
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  private iconStr: ResourceStr = $r("app.media.icon")
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ startIcon: this.iconStr, content: "Menu option" })
+      MenuItem({ startIcon: this.iconStr, content: "Menu option" })
+      MenuItem({ startIcon: this.iconStr, content: "Menu option" })
+    }
+  }
+
+  @Builder
+  MyPreview() {
+    Column() {
+      Image($r('app.media.icon'))
+        .width(200)
+        .height(200)
+    }
+  }
+
+  build() {
+    Column({ space: 50 }) {
+      Column() {
+        Column() {
+          Text('preview-builder')
+            .width(200)
+            .height(100)
+            .textAlign(TextAlign.Center)
+            .margin(100)
+            .fontSize(30)
+            .bindContextMenu(this.MyMenu, ResponseType.LongPress,
+              {
+                preview: this.MyPreview
+              })
+        }
+      }.width('100%')
+    }
+  }
+}
+```
+
+![preview-builder](figures/preview-builder.png)
