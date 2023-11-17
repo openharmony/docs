@@ -3484,9 +3484,12 @@ sim.getOperatorConfigs(0).then((data: Array<sim.OperatorConfig>) => {
 
 queryIccDiallingNumbers\(slotId: number, type: ContactType, callback: AsyncCallback\<Array\<DiallingNumbersInfo\>\>\): void
 
-SIM卡联系人存在缓存机制，对联系人进行增删改操作时会维护一套由卡槽slotId和联系人类型type对应的SIM卡联系人缓存，所以需要先调用sim.queryIccDiallingNumbers接口传入所需的slotId和type查询SIM卡联系人，生成缓存数据，在没有缓存的情况下直接调用sim.addIccDiallingNumbers、sim.delIccDiallingNumbers、sim.updateIccDiallingNumbers等接口会失败。
-
 查询SIM卡联系人号码。使用callback异步回调。
+
+>**说明：** 
+>
+>SIM卡联系人存在缓存机制，对联系人进行增删改操作时会维护一套由卡槽slotId和联系人类型type对应的SIM卡联系人缓存，所以需要先调用sim.queryIccDiallingNumbers接口传入所需的slotId和type查询SIM卡联系人，生成缓存数据，在没有缓存的情况下直接调用sim.addIccDiallingNumbers、sim.delIccDiallingNumbers、sim.updateIccDiallingNumbers等接口会失败。
+>
 
 **系统接口：** 此接口为系统接口。
 
@@ -3534,9 +3537,12 @@ sim.queryIccDiallingNumbers(0, 1, (err: BusinessError, data: Array<sim.DiallingN
 
 queryIccDiallingNumbers\(slotId: number, type: ContactType\): Promise\<Array\<DiallingNumbersInfo\>\>
 
-SIM卡联系人存在缓存机制，对联系人进行增删改操作时会维护一套由卡槽slotId和联系人类型type对应的SIM卡联系人缓存，所以需要先调用sim.queryIccDiallingNumbers接口传入所需的slotId和type查询SIM卡联系人，生成缓存数据，在没有缓存的情况下直接调用sim.addIccDiallingNumbers、sim.delIccDiallingNumbers、sim.updateIccDiallingNumbers等接口会失败。
-
 查询SIM卡联系人号码。使用Promise异步回调。
+
+>**说明：** 
+>
+>SIM卡联系人存在缓存机制，对联系人进行增删改操作时会维护一套由卡槽slotId和联系人类型type对应的SIM卡联系人缓存，所以需要先调用sim.queryIccDiallingNumbers接口传入所需的slotId和type查询SIM卡联系人，生成缓存数据，在没有缓存的情况下直接调用sim.addIccDiallingNumbers、sim.delIccDiallingNumbers、sim.updateIccDiallingNumbers等接口会失败。
+>
 
 **系统接口：** 此接口为系统接口。
 
@@ -3590,9 +3596,12 @@ sim.queryIccDiallingNumbers(0, 1).then((data:  Array<sim.DiallingNumbersInfo>) =
 
 addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback\<void\>\): void
 
-SIM卡联系人存在缓存机制，对联系人进行增删改操作时会维护一套由卡槽slotId和联系人类型type对应的SIM卡联系人缓存，所以需要先调用sim.queryIccDiallingNumbers接口传入所需的slotId和type查询SIM卡联系人，生成缓存数据，在没有缓存的情况下直接调用sim.addIccDiallingNumbers、sim.delIccDiallingNumbers、sim.updateIccDiallingNumbers等接口会失败。
-
 添加SIM卡联系人号码。使用callback异步回调。
+
+>**说明：** 
+>
+>SIM卡联系人存在缓存机制，对联系人进行增删改操作时会维护一套由卡槽slotId和联系人类型type对应的SIM卡联系人缓存，所以需要先调用sim.queryIccDiallingNumbers接口传入所需的slotId和type查询SIM卡联系人，生成缓存数据，在没有缓存的情况下直接调用sim.addIccDiallingNumbers、sim.delIccDiallingNumbers、sim.updateIccDiallingNumbers等接口会失败。
+>
 
 **系统接口：** 此接口为系统接口。
 
@@ -3646,9 +3655,12 @@ sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersIno
 
 addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo\): Promise\<void\>
 
-SIM卡联系人存在缓存机制，对联系人进行增删改操作时会维护一套由卡槽slotId和联系人类型type对应的SIM卡联系人缓存，所以需要先调用sim.queryIccDiallingNumbers接口传入所需的slotId和type查询SIM卡联系人，生成缓存数据，在没有缓存的情况下直接调用sim.addIccDiallingNumbers、sim.delIccDiallingNumbers、sim.updateIccDiallingNumbers等接口会失败。
-
 添加SIM卡联系人号码。使用Promise异步回调。
+
+>**说明：** 
+>
+>SIM卡联系人存在缓存机制，对联系人进行增删改操作时会维护一套由卡槽slotId和联系人类型type对应的SIM卡联系人缓存，所以需要先调用sim.queryIccDiallingNumbers接口传入所需的slotId和type查询SIM卡联系人，生成缓存数据，在没有缓存的情况下直接调用sim.addIccDiallingNumbers、sim.delIccDiallingNumbers、sim.updateIccDiallingNumbers等接口会失败。
+>
 
 **系统接口：** 此接口为系统接口。
 
@@ -3707,9 +3719,12 @@ sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersIno
 
 delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback\<void\>\): void
 
-SIM卡联系人存在缓存机制，对联系人进行增删改操作时会维护一套由卡槽slotId和联系人类型type对应的SIM卡联系人缓存，所以需要先调用sim.queryIccDiallingNumbers接口传入所需的slotId和type查询SIM卡联系人，生成缓存数据，在没有缓存的情况下直接调用sim.addIccDiallingNumbers、sim.delIccDiallingNumbers、sim.updateIccDiallingNumbers等接口会失败。
-
 删除SIM卡联系人号码。使用callback异步回调。
+
+>**说明：** 
+>
+>SIM卡联系人存在缓存机制，对联系人进行增删改操作时会维护一套由卡槽slotId和联系人类型type对应的SIM卡联系人缓存，所以需要先调用sim.queryIccDiallingNumbers接口传入所需的slotId和type查询SIM卡联系人，生成缓存数据，在没有缓存的情况下直接调用sim.addIccDiallingNumbers、sim.delIccDiallingNumbers、sim.updateIccDiallingNumbers等接口会失败。
+>
 
 **系统接口：** 此接口为系统接口。
 
@@ -3764,9 +3779,12 @@ sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersIno
 
 delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo\): Promise\<void\>
 
-SIM卡联系人存在缓存机制，对联系人进行增删改操作时会维护一套由卡槽slotId和联系人类型type对应的SIM卡联系人缓存，所以需要先调用sim.queryIccDiallingNumbers接口传入所需的slotId和type查询SIM卡联系人，生成缓存数据，在没有缓存的情况下直接调用sim.addIccDiallingNumbers、sim.delIccDiallingNumbers、sim.updateIccDiallingNumbers等接口会失败。
-
 删除SIM卡联系人号码。使用Promise异步回调。
+
+>**说明：** 
+>
+>SIM卡联系人存在缓存机制，对联系人进行增删改操作时会维护一套由卡槽slotId和联系人类型type对应的SIM卡联系人缓存，所以需要先调用sim.queryIccDiallingNumbers接口传入所需的slotId和type查询SIM卡联系人，生成缓存数据，在没有缓存的情况下直接调用sim.addIccDiallingNumbers、sim.delIccDiallingNumbers、sim.updateIccDiallingNumbers等接口会失败。
+>
 
 **系统接口：** 此接口为系统接口。
 
@@ -3825,9 +3843,12 @@ sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersIno
 
 updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback\<void\>\): void 
 
-SIM卡联系人存在缓存机制，对联系人进行增删改操作时会维护一套由卡槽slotId和联系人类型type对应的SIM卡联系人缓存，所以需要先调用sim.queryIccDiallingNumbers接口传入所需的slotId和type查询SIM卡联系人，生成缓存数据，在没有缓存的情况下直接调用sim.addIccDiallingNumbers、sim.delIccDiallingNumbers、sim.updateIccDiallingNumbers等接口会失败。
-
 更新SIM卡联系人号码。使用callback异步回调。
+
+>**说明：** 
+>
+>SIM卡联系人存在缓存机制，对联系人进行增删改操作时会维护一套由卡槽slotId和联系人类型type对应的SIM卡联系人缓存，所以需要先调用sim.queryIccDiallingNumbers接口传入所需的slotId和type查询SIM卡联系人，生成缓存数据，在没有缓存的情况下直接调用sim.addIccDiallingNumbers、sim.delIccDiallingNumbers、sim.updateIccDiallingNumbers等接口会失败。
+>
 
 **系统接口：** 此接口为系统接口。
 
@@ -3882,9 +3903,12 @@ sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbers
 
 updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo\): Promise\<void\>
 
-SIM卡联系人存在缓存机制，对联系人进行增删改操作时会维护一套由卡槽slotId和联系人类型type对应的SIM卡联系人缓存，所以需要先调用sim.queryIccDiallingNumbers接口传入所需的slotId和type查询SIM卡联系人，生成缓存数据，在没有缓存的情况下直接调用sim.addIccDiallingNumbers、sim.delIccDiallingNumbers、sim.updateIccDiallingNumbers等接口会失败。
-
 更新SIM卡联系人号码。使用Promise异步回调。
+
+>**说明：** 
+>
+>SIM卡联系人存在缓存机制，对联系人进行增删改操作时会维护一套由卡槽slotId和联系人类型type对应的SIM卡联系人缓存，所以需要先调用sim.queryIccDiallingNumbers接口传入所需的slotId和type查询SIM卡联系人，生成缓存数据，在没有缓存的情况下直接调用sim.addIccDiallingNumbers、sim.delIccDiallingNumbers、sim.updateIccDiallingNumbers等接口会失败。
+>
 
 **系统接口：** 此接口为系统接口。
 
