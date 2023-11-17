@@ -24,16 +24,19 @@ getDefaultCellularDataSlotId(callback: AsyncCallback\<number\>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                       |
 | -------- | ----------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<number\> | 是   | 回调函数。<br />0：卡槽1。<br />1：卡槽2。 |
+| callback | AsyncCallback\<number\> | 是   | 以callback形式异步返回结果。<br />0：卡槽1。<br />1：卡槽2。 |
 
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.getDefaultCellularDataSlotId((err: BusinessError, data: number) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if(err){
+        console.error(`getDefaultCellularDataSlotId fail,callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    }else{
+        console.log(`getDefaultCellularDataSlotId success`);
+    }
 });
 ```
 
@@ -54,7 +57,6 @@ getDefaultCellularDataSlotId(): Promise\<number\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.getDefaultCellularDataSlotId().then((data: number) => {
@@ -81,7 +83,6 @@ getDefaultCellularDataSlotIdSync(): number
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 
 console.log("Result: "+ data.getDefaultCellularDataSlotIdSync())
 ```
@@ -103,7 +104,7 @@ setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void\>): v
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number                | 是   | SIM卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。<br/>- -1：清除默认配置。 |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。                                                   |
+| callback | AsyncCallback\<void\> | 是   | 以callback形式异步返回结果。                                                   |
 
 **错误码：**
 
@@ -124,11 +125,14 @@ setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void\>): v
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.setDefaultCellularDataSlotId(0, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}.`);
+    if(err){
+        console.error(`setDefaultCellularDataSlotId fail,callback: err->${JSON.stringify(err)}.`);
+    }else{
+        console.log(`setDefaultCellularDataSlotId success`);
+    }
 });
 ```
 
@@ -175,7 +179,6 @@ setDefaultCellularDataSlotId(slotId: number): Promise\<void\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.setDefaultCellularDataSlotId(0).then(() => {
@@ -197,16 +200,19 @@ getCellularDataFlowType(callback: AsyncCallback\<DataFlowType\>): void
 
 | 参数名   | 类型                                           | 必填 | 说明       |
 | -------- | ---------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[DataFlowType](#dataflowtype)\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<[DataFlowType](#dataflowtype)\> | 是   | 以callback形式异步返回结果。 |
 
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.getCellularDataFlowType((err: BusinessError, data: data.DataFlowType) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if(err){
+        console.error(`getCellularDataFlowType fail,callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    }else{
+        console.log(`getCellularDataFlowType success`);
+    }
 });
 ```
 
@@ -227,13 +233,12 @@ getCellularDataFlowType(): Promise\<DataFlowType\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.getCellularDataFlowType().then((data: data.DataFlowType) => {
-    console.log(`test success, promise: data->${JSON.stringify(data)}`);
+    console.log(`getCellularDataFlowType success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.error(`test fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getCellularDataFlowType fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -249,16 +254,19 @@ getCellularDataState(callback: AsyncCallback\<DataConnectState\>): void
 
 | 参数名   | 类型                                                   | 必填 | 说明       |
 | -------- | ------------------------------------------------------ | ---- | ---------- |
-| callback | AsyncCallback\<[DataConnectState](#dataconnectstate)\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<[DataConnectState](#dataconnectstate)\> | 是   | 以callback形式异步返回结果。 |
 
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.getCellularDataState((err: BusinessError, data: data.DataConnectState) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if(err){
+        console.error(`getCellularDataState fail,callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    }else{
+        console.log(`getCellularDataState success`);
+    }
 });
 ```
 
@@ -279,13 +287,12 @@ getCellularDataState(): Promise\<DataConnectState\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.getCellularDataState().then((data: data.DataConnectState) => {
-    console.log(`test success, promise: data->${JSON.stringify(data)}`);
+    console.log(`getCellularDataState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.error(`test fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getCellularDataState fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -303,7 +310,7 @@ isCellularDataEnabled(callback: AsyncCallback\<boolean\>): void
 
 | 参数名   | 类型                     | 必填 | 说明                                                         |
 | -------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br />true：蜂窝数据业务已启用。<br />false：蜂窝数据业务已禁用。 |
+| callback | AsyncCallback\<boolean\> | 是   | 以callback形式异步返回结果。<br />true：蜂窝数据业务已启用。<br />false：蜂窝数据业务已禁用。 |
 
 **错误码：**
 
@@ -321,11 +328,14 @@ isCellularDataEnabled(callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.isCellularDataEnabled((err: BusinessError, data: boolean) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if(err){
+        console.error(`isCellularDataEnabled fail,callback: callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    }else{
+        console.log(`isCellularDataEnabled success`);
+    }
 });
 ```
 
@@ -359,13 +369,12 @@ isCellularDataEnabled(): Promise\<boolean\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.isCellularDataEnabled().then((data: boolean) => {
-    console.log(`test success, promise: data->${JSON.stringify(data)}`);
+    console.log(`isCellularDataEnabled success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.error(`test fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`isCellularDataEnabled fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -384,7 +393,7 @@ isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback\<boolean\>)
 | 参数名   | 类型                     | 必填 | 说明                                                         |
 | -------- | ------------------------ | ---- | ------------------------------------------------------------ |
 | slotId   | number                   | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。                     |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br />true：蜂窝数据业务已启用漫游。<br />false：蜂窝数据业务已禁用漫游。 |
+| callback | AsyncCallback\<boolean\> | 是   | 以callback形式异步返回结果。<br />true：蜂窝数据业务已启用漫游。<br />false：蜂窝数据业务已禁用漫游。 |
 
 **错误码：**
 
@@ -402,11 +411,14 @@ isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback\<boolean\>)
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.isCellularDataRoamingEnabled(0, (err: BusinessError, data: boolean) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if(err){
+        console.error(`isCellularDataRoamingEnabled fail,callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    }else{
+        console.log(`isCellularDataRoamingEnabled success`);
+    }
 });
 ```
 
@@ -448,13 +460,12 @@ isCellularDataRoamingEnabled(slotId: number): Promise\<boolean\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.isCellularDataRoamingEnabled(0).then((data: boolean) => {
-    console.log(`test success, promise: data->${JSON.stringify(data)}`);
+    console.log(`isCellularDataRoamingEnabled success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.error(`test fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`isCellularDataRoamingEnabled fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -474,7 +485,7 @@ enableCellularData(callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                  | 必填 | 说明       |
 | -------- | --------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<void\> | 是   | 以callback形式异步返回结果。 |
 
 **错误码：**
 
@@ -493,11 +504,14 @@ enableCellularData(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.enableCellularData((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if(err){
+        console.error(`enableCellularData fail,callback: callback: err->${JSON.stringify(err)}`);
+    }else{
+        console.log(`enableCellularData success`);
+    }
 });
 ```
 
@@ -534,7 +548,6 @@ enableCellularData(): Promise\<void\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.enableCellularData().then(() => {
@@ -560,7 +573,7 @@ disableCellularData(callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                  | 必填 | 说明       |
 | -------- | --------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<void\> | 是   | 以callback形式异步返回结果。 |
 
 **错误码：**
 
@@ -579,11 +592,14 @@ disableCellularData(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.disableCellularData((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if(err){
+        console.error(`disableCellularData fail,callback: callback: err->${JSON.stringify(err)}`);
+    }else{
+        console.log(`disableCellularData success`);
+    }
 });
 ```
 
@@ -620,7 +636,6 @@ disableCellularData(): Promise\<void\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.disableCellularData().then(() => {
@@ -647,7 +662,7 @@ enableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                  | 必填 | 说明                                     |
 | -------- | --------------------- | ---- | ---------------------------------------- |
 | slotId   | number                | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。 |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。                               |
+| callback | AsyncCallback\<void\> | 是   | 以callback形式异步返回结果。                               |
 
 **错误码：**
 
@@ -666,11 +681,14 @@ enableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.enableCellularDataRoaming(0, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if(err){
+        console.error(`enableCellularDataRoaming fail,callback: err->${JSON.stringify(err)}`);
+    }else{
+        console.log(`enableCellularDataRoaming success`);
+    }
 });
 ```
 
@@ -715,7 +733,6 @@ enableCellularDataRoaming(slotId: number): Promise\<void\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.enableCellularDataRoaming(0).then(() => {
@@ -742,7 +759,7 @@ disableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void\>): voi
 | 参数名   | 类型                  | 必填 | 说明                                     |
 | -------- | --------------------- | ---- | ---------------------------------------- |
 | slotId   | number                | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。 |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。                               |
+| callback | AsyncCallback\<void\> | 是   | 以callback形式异步返回结果。                               |
 
 **错误码：**
 
@@ -761,11 +778,14 @@ disableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void\>): voi
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.disableCellularDataRoaming(0, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if(err){
+        console.error(`disableCellularDataRoaming fail,callback: err->${JSON.stringify(err)}`);
+    }else{
+        console.log(`disableCellularDataRoaming success`);
+    }
 });
 ```
 
@@ -810,7 +830,6 @@ disableCellularDataRoaming(slotId: number): Promise\<void\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.disableCellularDataRoaming(0).then(() => {
@@ -837,8 +856,6 @@ getDefaultCellularDataSimId(): number
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-
 console.log("Result: "+ data.getDefaultCellularDataSimId());
 ```
 
