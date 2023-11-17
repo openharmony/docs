@@ -374,7 +374,7 @@ featureAbility.terminateSelfWithResult(
             }
         },
     }
-).then((data) => {
+).then(() => {
     console.info('==========================>terminateSelfWithResult=======================>');
 });
 ```
@@ -550,7 +550,7 @@ terminateSelf(): Promise\<void>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.terminateSelf().then((data) => {
+featureAbility.terminateSelf().then(() => {
     console.info('==========================>terminateSelf=======================>');
 });
 ```
@@ -701,8 +701,8 @@ let connectId = featureAbility.connectAbility(
     },
 );
 
-featureAbility.disconnectAbility(connectId).then((data) => {
-    console.log('data: ${data)}')
+featureAbility.disconnectAbility(connectId).then(() => {
+    console.log('disconnectAbility success')
 }).catch((error: BusinessError)=>{
     console.error('featureAbilityTest result errCode : ${error.code}');
 });

@@ -400,7 +400,7 @@ terminateSelf(): Promise&lt;void&gt;;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 停止UIExtensionContentSession对应的窗口界面对象的回调函数。 |
+| Promise&lt;void&gt; | promise形式返回停止UIExtensionContentSession对应的窗口界面对象。 |
 
 ## UIExtensionContentSession.terminateSelfWithResult
 
