@@ -30,6 +30,9 @@
 - [像素单位转换](pixel-format-transfer.md)
 - [如何在UIAbility间进行跳转](jump-between-UIAbilities.md)
 - [转场动画](transition-animation.md)
+- [搜索框与文字轮播的巧用](Search-box-and-text-carousel.md)
+- [如何控制循环动画的播放暂停](how-to-control-the-pause-of-playback-of-looping-animations.md)
+- [流式布局](how-to-implement-fluid-layout.md)
 
 ### 装饰器
 - [控制页面刷新范围](overall-and-part-refresh.md)
