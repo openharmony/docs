@@ -1557,6 +1557,79 @@ struct Index {
 </html>
 ```
 
+### layoutMode<sup>11+</sup>
+
+layoutMode(mode: WebLayoutMode)
+
+设置Web布局模式。
+
+> **说明：**
+>
+> 目前只支持两种web布局模式，分别为Web布局跟随系统WebLayoutMode.NONE和Web基于页面大小的自适应网页布局WebLayoutMode.FIT_CONTENT。默认为WebLayoutMode.NONE模式。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述   |
+| ----- | -------- | ---- | ------ | --------- |
+|  mode  | [WebLayoutMode](#weblayoutmode11枚举说明) | 是   | WebLayoutMode.NONE | 设置web布局模式，跟随系统或自适应布局。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State mode: WebLayoutMode = WebLayoutMode.FIT_CONTENT
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .layoutMode(this.mode)
+      }
+    }
+  }
+  ```
+
+### nestedScroll<sup>11+</sup>
+
+nestedScroll(value: NestedScrollOptions)
+
+调用以设置嵌套滚动选项。
+
+> **说明：**
+>
+> - 设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
+> - 目前只支持前向后向模式相同，若模式不同则为默认模式。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填  | 参数描述           |
+| ----- | -------- | ---- | ------------------ |
+|  value  | [NestedScrollOptions](#nestedscrolloptions11对象说明) | 是 | 可滚动组件滚动时的嵌套滚动选项。|
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .nestedScroll({
+            scrollForward: NestedScrollOptions.SELF_FIRST,
+            scrollBackward: NestedScrollOptions.SELF_FIRST,
+          })
+      }
+    }
+  }
+  ```
+
 ## 事件
 
 不支持[通用事件](ts-universal-events-click.md)。
@@ -2398,7 +2471,7 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
     }
   }
   ```
-  
+
   加载的html文件。
   ```html
   <!DOCTYPE html>
@@ -3862,7 +3935,7 @@ onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
 onControllerAttached(callback: () => void)
 
-当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，  
+当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，
 因该回调调用时网页还未加载，无法在回调中使用有关操作网页的接口，例如[zoomIn](../apis/js-apis-webview.md#zoomin)、[zoomOut](../apis/js-apis-webview.md#zoomout)等，可以使用[loadUrl](../apis/js-apis-webview.md#loadurl)、[getWebId](../apis/js-apis-webview.md#getwebid)等操作网页不相关的接口。
 
 **示例：**
@@ -4909,6 +4982,26 @@ Web屏幕捕获的配置。
 | 名称           | 类型       | 可读 | 可写 | 必填 | 说明                         |
 | -------------- | --------- | ---- | ---- | --- | ---------------------------- |
 | captureMode |  [WebCaptureMode](#webcapturemode10枚举说明)  |  是  | 是  |  是  | Web屏幕捕获模式。 |
+
+## WebLayoutMode<sup>11+</sup>枚举说明
+| 名称      | 描述                                   |
+| ------- | ------------------------------------ |
+| NONE     | Web布局跟随系统。                    |
+| FIT_CONTENT      | Web基于页面大小的自适应网页布局。               |
+
+## NestedScrollOptions<sup>11+</sup>对象说明
+| 名称   | 类型   | 描述              |
+| ----- | ------ | ----------------- |
+| scrollForward | NestedScrollMode | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
+| scrollBackward | NestedScrollMode |  可滚动组件往起始端滚动时的嵌套滚动选项。 |
+
+## NestedScrollMode<sup>11+</sup>枚举说明
+| 名称     | 描述                             |
+| ------ | ------------------------------ |
+| SELF_ONLY   | 只自身滚动，不与父组件联动。  |
+| SELF_FIRST | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。        |
+| PARENT_FIRST  | 父组件先滚动，父组件滚动到边缘以后自身滚动。自身滚动到边缘后，如果有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 |
+| PARALLEL  | 自身和父组件同时滚动，自身和父组件都到达边缘以后，如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。|
 
 ## DataResubmissionHandler<sup>9+</sup>
 
