@@ -31,7 +31,7 @@ importVCard\(context: Context, filePath: string, callback: AsyncCallback\<void\>
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | context   | Context                      | 是   | 应用上下文。 |
 | filePath   | string                      | 是   | vcf文件地址。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，返回导入成功或失败的状态码。                             |
 
 **错误码：**
 
@@ -83,7 +83,7 @@ importVCard\(context: Context,filePath: string, accountId: number, callback: Asy
 | context   | Context                      | 是   | 应用上下文。 |
 | filePath   | string                      | 是   | vcf文件地址。 |
 | accountId   | number                      | 是   | 联系人账户ID。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，返回导入成功或失败的状态码。                             |
 
 **错误码：**
 
