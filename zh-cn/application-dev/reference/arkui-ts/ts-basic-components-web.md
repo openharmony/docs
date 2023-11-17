@@ -1726,6 +1726,8 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
 onPrompt(callback: (event?: { url: string; message: string; value: string; result: JsResult }) => boolean)
 
+网页调用prompt()告警时触发此回调。
+
 **参数：**
 
 | 参数名     | 参数类型                  | 参数描述            |
