@@ -977,37 +977,45 @@ incrSubCounter和setSubCounter都是同一个SubCounter的函数。在第一个�
 
 ```ts
 let nextId = 1;
+
 @Observed
 class SubCounter {
   counter: number;
+
   constructor(c: number) {
     this.counter = c;
   }
 }
+
 @Observed
 class ParentCounter {
   id: number;
   counter: number;
   subCounter: SubCounter;
+
   incrCounter() {
     this.counter++;
   }
+
   incrSubCounter(c: number) {
     this.subCounter.counter += c;
   }
+
   setSubCounter(c: number): void {
     this.subCounter.counter = c;
   }
+
   constructor(c: number) {
     this.id = nextId++;
     this.counter = c;
     this.subCounter = new SubCounter(c);
   }
 }
+
 @Component
 struct CounterComp {
   @ObjectLink value: ParentCounter;
-  @ObjectLink subValue: SubCounter;
+
   build() {
     Column({ space: 10 }) {
       Text(`${this.value.counter}`)
@@ -1015,28 +1023,39 @@ struct CounterComp {
         .onClick(() => {
           this.value.incrCounter();
         })
-      Text(`${this.subValue.counter}`)
-        .onClick(() => {
-          this.subValue.counter += 1;
-        })
+      CounterChild({ subValue: this.value.subCounter })
       Divider().height(2)
     }
   }
 }
+
+@Component
+struct CounterChild {
+  @ObjectLink subValue: SubCounter;
+
+  build() {
+    Text(`${this.subValue.counter}`)
+      .onClick(() => {
+        this.subValue.counter += 1;
+      })
+  }
+}
+
 @Entry
 @Component
 struct ParentComp {
   @State counter: ParentCounter[] = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+
   build() {
     Row() {
       Column() {
-        CounterComp({ value: this.counter[0], subValue: this.counter[0].subCounter })
-        CounterComp({ value: this.counter[1], subValue: this.counter[1].subCounter })
-        CounterComp({ value: this.counter[2], subValue: this.counter[2].subCounter })
+        CounterComp({ value: this.counter[0] })
+        CounterComp({ value: this.counter[1] })
+        CounterComp({ value: this.counter[2] })
         Divider().height(5)
         ForEach(this.counter,
           (item: ParentCounter) => {
-            CounterComp({ value: item, subValue: item.subCounter })
+            CounterComp({ value: item })
           },
           (item: ParentCounter) => item.id.toString()
         )
@@ -1063,7 +1082,6 @@ struct ParentComp {
 }
 ```
 
-
 ### \@Prop与\@ObjectLink的差异
 
 在下面的示例代码中，\@ObjectLink修饰的变量是对数据源的引用，即在this.value.subValue和this.subValue都是同一个对象的不同引用，所以在点击CounterComp的click handler，改变this.value.subCounter.counter，this.subValue.counter也会改变，对应的组件Text(`this.subValue.counter: ${this.subValue.counter}`)会刷新。
@@ -1075,6 +1093,7 @@ let nextId = 1;
 @Observed
 class SubCounter {
   counter: number;
+
   constructor(c: number) {
     this.counter = c;
   }
@@ -1085,15 +1104,19 @@ class ParentCounter {
   id: number;
   counter: number;
   subCounter: SubCounter;
+
   incrCounter() {
     this.counter++;
   }
+
   incrSubCounter(c: number) {
     this.subCounter.counter += c;
   }
+
   setSubCounter(c: number): void {
     this.subCounter.counter = c;
   }
+
   constructor(c: number) {
     this.id = nextId++;
     this.counter = c;
@@ -1104,11 +1127,10 @@ class ParentCounter {
 @Component
 struct CounterComp {
   @ObjectLink value: ParentCounter;
-  @ObjectLink subValue: SubCounter;
+
   build() {
     Column({ space: 10 }) {
-      Text(`this.subValue.counter: ${this.subValue.counter}`)
-        .fontSize(30)
+      CountChild({ subValue: this.value.subCounter })
       Text(`this.value.counter：increase 7 `)
         .fontSize(30)
         .onClick(() => {
@@ -1120,20 +1142,31 @@ struct CounterComp {
   }
 }
 
+@Component
+struct CountChild {
+  @ObjectLink subValue: SubCounter;
+
+  build() {
+    Text(`this.subValue.counter: ${this.subValue.counter}`)
+      .fontSize(30)
+  }
+}
+
 @Entry
 @Component
 struct ParentComp {
   @State counter: ParentCounter[] = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+
   build() {
     Row() {
       Column() {
-        CounterComp({ value: this.counter[0], subValue: this.counter[0].subCounter })
-        CounterComp({ value: this.counter[1], subValue: this.counter[1].subCounter })
-        CounterComp({ value: this.counter[2], subValue: this.counter[2].subCounter })
+        CounterComp({ value: this.counter[0] })
+        CounterComp({ value: this.counter[1] })
+        CounterComp({ value: this.counter[2] })
         Divider().height(5)
         ForEach(this.counter,
           (item: ParentCounter) => {
-            CounterComp({ value: item, subValue: item.subCounter })
+            CounterComp({ value: item })
           },
           (item: ParentCounter) => item.id.toString()
         )
