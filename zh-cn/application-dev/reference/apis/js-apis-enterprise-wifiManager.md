@@ -360,3 +360,99 @@ IP配置信息。
 | PHASE2_SIM | 5 | SIM类型。 |
 | PHASE2_AKA | 6 | AKA类型。 |
 | PHASE2_AKA_PRIME | 7 | AKA Prime类型。 |
+
+## wifiManager.isWifiDisallowed
+
+isWifiDisallowed(admin: Want): boolean
+
+指定设备管理应用查询wifi是否被禁用。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+
+**返回值：**
+
+| 类型                   | 说明                      |
+| :-------------------- | ------------------------- |
+| boolean | 返回wifi禁用状态，true表示wifi被禁用，false表示wifi未被禁用。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+wifiManager.isWifiDisallowed(wantTemp).then((result) => {
+  console.info(`Succeeded in query the wifi is disallowed or not, result : ${result}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to query the wifi is disallowed or not. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## wifiManager.disallowWifi
+
+disallowWifi(admin: Want, isDisabled: boolean): void
+
+指定设备管理应用设置禁用wifi策略。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                      |
+| ---------- | ----------------------------------- | ---- | ----------------------------------------- |
+| admin      | [Want](js-apis-app-ability-want.md) | 是   | 设备管理应用。                            |
+| isDisabled | boolean                             | 是   | true表示禁用wifi，false表示解除wifi禁用。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | the application is not an administrator of the device.       |
+| 9200002  | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  wifiManager.disallowWifi(wantTemp, true);
+  console.info('Succeeded in set the wifi disallowed');
+} catch((err: BusinessError) {
+  console.error(`Failed to set the wifi disallowed. Code: ${err.code}, message: ${err.message}`);
+});
+```
