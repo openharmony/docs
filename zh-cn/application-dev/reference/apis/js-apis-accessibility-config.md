@@ -270,6 +270,8 @@ try {
 
 set(value: T): Promise&lt;void&gt;;
 
+权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+
 设置属性，使用Promise异步回调。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
@@ -304,6 +306,8 @@ try {
 ### set
 
 set(value: T, callback: AsyncCallback&lt;void&gt;): void;
+
+权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 设置属性，使用callback异步回调。
 
@@ -391,6 +395,8 @@ config.highContrastText.get((err, data) => {
 
 on(callback: Callback&lt;T&gt;): void;
 
+权限配置：ohos.permission.READ_ACCESSIBILITY_CONFIG
+
 添加属性变化监听，使用callback异步回调。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
@@ -416,6 +422,8 @@ try {
 ### off
 
 off(callback?: Callback&lt;T&gt;): void;
+
+权限配置：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 取消属性变化监听，使用callback异步回调。
 
