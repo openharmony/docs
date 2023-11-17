@@ -357,6 +357,88 @@ print.print(file).then((printTask: print.PrintTask) => {
 })
 ```
 
+## print<sup>11+</sup>
+
+print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;PrintTask&gt;): void
+
+打印接口，传入文件进行打印，使用callback异步回调。
+
+**需要权限：** ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| file | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
+| context | Context | 是 | 用于启动打印的UIAbilityContext |
+| callback | AsyncCallback&lt;PrintTask&gt; | 是 | 异步获取打印完成之后的回调 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+//传入文件的uri
+let file = ['file://data/print/a.png', 'file://data/print/b.png'];
+//或者传入id
+//let file = ['fd://1', 'fd://2'];
+let context = getContext(this);
+print.print(file, context, (err: BusinessError, printTask: print.PrintTask) => {
+    if (err) {
+        console.log('print err ' + JSON.stringify(err));
+    } else {
+        printTask.on('succeed', () => {
+            console.log('print state is succeed');
+        })
+        // ...
+    }
+})
+```
+
+## print<sup>11+</sup>
+
+print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
+
+打印接口，传入文件进行打印，使用Promise异步回调。
+
+**需要权限：** ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| file | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
+| context | Context | 是 | 用于启动打印的UIAbilityContext |
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;PrintTask&gt; | 打印完成结果 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+//传入文件的uri
+let file = ['file://data/print/a.png', 'file://data/print/b.png'];
+//或者传入id
+//let file = ['fd://1', 'fd://2'];
+let context = getContext(this);
+print.print(file, context).then((printTask: print.PrintTask) => {
+    printTask.on('succeed', () => {
+        console.log('print state is succeed');
+    })
+    // ...
+}).catch((error: BusinessError) => {
+    console.log('print err ' + JSON.stringify(error));
+})
+```
+
 ## PrintMargin
 
 定义打印页边距的接口
@@ -449,6 +531,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 | pageSize | Array&lt;PrintPageSize&gt; | 是 | 表示打印机支持的页面尺寸列表 |
 | resolution | Array&lt;PrintResolution&gt; | 否 | 表示打印机支持的分辨率列表 |
 | minMargin | PrintMargin | 否 | 表示打印机最小边距 |
+| options<sup>11+</sup> | Object | 否 | 表示JSON对象字符串 |
 
 ## PrinterInfo
 
@@ -484,6 +567,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 | jobId | string | 是 | 表示打印任务ID |
 | printerId | string | 是 | 表示负责打印的打印机ID |
 | jobState | PrintJobState | 是 | 表示当前打印任务状态 |
+| jobSubstate<sup>11+</sup> | PrintJobSubState | 是 | 表示当前打印任务子状态 |
 | copyNumber | number | 是 | 表示文件列表副本 |
 | pageRange | PrinterRange | 是 | 表示打印范围大小 |
 | isSequential | boolean | 是 | 表示连续打印 |
@@ -555,6 +639,16 @@ print.print(file).then((printTask: print.PrintTask) => {
 | PRINT_JOB_BLOCK_LOW_ON_TONER | 14 | 表示打印墨粉不足 |
 | PRINT_JOB_BLOCK_REALLY_LOW_ON_INK | 15 | 表示打印墨水量非常低 |
 | PRINT_JOB_BLOCK_BAD_CERTIFICATE | 16 | 表示打印证书有误 |
+| PRINT_JOB_BLOCK_ACCOUNT_ERROR<sup>11+</sup> | 18 | 表示打印账户时出错 |
+| PRINT_JOB_BLOCK_PRINT_PERMISSION_ERROR<sup>11+</sup> | 19 | 表示打印许可异常 |
+| PRINT_JOB_BLOCK_PRINT_COLOR_PERMISSION_ERROR<sup>11+</sup> | 20 | 表示彩色打印权限异常 |
+| PRINT_JOB_BLOCK_NETWORK_ERROR<sup>11+</sup> | 21 | 表示设备未连接到网络 |
+| PRINT_JOB_BLOCK_SERVER_CONNECTION_ERROR<sup>11+</sup> | 22 | 表示无法连接服务器 |
+| PRINT_JOB_BLOCK_LARGE_FILE_ERROR<sup>11+</sup> | 23 | 表示打印大文件异常 |
+| PRINT_JOB_BLOCK_FILE_PARSING_ERROR<sup>11+</sup> | 24 | 表示文件分析异常 |
+| PRINT_JOB_BLOCK_SLOW_FILE_CONVERSION<sup>11+</sup> | 25 | 表示文件转换太慢 |
+| PRINT_JOB_RUNNING_UPLOADING_FILES<sup>11+</sup> | 26 | 表示正在上传文件 |
+| PRINT_JOB_RUNNING_CONVERTING_FILES<sup>11+</sup> | 27 | 表示正在转换文件 |
 | PRINT_JOB_BLOCK_UNKNOWN | 99 | 表示打印未知问题 |
 
 ## PrintErrorCode
@@ -1901,7 +1995,10 @@ print.updateExtensionInfo(info).then((data : void) => {
 })
 ```
 
-## queryAllPrintJobs
+## queryAllPrintJobs<sup>(deprecated)</sup>
+
+> 从API version 10开始支持，从API version 11开始废弃。
+> 建议使用[queryPrintJobList](#queryprintjoblist11)替代。
 
 queryAllPrintJobs(callback: AsyncCallback&lt;void&gt;): void
 
@@ -1933,7 +2030,10 @@ print.queryAllPrintJobs((err: BusinessError, data : void) => {
 })
 ```
 
-## queryAllPrintJobs
+## queryAllPrintJobs<sup>(deprecated)</sup>
+
+> 从API version 10开始支持，从API version 11开始废弃。
+> 建议使用[queryPrintJobList](#queryprintjoblist11-1)替代。
 
 queryAllPrintJobs(): Promise&lt;void&gt;
 
@@ -1960,5 +2060,137 @@ print.queryAllPrintJobs().then((data : void) => {
     console.log('queryAllPrintJobs success, data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
     console.log('queryAllPrintJobs failed, error : ' + JSON.stringify(error));
+})
+```
+
+## queryPrintJobList<sup>11+</sup>
+
+queryPrintJobList(callback: AsyncCallback&lt;Array&lt;PrintJob&gt;&gt;): void
+
+查询所有打印任务，使用callback异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;Array&lt;PrintJob&gt;&gt; | 是 | 异步查询所有打印任务之后的回调 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+print.queryPrintJobList((err: BusinessError, printJobs : print.PrintJob[]) => {
+    if (err) {
+        console.log('queryPrintJobList failed, because : ' + JSON.stringify(err));
+    } else {
+        console.log('queryPrintJobList success, data : ' + JSON.stringify(printJobs));
+    }
+})
+```
+
+## queryPrintJobList<sup>11+</sup>
+
+queryPrintJobList(): Promise&lt;Array&lt;PrintJob&gt;&gt;
+
+查询所有打印任务，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;Array&lt;PrintJob&gt;&gt; | 查询所有打印任务完成结果 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+print.queryPrintJobList().then((printJobs : print.PrintJob[]) => {
+    console.log('queryPrintJobList success, data : ' + JSON.stringify(printJobs));
+}).catch((error: BusinessError) => {
+    console.log('queryPrintJobList failed, error : ' + JSON.stringify(error));
+})
+```
+
+## queryPrintJobById<sup>11+</sup>
+
+queryPrintJobById(jobId: string, callback: AsyncCallback&lt;PrintJob&gt;): void
+
+按打印任务ID查询打印任务，使用callback异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| jobId | string | 是 | 表示打印任务ID |
+| callback | AsyncCallback&lt;PrintJob&gt; | 是 | 异步按打印任务ID查询打印任务之后的回调 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let jobId : string= '1';
+print.queryPrintJobById(jobId, (err: BusinessError, printJob : PrintJob) => {
+    if (err) {
+        console.log('queryPrintJobById failed, because : ' + JSON.stringify(err));
+    } else {
+        console.log('queryPrintJobById success, data : ' + JSON.stringify(printJob));
+    }
+})
+```
+
+## queryPrintJobById<sup>11+</sup>
+
+queryPrintJobById(jobId: string): Promise&lt;PrintJob&gt;
+
+按打印任务ID查询打印任务，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| jobId | string | 是 | 表示打印任务ID |
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;PrintJob&gt; | 按打印任务ID查询打印任务完成结果 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let jobId : string= '1';
+print.queryPrintJobById(jobId).then((printJob : PrintJob) => {
+    console.log('queryPrintJobById data : ' + JSON.stringify(printJob));
+}).catch((error: BusinessError) => {
+    console.log('queryPrintJobById error : ' + JSON.stringify(error));
 })
 ```
