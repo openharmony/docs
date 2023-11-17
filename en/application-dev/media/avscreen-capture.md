@@ -6,7 +6,7 @@ You can call the native APIs of the **AVScreenCapture** module to record the scr
 
 The **AVScreenCapture**, **Window**, and **Graphics** modules together implement the entire video capture process.
 
-By default, the main screen is captured, and the **Graphics** module generates the screen capture frame data based on the main screen and places the data to the display data buffer queue. The screen capture framework obtains the data from the display data buffer queue for consumption processing.
+By default, the main screen is captured, and the **Graphics** module generates the screen capture frame data based on the main screen and places the data to the display data buffer queue. The screen capture framework obtains the data from the display data buffer queue for processing.
 
 ## Development Guidelines
 
@@ -30,11 +30,10 @@ The following walks you through how to implement simple screen capture:
 1. Create an **AVScreenCapture** instance, named **capture** in this example.
 
     ```c++
-    OH_AVScreenCapture* capture = AVScreenCapture_Create();
+    OH_AVScreenCapture* capture = OH_AVScreenCapture_Create();
     ```
 
 2. Set screen capture parameters.
-
       After creating the **capture** instance, you can set the parameters required for screen capture.
 
     ```c++
@@ -45,8 +44,8 @@ The following walks you through how to implement simple screen capture:
     };
 
     OH_VideoCaptureInfo videocapinfo = {
-        .videoFrameWidth = display->GetWidth(),
-        .videoFrameHeight = display->Height(),
+        .videoFrameWidth = 720,
+        .videoFrameHeight = 1080,
         .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
     };
 
@@ -58,16 +57,11 @@ The following walks you through how to implement simple screen capture:
         .videoCapInfo = videocapinfo
     };
 
-    OH_RecorderInfo recorderinfo = {
-        .url = name
-    };
-
     OH_AVScreenCaptureConfig config = {
         .captureMode = OH_CAPTURE_HOME_SCREEN,
         .dataType = OH_ORIGINAL_STREAM,
         .audioInfo = audioinfo,
-        .videoInfo = videoinfo,
-        .recorderInfo = recorderinfo
+        .videoInfo = videoinfo
     };
 
     OH_AVScreenCapture_Init(capture, config);
@@ -98,7 +92,7 @@ The following walks you through how to implement simple screen capture:
 6. Call **StopScreenCapture()** to stop screen capture.
    
     ```c++
-    OH_AVScreenCapture_StopScreenCapture(capture_);
+    OH_AVScreenCapture_StopScreenCapture(capture);
     ```
 
 7. Call **AcquireAudioBuffer()** to obtain an audio buffer.
@@ -134,7 +128,7 @@ The following walks you through how to implement simple screen capture:
 ### Sample Code
 
 Refer to the sample code below to implement screen capture using **AVScreenCapture**.
-Currently, the buffer holds original streams, which can be encoded and saved in MP4 format for playback. The encoding format and file format are reserved and will be implemented in later versions.
+Currently, the buffer holds original streams, which can be encoded and saved in MP4 format for playback. The encoding format is reserved and will be implemented in later versions.
 
 ```c++
 
@@ -148,7 +142,7 @@ void OnError(struct OH_AVScreenCapture *capture, int32_t errorCode)
     (void) errorCode;
 }
 
-void OnAudioBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady, OH_AudioCapSourceType type)
+void OnAudioBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady, OH_AudioCaptureSourceType type)
 {
     if (isReady) {
         OH_AudioBuffer *audiobuffer = (struct OH_AudioBuffer*) malloc (sizeof(OH_AudioBuffer));
@@ -167,7 +161,7 @@ void OnAudioBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady, OH
     }
 }
 
-void OnVideoBufferAvailable(struct OH_ScreenCapture *capture, bool isReady)
+void OnVideoBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady)
 {
     if (isReady) {
         int32_t fence = 0;
@@ -193,8 +187,8 @@ int main()
     // Set the callbacks.
     struct OH_AVScreenCaptureCallback callback;
     callback.onError = OnError;
-    callack.onAudioBufferAvailable = OnAudioBufferAvailable ; 
-    callack.onVideoBufferAvailable = OnVideoBufferAvailable;
+    callback.onAudioBufferAvailable = OnAudioBufferAvailable ; 
+    callback.onVideoBufferAvailable = OnVideoBufferAvailable;
     int32_t ret = OH_AVScreenCapture_SetCallback(capture, callback);
     // Initialize AVScreenCapture and pass in an OH_AVScreenRecorderConfig struct.
     OH_AudioCaptureInfo miccapinfo = {
@@ -217,11 +211,9 @@ int main()
         .captureMode = OH_CAPTURE_HOME_SCREEN,
         .dataType = OH_ORIGINAL_STREAM,
         .audioInfo = audioinfo,
-        .videoInfo = videoinfo,
-        .recorderInfo = recorderinfo
+        .videoInfo = videoinfo
     };
-    OH_AVScreenCapture_Init(capture, config);
-    int32_t ret = OH_AVScreenCapture_Init(capture, &config);
+    int32_t ret = OH_AVScreenCapture_Init(capture, config);
     // Start screen capture.
     int32_t ret = OH_AVScreenCapture_StartScreenCapture(capture);
     // Enable the microphone.
