@@ -3405,3 +3405,15 @@
 **ACL使能**: TRUE
 
 **起始版本**: 11
+
+## ohos.permission.ACCESS_HIVIEWCARE
+
+允许系统应用拉起智能检测能力。
+
+**授权级别**: system_basic
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
+
+**起始版本**: 11
