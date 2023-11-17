@@ -406,6 +406,7 @@
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
   - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)](js-apis-WallpaperExtensionAbility.md)
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
+  - [@ohos.telephony.vcard (VCard)](js-apis-vcard.md)
   - [Console (控制台)](js-apis-logs.md)
   - [Timer (定时器)](js-apis-timer.md)
   - [syscap (系统能力)](js-apis-syscap.md)
