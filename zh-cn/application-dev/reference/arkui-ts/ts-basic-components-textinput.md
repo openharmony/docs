@@ -78,7 +78,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | Number   | 纯数字输入模式。      |
 | PhoneNumber<sup>9+</sup> | 电话号码输入模式。<br/>支持输入数字、+ 、-、*、#，长度不限。 |
 | NUMBER_PASSWORD<sup>11+</sup> | 纯数字密码输入模式。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 |
-| SCREEN_LOCK_PASSWORD<sup>11+</sup> | 锁屏应用密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 <br>**系统API：** 此接口为系统接口。 |
+| SCREEN_LOCK_PASSWORD<sup>11+</sup> | 锁屏应用密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 <br>**系统接口：** 此接口为系统接口。 |
 
 ## TextInputStyle<sup>9+</sup>枚举说明
 
