@@ -165,3 +165,21 @@ The current application calls **showTextInput** or **hideTextInput** when not at
 **Solution**
 
 Call the **attach** API and then try again.
+
+## 12800010 Not Preconfigured Default Input Method
+
+**Error Message**
+
+Not default input method configured by system.
+
+**Description**
+
+This error code is reported when the invoking application is not the preconfigured default input method.
+
+**Possible Causes**
+
+The API is called by an application that is not the preconfigured default input method.
+
+**Solution**
+
+Make sure the application to call the API is the preconfigured default input method.
