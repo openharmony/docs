@@ -211,7 +211,7 @@ import router from '@ohos.router';
 
   这种方式不仅可以返回到指定页面，还可以在返回的同时传递自定义参数信息。这些参数信息可以在目标页面中通过调用router.getParams()方法进行获取和解析。
 
-在目标页面中，在需要获取参数的位置调用router.getParams()方法即可，例如在onPageShow()生命周期回调中：
+在目标页面中，在需要获取参数的位置调用router.getParams()方法即可，例如在[onPageShow()生命周期](../quick-start/arkts-page-custom-components-lifecycle.md)回调中：
 
 
 ```ts

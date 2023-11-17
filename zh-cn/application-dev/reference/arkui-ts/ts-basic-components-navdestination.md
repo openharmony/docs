@@ -32,3 +32,7 @@ NavDestination()
 ## 事件
 
 支持[通用事件](ts-universal-events-click.md)。
+
+## 示例
+
+详见[Navrouter组件示例](ts-basic-components-navrouter.md#示例)。
