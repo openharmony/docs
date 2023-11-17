@@ -29,8 +29,8 @@ importVCard\(context: Context, filePath: string, callback: AsyncCallback\<void\>
 
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| context   | Context                      | 是   | 应用上下文 |
-| filePath   | string                      | 是   | vcf文件地址 |
+| context   | Context                      | 是   | 应用上下文。 |
+| filePath   | string                      | 是   | vcf文件地址。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
 
 **错误码：**
@@ -80,9 +80,9 @@ importVCard\(context: Context,filePath: string, accountId: number, callback: Asy
 
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| context   | Context                      | 是   | 应用上下文 |
-| filePath   | string                      | 是   | vcf文件地址 |
-| accountId   | number                      | 是   | 联系人账户ID |
+| context   | Context                      | 是   | 应用上下文。 |
+| filePath   | string                      | 是   | vcf文件地址。 |
+| accountId   | number                      | 是   | 联系人账户ID。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
 
 **错误码：**
@@ -133,9 +133,9 @@ importVCard\(context: Context, filePath: string, accountId?: number\): Promise\<
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| context   | Context                      | 是   | 应用上下文 |
-| filePath | string | 是   | vcf文件地址 |
-| accountId   | number | 否   | 联系人账户ID |
+| context   | Context                      | 是   | 应用上下文。|
+| filePath | string | 是   | vcf文件地址 。|
+| accountId   | number | 否   | 联系人账户ID。 |
 
 **返回值：**
 
@@ -192,8 +192,8 @@ exportVCard\(context: Context, predicates: dataSharePredicates.DataSharePredicat
 
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| context   | Context                      | 是   | 应用上下文 |
-| predicates   | dataSharePredicates.DataSharePredicates | 是   | 查询语句 |
+| context   | Context                      | 是   | 应用上下文。 |
+| predicates   | dataSharePredicates.DataSharePredicates | 是   | 查询语句。 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数 callback表示生成的vcf文件地址。                             |
 
 **错误码：**
@@ -246,9 +246,9 @@ exportVCard\(context: Context, predicates: dataSharePredicates.DataSharePredicat
 
 | 参数名   | 类型                        | 必填 | 说明                                   |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| context   | Context                      | 是   | 应用上下文 |
-| predicates   | dataSharePredicates.DataSharePredicates | 是   | 查询语句 |
-| options   | [VCardBuilderOptions](#vcardbuilderoptions11) | 是   | VCard版本与编码类型 |
+| context   | Context                      | 是   | 应用上下文。 |
+| predicates   | dataSharePredicates.DataSharePredicates | 是   | 查询语句。 |
+| options   | [VCardBuilderOptions](#vcardbuilderoptions11) | 是   | VCard版本与编码类型。 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数 callback表示生成的vcf文件地址。                             |
 
 **错误码：**
@@ -303,9 +303,9 @@ exportVCard\(context: Context, predicates: dataSharePredicates.DataSharePredicat
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| context   | Context                      | 是   | 应用上下文 |
-| predicates   | dataSharePredicates.DataSharePredicates | 是   | 查询语句 |
-| options   | [VCardBuilderOptions](#vcardbuilderoptions11) | 否   | VCard版本与编码类型 |
+| context   | Context                      | 是   | 应用上下文。 |
+| predicates   | dataSharePredicates.DataSharePredicates | 是   | 查询语句。 |
+| options   | [VCardBuilderOptions](#vcardbuilderoptions11) | 否   | VCard版本与编码类型。 |
 
 **返回值：**
 
