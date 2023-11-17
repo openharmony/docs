@@ -253,7 +253,6 @@ import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
 import common from '@ohos.app.ability.common'
 
-
 const DATA_STORAGE_PATH: string = "/data/storage/el2/base/haps/form_store";
 let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: common.FormExtensionContext): Promise<void> => {
   // Only the widget ID (formId), widget name (formName), and whether the widget is a temporary one (tempFlag) are persistently stored.
@@ -328,7 +327,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 }
 ```
 
-For details about how to implement persistent data storage, see [Application Data Persistence](../database/app-data-persistence-overview.md).
+For details about how to implement data persistence, see [Application Data Persistence Overview](../database/app-data-persistence-overview.md).
 
 The **Want** object passed in by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
 

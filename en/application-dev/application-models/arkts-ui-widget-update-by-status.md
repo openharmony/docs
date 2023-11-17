@@ -51,9 +51,9 @@ In the following example, two copies of the weather widget are added to the home
             .onChange((value: boolean) => {
               this.selectA = value;
               postCardAction(this, {
-                'action': 'message',
-                'params': {
-                  'selectA': JSON.stringify(value)
+                action: 'message',
+                params: {
+                  selectA: JSON.stringify(value)
                 }
               });
             })
@@ -66,9 +66,9 @@ In the following example, two copies of the weather widget are added to the home
             .onChange((value: boolean) => {
               this.selectB = value;
               postCardAction(this, {
-                'action': 'message',
-                'params': {
-                  'selectB': JSON.stringify(value)
+                action: 'message',
+                params: {
+                  selectB: JSON.stringify(value)
                 }
               });
             })
@@ -99,7 +99,7 @@ In the following example, two copies of the weather widget are added to the home
   import dataPreferences from '@ohos.data.preferences';
   import Want from '@ohos.app.ability.Want';
   import Base from '@ohos.base';
-  
+
   export default class EntryFormAbility extends FormExtensionAbility {
     onAddForm(want: Want) {
       let formId: string = '';
