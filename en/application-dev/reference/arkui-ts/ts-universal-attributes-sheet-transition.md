@@ -63,7 +63,7 @@ struct SheetTransitionExample {
         .margin(10)
         .fontSize(20)
         .onClick(()=>{
-          this.sheetHeight = 300;
+          this.sheetHeight = -1;
         })
 
       Button("close dragBar")
