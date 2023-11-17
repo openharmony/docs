@@ -5,7 +5,7 @@
 
 ## ContinuationResult
 
-Describes the device information returned by the continuation management entry after [on](js-apis-continuation-continuationManager.md#continuationmanagerstartcontinuationdevicemanager9) is called.
+Describes the device information returned by the continuation management entry after [on](js-apis-continuation-continuationManager.md#continuationmanagerondeviceselected9) is called.
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 

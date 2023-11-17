@@ -486,6 +486,7 @@
 | None        | 不支持复制。   |
 | InApp       | 支持应用内复制。 |
 | LocalDevice | 支持设备内复制。 |
+| CROSS_DEVICE<sup>11+</sup> | 支持跨设备复制。 |
 
 ## HitTestMode<sup>9+</sup>
 
@@ -613,3 +614,11 @@ Nullable\<T> {
 | ROTATION_GESTURE   | 旋转手势|
 | DRAG    | 拖拽|
 | CLICK   | 点击|
+## FinishCallbackType<sup>11+</sup>
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+| 名称       | 描述                                                         |
+| --------- | ------------------------------------------------------------ |
+| REMOVED   | 当整个动画结束并立即删除时，将触发回调。                         |
+| LOGICALLY | 当动画在逻辑上处于下降状态，但可能仍处于其长尾状态时，将触发回调。 |

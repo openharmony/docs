@@ -689,7 +689,7 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<Complet
 | ----------- | ----------------------------- | ---- | ------------------------------- |
 | agent       | WantAgent                     | 是   | WantAgent对象。                   |
 | triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                     | 是   | TriggerInfo对象。                 |
-| callback    | AsyncCallback\<CompleteData\> | 否   | 主动激发WantAgent实例的回调方法。 |
+| callback    | Callback\<CompleteData\> | 否   | 主动激发WantAgent实例的回调方法。 |
 
 **示例：**
 

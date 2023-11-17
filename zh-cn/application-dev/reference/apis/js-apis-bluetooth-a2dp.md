@@ -175,6 +175,363 @@ try {
 }
 ```
 
+### isAbsoluteVolumeSupported<sup>11+</sup><a name="isAbsoluteVolumeSupported"></a>
+
+isAbsoluteVolumeSupported(deviceId: string, callback: AsyncCallback&lt;boolean&gt;): void
+
+获取设备是否支持绝对音量能力。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | 是    | 远端设备地址。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 通过注册回调函数获取设备是否支持绝对音量。如果成功，值在supported中返回。 |
+
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.isAbsoluteVolumeSupported('XX:XX:XX:XX:XX:XX', (err, supported) => {
+        console.info('device support absolute volume ' + supported);
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### isAbsoluteVolumeSupported<sup>11+</sup>
+
+isAbsoluteVolumeSupported(deviceId: string): Promise<boolean>
+
+获取设备是否支持绝对音量能力。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | 是    | 远端设备地址。 |
+
+**返回值：**
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| Promise&lt;boolean&gt; | 通过promise形式获取设备是否支持绝对音量。如果成功，值在supported中返回。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.isAbsoluteVolumeSupported('XX:XX:XX:XX:XX:XX').then((supported) => {
+        console.info('device support absolute volume ' + supported);
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### isAbsoluteVolumeEnabled<sup>11+</sup>
+
+isAbsoluteVolumeEnabled(deviceId: string, callback: AsyncCallback&lt;boolean&gt;): void
+
+获取设备绝对音量能力是否开启。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isAbsoluteVolumeSupported)），再获取设备绝对音量能力是否开启。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | 是    | 远端设备地址。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 通过注册回调函数获取设备绝对音量是否开启。如果成功，值在enabled中返回。 |
+
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.isAbsoluteVolumeEnabled('XX:XX:XX:XX:XX:XX', (err, enabled) => {
+        console.info('device absolute volume enable ' + enabled);
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### isAbsoluteVolumeEnabled<sup>11+</sup><a name="isAbsoluteVolumeEnabled"></a>
+
+isAbsoluteVolumeEnabled(deviceId: string): Promise&lt;boolean&gt;
+
+获取设备绝对音量能力是否开启。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isAbsoluteVolumeSupported)），再获取设备绝对音量能力是否开启。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | 是    | 远端设备地址。 |
+
+**返回值：**
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| Promise&lt;boolean&gt; | 通过promise形式获取设备绝对音量是否开启。如果成功，值在enabled中返回。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.isAbsoluteVolumeEnabled('XX:XX:XX:XX:XX:XX').then((enabled) => {
+        console.info('device absolute volume enable ' + enabled);
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### enableAbsoluteVolume<sup>11+</sup>
+
+enableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
+
+开启设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isAbsoluteVolumeSupported)），再开启设备绝对音量能力。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | 是    | 远端设备地址。 |
+| callback | AsyncCallback&lt;void&gt; | 否 | 回调函数。如果成功，err为undefined，否则为错误对象。 |
+
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.enableAbsoluteVolume('XX:XX:XX:XX:XX:XX', (err) => {
+        if (err) {
+            console.error("enableAbsoluteVolume error");
+        }
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### enableAbsoluteVolume<sup>11+</sup>
+
+enableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
+
+开启设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isAbsoluteVolumeSupported)），再开启设备绝对音量能力。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | 是    | 远端设备地址。 |
+
+**返回值：**
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| Promise&lt;void&gt; | 以Promise的形式返回结果。如果成功，err为undefine的，否则为错误对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.enableAbsoluteVolume('XX:XX:XX:XX:XX:XX').then(() => {
+            console.info("enableAbsoluteVolume");
+        }
+    );
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### disableAbsoluteVolume<sup>11+</sup>
+
+disableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
+
+关闭设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isAbsoluteVolumeSupported)），再关闭设备绝对音量能力。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | 是    | 远端设备地址。 |
+| callback | AsyncCallback&lt;void&gt; | 否 | 回调函数。如果成功，err为undefined，否则为错误对象。 |
+
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.disableAbsoluteVolume('XX:XX:XX:XX:XX:XX', (err) => {
+        if (err) {
+            console.error("disableAbsoluteVolume error");
+        }
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### disableAbsoluteVolume<sup>11+</sup>
+
+disableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
+
+关闭设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isAbsoluteVolumeSupported)），再关闭设备绝对音量能力。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | 是    | 远端设备地址。 |
+
+**返回值：**
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| Promise&lt;void&gt; | 以Promise的形式返回结果。如果成功，err为undefine的，否则为错误对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.disableAbsoluteVolume('XX:XX:XX:XX:XX:XX').then(() => {
+        console.info("disableAbsoluteVolume");
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
 ## PlayingState<a name="PlayingState"></a>
 
 枚举，蓝牙A2DP 播放状态。
