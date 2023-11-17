@@ -38,7 +38,7 @@ getBluetoothInfo(admin: Want): BluetoothInfo;
 
 | 类型             | 说明                                                   |
 | ---------------- | ------------------------------------------------------ |
-| BluetoothInfo | 蓝牙信息，包含蓝牙名称、蓝牙状态和蓝牙连接状态。 |
+| BluetoothInfo (js-apis-enterprise-bluetoothManager.md)| 蓝牙信息，包含蓝牙名称、蓝牙状态和蓝牙连接状态。 |
 
 **错误码**：
 
@@ -79,5 +79,5 @@ try {
 | 名称         | 类型     | 必填 | 说明                            |
 | ----------- | --------| ---- | ------------------------------- |
 | name        | string   | 是   | 表示设备的蓝牙名称。 |
-| state |access.BluetoothState   | 是   | 表示设备的蓝牙状态。 |
-| connectionState | constant.ProfileConnectionState   | 是   | 表示设备的蓝牙连接状态。 |
+| state |access.BluetoothState (js-apis-bluetooth-access.md)  | 是   | 表示设备的蓝牙状态。 |
+| connectionState | constant.ProfileConnectionState (js-apis-bluetooth-constant.md)  | 是   | 表示设备的蓝牙连接状态。 |
