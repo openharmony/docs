@@ -16,7 +16,7 @@ import storageStatistics from "@ohos.file.storageStatistics";
 
 getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
-Obtains the total size (in bytes) of the specified volume in an external storage device. This API uses a promise to return the result.
+Obtains the total space of a volume in an external storage device, in bytes. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -26,15 +26,15 @@ Obtains the total size (in bytes) of the specified volume in an external storage
 
 **Parameters**
 
-  | Name    | Type  | Mandatory| Description|
-  | ---------- | ------ | ---- | ---- |
-  | volumeUuid | string | Yes  | UUID of the volume.|
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| volumeUuid | string | Yes  | UUID of the volume.|
 
 **Return value**
 
-  | Type                 | Description            |
-  | --------------------- | ---------------- |
-  | Promise&lt;number&gt; | Promise used to return the total volume size obtained.|
+| Type                 | Description            |
+| --------------------- | ---------------- |
+| Promise&lt;number&gt; | Promise used to return the total volume space obtained.|
 
 **Error codes**
 
@@ -52,12 +52,17 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 **Example**
 
   ```ts
+  import volumemanager from "@ohos.file.volumeManager";
   import { BusinessError } from '@ohos.base';
-  let uuid: string = "";
-  storageStatistics.getTotalSizeOfVolume(uuid).then((number: number) => {
-    console.info("getTotalSizeOfVolume successfully:" + number);
+  volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    let uuid: string = volumes[0].uuid;
+    storageStatistics.getTotalSizeOfVolume(uuid).then((number: number) => {
+      console.info("getTotalSizeOfVolume successfully:" + number);
+    }).catch((err: BusinessError) => {
+      console.info("getTotalSizeOfVolume failed with error:" + JSON.stringify(err));
+    });
   }).catch((err: BusinessError) => {
-    console.info("getTotalSizeOfVolume failed with error:" + JSON.stringify(err));
+    console.info("getAllVolumes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -65,7 +70,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the total size (in bytes) of the specified volume in an external storage device. This API uses an asynchronous callback to return the result.
+Obtains the total space of a volume in an external storage device, in bytes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -75,10 +80,10 @@ Obtains the total size (in bytes) of the specified volume in an external storage
 
 **Parameters**
 
-  | Name    | Type                                | Mandatory| Description                      |
-  | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | volumeUuid | string                               | Yes  | UUID of the volume.                      |
-  | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the total volume size obtained.|
+| Name    | Type                                | Mandatory| Description                      |
+| ---------- | ------------------------------------ | ---- | -------------------------- |
+| volumeUuid | string                               | Yes  | UUID of the volume.                      |
+| callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the total volume space obtained.|
 
 **Error codes**
 
@@ -96,11 +101,20 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 **Example**
 
   ```ts
+  import volumemanager from "@ohos.file.volumeManager";
   import { BusinessError } from '@ohos.base';
-  let uuid: string = "";
-  storageStatistics.getTotalSizeOfVolume(uuid, (error: BusinessError, number: number) => {
-    // Do something.
-    console.info("getTotalSizeOfVolume successfully:" + number);
+  volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    let uuid: string = volumes[0].uuid;
+    storageStatistics.getTotalSizeOfVolume(uuid, (error: BusinessError, number: number) => {
+      if (error) {
+        console.info("getTotalSizeOfVolume failed with error:" + JSON.stringify(error));
+      } else {
+        // Do something.
+        console.info("getTotalSizeOfVolume successfully:" + number);
+      }
+    });
+  }).catch((err: BusinessError) => {
+    console.info("getAllVolumes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -108,7 +122,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
-Obtains the available space (in bytes) of the specified volume in an external storage device. This API uses a promise to return the result.
+Obtains the available space of a volume in an external storage device, in bytes. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -118,15 +132,15 @@ Obtains the available space (in bytes) of the specified volume in an external st
 
 **Parameters**
 
-  | Name    | Type  | Mandatory| Description|
-  | ---------- | ------ | ---- | ---- |
-  | volumeUuid | string | Yes  | UUID of the volume.|
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| volumeUuid | string | Yes  | UUID of the volume.|
 
 **Return value**
 
-  | Type                 | Description              |
-  | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | Promise used to return the available volume space obtained.|
+| Type                 | Description              |
+| --------------------- | ------------------ |
+| Promise&lt;number&gt; | Promise used to return the available volume space obtained.|
 
 **Error codes**
 
@@ -144,12 +158,17 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 **Example**
 
   ```ts
+  import volumemanager from "@ohos.file.volumeManager";
   import { BusinessError } from '@ohos.base';
-  let uuid: string = "";
-  storageStatistics.getFreeSizeOfVolume(uuid).then((number: number) => {
-    console.info("getFreeSizeOfVolume successfully:" + number);
+  volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    let uuid: string = volumes[0].uuid;
+    storageStatistics.getFreeSizeOfVolume(uuid).then((number: number) => {
+      console.info("getFreeSizeOfVolume successfully:" + number);
+    }).catch((err: BusinessError) => {
+      console.info("getFreeSizeOfVolume failed with error:" + JSON.stringify(err));
+    });
   }).catch((err: BusinessError) => {
-    console.info("getFreeSizeOfVolume failed with error:" + JSON.stringify(err));
+    console.info("getAllVolumes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -157,7 +176,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the available space (in bytes) of the specified volume in an external storage device. This API uses an asynchronous callback to return the result.
+Obtains the available space of a volume in an external storage device, in bytes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -167,10 +186,10 @@ Obtains the available space (in bytes) of the specified volume in an external st
 
 **Parameters**
 
-  | Name    | Type                                | Mandatory| Description                        |
-  | ---------- | ------------------------------------ | ---- | ---------------------------- |
-  | volumeUuid | string                               | Yes  | UUID of the volume.                        |
-  | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available volume space obtained.|
+| Name    | Type                                | Mandatory| Description                        |
+| ---------- | ------------------------------------ | ---- | ---------------------------- |
+| volumeUuid | string                               | Yes  | UUID of the volume.                        |
+| callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available volume space obtained.|
 
 **Error codes**
 
@@ -188,11 +207,20 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 **Example**
 
   ```ts
+  import volumemanager from "@ohos.file.volumeManager";
   import { BusinessError } from '@ohos.base';
-  let uuid: string = "";
-  storageStatistics.getFreeSizeOfVolume(uuid, (error: BusinessError, number: number) => {
-    // Do something.
-    console.info("getFreeSizeOfVolume successfully: " + number);
+  volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    let uuid: string = volumes[0].uuid;
+    storageStatistics.getFreeSizeOfVolume(uuid, (error: BusinessError, number: number) => {
+      if (error) {
+        console.info("getFreeSizeOfVolume failed with error:" + JSON.stringify(error));
+      } else {
+        // Do something.
+        console.info("getFreeSizeOfVolume successfully: " + number);
+      }
+    });
+  }).catch((err: BusinessError) => {
+    console.info("getAllVolumes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -200,7 +228,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
-Obtains the space (in bytes) of an application. This API uses a promise to return the result.
+Obtains the storage space of an application, in bytes. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -210,15 +238,15 @@ Obtains the space (in bytes) of an application. This API uses a promise to retur
 
 **Parameters**
 
-  | Name     | Type  | Mandatory| Description    |
-  | ----------- | ------ | ---- | -------- |
-  | packageName | string | Yes  | Bundle name of the application.|
+| Name     | Type  | Mandatory| Description    |
+| ----------- | ------ | ---- | -------- |
+| packageName | string | Yes  | Bundle name.|
 
 **Return value**
 
-  | Type                                      | Description                      |
-  | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the application space obtained.|
+| Type                                      | Description                      |
+| ------------------------------------------ | -------------------------- |
+| Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the application storage space obtained.|
 
 **Error codes**
 
@@ -238,7 +266,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import { BusinessError } from '@ohos.base';
   let packageName: string = "";
-  storageStatistics.getBundleStats(packageName).then((BundleStats: storageStatistics.Bundlestats) => {
+  storageStatistics.getBundleStats(packageName).then((BundleStats: storageStatistics.BundleStats) => {
     console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
   }).catch((err: BusinessError) => {
     console.info("getBundleStats failed with error:" + JSON.stringify(err));
@@ -249,7 +277,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
 
-Obtains the space (in bytes) of an application. This API uses an asynchronous callback to return the result.
+Obtains the storage space of an application, in bytes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -259,10 +287,10 @@ Obtains the space (in bytes) of an application. This API uses an asynchronous ca
 
 **Parameters**
 
-  | Name  | Type                                                     | Mandatory| Description                                |
-  | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
-  | packageName | string | Yes  | Bundle name of the application.|
-  | callback | AsyncCallback&lt;[Bundlestats](#bundlestats9)&gt; | Yes  | Callback invoked to return the application space obtained.|
+| Name  | Type                                                     | Mandatory| Description                                |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
+| packageName | string | Yes  | Bundle name.|
+| callback | AsyncCallback&lt;[Bundlestats](#bundlestats9)&gt; | Yes  | Callback invoked to return the application storage space obtained.|
 
 **Error codes**
 
@@ -282,9 +310,13 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import { BusinessError } from '@ohos.base';
   let packageName: string = "";
-  storageStatistics.getBundleStats(packageName, (error: BusinessError, BundleStats: storageStatistics.Bundlestats) => {
-    // Do something.
-    console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
+  storageStatistics.getBundleStats(packageName, (error: BusinessError, BundleStats: storageStatistics.BundleStats) => {
+    if (error) {
+      console.info("getBundleStats failed with error:" + JSON.stringify(error));
+    }  else {
+      // Do something.
+      console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
+    }
   });
   ```
 
@@ -292,15 +324,15 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
-Obtains the space (in bytes) of this third-party application. This API uses a promise to return the result.
+Obtains the storage space of this application, in bytes. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 **Return value**
 
-  | Type                                       | Description                      |
-  | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the application storage space obtained.     |
+| Type                                       | Description                      |
+| ------------------------------------------ | -------------------------- |
+| Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the application storage space obtained.     |
 
 **Error codes**
 
@@ -316,7 +348,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  storageStatistics.getCurrentBundleStats().then((BundleStats: storageStatistics.Bundlestats) => {
+  storageStatistics.getCurrentBundleStats().then((BundleStats: storageStatistics.BundleStats) => {
     console.info("getCurrentBundleStats successfully:" + JSON.stringify(BundleStats));
   }).catch((err: BusinessError) => {
     console.info("getCurrentBundleStats failed with error:"+ JSON.stringify(err));
@@ -327,15 +359,15 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
-Obtains the space (in bytes) of this third-party application. This API uses an asynchronous callback to return the result.
+Obtains the storage space of this application, in bytes. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 **Parameters**
 
-  | Name   | Type                                                      | Mandatory | Description                                |
-  | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | AsyncCallback&lt;[BundleStats](#bundlestats9)&gt;          | Yes  | Callback invoked to return the application space obtained.       |
+| Name   | Type                                                      | Mandatory | Description                                |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback&lt;[BundleStats](#bundlestats9)&gt;          | Yes  | Callback invoked to return the application space obtained.       |
 
 **Error codes**
 
@@ -351,9 +383,13 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  storageStatistics.getCurrentBundleStats((error: BusinessError, bundleStats: storageStatistics.Bundlestats) => {
-    // Do something.
-    console.info("getCurrentBundleStats successfully:" + JSON.stringify(bundleStats));
+  storageStatistics.getCurrentBundleStats((error: BusinessError, bundleStats: storageStatistics.BundleStats) => {
+    if (error) {
+      console.info("getCurrentBundleStats failed with error:" + JSON.stringify(error));
+    } else {
+      // Do something.
+      console.info("getCurrentBundleStats successfully:" + JSON.stringify(bundleStats));
+    }
   });
   ```
 
@@ -364,14 +400,14 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | Name     | Type  | Readable| Writable| Description          |
 | --------- | ------ | --- | ---- | -------------- |
 | appSize   | number | Yes| No| Size of the application, in bytes.   |
-| cacheSize | number | Yes| No| Cache size of the application, in bytes.  |
-| dataSize  | number | Yes| No| Total data size of the application, in bytes.|
+| cacheSize | number | Yes| No| Size of the cache data, in bytes.  |
+| dataSize  | number | Yes| No| Total size of the application, in bytes.|
 
 ## storageStatistics.getTotalSize<sup>9+</sup>
 
 getTotalSize(): Promise&lt;number&gt;
 
-Obtains the total size (in bytes) of the built-in storage. This API uses a promise to return the result.
+Obtains the total space of the built-in storage, in bytes. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -381,9 +417,9 @@ Obtains the total size (in bytes) of the built-in storage. This API uses a promi
 
 **Return value**
 
-  | Type                  | Description              |
-  | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | Promise used to return the total built-in storage size obtained.  |
+| Type                  | Description              |
+| --------------------- | ------------------ |
+| Promise&lt;number&gt; | Promise used to return the total built-in storage space obtained.  |
 
 **Error codes**
 
@@ -412,7 +448,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the total size (in bytes) of the built-in storage. This API uses an asynchronous callback to return the result.
+Obtains the total space of the built-in storage, in bytes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -422,9 +458,9 @@ Obtains the total size (in bytes) of the built-in storage. This API uses an asyn
 
 **Parameters**
 
-  | Name   | Type                                 | Mandatory | Description                    |
-  | -------- | ------------------------------------ | ---- | ------------------------ |
-  | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the built-in storage size obtained.|
+| Name   | Type                                 | Mandatory | Description                    |
+| -------- | ------------------------------------ | ---- | ------------------------ |
+| callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the built-in storage space obtained.|
 
 **Error codes**
 
@@ -443,8 +479,12 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import { BusinessError } from '@ohos.base';
   storageStatistics.getTotalSize((error: BusinessError, number: number) => {
-    // Do something.
-    console.info("getTotalSize successfully:"+ JSON.stringify(number));
+    if (error) {
+      console.info("getTotalSize failed with error:" + JSON.stringify(error));
+    } else {
+      // Do something.
+      console.info("getTotalSize successfully:" + number);
+    }
   });
   ```
 
@@ -452,13 +492,19 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getTotalSizeSync(): number
 
-Obtains the total space (in bytes) of the built-in storage synchronously.
+Obtains the total space of the built-in storage, in bytes. This API returns the result synchronously.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 **System API**: This is a system API.
+
+**Return value**
+
+| Type                  | Description              |
+| --------------------- | ------------------ |
+| number | Built-in storage space obtained.  |
 
 **Error codes**
 
@@ -479,9 +525,9 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   try {
     let number = storageStatistics.getTotalSizeSync();
     console.info("getTotalSizeSync successfully:" + JSON.stringify(number));
-  } catch (error) {
+  } catch (err) {
     let error: BusinessError = err as BusinessError;
-    console.info("getTotalSizeSync failed with error:" + JSON.stringify(err));
+    console.info("getTotalSizeSync failed with error:" + JSON.stringify(error));
   }
   ```
 
@@ -489,7 +535,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getFreeSize(): Promise&lt;number&gt;
 
-Obtains the available space (in bytes) of the built-in storage. This API uses a promise to return the result.
+Obtains the available space of the built-in storage, in bytes. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -499,9 +545,9 @@ Obtains the available space (in bytes) of the built-in storage. This API uses a 
 
 **Return value**
 
-  | Type                  | Description              |
-  | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | Promise used to return the available space of the built-in storage obtained.|
+| Type                  | Description              |
+| --------------------- | ------------------ |
+| Promise&lt;number&gt; | Promise used to return the available space of the built-in storage obtained.|
 
 **Error codes**
 
@@ -530,7 +576,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the available space (in bytes) of the built-in storage. This API uses an asynchronous callback to return the result.
+Obtains the available space of the built-in storage, in bytes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -540,9 +586,9 @@ Obtains the available space (in bytes) of the built-in storage. This API uses an
 
 **Parameters**
 
-  | Name   | Type                                 | Mandatory| Description                      |
-  | -------- | ------------------------------------ | ---- | ------------------------- |
-  | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available space of the built-in storage obtained.|
+| Name   | Type                                 | Mandatory| Description                      |
+| -------- | ------------------------------------ | ---- | ------------------------- |
+| callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available space of the built-in storage obtained.|
 
 **Error codes**
 
@@ -561,8 +607,12 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import { BusinessError } from '@ohos.base';
   storageStatistics.getFreeSize((error: BusinessError, number: number) => {
-    // Do something.
-    console.info("getFreeSize successfully:" + JSON.stringify(number));
+    if (error) {
+      console.info("getFreeSize failed with error:" + JSON.stringify(error));
+    } else {
+      // Do something.
+      console.info("getFreeSize successfully:" + number);
+    }
   });
   ```
 
@@ -570,13 +620,19 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getFreeSizeSync(): number
 
-Obtains the available space (in bytes) of the built-in storage synchronously.
+Obtains the available space of the built-in storage, in bytes. This API returns the result synchronously.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 **System API**: This is a system API.
+
+**Return value**
+
+| Type                  | Description              |
+| --------------------- | ------------------ |
+| number | Available space of the built-in storage obtained.|
 
 **Error codes**
 
@@ -597,9 +653,9 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   try {
     let number = storageStatistics.getFreeSizeSync();
     console.info("getFreeSizeSync successfully:" + JSON.stringify(number));
-  } catch (error) {
+  } catch (err) {
     let error: BusinessError = err as BusinessError;
-    console.info("getFreeSizeSync failed with error:" + JSON.stringify(err));
+    console.info("getFreeSizeSync failed with error:" + JSON.stringify(error));
   }
   ```
 
@@ -607,7 +663,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getSystemSize(): Promise&lt;number&gt;
 
-Obtains the system data space, in bytes. This API uses a promise to return the result.
+Obtains the system data size, in bytes. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -617,9 +673,9 @@ Obtains the system data space, in bytes. This API uses a promise to return the r
 
 **Return value**
 
-  | Type                 | Description            |
-  | --------------------- | ---------------- |
-  | Promise&lt;number&gt; | Promise used to return the system data space obtained.|
+| Type                 | Description            |
+| --------------------- | ---------------- |
+| Promise&lt;number&gt; | Promise used to return the system data size obtained.|
 
 **Error codes**
 
@@ -648,7 +704,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getSystemSize(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the system data space, in bytes. This API uses an asynchronous callback to return the result.
+Obtains the system data size, in bytes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -658,9 +714,9 @@ Obtains the system data space, in bytes. This API uses an asynchronous callback 
 
 **Parameters**
 
-  | Name    | Type                                | Mandatory| Description                      |
-  | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | callback   |  AsyncCallback&lt;number&gt;         | Yes  | Callback invoked to return the system data space obtained.|
+| Name    | Type                                | Mandatory| Description                      |
+| ---------- | ------------------------------------ | ---- | -------------------------- |
+| callback   |  AsyncCallback&lt;number&gt;         | Yes  | Callback invoked to return the system data size obtained.|
 
 **Error codes**
 
@@ -679,8 +735,12 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import { BusinessError } from '@ohos.base';
   storageStatistics.getSystemSize((error: BusinessError, number: number) => {
-    // Do something.
-    console.info("getSystemSize successfully:" + number);
+    if (error) {
+      console.info("getSystemSize failed with error:" + JSON.stringify(error));
+    } else {
+      // Do something.
+      console.info("getSystemSize successfully:" + number);
+    }
   });
   ```
 
@@ -688,7 +748,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getUserStorageStats(): Promise&lt;StorageStats&gt;
 
-Obtains the storage statistics (in bytes) of this user. This API uses a promise to return the result.
+Obtains the storage statistics of this user, in bytes. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -698,9 +758,9 @@ Obtains the storage statistics (in bytes) of this user. This API uses a promise 
 
 **Return value**
 
-  | Type                 | Description            |
-  | --------------------- | ---------------- |
-  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the storage information obtained.|
+| Type                 | Description            |
+| --------------------- | ---------------- |
+| Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the storage statistics obtained. |
 
 **Error codes**
 
@@ -729,7 +789,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getUserStorageStats(callback: AsyncCallback&lt;StorageStats&gt;): void
 
-Obtains the storage statistics (in bytes) of this user. This API uses an asynchronous callback to return the result.
+Obtains the storage statistics of this user, in bytes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -739,9 +799,9 @@ Obtains the storage statistics (in bytes) of this user. This API uses an asynchr
 
 **Parameters**
 
-  | Name    | Type                                | Mandatory| Description                      |
-  | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback invoked to return the information obtained.|
+| Name    | Type                                | Mandatory| Description                      |
+| ---------- | ------------------------------------ | ---- | -------------------------- |
+| callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback invoked to return the storage statistics obtained. |
 
 **Error codes**
 
@@ -760,8 +820,12 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import { BusinessError } from '@ohos.base';
   storageStatistics.getUserStorageStats((error: BusinessError, storageStats: storageStatistics.StorageStats) => {
-    // Do something.
-    console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
+    if (error) {
+      console.info("getUserStorageStats failed with error:" + JSON.stringify(error));
+    } else {
+      // Do something.
+      console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
+    }
   });
   ```
 
@@ -769,7 +833,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getUserStorageStats(userId: number): Promise&lt;StorageStats&gt;
 
-Obtains the storage statistics (in bytes) of the specified user. This API uses a promise to return the result.
+Obtains the storage statistics of the specified user, in bytes. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -779,15 +843,15 @@ Obtains the storage statistics (in bytes) of the specified user. This API uses a
 
 **Parameters**
 
-  | Name    | Type  | Mandatory| Description|
-  | ---------- | ------ | ---- | ---- |
-  | userId | number | Yes  | User ID|
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| userId | number | Yes  | User ID|
 
 **Return value**
 
-  | Type                 | Description            |
-  | --------------------- | ---------------- |
-  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the storage information obtained.|
+| Type                 | Description            |
+| --------------------- | ---------------- |
+| Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the storage statistics obtained.|
 
 **Error codes**
 
@@ -818,7 +882,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;): void
 
-Obtains the storage statistics (in bytes) of the specified user. This API uses an asynchronous callback to return the result.
+Obtains the storage statistics of the specified user, in bytes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -828,10 +892,10 @@ Obtains the storage statistics (in bytes) of the specified user. This API uses a
 
 **Parameters**
 
-  | Name    | Type                                | Mandatory| Description                      |
-  | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | userId | number                               | Yes  | User ID.|
-  | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback invoked to return the information obtained.|
+| Name    | Type                                | Mandatory| Description                      |
+| ---------- | ------------------------------------ | ---- | -------------------------- |
+| userId | number                               | Yes  | User ID|
+| callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback invoked to return the storage statistics obtained.|
 
 **Error codes**
 
@@ -852,8 +916,12 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   import { BusinessError } from '@ohos.base';
   let userId: number = 100;
   storageStatistics.getUserStorageStats(userId, (error: BusinessError, storageStats: storageStatistics.StorageStats) => {
-    // Do something.
-    console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
+    if (error) {
+      console.info("getUserStorageStats failed with error:" + JSON.stringify(error));
+    } else {
+      // Do something.
+      console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
+    }
   });
   ```
 
@@ -865,9 +933,9 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 | Name     | Type  | Readable | Writable | Description          |
 | --------- | ------ | ---- | ----- | -------------- |
-| total   | number | Yes| No| Total size of the built-in storage, in bytes.   |
-| audio | number  |Yes| No| Space occupied by audio data, in bytes. |
-| video  | number | Yes| No| Space occupied by video data, in bytes.|
-| image   | number | Yes| No| Space occupied by image data, in bytes.  |
-| file | number | Yes| No| Space occupied by files, in bytes. |
-| app  | number | Yes| No| Space occupied by application data, in bytes.|
+| total   | number | Yes| No| Total space of the built-in storage, in bytes.   |
+| audio | number  |Yes| No| Size of the audio data, in bytes. |
+| video  | number | Yes| No| Size of the video data, in bytes.|
+| image   | number | Yes| No| Size of the image data, in bytes.  |
+| file | number | Yes| No| Size of files, in bytes. |
+| app  | number | Yes| No| Size of application data, in bytes.|
