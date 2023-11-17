@@ -403,7 +403,7 @@ try {
 
 | 参数名   | 类型                      | 必填 | 说明                                    |
 | -------- | ------------------------- | ---- | --------------------------------------- |
-| extInfo  | [ExtraData](#ExtraData)   | 是   | 透传数据 包含通知数据变更后的应用信息。 |
+| extInfo  | [ExtraData](#ExtraData<sup>11+</sup>)   | 是   | 透传数据 包含通知数据变更后的应用信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                              |
 
 **示例：**
@@ -443,7 +443,7 @@ static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallba
 
 | 参数名   | 类型                      | 必填 | 说明                                            |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
-| extInfo  | [ExtraData](#ExtraData)   | 是   | 透传数据 包含通知数据变更后的应用信息。         |
+| extInfo  | [ExtraData](#ExtraData<sup>11+</sup>)   | 是   | 透传数据 包含通知数据变更后的应用信息。         |
 | userId   | number                    | 否   | 表示用户ID。此参数是可选的。取值范围是100-102。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
 
@@ -483,7 +483,7 @@ try {
 
 | 参数名  | 类型                    | 必填 | 说明                                            |
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
-| extInfo | [ExtraData](#Extradata) | 是   | 透传数据 包含通知数据变更后的应用信息。         |
+| extInfo | [ExtraData](#ExtraData<sup>11+</sup>) | 是   | 透传数据 包含通知数据变更后的应用信息。         |
 | userId  | number                  | 否   | 表示用户ID。此参数是可选的。取值范围是100-102。 |
 
 **返回值：**
