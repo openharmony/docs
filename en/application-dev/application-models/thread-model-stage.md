@@ -1,6 +1,6 @@
 # Thread Model Overview (Stage Model)
 
-For an OpenHarmony application, each process has a main thread to provide the following functionalities:
+For an application, each process has a main thread to provide the following functionalities:
 
 - Draw the UI.
 - Manage the ArkTS engine instance of the main thread so that multiple UIAbility components can run on it.
@@ -12,7 +12,7 @@ For an OpenHarmony application, each process has a main thread to provide the fo
 In addition to the main thread, there is an independent thread, named worker. The worker thread is mainly used to perform time-consuming operations. The worker thread is created in the main thread and is independent from the main thread. It cannot directly operate the UI. A maximum of eight worker threads can be created. 
 ![thread-model-stage](figures/thread-model-stage.png)
 
-Based on the OpenHarmony thread model, different services run on different threads. Service interaction requires inter-thread communication. In the same process, threads can communicate with each other in Emitter or Worker mode. Emitter is mainly used for event synchronization between threads, and Worker is mainly used to execute time-consuming tasks.
+Based on the thread model, different services run on different threads. Service interaction requires inter-thread communication. In the same process, threads can communicate with each other in Emitter or Worker mode. Emitter is mainly used for event synchronization between threads, and Worker is mainly used to execute time-consuming tasks.
 
 > **NOTE**
 >
