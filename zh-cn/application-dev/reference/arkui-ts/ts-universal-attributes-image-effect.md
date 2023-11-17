@@ -41,7 +41,7 @@
 | color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource) | 否    | 阴影的颜色。<br/>默认为黑色。                        |
 | offsetX | number \| [Resource](ts-types.md#resource) | 否    | 阴影的X轴偏移量。<br/>默认为0。                      |
 | offsetY | number \| [Resource](ts-types.md#resource) | 否    | 阴影的Y轴偏移量。<br/>默认为0。                      |
-| fill<sup>11+</sup>     | boolean                                    | 否    | 阴影是否内部填充。<br/>默认为false。                  |
+| fill<sup>11+</sup>     | boolean                                    | 否    | 阴影是否内部填充。<br/>默认为false。<br/>**说明：**<br/>[textShadow](ts-basic-components-text.md#属性)中该字段不生效                 |
 
 ## ShadowStyle<sup>10+</sup>枚举说明
 
