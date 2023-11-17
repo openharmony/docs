@@ -102,46 +102,46 @@ struct Index {
       console.log("Drag start.")
     })
     .gesture(
-      TapGesture()// set gesture tag
-        .tag("tap1")
+      TapGesture()
+        .tag("tap1")// 设置点击手势标志
     )
     .gesture(
-      LongPressGesture()// set gesture tag
-        .tag("longPress1")
+      LongPressGesture()
+        .tag("longPress1")// 设置长按手势标志
         .onAction(() => {
           this.message = 'longPress'
         })
     )
     .gesture(
-      SwipeGesture()// set gesture tag
-        .tag("swipe1")
+      SwipeGesture()
+        .tag("swipe1")// 设置滑动手势标志
     )
     .gesture(
-      PanGesture()// set gesture tag
-        .tag("pan1")
+      PanGesture()
+        .tag("pan1")// 设置拖动手势标志
     )
     .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent) => {
-      // If the gesture type is longPress, convert event to LongPressGestureEvent
+      // 若该手势类型为长按手势，转换为长按手势事件
       if (gestureInfo.type == GestureControl.GestureType.LONG_PRESS_GESTURE) {
         let longPressEvent = event as LongPressGestureEvent;
         console.log("repeat " + longPressEvent.repeat)
       }
-      // If the gesture type is swipe, convert event to SwipeGestureEvent
+      // 若该手势类型为滑动手势，转换为滑动手势事件
       if (gestureInfo.type == GestureControl.GestureType.SWIPE_GESTURE) {
         let swipeEvent = event as SwipeGestureEvent;
         console.log("angle " + swipeEvent.angle)
       }
-      // If the gesture type is swipe, convert event to PanGestureEvent
+      // 若该手势类型为拖动手势，转换为拖动手势事件
       if (gestureInfo.type == GestureControl.GestureType.PAN_GESTURE) {
         let panEvent = event as PanGestureEvent;
         console.log("velocity " + panEvent.velocity)
       }
-      // Custom decision criteria
+      // 自定义判定标准
       if (gestureInfo.type == GestureControl.GestureType.DRAG) {
-        // return REJECT will make drag gesture fail.
+        // 返回 REJECT 会使拖动手势失败
         return GestureJudgeResult.REJECT;
       } else if (gestureInfo.tag == 'longPress1' && event.fingerList.length > 0 && event.fingerList[0].localY < 100) {
-        // return CONTINUE will continue system decision.
+        // 返回 CONTINUE 将保持系统判定。
         return GestureJudgeResult.CONTINUE;
       }
       return GestureJudgeResult.CONTINUE;
@@ -166,32 +166,31 @@ struct Index {
           .backgroundColor(0xeeddaa00)
         Stack({ alignContent: Alignment.Center }) {
           Column() {
-            // Simulate the upper and lower half zones
+            // 模拟上半区和下半区
             Stack().width('200vp').height('100vp').backgroundColor(Color.Red)
             Stack().width('200vp').height('100vp').backgroundColor(Color.Blue)
           }.width('200vp').height('200vp')
-          // The lower layer of the Stack is the image layer bound with drag and drop
+          // Stack的下半区是绑定了拖动手势的图像区域。
           Image($r('sys.media.ohos_app_icon'))
             .onDragStart(()=>{
               promptAction.showToast({ message: "Drag 下半区蓝色区域，Image响应" })
             })
             .width('200vp').height('200vp')
-          // The upper layer of the Stack is a floating layer bound with a long press
+          // Stack的上半区是绑定了长按手势的浮动区域。
           Stack() {
-            // overlay
           }
           .width('200vp')
           .height('200vp')
           .hitTestBehavior(HitTestMode.Transparent)
           .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent) => {
-            // Determine whether the tag has value
+            // 确定tag标志是否有值
             if (gestureInfo.tag) {
               console.log("gestureInfo tag" + gestureInfo.tag.toString())
             }
             console.log("gestureInfo Type " + gestureInfo.type.toString() + " isSystemGesture " + gestureInfo.isSystemGesture);
             console.log("pressure " + event.pressure + " fingerList.length " + event.fingerList.length
               + " timeStamp " + event.timestamp + " sourceType " + event.source.toString() + " titleX " + event.tiltX + " titleY " + event.tiltY + " sourcePool " + event.sourceTool.toString());
-            // If it is long press, determine whether the position of the click is in the upper half
+            // 如果是长按类型手势，判断点击的位置是否在上半区
             if (gestureInfo.type == GestureControl.GestureType.LONG_PRESS_GESTURE) {
               if (event.fingerList.length > 0 && event.fingerList[0].localY < 100) {
                 return GestureJudgeResult.CONTINUE
