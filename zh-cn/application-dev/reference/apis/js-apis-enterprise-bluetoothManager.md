@@ -53,6 +53,7 @@ getBluetoothInfo(admin: Want): BluetoothInfo;
 
 ```ts
 import Want from '@ohos.app.ability.Want';
+import bluetoothManager from '@ohos.enterprise.bluetoothManager';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
