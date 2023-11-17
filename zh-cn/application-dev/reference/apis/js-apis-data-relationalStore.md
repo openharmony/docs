@@ -4925,6 +4925,8 @@ cleanDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from "@ohos.base";
+
 if(store != undefined) {
     (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100).then(() => {
         console.info('clean dirty data  succeeded');
