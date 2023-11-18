@@ -33,17 +33,17 @@ The performance tracing APIs are provided by the **hiTraceMeter** module. For de
 
 ## How to Develop
 
-In this example, distributed call chain tracing begins when the application startup execution page is loaded and stops when the service usage is completed.
+Start performance tracing upon page loading and stop it upon completion of service usage.
 
 1. Create an ArkTS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **pages** > **index**, and double-click **index.js**. Add the code to implement performance tracing upon page loading. For example, if the name of the trace task is **HITRACE\_TAG\_APP**, the sample code is as follows:
  
    ```ts
-   import hitrace from '@ohos.hiTraceMeter';
+   import hiTraceMeter from '@ohos.hiTraceMeter';
   
    @Entry
    @Component
    struct Index {
-     @State message: string = 'Hello World';
+     @State message: string = 'Running';
  
      build() {
        Row() {
@@ -55,39 +55,39 @@ In this example, distributed call chain tracing begins when the application star
                this.message = 'Hello ArkUI';
 
                // Start trace tasks with the same name concurrently.
-               hitrace.startTrace("HITRACE_TAG_APP", 1001);
+               hiTraceMeter.startTrace("HITRACE_TAG_APP", 1001);
                // Keep the service process running.
                console.log(`HITRACE_TAG_APP running`);
    
                // Start the second trace task with the same name while the first task is still running. The tasks are running concurrently and therefore their taskId must be different.
-               hitrace.startTrace("HITRACE_TAG_APP", 1002);
+               hiTraceMeter.startTrace("HITRACE_TAG_APP", 1002);
                // Keep the service process running.
                console.log(`HITRACE_TAG_APP running`);
   
-               hitrace.finishTrace("HITRACE_TAG_APP", 1001);
-               hitrace.finishTrace("HITRACE_TAG_APP", 1002);
+               hiTraceMeter.finishTrace("HITRACE_TAG_APP", 1001);
+               hiTraceMeter.finishTrace("HITRACE_TAG_APP", 1002);
    
                // If trace tasks with the same name are not run concurrently, the same taskId can be used.
-               hitrace.startTrace("HITRACE_TAG_APP", 1003);
+               hiTraceMeter.startTrace("HITRACE_TAG_APP", 1003);
                // Keep the service process running.
                console.log(`HITRACE_TAG_APP running`);
                // End the first trace task.
-               hitrace.finishTrace("HITRACE_TAG_APP", 1003);
+               hiTraceMeter.finishTrace("HITRACE_TAG_APP", 1003);
    
                // Start the second trace task with the same name in serial mode. It uses a taskId different from the first trace task.
-               hitrace.startTrace("HITRACE_TAG_APP", 1004);
+               hiTraceMeter.startTrace("HITRACE_TAG_APP", 1004);
                // Keep the service process running.
                console.log(`HITRACE_TAG_APP running`);
                let traceCount = 3;
-               hitrace.traceByValue("myTestCount", traceCount);
-               hitrace.finishTrace("HITRACE_TAG_APP", 1004);
+               hiTraceMeter.traceByValue("myTestCount", traceCount);
+               hiTraceMeter.finishTrace("HITRACE_TAG_APP", 1004);
    
                // Start the third trace task with the same name in serial mode. It uses a taskId same as the second trace task.
-               hitrace.startTrace("HITRACE_TAG_APP", 1004);
+               hiTraceMeter.startTrace("HITRACE_TAG_APP", 1004);
                // Keep the service process running.
                console.log(`HITRACE_TAG_APP running`);
                // End the third trace task.
-               hitrace.finishTrace("HITRACE_TAG_APP", 1004);
+               hiTraceMeter.finishTrace("HITRACE_TAG_APP", 1004);
    
              })
           }
@@ -105,7 +105,7 @@ In this example, distributed call chain tracing begins when the application star
    hitrace --trace_begin app
    ```
    
-   After the trace command is executed, call the hiTraceMeter APIs in your own service logic on the device. Then,  run the following commands in sequence:
+   After the trace command is executed, call the hiTraceMeter APIs in your own service logic on the device. Then, run the following commands in sequence:
   
    ```shell
    hitrace --trace_dump | grep tracing_mark_write

@@ -1,12 +1,12 @@
 # UI开发（ArkTS声明式开发范式）概述
 
 
-基于ArkTS的声明式开发范式的方舟开发框架是一套开发极简、高性能、支持跨设备的UI开发框架，提供了构建OpenHarmony应用UI所必需的能力，主要包括：
+基于ArkTS的声明式开发范式的方舟开发框架是一套开发极简、高性能、支持跨设备的UI开发框架，提供了构建应用UI所必需的能力，主要包括：
 
 
 - **ArkTS**
 
-  ArkTS是UI开发语言，基于TypeScript（简称TS）语言扩展而来，是TS的超集。扩展能力包含各种装饰器、自定义组件、UI描述机制。状态数据管理作为基于ArkTS的声明式开发范式的特色，通过功能不同的装饰器给开发者提供了清晰的页面更新渲染流程和管道。状态管理包括UI组件状态和应用程序状态，两者协作可以使开发者完整地构建整个应用的数据更新和UI渲染。ArkTS语言的基础知识请参考[学习ArkTS语言](../quick-start/arkts-get-started.md)。
+  ArkTS是OpenHarmony优选的主力应用开发语言，围绕应用开发在[TypeScript](https://www.typescriptlang.org/)（简称TS）生态基础上做了进一步扩展。扩展能力包含声明式UI描述、自定义组件、动态扩展UI元素、状态管理和渲染控制。状态管理作为基于ArkTS的声明式开发范式的特色，通过功能不同的装饰器给开发者提供了清晰的页面更新渲染流程和管道。状态管理包括UI组件状态和应用程序状态，两者协作可以使开发者完整地构建整个应用的数据更新和UI渲染。ArkTS语言的基础知识请参考[初识ArkTS语言](../quick-start/arkts-get-started.md)。
 
 - **布局**
 
@@ -80,7 +80,7 @@
 
 | 任务          | 简介                                  | 相关指导                                     |
 | ----------- | ----------------------------------- | ---------------------------------------- |
-| 学习ArkTS     | 介绍了ArkTS的基本语法、状态管理和渲染控制的场景。         | - [基本语法](../quick-start/arkts-basic-syntax-overview.md)<br>- [状态管理](../quick-start/arkts-state-management-overview.md)<br>- [渲染控制](../quick-start/arkts-rendering-control-overview.md) |
+| 学习ArkTS     | 介绍了ArkTS的基本语法、状态管理和渲染控制的场景。         | - [基本语法](../quick-start/arkts-basic-syntax-overview.md)<br>- [状态管理](../quick-start/arkts-state-management-overview.md)<br>- [渲染控制](../quick-start/arkts-rendering-control-ifelse.md) |
 | 开发布局        | 介绍了几种常用的布局方式。             | -&nbsp;[常用布局](arkts-layout-development-overview.md)<br/> |
 | 添加组件        | 介绍了几种常用的内置组件、自定义组件以及通过API方式支持的界面元素。 | -&nbsp;[常用组件](arkts-common-components-button.md)<br/>- [自定义组件](../quick-start/arkts-create-custom-components.md)<br>-&nbsp;[气泡和菜单](arkts-popup-and-menu-components-popup.md) |
 | 设置页面路由和组件导航 | 介绍了如何设置页面路由以及组件间的导航。                | -&nbsp;[页面路由](arkts-routing.md)<br/>-&nbsp;[组件导航](arkts-navigation-navigation.md) |

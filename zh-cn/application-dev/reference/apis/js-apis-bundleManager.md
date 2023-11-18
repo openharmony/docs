@@ -238,6 +238,16 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | -------------- | ---- | --------------- |
 | INTENT_PROFILE  | 1    | 意图框架配置文件。    |
 
+### ApplicationReservedFlag<sup>11+</sup>
+
+应用保留信息标志，指示需要获取的applicationReservedFlag中的信息内容。
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+
+| 名称           | 值   | 说明            |
+| -------------- | ---- | --------------- |
+| ENCRYPTED_APPLICATION  | 0x00000001    | 用于获取应用是否为加密应用。    |
+
 ## 接口
 
 ### bundleManager.getBundleInfoForSelf
@@ -4489,5 +4499,81 @@ try {
     hilog.info(0x0000, 'testTag', 'getJsonProfile successfully. Data: %{public}s', data);
 } catch (err) {
     hilog.error(0x0000, 'testTag', 'getJsonProfile failed.');
+}
+```
+
+### bundleManager.getRecoverableApplicationInfo<sup>11+</sup>
+
+getRecoverableApplicationInfo(callback: AsyncCallback\<Array\<RecoverableApplicationInfo\>\>): void;
+
+以异步的方法获取所有可恢复的预置应用信息，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo.md)\>\> | 是   | 回调函数，当获取成功时，err为null，data为获所有可恢复的预置应用信息。 |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+
+try {
+    bundleManager.getRecoverableApplicationInfo((err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'getRecoverableApplicationInfo failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'getRecoverableApplicationInfo successfully: %{public}s', JSON.stringify(data));
+        }
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getRecoverableApplicationInfo failed: %{public}s', message);
+}
+```
+
+### bundleManager.getRecoverableApplicationInfo<sup>11+</sup>
+
+getRecoverableApplicationInfo(): Promise\<Array\<RecoverableApplicationInfo\>\>;
+
+以异步的方法获取所有可恢复的预置应用信息，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**返回值：**
+
+| 类型                                                         | 说明                                |
+| ------------------------------------------------------------ | ----------------------------------- |
+| Promise\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo.md)\>\> | Promise对象，返回所有可恢复的预置应用信息。 |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+
+try {
+    bundleManager.getRecoverableApplicationInfo().then((data) => {
+        hilog.info(0x0000, 'testTag', 'getRecoverableApplicationInfo successfully: %{public}s', JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getRecoverableApplicationInfo failed: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getRecoverableApplicationInfo failed: %{public}s', message);
 }
 ```

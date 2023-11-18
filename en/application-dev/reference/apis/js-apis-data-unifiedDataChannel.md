@@ -1,6 +1,6 @@
 # @ohos.data.unifiedDataChannel (Unified Data Channel)
 
-As a part of the Unified Data Management Framework (UDMF), the **unifiedDataChannel** module provides unified data channels and standard data access interfaces for many-to-many data sharing across applications. It also provides standard definitions for data types, such as text and image, to streamline data interaction between different applications and minimize the workload of data type adaptation.
+As a part of the Unified Data Management Framework (UDMF), the **unifiedDataChannel** module provides unified data channels and standard data access interfaces for many-to-many data sharing across applications. It also provides definitions for uniform data types, such as text and image, to streamline data interaction between different applications and minimize the workload of data type adaptation.
 
 > **NOTE**
 >
@@ -161,7 +161,7 @@ Represents the text data. It is a child class of [UnifiedRecord](#unifiedrecord)
 
 | Name   | Type                     | Readable| Writable| Description                                                                                                                                                 |
 | ------- | ------------------------- | ---- | ---- |-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe the text content. For example, a data object with the following content can be created to describe a text file:<br>{<br>"title":"Title",<br>"content":"Content"<br>}<br> This parameter is optional. The default value is an empty dictionary object.|
+| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe the text content. For example, a data object with the following content can be created to describe a text file:<br>{<br>"title":"Title",<br>"content":"Content"<br>}<br>This parameter is optional. The default value is an empty dictionary object.|
 
 **Example**
 
@@ -239,7 +239,7 @@ Represents the file data. It is a child class of [UnifiedRecord](#unifiedrecord)
 
 | Name     | Type                       | Readable| Writable| Description                                                                                                                                                  |
 |---------|---------------------------| ---- | ---- |------------------------------------------------------------------------------------------------------------------------------------------------------|
-| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe file information. For example, a data object with the following content can be created to describe a file:<br>{<br>"name":"File name",<br>"type":"File type"<br>}<br> This parameter is optional. The default value is an empty dictionary object.|
+| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe file information. For example, a data object with the following content can be created to describe a file:<br>{<br>"name":"File name",<br>"type":"File type"<br>}<br>This parameter is optional. The default value is an empty dictionary object.|
 | uri     | string                    | Yes  | Yes  | URI of the file data.                                                                                                                                            |
 
 **Example**
@@ -346,7 +346,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(sdr);
 
 ## SystemDefinedForm
 
-Represents the widget data. It is a child class of [SystemDefinedRecord](#systemdefinedrecord).
+Represents the service widget data defined by the system, which is a child class of [SystemDefinedRecord](#systemdefinedrecord).
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -354,7 +354,7 @@ Represents the widget data. It is a child class of [SystemDefinedRecord](#system
 | ----------- | ------ | ---- | ---- |----------------|
 | formId      | number | Yes  | Yes  | Service widget ID.         |
 | formName    | string | Yes  | Yes  | Widget name.         |
-| bundleName  | string | Yes  | Yes  | Name of the bundle to which a widget belongs.  |
+| bundleName  | string | Yes  | Yes  | Name of the bundle to which the widget belongs.  |
 | abilityName | string | Yes  | Yes  | Ability name corresponding to the widget.|
 | module      | string | Yes  | Yes  | Name of the module to which the widget belongs.  |
 
@@ -378,7 +378,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(form);
 
 ## SystemDefinedAppItem
 
-Represents the icon data. It is a child class of [SystemDefinedRecord](#systemdefinedrecord).
+Represents the data of the home screen icon defined by the system. It is a child class of [SystemDefinedRecord](#systemdefinedrecord).
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 

@@ -1,4 +1,4 @@
-# 属性动画
+# 属性动画（animation）
 
 组件的某些通用属性变化时，可以通过属性动画实现渐变过渡效果，提升用户体验。支持的属性包括width、height、backgroundColor、opacity、scale、rotate、translate等。布局类改变宽高的动画，内容都是直接到终点状态，例如文字、canvas的内容、linearGradient等，如果要内容跟随宽高变化，可以使用[renderFit](ts-universal-attributes-renderfit.md)属性配置。
 
@@ -6,7 +6,7 @@
 >
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-animation(value: {duration?: number, tempo?: number, curve?: string | Curve | ICurve, delay?:number, iterations?: number, playMode?: PlayMode, onFinish?: () => void})
+animation(value: {duration?: number, tempo?: number, curve?: string | Curve | ICurve, delay?:number, iterations?: number, playMode?: PlayMode, onFinish?: () => void, finishCallbackType?: FinishCallbackType})
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -21,6 +21,7 @@ animation(value: {duration?: number, tempo?: number, curve?: string | Curve | IC
 | iterations | number                                   | 否    | 动画播放次数。<br/>默认值：1<br/>取值范围：[-1, +∞)<br/>**说明：** <br/>设置为-1时表示无限次播放。设置为0时表示无动画效果。 |
 | playMode   | [PlayMode](ts-appendix-enums.md#playmode) | 否    | 动画播放模式，默认播放完成后重头开始播放。<br/>默认值：PlayMode.Normal<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>相关使用约束请参考PlayMode说明。 |
 | onFinish   | () => void                               | 否    | 结束回调，动画播放完成时触发。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当iterations设置为-1时，动画效果无限循环不会停止，所以不会触发此回调。 |
+| finishCallbackType<sup>11+</sup>   | [FinishCallbackType](ts-appendix-enums.md#finishcallbacktype11) | 否    | 在动画中定义onFinish回调的类型。<br/>默认值：FinishCallbackType.REMOVED<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。 |
 
 > **PlayMode说明：**
 > - PlayMode推荐使用PlayMode.Normal和PlayMode.Alternate，此场景下动画的第一轮是正向播放的。如使用PlayMode.Reverse和PlayMode.AlternateReverse，则动画的第一轮是逆向播放的，在动画刚开始时会跳变到终止状态，然后逆向播放动画。

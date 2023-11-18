@@ -317,7 +317,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 ```ts
 import Curves from '@ohos.curves'
 let curveValue = Curves.initCurve(Curve.EaseIn) // Create an ease-in curve.
-let value: number = curve.interpolate(0.5) // Calculate the interpolation for half of the time.
+let value: number = curveValue.interpolate(0.5) // Calculate the interpolation for half of the time.
 ```
 
 

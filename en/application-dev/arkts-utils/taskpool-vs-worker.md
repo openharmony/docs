@@ -50,7 +50,7 @@ Common use cases are as follows:
 
 ![taskpool](figures/taskpool.png)
 
-With **TaskPool**, you can encapsulate tasks in the main thread and throw the tasks to the task queue. The system selects proper worker threads to distribute and execute the tasks, and then returns the result to the main thread. **TaskPool** provides APIs to execute and cancel tasks, and set the task priority. It also minimizes system resource usage through unified thread management, dynamic scheduling, and load balancing algorithms. By default, the system starts a worker thread and increases the thread quantity as the number of tasks increases. The maximum number of worker threads that can be created depends on the number of physical cores of the device. The formula is max(3, Number of physical cores – 1). If no task is distributed for a long period of time, the system reduces the number of worker threads.
+With **TaskPool**, you can encapsulate tasks in the main thread and throw the tasks to the task queue. The system selects proper worker threads to distribute and execute the tasks, and then returns the result to the main thread. **TaskPool** provides APIs to execute and cancel tasks, and set the task priority. It also minimizes system resource usage through unified thread management, dynamic scheduling, and load balancing algorithms. By default, the system starts a worker thread and increases the thread quantity as the number of tasks increases. The maximum number of worker threads that can be created depends on the number of physical cores of the device. The actual number is managed internally to ensure optimal scheduling and execution efficiency. If no task is distributed for a long period of time, the system reduces the number of worker threads.
 
 
 ## Worker Operating Mechanism
@@ -64,11 +64,7 @@ The thread that creates the worker thread is referred to as the host thread (not
 
 ## Precautions for TaskPool
 
-- A task function must be decorated with **\@Concurrent** and can be used only in .ets files.
-
-- A task function must be a common function or async function, but not a class member function or anonymous function.
-
-- A task function can use imported variables and input parameter variables only in a project created on the stage model. In a project created on the FA model, it can use input parameter variables only.
+- A task function must be decorated with [\@Concurrent](arkts-concurrent.md) and can be used only in .ets files.
 
 - A task function in the **TaskPool** worker thread must finish the execution within 3 minutes (excluding the time used for Promise or async/await asynchronous call, for example, the duration of I/O tasks such as network download and file read/write). Otherwise, it forcibly exits.
 

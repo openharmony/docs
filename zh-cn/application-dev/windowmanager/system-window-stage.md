@@ -24,7 +24,7 @@
 | window静态方法    | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | 创建子窗口或系统窗口。<br/>-`config`：创建窗口时的参数。     |
 | Window            | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | 改变当前窗口大小。                                           |
 | Window            | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口位置。                                           |
-| Window            | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前窗口加载具体页面。                                     |
+| Window            | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 根据当前工程中某个页面的路径为窗口加载具体的页面内容。                                     |
 | Window            | showWindow(callback: AsyncCallback\<void>): void             | 显示当前窗口。                                               |
 | Window            | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | 开启本窗口区域外的点击事件的监听。                           |
 | Window            | hide (callback: AsyncCallback\<void>): void                  | 隐藏当前窗口。此接口为系统接口。                             |

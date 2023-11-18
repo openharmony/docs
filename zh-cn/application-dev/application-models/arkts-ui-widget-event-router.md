@@ -21,33 +21,31 @@
     build() {
       Column() {
         Button('功能A')
-          .margin('20%')
           .onClick(() => {
             console.info('Jump to EntryAbility funA');
             postCardAction(this, {
-              'action': 'router',
-              'abilityName': 'EntryAbility', // 只能跳转到当前应用下的UIAbility
-              'params': {
-                'targetPage': 'funA' // 在EntryAbility中处理这个信息
+              action: 'router',
+              abilityName: 'EntryAbility', // 只能跳转到当前应用下的UIAbility
+              params: {
+                targetPage: 'funA' // 在EntryAbility中处理这个信息
               }
             });
           })
   
         Button('功能B')
-          .margin('20%')
           .onClick(() => {
             console.info('Jump to EntryAbility funB');
             postCardAction(this, {
-              'action': 'router',
-              'abilityName': 'EntryAbility', // 只能跳转到当前应用下的UIAbility
-              'params': {
-                'targetPage': 'funB' // 在EntryAbility中处理这个信息
+              action: 'router',
+              abilityName: 'EntryAbility', // 只能跳转到当前应用下的UIAbility
+              params: {
+                targetPage: 'funB' // 在EntryAbility中处理这个信息
               }
             });
           })
       }
       .width('100%')
-      .height('100%')
+      .height('100%').justifyContent(FlexAlign.SpaceAround)
     }
   }
   ```

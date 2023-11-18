@@ -141,8 +141,6 @@ animateTo(value: AnimateParam, event: () => void): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **参数：**
 
 | 参数名   | 类型                                       | 必填   | 说明                                    |
@@ -550,7 +548,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 | 参数名      | 类型         | 必填   | 说明   |
 | -------- | ---------- | ---- | ---- |
-| value | [KeyboardAvoidMode](../arkui-ts/ts-types.md#keyboardavoidmode11)| 是    | 键盘避让时的页面避让模式。<br />默认值:KeyboardAvoidMode.OFFSET |
+| value | [KeyboardAvoidMode](../apis/js-apis-arkui-UIContext.md#keyboardavoidmode11)| 是    | 键盘避让时的页面避让模式。<br />默认值:KeyboardAvoidMode.OFFSET |
 
 **示例：**
 
@@ -584,7 +582,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 
 | 类型         | 说明   |
 | ---------- | ---- |
-| [KeyboardAvoidMode](../arkui-ts/ts-types.md#keyboardavoidmode11)| 返回当前的页面避让模式。|
+| [KeyboardAvoidMode](../apis/js-apis-arkui-UIContext.md#keyboardavoidmode11)| 返回当前的页面避让模式。|
 
 **示例：**
 
@@ -605,6 +603,42 @@ onWindowStageCreate(windowStage: window.WindowStage) {
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
   }
+
+```
+
+### getAtomicServiceBar<sup>11+</sup>
+
+getAtomicServiceBar(): Nullable\<AtomicServiceBar>
+
+获取AtomicServiceBar对象，通过该对象设置原子化服务menuBar的属性。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+|类型|说明|
+|----|----|
+|Nullable<[AtomicServiceBar](#atomicservicebar)>| 如果是原子化服务则返回AtomicServerBar类型，否则返回undefined。|
+
+**示例：**
+
+```ts
+import {UIContext, AtomicServiceBar} from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
 ```
 
 ## Font
@@ -2094,3 +2128,197 @@ try {
   console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```
+
+## AtomicServiceBar<sup>11+</sup>
+
+以下接口需要先使用UIContext中的getAtomicServiceBar方法获取到AtomicServiceBar对象，再通过该对象调用对应方法。
+
+### setVisible<sup>11+</sup>
+
+setVisible(visible: boolean): void
+
+通过该方法设置原子化服务menuBar是否可见。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | ------- | ------- | ------- |
+| visiable | boolean | 是 | 原子化服务menuBar是否可见。|
+
+
+**示例：**
+
+```ts
+import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      atomicServiceBar.setVisible(false);
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
+```
+
+### setBackgroundColor<sup>11+</sup>
+
+setBackgroundColor(color:Nullable<Color | number | string>): void
+
+通过该方法设置原子化服务menuBar的背景颜色。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------ |
+| color | color:Nullable\<[Color](../arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 通过该方法设置原子化服务menuBar的背景颜色，undefined代表使用默认颜色。|
+
+**示例：**
+
+```ts
+import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      atomicServiceBar.setBackgroundColor(0x88888888);
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
+```
+
+### setTitleContent<sup>11+</sup>
+
+setTitleContent(content:string): void
+
+通过该方法设置原子化服务menuBar的标题内容。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+|参数名|类型|必填|说明 |
+| ------- | ------- | ------- | ------- |
+| content | string | 是 | 原子化服务menuBar中的标题内容。|
+
+**示例：**
+
+```ts
+import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      atomicServiceBar.setTitleContent('text2');
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
+```
+
+### setTitleFontStyle<sup>11+</sup>
+
+setTitleFontStyle(font:FontStyle):void
+
+通过该方法设置原子化服务menuBar的字体样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------ |
+| font | [FontStyle](../arkui-ts/ts-appendix-enums.md#fontstyle) | 是 | 原子化服务menuBar中的字体样式。 |
+
+**示例：**
+
+```ts
+import { UIContext, Font, AtomicServiceBar } from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      atomicServiceBar.setTitleFontStyle(FontStyle.Normal);
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
+```
+
+### setIconColor<sup>11+</sup>
+
+setIconColor(color:Nullable<Color | number | string>): void
+
+通过该方法设置原子化服务图标的颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | ------- | ------- | ------- |
+| color | Nullable\<[Color](../arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 原子化服务图标的颜色，undefined代表使用默认颜色。 |
+
+
+**示例：**
+
+```ts
+import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      atomicServiceBar.setIconColor(0x12345678);
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
+```
+## KeyboardAvoidMode<sup>11+</sup>
+
+配置键盘避让时页面的避让模式。
+
+| 名称   | 描述       |
+| ------ | ---------- |
+| OFFSET | 上抬模式。 |
+| RESIZE | 压缩模式。 |

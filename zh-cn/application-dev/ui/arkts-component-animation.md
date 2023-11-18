@@ -27,11 +27,13 @@ struct ComponentDemo {
     Row() {
       Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
         .select(true)
+        .shape(CheckBoxShape.ROUNDED_SQUARE)
         .selectedColor(0xed6f21)
         .size({ width: 50, height: 50 })
 
       Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
         .select(false)
+        .shape(CheckBoxShape.ROUNDED_SQUARE)
         .selectedColor(0x39a2db)
         .size({ width: 50, height: 50 })
     }

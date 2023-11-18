@@ -145,6 +145,19 @@ Enumerates the visibility types of the widget.
 | FORM_VISIBLE | 1   | The widget is visible.|
 | FORM_INVISIBLE   | 2   | The widget is invisible.|
 
+## FormUsageState
+
+Enumerates the usage statuses of widgets.
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+| Name       |  Value  | Description        |
+| ----------- | ---- | ------------ |
+| USED<sup>11+</sup> | 0   | The widget is in use.|
+| UNUSED<sup>11+</sup> | 1   | The widget is not in use.|
+
 ## RunningFormInfo<sup>10+</sup>
 
 Defines the information about the widget host.
@@ -163,10 +176,13 @@ Defines the information about the widget host.
 | abilityName<sup>10+</sup> | string               | Yes   | No    | Name of the ability to which the widget belongs.                      |
 | formName<sup>10+</sup>        | string               | Yes   | No    | Widget name.                                |
 | dimension | number               | Yes   | No    | Widget specifications.  |
+| formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | Yes   | No    | Usage status of the widget.  |
 
 ## formProviderFilter<sup>10+</sup>
 
 Defines the information about the widget provider.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -174,10 +190,11 @@ Defines the information about the widget provider.
 
 | Name       | Type                | Readable   | Writable   | Description                                                        |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| bundleName  | string               | Yes   | No    | Name of the bundle to which the widget provider belongs.<br>**Model restriction**: This API can be used only in the stage model.<br> |
-| formName    | string               | Yes   | No    | Widget name.<br>**Model restriction**: This API can be used only in the stage model.<br>                    |
-| moduleName  | string               | Yes   | No    | Name of the module to which the widget belongs.<br>**Model restriction**: This API can be used only in the stage model.<br>       |
-| abilityName | string               | Yes   | No    | Name of the ability to which the widget belongs.<br>**Model restriction**: This API can be used only in the stage model.<br>       |
+| bundleName  | string               | Yes   | No    | Name of the bundle to which the widget provider belongs. |
+| formName    | string               | Yes   | No    | Widget name.                    |
+| moduleName  | string               | Yes   | No    | Name of the module to which the widget belongs.       |
+| abilityName | string               | Yes   | No    | Name of the ability to which the widget belongs.       |
+| isUnusedIncluded<sup>11+</sup> | boolean               | Yes   | No    | Whether an unused widget is included.       |
 
 ## LaunchReason<sup>10+</sup>
 

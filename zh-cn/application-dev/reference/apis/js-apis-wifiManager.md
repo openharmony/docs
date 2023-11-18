@@ -15,7 +15,7 @@ import wifiManager from '@ohos.wifiManager';
 
 enableWifi(): void
 
-使能WLAN，异步接口，是否打开成功需要注册并监听wifiStateChange的回调。
+使能WLAN，异步接口，需要通过注册"wifiStateChange"事件的回调来监听是否打开成功。
 
 **系统接口：** 此接口为系统接口。
 
@@ -30,7 +30,7 @@ enableWifi(): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2501000  | Operation failed.|
-| 2501003  | Failed to enable Wi-Fi.|
+| 2501003  | Failed for wifi is closing.|
 
 **示例：**
 
@@ -48,7 +48,7 @@ enableWifi(): void
 
 disableWifi(): void
 
-去使能WLAN，异步接口，是否关闭成功需要注册并监听wifiStateChange的回调。
+去使能WLAN，异步接口，需要通过注册"wifiStateChange"事件的回调来监听是否关闭成功。
 
 **系统接口：** 此接口为系统接口。
 
@@ -63,7 +63,7 @@ disableWifi(): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2501000  | Operation failed.|
-| 2501004  | Failed to disable Wi-Fi.|
+| 2501004  | Failed for wifi is opening.|
 
 **示例：**
 
@@ -189,7 +189,7 @@ getScanResults(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
 
 | **类型** | **说明** |
 | -------- | -------- |
-| Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise对象。返回扫描到的热点列表。 |
+| Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt;&nbsp;&gt; | Promise对象。返回扫描到的热点列表。 |
 
 **错误码：**
 
@@ -212,8 +212,8 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | 是 | 回调函数。当成功时，err为0，data为扫描到的热点；否则err为非0值，data为空。 |
-  | Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | 返回扫描到的热点列表。 |
+| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt;&gt; | 是 | 回调函数。当成功时，err为0，data为扫描到的热点；否则err为非0值，data为空。 |
+  | Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt; | 返回扫描到的热点列表。 |
 
 **错误码：**
 
@@ -262,12 +262,14 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
           console.info("channelWidth: " + result[i].channelWidth);
           console.info("timestamp: " + result[i].timestamp);
       }
+  }).catch(err => {
+      console.error("failed:" + JSON.stringify(err));
   });
 ```
 
 ## wifiManager.getScanResultsSync<sup>9+</sup>
 
-getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
+getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt;
 
 获取扫描结果，使用同步方式返回结果。
 
@@ -279,7 +281,7 @@ getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
 
 | **类型** | **说明** |
 | -------- | -------- |
-| &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | 扫描结果数组。 |
+| &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt; | 扫描结果数组。 |
 
 **错误码：**
 
@@ -332,7 +334,7 @@ getScanInfoList(): Array&lt;WifiScanInfo&gt;;
 
 | **类型** | **说明** |
 | -------- | -------- |
-| Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | 返回扫描到的热点列表。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的bssid为真实设备地址，否则为随机设备地址。 |
+| Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt; | 返回扫描到的热点列表。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的bssid为真实设备地址，否则为随机设备地址。 |
 
 **错误码：**
 
@@ -380,11 +382,11 @@ WLAN热点信息。
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
-| bssid | string | 是 | 否 | 热点的BSSID。 |
+| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
+| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
 | bssidType<sup>10+</sup>| DeviceAddressType | 是 | 否 | 热点的BSSID类型。 |
 | capabilities | string | 是 | 否 | 热点能力。 |
-| securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | WLAN加密类型。 |
+| securityType | [WifiSecurityType](#wifisecuritytype9) | 是 | 否 | WLAN加密类型。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
 | band | number | 是 | 否 | WLAN接入点的频段。 |
 | frequency | number | 是 | 否 | WLAN接入点的频率。 |
@@ -419,11 +421,11 @@ wifi 设备地址（mac/bssid）类型。
 | WIFI_SEC_TYPE_WEP | 2 | Wired&nbsp;Equivalent&nbsp;Privacy&nbsp;(WEP)加密类型。 |
 | WIFI_SEC_TYPE_PSK | 3 | Pre-shared&nbsp;key&nbsp;(PSK)加密类型。 |
 | WIFI_SEC_TYPE_SAE | 4 | Simultaneous&nbsp;Authentication&nbsp;of&nbsp;Equals&nbsp;(SAE)加密类型。 |
-| WIFI_SEC_TYPE_EAP<sup>9+</sup> | 5 | EAP加密类型。 |
-| WIFI_SEC_TYPE_EAP_SUITE_B<sup>9+</sup> | 6 | Suite-B 192位加密类型。 |
-| WIFI_SEC_TYPE_OWE<sup>9+</sup> | 7 | 机会性无线加密类型。 |
-| WIFI_SEC_TYPE_WAPI_CERT<sup>9+</sup> | 8 | WAPI-Cert加密类型。 |
-| WIFI_SEC_TYPE_WAPI_PSK<sup>9+</sup> | 9 | WAPI-PSK加密类型。 |
+| WIFI_SEC_TYPE_EAP | 5 | EAP加密类型。 |
+| WIFI_SEC_TYPE_EAP_SUITE_B | 6 | Suite-B 192位加密类型。 |
+| WIFI_SEC_TYPE_OWE | 7 | 机会性无线加密类型。 |
+| WIFI_SEC_TYPE_WAPI_CERT | 8 | WAPI-Cert加密类型。 |
+| WIFI_SEC_TYPE_WAPI_PSK | 9 | WAPI-PSK加密类型。 |
 
 
 ## WifiBandType<sup>10+</sup>
@@ -578,7 +580,7 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
 
 **返回值：**
 
@@ -607,7 +609,9 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 		}
 		wifiManager.addDeviceConfig(config).then(result => {
 			console.info("result:" + JSON.stringify(result));
-		});	
+		}).catch(err => {
+			console.error("failed:" + JSON.stringify(err));
+		});
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -622,12 +626,12 @@ WLAN配置信息。
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
-| bssid | string | 是 | 否 | 热点的BSSID。 |
+| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
+| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
 | bssidType<sup>10+</sup> | DeviceAddressType | 是 | 否 | 热点的BSSID类型。 |
-| preSharedKey | string | 是 | 否 | 热点的密钥。 |
+| preSharedKey | string | 是 | 否 | 热点的密钥，最大长度为64字节。 |
 | isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。 |
-| securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | 加密类型。 |
+| securityType | [WifiSecurityType](#wifisecuritytype9)| 是 | 否 | 加密类型。 |
 | creatorUid | number | 是 | 否 | 创建用户的ID。 <br /> **系统接口：** 此接口为系统接口。 |
 | disableReason | number | 是 | 否 | 禁用原因。 <br /> **系统接口：** 此接口为系统接口。 |
 | netId | number | 是 | 否 | 分配的网络ID。 <br /> **系统接口：** 此接口为系统接口。 |
@@ -779,7 +783,7 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当操作成功时，err为0，data为添加的网络配置ID，如果data值为-1，表示添加失败。当error为非0，表示处理出现错误。 |
 
 **错误码：**
@@ -823,7 +827,7 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
 
 **返回值：**
 
@@ -851,7 +855,9 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 		}
 		wifiManager.addCandidateConfig(config).then(result => {
 			console.info("result:" + JSON.stringify(result));
-		});	
+		}).catch(err => {
+			console.error("failed:" + JSON.stringify(err));
+		});
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -871,7 +877,7 @@ addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&g
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当操作成功时，err为0，data为添加的网络配置ID，如果data值为-1，表示添加失败。如果操作出现错误，err为非0值。 |
 
 **错误码：**
@@ -939,7 +945,9 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 		let networkId = 0;
 		wifiManager.removeCandidateConfig(networkId).then(result => {
 			console.info("result:" + JSON.stringify(result));
-		});	
+		}).catch(err => {
+			console.error("failed:" + JSON.stringify(err));
+		});
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -986,7 +994,7 @@ removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): v
 
 ## wifiManager.getCandidateConfigs<sup>9+</sup>
 
-getCandidateConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
+getCandidateConfigs(): &nbsp;Array&lt;WifiDeviceConfig&gt;
 
 获取候选网络配置。
 
@@ -1002,7 +1010,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 
   | **类型** | **说明** |
   | -------- | -------- |
-  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | 候选网络配置数组。 |
+  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt; | 候选网络配置数组。 |
 
 **错误码：**
 
@@ -1064,9 +1072,8 @@ connectToCandidateConfig(networkId: number): void
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let networkId = 0;
-		let ret = wifiManager.connectToCandidateConfig(networkId);
-		console.info("result:" + ret);
+		let networkId = 0; // 实际的候选网络ID，在添加候选网络时生成，取自WifiDeviceConfig.netId
+		wifiManager.connectToCandidateConfig(networkId);
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -1130,7 +1137,7 @@ connectToDevice(config: WifiDeviceConfig): void
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
 
 **错误码：**
 
@@ -1252,7 +1259,7 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Promise对象。表示WLAN连接信息。 |
+  | Promise&lt;[WifiLinkedInfo](#wifilinkedinfo9)&gt; | Promise对象。表示WLAN连接信息。 |
 
 **错误码：**
 
@@ -1279,7 +1286,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | 是 | 回调函数。当获取成功时，err为0，data表示WLAN连接信息。如果error为非0，表示处理出现错误。 |
+  | callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo9)&gt; | 是 | 回调函数。当获取成功时，err为0，data表示WLAN连接信息。如果err为非0，表示处理出现错误。 |
 
 **错误码：**
 
@@ -1335,10 +1342,10 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | macType | number | 是 | 否 | MAC地址类型。0 - 随机MAC地址，1 - 设备MAC地址。 |
 | macAddress | string | 是 | 否 | 设备的MAC地址。 |
 | ipAddress | number | 是 | 否 | WLAN连接的IP地址。 |
-| suppState | [SuppState](#suppstate) | 是 | 否 | 请求状态。 <br /> **系统接口：** 此接口为系统接口。 |
-| connState | [ConnState](#connstate) | 是 | 否 | WLAN连接状态。 |
-| channelWidth<sup>10+</sup> | [WifiChannelWidth](#wifichannelwidth) | 是 | 否 | 当前连接热点的信道带宽。 |
-| wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard) | 是 | 否 | 当前连接热点的WiFi标准。 |
+| suppState | [SuppState](#suppstate9) | 是 | 否 | 请求状态。 <br /> **系统接口：** 此接口为系统接口。 |
+| connState | [ConnState](#connstate9) | 是 | 否 | WLAN连接状态。 |
+| channelWidth<sup>10+</sup> | [WifiChannelWidth](#wifichannelwidth9) | 是 | 否 | 当前连接热点的信道带宽。 |
+| wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | 是 | 否 | 当前连接热点的WiFi标准。 |
 
 ## ConnState<sup>9+</sup>
 
@@ -1764,7 +1771,7 @@ reconnect(): void
 
 ## wifiManager.getDeviceConfigs<sup>9+</sup>
 
-getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
+getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt;
 
 获取网络配置。
 
@@ -1782,7 +1789,7 @@ API 10起：ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
 
   | **类型** | **说明** |
   | -------- | -------- |
-  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | 网络配置信息的数组。 |
+  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt; | 网络配置信息的数组。 |
 
 **错误码：**
 
@@ -1820,7 +1827,7 @@ updateNetwork(config: WifiDeviceConfig): number
 
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
+  | config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。 |
 
 **返回值：**
 
@@ -2287,7 +2294,7 @@ setHotspotConfig(config: HotspotConfig): void
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 是 | 热点的SSID，编码格式为UTF-8。 |
-| securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 是 | 加密类型。 |
+| securityType | [WifiSecurityType](#wifisecuritytype9)| 是 | 是 | 加密类型。 |
 | band | number | 是 | 是 | 热点的带宽。1: 2.4G, 2: 5G, 3: 双模频段 |
 | channel<sup>10+</sup> | number | 是 | 是 | 热点的信道（2.4G：1~14,5G：7~196，双模频段：暂不支持）。 |
 | preSharedKey | string | 是 | 是 | 热点的密钥。 |
@@ -2333,7 +2340,7 @@ getHotspotConfig(): HotspotConfig
 
 ## wifiManager.getStations<sup>9+</sup>
 
-getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt;
+getStations(): &nbsp;Array&lt;StationInfo&gt;
 
 获取连接的设备。
 
@@ -2413,6 +2420,31 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
   | -------- | -------- |
 | 2801000  | Operation failed.|
 
+
+## wifiManager.getP2pLinkedInfo<sup>9+</sup>
+
+getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
+
+获取P2P连接信息，使用callback异步回调。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO
+
+**系统能力：** SystemCapability.Communication.WiFi.P2P
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示P2P连接信息。如果err为非0，表示处理出现错误。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
+
 **示例：**
 ```ts
 	import wifiManager from '@ohos.wifiManager';
@@ -2454,31 +2486,6 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 | -------- | -------- | -------- |
 | DISCONNECTED | 0 | 断开状态。 |
 | CONNECTED | 1 | 连接状态。 |
-
-
-## wifiManager.getP2pLinkedInfo<sup>9+</sup>
-
-getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
-
-获取P2P连接信息，使用callback异步回调。
-
-**需要权限：** ohos.permission.GET_WIFI_INFO
-
-**系统能力：** SystemCapability.Communication.WiFi.P2P
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示P2P连接信息。如果error为非0，表示处理出现错误。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
-
-| **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2801000  | Operation failed.|
 
 ## wifiManager.getCurrentGroup<sup>9+</sup>
 
@@ -2539,7 +2546,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 **示例：**
 ```ts
 	import wifiManager from '@ohos.wifiManager';
-
+	// p2p处于连接状态，才能正常获取到当前组信息
 	wifiManager.getCurrentGroup((err, data) => {
     if (err) {
         console.error("get current P2P group error");
@@ -2599,7 +2606,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示对端设备列表信息。如果error为非0，表示处理出现错误。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的deviceAddress为真实设备地址，否则为随机设备地址。 |
+| callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示对端设备列表信息。如果err为非0，表示处理出现错误。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的deviceAddress为真实设备地址，否则为随机设备地址。 |
 
 **错误码：**
 
@@ -2612,7 +2619,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 **示例：**
 ```ts
 	import wifiManager from '@ohos.wifiManager';
-
+	// p2p处于连接状态，才能正常获取到对端设备列表信息
 	wifiManager.getP2pPeerDevices((err, data) => {
     if (err) {
         console.error("get P2P peer devices error");
@@ -2706,7 +2713,7 @@ getP2pLocalDevice(callback: AsyncCallback&lt;WifiP2pDevice&gt;): void
 **示例：**
 ```ts
 	import wifiManager from '@ohos.wifiManager';
-
+	// p2p处于连接状态，才能正常获取到本端设备信息
 	wifiManager.getP2pLocalDevice((err, data) => {
     if (err) {
         console.error("get P2P local device error");
@@ -2788,7 +2795,7 @@ createGroup(config: WifiP2PConfig): void
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | GO_BAND_AUTO | 0 | 自动模式。 |
-| GO_BAND_2GHZ | 1 | 2GHZ。 |
+| GO_BAND_2GHZ | 1 | 2.4GHZ。 |
 | GO_BAND_5GHZ | 2 | 5GHZ。 |
 
 
@@ -3695,7 +3702,7 @@ on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"hotspotStaJoin"字符串。 |
-| callback | Callback&lt;StationInfo&gt; | 否 | 状态改变回调函数。 |
+| callback | Callback&lt;StationInfo&gt; | 是 | 状态改变回调函数。 |
 
 **错误码：**
 
@@ -3765,7 +3772,7 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"hotspotStaLeave"字符串。 |
-  | callback | Callback&lt;StationInf]&gt; | 否 | 状态改变回调函数。 |
+  | callback | Callback&lt;StationInf]&gt; | 是 | 状态改变回调函数。 |
 
 **错误码：**
 
@@ -3775,7 +3782,7 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
   | -------- | -------- |
 | 2601000  | Operation failed.|
 
-## wifiManager.off('hotspotStaLeave')<sup>7+</sup>
+## wifiManager.off('hotspotStaLeave')<sup>9+</sup>
 
 off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 

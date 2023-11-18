@@ -124,7 +124,7 @@ Sets the concerned target bundle. This API uses an asynchronous callback to retu
 | Name        | Type                       | Mandatory  | Description                                      |
 | ----------- | ------------------------- | ---- | ---------------------------------------- |
 | targetNames | Array&lt;string&gt;       | Yes   | Name of the target bundle.                                |
-| callback    | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation fails, **error** that contains data is returned.|
+| callback    | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation fails, **err** that contains data is returned.|
 
 **Example**
 
@@ -553,7 +553,7 @@ try {
 
 injectGesture(gesturePath: GesturePath): Promise\<void>;
 
-Inject a gesture. This API uses a promise to return the result.
+Injects a gesture. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -602,7 +602,7 @@ try {
 
 injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 
-Inject a gesture. This API uses an asynchronous callback to return the result.
+Injects a gesture. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1021,7 +1021,7 @@ try {
 
 findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityElement>>;
 
-Queries the element information of the **content** type. This API uses a promise to return the result.
+Finds an element based on the content type. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1029,7 +1029,7 @@ Queries the element information of the **content** type. This API uses a promise
 
 | Name      | Type    | Mandatory  | Description                           |
 | --------- | ------ | ---- | ----------------------------- |
-| type      | string | Yes   | Information type. The value is fixed at **'content'**.|
+| type      | string | Yes   | Type of element finding. The value is fixed at **'content'**.|
 | condition | string | Yes   | Search criteria.                     |
 
 **Return value**
@@ -1058,7 +1058,7 @@ try {
 
 findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
-Queries the element information of the **content** type. This API uses an asynchronous callback to return the result.
+Finds an element based on the content type. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1066,7 +1066,7 @@ Queries the element information of the **content** type. This API uses an asynch
 
 | Name      | Type                                      | Mandatory  | Description                          |
 | --------- | ---------------------------------------- | ---- | ---------------------------- |
-| type      | string                                   | Yes   | Information type. The value is fixed at **'content'**.|
+| type      | string                                   | Yes   | Type of element finding. The value is fixed at **'content'**.|
 | condition | string                                   | Yes   | Search criteria.                    |
 | callback  | AsyncCallback&lt;Array&lt;AccessibilityElement&gt;&gt; | Yes   | Callback used to return the result.    |
 
@@ -1094,7 +1094,7 @@ try {
 
 findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElement>;
 
-Queries the element information of the **focusType** type. This API uses a promise to return the result.
+Finds an element based on the focus type. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1102,8 +1102,8 @@ Queries the element information of the **focusType** type. This API uses a promi
 
 | Name      | Type                     | Mandatory  | Description                                |
 | --------- | ----------------------- | ---- | ---------------------------------- |
-| type      | string                  | Yes   | Information type. The value is fixed at **'focusType'**.|
-| condition | [FocusType](#focustype) | Yes   | Enumerates the focus types.                      |
+| type      | string                  | Yes   | Type of element finding. The value is fixed at **'focusType'**.|
+| condition | [FocusType](#focustype) | Yes   | Focus type.                      |
 
 **Return value**
 
@@ -1133,7 +1133,7 @@ try {
 
 findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<AccessibilityElement>): void;
 
-Queries the element information of the **focusType** type. This API uses an asynchronous callback to return the result.
+Finds an element based on the focus type. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1141,8 +1141,8 @@ Queries the element information of the **focusType** type. This API uses an asyn
 
 | Name      | Type                                      | Mandatory  | Description                                |
 | --------- | ---------------------------------------- | ---- | ---------------------------------- |
-| type      | string                                   | Yes   | Information type. The value is fixed at **'focusType'**.|
-| condition | [FocusType](#focustype)                  | Yes   | Enumerates the focus types.                      |
+| type      | string                                   | Yes   | Type of element finding. The value is fixed at **'focusType'**.|
+| condition | [FocusType](#focustype)                  | Yes   | Focus type.                      |
 | callback  | AsyncCallback&lt;AccessibilityElement&gt; | Yes   | Callback used to return the result.         |
 
 **Example**
@@ -1170,7 +1170,7 @@ try {
 
 findElement(type: 'focusDirection', condition: FocusDirection): Promise\<AccessibilityElement>;
 
-Queries the element information of the **focusDirection** type. This API uses a promise to return the result.
+Finds an element based on the focus direction. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1178,8 +1178,8 @@ Queries the element information of the **focusDirection** type. This API uses a 
 
 | Name      | Type                               | Mandatory  | Description                                      |
 | --------- | --------------------------------- | ---- | ---------------------------------------- |
-| type      | string                            | Yes   | Information type. The value is fixed at **'focusDirection'**.|
-| condition | [FocusDirection](#focusdirection) | Yes   | Enumerates the focus directions.                          |
+| type      | string                            | Yes   | Type of element finding. The value is fixed at **'focusDirection'**.|
+| condition | [FocusDirection](#focusdirection) | Yes   | Focus direction.                          |
 
 **Return value**
 
@@ -1209,7 +1209,7 @@ try {
 
 findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCallback\<AccessibilityElement>): void;
 
-Queries the element information of the **focusDirection** type. This API uses an asynchronous callback to return the result.
+Finds an element based on the focus direction. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1217,7 +1217,7 @@ Queries the element information of the **focusDirection** type. This API uses an
 
 | Name      | Type                                      | Mandatory  | Description                                      |
 | --------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type      | string                                   | Yes   | Information type. The value is fixed at **'focusDirection'**.|
+| type      | string                                   | Yes   | Type of element finding. The value is fixed at **'focusDirection'**.|
 | condition | [FocusDirection](#focusdirection)        | Yes   | Direction of the next focus element.                          |
 | callback  | AsyncCallback&lt;AccessibilityElement&gt; | Yes   | Callback used to return the result.             |
 

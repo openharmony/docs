@@ -348,6 +348,37 @@ javaScriptAccess(javaScriptAccess: boolean)
   }
   ```
 
+### overScrollMode<sup>11+</sup>
+
+overScrollMode(mode: OverScrollMode)
+
+设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
+| ------ | ----------- | ---- | --------------- | ------------------ |
+|  mode  | [OverScrollMode](#overscrollmode11枚举说明) | 是   | OverScrollMode.NEVER | 设置Web的过滚动模式为关闭或开启。|
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State mode: OverScrollMode = OverScrollMode.ALWAYS
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .overScrollMode(this.mode)
+      }
+    }
+  }
+  ```
+
 ### mixedMode
 
 mixedMode(mixedMode: MixedMode)
@@ -1455,6 +1486,150 @@ mediaOptions(options: WebMediaOptions)
   }
   ```
 
+### javaScriptOnDocumentStart<sup>11+</sup>
+
+javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
+
+将JavaScript脚本注入到Web组件中，当指定页面或者文档开始加载时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+
+> **说明：**
+>
+> - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
+| ------ | ----------- | ---- | --------------- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是   | - | 需要注入的的ScriptItem数组 |
+
+**ets示例：**
+
+  ```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct Index {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    private localStorage: string =
+        "if (typeof(Storage) !== 'undefined') {" +
+        "   localStorage.setItem('color', 'Red');" +
+        "}";
+    @State scripts: Array<ScriptItem> = [
+        { script: this.localStorage, scriptRules: ["*"] }
+    ];
+    build() {
+        Column({ space: 20 }) {
+            Web({ src: $rawfile('index.html'), controller: this.controller })
+                .javaScriptAccess(true)
+                .domStorageAccess(true)
+                .backgroundColor(Color.Grey)
+                .javaScriptOnDocumentStart(this.scripts)
+                .width('100%')
+                .height('100%')
+        }
+    }
+}
+  ```
+**HTML示例：**
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body style="font-size: 30px;" onload='bodyOnLoadLocalStorage()'>
+      Hello world!
+      <div id="result"></div>
+  </body>
+  <script type="text/javascript">
+    function bodyOnLoadLocalStorage() {
+      if (typeof(Storage) !== 'undefined') {
+        document.getElementById('result').innerHTML = localStorage.getItem('color');
+      } else {
+        document.getElementById('result').innerHTML = 'Your browser does not support localStorage.';
+      }
+    }
+  </script>
+</html>
+```
+
+### layoutMode<sup>11+</sup>
+
+layoutMode(mode: WebLayoutMode)
+
+设置Web布局模式。
+
+> **说明：**
+>
+> 目前只支持两种web布局模式，分别为Web布局跟随系统WebLayoutMode.NONE和Web基于页面大小的自适应网页布局WebLayoutMode.FIT_CONTENT。默认为WebLayoutMode.NONE模式。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述   |
+| ----- | -------- | ---- | ------ | --------- |
+|  mode  | [WebLayoutMode](#weblayoutmode11枚举说明) | 是   | WebLayoutMode.NONE | 设置web布局模式，跟随系统或自适应布局。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State mode: WebLayoutMode = WebLayoutMode.FIT_CONTENT
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .layoutMode(this.mode)
+      }
+    }
+  }
+  ```
+
+### nestedScroll<sup>11+</sup>
+
+nestedScroll(value: NestedScrollOptions)
+
+调用以设置嵌套滚动选项。
+
+> **说明：**
+>
+> - 设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
+> - 目前只支持前向后向模式相同，若模式不同则为默认模式。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填  | 参数描述           |
+| ----- | -------- | ---- | ------------------ |
+|  value  | [NestedScrollOptions](#nestedscrolloptions11对象说明) | 是 | 可滚动组件滚动时的嵌套滚动选项。|
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .nestedScroll({
+            scrollForward: NestedScrollOptions.SELF_FIRST,
+            scrollBackward: NestedScrollOptions.SELF_FIRST,
+          })
+      }
+    }
+  }
+  ```
+
 ## 事件
 
 不支持[通用事件](ts-universal-events-click.md)。
@@ -1646,7 +1821,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，触发默认弹窗。 |
 
 **示例：**
 
@@ -1725,6 +1900,8 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 ### onPrompt<sup>9+</sup>
 
 onPrompt(callback: (event?: { url: string; message: string; value: string; result: JsResult }) => boolean)
+
+网页调用prompt()告警时触发此回调。
 
 **参数：**
 
@@ -2296,7 +2473,7 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
     }
   }
   ```
-  
+
   加载的html文件。
   ```html
   <!DOCTYPE html>
@@ -3760,7 +3937,7 @@ onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
 onControllerAttached(callback: () => void)
 
-当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，  
+当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，
 因该回调调用时网页还未加载，无法在回调中使用有关操作网页的接口，例如[zoomIn](../apis/js-apis-webview.md#zoomin)、[zoomOut](../apis/js-apis-webview.md#zoomout)等，可以使用[loadUrl](../apis/js-apis-webview.md#loadurl)、[getWebId](../apis/js-apis-webview.md#getwebid)等操作网页不相关的接口。
 
 **示例：**
@@ -4752,6 +4929,13 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | Phone         | 电话号码。                    |
 | Unknown       | 未知内容。                    |
 
+ ## OverScrollMode<sup>11+</sup>枚举说明
+
+| 名称      | 描述                                   |
+| ------- | ------------------------------------ |
+| NEVER   | Web过滚动模式关闭。                     |
+| ALWAYS  | Web过滚动模式开启。                     |
+
 ## SslError<sup>9+</sup>枚举说明
 
 onSslErrorEventReceive接口返回的SSL错误的具体原因。
@@ -4800,6 +4984,26 @@ Web屏幕捕获的配置。
 | 名称           | 类型       | 可读 | 可写 | 必填 | 说明                         |
 | -------------- | --------- | ---- | ---- | --- | ---------------------------- |
 | captureMode |  [WebCaptureMode](#webcapturemode10枚举说明)  |  是  | 是  |  是  | Web屏幕捕获模式。 |
+
+## WebLayoutMode<sup>11+</sup>枚举说明
+| 名称      | 描述                                   |
+| ------- | ------------------------------------ |
+| NONE     | Web布局跟随系统。                    |
+| FIT_CONTENT      | Web基于页面大小的自适应网页布局。               |
+
+## NestedScrollOptions<sup>11+</sup>对象说明
+| 名称   | 类型   | 描述              |
+| ----- | ------ | ----------------- |
+| scrollForward | NestedScrollMode | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
+| scrollBackward | NestedScrollMode |  可滚动组件往起始端滚动时的嵌套滚动选项。 |
+
+## NestedScrollMode<sup>11+</sup>枚举说明
+| 名称     | 描述                             |
+| ------ | ------------------------------ |
+| SELF_ONLY   | 只自身滚动，不与父组件联动。  |
+| SELF_FIRST | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。        |
+| PARENT_FIRST  | 父组件先滚动，父组件滚动到边缘以后自身滚动。自身滚动到边缘后，如果有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 |
+| PARALLEL  | 自身和父组件同时滚动，自身和父组件都到达边缘以后，如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。|
 
 ## DataResubmissionHandler<sup>9+</sup>
 
@@ -5615,3 +5819,12 @@ saveCookie(): boolean
 | 类型      | 说明                   |
 | ------- | -------------------- |
 | boolean | 同步内存cookie到磁盘操作是否成功。 |
+
+## ScriptItem<sup>11+</sup>
+
+通过[javaScriptOnDocumentStart](#javascriptondocumentstart11)属性注入到Web组件的ScriptItem对象。
+
+| 名称        | 类型           | 必填 | 描述                             |
+| ----------- | -------------- | ---- | -------------------------------- |
+| script      | string         | 是   | 需要注入、执行的JavaScript脚本。 |
+| scriptRules | Array\<string> | 是   | 一组允许来源的匹配规则。         |

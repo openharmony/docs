@@ -55,7 +55,7 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[] })
 | backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | 底板颜色，默认值：页签类\#0c182431，单选类/多选类\#0c182431。 |
 | selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 按钮选中态底板颜色，默认值：页签类\#ffffffff，单选类/多选类\#ff007dff。 |
 | imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | 图片尺寸，默认值：{ width: 24, height: 24 }。<br/>**说明：**<br/>`imageSize`属性对仅图标按钮和图标+文本按钮生效，对仅文字按钮无效果。 |
-| buttonMargin            | [Margin](ts-types.md#margin)\|[Dimension](ts-types.md#dimension10) | 按钮内边距，默认值：{ top: 4, right: 8, bottom: 4, left: 8 }。 |
+| buttonMargin            | [Margin](ts-types.md#margin)\|[Dimension](ts-types.md#dimension10) | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: 4, right: 8, bottom: 4, left: 8 }`，图标+文本按钮`{ top: 6, right: 8, bottom: 6, left: 8 }`。 |
 | textMargin              | [Margin](ts-types.md#margin)\|[Dimension](ts-types.md#dimension10) | 文本内边距，默认值：0。                                      |
 
 ### constructor
@@ -142,7 +142,7 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 | backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | 底板颜色，默认值：页签类\#0c182431，单选类/多选类\#0c182431。 |
 | selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 按钮选中态底板颜色，默认值：页签类\#ffffffff，单选类/多选类\#ff007dff。 |
 | imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | 图片尺寸，默认值：{ width: 24, height: 24 }。<br/>**说明：**<br/>`imageSize`属性对仅图标按钮和图标+文本按钮生效，对仅文字按钮无效果。 |
-| buttonMargin            | [Margin](ts-types.md#margin)\|[Dimension](ts-types.md#dimension10) | 按钮内边距，默认值：{ top: 4, right: 8, bottom: 4, left: 8 }。 |
+| buttonMargin            | [Margin](ts-types.md#margin)\|[Dimension](ts-types.md#dimension10) | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: 4, right: 8, bottom: 4, left: 8 }`，图标+文本按钮`{ top: 6, right: 8, bottom: 6, left: 8 }`。 |
 | textMargin              | [Margin](ts-types.md#margin)\|[Dimension](ts-types.md#dimension10) | 文本内边距，默认值：0。                                      |
 
 ## TabSegmentButtonConstructionOptions

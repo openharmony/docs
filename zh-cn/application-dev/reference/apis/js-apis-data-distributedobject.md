@@ -87,7 +87,7 @@ class SourceObject {
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         let source: SourceObject = new SourceObject("amy", 18, false);
-        let g_object: distributedObject.DataObject = distributedObject.create(this.context, source);
+        g_object = distributedObject.create(this.context, source);
     }
 }
 ```
@@ -115,7 +115,7 @@ let sessionId: string = distributedObject.genSessionId();
 
 ## SaveSuccessResponse<sup>9+</sup>
 
-save接口回调信息。
+[save](#save9)接口回调信息。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -123,11 +123,11 @@ save接口回调信息。
 | -------- | -------- | -------- | -------- |
 | sessionId | string | 是 | 多设备协同的唯一标识。 |
 | version | number | 是 | 已保存对象的版本。 |
-| deviceId | string | 是 | 存储数据的设备号，标识需要保存对象的设备。默认为"local"，标识本地设备；可自定义设置其他标识设备的字符串。 |
+| deviceId | string | 是 | 存储数据的设备号，标识需要保存对象的设备。"local"表示本地设备，否则表示其他设备的设备号。 |
 
 ## RevokeSaveSuccessResponse<sup>9+</sup>
 
-revokeSave接口回调信息。
+[revokeSave](#revokesave9)接口回调信息。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -143,7 +143,7 @@ revokeSave接口回调信息。
 
 setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
-设置同步的sessionId，当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
+设置sessionId，使用callback方式异步回调。当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -153,7 +153,7 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | sessionId | string | 是 | 分布式数据对象在可信组网中的标识ID。|
+  | sessionId | string | 是 | 分布式数据对象在可信组网中的标识ID。设置为""时表示退出分布式组网。|
   | callback | AsyncCallback&lt;void&gt; | 是 | 加入session的异步回调。|
 
 **错误码：**
@@ -171,13 +171,17 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 g_object.setSessionId(distributedObject.genSessionId(), ()=>{
     console.info("join session");
 });
+// g_object退出分布式组网
+g_object.setSessionId("", ()=>{
+    console.info("join session");
+});
 ```
 
 ### setSessionId<sup>9+</sup>
 
 setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
-退出所有已加入的session。
+退出所有已加入的session，使用callback方式异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -214,7 +218,7 @@ g_object.setSessionId(() => {
 
 setSessionId(sessionId?: string): Promise&lt;void&gt;
 
-设置同步的sessionId，当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
+设置sessionId，使用Promise异步返回。当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -259,7 +263,7 @@ g_object.setSessionId().then (()=>{
 
 ### on('change')<sup>9+</sup>
 
-on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void ): void
+on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void
 
 监听分布式数据对象的数据变更。
 
@@ -287,7 +291,7 @@ g_object.on("change", (sessionId: string, fields: Array<string>) => {
 
 ### off('change')<sup>9+</sup>
 
-off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void ): void
+off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void): void
 
 当不再进行数据变更监听时，使用此接口删除对象的变更监听。
 
@@ -545,7 +549,7 @@ createDistributedObject(source: object): DistributedObject
 
 > **说明：**
 >
-> 从 API Version 8 开始支持，从 API Version 9 开始废弃，建议使用distributedObject.create替代。
+> 从 API Version 8 开始支持，从 API Version 9 开始废弃，建议使用[distributedObject.create](#distributedobjectcreate9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -589,7 +593,7 @@ let g_object: distributedObject.DistributedObject = distributedObject.createDist
 
 setSessionId(sessionId?: string): boolean
 
-设置同步的sessionId，当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
+设置sessionId，当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
 
 > **说明：**
 >

@@ -57,7 +57,7 @@ let server: string = "ntpserver.com";
 try {
   systemManager.setNTPServer(wantTemp, server);
   console.info('Succeeded in setting NTPserver');
-} catch (error) {
+} catch (err) {
   console.error(`Failed to set usb policy. Code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -105,12 +105,10 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-
-systemManager.getNTPServer(wantTemp).then((result) => {
-  console.info(`Succeeded in get NTP server, result : ${result}`);
-}).catch((err: BusinessError) => {
-  console.error(`Failed to get NTP server. Code: ${err.code}, message: ${err.message}`);
-});
+try {
+  systemManager.getNTPServer(wantTemp);
+  console.info('Succeeded in getting NTP server');
+} catch (err) {
+  console.error(`Failed to set usb policy. Code is ${err.code}, message is ${err.message}`);
+}
 ```
-
-## 

@@ -25,10 +25,12 @@ import DataShareResultSet from '@ohos.data.DataShareResultSet';
 import dataShare from '@ohos.data.dataShare';
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility'
 
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShare.createDataShareHelper(this.context, uri, (err, data) => {
+let context = getContext(UIAbility);
+dataShare.createDataShareHelper(context, uri, (err, data) => {
   if (err != undefined) {
     console.error("createDataShareHelper fail, error message : " + err);
   } else {
@@ -53,6 +55,8 @@ if (dataShareHelper != undefined) {
 
 ## DataShareResultSet
 提供通过查询数据库生成的结果集的相关访问方法。
+
+列或键名称作为字符串数组返回，其中字符串的顺序与结果集中的列或键的顺序相同。
 
 ### 属性
 
@@ -82,6 +86,7 @@ goToFirstRow(): boolean
 **示例：**
 
 ```ts
+// resultSet需依照本页的使用说明进行创建。
 if (resultSet != undefined) {
   let isGoToFirstRow = (resultSet as DataShareResultSet).goToFirstRow();
   console.info('resultSet.goToFirstRow: ' + isGoToFirstRow);
@@ -159,7 +164,7 @@ if (resultSet != undefined) {
 
 ### goTo
 
-goTo(offset:number): boolean
+goTo(offset: number): boolean
 
 相对于当前位置向前或向后移动指定行数。
 
@@ -222,6 +227,8 @@ if (resultSet != undefined) {
 getBlob(columnIndex: number): Uint8Array
 
 以字节数组的形式获取当前行中指定列的值。
+
+如果当前行中指定的列或键的值为空，或者指定的列或键不是Blob类型，则实现类确定是否抛出异常。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 

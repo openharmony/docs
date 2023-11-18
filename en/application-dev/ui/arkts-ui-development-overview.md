@@ -1,12 +1,12 @@
 # UI Development (ArkTS-based Declarative Development Paradigm) Overview
 
 
-Powered by the ArkTS-based declarative development paradigm, ArkUI is a simplified, high-performance UI development framework for cross-device applications. It provides the capabilities required for building the OpenHarmony application UI, including:
+Powered by the ArkTS-based declarative development paradigm, ArkUI is a simplified, high-performance UI development framework for cross-device applications. It provides the capabilities required for building the application UI, including:
 
 
 - **ArkTS**
 
-  ArkTS is a UI development language. As a superset of TypeScript, ArkTS contains all TS features and added features, including a wide array of decorators, custom components, and the UI description mechanism. State data management provides clear page update and rendering processes and pipes through decorators with different functions. State management covers UI component states and application states. With these features, you are able to build an application-wide data update and UI rendering process. To learn more about ArkTS, see [Getting Started with ArkTS](../quick-start/arkts-get-started.md).
+  ArkTS is the preferred programming language for application development in OpenHarmony. As a superset of [TypeScript](https://www.typescriptlang.org/) (TS for short), it contains all TS features and added features – declarative UI description, custom components, dynamic extension of UI elements, state management, and rendering control. State management provides clear page re-render processes and pipes through decorators with different functions. State management covers UI component states and application states, with which you are able to build an application-wide data update and UI rendering process. To learn more about ArkTS, see [Getting Started with ArkTS](../quick-start/arkts-get-started.md).
 
 - **Layout**
 
@@ -80,16 +80,10 @@ The table below lists the main tasks involved in UI development with ArkUI. You 
 
 | Task         | Description                                 | Guide                                    |
 | ----------- | ----------------------------------- | ---------------------------------------- |
-| Get started with ArkTS    | Learn the basic syntax, state management, and rendering control scenarios of ArkTS.        | - [Basic Syntax Overview](../quick-start/arkts-basic-syntax-overview.md)<br>- [State Management](../quick-start/arkts-state-management-overview.md)<br>- [Rendering Control](../quick-start/arkts-rendering-control-overview.md) |
-| Develop the layout       | Understand the common layouts and how to improve layout performance.            | - [Layout Overview](arkts-layout-development-overview.md)<br>- [Improving Layout Performance](arkts-layout-development-performance-boost.md)|
+| Get started with ArkTS    | Learn the basic syntax, state management, and rendering control scenarios of ArkTS.        | - [Basic Syntax Overview](../quick-start/arkts-basic-syntax-overview.md)<br>- [State Management](../quick-start/arkts-state-management-overview.md)<br>- [Rendering Control](../quick-start/arkts-rendering-control-ifelse.md)|
+| Develop the layout       | Understand the common layouts.            | - [Layout Overview](arkts-layout-development-overview.md)<br>|
 | Add components       | Learn the usage of common built-in components, custom components, and GUI elements supported by APIs.| - [Common Components](arkts-common-components-button.md)<br>- [Custom Components](../quick-start/arkts-create-custom-components.md)<br>- [Popup and Menu](arkts-popup-and-menu-components-popup.md)|
 | Set page routing and component navigation| Learn how to set page routes and navigation between components.               | - [Page Routing](arkts-routing.md)<br>- [Navigation](arkts-navigation-navigation.md)|
 | Use graphics       | Understand how to display images, draw custom geometry, and make custom graphics on the canvas.  | - [Displaying Images](arkts-graphics-display.md)<br>- [Drawing Geometric Shapes](arkts-geometric-shape-drawing.md)<br>- [Drawing Custom Graphics Using the Canvas](arkts-drawing-customization-on-canvas.md)|
-| Apply animations       | Learn the typical scenarios of applying animations on components and pages.                 | - [Attribute Animation](arkts-attribute-animation-overview.md)<br>- [Transition Animation](arkts-transition-overview.md)<br>- [Component Animation](arkts-component-animation.md)<br>- [Animated Curve](arkts-traditional-curve.md)<br>- [Animation Smoothing](arkts-animation-smoothing.md)<br>- [Animation Effects](arkts-blur-effect.md)|
+| Apply animations       | Learn the typical scenarios of applying animations on components and pages.                 | - [Property Animation](arkts-attribute-animation-overview.md)<br>- [Transition Animation](arkts-transition-overview.md)<br>- [Component Animation](arkts-component-animation.md)<br>- [Animated Curve](arkts-traditional-curve.md)<br>- [Animation Smoothing](arkts-animation-smoothing.md)<br>- [Animation Effects](arkts-blur-effect.md)|
 | Bind events       | Learn the basic concepts of events and how to use common events and gesture events.          | - [Universal Events](arkts-common-events-touch-screen-event.md)<br>- [Gesture Events](arkts-gesture-events-binding.md)|
-
-##  
-
- 
-
- 

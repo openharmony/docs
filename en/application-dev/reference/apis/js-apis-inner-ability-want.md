@@ -33,6 +33,8 @@ import Want from '@ohos.app.ability.Want';
 - Basic usage (called in a UIAbility object, where context in the example is the context object of the UIAbility).
 
   ```ts
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import Want from '@ohos.app.ability.Want';
   import { BusinessError } from '@ohos.base';
 
@@ -42,10 +44,14 @@ import Want from '@ohos.app.ability.Want';
     abilityName: 'EntryAbility',
     moduleName: 'entry', // moduleName is optional.
   };
-  this.context.startAbility(want, (error: BusinessError) => {
-      // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
-      console.error('error.code = ${error.code}');
-  });
+  class MyAbility extends UIAbility{
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam){
+      this.context.startAbility(want, (error: BusinessError) => {
+        // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
+        console.error(`error.code = ${error.code}`);
+      });
+    }
+  }
   ```
 
 - Passing a file descriptor (FD) (called in the UIAbility object, where context in the example is the context object of the UIAbility):
@@ -54,26 +60,35 @@ import Want from '@ohos.app.ability.Want';
   import fs from '@ohos.file.fs';
   import Want from '@ohos.app.ability.Want';
   import { BusinessError } from '@ohos.base';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
   // ...
   let fd: number = 0;
   try {
-      fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
+    fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
   } catch(e) {
-      console.error(`openSync fail: ${JSON.stringify(e)}`);
+    console.error(`openSync fail: ${JSON.stringify(e)}`);
   }
+
+
   let want: Want = {
     deviceId: '', // An empty deviceId indicates the local device.
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility',
     moduleName: 'entry', // moduleName is optional.
     parameters: {
-          'keyFd':{'type':'FD', 'value':fd}
-      }
+      'keyFd':{'type':'FD', 'value':fd}
+    }
   };
-  this.context.startAbility(want, (error: BusinessError) => {
-      // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
-      console.error(`error.code = ${error.code}`);
-  });
+  class MyAbility extends UIAbility{
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam){
+      this.context.startAbility(want, (error: BusinessError) => {
+        // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
+        console.error(`error.code = ${error.code}`);
+      });
+    }
+  }
   // ...
   ```
   

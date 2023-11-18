@@ -461,7 +461,7 @@ setTransferList(transfer?: ArrayBuffer[]): void
 设置任务的传输列表。使用该方法前需要先构造Task。
 
 > **说明：**<br/>
-> 此接口可以设置任务池中ArrayBuffer的transfer列表，transfer列表中的ArrayBuffer对象在传输时不会复制buffer内容到工作线程而是转移buffer控制权至工作线程，传输后当前的ArrayBuffer失效。
+> 此接口可以设置任务池中ArrayBuffer的transfer列表，transfer列表中的ArrayBuffer对象在传输时不会复制buffer内容到工作线程而是转移buffer控制权至工作线程，传输后当前的ArrayBuffer失效。若ArrayBuffer为空，则不会transfer转移。
 
 **系统能力：** SystemCapability.Utils.Lang
 

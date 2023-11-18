@@ -805,7 +805,7 @@ Obtains a **Calendar** object.
 
 ### constructor<sup>11+</sup>
 
-constructor(locale: string)
+constructor(locale?: string)
 
 Creates an **entityRecognizer** object.
 
@@ -815,7 +815,15 @@ Creates an **entityRecognizer** object.
 
 | Name | Type  | Mandatory  | Description               |
 | ---- | ---- | ---- | ----------------- |
-| locale | string | Yes   | Locale ID.|
+| locale | string | No   | Locale ID.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | param value not valid |
 
 **Example**
   ```ts
@@ -827,6 +835,8 @@ Creates an **entityRecognizer** object.
 findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 Recognizes entities in text.
+
+**System capability**: SystemCapability.Global.I18n
 
 **Parameters**
 
@@ -840,19 +850,11 @@ Recognizes entities in text.
 | ---- | ----------------- |
 | Array&lt;[EntityInfoItem](#entityinfoitem11)&gt; | List of recognized entities.|
 
-**Error codes**
-
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
-
-| ID | Error Message                  |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **Example**
   ```ts
   let entityRecognizer: I18n.EntityRecognizer = new I18n.EntityRecognizer("zh-CN");
   let text: string = " If you have any questions, call us by phone 12345678";
-  let result: Array<EntityInfoItem> = entityRecognizer.findEntityInfo(text); // result[0].type = "phone_number", result[0].begin = 8, result[0].end = 19
+  let result: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text); // result[0].type = "phone_number", result[0].begin = 8, result[0].end = 19
   ```
 
 ## EntityInfoItem<sup>11+</sup>

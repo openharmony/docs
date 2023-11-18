@@ -155,7 +155,6 @@ formObserver.on('formRemove', (data: formInfo.RunningFormInfo) => {
 | hostBundleName | string | 是 | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片删除事件。 |
 | observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 是 | 回调函数。返回删除卡片的RunningFormInfo。 |
 
-
 **示例：**
 
 ```ts
@@ -681,6 +680,7 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, cal
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
+**示例：**
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
@@ -744,6 +744,7 @@ getRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
+**示例：**
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
@@ -798,6 +799,7 @@ getRunningFormInfoById(formId: string, isUnusedIncluded: boolean): Promise&lt;fo
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
+**示例：**
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
@@ -848,6 +850,8 @@ getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;formInfo.Runni
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
+**示例：**
+
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
 import formInfo from '@ohos.app.form.formInfo';
@@ -896,6 +900,8 @@ getRunningFormInfoById(formId: string, isUnusedIncluded: boolean, callback: Asyn
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
+
+**示例：**
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';

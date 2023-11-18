@@ -45,8 +45,8 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  volumemanager.getAllVolumes().then((volumes: volumemanager.Volume) => {
-    // do something
+  volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    // do something with volumes, which is an array
   }).catch((error: BusinessError) => {
     console.info("getAllVolumes failed");
   });
@@ -84,7 +84,7 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  volumemanager.getAllVolumes((error: BusinessError, volumes: volumemanager.Volume) => {
+  volumemanager.getAllVolumes((error: BusinessError, volumes: Array<volumemanager.Volume>) => {
     // do something
   });
   ```

@@ -14,7 +14,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 ## appManager.isRunningInStabilityTest
 
-static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
+isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 查询当前是否处于稳定性测试场景。
 
@@ -51,7 +51,7 @@ appManager.isRunningInStabilityTest((err, flag) => {
 
 ## appManager.isRunningInStabilityTest
 
-static isRunningInStabilityTest(): Promise&lt;boolean&gt;
+isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 查询当前是否处于稳定性测试场景。
 
@@ -231,7 +231,7 @@ appManager.getAppMemorySize((err, data) => {
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
-获取有关运行进程的信息。
+获取运行进程的有关信息。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -268,7 +268,7 @@ appManager.getRunningProcessInformation().then((data) => {
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
 
-获取有关运行进程的信息。
+获取运行进程的有关信息。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -368,7 +368,7 @@ isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCa
 | --------- | ---------------------------------------- | ---- | -------------- |
 | bundleName    | string   | 是    | 表示要查询的共享库包名。 |
 | versionCode   | number   | 是    | 表示要查询的共享库版本号。      |
-|AsyncCallback\<boolean>> | 回调函数。返回true表示共享库正在使用，返回false表示共享库不在使用。 |
+| callback    | syncCallback\<boolean>> | 是    | 回调函数。返回true表示共享库正在使用，返回false表示共享库不在使用。 |
 
 **错误码**：
 
@@ -1399,7 +1399,7 @@ try {
 | STATE_BACKGROUND        | 4   |       当应用处于后台不可见时处于的状态。           |
 | STATE_DESTROY        | 5   |           当应用在销毁的时候处于的状态。       |
 
-## ProcessState
+## ProcessState<sup>10+</sup>
 
 进程状态，该类型为枚举，可配合[ProcessData](js-apis-inner-application-processData.md)返回相应的进程状态。
 
@@ -1407,8 +1407,8 @@ try {
 
 | 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
-| STATE_CREATE<sup>10+<sup>    | 0   |      当进程在创建中的时候处于的状态。       |
-| STATE_FOREGROUND<sup>10+<sup>          | 1   |            当进程切换到前台的时候处于的状态。      |
-| STATE_ACTIVE<sup>10+<sup>  | 2   |          当进程在获焦的时候处于的状态。   |
-| STATE_BACKGROUND<sup>10+<sup>        | 3   |       当进程处于后台不可见时处于的状态。           |
-| STATE_DESTROY<sup>10+<sup>        | 4   |         当进程在销毁的时候处于的状态。         |
+| STATE_CREATE    | 0   |      当进程在创建中的时候处于的状态。       |
+| STATE_FOREGROUND          | 1   |            当进程切换到前台的时候处于的状态。      |
+| STATE_ACTIVE  | 2   |          当进程在获焦的时候处于的状态。   |
+| STATE_BACKGROUND        | 3   |       当进程处于后台不可见时处于的状态。           |
+| STATE_DESTROY        | 4   |         当进程在销毁的时候处于的状态。         |

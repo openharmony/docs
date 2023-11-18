@@ -1,6 +1,6 @@
 # @ohos.app.ability.childProcessManager (childProcessManager)
 
-The **childProcessManager** module provides the child process management capability. Currently, it provides APIs to start the child process.
+The **childProcessManager** module provides the child process management capability. Currently, it provides APIs to start the child process and is available only for tablets.
 
 > **NOTE**
 >
@@ -28,7 +28,7 @@ Enumerates the child process start modes.
 
 startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;;
 
-Creates a child process and invokes the entrypoint method of the child process. This API uses a promise to return the result. A PID is returned once the child process is created. However, this does not mean that the child process is started. It is started only when the entrypoint method of the child process is successfully invoked.
+Creates a child process and invokes the entrypoint method of the child process. This API uses a promise to return the result. A PID is returned once the child process is created. However, this does not mean that the child process is started. It is started only when the entrypoint method of the child process is successfully invoked. This API cannot be called by a child process to create its child process.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -36,7 +36,7 @@ Creates a child process and invokes the entrypoint method of the child process. 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | Yes| Relative path of the source file of the child process.|
+  | srcEntry | string | Yes| Relative path of the source file of the child process. Currently, the source file can be stored only in the module of the entry type.|
   | startMode | [StartMode](#childprocessmanagerstartmode) | Yes| Start mode of the child process.|
 
 **Return value**
@@ -69,8 +69,10 @@ export default class DemoProcess extends ChildProcess {
 
 // Call childProcessManager.startChildProcess to start the child process.
 import childProcessManager from '@ohos.app.ability.childProcessManager';
+import DemoProcess from '../process/DemoProcess';
 
 try {
+  DemoProcess.toString(); // Call any API of the DemoProcess class to prevent the code from being directly optimized by the compiler because it is not being referenced.
   childProcessManager.startChildProcess("./ets/process/DemoProcess.ts", childProcessManager.StartMode.SELF_FORK)
     .then((data) => {
       console.log(`startChildProcess success, pid: ${data}`);
@@ -86,7 +88,7 @@ try {
 
 startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallback&lt;number&gt;): void;
 
-Creates a child process and invokes the entrypoint method of the child process. This API uses an asynchronous callback to return the result. A PID is returned once the child process is created. However, this does not mean that the child process is started. It is started only when the entrypoint method of the child process is successfully invoked.
+Creates a child process and invokes the entrypoint method of the child process. This API uses an asynchronous callback to return the result. A PID is returned once the child process is created. However, this does not mean that the child process is started. It is started only when the entrypoint method of the child process is successfully invoked. This API cannot be called by a child process to create its child process.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -94,7 +96,7 @@ Creates a child process and invokes the entrypoint method of the child process. 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | Yes| Relative path of the source file of the child process.|
+  | srcEntry | string | Yes| Relative path of the source file of the child process. Currently, the source file can be stored only in the module of the entry type.|
   | startMode | [StartMode](#childprocessmanagerstartmode) | Yes| Start mode of the child process.|
   | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the PID of the child process.|
 
@@ -122,8 +124,10 @@ export default class DemoProcess extends ChildProcess {
 
 // Call childProcessManager.startChildProcess to start the child process.
 import childProcessManager from '@ohos.app.ability.childProcessManager';
+import DemoProcess from '../process/DemoProcess';
 
 try {
+  DemoProcess.toString(); // Call any API of the DemoProcess class to prevent the code from being directly optimized by the compiler because it is not being referenced.
   childProcessManager.startChildProcess("./ets/process/DemoProcess.ts", childProcessManager.StartMode.SELF_FORK, (err, data) => {
     if (data) {
       console.log(`startChildProcess success, pid: ${data}`);

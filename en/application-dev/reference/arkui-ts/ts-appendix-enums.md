@@ -566,9 +566,32 @@ This API is supported in ArkTS widgets.
 | DEFAULT | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.|
 | INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>The **showError** attribute is not supported for this style.|
 
-## MenuPreviewMode <sup>11+</sup>
+## MenuPreviewMode<sup>11+</sup>
 
 | Name | Description                                  |
 | ----- | -------------------------------------- |
 | NONE  | No preview is displayed.                      |
 | IMAGE | The preview is a screenshot of the component on which a long-press triggers the context menu.|
+
+## Nullable<sup>11+</sup>
+
+Nullable\<T> {
+
+(data: T);
+
+}
+
+The object of this type can be of a custom type or **undefined**.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description                      |
+| ---- | ---- | ---- | -------------------------- |
+| data | T    | Yes  | The object of this type can be of a custom type or **undefined**.|
+
+## WordBreak<sup>11+</sup>
+| Name | Description                                  |
+| ----- | -------------------------------------- |
+| NORMAL  | Word breaks can occur between any two characters for Chinese, Japanese, and Korean (CJK) text, but can occur only at a space character for non-CJK text (such as English).|
+| BREAK_ALL | Word breaks can occur between any two characters for non-CJK text. CJK text behavior is the same as for **NORMAL**.|
+| BREAK_WORD | This option has the same effect as **BREAK_ALL** for non-CJK text, except that it does not break unbreakable words. CJK text behavior is the same as for **NORMAL**.|

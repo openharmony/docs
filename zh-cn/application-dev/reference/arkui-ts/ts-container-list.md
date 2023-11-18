@@ -56,7 +56,7 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 | scrollBar                             | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10的默认值为BarState.Auto。 |
 | cachedCount                           | number                                   | 设置列表中ListItem/ListItemGroup的预加载数量，只在[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。具体使用可参考[减少应用白块说明](../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<br/>默认值：1<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>单列模式下，会在List显示的ListItem前后各缓存cachedCount个ListItem。<br/>多列模式下， 会在List显示的ListItem前后各缓存cachedCount*列数个ListItem。 |
 | editMode<sup>(deprecated)</sup>       | boolean                                  | 声明当前List组件是否处于可编辑模式。<br/>从API version9开始废弃。可参考[示例3](#示例3)实现删除选中的list项。<br/>默认值：false |
-| edgeEffect                            | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 设置组件的滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.Spring<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| edgeEffect                            | [EdgeEffect](ts-appendix-enums.md#edgeeffect), [EdgeEffectOptions<sup>11+</sup>](ts-container-scroll.md#edgeeffectoptions11对象说明)?:   | 设置组件的滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.Spring<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>edgeEffectOptions用于设置组件内容大小小于组件自身时，是否开启滑动效果<br/>默认值：false |
 | chainAnimation                        | boolean                                  | 设置当前List是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：List内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。<br/>默认值：false<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>链式动效生效后，List的分割线不显示。<br>链式动效生效需要满足以下前提条件：<br> -&nbsp; List边缘效果为Spring类型<br> -&nbsp; List没有启用多列模式 |
 | chainAnimationOptions<sup>10+</sup>   | [ChainAnimationOptions](#chainanimationoptions10对象说明) | 设置链式联动动效参数。<br>**系统API：** 此接口为系统接口。      |
 | multiSelectable<sup>8+</sup>          | boolean                                  | 是否开启鼠标框选。<br/>默认值：false<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
@@ -86,7 +86,7 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 | ------ | ---------------------------------- |
 | None   | ListItemGroup的header不吸顶，footer不吸底。 |
 | Header | ListItemGroup的header吸顶，footer不吸底。  |
-| Footer | ListItemGroup的footer吸底，header不吸底。  |
+| Footer | ListItemGroup的footer吸底，header不吸顶。  |
 
 ## ChainEdgeEffect<sup>10+</sup>枚举说明
 
@@ -133,6 +133,14 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 | START  | 视图中的第一项将在列表的开头对齐。<br/>**说明：**<br/>当列表位移至末端，需要将末端的item完整显示，可能出现开头不对齐的情况。 |
 | CENTER | 视图中的中间项将在列表中心对齐。<br/>**说明：**<br/>顶端和末尾的item都可以在列表中心对齐，列表显示可能露出空白，第一个或最后一个item会对齐到中间位置。 |
 | END    | 视图中的最后一项将在列表末尾对齐。<br/>**说明：**<br/>当列表位移至顶端，需要将顶端的item完整显示，可能出现末尾不对齐的情况。 |
+## CloseAllSwipeActions<sup>11+</sup>对象说明
+
+收起[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态[ListItem](ts-container-listitem.md)回调事件集合，用于设置收起动画完成后回调事件。
+
+| 名称     | 类型     | 必填 | 说明                   |
+| :------- | -------- | ---- | ---------------------- |
+| onFinish | ()=>void | 否   | 在收起动画完成后触发。 |
+
 ## 事件
 
 | 名称                                       | 功能描述                                     |
@@ -231,6 +239,22 @@ getItemRectInGroup(index: number, indexInGroup: number): RectResult
 | 类型       | 说明       |
 | -------------------  | -------- |
 | [RectResult](ts-types.md#rectresult10) | ListItemGroup中的ListItem的大小和相对于List的位置。 |
+
+### closeAllSwipeActions<sup>11+</sup>
+
+closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11对象说明)): void
+
+将[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态的[ListItem](ts-container-listitem.md)收起，并设置回调事件。
+
+**参数：**
+
+| 参数名  | 参数类型                                                   | 必填 | 参数描述                                                     |
+| ------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [CloseSwipeActionOptions](#closeallswipeactions11对象说明) | 否   | 收起[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态的[ListItem](ts-container-listitem.md)的回调事件集合。 |
+
+> **说明：**
+>
+> - ListScroller必须绑定到List组件上。
 
 ## 示例
 
@@ -431,7 +455,6 @@ struct ListExample {
         .scrollSnapAlign(ScrollSnapAlign.CENTER)
         .borderRadius(10)
         .backgroundColor(0xDCDCDC)
-        .width('100%')
       }
       .width('100%')
       .height('100%')

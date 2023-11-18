@@ -1,4 +1,4 @@
-# 显式动画
+# 显式动画（animateTo）
 
 提供全局animateTo显式动画接口来指定由于闭包代码导致的状态变化插入过渡动效。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态，例如文字、canvas的内容、linearGradient等，如果要内容跟随宽高变化，可以使用[renderFit](ts-universal-attributes-renderfit.md)属性配置。
 
@@ -30,6 +30,7 @@ animateTo(value: AnimateParam, event: () => void): void
 | iterations | number                                   | 动画播放次数。默认播放一次，设置为-1时表示无限次播放。<br/>默认值：1          |
 | playMode   | [PlayMode](ts-appendix-enums.md#playmode) | 动画播放模式，默认播放完成后重头开始播放。<br/>默认值：PlayMode.Normal<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>相关使用约束请参考PlayMode说明。 |
 | onFinish   | ()&nbsp;=&gt;&nbsp;void                  | 动画播放完成回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| finishCallbackType<sup>11+</sup>   | [FinishCallbackType](ts-appendix-enums.md#finishcallbacktype11) | 在动画中定义onFinish回调的类型。<br/>默认值：FinishCallbackType.REMOVED<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。 |
 
 > **PlayMode说明：**
 > - PlayMode推荐使用PlayMode.Normal和PlayMode.Alternate，此场景下动画的第一轮是正向播放的。如使用PlayMode.Reverse和PlayMode.AlternateReverse，则动画的第一轮是逆向播放的，在动画刚开始时会跳变到终止状态，然后逆向播放动画。
