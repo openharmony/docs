@@ -351,7 +351,7 @@ The process of signing a HAP is as follows:
        ├── -outFile          # Signed file to generate. It is mandatory.
        ├── -keyPwd           # Key password, which must be the actual key password.
        ├── -keystorePwd      # KS password, which must be the actual KS password. 
-       ├── -signcode      # Whether to enable codesign. The value 1 means do codesign, and value 0 means not do codesign. The default value is 1. It is optional.
+       ├── -signcode         # Whether to enable codesign. The value 1 means do codesign, and value 0 means not do codesign. The default value is 1. It is optional.
    ```
 
 
