@@ -51,6 +51,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
    #include <multimedia/player_framework/native_avcodec_base.h>
    #include <multimedia/player_framework/native_avformat.h>
    ```
+
 2. 创建编码器实例对象。
 
    应用可以通过名称或媒体类型创建编码器。
@@ -66,6 +67,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
    const char *codecName = OH_AVCapability_GetName(capability);
    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(codecName);
    ```
+
 3. 调用OH_VideoEncoder_SetCallback()设置回调函数。
 
    > **注意：**
@@ -106,8 +108,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
        // 输入帧buffer对应的index，送入InIndexQueue队列
        // 输入帧的数据mem送入InBufferQueue队列
        // 数据处理，请参考:
-       // 7. 写入编码码流
-       // 8. 通知编码器码流结束
+       // - 写入编码码流
+       // - 通知编码器码流结束
    }
 
    // 编码输出回调OH_AVCodecOnNewOutputData实现
@@ -119,7 +121,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
        // 完成帧的数据mem送入outBufferQueue队列
        // 完成帧的数据格式送入outAttrQueue队列
        // 数据处理，请参考:
-       // 9. 输出编码帧
+       // - 输出编码帧
    }
 
    // 配置异步回调，调用 OH_VideoEncoder_SetCallback 接口
@@ -129,6 +131,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
        // 异常处理
    }
    ```
+
 4. 调用OH_VideoEncoder_Configure()配置编码器。
 
    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频像素格式。示例中的变量如下：
@@ -155,6 +158,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
        // 异常处理
    }
    ```
+
 5. 调用OH_VideoEncoder_Prepare()，编码器就绪。
 
    该接口将在编码器运行前进行一些数据的准备工作。
@@ -165,6 +169,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
        // 异常处理
    }
    ```
+
 6. 调用OH_VideoEncoder_Start()启动编码器，进入运行态。
 
    启动编码器后，回调函数将开始响应事件。所以，需要先配置输入文件、输出文件。
@@ -183,6 +188,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
        // 异常处理
    }
    ```
+
 7. （可选）动态配置编码器实例。
 
    ```c++
@@ -196,7 +202,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
    // 配置传输特性
    int32_t transfer = static_cast<int32_t>(OH_TransferCharacteristic::TRANSFER_CHARACTERISTIC_BT709);
    // 配置最大矩阵系数
-   int32_t matrix = static_cast<int32_t>(OH_MaxtrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
+   int32_t matrix = static_cast<int32_t>(OH_MatrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
    // 配置编码Profile
    int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_BASELINE);
    // 配置编码比特率模式
@@ -225,17 +231,17 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
        // 异常处理
    }
    ```
+
 8. 调用OH_VideoEncoder_PushInputData()，写入编码码流。
 
    送入输入队列进行编码，以下示例中：
 
-   - GetOneFrameSize()：计算yuv文件帧长度的函数，具体的计算过程请参阅YUV相关资料。
    - mem：回调函数OnNeedInputData传入的参数，可以通过OH_AVMemory_GetAddr接口得到共享内存地址的指针。
    - index：回调函数OnNeedInputData传入的参数，数据队列的索引。
 
    ```c++
    // 处理文件流得到帧的长度，再将需要编码的数据写入到对应index的mem中
-   int32_t frameSize = GetOneFrameSize();
+   int32_t frameSize = OH_MD_KEY_WIDTH * OH_MD_KEY_HEIGHT * 3 / 2; // YUV420P像素格式下，每帧数据大小的计算公式
    inputFile->read(reinterpret_cast<char *>(OH_AVMemory_GetAddr(mem)), frameSize);
    // 配置buffer info信息
    OH_AVCodecBufferAttr info;
@@ -249,6 +255,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
        // 异常处理
    }
    ```
+
 9. 通知编码器码流结束。
 
    以下示例中：index：回调函数OnNeedInputData传入的参数，数据队列的索引。与“步骤7.写入编码码流一样”，使用同一个接口OH_VideoEncoder_PushInputData，通知编码器输入结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
@@ -259,12 +266,13 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
    info.size = 0;
    info.offset = 0;
    info.pts = 0;
-   info.flags = AVCODEC_BUFFER_FLAG_EOS;
+   info.flags = AVCODEC_BUFFER_FLAGS_EOS;
    ret = OH_VideoEncoder_PushInputData(videoEnc, index, info);
    if (ret != AV_ERR_OK) {
        // 异常处理
    }
    ```
+
 10. 调用OH_VideoEncoder_FreeOutputData()，输出编码帧。
 
     以下示例中：
@@ -282,6 +290,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理
     }
     ```
+
 11. （可选）调用OH_VideoEncoder_Flush()刷新编码器。
 
     调用OH_VideoEncoder_Flush()后，编码器仍处于运行态，但会将当前队列清空，将已编码的数据释放。
@@ -301,6 +310,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理
     }
     ```
+
 12. （可选）调用OH_VideoEncoder_Reset()重置编码器。
 
     调用OH_VideoEncoder_Reset()后，编码器回到初始化的状态，需要调用OH_VideoEncoder_Configure()重新配置。
@@ -318,7 +328,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理
     }
     ```
-13. 调用OH_VideoEncoder_Stop()停止编码器。
+
+13. （可选）调用OH_VideoEncoder_Stop()停止编码器。
 
     ```c++
     int32_t ret;
@@ -328,6 +339,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理
     }
     ```
+
 14. 调用OH_VideoEncoder_Destroy()销毁编码器实例，释放资源。
 
     > **注意：**
@@ -358,6 +370,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
    #include <multimedia/player_framework/native_avformat.h>
    #include <multimedia/player_framework/native_avcodec_base.h> 
    ```
+
 2. 创建编码器实例对象。
 
    应用可以通过名称或媒体类型创建编码器。
@@ -373,6 +386,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
    const char *codecName = OH_AVCapability_GetName(capability);
    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(codecName);
    ```
+
 3. 调用OH_VideoEncoder_SetCallback()设置回调函数。
 
    > **注意：**
@@ -422,7 +436,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
        // 完成帧的数据mem送入outBufferQueue队列
        // 完成帧的数据格式送入outAttrQueue队列
        // 数据处理，请参考:
-       // 10. 输出编码帧
+       // - 输出编码帧
    }
 
    // 配置异步回调，调用 OH_VideoEncoder_SetCallback 接口
@@ -432,21 +446,19 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
        // 异常处理
    }
    ```
+
 4. 调用OH_VideoEncoder_Configure()配置编码器。
 
    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频像素格式。示例中的变量如下：
 
    - DEFAULT_WIDTH：320像素宽度；
    - DEFAULT_HEIGHT：240像素高度；
-   - DEFAULT_PIXELFORMAT： 像素格式，因为示例使用YUV的文件保存的像素格式是YUV420P，所以设置为 AV_PIXEL_FORMAT_YUVI420。
 
    ```c++
    // 配置视频帧宽度（必须）
    constexpr uint32_t DEFAULT_WIDTH = 320; 
    // 配置视频帧高度（必须）
    constexpr uint32_t DEFAULT_HEIGHT = 240;
-   // 配置视频像素格式（必须）
-   constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_YUVI420;
    OH_AVFormat *format = OH_AVFormat_Create();
    // 写入format
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
@@ -458,6 +470,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
        // 异常处理
    }
    ```
+
 5. 调用OH_VideoEncoder_Prepare()，编码器就绪。
 
    该接口将在编码器运行前进行一些数据的准备工作。
@@ -468,6 +481,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
        // 异常处理
    }
    ```
+
 6. 获取Surface。
 
    获取编码器Surface模式的OHNativeWindow输入，获取Surface需要在启动编码器之前完成。
@@ -494,6 +508,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
        // 异常处理
    }
    ```
+
 8. （可选）动态配置编码器实例。
 
    ```c++
@@ -507,7 +522,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
    // 配置传输特性
    int32_t transfer = static_cast<int32_t>(OH_TransferCharacteristic::TRANSFER_CHARACTERISTIC_BT709);
    // 配置最大矩阵系数
-   int32_t matrix = static_cast<int32_t>(OH_MaxtrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
+   int32_t matrix = static_cast<int32_t>(OH_MatrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
    // 配置编码Profile
    int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_BASELINE);
    // 配置编码比特率模式
@@ -536,6 +551,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
        // 异常处理
    }
    ```
+
 9. 写入编码码流。
 
    在之前的第5步中，开发者已经对OH_VideoEncoder_GetSurface接口返回的OHNativeWindow*类型变量进行配置。因为编码所需的数据，由配置的Surface进行持续地输入，所以开发者无需对OnNeedInputData回调函数进行处理，也无需使用OH_VideoEncoder_PushInputData接口输入数据。
@@ -550,6 +566,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理
     }
     ```
+
 11. 调用OH_VideoEncoder_FreeOutputData()，输出编码帧。
 
     以下示例中：
