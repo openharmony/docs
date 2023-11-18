@@ -32,7 +32,7 @@ The hapsigner tool is implemented based on the Public Key Infrastructure (PKI). 
 
 - Code Sign
 
-    code sign provides validity check and integrity protection during application running, preventing unsigned code or the code which be maliciously taperied runing on the devices. hap-sign-tool default enables codesign when sign hap/app. the  signing time will be prolonged when codesign is enabled.if your device does not have the ability to verify codesign, please disable codesign when you signed hap/app.you can read the hapsigntool-guidelines.md to learning how to disable codesign.
+    code sign provides validity check and integrity protection during application running, preventing unsigned code or the code which be maliciously taperied runing on the devices. hap-sign-tool default enables codesign when sign package(hap). the  signing time will be prolonged when codesign is enabled.if your device does not have the ability to verify codesign, please disable codesign when you signed package .you can read the hapsigntool-guidelines.md to learning how to disable codesign.
 
 ## Constraints
 
