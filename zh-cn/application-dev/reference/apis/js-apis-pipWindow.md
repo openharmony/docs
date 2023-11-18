@@ -4,7 +4,7 @@
 
 该模块提供以下常用功能：
 
-- [PiPController](#pipcontroller-sup-11-sup)：画中画控制器。控制画中画启动、停止、回调等。
+- [PiPController](#pipcontroller-sup-11-sup)：画中画控制器。控制画中画启动、停止、状态或事件回调等。
 
 > **说明：**
 >
@@ -30,6 +30,17 @@ isPiPEnabled(): boolean
 |----------|--------------------------------------|
 | boolean  | 当前系统是否使能画中画功能。true表示使能，false则表示未使能。  |
 
+**示例：**
+
+```ts
+import pipWindow from '@ohos.PiPWindow';
+
+function isPipEnabled() {
+  let enable: boolean = pipWindow.isPiPEnabled();
+  console.log("isPipEnabled:" + enable);
+}
+```
+
 ## pipWindow.create<sup>11</sup>
 
 create(config: PiPConfiguration): Promise&lt;PiPController&gt;
@@ -53,28 +64,36 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 **示例：**
 
 ```ts
-//待修改
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window | undefined = undefined;
-let config: window.Configuration = {
-  name: "alertWindow",
-  windowType: window.WindowType.TYPE_SYSTEM_ALERT
-};
-try {
-  let promise = window.createWindow(config);
-  promise.then((data) => {
-    windowClass = data;
-    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
-}
+let pipController: pipWindow.PiPController | undefined = undefined;
+function createPipController(xController: XComponentController, navigationId: string, width: number, height: number) {
+  if (!pipWindow.isPiPEnabled()) {
+    return;
+  }
+  let config: pipWindow.PiPConfiguration = {
+    context: getContext(this),
+    componentController: xController,
+    navigationId: navigationId,
+    templateType: pipWindow.PiPTemplateType.VIDEO_PLAY,
+    contentWidth: width,
+    contentHeight: height,
+  };
+  try {
+    let promise = pipWindow.create(config);
+    promise.then((data) => {
+      pipController = data;
+      console.info('Succeeded in creating pip controller. Data:' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+      console.error('Failed to create pip controller. Cause:' + JSON.stringify(err));
+    });
+  } catch (exception) {
+    console.error('Failed to create pip controller. Cause: ' + JSON.stringify(exception));
+  }
 ```
 
 ## pipWindow.create<sup>11</sup>
+
 create(config: PiPConfiguration, callback: AsyncCallback<PiPController>): void
 
 创建画中画控制器，使用callback异步回调。
@@ -91,13 +110,35 @@ create(config: PiPConfiguration, callback: AsyncCallback<PiPController>): void
 **示例：**
 
 ```ts
-待修改
-let windowClass: window.Window | undefined = undefined;
-try {
-  windowClass = window.findWindow('alertWindow');
-} catch (exception) {
-  console.error('Failed to find the Window. Cause: ' + JSON.stringify(exception));
-}
+import { BusinessError } from '@ohos.base';
+
+let pipController: pipWindow.PiPController | undefined = undefined;
+function createPipController(xController: XComponentController, navigationId: string, width: number, height: number) {
+  if (!pipWindow.isPiPEnabled()) {
+    return;
+  }
+  let config: pipWindow.PiPConfiguration = {
+    context: getContext(this),
+    componentController: xController,
+    navigationId: navigationId,
+    templateType: pipWindow.PiPTemplateType.VIDEO_PLAY,
+    contentWidth: width,
+    contentHeight: height,
+  };
+  try {
+    pipWindow.create(config, (err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to create pip controller. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      pipController = data;
+      console.info('Succeeded in creating pip controller. Data: ' + JSON.stringify(data));
+    });
+  } catch (exception) {
+    console.error('Failed to create pip controller. Cause: ' + JSON.stringify(exception));
+  }
+}  
 ```
 
 ## PiPConfiguration<sup>11</sup>
@@ -220,16 +261,18 @@ startPiP(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-// 待修改
-import { BusinessError } from '@ohos.base';
-
-let windowClass: window.Window = window.findWindow("test");
-let promise = windowClass.hide();
-promise.then(() => {
-  console.info('Succeeded in hiding the window.');
-}).catch((err: BusinessError) => {
-  console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
-});
+function startPip(pipController: pipWindow.PiPController) {
+  try {
+    let promise = pipController.startPiP();
+    promise.then((data) => {
+      console.info('Succeeded in starting pip. Data:' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+      console.error('Failed to start pip. Cause:' + JSON.stringify(err));
+    });
+  } catch (exception) {
+    console.error('Failed to start pip. Cause: ' + JSON.stringify(exception));
+  }
+}
 ```
 
 startPiP(callback: AsyncCallback&lt;void&gt;): void
@@ -258,16 +301,20 @@ startPiP(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-// 待修改
-import { BusinessError } from '@ohos.base';
-
-let windowClass: window.Window = window.findWindow("test");
-let promise = windowClass.hide();
-promise.then(() => {
-  console.info('Succeeded in hiding the window.');
-}).catch((err: BusinessError) => {
-  console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
-});
+function startPip(pipController: pipWindow.PiPController) {
+  try {
+    let promise = pipController.startPiP((err: BusinessError) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error('Succeeded in starting pip. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('Failed to start pip.');
+    });
+  } catch (exception) {
+    console.error('Failed to start pip: ' + JSON.stringify(exception));
+  }
+}
 ```
 
 ### stopPiP<sup>11</sup>
@@ -297,16 +344,18 @@ stopPiP(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-// 待修改
-import { BusinessError } from '@ohos.base';
-
-let windowClass: window.Window = window.findWindow("test");
-let promise = windowClass.hide();
-promise.then(() => {
-  console.info('Succeeded in hiding the window.');
-}).catch((err: BusinessError) => {
-  console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
-});
+function stopPip(pipController: pipWindow.PiPController) {
+  try {
+    let promise = pipController.stopPiP();
+    promise.then((data) => {
+      console.info('Succeeded in stopping pip. Data:' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+      console.error('Failed to stop pip. Cause:' + JSON.stringify(err));
+    });
+  } catch (exception) {
+    console.error('Failed to stop pip. Cause: ' + JSON.stringify(exception));
+  }
+}
 ```
 
 stopPiP(callback: AsyncCallback&lt;void&gt;): void
@@ -334,16 +383,20 @@ stopPiP(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-// 待修改
-import { BusinessError } from '@ohos.base';
-
-let windowClass: window.Window = window.findWindow("test");
-let promise = windowClass.hide();
-promise.then(() => {
-  console.info('Succeeded in hiding the window.');
-}).catch((err: BusinessError) => {
-  console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
-});
+function stopPip(pipController: pipWindow.PiPController) {
+  try {
+    let promise = pipController.stopPiP((err: BusinessError) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error('Succeeded in stopping pip. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('Failed to stop pip.');
+    });
+  } catch (exception) {
+    console.error('Failed to stop pip: ' + JSON.stringify(exception));
+  }
+}
 ```
 
 ### setAutoStartEnabled<sup>11</sup>
@@ -361,16 +414,9 @@ setAutoStartEnabled(enable: boolean): void
 | enable   | boolean   | 是     | true表示自动拉起使能，否则为false。 |
 
 ```ts
-// 待修改
-import { BusinessError } from '@ohos.base';
-
-let windowClass: window.Window = window.findWindow("test");
-let promise = windowClass.hide();
-promise.then(() => {
-  console.info('Succeeded in hiding the window.');
-}).catch((err: BusinessError) => {
-  console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
-});
+function setAutoStartEnabled(pipController: pipWindow.PiPController, enable: boolean) {
+  pipController.setAutoStartEnabled(enable);
+}
 ```
 
 ### updateContentSize<sup>11</sup>
@@ -383,22 +429,15 @@ updateContentSize(width: number, height: number): void
 
 **参数：**
 
-| 参数名    | 类型     | 必填  | 说明                         |
-|--------|--------|-----|----------------------------|
-| width  | number | 是   | true表示自动拉起使能，否则为false。     |
-| height | number | 是   | true表示自动拉起使能，否则为false。     |
+| 参数名    | 类型     | 必填  | 说明                    |
+|--------|--------|-----|-----------------------|
+| width  | number | 是   | 表示媒体内容宽度，用于更新画中画窗口比例。 |
+| height | number | 是   | 表示媒体内容高度，用于更新画中画窗口比例。 |
 
 ```ts
-// 待修改
-import { BusinessError } from '@ohos.base';
-
-let windowClass: window.Window = window.findWindow("test");
-let promise = windowClass.hide();
-promise.then(() => {
-  console.info('Succeeded in hiding the window.');
-}).catch((err: BusinessError) => {
-  console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
-});
+function updateContentSize(pipController: pipWindow.PiPController, width: number, height: number) {
+  pipController.updateContentSize(width, height);
+}
 ```
 
 ### on('stateChange')<sup>11</sup>
@@ -417,16 +456,34 @@ on(type: 'stateChange', callback: (state: PiPState, reason: string) => void): vo
 | callback   | function  | 是    | 回调生命周期状态变化事件以及原因:<br/>state: [PiPState](#pipstate-sup-11-sup)，表示当前画中画生命周期状态；<br/>reason: string，表示当前生命周期的切换原因。 |
 
 ```ts
-// 待修改
-import { BusinessError } from '@ohos.base';
-
-let windowClass: window.Window = window.findWindow("test");
-let promise = windowClass.hide();
-promise.then(() => {
-  console.info('Succeeded in hiding the window.');
-}).catch((err: BusinessError) => {
-  console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
-});
+function registerStateChangeCallback(pipController: pipWindow.PiPController) {
+  pipController.on("stateChange", (state: pipWindow.PiPState, reason: string) => {
+    let curState: string = "";
+    switch (state) {
+      case pipWindow.PiPState.ABOUT_TO_START:
+        curState = "ABOUT_TO_START";
+        break;
+      case pipWindow.PiPState.ABOUT_TO_START:
+        curState = "ABOUT_TO_START";
+        break;
+      case pipWindow.PiPState.ABOUT_TO_START:
+        curState = "ABOUT_TO_START";
+        break;
+      case pipWindow.PiPState.ABOUT_TO_START:
+        curState = "ABOUT_TO_START";
+        break;
+      case pipWindow.PiPState.ABOUT_TO_START:
+        curState = "ABOUT_TO_START";
+        break;
+      case pipWindow.PiPState.ABOUT_TO_START:
+        curState = "ABOUT_TO_START";
+        break;
+      default:
+        break;
+    }
+    console.log("stateChange:" + curState + " reason:" + reason);
+  });
+}
 ```
 
 ### off('windowSizeChange')<sup>7+</sup>
@@ -446,11 +503,9 @@ off(type: 'stateChange'): void
 **示例：**
 
 ```ts
-try {
-  let windowClass: window.Window = window.findWindow("test");
-  windowClass.off('windowSizeChange');
-} catch (exception) {
-  console.error('Failed to disable the listener for window size changes. Cause: ' + JSON.stringify(exception));
+function unRegisterStateChangeCallback(pipController: pipWindow.PiPController) {
+  pipController.off("stateChange");
+  console.log("unRegisterStateChangeCallback");
 }
 ```
 
@@ -470,16 +525,24 @@ on(type: 'controlPanelActionEvent', callback: (event: PiPActionEventType) => voi
 | callback | function   | 是     | 回调画中画控制事件:<br/>event: [PiPActionEventType](#pipactioneventtype-sup-11-sup)，表示控制事件类型。 |
 
 ```ts
-// 待修改
-import { BusinessError } from '@ohos.base';
-
-let windowClass: window.Window = window.findWindow("test");
-let promise = windowClass.hide();
-promise.then(() => {
-  console.info('Succeeded in hiding the window.');
-}).catch((err: BusinessError) => {
-  console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
-});
+function registerActionEventCallback(pipController: pipWindow.PiPController) {
+  pipController.on("controlPanelActionEvent", (event: pipWindow.PiPActionEventType) => {
+    switch (event) {
+      case "playbackStateChanged":
+        // start or stop video
+        break;
+      case "nextVideo":
+        // next video, change video source here
+        break;
+      case "previousVideo":
+        // previousVideo, change video source here
+        break;
+      default:
+        break;
+    }
+    console.log("registerActionEventCallback, event:" + event);
+  });
+}
 ```
 
 ### off('controlPanelActionEvent')<sup>7+</sup>
@@ -499,10 +562,8 @@ off(type: 'controlPanelActionEvent'): void
 **示例：**
 
 ```ts
-try {
-  let windowClass: window.Window = window.findWindow("test");
-  windowClass.off('windowSizeChange');
-} catch (exception) {
-  console.error('Failed to disable the listener for window size changes. Cause: ' + JSON.stringify(exception));
+function unRegisterActionEventCallback(pipController: pipWindow.PiPController) {
+  pipController.off("controlPanelActionEvent");
+  console.log("unRegisterActionEventCallback");
 }
 ```
