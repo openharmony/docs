@@ -3439,3 +3439,13 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.ACCESS_LOWPOWER_MANAGER
+
+允许系统应用或系统服务向lowpowermanager发送消息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
