@@ -48,9 +48,11 @@ interface IDataSource {
 interface DataChangeListener {
     onDataReloaded(): void; // 重新加载数据时调用
     onDataAdded(index: number): void; // 添加数据时调用
+    onDataMoved(from: number, to: number): void; // 数据移动起始位置与数据移动目标位置交换时调用
     onDataDeleted(index: number): void; // 删除数据时调用
     onDataChanged(index: number): void; // 改变数据时调用
     onDataAdd(index: number): void; // 添加数据时调用
+    onDataMove(from: number, to: number): void; // 数据移动起始位置与数据移动目标位置交换时调用
     onDataDelete(index: number): void; // 删除数据时调用
     onDataChange(index: number): void; // 改变数据时调用
 }
@@ -60,6 +62,7 @@ interface DataChangeListener {
 | ------------------------------------------------------------ | -------------------------------------- | ------------------------------------------------------------ |
 | onDataReloaded():&nbsp;void                                  | -                                      | 通知组件重新加载所有数据。<br/>键值没有变化的数据项会使用原先的子组件，键值发生变化的会重建子组件。 |
 | onDataAdd(index:&nbsp;number):&nbsp;void<sup>8+</sup>        | number                                 | 通知组件index的位置有数据添加。<br/>index：数据添加位置的索引值。 |
+| onDataMove(from:&nbsp;number,&nbsp;to:&nbsp;number):&nbsp;void<sup>8+</sup> | from:&nbsp;number,<br/>to:&nbsp;number | 通知组件数据有移动。<br/>from:&nbsp;数据移动起始位置，to:&nbsp;数据移动目标位置。<br/>**说明：**<br/>数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。 |
 | onDataDelete(index: number):void<sup>8+</sup>                | number                                 | 通知组件删除index位置的数据并刷新LazyForEach的展示内容。<br/>index：数据删除位置的索引值。<br/>**说明：** <br/>需要保证dataSource中的对应数据已经在调用onDataDelete前删除，否则页面渲染将出现未定义的行为。 |
 | onDataChange(index:&nbsp;number):&nbsp;void<sup>8+</sup>     | number                                 | 通知组件index的位置有数据有变化。<br/>index：数据变化位置的索引值。 |
 | onDataAdded(index:&nbsp;number):void<sup>(deprecated)</sup>  | number                                 | 通知组件index的位置有数据添加。<br/>从API 8开始，建议使用onDataAdd。<br/>index：数据添加位置的索引值。 |
@@ -150,13 +153,6 @@ class BasicDataSource implements IDataSource {
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
-    })
-  }
-
-  // 通知LazyForEach组件将from索引和to索引处的子组件进行交换
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
     })
   }
 }
@@ -273,12 +269,6 @@ class BasicDataSource implements IDataSource {
       listener.onDataDelete(index);
     })
   }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
 }
 
 class MyDataSource extends BasicDataSource {
@@ -391,12 +381,6 @@ class BasicDataSource implements IDataSource {
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
     })
   }
 }
@@ -513,12 +497,6 @@ class BasicDataSource implements IDataSource {
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
     })
   }
 }
@@ -640,12 +618,6 @@ class BasicDataSource implements IDataSource {
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
     })
   }
 }
@@ -773,12 +745,6 @@ class BasicDataSource implements IDataSource {
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
     })
   }
 }
@@ -919,12 +885,6 @@ class BasicDataSource implements IDataSource {
       listener.onDataDelete(index);
     })
   }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
 }
 
 class MyDataSource extends BasicDataSource {
@@ -1057,12 +1017,6 @@ struct ChildComponent {
         listener.onDataDelete(index);
       })
     }
-  
-    notifyDataMove(from: number, to: number): void {
-      this.listeners.forEach(listener => {
-        listener.onDataMove(from, to);
-      })
-    }
   }
   
   class MyDataSource extends BasicDataSource {
@@ -1180,12 +1134,6 @@ struct ChildComponent {
     notifyDataDelete(index: number): void {
       this.listeners.forEach(listener => {
         listener.onDataDelete(index);
-      })
-    }
-  
-    notifyDataMove(from: number, to: number): void {
-      this.listeners.forEach(listener => {
-        listener.onDataMove(from, to);
       })
     }
   }
@@ -1311,12 +1259,6 @@ struct ChildComponent {
     notifyDataDelete(index: number): void {
       this.listeners.forEach(listener => {
         listener.onDataDelete(index);
-      })
-    }
-  
-    notifyDataMove(from: number, to: number): void {
-      this.listeners.forEach(listener => {
-        listener.onDataMove(from, to);
       })
     }
   }
@@ -1450,12 +1392,6 @@ struct ChildComponent {
         listener.onDataDelete(index);
       })
     }
-  
-    notifyDataMove(from: number, to: number): void {
-      this.listeners.forEach(listener => {
-        listener.onDataMove(from, to);
-      })
-    }
   }
   
   class MyDataSource extends BasicDataSource {
@@ -1586,12 +1522,6 @@ struct ChildComponent {
     notifyDataDelete(index: number): void {
       this.listeners.forEach(listener => {
         listener.onDataDelete(index);
-      })
-    }
-  
-    notifyDataMove(from: number, to: number): void {
-      this.listeners.forEach(listener => {
-        listener.onDataMove(from, to);
       })
     }
   }
@@ -1730,12 +1660,6 @@ struct ChildComponent {
     notifyDataDelete(index: number): void {
       this.listeners.forEach(listener => {
         listener.onDataDelete(index);
-      })
-    }
-  
-    notifyDataMove(from: number, to: number): void {
-      this.listeners.forEach(listener => {
-        listener.onDataMove(from, to);
       })
     }
   }
