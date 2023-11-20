@@ -3504,7 +3504,7 @@ radio.setNetworkCapability(slotId, type, state).then(() => {
 });
 ```
 
-## radio.factoryReset<sup>10+</sup>
+## radio.factoryReset<sup>11+</sup>
 
 factoryReset\(slotId: number, callback: AsyncCallback\<void\>\): void
 
@@ -3555,7 +3555,7 @@ radio.factoryReset(slotId, (err: BusinessError) => {
 ```
 
 
-## radio.factoryReset<sup>10+</sup>
+## radio.factoryReset<sup>11+</sup>
 
 factoryReset\(slotId: number\): Promise\<void\>
 
