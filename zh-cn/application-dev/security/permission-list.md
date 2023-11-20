@@ -3440,6 +3440,8 @@
 
 **ACL使能**：TRUE
 
+**起始版本**: 11
+
 ## ohos.permission.ACCESS_LOWPOWER_MANAGER
 
 允许系统应用或系统服务向lowpowermanager发送消息。
