@@ -112,7 +112,7 @@ sendMessage\(options: SendMessageOptions\): void
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 10开始废弃。建议使用[sendShortMessage](#smssendshortmessage10)替代。
+> 从 API version 6开始支持，从API version 10开始废弃。建议使用[sendShortMessage](#smssendshortmessage10)替代。
 
 **需要权限**：ohos.permission.SEND_MESSAGES
 
@@ -1903,7 +1903,7 @@ promise.then((data: number) => {
 
 |   名称     | 类型                            | 必填 |                                               说明                                         |
 | ---------- | ------------------------------- | ---- | ----------------------------------------------------------------------------------------- |
-| isLastPart | boolean                         | 否   | 指定这是否是长短信的最后一部分。true表示这是长短信的最后一部分，false表示不是。默认为false。 |
+| isLastPart | boolean                         | 是   | 指定这是否是长短信的最后一部分。true表示这是长短信的最后一部分，false表示不是。默认为false。 |
 | result     | [SendSmsResult](#sendsmsresult) | 是   | 短信发送结果。                                                                             |
 | url        | string                          | 是   | 存储发送短信的URI。                                                                        |
 
