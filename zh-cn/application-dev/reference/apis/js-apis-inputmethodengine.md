@@ -36,6 +36,8 @@ import { BusinessError } from '@ohos.base';
 | PATTERN_EMAIL | number | 5 | 邮件编辑框。 |
 | PATTERN_URI | number | 6 | 超链接编辑框。 |
 | PATTERN_PASSWORD | number | 7 | 密码编辑框。 |
+| PATTERN_PASSWORD_NUMBER<sup>11+</sup> | number | 8 | 数字密码编辑框。 |
+| PATTERN_PASSWORD_SCREEN_LOCK<sup>11+</sup> | number | 9 | 锁屏密码编辑框。 |
 | OPTION_ASCII | number | 20 | 允许输入ASCII值。 |
 | OPTION_NONE | number | 0 | 不指定编辑框输入属性。 |
 | OPTION_AUTO_CAP_CHARACTERS | number | 2 | 允许输入字符。 |
@@ -1578,6 +1580,31 @@ try {
   panel.changeFlag(panelFlag);
 } catch(err: BusinessError) {
     console.error(`Failed to panelFlag: ${JSON.stringify(err)}`);
+}
+```
+
+### setPrivacyMode<sup>11+</sup>
+
+setPrivacyMode(isPrivacyMode: boolean): void
+
+将输入法应用的面板设置为隐私模式，隐私模式不可被录屏、截屏。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名        | 类型    | 必填 | 说明               |
+| ------------- | ------- | ---- | ------------------ |
+| isPrivacyMode | boolean | 是   | 是否设置隐私模式。 |
+
+**示例：**
+
+```ts
+try {
+    boolean isPrivacyMode = true;
+    panel.setPrivacyMode(isPrivacyMode);
+} catch(err: BusinessError) {
+    console.error(`Failed to set privacy mode: ${JSON.stringify(err)}`);
 }
 ```
 
