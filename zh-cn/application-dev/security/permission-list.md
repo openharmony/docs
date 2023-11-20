@@ -354,13 +354,13 @@
 
 ## ohos.permission.SYSTEM_LIGHT_CONTROL
 
-允许应用控制灯光的亮度、颜色、开关等功能。
+允许应用控制灯,包括打开、关闭等操作。
 
-**权限级别**：normal
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
-**ACL使能**：TRUE
+**ACL使能**：FALSE
 
 **起始版本**：11
 
