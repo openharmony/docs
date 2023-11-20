@@ -47,8 +47,8 @@ import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
 const specification: string = '3gpp';
-// 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
-const pdu: Array<number> = [0x08, 0x91];
+// 以数组的形式显示协议数据单元（PDU），类型为number，
+const pdu: Array<number> = [0x01, 0x00, 0x05, 0x81, 0x01, 0x80, 0xF6, 0x00, 0x00, 0x05, 0xE8, 0x32, 0x9B, 0xFD, 0x06];
 sms.createMessage(pdu, specification, (err: BusinessError, data: sms.ShortMessage) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
