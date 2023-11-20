@@ -22,9 +22,9 @@
 
 - 布局子元素：布局容器内部的元素。
 
-- 主轴：线性布局容器在布局方向上的轴线，子元素默认沿主轴排列。Row容器主轴为横向，Column容器主轴为纵向。
+- 主轴：线性布局容器在布局方向上的轴线，子元素默认沿主轴排列。Row容器主轴为水平方向，Column容器主轴为垂直方向。
 
-- 交叉轴：垂直于主轴方向的轴线。Row容器交叉轴为纵向，Column容器交叉轴为横向。
+- 交叉轴：垂直于主轴方向的轴线。Row容器交叉轴为垂直方向，Column容器交叉轴为水平方向。
 
 - 间距：布局子元素的间距。
 
@@ -554,8 +554,8 @@ struct BlankExample {
 
 - [在List中添加滚动条](arkts-layout-development-create-list.md#添加滚动条)：当List子项过多一屏放不下时，可以将每一项子元素放置在不同的组件中，通过滚动条进行拖动展示。可以通过scrollBar属性设置滚动条的常驻状态，edgeEffect属性设置拖动到内容最末端的回弹效果。
 
-- 使用Scroll组件：在线性布局中，开发者可以进行竖向或者横向的布局。当一屏无法完全显示时，可以在Column或Row组件的外层包裹一个可滚动的容器组件Scroll来实现可滑动的线性布局。
-    竖向布局中使用Scroll组件：
+- 使用Scroll组件：在线性布局中，开发者可以进行垂直方向或者水平方向的布局。当一屏无法完全显示时，可以在Column或Row组件的外层包裹一个可滚动的容器组件Scroll来实现可滑动的线性布局。
+    垂直方向布局中使用Scroll组件：
 
   ```ts
   @Entry
@@ -582,7 +582,7 @@ struct BlankExample {
         }.width('100%')
       }
       .backgroundColor(0xDCDCDC)
-      .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+      .scrollable(ScrollDirection.Vertical) // 滚动方向为垂直方向
       .scrollBar(BarState.On) // 滚动条常驻显示
       .scrollBarColor(Color.Gray) // 滚动条颜色
       .scrollBarWidth(10) // 滚动条宽度
@@ -593,7 +593,7 @@ struct BlankExample {
 
   ![zh-cn_image_0000001511900524](figures/zh-cn_image_0000001511900524.gif)
 
-  横向布局中使用Scroll组件：
+  水平方向布局中使用Scroll组件：
 
 
   ```ts
@@ -621,7 +621,7 @@ struct BlankExample {
         }.height('100%')
       }
       .backgroundColor(0xDCDCDC)
-      .scrollable(ScrollDirection.Horizontal) // 滚动方向横向
+      .scrollable(ScrollDirection.Horizontal) // 滚动方向为水平方向
       .scrollBar(BarState.On) // 滚动条常驻显示
       .scrollBarColor(Color.Gray) // 滚动条颜色
       .scrollBarWidth(10) // 滚动条宽度
