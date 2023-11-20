@@ -327,7 +327,7 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 
 | 类型                                  | 说明                     |
 | ----------------------------------- | ---------------------- |
-| Promise&lt;[AccessibilityElement](#AccessibilityElement9)&gt; | Promise对象，返回指定窗口的根节点元素。 |
+| Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise对象，返回指定窗口的根节点元素。 |
 
 **错误码：**
 
