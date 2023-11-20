@@ -65,6 +65,7 @@
       - [RotationGesture](ts-basic-gestures-rotationgesture.md)
       - [SwipeGesture](ts-basic-gestures-swipegesture.md)
     - [组合手势](ts-combined-gestures.md)
+    - [自定义手势判定](ts-gesture-customize-judge.md)
 - 基础组件
   - [AlphabetIndexer](ts-container-alphabet-indexer.md)
   - [Blank](ts-basic-components-blank.md)
