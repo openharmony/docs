@@ -10,6 +10,7 @@ The **inputMethodEngine** module is oriented to input method applications (inclu
 
 ```ts
 import inputMethodEngine from '@ohos.inputMethodEngine';
+import { BusinessError } from '@ohos.base';
 ```
 
 ## Constants
@@ -170,11 +171,15 @@ Enables listening for the input method binding event. This API uses an asynchron
 **Example**
 
 ```ts
-inputMethodEngine.getInputMethodEngine()
-  .on('inputStart', (kbController: inputMethodEngine.KeyboardController, textClient: inputMethodEngine.TextInputClient) => {
-    let keyboardController = kbController;
-    let textInputClient = textClient;
-});
+try {
+  inputMethodEngine.getInputMethodEngine()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, textClient: inputMethodEngine.TextInputClient) => {
+      let keyboardController = kbController;
+      let textInputClient = textClient;
+  });
+} catch(err: BusinessError) {
+  console.error(`Failed to inputStart: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('inputStart')
@@ -195,10 +200,14 @@ Disables listening for the input method binding event.
 **Example**
 
 ```ts
-inputMethodEngine.getInputMethodEngine()
-  .off('inputStart', (kbController: inputMethodEngine.KeyboardController, textClient: inputMethodEngine.TextInputClient) => {
-    console.log('delete inputStart notification.');
-});
+try {
+  inputMethodEngine.getInputMethodEngine()
+    .off('inputStart', (kbController: inputMethodEngine.KeyboardController, textClient: inputMethodEngine.TextInputClient) => {
+      console.log('delete inputStart notification.');
+  });
+} catch(err: BusinessError) {
+  console.error(`Failed to inputStart: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('keyboardShow'|'keyboardHide')
@@ -219,12 +228,16 @@ Enables listening for a keyboard visibility event. This API uses an asynchronous
 **Example**
 
 ```ts
-inputMethodEngine.getInputMethodEngine().on('keyboardShow', () => {
-  console.log('inputMethodEngine keyboardShow.');
+try {
+  inputMethodEngine.getInputMethodEngine().on('keyboardShow', () => {
+    console.log('inputMethodEngine keyboardShow.');
+  });
+  inputMethodEngine.getInputMethodEngine().on('keyboardHide', () => {
+    console.log('inputMethodEngine keyboardHide.');
 });
-inputMethodEngine.getInputMethodEngine().on('keyboardHide', () => {
-  console.log('inputMethodEngine keyboardHide.');
-});
+} catch(err: BusinessError) {
+  console.error(`Failed to InputMethodEngine: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('keyboardShow'|'keyboardHide')
@@ -271,11 +284,15 @@ Enables listening for the input method binding event. This API uses an asynchron
 **Example**
 
 ```ts
-inputMethodEngine.getInputMethodAbility()
-  .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
-    let keyboardController = kbController;
-    let inputClient = client;
-});
+try {
+  inputMethodEngine.getInputMethodAbility()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+      let keyboardController = kbController;
+      let inputClient = client;
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('inputStart')<sup>9+</sup>
@@ -317,9 +334,13 @@ Enables listening for the input method unbinding event. This API uses an asynchr
 **Example**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().on('inputStop', () => {
-  console.log('inputMethodAbility inputStop');
-});
+try {
+  inputMethodEngine.getInputMethodAbility().on('inputStop', () => {
+    console.log('inputMethodAbility inputStop');
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to inputStop: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('inputStop')<sup>9+</sup>
@@ -340,9 +361,13 @@ Disables listening for the input method stop event. This API uses an asynchronou
 **Example**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().off('inputStop', () => {
-  console.log('inputMethodAbility delete inputStop notification.');
-});
+try {
+  inputMethodEngine.getInputMethodAbility().off('inputStop', () => {
+    console.log('inputMethodAbility delete inputStop notification.');
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to inputStop: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('setCallingWindow')<sup>9+</sup>
@@ -363,9 +388,13 @@ Enables listening for the window invocation setting event. This API uses an asyn
 **Example**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().on('setCallingWindow', (wid: number) => {
-  console.log('inputMethodAbility setCallingWindow');
-});
+try {
+  inputMethodEngine.getInputMethodAbility().on('setCallingWindow', (wid: number) => {
+    console.log('inputMethodAbility setCallingWindow');
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('setCallingWindow')<sup>9+</sup>
@@ -386,9 +415,13 @@ Disables listening for the window invocation setting event. This API uses an asy
 **Example**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (wid: number) => {
-  console.log('inputMethodAbility delete setCallingWindow notification.');
-});
+try {
+  inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (wid: number) => {
+    console.log('inputMethodAbility delete setCallingWindow notification.');
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('keyboardShow'|'keyboardHide')<sup>9+</sup>
@@ -409,12 +442,16 @@ Enables listening for a keyboard visibility event. This API uses an asynchronous
 **Example**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().on('keyboardShow', () => {
-  console.log('InputMethodAbility keyboardShow.');
-});
-inputMethodEngine.getInputMethodAbility().on('keyboardHide', () => {
-  console.log('InputMethodAbility keyboardHide.');
-});
+try {
+  inputMethodEngine.getInputMethodAbility().on('keyboardShow', () => {
+    console.log('InputMethodAbility keyboardShow.');
+  });
+  inputMethodEngine.getInputMethodAbility().on('keyboardHide', () => {
+    console.log('InputMethodAbility keyboardHide.');
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to keyboard: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('keyboardShow'|'keyboardHide')<sup>9+</sup>
@@ -435,12 +472,16 @@ Disables listening for a keyboard visibility event. This API uses an asynchronou
 **Example**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().off('keyboardShow', () => {
-  console.log('InputMethodAbility delete keyboardShow notification.');
-});
-inputMethodEngine.getInputMethodAbility().off('keyboardHide', () => {
-  console.log('InputMethodAbility delete keyboardHide notification.');
-});
+try {
+  inputMethodEngine.getInputMethodAbility().off('keyboardShow', () => {
+    console.log('InputMethodAbility delete keyboardShow notification.');
+  });
+  inputMethodEngine.getInputMethodAbility().off('keyboardHide', () => {
+    console.log('InputMethodAbility delete keyboardHide notification.');
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to keyboard: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('setSubtype')<sup>9+</sup>
@@ -461,9 +502,13 @@ Enables listening for the input method subtype setting event. This API uses an a
 **Example**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
-  console.log('InputMethodAbility setSubtype.');
-});
+try {
+  inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
+    console.log('InputMethodAbility setSubtype.');
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to setSubtype: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('setSubtype')<sup>9+</sup>
@@ -484,18 +529,20 @@ Disables listening for a keyboard visibility event. This API uses an asynchronou
 **Example**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
-  console.log('InputMethodAbility delete setSubtype notification.');
-});
+try {
+  inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
+    console.log('InputMethodAbility delete setSubtype notification.');
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to setSubtype: ${JSON.stringify(err)}`);
+}
 ```
 
 ### createPanel<sup>10+</sup>
 
 createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>): void
 
-Creates an input method panel. This API uses an asynchronous callback to return the result.
-
-This API can be called only by an input method. Only one [SOFT_KEYBOARD](#paneltype10) panel and one [STATUS_BAR](#paneltype10) panel can be created for a single input method.
+Creates an input method panel. This API uses an asynchronous callback to return the result.<br>Only one [SOFT_KEYBOARD](#paneltype10) panel and one [STATUS_BAR](#paneltype10) panel can be created for a single input method.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -529,7 +576,7 @@ try {
       }
       console.log('Succeed in creating panel.');
     })
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to createPanel: ${JSON.stringify(err)}`);
 }
 ```
@@ -538,9 +585,7 @@ try {
 
 createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
-Creates an input method panel. This API uses a promise to return the result.
-
-This API can be called only by an input method. Only one [SOFT_KEYBOARD](#paneltype10) panel and one [STATUS_BAR](#paneltype10) panel can be created for a single input method.
+Creates an input method panel. This API uses a promise to return the result.<br>Only one [SOFT_KEYBOARD](#paneltype10) panel and one [STATUS_BAR](#paneltype10) panel can be created for a single input method.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -579,7 +624,7 @@ inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo)
 
 ### destroyPanel<sup>10+</sup>
 
-destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void;
+destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void
 
 Destroys the specified input method panel. This API uses an asynchronous callback to return the result.
 
@@ -610,7 +655,7 @@ try {
       inputPanel = panel;
       console.log('Succeed in creating panel.');
     })
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to create panel: ${JSON.stringify(err)}`);
 }
 try {
@@ -623,14 +668,14 @@ try {
       console.log('Succeed in destroying panel.');
     })
   }
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
 }
 ```
 
 ### destroyPanel<sup>10+</sup>
 
-destroyPanel(panel: Panel): Promise\<void>;
+destroyPanel(panel: Panel): Promise\<void>
 
 Destroys the specified input method panel. This API uses a promise to return the result.
 
@@ -665,7 +710,7 @@ try {
       inputPanel = panel;
       console.log('Succeed in creating panel.');
     })
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to create panel: ${JSON.stringify(err)}`);
 }
 
@@ -677,7 +722,7 @@ try {
       console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
     });
   }
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
 }
 ```
@@ -696,24 +741,28 @@ Enables listening for a physical keyboard event. This API uses an asynchronous c
 
 **Parameters**
 
-| Name  | Type                           | Mandatory| Description                                                        |
-| -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| Name  | Type                           | Mandatory| Description                                                 |
+| -------- | ------------------------------- | ---- |-----------------------------------------------------|
 | type   | string         | Yes  | Listening type.<br>- The value **'keyDown'** indicates the keydown event.<br>- The value **'keyUp'** indicates the keyup event.|
-| callback | (event: [KeyEvent](#keyevent)) => boolean | Yes| Callback used to return the key information.|
+| callback | (event: [KeyEvent](#keyevent)) => boolean | Yes| Callback used to return the key information. If the event is consumed by the event subscriber, **true** is returned. Otherwise, **false** is returned.  |
 
 **Example**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().on('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
-  console.log('inputMethodEngine keyCode.(keyUp):' + JSON.stringify(keyEvent.keyCode));
-  console.log('inputMethodEngine keyAction.(keyUp):' + JSON.stringify(keyEvent.keyAction));
-  return true;
-});
-inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
-  console.log('inputMethodEngine keyCode.(keyDown):' + JSON.stringify(keyEvent.keyCode));
-  console.log('inputMethodEngine keyAction.(keyDown):' + JSON.stringify(keyEvent.keyAction));
-  return true;
-});
+try {
+  inputMethodEngine.getKeyboardDelegate().on('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
+    console.log('inputMethodEngine keyCode.(keyUp):' + JSON.stringify(keyEvent.keyCode));
+    console.log('inputMethodEngine keyAction.(keyUp):' + JSON.stringify(keyEvent.keyAction));
+    return true;
+  });
+  inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
+    console.log('inputMethodEngine keyCode.(keyDown):' + JSON.stringify(keyEvent.keyCode));
+    console.log('inputMethodEngine keyAction.(keyDown):' + JSON.stringify(keyEvent.keyAction));
+    return true;
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to KeyboardDelegate: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('keyDown'|'keyUp')
@@ -734,14 +783,18 @@ Disables listening for a physical keyboard event. This API uses an asynchronous 
 **Example**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().off('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
-  console.log('delete keyUp notification.');
-  return true;
-});
-inputMethodEngine.getKeyboardDelegate().off('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
-  console.log('delete keyDown notification.');
-  return true;
-});
+try {
+  inputMethodEngine.getKeyboardDelegate().off('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
+    console.log('delete keyUp notification.');
+    return true;
+  });
+  inputMethodEngine.getKeyboardDelegate().off('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
+    console.log('delete keyDown notification.');
+    return true;
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to keyevent: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('keyEvent')<sup>10+</sup>
@@ -757,17 +810,23 @@ Enables listening for a keyboard event. This API uses an asynchronous callback t
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Listening type. The value is fixed at **'keyEvent'**.|
-| callback | function | Yes  | Callback used to return the result.<br>- The input parameter, of the [InputKeyEvent](js-apis-keyevent.md#KeyEvent) type, indicates the key event information.<br>- If the event is consumed by the event subscriber, **true** is returned. Otherwise, **false** is returned.|
+| callback | function | Yes  | Callback used to return the result.<br>- The input parameter is of the [InputKeyEvent](js-apis-keyevent.md#KeyEvent) type and indicates the key event information.<br>- If the event is consumed by the event subscriber, **true** is returned. Otherwise, **false** is returned.|
 
 **Example**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent: InputKeyEvent) => {
-  console.log('inputMethodEngine keyEvent.action:' + JSON.stringify(keyEvent.action));
-  console.log('inputMethodEngine keyEvent.key.code:' + JSON.stringify(keyEvent.key.code));
-  console.log('inputMethodEngine keyEvent.ctrlKey:' + JSON.stringify(keyEvent.ctrlKey));
-  return true;
-});
+import type { KeyEvent } from '@ohos.multimodalInput.keyEvent';
+
+try {
+  inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent: KeyEvent) => {
+    console.log('inputMethodEngine keyEvent.action:' + JSON.stringify(keyEvent.action));
+    console.log('inputMethodEngine keyEvent.key.code:' + JSON.stringify(keyEvent.key.code));
+    console.log('inputMethodEngine keyEvent.ctrlKey:' + JSON.stringify(keyEvent.ctrlKey));
+    return true;
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to inputMethodEngine: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('keyEvent')<sup>10+</sup>
@@ -788,11 +847,17 @@ Disables listening for a keyboard event. This API uses an asynchronous callback 
 **Example**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().off('keyEvent', (keyEvent: InputKeyEvent) => {
-  console.log('This is a callback function which will be deregistered.');
-  return true;
-});
-inputMethodEngine.getKeyboardDelegate().off('keyEvent');
+import type { KeyEvent } from '@ohos.multimodalInput.keyEvent';
+
+try {
+  inputMethodEngine.getKeyboardDelegate().off('keyEvent', (keyEvent: KeyEvent) => {
+    console.log('This is a callback function which will be deregistered.');
+    return true;
+  });
+  inputMethodEngine.getKeyboardDelegate().off('keyEvent');
+} catch(err: BusinessError) {
+    console.error(`Failed to keyEvent: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('cursorContextChange')
@@ -813,11 +878,15 @@ Enables listening for the cursor change event. This API uses an asynchronous cal
 **Example**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().on('cursorContextChange', (x: number, y: number, height: number) => {
-  console.log('inputMethodEngine cursorContextChange x:' + x);
-  console.log('inputMethodEngine cursorContextChange y:' + y);
-  console.log('inputMethodEngine cursorContextChange height:' + height);
-});
+try {
+  inputMethodEngine.getKeyboardDelegate().on('cursorContextChange', (x: number, y: number, height: number) => {
+    console.log('inputMethodEngine cursorContextChange x:' + x);
+    console.log('inputMethodEngine cursorContextChange y:' + y);
+    console.log('inputMethodEngine cursorContextChange height:' + height);
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to cursorContextChange: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('cursorContextChange')
@@ -839,9 +908,13 @@ Disables listening for cursor context changes. This API uses an asynchronous cal
   **Example**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().off('cursorContextChange', (x: number, y: number, height: number) => {
-  console.log('delete cursorContextChange notification.');
-});
+try {
+  inputMethodEngine.getKeyboardDelegate().off('cursorContextChange', (x: number, y: number, height: number) => {
+    console.log('delete cursorContextChange notification.');
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to cursorContextChange: ${JSON.stringify(err)}`);
+}
 ```
 ### on('selectionChange')
 
@@ -861,13 +934,17 @@ Enables listening for the text selection change event. This API uses an asynchro
 **Example**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate()
-  .on('selectionChange', (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => {
-    console.log('inputMethodEngine beforeEach selectionChange oldBegin:' + oldBegin);
-    console.log('inputMethodEngine beforeEach selectionChange oldEnd:' + oldEnd);
-    console.log('inputMethodEngine beforeEach selectionChange newBegin:' + newBegin);
-    console.log('inputMethodEngine beforeEach selectionChange newEnd:' + newEnd);
-  });
+try {
+  inputMethodEngine.getKeyboardDelegate()
+    .on('selectionChange', (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => {
+      console.log('inputMethodEngine beforeEach selectionChange oldBegin:' + oldBegin);
+      console.log('inputMethodEngine beforeEach selectionChange oldEnd:' + oldEnd);
+      console.log('inputMethodEngine beforeEach selectionChange newBegin:' + newBegin);
+      console.log('inputMethodEngine beforeEach selectionChange newEnd:' + newEnd);
+    });
+} catch(err: BusinessError) {
+    console.error(`Failed to selectionChange: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('selectionChange')
@@ -888,10 +965,14 @@ Disables listening for the text selection change event. This API uses an asynchr
 **Example**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate()
-  .off('selectionChange', (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number)  => {
-    console.log('delete selectionChange notification.');
-  });
+try {
+  inputMethodEngine.getKeyboardDelegate()
+    .off('selectionChange', (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number)  => {
+      console.log('delete selectionChange notification.');
+    });
+} catch(err: BusinessError) {
+    console.error(`Failed to selectionChange: ${JSON.stringify(err)}`);
+}
 ```
 
 
@@ -913,9 +994,13 @@ Enables listening for the text change event. This API uses an asynchronous callb
 **Example**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().on('textChange', (text: string) => {
-  console.log('inputMethodEngine textChange. text:' + text);
-});
+try {
+  inputMethodEngine.getKeyboardDelegate().on('textChange', (text: string) => {
+    console.log('inputMethodEngine textChange. text:' + text);
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to textChange: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('textChange')
@@ -936,9 +1021,13 @@ Disables listening for the text change event. This API uses an asynchronous call
 **Example**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().off('textChange', (text: string) => {
-  console.log('delete textChange notification. text:' + text);
-});
+try {
+  inputMethodEngine.getKeyboardDelegate().off('textChange', (text: string) => {
+    console.log('delete textChange notification. text:' + text);
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to textChange: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('editorAttributeChanged')<sup>10+</sup>
@@ -959,9 +1048,13 @@ Enables listening for the edit box attribute change event. This API uses an asyn
 **Example**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().on('editorAttributeChanged', (attr: inputMethodEngine.EditorAttribute) => {
-  console.log(`Succeeded in receiving attribute of editor, inputPattern = ${attr.inputPattern}, enterKeyType = ${attr.enterKeyType}`);
-});
+try {
+  inputMethodEngine.getKeyboardDelegate().on('editorAttributeChanged', (attr: inputMethodEngine.EditorAttribute) => {
+    console.log(`Succeeded in receiving attribute of editor, inputPattern = ${attr.inputPattern}, enterKeyType = ${attr.enterKeyType}`);
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to textChange: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('editorAttributeChanged')<sup>10+</sup>
@@ -1015,7 +1108,7 @@ try {
     }
     console.log('Succeeded in setting the content.');
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
 }
 ```
@@ -1049,7 +1142,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
 }
 ```
@@ -1083,7 +1176,7 @@ try {
     }
     console.log('Succeeded in setting the content.');
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
 }
 ```
@@ -1120,7 +1213,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
 }
 ```
@@ -1156,14 +1249,14 @@ try {
     }
     console.log('Succeeded in changing the panel size.');
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
 }
 ```
 
 ### resize<sup>10+</sup>
 
-resize(width: number, height: number): Promise\<void>;
+resize(width: number, height: number): Promise\<void>
 
 Resizes this input method panel. This API uses a promise to return the result.
 
@@ -1195,7 +1288,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
 }
 ```
@@ -1227,7 +1320,7 @@ try {
     }
     console.log('Succeeded in moving the panel.');
   });
-} catch (err) {
+} catch (err: BusinessError) {
     console.error(`Failed to move panel: ${JSON.stringify(err)}`);
 }
 ```
@@ -1262,7 +1355,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to move panel: ${JSON.stringify(err)}`);
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to move panel: ${JSON.stringify(err)}`);
 }
 ```
@@ -1385,9 +1478,13 @@ Enables listening for the show event of this panel. This API uses an asynchronou
 **Example**
 
 ```ts
-panel.on('show', () => {
-  console.log('Panel is showing.');
-});
+try {
+  panel.on('show', () => {
+    console.log('Panel is showing.');
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to show: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('hide')<sup>10+</sup>
@@ -1408,9 +1505,13 @@ Enables listening for the hide event of this panel. This API uses an asynchronou
 **Example**
 
 ```ts
-panel.on('hide', () => {
-  console.log('Panel is hiding.');
-});
+try {
+  panel.on('hide', () => {
+    console.log('Panel is hiding.');
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to hide: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('show')<sup>10+</sup>
@@ -1431,7 +1532,11 @@ Disables listening for the show event of this panel. This API uses an asynchrono
 **Example**
 
 ```ts
-panel.off('show');
+try {
+  panel.off('show');
+} catch(err: BusinessError) {
+    console.error(`Failed to show: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('hide')<sup>10+</sup>
@@ -1452,7 +1557,11 @@ Disables listening for the hide event of this panel. This API uses an asynchrono
 **Example**
 
 ```ts
-panel.off('hide');
+try {
+  panel.off('hide');
+} catch(err: BusinessError) {
+    console.error(`Failed to hide: ${JSON.stringify(err)}`);
+}
 ```
 
 ### changeFlag<sup>10+</sup>
@@ -1472,8 +1581,12 @@ Changes the state type of this input method panel. This API only works for [SOFT
 **Example**
 
 ```ts
-let panelFlag = inputMethodEngine.PanelFlag.FLG_FIXED;
-panel.changeFlag(panelFlag);
+try {
+  let panelFlag = inputMethodEngine.PanelFlag.FLG_FIXED;
+  panel.changeFlag(panelFlag);
+} catch(err: BusinessError) {
+    console.error(`Failed to panelFlag: ${JSON.stringify(err)}`);
+}
 ```
 
 ## KeyboardController
@@ -1604,6 +1717,74 @@ keyboardController.hideKeyboard().then(() => {
 });
 ```
 
+### exitCurrentInputType<sup>11+</sup>
+
+exitCurrentInputType(callback: AsyncCallback&lt;void&gt;): void
+
+Exits this input type. This API can be called only by the preconfigured default input method. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| ID| Error Message                                      |
+| -------- | ---------------------------------------------- |
+| 12800008 | input method manager service error.            |
+| 12800010 | not default input method configured by system. |
+
+**Example**
+
+```ts
+keyboardController.exitCurrentInputType((err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to exitCurrentInputType: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.log('Succeeded in exiting current input type.');
+});
+```
+
+### exitCurrentInputType<sup>11+</sup>
+
+exitCurrentInputType(): Promise&lt;void&gt;
+
+Exits this input type. This API can be called only by the preconfigured default input method. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type            | Description                     |
+| ---------------- | ------------------------- |
+| Promise&lt;void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| ID| Error Message                                      |
+| -------- | ---------------------------------------------- |
+| 12800008 | input method manager service error.            |
+| 12800010 | not default input method configured by system. |
+
+**Example**
+
+```ts
+keyboardController.exitCurrentInputType().then(() => {
+  console.log('Succeeded in exiting current input type.');
+}).catch((err: BusinessError) => {
+  console.log(`Failed to exit current input type: ${JSON.stringify(err)}`);
+});
+```
+
 ## ExtendAction<sup>10+</sup>
 
 Describes the type of the extended edit action on the text box.
@@ -1694,7 +1875,7 @@ try {
       console.error('Failed to sendKeyFunction.');
     }
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
 }
 ```
@@ -1741,7 +1922,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
 }
 ```
@@ -1782,7 +1963,7 @@ try {
     }
     console.log('Succeeded in getting forward, text: ' + text);
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to getForward: ${JSON.stringify(err)}`);
 }
 ```
@@ -1826,7 +2007,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to getForward: ${JSON.stringify(err)}`);
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to getForward: ${JSON.stringify(err)}`);
 }
 ```
@@ -1867,7 +2048,7 @@ let length = 1;
 try {
   let text: string = inputClient.getForwardSync(length);
   console.log(`Succeeded in getting forward, text: ${text}`);
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to getForwardSync: ${JSON.stringify(err)}`);
 }
 ```
@@ -1908,7 +2089,7 @@ try {
     }
     console.log('Succeeded in getting backward, text: ' + text);
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
 }
 ```
@@ -1952,7 +2133,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
 }
 ```
@@ -1993,7 +2174,7 @@ let length = 1;
 try {
   let text: string = inputClient.getBackwardSync(length);
   console.log(`Succeeded in getting backward, text: ${text}`);
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to getBackwardSync: ${JSON.stringify(err)}`);
 }
 ```
@@ -2035,10 +2216,10 @@ try {
     if (result) {
       console.log('Succeeded in deleting forward.');
     } else {
-      console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
+      console.error(`Failed to deleteForward.`);
     }
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
 }
 ```
@@ -2086,7 +2267,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
 }
 ```
@@ -2121,7 +2302,7 @@ let length = 1;
 try {
   inputClient.deleteForwardSync(length);
   console.log('Succeeded in deleting forward.');
-} catch (err) {
+} catch (err: BusinessError) {
   console.error('deleteForwardSync err: ' + JSON.stringify(err));
 }
 ```
@@ -2163,10 +2344,10 @@ try {
     if (result) {
       console.log('Succeeded in deleting backward.');
     } else {
-      console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
+      console.error(`Failed to deleteBackward.`);
     }
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error('deleteBackward err: ' + JSON.stringify(err));
 }
 ```
@@ -2245,7 +2426,7 @@ let length = 1;
 try {
   inputClient.deleteBackwardSync(length);
   console.log('Succeeded in deleting backward.');
-} catch (err) {
+} catch (err: BusinessError) {
   console.error('deleteBackwardSync err: ' + JSON.stringify(err));
 }
 ```
@@ -2332,7 +2513,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to insertText: ${JSON.stringify(err)}`);
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to insertText: ${JSON.stringify(err)}`);
 }
 ```
@@ -2366,7 +2547,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 try {
   inputClient.insertTextSync('test');
   console.log('Succeeded in inserting text.');
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to insertTextSync: ${JSON.stringify(err)}`);
 }
 ```
@@ -2431,12 +2612,16 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
-inputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
-  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
-}).catch((err: BusinessError) => {
-  console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
-});
+try {
+  inputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
+    console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
+    console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
+  });
+} catch(err: BusinessError) {
+    console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
+}
 ```
 
 ### getEditorAttributeSync<sup>10+</sup>
@@ -2467,7 +2652,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 try {
   let editorAttribute: inputMethodEngine.EditorAttribute = inputClient.getEditorAttributeSync();
   console.log(`Succeeded in getEditorAttributeSync, editorAttribute = ${JSON.stringify(editorAttribute)}`);
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to getEditorAttributeSync: ${JSON.stringify(err)}`);
 }
 ```
@@ -2506,7 +2691,7 @@ try {
     }
     console.log('Succeeded in moving cursor.');
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
 }
 ```
@@ -2548,7 +2733,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
 }
 ```
@@ -2581,7 +2766,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 try {
   inputClient.moveCursorSync(inputMethodEngine.Direction.CURSOR_UP);
   console.log('Succeeded in moving cursor.');
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to moveCursorSync: ${JSON.stringify(err)}`);
 }
 ```
@@ -2622,7 +2807,7 @@ try {
     }
     console.log('Succeeded in selecting by range.');
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
 }
 ```
@@ -2666,7 +2851,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
 }
 ```
@@ -2701,7 +2886,7 @@ try {
   let range: inputMethodEngine.Range = { start: 0, end: 1 };
   inputClient.selectByRangeSync(range);
   console.log('Succeeded in selecting by range.');
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to selectByRangeSync: ${JSON.stringify(err)}`);
 }
 ```
@@ -2742,7 +2927,7 @@ try {
     }
     console.log('Succeeded in selecting by movement.');
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
 }
 ```
@@ -2786,7 +2971,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
   });
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
 }
 ```
@@ -2821,7 +3006,7 @@ try {
   let movement: inputMethodEngine.Movement = { direction: 1 };  
   inputClient.selectByMovementSync(movement);
   console.log('Succeeded in selecting by movement.');
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
 }
 ```
@@ -2923,7 +3108,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 try{
   let index: number = inputClient.getTextIndexAtCursorSync();
   console.log(`Succeeded in getTextIndexAtCursorSync, index: ${index}`);
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`Failed to getTextIndexAtCursorSync: ${JSON.stringify(err)}`);
 }
 ```
@@ -2967,7 +3152,7 @@ try {
     }
     console.log('Succeeded in sending extend action.');
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
 }
 ```
@@ -3014,7 +3199,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
   });
-} catch(err) {
+} catch(err: BusinessError) {
   console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
 }
 ```

@@ -30,9 +30,11 @@
 - [像素单位转换](pixel-format-transfer.md)
 - [如何在UIAbility间进行跳转](jump-between-UIAbilities.md)
 - [转场动画](transition-animation.md)
+<<<<<<< master
 - [搜索框与文字轮播的巧用](Search-box-and-text-carousel.md)
 - [如何控制循环动画的播放暂停](how-to-control-the-pause-of-playback-of-looping-animations.md)
 - [流式布局](how-to-implement-fluid-layout.md)
+
 
 ### 装饰器
 - [控制页面刷新范围](overall-and-part-refresh.md)
@@ -40,6 +42,9 @@
 
 ### 网络管理
 - [如何请求并加载网络图片](how-to-load-images-from-internet.md)
+
+### 文件管理
+- [获取用户图库中的图片并显示在Image组件中](photo-pixelmap-transfer.md)
 
 ### 窗口管理
 - [如何实现沉浸模式](immersion-mode.md)
@@ -50,13 +55,23 @@
 ### 数据管理
 - [用户首选项的基本使用](preferences-data-process.md)
 
+### 通信与连接
+- [如何实现WLAN网络扫描、连接、断开](wlan-search-connect-disconnect.md)
+- [如何实现蓝牙扫描、连接、断开](how-to-connect-to-bluetooth.md)
+
 ### 媒体
 - [常见图片编辑](image-edit.md)
 - [图片格式转换](image-format-transfer.md)
+- [如何调用设备摄像头进行拍照、预览并将拍摄结果保存在媒体库中](take-picture-and-preview.md)
 
 ### 一次开发，多端部署
 - [Navigation如何实现多场景UI适配](multi-device-app-dev.md)
+- [如何用GridRow和GridCol组件开发自适应布局](adaptive-ui-development.md)
 
+### 分布式能力应用
+- [如何实现文件分布式同步编辑](distributed-file.md)
+- [如何实现分布式画布](distributed-canvas.md)
 
-
-
+### 问题分析案例
+- [稳定性测试常见JS_ERROR问题分析与定位](app_quality_improvement_cases_about_jserror.md)
+- [应用Crash闪退问题分析](app_quality_improvement_cases_about_crash.md)

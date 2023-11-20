@@ -141,8 +141,6 @@ Applies a transition animation for state changes.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-Since API version 9, this API is supported in ArkTS widgets.
-
 **Parameters**
 
 | Name  | Type                                      | Mandatory  | Description                                   |
@@ -536,6 +534,111 @@ uiContext.runScopedTask(
     console.log('Succeeded in runScopedTask');
   }
 );
+```
+
+### setKeyboardAvoidMode<sup>11+</sup>
+
+setKeyboardAvoidMode(value: KeyboardAvoidMode): void
+
+Sets the avoidance mode for the virtual keyboard.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type        | Mandatory  | Description  |
+| -------- | ---------- | ---- | ---- |
+| value | [KeyboardAvoidMode](../apis/js-apis-arkui-UIContext.md#keyboardavoidmode11)| Yes   | Avoidance mode for the virtual keyboard.<br>Default value: **KeyboardAvoidMode.OFFSET**|
+
+**Example**
+
+```ts
+import { KeyboardAvoidMode, UIContext } from '@ohos.arkui.UIContext';
+onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      uiContext.setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
+```
+
+### getKeyboardAvoidMode<sup>11+</sup>
+
+getKeyboardAvoidMode(): KeyboardAvoidMode
+
+Obtains the avoidance mode for the virtual keyboard.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type        | Description  |
+| ---------- | ---- |
+| [KeyboardAvoidMode](../apis/js-apis-arkui-UIContext.md#keyboardavoidmode11)| Avoidance mode for the virtual keyboard.|
+
+**Example**
+
+```ts
+import { KeyboardAvoidMode, UIContext } from '@ohos.arkui.UIContext';
+onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      let KeyboardAvoidMode = uiContext.getKeyboardAvoidMode();
+      console.log("KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
+
+```
+
+### getAtomicServiceBar<sup>11+</sup>
+
+getAtomicServiceBar(): Nullable\<AtomicServiceBar>
+
+Obtains an **AtomicServiceBar** object, which can be used to set the properties of the atomic service menu bar.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+|Type|Description|
+|----|----|
+|Nullable<[AtomicServiceBar](#atomicservicebar11)>| Returns the **AtomicServerBar** type if the service is an atomic service; returns **undefined** type otherwise.|
+
+**Example**
+
+```ts
+import {UIContext, AtomicServiceBar} from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
 ```
 
 ## Font
@@ -2025,3 +2128,197 @@ try {
   console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```
+
+## AtomicServiceBar<sup>11+</sup>
+
+In the following API examples, you must first use **getAtomicServiceBar** in **UIContext** to obtain an **AtomicServiceBar** instance, and then call the APIs using the obtained instance.
+
+### setVisible<sup>11+</sup>
+
+setVisible(visible: boolean): void
+
+Sets whether the atomic service menu bar is visible.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------- | ------- | ------- | ------- |
+| visiable | boolean | Yes| Whether the atomic service menu bar is visible.|
+
+
+**Example**
+
+```ts
+import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      atomicServiceBar.setVisible(false);
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
+```
+
+### setBackgroundColor<sup>11+</sup>
+
+setBackgroundColor(color:Nullable<Color | number | string>): void
+
+Sets the background color of the atomic service menu bar.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ------ | ------ |
+| color | color:Nullable\<[Color](../arkui-ts/ts-appendix-enums.md#color) \| number \| string> | Yes| Background color of the atomic service menu bar. The value **undefined** means to use the default color.|
+
+**Example**
+
+```ts
+import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      atomicServiceBar.setBackgroundColor(0x88888888);
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
+```
+
+### setTitleContent<sup>11+</sup>
+
+setTitleContent(content:string): void
+
+Sets the title of the atomic service menu bar.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+|Name|Type|Mandatory|Description|
+| ------- | ------- | ------- | ------- |
+| content | string | Yes| Title of the atomic service menu bar.|
+
+**Example**
+
+```ts
+import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      atomicServiceBar.setTitleContent('text2');
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
+```
+
+### setTitleFontStyle<sup>11+</sup>
+
+setTitleFontStyle(font:FontStyle):void
+
+Sets the font style of the atomic service menu bar.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ------ | ------ |
+| font | [FontStyle](../arkui-ts/ts-appendix-enums.md#fontstyle) | Yes| Font style of the atomic service menu bar.|
+
+**Example**
+
+```ts
+import { UIContext, Font, AtomicServiceBar } from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      atomicServiceBar.setTitleFontStyle(FontStyle.Normal);
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
+```
+
+### setIconColor<sup>11+</sup>
+
+setIconColor(color:Nullable<Color | number | string>): void
+
+Sets the color of the atomic service icon.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------- | ------- | ------- | ------- |
+| color | Nullable\<[Color](../arkui-ts/ts-appendix-enums.md#color) \| number \| string> | Yes| Color of the atomic service icon. The value **undefined** means to use the default color.|
+
+
+**Example**
+
+```ts
+import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      atomicServiceBar.setIconColor(0x12345678);
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
+```
+## KeyboardAvoidMode<sup>11+</sup>
+
+Enumerates the avoidance modes for the virtual keyboard.
+
+| Name  | Description      |
+| ------ | ---------- |
+| OFFSET | Avoid the virtual keyboard through offset.|
+| RESIZE | Avoid the virtual keyboard through resizing.|
