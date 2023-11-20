@@ -4,7 +4,7 @@ AutoFillRequest模块提供了自动填充和保存的数据及回调接口。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
@@ -50,7 +50,7 @@ import autoFillManager from '@ohos.app.ability.autoFillManager';
 
 ### FillRequestCallback.onSuccess
 
-onSuccess(response: FillResponse): void;
+onSuccess(response: FillResponse): void
 
 通知自动填充请求已成功完成。
 
@@ -146,7 +146,7 @@ onSuccess(response: FillResponse): void;
 
 ### FillRequestCallback.onFailure
 
-onFailure(): void;
+onFailure(): void
 
 通知自动填充请求已失败。
 
@@ -231,7 +231,7 @@ onFailure(): void;
 
 ### FillRequestCallback.onCancel
 
-onCancel(): void;
+onCancel(): void
 
 通知自动填充已被取消。
 
@@ -321,7 +321,7 @@ onCancel(): void;
 
 ### SaveRequestCallback.onSuccess
 
-onSuccess(): void;
+onSuccess(): void
 
 通知保存请求已成功处理。
 
@@ -404,7 +404,7 @@ onSuccess(): void;
 
 ### SaveRequestCallback.onFailure
 
-onFailure(): void;
+onFailure(): void
 
 通知保存请求处理失败。
 

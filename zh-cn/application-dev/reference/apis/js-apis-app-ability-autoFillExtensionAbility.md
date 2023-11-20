@@ -26,7 +26,7 @@ import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility
 
 ## AutoFillExtensionAbility.onCreate
 
-onCreate(): void;
+onCreate(): void
 
 AutoFillExtensionAbility创建时触发回调函数。
 
@@ -47,7 +47,7 @@ AutoFillExtensionAbility创建时触发回调函数。
 
 ## AutoFillExtensionAbility.onFillRequest
 
-onFillRequest(session: UIExtensionContentSession, request: FillRequest, callback: FillRequestCallback): void;
+onFillRequest(session: UIExtensionContentSession, request: FillRequest, callback: FillRequestCallback): void
 
 当发起自动填充请求或者生成密码时触发此回调函数。
 
@@ -99,7 +99,7 @@ onFillRequest(session: UIExtensionContentSession, request: FillRequest, callback
 
 ## AutoFillExtensionAbility.onSaveRequest
 
-onSaveRequest(session: UIExtensionContentSession, request: SaveRequest, callback: SaveRequestCallback): void;
+onSaveRequest(session: UIExtensionContentSession, request: SaveRequest, callback: SaveRequestCallback): void
 
 当发起自动保存或者手动保存时触发此回调函数。
 
@@ -176,7 +176,7 @@ onSessionDestroy(session: UIExtensionContentSession): void
 
 ## AutoFillExtensionAbility.onForeground
 
-onForeground(): void;
+onForeground(): void
 
 当AutoFillExtensionAbility从后台转到前台时触发。
 
@@ -197,9 +197,9 @@ onForeground(): void;
 
 ## AutoFillExtensionAbility.onBackground
 
-onBackground(): void;
+onBackground(): void
 
-当ActionExtensionAbility从前台转到后台时触发。
+当AutoFillExtensionAbility从前台转到后台时触发。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -218,11 +218,17 @@ onBackground(): void;
 
 ## AutoFillExtensionAbility.onDestroy
 
-onDestroy(): void | Promise&lt;void&gt;;
+onDestroy(): void | Promise&lt;void&gt;
 
-在销毁时回调，执行资源清理等操作。
+在AutoFillExtensionAbility销毁时回调，执行资源清理等操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**返回值：**
+
+| 类型                                  | 说明                            |
+| ------------------------------------- | ------------------------------- |
+| void&nbsp;\|&nbsp;Promise&lt;void&gt; | 无返回值或者以Promise形式返回。 |
 
 **示例：**
 
