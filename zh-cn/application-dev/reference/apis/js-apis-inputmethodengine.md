@@ -10,7 +10,6 @@
 
 ```ts
 import inputMethodEngine from '@ohos.inputMethodEngine';
-import { BusinessError } from '@ohos.base';
 ```
 
 ## 常量
@@ -163,6 +162,8 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getInputMethodEngine()
     .on('inputStart', (kbController: inputMethodEngine.KeyboardController, textClient: inputMethodEngine.TextInputClient) => {
@@ -192,6 +193,8 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getInputMethodEngine()
     .off('inputStart', (kbController: inputMethodEngine.KeyboardController, textClient: inputMethodEngine.TextInputClient) => {
@@ -220,6 +223,8 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getInputMethodEngine().on('keyboardShow', () => {
     console.log('inputMethodEngine keyboardShow.');
@@ -276,6 +281,8 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, inputClient:
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getInputMethodAbility()
     .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
@@ -326,6 +333,8 @@ on(type: 'inputStop', callback: () => void): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getInputMethodAbility().on('inputStop', () => {
     console.log('inputMethodAbility inputStop');
@@ -353,6 +362,8 @@ off(type: 'inputStop', callback: () => void): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getInputMethodAbility().off('inputStop', () => {
     console.log('inputMethodAbility delete inputStop notification.');
@@ -380,6 +391,8 @@ on(type: 'setCallingWindow', callback: (wid: number) => void): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getInputMethodAbility().on('setCallingWindow', (wid: number) => {
     console.log('inputMethodAbility setCallingWindow');
@@ -407,6 +420,8 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (wid: number) => {
     console.log('inputMethodAbility delete setCallingWindow notification.');
@@ -434,6 +449,8 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getInputMethodAbility().on('keyboardShow', () => {
     console.log('InputMethodAbility keyboardShow.');
@@ -464,6 +481,8 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getInputMethodAbility().off('keyboardShow', () => {
     console.log('InputMethodAbility delete keyboardShow notification.');
@@ -494,6 +513,8 @@ on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => voi
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
     console.log('InputMethodAbility setSubtype.');
@@ -521,6 +542,8 @@ off(type: 'setSubtype', callback?: (inputMethodSubtype: InputMethodSubtype) => v
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
     console.log('InputMethodAbility delete setSubtype notification.');
@@ -555,6 +578,8 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
@@ -602,6 +627,8 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
@@ -632,6 +659,8 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
@@ -687,6 +716,8 @@ destroyPanel(panel: Panel): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
@@ -741,6 +772,8 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getKeyboardDelegate().on('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
     console.log('inputMethodEngine keyCode.(keyUp):' + JSON.stringify(keyEvent.keyCode));
@@ -775,6 +808,8 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getKeyboardDelegate().off('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
     console.log('delete keyUp notification.');
@@ -808,6 +843,7 @@ on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
 
 ```ts
 import type { KeyEvent } from '@ohos.multimodalInput.keyEvent';
+import { BusinessError } from '@ohos.base';
 
 try {
   inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent: KeyEvent) => {
@@ -840,6 +876,7 @@ off(type: 'keyEvent', callback?: (event: InputKeyEvent) => boolean): void
 
 ```ts
 import type { KeyEvent } from '@ohos.multimodalInput.keyEvent';
+import { BusinessError } from '@ohos.base';
 
 try {
   inputMethodEngine.getKeyboardDelegate().off('keyEvent', (keyEvent: KeyEvent) => {
@@ -870,6 +907,8 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getKeyboardDelegate().on('cursorContextChange', (x: number, y: number, height: number) => {
     console.log('inputMethodEngine cursorContextChange x:' + x);
@@ -900,6 +939,8 @@ off(type: 'cursorContextChange', callback?: (x: number, y: number, height: numbe
   **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getKeyboardDelegate().off('cursorContextChange', (x: number, y: number, height: number) => {
     console.log('delete cursorContextChange notification.');
@@ -926,6 +967,8 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getKeyboardDelegate()
     .on('selectionChange', (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => {
@@ -957,6 +1000,8 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getKeyboardDelegate()
     .off('selectionChange', (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number)  => {
@@ -986,6 +1031,8 @@ on(type: 'textChange', callback: (text: string) => void): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getKeyboardDelegate().on('textChange', (text: string) => {
     console.log('inputMethodEngine textChange. text:' + text);
@@ -1013,6 +1060,8 @@ off(type: 'textChange', callback?: (text: string) => void): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getKeyboardDelegate().off('textChange', (text: string) => {
     console.log('delete textChange notification. text:' + text);
@@ -1040,6 +1089,8 @@ on(type: 'editorAttributeChanged', callback: (attr: EditorAttribute) => void): v
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodEngine.getKeyboardDelegate().on('editorAttributeChanged', (attr: inputMethodEngine.EditorAttribute) => {
     console.log(`Succeeded in receiving attribute of editor, inputPattern = ${attr.inputPattern}, enterKeyType = ${attr.enterKeyType}`);
@@ -1092,6 +1143,8 @@ setUiContent(path: string, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.setUiContent('pages/page2/page2', (err: BusinessError) => {
     if (err) {
@@ -1128,6 +1181,8 @@ setUiContent(path: string): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.setUiContent('pages/page2/page2').then(() => {
     console.log('Succeeded in setting the content.');
@@ -1158,6 +1213,8 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
@@ -1197,6 +1254,8 @@ setUiContent(path: string, storage: LocalStorage): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
@@ -1233,6 +1292,8 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.resize(500, 1000, (err: BusinessError) => {
     if (err) {
@@ -1274,6 +1335,8 @@ resize(width: number, height: number): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.resize(500, 1000).then(() => {
     console.log('Succeeded in changing the panel size.');
@@ -1304,6 +1367,8 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.moveTo(300, 300, (err: BusinessError) =>{
     if (err) {
@@ -1341,6 +1406,8 @@ moveTo(x: number, y: number): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.moveTo(300, 300).then(() => {
     console.log('Succeeded in moving the panel.');
@@ -1369,6 +1436,8 @@ show(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 panel.show((err: BusinessError) => {
   if (err) {
     console.error(`Failed to show panel: ${JSON.stringify(err)}`);
@@ -1395,6 +1464,8 @@ show(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 panel.show().then(() => {
   console.log('Succeeded in showing the panel.');
 }).catch((err: BusinessError) => {
@@ -1419,6 +1490,8 @@ hide(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 panel.hide((err: BusinessError) => {
   if (err) {
     console.error(`Failed to hide panel: ${JSON.stringify(err)}`);
@@ -1445,6 +1518,8 @@ hide(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 panel.hide().then(() => {
   console.log('Succeeded in hiding the panel.');
 }).catch((err: BusinessError) => {
@@ -1470,6 +1545,8 @@ on(type: 'show', callback: () => void): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.on('show', () => {
     console.log('Panel is showing.');
@@ -1497,6 +1574,8 @@ on(type: 'hide', callback: () => void): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.on('hide', () => {
     console.log('Panel is hiding.');
@@ -1524,6 +1603,8 @@ off(type: 'show', callback?: () => void): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.off('show');
 } catch(err: BusinessError) {
@@ -1549,6 +1630,8 @@ off(type: 'hide', callback?: () => void): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.off('hide');
 } catch(err: BusinessError) {
@@ -1573,6 +1656,8 @@ changeFlag(flag: PanelFlag): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let panelFlag = inputMethodEngine.PanelFlag.FLG_FIXED;
   panel.changeFlag(panelFlag);
@@ -1610,6 +1695,8 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 keyboardController.hide((err: BusinessError) => {
   if (err) {
     console.error(`Failed to hide: ${JSON.stringify(err)}`);
@@ -1644,6 +1731,8 @@ hide(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 keyboardController.hide().then(() => {
   console.log('Succeeded in hiding keyboard.');
 }).catch((err: BusinessError) => {
@@ -1672,6 +1761,8 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 keyboardController.hideKeyboard((err: BusinessError) => {
   if (err) {
     console.error(`Failed to hideKeyboard: ${JSON.stringify(err)}`);
@@ -1702,6 +1793,8 @@ hideKeyboard(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 keyboardController.hideKeyboard().then(() => {
   console.log('Succeeded in hiding keyboard.');
 }).catch((err: BusinessError) => {
@@ -1786,6 +1879,8 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
  **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let action = 1;
 try {
   inputClient.sendKeyFunction(action, (err: BusinessError, result: boolean) => {
@@ -1835,6 +1930,8 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let action = 1;
 try {
   inputClient.sendKeyFunction(action).then((result: boolean) => {
@@ -1878,6 +1975,8 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.getForward(length, (err: BusinessError, text: string) => {
@@ -1924,6 +2023,8 @@ getForward(length:number): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.getForward(length).then((text: string) => {
@@ -1968,6 +2069,8 @@ getForwardSync(length:number): string
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   let text: string = inputClient.getForwardSync(length);
@@ -2004,6 +2107,8 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.getBackward(length, (err: BusinessError, text: string) => {
@@ -2050,6 +2155,8 @@ getBackward(length:number): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.getBackward(length).then((text: string) => {
@@ -2094,6 +2201,8 @@ getBackwardSync(length:number): string
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   let text: string = inputClient.getBackwardSync(length);
@@ -2130,6 +2239,8 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.deleteForward(length, (err: BusinessError, result: boolean) => {
@@ -2180,6 +2291,8 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.deleteForward(length).then((result: boolean) => {
@@ -2222,6 +2335,8 @@ deleteForwardSync(length:number): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.deleteForwardSync(length);
@@ -2258,6 +2373,8 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.deleteBackward(length, (err: BusinessError, result: boolean) => {
@@ -2308,6 +2425,8 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 inputClient.deleteBackward(length).then((result: boolean) => {
   if (result) {
@@ -2346,6 +2465,8 @@ deleteBackwardSync(length:number): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.deleteBackwardSync(length);
@@ -2382,6 +2503,8 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputClient.insertText('test', (err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to insertText: ${JSON.stringify(err)}`);
@@ -2427,6 +2550,8 @@ insertText(text:string): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.insertText('test').then((result: boolean) => {
     if (result) {
@@ -2468,6 +2593,8 @@ insertTextSync(text: string): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.insertTextSync('test');
   console.log('Succeeded in inserting text.');
@@ -2501,6 +2628,8 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMethodEngine.EditorAttribute) => {
   if (err) {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
@@ -2536,6 +2665,8 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
     console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
@@ -2573,6 +2704,8 @@ getEditorAttributeSync(): EditorAttribute
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let editorAttribute: inputMethodEngine.EditorAttribute = inputClient.getEditorAttributeSync();
   console.log(`Succeeded in getEditorAttributeSync, editorAttribute = ${JSON.stringify(editorAttribute)}`);
@@ -2607,6 +2740,8 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.moveCursor(inputMethodEngine.Direction.CURSOR_UP, (err: BusinessError) => {
     if (err) {
@@ -2651,6 +2786,8 @@ moveCursor(direction: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.moveCursor(inputMethodEngine.Direction.CURSOR_UP).then(() => {
     console.log('Succeeded in moving cursor.');
@@ -2687,6 +2824,8 @@ moveCursorSync(direction: number): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.moveCursorSync(inputMethodEngine.Direction.CURSOR_UP);
   console.log('Succeeded in moving cursor.');
@@ -2722,6 +2861,8 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let range: inputMethodEngine.Range = { start: 0, end: 1 };
   inputClient.selectByRange(range, (err: BusinessError) => {
@@ -2768,6 +2909,8 @@ selectByRange(range: Range): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let range: inputMethodEngine.Range = { start: 0, end: 1 };
   inputClient.selectByRange(range).then(() => {
@@ -2806,6 +2949,8 @@ selectByRangeSync(range: Range): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let range: inputMethodEngine.Range = { start: 0, end: 1 };
   inputClient.selectByRangeSync(range);
@@ -2842,6 +2987,8 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let movement: inputMethodEngine.Movement = { direction: 1 };
   inputClient.selectByMovement(movement, (err: BusinessError) => {
@@ -2888,6 +3035,8 @@ selectByMovement(movement: Movement): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let movement: inputMethodEngine.Movement = { direction: 1 };
   inputClient.selectByMovement(movement).then(() => {
@@ -2926,6 +3075,8 @@ selectByMovementSync(movement: Movement): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let movement: inputMethodEngine.Movement = { direction: 1 };  
   inputClient.selectByMovementSync(movement);
@@ -2961,6 +3112,8 @@ getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputClient.getTextIndexAtCursor((err: BusinessError, index: number) => {
   if (err) {
     console.error(`Failed to getTextIndexAtCursor: ${JSON.stringify(err)}`);
@@ -2996,6 +3149,8 @@ getTextIndexAtCursor(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputClient.getTextIndexAtCursor().then((index: number) => {
   console.log('Succeeded in getTextIndexAtCursor: ' + index);
 }).catch((err: BusinessError) => {
@@ -3029,6 +3184,8 @@ getTextIndexAtCursorSync(): number
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try{
   let index: number = inputClient.getTextIndexAtCursorSync();
   console.log(`Succeeded in getTextIndexAtCursorSync, index: ${index}`);
@@ -3068,6 +3225,8 @@ sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY, (err: BusinessError) => {
     if (err) {
@@ -3117,6 +3276,8 @@ sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY).then(() => {
     console.log('Succeeded in sending extend action.');
@@ -3213,6 +3374,8 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.getForward(length, (err: BusinessError, text: string) => {
   if (err) {
@@ -3250,6 +3413,8 @@ getForward(length:number): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.getForward(length).then((text: string) => {
   console.log('Succeeded in getting forward, text: ' + text);
@@ -3280,6 +3445,8 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.getBackward(length, (err: BusinessError, text: string) => {
   if (err) {
@@ -3317,6 +3484,8 @@ getBackward(length:number): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.getBackward(length).then((text: string) => {
   console.log('Succeeded in getting backward: ' + JSON.stringify(text));
@@ -3347,6 +3516,8 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.deleteForward(length, (err: BusinessError, result: boolean) => {
   if (err) {
@@ -3388,6 +3559,8 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.deleteForward(length).then((result: boolean) => {
   if (result) {
@@ -3422,6 +3595,8 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.deleteBackward(length, (err: BusinessError, result: boolean) => {
   if (err) {
@@ -3463,6 +3638,8 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.deleteBackward(length).then((result: boolean) => {
   if (result) {
@@ -3496,6 +3673,8 @@ sendKeyFunction(action: number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let action = 1;
 textInputClient.sendKeyFunction(action, (err: BusinessError, result: boolean) => {
   if (err) {
@@ -3537,6 +3716,8 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let action = 1;
 textInputClient.sendKeyFunction(action).then((result: boolean) => {
   if (result) {
@@ -3571,6 +3752,8 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 textInputClient.insertText('test', (err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to insertText: ${JSON.stringify(err)}`);
@@ -3611,6 +3794,8 @@ insertText(text:string): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 textInputClient.insertText('test').then((result: boolean) => {
   if (result) {
     console.log('Succeeded in inserting text.');
@@ -3643,6 +3828,8 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 textInputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMethodEngine.EditorAttribute) => {
   if (err) {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
@@ -3674,6 +3861,8 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 textInputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
   console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
   console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
