@@ -220,7 +220,7 @@ onBackground(): void
 
 onDestroy(): void | Promise&lt;void&gt;
 
-在AutoFillExtensionAbility销毁时回调，执行资源清理等操作。
+在AutoFillExtensionAbility销毁时回调，执行资源清理等操作。回调结束直接返回，或者使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

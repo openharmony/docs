@@ -1,10 +1,10 @@
 # AutoFillRequest
 
-AutoFillRequest模块提供了自动填充和保存的数据及回调接口。
+当AutoFillExtensionAbility触发回调函数时，提供给开发者的页面数据和回调接口。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
