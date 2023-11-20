@@ -29,7 +29,7 @@ import common from '@ohos.app.ability.common';
 
 ## UIAbilityContext.startAbility
 
-startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 启动Ability（callback形式）。
 
@@ -107,7 +107,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbility
 
-startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 启动Ability（callback形式）。
 
@@ -190,7 +190,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbility
 
-startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
+startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 启动Ability（promise形式）。
 
@@ -277,7 +277,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityForResult
 
-startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
+startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 启动一个Ability。Ability被启动后，有如下情况(callback形式):
  - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
@@ -359,7 +359,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityForResult
 
-startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
+startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 启动一个Ability。Ability被启动后，有如下情况(callback形式):
  - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
@@ -447,7 +447,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityForResult
 
-startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
+startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
 启动一个Ability。Ability被启动后，有如下情况(promise形式):
  - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
@@ -539,7 +539,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityForResultWithAccount
 
-startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void;
+startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void
 
 启动一个Ability并在该Ability销毁时返回执行结果（callback形式）。
 
@@ -563,7 +563,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9)。 |
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 启动Ability的回调函数，返回Ability结果。 |
 
 **错误码：**
@@ -630,7 +630,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityForResultWithAccount
 
-startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
+startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
 启动一个Ability并在该Ability销毁时返回执行结果（callback形式）。
 
@@ -654,7 +654,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9)。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability后，Ability被销毁时的回调函数。 |
 
@@ -725,7 +725,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityForResultWithAccount
 
-startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>;
+startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>
 
 启动一个Ability并在该Ability销毁时返回执行结果（promise形式）。
 
@@ -749,7 +749,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9)。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
@@ -823,7 +823,7 @@ export default class EntryAbility extends UIAbility {
 ```
 ## UIAbilityContext.startServiceExtensionAbility
 
-startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
+startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
 启动一个新的ServiceExtensionAbility（callback形式）。
 
@@ -894,7 +894,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startServiceExtensionAbility
 
-startServiceExtensionAbility(want: Want): Promise\<void>;
+startServiceExtensionAbility(want: Want): Promise\<void>
 
 启动一个新的ServiceExtensionAbility（Promise形式）。
 
@@ -964,7 +964,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startServiceExtensionAbilityWithAccount
 
-startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
 启动一个新的ServiceExtensionAbility（callback形式）。
 
@@ -983,7 +983,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动ServiceExtensionAbility的回调函数。 |
 
 **错误码：**
@@ -1043,7 +1043,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startServiceExtensionAbilityWithAccount
 
-startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
+startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
 启动一个新的ServiceExtensionAbility（Promise形式）。
 
@@ -1062,7 +1062,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9)。 |
 
 **错误码：**
 
@@ -1120,7 +1120,7 @@ export default class EntryAbility extends UIAbility {
 ```
 ## UIAbilityContext.stopServiceExtensionAbility
 
-stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
+stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
 停止同一应用程序内的服务（callback形式）。
 
@@ -1190,7 +1190,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.stopServiceExtensionAbility
 
-stopServiceExtensionAbility(want: Want): Promise\<void>;
+stopServiceExtensionAbility(want: Want): Promise\<void>
 
 停止同一应用程序内的服务（Promise形式）。
 
@@ -1257,7 +1257,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.stopServiceExtensionAbilityWithAccount
 
-stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
 停止同一应用程序内指定账户的服务（callback形式）。
 
@@ -1276,7 +1276,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 停止ServiceExtensionAbility的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9)。 |
 | callback | AsyncCallback\<void\> | 是 | 停止ServiceExtensionAbility的回调函数。 |
 
 **错误码：**
@@ -1333,7 +1333,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.stopServiceExtensionAbilityWithAccount
 
-stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
+stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
 停止同一应用程序内指定账户的服务（Promise形式）。
 
@@ -1352,7 +1352,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 停止ServiceExtensionAbility的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9)。 |
 
 **错误码：**
 
@@ -1408,7 +1408,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.terminateSelf
 
-terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
+terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 停止Ability自身（callback形式）。
 
@@ -1465,7 +1465,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.terminateSelf
 
-terminateSelf(): Promise&lt;void&gt;;
+terminateSelf(): Promise&lt;void&gt;
 
 停止Ability自身（promise形式）。
 
@@ -1522,7 +1522,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.terminateSelfWithResult
 
-terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void;
+terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
 停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（callback形式）。
 
@@ -1565,7 +1565,7 @@ export default class EntryAbility extends UIAbility {
     };
     let resultCode = 100;
     // 返回给接口调用方AbilityResult信息
-    let abilityResult = {
+    let abilityResult: common.AbilityResult = {
       want,
       resultCode
     };
@@ -1593,7 +1593,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.terminateSelfWithResult
 
-terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
+terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
 停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（promise形式）。
 
@@ -1641,7 +1641,7 @@ export default class EntryAbility extends UIAbility {
     };
     let resultCode = 100;
     // 返回给接口调用方AbilityResult信息
-    let abilityResult = {
+    let abilityResult: : common.AbilityResult = {
       want,
       resultCode
     };
@@ -1668,7 +1668,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.connectServiceExtensionAbility
 
-connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
+connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 将当前Ability连接到一个使用AbilityInfo.AbilityType.SERVICE模板的Ability。
 
@@ -1750,7 +1750,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.connectServiceExtensionAbilityWithAccount
 
-connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
+connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number
 
 将当前Ability连接到一个使用AbilityInfo.AbilityType.SERVICE模板的指定account的Ability。
 
@@ -1769,7 +1769,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9)。 |
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | 与ServiceExtensionAbility建立连接后回调函数的实例。。 |
 
 **返回值：**
@@ -1841,7 +1841,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.disconnectServiceExtensionAbility
 
-disconnectServiceExtensionAbility(connection: number): Promise\<void>;
+disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
 断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空（promise形式）。
 
@@ -1904,7 +1904,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.disconnectServiceExtensionAbility
 
-disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<void>): void;
+disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<void>): void
 
 断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空（callback形式）。
 
@@ -1964,7 +1964,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityByCall
 
-startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
+startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。
 
@@ -2096,7 +2096,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void\>): void;
+startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void\>): void
 
 根据want和accountId启动Ability（callback形式）。
 
@@ -2120,7 +2120,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **错误码：**
@@ -2185,7 +2185,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
+startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
 根据want、accountId及startOptions启动Ability（callback形式）。
 
@@ -2209,7 +2209,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。|
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9)。|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
@@ -2279,7 +2279,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void\>;
+startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void\>
 
 根据want、accountId和startOptions启动Ability（Promise形式）。
 
@@ -2303,7 +2303,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9)。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **错误码：**
@@ -2371,7 +2371,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.setMissionLabel
 
-setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
+setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 
 设置UIAbility在任务中显示的名称（callback形式）。
 
@@ -2411,7 +2411,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.setMissionLabel
 
-setMissionLabel(label: string): Promise&lt;void&gt;;
+setMissionLabel(label: string): Promise&lt;void&gt;
 
 设置UIAbility在任务中显示的名称（promise形式）。
 
@@ -2459,7 +2459,7 @@ export default class EntryAbility extends UIAbility {
   ```
 ## UIAbilityContext.setMissionIcon
 
-setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
+setMissionIcon(icon: image.PixelMap, callback: AsyncCallback\<void>): void
 
 设置当前ability在任务中显示的图标, 图标大小最大为600M（callback形式）。
 
@@ -2515,7 +2515,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.setMissionIcon
 
-setMissionIcon(icon: image.PixelMap): Promise\<void>;
+setMissionIcon(icon: image.PixelMap): Promise\<void>
 
 设置当前ability在任务中显示的图标, 图标大小最大为600M（promise形式）。
 
@@ -2579,7 +2579,7 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
 
 ## UIAbilityContext.setMissionContinueState<sup>10+</sup>
 
-setMissionContinueState(state: AbilityConstant.ContinueState, callback:AsyncCallback&lt;void&gt;): void;
+setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCallback&lt;void&gt;): void
 
 设置UIAbility任务中流转状态（callback形式）。
 
@@ -2619,7 +2619,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.setMissionContinueState<sup>10+</sup>
 
-setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&gt;;
+setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&gt;
 
 设置UIAbility任务中流转状态（promise形式）。
 
@@ -2666,7 +2666,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.restoreWindowStage
 
-restoreWindowStage(localStorage: LocalStorage) : void;
+restoreWindowStage(localStorage: LocalStorage): void
 
 恢复UIAbility中的WindowStage数据。
 
@@ -2702,7 +2702,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.isTerminating
 
-isTerminating(): boolean;
+isTerminating(): boolean
 
 查询UIAbility是否在terminating状态。
 
@@ -2737,7 +2737,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.requestDialogService
 
-requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestResult&gt;): void;
+requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestResult&gt;): void
 
 启动一个支持模态弹框的ServiceExtensionAbility。ServiceExtensionAbility被启动后，应用弹出模态弹框，通过调用[setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult)接口返回结果给调用者。
 
@@ -2753,7 +2753,7 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
-| result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md)&gt; | 是 | 执行结果回调函数。 |
+| result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md#requestresult)&gt; | 是 | 执行结果回调函数。 |
 
 **错误码：**
 
@@ -2815,7 +2815,7 @@ export default class EntryAbility extends UIAbility {
 
   ## UIAbilityContext.requestDialogService
 
-requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;;
+requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 
 启动一个支持模态弹框的ServiceExtensionAbility。ServiceExtensionAbility被启动后，应用弹出模态弹框，通过调用[setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult)接口返回结果给调用者（promise形式）。
 
@@ -2898,7 +2898,7 @@ export default class EntryAbility extends UIAbility {
 ```
   ## UIAbilityContext.startRecentAbility
 
-startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
+startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
 
@@ -2976,7 +2976,7 @@ export default class EntryAbility extends UIAbility {
 ```
 ## UIAbilityContext.startRecentAbility
 
-startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
+startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
 当开发者需要携带启动参数时可以选择此API。
@@ -3061,7 +3061,7 @@ export default class EntryAbility extends UIAbility {
 ```
 ## UIAbilityContext.startRecentAbility
 
-startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
+startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。
 当开发者期望启动结果以Promise形式返回时可以选择此API。
@@ -3145,7 +3145,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityByCallWithAccount<sup>10+</sup>
 
-startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;;
+startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;
 
 根据accountId对指定的Ability进行call调用，并且可以使用返回的Caller通信接口与被调用方进行通信。
 
@@ -3240,7 +3240,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
+startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
 使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。
 
@@ -3312,7 +3312,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
+startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
 使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。
 
@@ -3388,7 +3388,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
+startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
 使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用Promise异步回调。
 
@@ -3472,7 +3472,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.reportDrawnCompleted<sup>10+</sup>
 
-reportDrawnCompleted(callback: AsyncCallback\<void>): void;
+reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 当页面加载完成（loadContent成功）时，为开发者提供打点功能（callback形式）。
  **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
