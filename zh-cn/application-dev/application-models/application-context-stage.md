@@ -161,15 +161,16 @@
 
 ### 获取和修改加密分区
 
-应用文件加密是一种保护数据安全的方法，可以使得文件在未经授权访问的情况下得到保护。在不同的场景下，应用需要不同程度的文件保护。对于私有文件，如闹铃、壁纸等，应用需要将这些文件放到设备级加密分区（EL1）中，以保证在用户输入密码前就可以被访问；对于更敏感的文件，如个人隐私信息等，应用需要将这些文件放到更高级别的加密分区（EL2）中，以保证更高的安全性。
+应用文件加密是一种保护数据安全的方法，可以使得文件在未经授权访问的情况下得到保护。在不同的场景下，应用需要不同程度的文件保护。
 
-在实际应用中，开发者需要根据不同场景的需求选择合适的加密分区，从而保护应用数据的安全。通过合理使用EL1和EL2加密分区，可以有效提高应用数据的安全性。
+在实际应用中，开发者需要根据不同场景的需求选择合适的加密分区，从而保护应用数据的安全。通过合理使用不同级别的加密分区，可以有效提高应用数据的安全性。关于不同分区的权限说明，详见[ContextConstant](../reference/apis/js-apis-app-ability-contextConstant.md)的AreaMode。
 
-> **说明：**
->
-> - AreaMode.EL1：设备级加密区，设备开机后可访问的数据区。
->
-> - AreaMode.EL2：用户级加密区，设备开机，首次输入密码后才能够访问的数据区。
+<ul>
+<li>EL1：对于私有文件，如闹铃、壁纸等，应用可以将这些文件放到设备级加密分区（EL1）中，以保证在用户输入密码前就可以被访问。</li>
+<li>EL2：对于更敏感的文件，如个人隐私信息等，应用可以将这些文件放到更高级别的加密分区（EL2）中，以保证更高的安全性。</li>
+<li>EL3：对于应用中的记录步数、文件下载、音乐播放，需要在锁屏时读写和创建新文件，放在（EL3）的加密分区比较合适。</li>
+<li>EL4：对于用户安全信息相关的文件，锁屏时不需要读写文件、也不能创建文件，放在（EL4）的加密分区更合适。</li>
+</ul>
 
 要实现获取和设置当前加密分区，可以通过读写[Context](../reference/apis/js-apis-inner-application-context.md)的`area`属性来实现。
 
@@ -182,15 +183,19 @@ import Want from '@ohos.app.ability.Want';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // 存储普通信息前，切换到EL1设备级加密
-    if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
-      this.context.area = contextConstant.AreaMode.EL1; // 修改area
-    }
+    this.context.area = contextConstant.AreaMode.EL1; // 切换area
     // 存储普通信息
 
     // 存储敏感信息前，切换到EL2用户级加密
-    if (this.context.area === contextConstant.AreaMode.EL1) { // 获取area
-      this.context.area = contextConstant.AreaMode.EL2; // 修改area
-    }
+    this.context.area = contextConstant.AreaMode.EL2; // 切换area
+    // 存储敏感信息
+
+    // 存储敏感信息前，切换到EL3用户级加密
+    this.context.area = contextConstant.AreaMode.EL3; // 切换area
+    // 存储敏感信息
+
+    // 存储敏感信息前，切换到EL4用户级加密
+    this.context.area = contextConstant.AreaMode.EL4; // 切换area
     // 存储敏感信息
   }
 }
