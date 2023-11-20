@@ -1,4 +1,4 @@
-# OpenHarmony IDL Specifications and User Guide
+# OpenHarmony IDL Specifications and User Guide (for System Applications Only)
 
 ## IDL Overview
 To ensure successful communications between the client and server, interfaces recognized by both parties must be defined. The OpenHarmony Interface Definition Language (IDL) is a tool for defining such interfaces. OpenHarmony IDL decomposes objects to be transferred into primitives that can be understood by the operating system and encapsulates cross-boundary objects based on developers' requirements.
@@ -151,7 +151,9 @@ The value of <*formal_param_attr*> can be **in**, **out**, or **inout**, indicat
 
 ### Obtaining IDL
 On DevEco Studio, choose **Tools > SDK Manager** to view the local installation path of the OpenHarmony SDK. The following figure uses DevEco Studio 3.0.0.993 as an example.
+
 ![SDKpath](./figures/SDKpath.png)
+
 ![SDKpath](./figures/SDKpath2.png)
 
 Go to the local installation path, choose **toolchains > 3.x.x.x** (the folder named after the version number), and check whether the executable file of IDL exists.
