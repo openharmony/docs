@@ -171,6 +171,3 @@ struct CheckboxExample {
   }
 }
 ```
-
-
-![](figures/checkbox.png)
