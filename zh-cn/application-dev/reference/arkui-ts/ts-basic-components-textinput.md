@@ -24,7 +24,6 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | text          | [ResourceStr](ts-types.md#resourcestr)       | 否    | 设置输入框当前的文本内容。</br>当组件设置[stateStyles](ts-universal-attributes-polymorphic-style.md)等刷新属性时，建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextInput中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | 设置TextInput控制器。 |
 
-
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)和[文本通用属性](ts-universal-attributes-text-style.md)的fontColor、fontSize、fontStyle、fontWeight、fontFamily外，还支持以下属性：
@@ -58,6 +57,8 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | passwordRules<sup>11+<sup> | string | 定义生成密码的规则。 |
 | cancelButton<sup>11+</sup> | {<br/>style? : [CancelButtonStyle](ts-basic-components-search.md#cancelbuttonstyle10枚举说明)<br/>icon?: [IconOptions](ts-basic-components-search.md#iconoptions10对象说明) <br/>} | 设置右侧清除按钮样式。<br />默认值：<br />{<br />style：CancelButtonStyle.INPUT<br />} |
 | selectAll<sup>11+</sup> | boolean | 初始状态，是否全选文本。<br />默认值：false |
+| showCounter<sup>11+</sup> | value: boolean, options?: [InputCounterOptions](#inputcounteroptions11对象说明) | 参数value为true时，文本框开启计数下标功能，且在此前提下才能设置options。文本框开启计数下标功能，需要配合maxlength（设置最大字符限制）一起使用，字符计数器显示的效果是当前输入字符数/最大可输入字符数。例如开发者设置最大字符数，options为50，当用户输入字符数达到最大字符限制乘50%时，显示字符计数器。 |
+|  |  |  |
 >  **说明：**    
 >  [通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }    
 >   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。       
@@ -206,12 +207,18 @@ getCaretOffset(): CaretOffset
 | ----------------------- | ---------------- |
 | [CaretOffset](#caretoffset11对象说明) | 光标相对输入框的位置。 |
 
-## CaretOffset<sup>11+ </sup>对象说明
+## CaretOffset<sup>11+</sup>对象说明
 | 参数名   | 类型   | 描述              |
 | ----- | ------ | ----------------- |
 | index | number | 光标所在位置的索引值。 |
 | x | number | 光标相对输入框的x坐标位值。 |
 | y | number | 光标相对输入框的y坐标位值。 |
+
+## InputCounterOptions<sup>11+</sup>对象说明
+
+| 参数名              | 类型   | 描述                                                         |
+| ------------------- | ------ | ------------------------------------------------------------ |
+| thresholdPercentage | number | thresholdPercentage是用户可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。例如设置最大字符数10，thresholdPercentage为50，当输入字符数达到10乘50%时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，如果用户设置的number超出有效值区间内，不显示字符计数器。 |
 
 ## 示例
 
@@ -418,3 +425,30 @@ struct ClearNodeExample {
 ```
 
 ![cancelButton](figures/TextInputCancelButton.png)
+
+### 示例5
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  @State text: string = ''
+  controller: TextInputController = new TextInputController()
+
+  build() {
+    Column() {
+      TextInput({ text: this.text, controller: this.controller })
+        .placeholderFont({ size: 16, weight: 400 })
+        .width(336)
+        .height(56)
+        .maxLength(6)
+        .showCounter(true, { thresholdPercentage: 50 })
+		//计数器显示效果为用户当前输入字符数/最大字符限制数。最大字符限制数通过maxLength()接口设置。
+        //如果用户当前输入字符数达到最大字符限制乘50%（thresholdPercentage）。字符计数器显示。
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+  }
+}
+```
+
+![TextInputCounter](figures/TextInputCounter.jpg)
