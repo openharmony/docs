@@ -295,7 +295,19 @@ struct FlexExample5 {
         AlignContentFlex({ alignContent: FlexAlign.SpaceAround }) // 多行布局下第一行子组件到列首的距离和最后一行子组件到列尾的距离是相邻行之间距离的一半
 
         Text('alignContent:SpaceEvenly').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        AlignContentFlex({ alignContent: FlexAlign.SpaceEvenly }) // 多行布局下相邻行之间的距离与第一行子组件到列首的距离、最后一行子组件到列尾的距离完全一样
+        Flex({
+          wrap: FlexWrap.Wrap,
+          alignContent: FlexAlign.SpaceEvenly
+        }) { // 多行布局下相邻行之间的距离与第一行子组件到列首的距离、最后一行子组件到列尾的距离完全一样
+          Text('1').width('50%').height(20).backgroundColor(0xF5DEB3)
+          Text('2').width('50%').height(20).backgroundColor(0xD2B48C)
+          Text('3').width('50%').height(20).backgroundColor(0xF5DEB3)
+          Text('4').width('50%').height(20).backgroundColor(0xD2B48C)
+          Text('5').width('50%').height(20).backgroundColor(0xF5DEB3)
+        }
+        .size({ width: '90%', height: 100 })
+        .padding({ left: 10, right: 10 })
+        .backgroundColor(0xAFEEEE)
       }.width('100%').margin({ top: 5 })
     }.width('100%')
   }
