@@ -389,7 +389,7 @@ try {
 }
 ```
 
-### notifyDataChange
+### notifyDataChange<sup>11+</sup>
 
  **static** notifyDataChange(extInfo: ExtraData, callback: AsyncCallback&lt;void&gt;):void
 
@@ -429,7 +429,7 @@ try {
 }
 ```
 
-### notifyDataChange
+### notifyDataChange<sup>11+</sup>
 
 static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallback&lt;void&gt;):void
 
@@ -469,7 +469,7 @@ try {
 }
 ```
 
-### notifyDataChange
+### notifyDataChange<sup>11+</sup>
 
 **static** notifyDataChange(extInfo: ExtraData, userId?: number): Promise&lt;void&gt;
 
