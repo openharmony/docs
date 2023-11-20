@@ -37,7 +37,7 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 ## AccessibilityElement<sup>10+</sup>
 
-[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#AccessibilityElement9)二级模块
+[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)二级模块
 
 **示例：**
 
@@ -49,7 +49,7 @@ let AccessibilityElement: AccessibilityElement;
 
 ## ElementAttributeValues<sup>10+</sup>
 
-[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)二级模块
+[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)二级模块
 
 **示例：**
 
@@ -73,7 +73,7 @@ let FocusDirection: FocusDirection;
 
 ## ElementAttributeKeys<sup>10+</sup>
 
-ElementAttributeKeys keyof [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)
+ElementAttributeKeys keyof [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)
 
 **示例：**
 
@@ -162,10 +162,10 @@ let Rect: Rect;
 | threeFingerSwiperDown<sup>11+</sup>    | string          | 表示三指向下滑动的手势。 |
 | threeFingerSwiperLeft<sup>11+</sup>    | string          | 表示三指向左滑动的手势。 |
 | threeFingerSwiperRight<sup>11+</sup>    | string          | 表示三指向右滑动的手势。 |
-| fourFingerSwiperUp<sup>11+</sup>    | string          | 表示四指向上滑动的手势 |
-| fourFingerSwiperDown<sup>11+</sup>    | string          | 表示四指向下滑动的手势 |
-| fourFingerSwiperLeft<sup>11+</sup>    | string          | 表示四指向左滑动的手势 |
-| fourFingerSwiperRight<sup>11+</sup>    | string          | 表示四指向右滑动的手势 |
+| fourFingerSwiperUp<sup>11+</sup>    | string          | 表示四指向上滑动的手势。 |
+| fourFingerSwiperDown<sup>11+</sup>    | string          | 表示四指向下滑动的手势。 |
+| fourFingerSwiperLeft<sup>11+</sup>    | string          | 表示四指向左滑动的手势。 |
+| fourFingerSwiperRight<sup>11+</sup>    | string          | 表示四指向右滑动的手势。 |
 
 ## PageUpdateType
 
@@ -270,7 +270,7 @@ onKeyEvent(keyEvent: KeyEvent): boolean;
 
 | 参数名      | 类型                                       | 必填   | 说明                      |
 | -------- | ---------------------------------------- | ---- | ----------------------- |
-| keyEvent | [KeyEvent](js-apis-keyevent.md#KeyEvent) | 是    | 按键事件回调函数。返回true表示拦截此按键。 |
+| keyEvent | [KeyEvent](js-apis-keyevent.md#keyevent) | 是    | 按键事件回调函数。返回true表示拦截此按键。 |
 
 **示例：**
 

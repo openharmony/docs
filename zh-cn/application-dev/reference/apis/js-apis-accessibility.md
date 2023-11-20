@@ -374,7 +374,7 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState): Promise&lt;A
 > **说明：**
 >
 > 从API version 7开始支持，从API version 9开始废弃。
-> 推荐使用[getAccessibilityExtensionList()](#accessibilitygetaccessibilityextensionlist9) 。
+> 推荐使用[getAccessibilityExtensionList()](#accessibilitygetaccessibilityextensionlist9)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -703,7 +703,7 @@ accessibility.isOpenAccessibility((err: BusinessError, data: boolean) => {
     console.error(`failed to isOpenAccessibility, Code is ${err.code}, message is ${err.message}`);
     return;
   }
-  console.info(`success data:isOpenAccessibility : ${JSON.stringify(data)}`)
+  console.info(`success data:isOpenAccessibility : ${JSON.stringify(data)}`);
 });
 ```
 
@@ -757,7 +757,7 @@ import accessibility from '@ohos.accessibility';
 import { BusinessError } from '@ohos.base';
 
 accessibility.isOpenTouchGuide().then((data: boolean) => {
-  console.info(`success data:isOpenTouchGuide : ${JSON.stringify(data)}`)
+  console.info(`success data:isOpenTouchGuide : ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`failed to  isOpenTouchGuide, Code is ${err.code}, message is ${err.message}`);
 });
@@ -794,7 +794,7 @@ accessibility.isOpenTouchGuide((err: BusinessError, data: boolean) => {
     console.error(`failed to isOpenTouchGuide, Code is ${err.code}, message is ${err.message}`);
     return;
   }
-  console.info(`success data:isOpenTouchGuide : ${JSON.stringify(data)}`)
+  console.info(`success data:isOpenTouchGuide : ${JSON.stringify(data)}`);
 });
 ```
 

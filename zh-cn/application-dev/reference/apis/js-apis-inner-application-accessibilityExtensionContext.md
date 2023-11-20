@@ -25,6 +25,58 @@ class EntryAbility extends AccessibilityExtensionAbility {
 }
 ```
 
+## ElementAttributeValues
+
+| key            | value            | 说明                  |
+| ------------- | ------------- | ------------------- |
+| accessibilityFocused | boolean          |   accessibility焦点状态   |
+| bundleName | string          | 他所属的包名 |
+| checkable    | boolean          | 元素是否可查 |
+| checked  | boolean          | 元素是否可查 |
+| children  | Array<AccessibilityElement>          | 所有子元素 |
+| clickable  | boolean          | 是否可点击 |
+| componentId  | number          | 元素所属的组件ID |
+| componentType  | string          | 元素所属的组件类型 |
+| contents  | Array<string>          | 内容 |
+| currentIndex  | number          | 当前项的索引 |
+| description  | string          | 元素的描述信息 |
+| editable  | boolean          | 元素是否可编辑 |
+| endIndex  | number          | 屏幕最后显示项的列表索引 |
+| error  | string          | 错误状态字符串 |
+| focusable  | boolean          | 元素是否可聚焦 |
+| hintText  | string          | 提示文本 |
+| inputType  | number          | 输入文本的类型 |
+| inspectorKey  | string          | 检查键 |
+| isActive  | boolean          | 元素是否处于活动状态 |
+| isEnable  | boolean          | 元素是否启用 |
+| isHint  | boolean          | 元素是否为提示状态 |
+| isFocused  | boolean          | 元素是否聚焦 |
+| isPassword  | boolean          | 元素是否为密码 |
+| isVisible  | boolean          | 元素是否可见 |
+| itemCount  | number          | 项目的总数 |
+| lastContent  | string          | 最后的内容 |
+| layer  | number          | 该元素的显示层 |
+| longClickable  | boolean          | 元素是否可长单击 |
+| pageId  | number          | 页码id |
+| parent  | AccessibilityElement          | 元素的父元素 |
+| pluralLineSupported  | boolean          | 元素是否支持多行文本。 |
+| rect  | Rect          | 元素的面积 |
+| resourceName  | string          | 元素的资源名称 |
+| rootElement  | AccessibilityElement          | 窗口元素的根元素 |
+| screenRect  | Rect          | 元素的显示区域 |
+| scrollable  | boolean          | 元素是否可滚动 |
+| selected  | boolean          | 元素是否被选中 |
+| startIndex  | number          | 在屏幕上的第一个项目的列表索引 |
+| text  | string          | 元素的文本 |
+| textLengthLimit  | string          | 元素文本的最大长度限制 |
+| textMoveUnit  | accessibility.TextMoveUnit          | 文本被读取时的移动单位 |
+| triggerAction  | accessibility.Action          | 触发元素事件的动作 |
+| type  | WindowType          | 元素的窗口类型 |
+| valueMax  | number          | 最大值 |
+| valueMin  | number          | 最小值 |
+| valueNow  | number          | 当前值 |
+| windowId  | number          | 窗口id |
+
 
 
 ## FocusDirection
@@ -157,7 +209,7 @@ getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 **返回值：**
 | 类型                                  | 说明                     |
 | ----------------------------------- | ---------------------- |
-| Promise&lt;[AccessibilityElement](js-apis-application-accessibilityExtensionAbility)&gt; | Promise对象，返回当前对应的焦点元素。 |
+| Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise对象，返回当前对应的焦点元素。 |
 
 **错误码：**
 
@@ -704,55 +756,6 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promi
 
 **系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
 
-| key            | value            | 说明                  |
-| ------------- | ------------- | ------------------- |
-| accessibilityFocused | boolean          |   accessibility焦点状态   |
-| bundleName | string          | 他所属的包名 |
-| checkable    | boolean          | 元素是否可查 |
-| checked  | boolean          | 元素是否可查 |
-| children  | Array<AccessibilityElement>          | 所有子元素 |
-| clickable  | boolean          | 是否可点击 |
-| componentId  | number          | 元素所属的组件ID |
-| componentType  | string          | 元素所属的组件类型 |
-| contents  | Array<string>          | 内容 |
-| currentIndex  | number          | 当前项的索引 |
-| description  | string          | 元素的描述信息 |
-| editable  | boolean          | 元素是否可编辑 |
-| endIndex  | number          | 屏幕最后显示项的列表索引 |
-| error  | string          | 错误状态字符串 |
-| focusable  | boolean          | 元素是否可聚焦 |
-| hintText  | string          | 提示文本 |
-| inputType  | number          | 输入文本的类型 |
-| inspectorKey  | string          | 检查键 |
-| isActive  | boolean          | 元素是否处于活动状态 |
-| isEnable  | boolean          | 元素是否启用 |
-| isHint  | boolean          | 元素是否为提示状态 |
-| isFocused  | boolean          | 元素是否聚焦 |
-| isPassword  | boolean          | 元素是否为密码 |
-| isVisible  | boolean          | 元素是否可见 |
-| itemCount  | number          | 项目的总数 |
-| lastContent  | string          | 最后的内容 |
-| layer  | number          | 该元素的显示层 |
-| longClickable  | boolean          | 元素是否可长单击 |
-| pageId  | number          | 页码id |
-| parent  | AccessibilityElement          | 元素的父元素 |
-| pluralLineSupported  | boolean          | 元素是否支持多行文本。 |
-| rect  | Rect          | 元素的面积 |
-| resourceName  | string          | 元素的资源名称 |
-| rootElement  | AccessibilityElement          | 窗口元素的根元素 |
-| screenRect  | Rect          | 元素的显示区域 |
-| scrollable  | boolean          | 元素是否可滚动 |
-| selected  | boolean          | 元素是否被选中 |
-| startIndex  | number          | 在屏幕上的第一个项目的列表索引 |
-| text  | string          | 元素的文本 |
-| textLengthLimit  | string          | 元素文本的最大长度限制 |
-| textMoveUnit  | accessibility.TextMoveUnit          | 文本被读取时的移动单位 |
-| triggerAction  | accessibility.Action          | 触发元素事件的动作 |
-| type  | WindowType          | 元素的窗口类型 |
-| valueMax  | number          | 最大值 |
-| valueMin  | number          | 最小值 |
-| valueNow  | number          | 当前值 |
-| windowId  | number          | 窗口id |
 
 **参数：**
 
