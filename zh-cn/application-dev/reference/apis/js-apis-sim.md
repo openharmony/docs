@@ -1066,6 +1066,7 @@ getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4768,7 +4769,7 @@ Icc帐户信息。
 | alphaTag     | string |  是  | 标签。     |
 | number       | string |  是  | 号码。     |
 | recordNumber | number |  否  | 记录编号。 |
-| pin2         | string |  是  | pin2密码。 |
+| pin2         | string |  否  | pin2密码。 |
 
 ## ContactType<sup>8+</sup>
 
