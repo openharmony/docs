@@ -273,7 +273,7 @@ captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
 
 ### 属性
 
-| 名称               | 类型                                    | 可读   | 可写   | 可选   | 说明                    |
+| 名称               | 类型                                    | 可读   | 可写   | 必填   | 说明                    |
 | ---------------- | ------------------------------------- | ---- | ---- | ---- | --------------------- |
 | type             | [EventType](#eventtype)               | 是    | 是    | 否    | 无障碍事件类型。              |
 | windowUpdateType | [WindowUpdateType](#windowupdatetype) | 是    | 是    | 是    | 窗口变化类型。               |
@@ -312,7 +312,7 @@ constructor(jsonObject)
   let eventInfo: accessibility.EventInfo = ({
     type: 'click',
     bundleName: 'com.example.MyApplication',
-    triggerAction: 'click',
+    triggerAction: 'click'
   });
   ```
 
@@ -854,7 +854,7 @@ import { BusinessError } from '@ohos.base';
 let eventInfo: accessibility.EventInfo = ({
   type: 'click',
   bundleName: 'com.example.MyApplication',
-  triggerAction: 'click',
+  triggerAction: 'click'
 });
 
 accessibility.sendEvent(eventInfo).then(() => {
@@ -893,7 +893,7 @@ import { BusinessError } from '@ohos.base';
 let eventInfo: accessibility.EventInfo = ({
   type: 'click',
   bundleName: 'com.example.MyApplication',
-  triggerAction: 'click',
+  triggerAction: 'click'
 });
 accessibility.sendEvent(eventInfo, (err: BusinessError) => {
   if (err) {
@@ -933,7 +933,7 @@ import { BusinessError } from '@ohos.base';
 let eventInfo: accessibility.EventInfo = ({
   type: 'click',
   bundleName: 'com.example.MyApplication',
-  triggerAction: 'click',
+  triggerAction: 'click'
 });
 
 accessibility.sendAccessibilityEvent(eventInfo).then(() => {
@@ -967,7 +967,7 @@ import { BusinessError } from '@ohos.base';
 let eventInfo: accessibility.EventInfo = ({
   type: 'click',
   bundleName: 'com.example.MyApplication',
-  triggerAction: 'click',
+  triggerAction: 'click'
 });
 
 accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {

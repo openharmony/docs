@@ -32,7 +32,7 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | accessibilityFocused | boolean          |   accessibility焦点状态   |
 | bundleName | string          | 他所属的包名 |
 | checkable    | boolean          | 元素是否可查 |
-| checked  | boolean          | 元素是否可查 |
+| checked  | boolean          | 元素是否被检查 |
 | children  | Array<AccessibilityElement>          | 所有子元素 |
 | clickable  | boolean          | 是否可点击 |
 | componentId  | number          | 元素所属的组件ID |
