@@ -3504,6 +3504,108 @@ radio.setNetworkCapability(slotId, type, state).then(() => {
 });
 ```
 
+## radio.factoryReset<sup>10+</sup>
+
+factoryReset\(slotId: number, callback: AsyncCallback\<void\>\): void
+
+重置网络状态设置。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   |                              类型                               | 必填 | 说明                                   |
+| -------- | --------------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<void\>                                           | 是   | 回调函数。返回重置网络状态设置的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.factoryReset(slotId, (err: BusinessError) => {
+    if (err) {
+        console.error(`factoryReset failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`factoryReset success.`);
+}).catch((err: BusinessError) => {
+    console.error(`factoryReset failed, callback: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## radio.factoryReset<sup>10+</sup>
+
+factoryReset\(slotId: number\): Promise\<void\>
+
+重置网络状态设置。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   |                              类型                               | 必填 | 说明                                   |
+| -------- | --------------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型            | 说明                    |
+| --------------- | ----------------------- |
+| Promise\<void\> | 以Promise形式返回重置网络状态设置的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.factoryReset(slotId).then(() => {
+    console.log(`factoryReset success`);
+}).catch((err: BusinessError) => {
+    console.error(`factoryReset failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 ## RadioTechnology
 
 无线接入技术。
