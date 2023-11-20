@@ -57,6 +57,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | enableAutoFill<sup>11+<sup> | boolean | 设置是否启用自动填充。true表示启用，false表示不启用。默认值为true。 |
 | passwordRules<sup>11+<sup> | string | 定义生成密码的规则。 |
 | cancelButton<sup>11+</sup> | {<br/>style? : [CancelButtonStyle](ts-basic-components-search.md#cancelbuttonstyle10枚举说明)<br/>icon?: [IconOptions](ts-basic-components-search.md#iconoptions10对象说明) <br/>} | 设置右侧清除按钮样式。<br />默认值：<br />{<br />style：CancelButtonStyle.INPUT<br />} |
+| selectAll<sup>11+</sup> | boolean | 初始状态，是否全选文本。<br />默认值：false |
 >  **说明：**    
 >  [通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }    
 >   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。       
