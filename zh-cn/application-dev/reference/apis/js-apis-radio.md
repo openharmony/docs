@@ -59,8 +59,6 @@ radio.getRadioTech(slotId, (err: BusinessError, data: Tech) => {
         return;
     }
     console.log(`getRadioTech success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getRadioTech failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -158,8 +156,6 @@ radio.getNetworkState((err: BusinessError, data: radio.NetworkState) => {
         return;
     }
     console.log(`getNetworkState success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getNetworkState failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -206,8 +202,6 @@ radio.getNetworkState(slotId, (err: BusinessError, data: radio.NetworkState) => 
         return;
     }
     console.log(`getNetworkState success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getNetworkState failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -300,8 +294,6 @@ radio.getNetworkSelectionMode(slotId, (err: BusinessError, data: radio.NetworkSe
         return;
     }
     console.log(`getNetworkSelectionMode success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getNetworkSelectionMode failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -391,8 +383,6 @@ radio.getISOCountryCodeForNetwork(slotId, (err: BusinessError, data: string) => 
         return;
     }
     console.log(`getISOCountryCodeForNetwork success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getISOCountryCodeForNetwork failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -508,8 +498,6 @@ radio.getPrimarySlotId((err: BusinessError, data: number) => {
         return;
     }
     console.log(`getPrimarySlotId success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getPrimarySlotId failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -590,8 +578,6 @@ radio.getSignalInformation(slotId, (err: BusinessError, data: Array<radio.Signal
         return;
     }
     console.log(`getSignalInformation success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getSignalInformation failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -819,8 +805,6 @@ radio.isRadioOn((err: BusinessError, data: boolean) => {
         return;
     }
     console.log(`isRadioOn success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`isRadioOn failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -867,8 +851,6 @@ radio.isRadioOn(slotId, (err: BusinessError, data: boolean) => {
         return;
     }
     console.log(`isRadioOn success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`isRadioOn failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -961,8 +943,6 @@ radio.getOperatorName(slotId, (err: BusinessError, data: string) => {
         return;
     }
     console.log(`getOperatorName success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getOperatorName failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1087,8 +1067,6 @@ radio.setPrimarySlotId(slotId, (err: BusinessError) => {
         return;
     }
     console.log(`setPrimarySlotId success.`);
-}).catch((err: BusinessError) => {
-    console.error(`setPrimarySlotId failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1188,8 +1166,6 @@ radio.getIMEI((err: BusinessError, data: string) => {
         return;
     }
     console.log(`getIMEI success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getIMEI failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1239,8 +1215,6 @@ radio.getIMEI(slotId, (err: BusinessError, data: string) => {
         return;
     }
     console.log(`getIMEI success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getIMEI failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1339,8 +1313,6 @@ radio.getMEID((err: BusinessError, data: string) => {
         return;
     }
     console.log(`getMEID success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getMEID failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1390,8 +1362,6 @@ radio.getMEID(slotId, (err: BusinessError, data: string) => {
         return;
     }
     console.log(`getMEID success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getMEID failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1490,8 +1460,6 @@ radio.getUniqueDeviceId((err: BusinessError, data: string) => {
         return;
     }
     console.log(`getUniqueDeviceId success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getUniqueDeviceId failed, callback: err->${JSON.stringify(err)}}`);
 });
 ```
 
@@ -1541,8 +1509,6 @@ radio.getUniqueDeviceId(slotId, (err: BusinessError, data: string) => {
         return;
     }
     console.log(`getUniqueDeviceId success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getUniqueDeviceId failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1636,7 +1602,11 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 radio.sendUpdateCellLocationRequest((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`sendUpdateCellLocationRequest failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`sendUpdateCellLocationRequest success.`);
 });
 ```
 
@@ -1680,7 +1650,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.sendUpdateCellLocationRequest(slotId, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`sendUpdateCellLocationRequest failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`sendUpdateCellLocationRequest success.`);
 });
 ```
 
@@ -1731,7 +1705,7 @@ let slotId: number = 0;
 radio.sendUpdateCellLocationRequest(slotId).then(() => {
     console.log(`sendUpdateCellLocationRequest success.`);
 }).catch((err: BusinessError) => {
-    console.log(`sendUpdateCellLocationRequest failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`sendUpdateCellLocationRequest failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1778,8 +1752,6 @@ radio.getCellInformation((err: BusinessError, data: Array<radio.CellInformation>
         return;
     }
     console.log(`getCellInformation success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getCellInformation success, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1829,8 +1801,6 @@ radio.getCellInformation(slotId, (err: BusinessError, data: Array<radio.CellInfo
         return;
     }
     console.log(`getCellInformation success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getCellInformation failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1942,8 +1912,6 @@ radio.setNetworkSelectionMode(networkSelectionModeOptions, (err: BusinessError) 
         return;
     }
     console.log(`setNetworkSelectionMode success.`);
-}).catch((err: BusinessError) => {
-    console.error(`setNetworkSelectionMode failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2053,8 +2021,6 @@ radio.getNetworkSearchInformation(0, (err: BusinessError, data: radio.NetworkSea
         return;
     }
     console.log(`getNetworkSearchInformation success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getNetworkSearchInformation failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2152,8 +2118,6 @@ radio.getNrOptionMode((err: BusinessError, data: radio.NrOptionMode) => {
         return;
     }
     console.log(`getNrOptionMode success, callback: data->${JSON.stringify(data)}`);
-}).catch(() => {
-    console.error(`getNrOptionMode failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2204,8 +2168,6 @@ radio.getNrOptionMode(slotId, (err: BusinessError, data: radio.NrOptionMode) => 
         return;
     }
     console.log(`getNrOptionModecallback success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getNrOptionModecallback failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2305,8 +2267,6 @@ radio.turnOnRadio((err: BusinessError) => {
         return;
     }
     console.log(`turnOnRadio success.`);
-}).catch((err: BusinessError) => {
-    console.error(`turnOnRadio failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2356,8 +2316,6 @@ radio.turnOnRadio(slotId, (err: BusinessError) => {
         return;
     }
     console.log(`turnOnRadio success.`);
-}).catch((err: BusinessError) => {
-    console.error(`turnOnRadio failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2456,8 +2414,6 @@ radio.turnOffRadio((err: BusinessError) => {
         return;
     }
     console.log(`turnOffRadio success.`);
-}).catch((err: BusinessError) => {
-    console.error(`turnOffRadio failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2507,8 +2463,6 @@ radio.turnOffRadio(slotId, (err: BusinessError) => {
         return;
     }
     console.log(`turnOffRadio success.`);
-}).catch((err: BusinessError) => {
-    console.error(`turnOffRadio failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2611,8 +2565,6 @@ radio.setPreferredNetwork(slotId, mode, (err: BusinessError) => {
         return;
     }
     console.log(`setPreferredNetwork success.`);
-}).catch((err: BusinessError) => {
-    console.error(`setPreferredNetwork failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2714,8 +2666,6 @@ radio.getPreferredNetwork(slotId, (err: BusinessError, data: radio.PreferredNetw
         return;
     }
     console.log(`getPreferredNetwork success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getPreferredNetwork failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2817,8 +2767,6 @@ radio.getImsRegInfo(slotId, mode, (err: BusinessError, data: radio.ImsRegInfo) =
         return;
     }
     console.log(`getImsRegInfo success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getImsRegInfo failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2919,8 +2867,6 @@ let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.on('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
     console.log(`on imsRegStateChange success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`on imsRegStateChange failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2968,8 +2914,6 @@ let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.off('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
     console.log(`off imsRegStateChange success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`off imsRegStateChange failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3019,8 +2963,6 @@ radio.getBasebandVersion(slotId, (err: BusinessError, data: string) => {
         return;
     }
     console.log(`getBasebandVersion success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getBasebandVersion failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3124,8 +3066,6 @@ radio.setNROptionMode(slotId, mode, (err: BusinessError) => {
         return;
     }
     console.log(`setNROptionMode success.`);
-}).catch((err: BusinessError) => {
-    console.error(`setNROptionMode failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3226,8 +3166,6 @@ radio.getNROptionMode(slotId, (err: BusinessError, data: radio.NROptionMode) => 
         return;
     }
     console.log(`getNROptionMode success, callback: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getNROptionMode failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3327,8 +3265,6 @@ radio.getNetworkCapability(slotId, type, (err: BusinessError, data: radio.Networ
         return;
     }
     console.log(`getNetworkCapability success, callback: err->${JSON.stringify(err)}`);
-}).catch((err: BusinessError) => {
-    console.error(`getNetworkCapability failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3437,8 +3373,6 @@ radio.setNetworkCapability(slotId, type, state, (err: BusinessError) => {
         return;
     }
     console.log(`setNetworkCapability success.`);
-}).catch((err: BusinessError) => {
-    console.error(`setNetworkCapability failed, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
