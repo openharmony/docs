@@ -3528,7 +3528,7 @@
 
 ## ohos.permission.ACCESS_DDK_HID
 
-允许用户态扩展驱动使用HID DDK接口开发扩展HID类外设驱动
+允许扩展外设驱动访问HID DDK接口开发HID类扩展外设驱动。
 
 **权限级别**：system_basic
 
