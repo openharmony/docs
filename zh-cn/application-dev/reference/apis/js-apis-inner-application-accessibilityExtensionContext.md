@@ -782,7 +782,6 @@ import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 let attributeName: ElementAttributeKeys = 'bundleName';
-
 let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
 rootElement.attributeValue(attributeName).then((data: string) => {
@@ -823,7 +822,6 @@ import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 let attributeName: ElementAttributeKeys = 'bundleName';
-
 let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
 
 rootElement.attributeValue(attributeName, (err: BusinessError, data: string) => {

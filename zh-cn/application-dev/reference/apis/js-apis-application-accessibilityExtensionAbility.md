@@ -152,7 +152,7 @@ let Rect: Rect;
 | threeFingerDoubleTap<sup>11+</sup>    | string          | 表示三指双击的手势。 |
 | threeFingerDoubleTapAndHold<sup>11+</sup>    | string          | 表示三指双击长按的手势。 |
 | threeFingerTripleTap<sup>11+</sup>    | string          | 表示三指三击的手势。 |
-| threeFingerTripleTapAndHold<sup>11+</sup>    | 表示三指三击长按的手势。 |
+| threeFingerTripleTapAndHold<sup>11+</sup>    | string          | 表示三指三击长按的手势。 |
 | fourFingerSingleTap<sup>11+</sup>    | string          | 表示四指单击的手势。 |
 | fourFingerDoubleTap<sup>11+</sup>    | string          | 表示四指双击的手势。 |
 | fourFingerDoubleTapAndHold<sup>11+</sup>    | string          | 表示四指双击长按的手势。 |
