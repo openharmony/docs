@@ -532,7 +532,7 @@ try {
 
 on(type: 'appForegroundState', observer: AppForegroundStateObserver): void
 
-注册应用启动和退出的观测器，可用于系统应用监听所有应用的启动和退出。
+注册应用启动和退出的观测器，可用于系统应用观测所有应用的启动和退出。
 
 **系统接口**：此接口为系统接口。
 
