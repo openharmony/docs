@@ -22,7 +22,7 @@ import hardwareManager from '@ohos.distributedHardware.hardwareManager';
 
 | 名称         | 类型                                                | 必填 | 说明                               |
 | ------------ | --------------------------------------------------- | ---- | ---------------------------------- |
-| type         | [DistributedHardwareType](#DistributedHardwareType) | 是   | 分布式硬件类型。                   |
+| type         | [DistributedHardwareType](#distributedhardwaretype) | 是   | 分布式硬件类型。                   |
 | srcNetworkId | string                                              | 否   | 表示源端设备，缺省时表示所有设备。 |
 
 ## DistributedHardwareType
@@ -66,7 +66,7 @@ pauseDistributedHardware(description: HardwareDescriptor, callback: AsyncCallbac
 
 | 参数名       | 类型                                      | 必填   | 说明        |
 | --------- | --------------------------------------- | ---- | --------- |
-| description | [HardwareDescriptor](#HardwareDescriptor) | 是    | 硬件描述信息。 |
+| description | [HardwareDescriptor](#hardwaredescriptor) | 是    | 硬件描述信息。 |
 | callback  | AsyncCallback&lt;void&gt;               | 是    | 回调函数，暂停被控端分布式硬件业务成功时，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -85,7 +85,6 @@ pauseDistributedHardware(description: HardwareDescriptor, callback: AsyncCallbac
   } catch (error) {
     console.error('pause distributed hardware failed: ' + JSON.stringify(error))
   }
-  
   ```
 ## hardwareManager.pauseDistributedHardware
 
@@ -101,7 +100,7 @@ pauseDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
 
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
-| description | [HardwareDescriptor](#HardwareDescriptor) | 是   | 硬件描述信息。 |
+| description | [HardwareDescriptor](#hardwaredescriptor) | 是   | 硬件描述信息。 |
 
 **返回值：**
 
@@ -143,7 +142,7 @@ resumeDistributedHardware(description: HardwareDescriptor, callback: AsyncCallba
 
 | 参数名      | 类型                                      | 必填 | 说明                                                         |
 | ----------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| description | [HardwareDescriptor](#HardwareDescriptor) | 是   | 硬件描述信息。                                               |
+| description | [HardwareDescriptor](#hardwaredescriptor) | 是   | 硬件描述信息。                                               |
 | callback    | AsyncCallback&lt;void&gt;                 | 是   | 回调函数，恢复被控端分布式硬件业务成功时，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -153,12 +152,12 @@ import hardwareManager from '@ohos.distributedHardware.hardwareManager'
 import { BusinessError } from '@ohos.base';
 
 try {
-    let description: hardwareManager.HardwareDescriptor = {
-        type: hardwareManager.DistributedHardwareType.CAMERA
-    };
-    hardwareManager.resumeDistributedHardware(description, ()=>{
-        console.log('resume distributed hardware successfully');
-    })
+  let description: hardwareManager.HardwareDescriptor = {
+    type: hardwareManager.DistributedHardwareType.CAMERA
+  };
+  hardwareManager.resumeDistributedHardware(description, () => {
+    console.log('resume distributed hardware successfully');
+  })
 } catch (error) {
   console.error('resume distributed hardware failed: ' + JSON.stringify(error))
 }
@@ -178,7 +177,7 @@ resumeDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
 
 | 参数名      | 类型                                      | 必填 | 说明           |
 | ----------- | ----------------------------------------- | ---- | -------------- |
-| description | [HardwareDescriptor](#HardwareDescriptor) | 是   | 硬件描述信息。 |
+| description | [HardwareDescriptor](#hardwaredescriptor) | 是   | 硬件描述信息。 |
 
 **返回值：**
 
@@ -193,14 +192,14 @@ import hardwareManager from '@ohos.distributedHardware.hardwareManager'
 import { BusinessError } from '@ohos.base';
 
 try {
-    let description: hardwareManager.HardwareDescriptor = {
-        type: hardwareManager.DistributedHardwareType.CAMERA
-    };
-    hardwareManager.resumeDistributedHardware(description).then(()=>{
-        console.log('resume distributed hardware successfully');
-    }).catch((error: BusinessError) => {
-        console.error('resume all hardware failed, cause:'+error);
-    })
+  let description: hardwareManager.HardwareDescriptor = {
+    type: hardwareManager.DistributedHardwareType.CAMERA
+  };
+  hardwareManager.resumeDistributedHardware(description).then(()=>{
+    console.log('resume distributed hardware successfully');
+  }).catch((error: BusinessError) => {
+    console.error('resume distributed hardware failed, cause:'+error);
+  })
 } catch (error) {
   console.error('resume distributed hardware failed: ' + JSON.stringify(error))
 }
@@ -220,7 +219,7 @@ stopDistributedHardware(description: HardwareDescriptor, callback: AsyncCallback
 
 | 参数名      | 类型                                      | 必填 | 说明                                                         |
 | ----------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| description | [HardwareDescriptor](#HardwareDescriptor) | 是   | 硬件描述信息。                                               |
+| description | [HardwareDescriptor](#hardwaredescriptor) | 是   | 硬件描述信息。                                               |
 | callback    | AsyncCallback&lt;void&gt;                 | 是   | 回调函数，停止被控端分布式硬件业务成功时，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -230,12 +229,12 @@ import hardwareManager from '@ohos.distributedHardware.hardwareManager'
 import { BusinessError } from '@ohos.base';
 
 try {
-    let description: hardwareManager.HardwareDescriptor = {
-        type: hardwareManager.DistributedHardwareType.CAMERA
-    };
-    hardwareManager.stopDistributedHardware(description, ()=>{
-        console.log('stop distributed hardware successfully');
-    })
+  let description: hardwareManager.HardwareDescriptor = {
+    type: hardwareManager.DistributedHardwareType.CAMERA
+  };
+  hardwareManager.stopDistributedHardware(description, () => {
+    console.log('stop distributed hardware successfully');
+  })
 } catch (error) {
   console.error('stop distributed hardware failed: ' + JSON.stringify(error))
 }
@@ -255,7 +254,7 @@ stopDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
 
 | 参数名      | 类型                                      | 必填 | 说明           |
 | ----------- | ----------------------------------------- | ---- | -------------- |
-| description | [HardwareDescriptor](#HardwareDescriptor) | 是   | 硬件描述信息。 |
+| description | [HardwareDescriptor](#hardwaredescriptor) | 是   | 硬件描述信息。 |
 
 **返回值：**
 
@@ -270,15 +269,15 @@ import hardwareManager from '@ohos.distributedHardware.hardwareManager'
 import { BusinessError } from '@ohos.base';
 
 try {
-    let description: hardwareManager.HardwareDescriptor = {
-        type: hardwareManager.DistributedHardwareType.CAMERA
-    };
-    hardwareManager.stopDistributedHardware(description).then(()=>{
-        console.log('stop all hardware successfully');
-    }).catch((error: BusinessError) => {
-        console.error('stop all hardware failed, cause:'+error);
-    })
+  let description: hardwareManager.HardwareDescriptor = {
+    type: hardwareManager.DistributedHardwareType.CAMERA
+  };
+  hardwareManager.stopDistributedHardware(description).then(()=>{
+    console.log('stop distributed hardware successfully');
+  }).catch((error: BusinessError) => {
+    console.error('stop distributed hardware failed, cause:'+error);
+  })
 } catch (error) {
-  console.error('stop all hardware failed: ' + JSON.stringify(error))
+  console.error('stop distributed hardware failed: ' + JSON.stringify(error))
 }
   ```
