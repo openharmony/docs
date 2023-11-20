@@ -228,7 +228,7 @@ getBlob(columnIndex: number): Uint8Array
 
 以字节数组的形式获取当前行中指定列的值。
 
-如果当前行中指定的列或键的值为空，或者指定的列或键不是Blob类型，则实现类确定是否抛出异常。
+如果当前行中指定的列或键的值为空，或者指定的列或键不是Blob类型，则使用方需要确定是否抛出此异常。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -261,6 +261,8 @@ getString(columnIndex: number): string
 
 以字符串形式获取当前行中指定列的值。
 
+如果当前行中指定的列或键的值为空，或者指定的列或键不是string类型，则使用方需要确定是否抛出此异常。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -291,6 +293,8 @@ if (resultSet != undefined) {
 getLong(columnIndex: number): number
 
 以长整数值形式获取当前行中指定列的值。
+
+如果当前行中指定的列或键的值为空，或者指定的列或键不是long类型，则使用方需要确定是否抛出此异常。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -323,6 +327,8 @@ getDouble(columnIndex: number): number
 
 以值类型为双浮点数形式获取当前行中指定列的值。
 
+如果当前行中指定的列或键的值为空，或者指定的列或键不是double类型，则使用方需要确定是否抛出此异常。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -354,6 +360,8 @@ close(): void
 
 关闭结果集。
 
+对结果集调用此方法将释放其所有资源并使其无效。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **示例：**
@@ -369,6 +377,8 @@ if (resultSet != undefined) {
 getColumnIndex(columnName: string): number
 
 根据指定的列名获取列索引。
+
+列名作为输入参数传递。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -400,6 +410,8 @@ getColumnName(columnIndex: number): string
 
 根据指定的列索引获取列名。
 
+列索引作为输入参数传递。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -429,6 +441,8 @@ if (resultSet != undefined) {
 getDataType(columnIndex: number): DataType
 
 指定列索引获取该列的数据类型。
+
+如果当前行中指定的列或键的值为空，或者指定的列或键不是DataType类型，则使用方需要确定是否抛出此异常。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
