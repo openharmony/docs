@@ -31,18 +31,18 @@ import cloudData from '@ohos.data.cloudData';
 
 ## ExtraData<sup>11+</sup>
 
-透传数据 携带通知数据变更所需要的信息。
+透传数据，携带通知数据变更所需要的信息。
 
-**系统能力：** syscap SystemCapability.DistributedDataManager.CloudSync.Config
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
 | 名称      | 类型   | 必填 | 说明                                                         |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
-| eventId   | string | 是   | 表示云数据变更。                                             |
-| extraData | string | 是   | 由push透传过来，"header"中是云侧校验应用所需的信息，"data"中是通知变更所需要的信息，包含账号，应用名，数据库名和数据库表名。 |
+| eventId   | string | 是   | 如果传值为"cloud_data_change"，表示云数据变更。                                             |
+| extraData | string | 是   | 由push服务透传过来，"header"中是云侧校验应用所需的信息，"data"中是通知变更所需要的信息，包含账号，应用名，数据库名和数据库表名，其中accountId和bundleName不能为空串 |
 
 **示例：**
 
-```ts
+```mandatory
 ExtraData {
     eventId:"cloud_data_change",
     extraData:"{
@@ -403,17 +403,16 @@ try {
 
 | 参数名   | 类型                      | 必填 | 说明                                    |
 | -------- | ------------------------- | ---- | --------------------------------------- |
-| extInfo  | [ExtraData](#extradata11)   | 是   | 透传数据 包含通知数据变更后的应用信息。 |
+| extInfo  | [ExtraData](#extradata11)   | 是   | 透传数据，包含通知数据变更后的应用信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                              |
 
 **示例：**
 
-```javascript
+```ts
 import { BusinessError } from '@ohos.base';
 
-let eventId = cloudData.DATA_CHANGE_EVENT_ID;
-let header = "aaaa";
-let data = "{\"accountId\":\"2850086000356238647\",\"bundleName\":\"com.huawei.hmos.notepad\",\"containerName\":\"alias\",\"recordTypes\":\"[\\\"xxx\\\",\\\"yyy\\\"]\"}"
+let eventId = "cloud_data_change";
+let extraData= {"header ":"aaaa","data ":"{\"accountId\":\"2850086000356238647\",\"bundleName\":\"com.huawei.hmos.notepad\",\"containerName\":\"alias\",\"recordTypes\":\"[\\\"xxx\\\",\\\"yyy\\\"]\"}"}
 let extraData = header+data;
 try {
   cloudData.Config.notifyDataChange({ eventId:eventId ,extraData:extraData}, (err) => {
