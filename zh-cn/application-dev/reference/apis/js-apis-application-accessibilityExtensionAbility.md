@@ -49,7 +49,7 @@ let AccessibilityElement: AccessibilityElement;
 
 ## ElementAttributeValues<sup>10+</sup>
 
-[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9.attributeValue)二级模块
+[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)二级模块
 
 **示例：**
 

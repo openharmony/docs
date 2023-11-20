@@ -192,7 +192,7 @@ getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 | 参数名      | 类型                                       | 必填   | 说明                |
 | -------- | ---------------------------------------- | ---- | ----------------- |
-| callback | AsyncCallback&lt;[AccessibilityElement](js-apis-application-accessibilityExtensionAbility.md)&gt; | 是    | 回调函数，返回当前对应的焦点元素。 |
+| callback | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回当前对应的焦点元素。 |
 
 **错误码：**
 
@@ -230,7 +230,7 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 | 参数名                  | 类型                                       | 必填   | 说明                |
 | -------------------- | ---------------------------------------- | ---- | ----------------- |
 | isAccessibilityFocus | boolean                                  | 是    | 获取的是否是无障碍焦点元素。    |
-| callback             | AsyncCallback&lt;[AccessibilityElement](js-apis-application-accessibilityExtensionAbility.md)&gt; | 是    | 回调函数，返回当前对应的焦点元素。 |
+| callback             | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回当前对应的焦点元素。 |
 
 **错误码：**
 
@@ -275,7 +275,7 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 
 | 类型                                  | 说明                     |
 | ----------------------------------- | ---------------------- |
-| Promise&lt;[AccessibilityElement](js-apis-application-accessibilityExtensionAbility.md)&gt; | Promise对象，返回指定窗口的根节点元素。 |
+| Promise&lt;[AccessibilityElement](#AccessibilityElement9)&gt; | Promise对象，返回指定窗口的根节点元素。 |
 
 **错误码：**
 
@@ -310,7 +310,7 @@ getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 | 参数名      | 类型                                       | 必填   | 说明                 |
 | -------- | ---------------------------------------- | ---- | ------------------ |
-| callback | AsyncCallback&lt;[AccessibilityElement](js-apis-application-accessibilityExtensionAbility.md)&gt; | 是    | 回调函数，返回指定窗口的根节点元素。 |
+| callback | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回指定窗口的根节点元素。 |
 
 **错误码：**
 
@@ -348,7 +348,7 @@ getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityEle
 | 参数名      | 类型                                       | 必填   | 说明                     |
 | -------- | ---------------------------------------- | ---- | ---------------------- |
 | windowId | number                                   | 是    | 指定窗口的编号，未指定则从当前活跃窗口获取。 |
-| callback | AsyncCallback&lt;[AccessibilityElement](js-apis-application-accessibilityExtensionAbility.md)&gt; | 是    | 回调函数，返回指定窗口的根节点元素。     |
+| callback | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回指定窗口的根节点元素。     |
 
 **错误码：**
 
@@ -393,7 +393,7 @@ getWindows(displayId?: number): Promise\<Array\<AccessibilityElement>>;
 
 | 类型                                       | 说明                     |
 | ---------------------------------------- | ---------------------- |
-| Promise&lt;Array&lt;[AccessibilityElement](js-apis-application-accessibilityExtensionAbility.md)&gt;&gt; | Promise对象，返回指定屏幕的所有窗口。 |
+| Promise&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | Promise对象，返回指定屏幕的所有窗口。 |
 
 **错误码：**
 
@@ -428,7 +428,7 @@ getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
 | 参数名      | 类型                                       | 必填   | 说明                |
 | -------- | ---------------------------------------- | ---- | ----------------- |
-| callback | AsyncCallback&lt;Array&lt;[AccessibilityElement](js-apis-application-accessibilityExtensionAbility.md)&gt;&gt; | 是    | 回调函数，返回指定屏幕的所有窗口。 |
+| callback | AsyncCallback&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | 是    | 回调函数，返回指定屏幕的所有窗口。 |
 
 **错误码：**
 
@@ -466,7 +466,7 @@ getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityEleme
 | 参数名       | 类型                                       | 必填   | 说明                    |
 | --------- | ---------------------------------------- | ---- | --------------------- |
 | displayId | number                                   | 是    | 指定的屏幕编号，未指定则从默认主屏幕获取。 |
-| callback  | AsyncCallback&lt;Array&lt;[AccessibilityElement](js-apis-application-accessibilityExtensionAbility.md)&gt;&gt; | 是    | 回调函数，返回指定屏幕的所有窗口。     |
+| callback  | AsyncCallback&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | 是    | 回调函数，返回指定屏幕的所有窗口。     |
 
 **错误码：**
 
@@ -1034,7 +1034,7 @@ findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityEl
 
 | 类型                                       | 说明                            |
 | ---------------------------------------- | ----------------------------- |
-| Promise&lt;Array&lt;[AccessibilityElement](js-apis-application-AccessibilityExtensionAbility.md)&gt;&gt; | Promise对象，返回满足指定查询关键字的所有节点元素。 |
+| Promise&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | Promise对象，返回满足指定查询关键字的所有节点元素。 |
 
 **示例：**
 
@@ -1065,7 +1065,7 @@ findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<
 | --------- | ---------------------------------------- | ---- | ---------------------------- |
 | type      | string                                   | 是    | 固定为'content',表示查找的类型为节点元素内容。 |
 | condition | string                                   | 是    | 表示查找的条件。                     |
-| callback  | AsyncCallback&lt;Array&lt;[AccessibilityElement](js-apis-application-accessibilityExtensionAbility.md)&gt;&gt; | 是    | 回调函数，返回满足指定查询关键字的所有节点元素。     |
+| callback  | AsyncCallback&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | 是    | 回调函数，返回满足指定查询关键字的所有节点元素。     |
 
 **示例：**
 
@@ -1103,7 +1103,7 @@ findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElem
 
 | 类型                                  | 说明                             |
 | ----------------------------------- | ------------------------------ |
-| Promise&lt;[AccessibilityElement](js-apis-application-accessibilityExtensionAbility.md)&gt; | Promise对象，返回满足指定查询焦点元素类型的节点元素。 |
+| Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise对象，返回满足指定查询焦点元素类型的节点元素。 |
 
 **示例：**
 
@@ -1135,7 +1135,7 @@ findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<Ac
 | --------- | ---------------------------------------- | ---- | ---------------------------------- |
 | type      | string                                   | 是    | 固定为'focusType', 表示查询的类型为节点的焦点元素类型。 |
 | condition | [FocusType](#focustype)                  | 是    | 表示查询焦点元素的类型。                       |
-| callback  | AsyncCallback&lt;[AccessibilityElement](js-apis-application-accessibilityExtensionAbility.md)&gt; | 是    | 回调函数，返回满足指定查询焦点元素类型的节点元素。          |
+| callback  | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回满足指定查询焦点元素类型的节点元素。          |
 
 **示例：**
 
@@ -1174,7 +1174,7 @@ findElement(type: 'focusDirection', condition: FocusDirection): Promise\<Accessi
 
 | 类型                                  | 说明                               |
 | ----------------------------------- | -------------------------------- |
-| Promise&lt;[AccessibilityElement](js-apis-application-accessibilityExtensionAbility.md)&gt; | Promise对象，返回满足指定查询下一焦点元素方向的节点元素。 |
+| Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise对象，返回满足指定查询下一焦点元素方向的节点元素。 |
 
 **示例：**
 
@@ -1206,7 +1206,7 @@ findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCa
 | --------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type      | string                                   | 是    | 固定为'focusDirection', 表示查询的类型为节点的下一焦点元素方向。 |
 | condition | [FocusDirection](#focusdirection)        | 是    | 表示下一查询焦点元素的方向。                           |
-| callback  | AsyncCallback&lt;[AccessibilityElement](js-apis-application-accessibilityExtensionAbility.md)&gt; | 是    | 回调函数，返回满足指定查询下一焦点元素方向的节点元素。              |
+| callback  | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回满足指定查询下一焦点元素方向的节点元素。              |
 
 **示例：**
 
