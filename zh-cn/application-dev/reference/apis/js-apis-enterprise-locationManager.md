@@ -48,6 +48,7 @@ setLocationPolicy(admin: Want, policy: LocationPolicy): void;
 
 ```ts
 import Want from '@ohos.app.ability.Want';
+import locationManager from '@ohos.enterprise.locationManager';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -55,7 +56,7 @@ let wantTemp: Want = {
 };
 
 try {
-    locationManager.setLocationPolicy(wantTemp, DISALLOWED_LOCATION_SERVICE);
+    locationManager.setLocationPolicy(wantTemp, locationManager.LocationPolicy.DISALLOWED_LOCATION_SERVICE);
     console.info(`Succeeded in getting location patch tag. tag: ${res}`);
 } catch(err) {
     console.error(`Failed to get location patch tag. Code: ${err.code}, message: ${err.message}`);
@@ -98,6 +99,7 @@ getLocationPolicy(admin: Want): LocationPolicy;
 
 ```ts
 import Want from '@ohos.app.ability.Want';
+import locationManager from '@ohos.enterprise.locationManager';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
