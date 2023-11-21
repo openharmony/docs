@@ -613,15 +613,15 @@ try {
 
 ## abilityManager.on<sup>11+</sup>
 
-on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): void;
+on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): void
 
 注册Ability的启动和退出的观测器。
+
+**系统接口**：该接口为系统接口。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -660,22 +660,22 @@ try {
 
 ## abilityManager.off<sup>11+</sup>
 
-off(type: 'abilityForegroundState', observer?: AppForegroundStateObserver): void;
+off(type: 'abilityForegroundState', observer?: AppForegroundStateObserver): void
 
 取消注册Ability启动和退出的观测器。
+
+**系统接口**：该接口为系统接口。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填'abilityForegroundState'字符串。 |
-| observer | [AbilityForegroundStateObserver](./js-apis-inner-application-abilityForegroundStateObserver.md) | 否 | Ability状态观测器，用于观测Ability的启动和退出。若无此参数，则取消当前应用注册的所有observer。 |
+| observer | [AbilityForegroundStateObserver](./js-apis-inner-application-abilityForegroundStateObserver.md) | 否 | Ability状态观测器，用于观测Ability的启动和退出。如果未配置该参数，则取消当前应用注册的所有observer。如果配置了该参数，则取消该observer。 |
 
 **错误码**：
 

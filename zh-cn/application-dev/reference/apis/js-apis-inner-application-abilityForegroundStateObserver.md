@@ -1,6 +1,6 @@
 # AbilityForegroundStateObserver
 
-定义应用前后台状态监听.
+定义应用前后台状态监听。
 
 > **说明：**
 >
