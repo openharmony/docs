@@ -1585,6 +1585,8 @@ console.log(p.spouse?.nick) // 打印undefined
 
 未导出的声明名称被视为私有名称，只能在声明该名称的模块中使用。
 
+**注意**：通过export方式导出，在导入时要加{}。
+
 ```typescript
 export class Point {
   x: number = 0
