@@ -21,7 +21,7 @@ WindowExtensionAbility提供了onConnect()、onDisconnect()和onWindowReady()生
 
 - **onWindowReady**：当该Ability的应用窗口创建成功时触发该回调。
 
-- **onConnect**：当窗口扩展组件UIExtensionComponent连接该Ability时回调。
+- **onConnect**：当窗口扩展组件AbilityComponent连接该Ability时回调。
 
 - **onDisconnect**：当窗口扩展组件AbilityComponent断开与该Ability的连接时回调。
 
