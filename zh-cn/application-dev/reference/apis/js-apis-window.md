@@ -71,6 +71,7 @@ import window from '@ohos.window';
 | TYPE_CUTOUT                      | 1    | 表示刘海屏区域。                                             |
 | TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2    | 表示手势区域。                                               |
 | TYPE_KEYBOARD<sup>9+</sup>       | 3    | 表示软键盘区域。                                             |
+| TYPE_NAVIGATION_INDICATOR<sup>11+</sup> | 4    | 表示导航条区域。                                      |
 
 ## WindowMode<sup>7+</sup>
 
