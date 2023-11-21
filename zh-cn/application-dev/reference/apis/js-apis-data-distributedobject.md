@@ -173,7 +173,7 @@ g_object.setSessionId(distributedObject.genSessionId(), ()=>{
 });
 // g_object退出分布式组网
 g_object.setSessionId("", ()=>{
-    console.info("join session");
+    console.info("leave all session");
 });
 ```
 
