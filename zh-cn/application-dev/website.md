@@ -785,7 +785,7 @@
     - [OpenHarmony SDK 升级助手](tools/openharmony_sdk_upgrade_assistant.md)
 - 示例教程
   - [开发案例](https://gitee.com/openharmony/docs/blob/master/zh-cn/third-party-cases/Readme-CN.md)
-  - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-4.0-Release/README_zh.md)
+  - [示例代码](Samples.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
   - [系统能力SystemCapability使用指南](reference/syscap.md)
