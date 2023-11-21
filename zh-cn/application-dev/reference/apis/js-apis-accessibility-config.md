@@ -35,7 +35,7 @@ import config from '@ohos.accessibility.config';
 | audioMono<sup>10+</sup>| [Config](#config)\<boolean>| 是 | 是 | 表示音频单声道的配置。 |
 | audioBalance<sup>10+</sup>| [Config](#config)\<number>| 是 | 是 | 表示左右声道音量平衡的配置。取值 -1.0~1.0。 |
 
-True表示开启，False表示关闭。
+boolean返回值的含义：True表示开启，False表示关闭。
 
 ## enableAbility
 
@@ -217,6 +217,8 @@ config.disableAbility(name, (err: BusinessError) => {
 
 on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&gt;): void;
 
+权限配置：ohos.permission.READ_ACCESSIBILITY_CONFIG
+
 添加启用的辅助扩展的列表变化监听，使用callback异步回调。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
@@ -241,6 +243,8 @@ config.on('enabledAccessibilityExtensionListChange', () => {
 ## off('enabledAccessibilityExtensionListChange')
 
 off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void&gt;): void;
+
+权限配置：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 取消启用的辅助扩展的列表变化监听，使用callback异步回调。
 

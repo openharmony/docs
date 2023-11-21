@@ -156,7 +156,7 @@ import accessibility from '@ohos.accessibility';
 | enabled | boolean                          | 是    | 否    | 表示是否启用字幕配置。 |
 | style   | [CaptionsStyle](#captionsstyle8) | 是    | 否    | 表示字幕风格。     |
 
-True表示开启，False表示关闭。
+boolean返回值的含义：True表示开启，False表示关闭。
 
 ### on('enableChange')
 
@@ -273,15 +273,15 @@ captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
 
 ### 属性
 
-| 名称               | 类型                                    | 可读   | 可写   | 必填   | 说明                    |
+| 名称               | 类型                                    | 可读   | 可写   | 是否支持可选   | 说明                    |
 | ---------------- | ------------------------------------- | ---- | ---- | ---- | --------------------- |
-| type             | [EventType](#eventtype)               | 是    | 是    | 否    | 无障碍事件类型。              |
+| type             | [EventType](#eventtype)               | 是    | 是    | 否    | 无障碍事件类型；不可缺省。              |
 | windowUpdateType | [WindowUpdateType](#windowupdatetype) | 是    | 是    | 是    | 窗口变化类型。               |
-| bundleName       | string                                | 是    | 是    | 否    | 目标应用名。                |
+| bundleName       | string                                | 是    | 是    | 否    | 目标应用名；不可缺省。                |
 | componentType    | string                                | 是    | 是    | 是    | 事件源组件类型，如按钮、图表。       |
 | pageId           | number                                | 是    | 是    | 是    | 事件源的页面 ID。            |
 | description      | string                                | 是    | 是    | 是    | 事件描述；当前版本暂不支持。        |
-| triggerAction    | [Action](#action)                     | 是    | 是    | 否    | 触发事件的 Action。         |
+| triggerAction    | [Action](#action)                     | 是    | 是    | 否    | 触发事件的 Action；不可缺省。         |
 | textMoveUnit     | [TextMoveUnit](#textmoveunit)         | 是    | 是    | 是    | 文本移动粒度；当前版本暂不支持。      |
 | contents         | Array&lt;string&gt;                   | 是    | 是    | 是    | 内容列表。                 |
 | lastContent      | string                                | 是    | 是    | 是    | 最新内容。                 |
@@ -312,7 +312,7 @@ constructor(jsonObject)
   let eventInfo: accessibility.EventInfo = ({
     type: 'click',
     bundleName: 'com.example.MyApplication',
-    triggerAction: 'click'
+    triggerAction: 'click',
   });
   ```
 
@@ -854,7 +854,7 @@ import { BusinessError } from '@ohos.base';
 let eventInfo: accessibility.EventInfo = ({
   type: 'click',
   bundleName: 'com.example.MyApplication',
-  triggerAction: 'click'
+  triggerAction: 'click',
 });
 
 accessibility.sendEvent(eventInfo).then(() => {
@@ -893,8 +893,9 @@ import { BusinessError } from '@ohos.base';
 let eventInfo: accessibility.EventInfo = ({
   type: 'click',
   bundleName: 'com.example.MyApplication',
-  triggerAction: 'click'
+  triggerAction: 'click',
 });
+
 accessibility.sendEvent(eventInfo, (err: BusinessError) => {
   if (err) {
     console.error(`failed to sendEvent, Code is ${err.code}, message is ${err.message}`);
@@ -933,7 +934,7 @@ import { BusinessError } from '@ohos.base';
 let eventInfo: accessibility.EventInfo = ({
   type: 'click',
   bundleName: 'com.example.MyApplication',
-  triggerAction: 'click'
+  triggerAction: 'click',
 });
 
 accessibility.sendAccessibilityEvent(eventInfo).then(() => {
@@ -967,7 +968,7 @@ import { BusinessError } from '@ohos.base';
 let eventInfo: accessibility.EventInfo = ({
   type: 'click',
   bundleName: 'com.example.MyApplication',
-  triggerAction: 'click'
+  triggerAction: 'click',
 });
 
 accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
