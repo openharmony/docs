@@ -46,7 +46,7 @@ RichEditor(value: RichEditorOptions)
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onReady(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 富文本组件初始化完成后，触发回调。 |
-| onSelect(callback:&nbsp;(value:&nbsp;[RichEditorSelection](#richeditorselection))&nbsp;=&gt;&nbsp;void) | 鼠标左键按下选择，松开左键后触发回调。<br />- 用手指选择时，松开手指触发回调。 <br />- value：选中的所有span信息。 |
+| onSelect(callback:&nbsp;(value:&nbsp;[RichEditorSelection](#richeditorselection))&nbsp;=&gt;&nbsp;void) | 鼠标左键按下选择，松开左键后触发回调。<br />-  value：选中的所有span信息。 |
 | aboutToIMEInput(callback:&nbsp;(value:&nbsp;[RichEditorInsertValue](#richeditorinsertvalue))&nbsp;=&gt;&nbsp;boolean) | 输入法输入内容前，触发回调。<br />- value：输入法将要输入内容信息。|
 | onIMEInputComplete(callback:&nbsp;(value:&nbsp;[RichEditorTextSpanResult](#richeditortextspanresult))&nbsp;=&gt;&nbsp;void) | 输入法输完成输入后，触发回调。<br />- value：输入法完成输入后的文本Span信息。 |
 | aboutToDelete(callback:&nbsp;(value:&nbsp;[RichEditorDeleteValue](#richeditordeletevalue))&nbsp;=&gt;&nbsp;boolean) | 输入法删除内容前，触发回调。 <br />- value：准备删除的内容所在的文本Span信息。|
@@ -311,7 +311,6 @@ closeSelectionMenu(): void
 | ------ | -------- | ---- | -------------------------------------- |
 | offset  | number   | 否   | 添加文本的位置。省略时，添加到所有文本字符串的最后。 |
 | style  | [RichEditorTextStyle](#richeditortextstyle)   | 否   | 文本样式信息。省略时，使用系统默认文本信息。|
-| gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | 否   | 行为触发回调。省略时，仅使用系统默认行为。|
 
 ## RichEditorTextStyle
 
@@ -335,7 +334,6 @@ closeSelectionMenu(): void
 | ------ | -------- | ---- | -------------------------------------- |
 | offset  | number   | 否   | 添加图片的位置。省略时，添加到所有文本字符串的最后。 |
 | imageStyle  | [RichEditorImageSpanStyle](#richeditorimagespanstyle)   | 否   | 图片样式信息。省略时，使用系统默认图片信息。|
-| gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | 否   | 行为触发回调。省略时，仅使用系统默认行为。|
 
 ## RichEditorImageSpanStyle
 
@@ -364,34 +362,6 @@ closeSelectionMenu(): void
 | ------ | -------- | ---- | -------------------------------------- |
 | onAppear | ?(() => void) | 否 | 自定义选择菜单弹出时回调。 |
 | onDisappear | ?(() => void) | 否 | 自定义选择菜单关闭时回调。 |
-
-## RichEditorGesture<sup>11+</sup>
-
-用户行为回调。
-
-### onClick<sup>11+</sup>
-
-onClick(callback: (event?: ClickEvent) => void)
-
-点击完成时回调事件。
-
-**参数:**
-
-| 参数名   | 参数类型   | 必填   | 描述                            |
-| ----- | ------ | ---- | ---------------------------------------- |
-| event | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) | 否    | 用户点击事件。 |
-
-### onLongPress<sup>11+</sup>
-
-onLongPress(callback: (event?: GestureEvent) => void )
-
-长按完成时回调事件。
-
-**参数:**
-
-| 参数名   | 参数类型   | 必填   | 描述                            |
-| ----- | ------ | ---- | ---------------------------------------- |
-| event | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明) | 否    | 用户长按事件。 |
 
 ## 示例
 
