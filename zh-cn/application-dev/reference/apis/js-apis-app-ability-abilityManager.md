@@ -504,7 +504,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: Asyn
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
 | requestCode | number                                        | 是 | DLP管理应用传入的请求代码。          |
-| callback  | AsyncCallback<void>                             | 是 | 回调函数。当另存为结果通知成功，err为undefined，否则为错误对象。         |
+| callback  | AsyncCallback<void\>                             | 是 | 回调函数。当另存为结果通知成功，err为undefined，否则为错误对象。         |
 
 **错误码**：
 
@@ -570,7 +570,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise<void>| Promise对象。无返回结果的Promise对象。 |
+| Promise<void\>| Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
