@@ -1,4 +1,4 @@
-# @ohos.pipWindow (画中画窗口)
+# @ohos.PiPWindow (画中画窗口)
 
 画中画窗口提供画中画基础功能，包括判断判断当前系统是否使能画中画功能，以及创建画中画控制器。
 
@@ -201,9 +201,9 @@ function createPipController(xController: XComponentController, navigationId: st
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称                     | 类型       | 说明                                                                                                 |
-|------------------------|----------|----------------------------------------------------------------------------------------------------|
-| PiPVideoActionEvent    | string   | 值为：<br>'playbackStateChanged'：播放状态变化，如播放、暂停。<br>或'nextVideo'：播放下一个视频。<br>或'previousVideo'：播放上一个视频. |
+| 名称                     | 类型       | 说明                                                                                                   |
+|------------------------|----------|------------------------------------------------------------------------------------------------------|
+| PiPVideoActionEvent    | string   | 值为：<br>'playbackStateChanged'：播放状态变化，如播放、暂停。<br>或 'nextVideo'：播放下一个视频。<br>或 'previousVideo'：播放上一个视频. |
 
 ## PiPCallActionEvent
 
