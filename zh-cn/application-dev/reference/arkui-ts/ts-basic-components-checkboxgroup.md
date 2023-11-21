@@ -95,8 +95,7 @@ struct CheckboxExample {
         // 选项1
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
-            .selectedColor('#007DFF')
-            .shape(CheckBoxShape.ROUNDED_SQUARE)
+            .selectedColor('#007DFF')            
             .onChange((value: boolean) => {
               console.info('Checkbox1 change is' + value)
             })
@@ -106,8 +105,7 @@ struct CheckboxExample {
         // 选项2
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
-            .selectedColor('#007DFF')
-            .shape(CheckBoxShape.ROUNDED_SQUARE)
+            .selectedColor('#007DFF')            
             .onChange((value: boolean) => {
               console.info('Checkbox2 change is' + value)
             })
@@ -117,8 +115,7 @@ struct CheckboxExample {
         // 选项3
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
-            .selectedColor('#007DFF')
-            .shape(CheckBoxShape.ROUNDED_SQUARE)
+            .selectedColor('#007DFF')            
             .onChange((value: boolean) => {
               console.info('Checkbox3 change is' + value)
             })
@@ -160,8 +157,7 @@ struct Index {
         }.margin({right:15})
         Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
-            .selectedColor(0x39a2db)
-            .shape(CheckBoxShape.ROUNDED_SQUARE)
+            .selectedColor(0x39a2db)            
             .onChange((value: boolean) => {
               console.info('Checkbox1 change is'+ value)
             })
@@ -177,8 +173,7 @@ struct Index {
         }
         Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
-            .selectedColor(0x39a2db)
-            .shape(CheckBoxShape.ROUNDED_SQUARE)
+            .selectedColor(0x39a2db)            
             .onChange((value: boolean) => {
               console.info('Checkbox2 change is' + value)
             })
@@ -188,8 +183,7 @@ struct Index {
         }
         Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
-            .selectedColor(0x39a2db)
-            .shape(CheckBoxShape.ROUNDED_SQUARE)
+            .selectedColor(0x39a2db)            
             .onChange((value: boolean) => {
               console.info('Checkbox3 change is' + value)
             })
