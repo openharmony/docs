@@ -182,7 +182,7 @@ notificationSubscribe.subscribe(subscriber).then(() => {
 
 unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): void
 
-取消订阅（callbcak形式）。
+取消订阅（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -284,7 +284,7 @@ notificationSubscribe.unsubscribe(subscriber).then(() => {
 
 remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
-删除指定通知（Callback形式）。
+根据应用的包信息和通知键值，删除指定通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -343,7 +343,7 @@ notificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
 
 remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason): Promise\<void\>
 
-删除指定通知（Promise形式）。
+根据应用的包信息和通知键值，删除指定通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -402,7 +402,7 @@ notificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
 
 remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
-删除指定通知（Callback形式）。
+通过通知的唯一ID，删除指定通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -435,7 +435,6 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 import Base from '@ohos.base';
 
 let hashCode: string = 'hashCode';
-
 let removeCallback = (err: Base.BusinessError) => {
   if (err) {
     console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
@@ -451,7 +450,7 @@ notificationSubscribe.remove(hashCode, reason, removeCallback);
 
 remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
-删除指定通知（Promise形式）。
+通过通知的唯一ID，删除指定通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -500,7 +499,7 @@ notificationSubscribe.remove(hashCode, reason).then(() => {
 
 remove(hashCodes: Array\<String\>, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
-批量删除指定通知（Callback形式）。
+批量删除指定通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -532,7 +531,6 @@ remove(hashCodes: Array\<String\>, reason: RemoveReason, callback: AsyncCallback
 import Base from '@ohos.base';
 
 let hashCodes: string[] = ['hashCode1', 'hashCode2'];
-
 let removeCallback = (err: Base.BusinessError) => {
   if (err) {
     console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
@@ -597,7 +595,7 @@ notificationSubscribe.remove(hashCodes, reason).then(() => {
 
 removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
-删除指定应用的所有通知（Callback形式）。
+删除指定应用的所有通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -645,7 +643,7 @@ notificationSubscribe.removeAll(bundle, removeAllCallback);
 
 removeAll(callback: AsyncCallback\<void\>): void
 
-删除所有通知（Callback形式）。
+删除所有通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -775,9 +773,7 @@ let removeAllCallback = (err: Base.BusinessError) => {
     console.info("removeAll success");
   }
 }
-
 let userId: number = 1;
-
 notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
 
@@ -822,9 +818,7 @@ let removeAllCallback = (err: Base.BusinessError) => {
     console.info("removeAll success");
   }
 }
-
 let userId: number = 1;
-
 notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
 
