@@ -354,7 +354,7 @@
 
 ## ohos.permission.SYSTEM_LIGHT_CONTROL
 
-允许应用控制灯,包括打开、关闭等操作。
+允许应用控制灯，包括打开、关闭等操作。
 
 **权限级别**：system_basic
 
