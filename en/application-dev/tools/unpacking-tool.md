@@ -133,14 +133,14 @@ The package parsing APIs are used to parse an HAP, APP, or HSP file and obtain i
 
 | Class              | Prototype                                                    | Type    | Description                                                           |
 | ------------------ | ------------------------------------------------------------ | -------- |-------------------------------------------------------------------|
-| UncompressEntrance | UncomperssResult parseApp(String appPath,String parseMode,String deviceType,String hapName) | Java| Function: Parses **pack.info** in the APP file.<br>Input parameters: **appPath**, which specifies the path of the APP file.<br>Return value: **UncomperssResult**.|
-| UncompressEntrance | UncomperssResult parseApp(InputStream input,String parseMode,String deviceType,String hapName,String outPath) | Java| Function: Parses **pack.info** in the APP file.<br>Input parameters: **input**, which specifies the stream of the APP file.<br>Return value: **UncomperssResult**.|
-| UncompressEntrance | UncomperssResult parseHap(String hapPath)                    | Java| Function: Parses the JSON file in the APP file.<br>Input parameters: **hapPath**, which specifies the path of the HAP file.<br>Return value: **UncomperssResult**.   |
-| UncompressEntrance | UncomperssResult parseHap(InputStream input)                 | Java| Function: Parses the JSON file in the APP file.<br>Input parameters: **input**, which specifies the stream of the HAP file.<br>Return value: **UncomperssResult**.  |
+| UncompressEntrance | UncompressResult parseApp(String appPath,String parseMode,String deviceType,String hapName) | Java| Function: Parses **pack.info** in the APP file.<br>Input parameters: **appPath**, which specifies the path of the APP file.<br>Return value: **UncompressResult**.|
+| UncompressEntrance | UncompressResult parseApp(InputStream input,String parseMode,String deviceType,String hapName,String outPath) | Java| Function: Parses **pack.info** in the APP file.<br>Input parameters: **input**, which specifies the stream of the APP file.<br>Return value: **UncompressResult**.|
+| UncompressEntrance | UncompressResult parseHap(String hapPath)                    | Java| Function: Parses the JSON file in the APP file.<br>Input parameters: **hapPath**, which specifies the path of the HAP file.<br>Return value: **UncompressResult**.   |
+| UncompressEntrance | UncompressResult parseHap(InputStream input)                 | Java| Function: Parses the JSON file in the APP file.<br>Input parameters: **input**, which specifies the stream of the HAP file.<br>Return value: **UncompressResult**.  |
 
 ## Fields of the Unpacking Tool
 
-### UncomperssResult (Bundle Information) Struct
+### UncompressResult (Bundle Information) Struct
 
 | Field           | Type              | Description                                    | Remarks|
 | ----------------| ------------------ |----------------------------------------| ---- |

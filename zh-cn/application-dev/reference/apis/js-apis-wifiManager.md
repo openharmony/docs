@@ -30,7 +30,7 @@ enableWifi(): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2501000  | Operation failed.|
-| 2501003  | Failed to enable Wi-Fi.|
+| 2501003  | Failed for wifi is closing.|
 
 **示例：**
 
@@ -63,7 +63,7 @@ disableWifi(): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2501000  | Operation failed.|
-| 2501004  | Failed to disable Wi-Fi.|
+| 2501004  | Failed for wifi is opening.|
 
 **示例：**
 
@@ -262,6 +262,8 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
           console.info("channelWidth: " + result[i].channelWidth);
           console.info("timestamp: " + result[i].timestamp);
       }
+  }).catch(err => {
+      console.error("failed:" + JSON.stringify(err));
   });
 ```
 
@@ -607,7 +609,9 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 		}
 		wifiManager.addDeviceConfig(config).then(result => {
 			console.info("result:" + JSON.stringify(result));
-		});	
+		}).catch(err => {
+			console.error("failed:" + JSON.stringify(err));
+		});
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -851,7 +855,9 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 		}
 		wifiManager.addCandidateConfig(config).then(result => {
 			console.info("result:" + JSON.stringify(result));
-		});	
+		}).catch(err => {
+			console.error("failed:" + JSON.stringify(err));
+		});
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -939,7 +945,9 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 		let networkId = 0;
 		wifiManager.removeCandidateConfig(networkId).then(result => {
 			console.info("result:" + JSON.stringify(result));
-		});	
+		}).catch(err => {
+			console.error("failed:" + JSON.stringify(err));
+		});
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -1064,7 +1072,7 @@ connectToCandidateConfig(networkId: number): void
 	import wifiManager from '@ohos.wifiManager';
 
 	try {
-		let networkId = 0;
+		let networkId = 0; // 实际的候选网络ID，在添加候选网络时生成，取自WifiDeviceConfig.netId
 		wifiManager.connectToCandidateConfig(networkId);
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
@@ -1251,7 +1259,7 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Promise对象。表示WLAN连接信息。 |
+  | Promise&lt;[WifiLinkedInfo](#wifilinkedinfo9)&gt; | Promise对象。表示WLAN连接信息。 |
 
 **错误码：**
 
@@ -1278,7 +1286,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | 是 | 回调函数。当获取成功时，err为0，data表示WLAN连接信息。如果error为非0，表示处理出现错误。 |
+  | callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo9)&gt; | 是 | 回调函数。当获取成功时，err为0，data表示WLAN连接信息。如果err为非0，表示处理出现错误。 |
 
 **错误码：**
 
@@ -1334,10 +1342,10 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | macType | number | 是 | 否 | MAC地址类型。0 - 随机MAC地址，1 - 设备MAC地址。 |
 | macAddress | string | 是 | 否 | 设备的MAC地址。 |
 | ipAddress | number | 是 | 否 | WLAN连接的IP地址。 |
-| suppState | [SuppState](#suppstate) | 是 | 否 | 请求状态。 <br /> **系统接口：** 此接口为系统接口。 |
-| connState | [ConnState](#connstate) | 是 | 否 | WLAN连接状态。 |
-| channelWidth<sup>10+</sup> | [WifiChannelWidth](#wifichannelwidth) | 是 | 否 | 当前连接热点的信道带宽。 |
-| wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard) | 是 | 否 | 当前连接热点的WiFi标准。 |
+| suppState | [SuppState](#suppstate9) | 是 | 否 | 请求状态。 <br /> **系统接口：** 此接口为系统接口。 |
+| connState | [ConnState](#connstate9) | 是 | 否 | WLAN连接状态。 |
+| channelWidth<sup>10+</sup> | [WifiChannelWidth](#wifichannelwidth9) | 是 | 否 | 当前连接热点的信道带宽。 |
+| wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | 是 | 否 | 当前连接热点的WiFi标准。 |
 
 ## ConnState<sup>9+</sup>
 
@@ -2332,7 +2340,7 @@ getHotspotConfig(): HotspotConfig
 
 ## wifiManager.getStations<sup>9+</sup>
 
-getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt;
+getStations(): &nbsp;Array&lt;StationInfo&gt;
 
 获取连接的设备。
 
@@ -2412,6 +2420,31 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
   | -------- | -------- |
 | 2801000  | Operation failed.|
 
+
+## wifiManager.getP2pLinkedInfo<sup>9+</sup>
+
+getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
+
+获取P2P连接信息，使用callback异步回调。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO
+
+**系统能力：** SystemCapability.Communication.WiFi.P2P
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示P2P连接信息。如果err为非0，表示处理出现错误。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2801000  | Operation failed.|
+
 **示例：**
 ```ts
 	import wifiManager from '@ohos.wifiManager';
@@ -2453,31 +2486,6 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 | -------- | -------- | -------- |
 | DISCONNECTED | 0 | 断开状态。 |
 | CONNECTED | 1 | 连接状态。 |
-
-
-## wifiManager.getP2pLinkedInfo<sup>9+</sup>
-
-getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
-
-获取P2P连接信息，使用callback异步回调。
-
-**需要权限：** ohos.permission.GET_WIFI_INFO
-
-**系统能力：** SystemCapability.Communication.WiFi.P2P
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示P2P连接信息。如果error为非0，表示处理出现错误。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
-
-| **错误码ID** | **错误信息** |
-  | -------- | -------- |
-| 2801000  | Operation failed.|
 
 ## wifiManager.getCurrentGroup<sup>9+</sup>
 
@@ -2538,7 +2546,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 **示例：**
 ```ts
 	import wifiManager from '@ohos.wifiManager';
-
+	// p2p处于连接状态，才能正常获取到当前组信息
 	wifiManager.getCurrentGroup((err, data) => {
     if (err) {
         console.error("get current P2P group error");
@@ -2598,7 +2606,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示对端设备列表信息。如果error为非0，表示处理出现错误。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的deviceAddress为真实设备地址，否则为随机设备地址。 |
+| callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示对端设备列表信息。如果err为非0，表示处理出现错误。如果应用申请了ohos.permission.GET_WIFI_PEERS_MAC权限，则返回结果中的deviceAddress为真实设备地址，否则为随机设备地址。 |
 
 **错误码：**
 
@@ -2611,7 +2619,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 **示例：**
 ```ts
 	import wifiManager from '@ohos.wifiManager';
-
+	// p2p处于连接状态，才能正常获取到对端设备列表信息
 	wifiManager.getP2pPeerDevices((err, data) => {
     if (err) {
         console.error("get P2P peer devices error");
@@ -2705,7 +2713,7 @@ getP2pLocalDevice(callback: AsyncCallback&lt;WifiP2pDevice&gt;): void
 **示例：**
 ```ts
 	import wifiManager from '@ohos.wifiManager';
-
+	// p2p处于连接状态，才能正常获取到本端设备信息
 	wifiManager.getP2pLocalDevice((err, data) => {
     if (err) {
         console.error("get P2P local device error");
@@ -2787,7 +2795,7 @@ createGroup(config: WifiP2PConfig): void
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | GO_BAND_AUTO | 0 | 自动模式。 |
-| GO_BAND_2GHZ | 1 | 2GHZ。 |
+| GO_BAND_2GHZ | 1 | 2.4GHZ。 |
 | GO_BAND_5GHZ | 2 | 5GHZ。 |
 
 
@@ -3694,7 +3702,7 @@ on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"hotspotStaJoin"字符串。 |
-| callback | Callback&lt;StationInfo&gt; | 否 | 状态改变回调函数。 |
+| callback | Callback&lt;StationInfo&gt; | 是 | 状态改变回调函数。 |
 
 **错误码：**
 
@@ -3764,7 +3772,7 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"hotspotStaLeave"字符串。 |
-  | callback | Callback&lt;StationInf]&gt; | 否 | 状态改变回调函数。 |
+  | callback | Callback&lt;StationInf]&gt; | 是 | 状态改变回调函数。 |
 
 **错误码：**
 
@@ -3774,7 +3782,7 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
   | -------- | -------- |
 | 2601000  | Operation failed.|
 
-## wifiManager.off('hotspotStaLeave')<sup>7+</sup>
+## wifiManager.off('hotspotStaLeave')<sup>9+</sup>
 
 off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 

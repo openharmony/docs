@@ -80,8 +80,8 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 import worker from '@ohos.worker';
-// Create a Worker instance.
 
+// Create a Worker instance.
 // In the FA model, the workers directory is at the same level as the pages directory in the entry module.
 const workerFAModel01 = new worker.ThreadWorker("workers/worker.ts", {name:"first worker in FA model"});
 // In the FA model, the workers directory is at the same level as the parent directory of the pages directory in the entry module.
@@ -602,6 +602,7 @@ The **dispatchEvent** API can be used together with the **on**, **once**, and **
 
 ```ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 // Usage 1:
@@ -669,6 +670,8 @@ workerInstance.removeAllListener();
 ```
 
 ## WorkerEventTarget<sup>9+</sup>
+
+Processes worker listening events.
 
 ### addEventListener<sup>9+</sup>
 
@@ -778,6 +781,7 @@ The **dispatchEvent** API can be used together with the **on**, **once**, and **
 
 ```ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 // Usage 1:
@@ -878,6 +882,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 ```ts
 // Main thread
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -888,6 +893,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     let buffer = new ArrayBuffer(8);
@@ -924,6 +930,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 ```ts
 // Main thread
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -934,6 +941,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     workerPort.postMessage("receive data from main thread");
@@ -962,12 +970,14 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 ```ts
 // Main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```
 
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     workerPort.close()
@@ -1004,6 +1014,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 ```ts
 // Main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 ```
@@ -1011,6 +1022,7 @@ workerInstance.postMessage("hello world");
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     console.log("receive main thread message");
@@ -1047,12 +1059,14 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 ```ts
 // Main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```
 
 ```ts
 // worker.ts
 import worker from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessageerror = () => {
     console.log("worker.ts onmessageerror")
@@ -1132,12 +1146,14 @@ Defines the event handler to be called when an exception occurs during worker ex
 ```ts
 // Main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts")
 ```
 
 ```ts
 // worker.ts
 import worker from '@ohos.worker';
+
 const workerPort = worker.workerPort
 workerPort.onerror = () => {
     console.log("worker.ts onerror")
@@ -1190,6 +1206,7 @@ A constructor used to create a **Worker** instance.
 
 ```ts
 import worker from '@ohos.worker';
+
 // Create a Worker instance.
 
 // In the FA model, the workers directory is at the same level as the pages directory.
@@ -1489,12 +1506,13 @@ Defines the event handler to be called when the host thread receives a message s
 
 | Name| Type                              | Mandatory| Description                  |
 | ------ | ---------------------------------- | ---- | ---------------------- |
-| event  | [MessageEvent\<T>](#messageeventt) | Yes  | Message received.|
+| event  | [MessageEvent](#messageeventt) | Yes  | Message received.|
 
 **Example**
 
 ```ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.onmessage = (e: MessageEvents): void => {
     console.log("onmessage");
@@ -1517,7 +1535,7 @@ Defines the event handler to be called when the worker thread receives a message
 
 | Name| Type                              | Mandatory| Description      |
 | ------ | ---------------------------------- | ---- | ---------- |
-| event  | [MessageEvent\<T>](#messageeventt) | Yes  | Error data.|
+| event  | [MessageEvent](#messageeventt) | Yes  | Error data.|
 
 **Example**
 
@@ -1733,6 +1751,7 @@ Used by the worker thread to send a message to the host thread by transferring o
 ```ts
 // Main thread
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -1743,6 +1762,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     // let data = e.data;
@@ -1774,6 +1794,7 @@ Used by the worker thread to send a message to the host thread by transferring o
 ```ts
 // Main thread
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -1784,6 +1805,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e: MessageEvents): void => {
     // let data = e.data;
@@ -1807,11 +1829,13 @@ Terminates the worker thread to stop it from receiving messages.
 ```ts
 // Main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 ```
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e: MessageEvents): void => {
     parentPort.close()
@@ -1835,19 +1859,21 @@ Defines the event handler to be called when the worker thread receives a message
 | Name| Type                                                        | Mandatory| Description                    |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.        |
-| ev     | [MessageEvent\<T>](#messageeventt)                           | Yes  | Message received.|
+| ev     | [MessageEvent](#messageeventt)                           | Yes  | Message received.|
 
 **Example**
 
 ```ts
 // Main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 ```
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e: MessageEvents): void => {
     console.log("receive main thread message");
@@ -1871,18 +1897,20 @@ Defines the event handler to be called when the worker thread receives a message
 | Name| Type                                                        | Mandatory| Description            |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.|
-| ev     | [MessageEvent\<T>](#messageeventt)                           | Yes  | Error data.      |
+| ev     | [MessageEvent](#messageeventt)                           | Yes  | Error data.      |
 
 **Example**
 
 ```ts
 // Main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 ```
 ```ts
 // worker.ts
 import worker from '@ohos.worker';
+
 const parentPort = worker.parentPort;
 parentPort.onmessageerror = () => {
     console.log("worker.ts onmessageerror")
@@ -2011,11 +2039,13 @@ Defines the event handler to be called when an exception occurs during worker ex
 ```ts
 // Main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts")
 ```
 ```ts
 // worker.ts
 import worker from '@ohos.worker';
+
 const parentPort = worker.parentPort
 parentPort.onerror = () => {
     console.log("worker.ts onerror")
@@ -2036,6 +2066,7 @@ Exception: When an object created through a custom class is passed, no serializa
 ```ts
 // Main thread
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
 workerInstance.postMessage("message from main thread to worker");
 workerInstance.onmessage = (d: MessageEvents): void => {
@@ -2046,6 +2077,7 @@ workerInstance.onmessage = (d: MessageEvents): void => {
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 class MyModel {
     name = "undefined"
@@ -2092,6 +2124,7 @@ Each actor concurrently processes tasks of the main thread. For each actor, ther
 ```ts
 // Main thread (The following assumes that the workers directory and pages directory are at the same level.)
 import worker, { MessageEvents } from '@ohos.worker';
+
 // Create a Worker instance in the main thread.
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
 

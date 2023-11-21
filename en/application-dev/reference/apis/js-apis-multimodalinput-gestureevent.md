@@ -9,7 +9,7 @@ The **gestureEvent** module provides APIs for gesture events reported by devices
 ## Modules to Import
 
 ```js
-import { Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '@ohos.multimodalInput.gestureEvent';
+import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '@ohos.multimodalInput.gestureEvent';
 ```
 
 ## Pinch
@@ -22,6 +22,17 @@ Defines a pinch event.
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
 | type         | [ActionType](#actiontype)   | Yes   | No   | Pinch event type.                                  |
 | scale        | number      | Yes   | No   | Pinch scale factor. The value is greater than or equal to 0.                            |
+
+## Rotate
+
+Defines a rotate event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+| Name            | Type       | Readable  | Writable  | Description                                      |
+| -------------- | ----------- | ---- | ---- | ---------------------------------------- |
+| type         | [ActionType](#actiontype)   | Yes   | No   | Rotate event type.                                  |
+| angle        | number      | Yes   | No   | Angle of rotation.                            |
 
 ## ThreeFingersSwipe
 
@@ -47,6 +58,15 @@ Defines a four-finger swipe event.
 | x        | number      | Yes   | No   | X coordinate.                            |
 | y        | number      | Yes   | No   | Y coordinate.                            |
 
+## ThreeFingersTap
+
+Defines a three-finger tap event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+| Name| Type                     | Readable| Writable| Description            |
+| ---- | ------------------------- | ---- | ---- | ---------------- |
+| type | [ActionType](#actiontype) | Yes  | No  | Three-finger tap event type.|
 
 ## ActionType
 

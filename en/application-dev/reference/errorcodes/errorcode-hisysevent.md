@@ -228,11 +228,11 @@ This error code is reported if the **query** API is called to query system event
 
 **Possible Causes**
 
-The number of query rules exceeds 10.
+The number of query rules exceeds 100.
 
 **Solution**
 
-Check whether the number of query rules exceeds 10.
+Check whether the number of query rules exceeds 100.
 
 
 ## 11200302 Invalid Query Rule
@@ -286,8 +286,8 @@ This error code is reported if the **query** API is called to query system event
 
 **Possible Causes**
 
-More than one query is performed in one second.
+More than 50 queries are performed in one second.
 
 **Solution**
 
-Check whether more than one query is performed in one second.
+Check whether more than 50 queries are performed in one second.

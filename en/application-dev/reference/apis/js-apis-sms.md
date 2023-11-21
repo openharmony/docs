@@ -337,7 +337,7 @@ const sandBoxPath: string = '/data/storage/el2/base/files/';
 let filePath: string  = sandBoxPath + 'SendReq.mms';
 
 // Options for sending MMS messages (The MMSC is for reference only.)
-let mmsPars: sms.MmsParams = {
+let mmsPars: sms.MmsParam = {
   slotId : 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
@@ -374,7 +374,7 @@ let mmsConf = {
 
 // Options for sending MMS messages (The MMSC is for reference only.)
 let mmsPars = {
-  slotId : 0,
+  slotId : DEFAULT_SLOTID,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
   mmsConfig: mmsConf
@@ -449,7 +449,7 @@ const sandBoxPath: string = '/data/storage/el2/base/files/';
 let filePath: string = sandBoxPath + 'SendReq.mms';
 
 // Options for sending MMS messages (The MMSC is for reference only.)
-let mmsPars: sms.MmsParams = {
+let mmsPars: sms.MmsParam = {
   slotId: 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
@@ -485,7 +485,7 @@ let mmsConf = {
 
 // Options for sending MMS messages (The MMSC is for reference only.)
 let mmsPars = {
-  slotId : 0,
+  slotId : DEFAULT_SLOTID,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
   mmsConfig: mmsConf
@@ -557,7 +557,7 @@ let filePath: string = sandBoxPath + 'RetrieveConf.mms';
 let wapPushUrl: string = 'URL';
 
 // Configure the parameters (including the callback) for downloading MMS messages.
-let mmsPars: sms.MmsParams = {
+let mmsPars: sms.MmsParam = {
   slotId: 0,
   mmsc: wapPushUrl,
   data: filePath,
@@ -597,7 +597,7 @@ let mmsConf = {
 
 // Configure the parameters (including the callback) for downloading MMS messages.
 let mmsPars = {
-  slotId : 0,
+  slotId : DEFAULT_SLOTID,
   mmsc: wapPushUrl,
   data: filePath,
   mmsConfig: mmsConf
@@ -675,7 +675,7 @@ let filePath: string = sandBoxPath + 'RetrieveConf.mms';
 let wapPushUrl: string = 'URL';
 
 // Configure the parameters (including the callback) for downloading MMS messages.
-let mmsPars: sms.MmsParams = {
+let mmsPars: sms.MmsParam = {
   slotId: 0,
   mmsc: wapPushUrl,
   data: filePath,
@@ -714,7 +714,7 @@ let mmsConf = {
 
 // Configure the parameters (including the callback) for downloading MMS messages.
 let mmsPars = {
-  slotId : 0,
+  slotId : DEFAULT_SLOTID,
   mmsc: wapPushUrl,
   data: filePath,
   mmsConfig: mmsConf
@@ -1618,7 +1618,7 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 let promise = sms.getAllSimMessages(slotId);
-promise.then((data: sms.SimShortMessage[]) => {
+promise.then((data: sms.SimShortMessage) => {
     console.log(`getAllSimMessages success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getAllSimMessages failed, promise: err->${JSON.stringify(err)}`);

@@ -53,3 +53,52 @@ API 11及之后，点击按钮后输入框会立即失焦，此时输入框组�
 **适配指导**
 
 默认行为变更，无适配指导。
+
+## Checkbox组件默认形状变更
+
+当开发者未配置Checkbox组件的shape属性，默认形状变更。
+
+**变更影响**
+
+默认形状策略：
+
+API version 11及之后：Checkbox组件的形状默认为圆形。
+
+API version 11之前：Checkbox组件的形状默认为圆角方形。
+
+**适配指导**
+
+若希望API version 11及之后Checkbox组件的形状为变更前的圆角方形，则需要Checkbox组件绑定shape(CheckBoxShape.ROUNDED_SQUARE)属性，这样Checkbox组件的形状就变成圆角方形。
+
+
+
+## rawfile文件资源校验等级变更
+
+针对$rawfile()引用不存在的资源，报错等级由WARN变更成ERROR。
+
+**示例：**
+
+```
+@Entry
+@Component
+struct Index {
+  build() {
+    Button(){
+      // ERROR: No such 'app_icon.ong' resource in current module.
+      Image($rawfile('app_icon.png'))
+    }
+  }
+}
+```
+
+**变更影响**
+
+$rawfile()引用不存在的资源，报错等级由WARN变更成ERROR。 
+
+**关键的接口/组件变更**
+
+不涉及。
+
+**适配指导**
+
+不涉及。

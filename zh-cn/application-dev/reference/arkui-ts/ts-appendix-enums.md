@@ -486,6 +486,7 @@
 | None        | 不支持复制。   |
 | InApp       | 支持应用内复制。 |
 | LocalDevice | 支持设备内复制。 |
+| CROSS_DEVICE<sup>11+</sup> | 支持跨设备复制。 |
 
 ## HitTestMode<sup>9+</sup>
 
@@ -596,3 +597,28 @@ Nullable\<T> {
 | BREAK_ALL | 对于Non-CJK的文本，可在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 | BREAK_WORD | 与BREAK_ALL相同，对于Non-CJK的文本可在任意2个字符间断行。不同点在于一行文本有断行破发点（如空白符）处会换行，在能保证英文单词为一个整体单位时必须保持为一个整体。对于CJK与NORMAL效果一致。|
 
+## GestureJudgeResult<sup>11+</sup>
+| 名称  | 描述                                   |
+| ----- | -------------------------------------- |
+| CONTINUE  | 不影响系统手势判定流程。|
+| REJECT  | 对于用户自定义的手势判定结果为失败。|
+
+## GestureType<sup>11+</sup>
+| 名称  | 描述                                   |
+| ----- | -------------------------------------- |
+| TAP_GESTURE   | 点击手势|
+| LONG_PRESS_GESTURE  | 长按手势|
+| PAN_GESTURE    | 拖动手势|
+| PINCH_GESTURE   | 捏合手势|
+| SWIPE_GESTURE    | 滑动手势|
+| ROTATION_GESTURE   | 旋转手势|
+| DRAG    | 拖拽|
+| CLICK   | 点击|
+## FinishCallbackType<sup>11+</sup>
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+| 名称       | 描述                                                         |
+| --------- | ------------------------------------------------------------ |
+| REMOVED   | 当整个动画结束并立即删除时，将触发回调。                         |
+| LOGICALLY | 当动画在逻辑上处于下降状态，但可能仍处于其长尾状态时，将触发回调。 |

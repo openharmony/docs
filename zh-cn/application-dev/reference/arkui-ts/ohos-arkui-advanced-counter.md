@@ -43,6 +43,15 @@ CounterOptions定义Counter的类型及具体式样参数。
 | inlineOptions | [InlineStyleOptions](#inlinestyleoptions) | 否 | 数值型内联型counter的式样。   |
 | dateOptions | [DateStyleOptions](#datestyleoptions) | 否 | 日期型内联型counter的式样。 |
 
+选择不同的counter类型，需要选择对应的counter式样，其对应关系如下：
+
+| counter类型             | counter式样        |
+| ----------------------- | ------------------ |
+| CounterTyle.LIST        | NumberStyleOptions |
+| CounterTyle.COMPACT     | NumberStyleOptions |
+| CounterTyle.INLINE      | InlineStyleOptions |
+| CounterTyle.INLINE_DATE | DateStyleOptions   |
+
 ## CounterTyle
 
 CounterTyle指定Counter的类型，如列表型Counter。
@@ -65,7 +74,7 @@ CommonOptions定义Counter的共通属性和事件。
 | 名称            | 类型                      | 必填 | 默认值 | 说明                                                         |
 | --------------- | ------------------------- | ---- | ------ | ------------------------------------------------------------ |
 | focusable       | boolean                   | 否   | true   | 设置Counter是否可以获焦。                                    |
-| step            | number                    | 否   | 1      | 设置Counter的步长。                                          |
+| step            | number                    | 否   | 1      | 设置Counter的步长。<br/>取值范围：大于等于1的整数。          |
 | onHoverIncrease | (isHover: boolean) =>void | 否   | -      | 鼠标进入或退出Counter组件的增加按钮触发该回调。<br/>isHover：表示鼠标是否悬浮在组件上，鼠标进入时为true, 退出时为false。 |
 | onHoverDecrease | (isHover: boolean) =>void | 否   | -      | 鼠标进入或退出Counter组件的减小按钮触发该回调。<br/>isHover：表示鼠标是否悬浮在组件上，鼠标进入时为true, 退出时为false。 |
 
@@ -95,7 +104,7 @@ NumberStyleOptions定义Number style（列表型Counter和紧凑型Counter）的
 
 | 名称            | 类型                                                         | 必填 | 默认值 | 说明                                          |
 | --------------- | ------------------------------------------------------------ | ---- | ------ | --------------------------------------------- |
-| label           | [ResourceStr](https://gitee.com/openharmony/docs/blob/c23a0074a8941ce5329069079e1c96d5fc07cca8/zh-cn/application-dev/reference/arkui-ts/ts-types.md#resourcestr) | 否   | -      | 设置Counter的说明文本。                       |
+| label           | [ResourceStr](ts-types.md#resourcestr) | 否   | -      | 设置Counter的说明文本。                       |
 | onFocusIncrease | () =>void                                                    | 否   | -      | 当前Counter组件增加按钮获取焦点时触发的回调。 |
 | onFocusDecrease | () =>void                                                    | 否   | -      | 当前Counter组件减小按钮获取焦点时触发的回调。 |
 | onBlurIncrease  | () =>void                                                    | 否   | -      | 当前Counter组件增加按钮失去焦点时触发的回调。 |

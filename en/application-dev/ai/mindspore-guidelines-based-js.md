@@ -8,7 +8,7 @@ You can use the JavaScript APIs provided by MindSpore Lite to directly integrate
 
 Before getting started, you need to understand the following basic concepts:
 
-**Tensor**: a special data structure that is similar to arrays and matrices. It is basic data structure used in MindSpore Lite network operations.
+**Tensor**: a special data structure that is similar to an array or matrix. It is the basic data structure used in MindSpore Lite network operations.
 
 **Float16 inference mode**: a mode that uses half-precision inference. Float16 uses 16 bits to represent a number and therefore it is also called half-precision.
 
@@ -21,15 +21,15 @@ APIs involved in MindSpore Lite model inference are categorized into context API
 |getInputs(): MSTensor[]|Obtains the model input.|
 |predict(inputs: MSTensor[]): Promise&lt;MSTensor&gt;|Performs model inference.|
 | getData(): ArrayBuffer                 | Obtains tensor data.|
-| setData(inputArray: ArrayBuffer): void | Sets the tensor data.|
+| setData(inputArray: ArrayBuffer): void | Sets tensor data.|
 
 ## How to Develop
 
 Assume that you have prepared a model in the **.ms** format. The key steps in model inference are model reading, model building, model inference, and memory release. The development procedure is described as follows:
 
 1. Create a context, and set parameters such as the number of runtime threads and device type.
-2. Load the model. In this example, the model is read from the file.
-3. Load data. Before executing a model, you need to obtain the model input and then fill data in the input tensor.
+2. Load the model. In this example, the model is read from a file.
+3. Load data. Before executing a model, you need to obtain the model input and then fill data in the input tensors.
 4. Perform model inference by calling **predict**, and read the output.  
 
 ```ts
@@ -106,7 +106,7 @@ console.log('=========MSLITE predict success=====')
 
 ## Debugging and Verification
 
-1. On DevEco Studio, connect to the device, click **Run entry**, and compile your own HAP. The following information is displayed:
+1. On DevEco Studio, connect to the device, click **Run entry**, and build your own HAP. The following information is displayed:
 
    ```shell
    Launching com.example.myapptfjs
@@ -115,7 +115,7 @@ console.log('=========MSLITE predict success=====')
    $ hdc shell aa start -a EntryAbility -b com.example.myapptfjs
    ```
 
-2. Use hdc to connect to the device, and push **mnet.caffemodel.ms** to the sandbox directory on the device. **mnet\_caffemodel\_nhwc.bin** is stored in the **rawfile** directory of the local project.
+2. Use hdc to connect to the device, and push **mnet.caffemodel.ms** to the sandbox directory on the device. **mnet\_caffemodel\_nhwc.bin** is stored in the **rawfile** directory of your project.
 
    ```shell
    hdc -t your_device_id file send .\mnet.caffemodel.ms /data/app/el2/100/base/com.example.myapptfjs/haps/entry/files/

@@ -12,7 +12,7 @@ If an application needs to execute a non-real-time task after switching to the b
 
 ![WorkScheduler](figures/WorkScheduler.png)
 
-An application calls the **WorkScheduler** APIs to register, delete, and query deferred tasks. Based on the task-specific conditions (specified by **WorkInfo**, including the network type, charging type, and storage status) and system status (including the memory, power consumption, device temperature, and user habits), the WorkSchedulerService determines the time to schedule the tasks.
+An application calls the **WorkScheduler** APIs to add, delete, and query deferred tasks. Based on the task-specific conditions (specified by **WorkInfo**, including the network type, charging type, and storage status) and system status (including the memory, power consumption, device temperature, and user habits), the WorkSchedulerService determines the time to schedule the tasks.
 
 When the scheduling conditions are met or the task scheduling ends, the system calls back **onWorkStart()** or **onWorkStop()** in [WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md). The system also creates an independent process for the **WorkSchedulerExtensionAbility** and provides a duration for the **WorkSchedulerExtensionAbility** to run. You can implement your own service logic in the callback functions.
 
@@ -23,18 +23,17 @@ When the scheduling conditions are met or the task scheduling ends, the system c
 
 - **Execution frequency limit**: The system controls the execution frequency of deferred tasks based on the [application activity group](../reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md). Applications that request the WORK_SCHEDULER resource are placed in the efficiency resource exemption group.
 
-  **Table 1** Application activity groups
-  
-  | Group| Deferred Task Execution Frequency|
-  | -------- | -------- |
-  | Group of active applications| At a minimum interval of 2 hours|
-  | Group of frequently used applications| At a minimum interval of 4 hours|
-  | Group of applications that are used neither frequently nor rarely| At a minimum interval of 24 hours|
-  | Group of rarely used applications| At a minimum interval of 48 hours|
-  | Group of restricted applications| Forbidden|
-  | Group of applications never used| Forbidden|
-  | Efficiency resource exemption group| No restriction|
-  
+**Table 1** Application activity groups
+| Group| Deferred Task Execution Frequency|
+| -------- | -------- |
+| Group of active applications| At a minimum interval of 2 hours|
+| Group of frequently used applications| At a minimum interval of 4 hours|
+| Group of applications that are used neither frequently nor rarely| At a minimum interval of 24 hours|
+| Group of rarely used applications| At a minimum interval of 48 hours|
+| Group of restricted applications| Forbidden|
+| Group of applications never used| Forbidden|
+| Efficiency resource exemption group| No restriction|
+
 - **Timeout**: The WorkSchedulerExtensionAbility can run for a maximum of 2 minutes for a single callback. If the application does not cancel the deferred task upon a timeout, the system forcibly terminates the process for the WorkSchedulerExtensionAbility. Privileged system applications can request the WORK_SCHEDULER resource to extend the duration to 20 minutes in the charging state and 10 minutes in the non-charging state.
 
 - **Scheduling delay**: The system schedules deferred tasks in a unified manner based on the memory, power consumption, device temperature, and user habits. For example, when the system memory resources are insufficient or the temperature reaches a certain level, the system delays task scheduling.
@@ -64,10 +63,10 @@ The table below lists the APIs used for developing deferred tasks. For details a
 | stopWork(work: WorkInfo, needCancel?: boolean): void; | Stops a deferred task.|
 | getWorkStatus(workId: number, callback: AsyncCallback&lt;WorkInfo&gt;): void; | Obtains the information about a deferred task. This API uses an asynchronous callback to return the result.|
 | getWorkStatus(workId: number): Promise&lt;WorkInfo&gt;; | Obtains the information about a deferred task. This API uses a promise to return the result.|
-| obtainAllWorks(callback: AsyncCallback&lt;void&gt;): Array&lt;WorkInfo&gt;; | Obtains all the deferred tasks. This API uses an asynchronous callback to return the result.|
+| obtainAllWorks(callback: AsyncCallback\<Array\<WorkInfo>>): void; | Obtains all the deferred tasks. This API uses an asynchronous callback to return the result.|
 | obtainAllWorks(): Promise&lt;Array&lt;WorkInfo&gt;&gt;; | Obtains all the deferred tasks. This API uses a promise to return the result.|
 | stopAndClearWorks(): void; | Stops and clears all the deferred tasks.|
-| isLastWorkTimeOut(workId: number, callback: AsyncCallback&lt;void&gt;): boolean; | Checks whether the last execution of a deferred task has timed out. This API uses an asynchronous callback to return the result. It is applicable to repeated tasks.|
+| isLastWorkTimeOut(workId: number, callback: AsyncCallback\<boolean>): void; | Checks whether the last execution of a deferred task has timed out. This API uses an asynchronous callback to return the result. It is applicable to repeated tasks.|
 | isLastWorkTimeOut(workId: number): Promise&lt;boolean&gt;; | Checks whether the last execution of a deferred task has timed out. This API uses a promise to return the result. It is applicable to repeated tasks.|
 
 **Table 3** Options of WorkInfo
@@ -182,6 +181,7 @@ The development of deferred task scheduling consists of two steps: implementing 
 2. Start a deferred task.
    
    ```ts
+   // Create workinfo.
    const workInfo: workScheduler.WorkInfo = {
      workId: 1,
      networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,
@@ -200,6 +200,7 @@ The development of deferred task scheduling consists of two steps: implementing 
 3. Cancel the deferred task.
    
    ```ts
+   // Create workinfo.
    const workInfo: workScheduler.WorkInfo = {
      workId: 1,
      networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,

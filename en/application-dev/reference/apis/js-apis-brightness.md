@@ -22,7 +22,7 @@ Sets the screen brightness.
 
 **System API**: This is a system API.
 
-**System capability:** SystemCapability.PowerManager.DisplayPowerManager
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager
 
 **Parameters**
 
@@ -43,6 +43,41 @@ For details about the error codes, see [Screen Brightness Error Codes](../errorc
 ```js
 try {
     brightness.setValue(128);
+} catch(err) {
+    console.error('set brightness failed, err: ' + err);
+}
+```
+
+## brightness.setValue<sup>11+</sup>
+
+setValue(value: number, continuous: boolean): void
+
+Sets the screen brightness. This API is used for continuous brightness adjustment. To achieve a better performance, set **continuous** to **true** when you start, and set it to **false** after you finish.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.PowerManager.DisplayPowerManager
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                   |
+| ------ | ------ | ---- | ----------------------- |
+| value  | number | Yes  | Brightness value. The value ranges from 0 to 255.|
+| continuous  | boolean | Yes  | Whether to enable continuous brightness adjustment.|
+
+**Error codes**
+
+For details about the error codes, see [Screen Brightness Error Codes](../errorcodes/errorcode-brightness.md).
+
+| ID  | Error Message   |
+|---------|---------|
+| 4700101 | If connecting to the service failed. |
+
+**Example**
+
+```js
+try {
+    brightness.setValue(128, true);
 } catch(err) {
     console.error('set brightness failed, err: ' + err);
 }

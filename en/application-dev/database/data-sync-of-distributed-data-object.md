@@ -44,9 +44,9 @@ The distributed data objects are encapsulated JS objects in distributed in-memor
 
 **Table 1** Correspondence between a distributed data object and a distributed database
 
-| Distributed Data Object Instance| Object Instance| Property Name| Property Value|
+| Distributed Data Object Instance| Object Instance| Property Name| Property Value| 
 | -------- | -------- | -------- | -------- |
-| Distributed in-memory database| Database identified by **sessionID**| Key of a record in the database| Value of a record in the database|
+| Distributed in-memory database| Database identified by **sessionID**| Key of a record in the database| Value of a record in the database| 
 
 
 ### Cross-Device Synchronization and Data Change Notification
@@ -68,7 +68,6 @@ After the synchronization relationship is established, each session has a copy o
 - Listening for data changes made by other devices.
 
 - Listening for status changes, such as the addition and removal of other devices.
-
 
 
 ### Minimum Synchronization Unit
@@ -128,7 +127,7 @@ Most of the APIs for cross-device synchronization of distributed data objects ar
 | on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void | Subscribes to data changes of the distributed data object.|
 | off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void): void | Unsubscribes from data changes of the distributed data object.|
 | on(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void): void | Subscribes to status changes of the distributed data object.|
-| off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'online' \|'offline' ) => void): void | Unsubscribes from status changes of the distributed data object|
+| off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'online' \|'offline' ) => void): void | Unsubscribes from status changes of the distributed data object.|
 | save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | Saves a distributed data object.|
 | revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | Revokes the saving of the distributed data object.|
 
@@ -318,7 +317,7 @@ The following example demonstrates how to implement synchronization of distribut
     }).catch((err: BusinessError) => {
       console.error(`Failed to save. Code:${err.code},message:${err.message}`);
     });
-      
+   
     // Revoke the data saved.
     localObject.revokeSave().then((result: distributedDataObject.RevokeSaveSuccessResponse) => {
       console.info(`Succeeded in revokeSaving. Session:${result.sessionId}`);

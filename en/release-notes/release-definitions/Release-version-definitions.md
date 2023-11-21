@@ -40,7 +40,7 @@ The following table lists the maintenance schedule of the LTS and Release branch
 | 1.0.1-Release | Release  | 2021-03-30| 2022-03-30   | 2023-03-30|
 | 3.0-LTS       | LTS      | 2021-09-30| 2023-09-30   | 2025-03-30|
 | 3.1-Release   | Release  | 2022-03-30| 2023-03-30   | 2024-03-30|
-| 3.2-Release   | Release  | 2022-4-9 | 2023-4-9    | 2024-4-9 |
+| 3.2-Release   | Release  | 2023-4-9 | 2024-4-9    | 2025-4-9 |
 
 Run the following commands to download the source code of each branch:
 

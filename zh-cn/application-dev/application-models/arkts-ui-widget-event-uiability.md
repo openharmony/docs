@@ -25,10 +25,10 @@
           .onClick(() => {
             console.info('postCardAction to EntryAbility');
             postCardAction(this, {
-              'action': 'router',
-              'abilityName': 'EntryAbility', // 只能跳转到当前应用下的UIAbility
-              'params': {
-                'detail': 'RouterFromCard'
+              action: 'router',
+              abilityName: 'EntryAbility', // 只能跳转到当前应用下的UIAbility
+              params: {
+                detail: 'RouterFromCard'
               }
             });
           })
@@ -140,12 +140,12 @@
           .onClick(() => {
             console.info('postCardAction to EntryAbility');
             postCardAction(this, {
-              'action': 'call',
-              'abilityName': 'EntryAbility', // 只能拉起当前应用下的UIAbility
-              'params': {
-                'method': 'funA',
-                'formId': this.formId,
-                'detail': 'CallFrom'
+              action: 'call',
+              abilityName: 'EntryAbility', // 只能拉起当前应用下的UIAbility
+              params: {
+                method: 'funA',
+                formId: this.formId,
+                detail: 'CallFrom'
               }
             });
           })

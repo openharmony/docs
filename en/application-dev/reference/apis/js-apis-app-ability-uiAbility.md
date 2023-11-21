@@ -266,6 +266,7 @@ Called when a UIAbility instance that has undergone the following states is star
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
 
   class MyUIAbility extends UIAbility {
       onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -605,11 +606,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
         deviceId: ''
       }).then((obj) => {
         caller = obj;
-        let msg = new MyMessageAble(1, 'world');
+        let msg = new MyMessageAble('msg', 'world');
         caller.callWithResult(method, msg)
           .then((data) => {
             console.log('Caller callWithResult() called');
-            let retmsg = new MyMessageAble(0, '');
+            let retmsg = new MyMessageAble('msg', 'world');
             data.readParcelable(retmsg);
           })
           .catch((callErr: BusinessError) => {

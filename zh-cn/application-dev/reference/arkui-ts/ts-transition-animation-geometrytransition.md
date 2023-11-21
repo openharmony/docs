@@ -1,4 +1,4 @@
-# 组件内隐式共享元素转场
+# 组件内隐式共享元素转场（geometryTransition）
 
 geometryTransition用于组件内隐式共享元素转场，在组件显示切换过程中提供平滑过渡效果。通用transition机制提供了opacity、scale等转场动效，geometryTransition通过id绑定in/out组件(in指入场组件、out指出场组件)，使得组件原本独立的transition动画在空间位置上发生联系，从而将视觉焦点由出场组件位置引导到入场组件位置。
 

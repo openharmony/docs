@@ -157,3 +157,48 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   }
 };
 ```
+## EnterpriseAdminExtensionAbility.onSystemUpdate<sup>11+</sup>
+
+onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo): void
+
+系统更新事件回调。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名              | 类型                                                      | 必填  | 说明         |
+| ---------------- | ------------------------------------------------------- | --- | ---------- |
+| systemUpdateInfo | [systemManager.SystemUpdateInfo](js-apis-enterprise-systemManager.md#systemupdateinfo11) | 是   | 系统更新的版本信息。 |
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo) {
+    console.info(`Succeeded in calling onSystemUpdate callback, version name  : ${systemUpdateInfo.versionName}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onStart<sup>11+</sup>
+
+onStart(): void
+
+EnterpriseAdminExtensionAbility启动事件回调。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onStart() {
+    console.info(`Succeeded in calling onStart callback.`);
+  }
+};
+```

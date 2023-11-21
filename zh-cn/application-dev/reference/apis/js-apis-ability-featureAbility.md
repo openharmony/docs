@@ -374,7 +374,7 @@ featureAbility.terminateSelfWithResult(
             }
         },
     }
-).then((data) => {
+).then(() => {
     console.info('==========================>terminateSelfWithResult=======================>');
 });
 ```
@@ -550,7 +550,7 @@ terminateSelf(): Promise\<void>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.terminateSelf().then((data) => {
+featureAbility.terminateSelf().then(() => {
     console.info('==========================>terminateSelf=======================>');
 });
 ```
@@ -620,7 +620,7 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 | 参数名         | 类型                   | 必填   | 说明                      |
 | ---------- | -------------------- | ---- | ----------------------- |
-| connection | number               | 是    | 表示断开连接的ServiceAbility的ID |
+| connection | number               | 是    | 表示断开连接的ServiceAbility的ID。 |
 | callback   | AsyncCallback\<void> | 是    | 以callback的形式返回断开连接结果                |
 
 **示例：**
@@ -668,7 +668,7 @@ disconnectAbility(connection: number): Promise\<void>
 
 | 参数名         | 类型     | 必填   | 说明                      |
 | ---------- | ------ | ---- | ----------------------- |
-| connection | number | 是    | 表示断开连接的ServiceAbility的ID |
+| connection | number | 是    | 表示断开连接的ServiceAbility的ID。 |
 
 **返回值：**
 
@@ -701,8 +701,8 @@ let connectId = featureAbility.connectAbility(
     },
 );
 
-featureAbility.disconnectAbility(connectId).then((data) => {
-    console.log('data: ${data)}')
+featureAbility.disconnectAbility(connectId).then(() => {
+    console.log('disconnectAbility success')
 }).catch((error: BusinessError)=>{
     console.error('featureAbilityTest result errCode : ${error.code}');
 });
@@ -730,13 +730,19 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 import window from '@ohos.window';
 
-featureAbility.getWindow((error: BusinessError, data: window.Window) => {
-    if (error && error.code !== 0) {
+export default {
+
+  onActive() {
+    console.info("onActive");
+    featureAbility.getWindow((error: BusinessError, data: window.Window) => {
+      if (error && error.code !== 0) {
         console.error(`getWindow fail, error: ${JSON.stringify(error)}`);
-    } else {
-        console.log(`getWindow success, data: ${JSON.stringify(data)}`);
-    }
-});
+      } else {
+        console.log(`getWindow success, data: ${typeof(data)}`);
+      }
+    });
+  }
+}
 ```
 
 ## featureAbility.getWindow<sup>7+</sup>
@@ -757,10 +763,20 @@ getWindow(): Promise\<window.Window>;
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
 
-featureAbility.getWindow().then((data) => {
-    console.info('getWindow data: ${typeof(data)}');
-});
+export default {
+
+  onActive() {
+    console.info("onActive");
+    featureAbility.getWindow().then((data: window.Window) => {
+        console.log(`getWindow success, data: ${typeof(data)}`);
+    }).catch((error: BusinessError)=>{
+        console.error(`getWindow fail, error: ${JSON.stringify(error)}`);
+    });
+  }
+}
 ```
 
 ## AbilityWindowConfiguration
@@ -830,29 +846,3 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | TYPE_UPDATE<sup>7+</sup> | 2    | 修改类型。 |
 | TYPE_DELETE<sup>7+</sup> | 3    | 删除类型。 |
 | TYPE_ASSERT<sup>7+</sup> | 4    | 声明类型。 |
-
-## flags说明
-
-表示处理Want的方式。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
-
-| 名称                                   | 值         | 说明                                       |
-| ------------------------------------ | ---------- | ---------------------------------------- |
-| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 表示对URI执行读取操作的授权。                         |
-| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 表示对URI执行写入操作的授权。                         |
-| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | 表示将结果返回给源Ability。                               |
-| FLAG_ABILITY_CONTINUATION            | 0x00000008 | 表示是否可以将本地设备上的Ability迁移到远端设备。                  |
-| FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | 表示组件是否不属于OHOS。                            |
-| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | 表示某个Ability是否已经启动。                              |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 表示URI上可能持久化的授权。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                          |
-| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 表示按照前缀匹配的方式验证URI权限。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                        |
-| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 表示支持分布式调度系统中的多设备启动。                        |
-| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 表示无论宿主应用是否已启动，都将使用前台模式启动Ability。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。           |
-| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是否是可反向的。                               |
-| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 表示如果未安装指定的Ability，将安装该Ability。                       |
-| FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 表示如果未安装指定的Ability，将在后台安装该Ability。                       |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 表示清除其他任务的操作。可以为传递给 **FeatureAbility** 中[startAbility](#featureabilitystartability)方法的参数对象[parameter](js-apis-inner-ability-startAbilityParameter.md)下的[Want](js-apis-application-want.md)设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
-| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 表示在已有的任务栈上创建任务的操作。                       |
-| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 表示如果启动的Ability的现有实例已位于任务栈顶，则将重用该实例。否则，将创建一个新的Ability实例。 |
-

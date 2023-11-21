@@ -61,6 +61,31 @@ setReceiveDataCallback(callback: (data: { [key: string]: Object }) => void): voi
 
 错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
+## UIExtensionContentSession.setReceiveDataForResultCallback<sup>11+</sup>
+
+setReceiveDataForResultCallback(callback: (data: { [key: string]: Object }) => { [key: string]: Object }): void
+
+设置从UIExtensionComponent控件接收数据带返回值的回调方法。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明             |
+| -------- | -------- | -------- |----------------|
+| callback | (data: { [key: string]: Object }) => { [key: string]: Object } | 是 | 接收数据带返回值的回调方法。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 ## UIExtensionContentSession.loadContent
 
 loadContent(path: string, storage?: LocalStorage): void;
@@ -400,7 +425,7 @@ terminateSelf(): Promise&lt;void&gt;;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 停止UIExtensionContentSession对应的窗口界面对象的回调函数。 |
+| Promise&lt;void&gt; | promise形式返回停止UIExtensionContentSession对应的窗口界面对象。 |
 
 ## UIExtensionContentSession.terminateSelfWithResult
 

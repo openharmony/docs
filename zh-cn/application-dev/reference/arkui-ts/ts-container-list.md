@@ -86,7 +86,7 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 | ------ | ---------------------------------- |
 | None   | ListItemGroup的header不吸顶，footer不吸底。 |
 | Header | ListItemGroup的header吸顶，footer不吸底。  |
-| Footer | ListItemGroup的footer吸底，header不吸底。  |
+| Footer | ListItemGroup的footer吸底，header不吸顶。  |
 
 ## ChainEdgeEffect<sup>10+</sup>枚举说明
 
@@ -133,6 +133,14 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 | START  | 视图中的第一项将在列表的开头对齐。<br/>**说明：**<br/>当列表位移至末端，需要将末端的item完整显示，可能出现开头不对齐的情况。 |
 | CENTER | 视图中的中间项将在列表中心对齐。<br/>**说明：**<br/>顶端和末尾的item都可以在列表中心对齐，列表显示可能露出空白，第一个或最后一个item会对齐到中间位置。 |
 | END    | 视图中的最后一项将在列表末尾对齐。<br/>**说明：**<br/>当列表位移至顶端，需要将顶端的item完整显示，可能出现末尾不对齐的情况。 |
+## CloseAllSwipeActions<sup>11+</sup>对象说明
+
+收起[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态[ListItem](ts-container-listitem.md)回调事件集合，用于设置收起动画完成后回调事件。
+
+| 名称     | 类型     | 必填 | 说明                   |
+| :------- | -------- | ---- | ---------------------- |
+| onFinish | ()=>void | 否   | 在收起动画完成后触发。 |
+
 ## 事件
 
 | 名称                                       | 功能描述                                     |
@@ -231,6 +239,22 @@ getItemRectInGroup(index: number, indexInGroup: number): RectResult
 | 类型       | 说明       |
 | -------------------  | -------- |
 | [RectResult](ts-types.md#rectresult10) | ListItemGroup中的ListItem的大小和相对于List的位置。 |
+
+### closeAllSwipeActions<sup>11+</sup>
+
+closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11对象说明)): void
+
+将[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态的[ListItem](ts-container-listitem.md)收起，并设置回调事件。
+
+**参数：**
+
+| 参数名  | 参数类型                                                   | 必填 | 参数描述                                                     |
+| ------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [CloseSwipeActionOptions](#closeallswipeactions11对象说明) | 否   | 收起[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态的[ListItem](ts-container-listitem.md)的回调事件集合。 |
+
+> **说明：**
+>
+> - ListScroller必须绑定到List组件上。
 
 ## 示例
 
@@ -431,7 +455,6 @@ struct ListExample {
         .scrollSnapAlign(ScrollSnapAlign.CENTER)
         .borderRadius(10)
         .backgroundColor(0xDCDCDC)
-        .width('100%')
       }
       .width('100%')
       .height('100%')

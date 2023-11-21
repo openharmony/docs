@@ -890,7 +890,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 **起始版本**：8
 
@@ -902,7 +902,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 **起始版本**：8
 
@@ -938,7 +938,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 **起始版本**：8
 
@@ -2730,7 +2730,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 **起始版本**：10
 
@@ -2935,6 +2935,18 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.RUN_DYN_CODE
+
+允许应用运行动态代码。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
 
 **起始版本**：11
 
@@ -3313,6 +3325,138 @@
 ## ohos.permission.RECEIVE_APP_INSTALL_INFO_CHANGE
 
 允许应用监听其他应用的安装进度。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_SECURITY_PRIVACY_CENTER
+
+允许业务接入安全隐私中心。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.GET_SECURITY_PRIVACY_ADVICE
+
+允许系统应用获取安全隐私中心建议相关数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.SET_SECURITY_PRIVACY_ADVICE
+
+允许系统应用处理安全隐私中心保护建议。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.USE_SECURITY_PRIVACY_MESSAGER
+
+允许系统服务调用权限管理相关接口。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.RECORD_VOICE_CALL
+
+允许应用录制通话内容。
+
+**授权级别**: system_core
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
+
+**起始版本**: 11
+
+## ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
+
+允许系统应用打开高级安全模式配置界面。
+
+**授权级别**: system_basic
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
+
+**起始版本**: 11
+
+## ohos.permission.STORE_PERSISTENT_DATA
+
+允许应用存储持久化的数据，该数据直到设备恢复出厂设置或重装系统才会被清除。
+
+**授权级别**: normal
+
+**授权方式**: system_grant
+
+**ACL使能**: FALSE
+
+**起始版本**: 11
+
+## ohos.permission.ACCESS_HIVIEWX
+
+允许系统应用拉起“用户体验改进计划”。
+
+**授权级别**: system_basic
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
+
+**起始版本**: 11
+
+## ohos.permission.ACCESS_PASSWORDVAULT_ABILITY
+
+允许系统应用或系统服务拉起密码保险箱能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**: 11
+
+## ohos.permission.ACCESS_LOWPOWER_MANAGER
+
+允许系统应用或系统服务向lowpowermanager发送消息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**: 11
+
+## ohos.permission.MANAGE_APP_BOOT
+
+允许系统应用设置其他应用开机自启配置。
 
 **权限级别**：system_basic
 
