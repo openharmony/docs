@@ -275,6 +275,8 @@ function startPip(pipController: pipWindow.PiPController) {
 }
 ```
 
+### startPiP
+
 startPiP(callback: AsyncCallback&lt;void&gt;): void
 
 启动画中画，使用callback异步回调。
@@ -357,6 +359,8 @@ function stopPip(pipController: pipWindow.PiPController) {
   }
 }
 ```
+
+### stopPiP
 
 stopPiP(callback: AsyncCallback&lt;void&gt;): void
 
