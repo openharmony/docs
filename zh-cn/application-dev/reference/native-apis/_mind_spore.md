@@ -151,6 +151,7 @@
 | [OH_AI_ModelSetTrainMode](#oh_ai_modelsettrainmode) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, bool train) | 设置训练模式，仅用于端侧训练。 |
 | [OH_AI_ModelSetupVirtualBatch](#oh_ai_modelsetupvirtualbatch) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, int virtual_batch_multiplier, float lr, float momentum) | OH_AI_API [OH_AI_Status](#oh_ai_status)<br/>设置虚拟batch用于训练，仅用于端侧训练。 |
 | [OH_AI_ExportModel](#oh_ai_exportmodel) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, [OH_AI_ModelType](#oh_ai_modeltype) model_type, const char \*model_file, [OH_AI_QuantizationType](#oh_ai_quantizationtype) quantization_type, bool export_inference_only, char \*\*output_tensor_name, size_t num) | 导出训练模型，仅用于端侧训练。 |
+| [OH_AI_ExportModelBuffer](#oh_ai_exportmodelbuffer) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, [OH_AI_ModelType](#oh_ai_modeltype) model_type, char \*\*model_data, size_t \*data_size, [OH_AI_QuantizationType](#oh_ai_quantizationtype) quantization_type, bool export_inference_only, char \*\*output_tensor_name, size_t num) | 导出训练模型内存缓存，仅用于端侧训练。  |
 | [OH_AI_ExportWeightsCollaborateWithMicro](#oh_ai_exportweightscollaboratewithmicro) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, [OH_AI_ModelType](#oh_ai_modeltype) model_type, const char \*weight_file, bool is_inference, bool enable_fp16, char \*\*changeable_weights_name, size_t num) | 导出模型权重,只能用于micro推理，仅用于端侧训练。 |
 | [OH_AI_TensorCreate](#oh_ai_tensorcreate) (const char \*name, [OH_AI_DataType](#oh_ai_datatype) type, const int64_t \*shape, size_t shape_num, const void \*data, size_t data_len) | 创建一个张量对象。 |
 | [OH_AI_TensorDestroy](#oh_ai_tensordestroy) ([OH_AI_TensorHandle](#oh_ai_tensorhandle) \*tensor) | 释放张量对象。 |
@@ -1404,6 +1405,33 @@ OH_AI_API OH_AI_Status OH_AI_ExportModel (OH_AI_ModelHandle model, OH_AI_ModelTy
 | export_inference_only | 是否导出推理模型。 |
 | output_tensor_name | 设置导出模型的输出Tensor，默认为空表示全量导出。 |
 | num | 输出Tensor的数量。 |
+
+**返回：**
+
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
+
+### OH_AI_ExportModelBuffer()
+
+```
+OH_AI_API OH_AI_Status OH_AI_ExportModelBuffer (OH_AI_ModelHandle model, OH_AI_ModelType model_type, char ** model_data, size_t * data_size, OH_AI_QuantizationType quantization_type, bool export_inference_only, char ** output_tensor_name, size_t num )
+```
+**描述**
+导出训练模型内存缓存，仅用于端侧训练。
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| model | 模型对象指针。  |
+| model_type | 模型文件类型，具体见[OH_AI_ModelType](#oh_ai_modeltype)。  |
+| model_data | 指向导出模型文件缓冲区的指针。  |
+| data_size | 缓冲区大小。  |
+| quantization_type | 量化类型。  |
+| export_inference_only | 是否导出推理模型。  |
+| output_tensor_name | 设置导出模型的输出Tensor，默认为空表示全量导出。  |
+| num | 输出Tensor的数量。  |
 
 **返回：**
 
