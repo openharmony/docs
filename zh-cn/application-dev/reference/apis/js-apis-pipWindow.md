@@ -201,11 +201,9 @@ function createPipController(xController: XComponentController, navigationId: st
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称                    | 类型       | 说明                     |
-|-----------------------|----------|------------------------|
-| playbackStateChanged  | string   | 播放状态变化，如播放、暂停。         |
-| nextVideo             | string   | 播放下一个视频。               |
-| previousVideo         | string   | 播放上一个视频。               |
+| 名称                     | 类型       | 说明                                                                                                 |
+|------------------------|----------|----------------------------------------------------------------------------------------------------|
+| PiPVideoActionEvent    | string   | 值为：<br>'playbackStateChanged'：播放状态变化，如播放、暂停。<br>或'nextVideo'：播放下一个视频。<br>或'previousVideo'：播放上一个视频. |
 
 ## PiPCallActionEvent
 
@@ -213,9 +211,9 @@ function createPipController(xController: XComponentController, navigationId: st
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称       | 类型        | 说明           |
-|----------|-----------|--------------|
-| hangUp   | string    | 挂断视频通话。      |
+| 名称                     | 类型     | 说明                  |
+|------------------------|--------|---------------------|
+| PiPCallActionEvent     | string | 值为 'hangUp'：挂断视频通话。 |
 
 ## PiPMeetingActionEvent
 
@@ -223,9 +221,9 @@ function createPipController(xController: XComponentController, navigationId: st
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称       | 类型        | 说明      |
-|----------|-----------|---------|
-| hangUp   | string    | 挂断视频会议。 |
+| 名称                         | 类型         | 说明                  |
+|----------------------------|------------|---------------------|
+| PiPMeetingActionEvent      | string     | 值为 'hangUp'：挂断视频会议。 |
 
 ## PiPController
 
