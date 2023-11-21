@@ -395,7 +395,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&gt;  void): void
 
-取消订阅上传任务进度事件，异步方法。
+取消订阅上传任务进度事件。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -406,7 +406,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（上传的进度信息）。 |
-  | callback | function | 否 | 需要删除的上传任务进度的回调函数。<br/>uploadedSize：当前已上传文件的大小，单位为B。<br/>totalSize：上传文件的总大小，单位为B。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。<br/>uploadedSize：当前已上传文件的大小，单位为B。<br/>totalSize：上传文件的总大小，单位为B。 |
 
 **示例：**
 
@@ -430,7 +430,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
-取消订阅上传任务HTTP标头事件，异步方法。
+取消订阅上传任务HTTP标头事件。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -441,7 +441,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
-  | callback | function | 否 | HTTP&nbsp;Response&nbsp;需要删除的Header事件的回调函数。<br/>header：HTTP&nbsp;Response&nbsp;Header。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。<br/>header：HTTP&nbsp;Response&nbsp;Header。 |
 
 **示例：**
 
@@ -464,7 +464,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
  off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
-取消订阅上传任务完成或失败事件，异步方法。
+取消订阅上传任务完成或失败事件。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -475,7 +475,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'complete'，表示上传任务完成；取值为'fail'，表示上传任务失败。|
-  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | 否 | 需要删除的上传任务完成或失败的回调函数。<br/>taskstates：上传任务返回结果 |
+  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
@@ -927,7 +927,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 
 off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt; void): void
 
-取消订阅下载任务进度事件，异步方法。
+取消订阅下载任务进度事件。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -938,7 +938,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（下载的进度信息）。 |
-  | callback | function | 否 | 需要删除的下载任务进度的回调。 <br/>receivedSize：当前下载任务的进度；<br/>totalSize：下载文件的总大小。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 <br/>receivedSize：当前下载任务的进度；<br/>totalSize：下载文件的总大小。 |
 
 **示例：**
 
@@ -999,7 +999,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
 off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 
-取消订阅下载任务相关的事件，异步方法。
+取消订阅下载任务相关的事件。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1010,7 +1010,7 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型。<br/>- 取值为'complete'，表示下载任务完成；<br/>- 取值为'pause'，表示下载任务暂停；<br/>- 取值为'remove'，表示下载任务移除。 |
-  | callback | function | 否 | 需要删除的下载任务相关的回调。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。。 |
 
 **示例：**
 
@@ -1093,7 +1093,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
 off(type: 'fail', callback?: (err: number) =&gt; void): void
 
-取消订阅下载任务失败事件，异步方法。
+取消订阅下载任务失败事件。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1104,7 +1104,7 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'fail'（下载失败）。 |
-  | callback | function | 否 | 需要删除的下载失败的回调函数。<br/>err：下载失败的错误码。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。<br/>err：下载失败的错误码。 |
 
 **示例：**
 
@@ -2175,7 +2175,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
 off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅任务进度事件，异步方法。
+取消订阅任务进度事件。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2184,7 +2184,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 订阅的事件类型。<br>- 取值为'progress'，表示任务进度。 |
-  | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码：**
 
@@ -2254,7 +2254,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
 off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅任务完成事件，异步方法。
+取消订阅任务完成事件。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2263,7 +2263,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 订阅的事件类型。<br>- 取值为'completed'，表示任务完成。 |
-  | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码：**
 
@@ -2333,7 +2333,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
 off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅任务失败事件，异步方法。
+取消订阅任务失败事件。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2342,7 +2342,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 订阅的事件类型。<br>- 取值为'failed'，表示任务失败。 |
-  | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码：**
 
