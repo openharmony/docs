@@ -4,7 +4,7 @@
 
 该模块提供以下常用功能：
 
-- [PiPController](#pipcontroller-sup-11-sup)：画中画控制器。控制画中画启动、停止、状态或事件回调等。
+- [PiPController](#pipcontroller)：画中画控制器。控制画中画启动、停止、状态或事件回调等。
 
 > **说明：**
 >
@@ -16,13 +16,13 @@
 import pipWindow from '@ohos.PiPWindow';
 ```
 
-## pipWindow.isPiPEnabled<sup>11</sup>
+## pipWindow.isPiPEnabled
 
 isPiPEnabled(): boolean
 
 用于判断当前系统是否使能画中画功能。
 
-**系统能力：** SystemCapability.Window.SessionManager.
+**系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
 
@@ -41,25 +41,25 @@ function isPipEnabled() {
 }
 ```
 
-## pipWindow.create<sup>11</sup>
+## pipWindow.create
 
 create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 
 创建画中画控制器，使用Promise异步回调。
 
-**系统能力：** SystemCapability.Window.SessionManager.
+**系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
 
 | 参数名          | 类型                                                | 必填        | 说明              |
 |--------------|---------------------------------------------------|-----------|-----------------|
-| config       | [PiPConfiguration](#pipconfiguration-sup-11-sup)  | 是         | 创建窗口时的参数。       |
+| config       | [PiPConfiguration](#pipconfiguration)  | 是         | 创建窗口时的参数。       |
 
 **返回值：**
 
 | 类型                                                         | 说明                       |
 |------------------------------------------------------------|--------------------------|
-| Promise&lt;[PiPController](#pipcontroller-sup-11-sup)&gt;  | Promise对象。返回当前创建的画中画控制器。 |
+| Promise&lt;[PiPController](#pipcontroller)&gt;  | Promise对象。返回当前创建的画中画控制器。 |
 
 **示例：**
 
@@ -92,9 +92,9 @@ function createPipController(xController: XComponentController, navigationId: st
   }
 ```
 
-## pipWindow.create<sup>11</sup>
+## pipWindow.create
 
-create(config: PiPConfiguration, callback: AsyncCallback<PiPController>): void
+create(config: PiPConfiguration, callback: AsyncCallback&lt;[PiPController](#pipcontroller)&gt;): void
 
 创建画中画控制器，使用callback异步回调。
 
@@ -104,8 +104,8 @@ create(config: PiPConfiguration, callback: AsyncCallback<PiPController>): void
 
 | 参数名      | 类型                                                              | 必填   | 说明             |
 |----------|-----------------------------------------------------------------|------|----------------|
-| config   | [PiPConfiguration](#pipconfiguration-sup-11-sup)                | 是    | 创建窗口时的参数。      |
-| callback | AsyncCallback&lt;[PiPController](#pipcontroller-sup-11-sup)&gt; | 是    | 回调函数。返回画中画控制器。 |
+| config   | [PiPConfiguration](#pipconfiguration)                | 是    | 创建窗口时的参数。      |
+| callback | AsyncCallback&lt;[PiPController](#pipcontroller)&gt; | 是    | 回调函数。返回画中画控制器。 |
 
 **示例：**
 
@@ -141,7 +141,7 @@ function createPipController(xController: XComponentController, navigationId: st
 }  
 ```
 
-## PiPConfiguration<sup>11</sup>
+## PiPConfiguration
 
 创建画中画控制器时的参数。
 
@@ -152,11 +152,11 @@ function createPipController(xController: XComponentController, navigationId: st
 | context             | [BaseContext](js-apis-inner-application-baseContext.md)               | 是   | 表示上下文环境。                 |
 | componentController | [XComponentController](../arkui-ts/ts-basic-components-xcomponent.md) | 是   | 表示原始XComponent控制器。       |
 | navigationId        | string                                                                | 否   | 当前page导航ID               |
-| templateType        | [PiPTemplateType](#piptemplatetype-sup-11-sup)                        | 否   | 模板类型，用以区分视频播放、视频通话或视频会议。 |
+| templateType        | [PiPTemplateType](#piptemplatetype)                        | 否   | 模板类型，用以区分视频播放、视频通话或视频会议。 |
 | contentWidth        | number                                                                | 否   | 原始内容宽度，用于确定画中画窗口比例。      |
 | contentHeight       | number                                                                | 否   | 原始内容高度，用于确定画中画窗口比例。      |
 
-## PiPTemplateType<sup>11</sup>
+## PiPTemplateType
 
 画中画媒体类型枚举。
 
@@ -168,72 +168,72 @@ function createPipController(xController: XComponentController, navigationId: st
 | VIDEO_CALL             | 1       | 表示将要切换为画中画播放的媒体类型是视频通话，系统依此加载视频通话模板。    |
 | VIDEO_MEETING          | 2       | 表示将要切换为画中画播放的媒体类型是视频会议，系统依此加载视频会议模板。    |
 
-## PiPState<sup>11</sup>
+## PiPState
 
 画中画生命周期状态枚举。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称                   | 值      | 说明                        |
-|----------------------|--------|---------------------------|
-| ABOUT_TO_START       | 0      | 表示画中画将要启动。                |
-| STARTED              | 1      | 表示画中画已经启动。                |
-| ABOUT_TO_STOP        | 2      | 表示画中画将要停止。                |
-| STOPPED              | 3      | 表示画中画已经停止                 |
-| ABOUT_TO_RESTORE     | 4      | 表示画中画将从小窗播放恢复到原始播放界面      |
-| ERROR                | 5      | 表示画中画生命周期执行过程中异常          |
+| 名称                   | 值   | 说明                        |
+|----------------------|-----|---------------------------|
+| ABOUT_TO_START       | 1   | 表示画中画将要启动。                |
+| STARTED              | 2   | 表示画中画已经启动。                |
+| ABOUT_TO_STOP        | 3   | 表示画中画将要停止。                |
+| STOPPED              | 4   | 表示画中画已经停止                 |
+| ABOUT_TO_RESTORE     | 5   | 表示画中画将从小窗播放恢复到原始播放界面      |
+| ERROR                | 6   | 表示画中画生命周期执行过程中异常          |
 
-## PiPActionEventType<sup>11</sup>
+## PiPActionEventType
 
 画中画窗口控制事件类型，支持以下三种。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 类型                                                         | 说明          |
-|------------------------------------------------------------|-------------|
-| [PiPVideoActionEvent](#pipvideoactionevent-sup-11-sup)     | 视频播放控制事件类型。 |
-| [PiPCallActionEvent](#pipcallactionevent-sup-11-sup)       | 视频通话控制事件类型。 |
-| [PiPMeetingActionEvent](#pipmeetingactionevent-sup-11-sup) | 视频会议控制事件类型。 |
+| 类型                                               | 说明            |
+|--------------------------------------------------|---------------|
+| [PiPVideoActionEvent](#pipvideoactionevent)      | 视频播放控制事件类型。   |
+| [PiPCallActionEvent](#pipcallactionevent)        | 视频通话控制事件类型。   |
+| [PiPMeetingActionEvent](#pipmeetingactionevent)  | 视频会议控制事件类型。   |
 
-## PiPVideoActionEvent<sup>11</sup>
+## PiPVideoActionEvent
 
 视频播放控制事件类型。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 类型        | 说明                                        |
-|-----------|-------------------------------------------|
-| string    | 固定为‘playbackStateChanged’，播放状态变化，如播放、暂停。  |
-| string    | 固定为‘nextVideo’，播放下一个视频。                   |
-| string    | 固定为‘previousVideo’，播放上一个视频。               |
+| 名称                    | 类型       | 说明                     |
+|-----------------------|----------|------------------------|
+| playbackStateChanged  | string   | 播放状态变化，如播放、暂停。         |
+| nextVideo             | string   | 播放下一个视频。               |
+| previousVideo         | string   | 播放上一个视频。               |
 
-## PiPCallActionEvent<sup>11</sup>
+## PiPCallActionEvent
 
 视频通话控制事件类型。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 类型          | 说明                    |
-|-------------|-----------------------|
-| string      | 固定为‘hangUp’，挂断视频通话。   |
+| 名称       | 类型        | 说明           |
+|----------|-----------|--------------|
+| hangUp   | string    | 挂断视频通话。      |
 
-## PiPMeetingActionEvent<sup>11</sup>
+## PiPMeetingActionEvent
 
 视频会议控制事件类型。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 类型          | 说明                  |
-|-------------|---------------------|
-| string      | 固定为‘hangUp’，挂断视频通话。 |
+| 名称       | 类型        | 说明      |
+|----------|-----------|---------|
+| hangUp   | string    | 挂断视频会议。 |
 
-## PiPController<sup>11</sup>
+## PiPController
 
 画中画控制器，用于启动、停止画中画以及更新回调注册等。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-### startPiP<sup>11</sup>
+### startPiP
 
 startPiP(): Promise&lt;void&gt;
 
@@ -251,12 +251,12 @@ startPiP(): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
 
-| 错误码ID      | 错误信息                            |
-|------------|---------------------------------|
-| 1300012    | Abnormal state of pip window.   |
-| 1300013    | Create pip window failed.       |
-| 1300014    | Pip internal error.             |
-| 1300015    | Repeat operation of pip.        |
+| 错误码ID      | 错误信息                                                   |
+|------------|--------------------------------------------------------|
+| 1300012    | If PiP window state is abnormal.                       |
+| 1300013    | Create pip window failed.                              |
+| 1300014    | Error when load PiP window content or show PiP window. |
+| 1300015    | If window has created.                                 |
 
 **示例：**
 
@@ -291,12 +291,12 @@ startPiP(callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
 
-| 错误码ID      | 错误信息                           |
-|------------|--------------------------------|
-| 1300012    | Abnormal state of pip window.  |
-| 1300013    | Create pip window failed.      |
-| 1300014    | Pip internal error.            |
-| 1300015    | Repeat operation of pip.       |
+| 错误码ID      | 错误信息                                                   |
+|------------|--------------------------------------------------------|
+| 1300012    | If PiP window state is abnormal.                       |
+| 1300013    | Create pip window failed.                              |
+| 1300014    | Error when load PiP window content or show PiP window. |
+| 1300015    | If window has created.                                 |
 
 **示例：**
 
@@ -317,7 +317,7 @@ function startPip(pipController: pipWindow.PiPController) {
 }
 ```
 
-### stopPiP<sup>11</sup>
+### stopPiP
 
 stopPiP(): Promise&lt;void&gt;
 
@@ -335,11 +335,11 @@ stopPiP(): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
 
-| 错误码ID   | 错误信息                          |
-|---------|-------------------------------|
-| 1300011 | Destroy pip window failed.    |
-| 1300012 | Abnormal state of pip window. |
-| 1300015 | Repeat operation of pip.      |
+| 错误码ID   | 错误信息                             |
+|---------|----------------------------------|
+| 1300011 | Stop PiP window failed.          |
+| 1300012 | If PiP window state is abnormal. |
+| 1300015 | If window is stopping.           |
 
 **示例：**
 
@@ -374,11 +374,11 @@ stopPiP(callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
 
-| 错误码ID   | 错误信息                          |
-|---------|-------------------------------|
-| 1300011 | Destroy pip window failed.    |
-| 1300012 | Abnormal state of pip window. |
-| 1300015 | Repeat operation of pip.      |
+| 错误码ID   | 错误信息                             |
+|---------|----------------------------------|
+| 1300011 | Stop PiP window failed.          |
+| 1300012 | If PiP window state is abnormal. |
+| 1300015 | If window is stopping.           |
 
 **示例：**
 
@@ -399,7 +399,7 @@ function stopPip(pipController: pipWindow.PiPController) {
 }
 ```
 
-### setAutoStartEnabled<sup>11</sup>
+### setAutoStartEnabled
 
 setAutoStartEnabled(enable: boolean): void
 
@@ -419,7 +419,7 @@ function setAutoStartEnabled(pipController: pipWindow.PiPController, enable: boo
 }
 ```
 
-### updateContentSize<sup>11</sup>
+### updateContentSize
 
 updateContentSize(width: number, height: number): void
 
@@ -440,7 +440,7 @@ function updateContentSize(pipController: pipWindow.PiPController, width: number
 }
 ```
 
-### on('stateChange')<sup>11</sup>
+### on('stateChange')
 
 on(type: 'stateChange', callback: (state: PiPState, reason: string) => void): void
 
@@ -453,7 +453,7 @@ on(type: 'stateChange', callback: (state: PiPState, reason: string) => void): vo
 | 参数名        | 类型        | 必填   | 说明                                                                                                             |
 |------------|-----------|------|----------------------------------------------------------------------------------------------------------------|
 | type       | string    | 是    | 监听事件，固定为'stateChange'，即画中画生命周期状态变化事件。                                                                          |
-| callback   | function  | 是    | 回调生命周期状态变化事件以及原因:<br/>state: [PiPState](#pipstate-sup-11-sup)，表示当前画中画生命周期状态；<br/>reason: string，表示当前生命周期的切换原因。 |
+| callback   | function  | 是    | 回调生命周期状态变化事件以及原因:<br/>state: [PiPState](#pipstate)，表示当前画中画生命周期状态；<br/>reason: string，表示当前生命周期的切换原因。 |
 
 ```ts
 function registerStateChangeCallback(pipController: pipWindow.PiPController) {
@@ -486,7 +486,7 @@ function registerStateChangeCallback(pipController: pipWindow.PiPController) {
 }
 ```
 
-### off('windowSizeChange')<sup>7+</sup>
+### off('windowSizeChange')
 
 off(type: 'stateChange'): void
 
@@ -509,7 +509,7 @@ function unRegisterStateChangeCallback(pipController: pipWindow.PiPController) {
 }
 ```
 
-### on('controlPanelActionEvent')<sup>11</sup>
+### on('controlPanelActionEvent')
 
 on(type: 'controlPanelActionEvent', callback: (event: PiPActionEventType) => void): void
 
@@ -522,7 +522,7 @@ on(type: 'controlPanelActionEvent', callback: (event: PiPActionEventType) => voi
 | 参数名      | 类型         | 必填    | 说明                                                                                   |
 |----------|------------|-------|--------------------------------------------------------------------------------------|
 | type     | string     | 是     | 监听事件，固定为'controlPanelActionEvent'，即画中画控制事件。                                          |
-| callback | function   | 是     | 回调画中画控制事件:<br/>event: [PiPActionEventType](#pipactioneventtype-sup-11-sup)，表示控制事件类型。 |
+| callback | function   | 是     | 回调画中画控制事件:<br/>event: [PiPActionEventType](#pipactioneventtype)，表示控制事件类型。 |
 
 ```ts
 function registerActionEventCallback(pipController: pipWindow.PiPController) {
@@ -545,7 +545,7 @@ function registerActionEventCallback(pipController: pipWindow.PiPController) {
 }
 ```
 
-### off('controlPanelActionEvent')<sup>7+</sup>
+### off('controlPanelActionEvent')
 
 off(type: 'controlPanelActionEvent'): void
 
