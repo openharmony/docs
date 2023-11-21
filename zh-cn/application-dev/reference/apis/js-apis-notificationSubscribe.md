@@ -680,7 +680,6 @@ let removeAllCallback = (err: Base.BusinessError) => {
         console.info("removeAll success");
     }
 }
-
 notificationSubscribe.removeAll(removeAllCallback);
 ```
 
@@ -813,7 +812,6 @@ removeAll(userId: number): Promise\<void>
 import Base from '@ohos.base';
 
 let userId: number = 1;
-
 notificationSubscribe.removeAll(userId).then(() => {
 	console.info("removeAll success");
 }).catch((err: Base.BusinessError) => {
