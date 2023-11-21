@@ -8,6 +8,8 @@
 
 任务池API以数字形式返回错误码。有关各个错误码的更多信息，请参阅文档[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
+taskpool使用过程中的相关注意点请见[TaskPool注意事项](../../arkts-utils/taskpool-vs-worker.md#taskpool注意事项)
+
 > **说明：**<br/>
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
