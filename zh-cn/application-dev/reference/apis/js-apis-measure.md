@@ -62,7 +62,7 @@ struct Index {
 
 measureTextSize(options: MeasureOptions): SizeOptions
 
-计算指定文本单行布局下的宽度。
+计算指定文本单行布局下的宽度和高度。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
