@@ -446,7 +446,7 @@ static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallba
 | 参数名   | 类型                      | 必填 | 说明                                            |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
 | extInfo  | [ExtraData](#extradata11)   | 是   | 透传数据，包含通知数据变更后的应用信息。        |
-| userId   | number                    | 是   | 表示用户ID。此参数是可选的，默认值是当前用户ID，如果指定了此参数，则该值必须是系统中现有的用户ID。 |
+| userId   | number                    | 是   | 表示用户ID。默认值是当前用户ID，如果指定了此参数，则该值必须是系统中现有的用户ID。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
 
 ```ts
