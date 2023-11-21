@@ -3456,7 +3456,7 @@
 
 ## ohos.permission.MANAGE_APP_BOOT
 
-允许系统应用设置其他应用开机自启动配置。
+允许系统应用设置其他应用开机自启配置。
 
 **权限级别**：system_basic
 
