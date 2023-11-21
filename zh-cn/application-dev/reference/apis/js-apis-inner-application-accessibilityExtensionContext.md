@@ -30,7 +30,7 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | key            | value            | 说明                  |
 | ------------- | ------------- | ------------------- |
 | accessibilityFocused | boolean          |   accessibility焦点状态   |
-| bundleName | string          | 要查应用的包名 |
+| bundleName | string          | 应用包名 |
 | checkable    | boolean          | 元素是否可查 |
 | checked  | boolean          | 元素是否被检查 |
 | children  | Array<AccessibilityElement>          | 所有子元素 |
