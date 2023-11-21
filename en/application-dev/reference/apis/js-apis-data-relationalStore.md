@@ -79,6 +79,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
+
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -139,6 +141,7 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -161,9 +164,10 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
+
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let store: relationalStore.RdbStore;
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S1
@@ -214,6 +218,7 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
@@ -232,6 +237,8 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
@@ -287,6 +294,7 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 relationalStore.deleteRdbStore(context, "RdbTest.db").then(()=>{
@@ -303,6 +311,8 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
@@ -353,6 +363,7 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -376,6 +387,8 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
@@ -438,6 +451,7 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -459,6 +473,8 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
@@ -487,7 +503,7 @@ Defines the RDB store configuration.
 | name          | string        | Yes  | Database file name.                                           |
 | securityLevel | [SecurityLevel](#securitylevel) | Yes  | Security level of the RDB store.                                       |
 | encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br>The value **true** means to encrypt the RDB store; the value **false** (default) means the opposite.|
-| dataGroupId<sup>10+</sup> | string | No| Application group ID, which needs to be obtained from the AppGallery.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. It specifies the **relationalStore** instance created in the sandbox directory corresponding to the **dataGroupId**. If this parameter is not specified, the **relationalStore** instance is created in the sandbox directory of the application.|
+| dataGroupId<sup>10+</sup> | string | No| Application group ID, which needs to be obtained from AppGallery.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. It specifies the **relationalStore** instance created in the sandbox directory corresponding to **dataGroupId**. If this parameter is not specified, the **relationalStore** instance is created in the sandbox directory of the application.|
 
 ## SecurityLevel
 
@@ -1386,7 +1402,7 @@ predicates.lessThanOrEqualTo("AGE", 20);
 
 orderByAsc(field: string): RdbPredicates
 
-Sets an **RdbPredicates** to match the column with values sorted in ascending order.
+Sets an **RdbPredicates** to sort the values in ascending order.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1413,7 +1429,7 @@ predicates.orderByAsc("NAME");
 
 orderByDesc(field: string): RdbPredicates
 
-Sets an **RdbPredicates** to match the column with values sorted in descending order.
+Sets an **RdbPredicates** to sort the values in descending order.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3428,6 +3444,7 @@ if(store != undefined) {
 beginTransaction():void
 
 Starts the transaction before executing an SQL statement.
+This API cannot be used in multi-process or multi-thread scenarios.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3482,6 +3499,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
 commit():void
 
 Commits the executed SQL statements.
+This API cannot be used in multi-process or multi-thread scenarios.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3526,6 +3544,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
 rollBack():void
 
 Rolls back the SQL statements that have been executed.
+This API cannot be used in multi-process or multi-thread scenarios.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3856,7 +3875,7 @@ if(store != undefined) {
 }
 ```
 
- 
+### 
 
 ### setDistributedTables<sup>10+</sup>
 
@@ -4632,6 +4651,8 @@ Provides APIs to access the result set obtained by querying the RDB store. A res
 
 Obtain the **resultSet** object first.
 
+**Example**
+
 ```ts
 let resultSet: relationalStore.ResultSet | undefined = undefined;
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -4691,14 +4712,14 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```ts
+```ts
 if(resultSet != undefined) {
   const id = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("ID"));
   const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
   const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
   const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
 }
-  ```
+```
 
 ### getColumnName
 
