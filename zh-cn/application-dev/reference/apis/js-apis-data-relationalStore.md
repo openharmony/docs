@@ -648,7 +648,7 @@ class EntryAbility extends UIAbility {
 
 ## Field<sup>11+</sup>
 
-表示特殊用途的字段。
+用于谓词查询条件的特殊字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
