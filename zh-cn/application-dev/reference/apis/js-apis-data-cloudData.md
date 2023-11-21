@@ -414,7 +414,7 @@ try {
 import { BusinessError } from '@ohos.base';
 
 let eventId = "cloud_data_change";
-let extraData = '{header:"aaaa",data:"{"accountId":"2850086000356238647","bundleName":"com.huawei.hmos.notepad","containerName":"alias","recordTypes":"[xxx,yyy]"}"}';
+let extraData = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
 try {
   cloudData.Config.notifyDataChange({
     eventId: eventId, extraData: extraData
@@ -446,14 +446,14 @@ static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallba
 | 参数名   | 类型                      | 必填 | 说明                                            |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
 | extInfo  | [ExtraData](#extradata11)   | 是   | 透传数据，包含通知数据变更后的应用信息。        |
-| userId   | number                    | 是   | 表示用户ID。默认值是当前用户ID，如果指定了此参数，则该值必须是系统中现有的用户ID。 |
+| userId   | number                    | 是   | 用户ID。对应为系统中现有的用户ID。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
 
 ```ts
 import { BusinessError } from '@ohos.base';
 
 let eventId = "cloud_data_change";
-let extraData = '{header:"aaaa",data:"{"accountId":"2850086000356238647","bundleName":"com.huawei.hmos.notepad","containerName":"alias","recordTypes":"[xxx,yyy]"}"}';
+let extraData = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
 let userId = 100;
 try {
   cloudData.Config.notifyDataChange({
@@ -500,7 +500,7 @@ try {
 import { BusinessError } from '@ohos.base';
 
 let eventId = "cloud_data_change";
-let extraData = '{header:"aaaa",data:"{"accountId":"2850086000356238647","bundleName":"com.huawei.hmos.notepad","containerName":"alias","recordTypes":"[xxx,yyy]"}"}';
+let extraData = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
 let userId = 100;
 try {
   cloudData.Config.notifyDataChange({
