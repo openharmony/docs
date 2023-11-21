@@ -475,7 +475,7 @@ try {
 
 **static** notifyDataChange(extInfo: ExtraData, userId?: number): Promise&lt;void&gt;
 
-通知云端的数据变更，可以通过extInfo中的extraDta字段指定变更的数据库名和表名，使用Promise异步回调。
+通知云端的数据变更，可以通过extInfo中的extraDta字段指定变更的数据库名和表名，可通过userId指定用户ID，使用Promise异步回调。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
