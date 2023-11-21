@@ -1,4 +1,4 @@
-# Multimedia Changelogs
+# Multimedia Changelog
 
 ## cl.multimedia.1 Changed the Declaration of the Focus Event Callback of Audio Renderer C APIs
 
