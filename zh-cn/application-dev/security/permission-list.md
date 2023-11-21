@@ -3453,3 +3453,15 @@
 **ACL使能**：TRUE
 
 **起始版本**: 11
+
+## ohos.permission.MANAGE_APP_BOOT
+
+允许系统应用设置其他应用开机自启配置。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
