@@ -1960,5 +1960,5 @@ struct ChildComponent {
   }
   ```
   
-  **图14**  修复ObjectLink属性变化后UI未更新  
+  **图14**  修复ObjectLink属性变化后UI更新  
   ![LazyForEach-ObjectLink-NotRenderUI-Repair](./figures/LazyForEach-ObjectLink-NotRenderUI-Repair.gif)

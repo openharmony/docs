@@ -14,6 +14,10 @@ USB Driver Development Kit (USB DDK) is a tool kit that helps you develop USB de
 | OH_Usb_GetConfigDescriptor(uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor **const config) | Obtains the configuration descriptor. To avoid memory leakage, use **OH_Usb_FreeConfigDescriptor()** to release a descriptor after use.|
 | OH_Usb_FreeConfigDescriptor(const struct UsbDdkConfigDescriptor *const config) | Releases a configuration descriptor. To avoid memory leakage, release a descriptor after use.|
 | OH_Usb_ClaimInterface(uint64_t deviceId, uint8_t interfaceIndex, uint64_t *interfaceHandle) | Declares a USB interface.|
+| OH_Usb_SelectInterfaceSetting(uint64_t interfaceHandle, uint8_t settingIndex) | Activates the alternate setting of a USB interface.|
+| OH_Usb_GetCurrentInterfaceSetting(uint64_t interfaceHandle, uint8_t \*settingIndex) | Obtains the activated alternate setting of a USB interface.|
+| OH_Usb_SendControlReadRequest(uint64_t interfaceHandle, const struct UsbControlRequestSetup \*setup, uint32_t timeout, uint8_t \*data, uint32_t \*dataLen) | Sends a control read transfer request. This API returns the result synchronously.|
+| OH_Usb_SendControlWriteRequest(uint64_t interfaceHandle, const struct UsbControlRequestSetup \*setup, uint32_t, const uint8_t \*data, uint32_t dataLen) | Sends a control write transfer request. This API returns the result synchronously.|
 | OH_Usb_ReleaseInterface(uint64_t interfaceHandle) | Releases a USB interface.|
 | OH_Usb_SendPipeRequest(const struct UsbRequestPipe *pipe, UsbDeviceMemMap *devMmap) | Sends a pipe request. This API works in a synchronous manner. It applies to interrupt transfer and bulk transfer.|
 | OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMap **devMmap) | Creates a buffer. To avoid memory leakage, use **OH_Usb_DestroyDeviceMemMap()** to destroy a buffer after use.|
@@ -63,8 +67,46 @@ libusb_ndk.z.so
     // Release the configuration descriptor.
     OH_Usb_FreeConfigDescriptor(config);
     ```
+3. Obtain the activated alternate setting of a USB interface. Call **OH_Usb_GetCurrentInterfaceSetting** of **usb_ddk_api.h** to obtain the alternate setting, and call **OH_Usb_SelectInterfaceSetting** to activate it.
 
-3. Create a device memory map, and send a request. Create the device memory map **devMmap** by calling **OH_Usb_CreateDeviceMemMap** of **usb_ddk_api.h**, and send a request by calling **OH_Usb_SendPipeRequest**.
+    ```c++
+    uint8_t settingIndex = 0;
+    // Obtain the alternate setting.
+    OH_Usb_GetCurrentInterfaceSetting(interfaceHandle, &settingIndex);
+
+    // Activate the alternate setting.
+    OH_Usb_SelectInterfaceSetting(interfaceHandle, &settingIndex);
+    ```
+4. Send control read requests and control write requests. Call **OH_Usb_SendControlReadRequest** of **usb_ddk_api.h** to send a control read request, or call **OH_Usb_SendControlWriteRequest** to send a control write request.
+
+    ```c++
+        // Timeout interval. Set it to 1s.
+    uint32_t timeout = 1000;
+
+    struct UsbControlRequestSetup setupRead;
+    setupRead.bmRequestType	= 0x80;
+    setupRead.bRequest = 0x08;
+    setupRead.wValue = 0;
+    setupRead.wIndex = 0;
+    setupRead.wLength = 0x01;
+    uint8_t dataRead[256] = {0};
+    uint32_t dataReadLen = 256;
+    // Send a control read request.
+    OH_Usb_SendControlReadRequest(interfaceHandle, &setupRead, timeout, dataRead, &dataReadLen);
+
+    struct UsbControlRequestSetup setupWrite;
+    setupWrite.bmRequestType = 0;
+    setupWrite.bRequest = 0x09;
+    setupWrite.wValue = 1;
+    setupWrite.wIndex = 0;
+    setupWrite.wLength = 0;
+    uint8_t dataWrite[256] = {0};
+    uint32_t dataWriteLen = 256;
+    // Send a control write request.
+    OH_Usb_SendControlWriteRequest(interfaceHandle, &setupWrite, timeout, dataWrite, &dataWriteLen);
+    ```
+
+5. Create a device memory map, and send a request. Create the device memory map **devMmap** by calling **OH_Usb_CreateDeviceMemMap** of **usb_ddk_api.h**, and send a request by calling **OH_Usb_SendPipeRequest**.
 
     ```c++
     struct UsbDeviceMemMap *devMmap = nullptr;
@@ -80,7 +122,7 @@ libusb_ndk.z.so
     OH_Usb_SendPipeRequest(&pipe, devMmap);
     ```
 
-4. Release resources. After all requests are processed and before the application exits, destroy the buffer by calling **OH_Usb_DestroyDeviceMemMap** of **usb_ddk_api.h** to release resources. Release the USB interface by calling **OH_Usb_ReleaseInterface**. Release the USB DDK by calling **OH_Usb_Release**.
+6. Release resources. After all requests are processed and before the application exits, destroy the buffer by calling **OH_Usb_DestroyDeviceMemMap** of **usb_ddk_api.h** to release resources. Release the USB interface by calling **OH_Usb_ReleaseInterface**. Release the USB DDK by calling **OH_Usb_Release**.
 
     ```c++
     // Destroy the buffer.

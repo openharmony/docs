@@ -351,7 +351,7 @@ function testGenerateHmacKey() {
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
-function stringToUint8Array(str) {
+function stringToUint8Array(str: string) {
   let arr = [];
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));

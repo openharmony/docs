@@ -26,7 +26,7 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncC
 | ------------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | pdu           | Array&lt;number&gt;                                | 是   | 协议数据单元，从收到的信息中获取。                           |
 | specification | string                                             | 是   | 短信协议类型。<br/>- 3gpp：表示GSM/UMTS/LTE SMS<br/>- 3gpp2：表示CDMA SMS |
-| callback      | AsyncCallback&lt;[ShortMessage](#shortmessage)&gt; | 是   | 回调函数。                                                   |
+| callback      | AsyncCallback&lt;[ShortMessage](#shortmessage)&gt; | 是   | 获取短信实例的回调函数。                                                   |
 
 **错误码：**
 
@@ -47,8 +47,8 @@ import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
 const specification: string = '3gpp';
-// 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
-const pdu: Array<number> = [0x08, 0x91];
+// 以数组的形式显示协议数据单元（PDU），类型为number，
+const pdu: Array<number> = [0x01, 0x00, 0x05, 0x81, 0x01, 0x80, 0xF6, 0x00, 0x00, 0x05, 0xE8, 0x32, 0x9B, 0xFD, 0x06];
 sms.createMessage(pdu, specification, (err: BusinessError, data: sms.ShortMessage) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -112,7 +112,7 @@ sendMessage\(options: SendMessageOptions\): void
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 10开始废弃。建议使用[sendShortMessage](#smssendshortmessage10)替代。
+> 从 API version 6开始支持，从API version 10开始废弃。建议使用[sendShortMessage](#smssendshortmessage10)替代。
 
 **需要权限**：ohos.permission.SEND_MESSAGES
 
@@ -146,10 +146,10 @@ import { BusinessError } from '@ohos.base';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
-}
+};
 let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
-}
+};
 let options: sms.SendMessageOptions = {
     slotId: 0,
     content: '短信内容',
@@ -177,7 +177,7 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 | 参数名   | 类型                        | 必填 | 说明                                     |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
 | options | [SendMessageOptions](#sendmessageoptions) | 是   | 发送短信的参数和回调，参考[SendMessageOptions](#sendmessageoptions)。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 发送短信的回调函数。 |
 
 **错误码：**
 
@@ -201,10 +201,10 @@ import { BusinessError } from '@ohos.base';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-}
+};
 let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-}
+};
 let options: sms.SendMessageOptions = {
     slotId: 0,
     content: '短信内容',
@@ -263,10 +263,10 @@ import { BusinessError } from '@ohos.base';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-}
+};
 let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-}
+};
 let options: sms.SendMessageOptions = {
     slotId: 0,
     content: '短信内容',
@@ -303,7 +303,7 @@ sendMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;void
 | -------- | --------------------------- | ---- | ---------------------------------------- |
 | context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | mmsParams | [MmsParams](#mmsparams) | 是   | 发送彩信的参数和回调，参考[MmsParams](#mmsparams)。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 发送彩信的回调函数。 |
 
 **错误码：**
 
@@ -525,7 +525,7 @@ downloadMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;
 | -------- | --------------------------- | ---- | ---------------------------------------- |
 | context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | mmsParams | [MmsParams](#mmsparams) | 是   | 下载彩信的参数和回调，参考[MmsParams](#mmsparams)。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 下载彩信的回调函数。 |
 
 **错误码：**
 
@@ -752,7 +752,7 @@ getDefaultSmsSlotId\(callback: AsyncCallback&lt;number&gt;\): void
 
 | 参数名   | 类型                        | 必填 | 说明                                     |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 获取发送短信的默认SIM卡槽ID的回调函数。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 
 **示例：**
 
@@ -810,7 +810,7 @@ setDefaultSmsSlotId\(slotId: number, callback: AsyncCallback&lt;void&gt;\): void
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number                    | 是   | SIM卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>- -1：清除默认配置 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
+| callback | AsyncCallback&lt;void&gt; | 是   | 设置发送短信的默认SIM卡槽ID的回调函数。                                                   |
 
 **错误码：**
 
@@ -909,7 +909,7 @@ setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback\<void\>\)
 | -------- | ------------------------- | ---- | ----------------------------------------- |
 | slotId   | number                    | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | smscAddr | string                    | 是   | 短信服务中心地址。                        |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                |
+| callback | AsyncCallback&lt;void&gt; | 是   | 设置短信服务中心（SMSC）地址的回调函数。                                |
 
 **错误码：**
 
@@ -1011,7 +1011,7 @@ getSmscAddr\(slotId: number, callback: AsyncCallback\<string\>\): void
 | 参数名   | 类型                        | 必填 | 说明                                      |
 | -------- | --------------------------- | ---- | ----------------------------------------- |
 | slotId   | number                      | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。                                |
+| callback | AsyncCallback&lt;string&gt; | 是   | 指示用于获取SMSC地址的回调函数。                                |
 
 **错误码：**
 
@@ -1130,7 +1130,7 @@ splitMessage\(content: string, callback: AsyncCallback\<Array\<string\>\>\): voi
 | 参数名   | 类型                          | 必填 | 说明                          |
 | -------- | ----------------------------- | ---- | ----------------------------- |
 | content  | string                        | 是   | 指示短消息内容，不能为null。 |
-| callback | AsyncCallback<Array<string\>> | 是   | 回调函数。                    |
+| callback | AsyncCallback<Array<string\>> | 是   | 返回可合并为完整SMS的拆分段列表的回调函数。|
 
 **错误码：**
 
@@ -1229,7 +1229,7 @@ addSimMessage\(options: SimMessageOptions, callback: AsyncCallback\<void\>\): vo
 | 参数名   | 类型                                     | 必填 | 说明            |
 | -------- | ---------------------------------------- | ---- | --------------- |
 | options  | [SimMessageOptions](#simmessageoptions7) | 是   | SIM卡消息选项。 |
-| callback | AsyncCallback&lt;void&gt;                | 是   | 回调函数。      |
+| callback | AsyncCallback&lt;void&gt;                | 是   | 添加SIM卡消息的回调函数。 |
 
 **错误码：**
 
@@ -1338,7 +1338,7 @@ delSimMessage\(slotId: number, msgIndex: number, callback: AsyncCallback\<void\>
 | -------- | ------------------------- | ---- | ----------------------------------------- |
 | slotId   | number                    | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | msgIndex | number                    | 是   | 消息索引。                                  |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                |
+| callback | AsyncCallback&lt;void&gt; | 是   | 删除SIM卡消息的回调函数。  |
 
 **错误码：**
 
@@ -1440,7 +1440,7 @@ updateSimMessage\(options: UpdateSimMessageOptions, callback: AsyncCallback\<voi
 | 参数名   | 类型                                                 | 必填 | 说明                |
 | -------- | ---------------------------------------------------- | ---- | ------------------- |
 | options  | [UpdateSimMessageOptions](#updatesimmessageoptions7) | 是   | 更新SIM卡消息选项。 |
-| callback | AsyncCallback&lt;void&gt;                            | 是   | 回调函数。          |
+| callback | AsyncCallback&lt;void&gt;                            | 是   | 更新SIM卡消息的回调函数。 |
 
 **错误码：**
 
@@ -1551,7 +1551,7 @@ getAllSimMessages\(slotId: number, callback: AsyncCallback\<Array\<SimShortMessa
 | 参数名   | 类型                                                        | 必填 | 说明                                      |
 | -------- | ----------------------------------------------------------- | ---- | ----------------------------------------- |
 | slotId   | number                                                      | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback<Array<[SimShortMessage](#simshortmessage7)\>> | 是   | 回调函数。                                |
+| callback | AsyncCallback<Array<[SimShortMessage](#simshortmessage7)\>> | 是   | 获取所有SIM卡消息的回调函数。  |
 
 **错误码：**
 
@@ -1650,7 +1650,7 @@ setCBConfig\(options: CBConfigOptions, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                                 | 必填 | 说明         |
 | -------- | ------------------------------------ | ---- | ------------ |
 | options  | [CBConfigOptions](#cbconfigoptions7) | 是   | 小区广播配置选项。 |
-| callback | AsyncCallback&lt;void&gt;            | 是   | 回调函数。   |
+| callback | AsyncCallback&lt;void&gt;            | 是   | 设置小区广播配置的回调函数。  |
 
 **错误码：**
 
@@ -1761,7 +1761,7 @@ getSmsSegmentsInfo\(slotId: number, message: string, force7bit: boolean, callbac
 | slotId    | number                                                       | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | message   | string                                                       | 是   | 消息。                                      |
 | force7bit | boolean                                                      | 是   | 是否使用7 bit编码。                          |
-| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | 是   | 回调函数。                                  |
+| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | 是   | 指示用于获取短信短信息的回调函数。  |
 
 **错误码：**
 
@@ -1856,7 +1856,7 @@ isImsSmsSupported\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
 | slotId   | number                       | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 指示是否支持IMS发送SMS的回调函数。 |
 
 **错误码：**
 
@@ -1948,7 +1948,7 @@ getImsShortMessageFormat\(callback: AsyncCallback\<string\>\): void
 
 | 参数名   | 类型                        | 必填 | 说明       |
 | -------- | --------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 指示用于获取格式、3gpp、3gpp2或未知的回调函数。 |
 
 **错误码：**
 
@@ -2030,7 +2030,7 @@ decodeMms\(mmsFilePathName: string | Array\<number\>, callback: AsyncCallback\<M
 | 参数名          | 类型                                                    | 必填 | 说明           |
 | --------------- | ------------------------------------------------------- | ---- | -------------- |
 | mmsFilePathName | string \|Array<number\>                                 | 是   | 彩信文件路径名。 |
-| callback        | AsyncCallback&lt;[MmsInformation](#mmsinformation8)&gt; | 是   | 回调函数。     |
+| callback        | AsyncCallback&lt;[MmsInformation](#mmsinformation8)&gt; | 是   | 指示用于获取｛@code MmsInformation｝的回调函数。     |
 
 **错误码：**
 
@@ -2123,7 +2123,7 @@ encodeMms\(mms: MmsInformation, callback: AsyncCallback\<Array\<number\>\>\): vo
 | 参数名   | 类型                                | 必填 | 说明       |
 | -------- | ----------------------------------- | ---- | ---------- |
 | mms      | [MmsInformation](#mmsinformation8)  | 是   | 彩信信息。 |
-| callback | AsyncCallback&lt;Array<number\>&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;Array<number\>&gt; | 是   | 指示用于获取MMS编码结果的回调函数。 |
 
 **错误码：**
 
@@ -2228,7 +2228,7 @@ getDefaultSmsSimId\(callback: AsyncCallback&lt;number&gt;\): void
 
 | 参数名   | 类型                        | 必填 | 说明                                     |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。<br/>与SIM卡绑定，从1开始递增。 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 获取默认短信SIM的SIM ID的回调函数。<br/>与SIM卡绑定，从1开始递增。 |
 
 **错误码：**
 
@@ -2385,7 +2385,7 @@ promise.then((data: number) => {
 
 |   名称     | 类型                            | 必填 |                                               说明                                         |
 | ---------- | ------------------------------- | ---- | ----------------------------------------------------------------------------------------- |
-| isLastPart | boolean                         | 否   | 指定这是否是长短信的最后一部分。true表示这是长短信的最后一部分，false表示不是。默认为false。 |
+| isLastPart | boolean                         | 是   | 指定这是否是长短信的最后一部分。true表示这是长短信的最后一部分，false表示不是。默认为false。 |
 | result     | [SendSmsResult](#sendsmsresult) | 是   | 短信发送结果。                                                                             |
 | url        | string                          | 是   | 存储发送短信的URI。                                                                        |
 

@@ -72,6 +72,7 @@
     - [预置应用配置指导](subsys-preinstall-app-config-guide.md)
 - 启动恢复
     - [启动恢复子系统概述](subsys-boot-overview.md)
+    - [整机启动流程](subsys-boot-deviceboot.md)
     - init启动引导组件
       - [引导启动配置文件](subsys-boot-init-cfg.md)
       - [jobs管理](subsys-boot-init-jobs.md)
@@ -83,10 +84,10 @@
       - [init运行日志规范化](subsys-boot-init-log.md)
       - [Seccomp策略使能开发指导](subsys-boot-init-seccomp.md)
       - [DeviceInfo适配说明](subsys-boot-init-deviceInfo.md)
+      - [ueventd介绍说明](subsys-boot-init-ueventd.md)
     - [appspawn应用孵化组件](subsys-boot-appspawn.md)
     - [bootstrap服务启动组件](subsys-boot-bootstrap.md)
-    - [常见问题](subsys-boot-faqs.md)
-    - [参考](subsys-boot-ref.md)
+    - [init常见问题指导](subsys-boot-init-faqs.md)
 - DFX
     - [DFX概述](subsys-dfx-overview.md)
     - [HiLog开发指导](subsys-dfx-hilog-rich.md)
@@ -120,6 +121,8 @@
         - [充电限流限压定制开发指导](subsys-power-charge-current-voltage-limit.md)
         - [充电类型定制开发指导](subsys-power-charge-type-customization.md)
         - [关机充电动画开发指导](subsys-power-poweroff-charge-animation.md)
+        - [电池读写内核节点通用框架开发指导](subsys-power-charge-common-framework-guide.md)
+        - [uevent事件定制开发指导](subsys-power-battery-uevent-customization.md)
     - 耗电统计
         - [耗电统计定制开发指导](subsys-power-stats-power-average-customization.md)
     - 热管理

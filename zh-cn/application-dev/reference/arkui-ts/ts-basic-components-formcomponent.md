@@ -54,6 +54,7 @@ FormComponent(value: {
 | Dimension_2_4              | 2*4 卡片 |
 | Dimension_4_4              | 4*4 卡片 |
 | Dimension_2_1<sup>9+</sup> | 2*1 卡片 |
+| Dimension_1_1<sup>11+</sup> | 1*1 卡片 |
 
 ## 属性
 | 名称        | 参数类型                                                                                              | 必填 | 描述                                                                    |

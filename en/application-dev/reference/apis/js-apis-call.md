@@ -1785,6 +1785,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300007<sup>11+</sup>  | The number of conference calls exceeds the limit. |
 
 **Example**
 
@@ -1830,6 +1831,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300007<sup>11+</sup>  | The number of conference calls exceeds the limit. |
 
 **Example**
 
@@ -2566,9 +2568,12 @@ postDialProceed\(callId: number, proceed: boolean, callback: AsyncCallback\<void
 
 Continues a call by playing a post-dial DTMF string. This API uses an asynchronous callback to return the result.
 
-If the called number is in the format of "common phone number + semicolon (;) + DTMF string", for example, **400xxxxxxx;123**, and the listening for **postDialDelay** events is enabled, the system reports a **postDialDelay** event when the call is connected. The application can then call this API to send DTMF tones.
+If the called number is in the format of "common phone number + semicolon (;) + DTMF string", for example, **400xxxxxxx;123**, and the listening for **postDialDelay** events is enabled,
+the system reports a **postDialDelay** event when the call is connected. The application can then call this API to send DTMF tones.
 
 **System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -2611,9 +2616,12 @@ postDialProceed\(callId: number, proceed: boolean\): Promise\<void\>
 
 Continues a call by playing a post-dial DTMF string. This API uses a promise to return the result.
 
-If the called number is in the format of "common phone number + semicolon (;) + DTMF string", for example, **400xxxxxxx;123**, and the listening for **postDialDelay** events is enabled, the system reports a **postDialDelay** event when the call is connected. The application can then call this API to send DTMF tones.
+If the called number is in the format of "common phone number + semicolon (;) + DTMF string", for example, **400xxxxxxx;123**, and the listening for **postDialDelay** events is enabled,
+the system reports a **postDialDelay** event when the call is connected. The application can then call this API to send DTMF tones.
 
 **System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -3342,6 +3350,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300008<sup>11+</sup>  | Conference call is not active. |
 | 8300999  | Unknown error code.                          |
 
 **Example**
@@ -3388,6 +3397,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300008<sup>11+</sup>  | Conference call is not active. |
 | 8300999  | Unknown error code.                          |
 
 **Example**
@@ -5610,6 +5620,8 @@ Enumerates call ability event IDs.
 | EVENT_INVALID_FDN_NUMBER              | 2    | Invalid FDN.|
 | EVENT_HOLD_CALL_FAILED<sup>11+</sup>  | 3    | Failed to place the call on hold.|
 | EVENT_SWAP_CALL_FAILED<sup>11+</sup>  | 4    | Failed to place the current call on hold and answer the waiting call.|
+| EVENT_COMBINE_CALL_FAILED<sup>11+</sup>  | 5 | Failed to combine calls.|
+| EVENT_SPLIT_CALL_FAILED<sup>11+</sup> | 6    | Failed to split the call.|
 
 ## DialScene<sup>8+</sup>
 

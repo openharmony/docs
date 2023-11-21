@@ -279,13 +279,13 @@
   - [@ohos.dlpPermission (数据防泄漏)](js-apis-dlppermission.md)
   - [@ohos.privacyManager (隐私管理)](js-apis-privacyManager.md)
   - [@ohos.security.cert (证书模块)](js-apis-cert.md)
+  - [@ohos.security.certManager (证书管理)](js-apis-certManager.md)
   - [@ohos.security.cryptoFramework (加解密算法库框架)](js-apis-cryptoFramework.md)
   - [@ohos.security.huks (通用密钥库系统)](js-apis-huks.md)
   - [@ohos.userIAM.faceAuth (人脸认证)](js-apis-useriam-faceauth.md)
   - [@ohos.userIAM.userAuth (用户认证)](js-apis-useriam-userauth.md)
   - security
     - [PermissionRequestResult](js-apis-permissionrequestresult.md)
-
 - 数据管理
   - [@ohos.data.cloudData (端云协同)](js-apis-data-cloudData.md)
   - [@ohos.data.dataAbility (DataAbility谓词)](js-apis-data-ability.md)
@@ -480,6 +480,7 @@
   - [@ohos.enterprise.networkManager (网络管理)](js-apis-enterprise-networkManager.md)
   - [@ohos.enterprise.restrictions (限制类策略)](js-apis-enterprise-restrictions.md)
   - [@ohos.enterprise.securityManager (安全管理)](js-apis-enterprise-securityManager.md)
+  - [@ohos.enterprise.bluetoothManager (蓝牙管理)](js-apis-enterprise-bluetoothManager.md)
   - [@ohos.enterprise.systemManager (系统管理)](js-apis-enterprise-systemManager.md)
   - [@ohos.enterprise.usbManager (USB管理)](js-apis-enterprise-usbManager.md)
   - [@ohos.enterprise.wifiManager (WiFi管理)](js-apis-enterprise-wifiManager.md)

@@ -64,7 +64,7 @@ The update-through-proxy configuration varies by the type of shared data.
         "scheduledUpdateTime": "10:30",
         "defaultDimension": "2*2",
         "supportDimensions": ["2*2"],
-        "dataProxyEnabled": true // Enable the update-through-proxy feature.
+        "dataProxyEnabled": true
       }
     ]
   }
@@ -139,7 +139,7 @@ The update-through-proxy configuration varies by the type of shared data.
         "scheduledUpdateTime": "10:30",
         "defaultDimension": "2*2",
         "supportDimensions": ["2*2"],
-        "dataProxyEnabled": true // Enable the update-through-proxy feature.
+        "dataProxyEnabled": true
       }
     ]
   }
@@ -213,10 +213,10 @@ The update-through-proxy configuration varies by the type of shared data.
       .height(this.FULL_HEIGHT_PERCENT)
       .onClick(() => {
         postCardAction(this, {
-          "action": this.ACTION_TYPE,
-          "abilityName": this.ABILITY_NAME,
-          "params": {
-            "message": this.MESSAGE
+          action: this.ACTION_TYPE,
+          abilityName: this.ABILITY_NAME,
+          params: {
+            message: this.MESSAGE
           }
         })
       })

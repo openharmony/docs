@@ -89,7 +89,7 @@ Describes the mode in which the toast is shown.
 
 showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
-Shows a dialog box. This API uses a promise to return the result synchronously.
+Shows a dialog box. This API uses a promise to return the result asynchronously.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -292,7 +292,7 @@ try {
 
 showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse&gt;
 
-Shows an action menu. This API uses a promise to return the result synchronously.
+Shows an action menu. This API uses a promise to return the result asynchronously.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

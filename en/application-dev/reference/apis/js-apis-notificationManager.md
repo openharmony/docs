@@ -856,13 +856,14 @@ Obtains all notification slots of this application. This API uses an asynchronou
 
 **Parameters**
 
-For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
-
 | Name    | Type                             | Mandatory| Description                |
 | -------- | --------------------------------- | ---- | -------------------- |
 | callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | Yes  | Callback used to return all notification slots of the current application.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -4442,6 +4443,116 @@ try{
 }
 ```
 
+## notificationManager.triggerSystemLiveView<sup>11+</sup>
+
+triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOptions: ButtonOptions): Promise\<void>;
+
+Triggers a system live view notification. This API uses a promise to return the URI of the file in the destination directory.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Parameters**
+
+| Name| Type                  | Mandatory| Description          |
+| -------------- | ------------- | ---- | -------------- |
+| bundle         | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | Yes  |Bundle of the application.|
+| notificationId | number        | Yes  | Notification ID.|
+| buttonOptions  | [ButtonOptions](#buttonoptions11) | Yes  | Button information.|
+
+**Return value**
+
+| Type| Description|
+| ---- | ----|
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600007  | The notification is not exist.      |
+| 17700001 | The specified bundle name was not found. |
+
+**Example**
+
+```ts
+// Bundle of the application
+let bundle = {
+    bundle: "bundleName1",
+};
+// Notification ID
+let notificationId = 1;
+// Button information
+let buttonOptions = {
+    buttonName: "buttonName1",
+}
+notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions).then(() => {
+	console.info("triggerSystemLiveView success");
+}).catch((error: Base.BusinessError) => {
+    console.error(`triggerSystemLiveView fail: ${JSON.stringify(error)}`);
+});
+```
+
+
+## notificationManager.subscribeSystemLiveView<sup>11+</sup>
+
+subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
+
+Subscribes to the system live view notification. This API uses a promise to return the URI of the file in the destination directory.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Parameters**
+
+| Name| Type                  | Mandatory| Description          |
+| -------------- | ------------- | ---- | -------------- |
+| subscriber | [SystemLiveViewSubscriber](#systemliveviewsubscriber11)  | Yes  | Subscriber of the system live view notification.|
+
+**Return value**
+
+| Type| Description|
+| ---- | ----|
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
+
+**Example**
+
+```ts
+let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
+    console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
+}
+let subscriber: notificationManager.SystemLiveViewSubscriber  = {
+    onResponse: onResponseCallback,
+};
+notificationManager.subscribeSystemLiveView(subscriber).then(() => {
+	console.info("subscribeSystemLiveView success");
+}).catch((error: Base.BusinessError) => {
+    console.error(`subscribeSystemLiveView fail: ${JSON.stringify(error)}`);
+});
+```
+
+
+
 ## DoNotDisturbDate
 
 **System capability**: SystemCapability.Notification.Notification
@@ -4479,6 +4590,7 @@ try{
 | NOTIFICATION_CONTENT_PICTURE      | NOTIFICATION_CONTENT_PICTURE | Picture-attached notification.         |
 | NOTIFICATION_CONTENT_CONVERSATION | NOTIFICATION_CONTENT_CONVERSATION | Conversation notification (not supported currently).|
 | NOTIFICATION_CONTENT_MULTILINE    | NOTIFICATION_CONTENT_MULTILINE | Multi-line text notification.       |
+| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW    | NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW | Live view notification (for system applications only).       |
 
 ## SlotLevel
 
@@ -4503,6 +4615,7 @@ try{
 | SOCIAL_COMMUNICATION | 1 | Notification slot for social communication.|
 | SERVICE_INFORMATION  | 2 | Notification slot for service information.|
 | CONTENT_INFORMATION  | 3 | Notification slot for content consultation.|
+| LIVE_VIEW            | 4 | Notification slot for live view (for system applications only).|
 | OTHER_TYPES          | 0xFFFF | Notification slot for other purposes.|
 
 
@@ -4560,3 +4673,31 @@ try{
 | ------- | ------------------------------------ | ---- | ---------------------- |
 | code    | number                               | Yes  | Result code.<br>**0**: display.<br>**1**: no display.|
 | message | string                               | Yes  | Result.   |
+
+
+## ButtonOptions<sup>11+</sup>
+
+Provides the button information of the notification.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API.
+
+
+| Name   | Type                                 | Mandatory| Description                  |
+| ------- | ------------------------------------ | ---- | ---------------------- |
+| buttonName    | string                         | Yes  | Button name.|
+
+
+## SystemLiveViewSubscriber<sup>11+</sup>
+
+Subscriber of the system live view notification.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API.
+
+
+| Name   | Type                                 | Mandatory| Description                  |
+| ------- | ------------------------------------ | ---- | ---------------------- |
+| onResponse    | (notificationId: number, buttonOptions: ButtonOptions) => void;                         | No  | Callback when the button is touched.|

@@ -1,6 +1,6 @@
 # @ohos.accessibility.config (System Accessibility Configuration)
 
-The System Accessibility Configuration module allows you to configure system accessibility features, including accessibility extension, high-contrast text, mouse buttons, and captions.
+The **accessibility.config** module provides APIs for configuring system accessibility features, including accessibility extension, high-contrast text, mouse buttons, and captions.
 
 > **NOTE**
 >
@@ -21,6 +21,7 @@ import config from '@ohos.accessibility.config';
 | -------- | -------- | -------- | -------- | -------- |
 | highContrastText | [Config](#config)\<boolean>| Yes| Yes| Whether to enable high-contrast text.|
 | invertColor | [Config](#config)\<boolean>| Yes| Yes| Whether to enable color inversion.|
+| daltonizationState<sup>11+</sup> | [Config](#config)\<boolean>| Yes| Yes| Whether to enable daltonization.|
 | daltonizationColorFilter | [Config](#config)&lt;[DaltonizationColorFilter](#daltonizationcolorfilter)&gt;| Yes| Yes| Configuration of the daltonization filter.|
 | contentTimeout | [Config](#config)\<number>| Yes| Yes| Recommended duration for content display. The value ranges from 0 to 5000, in milliseconds.|
 | animationOff | [Config](#config)\<boolean>| Yes| Yes| Whether to disable animation.|
@@ -32,7 +33,7 @@ import config from '@ohos.accessibility.config';
 | captions | [Config](#config)\<boolean>| Yes| Yes| Whether to enable captions.|
 | captionsStyle | [Config](#config)\<[accessibility.CaptionsStyle](js-apis-accessibility.md#captionsstyle8)>| Yes| Yes| Captions style.|
 | audioMono<sup>10+</sup>| [Config](#config)\<boolean>| Yes| Yes| Whether to enable mono audio. The value **True** means to enable mono audio, and **False** means the opposite.|
-| audioBalance<sup>10+</sup>| [Config](#config)\<number>| Yes| Yes| Audio balance for the left and right audio channels. The value ranges from -1.0 to 1.0.|
+| audioBalance<sup>10+</sup>| [Config](#config)\<number>| Yes| Yes| Audio balance for the left and right audio channels. The value ranges from -1.0 to +1.0.|
 
 ## enableAbility
 
@@ -471,6 +472,8 @@ config.highContrastText.off((data: boolean) => {
 ## DaltonizationColorFilter
 
 Enumerates the daltonization filters.
+
+When daltonization is enabled (with **daltonizationState** set to **true**), the filter set for users with disabilities is used; otherwise, the filter for normal uses is used.<sup>11+</sup>
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 

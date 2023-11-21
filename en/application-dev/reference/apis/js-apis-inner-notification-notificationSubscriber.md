@@ -252,11 +252,15 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onDoNotDisturbDateChange<sup>8+</sup>
+### onDoNotDisturbDateChange<sup>8+</sup>(deprecated)
 
 onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
 
 Called when the DND time settings are changed.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and is deprecated since API version 11. You are advised to use [onDoNotDisturbChanged](js-apis-inner-notification-notificationSubscriber.md#ondonotdisturbchanged11) instead.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -293,6 +297,46 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
+### onDoNotDisturbChanged<sup>11+</sup>
+
+onDoNotDisturbChanged?:(mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
+
+Called when the DND time settings are changed.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------------ | ------------------------ | ---- | -------------------------- |
+| mode | notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate) | Yes| DND time setting updates.|
+
+**Example**
+
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
+};
+
+let onDoNotDisturbChangedCallback = (mode: NotificationManager.DoNotDisturbDate) => {
+  console.info('===> onDoNotDisturbChanged:' + mode);
+}
+
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onDoNotDisturbChanged: onDoNotDisturbChangedCallback
+};
+
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
+```
 
 ### onEnabledNotificationChanged<sup>8+</sup>
 

@@ -195,9 +195,10 @@ Represents the thermal level.
 | Name      | Value  | Description                                                        |
 | ---------- | ---- | ------------------------------------------------------------ |
 | COOL       | 0    | The device is cool, and services are not restricted.            |
-| NORMAL     | 1    | The device is operational but is not cool. You need to pay attention to its heating.|
+| NORMAL     | 1    | The device is in the normal temperature range but it is getting warm. You need to downgrade or reduce the load of imperceptible services.|
 | WARM       | 2    | The device is warm. You need to stop or delay some imperceptible services.|
-| HOT        | 3    | The device is heating up. You need to stop all imperceptible services and downgrade or reduce the load of other services.|
-| OVERHEATED | 4    | The device is overheated. You need to stop all imperceptible services and downgrade or reduce the load of major services.|
-| WARNING    | 5    | The device is overheated and is about to enter the emergency state. You need to stop all imperceptible services and downgrade major services to the maximum extent.|
-| EMERGENCY  | 6    | The device has entered the emergency state. You need to stop all services except those for the emergency help purposes.|
+| HOT        | 3    | The device is heating up. You need to stop all imperceptible services and downgrade or reduce the load of non-critical services.|
+| OVERHEATED | 4    | The device is overheated. You need to stop all imperceptible services and downgrade or reduce the load of major foreground services.|
+| WARNING    | 5    | The device is overheated and is about to enter the emergency state. You need to stop all imperceptible services and downgrade major foreground services to the maximum extent.|
+| EMERGENCY  | 6    | The device has entered the emergency state. You need to stop all services except those for fundamental use.|
+| ESCAPE     | 7    | The device is about to enter the escape state. You need to stop all services and take necessary emergency measures such as data backup.|
