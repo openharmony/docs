@@ -108,7 +108,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 \@LocalStorageLink(key)是和LocalStorage中key对应的属性建立双向数据同步：
 
-1. 本地修改发生，该修改会被回LocalStorage中；
+1. 本地修改发生，该修改会被写回LocalStorage中；
 
 2. LocalStorage中的修改发生后，该修改会被同步到所有绑定LocalStorage对应key的属性上，包括单向（\@LocalStorageProp和通过prop创建的单向绑定变量）、双向（\@LocalStorageLink和通过link创建的双向绑定变量）变量。
 
