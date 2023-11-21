@@ -85,7 +85,7 @@ let subscribeCallback = (err: Base.BusinessError) => {
   }
 };
 
-function onCancelCallback(data: notificationSubscribe.SubscribeCallbackData) {
+let onCancelCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
   console.info('===> onCancel in test');
   let req = data.request;
   console.info('===> onCancel callback req.id:' + req.id);
