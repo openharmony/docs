@@ -728,6 +728,8 @@
       - [Vulkan开发指导](napi/vulkan-guidelines.md)
     - 资源管理
       - [Rawfile开发指导](napi/rawfile-guidelines.md)
+    - 资源调度
+      - [FFRT开发指导](napi/ffrt-guidelines.md)
     - AI
       - [使用MindSpore Lite引擎进行模型推理](napi/mindspore-lite-guidelines.md)
       - [使用MindSpore Lite进行离线模型的转换及推理](napi/mindspore-lite-offline-model-guidelines.md)
