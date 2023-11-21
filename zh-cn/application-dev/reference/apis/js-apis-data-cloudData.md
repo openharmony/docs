@@ -11,6 +11,8 @@
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 本模块接口为系统接口。
+>
+> - 使用本模块需要实现云服务功能。
 
 ## 导入模块
 
@@ -37,29 +39,29 @@ import cloudData from '@ohos.data.cloudData';
 
 | 名称      | 类型   | 必填 | 说明                                                         |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
-| eventId   | string | 是   | 如果传值为"cloud_data_change"，表示云数据变更。                                             |
-| extraData | string | 是   | 由push服务透传过来，"header"中是云侧校验应用所需的信息，"data"中是通知变更所需要的信息，包含账号，应用名，数据库名和数据库表名，其中accountId和bundleName不能为空串 |
+| eventId   | string | 是   | 如果传值为"cloud_data_change"，表示云数据变更。              |
+| extraData | string | 是   | 透传数据，"header"中是云侧校验应用所需的信息，"data"中是通知变更所需要的信息，包含账号，应用名，数据库名和数据库表名，其中accountId和bundleName不能为空。 |
 
-**示例：**
+**样例：**
 
-```mandatory
-ExtraData {
-    eventId:"cloud_data_change",
-    extraData:"{
-        "header":{ 
-            "token":"bbbbbb"  //用于校验应用信息
-        }
-        "data":{
-            "accountId": "aaa",  //用户打开的云帐号ID。
-            "bundleName": "com.bbb.xxx",  //应用名。
-            "containerName": "alias",  //云上的数据库名称
-            "recordTypes":  [ //数据库表名
-                "xxx", 
-                "yyy", 
-                "zzz",
-            ]
-        }
-    }"
+```ts
+let ExtraData = {
+  eventId: "cloud_data_change",
+  extraData: {
+    "header": {
+      "token": "bbbbbb" //用于校验应用信息
+    },
+    "data": {
+      "accountId": "aaa", //用户打开的云账号ID
+      "bundleName": "com.bbb.xxx", //应用名
+      "containerName": "alias", //云上数据库名称
+      "recordTypes": [ //云上数据库表名
+        "xxx",
+        "yyy",
+        "zzz",
+      ]
+    }
+  }
 }
 ```
 
@@ -393,7 +395,7 @@ try {
 
  **static** notifyDataChange(extInfo: ExtraData, callback: AsyncCallback&lt;void&gt;):void
 
-通知云端的数据变更，由push服务直接调用，使用callback异步回调。
+通知云端的数据变更，可以通过extInfo中的extraDta字段指定变更的数据库名和表名，使用callback异步回调。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -412,10 +414,11 @@ try {
 import { BusinessError } from '@ohos.base';
 
 let eventId = "cloud_data_change";
-let extraData= {"header ":"aaaa","data ":"{\"accountId\":\"2850086000356238647\",\"bundleName\":\"com.huawei.hmos.notepad\",\"containerName\":\"alias\",\"recordTypes\":\"[\\\"xxx\\\",\\\"yyy\\\"]\"}"}
-let extraData = header+data;
+let extraData = '{header:"aaaa",data:"{"accountId":"2850086000356238647","bundleName":"com.huawei.hmos.notepad","containerName":"alias","recordTypes":"[xxx,yyy]"}"}';
 try {
-  cloudData.Config.notifyDataChange({ eventId:eventId ,extraData:extraData}, (err) => {
+  cloudData.Config.notifyDataChange({
+    eventId: eventId, extraData: extraData
+  }, (err) => {
     if (err === undefined) {
       console.info('Succeeded in notifying the change of data');
     } else {
@@ -432,7 +435,7 @@ try {
 
 static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallback&lt;void&gt;):void
 
-通知云端的数据变更，由push服务直接调用，使用callback异步回调。
+通知云端的数据变更，可以通过extInfo中的extraDta字段指定变更的数据库名和表名，可通过userId指定用户ID，使用callback异步回调。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -442,20 +445,20 @@ static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallba
 
 | 参数名   | 类型                      | 必填 | 说明                                            |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
-| extInfo  | [ExtraData](#extradata11)   | 是   | 透传数据 包含通知数据变更后的应用信息。         |
-| userId   | number                    | 否   | 表示用户ID。此参数是可选的。取值范围是100-102。 |
+| extInfo  | [ExtraData](#extradata11)   | 是   | 透传数据，包含通知数据变更后的应用信息。        |
+| userId   | number                    | 是   | 表示用户ID。此参数是可选的，默认值是当前用户ID，如果指定了此参数，则该值必须是系统中现有的用户ID。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
 
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let eventId = cloudData.DATA_CHANGE_EVENT_ID;
-let header = "aaaa";
-let data = "{\"accountId\":\"2850086000356238647\",\"bundleName\":\"com.huawei.hmos.notepad\",\"containerName\":\"alias\",\"recordTypes\":\"[\\\"xxx\\\",\\\"yyy\\\"]\"}"
-let extraData = header+data;
+let eventId = "cloud_data_change";
+let extraData = '{header:"aaaa",data:"{"accountId":"2850086000356238647","bundleName":"com.huawei.hmos.notepad","containerName":"alias","recordTypes":"[xxx,yyy]"}"}';
 let userId = 100;
 try {
-  cloudData.Config.notifyDataChange({ eventId:eventId ,extraData:extraData},userId, (err) => {
+  cloudData.Config.notifyDataChange({
+    eventId: eventId, extraData: extraData
+  }, userId, (err) => {
     if (err === undefined) {
       console.info('Succeeded in notifying the change of data');
     } else {
@@ -472,7 +475,7 @@ try {
 
 **static** notifyDataChange(extInfo: ExtraData, userId?: number): Promise&lt;void&gt;
 
-通知云端的数据变更，由push服务直接调用，使用Promise异步回调。
+通知云端的数据变更，可以通过extInfo中的extraDta字段指定变更的数据库名和表名，使用Promise异步回调。
 
 **需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
@@ -483,7 +486,7 @@ try {
 | 参数名  | 类型                    | 必填 | 说明                                            |
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | extInfo | [ExtraData](#extradata11) | 是   | 透传数据 包含通知数据变更后的应用信息。         |
-| userId  | number                  | 否   | 表示用户ID。此参数是可选的。取值范围是100-102。 |
+| userId  | number                  | 否   | 表示用户ID。此参数是可选的，默认值是当前用户ID，如果指定了此参数，则该值必须是系统中现有的用户ID。 |
 
 **返回值：**
 
@@ -496,13 +499,13 @@ try {
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let eventId = cloudData.DATA_CHANGE_EVENT_ID;
-let header = "aaaa";
-let data = "{\"accountId\":\"2850086000356238647\",\"bundleName\":\"com.huawei.hmos.notepad\",\"containerName\":\"alias\",\"recordTypes\":\"[\\\"xxx\\\",\\\"yyy\\\"]\"}"
-let extraData = header+data;
+let eventId = "cloud_data_change";
+let extraData = '{header:"aaaa",data:"{"accountId":"2850086000356238647","bundleName":"com.huawei.hmos.notepad","containerName":"alias","recordTypes":"[xxx,yyy]"}"}';
 let userId = 100;
 try {
-  cloudData.Config.notifyDataChange({ eventId:eventId ,extraData:extraData},userId).then(() => {
+  cloudData.Config.notifyDataChange({
+    eventId: eventId, extraData: extraData
+  }, userId).then(() => {
     console.info('Succeeded in notifying the change of data');
   }).catch((err: BusinessError) => {
     console.error(`Failed to notify the change of data. Code: ${err.code}, message: ${err.message}`);
