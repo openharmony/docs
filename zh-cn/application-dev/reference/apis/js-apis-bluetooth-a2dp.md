@@ -532,6 +532,95 @@ try {
 }
 ```
 
+### getCurrentCodecInfo<sup>11+</sup>
+
+getCurrentCodecInfo(deviceId: string): CodecInfo;
+
+获取当前编码器信息。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | 是    | 远端设备地址。 |
+
+**返回值：**
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| CodecInfo; | 当前编码器信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    let codecInfo : a2dp.CodecInfo = a2dpSrc.getCurrentCodecInfo('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### setCurrentCodecInfo<sup>11+</sup>
+
+setCurrentCodecInfo(deviceId: string, codecInfo: CodecInfo): void;
+
+获取当前编码器信息。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | 是    | 远端设备地址。 |
+| codecInfo | CodecInfo | 是    | 编码器信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    let codecInfo : a2dp.CodecInfo = {
+        codecType: 0,
+        codecBitsPerSample: 1,
+        codecChannelMode: 2,
+        codecSampleRate: 1,
+    }
+    a2dpSrc.setCurrentCodecInfo('XX:XX:XX:XX:XX:XX', codecInfo);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
 ## PlayingState<a name="PlayingState"></a>
 
 枚举，蓝牙A2DP 播放状态。
@@ -542,3 +631,75 @@ try {
 | ----------------- | ------ | ------- |
 | STATE_NOT_PLAYING | 0x0000 | 表示未播放。  |
 | STATE_PLAYING     | 0x0001 | 表示正在播放。 |
+
+
+## CodecInfo<a name="CodecInfo"></a>
+
+编码器信息。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称        | 类型                    | 可读   | 可写   | 说明                                     |
+| ------------------- | ----------------------- | ---- | ---- | -------------------------------------- |
+| codecType           | [CodecType](#codecType)      | 是    | 是    | 表示编码器类型，默认值为CODEC_TYPE_SBC。 |
+| codecBitsPerSample  | [CodecBitsPerSample](#codecBitsPerSample)  | 是    | 是    | 表示每个采样点的位数，默认值为SCAN_MODE_LOW_POWER。 |
+| codecChannelMode    | [CodecChannelMode](#codecChannelMode) | 是    | 是    | 表示编码器的声道模式，默认值为CODEC_CHANNEL_MODE_NONE。 |
+| codecSampleRate     | [CodecSampleRate](#codecSampleRate) | 是    | 是    | 表示编码器的采样率，默认值为CODEC_BITS_PER_SAMPLE_NONE。 |
+
+
+## CodecType<a name="CodecType"></a>
+
+枚举，蓝牙编码器类型。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                | 值    | 说明      |
+| ----------------- | ------ | ------- |
+| CODEC_TYPE_INVALID | -1 | 位置编码类型。  |
+| CODEC_TYPE_SBC     | 0 | SBC。 |
+| CODEC_TYPE_AAC     | 1 | AAC。 |
+| CODEC_TYPE_L2HC    | 2 | L2HC。|
+
+
+## CodecChannelMode<a name="CodecChannelMode"></a>
+
+枚举，蓝牙编码器的声道模式。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                | 值    | 说明      |
+| ----------------- | ------ | ------- |
+| CODEC_CHANNEL_MODE_NONE   | 0 | 未知声道。|
+| CODEC_CHANNEL_MODE_MONO   | 1 | 单声道。  |
+| CODEC_CHANNEL_MODE_STEREO | 2 | 双声道。  |
+
+
+## CodecBitsPerSample<a name="CodecBitsPerSample"></a>
+
+枚举，蓝牙编码器每个采样点的位数。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                | 值    | 说明      |
+| ----------------- | ------ | ------- |
+| CODEC_BITS_PER_SAMPLE_NONE | 0 | 未知采样点的位数。|
+| CODEC_BITS_PER_SAMPLE_16   | 1 | 16位采样点的位数。|
+| CODEC_BITS_PER_SAMPLE_24   | 2 | 24位采样点的位数。|
+| CODEC_BITS_PER_SAMPLE_32   | 3 | 32位采样点的位数。|
+
+
+## CodecSampleRate<a name="CodecSampleRate"></a>
+
+枚举，蓝牙编码器的采样率。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                | 值    | 说明      |
+| ----------------- | ------ | ------- |
+| CODEC_SAMPLE_RATE_NONE    | 0 | 未知采样率。|
+| CODEC_SAMPLE_RATE_44100   | 1 | 44.1k采样率。|
+| CODEC_SAMPLE_RATE_48000   | 2 | 48k采样率。|
+| CODEC_SAMPLE_RATE_88200   | 3 | 88.2k采样率。|
+| CODEC_SAMPLE_RATE_96000   | 3 | 96k位采样率。|
+| CODEC_SAMPLE_RATE_176400  | 3 | 176.4k位采样率。|
+| CODEC_SAMPLE_RATE_192000  | 3 | 192k位采样率。|
