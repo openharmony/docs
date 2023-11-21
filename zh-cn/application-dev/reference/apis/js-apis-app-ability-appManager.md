@@ -228,7 +228,7 @@ appManager.getAppMemorySize((err, data) => {
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
-获取有关运行进程的信息。
+获取运行进程的有关信息。如果申请了ohos.permission.GET_RUNNING_INFO权限可以获取所有运行进程信息，否则只能获取当前运行进程信息。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -264,7 +264,7 @@ appManager.getRunningProcessInformation().then((data) => {
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
 
-获取有关运行进程的信息。
+获取运行进程的有关信息。如果申请了ohos.permission.GET_RUNNING_INFO权限可以获取所有运行进程信息，否则只能获取当前运行进程信息。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -591,6 +591,12 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 以回调方式方式返回接口运行结果及应用状态数据数组，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
