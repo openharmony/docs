@@ -40,7 +40,7 @@ import cloudData from '@ohos.data.cloudData';
 | 名称      | 类型   | 必填 | 说明                                                         |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | eventId   | string | 是   | 如果传值为"cloud_data_change"，表示云数据变更。              |
-| extraData | string | 是   | 透传数据，"header"中是云侧校验应用所需的信息，"data"中是通知变更所需要的信息，包含账号，应用名，数据库名和数据库表名，其中accountId和bundleName不能为空。 |
+| extraData | string | 是   | 透传数据，"header"中是云侧校验应用所需的信息，"data"中是通知变更所需要的信息，包含帐号，应用名，数据库名和数据库表名，其中accountId和bundleName不能为空。 |
 
 **样例：**
 
@@ -52,7 +52,7 @@ let ExtraData = {
       "token": "bbbbbb" //用于校验应用信息
     },
     "data": {
-      "accountId": "aaa", //用户打开的云账号ID
+      "accountId": "aaa", //用户打开的云帐号ID
       "bundleName": "com.bbb.xxx", //应用名
       "containerName": "alias", //云上数据库名称
       "recordTypes": [ //云上数据库表名
