@@ -352,6 +352,18 @@
 
 **起始版本**：7
 
+## ohos.permission.SYSTEM_LIGHT_CONTROL
+
+允许应用控制灯，包括打开、关闭等操作。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+**起始版本**：11
+
 ## ohos.permission.CONNECT_IME_ABILITY
 
 允许绑定输入法Ability（InputMethodAbility）。
