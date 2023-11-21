@@ -124,9 +124,9 @@ struct WebComponent {
           try {
             // 点击按钮时，通过loadData，加载HTML格式的文本数据
             this.controller.loadData(
-              '<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>',
-              'text/html',
-              'UTF-8'
+              "<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
+              "text/html",
+              "UTF-8"
             );
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);

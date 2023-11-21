@@ -16,16 +16,21 @@
   // xxx.ets
   import web_webview from '@ohos.web.webview';
 
+  class testClass {
+    constructor() {
+    }
+
+    test(): string {
+      return 'ArkTS Hello World!';
+    }
+  }
+
   @Entry
   @Component
   struct WebComponent {
     webviewController: web_webview.WebviewController = new web_webview.WebviewController();
     // 声明需要注册的对象
-    testObj = {
-      test: () => {
-        return 'ArkTS Hello World!';
-      }
-    }
+    @State testObj: testClass = new testClass();
 
     build() {
       Column() {
@@ -49,19 +54,26 @@
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';
+  import business_error from '@ohos.base';
+
+  class testClass {
+    constructor() {
+    }
+  
+    test(): string {
+      return "ArkUI Web Component";
+    }
+  
+    toString(): void {
+      console.log('Web Component toString');
+    }
+  }
 
   @Entry
   @Component
   struct Index {
     webviewController: web_webview.WebviewController = new web_webview.WebviewController();
-    testObj = {
-      test: (data) => {
-        return "ArkUI Web Component";
-      },
-      toString: () => {
-        console.info('Web Component toString');
-      }
-    }
+    @State testObj: testClass = new testClass();
 
     build() {
       Column() {
@@ -70,15 +82,17 @@
             try {
               this.webviewController.refresh();
             } catch (error) {
-              console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
             }
           })
         Button('Register JavaScript To Window')
           .onClick(() => {
             try {
-              this.webviewController.registerJavaScriptProxy(this.testObj, "objName", ["test", "toString"]);
+              this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
-              console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
