@@ -2329,6 +2329,7 @@ openDLPFile(ciphertextFd: number, appId: string): Promise&lt;DLPFile&gt;
 | 19100008 | Not DLP file. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | System service exception. |
+| 19100018 | Not authorized application. |
 
 **示例：**
 
@@ -2402,6 +2403,7 @@ DLP管理应用调用该接口，打开DLP文件。获取DLPFile管理对象，�
 | 19100008 | Not DLP file. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | System service exception. |
+| 19100018 | Not authorized application. |
 
 **示例：**
 
