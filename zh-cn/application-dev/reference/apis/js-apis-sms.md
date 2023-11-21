@@ -112,7 +112,7 @@ sendMessage\(options: SendMessageOptions\): void
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 10开始废弃。建议使用[sendShortMessage](#smssendshortmessage10)替代。
+> 从 API version 6开始支持，从API version 10开始废弃。建议使用[sendShortMessage](#smssendshortmessage10)替代。
 
 **需要权限**：ohos.permission.SEND_MESSAGES
 
