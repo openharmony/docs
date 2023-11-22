@@ -96,10 +96,7 @@ try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
   deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
     console.error(`Device is disconnected`);
-  }, (error : BusinessError, data: {
-      deviceId : number;
-      remote : rpc.IRemoteObject;
-  }) => {
+  }, (error, data) => {
     if (error) {
       console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
       return;
@@ -152,7 +149,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
-  deviceManager.bindDevice(12345678, (error: BusinessError, data: number) => {
+  deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
     console.error(`Device is disconnected`);
   }).then(data => {
     console.info(`bindDevice success, Device_Id is ${data.deviceId}.

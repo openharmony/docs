@@ -146,7 +146,7 @@ Enables a device administrator application for the current or specified user. Th
 | admin          | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application to enable.                     |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.                |
 | type           | [AdminType](#admintype)             | Yes   | Type of the device administrator application to enable.                  |
-| userId         | number                              | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the application of the specified user is enabled.<br>- If **userId** is not passed in, the application of the current user is enabled.|
+| userId         | number                              | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the application of the specified user is enabled.<br>- If **userId** is not passed in, the application of the current user is enabled. |
 
 **Return value**
 
