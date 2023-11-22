@@ -56,7 +56,7 @@ let wantTemp: Want = {
 };
 
 try {
-    locationManager.setLocationPolicy(wantTemp, locationManager.LocationPolicy.DISALLOWED_LOCATION_SERVICE);
+    locationManager.setLocationPolicy(wantTemp, locationManager.LocationPolicy.DISALLOW_LOCATION_SERVICE);
     console.info(`Succeeded in getting location patch tag. tag: ${res}`);
 } catch(err) {
     console.error(`Failed to get location patch tag. Code: ${err.code}, message: ${err.message}`);
@@ -125,6 +125,6 @@ try {
 
 | 名称                        | 值  | 说明    |
 | ----------------------------| ----| ------------------------------- |
-| DISALLOWED_LOCATION_SERVICE | 0   | 禁用位置服务策略。 |
+| DISALLOW_LOCATION_SERVICE | 0   | 禁用位置服务策略。 |
 | FORCE_OPEN_LOCATION_SERVICE | 1   | 强制开启位置服务策略。 |
 | DEFAULT_LOCATION_SERVICE    | 2   | 默认策略。 |
