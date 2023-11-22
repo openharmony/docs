@@ -39,7 +39,6 @@ struct Parent {
         .onClick(() => {
           this.testNum[0].c += 1;
         })
-
       // PropChild没有改变@Prop testNum: ClassA的值，所以这时最优的选择是使用@ObjectLink
       PropChild({ testNum: this.testNum[0] })
     }
@@ -47,10 +46,14 @@ struct Parent {
 }
 ```
 
+
 在上文的示例中，PropChild组件没有改变\@Prop testNum: ClassA的值，所以这时较优的选择是使用\@ObjectLink，因为\@Prop是会深拷贝数据，具有拷贝的性能开销，所以这个时候\@ObjectLink是比\@Link和\@Prop更优的选择。
+
 
 【正例】
 
+
+  
 ```ts
 @Observed
 class ClassA {
@@ -77,24 +80,20 @@ struct Parent {
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent testNum ${this.testNum.c}`)
         .onClick(() => {
           this.testNum[0].c += 1;
         })
-
-      // 当子组件不需要发生本地改变时，优先使用@ObjectLink，因为@Prop是会深拷贝数据，具有拷贝的性能开销，所以这个时候@ObjectLink是比@Link和@Prop更优的选择
       PropChild({ testNum: this.testNum[0] })
     }
   }
 }
 ```
 
-
 ## 不使用状态变量强行更新非状态变量关联组件
-
+ 
 【反例】
-
-
+  
 ```ts
 @Entry
 @Component
@@ -291,4 +290,3 @@ struct Page1 {
   }
 }
 ```
-
