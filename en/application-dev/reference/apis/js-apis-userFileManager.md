@@ -185,7 +185,7 @@ async function example() {
 
 createPhotoAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;): void;
 
-Creates an image or video asset. This API uses an asynchronous callback to return the result.
+Creates an image or video asset with the specified file name. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -219,7 +219,7 @@ async function example() {
 
 createPhotoAsset(displayName: string, albumUri?: string): Promise&lt;FileAsset&gt;;
 
-Creates an image or video asset. This API uses a promise to return the result.
+Creates an image or video asset with the specified file name and URI. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -236,7 +236,7 @@ Creates an image or video asset. This API uses a promise to return the result.
 
 | Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FileAsset](#fileasset)&gt; | Promise used to return the image or video created.|
+| Promise&lt;[FileAsset](#fileasset)&gt; | Promise used to return the created image or video asset.|
 
 **Example**
 
@@ -269,7 +269,7 @@ Obtains image and video albums. This API uses an asynchronous callback to return
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | options  | [AlbumFetchOptions](#albumfetchoptions)        | Yes  | Options for fetching the albums.             |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the albums obtained.|
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the image and video albums obtained.|
 
 **Example**
 
@@ -320,7 +320,7 @@ Obtains image and video albums. This API uses a promise to return the result.
 
 | Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the albums obtained.|
+| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the image and video albums obtained.|
 
 **Example**
 
@@ -358,7 +358,7 @@ Obtains the system album. This API uses an asynchronous callback to return the r
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| type  | [PrivateAlbumType](#privatealbumtype)        | Yes  | Type of the album to obtain.             |
+| type  | [PrivateAlbumType](#privatealbumtype)        | Yes  | Type of the system album to obtain.             |
 | callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PrivateAlbum](#privatealbum)&gt;&gt; | Yes  | Callback invoked to return the album obtained.|
 
 **Example**
@@ -392,13 +392,13 @@ Obtains the system album. This API uses a promise to return the result.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| type  | [PrivateAlbumType](#privatealbumtype)        | Yes  | Type of the album to obtain.             |
+| type  | [PrivateAlbumType](#privatealbumtype)        | Yes  | Type of the system album to obtain.             |
 
 **Return value**
 
 | Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[PrivateAlbum](#privatealbum)&gt;&gt; | Promise used to return the album obtained.|
+| Promise&lt;[FetchResult](#fetchresult)&lt;[PrivateAlbum](#privatealbum)&gt;&gt; | Promise used to return the system album obtained.|
 
 **Example**
 
@@ -908,7 +908,7 @@ Provides APIs for encapsulating file asset attributes.
 
 | Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| uri                       | string                   | Yes  | No  | File asset URI, for example, **dataability:///media/image/2**.        |
+| uri                       | string                   | Yes  | No  | Media asset URI, for example, **dataability:///media/image/2**.        |
 | fileType   | [FileType](#filetype) | Yes  | No  | Type of the file.                                              |
 | displayName               | string                   | Yes  | Yes  | File name, including the file name extension, to display.                                |
 
@@ -1088,7 +1088,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file asset. This API uses an asynchronous callback to return the result.
 
-**NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
+> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.READ_AUDIO, ohos.permission.WRITE_IMAGEVIDEO, or ohos.permission.WRITE_AUDIO
 
@@ -1099,7 +1099,7 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | mode     | string                      | Yes   | File open mode, which can be **r** (read-only), **w** (write-only), or **rw** (read-write).|
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor of the file opened.                           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor (FD) of the file opened.                           |
 
 **Example**
 
@@ -1125,7 +1125,7 @@ open(mode: string): Promise&lt;number&gt;
 
 Opens this file asset. This API uses a promise to return the result.
 
-**NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
+> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.READ_AUDIO, ohos.permission.WRITE_IMAGEVIDEO, or ohos.permission.WRITE_AUDIO
 
@@ -1141,7 +1141,7 @@ Opens this file asset. This API uses a promise to return the result.
 
 | Type                   | Description           |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
+| Promise&lt;number&gt; | Promise used to return the FD of the file opened.|
 
 **Example**
 
@@ -1176,7 +1176,7 @@ Closes a file asset. This API uses an asynchronous callback to return the result
 
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| fd       | number                    | Yes   | File descriptor.|
+| fd       | number                    | Yes   | FD of the file to close.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.|
 
 **Example**
@@ -1221,7 +1221,7 @@ Closes a file asset. This API uses a promise to return the result.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| fd   | number | Yes   | File descriptor of the file to close.|
+| fd   | number | Yes   | FD of the file to close.|
 
 **Return value**
 
@@ -1268,7 +1268,7 @@ Obtains the thumbnail of this file asset. This API uses an asynchronous callback
 
 | Name     | Type                                 | Mandatory  | Description              |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the PixelMap of the thumbnail.|
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the pixel map of the thumbnail.|
 
 **Example**
 
@@ -1310,7 +1310,7 @@ Obtains the file thumbnail of the given size. This API uses an asynchronous call
 | Name     | Type                                 | Mandatory  | Description              |
 | -------- | ----------------------------------- | ---- | ---------------- |
 | size     | [image.Size](js-apis-image.md#size) | Yes   | Size of the thumbnail.           |
-| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the PixelMap of the thumbnail.|
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the pixel map of the thumbnail.|
 
 **Example**
 
@@ -1358,7 +1358,7 @@ Obtains the file thumbnail of the given size. This API uses a promise to return 
 
 | Type                           | Description                   |
 | ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise used to return the PixelMap of the thumbnail.|
+| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise used to return the pixel map of the thumbnail.|
 
 **Example**
 
@@ -1621,7 +1621,7 @@ Obtains the first file asset in the result set. This API uses a promise to retur
 
 | Type                                   | Description                      |
 | --------------------------------------- | -------------------------- |
-| Promise&lt;T&gt; | Promise used to return the first file asset.|
+| Promise&lt;T&gt; | Promise used to return the first object in the result set.|
 
 **Example**
 
@@ -1653,7 +1653,7 @@ Obtains the next file asset in the result set. This API uses an asynchronous cal
 
 | Name   | Type                                         | Mandatory| Description                                     |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callbacke | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the next file asset.|
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the next file asset.|
 
 **Example**
 
@@ -1693,7 +1693,7 @@ Obtains the next file asset in the result set. This API uses a promise to return
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;T&gt; | Promise used to return the next file asset obtained.|
+| Promise&lt;T&gt; | Promise used to return the next object in the result set.|
 
 **Example**
 
@@ -1765,7 +1765,7 @@ Obtains the last file asset in the result set. This API uses a promise to return
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;T&gt; | Promise used to return the last file asset obtained.|
+| Promise&lt;T&gt; | Promise used to return the last object in the result set.|
 
 **Example**
 
@@ -1869,7 +1869,7 @@ Provides APIs to manage albums.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
-| Name          | Type   | Readable  | Writable | Description  |
+| Name          | Type   | Readable  | Writable  | Description     |
 | ------------ | ------ | ---- | ---- | ------- |
 | albumName | string | Yes   | Yes   | Album name.   |
 | albumUri | string | Yes   | No   | Album URI.  |
