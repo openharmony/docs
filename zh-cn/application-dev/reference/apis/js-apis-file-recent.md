@@ -93,7 +93,7 @@ listFile(): Array\<FileInfo>
 
   | 类型 | 说明 |
   | --- | -- |
-  |  Array[<\FileInfo>](#fileinfo) | FileInfo数组 |
+  |  Array<[\FileInfo](#fileinfo)> | FileInfo数组 |
 
 **错误码：**
 
