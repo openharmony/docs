@@ -90,7 +90,7 @@
 
 ## 场景实例
 
-相对布局内的子元素相对灵活，只要在RelativeContainer容器内，均可以通过alignRules进行相应相应的位置移动。
+相对布局内的子元素相对灵活，只要在RelativeContainer容器内，均可以通过alignRules进行相应的位置移动。
 
 
 ```ts
