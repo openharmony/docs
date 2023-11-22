@@ -1,0 +1,71 @@
+# @ohos.app.ability.EnvironmentCallback    
+EnvironmentCallback模块提供应用上下文ApplicationContext对系统环境变化监听回调的能力，包括onConfigurationUpdated方法。  
+> **说明**   
+>本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本  
+    
+## EnvironmentCallback  
+ **系统能力:**  SystemCapability.Ability.AbilityRuntime.Core    
+### onConfigurationUpdated    
+注册系统环境变化的监听后，在系统环境变化时触发回调。  
+ **调用形式：**     
+- onConfigurationUpdated(config: Configuration): void  
+  
+ **模型约束：** 此接口仅可在stage模型下使用。  
+ **系统能力:**  SystemCapability.Ability.AbilityRuntime.AbilityCore    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| config | Configuration | true | 变化后的Configuration对象。 |  
+    
+### onMemoryLevel    
+注册系统环境变化的监听后，在系统内存变化时触发回调。  
+。  
+ **调用形式：**     
+- onMemoryLevel(level: AbilityConstant.MemoryLevel): void  
+  
+ **模型约束：** 此接口仅可在stage模型下使用。  
+ **系统能力:**  SystemCapability.Ability.AbilityRuntime.AbilityCore    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| level | AbilityConstant.MemoryLevel | true |  回调返回内存微调级别，显示当前内存使用状态。 |  
+    
+ **示例代码：**   
+```ts    
+import UIAbility from '@ohos.app.ability.UIAbility';  
+import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';  
+  
+let callbackId: number;  
+  
+export default class MyAbility extends UIAbility {  
+    onCreate() {  
+        console.log('MyAbility onCreate');  
+        let environmentCallback: EnvironmentCallback  =  {  
+            onConfigurationUpdated(config){  
+                console.log(`onConfigurationUpdated config: ${JSON.stringify(config)}`);  
+            },  
+  
+            onMemoryLevel(level){  
+                console.log('onMemoryLevel level: ${JSON.stringify(level)}');  
+            }  
+        };  
+        // 1.获取applicationContext  
+        let applicationContext = this.context.getApplicationContext();  
+        // 2.通过applicationContext注册监听应用内生命周期  
+        callbackId = applicationContext.on('environment', environmentCallback);  
+        console.log(`registerEnvironmentCallback number: ${JSON.stringify(callbackId)}`);  
+    }  
+    onDestroy() {  
+        let applicationContext = this.context.getApplicationContext();  
+        applicationContext.off('environment', callbackId, (error, data) => {  
+            if (error  error.code !== 0) {  
+                console.error(`unregisterEnvironmentCallback fail, error: ${JSON.stringify(error)}`);  
+            } else {  
+                console.log(`unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}`);  
+            }  
+        });  
+    }  
+}  
+    
+```    
+  
