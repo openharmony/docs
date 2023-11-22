@@ -1425,7 +1425,7 @@ try {
 
 show(callback: AsyncCallback\<void>): void
 
-显示当前输入法面板，使用callback异步回调。
+显示当前输入法面板，使用callback异步回调。输入法应用与编辑框绑定成功后可正常调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1453,7 +1453,7 @@ panel.show((err: BusinessError) => {
 
 show(): Promise\<void>
 
-显示当前输入法面板，使用promise异步回调。
+显示当前输入法面板，使用promise异步回调。输入法应用与编辑框绑定成功后可正常调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
