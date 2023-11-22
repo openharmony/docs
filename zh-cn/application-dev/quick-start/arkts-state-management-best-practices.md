@@ -254,9 +254,8 @@ class Translate {
 }
 @Component
 struct Title {
-  @ObjectLink translateObj: Translate;
   build() {
-    Row() { 
+    Row() {
       Image($r('app.media.icon'))
         .width(50)
         .height(50)
@@ -267,13 +266,11 @@ struct Title {
 }
 @Entry
 @Component
-struct Page {
+struct Page1 {
   @State translateObj: Translate = new Translate();
   build() {
     Column() {
-      Title({
-        translateObj: this.translateObj
-      })
+      Title()
       Stack() {
       }
       .backgroundColor("black")
