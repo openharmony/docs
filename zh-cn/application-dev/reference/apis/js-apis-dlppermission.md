@@ -2330,6 +2330,8 @@ openDLPFile(ciphertextFd: number, appId: string): Promise&lt;DLPFile&gt;
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | System service exception. |
 | 19100018 | Not authorized application. |
+| 19100019 | The DLP file has expired. |
+| 19100020 | No network connection. |
 
 **示例：**
 
@@ -2404,6 +2406,8 @@ DLP管理应用调用该接口，打开DLP文件。获取DLPFile管理对象，�
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | System service exception. |
 | 19100018 | Not authorized application. |
+| 19100019 | The DLP file has expired. |
+| 19100020 | No network connection. |
 
 **示例：**
 
@@ -2582,6 +2586,7 @@ DLP沙箱身份。
 | contactAccount | string | 否 | 是 | 表示联系人帐号。 |
 | offlineAccess | boolean | 否 | 是 | 表示是否是离线打开。 |
 | everyoneAccessList | Array&lt;[DLPFileAccess](#dlpfileaccess)&gt; | 否 | 否 | 表示授予所有人的权限，默认为空。 |
+| expireTime<sup>11+</sup> | number | 否 | 否 | 表示文件权限到期时间戳，默认为空。 |
 
 ## GatheringPolicyType
 
