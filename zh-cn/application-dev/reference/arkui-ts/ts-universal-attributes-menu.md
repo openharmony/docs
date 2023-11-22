@@ -15,6 +15,7 @@
 | 名称                           | 参数类型                                     | 描述                                       |
 | ---------------------------- | ---------------------------------------- | ---------------------------------------- |
 | bindMenu                     | content: Array<[MenuElement](#menuelement)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br>options?: [MenuOptions](#menuoptions10) | 给组件绑定菜单，点击后弹出菜单。弹出菜单项支持图标+文本排列和自定义两种功能。<br/>content: 配置菜单项图标和文本的数组，或者自定义组件。<br/>options: 配置弹出菜单的参数。 |
+| bindMenu                     | isShow<sup>11+</sup>: boolean,<br>content: Array<[MenuElement](#menuelement)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br>options?: [MenuOptions](#menuoptions10) | 给组件绑定菜单，点击后弹出菜单。弹出菜单项支持图标+文本排列和自定义两种功能。<br/>isShow: 支持开发者通过状态变量控制显隐，当前不支持双向绑定。<br/>content: 配置菜单项图标和文本的数组，或者自定义组件。<br/>options: 配置弹出菜单的参数。 |
 | bindContextMenu<sup>8+</sup> | content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)<br>options?: [ContextMenuOptions](#contextmenuoptions10) | 给组件绑定菜单，触发方式为长按或者右键点击，弹出菜单项需要自定义。<br/>responseType: 菜单弹出条件，长按或者右键点击。<br/>options: 配置弹出菜单的参数。 |
 
 ## MenuElement
