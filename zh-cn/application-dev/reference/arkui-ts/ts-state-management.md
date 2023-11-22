@@ -26,7 +26,7 @@ AppStorage具体UI使用说明，详见[AppStorage(应用全局的UI状态存储
 
 ### link<sup>10+</sup>
 
-static link<T>(propName: string): SubscribedAbstractProperty<T>
+static link&lt;T&lt;(propName: string): SubscribedAbstractProperty&lt;T&lt;
 
 与AppStorage中对应的propName建立双向数据绑定。如果给定的propName在AppStorage中存在，返回与AppStorage中propName对应属性的双向绑定数据。
 
