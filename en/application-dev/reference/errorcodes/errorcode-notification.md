@@ -168,7 +168,7 @@ More than 10 notifications are sent per second.
 
 Reduce the notification sending frequency to no more than 10 per second.
 
-## 16000010 Distributed Operation Failed
+## 1600010 Distributed Operation Failed
 
 **Error Message**
 
@@ -186,7 +186,7 @@ The distributed database could not be operated or the distributed API could not 
 
 Verify the distributed connection.
 
-## 16000011 Failed to Read the Template Configuration
+## 1600011 Failed to Read the Template Configuration
 
 **Error Message**
 
@@ -204,7 +204,7 @@ The template configuration file is lost in the system.
 
 Check for the template configuration file: /system/etc/notification_template/external.json.
 
-## 16000012 Insufficient Memory Space
+## 1600012 Insufficient Memory Space
 
 **Error Message**
 

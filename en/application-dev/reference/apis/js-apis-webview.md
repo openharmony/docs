@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-The **Webview** module provides APIs for web control. It can be used with the **[<Web\>](../arkui-ts/ts-basic-components-web.md)** component, which can be used to display web pages.
+The **Webview** module provides APIs for web control. It can be used with the [<Web\>](../arkui-ts/ts-basic-components-web.md) component, which can be used to display web pages.
 
 > **NOTE**
 >
@@ -366,7 +366,7 @@ struct WebComponent {
       Button('loadUrl')
         .onClick(() => {
           try {
-            // The headers parameter is carried.
+            // The headers parameter is passed.
             this.controller.loadUrl('www.example.com', [{headerKey: "headerKey", headerValue: "headerValue"}]);
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -1272,7 +1272,7 @@ struct WebComponent {
 
 zoom(factor: number): void
 
-Zooms in or out of this web page.
+Zooms in or out of this web page. This API is effective only when [zoomAccess](../arkui-ts/ts-basic-components-web.md#zoomaccess) is **true**.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1314,6 +1314,7 @@ struct WebComponent {
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
+        .zoomAccess(true)
     }
   }
 }
@@ -2807,10 +2808,32 @@ struct WebComponent {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
+```
+
+HTML file to be loaded:
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<body>
+<h1>online attribute </h1>
+<p id="demo"></p>
+<button onclick="func()">click</button>
+<script>
+    let online = navigator.onLine;
+    document.getElementById ("demo").innerHTML = "Browser online:" + online;
+
+    function func(){
+      var online = navigator.onLine;
+      document.getElementById ("demo").innerHTML = "Browser online:" + online;
+    }
+</script>
+</body>
+</html>
 ```
 
 ### hasImage

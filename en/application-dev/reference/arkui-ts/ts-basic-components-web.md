@@ -69,7 +69,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
   Example of loading local resource files in the sandbox:
 
-  1. Use [globalthis](../../application-models/uiability-data-sync-with-ui.md#using-globalthis-between-uiability-and-page) to obtain the path of the sandbox.
+  1. Use [globalthis](../../application-models/uiability-data-sync-with-ui.md#using-globalthis-between-uiability-and-ui-page) to obtain the path of the sandbox.
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
@@ -90,7 +90,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
   2. Modify the **EntryAbility.ts** file.
 
-     The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining the Application Development Path](../../application-models/application-context-stage.md#obtaining-the-application-development-path).
+     The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
      ```ts
      // xxx.ts
      import UIAbility from '@ohos.app.ability.UIAbility';
@@ -125,6 +125,8 @@ Only the following universal attributes are supported: [width](ts-universal-attr
 domStorageAccess(domStorageAccess: boolean)
 
 Sets whether to enable the DOM Storage API. By default, this feature is disabled.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
@@ -610,7 +612,7 @@ Sets whether to display the vertical scrollbar, including the default system scr
 
 | Name        | Type   | Mandatory  | Default Value  | Description        |
 | ----------- | ------- | ---- | ----- | ------------ |
-| verticalScrollBarAccess | boolean | Yes   | true | Whether to display the vertical scrollbar.|
+| verticalScrollBar | boolean | Yes   | true | Whether to display the vertical scrollbar.|
 
 **Example**
 
@@ -760,13 +762,13 @@ Sets the text zoom ratio of the page. The default value is **100**, which indica
 
 initialScale(percent: number)
 
-Sets the scale factor of the entire page. The default value is 100%.
+Scale factor of the entire page. The default value is 100.
 
 **Parameters**
 
 | Name    | Type  | Mandatory  | Default Value | Description           |
 | ------- | ------ | ---- | ---- | --------------- |
-| percent | number | Yes   | 100  | Scale factor of the entire page.|
+| percent | number | Yes   | 100  | Scale factor of the entire page.<br>Value range: 1 to 100|
 
 **Example**
 
@@ -1253,25 +1255,24 @@ Sets whether to enable smooth pinch mode for the web page.
 **Example**
 
   ```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
-        .pinchSmooth(true)
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .pinchSmooth(true)
+      }
     }
   }
-}
   ```
-
 
 ## Events
 
-The universal events are not supported.
+The [universal events](ts-universal-events-click.md) are not supported.
 
 ### onAlert
 
@@ -1456,7 +1457,7 @@ Called when **confirm()** is invoked by the web page.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the default dialog box is displayed.|
 
 **Example**
 
@@ -1533,6 +1534,8 @@ Called when **confirm()** is invoked by the web page.
 ### onPrompt<sup>9+</sup>
 
 onPrompt(callback: (event?: { url: string; message: string; value: string; result: JsResult }) => boolean)
+
+Triggered when **prompt()** is invoked by the web page.
 
 **Parameters**
 
@@ -2166,7 +2169,7 @@ Called when the **\<Web>** component is about to access a URL. This API is used 
 
 | Name | Type                                    | Description     |
 | ---- | ---------------------------------------- | --------- |
-| data | string / [WebResourceRequest](#webresourcerequest) | URL information.|
+| data | string \| [WebResourceRequest](#webresourcerequest) | URL information.|
 
 **Return value**
 
@@ -2388,7 +2391,7 @@ Called when an SSL error occurs during resource loading.
 
 ### onClientAuthenticationRequest<sup>9+</sup>
 
-onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string>, issuers : Array<string>}) => void)
+onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string\>, issuers : Array<string\>}) => void)
 
 Called when an SSL client certificate request is received.
 
@@ -2399,8 +2402,8 @@ Called when an SSL client certificate request is received.
 | handler  | [ClientAuthenticationHandler](#clientauthenticationhandler9) | User operation. |
 | host     | string                                   | Host name of the server that requests a certificate.   |
 | port     | number                                   | Port number of the server that requests a certificate.   |
-| keyTypes | Array<string>                            | Acceptable asymmetric private key types.   |
-| issuers  | Array<string>                            | Issuer of the certificate that matches the private key.|
+| keyTypes | Array<string\>                            | Acceptable asymmetric private key types.   |
+| issuers  | Array<string\>                            | Issuer of the certificate that matches the private key.|
 
   **Example**
   ```ts
@@ -3373,7 +3376,7 @@ Sets the data in the resource response.
 
 | Name| Type        | Mandatory| Default Value| Description                                                    |
 | ------ | ---------------- | ---- | ------ | ------------------------------------------------------------ |
-| data   | string \| number | Yes  | -      | Resource response data to set. When set to a number, the value indicates a file handle.|
+| data   | string \| number | Yes  | -      | Resource response data to set. When set to a string, the value indicates a string in HTML format. When set to a number, the value indicates a file handle.|
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -4041,11 +4044,13 @@ This API is deprecated since API version 9. You are advised to use [WebviewContr
 webController: WebController = new WebController()
 ```
 
-### getCookieManager<sup>9+</sup>
+### getCookieManager<sup>(deprecated)</sup>
 
 getCookieManager(): WebCookie
 
 Obtains the cookie management object of the **\<Web>** component.
+
+This API is deprecated since API version 9. You are advised to use [getCookie](../apis/js-apis-webview.md#getcookie) instead.
 
 **Return value**
 
@@ -4280,7 +4285,7 @@ This API is deprecated since API version 9. You are advised to use [forward<sup>
 
 deleteJavaScriptRegister(name: string)
 
-Deletes a specific application JavaScript object that is registered with the window through **registerJavaScriptProxy**. The deletion takes effect immediately, with no need for invoking the[refresh](#refreshdeprecated) API.
+Deletes a specific application JavaScript object that is registered with the window through **registerJavaScriptProxy**. The deletion takes effect immediately, with no need for invoking the [refresh](#refreshdeprecated) API.
 
 This API is deprecated since API version 9. You are advised to use [deleteJavaScriptRegister<sup>9+</sup>](../apis/js-apis-webview.md#deletejavascriptregister) instead.
 
@@ -4655,7 +4660,7 @@ This API is deprecated since API version 9. You are advised to use [runJavaScrip
         Text(this.webResult).fontSize(20)
         Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
-        .onPageEnd(e => {
+        .onPageEnd(() => {
           this.controller.runJavaScript({
             script: 'test()',
             callback: (result: string)=> {
@@ -4668,6 +4673,7 @@ This API is deprecated since API version 9. You are advised to use [runJavaScrip
     }
   }
   ```
+
   HTML file to be loaded:
   ```html
   <!-- index.html -->
@@ -4684,7 +4690,6 @@ This API is deprecated since API version 9. You are advised to use [runJavaScrip
     }
     </script>
   </html>
-
   ```
 
 ### stop<sup>(deprecated)</sup>
@@ -4750,6 +4755,7 @@ This API is deprecated since API version 9. You are advised to use [clearHistory
 Manages behavior of cookies in **\<Web>** components. All **\<Web>** components in an application share a **WebCookie**. You can use the **getCookieManager** API in **controller** to obtain the **WebCookie** for subsequent cookie management.
 
 ### setCookie<sup>(deprecated)</sup>
+
 setCookie(): boolean
 
 Sets the cookie. This API returns the result synchronously. Returns **true** if the operation is successful; returns **false** otherwise.
@@ -4763,6 +4769,7 @@ This API is deprecated since API version 9. You are advised to use [setCookie<su
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 ### saveCookie<sup>(deprecated)</sup>
+
 saveCookie(): boolean
 
 Saves the cookies in the memory to the drive. This API returns the result synchronously.

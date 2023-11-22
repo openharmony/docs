@@ -22,7 +22,7 @@ This topic gives an overview of the **module.json5** configuration file. To star
       {
         "name": "string",
         "value": "string",
-        "resource": "$profile:distributionFilter_config"
+        "resource": "$profile:distroFilter_config"
       }
     ],
     "abilities": [
@@ -523,17 +523,18 @@ The **shortcut** information is identified in **metadata**, where:
    ```
 
 
-## distributionFilter
+## distroFilter
 
-The **distributionFilter** tag defines the rules for distributing HAP files based on different device specifications, so that precise matching can be performed when the application market distributes applications. Distribution rules cover the following factors: API version, screen shape, screen size, screen resolution, and country/region code. During distribution, a unique HAP is determined based on the mapping between **deviceType** and these five factors. This tag must be configured in the **/resource/profile resource** directory. Its sub-tags are optional.
+The **distroFilter** tag defines the rules for distributing HAP files based on different device specifications, so that precise matching can be performed when the application market distributes applications. Distribution rules cover the following factors: API version, screen shape, screen size, screen resolution, and country/region code. During distribution, a unique HAP is determined based on the mapping between **deviceType** and these five factors. This tag must be configured in the **/resource/profile resource** directory. Its sub-tags are optional.
 
-  **Table 12** distributionFilter
+  **Table 12** distroFilter
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
+| apiVersion | Supported API versions. | Object array | Yes (initial value: left empty) |
 | screenShape | Supported screen shapes.| Object array| Yes (initial value: left empty)|
 | screenWindow | Supported window resolutions for when the application is running. This attribute applies only to the lite wearables.| Object array| Yes (initial value: left empty)|
-| screenDensity | Pixel density of the screen, in dots per inch (DPI). This attribute is optional. The value options are as follows:<br>- **sdpi**: small-scale DPI. This value is applicable to devices with a DPI range of (0, 120].<br>- **mdpi**: medium-scale DPI. This value is applicable to devices with a DPI range of (120, 160].<br>- **ldpi**: large-scale DPI. This value is applicable to devices with a DPI range of (160, 240].<br>- **xldpi**: extra-large-scale DPI. This value is applicable to devices with a DPI range of (240, 320].<br>- **xxldpi**: extra-extra-large-scale DPI. This value is applicable to devices with a DPI range of (320, 480].<br>- **xxxldpi**: extra-extra-extra-large-scale DPI. This value is applicable to devices with a DPI range of (480, 640].| Object array| Yes (initial value: left empty)|
+| screenDensity | Pixel density of the screen, in dots per inch (DPI). This attribute is optional. | Object array| Yes (initial value: left empty)|
 | countryCode | Code of the country or region to which the application is to be distributed. The value is subject to the ISO-3166-1 standard. Enumerated definitions of multiple countries and regions are supported.| Object array| Yes (initial value: left empty)|
 
 
@@ -556,7 +557,7 @@ The **distributionFilter** tag defines the rules for distributing HAP files base
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | policy | Rule for the sub-attribute value. Set this attribute to **exclude** or **include**.<br>- **exclude**: Exclude the matches of the sub-attribute value.<br>- **include**: Include the matches of the sub-attribute value.| String| No|
-| value | Pixel density of the screen, in DPI.| String array| No|
+| value | Pixel density of the screen, in DPI. The value options are as follows:<br/>- **sdpi**: small-scale DPI. This value is applicable to devices with a DPI range of (0, 120].<br/>- **mdpi**: medium-scale DPI. This value is applicable to devices with a DPI range of (120, 160].<br/>- **ldpi**: large-scale DPI. This value is applicable to devices with a DPI range of (160, 240].<br/>- **xldpi**: extra-large-scale DPI. This value is applicable to devices with a DPI range of (240, 320].<br/>- **xxldpi**: extra-extra-large-scale DPI. This value is applicable to devices with a DPI range of (320, 480].<br/>- **xxxldpi**: extra-extra-extra-large-scale DPI. This value is applicable to devices with a DPI range of (480, 640]. | String array| No|
 
   **Table 16** Internal structure of the countryCode tag
 
@@ -570,7 +571,11 @@ Configure the **distro_filter_config.json** file (this file name is customizable
 
 ```json
 {
-  "distributionFilter": {
+  "distroFilter": {
+    "apiVersion": {
+      "policy": "include",
+      "value": [4,5]
+    },
     "screenShape": {
       "policy": "include",
       "value": [
