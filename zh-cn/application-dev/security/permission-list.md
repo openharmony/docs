@@ -352,6 +352,18 @@
 
 **起始版本**：7
 
+## ohos.permission.SYSTEM_LIGHT_CONTROL
+
+允许应用控制灯，包括打开、关闭等操作。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+**起始版本**：11
+
 ## ohos.permission.CONNECT_IME_ABILITY
 
 允许绑定输入法Ability（InputMethodAbility）。
@@ -890,7 +902,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 **起始版本**：8
 
@@ -902,7 +914,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 **起始版本**：8
 
@@ -938,7 +950,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 **起始版本**：8
 
@@ -2730,7 +2742,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 **起始版本**：10
 
@@ -3406,6 +3418,18 @@
 
 **起始版本**: 11
 
+## ohos.permission.STORE_PERSISTENT_DATA
+
+允许应用存储持久化的数据，该数据直到设备恢复出厂设置或重装系统才会被清除。
+
+**授权级别**: normal
+
+**授权方式**: system_grant
+
+**ACL使能**: FALSE
+
+**起始版本**: 11
+
 ## ohos.permission.ACCESS_HIVIEWX
 
 允许系统应用拉起“用户体验改进计划”。
@@ -3427,6 +3451,32 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+**起始版本**: 11
+
+## ohos.permission.ACCESS_LOWPOWER_MANAGER
+
+允许系统应用或系统服务向lowpowermanager发送消息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**: 11
+
+## ohos.permission.MANAGE_APP_BOOT
+
+允许系统应用设置其他应用开机自启配置。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
 
 ## ohos.permission.ACCESS_HIVIEWCARE
 

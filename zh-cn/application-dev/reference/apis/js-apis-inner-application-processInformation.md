@@ -38,4 +38,4 @@ appManager.getRunningProcessInformation((error, data) => {
 | uid | number | 是 | 否 | 用户ID。 |
 | processName | string | 是 | 否 | 进程名称。 |
 | bundleNames | Array&lt;string&gt; | 是 | 否 | 进程中所有运行的Bundle名称。 |
-| state<sup>10+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate)| 是 | 否 | 当前进程运行状态。|
+| state<sup>10+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10)| 是 | 否 | 当前进程运行状态。|

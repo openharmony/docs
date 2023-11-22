@@ -93,7 +93,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number, callback: AsyncCallback\<void>)
 
-off(type: 'abilityLifecycle', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**
+off(type: 'abilityLifecycle', callbackId: **number**,  callback: AsyncCallback\<void>): void
 
 取消监听应用内生命周期
 
@@ -211,7 +211,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number, callback: AsyncCallback\<void>)
 
-off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**
+off(type: 'environment', callbackId: **number**,  callback: AsyncCallback\<void>): void
 
 取消对系统环境变化的监听。使用callback异步回调。
 
@@ -248,7 +248,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number)
 
-off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**
+off(type: 'environment', callbackId: **number**,  callback: AsyncCallback\<void>): void
 
 取消对系统环境变化的监听。使用callback异步回调。
 
@@ -260,6 +260,7 @@ off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void
 | ------------- | -------- | ---- | -------------------------- |
 | type | 'environment' | 是   | 取消监听事件的类型。 |
 | callbackId    | number   | 是   | 注册监听系统环境变化的ID。   |
+| callback      | AsyncCallback\<void> | 是  | 取消对系统环境变化监听的回调方法。 |
 
 **示例：**
 
@@ -278,7 +279,7 @@ export default class MyAbility extends Ability {
 
 ## ApplicationContext.on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback)<sup>10+</sup>
 
-on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): **void**
+on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): void
 
 注册对当前应用前后台变化的监听。使用callback异步回调。
 
@@ -320,7 +321,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'applicationStateChange')<sup>10+</sup>
 
-off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback):  **void**
+off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
 取消当前应用注册的前后台变化的全部监听。
 
@@ -346,11 +347,11 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
+## ApplicationContext.getRunningProcessInformation
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
-获取有关运行进程的信息。
+获取有关运行进程的信息。以Promise形式返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -387,19 +388,19 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
+## ApplicationContext.getRunningProcessInformation
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void
 
-获取有关运行进程的信息。
+获取有关运行进程的信息。以Callback形式返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**返回值：**
+**参数：**
 
-| 类型 | 说明 |
-| -------- | -------- |
-|AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+| 参数名        | 类型     | 必填 | 说明                       |
+| ------------- | -------- | ---- | -------------------------- |
+| callback    | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>   | 是   | 获取有关运行进程的信息的回调。 |
 
 **错误码**：
 
@@ -429,11 +430,11 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.killAllProcesses<sup>9+</sup>
+## ApplicationContext.killAllProcesses
 
 killAllProcesses(): Promise\<void\>
 
-杀死应用所在的进程。
+杀死应用所在的进程。以Promise形式返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -464,19 +465,19 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.killAllProcesses<sup>9+</sup>
+## ApplicationContext.killAllProcesses
 
-killAllProcesses(callback: AsyncCallback\<void\>)
+killAllProcesses(callback: AsyncCallback\<void\>): void
 
-杀死应用所在的进程。
+杀死应用所在的进程。以Callback形式返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**返回值：**
+**参数：**
 
-| 类型 | 说明 |
-| -------- | -------- |
-|AsyncCallback\<void\> | 以callback方式返回杀死应用所在的进程结果。 |
+| 参数名        | 类型     | 必填 | 说明                       |
+| ------------- | -------- | ---- | -------------------------- |
+| callback    | AsyncCallback\<void\>   | 是   | 以callback方式返回杀死应用所在的进程结果。 |
 
 **错误码**：
 

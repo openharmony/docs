@@ -85,8 +85,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 >
 >  If the **showSideBar** attribute is not set, the sidebar's visibility is subject to its size.
 >
->  - If the size is less than 520 vp, the sidebar is not displayed by default.
->  - If the size is greater than or equal to 520 vp, the sidebar is displayed by default.
+>  - If the size is less than the sum of **minSideBarWidth** and **minContentWidth**, the sidebar is not displayed by default.
+>  - If the size is greater than or equal to the sum of **minSideBarWidth** and **minContentWidth**, the sidebar is displayed by default.
 
 ## Events
 

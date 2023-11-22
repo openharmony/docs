@@ -1,10 +1,10 @@
 # Elements of the Application Model
 
 
-An application model is the abstraction of capabilities required by an OpenHarmony application. It provides components and mechanisms required for running the application. You can develop applications based on a unified set of models, which makes your development simpler and more efficient.
+An application model is the abstraction of capabilities required by an application. It provides components and mechanisms required for running the application. You can develop applications based on a unified set of models, which makes your development simpler and more efficient.
 
 
-The OpenHarmony application model consists of the following elements:
+The application model consists of the following elements:
 
 
 - Application component

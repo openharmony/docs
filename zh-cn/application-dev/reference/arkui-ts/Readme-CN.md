@@ -65,6 +65,7 @@
       - [RotationGesture](ts-basic-gestures-rotationgesture.md)
       - [SwipeGesture](ts-basic-gestures-swipegesture.md)
     - [组合手势](ts-combined-gestures.md)
+    - [自定义手势判定](ts-gesture-customize-judge.md)
 - 基础组件
   - [AlphabetIndexer](ts-container-alphabet-indexer.md)
   - [Blank](ts-basic-components-blank.md)
@@ -168,6 +169,7 @@
   - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D对象](ts-components-canvas-path2d.md)
 - 高级组件
+  - [@ohos.arkui.advanced.Chip (操作块)](ts-composite-components-chip.md)
   - [@ohos.arkui.advanced.ComposeListItem (列表)](ts-composite-components-composelistitem.md)
   - [@ohos.arkui.advanced.ComposeTitleBar (头像和单双行文本标题栏)](ts-composite-components-composetitlebar.md)
   - [@ohos.arkui.advanced.Counter (计数器组件)](ohos-arkui-advanced-counter.md)

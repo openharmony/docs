@@ -26,10 +26,11 @@ The table below lists the main APIs used for efficient resources. For details ab
 
 | API| Description|
 | -------- | -------- |
-| applyEfficiencyResources(request:EfficiencyResourcesRequest): void | Requests efficiency resources.|
-| resetAllEfficiencyResources():void | Releases all efficiency resources.|
+| applyEfficiencyResources(request: EfficiencyResourcesRequest): void | Requests efficiency resources.|
+| resetAllEfficiencyResources(): void | Releases all efficiency resources.|
 
 **Table 2** Parameters for requesting efficiency resources
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | resourceTypes | number | Yes| Type of the resource to request.|

@@ -355,7 +355,7 @@ try {
     }
     windowClass = data;
     console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
-    windowClass.resetSize(500, 1000);
+    windowClass.resize(500, 1000);
   });
 } catch (exception) {
   console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
@@ -8447,7 +8447,7 @@ export default class EntryAbility extends UIAbility {
           console.info('Failed to load the content. Cause: windowClass is null');
         }
         else {
-          (windowClass as window.Window).resetSize(500, 1000);
+          (windowClass as window.Window).resize(500, 1000);
         }
       });
 

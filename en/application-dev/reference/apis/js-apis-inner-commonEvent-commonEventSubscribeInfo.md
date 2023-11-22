@@ -17,4 +17,4 @@ The **CommonEventSubscribeInfo** module provides APIs for providing subscriber i
 | publisherDeviceId   | string         | Yes | No | Device ID. The value must be the ID of a device on the same network.            |
 | userId              | number         | Yes | No | User ID. If this parameter is not specified, the default value, which is the ID of the current user, will be used. The value must be an existing user ID in the system.|
 | priority            | number         | Yes | No | Subscriber priority. The value ranges from –100 to +1000. If the value exceeds the upper or lower limit, the upper or lower limit is used.                |
-| publisherBundleName | string         | Yes | No | Bundle name of the publisher to subscribe to.                |
+| publisherBundleName<sup>11+</sup> | string         | Yes | No | Bundle name of the publisher to subscribe to.                |

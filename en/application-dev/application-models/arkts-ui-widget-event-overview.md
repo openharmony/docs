@@ -39,11 +39,11 @@ Button ('Redirect')
   .height('20%')
   .onClick(() => {
     postCardAction(this, {
-      'action': 'router',
-      'bundleName': 'com.example.myapplication',
-      'abilityName': 'EntryAbility',
-      'params': {
-        'message': 'testForRouter' // Customize the message to send.
+      action: 'router',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      params: {
+        message: 'testForRouter' // Customize the message to send.
       }
     });
   })
@@ -53,12 +53,12 @@ Button ('Start in Background')
   .height('20%')
   .onClick(() => {
     postCardAction(this, {
-      'action': 'call',
-      'bundleName': 'com.example.myapplication',
-      'abilityName': 'EntryAbility',
-      'params': {
-        'method': 'fun', // Set the name of the method to call. It is mandatory.
-        'message': 'testForCall' // Customize the message to send.
+      action: 'call',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      params: {
+        method: 'fun', // Set the name of the method to call. It is mandatory.
+        message: 'testForCall' // Customize the message to send.
       }
     });
   })

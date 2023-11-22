@@ -29,6 +29,7 @@ getDefaultCellularDataSlotId(callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.getDefaultCellularDataSlotId((err: BusinessError, data: number) => {
@@ -57,6 +58,7 @@ getDefaultCellularDataSlotId(): Promise\<number\>
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.getDefaultCellularDataSlotId().then((data: number) => {
@@ -83,6 +85,7 @@ getDefaultCellularDataSlotIdSync(): number
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 
 console.log("Result: "+ data.getDefaultCellularDataSlotIdSync())
 ```
@@ -125,6 +128,7 @@ setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void\>): v
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.setDefaultCellularDataSlotId(0, (err: BusinessError) => {
@@ -179,6 +183,7 @@ setDefaultCellularDataSlotId(slotId: number): Promise\<void\>
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.setDefaultCellularDataSlotId(0).then(() => {
@@ -205,6 +210,7 @@ getCellularDataFlowType(callback: AsyncCallback\<DataFlowType\>): void
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.getCellularDataFlowType((err: BusinessError, data: data.DataFlowType) => {
@@ -233,6 +239,7 @@ getCellularDataFlowType(): Promise\<DataFlowType\>
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.getCellularDataFlowType().then((data: data.DataFlowType) => {
@@ -259,6 +266,7 @@ getCellularDataState(callback: AsyncCallback\<DataConnectState\>): void
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.getCellularDataState((err: BusinessError, data: data.DataConnectState) => {
@@ -287,6 +295,7 @@ getCellularDataState(): Promise\<DataConnectState\>
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.getCellularDataState().then((data: data.DataConnectState) => {
@@ -328,6 +337,7 @@ isCellularDataEnabled(callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.isCellularDataEnabled((err: BusinessError, data: boolean) => {
@@ -369,6 +379,7 @@ isCellularDataEnabled(): Promise\<boolean\>
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.isCellularDataEnabled().then((data: boolean) => {
@@ -411,6 +422,7 @@ isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback\<boolean\>)
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.isCellularDataRoamingEnabled(0, (err: BusinessError, data: boolean) => {
@@ -460,6 +472,7 @@ isCellularDataRoamingEnabled(slotId: number): Promise\<boolean\>
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.isCellularDataRoamingEnabled(0).then((data: boolean) => {
@@ -504,6 +517,7 @@ enableCellularData(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.enableCellularData((err: BusinessError) => {
@@ -548,6 +562,7 @@ enableCellularData(): Promise\<void\>
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.enableCellularData().then(() => {
@@ -592,6 +607,7 @@ disableCellularData(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.disableCellularData((err: BusinessError) => {
@@ -636,6 +652,7 @@ disableCellularData(): Promise\<void\>
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.disableCellularData().then(() => {
@@ -681,6 +698,7 @@ enableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.enableCellularDataRoaming(0, (err: BusinessError) => {
@@ -733,6 +751,7 @@ enableCellularDataRoaming(slotId: number): Promise\<void\>
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.enableCellularDataRoaming(0).then(() => {
@@ -778,6 +797,7 @@ disableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void\>): voi
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.disableCellularDataRoaming(0, (err: BusinessError) => {
@@ -830,6 +850,7 @@ disableCellularDataRoaming(slotId: number): Promise\<void\>
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.disableCellularDataRoaming(0).then(() => {
@@ -856,6 +877,8 @@ getDefaultCellularDataSimId(): number
 **示例：**
 
 ```ts
+import data from '@ohos.telephony.data';
+
 console.log("Result: "+ data.getDefaultCellularDataSimId());
 ```
 

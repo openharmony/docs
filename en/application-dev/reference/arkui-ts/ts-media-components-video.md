@@ -61,11 +61,11 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | onPause(event:() =&gt; void)                       | Triggered when the video playback is paused.                                          |
 | onFinish(event:() =&gt; void)                      | Triggered when the video playback is finished.                                      |
 | onError(event:() =&gt; void)                       | Triggered when the video playback fails.                                      |
-| onPrepared(callback:(event?: { duration: number }) =&gt; void) | Triggered when video preparation is complete. The video duration (in seconds) is obtained from **duration**.|
-| onSeeking(callback:(event?: { time: number }) =&gt; void) | Triggered to report the time (in seconds) when the progress bar is being dragged.                     |
-| onSeeked(callback:(event?: { time: number }) =&gt; void) | Triggered to report the playback time (in seconds) when the user finishes dragging the progress bar.               |
-| onUpdate(callback:(event?: { time: number }) =&gt; void) | Triggered when the playback progress changes. The unit of the playback time is second.                         |
-| onFullscreenChange(callback:(event?: { fullscreen: boolean }) =&gt; void) | Triggered when the playback mode is switched between full-screen mode and non-full-screen mode. The value **true** means that the playback is in full-screen mode, and **false** means that the playback is non-full-screen mode.|
+| onPrepared(callback:(event?: { duration: number }) =&gt; void) | Triggered when video preparation is complete.<br>**duration**: duration of the current video, in seconds.|
+| onSeeking(callback:(event?: { time: number }) =&gt; void) | Triggered to report the time when the progress bar is being dragged.<br>**time**: current video playback progress, in seconds.|
+| onSeeked(callback:(event?: { time: number }) =&gt; void) | Triggered to report the playback time when the user finishes dragging the progress bar.<br>**time**: current video playback progress, in seconds.|
+| onUpdate(callback:(event?: { time: number }) =&gt; void) | Triggered when the playback progress changes.<br>**time**: current video playback progress, in seconds.|
+| onFullscreenChange(callback:(event?: { fullscreen: boolean }) =&gt; void) | Triggered when the playback is switched between full-screen mode and non-full-screen mode.<br>**fullscreen**: The value **true** means that the playback is in full-screen mode, and **false** means the opposite.|
 
 
 ## VideoController

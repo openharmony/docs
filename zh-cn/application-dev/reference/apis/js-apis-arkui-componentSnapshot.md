@@ -62,7 +62,7 @@ struct SnapshotExample {
         .onClick(() => {
           componentSnapshot.get("root", (error: Error, pixmap: image.PixelMap) => {
                 if(error){
-                  console.log("error: " + JSON.stringfy(error))
+                  console.log("error: " + JSON.stringify(error))
                   return;
                 }
                 this.pixmap = pixmap
@@ -132,14 +132,12 @@ struct SnapshotExample {
         .onClick(() => {
           componentSnapshot.get("root")
             .then((pixmap: image.PixelMap) => {
-              if(error){
-                  console.log("error: " + JSON.stringfy(error))
-                  return;
-              }
               this.pixmap = pixmap
               // save pixmap to file
               // ....
-            })
+            }).catch(err:Error){
+              console.log("error: " + err)
+            }
         })
     }
     .width('80%')
@@ -217,7 +215,7 @@ struct OffscreenSnapshotExample {
           componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()},
             (error: Error, pixmap: image.PixelMap) => {
               if(error){
-                  console.log("error: " + JSON.stringfy(error))
+                  console.log("error: " + JSON.stringify(error))
                   return;
               }
               this.pixmap = pixmap

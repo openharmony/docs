@@ -46,17 +46,22 @@ In addition to the [universal attributes](ts-universal-attributes-size.md) and [
 | heightAdaptivePolicy<sup>10+</sup> | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | How the adaptive height is determined for the text.<br>Default value: **TextHeightAdaptivePolicy.MAX_LINES_FIRST**<br>**NOTE**<br/>When this attribute is set to **TextHeightAdaptivePolicy.MAX_LINES_FIRST**, the **maxLines** attribute takes precedence for adjusting the text height. If the **maxLines** setting results in a layout beyond the layout constraints, the text will shrink to a font size between `minFontSize` and `maxFontSize` to allow for more content to be shown.<br>When this attribute is set to **TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST**, the **minFontSize** attribute takes precedence for adjusting the text height. If the text can fit in one line with the **minFontSize** setting, the text will enlarge to the largest possible font size between **minFontSize** and **maxFontSize**.<br>When this attribute is set to **TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST**, the layout constraints take precedence for adjusting the text height. If the resultant layout is beyond the layout constraints, the text will shrink to a font size between **minFontSize** and **maxFontSize** to respect the layout constraints. If the layout still exceeds the layout constraints after the font size is reduced to **minFontSize**, the lines that exceed the layout constraints are deleted.|
 | textIndent<sup>10+</sup> | number \| string | Indentation of the first line.<br>Default value: **0**|
 | font<sup>10+</sup> | [Font](ts-types.md#font) | Text style, covering the font size, font width, Font family, and font style.|
+| wordBreak<sup>11+</sup> | [WorkBreak](ts-appendix-enums.md#wordbreak) | Line break rule.<br>Default value: **WordBreak.BREAK_WORD**<br>**NOTE**<br/><br>Since API version 11, this API is supported in ArkTS widgets.<br>When used with **{overflow: TextOverflow.Ellipsis}** and **maxLines**, **WordBreak.BREAK_ALL** can insert line breaks between letters when overflow occurs and display excess content with an ellipsis (...).|
+| selection<sup>11+</sup> |(selectionStart: number, selectionEnd: number)| Text selection. The selected text is highlighted, and a selection handle is displayed together with a menu of available actions.<br>Default value: (-1, -1)<br>**NOTE**<br/>Since API version 11, this API is supported in ArkTS widgets.<br>When **copyOption** is set to **CopyOptions.None**, the **selection** attribute is not effective.<br>When **overflow** is set to **TextOverflow.Marquee**, the **selection** attribute is not effective.<br>If the value of **selectionStart** is greater than or equal to that of **selectionEnd**, no text will be selected. The value range is [0, textSize], where **textSize** indicates the maximum number of characters in the text content. If the value is less than 0, the value **0** will be used. If the value is greater than **textSize**, **textSize** will be used.<br>If value of **selectionStart** or **selectionEnd** falls within the invisible area, no text will be selected. If clipping is disabled, the text selection outside of the parent component takes effect. |
 
 >  **NOTE**
 >
->  The **\<Text>** component cannot contain both the text and the child component **\<Span>** or **\<ImageSpan>**. If both of them exist, only the content in **\<Span>** or **\<ImageSpan>** is displayed.
+>  The **\<Text>** component cannot contain both text and the child component **\<Span>** or **\<ImageSpan>**. If both of them exist, only the content in **\<Span>** or **\<ImageSpan>** is displayed.
 >
 >  For the **\<Text>** component, the default value of the [clip](ts-universal-attributes-sharp-clipping.md) attribute is **true**.
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are supported.
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
+| Name                                                        | Description                                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| onCopy(callback:(value: string) =&gt; void)<sup>11+</sup> | Triggered when data is copied to the pasteboard, which is displayed when the text box is long pressed.<br>**value**: text to be copied.<br>**NOTE**<br/><br>Since API version 11, this API is supported in ArkTS widgets.<br>Currently, only text can be copied.|
 
 ## Example
 
@@ -314,3 +319,90 @@ struct TextExample {
 ```
 
 ![](figures/text_3.gif)
+
+### Example 4
+Example of using **WordBreak**:
+
+```ts
+@Entry
+@Component
+struct TextExample4 {
+  @State type: string = 'WordBreakType:Normal with clip set to true'
+  @State text: string = 'This is a long and Honorificabilitudinitatibus califragilisticexpialidocious 你好Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉'
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+      Text(this.type).fontSize(9).fontColor(0xCCCCCC)
+      Text(this.text)
+        .fontSize(12)
+        .border({ width: 1 })
+        .wordBreak(WordBreak.NORMAL)
+        .lineHeight(20)
+      Text('WordBreakType:Normal with clip set to false').fontSize(9).fontColor(0xCCCCCC)
+      Text(this.text)
+        .fontSize(12)
+        .border({ width: 1 })
+        .wordBreak(WordBreak.NORMAL)
+        .lineHeight(20)
+        .clip(false)
+      Text("WordBreakType:BreakAll").fontSize(9).fontColor(0xCCCCCC)
+      Text(this.text)
+        .fontSize(12)
+        .border({ width: 1 })
+        .maxLines(2)
+        .textOverflow({ overflow: TextOverflow.Ellipsis })
+        .wordBreak(WordBreak.BREAK_ALL)
+        .lineHeight(20)
+      Text("WordBreakType:BreakWord").fontSize(9).fontColor(0xCCCCCC)
+      Text(this.text)
+        .fontSize(12)
+        .border({ width: 1 })
+        .maxLines(2)
+        .textOverflow({ overflow: TextOverflow.Ellipsis })
+        .textIndent(100)
+        .wordBreak(WordBreak.BREAK_WORD)
+        .lineHeight(20)
+    }.height(600).width(335).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+![](figures/textExample4.jpeg)
+
+### Example 5
+Example of using **selection** and **onCopy**:
+
+```ts
+@Entry
+@Component
+struct TextExample4 {
+  @State onCopy: string = ''
+  @State text: string = 'This is a long and Honorificabilitudinitatibus califragilisticexpialidocious 你好Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉'
+  @State start: number = 0
+  @State end: number = 90
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
+      Text(this.text)
+        .fontSize(12)
+        .border({ width: 1 })
+        .lineHeight(20)
+        .margin(30)
+        .copyOption(CopyOptions.InApp)
+        .selection(this.start, this.end)
+        .onCopy((value: string) => {
+          this.onCopy = value
+        })
+      Button('Set text selection')
+        .margin({left:20})
+        .onClick(() => {
+          // Change the start point and end point of the text selection.
+          this.start = 60
+          this.end = 200
+        })
+      Text(this.onCopy).fontSize(12).margin(10).key('copy')
+    }.height(600).width(335).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+![](figures/textExample5.jpeg)
+<!--no_check-->

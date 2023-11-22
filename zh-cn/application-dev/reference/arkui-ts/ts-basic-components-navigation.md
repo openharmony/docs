@@ -90,6 +90,31 @@ pushPathByName(name: string, param: unknown): void
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 是    | NavDestination页面详细参数。 |
 
+### replacePath<sup>11+</sup>
+
+replacePath(info: NavPathInfo): void
+
+将当前页面栈栈顶退出，将info指定的NavDestination页面信息入栈。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息 |
+
+### replacePathByName <sup>11+</sup>
+
+replacePathByName(name: string, param: Object): void
+
+将当前页面栈栈顶退出，将name指定的页面入栈。
+
+**参数：**
+
+| 名称    | 类型      | 必填   | 描述                    |
+| ----- | ------- | ---- | --------------------- |
+| name  | string  | 是    | NavDestination页面名称。   |
+| param | Object | 是    | NavDestination页面详细参数。 |
+
 ### pop<sup>10+</sup>
 
 pop(): NavPathInfo | undefined
