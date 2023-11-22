@@ -506,7 +506,7 @@ class Book {
 ```ts
 @Component
 struct MyComponent {
-  @Prop customCounter: number = 0;
+  @Prop customCounter: number;
   @Prop customCounter2: number = 5;
 
   build() {
@@ -595,11 +595,14 @@ struct Parent {
 
   build() {
     Column() {
-      Button('change')
+      Button('change ClassB name')
         .onClick(() => {
           this.votes.name = "aaaaa"
-          this.votes.a.title = "wwwww"
         })
+      Button('change ClassA title')
+        .onClick(() => {
+          this.votes.a.title = "wwwww"
+        })  
       Child({ vote: this.votes })
     }
 
