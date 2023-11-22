@@ -11,7 +11,6 @@ The **inputMethod** module is oriented to common foreground applications (third-
 
 ```ts
 import inputMethod from '@ohos.inputMethod';
-import { BusinessError } from '@ohos.base';
 ```
 
 ## Constants<sup>8+</sup>
@@ -95,6 +94,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let defaultIme = inputMethod.getDefaultInputMethod();
 } catch(err: BusinessError) {
@@ -127,6 +128,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let inputMethodConfig = inputMethod.getSystemInputMethodConfigAbility();
 } catch(err: BusinessError) {
@@ -191,6 +194,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let currentIme = inputMethod.getCurrentInputMethod();
 try{
   inputMethod.switchInputMethod(currentIme, (err: BusinessError, result: boolean) => {
@@ -241,6 +246,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let currentIme = inputMethod.getCurrentInputMethod();
 try {
   inputMethod.switchInputMethod(currentIme).then((result: boolean) => {
@@ -310,6 +317,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let extra: Record<string, string> = {}
   inputMethod.switchCurrentInputMethodSubtype({
@@ -376,6 +385,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let extra: Record<string, string> = {}
   inputMethod.switchCurrentInputMethodSubtype({
@@ -456,6 +467,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let currentIme = inputMethod.getCurrentInputMethod();
 let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
@@ -514,6 +527,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let currentIme = inputMethod.getCurrentInputMethod();
 let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
@@ -596,6 +611,7 @@ Enumerates the text input types.
 | EMAIL_ADDRESS  | 5 |Email address.|
 | URL  | 6 |URL.|
 | VISIBLE_PASSWORD  | 7 |Password.|
+| NUMBER_PASSWORD<sup>11+</sup> | 8 |Numeric password.|
 
 ## EnterKeyType<sup>10+</sup>
 
@@ -770,6 +786,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let textConfig: inputMethod.TextConfig = {
     inputAttribute: {
@@ -826,6 +844,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let textConfig: inputMethod.TextConfig = {
     inputAttribute: {
@@ -874,6 +894,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputMethodController.showTextInput((err: BusinessError) => {
   if (err) {
     console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
@@ -914,6 +936,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputMethodController.showTextInput().then(() => {
   console.log('Succeeded in showing text input.');
 }).catch((err: BusinessError) => {
@@ -954,6 +978,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputMethodController.hideTextInput((err: BusinessError) => {
   if (err) {
     console.error(`Failed to hideTextInput: ${JSON.stringify(err)}`);
@@ -996,6 +1022,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputMethodController.hideTextInput().then(() => {
   console.log('Succeeded in hiding inputMethod.');
 }).catch((err: BusinessError) => {
@@ -1029,6 +1057,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputMethodController.detach((err: BusinessError) => {
   if (err) {
     console.error(`Failed to detach: ${JSON.stringify(err)}`);
@@ -1064,6 +1094,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputMethodController.detach().then(() => {
   console.log('Succeeded in detaching inputMethod.');
 }).catch((err: BusinessError) => {
@@ -1103,6 +1135,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let windowId: number = 2000;
   inputMethodController.setCallingWindow(windowId, (err: BusinessError) => {
@@ -1154,6 +1188,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let windowId: number = 2000;
   inputMethodController.setCallingWindow(windowId).then(() => {
@@ -1194,6 +1230,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let cursorInfo: inputMethod.CursorInfo = { left: 0, top: 0, width: 600, height: 800 };
   inputMethodController.updateCursor(cursorInfo, (err: BusinessError) => {
@@ -1241,6 +1279,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let cursorInfo: inputMethod.CursorInfo = { left: 0, top: 0, width: 600, height: 800 };
   inputMethodController.updateCursor(cursorInfo).then(() => {
@@ -1283,6 +1323,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodController.changeSelection('text', 0, 5, (err: BusinessError) => {
     if (err) {
@@ -1300,7 +1342,7 @@ try {
 
 changeSelection(text: string, start: number, end: number): Promise&lt;void&gt;
 
-Updates the information of selected text in this edit box, to notify the input method when the selected text content or text range changes. This API uses a promise to return the result.
+Updates the information about the selected text in this edit box, to notify the input method when the selected text content or text range changes. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1331,6 +1373,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodController.changeSelection('test', 0, 5).then(() => {
     console.log('Succeeded in changing selection.');
@@ -1370,6 +1414,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let inputAttribute: inputMethod.InputAttribute = { textInputType: 0, enterKeyType: 1 };
   inputMethodController.updateAttribute(inputAttribute, (err: BusinessError) => {
@@ -1417,6 +1463,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let inputAttribute: inputMethod.InputAttribute = { textInputType: 0, enterKeyType: 1 };
   inputMethodController.updateAttribute(inputAttribute).then(() => {
@@ -1459,6 +1507,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodController.stopInputSession((err: BusinessError, result: boolean) => {
     if (err) {
@@ -1506,6 +1556,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodController.stopInputSession().then((result: boolean) => {
     if (result) {
@@ -1553,6 +1605,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputMethodController.showSoftKeyboard((err: BusinessError) => {
   if (!err) {
     console.log('Succeeded in showing softKeyboard.');
@@ -1594,6 +1648,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputMethodController.showSoftKeyboard().then(() => {
   console.log('Succeeded in showing softKeyboard.');
 }).catch((err: BusinessError) => {
@@ -1633,6 +1689,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputMethodController.hideSoftKeyboard((err: BusinessError) => {
   if (!err) {
     console.log('Succeeded in hiding softKeyboard.');
@@ -1674,6 +1732,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputMethodController.hideSoftKeyboard().then(() => {
   console.log('Succeeded in hiding softKeyboard.');
 }).catch((err: BusinessError) => {
@@ -1704,6 +1764,8 @@ Ends this input session. This API uses an asynchronous callback to return the re
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputMethodController.stopInput((err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to stopInput: ${JSON.stringify(err)}`);
@@ -1740,6 +1802,8 @@ Ends this input session. This API uses a promise to return the result.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputMethodController.stopInput().then((result: boolean) => {
   if (result) {
     console.log('Succeeded in stopping input.');
@@ -1777,6 +1841,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 function callback1(text: string) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(text));
 }
@@ -1815,6 +1881,8 @@ Disables listening for the text insertion event of the input method.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let onInsertTextCallback = (text: string) => {
     console.log(`Succeeded in subscribing insertText: ${text}`);
 };
@@ -1848,6 +1916,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodController.on('deleteLeft', (length: number) => {
     console.log(`Succeeded in subscribing deleteLeft, length: ${length}`);
@@ -1908,6 +1978,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodController.on('deleteRight', (length: number) => {
     console.log(`Succeeded in subscribing deleteRight, length: ${length}`);
@@ -1968,6 +2040,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodController.on('sendKeyboardStatus', (keyboardStatus: inputMethod.KeyboardStatus) => {
     console.log(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
@@ -2028,6 +2102,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodController.on('sendFunctionKey', (functionKey: inputMethod.FunctionKey) => {
     console.log(`Succeeded in subscribing sendFunctionKey, functionKey.enterKeyType: ${functionKey.enterKeyType}`);
@@ -2088,6 +2164,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodController.on('moveCursor', (direction: inputMethod.Direction) => {
     console.log(`Succeeded in subscribing moveCursor, direction: ${direction}`);
@@ -2148,6 +2226,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodController.on('handleExtendAction', (action: inputMethod.ExtendAction) => {
     console.log(`Succeeded in subscribing handleExtendAction, action: ${action}`);
@@ -2175,6 +2255,8 @@ Disables listening for the extended action handling event of the input method. T
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let onHandleExtendActionCallback = (action: inputMethod.ExtendAction) => {
     console.log(`Succeeded in subscribing handleExtendAction, action: ${action}`);
@@ -2204,6 +2286,8 @@ Enables listening for the select-by-range event. This API uses an asynchronous c
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodController.on('selectByRange', (range: inputMethod.Range) => {
     console.log(`Succeeded in subscribing selectByRange: start: ${range.start} , end: ${range.end}`);
@@ -2231,6 +2315,8 @@ Disables listening for the select-by-range event. This API uses an asynchronous 
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let onSelectByRangeCallback = (range: inputMethod.Range) => {
     console.log(`Succeeded in subscribing selectByRange, range: ${JSON.stringify(range)}`);
@@ -2260,6 +2346,8 @@ Enables listening for the select-by-cursor-movement event. This API uses an asyn
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodController.on('selectByMovement', (movement: inputMethod.Movement) => {
     console.log('Succeeded in subscribing selectByMovement: direction: ' + movement.direction);
@@ -2287,6 +2375,8 @@ Disables listening for the select-by-cursor-movement event. This API uses an asy
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let onSelectByMovementCallback = (movement: inputMethod.Movement) => {
     console.log(`Succeeded in subscribing selectByMovement, movement.direction: ${movement.direction}`);
@@ -2324,6 +2414,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodController.on('getLeftTextOfCursor', (length: number) => {
     console.info(`Succeeded in subscribing getLeftTextOfCursor, length: ${length}`);
@@ -2353,6 +2445,8 @@ Disables listening for the event of obtaining the length of text deleted leftwar
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let getLeftTextOfCursorCallback = (length: number) => {
     console.info(`Succeeded in unsubscribing getLeftTextOfCursor, length: ${length}`);
@@ -2392,6 +2486,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodController.on('getRightTextOfCursor', (length: number) => {
     console.info(`Succeeded in subscribing getRightTextOfCursor, length: ${length}`);
@@ -2421,6 +2517,8 @@ Disables listening for the event of obtaining the length of text deleted rightwa
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let getRightTextOfCursorCallback = (length: number) => {
     console.info(`Succeeded in unsubscribing getRightTextOfCursor, length: ${length}`);
@@ -2460,6 +2558,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodController.on('getTextIndexAtCursor', () => {
     console.info(`Succeeded in subscribing getTextIndexAtCursor.`);
@@ -2489,6 +2589,8 @@ Disables listening for the event of obtaining the index of text at the cursor. T
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let getTextIndexAtCursorCallback = () => {
     console.info(`Succeeded in unsubscribing getTextIndexAtCursor.`);
@@ -2524,6 +2626,8 @@ Enables listening for the input method and subtype change event. This API uses a
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   import InputMethodSubtype from '@ohos.InputMethodSubtype';
   inputMethodSetting.on('imeChange', (inputMethodProperty: inputMethod.InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => {
@@ -2575,6 +2679,8 @@ Enables listening for the show event of the soft keyboard. This API uses an asyn
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodSetting.on('imeShow', (info: Array<inputMethod.InputWindowInfo>) => {
     console.info('Succeeded in subscribing imeShow event.');
@@ -2604,6 +2710,8 @@ Enables listening for the hide event of the soft keyboard. This API uses an asyn
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodSetting.on('imeHide', (info: Array<inputMethod.InputWindowInfo>) => {
     console.info('Succeeded in subscribing imeHide event.');
@@ -2633,6 +2741,8 @@ Disables listening for the show event of the soft keyboard.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodSetting.off('imeShow');
 } catch(err: BusinessError) {
@@ -2660,6 +2770,8 @@ Disables listening for the hide event of the soft keyboard.
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodSetting.off('imeHide');
 } catch(err: BusinessError) {
@@ -2700,10 +2812,12 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
-import panel from '@ohos.inputMethod.Panel';
-let info: panel.PanelInfo = {
-  type: panel.PanelType.SOFT_KEYBOARD,
-  flag: panel.PanelFlag.FLAG_FIXED
+import { PanelInfo, PanelType, PanelFlag } from '@ohos.inputMethod.Panel';
+import { BusinessError } from '@ohos.base';
+
+let info: PanelInfo = {
+  type: PanelType.SOFT_KEYBOARD,
+  flag: PanelFlag.FLAG_FIXED
 }
 try {
   let result = inputMethodSetting.isPanelShown(info);
@@ -2741,10 +2855,13 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```ts
 import InputMethodSubtype from '@ohos.InputMethodSubtype';
+import { BusinessError } from '@ohos.base';
 
 let inputMethodProperty: inputMethod.InputMethodProperty = {
-  name: 'InputMethodExAbility',
+  name: 'com.example.kikakeyboard',
   id: 'propertyId',
+  packageName: 'com.example.kikakeyboard',
+  methodId: 'propertyId',
 }
 let inputMethodSetting = inputMethod.getSetting();
 try {
@@ -2793,10 +2910,13 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```ts
 import InputMethodSubtype from '@ohos.InputMethodSubtype';
+import { BusinessError } from '@ohos.base';
 
 let inputMethodProperty: inputMethod.InputMethodProperty = {
-  name: 'InputMethodExAbility',
+  name: 'com.example.kikakeyboard',
   id: 'propertyId',
+  packageName: 'com.example.kikakeyboard',
+  methodId: 'propertyId',
 }
 let inputMethodSetting = inputMethod.getSetting();
 try {
@@ -2837,6 +2957,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```ts
 import InputMethodSubtype from '@ohos.InputMethodSubtype';
+import { BusinessError } from '@ohos.base';
 
 let inputMethodSetting = inputMethod.getSetting();
 try {
@@ -2879,6 +3000,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```ts
 import InputMethodSubtype from '@ohos.InputMethodSubtype';
+import { BusinessError } from '@ohos.base';
 
 let inputMethodSetting = inputMethod.getSetting();
 try {
@@ -2925,6 +3047,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 
 try {
   inputMethodSetting.getInputMethods(true, (err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
@@ -2977,6 +3100,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 
 try {
   inputMethodSetting.getInputMethods(true).then((data: Array<inputMethod.InputMethodProperty>) => {
@@ -3027,6 +3151,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 
 try {
   let imeProp = inputMethodSetting.getInputMethodsSync(true);
@@ -3061,6 +3186,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 
 try {
   inputMethodSetting.getAllInputMethods((err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
@@ -3101,6 +3227,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 
 inputMethodSetting.getAllInputMethods().then((data: Array<inputMethod.InputMethodProperty>) => {
   console.log('Succeeded in getting all inputMethods.');
@@ -3135,6 +3262,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 
 try {
   let imeProp = inputMethodSetting.getAllInputMethodsSync();
@@ -3168,6 +3296,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputMethodSetting.showOptionalInputMethods((err: BusinessError, data: boolean) => {
     if (err) {
@@ -3206,6 +3336,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputMethodSetting.showOptionalInputMethods().then((data: boolean) => {
   console.log('Succeeded in showing optionalInputMethods.');
 }).catch((err: BusinessError) => {
@@ -3234,6 +3366,8 @@ Obtains a list of installed input methods. This API uses an asynchronous callbac
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputMethodSetting.listInputMethod((err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
   if (err) {
     console.error(`Failed to listInputMethod: ${JSON.stringify(err)}`);
@@ -3264,6 +3398,8 @@ Obtains a list of installed input methods. This API uses a promise to return the
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputMethodSetting.listInputMethod().then((data: Array<inputMethod.InputMethodProperty>) => {
   console.log('Succeeded in listing inputMethod.');
 }).catch((err: BusinessError) => {
@@ -3292,6 +3428,8 @@ Displays a dialog box for selecting an input method. This API uses an asynchrono
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputMethodSetting.displayOptionalInputMethod((err: BusinessError) => {
   if (err) {
     console.error(`Failed to displayOptionalInputMethod: ${JSON.stringify(err)}`);
@@ -3322,6 +3460,8 @@ Displays a dialog box for selecting an input method. This API uses a promise to 
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputMethodSetting.displayOptionalInputMethod().then(() => {
   console.log('Succeeded in displaying optionalInputMethod.');
 }).catch((err: BusinessError) => {
