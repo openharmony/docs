@@ -47,7 +47,7 @@ For details about how to obtain the FA model context, see [Context](js-apis-inne
 
 stat(file: string | number): Promise&lt;Stat&gt;
 
-Obtains detailed file information. This API uses a promise to return the result.
+Obtains detailed file attribute information. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -61,7 +61,7 @@ Obtains detailed file information. This API uses a promise to return the result.
 
   | Type                          | Description        |
   | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | Promise used to return the file information obtained.|
+  | Promise&lt;[Stat](#stat)&gt; | Promise used to return detailed file information.|
 
 **Error codes**
 
@@ -123,7 +123,7 @@ Obtains detailed file information. This API returns the result synchronously.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| file   | string\|number | Yes  | Application sandbox path or FD of the file.|
+| file   | string\|number | Yes  | Application sandbox path or file descriptor (FD) of the file.|
 
 **Return value**
 
@@ -160,7 +160,7 @@ Checks whether a file exists. This API uses a promise to return the result.
 
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the file exists; the value **false** means the opposite.|
+  | Promise&lt;boolean&gt; | Promise used to The value **true** means the file exists; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -1605,7 +1605,7 @@ Obtains information about a symbolic link that is used to refer to a file or dir
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| path   | string | Yes  | Application sandbox path of the symbolic link.|
+| path   | string | Yes  | Application sandbox path of the file.|
 
 **Return value**
 
@@ -1641,7 +1641,7 @@ Obtains information about a symbolic link that is used to refer to a file or dir
 
 | Name  | Type                              | Mandatory| Description                                  |
 | -------- | ---------------------------------- | ---- | -------------------------------------- |
-| path     | string                             | Yes  | Application sandbox path of the symbolic link.|
+| path     | string                             | Yes  | Application sandbox path of the file.|
 | callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes  | Callback invoked to return the symbolic link information obtained.      |
 
 **Error codes**
@@ -1674,7 +1674,7 @@ Obtains information about a symbolic link that is used to refer to a file or dir
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| path   | string | Yes  | Application sandbox path of the symbolic link.|
+| path   | string | Yes  | Application sandbox path of the file.|
 
 **Return value**
 
@@ -1899,7 +1899,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 fdatasync(fd: number): Promise&lt;void&gt;
 
-Synchronizes the data of a file. This API uses a promise to return the result. **fdatasync()** is similar to **fsync()**, but does not flush modified metadata unless that metadata is needed.
+Synchronizes the data (excluding the metadata) of a file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1938,7 +1938,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 fdatasync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
-Synchronizes the data of a file. This API uses an asynchronous callback to return the result. **fdatasync()** is similar to **fsync()**, but does not flush modified metadata unless that metadata is needed.
+Synchronizes the data (excluding the metadata) of a file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1973,7 +1973,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 fdatasyncSync(fd: number): void
 
-Synchronizes the data of a file. This API returns the result synchronously. **fdatasync()** is similar to **fsync()**, but does not flush modified metadata unless that metadata is needed.
+Synchronizes the data (excluding the metadata) of a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2285,7 +2285,7 @@ Moves a folder. This API uses a promise to return the result.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-| src | string | Yes   | Application sandbox path of the folder to move.|
+  | src | string | Yes   | Application sandbox path of the folder to copy.|
   | dest | string | Yes   | Application sandbox path of the destination folder.|
   | mode | number | No   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br>Throw an exception if there is a non-empty folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br>Move the source folder to the destination directory and overwrite the conflicting folder completely. That is, if there is a folder with the same name in the destination directory, all the original files in that folder will not be retained.|
 
@@ -2331,7 +2331,7 @@ Moves a folder with the specified mode. This API uses an asynchronous callback t
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-| src | string | Yes   | Application sandbox path of the folder to move.|
+  | src | string | Yes   | Application sandbox path of the folder to copy.|
   | dest | string | Yes   | Application sandbox path of the destination folder.|
   | mode | number | Yes   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br>Throw an exception if there is a folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br>Move the source folder to the destination directory and overwrite the conflicting folder completely. That is, if there is a folder with the same name in the destination directory, all the original files in that folder will not be retained.|
   | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback invoked to return the result.             |
@@ -2375,7 +2375,7 @@ An exception will be thrown if there is a folder with the same name in the desti
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-| src | string | Yes   | Application sandbox path of the folder to move.|
+  | src | string | Yes   | Application sandbox path of the folder to copy.|
   | dest | string | Yes   | Application sandbox path of the destination folder.|
   | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback invoked to return the result.             |
 
@@ -2416,7 +2416,7 @@ Moves a folder. This API returns the result synchronously.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-| src | string | Yes   | Application sandbox path of the folder to move.|
+  | src | string | Yes   | Application sandbox path of the folder to copy.|
   | dest | string | Yes   | Application sandbox path of the destination folder.|
   | mode | number | No   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br>Throw an exception if there is a folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br>Move the source folder to the destination directory and overwrite the conflicting folder completely. That is, if there is a folder with the same name in the destination directory, all the original files in that folder will not be retained.|
 
@@ -2457,7 +2457,7 @@ Moves a file. This API uses a promise to return the result.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-| src | string | Yes   | Application sandbox path of the file to move. |
+  | src | string | Yes   | Application sandbox path of the source file.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
   | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br>The default value is **0**.|
 
@@ -2727,7 +2727,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 createRandomAccessFile(file: string | File, mode: number, callback: AsyncCallback&lt;RandomAccessFile&gt;): void
 
-Creates a **RandomAccessFile** instance based on a file path or file object. This API uses an asynchronous callback to return the result.
+Creates a **RandomAccessFile** instance based on a file path or object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3133,7 +3133,7 @@ Represents detailed file information. Before calling any API of the **Stat()** c
 
 | Name    | Type  | Readable  | Writable  | Description                                      |
 | ------ | ------ | ---- | ---- | ---------------------------------------- |                        
-| ino    | bigint | Yes   | No   | File identifier, which varies with files on the same device.| 
+| ino    | bigint | Yes   | No   | File identifier, which varies with files on the same device.|                 |
 | mode   | number | Yes   | No   | File permissions. The meaning of each bit is as follows:<br>**NOTE**<br>The following values are in octal format. The return values are in decimal format. You need to convert the values.<br>- **0o400**: The owner has the permission to read a regular file or a directory entry.<br>- **0o200**: The owner has the permission to write a regular file or create and delete a directory entry.<br>- **0o100**: The owner has the permission to execute a regular file or search for the specified path in a directory.<br>- **0o040**: The user group has the permission to read a regular file or a directory entry.<br>- **0o020**: The user group has the permission to write a regular file or create and delete a directory entry.<br>- **0o010**: The user group has the permission to execute a regular file or search for the specified path in a directory.<br>- **0o004**: Other users have the permission to read a regular file, and other user groups have the permission to read a directory entry.<br>- **0o002**: Other users have the permission to write a regular file, and other user groups have the permission to create or delete a directory entry.<br>- **0o001**: Other users have the permission to execute a regular file, and other user groups have the permission to search for the specified path in a directory.|
 | uid    | number | Yes   | No   | ID of the file owner.|
 | gid    | number | Yes   | No   | ID of the user group of the file.|
@@ -3729,7 +3729,7 @@ Reads data from this stream. This API returns the result synchronously.
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position. |
+  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>|
 
 **Return value**
 
@@ -4209,7 +4209,7 @@ Reads data from a file. This API returns the result synchronously.
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is read from the **filePointer**. |
+  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is read from the **filePointer**.<br>|
 
 **Return value**
 
