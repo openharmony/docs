@@ -77,6 +77,28 @@ Read [Image](../reference/apis/js-apis-image.md#imagesource) for APIs related to
       // Obtain the array buffer of the image.
       const buffer = fileData.buffer;
       ```
+   - Method 4: Obtain the raw file descriptor of the resource file through the resource manager. For details, see [ResourceManager API Reference](../reference/apis/js-apis-resource-manager.md#getrawfd9-1).
+        
+      ```ts
+      // Code on the stage model
+      const context : Context = getContext(this);
+      // Obtain a resource manager.
+      const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
+      ```
+
+      ```ts
+      // Code on the FA model
+      // Import the resourceManager module.
+      import resourceManager from '@ohos.resourceManager';
+      const resourceMgr = await resourceManager.getResourceManager();
+      ```
+
+      The method of obtaining the resource manager varies according to the application model. After obtaining the resource manager, call **resourceMgr.getRawFd()** to obtain the raw file descriptor of the resource file.
+
+      ```ts
+      const rawFileDescriptor : resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
+      ```
+
 
 3. Create an **ImageSource** instance.
    - Method 1: Create an **ImageSource** instance using the sandbox path. The sandbox path can be obtained by using method 1 in step 2.
@@ -91,10 +113,15 @@ Read [Image](../reference/apis/js-apis-image.md#imagesource) for APIs related to
       // fd is the obtained file descriptor.
       const imageSource : image.ImageSource = image.createImageSource(fd);
       ```
-   - Method 3: Create an **ImageSource** instance using a buffer array. The buffer array can be obtained by using method 3 in step 2.
+   - Method 3: Create an **ImageSource** instance using an array buffer. The array buffer can be obtained by using method 3 in step 2.
         
       ```ts
       const imageSource : image.ImageSource = image.createImageSource(buffer);
+      ```
+   - Method 4: Create an **ImageSource** instance using the raw file descriptor of the resource file. The raw file descriptor can be obtained by using method 4 in step 2.
+        
+      ```ts
+      const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
       ```
 
 4. Set **DecodingOptions** and decode the image to obtain a pixel map.
@@ -121,31 +148,33 @@ Read [Image](../reference/apis/js-apis-image.md#imagesource) for APIs related to
      
    ```ts
    const context : Context = getContext(this);
-   // Obtain a resourceManager instance.
+   // Obtain a resource manager.
    const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
    ```
 
-2. Obtain the array buffer of the **test.jpg** file in the **rawfile** folder.
-     
-   ```ts
-   const fileData : Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
-   // Obtain the array buffer of the image.
-   const buffer = fileData.buffer;
-   ```
+2. Create an **ImageSource** instance.
+   - Create an **ImageSource** instance by using the array buffer of **test.jpg** in the **rawfile** folder.
+     ```ts
+     const fileData : Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
+     // Obtain the array buffer of the image.
+     const buffer = fileData.buffer;
 
-3. Create an **ImageSource** instance.
-     
-   ```ts
-   const imageSource : image.ImageSource = image.createImageSource(buffer);
-   ```
+     const imageSource : image.ImageSource = image.createImageSource(buffer);
+     ```
 
-4. Create a **PixelMap** instance.
+   - Create an **ImageSource** instance by using the raw file descriptor of **test.jpg** in the **rawfile** folder.
+     ```ts
+     const rawFileDescriptor : resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
+
+     const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
+     ```
+3. Create a **PixelMap** instance.
      
    ```ts
    const pixelMap : image.PixelMap = await imageSource.createPixelMap();
    ```
 
-5. Release the **PixelMap** instance.
+4. Release the **PixelMap** instance.
    ```ts
    pixelMap.release();
    ```

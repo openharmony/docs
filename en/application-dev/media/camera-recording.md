@@ -1,6 +1,6 @@
-# Camera Recording
+# Camera Recording (ArkTS)
 
-Video recording is also an important function of the camera application. Video recording is the process of cyclic capturing of frames. To smooth videos, you can follow step 4 in [Camera Photographing](camera-shooting.md) to set the resolution, flash, focal length, photo quality, and rotation angle.
+As another important function of the camera application, video recording is the process of cyclic frame capture. To smooth video recording, you can follow step 4 in [Camera Photographing](camera-shooting.md) to set the resolution, flash, focal length, photo quality, and rotation angle.
 
 ## How to Develop
 
@@ -15,7 +15,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 2. Create a surface.
    
-   Call **createAVRecorder()** of the media module to create an **AVRecorder** instance, and call **getInputSurface()** of the instance to obtain the surface ID, which is associated with the view output stream to process the data output by the stream.
+   Call **createAVRecorder()** of the media module to create an **AVRecorder** instance, and call **getInputSurface()** of the instance to obtain the surface ID, which is associated with the video output stream to process the stream data.
 
    ```ts
    async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // For details about aVRecorderConfig, see the next section.
@@ -118,7 +118,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```
 
 5. Stop video recording.
-     
+   
    Call **stop()** of the **AVRecorder** instance to stop recording, and then call **stop()** of the **VideoOutput** instance to stop the video output stream.
      
    ```ts
@@ -142,9 +142,9 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 ## Status Listening
 
-During camera application development, you can listen for the status of the video output stream, including recording start, recording end, and recording stream output errors.
+During camera application development, you can listen for the status of the video output stream, including recording start, recording end, and video output errors.
 
-- Register the 'frameStart' event to listen for recording start events. This event can be registered when a **VideoOutput** object is created and is triggered when the bottom layer starts exposure for recording for the first time. Video recording is started as long as a result is returned.
+- Register the **'frameStart'** event to listen for recording start events. This event can be registered when a **VideoOutput** instance is created and is triggered when the bottom layer starts exposure for recording for the first time. Video recording starts as long as a result is returned.
     
   ```ts
   function onVideoOutputFrameStart(videoOutput: camera.VideoOutput): void {
@@ -154,7 +154,7 @@ During camera application development, you can listen for the status of the vide
   }
   ```
 
-- Register the 'frameEnd' event to listen for recording end events. This event can be registered when a **VideoOutput** object is created and is triggered when the last frame of recording ends. Video recording ends as long as a result is returned.
+- Register the **'frameEnd'** event to listen for recording end events. This event can be registered when a **VideoOutput** instance is created and is triggered when the last frame of recording ends. Video recording ends as long as a result is returned.
     
   ```ts
   function onVideoOutputFrameEnd(videoOutput: camera.VideoOutput): void {
@@ -164,7 +164,7 @@ During camera application development, you can listen for the status of the vide
   }
   ```
 
-- Register the 'error' event to listen for video output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
+- Register the **'error'** event to listen for video output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
     
   ```ts
   function onVideoOutputError(videoOutput: camera.VideoOutput): void {
