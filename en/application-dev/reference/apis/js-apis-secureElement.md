@@ -478,11 +478,8 @@ try {
         nfcOmaReaderList = nfcSEService.getReaders();
     }
     if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        if (nfcOmaReaderList[0].closeSessions()) {
-            console.log("closeSessions successfully");
-        } else {
-            console.log("closeSessions failed");
-        }
+        nfcOmaReaderList[0].closeSessions();
+        console.log("closeSessions successfully");
     } else {
         console.log("closeSessions failed");
     }
@@ -610,7 +607,7 @@ try {
         str = 'getATR result:[';
         for (let i = 0; i < omaATR.length; ++i) {
             str += omaATR[i];
-            tr += ' ';
+            str += ' ';
         }
         str += ']';
         console.log(str);

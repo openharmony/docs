@@ -14,12 +14,11 @@ When you return to the home screen, lock the screen, or switch to another applic
 To ensure the normal use of features such as music playback and calendar reminders in the background, the system provides constrained background tasks to extend the running time of applications in the background.
 
 ## Resource Usage Constraints
-
 The system provides resource quotas for running processes, including the memory usage and CPU usage in a continuous period of time, as well as disk write I/O volume in 24 hours. When the quota is reached, the system generates a warning-level log if the process is running in the foreground, and terminates the process if it is running in the background.
 
 ## Background Task Types
 
-For standard-system devices, OpenHarmony provides the following types of constrained background tasks: transient tasks, continuous tasks, deferred tasks, agent-powered reminders, and efficiency resources.
+For standard-system devices, the following types of constrained background tasks are provided: transient tasks, continuous tasks, deferred tasks, agent-powered reminders, and efficiency resources.
 
 You can select a proper background task type to ensure that your application can continue running after switching to the background.
 

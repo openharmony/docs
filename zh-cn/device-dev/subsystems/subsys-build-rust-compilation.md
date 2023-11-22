@@ -19,18 +19,18 @@ OpenHarmony为了集成C/C++代码和提升编译速度，使用了GN + Ninja的
 ## 配置规则
 OpenHarmony提供了用于Rust代码编译构建的各类型GN模板，可以用于编译Rust可执行文件，动态库和静态库等。各类型模板说明如下：
 
-| GN模板                   | 功能              | 输出                                            |
-| ------------------------ | ----------------- | ----------------------------------------------- |
-| ohos_rust_executable     | rust可执行文件    | rust可执行文件，不带后缀                        |
-| ohos_rust_shared_library | rust动态库        | rust dylib动态库，默认后缀.dylib.so             |
-| ohos_rust_static_library | rust静态库        | rust rlib静态库，默认后缀.rlib                  |
-| ohos_rust_proc_macro     | rust proc_macro   | rust proc_macro库， 默认后缀.so                 |
-| ohos_rust_shared_ffi     | rust FFI动态库    | rust cdylib动态库，给C/C++模块调用，默认后缀.so |
-| ohos_rust_static_ffi     | rust FFI静态库    | rust staticlib库，给C/C++模块调用，默认后缀.a   |
-| ohos_rust_cargo_crate    | 三方包Cargo crate | rust三方crate，支持rlib、dylib、bin             |
-| ohos_rust_systemtest     | rust系统测试用例  | rust可执行系统测试用例，不带后缀                |
-| ohos_rust_unittest       | rust单元测试用例  | rust可执行单元测试用例，不带后缀                |
-
+| GN模板                     | 功能              | 输出                                |
+|--------------------------|-----------------|-----------------------------------|
+| ohos_rust_executable     | rust可执行文件       | rust可执行文件，不带后缀                    |
+| ohos_rust_shared_library | rust动态库         | rust dylib动态库，默认后缀.dylib.so       |
+| ohos_rust_static_library | rust静态库         | rust rlib静态库，默认后缀.rlib            |
+| ohos_rust_proc_macro     | rust proc_macro | rust proc_macro库， 默认后缀.so         |
+| ohos_rust_shared_ffi     | rust FFI动态库     | rust cdylib动态库，给C/C++模块调用，默认后缀.so |
+| ohos_rust_static_ffi     | rust FFI静态库     | rust staticlib库，给C/C++模块调用，默认后缀.a |
+| ohos_rust_cargo_crate    | 三方包Cargo crate  | rust三方crate，支持rlib、dylib、bin      |
+| ohos_rust_systemtest     | rust系统测试用例      | rust可执行系统测试用例，不带后缀                |
+| ohos_rust_unittest       | rust单元测试用例      | rust可执行单元测试用例，不带后缀                |
+| ohos_rust_fuzztest       | rust Fuzz测试用例   | rust可执行Fuzz测试用例，不带后缀              |
 
 
 ## 配置指导
@@ -94,7 +94,7 @@ OpenHarmony提供了用于Rust代码编译构建的各类型GN模板，可以用
      features = [ "std" ]
    }
    ```
-   
+
 4. 执行编译得到的可执行文件，运行结果如下：
 
    ![test_rlib_crate](./figures/test_rlib_crate.png)
@@ -300,23 +300,24 @@ rust三方库的BUILD.gn文件可通过cargo2gn工具自动生成。参见：[Ca
 
    ![test_rlib_cargo_crate](./figures/test_rlib_cargo_crate.png)
 
-### 其他源码实例 
+### 其他源码实例
 在build/rust/tests目录下有Rust各类型模块的配置实例可供参考：
-| 用例目录                                     | 测试功能                                                     |
-| -------------------------------------------- | ------------------------------------------------------------ |
-| build/rust/tests/test_bin_crate              | 用ohos_rust_executable模板在host平台编译可执行文件，在target平台上运行可执行文件。 |
-| build/rust/tests/test_static_link            | 测试可执行文件对标准库的静态链接。                           |
-| build/rust/tests/test_dylib_crate            | 测试对动态库的编译和动态链接功能                             |
-| build/rust/tests/test_rlib_crate             | 测试对静态库的编译和静态链接功能                             |
-| build/rust/tests/test_proc_macro_crate       | 测试对Rust过程宏的编译和链接功能。提供对不同类型的宏的测试用例。 |
-| build/rust/tests/test_cdylib_crate           | 测试将Rust代码编译成C/C++动态库。                            |
-| build/rust/tests/test_staticlib_crate        | 测试将Rust代码编译成C/C++静态库。                            |
-| build/rust/tests/test_rust_ut                | 测试Rust代码单元测试模板功能（ability）。                    |
-| build/rust/tests/test_rust_st                | 测试Rust代码系统测试模板功能（ability）。                    |
-| build/rust/tests/test_bin_cargo_crate        | 测试Rust三方可执行文件的编译和运行。三方源码中包含build.rs。 |
-| build/rust/tests/test_rlib_cargo_crate       | 测试Rust三方静态库的编译和静态链接。三方源码中包含build.rs。 |
-| build/rust/tests/test_proc_macro_cargo_crate | 测试Rust三方过程宏的编译和链接。三方源码中包含build.rs。     |
 
+| 用例目录                                         | 测试功能                                                     |
+|----------------------------------------------|----------------------------------------------------------|
+| build/rust/tests/test_bin_crate              | 用ohos_rust_executable模板在host平台编译可执行文件，在target平台上运行可执行文件。 |
+| build/rust/tests/test_static_link            | 测试可执行文件对标准库的静态链接。                                        |
+| build/rust/tests/test_dylib_crate            | 测试对动态库的编译和动态链接功能                                         |
+| build/rust/tests/test_rlib_crate             | 测试对静态库的编译和静态链接功能                                         |
+| build/rust/tests/test_proc_macro_crate       | 测试对Rust过程宏的编译和链接功能。提供对不同类型的宏的测试用例。                       |
+| build/rust/tests/test_cdylib_crate           | 测试将Rust代码编译成C/C++动态库。                                    |
+| build/rust/tests/test_staticlib_crate        | 测试将Rust代码编译成C/C++静态库。                                    |
+| build/rust/tests/rust_test_ut                | 测试Rust代码单元测试模板功能（ability）。                               |
+| build/rust/tests/rust_test_st                | 测试Rust代码系统测试模板功能（ability）。                               |
+| build/rust/tests/test_bin_cargo_crate        | 测试Rust三方可执行文件的编译和运行。三方源码中包含build.rs。                     |
+| build/rust/tests/test_rlib_cargo_crate       | 测试Rust三方静态库的编译和静态链接。三方源码中包含build.rs。                     |
+| build/rust/tests/test_proc_macro_cargo_crate | 测试Rust三方过程宏的编译和链接。三方源码中包含build.rs。                       |
+| build/rust/tests/rust_test_fuzzb             | 测试Rust代码Fuzz测试模板功能。                                      |
 ## 参考
 
 ### 特性点实例

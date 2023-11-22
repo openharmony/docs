@@ -504,7 +504,8 @@ Defines the RDB store configuration.
 | securityLevel | [SecurityLevel](#securitylevel) | Yes  | Security level of the RDB store.                                       |
 | encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br>The value **true** means to encrypt the RDB store; the value **false** (default) means the opposite.|
 | dataGroupId<sup>10+</sup> | string | No| Application group ID, which needs to be obtained from AppGallery.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. The **RdbStore** instance is created in the sandbox directory corresponding to the specified **dataGroupId**. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.|
-| customDir<sup>11+</sup> | string | No| Customized path of the RDB store.<br>**Constraints**: The value cannot exceeds 128 bytes.<br>This parameter is supported since API version 10. The RDB store directory is in the **context.databaseDir**/**rdb**/**customDir** format. **context.databaseDir** specifies the application sandbox path. **rdb** is a fixed field that indicates an RDB store. **customDir** specifies the customized path. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.|
+| customDir<sup>11+</sup> | string | No| Customized path of the RDB store.<br>**Constraints**: The value cannot exceed 128 bytes.<br>This parameter is supported since API version 11. The RDB store directory is in the **context.databaseDir**/**rdb**/**customDir** format. **context.databaseDir** specifies the application sandbox path. **rdb** is a fixed field that indicates an RDB store. **customDir** specifies the customized path. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.|
+| isSearchable<sup>11+</sup> | boolean | No| Whether the RDB store is searchable. The value **true** means the RDB store is searchable; the value **false** means the opposite. The default value is **false**.<br>**System API**: This is a system API.<br>This parameter is supported since API version 11.|
 
 ## SecurityLevel
 
@@ -1403,7 +1404,7 @@ predicates.lessThanOrEqualTo("AGE", 20);
 
 orderByAsc(field: string): RdbPredicates
 
-Sets an **RdbPredicates** to match the column with values sorted in ascending order.
+Sets an **RdbPredicates** to sort the values in ascending order.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1430,7 +1431,7 @@ predicates.orderByAsc("NAME");
 
 orderByDesc(field: string): RdbPredicates
 
-Sets an **RdbPredicates** to match the column with values sorted in descending order.
+Sets an **RdbPredicates** to sort the values in descending order.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3445,6 +3446,7 @@ if(store != undefined) {
 beginTransaction():void
 
 Starts the transaction before executing an SQL statement.
+This API cannot be used in multi-process or multi-thread scenarios.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3499,6 +3501,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
 commit():void
 
 Commits the executed SQL statements.
+This API cannot be used in multi-process or multi-thread scenarios.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3543,6 +3546,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
 rollBack():void
 
 Rolls back the SQL statements that have been executed.
+This API cannot be used in multi-process or multi-thread scenarios.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 

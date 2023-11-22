@@ -3,8 +3,7 @@
 - [Using Native APIs in Application Projects](napi-guidelines.md)
 - Graphics
   - [XComponent Development](xcomponent-guidelines.md)
-  - [Drawing Development](drawing-guidelines.md)
-  - [Drawing and Display Sample](drawing-sample.md)
+  - [Using Drawing to Draw and Display Graphics](drawing-guidelines.md)
   - [NativeBuffer Development](native-buffer-guidelines.md)
   - [NativeImage Development](native-image-guidelines.md)
   - [NativeVsync Development](native-vsync-guidelines.md)

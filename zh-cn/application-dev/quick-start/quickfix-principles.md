@@ -51,15 +51,15 @@
             具体字段说明：
             | 字段 |类型  |说明  |备注 |
             | --- | --- | --- | --- |
-            |bundleName | string | 对应应用的包名    | 不可缺省 |
-            |versionCode | int |对应应用版本号          | 不可缺省  |
-            |versionName |string |对应应用的版本名称 | patch类型不可缺省 |
-            |patchVersionCode |int |补丁包的版本号   | 不可缺省 |
-            |patchVersionName |string |补丁包的版本名称 | patch类型不可缺省 |
-            |name |string |对应应用的moduleName，用来修复该module的 | 不可缺省 |
-            |type | string|对应补丁包的类型，当前可选择为patch | 不可缺省 |
-            |deviceTypes |array<string> |补丁包支持的设备类型 | 不可缺省 |
-            |originalModuleHash| string |原始module Name对应包的哈希值 | 不可缺省 |
+            |bundleName | string | 对应应用的包名。    | 不可缺省 |
+            |versionCode | int |对应应用版本号。        | 不可缺省  |
+            |versionName |string |对应应用的版本名称。 | patch类型不可缺省 |
+            |patchVersionCode |int |补丁包的版本号。   | 不可缺省 |
+            |patchVersionName |string |补丁包的版本名称。 | patch类型不可缺省 |
+            |name |string |对应应用的moduleName，用来修复该module的。 | 不可缺省 |
+            |type | string|对应补丁包的类型，当前可选择为patch。 | 不可缺省 |
+            |deviceTypes |array<string> |补丁包支持的设备类型。 | 不可缺省 |
+            |originalModuleHash| string |原始module Name对应包的哈希值，可采用SHA256生成器自行生成。 | 不可缺省 |
 
 ## 快速修复TS编译后的文件
 

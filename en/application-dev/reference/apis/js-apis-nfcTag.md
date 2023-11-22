@@ -52,6 +52,7 @@ Before developing applications related to tag read and write, you must declare N
 > - The **actions** field is mandatory. It must be **ohos.nfc.tag.action.TAG_FOUND** and cannot be changed.
 > - The **type** field under **uris** must start with **tag-tech/**, followed by NfcA, NfcB, NfcF, NfcV, IsoDep, Ndef, MifareClassic, MifareUL, or NdefFormatable. If there are multiple types, enter them in different lines. Incorrect settings of this field will cause a parsing failure.
 > - The **name** field under **requestPermissions** is mandatory. It must be **ohos.permission.NFC_TAG** and cannot be changed.
+
 ## **Modules to Import**
 
 ```js
@@ -60,7 +61,7 @@ import tag from '@ohos.nfc.tag';
 
 ## **tag.TagInfo**
 
-Before a card with tags is read or written, **TagInfo** must be obtained to determine the tag technologies supported by the card. In this way, the application can invoke the correct API to communicate with the card.
+Before a card with tags is read or written, **[TagInfo](#taginfo)** must be obtained to determine the tag technologies supported by the card. In this way, the application can invoke the correct API to communicate with the card.
 ```js
 import tag from '@ohos.nfc.tag';
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -71,19 +72,19 @@ export default class EntryAbility extends UIAbility {
     onCreate(want : Want, launchParam: AbilityConstant.LaunchParam) {
     // Add other code here.
 
-    // want is initialized by the NFC service and contains tagInfo.
+    // Want is initialized by the NFC service and contains tagInfo.
     let tagInfo : tag.TagInfo | null = null;
     try {
       tagInfo = tag.getTagInfo(want);
     } catch (error) {
-      console.log("tag.getTagInfo caught error: " + error);
+      console.error("tag.getTagInfo catched error: " + error);
     }
     if (tagInfo == null || tagInfo == undefined) {
       console.log("no TagInfo to be created, ignore it.");
       return;
     }
 
-    // Get the supported technologies for this found tag.
+    // Obtain the supported technologies for this found tag.
     let isNfcATag =  false;
     let isIsoDepTag =  false;
     for (let i = 0; i < tagInfo.technology.length; i++) {
@@ -97,13 +98,13 @@ export default class EntryAbility extends UIAbility {
       // Also check for technology tag.NFC_B, NFC_F, NFC_V, ISO_DEP, NDEF, MIFARE_CLASSIC, MIFARE_ULTRALIGHT, and NDEF_FORMATABLE.
     }
 
-    // Use NfcA APIs to access the found tag.
+    // use NfcA APIs to access the found tag.
     if (isNfcATag) {
       let nfcA : tag.NfcATag | null = null;
       try {
         nfcA = tag.getNfcATag(tagInfo);
       } catch (error) {
-        console.log("tag.getNfcATag caught error: " + error);
+        console.error("tag.getNfcATag catched error: " + error);
       }
       // Other code to read or write this tag.
     }
@@ -114,7 +115,7 @@ export default class EntryAbility extends UIAbility {
       try {
         isoDep = tag.getIsoDep(tagInfo);
       } catch (error) {
-        console.log("tag.getIsoDep caught error: " + error);
+        console.error("tag.getIsoDep catched error: " + error);
       }
       // Other code to read or write this tag.
     }
@@ -557,7 +558,7 @@ export default class MainAbility extends UIAbility {
         try {
             tag.registerForegroundDispatch(elementName, discTech, foregroundCb);
         } catch (e) {
-            console.log("registerForegroundDispatch error: " + (e as BusinessError).message);
+            console.error("registerForegroundDispatch error: " + (e as BusinessError).message);
         }
     }
 
@@ -566,7 +567,7 @@ export default class MainAbility extends UIAbility {
         try {
             tag.unregisterForegroundDispatch(elementName);
         } catch (e) {
-            console.log("registerForegroundDispatch error: " + (e as BusinessError).message);
+            console.error("registerForegroundDispatch error: " + (e as BusinessError).message);
         }
     }
 
@@ -575,7 +576,7 @@ export default class MainAbility extends UIAbility {
         try {
             tag.unregisterForegroundDispatch(elementName);
         } catch (e) {
-            console.log("registerForegroundDispatch error: " + (e as BusinessError).message);
+            console.error("registerForegroundDispatch error: " + (e as BusinessError).message);
         }
     }
 
@@ -618,7 +619,7 @@ try {
         console.log("ndefMessage makeUriRecord ndefRecord: " + ndefRecord);
     }
 } catch (busiError) {
-    console.log("ndefMessage makeUriRecord caught busiError: " + busiError);
+    console.error("ndefMessage makeUriRecord catched busiError: " + busiError);
 }
 ```
 
@@ -659,7 +660,7 @@ try {
         console.log("ndefMessage makeTextRecord ndefRecord: " + ndefRecord);
     }
 } catch (busiError) {
-    console.log("ndefMessage makeTextRecord caught busiError: " + busiError);
+    console.error("ndefMessage makeTextRecord catched busiError: " + busiError);
 }
 ```
 
@@ -701,7 +702,7 @@ try {
         console.log("ndefMessage makeMimeRecord ndefRecord: " + ndefRecord);
     }
 } catch (busiError) {
-    console.log("ndefMessage makeMimeRecord caught busiError: " + busiError);
+    console.error("ndefMessage makeMimeRecord catched busiError: " + busiError);
 }
 ```
 ## tag.ndef.makeExternalRecord<sup>9+</sup>
@@ -743,7 +744,7 @@ try {
         console.log("ndefMessage makeExternalRecord ndefRecord: " + ndefRecord);
     }
 } catch (busiError) {
-    console.log("ndefMessage makeExternalRecord caught busiError: " + busiError);
+    console.error("ndefMessage makeExternalRecord catched busiError: " + busiError);
 }
 ```
 
@@ -779,7 +780,7 @@ try {
     let rawData2 = tag.ndef.messageToBytes(ndefMessage);
     console.log("ndefMessage messageToBytes rawData2: " + rawData2);
 } catch (busiError) {
-    console.log("ndef createNdefMessage busiError: " + busiError);
+    console.error("ndef createNdefMessage busiError: " + busiError);
 }
 ```
 ## tag.ndef.createNdefMessage<sup>9+</sup>
@@ -811,7 +812,7 @@ try {
     let ndefMessage = tag.ndef.createNdefMessage(rawData);
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
 } catch (busiError) {
-    console.log("ndef createNdefMessage busiError: " + busiError);
+    console.error("ndef createNdefMessage busiError: " + busiError);
 }
 ```
 
@@ -847,7 +848,7 @@ try {
     let ndefMessage = tag.ndef.createNdefMessage(ndefRecords);
     console.log("ndef createNdefMessage ndefMessage: " + ndefMessage);
 } catch (busiError) {
-    console.log("ndef createNdefMessage busiError: " + busiError);
+    console.error("ndef createNdefMessage busiError: " + busiError);
 }
 ```
 

@@ -14,7 +14,7 @@ import notificationSubscribe from '@ohos.notificationSubscribe';
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-### onConsume
+## onConsume
 
 onConsume?: (data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void
 
@@ -28,7 +28,7 @@ onConsume?: (data: [SubscribeCallbackData](js-apis-notification.md#subscribecall
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata) | 是 | 新接收到的通知信息。 |
+| onConsume | (data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void | 是 | 新接收到的通知信息。 |
 
 **示例：**
 
@@ -56,7 +56,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onCancel
+## onCancel
 
 onCancel?:(data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void
 
@@ -70,7 +70,7 @@ onCancel?:(data: [SubscribeCallbackData](js-apis-notification.md#subscribecallba
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata) | 是 | 需要取消的通知信息。 |
+| onCancel | (data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void | 是 | 需要取消的通知信息。 |
 
 **示例：**
 
@@ -98,7 +98,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onUpdate
+## onUpdate
 
 onUpdate?:(data: [NotificationSortingMap](js-apis-notification.md#notificationsortingmap)) => void
 
@@ -112,7 +112,7 @@ onUpdate?:(data: [NotificationSortingMap](js-apis-notification.md#notificationso
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | [NotificationSortingMap](js-apis-notification.md#notificationsortingmap) | 是 | 最新的通知排序列表。 |
+| onUpdate | (data: [NotificationSortingMap](js-apis-notification.md#notificationsortingmap)) => void | 是 | 最新的通知排序列表。 |
 
 **示例：**
 
@@ -136,7 +136,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onConnect
+## onConnect
 
 onConnect?:() => void
 
@@ -145,6 +145,12 @@ onConnect?:() => void
 **系统能力**：SystemCapability.Notification.Notification
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------------ | ------------------------ | ---- | -------------------------- |
+| onConnect | () => void | 是 | 订阅完成的回调。 |
 
 **示例：**
 
@@ -170,7 +176,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onDisconnect
+## onDisconnect
 
 onDisconnect?:() => void
 
@@ -179,6 +185,12 @@ onDisconnect?:() => void
 **系统能力**：SystemCapability.Notification.Notification
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------------ | ------------------------ | ---- | -------------------------- |
+| onDisconnect | () => void | 是 | 取消订阅的回调。 |
 
 **示例：**
 
@@ -218,7 +230,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 notificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 ```
 
-### onDestroy
+## onDestroy
 
 onDestroy?:() => void
 
@@ -228,6 +240,11 @@ onDestroy?:() => void
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------------ | ------------------------ | ---- | -------------------------- |
+| onDestroy | () => void | 是 | 服务失联的回调。 |
 **示例：**
 
 ```ts
@@ -252,7 +269,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onDoNotDisturbDateChange<sup>8+</sup>(deprecated)
+## onDoNotDisturbDateChange<sup>8+</sup>(deprecated)
 
 onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
 
@@ -270,7 +287,7 @@ onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notific
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| mode | notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate) | 是 | 回调返回免打扰时间选项变更。 |
+| onDoNotDisturbDateChange | (mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void | 是 | 回调返回免打扰时间选项变更。 |
 
 **示例：**
 
@@ -297,7 +314,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onDoNotDisturbChanged<sup>11+</sup>
+## onDoNotDisturbChanged<sup>11+</sup>
 
 onDoNotDisturbChanged?:(mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
 
@@ -311,7 +328,7 @@ onDoNotDisturbChanged?:(mode: notification.[DoNotDisturbDate](js-apis-notificati
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| mode | notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate) | 是 | 回调返回免打扰时间选项变更。 |
+| onDoNotDisturbChanged | (mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void | 是 | 回调返回免打扰时间选项变更。 |
 
 **示例：**
 
@@ -338,7 +355,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onEnabledNotificationChanged<sup>8+</sup>
+## onEnabledNotificationChanged<sup>8+</sup>
 
 onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata8)) => void
 
@@ -352,7 +369,7 @@ onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](j
 
 | 参数名 | 类型                                                                                                           | 必填 | 说明 |
 | ------------ |--------------------------------------------------------------------------------------------------------------| ---- | -------------------------- |
-| callback | AsyncCallback\<[EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata8)\> | 是 | 回调返回监听到的应用信息。 |
+| onEnabledNotificationChanged | (callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata8)) => void | 是 | 回调返回监听到的应用信息。 |
 
 **示例：**
 
@@ -380,7 +397,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onBadgeChanged<sup>10+</sup>
+## onBadgeChanged<sup>10+</sup>
 
  onBadgeChanged?:(data: [BadgeNumberCallbackData](#badgenumbercallbackdata10)) => void
 
@@ -394,7 +411,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 | 参数名   | 类型                                                         | 必填 | 说明                       |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<[BadgeNumberCallbackData](#badgenumbercallbackdata10)\> | 是   | 回调返回监听到的应用信息。 |
+| onBadgeChanged | (data: [BadgeNumberCallbackData](#badgenumbercallbackdata10)) => void | 是   | 回调返回监听到的应用信息。 |
 
 **示例：**
 
@@ -430,7 +447,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 | --------------- |--------------------------------------------------------------------| ---- | --- | -------- |
 | request         | [NotificationRequest](js-apis-notification.md#notificationrequest) | 是  | 否  | 通知内容。 |
 | sortingMap      | [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap.md) | 是  | 否  | 通知排序信息。 |
-| reason          | number                                                             | 是  | 否  | 删除原因。 |
+| reason          | number                                                             | 是  | 否  | 删除原因（1:点击通知后删除通知，2:用户删除通知） 。|
 | sound           | string                                                             | 是  | 否  | 通知声音。 |
 | vibrationValues | Array\<number\>                                                    | 是  | 否  | 通知震动。 |
 

@@ -1066,6 +1066,7 @@ getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -4605,6 +4606,97 @@ promise.then((data: number) => {
 });
 ```
 
+## sim.getDsdsMode<sup>11+</sup>
+
+getDsdsMode\(callback: AsyncCallback\<DsdsMode\>\): void
+
+获取设备支持的DSDS（Dual Sim Dual Standby） Mode。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明       |
+| -------- | --------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;DsdsMode&gt; | 是   | 回调函数。返回设备支持的DSDS Mode。<br/>- 0：DSDS_MODE_V2<br/>- 1：DSDS_MODE_V3<br/>- 2：DSDS_MODE_V5_TDM<br/>- 3：DSDS_MODE_V5_DSDA |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getDsdsMode((err: BusinessError, data: sim.DsdsMode) => {
+    if (err) {
+        console.error(`getDsdsMode failed, callback: err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`getDsdsMode success, callback: data->${JSON.stringify(data)}`);
+    }
+});
+```
+
+## sim.getDsdsMode<sup>11+</sup>
+
+getDsdsMode\(\): Promise\<DsdsMode\>
+
+获取设备支持的DSDS（Dual Sim Dual Standby） Mode。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**返回值：**
+
+| 类型              | 说明                                    |
+| ----------------- | --------------------------------------- |
+| Promise\<DsdsMode\> | 以Promise形式返回设备支持的DSDS Mode。<br/>- 0：DSDS_MODE_V2<br/>- 1：DSDS_MODE_V3<br/>- 2：DSDS_MODE_V5_TDM<br/>- 3：DSDS_MODE_V5_DSDA |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let promise = sim.getDsdsMode();
+promise.then((data: sim.DsdsMode) => {
+    console.log(`getDsdsMode success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`getDsdsMode failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 ## SimState
 
 SIM卡状态。
@@ -4768,7 +4860,7 @@ Icc帐户信息。
 | alphaTag     | string |  是  | 标签。     |
 | number       | string |  是  | 号码。     |
 | recordNumber | number |  否  | 记录编号。 |
-| pin2         | string |  是  | pin2密码。 |
+| pin2         | string |  否  | pin2密码。 |
 
 ## ContactType<sup>8+</sup>
 
@@ -4813,3 +4905,18 @@ Icc帐户信息。
 | KEY_PNN_CUST_STRING_ARRAY                               | "pnn_cust_string_array"                                | PLMN名称。           |
 | KEY_OPL_CUST_STRING_ARRAY                               | "opl_cust_string_array"                                | 运营商PLMN信息。     |
 | KEY_EMERGENCY_CALL_STRING_ARRAY                         | "emergency_call_string_array"                          | 紧急呼叫列表。       |
+
+## DsdsMode<sup>11+</sup>
+
+设备支持的DSDS Mode。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+| 名称               | 值   | 说明                        |
+| -------------------| ---- | -------------------------- |
+| DSDS_MODE_V2       | 0    | 设备支持DSDS 2.0 Mode。      |
+| DSDS_MODE_V3       | 1    | 设备支持DSDS 3.0 Mode。      |
+| DSDS_MODE_V5_TDM   | 2    | 设备支持DSDS 5.0 TDM Mode。  |
+| DSDS_MODE_V5_DSDA  | 3    | 设备支持DSDS 5.0 DSDA Mode。 |

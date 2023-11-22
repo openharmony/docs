@@ -1,7 +1,7 @@
 # Process Model Overview (FA Model)
 
 
-The OpenHarmony process model is shown below.
+The process model is shown below.
 
 
 - All PageAbility, ServiceAbility, DataAbility, and FormAbility components of an application (with the same bundle name) run in the same process, which is **Main process** in green in the figure.
@@ -13,7 +13,7 @@ The OpenHarmony process model is shown below.
 ![process-model-fa](figures/process-model-fa.png)
 
 
-OpenHarmony provides two inter-process communication (IPC) mechanisms.
+The system provides two inter-process communication (IPC) mechanisms.
 
 
 - [Common Events](common-event-fa.md): This mechanism is used in one-to-many communication scenarios. Multiple subscribers may receive events at the same time.

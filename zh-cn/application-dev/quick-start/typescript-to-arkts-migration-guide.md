@@ -1646,7 +1646,7 @@ let s2: string
 
 **级别：错误**
 
-在TypeScript中，`instanceof`运算符的左操作数的类型必须为`any`类型、对象类型，或者它是类型参数，否则结果为`false`。在ArkTS中，`instanceof`运算符的左操作数的类型必须为引用类型，否则会发生编译时错误。此外，在ArkTS中，`instanceof`运算符的左操作数不能是类型。
+在TypeScript中，`instanceof`运算符的左操作数的类型必须为`any`类型、对象类型，或者它是类型参数，否则结果为`false`。在ArkTS中，`instanceof`运算符的左操作数的类型必须为引用类型（例如，对象、数组或者函数），否则会发生编译时错误。此外，在ArkTS中，`instanceof`运算符的左操作数不能是类型，必须是对象的实例。
 
 ### 不支持`in`运算符
 
