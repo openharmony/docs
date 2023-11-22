@@ -86,17 +86,17 @@ Actor模型不同角色之间并不共享内存，生产者线程和UI线程都�
 import taskpool from '@ohos.taskpool';
 // 跨线程并发任务
 @Concurrent
-async function produce() {
+async function produce(): Promise<number>{
   // 添加生产相关逻辑
   console.log("producing...")
   return Math.random()
 }
 
 class Consumer {
-    public consume(value : number) {
-        // 添加消费相关逻辑
-        console.log("consuming value: " + value)
-    }
+  public consume(value : number) {
+    // 添加消费相关逻辑
+    console.log("consuming value: " + value)
+  }
 }
 
 @Entry
@@ -113,16 +113,16 @@ struct Index {
         Button() {
           Text("start")
         }.onClick(() => {
-            let produceTask = new taskpool.Task(produce)
-            let consumer = new Consumer()
-            for (let index = 0; index < 10; index++) {
-                // 执行生产异步并发任务
-                taskpool.execute(produceTask).then((res : number) => {
-                    consumer.consume(res)
-                }).catch((e : Error) => {
-                    console.error(e.message)
-                })
-            }
+          let produceTask: taskpool.Task = new taskpool.Task(produce)
+          let consumer: Consumer = new Consumer()
+          for (let index: number = 0; index < 10; index++) {
+            // 执行生产异步并发任务
+            taskpool.execute(produceTask).then((res : number) => {
+              consumer.consume(res)
+            }).catch((e : Error) => {
+              console.error(e.message)
+            })
+          }
         })
         .width('20%')
         .height('20%')
