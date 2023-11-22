@@ -2248,29 +2248,29 @@ function foo(x: number, y: number, z: number) {
 
 let args: [number, number, number] = [0, 1, 2]
 foo(...args)
-
-let point2d = {x: 1, y: 2}
-let point3d = {...point2d, z: 3}
 ```
 
 **ArkTS**
 
 ```typescript
-function sum_numbers(...numbers: number[]): number {
-  let res = 0
-  for (let n of numbers)
-    res += n
-  return res
-}
-console.log(sum_numbers(1, 2, 3))
-
 function log_numbers(x: number, y: number, z: number) {
   console.log(x, y, z)
 }
 
 let numbers: number[] = [1, 2, 3]
 log_numbers(numbers[0], numbers[1], numbers[2])
+```
 
+**TypeScript**
+
+```typescript
+let point2d = { x: 1, y: 2 }
+let point3d = { ...point2d, z: 3 }
+```
+
+**ArkTS**
+
+```typescript
 class Point2D {
   x: number = 0; y: number = 0
 }
@@ -2284,7 +2284,7 @@ class Point3D {
   }
 }
 
-let p3d = new Point3D({x: 1, y: 2} as Point2D, 3)
+let p3d = new Point3D({ x: 1, y: 2 } as Point2D, 3)
 console.log(p3d.x, p3d.y, p3d.z)
 
 class DerivedFromArray extends Uint16Array {};
@@ -3322,6 +3322,8 @@ class C {
   s: string = ''
   n: number = 0
 }
+
+import('module2').then(() => {}).catch(() => {})  // 动态import
 ```
 
 ### 限制使用`ESObject`类型
