@@ -5,7 +5,7 @@
 
 A list is a container that displays a collection of items. If the list items go beyond the screen, the list can scroll to reveal the content off the screen. A list is applicable for presenting similar data types or data type sets, such as images and text. For example, it can be used to present a collection of contacts, songs, and items to shop.
 
-Use lists to easily and efficiently display structured, scrollable information. You can provide a single view of rows or columns by arranging the [\<ListItemGroup>](../reference/arkui-ts/ts-container-listitemgroup.md) or [\<ListItem>](../reference/arkui-ts/ts-container-listitem.md) child components linearly in a vertical or horizontal direction in the [\<List>](../reference/arkui-ts/ts-container-list.md) component, or use [ForEach](../quick-start/arkts-rendering-control-foreach.md) to iterate over a group of rows or columns, or mix any number of single views and **ForEach** structures to build a list. The **\<List>** component supports the generation of child components in various [rendering](../quick-start/arkts-rendering-control-overview.md) modes, including conditional rendering, rendering of repeated content, and lazy data loading.
+Use lists to easily and efficiently display structured, scrollable information. You can provide a single view of rows or columns by arranging the [\<ListItemGroup>](../reference/arkui-ts/ts-container-listitemgroup.md) or [\<ListItem>](../reference/arkui-ts/ts-container-listitem.md) child components linearly in a vertical or horizontal direction in the [\<List>](../reference/arkui-ts/ts-container-list.md) component, or use [ForEach](../quick-start/arkts-rendering-control-foreach.md) to iterate over a group of rows or columns, or mix any number of single views and **ForEach** structures to build a list. The **\<List>** component supports the generation of child components in various [rendering](../quick-start/arkts-rendering-control-ifelse.md) modes, including conditional rendering, rendering of repeated content, and lazy data loading.
 
 
 ## Layout and Constraints
@@ -121,10 +121,6 @@ For example, if the **lanes** attribute is set to **{ minLength: 200, maxLength:
 - When the list width is 300 vp, the list contains one column, because **minLength** is 200 vp.
 
 - When the list width changes to 400 vp, which is twice that of the **minLength** value, the list is automatically adapted to two-column.
-
->**NOTE**
->
->When the **lanes** attribute is set to a value of the LengthConstrain type, the value is used only to calculate the number of rows or columns in the list and does not affect the size of the list items.
 
 With regard to a vertical list, when the **alignListItem** attribute is set to **ListItemAlign.Center**, list items are center-aligned horizontally; when the **alignListItem** attribute is at its default value **ListItemAlign.Start**, list items are aligned toward the start edge of the cross axis in the list.
 
@@ -814,7 +810,7 @@ The process of implementing the deletion feature is as follows:
       })
     )
   )
-   ```
+  ```
 
 2. Respond to the selection by the user and record the list items to be deleted.
    In this example of the to-do list, respond to the selection by correctly displaying the check mark and record all the selected list items.
@@ -852,7 +848,7 @@ The process of implementing the deletion feature is as follows:
         }
       })
   }
-   ```
+  ```
 
 3. Respond to the user's clicking the delete button and delete the corresponding items from the list.
 

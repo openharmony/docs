@@ -262,29 +262,27 @@ export struct TaskSwitchMainPage {
       // <Scroll> component
       Scroll(this.scroller) {
         Row({ space: this.cardSpace }) {
-          ForEach(taskDataArr, (item:TaskData, index:number|undefined) => {
-            if(index){
-              Column()
-                .width(this.cardWidth)
-                .height(this.cardHeight)
-                .backgroundColor(item.bgColor)
-                .borderStyle(BorderStyle.Solid)
-                .borderWidth(1)
-                .borderColor(0xAFEEEE)
-                .borderRadius(15)
-                  // Calculate the affine attributes of child components.
-                .scale((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ?
-                  {
-                    x: 1.1 - Math.abs(0.5 - this.getProgress(index)),
-                    y: 1.1 - Math.abs(0.5 - this.getProgress(index))
-                  } :
-                  { x: 1, y: 1 })
-                .animation({ curve: Curve.Smooth })
-                  // Apply a pan animation.
-                .translate({ x: this.cardOffset })
-                .animation({ curve: curves.springMotion() })
-                .zIndex((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ? 2 : 1)
-            }
+          ForEach(taskDataArr, (item:TaskData, index) => {
+            Column()
+              .width(this.cardWidth)
+              .height(this.cardHeight)
+              .backgroundColor(item.bgColor)
+              .borderStyle(BorderStyle.Solid)
+              .borderWidth(1)
+              .borderColor(0xAFEEEE)
+              .borderRadius(15)
+                // Calculate the affine attributes of child components.
+              .scale((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ?
+                {
+                  x: 1.1 - Math.abs(0.5 - this.getProgress(index)),
+                  y: 1.1 - Math.abs(0.5 - this.getProgress(index))
+                } :
+                { x: 1, y: 1 })
+              .animation({ curve: Curve.Smooth })
+                // Apply a pan animation.
+              .translate({ x: this.cardOffset })
+              .animation({ curve: curves.springMotion() })
+              .zIndex((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ? 2 : 1)
           }, (item:TaskData) => item.toString())
         }
         .width((this.cardWidth + this.cardSpace) * (taskDataArr.length + 1))
