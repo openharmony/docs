@@ -12,11 +12,11 @@
 
 | 名称           | 参数说明                                                     | 描述                                                         |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| width          | [Length](ts-types.md#length)                                 | 设置组件自身的宽度，缺省时使用元素自身内容需要的宽度。若子组件的宽大于父组件的宽，则会画出父组件的范围。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| width          | [Length](ts-types.md#length)                                 | 设置组件自身的宽度，缺省时使用元素自身内容需要的宽度。若子组件的宽大于父组件的宽，则会画出父组件的范围。<br/>单位：vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | height         | [Length](ts-types.md#length)                                 | 设置组件自身的高度，缺省时使用元素自身内容需要的高度。若子组件的高大于父组件的高，则会画出父组件的范围。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| size           | {<br/>width?:&nbsp;[Length](ts-types.md#length),<br/>height?:&nbsp;[Length](ts-types.md#length)<br/>} | 设置高宽尺寸。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| padding        | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 设置内边距属性。<br/>参数为Length类型时，四个方向内边距同时生效。<br>默认值：0 <br>padding设置百分比时，上下左右内边距均以父容器的width作为基础值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| margin         | [Margin](ts-types.md#margin)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 设置外边距属性。<br/>参数为Length类型时，四个方向外边距同时生效。<br>默认值：0 <br>margin设置百分比时，上下左右外边距均以父容器的width作为基础值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| size           | {<br/>width?:&nbsp;[Length](ts-types.md#length),<br/>height?:&nbsp;[Length](ts-types.md#length)<br/>} | 设置高宽尺寸。<br/>单位：vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| padding        | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 设置内边距属性。<br/>参数为Length类型时，四个方向内边距同时生效。<br>默认值：0 <br>单位：vp<br/>padding设置百分比时，上下左右内边距均以父容器的width作为基础值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| margin         | [Margin](ts-types.md#margin)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 设置外边距属性。<br/>参数为Length类型时，四个方向外边距同时生效。<br>默认值：0 <br>单位：vp<br/>margin设置百分比时，上下左右外边距均以父容器的width作为基础值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | constraintSize | {<br/>minWidth?:&nbsp;[Length](ts-types.md#length),<br/>maxWidth?:&nbsp;[Length](ts-types.md#length),<br/>minHeight?:&nbsp;[Length](ts-types.md#length),<br/>maxHeight?:&nbsp;[Length](ts-types.md#length)<br/>} | 设置约束尺寸，组件布局时，进行尺寸范围限制。constraintSize的优先级高于Width和Height。若设置的minWidth大于maxWidth，则minWidth生效，minHeight与maxHeight同理。<br>默认值：<br>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>}<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
@@ -31,13 +31,13 @@ struct SizeExample {
     Column({ space: 10 }) {
       Text('margin and padding:').fontSize(12).fontColor(0xCCCCCC).width('90%')
       Row() {
-        // 宽度80 ,高度80 ,外边距20(蓝色区域），内边距10（白色区域）
+        // 宽度80 ,高度80 ,外边距20(蓝色区域），上下左右的内边距分别为5、15、10、20（白色区域）
         Row() {
           Row().size({ width: '100%', height: '100%' }).backgroundColor(Color.Yellow)
         }
         .width(80)
         .height(80)
-        .padding(10)
+        .padding({ top: 5, left: 10, bottom: 15, right: 20 })
         .margin(20)
         .backgroundColor(Color.White)
       }.backgroundColor(Color.Blue)
