@@ -40,7 +40,7 @@ add(uri: string): void
 **示例：**
 
   ```js
-  let uri = 'file://docs/storage/Users/currentUser/\<publicPath>';
+  let uri = 'file://docs/storage/Users/currentUser/<publicPath>';
   recent.add(uri);
   ```
 
@@ -71,7 +71,7 @@ remove(uri: string): void
 **示例：**
 
   ```js
-  let uri = 'file://docs/storage/Users/currentUser/\<publicPath>';
+  let uri = 'file://docs/storage/Users/currentUser/<publicPath>';
   recent.remove(uri);
   ```
 
