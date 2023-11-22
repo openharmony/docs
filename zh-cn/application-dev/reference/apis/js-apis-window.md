@@ -8280,7 +8280,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
-为当前WindowStage的主窗口加载与LocalStorage相关联的具体页面内容，使用Promise异步回调。
+为当前WindowStage的主窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
