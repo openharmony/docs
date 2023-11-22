@@ -528,6 +528,53 @@ try {
 }
 ```
 
+## appManager.on<sup>11+</sup>
+
+on(type: 'appForegroundState', observer: AppForegroundStateObserver): void
+
+注册应用启动和退出的观测器，可用于系统应用观测所有应用的启动和退出。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 调用接口类型，固定填'appForegroundState'字符串。 |
+| observer | [AppForegroundStateObserver](./js-apis-inner-application-appForegroundStateObserver.md) | 是 | 应用状态观测器，用于观测应用的启动和退出。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
+
+let observer: appManager.AppForegroundStateObserver = {
+    onAppStateChanged(appStateData) {
+        console.log(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
+    },
+};
+try {
+    appManager.on('appForegroundState', observer);
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
+}
+```
+
 ## appManager.off
 
 off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void;
@@ -684,6 +731,65 @@ try {
     }).catch((err: BusinessError) => {
         console.error(`unregisterApplicationStateObserver fail, err: ${JSON.stringify(err)}`);
     });
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
+}
+```
+
+## appManager.off<sup>11+</sup>
+
+off(type: 'appForegroundState', observer: AppForegroundStateObserver): void
+
+取消注册应用启动和退出的观测器。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 调用接口类型，固定填'appForegroundState'字符串。|
+| observer | [AppForegroundStateObserver](./js-apis-inner-application-appForegroundStateObserver.md) | 否 | 取消注册的应用启动和退出观测器。|
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
+let observer_;
+// 1.注册应用启动和退出的监听器
+let observer: appManager.AppForegroundStateObserver = {
+    onAppStateChanged(appStateData) {
+        console.log(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
+    },
+};
+try {
+    appManager.on('appForegroundState', observer);
+    // 保存observer对象，用于注销
+    observer_ = observer;
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
+}
+
+// 2.注销监听器
+try {
+    appManager.off('appForegroundState',  observer_);
 } catch (paramError) {
     let code = (paramError as BusinessError).code;
     let message = (paramError as BusinessError).message;
