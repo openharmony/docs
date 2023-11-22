@@ -641,10 +641,10 @@ try {
 
 | 名称        | 类型                    | 可读   | 可写   | 说明                                     |
 | ------------------- | ----------------------- | ---- | ---- | -------------------------------------- |
-| codecType           | [CodecType](#codecType)      | 是    | 是    | 表示编码器类型，默认值为CODEC_TYPE_SBC。 |
-| codecBitsPerSample  | [CodecBitsPerSample](#codecBitsPerSample)  | 是    | 是    | 表示每个采样点的位数，默认值为SCAN_MODE_LOW_POWER。 |
-| codecChannelMode    | [CodecChannelMode](#codecChannelMode) | 是    | 是    | 表示编码器的声道模式，默认值为CODEC_CHANNEL_MODE_NONE。 |
-| codecSampleRate     | [CodecSampleRate](#codecSampleRate) | 是    | 是    | 表示编码器的采样率，默认值为CODEC_BITS_PER_SAMPLE_NONE。 |
+| codecType           | [CodecType](#codectype)      | 是    | 是    | 表示编码器类型，默认值为CODEC_TYPE_SBC。 |
+| codecBitsPerSample  | [CodecBitsPerSample](#codecbitspersample)  | 是    | 是    | 表示每个采样点的位数，默认值为SCAN_MODE_LOW_POWER。 |
+| codecChannelMode    | [CodecChannelMode](#codecchannelmode) | 是    | 是    | 表示编码器的声道模式，默认值为CODEC_CHANNEL_MODE_NONE。 |
+| codecSampleRate     | [CodecSampleRate](#codecsamplerate) | 是    | 是    | 表示编码器的采样率，默认值为CODEC_BITS_PER_SAMPLE_NONE。 |
 
 
 ## CodecType<a name="CodecType"></a>
