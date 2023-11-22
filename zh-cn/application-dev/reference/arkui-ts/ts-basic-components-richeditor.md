@@ -704,11 +704,53 @@ struct RichEditorExample {
 // xxx.ets
 import pasteboard from '@ohos.pasteboard'
 import { BusinessError } from '@ohos.base';
-class info{
-  imageSrc: Resource=$r('sys.media.ohos_ic_public_cut')
-  id: string=''
-  label: string=''
+
+export interface SelectionMenuTheme {
+  imageSize: number;
+  buttonSize: number;
+  menuSpacing: number;
+  editorOptionMargin: number;
+  expandedOptionPadding: number;
+  defaultMenuWidth: number;
+  imageFillColor: Resource;
+  backGroundColor: Resource;
+  iconBorderRadius: Resource;
+  containerBorderRadius: Resource;
+  cutIcon: Resource;
+  copyIcon: Resource;
+  pasteIcon: Resource;
+  selectAllIcon: Resource;
+  shareIcon: Resource;
+  translateIcon: Resource;
+  searchIcon: Resource;
+  arrowDownIcon: Resource;
+  iconPanelShadowStyle: ShadowStyle;
+  iconFocusBorderColor: Resource;
 }
+
+export const defaultTheme: SelectionMenuTheme = {
+  imageSize: 24,
+  buttonSize: 48,
+  menuSpacing: 8,
+  editorOptionMargin: 1,
+  expandedOptionPadding: 3,
+  defaultMenuWidth: 256,
+  imageFillColor: $r('sys.color.ohos_id_color_primary'),
+  backGroundColor: $r('sys.color.ohos_id_color_dialog_bg'),
+  iconBorderRadius: $r('sys.float.ohos_id_corner_radius_default_m'),
+  containerBorderRadius: $r('sys.float.ohos_id_corner_radius_card'),
+  cutIcon: $r("sys.media.ohos_ic_public_cut"),
+  copyIcon: $r("sys.media.ohos_ic_public_copy"),
+  pasteIcon: $r("sys.media.ohos_ic_public_paste"),
+  selectAllIcon: $r("sys.media.ohos_ic_public_select_all"),
+  shareIcon: $r("sys.media.ohos_ic_public_share"),
+  translateIcon: $r("sys.media.ohos_ic_public_translate_c2e"),
+  searchIcon: $r("sys.media.ohos_ic_public_search_filled"),
+  arrowDownIcon: $r("sys.media.ohos_ic_public_arrow_down"),
+  iconPanelShadowStyle: ShadowStyle.OUTER_DEFAULT_MD,
+  iconFocusBorderColor: $r('sys.color.ohos_id_color_focused_outline'),
+}
+
 @Entry
 @Component
 struct SelectionMenu {
@@ -722,21 +764,34 @@ struct SelectionMenu {
   options: RichEditorOptions = { controller: this.controller }
   private iconArr: Array<Resource> =
     [$r('app.media.icon'), $r("app.media.icon"), $r('app.media.icon'),
-      $r("app.media.icon"), $r('app.media.icon')]
-  private listArr: Array<Object> =
-    [{ imageSrc: $r('sys.media.ohos_ic_public_cut'), id: '剪切', label: "Ctrl+X" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_copy'), id: '复制', label: "Ctrl+C" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_paste'), id: '粘贴', label: "Ctrl+V" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_select_all'), id: '全选', label: "Ctrl+A" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_share'), id: '分享', label: "" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_translate_c2e'), id: '翻译', label: "" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_search_filled'), id: '搜索', label: "" } as info]
+    $r("app.media.icon"), $r('app.media.icon')]
   @State iconBgColor: ResourceColor[] = new Array(this.iconArr.length).fill(this.colorTransparent)
-  @State listBgColor: ResourceColor[] = new Array(this.listArr.length).fill(this.colorTransparent)
   @State iconIsFocus: boolean[] = new Array(this.iconArr.length).fill(false)
-  @State listIsFocus: boolean[] = new Array(this.iconArr.length).fill(false)
   @State clickWeightNum: number = 0
   @State clickNum: number[] = [0, 0, 0]
+  @State pasteEnable: boolean = false
+  @State visibilityValue: Visibility = Visibility.Visible
+  private fontWeightTable: string[] = ["100", "200", "300", "400", "500", "600", "700", "800", "900", "bold", "normal", "bolder", "lighter", "medium", "regular"]
+  private theme: SelectionMenuTheme = defaultTheme;
+
+  aboutToAppear() {
+    if (this.controller) {
+      let richEditorSelection = this.controller.getSelection()
+      let start = richEditorSelection.selection[0]
+      let end = richEditorSelection.selection[1]
+      if (start === 0 && this.controller.getSpans({ start: end + 1, end: end + 1 }).length === 0) {
+        this.visibilityValue = Visibility.None
+      } else {
+        this.visibilityValue = Visibility.Visible
+      }
+    }
+    let sysBoard = pasteboard.getSystemPasteboard()
+    if (sysBoard && sysBoard.hasDataSync()) {
+      this.pasteEnable = true
+    } else {
+      this.pasteEnable = false
+    }
+  }
 
   build() {
     Column() {
@@ -752,7 +807,10 @@ struct SelectionMenu {
             this.start = value.selection[0]
             this.end = value.selection[1]
           })
-          .bindSelectionMenu(RichEditorSpanType.TEXT, this.panel(), ResponseType.LongPress, { onDisappear: () => {
+          .bindSelectionMenu(RichEditorSpanType.TEXT, this.panel, ResponseType.LongPress, { onDisappear: () => {
+            this.sliderShow = false
+          }})
+          .bindSelectionMenu(RichEditorSpanType.TEXT, this.panel, ResponseType.RightClick, { onDisappear: () => {
             this.sliderShow = false
           }})
           .borderWidth(1)
@@ -763,12 +821,119 @@ struct SelectionMenu {
     }.height('100%')
   }
 
+  PushDataToPasteboard(richEditorSelection: RichEditorSelection) {
+    let sysBoard = pasteboard.getSystemPasteboard()
+    let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, '')
+    if (richEditorSelection.spans && richEditorSelection.spans.length > 0) {
+      let count = richEditorSelection.spans.length
+      for (let i = count - 1; i >= 0; i--) {
+        let item = richEditorSelection.spans[i]
+        if ((item as RichEditorTextSpanResult)?.textStyle) {
+          let span = item as RichEditorTextSpanResult
+          let style = span.textStyle
+          let data = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_PLAIN, span.value.substring(span.offsetInSpan[0], span.offsetInSpan[1]))
+          let prop = pasteData.getProperty()
+          let temp: Record<string, Object> = {
+            'color': style.fontColor,
+            'size': style.fontSize,
+            'style': style.fontStyle,
+            'weight': this.fontWeightTable[style.fontWeight],
+            'fontFamily': style.fontFamily,
+            'decorationType': style.decoration.type,
+            'decorationColor': style.decoration.color
+          }
+          prop.additions[i] = temp;
+          pasteData.addRecord(data)
+          pasteData.setProperty(prop)
+        }
+      }
+    }
+    sysBoard.clearData()
+    sysBoard.setData(pasteData).then(() => {
+      console.info('SelectionMenu copy option, Succeeded in setting PasteData.');
+      this.pasteEnable = true;
+    }).catch((err: BusinessError) => {
+      console.error('SelectionMenu copy option, Failed to set PasteData. Cause:' + err.message);
+    })
+  }
+
+  PopDataFromPasteboard(richEditorSelection: RichEditorSelection) {
+    let start = richEditorSelection.selection[0]
+    let end = richEditorSelection.selection[1]
+    if (start == end && this.controller) {
+      start = this.controller.getCaretOffset()
+      end = this.controller.getCaretOffset()
+    }
+    let moveOffset = 0
+    let sysBoard = pasteboard.getSystemPasteboard()
+    sysBoard.getData((err, data) => {
+      if (err) {
+        return
+      }
+      let count = data.getRecordCount()
+      for (let i = 0; i < count; i++) {
+        const element = data.getRecord(i);
+        let tex: RichEditorTextStyle = {
+          fontSize: 16,
+          fontColor: Color.Black,
+          fontWeight: FontWeight.Normal,
+          fontFamily: "HarmonyOS Sans",
+          fontStyle: FontStyle.Normal,
+          decoration: { type: TextDecorationType.None, color: "#FF000000" }
+        }
+        if (data.getProperty() && data.getProperty().additions[i]) {
+          const tmp = data.getProperty().additions[i] as Record<string, Object | undefined>;
+          if (tmp.color) {
+            tex.fontColor = tmp.color as ResourceColor;
+          }
+          if (tmp.size) {
+            tex.fontSize = tmp.size as Length | number;
+          }
+          if (tmp.style) {
+            tex.fontStyle = tmp.style as FontStyle;
+          }
+          if (tmp.weight) {
+            tex.fontWeight = tmp.weight as number | FontWeight | string;
+          }
+          if (tmp.fontFamily) {
+            tex.fontFamily = tmp.fontFamily as ResourceStr;
+          }
+          if (tmp.decorationType && tex.decoration) {
+            tex.decoration.type = tmp.decorationType as TextDecorationType;
+          }
+          if (tmp.decorationColor && tex.decoration) {
+            tex.decoration.color = tmp.decorationColor as ResourceColor;
+          }
+          if (tex.decoration) {
+            tex.decoration = { type: tex.decoration.type, color: tex.decoration.color }
+          }
+        }
+        if (element && element.plainText && element.mimeType === pasteboard.MIMETYPE_TEXT_PLAIN && this.controller) {
+          this.controller.addTextSpan(element.plainText,
+            {
+              style: tex,
+              offset: start + moveOffset
+            }
+          )
+          moveOffset += element.plainText.length
+        }
+      }
+      if (this.controller) {
+        this.controller.setCaretOffset(start + moveOffset)
+        this.controller.closeSelectionMenu()
+      }
+      if (start != end && this.controller) {
+        this.controller.deleteSpans({ start: start + moveOffset, end: end + moveOffset })
+      }
+    })
+  }
+
   @Builder
   panel() {
     Column() {
       this.iconPanel()
       if (!this.sliderShow) {
-        this.listPanel()
+        this.SystemMenu()
       } else {
         this.sliderPanel()
       }
@@ -780,12 +945,12 @@ struct SelectionMenu {
       Row({ space: 2 }) {
         ForEach(this.iconArr, (item:Resource, index ?: number) => {
           Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-            Image(item).fillColor($r('sys.color.ohos_id_color_primary')).width(24).height(24).focusable(true)
+            Image(item).fillColor(this.theme.imageFillColor).width(24).height(24).focusable(true)
           }
-          .border({ width: this.iconIsFocus[index as number] ? 2 : 0, color: $r('sys.color.ohos_id_color_focused_outline') })
-          .borderRadius($r('sys.float.ohos_id_corner_radius_default_m'))
-          .width(48)
-          .height(48)
+          .border({ width: this.iconIsFocus[index as number] ? 2 : 0, color: this.theme.iconFocusBorderColor })
+          .borderRadius(this.theme.iconBorderRadius)
+          .width(this.theme.buttonSize)
+          .height(this.theme.buttonSize)
           .focusable(true)
           .focusOnTouch(true)
           .onClick(() => {
@@ -830,8 +995,6 @@ struct SelectionMenu {
             })
             if(isHover != undefined) {
               this.iconBgColor[index as number] = $r('sys.color.ohos_id_color_hover')
-            }else{
-              this.listBgColor[index as number] = this.colorTransparent
             }
           })
           .onFocus(() => {
@@ -844,141 +1007,87 @@ struct SelectionMenu {
         })
       }
     }
-    .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
-    .width(248)
-    .height(48)
-    .margin({ bottom: 8 })
-    .shadow(ShadowStyle.OUTER_DEFAULT_MD)
+    .clip(true)
+    .width(this.theme.defaultMenuWidth)
+    .padding(this.theme.expandedOptionPadding)
+    .borderRadius(this.theme.containerBorderRadius)
+    .margin({ bottom: this.theme.menuSpacing })
+    .backgroundColor(this.theme.backGroundColor)
+    .shadow(this.theme.iconPanelShadowStyle)
   }
 
-  @Builder listPanel() {
+  @Builder
+  SystemMenu() {
     Column() {
-      List({ space: 0, initialIndex: 0 }) {
-        ForEach(this.listArr, (item:info, index:number | undefined) => {
-          ListItem() {
-            listChild({
-              item,
-              index,
-              listBgColor: $listBgColor,
-              colorTransparent: $colorTransparent
-            })
+      Menu() {
+        if (this.controller) {
+          MenuItemGroup() {
+            MenuItem({ startIcon: this.theme.cutIcon, content: "剪切", labelInfo: "Ctrl+X" })
               .onClick(() => {
-                let sysBoard = pasteboard.getSystemPasteboard()
-                let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, '')
-                this.controller.getSpans({ start: this.start, end: this.end })
-                  .forEach((item, i) => {
-                    if(typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined'){
-                      let style = (item as RichEditorImageSpanResult).imageStyle
-                      if((item as RichEditorImageSpanResult).valuePixelMap != undefined) {
-                        let data = pasteboard.createRecord(pasteboard.MIMETYPE_PIXELMAP, ((item as RichEditorImageSpanResult).valuePixelMap as PixelMap));
-                        let prop = pasteData.getProperty()
-                        let temp:Record<string, Object> = { 'width': style.size[0], 'height': style.size[1], 'fit': style.objectFit }
-                        prop.additions[i] = temp;
-                        pasteData.addRecord(data)
-                        pasteData.setProperty(prop)
-                      }
-                    } else {
-                      let style = (item as RichEditorTextSpanResult).textStyle
-                      let data = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_PLAIN, (item as RichEditorTextSpanResult).value)
-                      let prop = pasteData.getProperty()
-                      let temp:Record<string, Object> = { 'color': style.fontColor, 'size': style.fontSize, 'style': style.fontStyle,
-                        'weight': style.fontWeight }
-                      prop.additions[i] = temp;
-                      pasteData.addRecord(data)
-                      pasteData.setProperty(prop)
-                    }
-                  })
-                if(index == undefined){ return }
-                switch (index) {
-                  case 0:
-                    this.controller.deleteSpans({ start: this.start, end: this.end })
-                  case 1:
-                    sysBoard.clearData()
-                    sysBoard.setData(pasteData).then(() => {
-                      console.info('Succeeded in setting PasteData.');
-                    }).catch((err: BusinessError) => {
-                      console.error('Failed to set PasteData. Cause: ' + err.message);
-                    })
-                    break
-                  case 2:
-                    sysBoard.getData((err, data) => {
-                      if (err) {
-                        return
-                      }
-                      let count = data.getRecordCount()
-                      for (let m = 0; m < count; m++) {
-                        const element = data.getRecord(m);
-                        let tex: RichEditorTextStyle = {
-                          fontSize: 30,
-                          fontColor: Color.Orange,
-                          fontWeight: FontWeight.Normal
-                        }
-                        let im: RichEditorImageSpanStyle = { objectFit: ImageFit.Contain, size: [50, 50] }
-                        if(im.size == undefined){ break }
-                        if (data.getProperty().additions[m]) {
-                          const tmp = data.getProperty().additions[m] as Record<string, Object | undefined>;
-                          if (tmp['width'] != undefined) {
-                            im.size[0] = tmp['width'] as Dimension;
-                          }
-                          if (tmp['height'] != undefined){
-                            im.size[1] = tmp['height'] as Dimension;
-                          }
-                          if (tmp['fit'] != undefined){
-                            im.objectFit = tmp['fit'] as ImageFit;
-                          }
-                          if (tmp['color'] != undefined){
-                            tex.fontColor = tmp['color'] as ResourceColor;
-                          }
-                          if (tmp['size'] != undefined){
-                            tex.fontSize = tmp['size'] as number;
-                          }
-                          if (tmp['style'] != undefined){
-                            tex.fontStyle = tmp['style'] as FontStyle;
-                          }
-                          if (tmp['weight'] != undefined){
-                            tex.fontWeight = tmp['weight'] as number;
-                          }
-                        }
-
-                        if (element.mimeType == pasteboard.MIMETYPE_TEXT_PLAIN) {
-                          this.controller.addTextSpan(element.plainText,
-                            {
-                              style: tex,
-                              offset: this.controller.getCaretOffset()
-                            })
-                        }
-                        if (element.mimeType == pasteboard.MIMETYPE_PIXELMAP) {
-                          this.controller.addImageSpan(element.pixelMap,
-                            {
-                              imageStyle: im,
-                              offset: this.controller.getCaretOffset()
-                            })
-                        }
-                      }
-                    })
-                    break
+                if (!this.controller) {
+                  return
                 }
+                let richEditorSelection = this.controller.getSelection()
+                this.PushDataToPasteboard(richEditorSelection);
+                this.controller.deleteSpans({
+                  start: richEditorSelection.selection[0],
+                  end: richEditorSelection.selection[1]
+                })
               })
+            MenuItem({ startIcon: this.theme.copyIcon, content: "复制", labelInfo: "Ctrl+C" })
+              .onClick(() => {
+                if (!this.controller) {
+                  return
+                }
+                let richEditorSelection = this.controller.getSelection()
+                this.PushDataToPasteboard(richEditorSelection);
+                this.controller.closeSelectionMenu()
+              })
+            MenuItem({ startIcon: this.theme.pasteIcon, content: "粘贴", labelInfo: "Ctrl+V" })
+              .enabled(this.pasteEnable)
+              .onClick(() => {
+                if (!this.controller) {
+                  return
+                }
+                let richEditorSelection = this.controller.getSelection()
+                this.PopDataFromPasteboard(richEditorSelection)
+              })
+            MenuItem({ startIcon: this.theme.selectAllIcon, content: "全选", labelInfo: "Ctrl+A" })
+              .visibility(this.visibilityValue)
+              .onClick(() => {
+                if (!this.controller) {
+                  return
+                }
+                this.controller.setSelection(-1, -1)
+                this.visibilityValue = Visibility.None
+              })
+            MenuItem({ startIcon: this.theme.shareIcon, content: "分享", labelInfo: "" })
+              .enabled(false)
+            MenuItem({ startIcon: this.theme.translateIcon, content: "翻译", labelInfo: "" })
+              .enabled(false)
+            MenuItem({ startIcon: this.theme.searchIcon, content: "搜索", labelInfo: "" })
+              .enabled(false)
           }
-          .height(48)
-          .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
-          .focusable(true)
-          .focusOnTouch(true)
-          .border({ width: this.listIsFocus[index as number] ? 2 : 0, color: $r('sys.color.ohos_id_color_focused_outline') })
-          .onFocus(() => {
-            this.listIsFocus[index as number] = true
-          })
-          .onBlur(() => {
-            this.listIsFocus[index as number] = false
-          })
-        }, (item:number) => item.toString())
+        }
       }
+      .onVisibleAreaChange([0.0, 1.0], () => {
+        if (!this.controller) {
+          return
+        }
+        let richEditorSelection = this.controller.getSelection()
+        let start = richEditorSelection.selection[0]
+        let end = richEditorSelection.selection[1]
+        if (start === 0 && this.controller.getSpans({ start: end + 1, end: end + 1 }).length === 0) {
+          this.visibilityValue = Visibility.None
+        } else {
+          this.visibilityValue = Visibility.Visible
+        }
+      })
+      .radius(this.theme.containerBorderRadius)
+      .clip(true)
+      .width('100%')
     }
-    .focusable(true)
-    .width(248)
-    .backgroundColor(this.colorTransparent)
-    .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
-    .shadow(ShadowStyle.OUTER_DEFAULT_MD)
+    .width(this.theme.defaultMenuWidth)
   }
 
   @Builder sliderPanel() {
@@ -993,65 +1102,13 @@ struct SelectionMenu {
             })
           })
         Text('A').fontSize(20).fontWeight(FontWeight.Medium)
-      }.borderRadius($r('sys.float.ohos_id_corner_radius_card'))
+      }.borderRadius(this.theme.containerBorderRadius)
     }
     .backgroundColor(this.colorTransparent)
-    .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
+    .borderRadius(this.theme.containerBorderRadius)
     .padding(15)
     .width(248)
     .height(48)
-  }
-}
-
-@Component
-struct listChild {
-  item:info = new info()
-  index: number = 0
-  @Link listBgColor: (Resource | Color)[]
-  @Link colorTransparent: Resource
-
-  build() {
-    Column() {
-      Flex({
-        direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center
-      }) {
-        Row() {
-          Image(this.item.imageSrc)
-            .width(20)
-            .height(20)
-            .margin({ right: 8 })
-            .fillColor($r('sys.color.ohos_id_color_primary'))
-            .focusable(true)
-          Text('' + this.item.id)
-            .textAlign(TextAlign.Center)
-            .borderRadius(10)
-            .focusable(true)
-            .fontColor($r('sys.color.ohos_id_color_primary'))
-            .fontSize($r('sys.float.ohos_id_text_size_body1'))
-        }
-
-        Row() {
-          Text('' + this.item.label)
-            .fontColor($r('sys.color.ohos_id_color_text_secondary')).fontSize($r('sys.float.ohos_id_text_size_body1'))
-        }
-      }
-      .onTouch((event?: TouchEvent) => {
-        if (event != undefined && event.type === TouchType.Down) {
-          this.listBgColor[this.index] = $r('sys.color.ohos_id_color_click_effect')
-        }
-        if (event != undefined && event.type === TouchType.Up) {
-          this.listBgColor[this.index] = this.colorTransparent
-        }
-      })
-      .onHover((isHover?: boolean) => {
-        this.listBgColor[this.index] = isHover ? $r('sys.color.ohos_id_color_hover') : this.colorTransparent
-      })
-      .backgroundColor(this.listBgColor[this.index])
-      .padding({ right: 12, left: 12 })
-      .height('48')
-      .focusable(true)
-      .borderRadius($r('sys.float.ohos_id_corner_radius_default_m'))
-    }
   }
 }
 ```
