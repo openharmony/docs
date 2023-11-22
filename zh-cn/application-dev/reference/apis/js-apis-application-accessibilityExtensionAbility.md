@@ -12,7 +12,7 @@
 import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
 ```
 
-## 属性
+### 属性
 
 **系统能力：** SystemCapability.BarrierFree.Accessibility.Core
 
@@ -34,30 +34,138 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 | target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | 是   | 否   | 发生事件的目标组件。                                         |
 | timeStamp | number                                                       | 是   | 否   | 事件时间戳。                                                 |
 
+
+## AccessibilityElement<sup>10+</sup>
+
+[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)二级模块
+
+**示例：**
+
+```ts
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+
+let AccessibilityElement: AccessibilityElement;
+```
+
+## ElementAttributeValues<sup>10+</sup>
+
+[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)二级模块
+
+**示例：**
+
+```ts
+import { ElementAttributeValues } from '@ohos.application.AccessibilityExtensionAbility';
+
+let ElementAttributeValues: ElementAttributeValues;
+```
+
+## FocusDirection<sup>10+</sup>
+
+[FocusDirection](js-apis-inner-application-accessibilityExtensionContext.md#focusdirection)二级模块，表示查询下一焦点元素的方向。
+
+**示例：**
+
+```ts
+import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
+
+let FocusDirection: FocusDirection;
+```
+
+## ElementAttributeKeys<sup>10+</sup>
+
+ElementAttributeKeys keyof [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)
+
+**示例：**
+
+```ts
+import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
+
+let ElementAttributeKeys: ElementAttributeKeys;
+```
+
+## FocusType<sup>10+</sup>
+
+[FocusType](js-apis-inner-application-accessibilityExtensionContext.md#focustype)二级模块，表示查询焦点元素的类型。
+
+**示例：**
+
+```ts
+import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
+
+let FocusType: FocusType;
+```
+
+## WindowType <sup>10+</sup>
+
+[WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype)二级模块，表示窗口的类型。
+
+**示例：**
+
+```ts
+import { WindowType } from '@ohos.application.AccessibilityExtensionAbility';
+
+let WindowType: WindowType;
+```
+
+## Rect<sup>10+</sup>
+
+[Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)二级模块，表示矩形区域。
+
+**示例：**
+
+```ts
+import { Rect } from '@ohos.application.AccessibilityExtensionAbility';
+
+let Rect: Rect;
+```
+
 ## GestureType
 
 手势事件类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称            | 描述                  |
-| ------------- | ------------------- |
-| left          | 类型为字符串，表示向左的手势。     |
-| leftThenRight | 类型为字符串，表示先向左再向右的手势。 |
-| leftThenUp    | 类型为字符串，表示先向左再向上的手势。 |
-| leftThenDown  | 类型为字符串，表示先向左再向下的手势。 |
-| right         | 类型为字符串，表示向右的手势。     |
-| rightThenLeft | 类型为字符串，表示先向右再向左的手势。 |
-| rightThenUp   | 类型为字符串，表示先向右再向上的手势。 |
-| rightThenDown | 类型为字符串，表示先向右再向下的手势。 |
-| up            | 类型为字符串，表示向上的手势。     |
-| upThenLeft    | 类型为字符串，表示先向上再向左的手势。 |
-| upThenRight   | 类型为字符串，表示先向上再向右的手势。 |
-| upThenDown    | 类型为字符串，表示先向上再向下的手势。 |
-| down          | 类型为字符串，表示向下的手势。     |
-| downThenLeft  | 类型为字符串，表示先向下再向左的手势。 |
-| downThenRight | 类型为字符串，表示先向下再向右的手势。 |
-| downThenUp    | 类型为字符串，表示先向下再向上的手势。 |
+| 名称            | 类型            | 描述                  |
+| ------------- | ------------- | ------------------- |
+| left          | string          | 表示向左的手势。     |
+| leftThenRight | string          | 表示先向左再向右的手势。 |
+| leftThenUp    | string          | 表示先向左再向上的手势。 |
+| leftThenDown  | string          | 表示先向左再向下的手势。 |
+| right         | string          | 表示向右的手势。     |
+| rightThenLeft | string          | 表示先向右再向左的手势。 |
+| rightThenUp   | string          | 表示先向右再向上的手势。 |
+| rightThenDown | string          | 表示先向右再向下的手势。 |
+| up            | string          | 表示向上的手势。     |
+| upThenLeft    | string          | 表示先向上再向左的手势。 |
+| upThenRight   | string          | 表示先向上再向右的手势。 |
+| upThenDown    | string          | 表示先向上再向下的手势。 |
+| down          | string          | 表示向下的手势。     |
+| downThenLeft  | string          | 表示先向下再向左的手势。 |
+| downThenRight | string          | 表示先向下再向右的手势。 |
+| downThenUp    | string          | 表示先向下再向上的手势。 |
+| twoFingerSingleTap<sup>11+</sup>    | string          | 表示双指单击的手势。 |
+| twoFingerDoubleTap<sup>11+</sup>    | string          | 表示双指双击的手势。 |
+| twoFingerDoubleTapAndHold<sup>11+</sup>    | string          | 表示双指双击长按的手势。 |
+| twoFingerTripleTap<sup>11+</sup>    | string          | 表示双指三击的手势。 |
+| twoFingerTripleTapAndHold<sup>11+</sup>    | string          | 表示双指三击长按的手势。 |
+| threeFingerSingleTap<sup>11+</sup>    | string          | 表示三指单击的手势。 |
+| threeFingerDoubleTap<sup>11+</sup>    | string          | 表示三指双击的手势。 |
+| threeFingerDoubleTapAndHold<sup>11+</sup>    | string          | 表示三指双击长按的手势。 |
+| threeFingerTripleTap<sup>11+</sup>    | string          | 表示三指三击的手势。 |
+| threeFingerTripleTapAndHold<sup>11+</sup>    | string          | 表示三指三击长按的手势。 |
+| fourFingerSingleTap<sup>11+</sup>    | string          | 表示四指单击的手势。 |
+| fourFingerDoubleTap<sup>11+</sup>    | string          | 表示四指双击的手势。 |
+| fourFingerDoubleTapAndHold<sup>11+</sup>    | string          | 表示四指双击长按的手势。 |
+| fourFingerTripleTap<sup>11+</sup>    | string          | 表示四指三击的手势。 |
+| fourFingerTripleTapAndHold<sup>11+</sup>    | string          | 表示四指三击长按的手势。 |
+| threeFingerSwiperUp<sup>11+</sup>    | string          | 表示三指向上滑动的手势。 |
+| threeFingerSwiperDown<sup>11+</sup>    | string          | 表示三指向下滑动的手势。 |
+| threeFingerSwiperLeft<sup>11+</sup>    | string          | 表示三指向左滑动的手势。 |
+| threeFingerSwiperRight<sup>11+</sup>    | string          | 表示三指向右滑动的手势。 |
+| fourFingerSwiperUp<sup>11+</sup>    | string          | 表示四指向上滑动的手势。 |
+| fourFingerSwiperDown<sup>11+</sup>    | string          | 表示四指向下滑动的手势。 |
+| fourFingerSwiperLeft<sup>11+</sup>    | string          | 表示四指向左滑动的手势。 |
+| fourFingerSwiperRight<sup>11+</sup>    | string          | 表示四指向右滑动的手势。 |
 
 ## PageUpdateType
 
@@ -65,10 +173,10 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称                | 描述               |
-| ----------------- | ---------------- |
-| pageContentUpdate | 类型为字符串，表示页面内容刷新。 |
-| pageStateUpdate   | 类型为字符串，表示页面状态刷新。 |
+| 名称                | 类型                | 描述               |
+| ----------------- | ----------------- | ---------------- |
+| pageContentUpdate | string | 表示页面内容刷新。 |
+| pageStateUpdate   | string | 表示页面状态刷新。 |
 
 ## TouchGuideType
 
@@ -76,10 +184,10 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称         | 描述                  |
-| ---------- | ------------------- |
-| touchBegin | 类型为字符串，表示触摸浏览时开始触摸。 |
-| touchEnd   | 类型为字符串，表示触摸浏览时结束触摸。 |
+| 名称         | 类型                | 描述                  |
+| ---------- | ---------- | ------------------- |
+| touchBegin | string | 表示触摸浏览时开始触摸。 |
+| touchEnd   | string | 表示触摸浏览时结束触摸。 |
 
 ## AccessibilityExtensionAbility.onConnect
 
@@ -95,9 +203,9 @@ onConnect(): void;
 import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
 
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
-    onConnect(): void {
-        console.log('AxExtensionAbility onConnect');
-    }
+  onConnect(): void {
+    console.log('AxExtensionAbility onConnect');
+  }
 }
 ```
 
@@ -115,9 +223,9 @@ onDisconnect(): void;
 import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
 
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
-    onDisconnect(): void {
-        console.log('AxExtensionAbility onDisconnect');
-    }
+  onDisconnect(): void {
+    console.log('AxExtensionAbility onDisconnect');
+  }
 }
 ```
 
@@ -141,12 +249,12 @@ onAccessibilityEvent(event: AccessibilityEvent): void;
 import AccessibilityExtensionAbility , { AccessibilityEvent } from '@ohos.application.AccessibilityExtensionAbility';
 
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
-    onAccessibilityEvent(event: AccessibilityEvent): void {
-        console.log('AxExtensionAbility onAccessibilityEvent');
-        if (event.eventType === 'click') {
-            console.log('AxExtensionAbility onAccessibilityEvent: click');
-        }
+  onAccessibilityEvent(event: AccessibilityEvent): void {
+    console.log('AxExtensionAbility onAccessibilityEvent');
+    if (event.eventType === 'click') {
+      console.log('AxExtensionAbility onAccessibilityEvent: click');
     }
+  }
 }
 ```
 
@@ -162,7 +270,7 @@ onKeyEvent(keyEvent: KeyEvent): boolean;
 
 | 参数名      | 类型                                       | 必填   | 说明                      |
 | -------- | ---------------------------------------- | ---- | ----------------------- |
-| keyEvent | [KeyEvent](js-apis-keyevent.md#KeyEvent) | 是    | 按键事件回调函数。返回true表示拦截此按键。 |
+| keyEvent | [KeyEvent](js-apis-keyevent.md#keyevent) | 是    | 按键事件回调函数。返回true表示拦截此按键。 |
 
 **示例：**
 
@@ -171,13 +279,13 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 import { KeyEvent } from '@ohos.multimodalInput.keyEvent';
 
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
-    onKeyEvent(keyEvent: KeyEvent): boolean {
-        console.log('AxExtensionAbility onKeyEvent');
-        if (keyEvent.key.code === 16) {
-            console.log('AxExtensionAbility onKeyEvent: intercept 16');
-            return true;
-        }
-        return false;
+  onKeyEvent(keyEvent: KeyEvent): boolean {
+    console.log('AxExtensionAbility onKeyEvent');
+    if (keyEvent.key.code === 16) {
+      console.log('AxExtensionAbility onKeyEvent: intercept 16');
+      return true;
     }
+    return false;
+  }
 }
 ```

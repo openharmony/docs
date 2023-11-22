@@ -1,4 +1,4 @@
-# 媒体查询（mediaquery）
+# 媒体查询（@ohos.mediaquery）
 
 
 ## 概述

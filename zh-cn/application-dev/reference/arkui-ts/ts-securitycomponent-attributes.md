@@ -31,6 +31,10 @@
 | borderRadius | [Dimension](ts-types.md#dimension10) | 否 | 设置安全控件的边框圆角半径。|
 | padding | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | 否 | 设置安全控件的内边距。<br/>默认值：上下12vp, 左右24vp |
 | textIconSpace | [Dimension](ts-types.md#dimension10) | 否 | 设置安全控件中图标和文字的间距。<br/>默认值：4vp |
+| width<sup>11+</sup> | [Length](ts-types.md#length) | 否 | 设置安全控件自身的宽度，缺省时将根据元素内容自适配宽度。若设置宽度小于当前属性组合下允许的最小宽度时，宽度不会缩减到设置值，此时宽度会大于设置宽度，以保证安全控件显示的完整性。 |
+| height<sup>11+</sup> | [Length](ts-types.md#length) | 否 | 设置安全控件自身的高度，缺省时将根据元素内容自适配高度。若设置高度小于当前属性组合下允许的最小高度时，高度不会缩减到设置值，此时高度会大于设置高度，以保证安全控件显示的完整性。 |
+| size<sup>11+</sup> | {<br/>width?:&nbsp;[Length](ts-types.md#length),<br/>height?:&nbsp;[Length](ts-types.md#length)<br/>} | 否 | 设置高宽尺寸，缺省时将根据元素内容自适配高宽尺寸。若设置尺寸小于当前属性组合下允许的最小尺寸时，尺寸不会缩减到设置值，此时尺寸会大于设置尺寸，以保证安全控件显示的完整性|
+| constraintSize<sup>11+</sup> | {<br/>minWidth?:&nbsp;[Length](ts-types.md#length),<br/>maxWidth?:&nbsp;[Length](ts-types.md#length),<br/>minHeight?:&nbsp;[Length](ts-types.md#length),<br/>maxHeight?:&nbsp;[Length](ts-types.md#length)<br/>} | 否 | 设置约束尺寸，安全控件布局时，进行尺寸范围限制，constraintSize的优先级高于Width和Height。取值结果参考[constraintSize取值对width/height影响](ts-universal-attributes-size.md#constraintsize取值对widthheight影响)。<br> 同width/height一样，控件尺寸无法小于当前属性组合下的最小值，以保证安全控件显示的完整性。<br>默认值：<br>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>} |
 
 
 ## SecurityComponentLayoutDirection枚举说明
@@ -50,7 +54,7 @@
 struct Index {
   build() {
     Row() {
-      Column() {
+      Column({space:5}) {
         // 生成一个保存按钮，并设置它的SecurityComponent属性
         SaveButton()
           .fontSize(35)
@@ -66,6 +70,8 @@ struct Index {
           .padding({left:50, top:50, bottom:50, right:50})
           .textIconSpace(20)
           .backgroundColor(0x3282f6)
+        SaveButton().size({width:200, height:100})
+        SaveButton().constraintSize({maxWidth:60})
       }.width('100%')
     }.height('100%')
   }

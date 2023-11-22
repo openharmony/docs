@@ -37,6 +37,30 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): 
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是   | 表示启动的ability |
 | callback  | AsyncCallback\<void>                            | 是   | 以callback的形式返回启动Ability的结果  |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 1 | Get ability error. |
+| 202 | Parameter is invalid. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
 ```ts
@@ -53,7 +77,7 @@ particleAbility.startAbility(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: '',
             bundleName: 'com.example.Data',
-            abilityName: 'EntryAbility',
+            abilityName: 'com.example.Data.EntryAbility',
             uri: ''
         },
     },
@@ -92,6 +116,30 @@ startAbility(parameter: StartAbilityParameter): Promise\<void>
 | -------------- | ------------------------- |
 | Promise\<void> | Promise形式返回启动Ability的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 1 | Get ability error. |
+| 202 | Parameter is invalid. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
 ```ts
@@ -108,11 +156,11 @@ particleAbility.startAbility(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: '',
             bundleName: 'com.example.Data',
-            abilityName: 'EntryAbility',
+            abilityName: 'com.example.Data.EntryAbility',
             uri: ''
         },
     },
-).then((data) => {
+).then(() => {
     console.info('particleAbility startAbility');
 });
 ```
@@ -131,17 +179,29 @@ terminateSelf(callback: AsyncCallback\<void>): void
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback\<void> | 是   | 以callback的形式返回停止当前Ability结果 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+
 **示例：**
 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 
 particleAbility.terminateSelf(
-    (error, data) => {
+    (error) => {
         if (error && error.code !== 0) {
             console.error(`terminateSelf fail, error: ${JSON.stringify(error)}`);
-        } else {
-            console.log(`terminateSelf success, data: ${JSON.stringify(data)}`);
         }
     }
 );
@@ -161,12 +221,26 @@ terminateSelf(): Promise\<void>
 | -------------- | ------------------------- |
 | Promise\<void> | 使用Promise形式返回停止当前Ability结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+
 **示例：**
 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 
-particleAbility.terminateSelf().then((data) => {
+particleAbility.terminateSelf().then(() => {
 	console.info('particleAbility terminateSelf');
 });
 ```
@@ -226,6 +300,22 @@ startBackgroundRunning(id: number, request: NotificationRequest, callback: Async
   | id | number | 是 | 长时任务通知id号 |
   | request | [NotificationRequest](js-apis-notification.md#notificationrequest) | 是 | 通知参数，用于显示通知栏的信息 |
   | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动长时任务的结果 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| -102 | Failed to acquire ability object. |
+| -104 | Parameter is invalid. |
+| 201 | Permission denied. |
+| 202 | System API verification failed. Only system application can apply. |
+| 9800407 | The bgMode cannot be null and its type must be BackgroundMode object. |
+| 980000401 | Manager is not ready. |
+| 980000501 | Continuous task is already exist. |
+| 980000503 | Continuous Task verification failed. TASK_KEEPING background mode only supported in particular device. |
+| 980000504 | Continuous Task verification failed. The bgMode is invalid. |
+| 980000601 | Notification verification failed. The title or text of the notification cannot be empty. |
+| 980000603 | Continuous task param is null. |
 
  **示例**：
 
@@ -296,6 +386,22 @@ startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;voi
 | -------------- | ------------------------- |
 | Promise\<void> | 使用Promise形式返回启动长时任务的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| -102 | Failed to acquire ability object. |
+| -104 | Parameter is invalid. |
+| 201 | Permission denied. |
+| 202 | System API verification failed. Only system application can apply. |
+| 9800407 | The bgMode cannot be null and its type must be BackgroundMode object. |
+| 980000401 | Manager is not ready. |
+| 980000501 | Continuous task is already exist. |
+| 980000503 | Continuous Task verification failed. TASK_KEEPING background mode only supported in particular device. |
+| 980000504 | Continuous Task verification failed. The bgMode is invalid. |
+| 980000601 | Notification verification failed. The title or text of the notification cannot be empty. |
+| 980000603 | Continuous task param is null. |
+
 **示例**：
 
 ```ts
@@ -352,6 +458,17 @@ cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回取消长时任务的结果 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | The input param is invalid. |
+| 980000401 | Manager is not ready. |
+| 980000502 | Continuous Task verification failed. The application has applied for a continuous task. |
+| 980000602 | Notification verification failed. Failed to send or cancel the notification. |
+| 980000603 | Continuous task param is null. |
+
+
  **示例**：
 
 ```ts
@@ -383,6 +500,16 @@ cancelBackgroundRunning(): Promise&lt;void&gt;
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
 | Promise\<void> | 使用Promise形式返回取消长时任务的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | The input param is invalid. |
+| 980000401 | Manager is not ready. |
+| 980000502 | Continuous Task verification failed. The application has applied for a continuous task. |
+| 980000602 | Notification verification failed. Failed to send or cancel the notification. |
+| 980000603 | Continuous task param is null. |
 
  **示例**：
 
@@ -425,6 +552,25 @@ connectAbility(request: Want, options:ConnectOptions): number
 | ------ | -------------------- |
 | number | 连接的ServiceAbility的ID(ID从0开始自增，每连接成功一次ID加1)。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| -1   | Invalid parameter. |
+| -2   | Ability not found.|
+| -3   | Permission denied.|
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例**：
 
@@ -473,6 +619,17 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
   | connection | number               | 是    | 表示断开连接的ServiceAbility的ID。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回断开连接的结果 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| -102 | Failed to acquire ability object. |
+| -105 | Type of ability is invalid. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例**：
 
 ```ts
@@ -518,6 +675,17 @@ disconnectAbility(connection: number): Promise\<void>
 | connection | number               | 是    | 表示断开连接的ServiceAbility的ID。 |
 | Promise\<void> | 使用Promise形式返回结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| -102 | Failed to acquire ability object. |
+| -105 | Type of ability is invalid. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例**：
 
 ```ts
@@ -543,19 +711,10 @@ let connId = particleAbility.connectAbility(
     },
 );
 
-particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(`data: ${data}`);
+particleAbility.disconnectAbility(connId).then(() => {
+    console.log('disconnectAbility success');
 }).catch((error: BusinessError) => {
     console.error(`particleAbilityTest result errCode : ${error.code}`);
 });
 ```
 
-## ErrorCode
-
-表示错误码。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
-
-| 名称                          | 值   | 说明                                                         |
-| ----------------------------- | ---- | ------------------------------------------------------------ |
-| INVALID_PARAMETER         | -1    | 无效的参数。 |

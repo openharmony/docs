@@ -81,12 +81,19 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 | onAction | () => void | 否 | 组件进入长距删除区后删除ListItem时调用，进入长距删除区后抬手时触发。<br/>**说明：** <br/> 滑动后松手的位置超过或等于设置的距离阈值，并且设置的距离阈值有效时才会触发。|
 | onEnterActionArea | () => void | 否 | 在滑动条目进入删除区域时调用，只触发一次，当再次进入时仍触发。 |
 | onExitActionArea | () => void | 否 |当滑动条目退出删除区域时调用，只触发一次，当再次退出时仍触发。 |
-| builder |  CustomBuilder | 否 |当列表项向右或向右滑动（当列表方向为“垂直”时），向下或向下滑动（当列方向为“水平”时）时显示的操作项。 |
+| builder |  CustomBuilder | 否 |当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。 |
+| onStateChange<sup>11+</sup> | (swipeActionState) => void | 否 |当列表项滑动状态变化时候触发。 |
 ## ListItemOptions<sup>10+</sup>对象说明
 
 | 名称  | 参数类型                                  | 必填 | 描述                                                         |
 | ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | style | [ListItemStyle](#listitemstyle10枚举说明) | 否   | 设置List组件卡片样式。<br/>默认值: ListItemStyle.NONE<br/>设置为ListItemStyle.NONE时无样式。<br/>设置为ListItemStyle.CARD时，必须配合[ListItemGroup](ts-container-listitemgroup.md)的ListItemGroupStyle.CARD同时使用，显示默认卡片样式。  <br/>卡片样式下，ListItem默认规格：高度48vp，宽度100%。<br/>卡片样式下, 为卡片内的列表选项提供了默认的focus、hover、press、selected和disable样式。<br/>**说明：**<br/>当前卡片模式下，不支持listDirection属性设置，使用默认Axis.Vertical排列方向。<br/>当前卡片模式下，List属性alignListItem默认为ListItemAlign.Center，居中对齐显示。<br/>若仅设置ListItemStyle.CARD，未设置ListItemGroupStyle.CARD时，只显示部分卡片样式及功能。 |
+
+## SwipeActionOptions<sup>10+</sup>对象说明
+
+| 名称                         | 参数类型                 | 必填 | 描述                                                         |
+| ---------------------------- | ------------------------ | ---- | ------------------------------------------------------------ |
+| onOffsetChange<sup>11+</sup> | (offset: number) => void | 否   | 当列表项向右或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）位置发生变化触发，以vp为单位 |
 
 ## ListItemStyle<sup>10+</sup>枚举说明
 
@@ -94,6 +101,14 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 | ---- | ------------------ |
 | NONE | 无样式。           |
 | CARD | 显示默认卡片样式。 |
+
+## SwipeActionState<sup>11+</sup>枚举说明
+
+| 名称      | 描述                                                         |
+| --------- | ------------------------------------------------------------ |
+| COLLAPSED | 收起状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时操作项处于隐藏状态。 |
+| EXPANDED  | 展开状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时操作项处于显示状态。<br/>**说明：**<br/>需要ListItem设置向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。 |
+| ACTIONING | 长距离状态，当ListItem进入长距删除区后删除ListItem的状态。<br/>**说明**:<br/>滑动后松手的位置超过或等于设置的距离阈值，并且设置的距离阈值有效时才能进入该状态。 |
 
 ## 事件
 

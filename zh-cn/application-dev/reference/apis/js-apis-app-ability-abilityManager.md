@@ -72,7 +72,7 @@ const config: Configuration = {
 };
 
 try {
-    abilityManager.updateConfiguration(config, (err) => {
+    abilityManager.updateConfiguration(config, (err: BusinessError) => {
         if (err) {
             console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
         } else {
@@ -80,7 +80,9 @@ try {
         }
     });
 } catch (paramError) {
-    console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -138,7 +140,9 @@ try {
         console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -170,9 +174,10 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    abilityManager.getAbilityRunningInfos((err, data) => {
+    abilityManager.getAbilityRunningInfos((err: BusinessError, data: Array<AbilityRunningInfo>) => {
         if (err) {
             console.error(`getAbilityRunningInfos fail, error: ${JSON.stringify(err)}`);
         } else {
@@ -180,7 +185,9 @@ try {
         }
     });
 } catch (paramError) {
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -215,13 +222,15 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
 try {
-    abilityManager.getAbilityRunningInfos().then((data) => {
+    abilityManager.getAbilityRunningInfos().then((data: Array<AbilityRunningInfo>) => {
         console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
         console.error(`getAbilityRunningInfos fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -254,11 +263,12 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit, (err, data) => {
+    abilityManager.getExtensionRunningInfos(upperLimit, (err: BusinessError, data: Array<ExtensionRunningInfo>) => {
         if (err) {
             console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
         } else {
@@ -266,7 +276,9 @@ try {
         }
     });
 } catch (paramError) {
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -309,13 +321,15 @@ import { BusinessError } from '@ohos.base';
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
+    abilityManager.getExtensionRunningInfos(upperLimit).then((data: Array<ExtensionRunningInfo>) => {
         console.log(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
         console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -345,8 +359,9 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
-abilityManager.getTopAbility((err, data) => { 
+abilityManager.getTopAbility((err: BusinessError, data: AsyncCallback<ElementName>) => { 
     if (err) {
         console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -383,7 +398,7 @@ getTopAbility(): Promise\<ElementName>;
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
-abilityManager.getTopAbility().then((data) => {
+abilityManager.getTopAbility().then((data: AsyncCallback<ElementName>) => {
     console.log(`getTopAbility success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
@@ -422,7 +437,7 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
 try {
-    abilityManager.acquireShareData(1, (err, wantParam) => { 
+    abilityManager.acquireShareData(1, (err: BusinessError, wantParam: Record<string, Object>) => { 
         if (err) {
             console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
         } else {
@@ -430,9 +445,9 @@ try {
         }
     });
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 
 ```
@@ -474,15 +489,15 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
 try {
-    abilityManager.acquireShareData(1).then((wantParam) => {
+    abilityManager.acquireShareData(1).then((wantParam: Record<string, Object>) => {
     console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
     }).catch((err: BusinessError) => {
     console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -533,7 +548,7 @@ let abilityResult: common.AbilityResult = {
 };
 let requestCode = 1;
 try {
-  abilityManager.notifySaveAsResult(abilityResult, requestCode, (err) => {
+  abilityManager.notifySaveAsResult(abilityResult, requestCode, (err: BusinessError) => {
     if (err && err.code != 0) {
       console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -541,9 +556,9 @@ try {
     }
   });
 } catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -599,14 +614,119 @@ let abilityResult: common.AbilityResult = {
 };
 let requestCode = 1;
 try {
-  abilityManager.notifySaveAsResult(abilityResult, requestCode).catch((err) => {
+  abilityManager.notifySaveAsResult(abilityResult, requestCode).catch((err: BusinessError) => {
     console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
   }).then(() => {
     console.log(`notifySaveAsResult success`);
   });
 } catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
+}
+```
+
+## abilityManager.on<sup>11+</sup>
+
+on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): void
+
+注册Ability的启动和退出的观测器。
+
+**系统接口**：该接口为系统接口。
+
+**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 调用接口类型，固定填'abilityForegroundState'字符串。 |
+| observer | [AbilityForegroundStateObserver](./js-apis-inner-application-abilityForegroundStateObserver.md) | 是 | Ability状态观测器，用于观测Ability的启动和退出。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+
+let observer: abilityManager.AbilityForegroundStateObserver = {
+    onAbilityStateChanged(abilityStateData) {
+        console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    },
+};
+try {
+    abilityManager.on('abilityForegroundState', observer);
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message} `);
+}
+```
+
+## abilityManager.off<sup>11+</sup>
+
+off(type: 'abilityForegroundState', observer?: AppForegroundStateObserver): void
+
+取消注册Ability启动和退出的观测器。
+
+**系统接口**：该接口为系统接口。
+
+**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 调用接口类型，固定填'abilityForegroundState'字符串。 |
+| observer | [AbilityForegroundStateObserver](./js-apis-inner-application-abilityForegroundStateObserver.md) | 否 | Ability状态观测器，用于观测Ability的启动和退出。如果未配置该参数，则取消当前应用注册的所有observer。如果配置了该参数，则取消该observer。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+let observer_;
+// 1.注册应用启动和退出的监听器
+let observer: abilityManager.AbilityForegroundStateObserver = {
+    onAbilityStateChanged(abilityStateData) {
+        console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    },
+};
+try {
+    abilityManager.on('abilityForegroundState', observer);
+    observer_ = observer;
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message} `);
+}
+
+// 2.注销监听器
+try {
+    abilityManager.off('abilityForegroundState',  observer_);
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message} `);
 }
 ```

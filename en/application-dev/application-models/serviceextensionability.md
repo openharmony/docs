@@ -444,7 +444,7 @@ When a ServiceExtensionAbility is used to provide sensitive services, the client
 
 - **Verifying the client identity based on callerTokenId**
 
-  Call the [getCallingTokenId()](../reference/apis/js-apis-rpc.md#getcallingtokenid) method to obtain the token ID of the client, and then call the [verifyAccessTokenSync()](../reference/apis/js-apis-abilityAccessCtrl.md#verifyaccesstokensync) method to check whether the client has the required permission. Currently, OpenHarmony does not support permission customization. Therefore, only [system-defined permissions](../security/permission-list.md) can be verified. The sample code is as follows:
+  Call the [getCallingTokenId()](../reference/apis/js-apis-rpc.md#getcallingtokenid) method to obtain the token ID of the client, and then call the [verifyAccessTokenSync()](../reference/apis/js-apis-abilityAccessCtrl.md#verifyaccesstokensync) method to check whether the client has the required permission. Currently, the system does not support permission customization. Therefore, only [system-defined permissions](../security/permission-list.md) can be verified. The sample code is as follows:
 
   ```ts
   import rpc from '@ohos.rpc';

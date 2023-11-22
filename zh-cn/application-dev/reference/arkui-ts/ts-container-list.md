@@ -133,6 +133,14 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 | START  | 视图中的第一项将在列表的开头对齐。<br/>**说明：**<br/>当列表位移至末端，需要将末端的item完整显示，可能出现开头不对齐的情况。 |
 | CENTER | 视图中的中间项将在列表中心对齐。<br/>**说明：**<br/>顶端和末尾的item都可以在列表中心对齐，列表显示可能露出空白，第一个或最后一个item会对齐到中间位置。 |
 | END    | 视图中的最后一项将在列表末尾对齐。<br/>**说明：**<br/>当列表位移至顶端，需要将顶端的item完整显示，可能出现末尾不对齐的情况。 |
+## CloseAllSwipeActions<sup>11+</sup>对象说明
+
+收起[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态[ListItem](ts-container-listitem.md)回调事件集合，用于设置收起动画完成后回调事件。
+
+| 名称     | 类型     | 必填 | 说明                   |
+| :------- | -------- | ---- | ---------------------- |
+| onFinish | ()=>void | 否   | 在收起动画完成后触发。 |
+
 ## 事件
 
 | 名称                                       | 功能描述                                     |
@@ -231,6 +239,39 @@ getItemRectInGroup(index: number, indexInGroup: number): RectResult
 | 类型       | 说明       |
 | -------------------  | -------- |
 | [RectResult](ts-types.md#rectresult10) | ListItemGroup中的ListItem的大小和相对于List的位置。 |
+
+### scrollToItemInGroup<sup>11+</sup>
+
+scrollToItemInGroup(index: number, indexInGroup:number, smooth?: boolean, align?: ScrollAlign): void
+
+滑动到指定的ListItemGroup中指定的ListItem。
+
+开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。
+
+**参数：**
+
+| 参数名                | 参数类型 | 必填 | 参数描述                                                     |
+| --------------------- | -------- | ---- | ------------------------------------------------------------ |
+| index                 | number   | 是   | 要滑动到的目标元素所在的ListItemGroup在当前容器中的索引值。      <br/>**说明：** <br/>index值设置成负值或者大于当前容器子组件的最大索引值，视为异常值，本次跳转不生效。                     |
+| indexInGroup          | number   | 是   | 要滑动到的目标元素在index指定的ListItemGroup中的索引值。      <br/>**说明：** <br/>indexInGroup值设置成负值或者大于index指定的ListItemGroup容器子组件的最大索引值，视为异常值，本次跳转不生效。|
+| smooth                | boolean  | 否   | 设置滑动到列表项在列表中的索引值时是否有动效，true表示有动效，false表示没有动效。<br/>默认值：false。 |
+| align                 | [ScrollAlign](ts-container-scroll.md#scrollalign枚举说明10)  | 否   | 指定滑动到的元素与当前容器的对齐方式。<br/>默认值：ScrollAlign.START。 |
+
+### closeAllSwipeActions<sup>11+</sup>
+
+closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11对象说明)): void
+
+将[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态的[ListItem](ts-container-listitem.md)收起，并设置回调事件。
+
+**参数：**
+
+| 参数名  | 参数类型                                                   | 必填 | 参数描述                                                     |
+| ------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [CloseSwipeActionOptions](#closeallswipeactions11对象说明) | 否   | 收起[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态的[ListItem](ts-container-listitem.md)的回调事件集合。 |
+
+> **说明：**
+>
+> - ListScroller必须绑定到List组件上。
 
 ## 示例
 

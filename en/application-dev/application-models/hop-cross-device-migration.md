@@ -14,18 +14,18 @@ Cross-device migration supports the following features:
 
 - Checking application compatibility
 
-- Dynamically setting the migration state (**ACTIVE** by default) 
+- Dynamically setting the migration state (**ACTIVE** by default)
 
   For example, for an editing application, only the text editing page needs to be migrated to the target device. In this case, you can call [setMissionContinueState](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10) for precise control.
 
-- Determining whether to restore the page stack (restored by default) 
+- Determining whether to restore the page stack (restored by default)
 
   If an application wants to customize the page to be displayed after being migrated to the target device, you can use [SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantparams) for precise control.
 
-- Determining whether to exit the application on the source device after a successful migration (application exit by default) 
+- Determining whether to exit the application on the source device after a successful migration (application exit by default)
 
   You can use [SUPPORT_CONTINUE_SOURCE_EXIT_KEY](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantparams) for precise control.
-
+  
   > **NOTE**
   >
   > You only need to develop an application with the migration capabilities. System applications will trigger cross-device migration.
@@ -114,40 +114,40 @@ Cross-device migration supports the following features:
    The **launchReason** parameter in the [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant) callback specifies whether the launch is triggered by migration. If the launch is triggered by migration, you must obtain the saved data from **want** and call **restoreWindowStage()** to trigger page restoration, including page stack information, after data restoration.
    
    ```ts
-      import UIAbility from '@ohos.app.ability.UIAbility';
-      import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-      import Want from '@ohos.app.ability.Want';
-      
-      export default class EntryAbility extends UIAbility {
-        storage : LocalStorage = new LocalStorage();
-      
-        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-          console.info('EntryAbility onCreate')
-          if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
-            // Obtain the data saved.
-            let continueInput = '';
-            if (want.parameters != undefined) {
-              continueInput = JSON.stringify(want.parameters.data);
-              console.info(`continue input ${continueInput}`)
-            }
-            // Display the data on the current page.
-            this.context.restoreWindowStage(this.storage);
-          }
-        }
-      
-        onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-           console.info('EntryAbility onNewWant')
-           if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
-             // Obtain the user data from the want parameter.
-             let continueInput = '';
-             if (want.parameters != undefined) {
-               continueInput = JSON.stringify(want.parameters.data);
-               console.info(`continue input ${continueInput}`);
-             }
-             this.context.restoreWindowStage(this.storage);
-           }
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import Want from '@ohos.app.ability.Want';
+   
+   export default class EntryAbility extends UIAbility {
+     storage : LocalStorage = new LocalStorage();
+   
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+       console.info('EntryAbility onCreate')
+       if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+         // Obtain the data saved.
+         let continueInput = '';
+         if (want.parameters != undefined) {
+           continueInput = JSON.stringify(want.parameters.data);
+           console.info(`continue input ${continueInput}`)
          }
+         // Display the data on the current page.
+         this.context.restoreWindowStage(this.storage);
+       }
+     }
+   
+     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        console.info('EntryAbility onNewWant')
+        if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+          // Obtain the user data from the want parameter.
+          let continueInput = '';
+          if (want.parameters != undefined) {
+            continueInput = JSON.stringify(want.parameters.data);
+            console.info(`continue input ${continueInput}`);
+          }
+          this.context.restoreWindowStage(this.storage);
+        }
       }
+   }
    ```
 
 ## Configuring Optional Migration Features
@@ -337,7 +337,7 @@ Download the mission center demo from [Sample Code](https://gitee.com/openharmon
 
 #### Building Project Files
 
-a. Create an empty OpenHarmony project and replace the corresponding folders with the downloaded files. 
+a. Create an empty project and replace the corresponding folders with the downloaded files.
 
 ![hop-cross-device-migration](figures/hop-cross-device-migration1.png)
 

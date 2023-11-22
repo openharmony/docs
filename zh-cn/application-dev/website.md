@@ -22,8 +22,7 @@
       - 共享包
         - [共享包概述](quick-start/shared-guide.md)
         - [HAR](quick-start/har-package.md)
-        - HSP
-          - [应用内HSP开发指导](quick-start/in-app-hsp.md)
+        - [HSP](quick-start/in-app-hsp.md)        
       - 应用程序包快速修复
         - [快速修复概述](quick-start/quickfix-principles.md)
         - [快速修复命令行调试开发指导](quick-start/quickfix-debug.md)
@@ -78,7 +77,6 @@
         - [MVVM模式](quick-start/arkts-mvvm.md)
         - [状态管理优秀实践](quick-start/arkts-state-management-best-practices.md)
       - 渲染控制
-        - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
         - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
         - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
@@ -260,7 +258,7 @@
           - [弹性布局（Flex）](ui/arkts-layout-development-flex-layout.md)
           - [相对布局（RelativeContainer）](ui/arkts-layout-development-relative-layout.md)
           - [栅格布局（GridRow/GridCol）](ui/arkts-layout-development-grid-layout.md)
-          - [媒体查询（mediaquery）](ui/arkts-layout-development-media-query.md)
+          - [媒体查询（@ohos.mediaquery）](ui/arkts-layout-development-media-query.md)
           - [创建列表（List）](ui/arkts-layout-development-create-list.md)
           - [创建网格（Grid/GridItem）](ui/arkts-layout-development-create-grid.md)
           - [创建轮播（Swiper）](ui/arkts-layout-development-create-looping.md)
@@ -279,10 +277,10 @@
           - [气泡提示（Popup）](ui/arkts-popup-and-menu-components-popup.md)
           - [菜单（Menu）](ui/arkts-popup-and-menu-components-menu.md)
       - 设置页面路由和组件导航
-        - [页面路由（router）](ui/arkts-routing.md)
         - 组件导航
           - [Navigation](ui/arkts-navigation-navigation.md)
           - [Tabs](ui/arkts-navigation-tabs.md)
+        - [页面路由（@ohos.router）](ui/arkts-routing.md)
       - 显示图形
         - [显示图片（Image）](ui/arkts-graphics-display.md)
         - [绘制几何图形（Shape）](ui/arkts-geometric-shape-drawing.md)
@@ -753,6 +751,7 @@
       - [Swiper高性能开发指导](performance/swiper_optimization.md)
       - [合理进行状态管理](performance/proper_state_management.md)
       - [精准控制组件的更新范围](performance/precisely-control-render-scope.md)
+      - [合理使用renderGroup](performance/reasonable-using-renderGroup.md)
       - [减少动画丢帧](performance/reduce-animation-frame-loss.md)
     - 提升应用启动和响应速度
       - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
@@ -761,6 +760,7 @@
       - [优化布局性能](performance/reduce-view-nesting-levels.md)
       - [合理选择条件渲染和显隐控制](performance/proper-choice-between-if-and-visibility.md)
       - [合理使用IPC通信](performance/reasonable-using-ipc.md)
+      - [文件上传下载性能提升指导](performance/improve-file-upload-and-download-performance.md)
       - [减少首帧绘制时的冗余操作](performance/reduce-redundant-operations-when-render-first-frame.md)
       - [列表场景性能提升实践](performance/list-perf-improvment.md)
       - [动效能力实践](performance/animation_practice.md)
@@ -768,6 +768,7 @@
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
       - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)
+      - [性能优化工具SmartPerf-Host](performance/performance-optimization-using-smartperf-host.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具
@@ -782,7 +783,7 @@
     - [LLDB调试器使用指导](tools/lldb-tool.md)
 - 示例教程
   - [开发案例](https://gitee.com/openharmony/docs/blob/master/zh-cn/third-party-cases/Readme-CN.md)
-  - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
+  - [示例代码](Samples.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
   - [系统能力SystemCapability使用指南](reference/syscap.md)
@@ -1501,23 +1502,24 @@
       - [PasteButton](reference/arkui-ts/ts-security-components-pastebutton.md)
       - [SaveButton](reference/arkui-ts/ts-security-components-savebutton.md)
     - 动画
-      - [属性动画](reference/arkui-ts/ts-animatorproperty.md)
-      - [显式动画](reference/arkui-ts/ts-explicit-animation.md)
+      - [属性动画（animation）](reference/arkui-ts/ts-animatorproperty.md)
+      - [显式动画（animateTo）](reference/arkui-ts/ts-explicit-animation.md)
       - 转场动画
-        - [页面间转场](reference/arkui-ts/ts-page-transition-animation.md)
-        - [组件内转场](reference/arkui-ts/ts-transition-animation-component.md)
-        - [共享元素转场](reference/arkui-ts/ts-transition-animation-shared-elements.md)
-        - [组件内隐式共享元素转场](reference/arkui-ts/ts-transition-animation-geometrytransition.md)
-      - [路径动画](reference/arkui-ts/ts-motion-path-animation.md)
+        - [页面间转场（pageTransition）](reference/arkui-ts/ts-page-transition-animation.md)
+        - [组件内转场（transition）](reference/arkui-ts/ts-transition-animation-component.md)
+        - [共享元素转场（sharedTransition）](reference/arkui-ts/ts-transition-animation-shared-elements.md)
+        - [组件内隐式共享元素转场（geometryTransition）](reference/arkui-ts/ts-transition-animation-geometrytransition.md)
+      - [路径动画（motionPath）](reference/arkui-ts/ts-motion-path-animation.md)
+      - [粒子动画（Particle）](reference/arkui-ts/ts-particle-animation.md)
     - 全局UI方法
       - 弹窗
-        - [警告弹窗](reference/arkui-ts/ts-methods-alert-dialog-box.md)
-        - [列表选择弹窗](reference/arkui-ts/ts-methods-action-sheet.md)
-        - [自定义弹窗](reference/arkui-ts/ts-methods-custom-dialog-box.md)
-        - [日历选择器弹窗](reference/arkui-ts/ts-methods-calendarpicker-dialog.md)
-        - [日期滑动选择器弹窗](reference/arkui-ts/ts-methods-datepicker-dialog.md)
-        - [时间滑动选择器弹窗](reference/arkui-ts/ts-methods-timepicker-dialog.md)
-        - [文本滑动选择器弹窗](reference/arkui-ts/ts-methods-textpicker-dialog.md)
+        - [警告弹窗（AlertDialog）](reference/arkui-ts/ts-methods-alert-dialog-box.md)
+        - [列表选择弹窗（ActionSheet）](reference/arkui-ts/ts-methods-action-sheet.md)
+        - [自定义弹窗（CustomDialog）](reference/arkui-ts/ts-methods-custom-dialog-box.md)
+        - [日历选择器弹窗（CalendarPickerDialog）](reference/arkui-ts/ts-methods-calendarpicker-dialog.md)
+        - [日期滑动选择器弹窗（DatePickerDialog）](reference/arkui-ts/ts-methods-datepicker-dialog.md)
+        - [时间滑动选择器弹窗（TimePickerDialog）](reference/arkui-ts/ts-methods-timepicker-dialog.md)
+        - [文本滑动选择器弹窗（TextPickerDialog）](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [菜单](reference/arkui-ts/ts-methods-menu.md)
     - [自定义组件的生命周期](reference/arkui-ts/ts-custom-component-lifecycle.md)
     - [应用级变量的状态管理](reference/arkui-ts/ts-state-management.md)

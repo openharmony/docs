@@ -1,10 +1,10 @@
-# 相机拍照指导(Native)
+# 拍照(Native)
 
 拍照是相机的最重要功能之一，拍照模块基于相机复杂的逻辑，为了保证用户拍出的照片质量，在中间步骤可以设置分辨率、闪光灯、焦距、照片质量及旋转角度等信息。
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../reference/apis/js-apis-camera.md)。
+详细的API说明请参考[Camera API参考]。
 
 1. 导入image接口。创建拍照输出流的SurfaceId以及拍照输出的数据，都需要用到系统提供的image接口能力，导入image接口的方法如下。
      
@@ -233,7 +233,7 @@
     }
   ```
 
-- 通过注册固定的onFrameEnd回调函数获取监听拍照结束结果，photoOutput创建成功时即可监听，该事件返回结果为拍照完全结束后的相关信息[CaptureEndInfo](../reference/apis/js-apis-camera.md#captureendinfo)。
+- 通过注册固定的onFrameEnd回调函数获取监听拍照结束结果，photoOutput创建成功时即可监听，该事件返回结果为拍照完全结束后的相关信息[Camera_CaptureEndInfo]。
     
   ```c++
     void PhotoOutputOnFrameEnd(Camera_PhotoOutput* photoOutput, int32_t frameCount)
@@ -242,7 +242,7 @@
     }
   ```
 
-- 通过注册固定的onError回调函数获取监听拍照输出流的错误结果。callback返回拍照输出接口使用错误时的对应错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
+- 通过注册固定的onError回调函数获取监听拍照输出流的错误结果。callback返回拍照输出接口使用错误时的对应错误码，错误码类型参见[Camera_ErrorCode]。
     
   ```c++
     void PhotoOutputOnError(Camera_PhotoOutput* photoOutput, Camera_ErrorCode errorCode)
@@ -250,3 +250,8 @@
         OH_LOG_INFO(LOG_APP, "PhotoOutput errorCode = %{public}d", errorCode);
     }
   ```
+
+## 相关实例
+
+针对拍照，有以下相关实例可供参考：
+- [拍照(Native)](https://gitee.com/openharmony/multimedia_camera_framework/tree/master/frameworks/native/camera/test/ndktest/camera_ndk_demo)
