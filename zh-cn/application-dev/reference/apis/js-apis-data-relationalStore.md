@@ -1235,7 +1235,7 @@ predicates.glob("NAME", "?h*g");
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-将谓词配置为匹配数据字段为ValueType且value在给定范围内的指定字段。
+配置谓词以匹配数据表的field列中值在给定范围内的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 

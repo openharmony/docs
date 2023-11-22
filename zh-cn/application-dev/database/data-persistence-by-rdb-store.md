@@ -53,7 +53,7 @@
 
 ## 开发步骤
 
-1. 使用关系型数据库实现数据持久化，需要获取一个RdbStore，其中包括建库，建表，升降级等操作。示例代码如下所示：
+1. 使用关系型数据库实现数据持久化，需要获取一个RdbStore，其中包括建库、建表、升降级等操作。示例代码如下所示：
 
    Stage模型示例：
      
@@ -63,6 +63,7 @@
    import { BusinessError } from '@ohos.base';
    import window from '@ohos.window';
 
+   // 此处示例在Ability中实现，使用者也可以在其他合理场景中使用
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        const STORE_CONFIG :relationalStore.StoreConfig= {
