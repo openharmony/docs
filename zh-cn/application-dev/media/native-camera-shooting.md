@@ -195,7 +195,7 @@
    ```c++
     Camera_PhotoCaptureSetting* photoSetting = nullptr;
     photoSetting->quality = QUALITY_LEVEL_HIGH; // 设置图片质量高
-    photoSetting->rotation = IAMGE_ROTATION_0; // 设置图片旋转角度0
+    photoSetting->rotation = IMAGE_ROTATION_0; // 设置图片旋转角度0
 
     // 使用当前拍照设置进行拍照
     ret = OH_PhotoOutput_Capture_WithCaptureSetting(photoOutput, photoSetting);
