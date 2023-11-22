@@ -305,7 +305,7 @@ deleteSpans(value?: RichEditorRange): void
 
 ### getParagraphs<sup>11+</sup>
 
-getParagraphs(value?: RichEditorRange): Array<RichEditorParagraphResult>;
+getParagraphs(value?: RichEditorRange): Array\<RichEditorParagraphResult>
 
 获得指定返回的段落。
 
@@ -319,7 +319,7 @@ getParagraphs(value?: RichEditorRange): Array<RichEditorParagraphResult>;
 
 | 类型                      | 说明               |
 | ----------------------- | ---------------- |
-| Array<[RichEditorParagraphResult](#richeditorparagraphresult11) | 选中段落的信息。 |
+| Array\<[RichEditorParagraphResult](#richeditorparagraphresult11) | 选中段落的信息。 |
 
 ### closeSelectionMenu
 
