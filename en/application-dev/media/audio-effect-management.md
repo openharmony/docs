@@ -54,12 +54,12 @@ Before obtaining or setting the audio effect mode, you must call **createAudioRe
 
   ```ts
   import { BusinessError } from '@ohos.base';  
-  audioRenderer.getAudioEffectMode((err: BusinessError, effectmode: audio.AudioEffectMode) => {
+  audioRenderer.getAudioEffectMode((err: BusinessError, effectMode: audio.AudioEffectMode) => {
     if (err) {
       console.error(`Failed to get params, code is ${err.code}, message is ${err.message}`);
       return;    
     } else {
-      console.info(`getAudioEffectMode: ${effectmode}`);
+      console.info(`getAudioEffectMode: ${effectMode}`);
     }
   });
   ```
