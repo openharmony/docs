@@ -772,7 +772,34 @@ accessibility.isOpenAccessibility((err: BusinessError<void>, data: boolean) => {
 });
 ```
 
-## accessibility.isOpenTouchGuide
+## accessibility.isOpenAccessibilitySync<sup>10+</sup>
+
+isOpenAccessibilitySync(): boolean
+
+Checks whether accessibility is enabled.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Return value**
+
+| Type       | Description                                 |
+| ----------- | ------------------------------------- |
+| boolean&gt; | Returns **true** if accessibility is enabled; returns **false** otherwise.|
+
+**Example**
+
+```ts
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+try {
+    let status: boolean = accessibility.isOpenAccessibilitySync();
+} catch (exception) {
+    console.error('failed to isOpenAccessibilitySync because ' + JSON.stringify(exception));
+}
+```
+
+## accessibility.isOpenTouchGuide<sup>(deprecated)</sup>
 
 isOpenTouchGuide(): Promise&lt;boolean&gt;
 
@@ -825,6 +852,33 @@ accessibility.isOpenTouchGuide((err: BusinessError<void>, data: boolean) => {
     }
     console.info('success data:isOpenTouchGuide : ' + JSON.stringify(data))
 });
+```
+
+## accessibility.isOpenTouchGuideSync<sup>10+</sup>
+
+isOpenTouchGuideSync(): boolean
+
+Checks whether touch guide mode is enabled.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Vision
+
+**Return value**
+
+| Type   | Description                                 |
+| ------- | ------------------------------------- |
+| boolean | Returns **true** if touch guide mode is enabled; returns **false** otherwise.|
+
+**Example**
+
+```ts
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+try {
+    let status: boolean = accessibility.isOpenTouchGuideSync();
+} catch (exception) {
+    console.error('failed to isOpenTouchGuideSync because ' + JSON.stringify(exception));
+}
 ```
 
 ## accessibility.sendEvent<sup>(deprecated)</sup>
@@ -887,7 +941,7 @@ Sends an accessibility event. This API uses an asynchronous callback to return t
 | Name     | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | event    | [EventInfo](#eventinfo)   | Yes   | Accessibility event.                                 |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation fails, **error** that contains data is returned.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation fails, **err** that contains data is returned.|
 
 **Example**
 
@@ -963,7 +1017,7 @@ Sends an accessibility event. This API uses an asynchronous callback to return t
 | Name     | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | event    | [EventInfo](#eventinfo)   | Yes   | Accessibility event.                                 |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation fails, **error** that contains data is returned.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation fails, **err** that contains data is returned.|
 
 **Example**
 
@@ -977,7 +1031,7 @@ let eventInfo: accessibility.EventInfo = ({
   triggerAction: 'click'
 });
 try {
-    accessibility.sendEvent(eventInfo, (err: BusinessError<void>) => {
+    accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError<void>) => {
         if (err) {
             console.error('failed to send event because ' + JSON.stringify(err));
             return;

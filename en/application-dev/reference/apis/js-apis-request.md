@@ -91,7 +91,7 @@ Uploads files. This API uses a promise to return the result. You can use [on('co
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the **UploadTask** object.|
+  | Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the upload task.|
 
 **Error codes**
 
@@ -282,7 +282,7 @@ Implements file uploads. Before using any APIs of this class, you must obtain an
 
 on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; void): void
 
-Subscribes to upload progress events. This API uses a callback to return the result synchronously.
+Subscribes to upload progress events. This API uses a callback to return the result asynchronously.
 
 > **NOTE**
 >
@@ -320,7 +320,7 @@ Subscribes to upload progress events. This API uses a callback to return the res
 
 on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
-Subscribes to HTTP header events for an upload task. This API uses a callback to return the result synchronously.
+Subscribes to HTTP header events for the upload task. This API uses a callback to return the result asynchronously.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -353,7 +353,7 @@ Subscribes to HTTP header events for an upload task. This API uses a callback to
 
  on(type:'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
-Subscribes to upload completion or failure events. This API uses a callback to return the result synchronously.
+Subscribes to upload completion or failure events. This API uses a callback to return the result asynchronously.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -411,10 +411,18 @@ Unsubscribes from upload progress events. This API uses a callback to return the
 **Example**
 
   ```ts
-  let upProgressCallback = (uploadedSize: number, totalSize: number) => {
+  let upProgressCallback1 = (uploadedSize: number, totalSize: number) => {
     console.info('Upload delete progress notification.' + 'totalSize:' + totalSize + 'uploadedSize:' + uploadedSize);
   };
-  uploadTask.off('progress', upProgressCallback);
+  let upProgressCallback2 = (uploadedSize: number, totalSize: number) => {
+    console.info('Upload delete progress notification.' + 'totalSize:' + totalSize + 'uploadedSize:' + uploadedSize);
+  };
+  uploadTask.on('progress', upProgressCallback1);
+  uploadTask.on('progress', upProgressCallback2);
+  // Unsubscribe from upProgressCallback1.
+  uploadTask.off('progress', upProgressCallback1);
+  // Unsubscribe from all callbacks of upload progress events.
+  uploadTask.off('progress');
   ```
 
 
@@ -422,7 +430,7 @@ Unsubscribes from upload progress events. This API uses a callback to return the
 
 off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
-Unsubscribes from HTTP header events for an upload task. This API uses a callback to return the result synchronously.
+Unsubscribes from HTTP header events for the upload task. This API returns the result asynchronously.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -438,17 +446,25 @@ Unsubscribes from HTTP header events for an upload task. This API uses a callbac
 **Example**
 
   ```ts
-  let headerCallback = (header: object) => {
+  let headerCallback1 = (header: object) => {
     console.info(`Upload delete headerReceive notification. header: ${JSON.stringify(header)}`);
   };
-  uploadTask.off('headerReceive', headerCallback);
+  let headerCallback2 = (header: object) => {
+    console.info(`Upload delete headerReceive notification. header: ${JSON.stringify(header)}`);
+  };
+  uploadTask.on('headerReceive', headerCallback1);
+  uploadTask.on('headerReceive', headerCallback2);
+  // Unsubscribe from headerCallback1.
+  uploadTask.off('headerReceive', headerCallback1);
+  // Unsubscribe from all callbacks of the HTTP header events for the upload task.
+  uploadTask.off('headerReceive');
   ```
 
 ### off('complete' | 'fail')<sup>9+</sup>
 
  off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
-Unsubscribes from upload completion or failure events. This API uses a callback to return the result synchronously.
+Unsubscribes from upload completion or failure events. This API returns the result asynchronously.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -464,21 +480,43 @@ Unsubscribes from upload completion or failure events. This API uses a callback 
 **Example**
 
   ```ts
-  let upCompleteCallback = (taskStates: Array<request.TaskState>) => {
+  let upCompleteCallback1 = (taskStates: Array<request.TaskState>) => {
     console.info('Upload delete complete notification.');
     for (let i = 0; i < taskStates.length; i++) {
       console.info('taskState:' + JSON.stringify(taskStates[i]));
     }
   };
-  uploadTask.off('complete', upCompleteCallback);
+  let upCompleteCallback2 = (taskStates: Array<request.TaskState>) => {
+    console.info('Upload delete complete notification.');
+    for (let i = 0; i < taskStates.length; i++) {
+      console.info('taskState:' + JSON.stringify(taskStates[i]));
+    }
+  };
+  uploadTask.on('complete', upCompleteCallback1);
+  uploadTask.on('complete', upCompleteCallback2);
+  // Unsubscribe from headerCallback1.
+  uploadTask.off('complete', upCompleteCallback1);
+  // Unsubscribe from all callbacks of the upload completion events.
+  uploadTask.off('complete');
 
-  let upFailCallback = (taskStates: Array<request.TaskState>) => {
+  let upFailCallback1 = (taskStates: Array<request.TaskState>) => {
     console.info('Upload delete fail notification.');
     for (let i = 0; i < taskStates.length; i++) {
       console.info('taskState:' + JSON.stringify(taskStates[i]));
     }
   };
-  uploadTask.off('fail', upFailCallback);
+  let upFailCallback2 = (taskStates: Array<request.TaskState>) => {
+    console.info('Upload delete fail notification.');
+    for (let i = 0; i < taskStates.length; i++) {
+      console.info('taskState:' + JSON.stringify(taskStates[i]));
+    }
+  };
+  uploadTask.on('fail', upFailCallback1);
+  uploadTask.on('fail', upFailCallback2);
+  // Unsubscribe from headerCallback1.
+  uploadTask.off('fail', upFailCallback1);
+  // Unsubscribe from all callbacks of the upload failure events.
+  uploadTask.off('fail');
   ```
 
 ### delete<sup>9+</sup>
@@ -494,7 +532,7 @@ Deletes this upload task. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the task removal result. It returns **true** if the operation is successful and returns **false** otherwise.|
+| Promise&lt;boolean&gt; | Promise used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
 
 **Example**
 
@@ -521,7 +559,7 @@ Deletes this upload task. This API uses an asynchronous callback to return the r
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
 
 **Example**
 
@@ -585,7 +623,7 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task removal result. It returns **true** if the operation is successful and returns **false** otherwise.|
 
 **Example**
 
@@ -878,10 +916,10 @@ Subscribes to download progress events. This API uses a callback to return the r
 **Example**
 
   ```ts
-  let progresCallback = (receivedSize: number, totalSize: number) => {
+  let progressCallback = (receivedSize: number, totalSize: number) => {
     console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   };
-  downloadTask.on('progress', progresCallback);
+  downloadTask.on('progress', progressCallback);
   ```
 
 
@@ -889,7 +927,7 @@ Subscribes to download progress events. This API uses a callback to return the r
 
 off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt; void): void
 
-Unsubscribes from download progress events. This API uses a callback to return the result synchronously.
+Unsubscribes from download progress events. This API returns the result asynchronously.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -905,10 +943,18 @@ Unsubscribes from download progress events. This API uses a callback to return t
 **Example**
 
   ```ts
-  let progresCallback = (receivedSize: number, totalSize: number) => {
+  let progressCallback1 = (receivedSize: number, totalSize: number) => {
     console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
   };
-  downloadTask.off('progress', progresCallback);
+  let progressCallback2 = (receivedSize: number, totalSize: number) => {
+    console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
+  };
+  downloadTask.on('progress', progressCallback1);
+  downloadTask.on('progress', progressCallback2);
+  // Unsubscribe from progressCallback1.
+  downloadTask.off('progress', progressCallback1);
+  // Unsubscribe from all callbacks of download progress events.
+  downloadTask.off('progress');
   ```
 
 
@@ -916,7 +962,7 @@ Unsubscribes from download progress events. This API uses a callback to return t
 
 on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
-Subscribes to download events. This API uses an asynchronous callback to return the result.
+Subscribes to download events. This API uses a callback to return the result asynchronously.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -953,7 +999,7 @@ Subscribes to download events. This API uses an asynchronous callback to return 
 
 off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 
-Unsubscribes from download events. This API uses a callback to return the result synchronously.
+Unsubscribes from download events. This API returns the result asynchronously.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -969,20 +1015,44 @@ Unsubscribes from download events. This API uses a callback to return the result
 **Example**
 
   ```ts
-  let completeCallback = () => {
+  let completeCallback1 = () => {
     console.info('Download delete complete notification.');
   };
-  downloadTask.off('complete', completeCallback);
+  let completeCallback2 = () => {
+    console.info('Download delete complete notification.');
+  };
+  downloadTask.on('complete', completeCallback1);
+  downloadTask.on('complete', completeCallback2);
+  // Unsubscribe from completeCallback1.
+  downloadTask.off('complete', completeCallback1);
+  // Unsubscribe from all callbacks of the download completion events.
+  downloadTask.off('complete');
 
-  let pauseCallback = () => {
+  let pauseCallback1 = () => {
     console.info('Download delete pause notification.');
   };
-  downloadTask.off('pause', pauseCallback);
+  let pauseCallback2 = () => {
+    console.info('Download delete pause notification.');
+  };
+  downloadTask.on('pause', pauseCallback1);
+  downloadTask.on('pause', pauseCallback2);
+  // Unsubscribe from pauseCallback1.
+  downloadTask.off('pause', pauseCallback1);
+  // Unsubscribe from all callbacks of the download pause events.
+  downloadTask.off('pause');
 
-  let removeCallback = () => {
+  let removeCallback1 = () => {
     console.info('Download delete remove notification.');
   };
-  downloadTask.off('remove', removeCallback);
+  let removeCallback2 = () => {
+    console.info('Download delete remove notification.');
+  };
+  downloadTask.on('remove', removeCallback1);
+  downloadTask.on('remove', removeCallback2);
+  // Unsubscribe from removeCallback1.
+  downloadTask.off('remove', removeCallback1);
+  // Unsubscribe from all callbacks of the download removal events.
+  downloadTask.off('remove');
   ```
 
 
@@ -990,7 +1060,7 @@ Unsubscribes from download events. This API uses a callback to return the result
 
 on(type: 'fail', callback: (err: number) =&gt; void): void
 
-Subscribes to download failure events. This API uses a callback to return the result synchronously.
+Subscribes to download failure events. This API uses a callback to return the result asynchronously.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1023,7 +1093,7 @@ Subscribes to download failure events. This API uses a callback to return the re
 
 off(type: 'fail', callback?: (err: number) =&gt; void): void
 
-Unsubscribes from download failure events. This API uses a callback to return the result synchronously.
+Unsubscribes from download failure events. This API returns the result asynchronously.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1039,17 +1109,25 @@ Unsubscribes from download failure events. This API uses a callback to return th
 **Example**
 
   ```ts
-  let failCallback = (err: number) => {
+  let failCallback1 = (err: number) => {
     console.error(`Failed to download the task. Code: ${err}`);
   };
-  downloadTask.off('fail', failCallback);
+  let failCallback2 = (err: number) => {
+    console.error(`Failed to download the task. Code: ${err}`);
+  };
+  downloadTask.on('fail', failCallback1);
+  downloadTask.on('fail', failCallback2);
+  // Unsubscribe from failCallback1.
+  downloadTask.off('fail', failCallback1);
+  // Unsubscribe from all callbacks of the download failure events.
+  downloadTask.off('fail');
   ```
 
 ### delete<sup>9+</sup>
 
 delete(): Promise&lt;boolean&gt;
 
-Removes this download task. This API uses a promise to return the result.
+Deletes this download task. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1059,7 +1137,7 @@ Removes this download task. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the task removal result.|
+| Promise&lt;boolean&gt; | Promise used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
 
 **Example**
 
@@ -1086,7 +1164,7 @@ Deletes this download task. This API uses an asynchronous callback to return the
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result. It returns **true** if the operation is successful and returns **false** otherwise.|
 
 **Example**
 
@@ -1374,7 +1452,7 @@ Removes this download task. This API uses an asynchronous callback to return the
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task removal result.|
 
 **Example**
 
@@ -1883,7 +1961,7 @@ Task attributes include the task ID and task configuration.
 
 on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
-Subscribes to task progress events.
+Subscribes to task progress events. This API uses a callback to return the result asynchronously.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -1954,7 +2032,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
-Subscribes to task completion events.
+Subscribes to task completion events. This API uses a callback to return the result asynchronously.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2025,7 +2103,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
-Subscribes to task failure events.
+Subscribes to task failure events. This API uses a callback to return the result asynchronously.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2097,7 +2175,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from task progress events.
+Unsubscribes from task progress events. This API returns the result asynchronously.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2149,12 +2227,19 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  let createOffCallback = (progress: request.agent.Progress) => {
+  let createOffCallback1 = (progress: request.agent.Progress) => {
+    console.info('upload task progress.');
+  };
+  let createOffCallback2 = (progress: request.agent.Progress) => {
     console.info('upload task progress.');
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
-    task.on('progress', createOffCallback);
-    task.off('progress', createOffCallback);
+    task.on('progress', createOffCallback1);
+    task.on('progress', createOffCallback2);
+    // Unsubscribe from createOffCallback1.
+    task.off('progress', createOffCallback1);
+    // Unsubscribe from all callbacks of foreground task progress changes.
+    task.off('progress');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -2169,7 +2254,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from task completion events.
+Unsubscribes from task completion events. This API returns the result asynchronously.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2221,12 +2306,19 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  let createOffCallback = (progress: request.agent.Progress) => {
+  let createOffCallback1 = (progress: request.agent.Progress) => {
+    console.info('upload task completed.');
+  };
+  let createOffCallback2 = (progress: request.agent.Progress) => {
     console.info('upload task completed.');
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
-    task.on('completed', createOffCallback);
-    task.off('completed', createOffCallback);
+    task.on('completed', createOffCallback1);
+    task.on('completed', createOffCallback2);
+    // Unsubscribe from createOffCallback1.
+    task.off('completed', createOffCallback1);
+    // Unsubscribe from all callbacks of the foreground task completion event.
+    task.off('completed');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -2241,7 +2333,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from task failure events.
+Unsubscribes from task failure events. This API returns the result asynchronously.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2293,12 +2385,24 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
     precise: false,
     token: "it is a secret"
   };
-  let createOffCallback = (progress: request.agent.Progress) => {
+  let createOffCallback1 = (progress: request.agent.Progress) => {
+    console.info('upload task failed.');
+  };
+  let createOffCallback2 = (progress: request.agent.Progress) => {
     console.info('upload task failed.');
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
-    task.on('failed', createOffCallback);
-    task.off('failed', createOffCallback);
+    task.on('failed', createOffCallback1);
+    task.on('failed', createOffCallback2);
+    // Unsubscribe from createOffCallback1.
+    task.off('failed', createOffCallback1);
+    // Unsubscribe from all callbacks of the foreground task failure event.
+    task.off('failed');
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
