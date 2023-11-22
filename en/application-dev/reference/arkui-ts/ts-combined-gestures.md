@@ -15,7 +15,7 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 | Name    | Type                                    | Mandatory  | Description                          |
 | ------- | ---------------------------------------- | ---- | ------------------------------ |
 | mode    | [GestureMode](#gesturemode)          | Yes   | Recognition mode of combined gestures.<br>Default value: **GestureMode.Sequence**                   |
-| gesture | [TapGesture](ts-basic-gestures-tapgesture.md)<br>\| [LongPressGesture](ts-basic-gestures-longpressgesture.md)<br>\| [PanGesture](ts-basic-gestures-pangesture.md)<br>\| [PinchGesture](ts-basic-gestures-pinchgesture.md)<br>\| [RotationGesture](ts-basic-gestures-rotationgesture.md)<br>\| [SwipeGesture](ts-basic-gestures-swipegesture.md) | Yes   | Variable-length parameter, indicating one or more basic gesture types. These gestures are recognized in combination.|
+| gesture | [TapGesture](ts-basic-gestures-tapgesture.md)<br>\| [LongPressGesture](ts-basic-gestures-longpressgesture.md)<br>\| [PanGesture](ts-basic-gestures-pangesture.md)<br>\| [PinchGesture](ts-basic-gestures-pinchgesture.md)<br>\| [RotationGesture](ts-basic-gestures-rotationgesture.md)<br>\| [SwipeGesture](ts-basic-gestures-swipegesture.md) | No   | One or more basic gestures to be recognized simultaneously. If this parameter is left empty, simultaneous recognition will not take effect.|
 
 ## GestureMode
 

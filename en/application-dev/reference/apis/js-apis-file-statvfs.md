@@ -42,7 +42,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   import { BusinessError } from '@ohos.base';
   let path: string = "/dev";
   statvfs.getFreeSize(path).then((number: number) => {
-    console.info("getFreeSize promise successfully, Size: " + number);
+    console.info("getFreeSize succeed, Size: " + number);
   }).catch((err: BusinessError) => {
     console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -76,7 +76,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     if (err) {
       console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
     } else {
-      console.info("getFreeSize callback successfully, Size: " + number);
+      console.info("getFreeSize succeed, Size: " + number);
     }
   });
   ```
@@ -110,7 +110,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   ```ts
   let path = "/dev";
   let number = statvfs.getFreeSizeSync(path);
-  console.info("getFreeSize promise successfully, Size: " + number);
+  console.info("getFreeSizeSync succeed, Size: " + number);
   ```
 
 ## statvfs.getTotalSize
@@ -143,7 +143,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   import { BusinessError } from '@ohos.base';
   let path: string = "/dev";
   statvfs.getTotalSize(path).then((number: number) => {
-    console.info("getTotalSize promise successfully, Size: " + number);
+    console.info("getTotalSize succeed, Size: " + number);
   }).catch((err: BusinessError) => {
     console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
   });
@@ -177,7 +177,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     if (err) {
       console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
     } else {
-      console.info("getTotalSize promise successfully, Size: " + number);
+      console.info("getTotalSize succeed, Size: " + number);
     }
   });
   ```
@@ -211,5 +211,5 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   ```ts
   let path = "/dev";
   let number = statvfs.getTotalSizeSync(path);
-  console.info("getTotalSize promise successfully, Size: " + number);
+  console.info("getTotalSizeSync succeed, Size: " + number);
   ```

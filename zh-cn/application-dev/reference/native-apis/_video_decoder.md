@@ -485,7 +485,7 @@ OH_AVErrCode OH_VideoDecoder_SetSurface (OH_AVCodec *codec, OHNativeWindow *wind
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向OH_AVCodec实例的指针。 | 
-| window | 指向OHNativeWindow实例的指针，请参见{\@链接OHNativeWindow}。 | 
+| window | 指向OHNativeWindow实例的指针，请参见 [OHNativeWindow](_native_window.md#ohnativewindow)。 |
 
 **返回：**
 

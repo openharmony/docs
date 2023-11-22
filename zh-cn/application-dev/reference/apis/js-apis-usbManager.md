@@ -507,19 +507,10 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 **示例：**
 
 ```ts
-class PARA {
-  request: number = 0
-  reqType: usb.USBControlRequestType = 0
-  target: usb.USBRequestTargetType = 0
-  value: number = 0
-  index: number = 0
-  data: Uint8Array = new Uint8Array()
-}
-
-let param: PARA = {
+let param: usb.USBControlParams = {
   request: 0,
-  reqType: 0,
-  target:0,
+  reqType: usb.USBControlRequestType.USB_REQUEST_TYPE_STANDARD,
+  target: usb.USBRequestTargetType.USB_REQUEST_TARGET_DEVICE,
   value: 0,
   index: 0,
   data: new Uint8Array()
@@ -533,7 +524,7 @@ if (devicesList.length == 0) {
 usb.requestRight(devicesList[0].name);
 let devicepipe: usb.USBDevicePipe = usb.connectDevice(devicesList[0]);
 usb.controlTransfer(devicepipe, param).then((ret: number) => {
- console.log(`controlTransfer = ${ret}`);
+  console.log(`controlTransfer = ${ret}`);
 })
 ```
 

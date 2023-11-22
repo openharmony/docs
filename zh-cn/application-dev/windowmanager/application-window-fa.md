@@ -24,7 +24,7 @@
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | window静态方法 | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | 创建子窗口。<br/>-`config`：创建窗口时的参数。               |
 | window静态方法 | findWindow(name: string): Window                             | 查找`name`所对应的窗口。                                     |
-| Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前窗口加载具体页面内容。                                 |
+| Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 根据当前工程中某个页面的路径为窗口加载具体的页面内容。                                 |
 | Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口。                                               |
 | Window         | setWindowBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | 设置窗口的背景色。                                           |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。                                             |

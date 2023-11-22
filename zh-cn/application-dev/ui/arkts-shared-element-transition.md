@@ -9,7 +9,7 @@
 对于同一个容器展开，容器内兄弟组件消失或者出现的场景，可通过对同一个容器展开前后进行宽高位置变化并配置属性动画，对兄弟组件配置出现消失转场动画实现共享元素转场。
 
 1. 构建需要展开的页面，并通过状态变量构建好普通状态和展开状态的界面。
-  
+
   ```ts
   class Tmp{
     set(item:CradData):CradData{
@@ -45,7 +45,7 @@
   ```
 
 2. 将需要展开的页面展开，通过状态变量控制兄弟组件消失或出现，并通过绑定出现消失转场实现兄弟组件转场效果。
-  
+
   ```ts
   class Tmp{
     isExpand: boolean = false;
@@ -415,17 +415,11 @@ import curves from '@ohos.curves';
 struct GeometryTransitionDemo {
   // 用于控制模态转场的状态变量
   @State isPresent: boolean = false;
-
+  @State alpha: boolean = false;
   // 通过@Builder构建模态展示界面
   @Builder
   MyBuilder() {
     Column() {
-      Text(this.isPresent ? 'Page 2' : 'Page 1')
-        .fontWeight(FontWeight.Bold)
-        .fontSize(30)
-        .fontColor(Color.Black)
-        .margin(20)
-
       Row() {
         Text('共享组件一')
           .fontWeight(FontWeight.Bold)
@@ -437,7 +431,7 @@ struct GeometryTransitionDemo {
       .backgroundColor(0xf56c6c)
       .width('100%')
       .aspectRatio(1)
-      .margin({ bottom: 20 })
+      .margin({ bottom: 20, top: 20})
       // 新增的共享元素Row组件，ID是share1
       .geometryTransition('share1')
 
@@ -457,14 +451,20 @@ struct GeometryTransitionDemo {
       .transition(TransitionEffect.OPACITY.animation({ curve: curves.springMotion(0.6, 1.2) }))
 
     }
+    .onAppear(()=> {
+      animateTo({}, ()=>{
+        this.alpha = ! this.alpha;
+      })
+    })
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Start)
     .transition(TransitionEffect.opacity(0.99))
-    .backgroundColor(this.isPresent ? 0x909399 : Color.Transparent)
+    .backgroundColor(this.alpha ? 0x909399 : Color.Transparent)
     .clip(true)
     .onClick(() => {
       animateTo({ duration: 1000 }, () => {
+        this.alpha = ! this.alpha;
         this.isPresent = !this.isPresent;
       })
     })
@@ -472,12 +472,6 @@ struct GeometryTransitionDemo {
 
   build() {
     Column() {
-      Text('Page 1')
-        .fontWeight(FontWeight.Bold)
-        .fontSize(30)
-        .fontColor(Color.Black)
-        .margin(20)
-
       Row() {
         Text('共享组件一')
           .fontWeight(FontWeight.Bold)
@@ -520,7 +514,7 @@ struct GeometryTransitionDemo {
 }
 ```
 
-![zh-cn_image_0000001597320326](figures/zh-cn_image_0000001597320326.gif)
+![zh-cn_image_0000001597320326](figures/zh-cn_image_0000001597320327.gif)
 
 
 

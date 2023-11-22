@@ -22,8 +22,7 @@
       - 共享包
         - [共享包概述](quick-start/shared-guide.md)
         - [HAR](quick-start/har-package.md)
-        - HSP
-          - [应用内HSP开发指导](quick-start/in-app-hsp.md)
+        - [HSP](quick-start/in-app-hsp.md)        
       - 应用程序包快速修复
         - [快速修复概述](quick-start/quickfix-principles.md)
         - [快速修复命令行调试开发指导](quick-start/quickfix-debug.md)
@@ -78,7 +77,6 @@
         - [MVVM模式](quick-start/arkts-mvvm.md)
         - [状态管理优秀实践](quick-start/arkts-state-management-best-practices.md)
       - 渲染控制
-        - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
         - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
         - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
@@ -754,6 +752,7 @@
       - [Swiper高性能开发指导](performance/swiper_optimization.md)
       - [合理进行状态管理](performance/proper_state_management.md)
       - [精准控制组件的更新范围](performance/precisely-control-render-scope.md)
+      - [合理使用renderGroup](performance/reasonable-using-renderGroup.md)
       - [减少动画丢帧](performance/reduce-animation-frame-loss.md)
     - 提升应用启动和响应速度
       - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
@@ -762,6 +761,7 @@
       - [优化布局性能](performance/reduce-view-nesting-levels.md)
       - [合理选择条件渲染和显隐控制](performance/proper-choice-between-if-and-visibility.md)
       - [合理使用IPC通信](performance/reasonable-using-ipc.md)
+      - [文件上传下载性能提升指导](performance/improve-file-upload-and-download-performance.md)
       - [减少首帧绘制时的冗余操作](performance/reduce-redundant-operations-when-render-first-frame.md)
       - [列表场景性能提升实践](performance/list-perf-improvment.md)
       - [动效能力实践](performance/animation_practice.md)
@@ -769,6 +769,7 @@
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
       - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)
+      - [性能优化工具SmartPerf-Host](performance/performance-optimization-using-smartperf-host.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具
@@ -784,7 +785,7 @@
     - [OpenHarmony SDK 升级助手](tools/openharmony_sdk_upgrade_assistant.md)
 - 示例教程
   - [开发案例](https://gitee.com/openharmony/docs/blob/master/zh-cn/third-party-cases/Readme-CN.md)
-  - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-4.0-Release/README_zh.md)
+  - [示例代码](Samples.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
   - [系统能力SystemCapability使用指南](reference/syscap.md)

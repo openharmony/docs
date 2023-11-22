@@ -941,6 +941,12 @@ clearAllMissions(callback: AsyncCallback&lt;void&gt;): void
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+
 **示例：**
 
 ```ts

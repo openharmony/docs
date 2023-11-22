@@ -210,7 +210,7 @@ metadata对象示例：
 | metaData | 元数据。 | 对象 | 可缺省，缺省值为空。 |
 | type | 标识Ability的类型。取值范围如下：<br/>page：表示基于Page模板开发的FA，用于提供与用户交互的能力。<br/>service：表示基于Service模板开发的PA，用于提供后台运行任务的能力。<br/>data：表示基于Data模板开发的PA，用于对外部提供统一的数据访问对象。<br/>CA：表示支持其他应用以窗口方式调起该Ability。 | 字符串 | 不可缺省。 |
 | orientation | 标识该Ability的显示模式。该标签仅适用于page类型的Ability。取值范围如下：<br/>unspecified：由系统自动判断显示方向。<br/>landscape：横屏模式。<br/>portrait：竖屏模式。<br/>followRecent：跟随栈中最近的应用。 | 字符串 | 可缺省，缺省值为"unspecified"。 |
-| backgroundModes | 标识后台服务的类型，可以为一个服务配置多个后台服务类型。该标签仅适用于service类型的Ability。取值范围如下：<br/>dataTransfer：通过网络/对端设备进行数据下载、备份、分享、传输等业务。<br/>audioPlayback：音频输出业务。<br/>audioRecording：音频输入业务。<br/>pictureInPicture：画中画、小窗口播放视频业务。<br/>voip：音视频电话、VOIP业务。<br/>location：定位、导航业务。<br/>bluetoothInteraction：蓝牙扫描、连接、传输业务。<br/>wifiInteraction：WLAN扫描、连接、传输业务。<br/>screenFetch：录屏、截屏业务。<br/>multiDeviceConnection：多设备互联业务 | 字符串数组 | 可缺省，缺省值为空。 |
+| backgroundModes | 标识后台服务的类型，可以为一个服务配置多个后台服务类型。该标签仅适用于service类型的Ability。取值范围如下：<br/>dataTransfer：通过网络/对端设备进行数据下载、备份、分享、传输等。<br/>audioPlayback：音频播放。<br/>audioRecording：录音。<br/>pictureInPicture：画中画、小窗口播放视频。<br/>voip：音视频电话、VOIP。<br/>location：定位、导航。<br/>bluetoothInteraction：蓝牙扫描、连接、传输。<br/>wifiInteraction：Wi-Fi扫描、连接、传输。<br/>screenFetch：录屏、截屏。<br/>multiDeviceConnection：多设备互联。 | 字符串数组 | 可缺省，缺省值为空。 |
 | grantPermission | 指定是否可以向Ability内任何数据授予权限。 | 布尔值 | 可缺省，缺省值为空。 |
 | readPermission | 标识读取Ability的数据所需的权限。该标签仅适用于data类型的Ability。取值为长度不超过255字节的字符串。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串 | 可缺省，缺省为空。 |
 | writePermission | 标识向Ability写数据所需的权限。该标签仅适用于data类型的Ability。取值为长度不超过255字节的字符串。 | 字符串 | 可缺省，缺省为空。 |
