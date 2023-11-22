@@ -4,8 +4,6 @@
 
 >  **说明：**
 >
->  API version 11开始，Checkbox默认样式由圆角方形变为圆形。
->
 >  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 子组件
@@ -36,7 +34,6 @@ Checkbox(options?:&nbsp;{name?: string,  group?: string })
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置多选框选中状态颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | unselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置多选框非选中状态边框颜色。 |
 | mark<sup>10+</sup> | [MarkStyle](#markstyle10对象说明) | 多选框内部图标样式。 |
-| shape<sup>11+</sup> | [CheckBoxShape](#checkboxshape11枚举类型说明) | 设置CheckBox组件形状, 包括圆形和圆角方形。 |
 
 ## 事件
 
@@ -54,13 +51,6 @@ Checkbox(options?:&nbsp;{name?: string,  group?: string })
 | size        | number&nbsp;\|&nbsp;string                 | 否   | -           | 内部图标大小，单位vp。默认大小与多选框组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
 | strokeWidth | number&nbsp;\|&nbsp;string                 | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
 
-## CheckBoxShape<sup>11+</sup>枚举类型说明
-
-| 枚举名称       | 枚举值 | 描述     |
-| -------------- | ------ | -------- |
-| CIRCLE         | 0      | 圆形     |
-| ROUNDED_SQUARE | 1      | 圆角方形 |
-
 ## 示例
 
 ### 示例1
@@ -75,15 +65,13 @@ struct CheckboxExample {
     Row() {
       Checkbox({name: 'checkbox1',  group: 'checkboxGroup'})
         .select(true)
-        .selectedColor(0xed6f21)
-        .shape(CheckBoxShape.ROUNDED_SQUARE)
+        .selectedColor(0xed6f21)        
         .onChange((value: boolean) => {
           console.info('Checkbox1 change is'+ value)
         })
       Checkbox({name: 'checkbox2',  group: 'checkboxGroup'})
         .select(false)
-        .selectedColor(0x39a2db)
-        .shape(CheckBoxShape.ROUNDED_SQUARE)
+        .selectedColor(0x39a2db)        
         .onChange((value: boolean) => {
           console.info('Checkbox2 change is'+ value)
         })
@@ -108,8 +96,7 @@ struct Index {
       Column() {
         Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
-            .selectedColor(0x39a2db)
-            .shape(CheckBoxShape.ROUNDED_SQUARE)
+            .selectedColor(0x39a2db)            
             .onChange((value: boolean) => {
               console.info('Checkbox1 change is'+ value)
             })
@@ -125,8 +112,7 @@ struct Index {
         }
         Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
-            .selectedColor(0x39a2db)
-            .shape(CheckBoxShape.ROUNDED_SQUARE)
+            .selectedColor(0x39a2db)            
             .onChange((value: boolean) => {
               console.info('Checkbox2 change is' + value)
             })
@@ -144,33 +130,3 @@ struct Index {
 
 
 ![](figures/checkbox2.gif)
-
-### 示例3
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct CheckboxExample {
-
-  build() {
-    Row() {
-      Checkbox({name: 'checkbox1',  group: 'checkboxGroup'})
-        .select(true)
-        .shape(CheckBoxShape.CIRCLE)
-        .onChange((value: boolean) => {
-          console.info('Checkbox1 change is'+ value)
-        })
-      Checkbox({name: 'checkbox2',  group: 'checkboxGroup'})
-        .select(false)
-        .shape(CheckBoxShape.CIRCLE)
-        .onChange((value: boolean) => {
-          console.info('Checkbox2 change is'+ value)
-        })
-    }
-  }
-}
-```
-
-
-![](figures/checkbox.png)

@@ -72,339 +72,38 @@ Gauge(options:{value: number, min?: number, max?: number})
 | space | [Dimension](ts-types.md#dimension10) | 否 | 指针距离圆环外边的间距。(不支持百分比) <br/>默认值：8<br/>单位：vp <br/>**说明：** <br/> 对于默认的三角形样式指针，间距为黑色三角形到圆环外边的间距。<br/> 若设置值小于0，则使用默认值。<br/>若设置值大于圆环半径，则使用默认值。|
 
 ## 示例
-### 示例1
-示例使用当前数值、说明文本、辅助文本。
+
+
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct Gauge1 {
-  @Builder DescriptionBuilder() {
-    Text('说明文本')
-      .maxFontSize('30sp')
-      .minFontSize("10.0vp")
-      .fontColor("#fffa2a2d")
-      .fontWeight(FontWeight.Medium)
-      .width('100%')
-      .height("100%")
-      .textAlign(TextAlign.Center)
-  }
-
+struct GaugeExample {
   build() {
-    Column() {
-      Gauge({ value: 50, min: 1, max: 100 }) {
-        Column() {
-          Text('50')
-            .fontWeight(FontWeight.Medium)
-            .width('62%')
-            .fontColor("#ff182431")
-            .maxFontSize("60.0vp")
-            .minFontSize("30.0vp")
-            .textAlign(TextAlign.Center)
-            .margin({ top: '35%' })
-            .textOverflow({ overflow: TextOverflow.Ellipsis })
-            .maxLines(1)
-          Text('辅助文本')
-            .maxFontSize("16.0fp")
-            .minFontSize("10.0vp")
-            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-            .fontWeight(FontWeight.Regular)
-            .width('67.4%')
-            .height('9.5%')
-            .textAlign(TextAlign.Center)
-        }.width('100%').height('100%')
-      }
-      .value(50)
-      .startAngle(210)
-      .endAngle(150)
-      .colors([[new LinearGradient([{ color: "#deb6fb", offset: 0 }, { color: "#ac49f5", offset: 1 }]), 9],
-        [new LinearGradient([{ color: "#bbb7fc", offset: 0 }, { color: "#564af7", offset: 1 }]), 8],
-        [new LinearGradient([{ color: "#f5b5c2", offset: 0 }, { color: "#e64566", offset: 1 }]), 7],
-        [new LinearGradient([{ color: "#f8c5a6", offset: 0 }, { color: "#ed6f21", offset: 1 }]), 6],
-        [new LinearGradient([{ color: "#fceb99", offset: 0 }, { color: "#f7ce00", offset: 1 }]), 5],
-        [new LinearGradient([{ color: "#dbefa5", offset: 0 }, { color: "#a5d61d", offset: 1 }]), 4],
-        [new LinearGradient([{ color: "#c1e4be", offset: 0 }, { color: "#64bb5c", offset: 1 }]), 3],
-        [new LinearGradient([{ color: "#c0ece5", offset: 0 }, { color: "#61cfbe", offset: 1 }]), 2],
-        [new LinearGradient([{ color: "#b5e0f4", offset: 0 }, { color: "#46b1e3", offset: 1 }]), 1]])
-      .width('80%')
-      .height('80%')
-      .strokeWidth(18)
-      .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 })
-      .description(this.DescriptionBuilder)
-      .padding(18)
-    }.margin({ top: 40 }).width('100%').height('100%')
-  }
-}
-```
-![gauge](figures/gauge-image1.png)
-
-### 示例2
-示例使用当前数值、图标。
-```ts
-@Entry
-@Component
-struct Gauge2 {
-  @Builder DescriptionBuilderImage() {
-    Image($r('sys.media.ohos_ic_public_clock')).width(72).height(72)
-  }
-
-  build() {
-    Column() {
-      Gauge({ value: 50, min: 1, max: 100 }) {
-        Column() {
-          Text('50')
-            .fontWeight(FontWeight.Medium)
-            .width('62%')
-            .fontColor("#ff182431")
-            .maxFontSize("60.0vp")
-            .minFontSize("30.0vp")
-            .textAlign(TextAlign.Center)
-            .margin({ top: '35%' })
-            .textOverflow({ overflow: TextOverflow.Ellipsis })
-            .maxLines(1)
-        }.width('100%').height('100%')
-      }
-      .startAngle(210)
-      .endAngle(150)
-      .colors('#cca5d61d')
-      .width('80%')
-      .height('80%')
-      .strokeWidth(18)
-      .description(this.DescriptionBuilderImage)
-      .padding(18)
-    }.margin({ top: 40 }).width('100%').height('100%')
-  }
-}
-```
-![gauge](figures/gauge-image2.png)
-
-### 示例3
-示例使用当前数值、说明文本。
-```ts
-@Entry
-@Component
-struct Gauge3 {
-  @Builder DescriptionBuilder() {
-    Text('说明文本')
-      .maxFontSize('30sp')
-      .minFontSize("10.0vp")
-      .fontColor("#fffa2a2d")
-      .fontWeight(FontWeight.Medium)
-      .width('100%')
-      .height("100%")
-      .textAlign(TextAlign.Center)
-  }
-
-  build() {
-    Column() {
-      Column() {
-        Gauge({ value: 50, min: 1, max: 100 }) {
-          Column() {
-            Text('50')
-              .fontWeight(FontWeight.Medium)
-              .width('62%')
-              .fontColor("#ff182431")
-              .maxFontSize("60.0vp")
-              .minFontSize("30.0vp")
-              .textAlign(TextAlign.Center)
-              .margin({ top: '35%' })
-              .textOverflow({ overflow: TextOverflow.Ellipsis })
-              .maxLines(1)
-          }.width('100%').height('100%')
-        }
+    Column({ space: 20 }) {
+      // 使用默认的min和max为0-100，角度范围默认0-360，value值设置
+      // 参数中设置当前值为75
+      Gauge({ value: 75 })
+        .width(200).height(200)
+        .colors([[0x317AF7, 1], [0x5BA854, 1], [0xE08C3A, 1], [0x9C554B, 1]])
+      
+      // 参数设置当前值为75，属性设置值为25，属性设置优先级高
+      Gauge({ value: 75 })
+        .value(25) // 属性和参数都设置时以属性为准
+        .width(200).height(200)
+        .colors([[0x317AF7, 1], [0x5BA854, 1], [0xE08C3A, 1], [0x9C554B, 1]])
+      
+      // 210--150度环形图表
+      Gauge({ value: 30, min: 0, max: 100 })
         .startAngle(210)
         .endAngle(150)
-        .colors([[new LinearGradient([{ color: "#deb6fb", offset: 0 }, { color: "#ac49f5", offset: 1 }]), 9],
-          [new LinearGradient([{ color: "#bbb7fc", offset: 0 }, { color: "#564af7", offset: 1 }]), 8],
-          [new LinearGradient([{ color: "#f5b5c2", offset: 0 }, { color: "#e64566", offset: 1 }]), 7],
-          [new LinearGradient([{ color: "#f8c5a6", offset: 0 }, { color: "#ed6f21", offset: 1 }]), 6],
-          [new LinearGradient([{ color: "#fceb99", offset: 0 }, { color: "#f7ce00", offset: 1 }]), 5],
-          [new LinearGradient([{ color: "#dbefa5", offset: 0 }, { color: "#a5d61d", offset: 1 }]), 4],
-          [new LinearGradient([{ color: "#c1e4be", offset: 0 }, { color: "#64bb5c", offset: 1 }]), 3],
-          [new LinearGradient([{ color: "#c0ece5", offset: 0 }, { color: "#61cfbe", offset: 1 }]), 2],
-          [new LinearGradient([{ color: "#b5e0f4", offset: 0 }, { color: "#46b1e3", offset: 1 }]), 1]])
-        .width('80%')
-        .height('80%')
-        .strokeWidth(18)
-        .description(this.DescriptionBuilder)
-        .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 })
-        .padding(18)
-      }.margin({ top: 40 }).width('100%').height('100%')
-    }
+        .colors([[0x317AF7, 0.1], [0x5BA854, 0.2], [0xE08C3A, 0.3], [0x9C554B, 0.4]])
+        .strokeWidth(20)
+        .width(200)
+        .height(200)
+    }.width('100%').margin({ top: 5 })
   }
 }
 ```
-![gauge](figures/gauge-image3.png)
 
-### 示例4
-示例使用当前数值、辅助文本。
-```ts
-@Entry
-@Component
-struct Gauge4 {
-  build() {
-    Column() {
-      Gauge({ value: 50, min: 1, max: 100 }) {
-        Column() {
-          Text('50')
-            .maxFontSize("72.0vp")
-            .minFontSize("10.0vp")
-            .fontColor("#ff182431")
-            .width('40%')
-            .textAlign(TextAlign.Center)
-            .margin({ top: '35%' })
-            .textOverflow({ overflow: TextOverflow.Ellipsis })
-            .maxLines(1)
-          Text('辅助文本')
-            .maxFontSize("30.0vp")
-            .minFontSize("18.0vp")
-            .fontWeight(FontWeight.Medium)
-            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-            .width('62%')
-            .height('15.9%')
-            .textAlign(TextAlign.Center)
-        }.width('100%').height('100%')
-      }
-      .startAngle(210)
-      .endAngle(150)
-      .colors([[new LinearGradient([{ color: "#deb6fb", offset: 0 }, { color: "#ac49f5", offset: 1 }]), 9],
-        [new LinearGradient([{ color: "#bbb7fc", offset: 0 }, { color: "#564af7", offset: 1 }]), 8],
-        [new LinearGradient([{ color: "#f5b5c2", offset: 0 }, { color: "#e64566", offset: 1 }]), 7],
-        [new LinearGradient([{ color: "#f8c5a6", offset: 0 }, { color: "#ed6f21", offset: 1 }]), 6],
-        [new LinearGradient([{ color: "#fceb99", offset: 0 }, { color: "#f7ce00", offset: 1 }]), 5],
-        [new LinearGradient([{ color: "#dbefa5", offset: 0 }, { color: "#a5d61d", offset: 1 }]), 4],
-        [new LinearGradient([{ color: "#c1e4be", offset: 0 }, { color: "#64bb5c", offset: 1 }]), 3],
-        [new LinearGradient([{ color: "#c0ece5", offset: 0 }, { color: "#61cfbe", offset: 1 }]), 2],
-        [new LinearGradient([{ color: "#b5e0f4", offset: 0 }, { color: "#46b1e3", offset: 1 }]), 1]])
-      .width('80%')
-      .height('80%')
-      .strokeWidth(18)
-      .description(null)
-      .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 })
-      .padding(18)
-    }.margin({ top: 40 }).width('100%').height('100%')
-  }
-}
-```
-![gauge](figures/gauge-image4.png)
-
-### 示例5
-示例使用当前数值、最大最小数值。
-```ts
-@Entry
-@Component
-struct Gauge5 {
-  build() {
-    Column() {
-      Gauge({ value: 50, min: 1, max: 100 }) {
-        Column() {
-          Text('50')
-            .maxFontSize("80sp")
-            .minFontSize("60.0vp")
-            .fontWeight(FontWeight.Medium)
-            .fontColor("#ff182431")
-            .width('40%')
-            .height('30%')
-            .textAlign(TextAlign.Center)
-            .margin({ top: '22.2%' })
-            .textOverflow({ overflow: TextOverflow.Ellipsis })
-            .maxLines(1)
-        }.width('100%').height('100%')
-      }
-      .startAngle(225)
-      .endAngle(135)
-      .colors(new LinearGradient([{ color: "#e84026", offset: 0 },
-        { color: "#f7ce00", offset: 0.6 },
-        { color: "#64bb5c", offset: 1 }]))
-      .width('80%')
-      .height('80%')
-      .strokeWidth(18)
-      .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 })
-      .padding(18)
-    }.margin({ top: 40 }).width('100%').height('100%')
-  }
-}
-```
-![gauge](figures/gauge-image5.png)
-
-### 示例6
-示例使用当前数值、最大最小数值、辅助文本。
-```ts
-@Entry
-@Component
-struct Gauge6 {
-  build() {
-    Column() {
-      Gauge({ value: 50, min: 1, max: 100 }) {
-        Column() {
-          Text('50')
-            .maxFontSize('60sp')
-            .minFontSize('30.0vp')
-            .fontWeight(FontWeight.Medium)
-            .fontColor("#ff182431")
-            .width('62%')
-            .textAlign(TextAlign.Center)
-            .margin({ top: '35%' })
-            .textOverflow({ overflow: TextOverflow.Ellipsis })
-            .maxLines(1)
-          Text('辅助文本')
-            .maxFontSize('16sp')
-            .minFontSize("10.0vp")
-            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-            .fontWeight(FontWeight.Regular)
-            .width('67.4%')
-            .height('9.5%')
-            .textAlign(TextAlign.Center)
-        }.width('100%').height('100%')
-      }
-      .startAngle(225)
-      .endAngle(135)
-      .colors(Color.Red)
-      .width('80%')
-      .height('80%')
-      .indicator(null)
-      .strokeWidth(18)
-      .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 })
-      .padding(18)
-    }.margin({ top: 40 }).width('100%').height('100%')
-  }
-}
-```
-![gauge](figures/gauge-image6.png)
-
-### 示例7
-示例使用当前数值、最大最小数值。
-```ts
-@Entry
-@Component
-struct Gauge7 {
-  build() {
-    Column() {
-      Gauge({ value: 50, min: 1, max: 100 }) {
-        Column() {
-          Text('50')
-            .maxFontSize('60sp')
-            .minFontSize('30.0vp')
-            .fontWeight(FontWeight.Medium)
-            .fontColor("#ff182431")
-            .width('62%')
-            .textAlign(TextAlign.Center)
-            .margin({ top: '35%' })
-            .textOverflow({ overflow: TextOverflow.Ellipsis })
-            .maxLines(1)
-        }.width('100%').height('100%')
-      }
-      .startAngle(225)
-      .endAngle(135)
-      .colors(Color.Red)
-      .width('80%')
-      .height('80%')
-      .indicator(null)
-      .strokeWidth(18)
-      .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 })
-      .padding(18)
-    }.margin({ top: 40 }).width('100%').height('100%')
-  }
-}
-```
-![gauge](figures/gauge-image7.png)
+![gauge](figures/gauge-image.png)

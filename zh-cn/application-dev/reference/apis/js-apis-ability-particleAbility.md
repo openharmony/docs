@@ -53,7 +53,7 @@ particleAbility.startAbility(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: '',
             bundleName: 'com.example.Data',
-            abilityName: 'EntryAbility',
+            abilityName: 'com.example.Data.EntryAbility',
             uri: ''
         },
     },
@@ -108,11 +108,11 @@ particleAbility.startAbility(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: '',
             bundleName: 'com.example.Data',
-            abilityName: 'EntryAbility',
+            abilityName: 'com.example.Data.EntryAbility',
             uri: ''
         },
     },
-).then((data) => {
+).then(() => {
     console.info('particleAbility startAbility');
 });
 ```
@@ -137,11 +137,9 @@ terminateSelf(callback: AsyncCallback\<void>): void
 import particleAbility from '@ohos.ability.particleAbility';
 
 particleAbility.terminateSelf(
-    (error, data) => {
+    (error) => {
         if (error && error.code !== 0) {
             console.error(`terminateSelf fail, error: ${JSON.stringify(error)}`);
-        } else {
-            console.log(`terminateSelf success, data: ${JSON.stringify(data)}`);
         }
     }
 );
@@ -166,7 +164,7 @@ terminateSelf(): Promise\<void>
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 
-particleAbility.terminateSelf().then((data) => {
+particleAbility.terminateSelf().then(() => {
 	console.info('particleAbility terminateSelf');
 });
 ```
@@ -543,8 +541,8 @@ let connId = particleAbility.connectAbility(
     },
 );
 
-particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(`data: ${data}`);
+particleAbility.disconnectAbility(connId).then(() => {
+    console.log('disconnectAbility success');
 }).catch((error: BusinessError) => {
     console.error(`particleAbilityTest result errCode : ${error.code}`);
 });

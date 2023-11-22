@@ -14,11 +14,7 @@ Toggle通过调用接口来创建，接口调用形式如下：
 Toggle(options: { type: ToggleType, isOn?: boolean })
 ```
 
-其中，ToggleType为开关类型，包括Button、Checkbox和Switch，isOn为切换按钮的状态。
-
-API version 11开始，Checkbox默认样式由圆角方形变为圆形。
-
-接口调用有以下两种形式：
+其中，ToggleType为开关类型，包括Button、Checkbox和Switch，isOn为切换按钮的状态。接口调用有以下两种形式：
 
 
 - 创建不包含子组件的Toggle。
