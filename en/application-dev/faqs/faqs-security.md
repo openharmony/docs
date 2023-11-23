@@ -1,8 +1,7 @@
 # Basic Security Capability Development
 
-## What is the maximum number of bytes that can be encrypted at a time in AES GCM mode in HUKS?
 
-Applicable to: OpenHarmony 3.1 Beta 5 (API version 9)
+## What is the maximum number of bytes that can be encrypted at a time in AES GCM mode in HUKS? (API version 9)
 
 **Solution**
 
@@ -28,13 +27,12 @@ await huks.update(handle, encryptOptions).then(async (data) => {
 encryptOptions.inData = aesCipherStringToUint8Array(cipherInData.slice (64,80)); // Remaining data
 ```
 
-## What if garbled characters are returned by **digest()** of **Md** in Crypto framework?
 
-Applicable to: OpenHarmony 3.1 Beta 5 (API version 9)
+## What if garbled characters are returned by Md.digest() of cryptoFramework? (API version 9)
 
 **Symptom**
 
-In the CryptoFramework, garbled characters are returned by **digest()** of **Md**.
+When **digest()** of **Md** in the **cryptoFramework** module is called, garbled characters are returned.
 
 **Solution**
 
