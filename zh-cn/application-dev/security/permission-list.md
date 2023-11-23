@@ -3512,7 +3512,7 @@
 
 **ACL使能**：TRUE
 
-**起始版本**：10
+**起始版本**：11
 
 ## ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -3524,7 +3524,7 @@
 
 **ACL使能**：FALSE
 
-**起始版本**：10
+**起始版本**：11
 
 ## ohos.permission.ACCESS_DDK_HID
 
