@@ -10,7 +10,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 
 为保证UI线程不被阻塞，大部分AudioRenderer调用都是异步的。对于每个API均提供了callback函数和Promise函数，以下示例均采用callback函数。
 
-**图1** AudioRenderer状态变化示意图  
+**图1** AudioRenderer状态变化示意图
 
 ![AudioRenderer status change](figures/audiorenderer-status-change.png)
 
@@ -41,7 +41,6 @@ let audioStreamInfo: audio.AudioStreamInfo = {
 };
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_SPEECH,
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
   rendererFlags: 0
 };
@@ -135,7 +134,6 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
 }
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_MUSIC, // 媒体类型
   usage: audio.StreamUsage.STREAM_USAGE_MEDIA, // 音频流使用类型
   rendererFlags: 0 // 音频渲染器标志
 }
