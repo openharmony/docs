@@ -309,6 +309,8 @@ Defines the capability of accessing application resources.
 > - The methods involved in **ResourceManager** are applicable only to the TypeScript-based declarative development paradigm.
 >
 > - Resource files are defined in the **resources** directory of the project. You can obtain the resource ID using **$r(resource address).id**, for example, **$r('app.string.test').id**.
+>
+> - You can specify whether to access intra-package resources in an application by resource ID or resource name. To access cross-package resources, you need to specify the [resource object](#resource9) or [context](../../application-models/application-context-stage.md#creating-context-of-another-application-or-module) of the corresponding packages. The service logic is similar to access to intra-package resources. You are advised to access cross-package resources by context.
 
 ### getStringSync<sup>9+</sup>
 
@@ -897,7 +899,7 @@ Obtains the string array corresponding to the specified resource ID. This API re
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Array&lt;string&gt; | Promise used to return the result.|
+| Array&lt;string&gt; | String array corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -942,7 +944,7 @@ Obtains the string array corresponding to the specified resource object. This AP
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Array&lt;string&gt; | Promise used to return the result.|
+| Array&lt;string&gt; | String array corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -1810,7 +1812,7 @@ Obtains the media file content (with the default or specified screen density) co
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Uint8Array | Promise used to return the result.|
+| Uint8Array | Media file content corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -2543,7 +2545,7 @@ Obtains the Base64 code of the image (with the default or specified screen densi
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| string | Promise used to return the result.|
+| string | Base64 code of the media file corresponding to the specified resource object.|
 
 **Error codes**
 
@@ -3655,7 +3657,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getColorSync(resId: number) : number;
 
-Obtains the color value corresponding to the specified resource ID. This API returns the result synchronously.
+Obtains the color value (decimal) corresponding to the specified resource ID. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3669,7 +3671,7 @@ Obtains the color value corresponding to the specified resource ID. This API ret
 
 | Type    | Description         |
 | ------ | ----------- |
-| number | Color value corresponding to the resource ID (decimal).|
+| number | Color value corresponding to the resource ID.|
 
 **Error codes**
 
@@ -3698,7 +3700,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getColorSync(resource: Resource): number
 
-Obtains the color value corresponding to the specified resource object. This API returns the result synchronously.
+Obtains the color value (decimal) corresponding to the specified resource object. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3714,7 +3716,7 @@ Obtains the color value corresponding to the specified resource object. This API
 
 | Type    | Description              |
 | ------ | ---------------- |
-| number | Color value corresponding to the resource object (decimal).|
+| number | Color value corresponding to the resource object.|
 
 **Error codes**
 
@@ -3749,7 +3751,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getColorByNameSync(resName: string) : number;
 
-Obtains the color value corresponding to the specified resource name. This API returns the result synchronously.
+Obtains the color value (decimal) corresponding to the specified resource name. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3763,7 +3765,7 @@ Obtains the color value corresponding to the specified resource name. This API r
 
 | Type    | Description        |
 | ------ | ---------- |
-| number | Color value corresponding to the resource name (decimal).|
+| number | Color value corresponding to the resource name.|
 
 **Error codes**
 
@@ -3792,7 +3794,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
 
-Obtains the color value corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains the color value (decimal) corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3801,7 +3803,7 @@ Obtains the color value corresponding to the specified resource ID. This API use
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Asynchronous callback used to return the result.|
 
 **Error codes**
 
@@ -3836,7 +3838,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getColor(resId: number): Promise&lt;number&gt;
 
-Obtains the color value corresponding to the specified resource ID. This API uses a promise to return the result.
+Obtains the color value (decimal) corresponding to the specified resource ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3883,7 +3885,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
-Obtains the color value corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains the color value (decimal) corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3894,7 +3896,7 @@ Obtains the color value corresponding to the specified resource object. This API
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | Yes   | Resource object.           |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Asynchronous callback used to return the result.|
 
 **Error codes**
 
@@ -3935,7 +3937,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getColor(resource: Resource): Promise&lt;number&gt;;
 
-Obtains the color value corresponding to the specified resource object. This API uses a promise to return the result.
+Obtains the color value (decimal) corresponding to the specified resource object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3990,7 +3992,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the color value corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
+Obtains the color value (decimal) corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3999,7 +4001,7 @@ Obtains the color value corresponding to the specified resource name. This API u
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resName  | string                      | Yes   | Resource name.           |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Asynchronous callback used to return the result.|
 
 **Error codes**
 
@@ -4034,7 +4036,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getColorByName(resName: string): Promise&lt;number&gt;
 
-Obtains the color value corresponding to the specified resource name. This API uses a promise to return the result.
+Obtains the color value (decimal) corresponding to the specified resource name. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4048,7 +4050,7 @@ Obtains the color value corresponding to the specified resource name. This API u
 
 | Type                   | Description        |
 | --------------------- | ---------- |
-| Promise&lt;number&gt; | Promise used to return the result.|
+| Promise&lt;number&gt; | Promise used to return the color value corresponding to the resource name.|
 
 **Error codes**
 
@@ -4585,7 +4587,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getConfigurationSync(): Configuration
 
-Obtains the device configuration. This API return the results synchronously.
+Obtains the device configuration. This API return the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4670,7 +4672,7 @@ Obtains the device configuration. This API uses a promise to return the result.
 
 getDeviceCapabilitySync(): DeviceCapability
 
-Obtains the device capability. This API return the results synchronously.
+Obtains the device capability. This API return the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 

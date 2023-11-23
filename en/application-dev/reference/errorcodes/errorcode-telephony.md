@@ -81,6 +81,41 @@ No SIM card is inserted or the SIM card is not properly inserted.
 
 Insert the SIM card or remove and insert the SIM card again.
 
+## 8300005 Airplane Mode Enabled
+
+**Error Message**
+
+Airplane mode is on.
+
+**Description**
+
+The airplane mode is on.
+
+**Cause**
+
+The airplane mode has been enabled.
+
+**Solution**
+
+Turn off the airplane mode.
+
+## 8300006 Network Unavailable
+
+**Error Message**
+
+Network not in service.
+
+**Description**
+
+No network is available for the phone.
+
+**Cause**
+
+Mobile data is not enabled or no wireless network is connected.
+
+**Solution**
+
+Turn on mobile data or connect to a wireless network.
 
 ## 8300999 Unknown Error
 
@@ -169,7 +204,7 @@ This error code is reported if the UT is not connected.
 
 **Cause**
 
-The current carrier does not support sending of UT requests over a Wi-Fi network, but the device is connected to the Wi-Fi network.
+The current carrier does not support sending of UT requests over a Wi-Fi network, but the phone is actually connected to the Wi-Fi network.
 
 **Solution**
 

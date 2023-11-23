@@ -1,8 +1,9 @@
 # @ohos.multimodalInput.mouseEvent (Mouse Event)
 
-The **mouseEvent** module provides mouse events reported by an input device.
+The **mouseEvent** module provides mouse events reported by a device. It is inherited from [InputEvent](./js-apis-inputevent.md).
 
-> **NOTE**<br>
+>  **NOTE**
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -13,7 +14,7 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@ohos.multimodalInp
 
 ## Action
 
-Defines a mouse action.
+Enumerates mouse event types.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -30,7 +31,7 @@ Defines a mouse action.
 
 ## Button
 
-Enumerates mouse actions.
+Enumerates mouse buttons.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -60,13 +61,13 @@ Enumerates mouse axis types.
 
 ## AxisValue
 
-Defines a mouse axis type and value.
+Defines the mouse axis type and value.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name   | Type  | Readable  | Writable  | Description  |
 | ----- | ------ | ---- | ---- | ---- |
-| axis  | Axis   | Yes   | No   | Axis type. |
+| axis  | [Axis](#axis)   | Yes   | No   | Axis type. |
 | value | number | Yes   | No   | Axis value. |
 
 
@@ -78,17 +79,17 @@ Defines a mouse event.
 
 | Name            | Type       | Readable  | Writable  | Description                                      |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| action         | Action      | Yes   | No   | Mouse event action.                                  |
+| action         | [Action](#action)      | Yes   | No   | Mouse event action.                                  |
 | screenX        | number      | Yes   | No   | Horizontal coordinate of the mouse pointer on the screen.                            |
 | screenY        | number      | Yes   | No   | Vertical coordinate of the mouse pointer on the screen.                            |
 | windowX        | number      | Yes   | No   | Horizontal coordinate of the mouse pointer in the window.                              |
 | windowY        | number      | Yes   | No   | Vertical coordinate of the mouse pointer in the window.                              |
 | rawDeltaX      | number      | Yes   | No   | Horizontal coordinate offset relative to the previous reported mouse pointer position.|
 | rawDeltaY      | number      | Yes   | No   | Vertical coordinate offset relative to the previous reported mouse pointer position.                         |
-| button         | Button      | Yes   | No   | Mouse button                              
-| pressedButtons | Button[]    | Yes   | No   | Button being pressed.                             |
-| axes           | AxisValue[] | Yes   | No   | All axis data contained in the event.                              |
-| pressedKeys    | KeyCode[]   | Yes   | No   | List of pressed keys.                           |
+| button         | [Button](#button)     | Yes   | No   | Mouse button                              
+| pressedButtons | [Button](#button)[]    | Yes   | No   | Button being pressed.                             |
+| axes           | [AxisValue](#axisvalue)[] | Yes   | No   | All axis data contained in the event.                              |
+| pressedKeys    | [KeyCode](js-apis-keycode.md#keycode)[]   | Yes   | No   | List of pressed keys.                           |
 | ctrlKey        | boolean     | Yes   | No   | Whether ctrlKey is being pressed.                       |
 | altKey         | boolean     | Yes   | No   | Whether altKey is being pressed.                        |
 | shiftKey       | boolean     | Yes   | No   | Whether shiftKey is being pressed.                      |

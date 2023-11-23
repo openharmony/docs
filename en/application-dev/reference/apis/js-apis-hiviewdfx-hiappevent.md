@@ -129,9 +129,9 @@ Defines parameters for an **AppEventInfo** object.
 | Name     | Type                   | Mandatory| Description                                                        |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | domain    | string                  | Yes  | Event domain. The value is a string of up to 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter and cannot end with an underscore (_).|
-| name      | string                  | Yes  | Event name. The value is a string of up to 48 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter or dollar sign ($) and cannot end with an underscore (_).|
+| name      | string                  | Yes  | Event name. It is string that contains a maximum of 48 characters, including the dollar sign ($), digits (0 to 9), letters (a to z), and underscore (_). It must start with a letter or dollar sign ($) and end with a digit or letter.|
 | eventType | [EventType](#eventtype) | Yes  | Event type.                                                  |
-| params    | object                  | Yes  | Event parameter object, which consists of a parameter name and a parameter value. The specifications are as follows:<br>- The parameter name is a string of up to 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter or dollar sign ($) and cannot end with an underscore (_).<br>- The parameter value can be a string, number, boolean, or array. If the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be discarded. If the parameter value is a number, the value must be within the range of **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. Otherwise, uncertain values may be generated. If the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.<br>- The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.|
+| params    | object                  | Yes  | Event parameter object, which consists of a parameter name and a parameter value. The specifications are as follows:<br>- A parameter name is a string that contains a maximum of 16 characters, including the dollar sign ($), digits (0 to 9), letters (a to z), and underscore (_). It must start with a letter or dollar sign ($) and end with a digit or letter.<br>- The parameter value can be a string, number, boolean, or array. If the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be discarded. If the parameter value is a number, the value must be within the range of **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. Otherwise, uncertain values may be generated. If the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.<br>- The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.|
 
 ## hiAppEvent.configure
 
@@ -173,7 +173,7 @@ hiAppEvent.configure(config2);
 
 ## ConfigOption
 
-Configures options for application event logging.
+Provides configuration options for application event logging.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
@@ -318,7 +318,7 @@ Defines parameters for a **Watcher** object.
 
 ## TriggerCondition
 
-Defines callback triggering conditions. Subscription callback is triggered when any condition is met.
+Defines callback triggering conditions. A callback is triggered when any specified condition is met.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
@@ -343,13 +343,11 @@ Defines parameters for an **AppEventFilter** object.
 
 Defines a subscription data holder for processing subscription events.
 
-**System capability**: SystemCapability.HiviewDFX.HiAppEvent
-
 ### constructor
 
 constructor(watcherName: string)
 
-Constructor of the **Watcher** class. When a watcher is added, the system automatically calls this API to create a subscription data holder object for the watcher and returns the holder object to the application.
+A constructor used to create a holder object for subscription data. It is associated with a **Watcher** object based on its name.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
@@ -362,9 +360,7 @@ Constructor of the **Watcher** class. When a watcher is added, the system automa
 **Example**
 
 ```ts
-let holder1 = hiAppEvent.addWatcher({
-    name: "watcher1",
-});
+let holder1: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("watcher1");
 ```
 
 ### setSize
@@ -392,9 +388,7 @@ For details about the error codes, see [Application Event Logging Error Codes](.
 **Example**
 
 ```ts
-let holder2 = hiAppEvent.addWatcher({
-    name: "watcher2",
-});
+let holder2: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("watcher2");
 holder2.setSize(1000);
 ```
 
@@ -406,12 +400,16 @@ Extracts subscription event data based on the configured data size threshold. If
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
+**Return value**
+
+| Type                               | Description                                                  |
+| ----------------------------------- | ------------------------------------------------------ |
+| [AppEventPackage](#appeventpackage) | Event package object. If all subscription event data has been retrieved, **null** is returned.|
+
 **Example**
 
 ```ts
-let holder3 = hiAppEvent.addWatcher({
-    name: "watcher3",
-});
+let holder3: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("watcher3");
 let eventPkg = holder3.takeNext();
 ```
 
@@ -445,7 +443,7 @@ hiAppEvent.clearData();
 
 ## EventType
 
-Enumerates the event types.
+Enumerates event types.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 

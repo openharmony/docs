@@ -31,7 +31,7 @@ Prepares for screen hopping. This API uses an asynchronous callback to return th
 **Example**
 
 ```ts
-import BusinessError from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 try {
   cooperate.prepare((error: BusinessError) => {
     if (error) {
@@ -64,7 +64,7 @@ Prepares for screen hopping. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import BusinessError from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 try {
   cooperate.prepare().then(() => {
     console.log(`Keyboard mouse crossing prepare success.`);
@@ -93,7 +93,7 @@ Cancels the preparation for screen hopping. This API uses an asynchronous callba
 **Example**
 
 ```ts
-import BusinessError from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 try {
   cooperate.unprepare((error: BusinessError) => {
     if (error) {
@@ -124,7 +124,7 @@ Cancels the preparation for screen hopping. This API uses a promise to return th
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 ```ts
-import BusinessError from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 try {
   cooperate.unprepare().then(() => {
     console.log(`Keyboard mouse crossing unprepare success.`);
@@ -165,7 +165,7 @@ For details about the error codes, see [Screen Hopping Error Codes](../errorcode
 **Example**
 
 ```ts
-import BusinessError from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
@@ -215,7 +215,7 @@ For details about the error codes, see [Screen Hopping Error Codes](../errorcode
 **Example**
 
 ```ts
-import BusinessError from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
@@ -249,7 +249,7 @@ Stops screen hopping. This API uses an asynchronous callback to return the resul
 **Example**
 
 ```ts
-import BusinessError from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 try {
   cooperate.deactivate(false, (error: BusinessError) => {
     if (error) {
@@ -290,7 +290,7 @@ Stops screen hopping. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import BusinessError from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 try {
   cooperate.deactivate(false).then(() => {
     console.log(`Stop Keyboard mouse crossing success.`);
@@ -320,7 +320,7 @@ Obtains the screen hopping status of the target device. This API uses an asynchr
 **Example**
 
 ```ts
-import BusinessError from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 let deviceDescriptor = "networkId";
 try {
   cooperate.getCrossingSwitchState(deviceDescriptor, (error: BusinessError, data: boolean) => {
@@ -362,7 +362,7 @@ Obtains the screen hopping status of the target device. This API uses a promise 
 **Example**
 
 ```ts
-import BusinessError from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 let deviceDescriptor = "networkId";
 try {
   cooperate.getCrossingSwitchState(deviceDescriptor).then((data: boolean) => {
