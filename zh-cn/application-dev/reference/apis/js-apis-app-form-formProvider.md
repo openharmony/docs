@@ -46,6 +46,7 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 
 ```ts
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let formId: string = '12400633174999288';
 try {
@@ -101,6 +102,7 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
 ```ts
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let formId: string = '12400633174999288';
 try {
@@ -149,6 +151,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let formId: string = '12400633174999288';
 try {
@@ -209,6 +212,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let formId: string = '12400633174999288';
 let param: Record<string, string> = {
@@ -256,6 +260,7 @@ getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): voi
 
 ```ts
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 try {
   formProvider.getFormsInfo((error, data) => {
@@ -300,6 +305,7 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 ```ts
 import Base from '@ohos.base';
 import formInfo from '@ohos.app.form.formInfo';
+import formProvider from '@ohos.application.formProvider';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -354,6 +360,7 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 ```ts
 import formInfo from '@ohos.app.form.formInfo';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -406,6 +413,7 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 import formBindingData from '@ohos.app.form.formBindingData';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -467,6 +475,7 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 ```ts
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -529,6 +538,7 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 ```ts
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -581,6 +591,7 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 ```ts
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 try {
   formProvider.isRequestPublishFormSupported((error: Base.BusinessError, isSupported: boolean) => {
@@ -646,6 +657,7 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 ```ts
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 try {
   formProvider.isRequestPublishFormSupported().then((isSupported: boolean) => {
