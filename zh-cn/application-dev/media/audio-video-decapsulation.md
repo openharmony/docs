@@ -57,12 +57,12 @@ target_link_libraries(sample PUBLIC libnative_media_avsource.so)
 2. 创建解封装器实例对象。
 
    ``` c++
-   // 创建文件操作符 fd，打开时对文件句柄必须有读权限
-   std::string fileName = "test.mp4";
-   int fd = open(fileName.c_str(), O_RDONLY);
+   // 创建文件操作符 fd，打开时对文件句柄必须有读权限(filePath 为待解封装文件路径，需预置文件，保证路径指向的文件存在)
+   std::string filePath = "test.mp4";
+   int fd = open(filePath.c_str(), O_RDONLY);
    struct stat fileStatus {};
    size_t fileSize = 0;
-   if (stat(fileName.c_str(), &fileStatus) == 0) {
+   if (stat(filePath.c_str(), &fileStatus) == 0) {
       fileSize = static_cast<size_t>(fileStatus.st_size);
    } else {
       printf("get stat failed");
