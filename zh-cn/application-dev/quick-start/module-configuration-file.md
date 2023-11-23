@@ -559,7 +559,8 @@ metadata中指定shortcut信息，其中：
       ]
     }
   }
-
+  ```
+  ```json
   // entry2支持的设备类型
   {
     "module": {
@@ -573,13 +574,16 @@ metadata中指定shortcut信息，其中：
   }
   ```
 
-- **配置规则：**  该标签支持配置四个属性，包括屏幕形状([screenShape](#screenshape标签))、窗口分辨率([screenWindow](#screenwindow标签))、屏幕像素密度([screenDensity](#screendensity标签) )、设备所在国家与地区([countryCode](#countrycode标签))。在分发应用包时，通过deviceTypes与这四个属性的匹配关系，唯一确定一个用于分发到设备的HAP。
-  > **说明：**  
-  > * 如果需要配置该标签，则至应当包含一个属性。
-  > * 如果一个Entry中配置了任意一个或多个属性，则其他Entry也必须包含相同的属性。
-  > * screenShape和screenWindow属性仅用于轻量级智能穿戴设备。
+- **配置规则：**  该标签支持配置四个属性，包括屏幕形状([screenShape](#screenshape标签))、窗口分辨率([screenWindow](#screenwindow标签))、屏幕像素密度([screenDensity](#screendensity标签) )、设备所在国家与地区([countryCode](#countrycode标签))，详见下表。
+
+  在分发应用包时，通过deviceTypes与这四个属性的匹配关系，唯一确定一个用于分发到设备的HAP。
+  
+  * 如果需要配置该标签，则至应当包含一个属性。
+  * 如果一个Entry中配置了任意一个或多个属性，则其他Entry也必须包含相同的属性。
+  * screenShape和screenWindow属性仅用于轻量级智能穿戴设备。
 
 - **配置方式：** 该标签需要配置在/resource/profile资源目录下，并在metadata的resource字段中引用。
+
 
 **表12** distributionFilter标签配置说明
 
@@ -627,58 +631,60 @@ metadata中指定shortcut信息，其中：
 | value | 标识应用需要分发的国家地区码。 | 字符串数组 | 该标签不可缺省。 |
 
 
-1. 在开发视图的resources/base/profile下面定义配置文件distributionFilter_config.json，文件名可以自定义。
+示例如下：
 
-  ```json
-  {
-    "distributionFilter": {
-      "screenShape": {
-        "policy": "include",
-        "value": [
-          "circle",
-          "rect"
-        ]
-      },
-      "screenWindow": {
-        "policy": "include",
-        "value": [
-          "454*454",
-          "466*466"
-        ]
-      },
-      "screenDensity": {
-        "policy": "exclude",
-        "value": [
-          "ldpi",
-          "xldpi"
-        ]
-      },
-      "countryCode": { // 支持在中国分发
-        "policy": "include",
-        "value": [
-          "CN"
-        ]
-      }
-    }
-  }
-  ```
+1. 在开发视图的resources/base/profile下面定义配置文件distributionFilter_config.json，文件名可以自定义。
+   ```json
+   {
+     "distributionFilter": {
+       "screenShape": {
+         "policy": "include",
+         "value": [
+           "circle",
+           "rect"
+         ]
+       },
+       "screenWindow": {
+         "policy": "include",
+         "value": [
+           "454*454",
+           "466*466"
+         ]
+       },
+       "screenDensity": {
+         "policy": "exclude",
+         "value": [
+           "ldpi",
+           "xldpi"
+         ]
+       },
+       "countryCode": { // 支持在中国分发
+         "policy": "include",
+         "value": [
+           "CN"
+         ]
+       }
+     }
+   }
+   ```
+
 
 2. 在module.json5配置文件的module标签中定义metadata信息。
 
 
-  ```json
-  {
-    "module": {
-      // ...
-      "metadata": [
-        {
-          "name": "ohos.module.distribution",
-          "resource": "$profile:distributionFilter_config",
-        }
-      ]
+    ```json
+    {
+      "module": {
+        // ...
+        "metadata": [
+          {
+            "name": "ohos.module.distribution",
+            "resource": "$profile:distributionFilter_config",
+          }
+        ]
+      }
     }
-  }
-  ```
+    ```
 
 
 ## testRunner标签
