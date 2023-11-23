@@ -48,44 +48,44 @@ let callback = {
 
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("[Demo] EntryAbility onCreate")
+        console.log("[Demo] EntryAbility onCreate");
         registerId = errorManager.on("error", callback);
         globalThis.abilityWant = want;
     }
 
     onDestroy() {
-        console.log("[Demo] EntryAbility onDestroy")
+        console.log("[Demo] EntryAbility onDestroy");
         errorManager.off("error", registerId, (result) => {
-            console.log("[Demo] result " + result.code + ";" + result.message)
+            console.log("[Demo] result " + result.code + ";" + result.message);
         });
     }
 
     onWindowStageCreate(windowStage) {
         // Main window is created, set main page for this ability
-        console.log("[Demo] EntryAbility onWindowStageCreate")
+        console.log("[Demo] EntryAbility onWindowStageCreate");
 
         windowStage.loadContent("pages/index", (err, data) => {
             if (err.code) {
                 console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                 return;
             }
-            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
         });
     }
 
     onWindowStageDestroy() {
         // Main window is destroyed, release UI related resources
-        console.log("[Demo] EntryAbility onWindowStageDestroy")
+        console.log("[Demo] EntryAbility onWindowStageDestroy");
     }
 
     onForeground() {
         // Ability has brought to foreground
-        console.log("[Demo] EntryAbility onForeground")
+        console.log("[Demo] EntryAbility onForeground");
     }
 
     onBackground() {
         // Ability has back to background
-        console.log("[Demo] EntryAbility onBackground")
+        console.log("[Demo] EntryAbility onBackground");
     }
 };
 ```
