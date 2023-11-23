@@ -195,7 +195,7 @@ springmotion：Response:0.555，DampingFraction:0.53
 | -------- | -------- | 
 | 图标微动效示例1 | 图标微动效示例2 | 
 
-弹性曲线相关的开发文档，详见：[弹簧曲线](../../application-dev/ui/arkts-spring-curve.md)。
+弹性曲线相关的开发文档，详见：弹簧曲线。
 
 
 ## 帧率
