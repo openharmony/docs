@@ -10,20 +10,20 @@
 
 WebSocket连接功能主要由webSocket模块提供。使用该功能需要申请ohos.permission.INTERNET权限。具体接口说明如下表。
 
-| 接口名 | 功能描述 |
-| -------- | -------- |
-| createWebSocket() | 创建一个WebSocket连接。 |
-| connect() | 根据URL地址，建立一个WebSocket连接。 |
-| send() | 通过WebSocket连接发送数据。 |
-| close() | 关闭WebSocket连接。 |
-| on(type: 'open') | 订阅WebSocket的打开事件。 |
-| off(type: 'open') | 取消订阅WebSocket的打开事件。 |
-| on(type: 'message') | 订阅WebSocket的接收到服务器消息事件。 |
+| 接口名              | 描述                                      |
+| ------------------ | ----------------------------------------- |
+| createWebSocket()  | 创建一个WebSocket连接。                    |
+| connect()          | 根据URL地址，建立一个WebSocket连接。       |
+| send()             | 通过WebSocket连接发送数据。                |
+| close()            | 关闭WebSocket连接。                        |
+| on(type: 'open')   | 订阅WebSocket的打开事件。                  |
+| off(type: 'open')   | 取消订阅WebSocket的打开事件。             |
+| on(type: 'message') | 订阅WebSocket的接收到服务器消息事件。      |
 | off(type: 'message') | 取消订阅WebSocket的接收到服务器消息事件。 |
-| on(type: 'close') | 订阅WebSocket的关闭事件。 |
-| off(type: 'close') | 取消订阅WebSocket的关闭事件 |
-| on(type: 'error') | 订阅WebSocket的Error事件。 |
-| off(type: 'error') | 取消订阅WebSocket的Error事件。 |
+| on(type: 'close')   | 订阅WebSocket的关闭事件。                 |
+| off(type: 'close') | 取消订阅WebSocket的关闭事件                |
+| on(type: 'error')  | 订阅WebSocket的Error事件。                 |
+| off(type: 'error') | 取消订阅WebSocket的Error事件。             |
 
 ## 开发步骤
 
