@@ -247,3 +247,65 @@ struct Index {
 ```ets
 '@bundle:包名（bundleName）/模块名（moduleName）/路径/页面所在的文件名(不加.ets后缀)'
 ```
+### 页面路由返回
+如果当前处于HSP中的页面，需要返回之前的页面时，可以使用`router.back`方法，但是返回的页面必须是当前页面跳转路径上的页面。
+```ts
+import router from '@ohos.router';
+
+@Entry
+@Component
+struct Index3 { // 路径为：`library/src/main/ets/pages/Index3.ets
+  @State message: string = 'Hello World'
+
+  build() {
+    Row() {
+        Column() {
+        Button('back to HAP page')
+        .width('40%')
+        .height('5%')
+        // 绑定点击事件
+        .onClick(() => {
+          router.back({ //  返回HAP的页面
+            url: 'pages/Index'    // 路径为：`entry/src/main/ets/pages/Index.ets`
+          })
+        })
+        .width('100%')
+
+        Button('back to HSP page')
+        .width('40%')
+        .height('5%')
+        // 绑定点击事件
+        .onClick(() => {
+          router.back({ //  返回HSP的页面
+            url: '@bundle:com.example.hmservice/library/ets/pages/Index2'  //路径为：`library/src/main/ets/pages/Index2.ets
+          })
+        })
+        .width('100%')
+      }
+      .height('100%')
+    }
+  }
+}
+```
+
+页面返回`router.back`方法的入参中`url`说明：
+
+* 如果从HSP页面返回HAP页面，url的内容为：
+
+    ```ets
+    'pages/Index'
+    ```
+    `url`内容的模板为：
+    ```ets
+    '页面所在的文件名(不加.ets后缀)'
+    ```
+
+* 如果从HSP页面返回HSP页面，url的内容为：
+
+    ```ets
+    '@bundle:com.example.hmservice/library/ets/pages/Index2'
+    ```
+    `url`内容的模板为：
+    ```ets
+    '@bundle:包名（bundleName）/模块名（moduleName）/路径/页面所在的文件名(不加.ets后缀)'
+    ```
