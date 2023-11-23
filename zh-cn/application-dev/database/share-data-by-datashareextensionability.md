@@ -147,7 +147,7 @@
        "icon": "$media:icon",
        "description": "$string:description_datashareextability",
        "type": "dataShare",
-       "uri": "datashareproxy://com.samples.datasharetest.DataShare",
+       "uri": "datashare://com.samples.datasharetest.DataShare",
        "exported": true,
        "metadata": [{"name": "ohos.extension.dataShare", "resource": "$profile:data_share_config"}]
      }
@@ -159,7 +159,7 @@
    | 属性名称          | 备注说明                                     | 必填   |
    | ------------- | ---------------------------------------- | ---- |
    | tableConfig   | 配置标签。                                    | 是    |
-   | uri           | 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashareproxy://{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashareproxy://{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表。 | 是    |
+   | uri           | 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashare:///{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表。 | 是    |
    | crossUserMode | 标识数据是否为多用户共享，配置为1则多用户数据共享，配置为2则多用户数据隔离。  | 是    |
 
    **data_share_config.json配置样例**
@@ -171,11 +171,11 @@
       "crossUserMode": 1
     },
     {
-      "uri": "datashareproxy://com.acts.datasharetest/entry/DB00",
+      "uri": "datashare:///com.acts.datasharetest/entry/DB00",
       "crossUserMode": 1
     },
     {
-      "uri": "datashareproxy://com.acts.datasharetest/entry/DB00/TBL00",
+      "uri": "datashare:///com.acts.datasharetest/entry/DB00/TBL00",
       "crossUserMode": 2
     }
    ]
@@ -198,7 +198,7 @@
    
    ```ts
    // 作为参数传递的URI，与module.json5中定义的URI的区别是多了一个"/"，是因为作为参数传递的URI中，在第二个与第三个"/"中间，存在一个DeviceID的参数
-   let dseUri = ('datashareproxy://com.samples.datasharetest.DataShare');
+   let dseUri = ('datashare:///com.samples.datasharetest.DataShare');
    ```
 
 3. 创建工具接口类对象。
