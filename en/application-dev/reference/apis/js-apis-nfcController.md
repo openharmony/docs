@@ -25,7 +25,7 @@ Enumerates the NFC states.
 | STATE_ON | 3      | NFC is open (ON).|
 | STATE_TURNING_OFF | 4      | NFC is turning off.|
 
-## controller.isNfcAvailable
+## controller.isNfcAvailable<sup>(deprecated)</sup>
 
 isNfcAvailable(): boolean
 
@@ -33,7 +33,7 @@ Checks whether the device supports NFC.
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use canIUse("SystemCapability.Communication.NFC.Core").
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [canIUse("SystemCapability.Communication.NFC.Core")](../native-apis/init.md).
 
 **System capability**: SystemCapability.Communication.NFC.Core
 
@@ -44,7 +44,7 @@ Checks whether the device supports NFC.
 | boolean | Returns **true** if the device supports NFC; returns **false** otherwise.|
 
 
-## controller.openNfc
+## controller.openNfc<sup>(deprecated)</sup>
 
 openNfc(): boolean
 
@@ -82,7 +82,7 @@ For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode
 | ------- | -------|
 | 3100101 | NFC state is abnormal in service. |
 
-## controller.closeNfc
+## controller.closeNfc<sup>(deprecated)</sup>
 
 closeNfc(): boolean
 
@@ -175,7 +175,7 @@ Unsubscribes from the NFC state changes. The subscriber will not receive NFC sta
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type to unsubscribe from. The value is **nfcStateChange**.|
+| type | string | Yes| Event type. The value is **nfcStateChange**.|
 | callback | Callback&lt;[NfcState](#nfcstate)&gt; | No| Callback for the NFC state changes. This parameter can be left blank. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
   
 **Example**
@@ -199,7 +199,7 @@ try {
   controller.enableNfc();
   console.log("controller enableNfc success");
 } catch (busiError) {
-  console.log("controller enableNfc busiError: " + busiError);
+  console.error("controller enableNfc busiError: " + busiError);
 }
 
 // Close NFC. The ohos.permission.MANAGE_SECURE_SETTINGS permission is required.
@@ -213,7 +213,7 @@ try {
   controller.disableNfc();
   console.log("controller disableNfc success");
 } catch (busiError) {
-  console.log("controller disableNfc busiError: " + busiError);
+  console.error("controller disableNfc busiError: " + busiError);
 }
 
 // Unregister the callback.
