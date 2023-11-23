@@ -102,8 +102,7 @@ async function selectOutputDevice() {
 ```ts
 import audio from '@ohos.multimedia.audio';
 let rendererInfo: audio.AudioRendererInfo = {
-    content : audio.ContentType.CONTENT_TYPE_MUSIC,
-    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
     rendererFlags : 0,
 }
 
@@ -121,8 +120,7 @@ async function getPreferOutputDeviceForRendererInfo() {
 ```ts
 import audio from '@ohos.multimedia.audio';
 let rendererInfo: audio.AudioRendererInfo = {
-    content : audio.ContentType.CONTENT_TYPE_MUSIC,
-    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
     rendererFlags : 0,
 }
 
