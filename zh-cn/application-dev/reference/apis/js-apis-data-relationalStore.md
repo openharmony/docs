@@ -882,7 +882,7 @@ predicates.inAllDevices();
 equalTo(field: string, value: ValueType): RdbPredicates
 
 
-配置谓词以匹配数据字段为ValueType且值等于指定值的字段。
+配置谓词以匹配数据表的field列中值为value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -911,8 +911,7 @@ predicates.equalTo("NAME", "lisi");
 
 notEqualTo(field: string, value: ValueType): RdbPredicates
 
-
-配置谓词以匹配数据字段为ValueType且值不等于指定值的字段。
+配置谓词以匹配数据表的field列中值不为value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1040,7 +1039,7 @@ predicates.equalTo("NAME", "Lisa")
 
 contains(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据字段为string且value包含指定值的字段。
+配置谓词以匹配数据表的field列中包含value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1068,7 +1067,7 @@ predicates.contains("NAME", "os");
 
 beginsWith(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据字段为string且值以指定字符串开头的字段。
+配置谓词以匹配数据表的field列中以value开头的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1096,7 +1095,7 @@ predicates.beginsWith("NAME", "os");
 
 endsWith(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据字段为string且值以指定字符串结尾的字段。
+配置谓词以匹配数据表的field列中以value结尾的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1124,7 +1123,7 @@ predicates.endsWith("NAME", "se");
 
 isNull(field: string): RdbPredicates
 
-配置谓词以匹配值为null的字段。
+配置谓词以匹配数据表的field列中值为null的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1151,7 +1150,7 @@ predicates.isNull("NAME");
 
 isNotNull(field: string): RdbPredicates
 
-配置谓词以匹配值不为null的指定字段。
+配置谓词以匹配数据表的field列中值不为null的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1178,7 +1177,7 @@ predicates.isNotNull("NAME");
 
 like(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据字段为string且值类似于指定字符串的字段。
+配置谓词以匹配数据表的field列中值类似于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1206,7 +1205,7 @@ predicates.like("NAME", "%os%");
 
 glob(field: string, value: string): RdbPredicates
 
-配置RdbPredicates匹配数据字段为string的指定字段。
+配置谓词匹配数据字段为string的指定字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1234,7 +1233,7 @@ predicates.glob("NAME", "?h*g");
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-将谓词配置为匹配数据字段为ValueType且value在给定范围内的指定字段。
+配置谓词以匹配数据表的field列中值在给定范围内的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1263,7 +1262,7 @@ predicates.between("AGE", 10, 50);
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-配置RdbPredicates以匹配数据字段为ValueType且value超出给定范围的指定字段。
+配置谓词以匹配数据表的field列中值超出给定范围的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1292,7 +1291,7 @@ predicates.notBetween("AGE", 10, 50);
 
 greaterThan(field: string, value: ValueType): RdbPredicates
 
-配置谓词以匹配数据字段为ValueType且值大于指定值的字段。
+配置谓词以匹配数据表的field列中值大于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1320,7 +1319,7 @@ predicates.greaterThan("AGE", 18);
 
 lessThan(field: string, value: ValueType): RdbPredicates
 
-配置谓词以匹配数据字段为valueType且value小于指定值的字段。
+配置谓词以匹配数据表的field列中值小于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1348,7 +1347,7 @@ predicates.lessThan("AGE", 20);
 
 greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
-配置谓词以匹配数据字段为ValueType且value大于或等于指定值的字段。
+配置谓词以匹配数据表的field列中值大于或者等于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1376,7 +1375,7 @@ predicates.greaterThanOrEqualTo("AGE", 18);
 
 lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
-配置谓词以匹配数据字段为ValueType且value小于或等于指定值的字段。
+配置谓词以匹配数据表的field列中值小于或者等于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1404,7 +1403,7 @@ predicates.lessThanOrEqualTo("AGE", 20);
 
 orderByAsc(field: string): RdbPredicates
 
-配置谓词以匹配其值按升序排序的列。
+配置谓词以匹配数据表的field列中值按升序排序的列。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1431,7 +1430,7 @@ predicates.orderByAsc("NAME");
 
 orderByDesc(field: string): RdbPredicates
 
-配置谓词以匹配其值按降序排序的列。
+配置谓词以匹配数据表的field列中值按降序排序的列。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1506,7 +1505,7 @@ predicates.equalTo("NAME", "Rose").limitAs(3);
 
 offsetAs(rowOffset: number): RdbPredicates
 
-配置RdbPredicates以指定返回结果的起始位置。
+配置谓词以指定返回结果的起始位置。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1533,7 +1532,7 @@ predicates.equalTo("NAME", "Rose").offsetAs(3);
 
 groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
-配置RdbPredicates按指定列分组查询结果。
+配置谓词按指定列分组查询结果。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1560,7 +1559,7 @@ predicates.groupBy(["AGE", "NAME"]);
 
 indexedBy(field: string): RdbPredicates
 
-配置RdbPredicates以指定索引列。
+配置谓词以指定索引列。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1588,7 +1587,7 @@ predicates.indexedBy("SALARY_INDEX");
 
 in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
-配置RdbPredicates以匹配数据字段为ValueType数组且值在给定范围内的指定字段。
+配置谓词以匹配数据表的field列中值在给定范围内的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1616,7 +1615,7 @@ predicates.in("AGE", [18, 20]);
 
 notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
-将RdbPredicates配置为匹配数据字段为ValueType且值超出给定范围的指定字段。
+将谓词配置为匹配数据字段为ValueType且值超出给定范围的指定字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
