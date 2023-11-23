@@ -1,0 +1,607 @@
+# @ohos.hiSysEvent    
+本模块提供了系统事件打点能力，包括系统事件的埋点、落盘系统事件的订阅及已落盘的系统事件的查询能力。  
+> **说明**   
+>本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本  
+  
+## 导入模块  
+  
+```js    
+import hiSysEvent from '@ohos.hiSysEvent'    
+```  
+    
+## EventType    
+系统事件类型枚举。    
+    
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent    
+ **系统接口：** 此接口为系统接口。    
+    
+| 名称 | 值 | 说明 |  
+| --------| --------| --------|  
+| FAULT | 1 | 错误事件类型。 |  
+| STATISTIC | 2 | 统计事件类型。 |  
+| SECURITY | 3 | 安全事件类型。 |  
+| BEHAVIOR | 4 | 用户行为事件类型。 |  
+    
+## SysEventInfo    
+系统事件信息对象接口。  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent    
+### 属性    
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent    
+ **系统接口：** 此接口为系统接口。    
+    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| domain | string | false | true | 事件领域。 |  
+| name | string | false | true | 事件名称。 |  
+| eventType | EventType | false | true | 事件类型。 |  
+| params | object | false | true | 事件参数。 |  
+    
+## write    
+系统事件打点方法，接收[SysEventInfo](#syseventinfo)类型的对象作为事件参数，使用promise方式作为异步回调。  
+ **调用形式：**     
+    
+- write(info: SysEventInfo): Promise\<void>    
+起始版本： 9    
+- write(info: SysEventInfo, callback: AsyncCallback\<void>): void    
+起始版本： 9  
+  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| info | SysEventInfo | true | 系统事件。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 回调函数，可以在回调函数中处理接口返回值。<br/>- 0表示事件校验成功，事件正常异步写入事件文件；<br/>- 正值表示事件打点存在异常，但可以正常写入；<br/>- 负值表示事件打点失败。 |  
+| Promise<void> | Promise实例，可以在其then()、catch()方法中分别对系统事件写入成功、写入异常的回调进行处理。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 401 |  |  
+| 11200001 | Invalid event domain. |  
+| 11200002 | Invalid event name. |  
+| 11200003 | Abnormal environment. |  
+| 11200004 | Length of the event is over limit. |  
+| 11200051 | Invalid event parameter. |  
+| 11200052 | Size of the event parameter of the string type is over limit. |  
+| 11200053 | Count of event parameters is over limit. |  
+| 11200054 | Count of event parameter of the array type is over limit. |  
+    
+ **示例代码1：**   
+示例（callback）：  
+```ts    
+import hiSysEvent from '@ohos.hiSysEvent';  
+import { BusinessError } from '@ohos.base';  
+  
+try {  
+  let customizedParams: Record<string, string | number> = {  
+    'PID': 487,  
+    'UID': 103,  
+    'PACKAGE_NAME': "com.ohos.hisysevent.test",  
+    'PROCESS_NAME': "syseventservice",  
+    'MSG': "no msg."  
+  };  
+  let eventInfo: hiSysEvent.SysEventInfo = {  
+    domain: "RELIABILITY",  
+    name: "STACK",  
+    eventType: hiSysEvent.EventType.FAULT,  
+    params: customizedParams  
+  };  
+  hiSysEvent.write(eventInfo, (err: BusinessError, val: number) => {  
+    // do something here.  
+  });  
+} catch (err) {  
+  console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);  
+}  
+    
+```    
+  
+    
+ **示例代码2：**   
+示例（Promise）：  
+```ts    
+import hiSysEvent from '@ohos.hiSysEvent';  
+import { BusinessError } from '@ohos.base';  
+  
+try {  
+  let customizedParams: Record<string, string | number> = {  
+    'PID': 487,  
+    'UID': 103,  
+    'PACKAGE_NAME': "com.ohos.hisysevent.test",  
+    'PROCESS_NAME': "syseventservice",  
+    'MSG': "no msg."  
+  };  
+  let eventInfo: hiSysEvent.SysEventInfo = {  
+    domain: "RELIABILITY",  
+    name: "STACK",  
+    eventType: hiSysEvent.EventType.FAULT,  
+    params: customizedParams  
+  };  
+  hiSysEvent.write(eventInfo).then(  
+    () => {  
+      // do something here.  
+    }  
+  ).catch(  
+    (err: BusinessError) => {  
+      console.error(`error code: ${err.code}, error msg: ${err.message}`);  
+    }  
+  );  
+} catch (err) {  
+  console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);  
+}  
+    
+```    
+  
+    
+## RuleType    
+匹配规则类型枚举。    
+    
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent    
+ **系统接口：** 此接口为系统接口。    
+    
+| 名称 | 值 | 说明 |  
+| --------| --------| --------|  
+| WHOLE_WORD | 1 | 全词匹配类型。 |  
+| PREFIX | 2 | 前缀匹配类型。 |  
+| REGULAR | 3 | 正则匹配类型。 |  
+    
+## WatchRule    
+系统事件订阅规则对象接口。  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent    
+### 属性    
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent    
+ **系统接口：** 此接口为系统接口。    
+    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| domain | string | false | true | 事件领域。 |  
+| name | string | false | true | 事件名称。 |  
+| tag | string | false | true | 事件标签。 |  
+| ruleType | RuleType | false | true | 匹配规则类型。 |  
+    
+## Watcher    
+系统事件订阅者对象接口。  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent    
+### 属性    
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent    
+ **系统接口：** 此接口为系统接口。    
+    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| rules | WatchRule[] | false | true | 订阅对象数组，每个订阅者对象包含多个订阅规则。 |  
+| onEvent | (info: SysEventInfo) => void | false | true | 订阅事件的回调方法(info: [SysEventInfo](#syseventinfo)) => void。 |  
+| onServiceDied | () => void | false | true | 系统事件服务关闭的回调方法() => void。 |  
+    
+## QueryArg    
+系统事件查询参数对象接口。  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent    
+### 属性    
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent    
+ **系统接口：** 此接口为系统接口。    
+    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| beginTime | number | false | true | 查询的系统事件起始时间（13位时间戳）。 |  
+| endTime | number | false | true | 查询的系统事件结束时间（13位时间戳）。 |  
+| maxEvents | number | false | true | 查询的系统事件最多条数。 |  
+| fromSeq<sup>(10+)</sup> | number | false | false | 查询的系统事件起始序列号，默认值为-1。 |  
+| toSeq<sup>(10+)</sup> | number | false | false | 查询的系统事件结束序列号，默认值为-1。 |  
+    
+## QueryRule    
+系统事件查询规则对象接口。  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent    
+### 属性    
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent    
+ **系统接口：** 此接口为系统接口。    
+    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| domain | string | false | true | 查询包含的事件领域。 |  
+| names | string[] | false | true | 查询所包含的多个事件名称，每个查询规则对象包含多个系统事件名称。 |  
+| condition<sup>(10+)</sup> | string | false | false | 事件的额外参数条件，格式：{"version":"V1","condition":{"and":[{"param":"参数","op":"操作符","value":"比较值"}]}} |  
+    
+## Querier    
+系统事件查询者对象接口。  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent    
+### 属性    
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent    
+ **系统接口：** 此接口为系统接口。    
+    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| onQuery | (infos: SysEventInfo[]) => void | false | true | 返回查询到的系统事件的回调方法(infos: [SysEventInfo](#syseventinfo)[]) => void。 |  
+| onComplete | (reason: number, total: number) => void | false | true | 查询结果统计的回调方法(reason: number, total: number) => void。 |  
+    
+## addWatcher    
+订阅系统事件，接收[Watcher](#watcher)类型的对象作为事件参数。  
+ **调用形式：**     
+- addWatcher(watcher: Watcher): void  
+  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent  
+ **需要权限：** ohos.permission.READ_DFX_SYSEVENT    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| watcher | Watcher | true | 系统事件订阅者对象。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 |  |  
+| 202 |  |  
+| 401 |  |  
+| 11200101 | Count of watchers is over limit. |  
+| 11200102 | Count of watch rules is over limit. |  
+    
+ **示例代码：**   
+```ts    
+import hiSysEvent from '@ohos.hiSysEvent';  
+import { BusinessError } from '@ohos.base';  
+  
+let watchRules: hiSysEvent.WatchRule[] = [{  
+    domain: "RELIABILITY",  
+    name: "STACK",  
+    tag: "STABILITY",  
+    ruleType: hiSysEvent.RuleType.WHOLE_WORD,  
+  } as hiSysEvent.WatchRule];  
+let watcher: hiSysEvent.Watcher = {  
+  rules: watchRules,  
+  onEvent: (info: hiSysEvent.SysEventInfo) => {  
+    // do something here.  
+  },  
+  onServiceDied: () => {  
+    // do something here.  
+  }  
+};  
+try {  
+  hiSysEvent.addWatcher(watcher);  
+} catch (err) {  
+  console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);  
+}  
+    
+```    
+  
+    
+## removeWatcher    
+取消订阅系统事件，接收[Watcher](#watcher)类型的对象作为事件参数。  
+ **调用形式：**     
+- removeWatcher(watcher: Watcher): void  
+  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent  
+ **需要权限：** ohos.permission.READ_DFX_SYSEVENT    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| watcher | Watcher | true | 系统事件订阅者对象。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 |  |  
+| 202 |  |  
+| 401 |  |  
+| 11200201 | The watcher does not exist. |  
+    
+ **示例代码：**   
+```ts    
+import hiSysEvent from '@ohos.hiSysEvent';  
+import { BusinessError } from '@ohos.base';  
+  
+let watchRules: hiSysEvent.WatchRule[] = [{  
+    domain: "RELIABILITY",  
+    name: "STACK",  
+    tag: "STABILITY",  
+    ruleType: hiSysEvent.RuleType.WHOLE_WORD,  
+  } as hiSysEvent.WatchRule ];  
+let watcher: hiSysEvent.Watcher = {  
+  rules: watchRules,  
+  onEvent: (info: hiSysEvent.SysEventInfo) => {  
+    // do something here.  
+  },  
+  onServiceDied: () => {  
+    // do something here.  
+  }  
+};  
+try {  
+  hiSysEvent.addWatcher(watcher);  
+  hiSysEvent.removeWatcher(watcher);  
+} catch (err) {  
+  console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);  
+}  
+    
+```    
+  
+    
+## query    
+查询系统事件。  
+ **调用形式：**     
+- query(queryArg: QueryArg, rules: QueryRule[], querier: Querier): void  
+  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent  
+ **需要权限：** ohos.permission.READ_DFX_SYSEVENT    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| queryArg | QueryArg | true | 查询需要配置的查询参数。 |  
+| rules | QueryRule[] | true | 查询规则数组，每次查询可配置多个查询规则 |  
+| querier | Querier | true | 查询者对象，包含查询结果及结束的相关回调。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 |  |  
+| 202 |  |  
+| 401 |  |  
+| 11200301 | Count of query rules is over limit. |  
+| 11200302 | Invalid query rule. |  
+| 11200303 | Count of concurrent queriers is over limit. |  
+| 11200304 | Query frequency is over limit. |  
+    
+ **示例代码：**   
+```ts    
+import hiSysEvent from '@ohos.hiSysEvent';  
+import { BusinessError } from '@ohos.base';  
+  
+try {  
+  let customizedParams: Record<string, string | number> = {  
+    'PID': 487,  
+    'UID': 103,  
+    'PACKAGE_NAME': "com.ohos.hisysevent.test",  
+    'PROCESS_NAME': "syseventservice",  
+    'MSG': "no msg."  
+  };  
+  let eventInfo: hiSysEvent.SysEventInfo = {  
+    domain: "RELIABILITY",  
+    name: "STACK",  
+    eventType: hiSysEvent.EventType.FAULT,  
+    params: customizedParams  
+  };  
+  hiSysEvent.write(eventInfo, (err: BusinessError, val: number) => {  
+    // do something here.  
+  });  
+  
+  let queryArg: hiSysEvent.QueryArg = {  
+    beginTime: -1,  
+    endTime: -1,  
+    maxEvents: 5,  
+  };  
+  let queryRules: hiSysEvent.QueryRule[] = [{  
+    domain: "RELIABILITY",  
+    names: ["STACK"],  
+  } as hiSysEvent.QueryRule];  
+  let querier: hiSysEvent.Querier = {  
+    onQuery: (infos: hiSysEvent.SysEventInfo[]) => {  
+      // do something here.  
+    },  
+    onComplete: (reason: number, total: number) => {  
+      // do something here.  
+    }  
+  };  
+  hiSysEvent.query(queryArg, queryRules, querier);  
+} catch (err) {  
+  console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);  
+}  
+    
+```    
+  
+    
+## exportSysEvents<sup>(10+)</sup>    
+批量导出系统事件，以文件格式写入应用沙箱固定目录(/data/storage/el2/base/cache/hiview/event/)。  
+ **调用形式：**     
+- exportSysEvents(queryArg: QueryArg, rules: QueryRule[]): number  
+  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent  
+ **需要权限：** ohos.permission.READ_DFX_SYSEVENT    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| queryArg | QueryArg | true | 导出需要配置的查询参数。 |  
+| rules | QueryRule[] | true | 查询规则数组，每次导出可配置多个查询规则。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| number | 接口调用时间戳。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 |  |  
+| 202 |  |  
+| 401 |  |  
+| 11200301 | Count of query rules is over limit. |  
+| 11200302 | Invalid query rule. |  
+| 11200304 | Export frequency is over limit. |  
+    
+ **示例代码：**   
+```ts    
+import hiSysEvent from '@ohos.hiSysEvent';  
+import fs from '@ohos.file.fs';  
+import { BusinessError } from '@ohos.base';  
+  
+try {  
+  let customizedParams: Record<string, string | number> = {  
+    'PID': 487,  
+    'UID': 103,  
+    'PACKAGE_NAME': "com.ohos.hisysevent.test",  
+    'PROCESS_NAME': "syseventservice",  
+    'MSG': "no msg."  
+  };  
+  let eventInfo: hiSysEvent.SysEventInfo = {  
+    domain: "RELIABILITY",  
+    name: "STACK",  
+    eventType: hiSysEvent.EventType.FAULT,  
+    params: customizedParams  
+  };  
+  hiSysEvent.write(eventInfo, (err: BusinessError, val: number) => {  
+    // do something here.  
+  });  
+  
+  let queryArg: hiSysEvent.QueryArg = {  
+    beginTime: -1,  
+    endTime: -1,  
+    maxEvents: 1,  
+  };  
+  let queryRules: hiSysEvent.QueryRule[] = [{  
+    domain: "RELIABILITY",  
+    names: ["STACK"],  
+  } as hiSysEvent.QueryRule];  
+  let time = hiSysEvent.exportSysEvents(queryArg, queryRules);  
+  console.log(`receive export task time is : ${time}`);  
+  
+  // 延迟读取本次导出的事件  
+  setTimeout(() => {  
+    let eventDir = '/data/storage/el2/base/cache/hiview/event';  
+    let filenames = fs.listFileSync(eventDir);  
+    for (let i = 0; i < filenames.length; i++) {  
+      if (filenames[i].indexOf(time.toString()) != -1) {  
+        let res = fs.readTextSync(eventDir + '/' + filenames[i]);  
+        let events: string = JSON.parse('[' + res.slice(0, res.length - 1) + ']');  
+        console.log("read file end, events is :" + JSON.stringify(events));  
+      }  
+    }  
+  }, 10000);  
+} catch catch (err) {  
+  console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);  
+}  
+    
+```    
+  
+    
+## subscribe<sup>(10+)</sup>    
+订阅实时系统事件(事件需满足低频率或偶发性的约束条件)，事件发生时立即以文件格式写入应用沙箱固定目录(/data/storage/el2/base/cache/hiview/event/)。  
+ **调用形式：**     
+- subscribe(rules: QueryRule[]): number  
+  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent  
+ **需要权限：** ohos.permission.READ_DFX_SYSEVENT    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| rules | QueryRule[] | true | 查询规则数组，每次订阅可配置多个查询规则。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| number | 接口调用时间戳。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 |  |  
+| 202 |  |  
+| 401 |  |  
+| 11200301 | Count of query rules is over limit. |  
+| 11200302 | Invalid query rule. |  
+    
+ **示例代码：**   
+```ts    
+import hiSysEvent from '@ohos.hiSysEvent';  
+import fs from '@ohos.file.fs';  
+import { BusinessError } from '@ohos.base';  
+  
+try {  
+  let rules: hiSysEvent.QueryRule[] = [{  
+    domain: "RELIABILITY",  
+    names: ["STACK"],  
+  } as hiSysEvent.QueryRule,  
+  {  
+    domain: "BUNDLE_MANAGER",  
+    names: ["BUNDLE_UNINSTALL"],  
+  } as hiSysEvent.QueryRule];  
+  hiSysEvent.subscribe(rules);  
+  
+  let customizedParams: Record<string, string | number> = {  
+    'PID': 487,  
+    'UID': 103,  
+    'PACKAGE_NAME': "com.ohos.hisysevent.test",  
+    'PROCESS_NAME': "syseventservice",  
+    'MSG': "no msg."  
+  };  
+  let eventInfo: hiSysEvent.SysEventInfo = {  
+    domain: "RELIABILITY",  
+    name: "STACK",  
+    eventType: hiSysEvent.EventType.FAULT,  
+    params: customizedParams  
+  };  
+  hiSysEvent.write(eventInfo, (err: BusinessError, val: number) => {  
+    // do something here.  
+  });  
+  
+  // 延迟读取订阅的事件  
+  setTimeout(() => {  
+    let eventDir = '/data/storage/el2/base/cache/hiview/event';  
+    let filenames = fs.listFileSync(eventDir);  
+    for (let i = 0; i < filenames.length; i++) {  
+      let res = fs.readTextSync(eventDir + '/' + filenames[i]);  
+      let events: string = JSON.parse('[' + res.slice(0, res.length - 1) + ']');  
+      console.log("read file end, events is :" + JSON.stringify(events));  
+    }  
+  }, 10000);  
+} catch catch (err) {  
+  console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);  
+}  
+    
+```    
+  
+    
+## unsubscribe<sup>(10+)</sup>    
+取消订阅系统事件。  
+ **调用形式：**     
+- unsubscribe(): void  
+  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.HiviewDFX.HiSysEvent  
+ **需要权限：** ohos.permission.READ_DFX_SYSEVENT    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 |  |  
+| 202 |  |  
+| 401 |  |  
+| 11200305 | Unsubscribe failed. |  
+    
+ **示例代码：**   
+```ts    
+import hiSysEvent from '@ohos.hiSysEvent';  
+import { BusinessError } from '@ohos.base';  
+  
+try {  
+  let rules: hiSysEvent.QueryRule[] = [{  
+    domain: "RELIABILITY",  
+    names: ["STACK"],  
+  } as hiSysEvent.QueryRule,  
+  {  
+    domain: "BUNDLE_MANAGER",  
+    names: ["BUNDLE_UNINSTALL"],  
+  } as hiSysEvent.QueryRule];  
+  hiSysEvent.subscribe(rules);  
+  hiSysEvent.unsubscribe();  
+} catch (err) {  
+  console.error(`error code: ${(err as BusinessError).code}, error msg: ${(err as BusinessError).message}`);  
+}  
+    
+```    
+  

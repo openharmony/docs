@@ -1,0 +1,1117 @@
+# soundPool    
+音频池加载播放实例，音频池提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能。  
+> **说明**   
+>本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本  
+    
+## PlayParameters    
+表示音频池播放参数设置。通过设置播放相关参数，来控制播放的音量，循环次数，播放优先级等参数。  
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+### 属性    
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| loop | number | false | false | 设置循环参数，0为循环一次，-1表示一直循环。 |  
+| rate | number | false | false | 设置音频播放的倍速，具体倍速范围参照[AudioRendererRate](js-apis-audio.md#AudioRendererRate)。 |  
+| leftVolume | number | false | false | 设置左声道音量，设置范围（0~1）。 |  
+| rightVolume | number | false | false | 设置右声道音量。（当前不支持左右分别设置，将以左声道音量为准）。 |  
+| priority | number | false | false | 音频流播放的优先级，0为最低优先级，数值越大优先级越高，通过相互比较大小确定播放优先级。 |  
+    
+## SoundPool    
+音频池提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能, 在调用SoundPool的接口前，需要先通过[createSoundPool](js-apis-media.md#mediacreatesoundpool10)创建实例  
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+### load    
+加载音频资源。获取资源ID，入参uri通过获取文件fd生成以"fd://"开头的文件描述字符串。  
+ **调用形式：**     
+    
+- load(uri: string, callback: AsyncCallback\<number>): void    
+起始版本： 10    
+- load(uri: string): Promise\<number>    
+起始版本： 10    
+- load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void    
+起始版本： 10    
+- load(fd: number, offset: number, length: number): Promise\<number>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| uri | string | true | 音频文件的加载路径描述，一般以"fd://"开头的文件描述 |  
+| fd | number | true | 资源句柄，通过resourceManager.getRawFileDescriptor获取。 |  
+| offset | number | true | 资源偏移量，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |  
+| length | number | true | 资源长度，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 异步音频资源加载返回的资源id，有效值大于0。 |  
+| Promise<number> | 获取回调的soundID，有效值大于0。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 5400102 | Operation not allowed. Return by callback. |  
+| 5400103 | I/O error. Return by callback. |  
+| 5400105 | Service died. Return by callback. |  
+    
+ **示例代码1：**   
+示例(callback):  
+```js    
+import fs from '@ohos.file.fs';  
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+let uri:string = "";  
+let file: fs.File;  
+//获取fd的uri路径  
+fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {  
+  file = file_;  
+  console.info("file fd: " + file.fd);  
+  uri = 'fd://' + (file.fd).toString()  
+}); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。  
+  
+soundPool.load(uri, (error: BusinessError, soundId_: number) => {  
+  if (error) {  
+    console.info(`load soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)  
+  } else {  
+    console.info(`load soundPool Success` + JSON.stringify(soundId_))  
+  }  
+})  
+    
+```    
+  
+    
+ **示例代码2：**   
+示例(Promise):  
+```ts    
+import fs from '@ohos.file.fs';  
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+let uri:string = "";  
+let soundID: number;  
+let file: fs.File;  
+//获取fd的uri路径  
+fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {  
+  file = file_;  
+  console.info("file fd: " + file.fd);  
+  uri = 'fd://' + (file.fd).toString()  
+}); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。  
+  
+soundPool.load(uri).then((soundId: number) => {  
+  console.info('soundPool load uri success');  
+  soundID = soundId;  
+}, (err: BusinessError) => {  
+  console.error('soundPool load failed and catch error is ' + err.message);  
+});  
+    
+```    
+  
+    
+### play    
+播放音频资源。获取音频流streamID。  
+ **调用形式：**     
+    
+- play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>): void    
+起始版本： 10    
+- play(soundID: number, callback: AsyncCallback\<number>): void    
+起始版本： 10    
+- play(soundID: number, params?: PlayParameters): Promise\<number>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| soundID | number | true | 资源ID，通过load方法获取。 |  
+| params | PlayParameters | true | play播放相关参数的设置。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 获取回调的音频流ID，有效值大于0。 |  
+| Promise<number> | 获取回调的音频流ID，有效值大于0。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 401 |  |  
+| 5400102 | Operation not allowed. Return by callback. |  
+| 5400105 | Service died. Return by callback. |  
+    
+ **示例代码1：**   
+示例(Promise):  
+```js    
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+let soundID: number;  
+let streamID: number;  
+let playParameters: media.PlayParameters = {  
+    loop: 3, // 循环4次  
+    rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速  
+    leftVolume: 0.5, // range = 0.0-1.0  
+    rightVolume: 0.5, // range = 0.0-1.0  
+    priority: 0, // 最低优先级  
+    parallelPlayFlag: false // 不和其它正在播放的音频并行播放  
+  }  
+  
+soundPool.play(soundID, playParameters).then((streamId: number) => {  
+  console.info('play success');  
+  streamID = streamId;  
+},(err: BusinessError) => {  
+  console.error('soundpool play failed and catch error is ' + err.message);  
+});  
+    
+```    
+  
+    
+ **示例代码2：**   
+示例(callback):  
+```ts    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+let streamID: number;  
+//先调用play方法给拿到对应的streamID  
+soundPool.stop(streamID, (error: BusinessError) => {  
+  if (error) {  
+    console.info(`stop sound Error: errCode is ${error.code}, errMessage is ${error.message}`)  
+  } else {  
+    console.info('stop success');  
+  }  
+})  
+    
+```    
+  
+    
+### stop    
+停止播放音频资源。获取返回值。  
+ **调用形式：**     
+    
+- stop(streamID: number, callback: AsyncCallback\<void>): void    
+起始版本： 10    
+- stop(streamID: number): Promise\<void>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| streamID | number | true | | streamID | number | 是   | 音频流ID，通过play方法获取。 | |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 异步音频池stop的回调方法。 |  
+| Promise<void> | 返回值。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 401 |  |  
+| 5400102 | Operation not allowed. Return by callback. |  
+| 5400105 | Service died. Return by callback. |  
+    
+ **示例代码1：**   
+示例(Promise):  
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+let streamID: number;  
+//先调用play方法给拿到对应的streamID  
+soundPool.stop(streamID).then(() => {  
+  console.info('stop success');  
+}, (err: BusinessError) => {  
+  console.error('soundpool load stop and catch error is ' + err.message);  
+});  
+    
+```    
+  
+    
+ **示例代码2：**   
+示例(callback):  
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+let streamID: number;  
+//先调用play方法给拿到对应的streamID  
+soundPool.stop(streamID, (error: BusinessError) => {  
+  if (error) {  
+    console.info(`stop sound Error: errCode is ${error.code}, errMessage is ${error.message}`)  
+  } else {  
+    console.info('stop success');  
+  }  
+})  
+    
+```    
+  
+    
+### setLoop    
+设置循环模式。获取返回值。  
+ **调用形式：**     
+    
+- setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void    
+起始版本： 10    
+- setLoop(streamID: number, loop: number): Promise\<void>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| streamID | number | true | 音频流ID，通过play方法获取。 |  
+| loop | number | true | 设置循环的次数，0为默认1次，小于0为一直循环。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 异步音频池setPriority方法的回调方法。 |  
+| Promise<void> | 异步音频池setLoop方法的Promise返回值。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 401 |  |  
+| 5400102 | Operation not allowed. Return by promise. |  
+| 5400105 | Service died. Return by promise. |  
+    
+ **示例代码1：**   
+示例(callback):  
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+let streamID: number;  
+//先通过调用play方法获取到对应的streamID  
+//设置循环2次  
+soundPool.setLoop(streamID, 2, (error: BusinessError) => {  
+  if (error) {  
+    console.info(`setLoop soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)  
+  } else {  
+    console.info('setLoop success streamID:' + streamID);  
+  }  
+})  
+    
+```    
+  
+    
+ **示例代码2：**   
+示例(Promise):  
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+let streamID: number;  
+//先通过调用play方法获取到对应的streamID  
+//设置循环1次  
+soundPool.setLoop(streamID, 1).then(() => {  
+  console.info('setLoop success streamID:' + streamID);  
+}).catch((err: BusinessError) => {  
+  console.error('soundpool setLoop failed and catch error is ' + err.message);  
+});  
+    
+```    
+  
+    
+### setPriority    
+设置音频流优先级。获取返回值。  
+ **调用形式：**     
+    
+- setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>): void    
+起始版本： 10    
+- setPriority(streamID: number, priority: number): Promise\<void>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| streamID | number | true | 音频流ID，通过play方法获取。 |  
+| priority | number | true | | priority | number | 是   | 优先级，0表示最低优先级。 | |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 异步音频池setRate方法的回调方法。 |  
+| Promise<void> | 异步音频池setPriority的Promise返回值。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 401 |  |  
+| 5400102 | Operation not allowed. Return by promise. |  
+| 5400105 | Service died. Return by promise. |  
+    
+ **示例代码1：**   
+示例(callback):  
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+let streamID: number;  
+// 先调用play方法获取到对应资源的streamID  
+// 给对应的streamID资源设置优先级为1  
+soundPool.setPriority(streamID, 1, (error: BusinessError) => {  
+  if (error) {  
+    console.info(`setPriority soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)  
+  } else {  
+    console.info('setPriority success streamID:' + streamID);  
+  }  
+})  
+    
+```    
+  
+    
+ **示例代码2：**   
+示例(Promise):  
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+let streamID: number;  
+// 先调用play方法获取到对应资源的streamID  
+// 给对应的streamID资源设置优先级为1  
+  
+soundPool.setPriority(streamID, 1).then(() => {  
+  console.info('setPriority success');  
+}, (err: BusinessError) => {  
+  console.error('soundpool setPriority failed and catch error is ' + err.message);  
+});  
+    
+```    
+  
+    
+### setRate    
+设置音频流的播放速率。获取返回值。  
+ **调用形式：**     
+    
+- setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback\<void>): void    
+起始版本： 10    
+- setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| streamID | number | true | 音频流ID，通过play方法获取。 |  
+| rate | audio.AudioRendererRate | true | 音频rate相关参数。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 异步音频池setVolume方法的回调方法。 |  
+| Promise<void> | 异步音频池setRate方法的Promise返回值。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 401 |  |  
+| 5400102 | peration not allowed. Return by promise. |  
+| 5400105 | Service died. Return by promise. |  
+    
+ **示例代码1：**   
+示例(callback):  
+```js    
+```js  
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+let streamID: number;  
+let selectedAudioRendererRate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL; // 默认正常速率  
+// 先调用play方法获取到对应资源的streamID  
+  
+soundPool.setRate(streamID, selectedAudioRendererRate, (error: BusinessError) => {  
+  if (error) {  
+    console.info(`setRate soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)  
+  } else {  
+    console.info('setRate success streamID:' + streamID);  
+  }  
+})  
+    
+```    
+  
+    
+ **示例代码2：**   
+示例(Promise):  
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+let streamID: number;  
+let selectedAudioRendererRate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL; // 默认正常速率  
+// 先调用play方法获取到对应资源的streamID  
+  
+soundPool.setRate(streamID, selectedAudioRendererRate).then(() => {  
+  console.info('setRate success');  
+}, (err: BusinessError) => {  
+  console.error('soundpool setRate failed and catch error is ' + err.message);  
+});  
+    
+```    
+  
+    
+### setVolume    
+设置音频流的播放音量。获取返回值。  
+ **调用形式：**     
+    
+- setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: AsyncCallback\<void>): void    
+起始版本： 10    
+- setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<void>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| streamID | number | true | 音频流ID，通过play方法获取。 |  
+| leftVolume | number | true | 左声道音量，设置范围为0.0-1.0之间。 |  
+| rightVolume | number | true | 右声道音量，当前右声道设置无效，以左声道为准。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 异步音频池setVolume方法的回调方法。 |  
+| Promise<void> | 异步音频池setVolume方法的Promise返回值。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 401 |  |  
+| 5400102 | Operation not allowed. Return by promise. |  
+| 5400105 | Service died. Return by promise. |  
+    
+ **示例代码1：**   
+示例(callback):  
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+let streamID: number;  
+// 先调用play方法获取到对应资源的streamID  
+//设置音量为0.5  
+soundPool.setVolume(streamID, 0.5, 0.5, (error: BusinessError) => {  
+  if (error) {  
+    console.info(`setVolume soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)  
+  } else {  
+    console.info('setVolume success streamID:' + streamID);  
+  }  
+})  
+    
+```    
+  
+    
+ **示例代码2：**   
+示例(Promise):  
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+let streamID: number;  
+// 先调用play方法获取到对应资源的streamID  
+  
+soundPool.setVolume(streamID, 0.5, 0.5).then(() => {  
+  console.info('setVolume success');  
+}, (err: BusinessError) => {  
+  console.error('soundpool setVolume failed and catch error is ' + err.message);  
+});  
+    
+```    
+  
+    
+### unload    
+卸载音频资源。获取返回值。  
+ **调用形式：**     
+    
+- unload(soundID: number, callback: AsyncCallback\<void>): void    
+起始版本： 10    
+- unload(soundID: number): Promise\<void>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| soundID | number | true | 资源ID，通过load方法获取。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 异步音频池unload方法的回调方法。 |  
+| Promise<void> | 异步音频池unload方法的Promise返回值。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 5400102 | Operation not allowed. Return by callback. |  
+| 5400103 | I/O error. Return by callback. |  
+| 5400105 | Service died. Return by callback. |  
+    
+ **示例代码1：**   
+示例(callback):  
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+let soundID: number;  
+// 先调用load方法获取到对应资源的soundID  
+soundPool.unload(soundID, (error: BusinessError) => {  
+  if (error) {  
+    console.info(`unload soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)  
+  } else {  
+    console.info('unload success:');  
+  }  
+})  
+    
+```    
+  
+    
+ **示例代码2：**   
+示例(Promise):  
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+let soundID: number;  
+// 先调用load方法获取到对应资源的soundID  
+  
+soundPool.unload(soundID).then(() => {  
+  console.info('unload success');  
+}, (err: BusinessError) => {  
+  console.error('soundpool unload failed and catch error is ' + err.message);  
+});  
+    
+```    
+  
+    
+### release    
+释放音频池实例。获取返回值。  
+ **调用形式：**     
+    
+- release(callback: AsyncCallback\<void>): void    
+起始版本： 10    
+- release(): Promise\<void>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 异步音频池release方法的回调方法。 |  
+| Promise<void> | 异步音频池release方法的Promise返回值。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 5400105 | ervice died. Return by callback. |  
+    
+ **示例代码1：**   
+示例(callback):  
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+let soundID: number;  
+// 先调用load方法获取到对应资源的soundID  
+  
+soundPool.unload(soundID).then(() => {  
+  console.info('unload success');  
+}, (err: BusinessError) => {  
+  console.error('soundpool unload failed and catch error is ' + err.message);  
+});  
+    
+```    
+  
+    
+ **示例代码2：**   
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+soundPool.release((error: BusinessError) => {  
+  if (error) {  
+    console.info(`release soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)  
+  } else {  
+    console.info('release success');  
+  }  
+})  
+  
+```js    
+示例(Promise):    
+```    
+  
+    
+### on('loadComplete')    
+音频池资源加载完成监听。  
+ **调用形式：**     
+    
+- on(type: 'loadComplete', callback: Callback\<number>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 支持的事件：'loadComplete'，对应的ID加载完成会触发此回调。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 对应资源加载完成的资源ID。 |  
+    
+ **示例代码：**   
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+soundPool.on('loadComplete', (soundId: number) => {  
+  console.info('loadComplete success，soundId：' + soundId)  
+})  
+    
+```    
+  
+    
+### off('loadComplete')    
+取消监听资源的加载完成。  
+ **调用形式：**     
+- off(type: 'loadComplete'): void  
+  
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 取消注册的事件：'loadComplete'。 |  
+    
+ **示例代码：**   
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+soundPool.off('loadComplete')  
+    
+```    
+  
+    
+### on('playFinished')    
+音频池资源播放完成监听。  
+ **调用形式：**     
+    
+- on(type: 'playFinished', callback: Callback\<void>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 支持的事件：'playFinished'，音频流播放完成会触发此回调 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 异步'playFinished'的回调方法。 |  
+    
+ **示例代码：**   
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+soundPool.on('playFinished', () => {  
+  console.info('playFinished success')  
+})  
+    
+```    
+  
+    
+### off('playFinished')    
+取消监听音频池资源播放完成。  
+ **调用形式：**     
+- off(type: 'playFinished'): void  
+  
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 取消注册的事件：'playFinished'。 |  
+    
+ **示例代码：**   
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+soundPool.off('playFinished')  
+    
+```    
+  
+    
+### on('error')    
+监听[SoundPool](#soundpool)的错误事件，该事件仅用于错误提示。  
+ **调用形式：**     
+    
+- on(type: 'error', callback: ErrorCallback): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 错误事件回调类型，支持的事件：'error'，用户操作和系统都会触发此事件。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 错误事件回调方法：使用播放器的过程中发生错误，会提供错误码ID和错误信息。 |  
+    
+ **示例代码：**   
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+  
+soundPool.on('error', (error: BusinessError) => {  
+  console.error('error happened,and error message is :' + error.message)  
+  console.error('error happened,and error code is :' + error.code)  
+})  
+    
+```    
+  
+    
+### off('error')    
+取消监听音频池的错误事件。  
+ **调用形式：**     
+- off(type: 'error'): void  
+  
+ **系统能力:**  SystemCapability.Multimedia.Media.SoundPool    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 错误事件回调类型，取消注册的事件：'error'。 |  
+    
+ **示例代码：**   
+```js    
+//创建soundPool实例  
+let soundPool: media.SoundPool;  
+let audioRendererInfo: audio.AudioRendererInfo = {  
+  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,  
+  rendererFlags: 1  
+}  
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {  
+  if (error) {  
+    console.info(`createSoundPool failed`)  
+    return;  
+  } else {  
+    soundPool = soundPool_;  
+    console.info(`createSoundPool success`)  
+  }  
+});  
+soundPool.off('error')  
+    
+```    
+  

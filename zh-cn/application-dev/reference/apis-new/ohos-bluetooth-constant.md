@@ -1,0 +1,145 @@
+# @ohos.bluetooth.constant    
+constant模块提供了蓝牙中常量的定义。  
+> **说明**   
+>本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本  
+  
+## 导入模块  
+  
+```js    
+import constant from '@ohos.bluetooth.constant'    
+```  
+    
+## ProfileId    
+蓝牙profile枚举。    
+    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 值 | 说明 |  
+| --------| --------| --------|  
+| PROFILE_A2DP_SOURCE | 1 | 表示A2DP profile。<br/> |  
+| PROFILE_HANDSFREE_AUDIO_GATEWAY | 4 | 表示HFP profile。<br/> |  
+| PROFILE_HID_HOST | 6 | 表示HID profile。<br/> |  
+| PROFILE_PAN_NETWORK | 7 | 表示PAN profile。<br/> |  
+    
+## ProfileConnectionState    
+枚举，蓝牙设备的profile连接状态。  
+    
+    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 值 | 说明 |  
+| --------| --------| --------|  
+| STATE_DISCONNECTED | 0 | 表示profile已断连。<br/> |  
+| STATE_CONNECTING | 1 | 表示profile正在连接。<br/> |  
+| STATE_CONNECTED | 2 | 表示profile已连接。<br/> |  
+| STATE_DISCONNECTING | 3 | 表示profile正在断连。<br/> |  
+    
+## MajorClass    
+枚举，蓝牙设备主要类别。    
+    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 值 | 说明 |  
+| --------| --------| --------|  
+| MAJOR_MISC | 0x0000 | 表示杂项设备。<br/> |  
+| MAJOR_COMPUTER | 0x0100 | 表示计算机设备。<br/> |  
+| MAJOR_PHONE | 0x0200 | 表示手机设备。<br/> |  
+| MAJOR_NETWORKING | 0x0300 | 表示网络设备。<br/> |  
+| MAJOR_AUDIO_VIDEO | 0x0400 | 表示音频和视频设备。<br/> |  
+| MAJOR_PERIPHERAL | 0x0500 | 表示外围设备。<br/> |  
+| MAJOR_IMAGING | 0x0600 | 表示成像设备。<br/> |  
+| MAJOR_WEARABLE | 0x0700 | 表示可穿戴设备。<br/> |  
+| MAJOR_TOY | 0x0800 | 表示玩具设备。<br/> |  
+| MAJOR_HEALTH | 0x0900 | 表示健康设备。<br/> |  
+| MAJOR_UNCATEGORIZED | 0x1F00 | 表示未分类设备。<br/> |  
+    
+## MajorMinorClass    
+枚举，主要次要蓝牙设备类别。  
+    
+    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 值 | 说明 |  
+| --------| --------| --------|  
+| COMPUTER_UNCATEGORIZED | 0x0100 | 表示未分类计算机设备。 |  
+| COMPUTER_DESKTOP | 0x0104 | 表示台式计算机设备。<br/> |  
+| COMPUTER_SERVER | 0x0108 | 表示服务器设备。<br/> |  
+| COMPUTER_LAPTOP | 0x010C | 表示便携式计算机设备。<br/> |  
+| COMPUTER_HANDHELD_PC_PDA | 0x0110 | 表示手持式计算机设备。 |  
+| COMPUTER_PALM_SIZE_PC_PDA | 0x0114 | 表示掌上电脑设备。<br/> |  
+| COMPUTER_WEARABLE | 0x0118 | 表示可穿戴计算机设备。<br/> |  
+| COMPUTER_TABLET | 0x011C | 表示平板电脑设备。 |  
+| PHONE_UNCATEGORIZED | 0x0200 | 表示未分类手机设备。<br/> |  
+| PHONE_CELLULAR | 0x0204 | 表示便携式手机设备。<br/> |  
+| PHONE_CORDLESS | 0x0208 | 表示无线电话设备。<br/> |  
+| PHONE_SMART | 0x020C | 表示智能手机设备。<br/> |  
+| PHONE_MODEM_OR_GATEWAY | 0x0210 | 表示调制解调器或网关手机设备。<br/> |  
+| PHONE_ISDN | 0x0214 | 表示ISDN手机设备。<br/> |  
+| NETWORK_FULLY_AVAILABLE | 0x0300 | 表示网络完全可用设备。 |  
+| NETWORK_1_TO_17_UTILIZED | 0x0320 | 表示使用网络1到17设备。<br/> |  
+| NETWORK_17_TO_33_UTILIZED | 0x0340 | 表示使用网络17到33设备。<br/> |  
+| NETWORK_33_TO_50_UTILIZED | 0x0360 | 表示使用网络33到50设备。<br/> |  
+| NETWORK_60_TO_67_UTILIZED | 0x0380 | 表示使用网络60到67设备。<br/> |  
+| NETWORK_67_TO_83_UTILIZED | 0x03A0 | 表示使用网络67到83设备。<br/> |  
+| NETWORK_83_TO_99_UTILIZED | 0x03C0 | 表示使用网络83到99设备。<br/> |  
+| NETWORK_NO_SERVICE | 0x03E0 | 表示网络无服务设备。<br/> |  
+| AUDIO_VIDEO_UNCATEGORIZED | 0x0400 | 表示未分类音频视频设备。<br/> |  
+| AUDIO_VIDEO_WEARABLE_HEADSET | 0x0404 | 表示可穿戴式音频视频设备。<br/> |  
+| AUDIO_VIDEO_HANDSFREE | 0x0408 | 表示免提音频视频设备。<br/> |  
+| AUDIO_VIDEO_MICROPHONE | 0x0410 | 表示麦克风音频视频设备。<br/> |  
+| AUDIO_VIDEO_LOUDSPEAKER | 0x0414 | 表示扬声器音频视频设备。<br/> |  
+| AUDIO_VIDEO_HEADPHONES | 0x0418 | 表示头戴式音频视频设备。<br/> |  
+| AUDIO_VIDEO_PORTABLE_AUDIO | 0x041C | 表示便携式音频视频设备。<br/> |  
+| AUDIO_VIDEO_CAR_AUDIO | 0x0420 | 表示汽车音频视频设备。<br/> |  
+| AUDIO_VIDEO_SET_TOP_BOX | 0x0424 | 表示机顶盒音频视频设备。<br/> |  
+| AUDIO_VIDEO_HIFI_AUDIO | 0x0428 | 表示高保真音响设备。<br/> |  
+| AUDIO_VIDEO_VCR | 0x042C | 表示录像机音频视频设备。<br/> |  
+| AUDIO_VIDEO_VIDEO_CAMERA | 0x0430 | 表示照相机音频视频设备。<br/> |  
+| AUDIO_VIDEO_CAMCORDER | 0x0434 | 表示摄像机音频视频设备。<br/> |  
+| AUDIO_VIDEO_VIDEO_MONITOR | 0x0438 | 表示监视器音频视频设备。<br/> |  
+| AUDIO_VIDEO_VIDEO_DISPLAY_AND_LOUDSPEAKER | 0x043C | 表示视频显示器和扬声器设备。<br/> |  
+| AUDIO_VIDEO_VIDEO_CONFERENCING | 0x0440 | 表示音频视频会议设备。<br/> |  
+| AUDIO_VIDEO_VIDEO_GAMING_TOY | 0x0448 | 表示游戏玩具音频视频设备。<br/> |  
+| PERIPHERAL_NON_KEYBOARD_NON_POINTING | 0x0500 | 表示非键盘非指向外围设备。<br/> |  
+| PERIPHERAL_KEYBOARD | 0x0540 | 表示外设键盘设备。<br/> |  
+| PERIPHERAL_POINTING_DEVICE | 0x0580 | 表示定点装置外围设备。<br/> |  
+| PERIPHERAL_KEYBOARD_POINTING | 0x05C0 | 表示键盘指向外围设备。<br/> |  
+| PERIPHERAL_UNCATEGORIZED | 0x0500 | 表示未分类外围设备。<br/> |  
+| PERIPHERAL_JOYSTICK | 0x0504 | 表示周边操纵杆设备。<br/> |  
+| PERIPHERAL_GAMEPAD | 0x0508 | 表示周边游戏板设备。<br/> |  
+| PERIPHERAL_REMOTE_CONTROL | 0x05C0 | 表示远程控制外围设备。<br/> |  
+| PERIPHERAL_SENSING_DEVICE | 0x0510 | 表示外围传感设备设备。<br/> |  
+| PERIPHERAL_DIGITIZER_TABLET | 0x0514 | 表示外围数字化仪平板电脑设备。<br/> |  
+| PERIPHERAL_CARD_READER | 0x0518 | 表示外围读卡器设备。<br/> |  
+| PERIPHERAL_DIGITAL_PEN | 0x051C | 表示外设数码笔设备。<br/> |  
+| PERIPHERAL_SCANNER_RFID | 0x0520 | 表示射频识别扫描仪外围设备。<br/> |  
+| PERIPHERAL_GESTURAL_INPUT | 0x0522 | 表示手势输入外围设备。<br/> |  
+| IMAGING_UNCATEGORIZED | 0x0600 | 表示未分类的图像设备。<br/> |  
+| IMAGING_DISPLAY | 0x0610 | 表示图像显示设备。<br/> |  
+| IMAGING_CAMERA | 0x0620 | 表示成像照相机设备。<br/> |  
+| IMAGING_SCANNER | 0x0640 | 表示成像扫描仪设备。<br/> |  
+| IMAGING_PRINTER | 0x0680 | 表示成像打印机设备。<br/> |  
+| WEARABLE_UNCATEGORIZED | 0x0700 | 表示未分类的可穿戴设备。 |  
+| WEARABLE_WRIST_WATCH | 0x0704 | 表示可穿戴腕表设备。<br/> |  
+| WEARABLE_PAGER | 0x0708 | 表示可穿戴寻呼机设备。<br/> |  
+| WEARABLE_JACKET | 0x070C | 表示夹克可穿戴设备。<br/> |  
+| WEARABLE_HELMET | 0x0710 | 表示可穿戴头盔设备。<br/> |  
+| WEARABLE_GLASSES | 0x0714 | <table><tbody><tr><td><br/>表示可穿戴眼镜设备。</td></tr></tbody></table> |  
+| TOY_UNCATEGORIZED | 0x0800 | 表示未分类的玩具设备。<br/> |  
+| TOY_ROBOT | 0x0804 | 表示玩具机器人设备。<br/> |  
+| TOY_VEHICLE | 0x0808 | 表示玩具车设备。<br/> |  
+| TOY_DOLL_ACTION_FIGURE | 0x080C | 表示人形娃娃玩具设备。<br/> |  
+| TOY_CONTROLLER | 0x0810 | 表示玩具控制器设备。<br/> |  
+| TOY_GAME | 0x0814 | 表示玩具游戏设备。<br/> |  
+| HEALTH_UNCATEGORIZED | 0x0900 | 表示未分类健康设备。<br/> |  
+| HEALTH_BLOOD_PRESSURE | 0x0904 | 表示血压健康设备。<br/> |  
+| HEALTH_THERMOMETER | 0x0908 | 表示温度计健康设备。<br/> |  
+| HEALTH_WEIGHING | 0x090C | 表示体重健康设备。<br/> |  
+| HEALTH_GLUCOSE | 0x0910 | 表示葡萄糖健康设备。<br/> |  
+| HEALTH_PULSE_OXIMETER | 0x0914 | 表示脉搏血氧仪健康设备。<br/> |  
+| HEALTH_PULSE_RATE | 0x0918 | 表示脉搏率健康设备。<br/> |  
+| HEALTH_DATA_DISPLAY | 0x091C | 表示数据显示健康设备。<br/> |  
+| HEALTH_STEP_COUNTER | 0x0920 | 表示阶梯计数器健康设备。<br/> |  
+| HEALTH_BODY_COMPOSITION_ANALYZER | 0x0924 | 表示身体成分分析仪健康设备。<br/> |  
+| HEALTH_PEAK_FLOW_MONITOR | 0x0928 | 表示湿度计健康设备。<br/> |  
+| HEALTH_MEDICATION_MONITOR | 0x092C | 表示药物监视仪健康设备。<br/> |  
+| HEALTH_KNEE_PROSTHESIS | 0x0930 | 表示膝盖假肢健康设备。<br/> |  
+| HEALTH_ANKLE_PROSTHESIS | 0x0934 | 表示脚踝假肢健康设备。<br/> |  
+| HEALTH_GENERIC_HEALTH_MANAGER | 0x0938 | 表示通用健康管理设备。<br/> |  
+| HEALTH_PERSONAL_MOBILITY_DEVICE | 0x093C | 表示个人移动健康设备。 |  

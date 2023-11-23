@@ -1,0 +1,317 @@
+# @ohos.telephony.data    
+蜂窝数据提供了移动数据管理能力，包括获取、设置默认移动数据的SIM卡，获取蜂窝数据业务的上下行和分组交换域（PS域）的连接状态，以及检查蜂窝数据业务和漫游是否启用等。  
+> **说明**   
+>本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本  
+  
+## 导入模块  
+  
+```js    
+import data from '@ohos.telephony.data'    
+```  
+    
+## setDefaultCellularDataSlotId    
+设置默认移动数据的SIM卡  
+ **调用形式：**     
+    
+- setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void>): void    
+起始版本： 7    
+- setDefaultCellularDataSlotId(slotId: number): Promise\<void>    
+起始版本： 7  
+  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.Telephony.CellularData  
+ **需要权限：** ohos.permission.SET_TELEPHONY_STATE    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| slotId | number | true | SIM卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。<br/>- -1：清除默认配置。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 回调函数。 |  
+| Promise<void> | 以Promise形式异步返回设置结果。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 202 | Non-system applications use system APIs. |  
+| 401 | Parameter error. |  
+| 8300001 | Invalid parameter value. |  
+| 8300002 | Operation failed. Cannot connect to service |  
+| 8300003 | System internal error. |  
+| 8300004 | Do not have sim card. |  
+| 8300999 | Unknown error code. |  
+| 8301001 | SIM card is not activated. |  
+    
+ **示例代码1：**   
+示例（callback）:  
+```ts    
+import data from '@ohos.telephony.data';  
+import { BusinessError } from '@ohos.base';  
+  
+data.setDefaultCellularDataSlotId(0, (err: BusinessError) => {  
+    console.log(`callback: err->${JSON.stringify(err)}.`);  
+});  
+    
+```    
+  
+    
+ **示例代码2：**   
+示例（Promise）:  
+```ts    
+import data from '@ohos.telephony.data';  
+import { BusinessError } from '@ohos.base';  
+  
+data.setDefaultCellularDataSlotId(0).then(() => {  
+    console.log(`setDefaultCellularDataSlotId success.`);  
+}).catch((err: BusinessError) => {  
+    console.error(`setDefaultCellularDataSlotId fail, promise: err->${JSON.stringify(err)}`);  
+});  
+    
+```    
+  
+    
+## enableCellularData    
+启用蜂窝数据服务，  
+ **调用形式：**     
+    
+- enableCellularData(callback: AsyncCallback\<void>): void    
+起始版本： 7    
+- enableCellularData(): Promise\<void>    
+起始版本： 7  
+  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.Telephony.CellularData  
+ **需要权限：** ohos.permission.SET_TELEPHONY_STATE    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 回调函数。 |  
+| Promise<void> | 以Promise形式返回结果。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 202 | Non-system applications use system APIs. |  
+| 401 | Parameter error. |  
+| 8300001 | Invalid parameter value. |  
+| 8300002 | Operation failed. Cannot connect to service |  
+| 8300003 | System internal error. |  
+| 8300999 | Unknown error code. |  
+    
+ **示例代码1：**   
+示例（callback）:  
+```ts    
+import data from '@ohos.telephony.data';  
+import { BusinessError } from '@ohos.base';  
+  
+data.enableCellularData((err: BusinessError) => {  
+    console.log(`callback: err->${JSON.stringify(err)}`);  
+});  
+    
+```    
+  
+    
+ **示例代码2：**   
+示例（Promise）:  
+```ts    
+import data from '@ohos.telephony.data';  
+import { BusinessError } from '@ohos.base';  
+  
+data.enableCellularData().then(() => {  
+    console.log(`enableCellularData success.`);  
+}).catch((err: BusinessError) => {  
+    console.error(`enableCellularData fail, promise: err->${JSON.stringify(err)}`);  
+});  
+    
+```    
+  
+    
+## disableCellularData    
+禁用蜂窝数据服务  
+ **调用形式：**     
+    
+- disableCellularData(callback: AsyncCallback\<void>): void    
+起始版本： 7    
+- disableCellularData(): Promise\<void>    
+起始版本： 7  
+  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.Telephony.CellularData  
+ **需要权限：** ohos.permission.SET_TELEPHONY_STATE    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 回调函数。 |  
+| Promise<void> | 以Promise形式返回禁用结果。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 202 | Non-system applications use system APIs. |  
+| 401 | Parameter error. |  
+| 8300001 | Invalid parameter value. |  
+| 8300002 | Operation failed. Cannot connect to service |  
+| 8300003 | System internal error. |  
+| 8300999 | Unknown error code. |  
+    
+ **示例代码1：**   
+示例（callback）:  
+```ts    
+import data from '@ohos.telephony.data';  
+import { BusinessError } from '@ohos.base';  
+  
+data.disableCellularData((err: BusinessError) => {  
+    console.log(`callback: err->${JSON.stringify(err)}`);  
+});  
+    
+```    
+  
+    
+ **示例代码2：**   
+示例（Promise）:  
+```ts    
+import data from '@ohos.telephony.data';  
+import { BusinessError } from '@ohos.base';  
+  
+data.disableCellularData().then(() => {  
+    console.log(`disableCellularData success.`);  
+}).catch((err: BusinessError) => {  
+    console.error(`disableCellularData fail, promise: err->${JSON.stringify(err)}`);  
+});  
+    
+```    
+  
+    
+## enableCellularDataRoaming    
+启用蜂窝数据漫游  
+ **调用形式：**     
+    
+- enableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void>): void    
+起始版本： 7    
+- enableCellularDataRoaming(slotId: number): Promise\<void>    
+起始版本： 7  
+  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.Telephony.CellularData  
+ **需要权限：** ohos.permission.SET_TELEPHONY_STATE    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| slotId | number | true | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 回调函数。 |  
+| Promise<void> | 以Promise形式返回启用结果 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 202 | Non-system applications use system APIs. |  
+| 401 | Parameter error. |  
+| 8300001 | Invalid parameter value. |  
+| 8300002 | Operation failed. Cannot connect to service |  
+| 8300003 | System internal error. |  
+| 8300999 | Unknown error code. |  
+    
+ **示例代码1：**   
+示例（callback）:  
+```ts    
+import data from '@ohos.telephony.data';  
+import { BusinessError } from '@ohos.base';  
+  
+data.enableCellularDataRoaming(0, (err: BusinessError) => {  
+    console.log(`callback: err->${JSON.stringify(err)}`);  
+});  
+    
+```    
+  
+    
+ **示例代码2：**   
+示例（Promise）:  
+```ts    
+import data from '@ohos.telephony.data';  
+import { BusinessError } from '@ohos.base';  
+  
+data.enableCellularDataRoaming(0).then(() => {  
+    console.log(`enableCellularDataRoaming success.`);  
+}).catch((err: BusinessError) => {  
+    console.error(`enableCellularDataRoaming fail, promise: err->${JSON.stringify(err)}`);  
+});  
+    
+```    
+  
+    
+## disableCellularDataRoaming    
+禁用蜂窝数据漫游  
+ **调用形式：**     
+    
+- disableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void>): void    
+起始版本： 7    
+- disableCellularDataRoaming(slotId: number): Promise\<void>    
+起始版本： 7  
+  
+ **系统API:**  此接口为系统接口。  
+ **系统能力:**  SystemCapability.Telephony.CellularData  
+ **需要权限：** ohos.permission.SET_TELEPHONY_STATE    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| slotId | number | true | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 回调函数。 |  
+| Promise<void> | 以Promise形式返回禁用结果 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 202 | Non-system applications use system APIs. |  
+| 401 | Parameter error. |  
+| 8300001 | Invalid parameter value. |  
+| 8300002 | Operation failed. Cannot connect to service |  
+| 8300003 | System internal error. |  
+| 8300999 | Unknown error code. |  
+    
+ **示例代码1：**   
+示例（callback）:  
+```ts    
+import data from '@ohos.telephony.data';  
+import { BusinessError } from '@ohos.base';  
+  
+data.disableCellularDataRoaming(0, (err: BusinessError) => {  
+    console.log(`callback: err->${JSON.stringify(err)}`);  
+});  
+    
+```    
+  
+    
+ **示例代码2：**   
+示例（Promise）:  
+```ts    
+import data from '@ohos.telephony.data';  
+import { BusinessError } from '@ohos.base';  
+  
+data.disableCellularDataRoaming(0).then(() => {  
+    console.log(`disableCellularDataRoaming success.`);  
+}).catch((err: BusinessError) => {  
+    console.error(`disableCellularDataRoaming fail, promise: err->${JSON.stringify(err)}`);  
+});  
+    
+```    
+  

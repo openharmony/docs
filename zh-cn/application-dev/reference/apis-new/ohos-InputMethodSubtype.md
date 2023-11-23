@@ -1,0 +1,22 @@
+# @ohos.InputMethodSubtype    
+本模块提供对输入法子类型的属性管理。输入法子类型允许输入法根据需要显示不用的输入模式或语言，完成模式或语言切换，如：输入法的中文/英文键盘等均属于输入法的子类型。  
+> **说明**   
+>本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本  
+    
+## InputMethodSubtype  
+ **系统能力:**  SystemCapability.MiscServices.InputMethodFramework    
+### 属性    
+ **系统能力:**  SystemCapability.MiscServices.InputMethodFramework    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| label | string | true | false | 非必填。输入法子类型的标签。 |  
+| labelId<sup>(10+)</sup> | number | true | false | 非必填。输入法子类型的标签资源号。 |  
+| name | string | true | true | 必填。输入法子类型所属应用的包名。 |  
+| id | string | true | true | 必填。输入法子类型的id。 |  
+| mode | 'upper' \| 'lower' | true | false | 非必填。输入法子类型的模式，包括upper（大写）和lower（小写）。 |  
+| locale | string | true | true | 必填。输入法子类型的方言版本。 |  
+| language | string | true | true | 必填。 输入法子类型的语言。 |  
+| icon | string | true | false | 非必填。输入法子类型的图标，可以通过iconId查询获取。预留字段，暂不支持使用。 |  
+| iconId | number | true | false | 非必填。输入法子类型的图标id。 |  
+| extra | object | false | true |  |  
+| extra<sup>(10+)</sup> | object | false | false | 必填。输入法子类型的其他信息。<br/>说明：<br/>- 从API version 10开始为非必填参数。<br/>- 预留字段，当前无具体含义，暂不支持使用。 |  

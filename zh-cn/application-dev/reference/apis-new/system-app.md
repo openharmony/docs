@@ -1,0 +1,203 @@
+# @system.app    
+> **说明**   
+>本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本  
+    
+## AppResponse    
+定义AppResponse信息。  
+ **系统能力:**  SystemCapability.ArkUI.ArkUI.Lite    
+### 属性    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| appID<sup>(6+)</sup> | string | false | true | 系统能力：SystemCapability.ArkUI.ArkUI.Full<br>表示应用的包名，用于标识应用的唯一性。 <br> **系统能力：** SystemCapability.ArkUI.ArkUI.Full |  
+| appName | string | false | true | 系统能力：SystemCapability.ArkUI.ArkUI.Lite<br>表示应用的名称。 <br> **系统能力：** SystemCapability.ArkUI.ArkUI.Lite |  
+| versionName | string | false | true | 系统能力：SystemCapability.ArkUI.ArkUI.Lite<br>表示应用的版本名称。 <br> **系统能力：** SystemCapability.ArkUI.ArkUI.Lite |  
+| versionCode | number | false | true | 系统能力：SystemCapability.ArkUI.ArkUI.Lite<br>表示应用的版本号。 <br> **系统能力：** SystemCapability.ArkUI.ArkUI.Lite |  
+    
+## ScreenOnVisibleOptions    
+定义屏幕上可见接口的选项。  
+ **系统能力:**  SystemCapability.ArkUI.ArkUI.Full    
+### 属性    
+ **系统能力:**  SystemCapability.ArkUI.ArkUI.Full    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| visible | boolean | false | false | 是否启动保活，默认值false。 |  
+| success | function | false | false | 接口调用成功的回调函数。 |  
+| fail | function | false | false | 接口调用失败的回调函数。 |  
+| complete | function | false | false | 接口调用结束的回调函数。 |  
+    
+## RequestFullWindowOptions    
+定义RequestFullWindow接口的选项。  
+ **系统能力:**  SystemCapability.ArkUI.ArkUI.Full    
+### 属性    
+ **系统能力:**  SystemCapability.ArkUI.ArkUI.Full    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| duration | number | false | true | 定义动画选项的持续时间，单位为毫秒。 |  
+    
+## App  
+ **系统能力:**  SystemCapability.ArkUI.ArkUI.Lite    
+### getInfo    
+获取当前应用配置文件中声明的信息。  
+ **调用形式：**     
+- static getInfo(): AppResponse  
+  
+ **系统能力:**  SystemCapability.ArkUI.ArkUI.Lite    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| AppResponse | 定义AppResponse信息。 |  
+    
+ **示例代码：**   
+```ts    
+import app, { AppResponse } from '@system.app'  
+export default class Info {  
+  getInfo() {  
+    let info:AppResponse = app.getInfo()  
+    console.log(JSON.stringify(info))  
+  }  
+}  
+    
+```    
+  
+    
+### terminate    
+退出当前Ability。从API Version 7开始，推荐使用[`eAbility`](js-apis-ability-featureAbility.md)。  
+ **调用形式：**     
+- static terminate(): void  
+  
+ **系统能力:**  SystemCapability.ArkUI.ArkUI.Lite    
+ **示例代码：**   
+```ts    
+import app, { AppResponse } from '@system.app'  
+export default class TerM {  
+  terminate() {  
+    app.terminate()  
+  }  
+}  
+    
+```    
+  
+    
+### screenOnVisible<sup>(deprecated)</sup>    
+定义屏幕唤醒时是否保持应用可见。该接口从API Version 8 开始废弃。  
+ **调用形式：**     
+- static screenOnVisible(options?: ScreenOnVisibleOptions): void  
+  
+ **废弃说明：** 从API version 8 开始废弃。  
+ **系统能力:**  SystemCapability.ArkUI.ArkUI.Full    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| options<sup>(deprecated)</sup> | ScreenOnVisibleOptions | false | 当启动保活时，锁屏时将阻止系统返回桌面显示，以保持屏幕唤醒时应用可见。 |  
+    
+### requestFullWindow<sup>(deprecated)</sup>    
+请求应用以全窗口运行，FA在某些场景下（如半模态FA）会以非全窗口运行，调用该接口会从非全窗口切换为全窗口运行，如果已经以全窗口运行则该接口调用无效。从API Version 7开始，推荐使用[`is-window.md)。  
+ **调用形式：**     
+- static requestFullWindow(options?: RequestFullWindowOptions): void  
+  
+ **废弃说明：** 从API version 8 开始废弃。替代接口: startAbility。  
+ **系统能力:**  SystemCapability.ArkUI.ArkUI.Full    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| options<sup>(deprecated)</sup> | RequestFullWindowOptions | false | 请求全屏时，设定非全屏到全屏的过渡时间，单位为毫秒，默认时间与非全屏到全屏的距离成正比。 |  
+    
+ **示例代码：**   
+```ts    
+import app, { AppResponse } from '@system.app'  
+export default class Req {  
+  requestFullWindow() {  
+    app.requestFullWindow({  
+      duration: 200  
+    })  
+  }  
+}  
+    
+```    
+  
+    
+### setImageCacheCount<sup>(7+)</sup>    
+设置内存中缓存解码后图片的数量上限，提升再次加载同源图片的加载速度。如果不设置则默认为0，不进行缓存。缓存采用内置的LRU策略，新图片加载后，如果超过缓存上限，会删除最久未再次加载的缓存。建议根据应用内存需求，设置合理缓存数量，数字过大可能导致内存使用过高。  
+ **调用形式：**     
+- static setImageCacheCount(value: number): void  
+  
+ **系统能力:**  SystemCapability.ArkUI.ArkUI.Full    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| value | number | true | 内存中解码后图片的缓存数量。 |  
+    
+ **示例代码：**   
+```ts    
+import app, { AppResponse } from '@system.app'  
+  
+export default class OnC {  
+  onCreate() {  
+    app.setImageCacheCount(100) // 设置解码后图片内存缓存上限为100张  
+    console.info('Application onCreate')  
+  },  
+  onDestroy() {  
+    console.info('Application onDestroy')  
+  },  
+}  
+    
+```    
+  
+    
+### setImageRawDataCacheSize<sup>(7+)</sup>    
+设置内存中缓存解码前图片数据的大小上限，单位为字节，提升再次加载同源图片的加载速度。如果不设置则默认为0，不进行缓存。缓存采用内置的LRU策略，新图片加载后，如果解码前数据超过缓存上限，会删除最久未再次加载的图片数据缓存。建议根据应用内存需求，设置合理缓存上限，过大可能导致应用内存使用过高。  
+ **调用形式：**     
+- static setImageRawDataCacheSize(value: number): void  
+  
+ **系统能力:**  SystemCapability.ArkUI.ArkUI.Full    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| value | number | true | 内存中解码前图片数据的缓存大小，单位为字节。 |  
+    
+ **示例代码：**   
+```ts    
+import app, { AppResponse } from '@system.app'  
+  
+export default class OnC {  
+  onCreate() {  
+    app.setImageRawDataCacheSize(104857600)  
+    // 设置解码前图片数据内存缓存上限为100MB (100MB=100*1024*1024B=104857600B)  
+    console.info('Application onCreate')  
+  },  
+  onDestroy() {  
+    console.info('Application onDestroy')  
+  },  
+}  
+    
+```    
+  
+    
+### setImageFileCacheSize<sup>(7+)</sup>    
+设置图片文件缓存的大小上限，单位为字节，提升再次加载同源图片的加载速度，特别是对网络图源、缩略图会有较明显提升。如果不设置则默认为100MB。缓存采用内置的LRU策略，新图片加载后，如果超过文件缓存上限，会按照时间由远到近删除缓存图片文件直到缓存图片大小满足缓存上限。建议根据应用实际需求，设置合理文件缓存上限，数字过大可能导致磁盘空间占用过高。  
+ **调用形式：**     
+- static setImageFileCacheSize(value: number): void  
+  
+ **系统能力:**  SystemCapability.ArkUI.ArkUI.Full    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| value | number | true | 图片文件的缓存大小，单位为字节。 |  
+    
+ **示例代码：**   
+```ts    
+import app, { AppResponse } from '@system.app'  
+  
+export default class OnC {  
+  onCreate() {  
+    app.setImageFileCacheSize(209715200)  
+    // 设置图片文件数据缓存上限为200MB (200MB=200*1024*1024B=209715200B)   
+    console.info('Application onCreate')  
+  },  
+  onDestroy() {  
+    console.info('Application onDestroy')  
+  },  
+}  
+    
+```    
+  

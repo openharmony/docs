@@ -1,0 +1,2302 @@
+# @ohos.bluetooth.ble    
+ble模块提供了对蓝牙操作和管理的方法。  
+> **说明**   
+>本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本  
+  
+## 导入模块  
+  
+```js    
+import ble from '@ohos.bluetooth.ble'    
+```  
+    
+## createGattServer    
+创建GattServer实例。  
+ **调用形式：**     
+- createGattServer(): GattServer  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| GattServer | 返回一个Gatt服务的实例。 |  
+    
+ **示例代码：**   
+```js    
+let gattServer: ble.GattServer = ble.createGattServer();  
+console.info('gatt success');    
+```    
+  
+    
+## createGattClientDevice    
+创建一个可使用的GattClientDevice实例。  
+ **调用形式：**     
+- createGattClientDevice(deviceId: string): GattClientDevice  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| deviceId | string | true | 对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| GattClientDevice | client端类，使用client端方法之前需要创建该类的实例进行操作，通过createGattClientDevice(deviceId: string)方法构造此实例。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+## getConnectedBLEDevices    
+获取和当前设备连接的BLE设备。  
+ **调用形式：**     
+- getConnectedBLEDevices(): Array\<string>  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| Array<string> | 当前设备作为Server端时连接BLE设备地址集合。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900003 | Bluetooth switch is off. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+    let result: Array<string> = ble.getConnectedBLEDevices();  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+## startBLEScan    
+发起BLE扫描流程。  
+ **调用形式：**     
+- startBLEScan(filters: Array\<ScanFilter>, options?: ScanOptions): void  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| filters | Array<ScanFilter> | true | 表示扫描结果过滤策略集合，如果不使用过滤的方式，该参数设置为null。 |  
+| options | ScanOptions | false | 表示扫描的参数配置，可选参数。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900003 | Bluetooth switch is off. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+function onReceiveEvent(data: Array<ble.ScanResult>) {  
+    console.info('BLE scan device find result = '+ JSON.stringify(data));  
+}  
+try {  
+    ble.on("BLEDeviceFind", onReceiveEvent);  
+    let scanFilter: ble.ScanFilter = {  
+            deviceId:"XX:XX:XX:XX:XX:XX",  
+            name:"test",  
+            serviceUuid:"00001888-0000-1000-8000-00805f9b34fb"  
+        };  
+    let scanOptions: ble.ScanOptions = {  
+    interval: 500,  
+    dutyMode: ble.ScanDuty.SCAN_MODE_LOW_POWER,  
+    matchMode: ble.MatchMode.MATCH_MODE_AGGRESSIVE,  
+    }  
+    ble.startBLEScan([scanFilter],scanOptions);  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+## stopBLEScan    
+停止BLE扫描流程。  
+ **调用形式：**     
+- stopBLEScan(): void  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900003 | Bluetooth switch is off. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+    ble.stopBLEScan();  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+## startAdvertising    
+开始发送BLE广播。  
+ **调用形式：**     
+- startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?: AdvertiseData): void  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| setting | AdvertiseSetting | true | BLE广播的相关参数。 |  
+| advData | AdvertiseData | true | BLE广播包内容。 |  
+| advResponse | AdvertiseData | false | BLE回复扫描请求回复响应。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900003 | Bluetooth switch is off. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+let manufactureValueBuffer = new Uint8Array(4);  
+manufactureValueBuffer[0] = 1;  
+manufactureValueBuffer[1] = 2;  
+manufactureValueBuffer[2] = 3;  
+manufactureValueBuffer[3] = 4;  
+  
+let serviceValueBuffer = new Uint8Array(4);  
+serviceValueBuffer[0] = 4;  
+serviceValueBuffer[1] = 6;  
+serviceValueBuffer[2] = 7;  
+serviceValueBuffer[3] = 8;  
+console.info('manufactureValueBuffer = '+ JSON.stringify(manufactureValueBuffer));  
+console.info('serviceValueBuffer = '+ JSON.stringify(serviceValueBuffer));  
+try {  
+    let setting: ble.AdvertiseSetting = {  
+        interval:150,  
+        txPower:0,  
+        connectable:true,  
+    };  
+    let manufactureDataUnit: ble.ManufactureData = {  
+        manufactureId:4567,  
+        manufactureValue:manufactureValueBuffer.buffer  
+    };  
+    let serviceDataUnit: ble.ServiceData = {  
+        serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",  
+        serviceValue:serviceValueBuffer.buffer  
+    };  
+    let advData: ble.AdvertiseData = {  
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],  
+        manufactureData:[manufactureDataUnit],  
+        serviceData:[serviceDataUnit],  
+    };  
+    let advResponse: ble.AdvertiseData = {  
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],  
+        manufactureData:[manufactureDataUnit],  
+        serviceData:[serviceDataUnit],  
+    };  
+    ble.startAdvertising(setting, advData ,advResponse);  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+## stopAdvertising    
+停止发送BLE广播。  
+ **调用形式：**     
+- stopAdvertising(): void  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900003 | Bluetooth switch is off. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+    ble.stopAdvertising();  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+## on('BLEDeviceFind')    
+订阅BLE设备发现上报事件。  
+ **调用形式：**     
+    
+- on(type: 'BLEDeviceFind', callback: Callback\<Array\<ScanResult>>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 填写"BLEDeviceFind"字符串，表示BLE设备发现事件。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 表示取消订阅广播状态上报。不填该参数则取消订阅该type对应的所有回调。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+function onReceiveEvent(data: Array<ble.ScanResult>) {  
+    console.info('bluetooth device find = '+ JSON.stringify(data));  
+}  
+try {  
+    ble.on('BLEDeviceFind', onReceiveEvent);  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+## off('BLEDeviceFind')    
+取消订阅BLE设备发现上报事件。  
+ **调用形式：**     
+    
+- off(type: 'BLEDeviceFind', callback?: Callback\<Array\<ScanResult>>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 填写"BLEDeviceFind"字符串，表示BLE设备发现事件。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+function onReceiveEvent(data: Array<ble.ScanResult>) {  
+    console.info('bluetooth device find = '+ JSON.stringify(data));  
+}  
+try {  
+    ble.on('BLEDeviceFind', onReceiveEvent);  
+    ble.off('BLEDeviceFind', onReceiveEvent);  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+## GattServer    
+server端类，使用server端方法之前需要创建该类的实例进行操作，通过createGattServer()方法构造此实例。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### addService    
+server端添加服务。  
+ **调用形式：**     
+- addService(service: GattService): void  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| service | GattService | true | 服务端的service数据。BLE广播的相关参数。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900003 | Bluetooth switch is off. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+// 创建descriptors  
+let descriptors: Array<ble.BLEDescriptor> = [];  
+let arrayBuffer = new ArrayBuffer(8);  
+let descV = new Uint8Array(arrayBuffer);  
+descV[0] = 11;  
+let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',  
+  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',  
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};  
+descriptors[0] = descriptor;  
+  
+// 创建characteristics  
+let characteristics: Array<ble.BLECharacteristic> = [];  
+let arrayBufferC = new ArrayBuffer(8);  
+let cccV = new Uint8Array(arrayBufferC);  
+cccV[0] = 1;  
+let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',  
+  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};  
+let characteristicN: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',  
+  characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};  
+characteristics[0] = characteristic;  
+  
+// 创建gattService  
+let gattService: ble.GattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B34FB', isPrimary: true, characteristics:characteristics, includeServices:[]};  
+  
+try {  
+    let gattServer: ble.GattServer = ble.createGattServer();   
+    gattServer.addService(gattService);  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### removeService    
+删除已添加的服务。  
+ **调用形式：**     
+- removeService(serviceUuid: string): void  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| serviceUuid | string | true | service的UUID，例如“00001810-0000-1000-8000-00805F9B34FB”。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900003 | Bluetooth switch is off. |  
+| 2900004 | Profile is not supported. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+let server: ble.GattServer = ble.createGattServer();  
+try {  
+    server.removeService('00001810-0000-1000-8000-00805F9B34FB');  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### close    
+关闭服务端功能，去注册server在协议栈的注册，调用该接口后<a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-bluetooth-ble.md#gattserver">GattServer</a>实例将不能再使用。  
+ **调用形式：**     
+- close(): void  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900003 | Bluetooth switch is off. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+let server: ble.GattServer = ble.createGattServer();  
+try {  
+    server.close();  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### notifyCharacteristicChanged    
+server端特征值发生变化时，主动通知已连接的client设备。  
+ **调用形式：**     
+    
+- notifyCharacteristicChanged(      deviceId: string,      notifyCharacteristic: NotifyCharacteristic,      callback: AsyncCallback\<void>    ): void    
+起始版本： 10    
+- notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharacteristic): Promise\<void>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| deviceId | string | true | 接收通知的client端设备地址，例如“XX:XX:XX:XX:XX:XX”。<br/> |  
+| notifyCharacteristic | NotifyCharacteristic | true | 通知的特征值数据。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 回调函数。当通知成功，err为undefined，否则为错误对象。 |  
+| Promise<void> | 返回promise对象。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900003 | Bluetooth switch is off. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+let arrayBufferC = new ArrayBuffer(8);  
+let notifyCharacter: ble.NotifyCharacteristic = {  
+    serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',  
+    characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',  
+    characteristicValue: arrayBufferC,  
+    confirm: true,  
+};  
+try {  
+    let gattServer: ble.GattServer = ble.createGattServer();  
+    gattServer.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacter, (err: BusinessError) => {  
+        if (err) {  
+            console.info('notifyCharacteristicChanged callback failed');  
+        } else {  
+            console.info('notifyCharacteristicChanged callback successful');  
+        }  
+    });  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### sendResponse    
+server端回复client端的读写请求。  
+ **调用形式：**     
+- sendResponse(serverResponse: ServerResponse): void  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| serverResponse | ServerResponse | true | server端回复的响应数据。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900003 | Bluetooth switch is off. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+/* send response */  
+let arrayBufferCCC = new ArrayBuffer(8);  
+let cccValue = new Uint8Array(arrayBufferCCC);  
+cccValue[0] = 1123;  
+let serverResponse: ble.ServerResponse = {  
+    deviceId: 'XX:XX:XX:XX:XX:XX',  
+    transId: 0,  
+    status: 0,  
+    offset: 0,  
+    value: arrayBufferCCC,  
+};  
+try {  
+    let gattServer: ble.GattServer = ble.createGattServer();  
+    gattServer.sendResponse(serverResponse);  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### on('characteristicRead')    
+server端订阅特征值读请求事件。  
+ **调用形式：**     
+    
+- on(type: 'characteristicRead', callback: Callback\<CharacteristicReadRequest>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 填写"characteristicRead"字符串，表示特征值读请求事件。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 表示回调函数的入参，client端发送的读请求数据。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+let arrayBufferCCC = new ArrayBuffer(8);  
+let cccValue = new Uint8Array(arrayBufferCCC);  
+cccValue[0] = 1123;  
+let gattServer: ble.GattServer = ble.createGattServer();  
+function ReadCharacteristicReq(characteristicReadRequest: ble.CharacteristicReadRequest) {  
+    let deviceId: string = characteristicReadRequest.deviceId;  
+    let transId: number = characteristicReadRequest.transId;  
+    let offset: number = characteristicReadRequest.offset;  
+    let characteristicUuid: string = characteristicReadRequest.characteristicUuid;  
+  
+    let serverResponse: ble.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};  
+  
+    try {  
+        gattServer.sendResponse(serverResponse);  
+    } catch (err) {  
+        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+    }  
+}  
+gattServer.on('characteristicRead', ReadCharacteristicReq);  
+    
+```    
+  
+    
+### off('characteristicRead')    
+server端取消订阅特征值读请求事件。  
+ **调用形式：**     
+    
+- off(type: 'characteristicRead', callback?: Callback\<CharacteristicReadRequest>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 填写"characteristicRead"字符串，表示特征值读请求事件。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 表示回调函数的入参，client端发送的读请求数据。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+let gattServer: ble.GattServer = ble.createGattServer();  
+gattServer.off('characteristicRead');  
+} catch (err) {  
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### on('characteristicWrite')    
+server端订阅特征值写请求事件。  
+ **调用形式：**     
+    
+- on(type: 'characteristicWrite', callback: Callback\<CharacteristicWriteRequest>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 填写"characteristicWrite"字符串，表示特征值写请求事件。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 表示回调函数的入参，client端发送的写请求数据。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+let arrayBufferCCC = new ArrayBuffer(8);  
+let cccValue = new Uint8Array(arrayBufferCCC);  
+let gattServer: ble.GattServer = ble.createGattServer();  
+function WriteCharacteristicReq(characteristicWriteRequest: ble.CharacteristicWriteRequest) {  
+    let deviceId: string = characteristicWriteRequest.deviceId;  
+    let transId: number = characteristicWriteRequest.transId;  
+    let offset: number = characteristicWriteRequest.offset;  
+    let isPrepared: boolean = characteristicWriteRequest.isPrepared;  
+    let needRsp: boolean = characteristicWriteRequest.needRsp;  
+    let value: Uint8Array =  new Uint8Array(characteristicWriteRequest.value);  
+    let characteristicUuid: string = characteristicWriteRequest.characteristicUuid;  
+  
+    cccValue[0] = value[0];  
+    let serverResponse: ble.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};  
+  
+    try {  
+        gattServer.sendResponse(serverResponse);  
+    } catch (err) {  
+        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+    }  
+}  
+gattServer.on('characteristicWrite', WriteCharacteristicReq);  
+    
+```    
+  
+    
+### off('characteristicWrite')    
+server端取消订阅特征值写请求事件。  
+ **调用形式：**     
+    
+- off(type: 'characteristicWrite', callback?: Callback\<CharacteristicWriteRequest>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 填写"characteristicWrite"字符串，表示特征值写请求事件。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 表示取消订阅特征值写请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+let gattServer: ble.GattServer = ble.createGattServer();  
+gattServer.off('characteristicWrite');  
+} catch (err) {  
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### on('descriptorRead')    
+server端订阅描述符读请求事件。  
+ **调用形式：**     
+    
+- on(type: 'descriptorRead', callback: Callback\<DescriptorReadRequest>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 填写"descriptorRead"字符串，表示描述符读请求事件。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 表示回调函数的入参，client端发送的读请求数据。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+let arrayBufferDesc = new ArrayBuffer(8);  
+let descValue = new Uint8Array(arrayBufferDesc);  
+descValue[0] = 1101;  
+let gattServer: ble.GattServer = ble.createGattServer();  
+function ReadDescriptorReq(descriptorReadRequest: ble.DescriptorReadRequest) {  
+    let deviceId: string = descriptorReadRequest.deviceId;  
+    let transId: number = descriptorReadRequest.transId;  
+    let offset: number = descriptorReadRequest.offset;  
+    let descriptorUuid: string = descriptorReadRequest.descriptorUuid;  
+  
+    let serverResponse: ble.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};  
+  
+    try {  
+        gattServer.sendResponse(serverResponse);  
+    } catch (err) {  
+        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+    }  
+}  
+gattServer.on('descriptorRead', ReadDescriptorReq);  
+    
+```    
+  
+    
+### off('descriptorRead')    
+server端取消订阅描述符读请求事件。  
+ **调用形式：**     
+    
+- off(type: 'descriptorRead', callback?: Callback\<DescriptorReadRequest>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 填写"descriptorRead"字符串，表示描述符读请求事件。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 表示回调函数的入参，client端发送的读请求数据。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+let gattServer: ble.GattServer = ble.createGattServer();  
+gattServer.off('descriptorRead');  
+} catch (err) {  
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### on('descriptorWrite')    
+server端订阅描述符写请求事件。  
+ **调用形式：**     
+    
+- on(type: 'descriptorWrite', callback: Callback\<DescriptorWriteRequest>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 填写"descriptorWrite"字符串，表示描述符写请求事件。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 表示回调函数的入参，client端发送的写请求数据。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+let arrayBufferDesc = new ArrayBuffer(8);  
+let descValue = new Uint8Array(arrayBufferDesc);  
+let gattServer: ble.GattServer = ble.createGattServer();  
+function WriteDescriptorReq(descriptorWriteRequest: ble.DescriptorWriteRequest) {  
+    let deviceId: string = descriptorWriteRequest.deviceId;  
+    let transId: number = descriptorWriteRequest.transId;  
+    let offset: number = descriptorWriteRequest.offset;  
+    let isPrepared: boolean = descriptorWriteRequest.isPrepared;  
+    let needRsp: boolean = descriptorWriteRequest.needRsp;  
+    let value: Uint8Array = new Uint8Array(descriptorWriteRequest.value);  
+    let descriptorUuid: string = descriptorWriteRequest.descriptorUuid;  
+  
+    descValue[0] = value[0];  
+    let serverResponse: ble.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};  
+  
+    try {  
+        gattServer.sendResponse(serverResponse);  
+    } catch (err) {  
+        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+    }  
+}  
+gattServer.on('descriptorWrite', WriteDescriptorReq);  
+    
+```    
+  
+    
+### off('descriptorWrite')    
+server端取消订阅描述符写请求事件。  
+ **调用形式：**     
+    
+- off(type: 'descriptorWrite', callback?: Callback\<DescriptorWriteRequest>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 填写"descriptorWrite"字符串，表示描述符写请求事件。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 表示取消订阅描述符写请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+let gattServer: ble.GattServer = ble.createGattServer();  
+gattServer.off('descriptorWrite');  
+} catch (err) {  
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### on('connectionStateChange')    
+server端订阅BLE连接状态变化事件。  
+ **调用形式：**     
+    
+- on(type: 'connectionStateChange', callback: Callback\<BLEConnectionChangeState>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 填写"connectionStateChange"字符串，表示BLE连接状态变化事件。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 表示回调函数的入参，连接状态。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+import constant from '@ohos.bluetooth.constant';  
+function Connected(bleConnectionChangeState: ble.BLEConnectionChangeState) {  
+  let deviceId: string = bleConnectionChangeState.deviceId;  
+  let status: constant.ProfileConnectionState = bleConnectionChangeState.state;  
+}  
+try {  
+let gattServer: ble.GattServer = ble.createGattServer();  
+gattServer.on('connectionStateChange', Connected);  
+} catch (err) {  
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### off('connectionStateChange')    
+server端取消订阅BLE连接状态变化事件。  
+ **调用形式：**     
+    
+- off(type: 'connectionStateChange', callback?: Callback\<BLEConnectionChangeState>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 填写"connectionStateChange"字符串，表示BLE连接状态变化事件。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 表示取消订阅BLE连接状态变化事件。不填该参数则取消订阅该type对应的所有回调。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+let gattServer: ble.GattServer = ble.createGattServer();  
+gattServer.off('connectionStateChange');  
+} catch (err) {  
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### on('BLEMtuChange')    
+server端订阅MTU状态变化事件。  
+ **调用形式：**     
+    
+- on(type: 'BLEMtuChange', callback: Callback\<number>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 返回MTU字节数的值，通过注册回调函数获取。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+    let gattServer: ble.GattServer = ble.createGattServer();  
+    gattServer.on('BLEMtuChange', (mtu: number) => {  
+      console.info('BLEMtuChange, mtu: ' + mtu);  
+    });  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### off('BLEMtuChange')    
+server端取消订阅MTU状态变化事件。  
+ **调用形式：**     
+    
+- off(type: 'BLEMtuChange', callback?: Callback\<number>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 返回MTU字节数的值，通过注册回调函数获取。不填该参数则取消订阅该type对应的所有回调 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+    let gattServer: ble.GattServer = ble.createGattServer();  
+    gattServer.off('BLEMtuChange');  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+## GattClientDevice    
+client端类，使用client端方法之前需要创建该类的实例进行操作，通过createGattClientDevice(deviceId: string)方法构造此实例。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### connect    
+client端发起连接远端蓝牙低功耗设备。  
+ **调用形式：**     
+- connect(): void  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900003 | Bluetooth switch is off. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+    device.connect();  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### disconnect    
+client端断开与远端蓝牙低功耗设备的连接。  
+ **调用形式：**     
+- disconnect(): void  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900003 | Bluetooth switch is off. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+    device.disconnect();  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### close    
+关闭客户端功能，注销client在协议栈的注册，调用该接口后<a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-bluetooth-ble.md#gattclientdevice">GattClientDevice</a>实例将不能再使用。  
+ **调用形式：**     
+- close(): void  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900003 | Bluetooth switch is off. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+    device.close();  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### getDeviceName    
+client获取远端蓝牙低功耗设备名。  
+ **调用形式：**     
+    
+- getDeviceName(callback: AsyncCallback\<string>): void    
+起始版本： 10    
+- getDeviceName(): Promise\<string>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | client获取对端server设备名，通过注册回调函数获取。 |  
+| Promise<string> | client获取对端server设备名，通过promise形式获取。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+// callback  
+try {  
+    let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");  
+    gattClient.connect();  
+    gattClient.getDeviceName((err: BusinessError, data: string)=> {  
+        console.info('device name err ' + JSON.stringify(err));  
+        console.info('device name' + JSON.stringify(data));  
+    })  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### getServices    
+client端获取蓝牙低功耗设备的所有服务，即服务发现 。  
+ **调用形式：**     
+    
+- getServices(callback: AsyncCallback\<Array\<GattService>>): void    
+起始版本： 10    
+- getServices(): Promise\<Array\<GattService>>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | client进行服务发现，通过注册回调函数获取。 |  
+| Promise<Array<GattService>> | client进行服务发现，通过promise形式获取。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+// callkback 模式  
+function getServices(code: BusinessError, gattServices: Array<ble.GattService>) {  
+  if (code.code == 0) {  
+      let services: Array<ble.GattService> = gattServices;  
+      console.log('bluetooth code is ' + code.code);  
+      console.log('bluetooth services size is ', services.length);  
+  
+      for (let i = 0; i < services.length; i++) {  
+        console.log('bluetooth serviceUuid is ' + services[i].serviceUuid);  
+      }  
+  }  
+}  
+  
+try {  
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+    device.connect();  
+    device.getServices(getServices);  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### readCharacteristicValue    
+client端读取蓝牙低功耗设备特定服务的特征值。  
+ **调用形式：**     
+    
+- readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallback\<BLECharacteristic>): void    
+起始版本： 10    
+- readCharacteristicValue(characteristic: BLECharacteristic): Promise\<BLECharacteristic>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| characteristic | BLECharacteristic | true | 待读取的特征值。 |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | client读取特征值，通过注册回调函数获取。 |  
+| Promise<BLECharacteristic> | client读取特征值，通过promise形式获取。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2901000 | Read forbidden. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+function readCcc(code: BusinessError, BLECharacteristic: ble.BLECharacteristic) {  
+  if (code.code != 0) {  
+      return;  
+  }  
+  console.log('bluetooth characteristic uuid: ' + BLECharacteristic.characteristicUuid);  
+  let value = new Uint8Array(BLECharacteristic.characteristicValue);  
+  console.log('bluetooth characteristic value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);  
+}  
+  
+let descriptors: Array<ble.BLEDescriptor> = [];  
+let bufferDesc = new ArrayBuffer(8);  
+let descV = new Uint8Array(bufferDesc);  
+descV[0] = 11;  
+let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',  
+characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',  
+descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};  
+descriptors[0] = descriptor;  
+  
+let bufferCCC = new ArrayBuffer(8);  
+let cccV = new Uint8Array(bufferCCC);  
+cccV[0] = 1;  
+let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',  
+characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',  
+characteristicValue: bufferCCC, descriptors:descriptors};  
+  
+try {  
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+    device.readCharacteristicValue(characteristic, readCcc);  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### readDescriptorValue    
+client端读取蓝牙低功耗设备特定的特征包含的描述符。  
+ **调用形式：**     
+    
+- readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback\<BLEDescriptor>): void    
+起始版本： 10    
+- readDescriptorValue(descriptor: BLEDescriptor): Promise\<BLEDescriptor>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| descriptor | BLEDescriptor | true | <table><tbody><tr><td>待读取的描述符。</td></tr><tr></tr></tbody></table> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | client读取描述符，通过注册回调函数获取。 |  
+| Promise<BLEDescriptor> | client读取描述符，通过promise形式获取。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2901000 | Read forbidden. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+function readDesc(code: BusinessError, BLEDescriptor: ble.BLEDescriptor) {  
+    if (code.code != 0) {  
+        return;  
+    }  
+    console.log('bluetooth descriptor uuid: ' + BLEDescriptor.descriptorUuid);  
+    let value = new Uint8Array(BLEDescriptor.descriptorValue);  
+    console.log('bluetooth descriptor value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);  
+}  
+  
+let bufferDesc = new ArrayBuffer(8);  
+let descV = new Uint8Array(bufferDesc);  
+descV[0] = 11;  
+let descriptor: ble.BLEDescriptor = {  
+    serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',  
+    characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',  
+    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',  
+    descriptorValue: bufferDesc  
+};  
+try {  
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+    device.readDescriptorValue(descriptor, readDesc);  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### writeCharacteristicValue    
+client端向低功耗蓝牙设备写入特定的特征值。  
+ **调用形式：**     
+    
+- writeCharacteristicValue(      characteristic: BLECharacteristic,      writeType: GattWriteType,      callback: AsyncCallback\<void>    ): void    
+起始版本： 10    
+- writeCharacteristicValue(characteristic: BLECharacteristic, writeType: GattWriteType): Promise\<void>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| characteristic | BLECharacteristic | true | 蓝牙设备特征对应的二进制值及其它参数。<br/> |  
+| writeType | GattWriteType | true | 蓝牙设备特征的写入类型。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 回调函数。当写入成功，err为undefined，否则为错误对象。 |  
+| Promise<void> | client读取描述符，通过promise形式获取。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2901001 | Read forbidden. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+let descriptors: Array<ble.BLEDescriptor> = [];  
+let bufferDesc = new ArrayBuffer(8);  
+let descV = new Uint8Array(bufferDesc);  
+descV[0] = 11;  
+let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',  
+  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',  
+  descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};  
+descriptors[0] = descriptor;  
+  
+let bufferCCC = new ArrayBuffer(8);  
+let cccV = new Uint8Array(bufferCCC);  
+cccV[0] = 1;  
+let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',  
+  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',  
+  characteristicValue: bufferCCC, descriptors:descriptors};  
+function writeCharacteristicValueCallBack(code: BusinessError) {  
+    if (code.code != 0) {  
+        return;  
+    }  
+    console.log('bluetooth writeCharacteristicValue success');  
+}  
+try {  
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+    device.writeCharacteristicValue(characteristic, ble.GattWriteType.WRITE, writeCharacteristicValueCallBack);  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### writeDescriptorValue    
+client端向低功耗蓝牙设备特定的描述符写入二进制数据。  
+ **调用形式：**     
+    
+- writeDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback\<void>): void    
+起始版本： 10    
+- writeDescriptorValue(descriptor: BLEDescriptor): Promise\<void>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| descriptor | BLEDescriptor | true | 蓝牙设备描述符的二进制值及其它参数。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 回调函数。当写入成功，err为undefined，否则为错误对象。 |  
+| Promise<void> | client读取描述符，通过promise形式获取。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2901001 | Read forbidden. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+let bufferDesc = new ArrayBuffer(8);  
+let descV = new Uint8Array(bufferDesc);  
+descV[0] = 22;  
+let descriptor: ble.BLEDescriptor = {  
+    serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',  
+    characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',  
+    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',  
+    descriptorValue: bufferDesc  
+};  
+try {  
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+    device.writeDescriptorValue(descriptor);  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### getRssiValue    
+client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用connect接口连接成功后才能使用。  
+ **调用形式：**     
+    
+- getRssiValue(callback: AsyncCallback\<number>): void    
+起始版本： 10    
+- getRssiValue(): Promise\<number>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 返回信号强度，单位 dBm，通过注册回调函数获取。 |  
+| Promise<number> | 返回信号强度，单位 dBm，通过promise形式获取。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+// callback  
+try {  
+    let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");  
+    gattClient.connect();  
+    let rssi = gattClient.getRssiValue((err: BusinessError, data: number)=> {  
+        console.info('rssi err ' + JSON.stringify(err));  
+        console.info('rssi value' + JSON.stringify(data));  
+    })  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### setBLEMtuSize    
+client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmission Unit, MTU），调用<a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-bluetooth-ble.md#connect">connect</a>接口连接成功后才能使用。  
+ **调用形式：**     
+- setBLEMtuSize(mtu: number): void  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| mtu | number | true |  |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+    device.setBLEMtuSize(128);  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### setCharacteristicChangeNotification    
+向服务端发送设置通知此特征值请求。  
+ **调用形式：**     
+    
+- setCharacteristicChangeNotification(      characteristic: BLECharacteristic,      enable: boolean,      callback: AsyncCallback\<void>    ): void    
+起始版本： 10    
+- setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: boolean): Promise\<void>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| characteristic | BLECharacteristic | true | 蓝牙低功耗特征。<br/> |  
+| enable | boolean | true | 启用接收notify设置为true，否则设置为false。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 回调函数。当发送成功，err为undefined，否则为错误对象。 |  
+| Promise<void> | 返回Promise对象。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+// 创建descriptors  
+let descriptors: Array<ble.BLEDescriptor> = [];  
+let arrayBuffer = new ArrayBuffer(8);  
+let descV = new Uint8Array(arrayBuffer);  
+descV[0] = 11;  
+let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',  
+  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',  
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};  
+descriptors[0] = descriptor;  
+let arrayBufferC = new ArrayBuffer(8);  
+let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',  
+  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};  
+try {  
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+    device.setCharacteristicChangeNotification(characteristic, false);  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### setCharacteristicChangeIndication    
+向服务端发送设置通知此特征值请求。  
+ **调用形式：**     
+    
+- setCharacteristicChangeIndication(      characteristic: BLECharacteristic,      enable: boolean,      callback: AsyncCallback\<void>    ): void    
+起始版本： 10    
+- setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boolean): Promise\<void>    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| characteristic | BLECharacteristic | true | 蓝牙低功耗特征。<br/> |  
+| enable | boolean | true | 启用接收notify设置为true，否则设置为false。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 回调函数。当发送成功，err为undefined，否则为错误对象。 |  
+| Promise<void> | 返回Promise对象。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+| 2900001 | Service stopped. |  
+| 2900099 | Operation failed. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+// 创建descriptors  
+let descriptors: Array<ble.BLEDescriptor> = [];  
+let arrayBuffer = new ArrayBuffer(8);  
+let descV = new Uint8Array(arrayBuffer);  
+descV[0] = 11;  
+let descriptor: ble.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',  
+  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',  
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};  
+descriptors[0] = descriptor;  
+let arrayBufferC = new ArrayBuffer(8);  
+let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',  
+  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};  
+try {  
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+    device.setCharacteristicChangeNotification(characteristic, false);  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### on('BLECharacteristicChange')    
+订阅蓝牙低功耗设备的特征值变化事件。需要先调用setNotifyCharacteristicChanged接口才能接收server端的通知。  
+ **调用形式：**     
+    
+- on(type: 'BLECharacteristicChange', callback: Callback\<BLECharacteristic>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 填写"BLECharacteristicChange"字符串，表示特征值变化事件。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 表示蓝牙低功耗设备的特征值变化事件的回调函数。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+function CharacteristicChange(characteristicChangeReq: ble.BLECharacteristic) {  
+    let serviceUuid: string = characteristicChangeReq.serviceUuid;  
+    let characteristicUuid: string = characteristicChangeReq.characteristicUuid;  
+    let value: Uint8Array = new Uint8Array(characteristicChangeReq.characteristicValue);  
+}  
+try {  
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+    device.on('BLECharacteristicChange', CharacteristicChange);  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### off('BLECharacteristicChange')    
+取消订阅蓝牙低功耗设备的特征值变化事件。  
+ **调用形式：**     
+    
+- off(type: 'BLECharacteristicChange', callback?: Callback\<BLECharacteristic>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 填写"BLECharacteristicChange"字符串，表示特征值变化事件。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 表示取消订阅蓝牙低功耗设备的特征值变化事件。不填该参数则取消订阅该type对应的所有回调。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+    device.off('BLECharacteristicChange');  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### on('BLEConnectionStateChange')    
+client端订阅蓝牙低功耗设备的连接状态变化事件。  
+ **调用形式：**     
+    
+- on(type: 'BLEConnectionStateChange', callback: Callback\<BLEConnectionChangeState>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 填写"BLEConnectionStateChange"字符串，表示连接状态变化事件。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 表示连接状态，已连接或断开。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+function ConnectStateChanged(state: ble.BLEConnectionChangeState) {  
+  console.log('bluetooth connect state changed');  
+  let connectState: ble.ProfileConnectionState = state.state;  
+}  
+try {  
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+    device.on('BLEConnectionStateChange', ConnectStateChanged);  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### off('BLEConnectionStateChange')    
+取消订阅蓝牙低功耗设备的连接状态变化事件。  
+ **调用形式：**     
+    
+- off(type: 'BLEConnectionStateChange', callback?: Callback\<BLEConnectionChangeState>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 填写"BLEConnectionStateChange"字符串，表示连接状态变化事件。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 表示取消订阅蓝牙低功耗设备的连接状态变化事件。不填该参数则取消订阅该type对应的所有回调。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+    device.off('BLEConnectionStateChange');  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### on('BLEMtuChange')    
+client端订阅MTU状态变化事件。  
+ **调用形式：**     
+    
+- on(type: 'BLEMtuChange', callback: Callback\<number>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 回MTU字节数的值，通过注册回调函数获取。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+    let gattClient: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+    gattClient.on('BLEMtuChange', (mtu: number) => {  
+      console.info('BLEMtuChange, mtu: ' + mtu);  
+    });  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+### off('BLEMtuChange')    
+client端取消订阅MTU状态变化事件。  
+ **调用形式：**     
+    
+- off(type: 'BLEMtuChange', callback?: Callback\<number>): void    
+起始版本： 10  
+  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core  
+ **需要权限：** ohos.permission.ACCESS_BLUETOOTH    
+ **参数：**     
+| 参数名 | 类型 | 必填 | 说明 |  
+| --------| --------| --------| --------|  
+| type | string | true | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。<br/> |  
+    
+ **回调或返回值：**     
+| 类型 | 说明 |  
+| --------| --------|  
+| callback | 返回MTU字节数的值，通过注册回调函数获取。不填该参数则取消订阅该type对应的所有回调。 |  
+    
+    
+ **错误码：**     
+| 错误码ID | 错误信息 |  
+| --------| --------|  
+| 201 | Permission denied. |  
+| 401 | Invalid parameter. |  
+| 801 | Capability not supported. |  
+    
+ **示例代码：**   
+```js    
+import { BusinessError } from '@ohos.base';  
+try {  
+    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');  
+    device.off('BLEMtuChange');  
+} catch (err) {  
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);  
+}  
+    
+```    
+  
+    
+## GattService    
+描述service的接口参数定义。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| serviceUuid | string | false | true | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。<br/> |  
+| isPrimary | boolean | false | true | 如果是主服务设置为true，否则设置为false。<br/> |  
+| characteristics | Array<BLECharacteristic> | false | true | 当前服务包含的特征列表。<br/> |  
+| includeServices | Array<GattService> | false | false | 当前服务依赖的其它服务。<br/> |  
+    
+## BLECharacteristic    
+描述characteristic的接口参数定义 。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| serviceUuid | string | false | true | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。<br/> |  
+| characteristicUuid | string | false | true | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。<br/> |  
+| characteristicValue | ArrayBuffer | false | true | 特征对应的二进制值。<br/> |  
+| descriptors | Array<BLEDescriptor> | false | true | 特定特征的描述符列表。<br/> |  
+| properties | GattProperties | false | false | 特定特征的属性描述。 |  
+    
+## BLEDescriptor    
+描述descriptor的接口参数定义 。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| serviceUuid | string | false | true | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。<br/> |  
+| characteristicUuid | string | false | true | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。<br/> |  
+| descriptorUuid | string | false | true | 描述符（descriptor）的UUID，例如：00002902-0000-1000-8000-00805f9b34fb。<br/> |  
+| descriptorValue | ArrayBuffer | false | true | 描述符对应的二进制值。<br/> |  
+    
+## NotifyCharacteristic    
+描述server端特征值变化时发送的特征通知参数定义。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| serviceUuid | string | false | true | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。<br/> |  
+| characteristicUuid | string | false | true | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。<br/> |  
+| characteristicValue | ArrayBuffer | false | true | 特征对应的二进制值。<br/> |  
+| confirm | boolean | false | true | 如果是notification则对端回复确认设置为true，如果是indication则对端不需要回复确认设置为false。 |  
+    
+## CharacteristicReadRequest    
+描述server端订阅后收到的特征值读请求事件参数结构。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| deviceId | string | false | true | 表示发送特征值读请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。<br/> |  
+| transId | number | false | true | 表示读请求的传输ID，server端回复响应时需填写相同的传输ID。<br/> |  
+| offset | number | false | true | 表示读特征值数据的起始位置。例如：k表示从第k个字节开始读，server端回复响应时需填写相同的offset。<br/> |  
+| characteristicUuid | string | false | true | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。<br/> |  
+| serviceUuid | string | false | true | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。<br/> |  
+    
+## CharacteristicWriteRequest    
+描述server端订阅后收到的特征值写请求事件参数结构。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| deviceId | string | false | true | 表示发送特征值读请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。<br/> |  
+| transId | number | false | true | 表示写请求的传输ID，server端回复响应时需填写相同的传输ID。<br/> |  
+| offset | number | false | true | 表示写特征值数据的起始位置。例如：k表示从第k个字节开始写，server端回复响应时需填写相同的offset。<br/> |  
+| isPrepared | boolean | false | true | 表示写请求是否立即执行。<br/> |  
+| needRsp | boolean | false | true | 表示是否要给client端回复响应。<br/> |  
+| value | ArrayBuffer | false | true | 表示写入的描述符二进制数据。<br/> |  
+| characteristicUuid | string | false | true | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。<br/> |  
+| serviceUuid | string | false | true | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |  
+    
+## DescriptorReadRequest    
+描述server端订阅后收到的描述符读请求事件参数结构。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| deviceId | string | false | true | 表示发送描述符读请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。<br/> |  
+| transId | number | false | true | 表示读请求的传输ID，server端回复响应时需填写相同的传输ID。<br/> |  
+| offset | number | false | true | 表示读描述符数据的起始位置。例如：k表示从第k个字节开始读，server端回复响应时需填写相同的offset。<br/> |  
+| descriptorUuid | string | false | true | 表示描述符（descriptor）的UUID，例如：00002902-0000-1000-8000-00805f9b34fb。<br/> |  
+| characteristicUuid | string | false | true | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。<br/> |  
+| serviceUuid | string | false | true | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |  
+    
+## DescriptorWriteRequest    
+描述server端订阅后收到的描述符写请求事件参数结构。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| deviceId | string | false | true | 表示发送描述符写请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。<br/> |  
+| transId | number | false | true | 表示写请求的传输ID，server端回复响应时需填写相同的传输ID。<br/> |  
+| offset | number | false | true | 表示写描述符数据的起始位置。例如：k表示从第k个字节开始写，server端回复响应时需填写相同的offset。<br/> |  
+| isPrepared | boolean | false | true | 表示写请求是否立即执行。<br/> |  
+| needRsp | boolean | false | true | 表示是否要给client端回复响应。<br/> |  
+| value | ArrayBuffer | false | true | 表示写入的描述符二进制数据。<br/> |  
+| descriptorUuid | string | false | true | 表示描述符（descriptor）的UUID，例如：00002902-0000-1000-8000-00805f9b34fb。<br/> |  
+| characteristicUuid | string | false | true | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。<br/> |  
+| serviceUuid | string | false | true | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |  
+    
+## ServerResponse    
+描述server端回复client端读/写请求的响应参数结构。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| deviceId | string | false | true | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。<br/> |  
+| transId | number | false | true | 表示请求的传输ID，与订阅的读/写请求事件携带的ID保持一致。<br/> |  
+| status | number | false | true | 表示响应的状态，设置为0即可，表示正常。<br/> |  
+| offset | number | false | true | 表示请求的读/写起始位置，与订阅的读/写请求事件携带的offset保持一致。<br/> |  
+| value | ArrayBuffer | false | true | 表示回复响应的二进制数据。 |  
+    
+## BLEConnectionChangeState    
+描述Gatt profile连接状态 。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| deviceId | string | false | true | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。<br/> |  
+| state | ProfileConnectionState | false | true | 表示BLE连接状态的枚举。 |  
+    
+## ScanResult    
+扫描结果上报数据。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| deviceId | string | false | true | 表示扫描到的设备地址，例如："XX:XX:XX:XX:XX:XX"。<br/> |  
+| rssi | number | false | true | 表示扫描到的设备的rssi值。<br/> |  
+| data | ArrayBuffer | false | true | 表示扫描到的设备发送的广播包。<br/> |  
+| deviceName | string | false | true | 表示扫描到的设备名称。<br/> |  
+| connectable | boolean | false | true | 表示扫描到的设备是否可连接。 |  
+    
+## AdvertiseSetting    
+描述蓝牙低功耗设备发送广播的参数。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| interval | number | false | false | 表示广播间隔，最小值设置32个slot表示20ms，最大值设置16384个slot，默认值设置为1600个slot表示1s。<br/> |  
+| txPower | number | false | false | 表示发送功率，最小值设置-127，最大值设置1，默认值设置-7，单位dbm。<br/> |  
+| connectable | boolean | false | false | 表示是否是可连接广播，默认值设置为true。<br/> |  
+    
+## AdvertiseData    
+描述BLE广播数据包的内容。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| serviceUuids | Array<string> | false | true | 表示要广播的服务UUID列表。<br/> |  
+| manufactureData | Array<ManufactureData> | false | true | 表示要广播的广播的制造商信息列表。<br/> |  
+| serviceData | Array<ServiceData> | false | true | 表示要广播的服务数据列表。<br/> |  
+| includeDeviceName | boolean | false | false | 表示是否携带设备名，可选参数。<br/> |  
+    
+## ManufactureData    
+描述BLE广播数据包的内容。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| manufactureId | number | false | true | 表示制造商的ID，由蓝牙SIG分配。<br/> |  
+| manufactureValue | ArrayBuffer | false | true | 表示制造商发送的制造商数据。<br/> |  
+    
+## ServiceData    
+描述广播包中服务数据内容。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| serviceUuid | string | false | true | 表示服务的UUID。<br/> |  
+| serviceValue | ArrayBuffer | false | true | 表示服务数据。<br/> |  
+    
+## ScanFilter    
+扫描过滤参数。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| deviceId | string | false | false | 表示过滤的BLE设备地址，例如："XX:XX:XX:XX:XX:XX"。<br/> |  
+| name | string | false | false | 表示过滤的BLE设备名。<br/> |  
+| serviceUuid | string | false | false | 表示过滤包含该UUID服务的设备，例如：00001888-0000-1000-8000-00805f9b34fb。<br/> |  
+| serviceUuidMask | string | false | false | 表示过滤包含该UUID服务掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。<br/> |  
+| serviceSolicitationUuid | string | false | false | 表示过滤包含该UUID服务请求的设备，例如：00001888-0000-1000-8000-00805F9B34FB。<br/> |  
+| serviceSolicitationUuidMask | string | false | false | 表示过滤包含该UUID服务请求掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。<br/> |  
+| serviceData | ArrayBuffer | false | false | 表示过滤包含该服务相关数据的设备，例如：[0x90,0x00,0xF1,0xF2]。<br/> |  
+| serviceDataMask | ArrayBuffer | false | false | 表示过滤包含该服务相关数据掩码的设备，例如：[0xFF,0xFF,0xFF,0xFF]。<br/> |  
+| manufactureId | number | false | false | 表示过滤包含该制造商ID的设备，例如：0x0006。<br/> |  
+| manufactureData | ArrayBuffer | false | false | 表示过滤包含该制造商相关数据的设备，例如：[0x1F,0x2F,0x3F]。 |  
+| manufactureDataMask | ArrayBuffer | false | false | 表示过滤包含该制造商相关数据掩码的设备，例如：[0xFF,0xFF,0xFF]。<br/> |  
+    
+## ScanOptions    
+扫描的配置参数。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| interval | number | false | false | 表示扫描结果上报延迟时间，默认值为0。<br/> |  
+| dutyMode | ScanDuty | false | false | 表示扫描模式，默认值为SCAN_MODE_LOW_POWER。 |  
+| matchMode | MatchMode | false | false | 表示硬件的过滤匹配模式，默认值为MATCH_MODE_AGGRESSIVE。<br/> |  
+    
+## GattProperties    
+描述gatt characteristic的属性。  
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+### 属性    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 类型 | 只读 | 必填 | 说明 |  
+| --------| --------| --------| --------| --------|  
+| write | boolean | false | false | 表示该特征支持写操作，需要对端设备的回复。<br/> |  
+| writeNoResponse | boolean | false | false | 表示该特征支持写操作，无需对端设备回复。<br/> |  
+| read | boolean | false | false | 表示该特征支持读操作。<br/> |  
+| notify | boolean | false | false | 表示该特征可通知对端设备。<br/> |  
+| indicate | boolean | false | false | 表示该特征可通知对端设备，需要对端设备的回复。<br/> |  
+    
+## GattWriteType    
+枚举，表示gatt写入类型。    
+    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 值 | 说明 |  
+| --------| --------| --------|  
+| WRITE | 1 | 表示写入特征值，需要对端设备的回复。<br/> |  
+| WRITE_NO_RESPONSE | 2 | 表示写入特征值，不需要对端设备的回复。<br/> |  
+    
+## ScanDuty    
+枚举，扫描模式。    
+    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 值 | 说明 |  
+| --------| --------| --------|  
+| SCAN_MODE_LOW_POWER | 0 | 表示低功耗模式，默认值。<br/> |  
+| SCAN_MODE_BALANCED | 1 | 表示均衡模式。<br/> |  
+| SCAN_MODE_LOW_LATENCY | 2 | 表示低延迟模式。<br/> |  
+    
+## MatchMode    
+枚举，硬件过滤匹配模式。    
+    
+ **系统能力:**  SystemCapability.Communication.Bluetooth.Core    
+| 名称 | 值 | 说明 |  
+| --------| --------| --------|  
+| MATCH_MODE_AGGRESSIVE | 1 | 表示硬件上报扫描结果门限较低，比如扫描到的功率较低或者一段时间扫描到的次数较少也触发上报，默认值。<br/> |  
+| MATCH_MODE_STICKY | 2 | 表示硬件上报扫描结果门限较高，更高的功率门限以及扫描到多次才会上报。<br/> |  
