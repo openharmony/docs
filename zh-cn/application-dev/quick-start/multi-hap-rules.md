@@ -3,7 +3,7 @@
 
 - App Pack包不能直接安装到设备上，只是上架应用市场的单元。
 
-- App Pack包各个HAP中与[app.json5配置文件](./app-configuration-file.md)相关的标签取值必须保持一致，打包时会进行校验，详见[打包工具](../tools/packing-tool.md)。
+- App Pack包打包时会对每个HAP在json文件中的配置进行校验，确保bundleName、versionCode等标签取值相同，详见[App打包时的HAP合法性校验](../tools/packing-tool.md#app打包指令)。
 
 - App Pack包中同一设备类型的所有HAP中必须有且只有一个Entry类型的HAP，Feature类型的HAP可以有一个或者多个，也可以没有。
 

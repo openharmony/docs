@@ -86,7 +86,7 @@ module.json5配置文件包含以下标签。
 | installationFree | 标识当前Module是否支持免安装特性。<br/>-&nbsp;true：表示支持免安装特性，且符合免安装约束。<br/>-&nbsp;false：表示不支持免安装特性。<br/>**说明：**<br/>-&nbsp;当应用的entry类型Module的该字段配置为true时，该应用的feature类型的该字段也需要配置为true。<br/>-&nbsp;当应用的entry类型Module的该字段配置为false时，该应用的feature类型的该字段可根据业务需求配置true或false。 | 布尔值 | 该标签不可缺省。 |
 | virtualMachine | 标识当前Module运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心。如果目标虚拟机类型为ArkTS引擎，则其值为“ark+版本号”。 | 字符串 | 该标签由IDE构建HAP的时候自动插入。 |
 | [pages](#pages标签) | 标识当前Module的profile资源，用于列举每个页面信息，取值为长度不超过255字节的字符串。 | 字符串 | 在有UIAbility的场景下，该标签不可缺省。 |
-| [metadata](#metadata标签) | 标识当前Module的自定义元信息，可用于配置[shortcuts](#shortcuts标签)等内容。只对当前Module、UIAbility、ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| [metadata](#metadata标签) | 标识当前Module的自定义元信息，可通过资源引用的方式配置[distributionFilter](#distributionfilter标签)、[shortcuts](#shortcuts标签)等信息。只对当前Module、UIAbility、ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [abilities](#abilities标签) | 标识当前Module中UIAbility的配置信息，只对当前UIAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [extensionAbilities](#extensionabilities标签) | 标识当前Module中ExtensionAbility的配置信息，只对当前ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [requestPermissions](#requestpermissions标签) | 标识当前应用运行时需向系统申请的权限集合。 | 对象 | 该标签可缺省，缺省值为空。 |
@@ -547,55 +547,53 @@ metadata中指定shortcut信息，其中：
 > **说明：**  
 > 该标签从API10及以后版本开始生效，API9及以前版本使用distroFilter标签。
 
-**适用场景：**当一个工程中存在多个Entry，且多个Entry配置的deviceTypes存在交集时，则需要通过该标签进行区分。
-```json
-// entry1支持的设备类型
-{
-  "module": {
-    "name": "entry1",
-    "type": "entry",
-    "deviceTypes" : [
-       "tv",
-       "tablet"
-    ]
+- **适用场景：** 当一个工程中存在多个Entry，且多个Entry配置的deviceTypes存在交集时，则需要通过该标签进行区分。比如下面的两个Entry都支持tablet类型，就需要通过该标签进行区分。
+  ```json
+  // entry1支持的设备类型
+  {
+    "module": {
+      "name": "entry1",
+      "type": "entry",
+      "deviceTypes" : [
+        "tv",
+        "tablet"
+      ]
+    }
   }
-}
 
-// entry2支持的设备类型
-{
-  "module": {
-    "name": "entry2",
-    "type": "entry",
-    "deviceTypes" : [
-       "car",
-       "tablet"
-    ]
+  // entry2支持的设备类型
+  {
+    "module": {
+      "name": "entry2",
+      "type": "entry",
+      "deviceTypes" : [
+        "car",
+        "tablet"
+      ]
+    }
   }
-}
-```
+  ```
 
-**配置规则：**  
-该标签支持配置的属性包括：屏幕形状([screenShape](#screenshape标签))、窗口分辨率([screenWindow](#screenwindow标签))、屏幕像素密度([screenDensity](#screendensity标签) )、设备所在国家与地区([countryCode](#countrycode标签))。在分发应用包时，通过deviceTypes与这四个属性的匹配关系，唯一确定一个用于分发到设备的HAP。
-* 如果需要配置该标签，则至应当包含一个属性。
-* 如果一个Entry中配置了任意一个或多个属性，则其他Entry也必须包含相同的属性。
+- **配置规则：**  该标签支持配置四个属性，包括屏幕形状([screenShape](#screenshape标签))、窗口分辨率([screenWindow](#screenwindow标签))、屏幕像素密度([screenDensity](#screendensity标签) )、设备所在国家与地区([countryCode](#countrycode标签))。在分发应用包时，通过deviceTypes与这四个属性的匹配关系，唯一确定一个用于分发到设备的HAP。
+  > **说明：**  
+  > * 如果需要配置该标签，则至应当包含一个属性。
+  > * 如果一个Entry中配置了任意一个或多个属性，则其他Entry也必须包含相同的属性。
+  > * screenShape和screenWindow属性仅用于轻量级智能穿戴设备。
 
+- **配置方式：** 该标签需要配置在/resource/profile资源目录下，并在metadata的resource字段中引用。
 
-**配置方式：**该标签需要配置在/resource/profile资源目录下，并在metadata的resource字段中引用。
-
-
-
-  **表12** distributionFilter标签配置说明
+**表12** distributionFilter标签配置说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| [screenShape](#screenshape标签) | 标识屏幕形状的支持策略。<br/>**说明：**<br/>该字段仅用于轻量级智能穿戴设备。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| [screenWindow](#screenwindow标签) | 标识应用运行时的窗口分辨率的支持策略。<br/>**说明：**<br/>该字段仅用于轻量级智能穿戴设备。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| [screenShape](#screenshape标签) | 标识屏幕形状的支持策略。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| [screenWindow](#screenwindow标签) | 标识应用运行时的窗口分辨率的支持策略。| 对象数组 | 该标签可缺省，缺省值为空。 |
 | [screenDensity](#screendensity标签) | 标识屏幕的像素密度（dpi：Dot&nbsp;Per&nbsp;Inch）的支持策略。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [countryCode](#countrycode标签) | 标识国家与地区的支持策略，取值参考ISO-3166-1标准。支持多个国家和地区枚举定义。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 
 ### screenShape标签
 
-  **表13** screenShape标签说明
+**表13** screenShape标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -604,7 +602,7 @@ metadata中指定shortcut信息，其中：
 
 ### screenWindow标签
 
-  **表14** screenWindow标签说明
+**表14** screenWindow标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -613,7 +611,7 @@ metadata中指定shortcut信息，其中：
 
 ### screenDensity标签
 
-  **表15** screenDensity标签说明
+**表15** screenDensity标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -622,67 +620,66 @@ metadata中指定shortcut信息，其中：
 
 ### countryCode标签
 
-  **表16** countryCode标签说明
+**表16** countryCode标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | policy | 标识条件属性的过滤规则。<br/>-&nbsp;exclude：表示需要排除的value属性。<br/>-&nbsp;include：表示需要包含的value属性。 | 字符串 | 该标签不可缺省。 |
 | value | 标识应用需要分发的国家地区码。 | 字符串数组 | 该标签不可缺省。 |
 
-在开发视图的resources/base/profile下面定义配置文件distributionFilter_config.json，文件名可以自定义。
+
+1. 在开发视图的resources/base/profile下面定义配置文件distributionFilter_config.json，文件名可以自定义。
+
+  ```json
+  {
+    "distributionFilter": {
+      "screenShape": {
+        "policy": "include",
+        "value": [
+          "circle",
+          "rect"
+        ]
+      },
+      "screenWindow": {
+        "policy": "include",
+        "value": [
+          "454*454",
+          "466*466"
+        ]
+      },
+      "screenDensity": {
+        "policy": "exclude",
+        "value": [
+          "ldpi",
+          "xldpi"
+        ]
+      },
+      "countryCode": { // 支持在中国分发
+        "policy": "include",
+        "value": [
+          "CN"
+        ]
+      }
+    }
+  }
+  ```
+
+2. 在module.json5配置文件的module标签中定义metadata信息。
 
 
-```json
-{
-  "distributionFilter": {
-    "screenShape": {
-      "policy": "include",
-      "value": [
-        "circle",
-        "rect"
-      ]
-    },
-    "screenWindow": {
-      "policy": "include",
-      "value": [
-        "454*454",
-        "466*466"
-      ]
-    },
-    "screenDensity": {
-      "policy": "exclude",
-      "value": [
-        "ldpi",
-        "xldpi"
-      ]
-    },
-    "countryCode": { // 支持中国和香港地区分发
-      "policy": "include",
-      "value": [
-        "CN",
-        "HK"
+  ```json
+  {
+    "module": {
+      // ...
+      "metadata": [
+        {
+          "name": "ohos.module.distribution",
+          "resource": "$profile:distributionFilter_config",
+        }
       ]
     }
   }
-}
-```
-
-在module.json5配置文件的module标签中定义metadata信息。
-
-
-```json
-{
-  "module": {
-    // ...
-    "metadata": [
-      {
-        "name": "ohos.module.distribution",
-        "resource": "$profile:distributionFilter_config",
-      }
-    ]
-  }
-}
-```
+  ```
 
 
 ## testRunner标签
