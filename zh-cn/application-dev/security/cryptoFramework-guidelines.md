@@ -360,7 +360,7 @@ function stringToUint8Array(str: string) {
 }
 
 function testConvertHmacKey() {
-  let keyBlob = {
+  let keyBlob: cryptoFramework.DataBlob = {
     // The length is 512-bit (64 bytes).
     data : stringToUint8Array("12345678abcdefgh12345678abcdefgh12345678abcdefgh12345678abcdefgh")
   }

@@ -1602,7 +1602,7 @@ getAllSimMessages\(slotId: number\): Promise\<Array\<SimShortMessage\>\>
 
 | 类型                                                    | 说明                               |
 | ------------------------------------------------------- | ---------------------------------- |
-| PromiseArray<[SimShortMessage](#simshortmessage7)\>&gt; | 以Promise形式返回获取的SIM短消息。 |
+| Promise<Array<[SimShortMessage](#simshortmessage7)\>&gt; | 以Promise形式返回获取的SIM短消息。 |
 
 **错误码：**
 
@@ -1626,7 +1626,7 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 let promise = sms.getAllSimMessages(slotId);
-promise.then((data: sms.SimShortMessage) => {
+promise.then((data: sms.SimShortMessage[]) => {
     console.log(`getAllSimMessages success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getAllSimMessages failed, promise: err->${JSON.stringify(err)}`);

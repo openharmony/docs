@@ -1705,6 +1705,8 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 
 隐藏输入法。使用callback异步回调。
 
+**需要权限：** ohos.permission.PRIVACY_WINDOW
+
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
