@@ -12,7 +12,7 @@ GestureGroup(mode:GestureMode, gesture:GestureType[])
 
 - **mode**: recognition mode of combined gestures. The value belongs to the **GestureMode** enumeration class.
 
-- **gesture**: array of multiple gestures.  .
+- **gesture**: array of multiple gestures.
 
 
 ## Sequential Recognition
