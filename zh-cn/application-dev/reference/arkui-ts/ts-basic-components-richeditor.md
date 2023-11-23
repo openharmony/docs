@@ -305,7 +305,7 @@ deleteSpans(value?: RichEditorRange): void
 
 ### getParagraphs<sup>11+</sup>
 
-getParagraphs(value?: RichEditorRange): Array<RichEditorParagraphResult>;
+getParagraphs(value?: RichEditorRange): Array\<RichEditorParagraphResult>
 
 获得指定返回的段落。
 
@@ -319,7 +319,7 @@ getParagraphs(value?: RichEditorRange): Array<RichEditorParagraphResult>;
 
 | 类型                      | 说明               |
 | ----------------------- | ---------------- |
-| Array<[RichEditorParagraphResult](#richeditorparagraphresult11) | 选中段落的信息。 |
+| Array\<[RichEditorParagraphResult](#richeditorparagraphresult11) | 选中段落的信息。 |
 
 ### closeSelectionMenu
 
@@ -375,7 +375,7 @@ closeSelectionMenu(): void
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | textAlign | [TextAlign](ts-appendix-enums.md#textalign) | 否 | 设置文本段落在水平方向的对齐方式。 |
-| leadingMargin | [Dimension]((ts-types.md#dimension10)) \| [LeadingMarginPlaceholderr](#leadingmarginplaceholder11) | 否 | 设置缩进。 |
+| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否 | 设置文本段落缩进。 |
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
@@ -384,7 +384,7 @@ closeSelectionMenu(): void
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | pixelMap | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 是 | 图片内容。 |
-| size | \[[Dimension]((ts-types.md#dimension10)), [Dimension]((ts-types.md#dimension10))\] | 是 | 图片大小。 |
+| size | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\] | 是 | 图片大小。 |
 
 ## RichEditorParagraphResult<sup>11+</sup>
 

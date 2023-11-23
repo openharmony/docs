@@ -352,6 +352,18 @@
 
 **起始版本**：7
 
+## ohos.permission.SYSTEM_LIGHT_CONTROL
+
+允许应用控制灯，包括打开、关闭等操作。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+**起始版本**：11
+
 ## ohos.permission.CONNECT_IME_ABILITY
 
 允许绑定输入法Ability（InputMethodAbility）。
@@ -3451,5 +3463,41 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+**起始版本**: 11
+
+## ohos.permission.MANAGE_APP_BOOT
+
+允许系统应用设置其他应用开机自启配置。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.CONNECT_UI_EXTENSION_ABILITY
+
+允许系统服务连接UIExtensionAbility。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_HIVIEWCARE
+
+允许系统应用拉起智能检测能力。
+
+**授权级别**: system_basic
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
 
 **起始版本**: 11

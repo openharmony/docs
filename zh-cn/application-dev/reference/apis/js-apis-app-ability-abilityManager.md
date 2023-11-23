@@ -519,7 +519,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: Asyn
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
 | requestCode | number                                        | 是 | DLP管理应用传入的请求代码。          |
-| callback  | AsyncCallback<void>                             | 是 | 回调函数。当另存为结果通知成功，err为undefined，否则为错误对象。         |
+| callback  | AsyncCallback<void\>                             | 是 | 回调函数。当另存为结果通知成功，err为undefined，否则为错误对象。         |
 
 **错误码**：
 
@@ -585,7 +585,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise<void>| Promise对象。无返回结果的Promise对象。 |
+| Promise<void\>| Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -623,5 +623,110 @@ try {
     let code: string = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
+}
+```
+
+## abilityManager.on<sup>11+</sup>
+
+on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): void
+
+注册Ability的启动和退出的观测器。
+
+**系统接口**：该接口为系统接口。
+
+**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 调用接口类型，固定填'abilityForegroundState'字符串。 |
+| observer | [AbilityForegroundStateObserver](./js-apis-inner-application-abilityForegroundStateObserver.md) | 是 | Ability状态观测器，用于观测Ability的启动和退出。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+
+let observer: abilityManager.AbilityForegroundStateObserver = {
+    onAbilityStateChanged(abilityStateData) {
+        console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    },
+};
+try {
+    abilityManager.on('abilityForegroundState', observer);
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message} `);
+}
+```
+
+## abilityManager.off<sup>11+</sup>
+
+off(type: 'abilityForegroundState', observer?: AppForegroundStateObserver): void
+
+取消注册Ability启动和退出的观测器。
+
+**系统接口**：该接口为系统接口。
+
+**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 调用接口类型，固定填'abilityForegroundState'字符串。 |
+| observer | [AbilityForegroundStateObserver](./js-apis-inner-application-abilityForegroundStateObserver.md) | 否 | Ability状态观测器，用于观测Ability的启动和退出。如果未配置该参数，则取消当前应用注册的所有observer。如果配置了该参数，则取消该observer。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+let observer_;
+// 1.注册应用启动和退出的监听器
+let observer: abilityManager.AbilityForegroundStateObserver = {
+    onAbilityStateChanged(abilityStateData) {
+        console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    },
+};
+try {
+    abilityManager.on('abilityForegroundState', observer);
+    observer_ = observer;
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message} `);
+}
+
+// 2.注销监听器
+try {
+    abilityManager.off('abilityForegroundState',  observer_);
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message} `);
 }
 ```

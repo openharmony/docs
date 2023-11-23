@@ -302,7 +302,7 @@
 
 - File Management
   - [@ohos.application.BackupExtensionAbility (BackupExtensionAbility)](js-apis-application-backupExtensionAbility.md)
-  - [@ohos.file.backup (Backup and Restoration)](js-apis-file-backup.md)
+  - [@ohos.file.backup (Backup and Restore)](js-apis-file-backup.md)
   - [@ohos.file.cloudSync (Device-Cloud Synchronization)](js-apis-file-cloudsync.md)
   - [@ohos.file.cloudSyncManager (Device-Cloud Synchronization Management)](js-apis-file-cloudsyncmanager.md)
   - [@ohos.file.environment (Directory Environment Capability)](js-apis-file-environment.md)

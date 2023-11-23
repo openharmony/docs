@@ -169,6 +169,7 @@
   - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D对象](ts-components-canvas-path2d.md)
 - 高级组件
+  - [@ohos.arkui.advanced.Chip (操作块)](ts-composite-components-chip.md)
   - [@ohos.arkui.advanced.ComposeListItem (列表)](ts-composite-components-composelistitem.md)
   - [@ohos.arkui.advanced.ComposeTitleBar (头像和单双行文本标题栏)](ts-composite-components-composetitlebar.md)
   - [@ohos.arkui.advanced.Counter (计数器组件)](ohos-arkui-advanced-counter.md)

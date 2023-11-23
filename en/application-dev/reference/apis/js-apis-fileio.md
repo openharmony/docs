@@ -1978,7 +1978,7 @@ Synchronizes a file. This API uses a promise to return the result.
 
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
-  | fd   | number | Yes   | FD of the file to synchornize.|
+  | fd   | number | Yes   | FD of the file to synchronize.|
 
 **Return value**
 
@@ -2016,7 +2016,7 @@ Synchronizes a file. This API uses an asynchronous callback to return the result
 
   | Name     | Type                       | Mandatory  | Description             |
   | -------- | ------------------------- | ---- | --------------- |
-  | fd       | number                    | Yes   | FD of the file to synchornize.   |
+  | fd       | number                    | Yes   | FD of the file to synchronize.   |
   | Callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result.|
 
 **Example**

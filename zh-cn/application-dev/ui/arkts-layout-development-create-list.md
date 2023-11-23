@@ -778,6 +778,8 @@ Badge({
 
 3. 监听手指抬起事件，若此时移动达到最大值，则触发数据加载并显示刷新视图，加载完成后将此视图隐藏。
 
+下拉刷新与上拉加载的具体实现可参考[相关实例](#相关实例)中新闻数据加载。若开发者希望快速实现此功能，也可使用三方组件[PullToRefresh](https://gitee.com/openharmony-sig/PullToRefresh)。
+
 
 ## 编辑列表
 
@@ -1056,8 +1058,6 @@ List() {
 ## 相关实例
 
 如需详细了解ArkUI中列表的创建与使用，请参考以下示例：
-
-- [List组件的使用之商品列表](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/List)
 
 - [新闻数据加载](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/NewsDataArkTS)
 
