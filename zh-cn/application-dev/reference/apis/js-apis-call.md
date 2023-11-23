@@ -930,7 +930,7 @@ muteRinger\(callback: AsyncCallback\<void\>\): void
 
 | 参数名      | 类型                      | 必填 | 说明       |
 | ----------- | ------------------------- | ---- | ---------- |
-| callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回停止铃声的结果。 |
 
 **错误码：**
 
@@ -2802,7 +2802,7 @@ on\(type: 'callDetailsChange', callback: Callback\<CallAttributeOptions\>\): voi
 | 参数名   | 类型                                                    | 必填 | 说明                       |
 | -------- | ------------------------------------------------------- | ---- | -------------------------- |
 | type     | string                                                  | 是   | 通话时监听通话详情的变化，参数固定为'callDetailsChange'。 |
-| callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | 是  | 回调函数。                 |
+| callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | 是  | 以回调函数的方式返回订阅callDetailsChange事件的结果。                 |
 
 **错误码：**
 
@@ -2843,7 +2843,7 @@ on\(type: 'callEventChange', callback: Callback\<CallEventOptions\>\): void
 | 参数名   | 类型                                             | 必填 | 说明                       |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | type     | string                                           | 是   | 通话时监听通话事件的变化，参数固定为'callEventChange'。 |
-| callback | Callback<[CallEventOptions](#calleventoptions8)> | 是   | 回调函数。                 |
+| callback | Callback<[CallEventOptions](#calleventoptions8)> | 是   | 以回调函数的方式返回订阅callEventChange事件的结果。                 |
 
 **错误码：**
 
@@ -2884,7 +2884,7 @@ on\(type: 'callDisconnectedCause', callback: Callback\<DisconnectedDetails\>\): 
 | 参数名   | 类型                                                   | 必填 | 说明                       |
 | -------- | ------------------------------------------------------ | ---- | -------------------------- |
 | type     | string                                                 | 是   | 通话时监听断开连接的原因，参数固定为'callDisconnectedCause'。 |
-| callback | Callback<[DisconnectedDetails](#disconnecteddetails9)> | 是   | 回调函数。                 |
+| callback | Callback<[DisconnectedDetails](#disconnecteddetails9)> | 是   | 以回调函数的方式返回订阅callDisconnectedCausee事件的结果。                 |
 
 **错误码：**
 
@@ -2925,7 +2925,7 @@ on\(type: 'mmiCodeResult', callback: Callback\<MmiCodeResults\>\): void
 | 参数名   | 类型                                         | 必填 | 说明                  |
 | -------- | -------------------------------------------- | ---- | --------------------- |
 | type     | string                                       | 是   | 通话时监听MMI码结果，参数固定为'mmiCodeResult'。 |
-| callback | Callback<[MmiCodeResults](#mmicoderesults9)> | 是   | 回调函数。            |
+| callback | Callback<[MmiCodeResults](#mmicoderesults9)> | 是   | 以回调函数的方式返回订阅mmiCodeResult事件的结果。            |
 
 **错误码：**
 
@@ -3131,7 +3131,7 @@ on\(type: 'audioDeviceChange', callback: Callback\<AudioDeviceCallbackInfo\>\): 
 | 参数名   | 类型                                             | 必填 | 说明                                                |
 | -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
 | type     | string                                          | 是   | 通话音频设备发生变化，参数固定为'audioDeviceChange'。 |
-| callback | Callback<[AudioDeviceCallbackInfo](#audiodevicecallbackinfo10)> | 是   | 回调函数。                                           |
+| callback | Callback<[AudioDeviceCallbackInfo](#audiodevicecallbackinfo10)> | 是   | 以回调函数的方式返回订阅通话音频设备切换事件的结果。                                           |
 
 **错误码：**
 
@@ -3602,7 +3602,7 @@ setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: st
 | slotId          | number                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | oldPassword     | string                                      | 是   | 呼叫限制旧密码。                       |
 | newPassword     | string                                      | 是   | 呼叫限制新密码。                       |
-| callback        | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。                             |
+| callback        | AsyncCallback&lt;void&gt;                   | 是   | 以回调函数的方式返回修改呼叫限制密码的结果。                             |
 
 **错误码：**
 
