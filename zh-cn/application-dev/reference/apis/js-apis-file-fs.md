@@ -55,7 +55,7 @@ stat(file: string | number): Promise&lt;Stat&gt;
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| file   | string\|number | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。 |
+| file   | string \| number | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。 |
 
 **返回值：**
 
@@ -91,7 +91,7 @@ stat(file: string | number, callback: AsyncCallback&lt;Stat&gt;): void
 
 | 参数名   | 类型                               | 必填 | 说明                           |
 | -------- | ---------------------------------- | ---- | ------------------------------ |
-| file     | string\|number                            | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。     |
+| file     | string \| number                            | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。     |
 | callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是   | 异步获取文件的信息之后的回调。 |
 
 **错误码：**
@@ -123,7 +123,7 @@ statSync(file: string | number): Stat
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| file   | string\|number | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。 |
+| file   | string \| number | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。 |
 
 **返回值：**
 
@@ -274,7 +274,7 @@ close(file: number | File): Promise&lt;void&gt;
 
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
-  | file   | number\|[File](#file) | 是    | 已打开的File对象或已打开的文件描述符fd，关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
+  | file   | number \| [File](#file) | 是    | 已打开的File对象或已打开的文件描述符fd，关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
 
 **返回值：**
 
@@ -311,7 +311,7 @@ close(file: number | File, callback: AsyncCallback&lt;void&gt;): void
 
   | 参数名      | 类型                        | 必填   | 说明           |
   | -------- | ------------------------- | ---- | ------------ |
-  | file       | number\|[File](#file)                  | 是    | 已打开的File对象或已打开的文件描述符fd，关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
+  | file       | number \| [File](#file)                  | 是    | 已打开的File对象或已打开的文件描述符fd，关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步关闭文件之后的回调。 |
 
 **错误码：**
@@ -345,7 +345,7 @@ closeSync(file: number | File): void
 
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
-  | file   | number\|[File](#file) | 是    | 已打开的File对象或已打开的文件描述符fd，关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
+  | file   | number \| [File](#file) | 是    | 已打开的File对象或已打开的文件描述符fd，关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
 
 **错误码：**
 
@@ -371,8 +371,8 @@ copyFile(src: string | number, dest: string | number, mode?: number): Promise&lt
 
   | 参数名  | 类型                         | 必填   | 说明                                       |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | src  | string\|number | 是    | 待复制文件的路径或待复制文件的文件描述符。                      |
-  | dest | string\|number | 是    | 目标文件路径或目标文件的文件描述符。                          |
+  | src  | string \| number | 是    | 待复制文件的路径或待复制文件的文件描述符。                      |
+  | dest | string \| number | 是    | 目标文件路径或目标文件的文件描述符。                          |
   | mode | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
 
 **返回值：**
@@ -410,8 +410,8 @@ copyFile(src: string | number, dest: string | number, mode: number, callback: As
 
   | 参数名      | 类型                         | 必填   | 说明                                       |
   | -------- | -------------------------- | ---- | ---------------------------------------- |
-  | src      | string\|number | 是    | 待复制文件的路径或待复制文件的文件描述符。                      |
-  | dest     | string\|number | 是    | 目标文件路径或目标文件的文件描述符。                          |
+  | src      | string \| number | 是    | 待复制文件的路径或待复制文件的文件描述符。                      |
+  | dest     | string \| number | 是    | 目标文件路径或目标文件的文件描述符。                          |
   | mode     | number                     | 是    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
   | callback | AsyncCallback&lt;void&gt;  | 是    | 异步复制文件之后的回调。                             |
 
@@ -446,8 +446,8 @@ copyFile(src: string | number, dest: string | number, callback: AsyncCallback&lt
 
   | 参数名      | 类型                         | 必填   | 说明                                       |
   | -------- | -------------------------- | ---- | ---------------------------------------- |
-  | src      | string\|number | 是    | 待复制文件的路径或待复制文件的文件描述符。                      |
-  | dest     | string\|number | 是    | 目标文件路径或目标文件的文件描述符。                          |
+  | src      | string \| number | 是    | 待复制文件的路径或待复制文件的文件描述符。                      |
+  | dest     | string \| number | 是    | 目标文件路径或目标文件的文件描述符。                          |
   | callback | AsyncCallback&lt;void&gt;  | 是    | 异步复制文件之后的回调。                             |
 
 **错误码：**
@@ -481,8 +481,8 @@ copyFileSync(src: string | number, dest: string | number, mode?: number): void
 
   | 参数名  | 类型                         | 必填   | 说明                                       |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | src  | string\|number | 是    | 待复制文件的路径或待复制文件的文件描述符。                      |
-  | dest | string\|number | 是    | 目标文件路径或目标文件的文件描述符。                          |
+  | src  | string \| number | 是    | 待复制文件的路径或待复制文件的文件描述符。                      |
+  | dest | string \| number | 是    | 目标文件路径或目标文件的文件描述符。                          |
   | mode | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
 
 **错误码：**
@@ -618,7 +618,7 @@ copyDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
   fs.copyDir(srcPath, destPath, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < err.data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + data[i].destFile);
+        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
       console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
@@ -652,6 +652,7 @@ copyDirSync(src: string, dest: string, mode?: number): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { ConflictFiles } from '@ohos.file.fs';
   // copy directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -659,12 +660,12 @@ copyDirSync(src: string, dest: string, mode?: number): void
     fs.copyDirSync(srcPath, destPath, 0);
     console.info("copy directory succeed");
   } catch (error) {
-    let err: BusinessError<Array<ConflictFiles>> = error as BusinessError;
+    let err: BusinessError<Array<ConflictFiles>> = error as BusinessError<Array<ConflictFiles>>;
     if (err.code == 13900015) {
       for (let i = 0; i < err.data.length; i++) {
         console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
-    } else (err) {
+    } else {
       console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
     }
   }
@@ -1003,7 +1004,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   | fd       | number                                   | 是    | 已打开的文件描述符。                             |
   | buffer   | ArrayBuffer                              | 是    | 用于保存读取到的文件数据的缓冲区。                        |
   | options | Object      | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。|
-  | callback | AsyncCallback&lt;number&gt; | 是    | 异步读取数据之后的回调。                             |
+  | callback | AsyncCallback&lt;number&gt; | 是    | 异步读取数据之后的回调。返回读取的实际长度。                             |
 
 **错误码：**
 
@@ -1267,7 +1268,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; len
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | 是    | 已打开的文件描述符。                             |
-  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer  | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。当前仅支持&nbsp;'utf-8'。|
 
 **返回值：**
@@ -1309,7 +1310,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; len
   | 参数名      | 类型                              | 必填   | 说明                                       |
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                          | 是    | 已打开的文件描述符。                             |
-  | buffer   | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer   | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。当前仅支持&nbsp;'utf-8'。|
   | callback | AsyncCallback&lt;number&gt;     | 是    | 异步将数据写入完成后执行的回调函数。                       |
 
@@ -1347,7 +1348,7 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number;
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | 是    | 已打开的文件描述符。                             |
-  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer  | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。当前仅支持&nbsp;'utf-8'。|
 
 **返回值：**
@@ -1383,7 +1384,7 @@ truncate(file: string | number, len?: number): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
-| file   | string\|number | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
+| file   | string \| number | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
 | len    | number | 否   | 文件截断后的长度，以字节为单位。默认为0。 |
 
 **返回值：**
@@ -1421,7 +1422,7 @@ truncate(file: string | number, len?: number, callback: AsyncCallback&lt;void&gt
 
 | 参数名   | 类型                      | 必填 | 说明                             |
 | -------- | ------------------------- | ---- | -------------------------------- |
-| file     | string\|number                    | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
+| file     | string \| number                    | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
 | len      | number                    | 否   | 文件截断后的长度，以字节为单位。默认为0。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，本调用无返回值。   |
 
@@ -1456,7 +1457,7 @@ truncateSync(file: string | number, len?: number): void
 
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
-| file   | string\|number | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
+| file   | string \| number | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
 | len    | number | 否   | 文件截断后的长度，以字节为单位。默认为0。 |
 
 **错误码：**
@@ -1992,7 +1993,7 @@ fdatasyncSync(fd: number): void
   ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  let stat = fs.fdatasyncSync(file.fd);
+  fs.fdatasyncSync(file.fd);
   fs.closeSync(file);
   ```
 
@@ -2350,8 +2351,8 @@ moveDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, 
   let destPath = pathDir + "/destDir/";
   fs.moveDir(srcPath, destPath, 1, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
-      for (let i = 0; i < data.length; i++) {
-        console.info("move directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
+      for (let i = 0; i < err.data.length; i++) {
+        console.info("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
       console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
@@ -2393,8 +2394,8 @@ moveDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
   let destPath = pathDir + "/destDir/";
   fs.moveDir(srcPath, destPath, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
-      for (let i = 0; i < data.length; i++) {
-        console.info("move directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
+      for (let i = 0; i < err.data.length; i++) {
+        console.info("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
       console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
@@ -2428,19 +2429,21 @@ moveDirSync(src: string, dest: string, mode?: number): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { ConflictFiles } from '@ohos.file.fs';
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
   try {
     fs.moveDirSync(srcPath, destPath, 1);
     console.info("move directory succeed");
-  } catch (err: BusinessError<Array<ConflictFiles>>) {
+  } catch (error) {
+    let err: BusinessError<Array<ConflictFiles>> = error as BusinessError<Array<ConflictFiles>>;
     if (err.code == 13900015) {
       for (let i = 0; i < err.data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+        console.info("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
-    } else(err) {
-      console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
     }
   }
   ```
@@ -2693,7 +2696,7 @@ createRandomAccessFile(file: string | File, mode?: number): Promise&lt;RandomAcc
 **参数：**
 |    参数名    | 类型     | 必填   | 说明                          |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
-|     file     | string\|[File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
+|     file     | string \| [File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
 |     mode     | number | 否   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且以只写或读写的方式创建文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
 
 **返回值：**
@@ -2735,7 +2738,7 @@ createRandomAccessFile(file: string | File, mode: number, callback: AsyncCallbac
 
 |  参数名    | 类型     | 必填   | 说明                          |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
-|     file     | string\|[File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
+|     file     | string \| [File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
 |     mode     | number | 否   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且以只写或读写的方式创建文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
 | callback | AsyncCallback&lt;[RandomAccessFile](#randomaccessfile)&gt; | 是   | 异步创建RandomAccessFile对象之后的回调。                                   |
 
@@ -2771,7 +2774,7 @@ createRandomAccessFile(file: string | File, callback: AsyncCallback&lt;RandomAcc
 
 |  参数名    | 类型     | 必填   | 说明                          |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
-|     file     | string\|[File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
+|     file     | string \| [File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
 | callback | AsyncCallback&lt;[RandomAccessFile](#randomaccessfile)&gt; | 是   | 异步创建RandomAccessFile对象之后的回调。                                   |
 
 **错误码：**
@@ -3109,7 +3112,7 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 
   | 参数名  | 类型     | 必填   | 说明                                       |
   | ---- | ------ | ---- | ---------------------------------------- |
-  | event   | WatchEvent | 是    | 回调的事件类。                             |
+  | event   | [WatchEvent](#watchevent10) | 是    | 回调的事件类。                             |
  
 ## WatchEvent<sup>10+</sup>
 
@@ -3117,6 +3120,7 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
+### 属性
 | 名称   | 类型   | 可读   | 可写   | 说明      |
 | ---- | ------ | ---- | ---- | ------- |
 | fileName | string | 是    | 否    | 发生监听事件的文件名。 |
@@ -3501,7 +3505,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
 
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer  | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
 
 **返回值：**
@@ -3547,7 +3551,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
 
   | 参数名   | 类型                            | 必填 | 说明                                                         |
   | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-  | buffer   | ArrayBuffer\|string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer   | ArrayBuffer \| string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options  | Object                          | 否   | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
   | callback | AsyncCallback&lt;number&gt;     | 是   | 异步写入完成后执行的回调函数。                               |
 
@@ -3592,7 +3596,7 @@ writeSync(buffer: ArrayBuffer | string, options?: { offset?: number; length?: nu
 
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer  | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
 
 **返回值：**
@@ -3964,7 +3968,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
 
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer  | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
 
 **返回值：**
@@ -4017,7 +4021,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
 
   | 参数名   | 类型                            | 必填 | 说明                                                         |
   | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-  | buffer   | ArrayBuffer\|string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer   | ArrayBuffer \| string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options  | Object                          | 否   | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
   | callback | AsyncCallback&lt;number&gt;     | 是   | 异步写入完成后执行的回调函数。                               |
 
@@ -4066,7 +4070,7 @@ writeSync(buffer: ArrayBuffer | string, options?: { offset?: number; length?: nu
 
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer  | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
 
 **返回值：**
