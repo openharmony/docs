@@ -202,6 +202,7 @@ struct ShufflingContainer {
 }
 ```
 
+![Video-link-UsageScenario-one](figures/Video-link-UsageScenario-one.gif)
 
 ### 数组类型的\@Link
 
@@ -244,6 +245,8 @@ struct Parent {
 
 
 上文所述，ArkUI框架可以观察到数组元素的添加，删除和替换。在该示例中\@State和\@Link的类型是相同的number[]，不允许将\@Link定义成number类型（\@Link item : number），并在父组件中用\@State数组中每个数据项创建子组件。如果要使用这个场景，可以参考[\@Prop](arkts-prop.md)和\@Observed。
+
+![Video-link-UsageScenario-two](figures/Video-link-UsageScenario-two.gif)
 
 ## 常见问题
 
