@@ -306,11 +306,11 @@ class ClassA {
 
 @Component
 struct LinkChild {
- @Link testNum: ClassA;
+  @Link testNum: ClassA[];
 
- build() {
-   Text(`LinkChild testNum ${this.testNum?.c}`)
- }
+  build() {
+    Text(`LinkChild testNum ${this.testNum[0]?.c}`)
+  }
 }
 
 @Entry
@@ -325,7 +325,7 @@ struct Parent {
           this.testNum[0].c += 1;
         })
       // @Link装饰的变量需要和数据源@State类型一致
-      LinkChild({ testNum: this.testNum[0] })
+      LinkChild({ testNum: $testNum })
     }
   }
 }
