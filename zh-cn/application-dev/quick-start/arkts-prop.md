@@ -368,4 +368,6 @@ struct MainProgram {
 }
 ```
 
+![Video-prop-UsageScenario-two](figures/Video-prop-UsageScenario-two.gif)
+
 <!--no_check-->
