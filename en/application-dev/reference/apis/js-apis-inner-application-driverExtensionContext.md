@@ -20,9 +20,9 @@ import common from '@ohos.app.ability.common';
 Before using **DriverExtensionContext**, you need to obtain it through a **DriverExtensionAbility** child class instance.
 
 ```ts
-  import DriverExtensionAbility from '@ohos.app.ability.DriverExtensionAbility';
+  import DriverExtensionAbility, { DriverExtensionContext } from '@ohos.app.ability.DriverExtensionAbility';
 
-  let context : DriverExtensionContext;
+  let context : DriverExtensionContext | undefined;
   class EntryAbility extends DriverExtensionAbility {
     onInit() {
       context = this.context; // Obtain DriverExtensionContext.
@@ -41,5 +41,7 @@ Updates the driver state. This interface is reserved and does not provide specif
 **Example**
 
   ```ts
-  this.context.updateDriverState() ;
+  if (context != null) {
+    context.updateDriverState();
+  }
   ```

@@ -39,7 +39,7 @@ Obtains all activated network ports through the specified device administrator a
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |
+| ID| Error Message                                                                      |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -90,7 +90,7 @@ Obtains all activated network ports through the specified device administrator a
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |
+| ID| Error Message                                                                    |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -136,7 +136,7 @@ Obtains the device IP address based on the network port through the specified de
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |
+| ID| Error Message                                                                      |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -188,7 +188,7 @@ Obtains the device IP address based on the network port through the specified de
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |
+| ID| Error Message                                                                    |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -234,7 +234,7 @@ Obtains the device MAC address based on the network port through the specified d
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |
+| ID| Error Message                                                                      |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -286,7 +286,7 @@ Obtains the device MAC address based on the network port through the specified d
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |
+| ID| Error Message                                                                    |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -332,7 +332,7 @@ Checks whether a network port is disabled through the specified device administr
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |
+| ID| Error Message                                                                      |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -384,7 +384,7 @@ Checks whether a network port is disabled through the specified device administr
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |
+| ID| Error Message                                                                    |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -756,7 +756,7 @@ let wantTemp: Want = {
 };
 let filterRule: networkManager.AddFilterRule = {
   "ruleNo": 1,
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -821,7 +821,7 @@ let wantTemp: Want = {
 };
 let filterRule: networkManager.AddFilterRule = {
   "ruleNo": 1,
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -877,7 +877,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let filterRule: networkManager.RemoveFilterRule = {
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -940,7 +940,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let filterRule: networkManager.RemoveFilterRule = {
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -1070,7 +1070,7 @@ Defines the network packet filtering rule to add.
 | destPort        | string    | No  | Port of the destination IP address.|
 | uid | string   | No  | UID of the application.|
 | method        | [AddMethod](#addmethod)    | Yes  | Method used to add the data packets.|
-| direction | [Direction](#direction)    | Yes  | Direction for which the rule applies.|
+| direction | [Direction](#direction)    | Yes  | Direction chains to which the rule applies.|
 | action        | [Action](#action)    | Yes  | Action to take, that is, receive or discard the data packets.|
 | protocol | [Protocol](#protocol)   | No  | Network protocol.|
 
@@ -1089,7 +1089,7 @@ Defines the network packet filtering rule to remove.
 | srcPort | string   | No  | Port of the source IP address.|
 | destPort        | string    | No   | Port of the destination IP address.|
 | uid | string   | No   | UID of the application.|
-| direction | [Direction](#direction)    | Yes   | Direction for which the rule applies.|
+| direction | [Direction](#direction)    | Yes   | Direction chains to which the rule applies.|
 | action        | [Action](#action)    | No   | Action to take, that is, receive or discard the data packets.|
 | protocol | [Protocol](#protocol)   | No   | Network protocol.|
 
@@ -1108,7 +1108,7 @@ Enumerates the methods used to add the network packets.
 
 ## Direction
 
-Enumerates the directions to which the rule applies.
+Enumerates the direction chains to which the rule applies.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -1116,8 +1116,8 @@ Enumerates the directions to which the rule applies.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| INPUT | 0 | Input.|
-| OUTPUT | 1 | Output.|
+| INPUT | 0 | Input chain.|
+| OUTPUT | 1 | Output chain.|
 
 ## Action
 

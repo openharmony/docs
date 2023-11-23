@@ -82,7 +82,7 @@ Obtains file assets (also called files). This API uses an asynchronous callback 
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [getAssets](js-apis-photoAccessHelper.md#getassets) instead.
-> - From API version 10, the albums represented by physical directories are replaced by logical albums, which allow multiple files in an album and presence of a file in multiple albums. This design, however, makes **parent**, **albumId**, **albumUri**, and **albumName** incompatible. They cannot be used as parameters of **MediaFetchOptions** in **getFileAssets()**. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+> - From API version 10, the albums represented by physical directories are replaced by logical albums, which allow multiple files in an album and presence of a file in multiple albums. This design, however, makes **parent**, **albumId**, **albumUri**, and **albumName** incompatible. They cannot be used as parameters of **MediaFetchOptions** in **getFileAssets()**. For details, see [Change of the mediaLibrary Interface Compatibility](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -155,7 +155,7 @@ Obtains file assets. This API uses a promise to return the result.
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [getAssets](js-apis-photoAccessHelper.md#getassets-1) instead.
-> - From API version 10, the albums represented by physical directories are replaced by logical albums, which allow multiple files in an album and presence of a file in multiple albums. This design, however, makes **parent**, **albumId**, **albumUri**, and **albumName** incompatible. They cannot be used as parameters of **MediaFetchOptions** in **getFileAssets()**. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+> - From API version 10, the albums represented by physical directories are replaced by logical albums, which allow multiple files in an album and presence of a file in multiple albums. This design, however, makes **parent**, **albumId**, **albumUri**, and **albumName** incompatible. They cannot be used as parameters of **MediaFetchOptions** in **getFileAssets()**. For details, see [Change of the mediaLibrary Interface Compatibility](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -285,7 +285,7 @@ Creates a media asset. This API uses an asynchronous callback to return the resu
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [createAsset](js-apis-photoAccessHelper.md#createasset) instead.
-> - From the SDK of API version 10, **relativePath** is no longer associated with an album. After a file is created, the last-level directory of **relativePath** is not displayed. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+> - From the SDK of API version 10, **relativePath** is no longer associated with an album. After a file is created, the last-level directory of **relativePath** is not displayed. For details, see [Change of the mediaLibrary Interface Compatibility](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -327,7 +327,7 @@ Creates a media asset. This API uses a promise to return the result.
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [createAsset](js-apis-photoAccessHelper.md#createasset-1) instead.
-> - From the SDK of API version 10, **relativePath** is no longer associated with an album. After a file is created, the last-level directory of **relativePath** is not displayed. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+> - From the SDK of API version 10, **relativePath** is no longer associated with an album. After a file is created, the last-level directory of **relativePath** is not displayed. For details, see [Change of the mediaLibrary Interface Compatibility](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -558,7 +558,7 @@ Obtains albums. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [getAlbums](js-apis-photoAccessHelper.md#getalbums) instead.
-> - From the SDK of API version 10, **relativePath** is no longer associated with an album and cannot be used in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+> - From the SDK of API version 10, **relativePath** is no longer associated with an album and cannot be used in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For details, see [Change of the mediaLibrary Interface Compatibility](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -598,7 +598,7 @@ Obtains albums. This API uses a promise to return the result.
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [getAlbums](js-apis-photoAccessHelper.md#getalbums-2) instead.
-> - From the SDK of API version 10, **relativePath** is no longer associated with an album and cannot be used in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+> - From the SDK of API version 10, **relativePath** is no longer associated with an album and cannot be used in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For details, see [Change of the mediaLibrary Interface Compatibility](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -776,7 +776,7 @@ Starts image preview, with the first image to preview specified. This API can be
 > **NOTE**
 >
 > - This API is supported since API version 6 and can be used only in the FA model.
-> - This API is deprecated since API version 9. You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead. <br>The **\<Image>** component can be used to render and display local and online images.
+> - This API is deprecated since API version 9. You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead.<br>The **\<Image>** component can be used to render and display local and online images.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -820,7 +820,7 @@ Starts image preview. This API can be used to preview the first local image (**f
 > **NOTE**
 >
 > - This API is supported since API version 6 and can be used only in the FA model.
-> - This API is deprecated since API version 9. You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead. <br>The **\<Image>** component can be used to render and display local and online images.
+> - This API is deprecated since API version 9. You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead.<br>The **\<Image>** component can be used to render and display local and online images.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -862,7 +862,7 @@ Starts image preview, with the first image to preview specified. This API can be
 > **NOTE**
 >
 > - This API is supported since API version 6 and can be used only in the FA model.
-> - This API is deprecated since API version 9. You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead. <br>The **\<Image>** component can be used to render and display local and online images.
+> - This API is deprecated since API version 9. You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead.<br>The **\<Image>** component can be used to render and display local and online images.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1268,7 +1268,7 @@ Commits the modification on the file metadata to the database. This API uses an 
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [commitModify](js-apis-photoAccessHelper.md#commitmodify) instead.
-> - Since the SDK of API version 10, **audio** does not have the **orientation** attribute. Therefore, the **orientation** attribute of the audio resource cannot be modified by **commitModify()**. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+> - Since the SDK of API version 10, **audio** does not have the **orientation** attribute. Therefore, the **orientation** attribute of the audio resource cannot be modified by **commitModify()**. For details, see [Change of the mediaLibrary Interface Compatibility](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -1310,7 +1310,7 @@ Commits the modification on the file asset to the database. This API uses a prom
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [commitModify](js-apis-photoAccessHelper.md#commitmodify-1) instead.
-> Since the SDK of API version 10, **audio** does not have the **orientation** attribute. Therefore, the **orientation** attribute of the audio resource cannot be modified by **commitModify()**. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+> Since the SDK of API version 10, **audio** does not have the **orientation** attribute. Therefore, the **orientation** attribute of the audio resource cannot be modified by **commitModify()**. For details, see [Change of the mediaLibrary Interface Compatibility](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -1350,8 +1350,7 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [open](js-apis-photoAccessHelper.md#open) instead.
->
-> - If a file is opened in 'w' mode, the returned file descriptor (FD) cannot be used to read the file. However, due to the implementation differences of file systems, some user-mode files opened in 'w' mode can be read by using FD. To perform the read or write operation on a file by using FD, you are advised to open the file in 'rw' mode. 
+> - If a file is opened in 'w' mode, the returned file descriptor (FD) cannot be used to read the file. However, due to the implementation differences of file systems, some user-mode files opened in 'w' mode can be read by using FD. To perform the read or write operation on a file by using FD, you are advised to open the file in 'rw' mode.
 > - The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
 
 **Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
@@ -3009,7 +3008,7 @@ Defines the media asset option.
 | ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | src          | string | Yes  | Yes  | Application sandbox oath of the local file.                                      |
 | mimeType     | string | Yes  | Yes  | Multipurpose Internet Mail Extensions (MIME) type of the media.<br>The value can be **'image/\*'**, **'video/\*'**, **'audio/\*'**, or **'file/\*'**.|
-| relativePath | string | Yes  | Yes  | Customized path of media assets, for example, **Pictures/**. If this parameter is unspecified, the default paths of media assets are as follows:<br> Default path of images: **'Pictures/'**<br> Default path of videos: **'Videos/'**<br> Default path of audio files: **'Audios/'**<br> Default path of documents: **'Documents/'** |
+| relativePath | string | Yes  | Yes  | Customized path of media assets, for example, **Pictures/**. If this parameter is unspecified, the default paths of media assets are as follows:<br>Default path of images: **'Pictures/'**<br>Default path of videos: **'Videos/'**<br>Default path of audio files: **'Audios/'**<br>Default path of documents: **'Documents/'** |
 
 ## MediaSelectOption
 
@@ -3024,4 +3023,4 @@ Defines the media selection option.
 | Name   | Type    | Readable| Writable| Description                  |
 | ----- | ------ | ---- | ---- | -------------------- |
 | type  | 'image' &#124; 'video' &#124; 'media' | Yes   | Yes | Media type, which can be **image**, **media**, or **video**. Currently, only **media** is supported.|
-| count | number | Yes   | Yes | Maximum number of media assets that can be selected.<br>The value **1** means to select only one media asset; the value greater than **1** means to select multiple media assets.  |
+| count | number | Yes   | Yes | Maximum number of media assets that can be selected.<br>The value **1** means to select only one media asset; the value greater than **1** means to select multiple media assets.           |
