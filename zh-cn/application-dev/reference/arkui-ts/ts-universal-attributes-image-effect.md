@@ -39,6 +39,7 @@
 | 名称      | 类型                                       | 必填   | 说明                                       |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | radius  | number \| [Resource](ts-types.md#resource) | 是    | 阴影模糊半径。<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。 |
+| type<sup>10+<sup>    | [ShadowType](ts-appendix-enums.md#shadowtype)  |      否    | 阴影类型。<br/>默认为COLOR。        |
 | color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource) | 否    | 阴影的颜色。<br/>默认为黑色。                        |
 | offsetX | number \| [Resource](ts-types.md#resource) | 否    | 阴影的X轴偏移量。<br/>默认为0。                      |
 | offsetY | number \| [Resource](ts-types.md#resource) | 否    | 阴影的Y轴偏移量。<br/>默认为0。                      |
