@@ -116,6 +116,7 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
   import formProvider from '@ohos.app.form.formProvider';
   import dataPreferences from '@ohos.data.preferences';
   import Want from '@ohos.app.ability.Want';
+  import featureAbility from '@ohos.ability.featureAbility';
   ```
 
 2. 在form.ts中，实现卡片生命周期接口
@@ -254,7 +255,6 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
          "type": "service",
          "srcLanguage": "ets",
          "formsEnabled": true,
-         "formConfigAbility": "ability://com.example.entry.EntryAbility",
          "forms": [{
              "colorMode": "auto",
              "defaultDimension": "2*2",
@@ -266,7 +266,8 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
              "scheduledUpdateTime": "10:30",
              "supportDimensions": ["2*2"],
              "type": "JS",
-             "updateEnabled": true
+             "updateEnabled": true,
+             "formConfigAbility": "ability://com.example.entry.EntryAbility"
          }]
      }]
   ```
@@ -278,8 +279,8 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
 
 
 ```ts
-const DATA_STORAGE_PATH: string = "/data/storage/el2/base/haps/form_store";
-let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: Context) => {
+const DATA_STORAGE_PATH: string = "form_store";
+let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context) => {
   // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
   let formInfo: Record<string, string | number | boolean> = {
     "formName": formName,
@@ -300,6 +301,7 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
 ...
     onCreate(want: Want) {
       console.info('FormAbility onCreate');
+      let context = featureAbility.getContext();
 
       if (want.parameters) {
         let formId = String(want.parameters["ohos.extra.param.key.form_identity"]);
@@ -307,7 +309,7 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
         let tempFlag = Boolean(want.parameters["ohos.extra.param.key.form_temporary"]);
         // 将创建的卡片信息持久化，以便在下次获取/更新该卡片实例时进行使用
         // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
-        storeFormInfo(formId, formName, tempFlag, this.context);
+        storeFormInfo(formId, formName, tempFlag, context);
       }
 
       let obj: Record<string, string> = {
@@ -325,7 +327,7 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
 
 ```ts
 const DATA_STORAGE_PATH: string = "/data/storage/el2/base/haps/form_store";
-let deleteFormInfo = async (formId: string, context: Context) => {
+let deleteFormInfo = async (formId: string, context) => {
   try {
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
     // del form info
@@ -340,9 +342,10 @@ let deleteFormInfo = async (formId: string, context: Context) => {
 ...
     onDestroy(formId: string) {
       console.info('FormAbility onDestroy');
+      let context = featureAbility.getContext();
       // 删除之前持久化的卡片实例数据
       // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
-      deleteFormInfo(formId, this.context);
+      deleteFormInfo(formId, context);
     }
 ...
 ```
