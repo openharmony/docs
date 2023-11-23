@@ -13,6 +13,115 @@
 import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
 ```
 
+## hiAppEvent.addProcessor<sup>11+</sup>
+
+addProcessor(processor: Processor): number
+
+开发者可添加数据处理者，该数据处理者用于提供事件上云功能，数据处理者的实现可预置在设备中，开发者可根据数据处理者的约束设置属性。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**参数：**
+
+| 参数名     | 类型        | 必填 | 说明              |
+| ---------  | ---------- | ---- | -------------    |
+| processor  | [Processor](#processor11)  | 是   | 上报事件的数据处理者。|
+
+**返回值：**
+
+| 类型    | 说明                   |
+| ------ | ---------------------- |
+| number | 所添加上报事件数据处理者的ID。 添加失败返回-1，添加成功返回大于0的值。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| ------- | ----------------- |
+| 401     | Parameter error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+try {
+    let processor: hiAppEvent.Processor = {
+      name: 'analytics_demo'
+    };
+    let id: number = hiAppEvent.addProcessor(processor);
+    hiLog.info('hiAppEvent', `addProcessor event was successful, id=${id}`);
+} catch (error) {
+    hiLog.info('hiAppEvent', `failed to addProcessor event, code=${error.code}`);
+} 
+```
+
+## Processor<sup>11+</sup>
+
+可以上报事件的数据处理者对象。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+| 名称                | 类型                     | 必填 | 说明                                                                                                        |
+| ------------------- | ----------------------- | ---- | ---------------------------------------------------------------------------------------------------------- |
+| name                | string                  | 是   | 数据处理者的名称。                                                                                           |
+| debugMode           | boolean                 | 否   | 是否开启debug模式。配置值为true表示开启debug模式，false表示不开启debug模式。                                    |
+| routeInfo           | string                  | 否   | 服务器位置信息，不超过8kB。                                                                                   |
+| onStartReport       | boolean                 | 否   | 数据处理者在启动时是否上报事件。配置值为true表示上报事件，false表示不上报事件。                                   |
+| onBackgroundReport  | boolean                 | 否   | 当应用程序进入后台时是否上报事件。配置值为true表示上报事件，false表示不上报事件。                                 |
+| periodReport        | number                  | 否   | 根据时间周期定时上报事件。单位为秒，数值不小于0，如果为0则不上报。                                                |
+| batchReport         | number                  | 否   | 当事件条数达到数量阈值时上报事件。阈值的数值范围为大于0且小于1000。不在数值范围内则不上报。                         |
+| userIds             | string[]                | 否   | 数据处理者可以上报的用户ID的name数组。name值只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。    |
+| userProperties      | string[]                | 否   | 数据处理者可以上报的用户属性的name数组。name值只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。   |
+| eventConfigs        | [AppEventReportConfig](#appeventreportconfig11)[]  | 否   | 数据处理者可以上报的事件数组。                                                                                 |
+
+## AppEventReportConfig<sup>11+</sup>
+
+数据处理者可以上报事件的描述配置。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+| 名称         | 类型    | 必填 | 说明                                                          |
+| ----------- | ------- | ---- | ------------------------------------------------------------ |
+| domain      | string  | 否   | 事件领域。事件领域名称支持数字、小写字母、下划线字符，需要以小写字母开头且不能以下划线结尾，长度非空且不超过16个字符。 |
+| name        | string  | 否   | 事件名称。首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过48个字符。 |
+| isRealTime  | boolean | 否   | 是否实时上报事件。配置值为true表示实时上报事件，false表示不实时上报事件。 |
+
+## hiAppEvent.removeProcessor<sup>11+</sup>
+
+removeProcessor(id: number): void
+
+删除上报事件的数据处理者。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                         |
+| ------| ------- | ---- | --------------------------- |
+| id    | number  | 是   | 上报事件数据处理者ID。值大于0。|
+	
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| ------- | ----------------- |
+| 401     | Parameter error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+try {
+    let processor: hiAppEvent.Processor = {
+      name: 'analytics_demo'
+    };
+    let id: number = hiAppEvent.addProcessor(processor);
+    hiAppEvent.removeProcessor(id);
+} catch (error) {
+    hiLog.info('hiAppEvent', `failed to removeProcessor event, code=${error.code}`);
+} 
+```
+
 ## hiAppEvent.write
 
 write(info: [AppEventInfo](#appeventinfo), callback: AsyncCallback&lt;void&gt;): void
@@ -181,6 +290,152 @@ hiAppEvent.configure(config2);
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
 | disable    | boolean | 否   | 打点功能开关，默认值为false。true：关闭打点功能，false：不关闭打点功能。 |
 | maxStorage | string  | 否   | 打点数据存放目录的配额大小，默认值为“10M”。<br>在目录大小超出配额后，下次打点会触发对目录的清理操作：按从旧到新的顺序逐个删除打点数据文件，直到目录大小不超出配额时结束。 |
+
+## hiAppEvent.setUserId<sup>11+</sup>
+
+setUserId(name: string, value: string): void
+
+设置用户ID。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**参数：**
+
+| 参数名     | 类型                      | 必填 | 说明           |
+| --------- | ------------------------- | ---- | -------------  |
+| name      | string                    | 是   | 用户ID的key。只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。   |
+| value     | string                    | 是   | 用户ID的值。长度不超过256，当值为null、undefine或空，则清除用户ID。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| ------- | ----------------- |
+| 401     | Parameter error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+try {
+  hiAppEvent.setUserId('key', 'value');
+} catch (error) {
+  hiLog.info('hiAppEvent', `failed to setUseId event, code=${error.code}`);
+} 
+```
+
+## hiAppEvent.getUserId<sup>11+</sup>
+
+getUserId(name: string): string
+
+获取之前通过setUserId接口设置的value值。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**参数：**
+
+| 参数名     | 类型                    | 必填 | 说明         |
+| --------- | ----------------------- | ---- | ----------  |
+| name      | string                  | 是   | 用户ID的key。只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。|
+
+**返回值：**
+
+| 类型    | 说明                            |
+| ------ | ------------------------------- |
+| string | 用户ID的值。没有查到返回空字符串。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| ------- | ----------------- |
+| 401     | Parameter error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+hiAppEvent.setUserId('key', 'value');
+try {
+  let value: string = hiAppEvent.getUserId('key');
+  hiLog.info('hiAppEvent', `getUseId event was successful, userId=${value}`);/* "value" */
+} catch (error) {
+  hiLog.info('hiAppEvent', `failed to getUseId event, code=${error.code}`);
+} 
+```
+
+## hiAppEvent.setUserProperty<sup>11+</sup>
+
+setUserProperty(name: string, value: string): void
+
+设置用户属性。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**参数：**
+
+| 参数名     | 类型                      | 必填 | 说明           |
+| --------- | ------------------------- | ---- | -------------- |
+| name      | string                    | 是   | 用户属性的key。 只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。  |
+| value     | string                    | 是   | 用户属性的值。长度不超过1024，当值为null、undefine或空，则清除用户ID。  |
+
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| ------- | ----------------- |
+| 401     | Parameter error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+try {
+  hiAppEvent.setUserProperty('key', 'value');
+} catch (error) {
+  hiLog.info('hiAppEvent', `failed to setUserProperty event, code=${error.code}`);
+} 
+```
+
+## hiAppEvent.getUserProperty<sup>11+</sup>
+
+getUserProperty(name: string): string
+
+获取之前通过setUserProperty接口设置的value值。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**参数：**
+
+| 参数名     | 类型                    | 必填 | 说明          |
+| --------- | ----------------------- | ---- | ----------    |
+| name      | string                  | 是   | 用户属性的key。只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。|
+
+**返回值：**
+
+| 类型    | 说明                             |
+| ------ | -------------------------------- |
+| string | 用户属性的值。 没有查到返回空字符串。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| ------- | ----------------- |
+| 401     | Parameter error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+hiAppEvent.setUserProperty('key', 'value');
+try {
+  let value: string = hiAppEvent.getUserProperty('key');
+  hiLog.info('hiAppEvent', `getUserProperty event was successful, userProperty=${value}`);/* "value" */
+} catch (error) {
+  hiLog.info('hiAppEvent', `failed to getUserProperty event, code=${error.code}`);
+} 
+```
 
 ## hiAppEvent.addWatcher
 

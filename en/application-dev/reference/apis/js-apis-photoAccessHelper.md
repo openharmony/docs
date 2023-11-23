@@ -6,7 +6,6 @@ The **photoAccessHelper** module provides APIs for album management, including c
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-
 ## Modules to Import
 
 ```ts
@@ -55,7 +54,7 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 ### getAssets
 
-getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;PhotoAsset&gt;&gt;): void;
+getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;PhotoAsset&gt;&gt;): void
 
 Obtains image and video assets. This API uses an asynchronous callback to return the result.
 
@@ -110,7 +109,7 @@ async function example() {
 
 ### getAssets
 
-getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;;
+getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 Obtains image and video assets. This API uses a promise to return the result.
 
@@ -170,7 +169,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): void;
+createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): void
 
 Creates an image or video asset with the specified file name. This API uses an asynchronous callback to return the result.
 
@@ -219,7 +218,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(displayName: string): Promise&lt;PhotoAsset&gt;;
+createAsset(displayName: string): Promise&lt;PhotoAsset&gt;
 
 Creates an image or video asset with the specified file name. This API uses a promise to return the result.
 
@@ -272,7 +271,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCallback&lt;PhotoAsset&gt;): void;
+createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCallback&lt;PhotoAsset&gt;): void
 
 Creates an image or video asset with the specified file name and options. This API uses an asynchronous callback to return the result.
 
@@ -325,7 +324,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoAsset&gt;;
+createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoAsset&gt;
 
 Creates an image or video asset with the specified file name and options. This API uses a promise to return the result.
 
@@ -382,7 +381,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(photoType: PhotoType, extension: string, options: CreateOptions, callback: AsyncCallback&lt;string&gt;): void;
+createAsset(photoType: PhotoType, extension: string, options: CreateOptions, callback: AsyncCallback&lt;string&gt;): void
 
 Creates an image or video asset with the specified file type, file name extension, and options. This API uses an asynchronous callback to return the result.
 
@@ -435,7 +434,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;string&gt;): void;
+createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;string&gt;): void
 
 Creates an image or video asset with the specified file type and file name extension. This API uses an asynchronous callback to return the result.
 
@@ -484,7 +483,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): Promise&lt;string&gt;;
+createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): Promise&lt;string&gt;
 
 Creates an image or video asset with the specified file type, file name extension, and options. This API uses a promise to return the result.
 
@@ -541,13 +540,13 @@ async function example() {
 
 ### createAlbum
 
-createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void;
+createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 
 Creates an album. This API uses an asynchronous callback to return the result.
 
 The album name must meet the following requirements:
 - The album name is a string of 1 to 255 characters.
-- The album name cannot contain any of the following characters:<br>.. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -595,13 +594,13 @@ async function example() {
 
 ### createAlbum
 
-createAlbum(name: string): Promise&lt;Album&gt;;
+createAlbum(name: string): Promise&lt;Album&gt;
 
 Creates an album. This API uses a promise to return the result.
 
 The album name must meet the following requirements:
 - The album name is a string of 1 to 255 characters.
-- The album name cannot contain any of the following characters:<br>.. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -654,7 +653,7 @@ async function example() {
 
 ### deleteAlbums
 
-deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): void;
+deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes albums. This API uses an asynchronous callback to return the result.
 
@@ -714,7 +713,7 @@ async function example() {
 
 ### deleteAlbums
 
-deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;;
+deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;
 
 Deletes albums. This API uses a promise to return the result.
 
@@ -778,7 +777,7 @@ async function example() {
 
 ### getAlbums
 
-getAlbums(type: AlbumType, subtype: AlbumSubtype, options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+getAlbums(type: AlbumType, subtype: AlbumSubtype, options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
 
 Obtains albums based on the specified options and album type. This API uses an asynchronous callback to return the result.
 
@@ -840,7 +839,7 @@ async function example() {
 
 ### getAlbums
 
-getAlbums(type: AlbumType, subtype: AlbumSubtype, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+getAlbums(type: AlbumType, subtype: AlbumSubtype, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
 
 Obtains albums by type. This API uses an asynchronous callback to return the result.
 
@@ -893,7 +892,7 @@ async function example() {
 
 ### getAlbums
 
-getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
+getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 Obtains albums based on the specified options and album type. This API uses a promise to return the result.
 
@@ -959,7 +958,7 @@ async function example() {
 
 ### deleteAssets
 
-deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
+deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes media files. This API uses an asynchronous callback to return the result. The deleted files are moved to the trash.
 
@@ -1023,7 +1022,7 @@ async function example() {
 
 ### deleteAssets
 
-deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;;
+deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 Deletes media files. This API uses a promise to return the result. The deleted files are moved to the trash.
 
@@ -1217,7 +1216,7 @@ async function example() {
 
 ### createDeleteRequest
 
-createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
+createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Creates a dialog box for deleting media files. This API uses an asynchronous callback to return the result. The deleted media files are moved to the trash.
 
@@ -1277,7 +1276,7 @@ async function example() {
 
 ### createDeleteRequest
 
-createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;;
+createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 Creates a dialog box for deleting media files. This API uses a promise to return the result. The deleted media files are moved to the trash.
 
@@ -1354,12 +1353,7 @@ Obtains the index of an image or video in an album. This API uses an asynchronou
 | photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
 | albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
 | options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
-
-**Return value**
-
-| Type                                   | Description             |
-| --------------------------------------- | ----------------- |
-| AsyncCallback&lt;number&gt;| Promise used to return the index obtained.|
+| callback | AsyncCallback&lt;number&gt;| Yes  | Callback invoked to return the index obtained.|
 
 **Error codes**
 
@@ -1493,7 +1487,7 @@ async function example() {
 
 release(callback: AsyncCallback&lt;void&gt;): void
 
-Releases the **PhotoAccessHelper** instance. This API uses an asynchronous callback to return the result.
+Releases this **PhotoAccessHelper** instance. This API uses an asynchronous callback to return the result.
 Call this API when the APIs of the **PhotoAccessHelper** instance are no longer used.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -1533,7 +1527,7 @@ async function example() {
 
 release(): Promise&lt;void&gt;
 
-Releases the **PhotoAccessHelper** instance. This API uses a promise to return the result.
+Releases this **PhotoAccessHelper** instance. This API uses a promise to return the result.
 Call this API when the APIs of the **PhotoAccessHelper** instance are no longer used.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -1600,7 +1594,7 @@ Obtains a **PhotoAsset** member parameter.
 
 | Type               | Description                             |
 | ------------------- | --------------------------------- |
-| [MemberType](#membertype) | Returns the **PhotoAsset** member parameter obtained.|
+| [MemberType](#membertype) | **PhotoAsset** member parameter obtained.|
 
 **Error codes**
 
@@ -1638,7 +1632,7 @@ async function example() {
 
 ### set
 
-set(member: string, value: string): void;
+set(member: string, value: string): void
 
 Sets a **PhotoAsset** member parameter.
 
@@ -1803,7 +1797,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file asset. This API uses an asynchronous callback to return the result.
 
-**NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
+> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
 
 **System API**: This is a system API.
 
@@ -1816,7 +1810,7 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | mode     | string                      | Yes   | File open mode, which can be **r** (read-only), **w** (write-only), or **rw** (read-write).|
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor of the file opened.                           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor (FD) of the file opened.                           |
 
 **Error codes**
 
@@ -1872,7 +1866,7 @@ Opens this file asset. This API uses a promise to return the result.
 
 | Type                   | Description           |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
+| Promise&lt;number&gt; | Promise used to return the FD of the file opened.|
 
 **Error codes**
 
@@ -1913,7 +1907,7 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file in read-only mode. This API uses an asynchronous callback to return the result.
 
-**NOTE**<br>After the read operation is complete, call **close** to close the file.
+> **NOTE**<br>After the read operation is complete, call **close** to close the file.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
@@ -1923,7 +1917,7 @@ Opens this file in read-only mode. This API uses an asynchronous callback to ret
 
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor of the file opened.                           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the FD of the file opened.                           |
 
 **Error codes**
 
@@ -1970,7 +1964,7 @@ Opens this file in read-only mode. This API uses a promise to return the result.
 
 | Type                   | Description           |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
+| Promise&lt;number&gt; | Promise used to return the FD of the file opened.|
 
 **Error codes**
 
@@ -2016,7 +2010,7 @@ Closes a file. This API uses an asynchronous callback to return the result.
 
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| fd       | number                    | Yes   | File descriptor of the file to close.|
+| fd       | number                    | Yes   | FD of the file to close.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.|
 
 **Error codes**
@@ -2071,7 +2065,7 @@ Closes a file. This API uses a promise to return the result.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| fd   | number | Yes   | File descriptor of the file to close.|
+| fd   | number | Yes   | FD of the file to close.|
 
 **Return value**
 
@@ -2515,13 +2509,13 @@ async function example() {
 }
 ```
 
-### getExif<sup>10+</sup>
+### getExif
 
 getExif(): Promise&lt;string&gt;
 
 Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses a promise to return the result.
 
-**CAUTION**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and **PhotoKeys.USER_COMMENT**. These two fields must be passed in via **fetchColumns**.
+> **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys). These two fields must be passed in via **fetchColumns**.
 
 **System API**: This is a system API.
 
@@ -2614,13 +2608,13 @@ async function example() {
 }
 ```
 
-### getExif<sup>10+</sup>
+### getExif
 
 getExif(callback: AsyncCallback&lt;string&gt;): void
 
 Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses an asynchronous callback to return the result.
 
-**CAUTION**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and **PhotoKeys.USER_COMMENT**. These two fields must be passed in via **fetchColumns**.
+> **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys). These two fields must be passed in via **fetchColumns**.
 
 **System API**: This is a system API.
 
@@ -2721,7 +2715,7 @@ async function example() {
 }
 ```
 
-### setUserComment<sup>10+</sup>
+### setUserComment
 
 setUserComment(userComment: string): Promise&lt;void&gt;
 
@@ -2782,7 +2776,7 @@ async function example() {
 }
 ```
 
-### setUserComment<sup>10+</sup>
+### setUserComment
 
 setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -2844,6 +2838,714 @@ async function example() {
 }
 ```
 
+### setPending<sup>11+</sup>
+
+setPending(pendingState: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the pending state for this image or video asset. This API uses an asynchronous callback to return the result.
+
+The pending state can be removed only through **setPending(false)**. You can use **photoAsset.get(photoAccessHelper.PhotoKeys.PENDING)** to check whether the asset state is pending. If the asset is in pending state, **true** is returned. Otherwise, **false** is returned.
+
+> **NOTE**<br>**setPending** can be used only during the file creation process. Once the FD is closed, **setPending(true)** cannot be used to set the pending state for the file.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| pendingState | boolean | Yes   | Whether to set the file to pending state. The value **true** means to set the file to pending state, and the value **false** means to remove the pending state.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+async function example() {
+  try {
+    console.info('setPendingCallbackDemo');
+    let testFileName: string = 'testFile' + Date.now() + '.jpg';
+    let photoAsset = await phAccessHelper.createAsset(testFileName);
+    photoAsset.setPending(true, async (err) => {
+      if (err !== undefined) {
+        console.error('setPending(true) failed with error: ' + err);
+        return;
+      }
+      // write photo buffer in fd
+      photoAsset.setPending(false, async (err) => {
+        if (err !== undefined) {
+          console.error('setPending(false) failed with error: ' + err);
+          return;
+        }
+        await photoAsset.close(fd);
+      });
+    });
+  } catch (err) {
+    console.error('setPendingCallbackDemo failed with error: ' + err);
+  }
+}
+```
+
+### setPending<sup>11+</sup>
+
+setPending(pendingState: boolean): Promise&lt;void&gt;
+
+Sets the pending state for this image or video asset. This API uses a promise to return the result.
+
+The pending state can be removed only through **setPending(false)**. You can use **photoAsset.get(photoAccessHelper.PhotoKeys.PENDING)** to check whether the asset state is pending. If the asset is in pending state, **true** is returned. Otherwise, **false** is returned.
+
+> **NOTE**<br>**setPending** can be used only during the file creation process. Once the FD is closed, **setPending(true)** cannot be used to set the pending state for the file.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| pendingState | boolean | Yes   | Whether to set the file to pending state. The value **true** means to set the file to pending state, and the value **false** means to remove the pending state.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+|Promise&lt;boolean&gt; | Promise that returns no value.|
+
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+async function example() {
+  try {
+    console.info('setPendingPromiseDemo');
+    let testFileName: string = 'testFile' + Date.now() + '.jpg';
+    let photoAsset = await phAccessHelper.createAsset(testFileName);
+    let fd = await photoAsset.open('fd');
+    await photoAsset.setPending(true);
+    // write photo buffer in fd
+    photoAsset.setPending(false);
+    await photoAsset.close(fd);
+  } catch (err) {
+    console.error('setPendingPromiseDemo failed with error: ' + err);
+  }
+}
+```
+
+### isEdited<sup>11+</sup>
+
+isEdited(callback: AsyncCallback&lt;boolean&gt;): void
+
+Checks whether this image or video asset is edited. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('isEditedCallbackDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    photoAsset.isEdited((err, isEdited) => {
+      if (err === undefined) {
+        if (isEdited === true) {
+          console.info('Photo is edited');
+        } else {
+          console.info('Photo is not edited');
+        }
+      } else {
+        console.error('isEdited failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('isEditedDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### isEdited<sup>11+</sup>
+
+isEdited(): Promise&lt;boolean&gt;
+
+Checks whether this image or video asset is edited. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+|Promise&lt;boolean&gt; | Promise used to return the result.|
+
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('isEditedPromiseDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let isEdited = await photoAsset.isEdited();
+    if (isEdited === true) {
+      console.info('Photo is edited');
+    } else {
+      console.info('Photo is not edited');
+    }
+  } catch (err) {
+    console.error('isEditedDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### requestEditData<sup>11+</sup>
+
+requestEditData(callback: AsyncCallback&lt;string&gt;): void
+
+Obtains the edit data of this image or video asset. This API uses an asynchronous callback to return the result.
+
+If the asset has never been edited, an empty string is returned.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the edit data obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('requestEditDataCallbackDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    photoAsset.requestEditData((err, editdata) => {
+      if (err === undefined) {
+        console.info('Editdata is ' + editdata);
+      } else {
+        console.error('requestEditData failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('requestEditDataCallbackDemo failed with error: ' + err);
+  }
+}
+```
+
+### requestEditData<sup>11+</sup>
+
+requestEditData(): Promise&lt;string&gt;
+
+Obtains the edit data of this image or video asset. This API uses a promise to return the result.
+
+If the asset has never been edited, an empty string is returned.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+|Promise&lt;string&gt; | Promise used to return the edit data obtained.|
+
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('requestEditDataPromiseDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let editdata = await photoAsset.requestEditData();
+    console.info('Editdata is ' + editdata);
+  } catch (err) {
+    console.error('requestEditDataPromiseDemo failed with error: ' + err);
+  }
+}
+```
+
+### requestSource<sup>11+</sup>
+
+requestSource(callback: AsyncCallback&lt;number&gt;): void
+
+Opens the source file to obtain the FD. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the FD.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('requsetSourceCallbackDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    photoAsset.requestSource((err, fd) => {
+      if (err === undefined) {
+        console.info('Source fd is ' + fd);
+      } else {
+        console.error('requestSource failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('requsetSourceCallbackDemo failed with error: ' + err);
+  }
+}
+```
+
+### requestSource<sup>11+</sup>
+
+requestSource(): Promise&lt;string&gt;
+
+Opens the source file to obtain the FD. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+|Promise&lt;string&gt; | Promise used to return the FD.|
+
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('requsetSourcePromiseDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let fd = await photoAsset.requestSource();
+    console.info('Source fd is ' + fd);
+  } catch (err) {
+    console.error('requsetSourcePromiseDemo failed with error: ' + err);
+  }
+}
+```
+
+### commitEditedAsset<sup>11+</sup>
+
+commitEditedAsset(editData: string, uri: string, callback: AsyncCallback&lt;number&gt;): void
+
+Commits the edited image or video asset. This API uses an asynchronous callback to return the result.
+
+The edited file is saved to the media library based on the URI. The URI is **FileUri** of the edited file in the application sandbox. For details, see [FileUri](./js-apis-file-fileuri.md).
+
+> **NOTE**<br>The commit operation overwrites the previous edited data.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| editData | string | Yes   | New data to commit.|
+| uri | string; | Yes   | URI of the committed image or video in the application sandbox.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('commitEditedAssetCallbackDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let editData = '123456';
+    let uri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    photoAsset.commitEditedAsset(editData, uri, (err) => {
+      if (err === undefined) {
+        console.info('commitEditedAsset is successful');
+      } else {
+        console.error('requestSource failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('commitEditedAssetCallbackDemo failed with error: ' + err);
+  }
+}
+```
+
+### commitEditedAsset<sup>11+</sup>
+
+commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt;
+
+Commits the edited image or video asset. This API uses a promise to return the result.
+
+The edited file is saved to the media library based on the URI. The URI is **FileUri** of the edited file in the application sandbox. For details, see [FileUri](./js-apis-file-fileuri.md).
+
+> **NOTE**<br>The commit operation overwrites the previous edited data.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| editData | string | Yes   | New data to commit.|
+| uri | string | Yes   | URI of the committed image or video in the application sandbox.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+|Promise&lt;void&gt; | Promise that returns no value.|
+
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('commitEditedAssetPromiseDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let editData = '123456';
+    let uri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
+    photoAsset.commitEditedAsset(editData, uri);
+    console.info('commitEditedAsset is successful');
+  } catch (err) {
+    console.error('commitEditedAssetPromiseDemo failed with error: ' + err);
+  }
+}
+```
+
+### revertToOriginal<sup>11+</sup>
+
+revertToOriginal(callback: AsyncCallback&lt;void&gt;): void
+
+Reverts to the state of the file before being edited. This API uses an asynchronous callback to return the result.
+
+> **NOTE**<br>This API deletes the edited data and edited image or video asset, and the deleted data cannot be restored. Exercise caution when using this API.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('revertToOriginalCallbackDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    photoAsset.revertToOriginal((err) => {
+      if (err === undefined) {
+        console.info('revertToOriginal is successful');
+      } else {
+        console.error('revertToOriginal failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('RevertToOriginalCallbackDemo failed with error: ' + err);
+  }
+}
+```
+
+### revertToOriginal<sup>11+</sup>
+
+revertToOriginal(): Promise&lt;void&gt;
+
+Reverts to the state of the file before being edited. This API uses a promise to return the result.
+
+> **NOTE**<br>This API deletes the edited data and edited image or video asset, and the deleted data cannot be restored. Exercise caution when using this API.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+|Promise&lt;string&gt; | Promise that returns no value.|
+
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('RevertToOriginalPromiseDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    photoAsset.revertToOriginal();
+    console.info('revertToOriginal is successful');
+  } catch (err) {
+    console.error('RevertToOriginalPromiseDemo failed with error: ' + err);
+  }
+}
+```
+
 ## PhotoViewPicker
 
 Provides APIs for selecting images and videos. Before using the APIs of **PhotoViewPicker**, you need to create a **PhotoViewPicker** instance.
@@ -2862,7 +3564,7 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 
 Starts a **photoPicker** page for the user to select one or more images or videos. This API uses a promise to return the result. You can pass in **PhotoSelectOptions** to specify the media file type and the maximum number of files to select.
 
-> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../../application-dev/file-management/user-file-uri-intro.md#using-a-media-file-uri).
+> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2915,7 +3617,7 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 
 Starts a **photoPicker** page for the user to select one or more images or videos. This API uses an asynchronous callback to return the result. You can pass in **PhotoSelectOptions** to specify the media file type and the maximum number of files to select.
 
-> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../../application-dev/file-management/user-file-uri-intro.md#using-a-media-file-uri).
+> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2965,7 +3667,7 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 
 Starts a **photoPicker** page for the user to select one or more images or videos. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../../application-dev/file-management/user-file-uri-intro.md#using-a-media-file-uri).
+> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3229,9 +3931,10 @@ async function example() {
 
 ### getNextObject
 
- getNextObject(callback: AsyncCallback&lt;T&gt;): void
+getNextObject(callback: AsyncCallback&lt;T&gt;): void
 
 Obtains the next file asset in the result set. This API uses an asynchronous callback to return the result.
+Before using this API, you must use [isAfterLast()](#isafterlast) to check whether the current position is the last line.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3239,7 +3942,7 @@ Obtains the next file asset in the result set. This API uses an asynchronous cal
 
 | Name   | Type                                         | Mandatory| Description                                     |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callbacke | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the next file asset.|
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the next file asset.|
 
 **Error codes**
 
@@ -3265,7 +3968,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   await fetchResult.getFirstObject();
-  if (fetchResult.isAfterLast()) {
+  if (!fetchResult.isAfterLast()) {
     fetchResult.getNextObject((err, photoAsset) => {
       if (photoAsset != undefined) {
         console.info('photoAsset displayName: ', photoAsset.displayName);
@@ -3279,9 +3982,10 @@ async function example() {
 
 ### getNextObject
 
- getNextObject(): Promise&lt;T&gt;
+getNextObject(): Promise&lt;T&gt;
 
 Obtains the next file asset in the result set. This API uses a promise to return the result.
+Before using this API, you must use [isAfterLast()](#isafterlast) to check whether the current position is the end of the result set.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3315,7 +4019,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   await fetchResult.getFirstObject();
-  if (fetchResult.isAfterLast()) {
+  if (!fetchResult.isAfterLast()) {
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getNextObject();
     console.info('photoAsset displayName: ', photoAsset.displayName);
   }
@@ -3615,7 +4319,7 @@ Provides APIs to manage albums.
 
 ### getAssets
 
-getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;PhotoAsset&gt;&gt;): void;
+getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;PhotoAsset&gt;&gt;): void
 
 Obtains image and video assets. This API uses an asynchronous callback to return the result.
 
@@ -3671,7 +4375,7 @@ async function example() {
 
 ### getAssets
 
-getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;;
+getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 Obtains image and video assets. This API uses a promise to return the result.
 
@@ -3732,7 +4436,7 @@ async function example() {
 
 ### commitModify
 
-commitModify(callback: AsyncCallback&lt;void&gt;): void;
+commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 Commits the modification on the album attributes to the database. This API uses an asynchronous callback to return the result.
 
@@ -3784,7 +4488,7 @@ async function example() {
 
 ### commitModify
 
-commitModify(): Promise&lt;void&gt;;
+commitModify(): Promise&lt;void&gt;
 
 Commits the modification on the album attributes to the database. This API uses a promise to return the result.
 
@@ -3835,7 +4539,7 @@ async function example() {
 
 ### addAssets
 
-addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Adds image and video assets to an album. Before the operation, ensure that the image and video assets to add and the album exist. This API uses an asynchronous callback to return the result.
 
@@ -3893,7 +4597,7 @@ async function example() {
 
 ### addAssets
 
-addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
+addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 Adds image and video assets to an album. Before the operation, ensure that the image and video assets to add and the album exist. This API uses a promise to return the result.
 
@@ -3955,7 +4659,7 @@ async function example() {
 
 ### removeAssets
 
-removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Removes image and video assets from an album. The album and file resources must exist. This API uses an asynchronous callback to return the result.
 
@@ -4013,7 +4717,7 @@ async function example() {
 
 ### removeAssets
 
-removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
+removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 Removes image and video assets from an album. The album and file resources must exist. This API uses a promise to return the result.
 
@@ -4075,7 +4779,7 @@ async function example() {
 
 ### recoverAssets
 
-recoverAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+recoverAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Recovers image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses an asynchronous callback to return the result.
 
@@ -4136,7 +4840,7 @@ async function example() {
 
 ### recoverAssets
 
-recoverAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
+recoverAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 Recovers image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses a promise to return the result.
 
@@ -4201,7 +4905,7 @@ async function example() {
 
 ### deleteAssets
 
-deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses an asynchronous callback to return the result.
 
@@ -4264,7 +4968,7 @@ async function example() {
 
 ### deleteAssets
 
-deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
+deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 Deletes image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses a promise to return the result.
 
@@ -4331,7 +5035,7 @@ async function example() {
 
 ### setCoverUri
 
-setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void;
+setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the album cover. This API uses an asynchronous callback to return the result.
 
@@ -4394,7 +5098,7 @@ async function example() {
 
 ### setCoverUri
 
-setCoverUri(uri: string): Promise&lt;void&gt;;
+setCoverUri(uri: string): Promise&lt;void&gt;
 
 Sets the album cover. This API uses a promise to return the result.
 
@@ -4565,6 +5269,7 @@ Defines the key information about an image or video file.
 | DATE_YEAR<sup>11+</sup>  | 'date_year'            | Year when the file was created.<br>**System API**: This is a system API.          |
 | DATE_MONTH<sup>11+</sup>  | 'date_month'            | Month when the file was created.<br>**System API**: This is a system API.          |
 | DATE_DAY<sup>11+</sup>  | 'date_day'            | Date when the file was created.<br>**System API**: This is a system API.          |
+| PENDING<sup>11+</sup>  | 'pending'            | Pending state.<br>**System API**: This is a system API.          |
 
 ## AlbumKeys
 

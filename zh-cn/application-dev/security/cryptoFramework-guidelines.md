@@ -351,17 +351,16 @@ function testGenerateHmacKey() {
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
-function stringToUint8Array(str) {
-  let arr = [];
+function stringToUint8Array(str: string) {
+  let arr = new Uint8Array(str.length);
   for (let i = 0, j = str.length; i < j; ++i) {
-    arr.push(str.charCodeAt(i));
+    arr[i] = str.charCodeAt(i);
   }
-  let tmpUint8Array = new Uint8Array(arr);
-  return tmpUint8Array;
+  return arr;
 }
 
 function testConvertHmacKey() {
-  let keyBlob = {
+  let keyBlob: cryptoFramework.DataBlob = {
     // The length is 512-bit (64 bytes).
     data : stringToUint8Array("12345678abcdefgh12345678abcdefgh12345678abcdefgh12345678abcdefgh")
   }

@@ -58,7 +58,7 @@ let publishCallback = (err: Base.BusinessError): void => {
 let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
     content: {
-        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -112,7 +112,7 @@ import Base from '@ohos.base';
 let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
     content: {
-        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -182,7 +182,7 @@ let userId: number = 1;
 let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
     content: {
-        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -241,7 +241,7 @@ import Base from '@ohos.base';
 let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
     content: {
-        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -3760,7 +3760,7 @@ let userId: number = 100;
 let request: notificationManager.NotificationRequest = {
     id: 1,
     content: {
-        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -3827,7 +3827,7 @@ let userId: number = 100;
 let request: notificationManager.NotificationRequest = {
     id: 1,
     content: {
-        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",

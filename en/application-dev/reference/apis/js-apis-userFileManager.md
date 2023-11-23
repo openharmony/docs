@@ -489,7 +489,7 @@ Creates an album. This API uses an asynchronous callback to return the result.
 
 The album name must meet the following requirements:
 - The album name is a string of 1 to 255 characters.
-- The album name cannot contain any of the following characters:<br>.. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -528,7 +528,7 @@ Creates an album. This API uses a promise to return the result.
 
 The album name must meet the following requirements:
 - The album name is a string of 1 to 255 characters.
-- The album name cannot contain any of the following characters:<br>.. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -1412,12 +1412,7 @@ Obtains the index of an image or video in an album. This API uses an asynchronou
 | photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
 | albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
 | options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
-
-**Return value**
-
-| Type                                   | Description             |
-| --------------------------------------- | ----------------- |
-| AsyncCallback&lt;number&gt;| Callback invoked to return the index obtained.|
+| callback | AsyncCallback&lt;number&gt;| Yes  | Callback invoked to return the index obtained.|
 
 **Error codes**
 
@@ -2008,7 +2003,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file asset. This API uses an asynchronous callback to return the result.
 
-**NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
+> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.READ_AUDIO, ohos.permission.WRITE_IMAGEVIDEO, or ohos.permission.WRITE_AUDIO
 
@@ -2019,7 +2014,7 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | mode     | string                      | Yes   | File open mode, which can be **r** (read-only), **w** (write-only), or **rw** (read-write).|
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor of the file opened.                           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor (FD) of the file opened.                           |
 
 **Example**
 
@@ -2045,7 +2040,7 @@ open(mode: string): Promise&lt;number&gt;
 
 Opens this file asset. This API uses a promise to return the result.
 
-**NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
+> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.READ_AUDIO, ohos.permission.WRITE_IMAGEVIDEO, or ohos.permission.WRITE_AUDIO
 
@@ -2061,7 +2056,7 @@ Opens this file asset. This API uses a promise to return the result.
 
 | Type                   | Description           |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
+| Promise&lt;number&gt; | Promise used to return the FD of the file opened.|
 
 **Example**
 
@@ -2096,7 +2091,7 @@ Closes a file asset. This API uses an asynchronous callback to return the result
 
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| fd       | number                    | Yes   | File descriptor of the file to close.|
+| fd       | number                    | Yes   | FD of the file to close.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.|
 
 **Example**
@@ -2141,7 +2136,7 @@ Closes a file asset. This API uses a promise to return the result.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| fd   | number | Yes   | File descriptor of the file to close.|
+| fd   | number | Yes   | FD of the file to close.|
 
 **Return value**
 
@@ -2510,7 +2505,7 @@ getExif(): Promise&lt;string&gt;
 
 Obtains a JSON string consisting of the exchangeable image file format (EXIF) tags of this JPG image. This API uses a promise to return the result.
 
-**CAUTION**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and **ImageVideoKey.USER_COMMENT**. These two fields must be passed in via **fetchColumns**.
+> **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [ImageVideoKey.USER_COMMENT](#imagevideokey). These two fields must be passed in via **fetchColumns**.
 
 **System API**: This is a system API.
 
@@ -2599,7 +2594,7 @@ getExif(callback: AsyncCallback&lt;string&gt;): void
 
 Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses an asynchronous callback to return the result.
 
-**CAUTION**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and **ImageVideoKey.USER_COMMENT**. These two fields must be passed in via **fetchColumns**.
+> **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [ImageVideoKey.USER_COMMENT](#imagevideokey). These two fields must be passed in via **fetchColumns**.
 
 **System API**: This is a system API.
 
@@ -2693,7 +2688,7 @@ setUserComment(userComment: string): Promise&lt;void&gt;
 
 Sets user comment information of an image or video. This API uses a promise to return the result.
 
-**NOTE**<br>This API can be used to modify the comment information of only images or videos.
+> **NOTE**<br>This API can be used to modify the comment information of only images or videos.
 
 **System API**: This is a system API.
 
@@ -2742,7 +2737,7 @@ setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets user comment information of an image or video. This API uses an asynchronous callback to return the result.
 
-**NOTE**<br>This API can be used to modify the comment information of only images or videos.
+> **NOTE**<br>This API can be used to modify the comment information of only images or videos.
 
 **System API**: This is a system API.
 
@@ -2960,9 +2955,10 @@ async function example() {
 
 ### getNextObject
 
- getNextObject(callback: AsyncCallback&lt;T&gt;): void
+getNextObject(callback: AsyncCallback&lt;T&gt;): void
 
 Obtains the next file asset in the result set. This API uses an asynchronous callback to return the result.
+Before using this API, you must use [isAfterLast()](#isafterlast) to check whether the current position is the end of the result set.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -2970,7 +2966,7 @@ Obtains the next file asset in the result set. This API uses an asynchronous cal
 
 | Name   | Type                                         | Mandatory| Description                                     |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callbacke | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the next file asset.|
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the next file asset.|
 
 **Example**
 
@@ -3000,9 +2996,10 @@ async function example() {
 
 ### getNextObject
 
- getNextObject(): Promise&lt;T&gt;
+getNextObject(): Promise&lt;T&gt;
 
 Obtains the next file asset in the result set. This API uses a promise to return the result.
+Before using this API, you must use [isAfterLast()](#isafterlast) to check whether the current position is the end of the result set.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
