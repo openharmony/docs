@@ -566,7 +566,8 @@ metadata中指定shortcut信息，其中：
 
 - **配置方式：** 该标签需要配置在/resource/profile资源目录下，并在metadata的resource字段中引用。
 
-  **表12** distroFilter标签说明
+
+**表12** distroFilter标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
