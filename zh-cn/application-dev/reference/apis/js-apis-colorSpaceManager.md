@@ -26,31 +26,31 @@ import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 | DISPLAY_P3                        | 3      | RGB色域为Display P3类型。<br>转换函数为SRGB类型。<br>编码范围为Full类型。 |
 | SRGB                              | 4      | RGB色域为SRGB类型。<br>转换函数为SRGB类型。<br>编码范围为Full类型。<br>系统默认色域类型。 |
 | CUSTOM                            | 5      | 用户自定义色域类型。|
-| BT709<sup>11</sup>                | 6      | RGB色域为BT709类型。<br>转换函数为BT709类型。<br>编码范围为Full类型。 |
-| BT601_EBU<sup>11</sup>            | 7      | RGB色域为BT601_P类型。<br>转换函数为BT709类型。<br>编码范围为Full类型。 |
-| BT601_SMPTE_C<sup>11</sup>        | 8      | RGB色域为BT601_N类型。<br>转换函数为BT709类型。<br>编码范围为Full类型。 |
-| BT2020_HLG<sup>11</sup>           | 9      | RGB色域为BT2020类型。<br>转换函数为HLG类型。<br>编码范围为Full类型。 |
-| BT2020_PQ<sup>11</sup>            | 10     | RGB色域为BT2020类型。<br>转换函数为PQ类型。<br>编码范围为Full类型。 |
-| P3_HLG<sup>11</sup>               | 11     | RGB色域为Display P3类型。<br>转换函数为HLG类型。<br>编码范围为Full类型。 |
-| P3_PQ<sup>11</sup>                | 12     | RGB色域为Display P3类型。<br>转换函数为PQ类型。<br>编码范围为Full类型。 |
-| ADOBE_RGB_1998_LIMIT<sup>11</sup> | 13     | RGB色域为Adobe RGB(1998)类型。<br>转换函数为Adobe RGB(1998)类型。<br>编码范围为Limit类型。 |
-| DISPLAY_P3_LIMIT<sup>11</sup>     | 14     | RGB色域为Display P3类型。<br>转换函数为SRGB类型。<br>编码范围为Limit类型。 |
-| SRGB_LIMIT<sup>11</sup>           | 15     | RGB色域为SRGB类型。<br>转换函数为SRGB类型。<br>编码范围为Limit类型。 |
-| BT709_LIMIT<sup>11</sup>          | 16     | RGB色域为BT709类型。<br>转换函数为BT709类型。<br>编码范围为Limit类型。 |
-| BT601_EBU_LIMIT<sup>11</sup>      | 17     | RGB色域为BT601_P类型。<br>转换函数为BT709类型。<br>编码范围为Limit类型。 |
-| BT601_SMPTE_C_LIMIT<sup>11</sup>  | 18     | RGB色域为BT601_N类型。<br>转换函数为BT709类型。<br>编码范围为Limit类型。 |
-| BT2020_HLG_LIMIT<sup>11</sup>     | 19     | RGB色域为BT2020类型。<br>转换函数为HLG类型。<br>编码范围为Limit类型。 |
-| BT2020_PQ_LIMIT<sup>11</sup>      | 20     | RGB色域为BT2020类型。<br>转换函数为PQ类型。<br>编码范围为Limit类型。 |
-| P3_HLG_LIMIT<sup>11</sup>         | 21     | RGB色域为Display P3类型。<br>转换函数为HLG类型。<br>编码范围为Limit类型。 |
-| P3_PQ_LIMIT<sup>11</sup>          | 22     | RGB色域为Display P3类型。<br>转换函数为PQ类型。<br>编码范围为Limit类型。 |
-| LINEAR_P3<sup>11</sup>            | 23     | RGB色域为Display P3类型。<br>转换函数为Linear类型。 |
-| LINEAR_SRGB<sup>11</sup>          | 24     | RGB色域为SRGB类型。<br>转换函数为Linear类型。 |
-| LINEAR_BT709<sup>11</sup>         | 24     | RGB色域为BT709类型。<br>转换函数为Linear类型。 |
-| LINEAR_BT2020<sup>11</sup>        | 25     | RGB色域为BT2020类型。<br>转换函数为Linear类型。 |
-| DISPLAY_SRGB<sup>11</sup>         | 4      | 与SRGB相同，用于屏幕显示。 |
-| DISPLAY_P3_SRGB<sup>11</sup>      | 3      | 与DISPLAY_P3相同，用于屏幕显示。 |
-| DISPLAY_P3_HLG<sup>11</sup>       | 11     | 与P3_HLG相同，用于屏幕显示。 |
-| DISPLAY_P3_PQ<sup>11</sup>        | 12     | 与P3_PQ相同，用于屏幕显示。 |
+| BT709<sup>11+</sup>                | 6      | RGB色域为BT709类型。<br>转换函数为BT709类型。<br>编码范围为Full类型。 |
+| BT601_EBU<sup>11+</sup>            | 7      | RGB色域为BT601_P类型。<br>转换函数为BT709类型。<br>编码范围为Full类型。 |
+| BT601_SMPTE_C<sup>11+</sup>        | 8      | RGB色域为BT601_N类型。<br>转换函数为BT709类型。<br>编码范围为Full类型。 |
+| BT2020_HLG<sup>11+</sup>           | 9      | RGB色域为BT2020类型。<br>转换函数为HLG类型。<br>编码范围为Full类型。 |
+| BT2020_PQ<sup>11+</sup>            | 10     | RGB色域为BT2020类型。<br>转换函数为PQ类型。<br>编码范围为Full类型。 |
+| P3_HLG<sup>11+</sup>               | 11     | RGB色域为Display P3类型。<br>转换函数为HLG类型。<br>编码范围为Full类型。 |
+| P3_PQ<sup>11+</sup>                | 12     | RGB色域为Display P3类型。<br>转换函数为PQ类型。<br>编码范围为Full类型。 |
+| ADOBE_RGB_1998_LIMIT<sup>11+</sup> | 13     | RGB色域为Adobe RGB(1998)类型。<br>转换函数为Adobe RGB(1998)类型。<br>编码范围为Limit类型。 |
+| DISPLAY_P3_LIMIT<sup>11+</sup>     | 14     | RGB色域为Display P3类型。<br>转换函数为SRGB类型。<br>编码范围为Limit类型。 |
+| SRGB_LIMIT<sup>11+</sup>           | 15     | RGB色域为SRGB类型。<br>转换函数为SRGB类型。<br>编码范围为Limit类型。 |
+| BT709_LIMIT<sup>11+</sup>          | 16     | RGB色域为BT709类型。<br>转换函数为BT709类型。<br>编码范围为Limit类型。 |
+| BT601_EBU_LIMIT<sup>11+</sup>      | 17     | RGB色域为BT601_P类型。<br>转换函数为BT709类型。<br>编码范围为Limit类型。 |
+| BT601_SMPTE_C_LIMIT<sup>11+</sup>  | 18     | RGB色域为BT601_N类型。<br>转换函数为BT709类型。<br>编码范围为Limit类型。 |
+| BT2020_HLG_LIMIT<sup>11+</sup>     | 19     | RGB色域为BT2020类型。<br>转换函数为HLG类型。<br>编码范围为Limit类型。 |
+| BT2020_PQ_LIMIT<sup>11+</sup>      | 20     | RGB色域为BT2020类型。<br>转换函数为PQ类型。<br>编码范围为Limit类型。 |
+| P3_HLG_LIMIT<sup>11+</sup>         | 21     | RGB色域为Display P3类型。<br>转换函数为HLG类型。<br>编码范围为Limit类型。 |
+| P3_PQ_LIMIT<sup>11+</sup>          | 22     | RGB色域为Display P3类型。<br>转换函数为PQ类型。<br>编码范围为Limit类型。 |
+| LINEAR_P3<sup>11+</sup>            | 23     | RGB色域为Display P3类型。<br>转换函数为Linear类型。 |
+| LINEAR_SRGB<sup>11+</sup>          | 24     | RGB色域为SRGB类型。<br>转换函数为Linear类型。 |
+| LINEAR_BT709<sup>11+</sup>         | 24     | RGB色域为BT709类型。<br>转换函数为Linear类型。 |
+| LINEAR_BT2020<sup>11+</sup>        | 25     | RGB色域为BT2020类型。<br>转换函数为Linear类型。 |
+| DISPLAY_SRGB<sup>11+</sup>         | 4      | 与SRGB相同，用于屏幕显示。 |
+| DISPLAY_P3_SRGB<sup>11+</sup>      | 3      | 与DISPLAY_P3相同，用于屏幕显示。 |
+| DISPLAY_P3_HLG<sup>11+</sup>       | 11     | 与P3_HLG相同，用于屏幕显示。 |
+| DISPLAY_P3_PQ<sup>11+</sup>        | 12     | 与P3_PQ相同，用于屏幕显示。 |
 
 ## ColorSpacePrimaries
 
