@@ -90,3 +90,16 @@ The following walks you through how to implement simple recording:
     ```c++
     OH_AudioStreamBuilder_Destroy(builder);
     ```
+
+## Setting the Low Latency Mode
+
+If the device supports the low-latency channel, you can use the low-latency mode to create an audio capturer for a higher-quality audio experience.
+
+The development process is similar to that in the common recording scenario. The only difference is that you need to set the low delay mode by calling [OH_AudioStreamBuilder_SetLatencyMode()](../reference/native-apis/_o_h_audio.md#oh_audiostreambuilder_setlatencymode) when creating an audio stream builder.
+
+Code snippet:
+
+```C
+OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
+OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
+```

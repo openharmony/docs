@@ -24,7 +24,7 @@ ForEach(
 | ------------- | --------------------------------------- | -------- | ------------------------------------------------------------ |
 | arr           | Array                                   | 是       | 数据源，为`Array`类型的数组。<br/>**说明：**<br/>- 可以设置为空数组，此时不会创建子组件。<br/>- 可以设置返回值为数组类型的函数，例如`arr.slice(1, 3)`，但设置的函数不应改变包括数组本身在内的任何状态变量，例如不应使用`Array.splice()`,`Array.sort()`或`Array.reverse()`这些会改变原数组的函数。 |
 | itemGenerator | `(item: any, index?: number) => void`   | 是       | 组件生成函数。<br/>- 为数组中的每个元素创建对应的组件。<br/>- `item`参数：`arr`数组中的数据项。<br/>- `index`参数（可选）：`arr`数组中的数据项索引。<br/>**说明：**<br/>- 组件的类型必须是`ForEach`的父容器所允许的。例如，`ListItem`组件要求`ForEach`的父容器组件必须为`List`组件。 |
-| keyGenerator  | `(item: any, index?: number) => string` | 否       | 键值生成函数。<br/>- 为数据源`arr`的每个数组项生成唯一且持久的键值。函数返回值为开发者自定义的键值生成规则。<br/>- `item`参数：`arr`数组中的数据项。<br/>- `index`参数（可选）：`arr`数组中的数据项索引。<br/>**说明：**<br/>- 如果函数缺省，框架默认的键值生成函数为`(item: T, index: number) => { return index + '__' + JSON.stringify(index); }`<br/>- 键值生成函数不应改变任何组件状态。 |
+| keyGenerator  | `(item: any, index?: number) => string` | 否       | 键值生成函数。<br/>- 为数据源`arr`的每个数组项生成唯一且持久的键值。函数返回值为开发者自定义的键值生成规则。<br/>- `item`参数：`arr`数组中的数据项。<br/>- `index`参数（可选）：`arr`数组中的数据项索引。<br/>**说明：**<br/>- 如果函数缺省，框架默认的键值生成函数为`(item: T, index: number) => { return index + '__' + JSON.stringify(item); }`<br/>- 键值生成函数不应改变任何组件状态。 |
 
 > **说明：**
 >
@@ -37,7 +37,7 @@ ForEach(
 
 `ForEach`提供了一个名为`keyGenerator`的参数，这是一个函数，开发者可以通过它自定义键值的生成规则。如果开发者没有定义`keyGenerator`函数，则ArkUI框架会使用默认的键值生成函数，即`(item: any, index: number) => { return index + '__' + JSON.stringify(item); }`。
 
-ArkUI框架对于`ForEach`的键值生成有一套特定的判断规则，这主要与`itemGenerator`函数的第二个参数`index`以及`keyGenerator`函数的返回值有关。总的来说，只有当开发者在`itemGenerator`函数中声明了`index`参数，并且自定义的`keyGenerator`函数返回值中不包含`index`参数时，ArkUI框架才会在开发者自定义的`itemGenerator`函数返回值前添加`index`参数，作为最终的键值。在其他情况下，系统将直接使用开发者自定义的`keyGenerator`函数返回值作为最终的键值。如果`keyGenerator`函数未定义，系统将使用上述默认的键值生成函数。具体的键值生成规则判断逻辑如下图所示。
+ArkUI框架对于`ForEach`的键值生成有一套特定的判断规则，这主要与`itemGenerator`函数的第二个参数`index`以及`keyGenerator`函数的返回值有关。总的来说，只有当开发者在`itemGenerator`函数中声明了`index`参数，并且自定义的`keyGenerator`函数返回值中不包含`index`参数时，ArkUI框架才会在开发者自定义的`keyGenerator`函数返回值前添加`index`参数，作为最终的键值。在其他情况下，系统将直接使用开发者自定义的`keyGenerator`函数返回值作为最终的键值。如果`keyGenerator`函数未定义，系统将使用上述默认的键值生成函数。具体的键值生成规则判断逻辑如下图所示。
 
 **图1** ForEach键值生成规则  
 ![ForEach-Key-Generation-Rules](figures/ForEach-Key-Generation-Rules.png)

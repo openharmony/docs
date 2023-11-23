@@ -2163,6 +2163,7 @@ async function huksAbort() {
 | HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 12000013 | 缺失所需凭据。              |
 | HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 12000014 | 内存不足。                  |
 | HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 12000015 | 调用其他系统服务失败。      |
+| HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET<sup>11+</sup>  | 12000016 | 需要锁屏密码但未设置。     |
 
 ## HuksKeyPurpose
 
@@ -2516,6 +2517,7 @@ async function huksAbort() {
 | HUKS_TAG_SECURE_KEY_ALIAS<sup>(deprecated)</sup>            | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009   | 原为预留字段，从API version 9开始废弃。                          <br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_SECURE_KEY_UUID<sup>(deprecated)</sup>             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010  | 原为预留字段，从API version 9开始废弃。                            <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_KEY_DOMAIN                                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 1011   | 预留。                      <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_IS_DEVICE_PASSWORD_SET<sup>11+</sup>                | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1012   | 表示密钥锁屏密码访问控制字段，可限制密钥只有在用户设置了锁屏密码时可用  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_PROCESS_NAME<sup>(deprecated)</sup>                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001 | 表示进程名称的Tag。从API version 9开始废弃。          <br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_PACKAGE_NAME<sup>(deprecated)</sup>                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002 | 原为预留字段，从API version 9开始废弃。             <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ACCESS_TIME<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_UINT \| 10003  | 原为预留字段，从API version 9开始废弃。                    <br> **系统能力：** SystemCapability.Security.Huks.Extension |

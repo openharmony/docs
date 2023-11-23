@@ -1,7 +1,7 @@
 # Process Model Overview (Stage Model)
 
 
-The OpenHarmony process model is shown below.
+The process model is shown below.
 
 
 - All UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility components of an application (with the same bundle name) run in the same process, which is **Main process** in green in the figure.
@@ -12,7 +12,7 @@ The OpenHarmony process model is shown below.
 
 ![process-model](figures/process-model.png)
 
-> NOTE
+> **NOTE**
 >
 > - You can create ServiceExtensionAbility and DataShareExtensionAbility only for system applications.
 > - To view information about all running processes, run the **hdc shell** command to enter the shell CLI of the device, and run the **ps -ef** command.
@@ -24,7 +24,7 @@ A system application can apply for multi-process permissions (as shown in the fo
 ![multi-process](figures/multi-process.png)
 
 
-OpenHarmony provides two inter-process communication (IPC) mechanisms.
+The system provides two inter-process communication (IPC) mechanisms.
 
 
 - [Common Events](common-event-overview.md): This mechanism is used in one-to-many communication scenarios. Multiple subscribers may receive events at the same time.

@@ -3,7 +3,7 @@
 
 ## URI Introduction
 
-A Uniform Resource Identifier (URI) is used to identify a specific data item, such as a table in the database or a file on the disk. URIs used in OpenHarmony comply with the commonly used URI standard. A URI consists of the components:
+A Uniform Resource Identifier (URI) is used to identify a specific data item, such as a table in the database or a file on the disk. URIs used comply with the commonly used URI standard. A URI consists of the components:
 
 ![fa-dataability-uri](figures/fa-dataability-uri.png)
 
@@ -19,9 +19,9 @@ A Uniform Resource Identifier (URI) is used to identify a specific data item, su
 
 Example URIs:
 
-- Cross-device communication: dataability://*device*id_/*com.domainname.dataability.persondata*/*person*/*10*
+- Cross-device scenario: dataability://_device_id_/_com.domainname.dataability.persondata_/_person_/_10_
 
-- Local-device communication: dataability:///*com.domainname.dataability.persondata*/*person*/*1*
+- Local device scenario: dataability:///_com.domainname.dataability.persondata_/_person_/_1_
 
 > **NOTE**
 >
@@ -58,4 +58,3 @@ The following is an example **config.json** file:
 ```
 
 For details about the configuration items, see [Internal Structure of module](../quick-start/module-structure.md).
-

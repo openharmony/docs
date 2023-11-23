@@ -37,6 +37,30 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是    | 表示被启动的Ability。 |
 | callback  | AsyncCallback\<number>                   | 是    | 以callback的形式返回启动Ability的结果。      |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 1 | Get ability error. |
+| 202 | Parameter is invalid. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
 ```ts
@@ -93,6 +117,30 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
 | Promise\<number> | Promise形式返回启动Ability结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 1 | Get ability error. |
+| 202 | Parameter is invalid. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -177,6 +225,31 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是    | 表示被启动的Ability。 |
 | callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | 是    | 以callback的形式返回启动Ability结果。      |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 1 | Get ability error. |
+| 202 | Parameter is invalid. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+
 **示例：**
 
 ```ts
@@ -235,6 +308,30 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 | ---------------------------------------- | ------- |
 | Promise\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Promise形式返回启动Ability结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 1 | Get ability error. |
+| 202 | Parameter is invalid. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
 ```ts
@@ -285,6 +382,19 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 | --------- | ------------------------------- | ---- | -------------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是    | 表示停止Ability之后返回的结果。 |
 | callback  | AsyncCallback\<void>            | 是    | 以callback的形式返回停止Ability结果。      |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -343,6 +453,19 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 | -------------- | --------------- |
 | Promise\<void> | 以Promise形式返回停止当前Ability结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
 ```ts
@@ -374,7 +497,7 @@ featureAbility.terminateSelfWithResult(
             }
         },
     }
-).then((data) => {
+).then(() => {
     console.info('==========================>terminateSelfWithResult=======================>');
 });
 ```
@@ -392,6 +515,12 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 | 参数名       | 类型                      | 必填   | 说明                                       |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback\<boolean> | 是    | 以callback的形式返回结果。<br>如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| -102 | Failed to acquire ability object. |
 
 **示例：**
 
@@ -420,6 +549,12 @@ hasWindowFocus(): Promise\<boolean>
 | ----------------- | ------------------------------------- |
 | Promise\<boolean> | Promise形式返回结果，如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| -102 | Failed to acquire ability object. |
+
 **示例：**
 
 ```ts
@@ -442,6 +577,13 @@ getWant(callback: AsyncCallback\<Want>): void
 | 参数名       | 类型                            | 必填   | 说明        |
 | -------- | ----------------------------- | ---- | --------- |
 | callback | AsyncCallback\<[Want](js-apis-application-want.md)> | 是    | 以callback的形式返回want。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| -102 | Failed to acquire ability object. |
+| -106 | Call the ability interface, the return value is wrong. |
 
 **示例：**
 
@@ -469,6 +611,13 @@ getWant(): Promise\<Want>
 | 类型                      | 说明               |
 | ----------------------- | ---------------- |
 | Promise\<[Want](js-apis-application-want.md)> | 以Promise的形式返回want。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| -102 | Failed to acquire ability object. |
+| -106 | Call the ability interface, the return value is wrong. |
 
 **示例：**
 
@@ -521,6 +670,19 @@ terminateSelf(callback: AsyncCallback\<void>): void
 | -------- | -------------------- | ---- | -------- |
 | callback | AsyncCallback\<void> | 是    | 以callback的形式返回停止当前Ability结果 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
 ```ts
@@ -546,11 +708,24 @@ terminateSelf(): Promise\<void>
 | -------------- | ---------------- |
 | Promise\<void> | 以Promise的形式返回停止当前Ability结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.terminateSelf().then((data) => {
+featureAbility.terminateSelf().then(() => {
     console.info('==========================>terminateSelf=======================>');
 });
 ```
@@ -582,6 +757,26 @@ connectAbility(request: Want, options:ConnectOptions): number
 | ------ | -------------------- |
 | number | 连接的ServiceAbility的ID(ID从0开始自增，每连接成功一次ID加1)。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| -1   | Invalid parameter. |
+| -2   | Ability not found.|
+| -3   | Permission denied.|
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
 ```ts
@@ -596,13 +791,13 @@ let connectId = featureAbility.connectAbility(
     },
     {
         onConnect: (element, remote) => {
-            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
         },
         onDisconnect: (element) => {
-            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}')
+            console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`)
         },
         onFailed: (code) => {
-            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
+            console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`)
         },
     },
 );
@@ -623,6 +818,17 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 | connection | number               | 是    | 表示断开连接的ServiceAbility的ID。 |
 | callback   | AsyncCallback\<void> | 是    | 以callback的形式返回断开连接结果                |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| -102 | Failed to acquire ability object. |
+| -105 | Type of ability is invalid. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
 ```ts
@@ -636,13 +842,13 @@ let connectId = featureAbility.connectAbility(
     },
     {
         onConnect: (element, remote) => {
-            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
         },
         onDisconnect: (element) => {
-            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
+            console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`);
         },
         onFailed: (code) => {
-            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+            console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`);
         },
     },
 );
@@ -676,6 +882,17 @@ disconnectAbility(connection: number): Promise\<void>
 | -------------- | --------------- |
 | Promise\<void> | 以Promise形式返回断开连接结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| -102 | Failed to acquire ability object. |
+| -105 | Type of ability is invalid. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
 ```ts
@@ -690,21 +907,21 @@ let connectId = featureAbility.connectAbility(
     },
     {
         onConnect: (element, remote) => {
-            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
         },
         onDisconnect: (element) => {
-            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
+            console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`);
         },
         onFailed: (code) => {
-            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+            console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`);
         },
     },
 );
 
-featureAbility.disconnectAbility(connectId).then((data) => {
-    console.log('data: ${data)}')
+featureAbility.disconnectAbility(connectId).then(() => {
+    console.log('disconnectAbility success')
 }).catch((error: BusinessError)=>{
-    console.error('featureAbilityTest result errCode : ${error.code}');
+    console.error(`featureAbilityTest result errCode : ${error.code}`);
 });
 ```
 
@@ -722,6 +939,12 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 | 参数名     | 类型                          | 必填 | 说明                          |
 | -------- | ----------------------------- | ---- | ----------------------------- |
 | callback | AsyncCallback\<[window.Window](js-apis-window.md#window)> | 是   | callback形式返回当前Ability对应的窗口。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| -102 | Failed to acquire ability object. |
 
 **示例：**
 
@@ -747,7 +970,7 @@ export default {
 
 ## featureAbility.getWindow<sup>7+</sup>
 
-getWindow(): Promise\<window.Window>;
+getWindow(): Promise\<window.Window>
 
 获取当前Ability对应的窗口（Promise形式）。
 
@@ -758,6 +981,12 @@ getWindow(): Promise\<window.Window>;
 | 类型                    | 说明                          |
 | ----------------------- | ----------------------------- |
 | Promise\<[window.Window](js-apis-window.md#window)> | Promise形式返回当前Ability对应的窗口。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| -102 | Failed to acquire ability object. |
 
 **示例：**
 
@@ -819,20 +1048,6 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | BOUNDS_KEY<sup>7+</sup>      | 'abilityBounds' | 窗口显示大小属性的参数名。 |
 | WINDOW_MODE_KEY<sup>7+</sup> | 'windowMode'    | 窗口显示模式属性的参数名。|
 | DISPLAY_ID_KEY<sup>7+</sup>  | 'displayId'     | 窗口显示设备ID属性的参数名。 |
-
-## ErrorCode
-
-表示错误码。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
-
-| 名称                             | 值    | 说明                                       |
-| ------------------------------ | ---- | ---------------------------------------- |
-| NO_ERROR<sup>7+</sup>          | 0    | 没有错误。 |
-| INVALID_PARAMETER<sup>7+</sup> | -1   | 无效的参数。 |
-| ABILITY_NOT_FOUND<sup>7+</sup> | -2   | 找不到ABILITY。 |
-| PERMISSION_DENY<sup>7+</sup>   | -3   | 权限拒绝。 |
-
 
 ## DataAbilityOperationType
 

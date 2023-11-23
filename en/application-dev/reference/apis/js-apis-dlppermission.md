@@ -1382,7 +1382,7 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+  dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
     dlpFile.closeDLPFile(); // Close the DLPFile instance.
   }); // Open a DLP file.
@@ -1434,7 +1434,7 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+  dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link', async (err, res) => {
       if (err != undefined) {
         console.error('addDLPLinkFile error,', err.code, err.message);
@@ -1489,7 +1489,7 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+  dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
     dlpFile.stopFuseLink(); // Stop read/write on the link file.
     dlpFile.closeDLPFile(); // Close the DLPFile instance.
@@ -1541,7 +1541,7 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+  dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
     dlpFile.stopFuseLink(async (err, res) => {
       if (err != undefined) {
@@ -1597,7 +1597,7 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+  dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
     dlpFile.stopFuseLink(); // Stop read/write on the link file.
     dlpFile.resumeFuseLink(); // Resume read/write on the link file.
@@ -1650,7 +1650,7 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+  dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
     dlpFile.stopFuseLink(); // Stop read/write on the link file.
     dlpFile.resumeFuseLink(async (err, res) => {
@@ -1714,7 +1714,7 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+  dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
     dlpFile.stopFuseLink(); // Stop read/write on the link file.
     dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link'); // Replace the link file.
@@ -1769,7 +1769,7 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+  dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
     dlpFile.stopFuseLink(); // Stop read/write on the link file.
     dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link', async (err, res) => { // Replace a link file.
@@ -1834,7 +1834,7 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+  dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
     dlpFile.deleteDLPLinkFile('test.txt.dlp.link'); // Delete the link file.
     dlpFile.closeDLPFile(); // Close the DLPFile instance.
@@ -1887,7 +1887,7 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+  dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
     dlpFile.deleteDLPLinkFile('test.txt.dlp.link', async (err, res) => { // Delete a link file.
       if (err != undefined) {
@@ -1957,7 +1957,7 @@ let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 let destFile = fs.openSync("destUri");
 try {
-  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+  dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.recoverDLPFile(destFile.fd); // Recover the plain text from the DLP file.
     dlpFile.closeDLPFile(); // Close the DLPFile instance.
   }); // Open a DLP file.
@@ -2017,7 +2017,7 @@ let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 let destFile = fs.openSync("destUri");
 try {
-  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+  dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.recoverDLPFile(destFile.fd, async (err, res) => { // Recover the plaintext of a DLP file.
       if (err != undefined) {
         console.error('recoverDLPFile error,', err.code, err.message);
@@ -2076,7 +2076,7 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+  dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.closeDLPFile(); // Close the DLPFile instance.
   }); // Open a DLP file.
 } catch (err) {
@@ -2129,7 +2129,7 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+  dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.closeDLPFile((err, res) => {// Close the DLP file.
       if (err != undefined) {
         console.error('closeDLPFile error,', err.code, err.message);
@@ -2291,9 +2291,9 @@ try {
 }
 ```
 
-## dlpPermission.openDLPFile
+## dlpPermission.openDLPFile<sup>11+</sup>
 
-openDLPFile(ciphertextFd: number): Promise&lt;DLPFile&gt;
+openDLPFile(ciphertextFd: number, appId: string): Promise&lt;DLPFile&gt;
 
 Opens a DLP file. This API uses a promise to return the result.
 
@@ -2308,6 +2308,7 @@ Opens a DLP file. This API uses a promise to return the result.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | ciphertextFd | number | Yes| FD of the encrypted file.|
+| appId | string | Yes| ID of the caller.|
 
 **Return value**
 
@@ -2338,12 +2339,28 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.sinagtureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
-  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+  dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.closeDLPFile(); // Close the DLPFile instance.
   }); // Open a DLP file.
 } catch (err) {
@@ -2352,9 +2369,9 @@ try {
 fs.closeSync(file);
 ```
 
-## dlpPermission.openDLPFile
+## dlpPermission.openDLPFile<sup>11+</sup>
 
-openDLPFile(ciphertextFd: number, callback: AsyncCallback&lt;DLPFile&gt;): void
+openDLPFile(ciphertextFd: number, appId: string, callback: AsyncCallback&lt;DLPFile&gt;): void
 
 Opens a DLP file. This API uses an asynchronous callback to return the result.
 
@@ -2369,6 +2386,7 @@ Opens a DLP file. This API uses an asynchronous callback to return the result.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | ciphertextFd | number | Yes| FD of the encrypted file.|
+| appId | string | Yes| ID of the caller.|
 | callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | Yes| Callback invoked to return the **DLPFile** instance opened.|
 
 **Error codes**
@@ -2394,12 +2412,28 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.sinagtureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
-  dlpPermission.openDLPFile(file.fd, (err, res) => {// Open a DLP file.
+  dlpPermission.openDLPFile(file.fd, appId, (err, res) => { // Open a DLP file.
     if (err != undefined) {
       console.error('openDLPFile error,', err.code, err.message);
     } else {

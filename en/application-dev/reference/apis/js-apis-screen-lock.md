@@ -95,6 +95,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 13200002  | the screenlock management service is abnormal.         |
+| 13200003  | illegal use.         |
 
 **Example**
 
@@ -109,6 +110,10 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
     console.info(`Succeeded in unlocking the screen. result: ${data}`);
   });
   ```
+
+> **NOTE**
+>
+> The error code **13200003 illegal use** is added since API version 11.
 
 ## screenLock.unlock<sup>9+</sup>
 
@@ -133,6 +138,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 13200002  | the screenlock management service is abnormal.         |
+| 13200003  | illegal use.         |
 
 **Example**
 
@@ -145,6 +151,10 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
     console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
   });
   ```
+
+> **NOTE**
+>
+> The error code **13200003 illegal use** is added since API version 11.
 
 ## screenLock.lock<sup>9+</sup>
 

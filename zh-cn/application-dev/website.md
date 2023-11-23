@@ -727,6 +727,8 @@
       - [Vulkan开发指导](napi/vulkan-guidelines.md)
     - 资源管理
       - [Rawfile开发指导](napi/rawfile-guidelines.md)
+    - 资源调度
+      - [FFRT开发指导](napi/ffrt-guidelines.md)
     - AI
       - [使用MindSpore Lite引擎进行模型推理](napi/mindspore-lite-guidelines.md)
       - [使用MindSpore Lite进行离线模型的转换及推理](napi/mindspore-lite-offline-model-guidelines.md)
@@ -783,7 +785,7 @@
     - [LLDB调试器使用指导](tools/lldb-tool.md)
 - 示例教程
   - [开发案例](https://gitee.com/openharmony/docs/blob/master/zh-cn/third-party-cases/Readme-CN.md)
-  - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
+  - [示例代码](Samples.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
   - [系统能力SystemCapability使用指南](reference/syscap.md)

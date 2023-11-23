@@ -21,7 +21,7 @@ import config from '@ohos.accessibility.config';
 | -------- | -------- | -------- | -------- | -------- |
 | highContrastText | [Config](#config)\<boolean>| 是 | 是 | 表示高对比度文字功能启用状态。 |
 | invertColor | [Config](#config)\<boolean>| 是 | 是 | 表示颜色反转功能启用状态。 |
-| daltonizationState<sup>11+</sup> | [Config](#config)\<boolean>| 是 | 是 | 表示颜色滤镜功能启动状态。 |
+| daltonizationState<sup>11+</sup> | [Config](#config)\<boolean>| 是 | 是 | 表示颜色滤镜功能启动状态。配合daltonizationColorFilter使用 |
 | daltonizationColorFilter | [Config](#config)&lt;[DaltonizationColorFilter](#daltonizationcolorfilter)&gt;| 是 | 是 | 表示颜色滤镜功能配置。 |
 | contentTimeout | [Config](#config)\<number>| 是 | 是 | 表示内容显示建议时长配置。取值 0~5000，单位为毫秒。 |
 | animationOff | [Config](#config)\<boolean>| 是 | 是 | 表示关闭动画功能启用状态。 |
@@ -32,8 +32,10 @@ import config from '@ohos.accessibility.config';
 | shortkeyTarget | [Config](#config)\<string>| 是 | 是 | 表示辅助扩展快捷键的目标配置。取值为辅助应用的名称，格式为：'bundleName/abilityName'。 |
 | captions | [Config](#config)\<boolean>| 是 | 是 | 表示辅助字幕功能启用状态。 |
 | captionsStyle | [Config](#config)\<[accessibility.CaptionsStyle](js-apis-accessibility.md#captionsstyle8)>| 是 | 是 | 表示辅助字幕的配置。 |
-| audioMono<sup>10+</sup>| [Config](#config)\<boolean>| 是 | 是 | 表示音频单声道的配置。True表示打开单声道，False表示关闭单声道。 |
+| audioMono<sup>10+</sup>| [Config](#config)\<boolean>| 是 | 是 | 表示音频单声道的配置。 |
 | audioBalance<sup>10+</sup>| [Config](#config)\<number>| 是 | 是 | 表示左右声道音量平衡的配置。取值 -1.0~1.0。 |
+
+boolean返回值的含义：True表示开启，False表示关闭。
 
 ## enableAbility
 
@@ -70,23 +72,21 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): 
 ```ts
 import accessibility from '@ohos.accessibility';
 import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
 
 let name: string = 'com.ohos.example/axExtension';
-let capability : accessibility.Capability[] = ['retrieve'];
-try {
-    config.enableAbility(name, capability).then(() => {
-      console.info('enable ability succeed');
-    }).catch((err: object) => {
-      console.error('failed to enable ability, because ' + JSON.stringify(err));
-    });
-} catch (exception) {
-    console.error('failed to enable ability, because ' + JSON.stringify(exception));
-};
+let capability: accessibility.Capability[] = ['retrieve'];
+
+config.enableAbility(name, capability).then(() => {
+  console.info(`Succeeded  in enable ability, name is ${name}, capability is ${capability}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to enable ability, Code is ${err.code}, message is ${err.message}`);
+});
 ```
 
 ## enableAbility
 
-enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;, callback: AsyncCallback&lt;void&gt;): void;
+enableAbility(name: string, capability: Array&lt;[accessibility.Capability](js-apis-accessibility.md#capability)&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
 启用辅助扩展，使用callback异步回调。
 
@@ -118,17 +118,14 @@ import { BusinessError } from '@ohos.base';
 
 let name: string = 'com.ohos.example/axExtension';
 let capability: accessibility.Capability[] = ['retrieve'];
-try {
-    config.enableAbility(name, capability, (err: BusinessError<void>) => {
-        if (err) {
-            console.error('failed to enable ability, because ' + JSON.stringify(err));
-            return;
-        }
-        console.info('enable ability succeed');
-    });
-} catch (exception) {
-    console.error('failed to enable ability, because ' + JSON.stringify(exception));
-};
+
+config.enableAbility(name, capability, (err: BusinessError) => {
+  if (err) {
+    console.error(`failed to enable ability, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in enable ability, name is ${name}, capability is ${capability}`); 
+});
 ```
 
 ## disableAbility
@@ -164,17 +161,15 @@ disableAbility(name: string): Promise&lt;void&gt;;
 ```ts
 import accessibility from '@ohos.accessibility';
 import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
 
 let name: string = 'com.ohos.example/axExtension';
-try {
-    config.disableAbility(name).then(() => {
-      console.info('disable ability succeed');
-    }).catch((err: object) => {
-      console.error('failed to disable ability, because ' + JSON.stringify(err));
-    });
-} catch (exception) {
-    console.error('failed to disable ability, because ' + JSON.stringify(exception));
-};
+
+config.disableAbility(name).then(() => {
+  console.info(`Succeeded in disable ability, name is ${name}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to disable ability, Code is ${err.code}, message is ${err.message}`);
+})
 ```
 
 ## disableAbility
@@ -208,22 +203,21 @@ import config from '@ohos.accessibility.config';
 import { BusinessError } from '@ohos.base';
 
 let name: string = 'com.ohos.example/axExtension';
-try {
-    config.disableAbility(name, (err: BusinessError<void>) => {
-        if (err) {
-            console.error('failed to enable ability, because ' + JSON.stringify(err));
-            return;
-        }
-        console.info('disable succeed');
-    });
-} catch (exception) {
-    console.error('failed to enable ability, because ' + JSON.stringify(exception));
-};
+
+config.disableAbility(name, (err: BusinessError) => {
+  if (err) {
+    console.error(`failed to enable ability, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in disable, name is ${name}`);
+});
 ```
 
 ## on('enabledAccessibilityExtensionListChange')
 
 on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&gt;): void;
+
+权限配置：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 添加启用的辅助扩展的列表变化监听，使用callback异步回调。
 
@@ -241,19 +235,16 @@ on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&g
 ```ts
 import config from '@ohos.accessibility.config';
 
-try {
-    config.on('enabledAccessibilityExtensionListChange', () => {
-        console.info('subscribe enabled accessibility extension list change state success');
-    });
-} catch (exception) {
-    console.error('failed to subscribe enabled accessibility extension list change state, because ' +
-    JSON.stringify(exception));
-};
+config.on('enabledAccessibilityExtensionListChange', () => {
+  console.info('subscribe enabled accessibility extension list change state success');
+});
 ```
 
 ## off('enabledAccessibilityExtensionListChange')
 
 off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void&gt;): void;
+
+权限配置：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 取消启用的辅助扩展的列表变化监听，使用callback异步回调。
 
@@ -271,14 +262,9 @@ off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void
 ```ts
 import config from '@ohos.accessibility.config';
 
-try {
-    config.off('enabledAccessibilityExtensionListChange', () => {
-        console.info('Unsubscribe enabled accessibility extension list change state success');
-    });
-} catch (exception) {
-    console.error('failed to Unsubscribe enabled accessibility extension list change state, because ' +
-    JSON.stringify(exception));
-};
+config.off('enabledAccessibilityExtensionListChange', () => {
+  console.info('Unsubscribe enabled accessibility extension list change state success');
+});
 ```
 
 ## Config
@@ -311,17 +297,15 @@ set(value: T): Promise&lt;void&gt;;
 
 ```ts
 import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
 
 let value: boolean = true;
-try {
-    config.highContrastText.set(value).then(() => {
-        console.info('set highContrastText succeed');
-    }).catch((err: object) => {
-        console.error('failed to set highContrastText, because ' + JSON.stringify(err));
-    });
-} catch (exception) {
-    console.error('failed to set config, because ' + JSON.stringify(exception));
-};
+
+config.highContrastText.set(value).then(() => {
+  console.info(`Succeeded in set highContrastText value is ${value}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to set highContrastText, Code is ${err.code}, message is ${err.message}`);
+});
 ```
 
 ### set
@@ -348,17 +332,14 @@ import config from '@ohos.accessibility.config';
 import { BusinessError } from '@ohos.base';
 
 let value: boolean = true;
-try {
-    config.highContrastText.set(value, (err: BusinessError<void>) => {
-        if (err) {
-            console.error('failed to set highContrastText, because ' + JSON.stringify(err));
-            return;
-        }
-        console.info('set highContrastText succeed');
-    });
-} catch (exception) {
-    console.error('failed to set config, because ' + JSON.stringify(exception));
-};
+
+config.highContrastText.set(value, (err: BusinessError) => {
+  if (err) {
+    console.error(`failed to set highContrastText, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in set highContrastText, value is ${value}`);
+});
 ```
 
 ### get
@@ -381,12 +362,10 @@ get(): Promise&lt;T&gt;;
 import config from '@ohos.accessibility.config';
 import { BusinessError } from '@ohos.base';
 
-let value: boolean;
 config.highContrastText.get().then((data: boolean) => {
-    value = data;
-    console.info('get highContrastText success');
-}).catch((err: object) => {
-    console.error('failed to get highContrastText, because ' + JSON.stringify(err));
+  console.info(`Succeeded in get highContrastText, data is ${data}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to get highContrastText, Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -410,14 +389,12 @@ get(callback: AsyncCallback&lt;T&gt;): void;
 import config from '@ohos.accessibility.config';
 import { BusinessError } from '@ohos.base';
 
-let value: boolean;
-config.highContrastText.get((err: BusinessError<void>, data: boolean) => {
-    if (err) {
-        console.error('failed to get highContrastText, because ' + JSON.stringify(err));
-        return;
-    }
-    value = data;
-    console.info('get highContrastText success');
+config.highContrastText.get((err: BusinessError, data: boolean) => {
+  if (err) {
+    console.error(`failed to get highContrastText, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in get highContrastText, data is ${data}`);
 });
 ```
 
@@ -442,13 +419,9 @@ on(callback: Callback&lt;T&gt;): void;
 ```ts
 import config from '@ohos.accessibility.config';
 
-try {
-    config.highContrastText.on((data: boolean) => {
-        console.info('subscribe highContrastText success, result: ' + JSON.stringify(data));
-    });
-} catch (exception) {
-    console.error('failed subscribe highContrastText, because ' + JSON.stringify(exception));
-}
+config.highContrastText.on((data: boolean) => {
+  console.info(`subscribe highContrastText success, result: ${JSON.stringify(data)}`);
+});
 ```
 
 ### off
@@ -473,14 +446,14 @@ off(callback?: Callback&lt;T&gt;): void;
 import config from '@ohos.accessibility.config';
 
 config.highContrastText.off((data: boolean) => {
-    console.info('Unsubscribe highContrastText success, result: ' + JSON.stringify(data));
+  console.info(`Unsubscribe highContrastText success, result: ${JSON.stringify(data)}`);
 });
 ```
 
 ## DaltonizationColorFilter
 
 用于不同弱视类型的校正颜色滤镜。  
-颜色滤镜功能开启时（daltonizationState设置为true)，将无障碍保存的DaltonizationColorFilter的值设置进系统；颜色滤镜功能关闭时（daltonizationState设置为false)，显示为正常类型<sup>11+</sup>。
+颜色滤镜功能开启时（[daltonizationState](#属性)设置为true)，颜色滤镜的配置(即设置的DaltonizationColorFilter的值)生效；颜色滤镜功能关闭时（[daltonizationState](#属性)设置为false)，显示为正常类型<sup>11+</sup>。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 

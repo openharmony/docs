@@ -837,7 +837,7 @@ Represents the WLAN connection information.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | Yes| No| SSID of the hotspot, in UTF-8 format.|
+| ssid | string | Yes| No| Hotspot SSID in UTF-8 format.|
 | bssid | string | Yes| No| BSSID of the hotspot.|
 | networkId | number | Yes| No| Network configuration ID.<br>**System API**: This is a system API.|
 | rssi | number | Yes| No| RSSI of the hotspot, in dBm.|
@@ -1047,7 +1047,7 @@ try {
 
 Represents IP information.
 
-**System capability**: SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.AP.Core
 
 | **Name**| **Type**| **Readable**| **Writable**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
@@ -1514,7 +1514,7 @@ Represents the hotspot configuration.
 
 getHotspotConfig(): HotspotConfig
 
-obtains hotspot configuration.
+Obtains hotspot configuration.
 
 **System API**: This is a system API.
 
@@ -2560,7 +2560,7 @@ Subscribes to the disconnection of an STA from a Wi-Fi hotspot.
   | type | string | Yes| Event type, which has a fixed value of **hotspotStaLeave**.|
   | callback | Callback&lt;StationInf]&gt; | Yes| Callback invoked when an STA is disconnected from a Wi-Fi hotspot.|
 
-## wifi.off('hotspotStaLeave')<sup>9+</sup>
+## wifi.off('hotspotStaLeave')<sup>7+</sup>
 
 off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 

@@ -1341,6 +1341,58 @@ off(type: 'deviceAvailable', callback?: (device: OutputDeviceInfo) => void): voi
 avSession.off('deviceAvailable');
 ```
 
+## avSession.on('deviceOffline')<sup>11+</sup>
+
+on(type: 'deviceOffline', callback: (deviceId: string) => void): void
+
+设备下线回调监听。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | 是   | 事件回调类型，支持事件`'deviceOffline'`，有设备下线时触发回调。 |
+| callback | (deviceId: string) => void | 是   | 回调函数，参数deviceId是设备的ID。当监听事件注册成功，err为undefined，否则返回错误对象。  |
+
+**示例：**
+
+```ts
+import avSession from '@ohos.multimedia.avsession';
+
+let castDeviceId: string;
+avSession.on('deviceOffline', (deviceId: string) => {
+  castDeviceId = deviceId;
+  console.info(`on deviceOffline  : ${deviceId} `);
+});
+```
+
+## avSession.off('deviceOffline')<sup>11+</sup>
+
+off(type: 'deviceOffline', callback?: (deviceId: string) => void): void
+
+取消设备下线回调的监听。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名    | 类型                    | 必填  |      说明                                               |
+| ------   | ---------------------- | ---- | ------------------------------------------------------- |
+| type     | string                 | 是    | 事件回调类型，支持事件`'deviceOffline'`：设备下线回调。|
+| callback | (deviceId: string) => void | 否   | 回调函数，参数deviceId是设备的ID。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。|
+
+**示例：**
+
+```ts
+avSession.off('deviceOffline');
+```
+
 ## avSession.getAVCastController<sup>10+</sup>
 
 getAVCastController(sessionId: string, callback: AsyncCallback\<AVCastController>): void
@@ -5019,6 +5071,126 @@ off(type: 'playPrevious'): void
 aVCastController.off('playPrevious');
 ```
 
+### on('requestPlay')<sup>11+</sup>
+
+on(type: 'requestPlay', callback: Callback\<AVQueueItem>): void
+
+设置请求播放的监听事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 事件回调类型，支持事件`'requestPlay'`：当请求播放状态变化时，触发该事件。 |
+| callback | (state: [AVQueueItem](#avqueueitem10)) => void               | 是   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。当监听事件注册成功，err为undefined，否则返回错误对象。  | 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+aVCastController.on('requestPlay', (item: avSession.AVQueueItem) => {
+  console.info(`on requestPlay state : ${item.itemId}`);
+});
+```
+
+### off('requestPlay')<sup>11+</sup>
+
+off(type: 'requestPlay', callback?: Callback\<AVQueueItem>): void
+
+取消设置请求播放的监听事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------------------| ---- | ----------------------------------------------------- |
+| type     | string                                                      | 是   | 取消对应的监听事件，支持事件`'requestPlay'`。    |
+| callback | (state: [AVQueueItem](#avqueueitem10)) => void              | 否   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+aVCastController.off('requestPlay');
+```
+
+### on('endOfStream')<sup>11+</sup>
+
+on(type: 'endOfStream', callback: Callback\<void>): void
+
+设置播放结束的监听事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------| ---- | ------------------------------------------------------------ |
+| type     | string                                                      | 是   | 事件回调类型，支持事件`'endOfStream'`：当资源播放结束时，触发该事件。 |
+| callback | Callback\<void\>                                            | 是   | 回调函数。当监听事件注册成功，err为undefined，否则返回错误对象。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+aVCastController.on('endOfStream', () => {
+  console.info(`on endOfStream`);
+});
+```
+
+### off('endOfStream')<sup>11+</sup>
+
+off(type: 'endOfStream', callback?: Callback\<void>): void
+
+取消设置播放结束的监听事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------------------| ---- | ----------------------------------------------------- |
+| type     | string                                                      | 是   | 取消对应的监听事件，支持事件`'endOfStream'`。    |
+| callback | Callback\<void\>                                            | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+aVCastController.off('endOfStream');
+```
+
 ### on('seekDone')<sup>10+</sup>
 
 on(type: 'seekDone', callback: Callback\<number>): void
@@ -5364,6 +5536,8 @@ aVCastController.off('error')
 | deviceType | DeviceType | 是   | 播放设备的类型。    |
 | ipAddress | string | 否   | 播放设备的ip地址。<br/>此接口为系统接口。<br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast     |
 | providerId | number | 否   | 播放设备提供商。<br/>此接口为系统接口。<br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
+| supportedProtocols<sup>11+</sup> | number | 否   | 播放设备支持的协议。默认为TYPE_LOCAL。具体取值参考[ProtocolType](#protocoltype10)。<br/>此接口为系统接口。<br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
+| authenticationStatus<sup>11+</sup> | number | 否   | 播放设备是否可信。默认为0。0代表设备不可信，1代表设备可信。<br/>此接口为系统接口。<br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
 
 ## OutputDeviceInfo<sup>10+</sup>
 

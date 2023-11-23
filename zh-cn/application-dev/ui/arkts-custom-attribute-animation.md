@@ -4,7 +4,7 @@
 属性动画是可动画属性的参数值发生变化时，引起UI上产生的连续视觉效果。当参数值发生连续变化，且设置到可以引起UI发生变化的属性接口上时，就可以实现属性动画。
 
 
-ArkUI提供[@AnimatableExtend](../quick-start/arkts-animatable-extend.md)装饰器，用于自定义可动画属性接口。由于参数的数据类型必须具备一定程度的连续性，自定义可动画属性接口的参数类型仅支持number类型和实现[AnimtableArithmetic<T>](../quick-start/arkts-animatable-extend.md)接口的自定义类型。通过自定义可动画属性接口和可动画数据类型，在使用animateTo或animation执行动画时，通过逐帧回调函数修改不可动画属性接口的值，能够让不可动画属性接口实现动画效果。
+ArkUI提供[@AnimatableExtend](../quick-start/arkts-animatable-extend.md)装饰器，用于自定义可动画属性接口。由于参数的数据类型必须具备一定程度的连续性，自定义可动画属性接口的参数类型仅支持number类型和实现[AnimtableArithmetic\<T>](../quick-start/arkts-animatable-extend.md)接口的自定义类型。通过自定义可动画属性接口和可动画数据类型，在使用animateTo或animation执行动画时，通过逐帧回调函数修改不可动画属性接口的值，能够让不可动画属性接口实现动画效果。
 
 
 ## 使用number数据类型和\@AnimatableExtend装饰器改变字体大小

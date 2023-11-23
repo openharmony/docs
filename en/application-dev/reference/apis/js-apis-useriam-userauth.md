@@ -988,7 +988,7 @@ Obtains an **AuthInstance** instance for user authentication.
 | Name        | Type                                    | Mandatory| Description                    |
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
 | challenge      | Uint8Array                               | Yes  | Challenge value. It cannot exceed 32 bytes and can be passed in Uint8Array([]) format.|
-| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Only **FACE** is supported.|
+| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Currently, **FACE** and **FINGERPRINT** are supported.|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | Yes  | Authentication trust level.              |
 
 **Return value**
@@ -1039,7 +1039,7 @@ Checks whether the specified authentication capability is supported.
 
 | Name        | Type                              | Mandatory| Description                      |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
-| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type.|
+| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type. PIN is supported since API version 11.|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level.      |
 
 **Error codes**
@@ -1163,7 +1163,7 @@ Checks whether the specified authentication capability is supported.
 
 | Name        | Type                              | Mandatory| Description                      |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
-| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type. Only **FACE** is supported.|
+| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type. Currently, **FACE** and **FINGERPRINT** are supported.|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level.      |
 
 **Return value**
@@ -1204,7 +1204,7 @@ Performs user authentication. This API uses a callback to return the result.
 | Name        | Type                                    | Mandatory| Description                    |
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
 | challenge      | Uint8Array                               | Yes  | Challenge value, which can be passed in Uint8Array([]) format.|
-| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Only **FACE** is supported.|
+| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Currently, **FACE** and **FINGERPRINT** are supported.|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | Yes  | Authentication trust level.            |
 | callback       | [IUserAuthCallback](#iuserauthcallbackdeprecated) | Yes  | Callback used to return the result.       |
 

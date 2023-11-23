@@ -217,8 +217,8 @@ WLAN热点信息。
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
-| bssid | string | 是 | 否 | 热点的BSSID。 |
+| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
+| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
 | capabilities | string | 是 | 否 | 热点能力。 |
 | securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | WLAN加密类型。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
@@ -310,9 +310,9 @@ WLAN配置信息。
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
-| bssid | string | 是 | 否 | 热点的BSSID。 |
-| preSharedKey | string | 是 | 否 | 热点的密钥。 |
+| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
+| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
+| preSharedKey | string | 是 | 否 | 热点的密钥，最大长度为64字节。 |
 | isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。 |
 | securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | 加密类型。 |
 | creatorUid | number | 是 | 否 | 创建用户的ID。 <br /> **系统接口：** 此接口为系统接口。 |
@@ -837,8 +837,8 @@ wifi.getLinkedInfo().then(data => {
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
-| bssid | string | 是 | 否 | 热点的BSSID。 |
+| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
+| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
 | networkId | number | 是 | 否 | 网络配置ID。 <br /> **系统接口：** 此接口为系统接口。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
 | band | number | 是 | 否 | WLAN接入点的频段。 |

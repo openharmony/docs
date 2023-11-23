@@ -2,8 +2,6 @@
 
 continuationManager模块提供了流转/协同入口管理服务能力，包括连接/取消流转管理服务，注册/解注册设备连接变化监听，拉起设备选择模块，更新连接状态。
 
-本模块接口用于拉起系统中的设备选择模块，由于该模块功能暂不完备，因此流转能力整体暂不支持用于应用开发。
-
 > **说明：**
 > 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -261,7 +259,7 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>
 
   let token: number = -1;
   try {
-    continuationManager.register(
+    continuationManager.registerContinuation(
       {
         deviceType: ["00E"]
       }).then((data) => {
@@ -1135,7 +1133,7 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void
         console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
         return;
       }
-      console.info('unregisterContinuation finished, ' + JSON.stringify(data));
+      console.info('unregisterContinuation finished. ');
     });
   } catch (err) {
     console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
@@ -1181,8 +1179,8 @@ unregisterContinuation(token: number): Promise\<void>
   
   let token: number = -1;
   try {
-    continuationManager.unregisterContinuation(token).then((data) => {
-        console.info('unregisterContinuation finished, ' + JSON.stringify(data));
+    continuationManager.unregisterContinuation(token).then(() => {
+        console.info('unregisterContinuation finished. ');
       }).catch((err: BusinessError) => {
         console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
     });

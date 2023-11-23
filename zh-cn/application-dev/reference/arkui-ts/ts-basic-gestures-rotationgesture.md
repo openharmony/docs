@@ -28,7 +28,11 @@ RotationGesture(value?: { fingers?: number, angle?: number })
 | onActionEnd(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功，手指抬起后触发回调。 |
 | onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功，接收到触摸取消事件触发回调。 |
 
+## 属性
 
+| 名称 | 类型    |描述                                        |
+| ----  | ------  | ---------------------------------------- |
+| tag<sup>11+</sup>   | string  | 设置Rotation手势标志，用于自定义手势判定时区分绑定的手势。|
 ## 示例
 
 ```ts

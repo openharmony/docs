@@ -13,6 +13,101 @@
 import batteryInfo from '@ohos.batteryInfo';
 ```
 
+## batteryInfo.setBatteryConfig<sup>11+</sup>
+
+setBatteryConfig(sceneName: string, sceneValue: string): number
+
+按场景名称设置电池配置。
+
+**系统能力:** SystemCapability.PowerManager.BatteryManager.Core
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明         |
+| ---------- | ------ | ---- | ------------ |
+| sceneName  | string | 是   | 设置场景名称 |
+| sceneValue | string | 是   | 设置场景的值 |
+
+**返回值**：
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| number | 返回设置充电结果。返回0表示设置成功，返回非0表示设置失败。 |
+
+**示例**：
+
+  ```ts
+  import batteryInfo from '@ohos.batteryInfo';
+
+  let sceneName = 'xxx';
+  let sceneValue = '0';
+  let result = batteryInfo.setBatteryConfig(sceneName, sceneValue);
+
+  console.info("The result is: " + result);
+  ```
+
+## batteryInfo.getBatteryConfig<sup>11+</sup>
+
+getBatteryConfig(sceneName: string): string
+
+按场景名称查询电池配置。
+
+**系统能力:** SystemCapability.PowerManager.BatteryManager.Core
+
+**参数**：
+
+| 参数名    | 类型   | 必填 | 说明         |
+| --------- | ------ | ---- | ------------ |
+| sceneName | string | 是   | 设置场景名称 |
+
+**返回值**：
+
+| 类型   | 说明                           |
+| ------ | ------------------------------ |
+| string | 返回电池充电配置，否则返回""。 |
+
+**示例**：
+
+  ```ts
+  import batteryInfo from '@ohos.batteryInfo';
+
+  let sceneName = 'xxx';
+  let result = batteryInfo.getBatteryConfig(sceneName);
+
+  console.info("The result is: " + result);
+  ```
+
+## batteryInfo.isBatteryConfigSupported<sup>11+</sup>
+
+isBatteryConfigSupported(sceneName: string): boolean
+
+检查是否按场景名称启用电池配置。
+
+**系统能力:** SystemCapability.PowerManager.BatteryManager.Core
+
+**参数**：
+
+| 参数名    | 类型   | 必填 | 说明         |
+| --------- | ------ | ---- | ------------ |
+| sceneName | string | 是   | 设置场景名称 |
+
+**返回值**：
+
+| 类型    | 说明                                              |
+| ------- | ------------------------------------------------- |
+| boolean | 如果设备支持充电场景，则返回true，否则返回false。 |
+
+**示例**：
+
+  ```ts
+  import batteryInfo from '@ohos.batteryInfo';
+
+  let sceneName = 'xxx';
+  let result = batteryInfo.isBatteryConfigSupported(sceneName);
+
+  console.info("The result is: " + result);
+  ```
+
 ## 属性
 
 描述电池信息。

@@ -351,7 +351,7 @@ BufferHandle 返回一个指针，指向BufferHandle的结构体实例
 ### OH_NativeWindow_GetLastFlushedBuffer()
 
 ```
-int32_t OH_NativeWindow_GetLastFlushedBuffer (OHNativeWindow * window, OHNativeWindowBuffer * buffer )
+int32_t OH_NativeWindow_GetLastFlushedBuffer (OHNativeWindow * window, OHNativeWindowBuffer **buffer )
 ```
 
 **描述**
@@ -367,7 +367,7 @@ int32_t OH_NativeWindow_GetLastFlushedBuffer (OHNativeWindow * window, OHNativeW
 | 名称 | 描述 |
 | -------- | -------- |
 | window | 一个OHNativeWindow的结构体实例的指针 |
-| buffer | 一个OHNativeWindowBuffer的结构体实例的指针 |
+| buffer | 一个OHNativeWindowBuffer结构体指针的指针 |
 
 **返回：**
 
