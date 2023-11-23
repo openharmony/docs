@@ -3450,6 +3450,7 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 | atime  | number | 是    | 否    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的秒数。        |
 | mtime  | number | 是    | 否    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的秒数。        |
 | ctime  | number | 是    | 否    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的秒数。      |
+| location<sup>11+</sup> | [LocaltionType](#locationtype11)| 是 |否| 文件的位置，表示该文件是本地文件或者云端文件。
 
 ### isBlockDevice
 
@@ -4684,3 +4685,14 @@ open接口flags参数常量。文件打开标签。
 | SEEK_SET | 0     | 文件起始位置处。           |
 | SEEK_CUR    | 1     | 当前文件偏置指针位置处。 |
 | SEEK_END    | 2     | 文件末尾位置处。 |
+
+## LocationType<sup>11+</sup>
+
+枚举，文件位置，表示该文件是否在本地或者云端存在。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+| 名称        | 值       | 说明                |
+| ----------- | --------------- | ------------------ |
+| LOCAl | 1     | 文件在本地存在           |
+| CLOUD    | 2     | 文件在云端存在 |
