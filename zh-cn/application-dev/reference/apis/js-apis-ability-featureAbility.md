@@ -703,7 +703,7 @@ featureAbility.getWindow((err, data) => {
 
 ## featureAbility.getWindow<sup>7+</sup>
 
-getWindow(): Promise\<window.Window>;
+getWindow(): Promise\<window.Window>
 
 获取当前Ability对应的窗口（Promise形式）。
 
