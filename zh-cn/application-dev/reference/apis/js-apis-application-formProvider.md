@@ -32,6 +32,7 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 
   ```ts
   import Base from '@ohos.base'
+  import formProvider from '@ohos.application.formProvider';
 
   let formId: string = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5, (error: Base.BusinessError) => {
