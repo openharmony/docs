@@ -337,9 +337,9 @@ Wi-Fi P2P群组信息已更改。
   - 订阅者所需权限： ohos.permission.USE_BLUETOOTH
 
 * COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_NAME_UPDATE
-（预留事件，暂未支持）表示远程蓝牙设备的友好名称首次被检索或自上次检索以来被更改的公共事件的操作。
+表示远程蓝牙设备的友好名称首次被检索或自上次检索以来被更改的公共事件的操作。
   - 值： usual.event.bluetooth.remotedevice.NAME_UPDATE
-  - 订阅者所需权限： ohos.permission.USE_BLUETOOTH
+  - 订阅者所需权限： ohos.permission.ACCESS_BLUETOOTH
 
 * COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE
 （预留事件，暂未支持）远程蓝牙设备连接状态更改的公共事件的动作。
@@ -357,9 +357,9 @@ Wi-Fi P2P群组信息已更改。
   - 订阅者所需权限： 无
 
 * COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_UUID_VALUE
-（预留事件，暂未支持）远程蓝牙设备UUID连接状态公共事件的动作。
+远程蓝牙设备UUID连接状态公共事件的动作。
   - 值： usual.event.bluetooth.remotedevice.UUID_VALUE
-  - 订阅者所需权限： ohos.permission.DISCOVER_BLUETOOTH
+  - 订阅者所需权限： ohos.permission.ACCESS_BLUETOOTH
 
 * COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_REQ
 （预留事件，暂未支持）表示远程蓝牙设备配对请求的公共事件的动作。
@@ -407,9 +407,9 @@ Wi-Fi P2P群组信息已更改。
   - 订阅者所需权限： 无
 
 * COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE
-（预留事件，暂未支持）表示蓝牙适配器状态已更改的公共事件的操作，例如蓝牙已打开或关闭。
+表示蓝牙适配器状态已更改的公共事件的操作，例如蓝牙已打开或关闭。
   - 值： usual.event.bluetooth.host.STATE_UPDATE
-  - 订阅者所需权限： ohos.permission.USE_BLUETOOTH
+  - 订阅者所需权限： 无
 
 * COMMON_EVENT_BLUETOOTH_HOST_REQ_DISCOVERABLE
 （预留事件，暂未支持）表示用户允许扫描蓝牙请求的公共事件的动作。
@@ -432,19 +432,19 @@ Wi-Fi P2P群组信息已更改。
   - 订阅者所需权限： ohos.permission.USE_BLUETOOTH
 
 * COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED
-（预留事件，暂未支持）设备上已启动蓝牙扫描的公共事件的动作。
+设备上已启动蓝牙扫描的公共事件的动作。
   - 值： usual.event.bluetooth.host.DISCOVERY_STARTED
-  - 订阅者所需权限： ohos.permission.USE_BLUETOOTH
+  - 订阅者所需权限： ohos.permission.ACCESS_BLUETOOTH
 
 * COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_FINISHED
-（预留事件，暂未支持）设备上蓝牙扫描完成的公共事件的动作。
+设备上蓝牙扫描完成的公共事件的动作。
   - 值： usual.event.bluetooth.host.DISCOVERY_FINISHED
-  - 订阅者所需权限： ohos.permission.USE_BLUETOOTH
+  - 订阅者所需权限： ohos.permission.ACCESS_BLUETOOTH
 
 * COMMON_EVENT_BLUETOOTH_HOST_NAME_UPDATE
-（预留事件，暂未支持）指示设备蓝牙适配器名称已更改的公共事件的操作。
+指示设备蓝牙适配器名称已更改的公共事件的操作。
   - 值： usual.event.bluetooth.host.NAME_UPDATE
-  - 订阅者所需权限： ohos.permission.USE_BLUETOOTH
+  - 订阅者所需权限： ohos.permission.ACCESS_BLUETOOTH
 
 * COMMON_EVENT_BLUETOOTH_A2DPSINK_CONNECT_STATE_UPDATE
 （预留事件，暂未支持）表示蓝牙A2DP宿连接状态已更改的公共事件的动作。
