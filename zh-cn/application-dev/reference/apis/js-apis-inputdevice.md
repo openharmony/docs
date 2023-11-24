@@ -257,7 +257,7 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 获取所有输入设备的id列表，使用AsyncCallback异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[inputDevice.getDeviceList](#inputdevicegetdevicelist9)代替。
+> 从API version 9 开始不再维护，建议使用[inputDevice.getDeviceList](#inputdevicegetdevicelist9)代替。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -285,7 +285,7 @@ getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 获取所有输入设备的id列表，使用Promise异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[inputDevice.getDeviceList](#inputdevicegetdevicelist9)代替。
+> 从API version 9 开始不再维护，建议使用[inputDevice.getDeviceList](#inputdevicegetdevicelist9)代替。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -309,7 +309,7 @@ getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): voi
 
 获取指定输入设备的信息，使用AsyncCallback异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9)代替。
+> 从API version 9 开始不再维护，建议使用[inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9)代替。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -339,7 +339,7 @@ getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 获取指定输入设备的信息，使用Promise异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9)代替。
+> 从API version 9 开始不再维护，建议使用[inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9)代替。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
