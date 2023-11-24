@@ -37,8 +37,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| { [OHOS_PIXEL_MAP_ALPHA_TYPE_UNKNOWN](image.md) = 0,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_OPAQUE](image.md) = 1,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL](image.md) = 2,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL](image.md) = 3 } | PixelMap 透明度类型的枚举。 | 
-| { [OHOS_PIXEL_MAP_READ_ONLY](image.md) = 0,<br/>[OHOS_PIXEL_MAP_EDITABLE](image.md) = 1 } | PixelMap 编辑类型的枚举。 | 
+| { [OHOS_PIXEL_MAP_ALPHA_TYPE_UNKNOWN](image.md#anonymous-enum-23) = 0,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_OPAQUE](image.md#anonymous-enum-23) = 1,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL](image.md#anonymous-enum-23) = 2,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL](image.md#anonymous-enum-23) = 3 } | PixelMap 透明度类型的枚举。 | 
+| { [OHOS_PIXEL_MAP_READ_ONLY](image.md#anonymous-enum-23-1) = 0,<br/>[OHOS_PIXEL_MAP_EDITABLE](image.md#anonymous-enum-23-1) = 1 } | PixelMap 编辑类型的枚举。 | 
 
 
 ### 函数
