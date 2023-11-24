@@ -15,7 +15,7 @@ import connection from '@ohos.net.connection'
 
 createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection
 
-返回一个NetConnection对象，netSpecifier指定关注的网络的各项特征；timeout是超时时间(单位是毫秒)；netSpecifier是timeout的必要条件，两者都没有则表示关注默认网络。
+返回一个NetConnection对象，[netSpecifier](#netspecifier)指定关注的网络的各项特征；timeout是超时时间(单位是毫秒)；netSpecifier是timeout的必要条件，两者都没有则表示关注默认网络。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
