@@ -24,13 +24,13 @@ getFreeSize(path:string):Promise&lt;number&gt;
 
   | 参数名 | 类型   | 必填 | 说明                         |
   | ------ | ------ | ---- | ---------------------------- |
-  | path   | string | 是   | 需要查询的文件系统的文件路径 |
+  | path   | string | 是   | 需要查询的文件系统的文件路径。 |
 
 **返回值：**
 
   | 类型                  | 说明           |
   | --------------------- | -------------- |
-  | Promise&lt;number&gt; | 返回空闲字节数 |
+  | Promise&lt;number&gt; | Promise对象，返回空闲字节数。 |
 
 **错误码：**
 
@@ -60,8 +60,8 @@ getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 
   | 参数名   | 类型                        | 必填 | 说明                         |
   | -------- | --------------------------- | ---- | ---------------------------- |
-  | path     | string                      | 是   | 需要查询的文件系统的文件路径 |
-  | callback | AsyncCallback&lt;number&gt; | 是   | 异步获取空闲字节数之后的回调 |
+  | path     | string                      | 是   | 需要查询的文件系统的文件路径。 |
+  | callback | AsyncCallback&lt;number&gt; | 是   | 异步获取空闲字节数之后的回调。 |
 
 **错误码：**
 
@@ -93,13 +93,13 @@ getFreeSizeSync(path:string): number
 
   | 参数名 | 类型   | 必填 | 说明                         |
   | ------ | ------ | ---- | ---------------------------- |
-  | path   | string | 是   | 需要查询的文件系统的文件路径 |
+  | path   | string | 是   | 需要查询的文件系统的文件路径。 |
 
 **返回值：**
 
   | 类型                  | 说明           |
   | --------------------- | -------------- |
-  | number | 返回空闲字节数 |
+  | number | 返回空闲字节数。 |
 
 **错误码：**
 
@@ -125,13 +125,13 @@ getTotalSize(path: string): Promise&lt;number&gt;
 
   | 参数名 | 类型   | 必填 | 说明                         |
   | ---- | ------ | ---- | ---------------------------- |
-  | path | string | 是   | 需要查询的文件系统的文件路径 |
+  | path | string | 是   | 需要查询的文件系统的文件路径。 |
 
 **返回值：**
 
   | 类型                  | 说明         |
   | --------------------- | ------------ |
-  | Promise&lt;number&gt; | 返回总字节数 |
+  | Promise&lt;number&gt; | Promise对象，返回总字节数。 |
 
 **错误码：**
 
@@ -161,8 +161,8 @@ getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 
   | 参数名   | 类型                        | 必填 | 说明                         |
   | -------- | --------------------------- | ---- | ---------------------------- |
-  | path     | string                      | 是   | 需要查询的文件系统的文件路径 |
-  | callback | AsyncCallback&lt;number&gt; | 是   | 异步获取总字节数之后的回调   |
+  | path     | string                      | 是   | 需要查询的文件系统的文件路径。 |
+  | callback | AsyncCallback&lt;number&gt; | 是   | 异步获取总字节数之后的回调。   |
 
 **错误码：**
 
@@ -194,13 +194,13 @@ getTotalSizeSync(path: string): number
 
   | 参数名 | 类型   | 必填 | 说明                         |
   | ---- | ------ | ---- | ---------------------------- |
-  | path | string | 是   | 需要查询的文件系统的文件路径 |
+  | path | string | 是   | 需要查询的文件系统的文件路径。 |
 
 **返回值：**
 
   | 类型                  | 说明         |
   | --------------------- | ------------ |
-  | number | 返回总字节数 |
+  | number | 返回总字节数。 |
 
 **错误码：**
 
