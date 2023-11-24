@@ -6,8 +6,6 @@
 >
 >  从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  不支持横竖屏切换。
->
 >  不支持路由跳转。
 
 ## 属性
@@ -24,19 +22,47 @@
 
 | 名称              | 类型                                       | 必填   | 描述              |
 | --------------- | ---------------------------------------- | ---- | --------------- |
-| height          | [SheetSize](#sheetsize)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否    | 半模态高度，默认是LARGE。 |
+| height          | [SheetSize](#sheetsize)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否    | 半模态高度，默认是LARGE。<br/>**说明：**<br/>底部弹窗竖屏时，当设置sheetDetents时，该属性设置无效。<br/>底部弹窗横屏时，该属性设置无效。<br/>居中弹窗和跟手弹窗设置类型为SheetSize无效，显示默认高度。 |
+| detents<sup>11+</sup> | [([SheetSize.LARGE](#sheetsize) \|[SheetSize.MEDIUM](#sheetsize) \| [Length](ts-types.md#length)), ([SheetSize.LARGE](#sheetsize)\| [SheetSize.MEDIUM](#sheetsize)\| [Length](ts-types.md#length)), ([SheetSize.LARGE](#sheetsize) \| [SheetSize.MEDIUM](#sheetsize)\| [Length](ts-types.md#length))?] | 否 | 半模态页面的切换高度档位。<br/>**说明：**<br/>底部弹窗竖屏生效，元组中第一个高度为初始高度。 |
+| type<sup>11+</sup> | [SheetType.CENTER](#sheettype11)\| [SheetType.POPUP](#sheettype11) | 否 | 半模态页面的样式。 |
+| showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | 否 | 是否显示关闭图标，默认显示。<br/>**说明：**<br/>Resource需要为boolean类型。 |
 | dragBar         | boolean                                  | 否    | 是否显示控制条，默认显示。   |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否    | 半模态页面的背板颜色。     |
+| blurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 半模态面板的模糊背景。默认无模糊背景。 |
 | maskColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 半模态页面的背景蒙层颜色。 |
+| title<sup>11+</sup> | [SheetTitleOptions](#sheettitleoptions11) \| [CustomBuilder](ts-types.md#custombuilder8) | 否 | 半模态面板的标题。 |
 | onAppear        | () => void                               | 否    | 半模态页面显示回调函数。    |
 | onDisappear     | () => void                               | 否    | 半模态页面回退回调函数。    |
+| shouldDismiss<sup>11+</sup> | (sheetDismiss: [SheetDismiss](#sheetdismiss11) => void) | 否 | 半模态页面交互式关闭回调函数。<br/>**说明：**<br/>当用户执行下拉关闭/back事件/点击蒙层关闭/关闭按钮关闭交互操作时，如果注册该回调函数，则不会立刻关闭。 |
 
 ## SheetSize
 
-| 名称     | 参数描述            |
-| ------ | --------------- |
-| MEDIUM | 指定半模态高度为屏幕高度一半。 |
-| LARGE  | 指定半模态高度几乎为屏幕高度。 |
+| 名称                      | 参数描述                         |
+| ------------------------- | -------------------------------- |
+| MEDIUM                    | 指定半模态高度为屏幕高度一半。   |
+| LARGE                     | 指定半模态高度几乎为屏幕高度。   |
+| FIT_CONTENT<sup>11+</sup> | 指定半模态高度为适应内容的高度。 |
+
+## SheetType<sup>11+</sup>
+
+| 名称   | 参数描述   |
+| ------ | ---------- |
+| BOTTOM | 底部弹窗。 |
+| CENTER | 居中弹窗。 |
+| POPUP  | 跟手弹窗。 |
+
+## SheetDismiss<sup>11+</sup>
+
+| 名称    | 类型     | 必填 | 描述                                                         |
+| ------- | -------- | ---- | ------------------------------------------------------------ |
+| dismiss | function | 是   | 半模态面板关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
+
+## SheetTitleOptions<sup>11+</sup>
+
+| 名称     | 类型        | 必填 | 描述                 |
+| -------- | ----------- | ---- | -------------------- |
+| title    | ResourceStr | 是   | 半模态面板的主标题。 |
+| subtitle | ResourceStr | 否   | 半模态面板的副标题。 |
 
 ## 示例
 
