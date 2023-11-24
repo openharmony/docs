@@ -224,11 +224,7 @@ try {
 
 画中画控制器实例。用于启动、停止画中画以及更新回调注册等。
 
-下列API实例中都需先使用pipWindow.create(config: PiPConfiguration)或
-
-pipWindow.create(config: PiPConfiguration, callback: AsyncCallback<PiPController>)
-
-方法获取到PiPController实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[pipWindow.create(config: PiPConfiguration, callback: AsyncCallback<PiPController>)](#pipwindowcreate)或[pipWindow.create(config: PiPConfiguration)](#pipwindowcreate-1)方法获取到PiPController实例，再通过此实例调用对应方法。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
