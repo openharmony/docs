@@ -1870,7 +1870,7 @@ lstat(path: string): Promise&lt;Stat&gt;
 
   | 类型                           | 说明         |
   | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | promise对象，返回文件对象，表示文件的具体信息，详情见stat。 |
+  | Promise&lt;[Stat](#stat)&gt; | Promise对象，返回文件对象，表示文件的具体信息，详情见stat。 |
 
 **错误码：**
 
