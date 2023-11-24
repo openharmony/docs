@@ -2988,7 +2988,7 @@ on\(type: 'callDisconnectedCause', callback: Callback\<DisconnectedDetails\>\): 
 | 参数名   | 类型                                                   | 必填 | 说明                       |
 | -------- | ------------------------------------------------------ | ---- | -------------------------- |
 | type     | string                                                 | 是   | 通话时监听断开连接的原因，参数固定为'callDisconnectedCause'。 |
-| callback | Callback<[DisconnectedDetails](#disconnecteddetails9)> | 是   | 以回调函数的方式返回订阅callDisconnectedCausee事件的结果。    |
+| callback | Callback<[DisconnectedDetails](#disconnecteddetails9)> | 是   | 以回调函数的方式返回订阅callDisconnectedCause事件的结果。    |
 
 **错误码：**
 
