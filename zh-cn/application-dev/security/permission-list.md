@@ -3501,3 +3501,39 @@
 **ACL使能**: TRUE
 
 **起始版本**: 11
+
+## ohos.permission.ACCESS_DDK_USB
+
+允许扩展外设驱动访问USB DDK接口开发USB总线扩展外设驱动。
+
+**权限级别**：system_basic
+
+**授权方式**: system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
+
+允许应用使用外接设备增强功能。
+
+**权限级别**：normal
+
+**授权方式**: system_grant
+
+**ACL使能**：FALSE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_DDK_HID
+
+允许扩展外设驱动访问HID DDK接口开发HID类扩展外设驱动。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
