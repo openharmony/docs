@@ -33,7 +33,7 @@ setLocationPolicy(admin: Want, policy: LocationPolicy): void;
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| policy | [LocationPolicy](js-apis-enterprise-locationManager.md) | 是    | 位置服务策略，0：禁用 1：强制启用 2：默认策略。 |
+| policy | [LocationPolicy](js-apis-enterprise-locationManager.md) | 是    | 位置服务策略，0：默认策略 1：禁用 2：强制启用。 |
 
 **错误码**：
 
@@ -84,7 +84,7 @@ getLocationPolicy(admin: Want): LocationPolicy;
 
 | 类型             | 说明                                                   |
 | ---------------- | ------------------------------------------------------ |
-| LocationPolicy | 位置服务策略枚举值 0：禁用 1：强制启用 2：默认策略。 |
+| LocationPolicy | 位置服务策略枚举值 0：默认策略 1：禁用 2：强制启用。 |
 
 **错误码**：
 
@@ -125,6 +125,7 @@ try {
 
 | 名称                        | 值  | 说明    |
 | ----------------------------| ----| ------------------------------- |
-| DISALLOW_LOCATION_SERVICE | 0   | 禁用位置服务策略。 |
-| FORCE_OPEN_LOCATION_SERVICE | 1   | 强制开启位置服务策略。 |
-| DEFAULT_LOCATION_SERVICE    | 2   | 默认策略。 |
+| DEFAULT_LOCATION_SERVICE    | 0   | 默认策略。 |
+| DISALLOW_LOCATION_SERVICE | 1   | 禁用位置服务策略。 |
+| FORCE_OPEN_LOCATION_SERVICE | 2   | 强制开启位置服务策略。 |
+
