@@ -2260,11 +2260,63 @@ certFramework.createCertExtension(encodingBlob, (error, certExt) => {
 });
 ```
 
-## cryptoCert.createX509Crl
+### hasUnsupportedCriticalExtension<sup>11+</sup>
+
+hasUnsupportedCriticalExtension(): boolean
+
+判断是否存在不支持的关键扩展。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型    | 说明                                                    |
+| ------- | ------------------------------------------------------- |
+| boolean | 当存在不支持的关键扩展时，该方法返回true；否则返回false |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import cert from "@ohos.security.cert";
+import { BusinessError } from '@ohos.base';
+
+const encodingData = [
+  0x30, 0x40, 0x30, 0x0f, 0x06, 0x03, 0x55, 0x1d, 0x13, 0x01, 0x01, 0xff, 0x04,
+  0x05, 0x30, 0x03, 0x01, 0x01, 0xff, 0x30, 0x0e, 0x06, 0x03, 0x55, 0x1d, 0x0f,
+];
+let encodingBlob: cert.EncodingBlob = {
+  data: new Uint8Array(encodingData),
+  encodingFormat: cert.EncodingFormat.FORMAT_DER
+};
+
+cert.createCertExtension(encodingBlob).then((extensionObj) => {
+  console.log('createCertExtension success!');
+  const result = extensionObj.hasUnsupportedCriticalExtension()
+  console.log('has unsupported critical extension result is:' + result);
+}).catch((err: BusinessError) => {
+  console.error('createCertExtension failed');
+});
+```
+
+## cryptoCert.createX509Crl<sup>(deprecated)</sup>
 
 createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : void
 
 表示创建X509证书吊销列表的对象，使用Callback回调异步返回结果。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[cryptoCert.createX509CRL](#cryptocertcreatex509crl11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2322,11 +2374,15 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-## cryptoCert.createX509Crl
+## cryptoCert.createX509Crl<sup>(deprecated)</sup>
 
 createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 
 表示创建X509证书吊销列表的对象，使用Promise方式异步返回结果。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[cryptoCert.createX509CRL](#cryptocertcreatex509crl11-1)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2388,15 +2444,151 @@ certFramework.createX509Crl(encodingBlob).then(x509Crl => {
 });
 ```
 
-## X509Crl
+## cryptoCert.createX509CRL<sup>11+</sup>
+
+createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : void
+
+表示创建X509证书吊销列表的对象，使用Callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                  | 必填 | 说明                           |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| inStream | [EncodingBlob](#encodingblob)         | 是   | 表示证书吊销列表序列化数据     |
+| callback | AsyncCallback\<[X509CRL](#x509crl11)> | 是   | 回调函数。表示证书吊销列表对象 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, X509CRL) => {
+  if (error != null) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+  }
+});
+```
+
+## cryptoCert.createX509CRL<sup>11+</sup>
+
+createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
+
+表示创建X509证书吊销列表的对象，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                          | 必填 | 说明                       |
+| -------- | ----------------------------- | ---- | -------------------------- |
+| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据 |
+
+**返回值**：
+
+| 类型                            | 说明                 |
+| ------------------------------- | -------------------- |
+| Promise\<[X509CRL](#x509crl11)> | 表示证书吊销列表对象 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob).then(X509CRL => {
+  console.log('createX509CRL success');
+}).catch((error: BusinessError) => {
+  console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+});
+```
+
+## X509Crl<sup>(deprecated)</sup>
 
 X509证书吊销列表对象。
 
-### isRevoked
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL](#x509crl11)替代。
+
+### isRevoked<sup>(deprecated)</sup>
 
 isRevoked(cert : X509Cert) : boolean
 
 表示检查证书是否吊销。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.isRevoked](#isrevoked11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2479,11 +2671,15 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-### getType
+### getType<sup>(deprecated)</sup>
 
 getType() : string
 
 表示获取证书吊销列表类型。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.getType](#gettype11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2533,11 +2729,15 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-### getEncoded
+### getEncoded<sup>(deprecated)</sup>
 
 getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 表示获取X509证书吊销列表的序列化数据，使用Callback回调异步返回结果。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.getEncoded](#getencoded11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2603,11 +2803,15 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-### getEncoded
+### getEncoded<sup>(deprecated)</sup>
 
 getEncoded() : Promise\<EncodingBlob>
 
 表示获取X509证书吊销列表的序列化数据，使用Promise方式异步返回结果。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.getEncoded](#getencoded11-1)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2670,11 +2874,15 @@ certFramework.createX509Crl(encodingBlob).then(x509Crl => {
 });
 ```
 
-### verify
+### verify<sup>(deprecated)</sup>
 
 verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 表示对X509证书吊销列表进行验签，使用Callback回调异步返回结果。验签支持RSA算法。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.verify](#verify11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2819,11 +3027,15 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-### verify
+### verify<sup>(deprecated)</sup>
 
 verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 表示对X509证书吊销列表进行验签，使用Promise方式异步返回结果。验签支持RSA算法。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.verify](#verify11-1)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2968,11 +3180,15 @@ certFramework.createX509Crl(encodingBlob).then(x509Crl => {
 });
 ```
 
-### getVersion
+### getVersion<sup>(deprecated)</sup>
 
 getVersion() : number
 
 表示获取X509证书吊销列表的版本号。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.getVersion](#getversion11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3022,11 +3238,15 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-### getIssuerName
+### getIssuerName<sup>(deprecated)</sup>
 
 getIssuerName() : DataBlob
 
 表示获取X509证书吊销列表颁发者名称。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.getIssuerName](#getissuername11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3092,11 +3312,15 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-### getLastUpdate
+### getLastUpdate<sup>(deprecated)</sup>
 
 getLastUpdate() : string
 
 表示获取X509证书吊销列表最后一次更新日期。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.getLastUpdate](#getlastupdate11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3162,11 +3386,15 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-### getNextUpdate
+### getNextUpdate<sup>(deprecated)</sup>
 
 getNextUpdate() : string
 
 表示获取证书吊销列表下一次更新的日期。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.getNextUpdate](#getnextupdate11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3232,11 +3460,15 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-### getRevokedCert
+### getRevokedCert<sup>(deprecated)</sup>
 
 getRevokedCert(serialNumber : number) : X509CrlEntry
 
 表示通过指定证书序列号获取被吊销X509证书对象。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.getRevokedCert](#getrevokedcert11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3308,11 +3540,15 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-### getRevokedCertWithCert
+### getRevokedCertWithCert<sup>(deprecated)</sup>
 
 getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry
 
 表示通过指定证书对象获取被吊销X509证书对象。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.getRevokedCertWithCert](#getrevokedcertwithcert11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3405,11 +3641,15 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-### getRevokedCerts
+### getRevokedCerts<sup>(deprecated)</sup>
 
 getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 
 表示获取被吊销X509证书列表，使用Callback回调异步返回结果。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.getRevokedCerts](#getrevokedcerts11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3475,11 +3715,15 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-### getRevokedCerts
+### getRevokedCerts<sup>(deprecated)</sup>
 
 getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 
 表示获取被吊销X509证书列表，使用Promise方式异步返回结果。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.getRevokedCerts](#getrevokedcerts11-1)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3541,11 +3785,15 @@ certFramework.createX509Crl(encodingBlob).then(x509Crl => {
 });
 ```
 
-### getTbsInfo
+### getTbsInfo<sup>(deprecated)</sup>
 
 getTbsInfo() : DataBlob
 
 表示获取证书吊销列表的tbsCertList信息。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.getTBSInfo](#gettbsinfo11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3611,11 +3859,15 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-### getSignature
+### getSignature<sup>(deprecated)</sup>
 
 getSignature() : DataBlob
 
 表示获取X509证书吊销列表的签名数据。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.getSignature](#getsignature11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3681,11 +3933,15 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-### getSignatureAlgName
+### getSignatureAlgName<sup>(deprecated)</sup>
 
 getSignatureAlgName() : string
 
 表示获取X509证书吊销列表签名的算法名称。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.getSignatureAlgName](#getsignaturealgname11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3751,11 +4007,15 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-### getSignatureAlgOid
+### getSignatureAlgOid<sup>(deprecated)</sup>
 
 getSignatureAlgOid() : string
 
 表示获取X509证书吊销列表签名算法的对象标志符OID(Object Identifier)。OID是由国际标准组织(ISO)的名称注册机构分配。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.getSignatureAlgOid](#getsignaturealgoid11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3821,11 +4081,15 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-### getSignatureAlgParams
+### getSignatureAlgParams<sup>(deprecated)</sup>
 
 getSignatureAlgParams() : DataBlob
 
 表示获取X509证书吊销列表签名的算法参数。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRL.getSignatureAlgParams](#getsignaturealgparams11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3886,6 +4150,1491 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
     } catch (err) {
       let e: BusinessError = error as BusinessError;
       console.error('getSignatureAlgParams failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+## X509CRL<sup>11+</sup>
+
+被吊销证书列表对象。
+
+### isRevoked<sup>11+</sup>
+
+isRevoked(cert : X509Cert) : boolean
+
+表示检查证书是否吊销。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名 | 类型     | 必填 | 说明                 |
+| ------ | -------- | ---- | -------------------- |
+| cert   | [X509Cert](#x509cert) | 是   | 表示被检查的证书对象 |
+
+**返回值**：
+
+| 类型    | 说明                                              |
+| ------- | ------------------------------------------------- |
+| boolean | 表示证书吊销状态，true表示已吊销，false表示未吊销 |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBLzCB1QIUO/QDVJwZLIpeJyPjyTvE43xvE5cwCgYIKoZIzj0EAwIwGjEYMBYG\n' +
+  'A1UEAwwPRXhhbXBsZSBSb290IENBMB4XDTIzMDkwNDExMjAxOVoXDTI2MDUzMDEx\n' +
+  'MjAxOVowGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYI\n' +
+  'KoZIzj0DAQcDQgAEHjG74yMIueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTa\n' +
+  'tUsU0i/sePnrKglj2H8Abbx9PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEA\n' +
+  '0ce/fvA4tckNZeB865aOApKXKlBjiRlaiuq5mEEqvNACIQDPD9WyC21MXqPBuRUf\n' +
+  'BetUokslUfjT6+s/X4ByaxycAA==\n' +
+  '-----END CERTIFICATE-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+let certEncodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error != null) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    // Create an X509Cert instance.
+    certFramework.createX509Cert(certEncodingBlob, (error, x509Cert) => {
+      if (error == null) {
+        try {
+          let revokedFlag = x509CRL.isRevoked(x509Cert);
+        } catch (error) {
+          let e: BusinessError = error as BusinessError;
+          console.error('isRevoked failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+        }
+      }
+    });
+  }
+});
+```
+
+### getType<sup>11+</sup>
+
+getType() : string
+
+表示获取证书吊销列表类型。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| string | 表示证书吊销列表类型 |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error != null) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    let type = x509CRL.getType();
+  }
+});
+```
+
+### getEncoded<sup>11+</sup>
+
+getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
+
+表示获取X509证书吊销列表的序列化数据，使用Callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                          | 必填 | 说明                                       |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------ |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数，表示X509证书吊销列表的序列化数据 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error != null) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    x509CRL.getEncoded((error, data) => {
+      if (error != null) {
+        console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+      } else {
+        console.log('getEncoded success');
+      }
+    });
+  }
+});
+```
+
+### getEncoded<sup>11+</sup>
+
+getEncoded() : Promise\<EncodingBlob>
+
+表示获取X509证书吊销列表的序列化数据，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                                    | 说明                             |
+| --------------------------------------- | -------------------------------- |
+| Promise\<[EncodingBlob](#encodingblob)> | 表示X509证书吊销列表的序列化数据 |
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob).then(x509CRL => {
+  console.log('createX509CRL success');
+  x509CRL.getEncoded().then(result => {
+    console.log('getEncoded success');
+  }).catch((error: BusinessError) => {
+    console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  });
+}).catch((error: BusinessError) => {
+  console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+});
+```
+
+### verify<sup>11+</sup>
+
+verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
+
+表示对X509证书吊销列表进行验签，使用Callback回调异步返回结果。验签支持RSA算法。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                                        | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| key      | [cryptoFramework.PubKey](js-apis-cryptoFramework.md#pubkey) | 是   | 表示用于验签的公钥对象                                       |
+| callback | AsyncCallback\<void>                                        | 是   | 回调函数,使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+let pubKeyData = new Uint8Array([
+  0x30, 0x81, 0x9F, 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x01, 0x01,
+  0x05, 0x00, 0x03, 0x81, 0x8D, 0x00, 0x30, 0x81, 0x89, 0x02, 0x81, 0x81, 0x00, 0xDC, 0x4C, 0x2D,
+  0x57, 0x49, 0x3D, 0x42, 0x52, 0x1A, 0x09, 0xED, 0x3E, 0x90, 0x29, 0x51, 0xF7, 0x70, 0x15, 0xFE,
+  ...
+]);
+
+let priKeyData = new Uint8Array([
+  0x30, 0x82, 0x02, 0x77, 0x02, 0x01, 0x00, 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7,
+  0x0D, 0x01, 0x01, 0x01, 0x05, 0x00, 0x04, 0x82, 0x02, 0x61, 0x30, 0x82, 0x02, 0x5D, 0x02, 0x01,
+  0x00, 0x02, 0x81, 0x81, 0x00, 0xDC, 0x4C, 0x2D, 0x57, 0x49, 0x3D, 0x42, 0x52, 0x1A, 0x09, 0xED,
+  ...
+]);
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+    try {
+      // Generate the public key by AsyKeyGenerator.
+      let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
+      console.log('createAsyKeyGenerator success');
+      let priEncodingBlob: cryptoFramework.DataBlob = {
+        data: priKeyData,
+      };
+      let pubEncodingBlob: cryptoFramework.DataBlob = {
+        data: pubKeyData,
+      };
+      keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob, (e, keyPair) => {
+        if (e == null) {
+          console.log('convert key success');
+          x509CRL.verify(keyPair.pubKey, (err, data) => {
+            if (err == null) {
+              console.log('verify success');
+            } else {
+              console.error('verify failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+            }
+          });
+        } else {
+          console.error('convert key failed, message: ' + e.message + 'code: ' + e.code);
+        }
+      })
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('get pubKey failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
+### verify<sup>11+</sup>
+
+verify(key : cryptoFramework.PubKey) : Promise\<void>
+
+表示对X509证书吊销列表进行验签，使用Promise方式异步返回结果。验签支持RSA算法。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名 | 类型                                                        | 必填 | 说明                     |
+| ------ | ----------------------------------------------------------- | ---- | ------------------------ |
+| key    | [cryptoFramework.PubKey](js-apis-cryptoFramework.md#pubkey) | 是   | 表示用于验签的公钥对象。 |
+
+**返回值**：
+
+| 类型           | 说明        |
+| -------------- | ----------- |
+| Promise\<void> | Promise对象 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import cryptoFramework from '@ohos.security.cryptoFramework'
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+let pubKeyData = new Uint8Array([
+  0x30, 0x81, 0x9F, 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x01, 0x01,
+  0x05, 0x00, 0x03, 0x81, 0x8D, 0x00, 0x30, 0x81, 0x89, 0x02, 0x81, 0x81, 0x00, 0xDC, 0x4C, 0x2D,
+  0x57, 0x49, 0x3D, 0x42, 0x52, 0x1A, 0x09, 0xED, 0x3E, 0x90, 0x29, 0x51, 0xF7, 0x70, 0x15, 0xFE,
+  ...
+]);
+
+let priKeyData = new Uint8Array([
+  0x30, 0x82, 0x02, 0x77, 0x02, 0x01, 0x00, 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7,
+  0x0D, 0x01, 0x01, 0x01, 0x05, 0x00, 0x04, 0x82, 0x02, 0x61, 0x30, 0x82, 0x02, 0x5D, 0x02, 0x01,
+  0x00, 0x02, 0x81, 0x81, 0x00, 0xDC, 0x4C, 0x2D, 0x57, 0x49, 0x3D, 0x42, 0x52, 0x1A, 0x09, 0xED,
+  ...
+]);
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob).then(x509CRL => {
+  console.log('createX509Crl success');
+
+  try {
+    // 生成公钥对象
+    let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
+    console.log('createAsyKeyGenerator success');
+    let priEncodingBlob: cryptoFramework.DataBlob = {
+      data: priKeyData,
+    };
+    let pubEncodingBlob: cryptoFramework.DataBlob = {
+      data: pubKeyData,
+    };
+    keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob).then((keyPair) => {
+      console.log('convert key success');
+      x509CRL.verify(keyPair.pubKey).then(result => {
+        console.log('verify success');
+      }).catch((error: BusinessError) => {
+        console.error('verify failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+      });
+    }).catch((error: BusinessError) => {
+      console.error('convert key failed, message: ' + error.message + 'code: ' + error.code);
+    });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('get pubKey failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}).catch((error: BusinessError) => {
+  console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+});
+```
+
+### getVersion<sup>11+</sup>
+
+getVersion() : number
+
+表示获取X509证书吊销列表的版本号。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型   | 说明                             |
+| ------ | -------------------------------- |
+| number | 表示获取X509证书吊销列表的版本号 |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error != null) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    let version = x509CRL.getVersion();
+  }
+});
+```
+
+### getIssuerName<sup>11+</sup>
+
+getIssuerName() : DataBlob
+
+表示获取X509证书吊销列表颁发者名称。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                  | 说明                           |
+| --------------------- | ------------------------------ |
+| [DataBlob](#datablob) | 表示X509证书吊销列表颁发者名称 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error != null) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    try {
+      let issuerName = x509CRL.getIssuerName();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getIssuerName failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
+### getLastUpdate<sup>11+</sup>
+
+getLastUpdate() : string
+
+表示获取X509证书吊销列表最后一次更新日期。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型   | 说明                                 |
+| ------ | ------------------------------------ |
+| string | 表示X509证书吊销列表最后一次更新日期 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error != null) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    try {
+      let lastUpdate  = x509CRL.getLastUpdate();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getLastUpdate failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
+### getNextUpdate<sup>11+</sup>
+
+getNextUpdate() : string
+
+表示获取证书吊销列表下一次更新的日期。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型   | 说明                                 |
+| ------ | ------------------------------------ |
+| string | 表示X509证书吊销列表下一次更新的日期 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error != null) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    try {
+      let nextUpdate = x509CRL.getNextUpdate();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getNextUpdate failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
+### getRevokedCert<sup>11+</sup>
+
+getRevokedCert(serialNumber : bigint) : X509CRLEntry
+
+表示通过指定证书序列号获取被吊销X509证书对象。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名       | 类型   | 必填 | 说明           |
+| ------------ | ------ | ---- | -------------- |
+| serialNumber | bigint | 是   | 表示证书序列号 |
+
+**返回值**:
+
+| 类型                            | 说明                   |
+| ------------------------------- | ---------------------- |
+| [X509CRLEntry](#x509crlentry11) | 表示被吊销X509证书对象 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error != null) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    let serialNumber = BigInt(1000);
+    try {
+      let entry = x509CRL.getRevokedCert(serialNumber);
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getRevokedCert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
+### getRevokedCertWithCert<sup>11+</sup>
+
+getRevokedCertWithCert(cert : X509Cert) : X509CRLEntry
+
+表示通过指定证书对象获取被吊销X509证书对象。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名 | 类型                  | 必填 | 说明         |
+| ------ | --------------------- | ---- | ------------ |
+| cert   | [X509Cert](#x509cert) | 是   | 表示证书对象 |
+
+**返回值**:
+
+| 类型                            | 说明                   |
+| ------------------------------- | ---------------------- |
+| [X509CRLEntry](#x509crlentry11) | 表示被吊销X509证书对象 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书二进制数据，需业务自行赋值
+let certData = '-----BEGIN CERTIFICATE-----\n'
+'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n'
+'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n'
+'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n'
+'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n'
+'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n'
+'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n'
+'Qw==\n'
+'-----END CERTIFICATE-----\n';
+
+let certEncodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error != null) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    // 创建X509证书对象.
+    certFramework.createX509Cert(certEncodingBlob).then((x509Cert) => {
+      try {
+        let entry = x509CRL.getRevokedCertWithCert(x509Cert);
+      } catch (error) {
+        let e: BusinessError = error as BusinessError;
+        console.error('getRevokedCertWithCert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+      }
+    }).catch((error: BusinessError) => {
+      console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+    })
+  }
+});
+```
+
+### getRevokedCerts<sup>11+</sup>
+
+getRevokedCerts(callback : AsyncCallback<Array\<X509CRLEntry>>) : void
+
+表示获取被吊销X509证书列表，使用Callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                                   | 必填 | 说明                             |
+| -------- | ------------------------------------------------------ | ---- | -------------------------------- |
+| callback | AsyncCallback<Array\<[X509CRLEntry](#x509crlentry11)>> | 是   | 回调函数。表示被吊销X509证书列表 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error != null) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    x509CRL.getRevokedCerts((error, array) => {
+      if (error != null) {
+        console.error('getRevokedCerts failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+      } else {
+        console.log('getRevokedCerts success');
+      }
+    });
+  }
+});
+```
+
+### getRevokedCerts<sup>11+</sup>
+
+getRevokedCerts() : Promise<Array\<X509CRLEntry>>
+
+表示获取被吊销X509证书列表，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**:
+
+| 类型                                             | 说明                   |
+| ------------------------------------------------ | ---------------------- |
+| Promise<Array\<[X509CRLEntry](#x509crlentry11)>> | 表示被吊销X509证书列表 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob).then(x509CRL => {
+  console.log('createX509CRL success');
+  x509CRL.getRevokedCerts().then(array => {
+    console.log('getRevokedCerts success');
+  }).catch((error: BusinessError) => {
+    console.error('getRevokedCerts failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  });
+}).catch((error: BusinessError) => {
+  console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+});
+```
+
+### getSignature<sup>11+</sup>
+
+getSignature() : DataBlob
+
+表示获取X509证书吊销列表的签名数据。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                  | 说明                           |
+| --------------------- | ------------------------------ |
+| [DataBlob](#datablob) | 表示X509证书吊销列表的签名数据 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error != null) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    try {
+      let signature = x509CRL.getSignature();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getSignature failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
+### getSignatureAlgName<sup>11+</sup>
+
+getSignatureAlgName() : string
+
+表示获取X509证书吊销列表签名的算法名称。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型   | 说明                             |
+| ------ | -------------------------------- |
+| string | 表示X509证书吊销列表签名的算法名 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error != null) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    try {
+      let sigAlgName = x509CRL.getSignatureAlgName();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getSignatureAlgName failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
+### getSignatureAlgOid<sup>11+</sup>
+
+getSignatureAlgOid() : string
+
+表示获取X509证书吊销列表签名算法的对象标志符OID(Object Identifier)。OID是由国际标准组织(ISO)的名称注册机构分配。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型   | 说明                                          |
+| ------ | --------------------------------------------- |
+| string | 表示X509证书吊销列表签名算法的对象标志符OID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error != null) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    try {
+      let sigAlgOid = x509CRL.getSignatureAlgOid();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getSignatureAlgOid failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
+### getSignatureAlgParams<sup>11+</sup>
+
+getSignatureAlgParams() : DataBlob
+
+表示获取X509证书吊销列表签名的算法参数。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                  | 说明                               |
+| --------------------- | ---------------------------------- |
+| [DataBlob](#datablob) | 表示X509证书吊销列表签名的算法参数 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error != null) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    try {
+      let sigAlgParams = x509CRL.getSignatureAlgParams();
+    } catch (err) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getSignatureAlgParams failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
+### getTBSInfo<sup>11+</sup>
+
+getTBSInfo() : DataBlob
+
+表示获取证书吊销列表的tbsCertList信息。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**:
+
+| 类型                  | 说明                              |
+| --------------------- | --------------------------------- |
+| [DataBlob](#datablob) | 表示证书吊销列表的tbsCertList信息 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error != null) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    try {
+      let tbsInfo = x509CRL.getTBSInfo();
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getTBSInfo failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
+### getExtensions<sup>11+</sup>
+
+getExtensions(): DataBlob
+
+表示获取CRL的扩展。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                  | 说明                |
+| --------------------- | ------------------- |
+| [DataBlob](#datablob) | 表示X509CRL扩展用途 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error != null) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    try {
+      let extensions = x509CRL.getExtensions();
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getExtensions failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
   }
 });
@@ -4109,15 +5858,23 @@ try {
 }
 ```
 
-## X509CrlEntry
+## X509CrlEntry<sup>(deprecated)</sup>
 
 被吊销证书对象。
 
-### getEncoded
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CrlEntry](#x509crlentry11)替代。
+
+### getEncoded<sup>(deprecated)</sup>
 
 getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 表示获取被吊销证书的序列化数据，使用Callback回调异步返回结果。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRLEntry.getEncoded](#getencoded11-2)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -4191,11 +5948,15 @@ certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
 })
 ```
 
-### getEncoded
+### getEncoded<sup>(deprecated)</sup>
 
 getEncoded() : Promise\<EncodingBlob>
 
 表示获取被吊销证书的序列化数据，使用Promise方式异步返回结果。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRLEntry.getEncoded](#getencoded11-3)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -4267,11 +6028,15 @@ certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
 })
 ```
 
-### getSerialNumber
+### getSerialNumber<sup>(deprecated)</sup>
 
 getSerialNumber() : number
 
 表示获取被吊销证书的序列号。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRLEntry.getSerialNumber](#getserialnumber11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -4329,11 +6094,15 @@ certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
 })
 ```
 
-### getCertIssuer
+### getCertIssuer<sup>(deprecated)</sup>
 
 getCertIssuer() : DataBlob
 
 表示获取被吊销证书的颁发者信息。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRLEntry.getCertIssuer](#getcertissuer11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -4400,11 +6169,15 @@ certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
 })
 ```
 
-### getRevocationDate
+### getRevocationDate<sup>(deprecated)</sup>
 
 getRevocationDate() : string
 
 表示获取证书被吊销的日期。
+
+> **说明：**
+>
+> 从API version 11开始废弃，建议使用[X509CRLEntry.getRevocationDate](#getrevocationdate11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -4467,6 +6240,524 @@ certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error('getRevokedCert or getRevocationDate failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+})
+```
+
+## X509CRLEntry<sup>11+</sup>
+
+被吊销证书对象。
+
+### getEncoded<sup>11+</sup>
+
+getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
+
+表示获取被吊销证书的序列化数据，使用Callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                          | 必填 | 说明                                 |
+| -------- | --------------------------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数。表示被吊销证书的序列化数据 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
+  if (err != null) {
+    console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  } else {
+    console.log('create x509 CRL success');
+
+    try {
+      let serialNumber = BigInt(1000);
+      let crlEntry = x509CRL.getRevokedCert(serialNumber);
+      crlEntry.getEncoded((error, data) => {
+        if (error != null) {
+          console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+        } else {
+          console.log('getEncoded success');
+        }
+      });
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getRevokedCert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+})
+```
+
+### getEncoded<sup>11+</sup>
+
+getEncoded() : Promise\<EncodingBlob>
+
+表示获取被吊销证书的序列化数据，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                                    | 说明                       |
+| --------------------------------------- | -------------------------- |
+| Promise\<[EncodingBlob](#encodingblob)> | 表示被吊销证书的序列化数据 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
+  if (err != null) {
+    console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  } else {
+    console.log('create x509 CRL success');
+
+    try {
+      let serialNumber = BigInt(1000);
+      let crlEntry = x509CRL.getRevokedCert(serialNumber);
+      crlEntry.getEncoded().then(result => {
+        console.log('getEncoded success');
+      }).catch((error: BusinessError) => {
+        console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+      });
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getRevokedCert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+})
+```
+
+### getSerialNumber<sup>11+</sup>
+
+getSerialNumber() : bigint
+
+表示获取被吊销证书的序列号。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型   | 说明                   |
+| ------ | ---------------------- |
+| bigint | 表示被吊销证书的序列号 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
+  if (err != null) {
+    console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  } else {
+    console.log('create x509 crl success');
+
+    try {
+      let serialNumber = BigInt(1000);
+      let crlEntry = x509CRL.getRevokedCert(serialNumber);
+      serialNumber = crlEntry.getSerialNumber();
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getRevokedCert or getSerialNumber failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+})
+```
+
+### getCertIssuer<sup>11+</sup>
+
+getCertIssuer() : DataBlob
+
+表示获取被吊销证书的颁发者信息。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                  | 说明                       |
+| --------------------- | -------------------------- |
+| [DataBlob](#datablob) | 表示被吊销证书的颁发者信息 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
+  if (err != null) {
+    console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  } else {
+    console.log('create x509 CRL success');
+
+    try {
+      let serialNumber = BigInt(1000);
+      let crlEntry = x509CRL.getRevokedCert(serialNumber);
+      let issuer = crlEntry.getCertIssuer();
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getRevokedCert or getCertIssuer failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+})
+```
+
+### getRevocationDate<sup>11+</sup>
+
+getRevocationDate() : string
+
+表示获取证书被吊销的日期。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| string | 表示证书被吊销的日期 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
+  if (err != null) {
+    console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  } else {
+    console.log('create x509 CRL success');
+
+    try {
+      let serialNumber = BigInt(1000);
+      let crlEntry = x509CRL.getRevokedCert(serialNumber);
+      let date = crlEntry.getRevocationDate();
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getRevokedCert or getRevocationDate failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+})
+```
+
+### getExtensions<sup>11+</sup>
+
+getExtensions(): DataBlob
+
+表示获取CRL的扩展。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                  | 说明                     |
+| --------------------- | ------------------------ |
+| [DataBlob](#datablob) | 表示X509CRLEntry扩展用途 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
+  if (err != null) {
+    console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  } else {
+    console.log('create x509 CRL success');
+
+    try {
+      let serialNumber = BigInt(1000);
+      let crlEntry = x509CRL.getRevokedCert(serialNumber);
+      let extensions = crlEntry.getExtensions();
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getRevokedCert or getExtensions failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+})
+```
+
+### hasExtensions<sup>11+</sup>
+
+hasExtensions(): boolean
+
+表示判断CRL Entry是否有扩展。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型    | 说明                                                 |
+| ------- | ---------------------------------------------------- |
+| boolean | 返回true则表示CRL Entry有扩展，返回false则表示无扩展 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
+  if (err != null) {
+    console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  } else {
+    console.log('create x509 CRL success');
+
+    try {
+      let serialNumber = BigInt(1000);
+      let crlEntry = x509CRL.getRevokedCert(serialNumber);
+      let hasExtensions = crlEntry.hasExtensions();
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getRevokedCert or hasExtensions failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
   }
 })
