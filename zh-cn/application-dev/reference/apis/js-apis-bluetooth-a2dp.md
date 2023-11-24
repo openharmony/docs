@@ -534,7 +534,7 @@ try {
 
 ### getCurrentCodecInfo<sup>11+</sup>
 
-getCurrentCodecInfo(deviceId: string): CodecInfo;
+getCurrentCodecInfo(deviceId: string): CodecInfo
 
 获取当前编码器信息。
 
@@ -552,7 +552,7 @@ getCurrentCodecInfo(deviceId: string): CodecInfo;
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| CodecInfo; | 当前编码器信息。 |
+| [CodecInfo](#CodecInfo)| 当前编码器信息。 |
 
 **错误码**：
 
@@ -578,7 +578,7 @@ try {
 
 ### setCurrentCodecInfo<sup>11+</sup>
 
-setCurrentCodecInfo(deviceId: string, codecInfo: CodecInfo): void;
+setCurrentCodecInfo(deviceId: string, codecInfo: CodecInfo): void
 
 获取当前编码器信息。
 
@@ -591,7 +591,7 @@ setCurrentCodecInfo(deviceId: string, codecInfo: CodecInfo): void;
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | 是    | 远端设备地址。 |
-| codecInfo | CodecInfo | 是    | 编码器信息。 |
+| codecInfo | [CodecInfo](#CodecInfo) | 是    | 编码器信息。 |
 
 **错误码**：
 
