@@ -45,12 +45,12 @@ import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 | P3_PQ_LIMIT<sup>11+</sup>          | 22     | RGB色域为Display P3类型。<br>转换函数为PQ类型。<br>编码范围为Limit类型。 |
 | LINEAR_P3<sup>11+</sup>            | 23     | RGB色域为Display P3类型。<br>转换函数为Linear类型。 |
 | LINEAR_SRGB<sup>11+</sup>          | 24     | RGB色域为SRGB类型。<br>转换函数为Linear类型。 |
-| LINEAR_BT709<sup>11+</sup>         | 24     | RGB色域为BT709类型。<br>转换函数为Linear类型。 |
+| LINEAR_BT709<sup>11+</sup>         | 24     | 与LINEAR_SRGB相同。<br>RGB色域为BT709类型。<br>转换函数为Linear类型。 |
 | LINEAR_BT2020<sup>11+</sup>        | 25     | RGB色域为BT2020类型。<br>转换函数为Linear类型。 |
-| DISPLAY_SRGB<sup>11+</sup>         | 4      | 与SRGB相同，用于屏幕显示。 |
-| DISPLAY_P3_SRGB<sup>11+</sup>      | 3      | 与DISPLAY_P3相同，用于屏幕显示。 |
-| DISPLAY_P3_HLG<sup>11+</sup>       | 11     | 与P3_HLG相同，用于屏幕显示。 |
-| DISPLAY_P3_PQ<sup>11+</sup>        | 12     | 与P3_PQ相同，用于屏幕显示。 |
+| DISPLAY_SRGB<sup>11+</sup>         | 4      | 与SRGB相同。<br>RGB色域为SRGB类型。<br>转换函数为SRGB类型。<br>编码范围为Full类型。 |
+| DISPLAY_P3_SRGB<sup>11+</sup>      | 3      | 与DISPLAY_P3相同。<br>RGB色域为Display P3类型。<br>转换函数为SRGB类型。<br>编码范围为Full类型。 |
+| DISPLAY_P3_HLG<sup>11+</sup>       | 11     | 与P3_HLG相同。<br>RGB色域为Display P3类型。<br>转换函数为HLG类型。<br>编码范围为Full类型。 |
+| DISPLAY_P3_PQ<sup>11+</sup>        | 12     | 与P3_PQ相同。<br>RGB色域为Display P3类型。<br>转换函数为PQ类型。<br>编码范围为Full类型。 |
 
 ## ColorSpacePrimaries
 
