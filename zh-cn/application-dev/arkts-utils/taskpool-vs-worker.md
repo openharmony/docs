@@ -60,7 +60,7 @@ TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择
 
 - 实现任务的函数需要使用装饰器[\@Concurrent](arkts-concurrent.md)标注，且仅支持在.ets文件中使用。
 
-- 实现任务的函数入参需满足序列化支持的类型，详情请参见[普通对象传输](multi-thread-concurrency-overview.md#普通对象)。
+- 实现任务的函数入参需满足序列化支持的类型，详情请参见[数据传输对象](multi-thread-concurrency-overview.md#数据传输对象)。
 
 - 由于不同线程中上下文对象是不同的，因此TaskPool工作线程只能使用线程安全的库，例如UI相关的非线程安全库不能使用。
 
