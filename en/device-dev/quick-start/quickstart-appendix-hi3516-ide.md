@@ -1,10 +1,10 @@
 # Getting Started with the Standard System with Hi3516 (IDE Mode)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-caution.gif](public_sys-resources/icon-caution.gif) **CAUTION**
 >
-> Since OpenHarmony 3.2, the standard system does not perform adaptation verification for the Hi3516D V300 development board. You are advised to use RK3568 to develop standard-system devices.
+> **Since OpenHarmony 3.2, the standard system does not perform adaptation verification for the Hi3516D V300 development board. You are advised to use RK3568 to develop standard-system devices.**
 >
-> If you still use Hi3516D V300 to develop standard-system devices, adaptation may fail. Contact the chip supplier to obtain the adaptation guide and complete adaptation by yourself.
+> **If you still use Hi3516D V300 to develop standard-system devices, adaptation may fail. Contact the chip supplier to obtain the adaptation guide and complete adaptation by yourself.**
 
 In addition to the small system, the Hi3516D V300 development board also supports the standard system. This topic describes how to develop the standard system on Hi3516DV300 with DevEco Device Tool, by walking you through a simple example.
 
