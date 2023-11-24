@@ -30,10 +30,6 @@ The hapsigner tool is implemented based on the Public Key Infrastructure (PKI). 
 
    [HarmonyAppProvision configuration file](app-provision-structure.md) provides information such as the authorized application permissions and device ID.
 
-- Code Sign
-
-    code sign provides validity check and integrity protection during application running, preventing unsigned code or the code which be maliciously taperied runing on the devices. hap-sign-tool default enables codesign when sign package(hap). the  signing time will be prolonged when codesign is enabled.if your device does not have the ability to verify codesign, please disable codesign when you signed package .you can read the hapsigntool-guidelines.md to learning how to disable codesign.
-
 ## Constraints
 
  - hapsigner is developed in Java and must run in JRE 8.0 or later.
