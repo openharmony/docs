@@ -1167,7 +1167,7 @@ hangUpCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明                                            |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
 | callId   | number                    | 是   | 呼叫id。可以通过订阅callDetailsChange事件获得。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回挂断电话的结果。                                      |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回挂断电话的结果。            |
 
 **错误码：**
 
@@ -1364,7 +1364,7 @@ rejectCall\(callId: number, options: RejectMessageOptions, callback: AsyncCallba
 | -------- | ---------------------------------------------- | ---- | ----------------------------------------------- |
 | callId   | number                                         | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
 | options  | [RejectMessageOptions](#rejectmessageoptions7) | 是   | 拒绝消息选项。                                  |
-| callback | AsyncCallback&lt;void&gt;                      | 是   | 以回调函数的方式返回拒接电话的结果。                                      |
+| callback | AsyncCallback&lt;void&gt;                      | 是   | 以回调函数的方式返回拒接电话的结果。            |
 
 **错误码：**
 
@@ -2719,7 +2719,7 @@ postDialProceed\(callId: number, proceed: boolean, callback: AsyncCallback\<void
 | -------- | ------------------------- | ---- | -------------------------------------------------------------- |
 | callId   | number                    | 是   | 呼叫Id。                                                       |
 | proceed  | boolean                   | 是   | 用户选择是否发送DTMF（Dual Tone Multi Frequency，双音多频）音。|
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                     |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回继续进行通话的结果。                    |
 
 **错误码：**
 
@@ -2906,7 +2906,7 @@ on\(type: 'callDetailsChange', callback: Callback\<CallAttributeOptions\>\): voi
 | 参数名   | 类型                                                    | 必填 | 说明                       |
 | -------- | ------------------------------------------------------- | ---- | -------------------------- |
 | type     | string                                                  | 是   | 通话时监听通话详情的变化，参数固定为'callDetailsChange'。 |
-| callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | 是  | 以回调函数的方式返回订阅callDetailsChange事件的结果。                 |
+| callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | 是  | 以回调函数的方式返回订阅callDetailsChange事件的结果。     |
 
 **错误码：**
 
@@ -2947,7 +2947,7 @@ on\(type: 'callEventChange', callback: Callback\<CallEventOptions\>\): void
 | 参数名   | 类型                                             | 必填 | 说明                       |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | type     | string                                           | 是   | 通话时监听通话事件的变化，参数固定为'callEventChange'。 |
-| callback | Callback<[CallEventOptions](#calleventoptions8)> | 是   | 以回调函数的方式返回订阅callEventChange事件的结果。                 |
+| callback | Callback<[CallEventOptions](#calleventoptions8)> | 是   | 以回调函数的方式返回订阅callEventChange事件的结果。     |
 
 **错误码：**
 
@@ -2988,7 +2988,7 @@ on\(type: 'callDisconnectedCause', callback: Callback\<DisconnectedDetails\>\): 
 | 参数名   | 类型                                                   | 必填 | 说明                       |
 | -------- | ------------------------------------------------------ | ---- | -------------------------- |
 | type     | string                                                 | 是   | 通话时监听断开连接的原因，参数固定为'callDisconnectedCause'。 |
-| callback | Callback<[DisconnectedDetails](#disconnecteddetails9)> | 是   | 以回调函数的方式返回订阅callDisconnectedCausee事件的结果。                 |
+| callback | Callback<[DisconnectedDetails](#disconnecteddetails9)> | 是   | 以回调函数的方式返回订阅callDisconnectedCausee事件的结果。    |
 
 **错误码：**
 
@@ -3318,7 +3318,7 @@ on\(type: 'postDialDelay', callback: Callback\<string\>\): void
 | 参数名   | 类型                                             | 必填 | 说明                                                |
 | -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
 | type     | string                                          | 是   | 拨号后延迟，参数固定为'postDialDelay'。               |
-| callback | Callback&lt;string&gt;                          | 是   | 回调函数。                                           |
+| callback | Callback&lt;string&gt;                          | 是   |以回调函数的方式返回订阅拨号后延迟事件的结果。         |
 
 **错误码：**
 
@@ -3358,8 +3358,8 @@ off\(type: 'postDialDelay', callback?: Callback\<string\>\): void
 
 | 参数名   | 类型                                                       | 必填  |                           说明                      |
 | -------- | ---------------------------------------------------------- | ---- | --------------------------------------------------- |
-| type     | string                                                     | 是   | 拨号后延迟，参数固定为'postDialDelay'。               |
-| callback | Callback&lt;string&gt;                                     | 否   | 回调函数。不填该参数将不会收到取消订阅的处理结果。       |
+| type     | string                                                     | 是   | 拨号后延迟，参数固定为'postDialDelay'。              |
+| callback | Callback&lt;string&gt;                                     | 否   | 回调函数。不填该参数将不会收到取消订阅的处理结果。    |
 
 **错误码：**
 
@@ -3678,7 +3678,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo, callback: AsyncCa
 | -------- | ------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | info     | [CallRestrictionInfo](#callrestrictioninfo8) | 是   | 呼叫限制信息。                         |
-| callback | AsyncCallback&lt;void&gt;                   | 是   | 以回调函数的方式返回设置呼叫限制状态的结果。                             |
+| callback | AsyncCallback&lt;void&gt;                   | 是   | 以回调函数的方式返回设置呼叫限制状态的结果。 |
 
 **错误码：**
 
@@ -3789,7 +3789,7 @@ setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: st
 | slotId          | number                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | oldPassword     | string                                      | 是   | 呼叫限制旧密码。                       |
 | newPassword     | string                                      | 是   | 呼叫限制新密码。                       |
-| callback        | AsyncCallback&lt;void&gt;                   | 是   | 以回调函数的方式返回修改呼叫限制密码的结果。                             |
+| callback        | AsyncCallback&lt;void&gt;                   | 是   | 以回调函数的方式返回修改呼叫限制密码的结果。    |
 
 **错误码：**
 
@@ -4745,7 +4745,7 @@ disableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明                                   |
 | -------- | ------------------------- | ---- | -------------------------------------- |
 | slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回禁用Ims开关的结果。                             |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回禁用Ims开关的结果。               |
 
 **错误码：**
 
@@ -5437,7 +5437,7 @@ removeMissedIncomingCallNotification\(callback: AsyncCallback\<void\>\): void
 
 | 参数名      | 类型                         | 必填 | 说明                                      |
 | ----------- | ---------------------------- | ---- | ---------------------------------------   |
-| callback    | AsyncCallback&lt;void&gt;    | 是   | 以回调函数的方式返回删除未接来电通知的结果。                                  |
+| callback    | AsyncCallback&lt;void&gt;    | 是   | 以回调函数的方式返回删除未接来电通知的结果。  |
 
 **错误码：**
 
