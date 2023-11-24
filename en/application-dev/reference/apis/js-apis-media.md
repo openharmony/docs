@@ -16,6 +16,10 @@ This subsystem offers the following audio and video services:
 
   The **AVRecorder** class has integrated [AudioRecorder](#audiorecorderdeprecated)<sup>6+</sup> and [VideoRecorder](#videorecorder9)<sup>9+</sup>. It is recommended.
 
+- Obtaining audio and video metadata ([AVMetadataExtractor](#avmetadataextractor11)<sup>11+</sup>).
+
+- Obtaining video thumbnails ([AVImageGenerator](#avimagegenerator11)<sup>11+</sup>)
+
 ## Modules to Import
 
 ```ts
@@ -198,11 +202,164 @@ media.createAVRecorder().then((recorder: media.AVRecorder) => {
 });
 ```
 
+## media.createAVMetadataExtractor<sup>11+</sup>
+
+createAVMetadataExtractor(callback: AsyncCallback\<AVMetadataExtractor>): void
+
+Creates an **AVMetadataExtractor** instance. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                                        |
+| -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[AVMetadataExtractor](#avmetadataextractor11)> | Yes  | Callback used to return the result. If the operation is successful, an **AVMetadataExtractor** instance is returned; otherwise, **null** is returned. The interface can be used to obtain audio and video metadata.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                      |
+| -------- | ------------------------------ |
+| 5400101  | No memory. Returned by callback. |
+
+**Example**
+
+```ts
+let avMetadataExtractor: media.AVMetadataExtractor;
+media.createAVMetadataExtractor((error: BusinessError, extractor: media.AVMetadataExtractor) => {
+  if (extractor != null) {
+    avMetadataExtractor = extractor;
+    console.info('createAVMetadataExtractor success');
+  } else {
+    console.error(`createAVMetadataExtractor fail, error message:${error.message}`);
+  }
+});
+```
+
+## media.createAVMetadataExtractor<sup>11+</sup>
+
+createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
+
+Creates an **AVMetadataExtractor** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**Return value**
+
+| Type                           | Description                                                        |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[AVMetadataExtractor](#avmetadataextractor11)> | Promise used to return the result. If the operation is successful, an **AVMetadataExtractor** instance is returned; otherwise, **null** is returned. The interface can be used to obtain audio and video metadata.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                     |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Returned by promise. |
+
+**Example**
+
+```ts
+let avMetadataExtractor: media.AVMetadataExtractor;
+media.createAVMetadataExtractor().then((extractor: media.AVMetadataExtractor) => {
+  if (extractor != null) {
+    avMetadataExtractor = extractor;
+    console.info('createAVMetadataExtractor success');
+  } else {
+    console.error('createAVMetadataExtractor fail');
+  }
+}).catch((error: BusinessError) => {
+  console.error(`AVMetadataExtractor catchCallback, error message:${error.message}`);
+});
+```
+
+## media.createAVImageGenerator<sup>11+</sup>
+
+createAVImageGenerator(callback: AsyncCallback\<AVImageGenerator>): void
+
+Creates an **AVImageGenerator** instance. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                                        |
+| -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[AVImageGenerator](#avimagegenerator11)> | Yes  | Callback used to return the result. If the operation is successful, an **AVImageGenerator** instance is returned; otherwise, **null** is returned. The interface can be used to obtain a video thumbnail.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                      |
+| -------- | ------------------------------ |
+| 5400101  | No memory. Returned by callback. |
+
+**Example**
+
+```ts
+let avImageGenerator: media.AVImageGenerator;
+media.createAVImageGenerator((error: BusinessError, generator: media.AVImageGenerator) => {
+  if (generator != null) {
+    avImageGenerator = generator;
+    console.info('createAVImageGenerator success');
+  } else {
+    console.error(`createAVImageGenerator fail, error message:${error.message}`);
+  }
+});
+```
+
+## media.createAVImageGenerator<sup>11+</sup>
+
+createAVImageGenerator(): Promise\<AVImageGenerator>
+
+Creates an **AVImageGenerator** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type                           | Description                                                        |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[AVImageGenerator](#avimagegenerator11)> | Promise used to return the result. If the operation is successful, an **AVImageGenerator** instance is returned; otherwise, **null** is returned. The interface can be used to obtain a video thumbnail.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                     |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Returned by promise. |
+
+**Example**
+
+```ts
+let avImageGenerator: media.AVImageGenerator;
+media.createAVImageGenerator().then((generator: media.AVImageGenerator) => {
+  if (generator != null) {
+    avImageGenerator = generator;
+    console.info('createAVImageGenerator success');
+  } else {
+    console.error('createAVImageGenerator fail');
+  }
+}).catch((error: BusinessError) => {
+  console.error(`AVImageGenerator catchCallback, error message:${error.message}`);
+});
+```
+
 ## media.createVideoRecorder<sup>9+</sup>
 
 createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
 
 Creates a **VideoRecorder** instance. This API uses an asynchronous callback to return the result.
+
 Only one **VideoRecorder** instance can be created per device.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
@@ -243,6 +400,7 @@ media.createVideoRecorder((error: BusinessError, video: media.VideoRecorder) => 
 createVideoRecorder(): Promise\<VideoRecorder>
 
 Creates a **VideoRecorder** instance. This API uses a promise to return the result.
+
 Only one **VideoRecorder** instance can be created per device.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
@@ -2705,6 +2863,496 @@ Describes the geographical location of the recorded video.
 | --------- | ------ | ---- | ---------------- |
 | latitude  | number | Yes  | Latitude of the geographical location.|
 | longitude | number | Yes  | Longitude of the geographical location.|
+
+## AVMetadataExtractor<sup>11+</sup>
+
+Provides APIs to obtain metadata from media resources. Before calling any API of **AVMetadataExtractor**, you must use [createAVMetadataExtractor()](#mediacreateavmetadataextractor11) to create an **AVMetadataExtractor** instance.
+
+For details about the demo for obtaining audio or video metadata, see [Obtaining Audio/Video Metadata](../../media/avmetadataextractor.md).
+
+### Attributes
+
+**System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+| Name                                               | Type                                                        | Readable| Writable| Description                                                        |
+| --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**. |
+| dataSrc<sup>11+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | Yes  | Yes  | Streaming media resource descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br>When an application obtains a media file from the remote, you can set **dataSrc** to obtain the metadata before the application finishes the downloading. |
+
+### fetchMetadata<sup>11+</sup>
+
+fetchMetadata(callback: AsyncCallback\<AVMetadata>): void
+
+Obtains media metadata. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**Parameters**
+
+| Name  | Type                                        | Mandatory| Description                               |
+| -------- | -------------------------------------------- | ---- | ----------------------------------- |
+| callback | AsyncCallback\<[AVMetadata](#avmetadata11)>       | Yes  | Callback used to return the result, which is an **AVMetadata** instance.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Returned by callback. |
+| 5400106  | Unsupported format. Returned by callback.  |
+
+**Example**
+
+```ts
+// Obtain the metadata.
+avMetadataExtractor.fetchMetadata((error, metadata) => {
+  if (error) {
+    console.error(TAG, `fetchMetadata callback failed, err = ${JSON.stringify(error)}`)
+    return
+  }
+  console.info(TAG, `fetchMetadata callback success, genre: ${metadata.genre}`)
+})
+```
+
+### fetchMetadata<sup>11+</sup>
+
+fetchMetadata(): Promise\<AVMetadata>
+
+Obtains media metadata. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**Return value**
+
+| Type          | Description                                    |
+| -------------- | ---------------------------------------- |
+| Promise\<[AVMetadata](#avmetadata11)>  | Promise used to return the result, which is an **AVMetadata** instance.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Returned by promise. |
+| 5400106  | Unsupported format. Returned by promise.  |
+
+**Example**
+
+```ts
+// Obtain the metadata.
+avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
+  console.info(TAG, `fetchMetadata callback success, genre: ${metadata.genre}`)
+}).catch((error: BusinessError) => {
+  console.error(`fetchMetadata catchCallback, error message:${error.message}`);
+});
+```
+
+### fetchAlbumCover<sup>11+</sup>
+
+fetchAlbumCover(callback: AsyncCallback\<image.PixelMap>): void
+
+Obtains the cover of the audio album. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**Parameters**
+
+| Name  | Type                                        | Mandatory| Description                               |
+| -------- | -------------------------------------------- | ---- | ----------------------------------- |
+| callback | AsyncCallback\<[image.PixelMap](js-apis-image.md#pixelmap7)>    | Yes  | Callback used to return the album cover.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Returned by callback. |
+| 5400106  | Unsupported format. Returned by callback.  |
+
+**Example**
+
+```ts
+// Obtain the album cover.
+avMetadataExtractor.fetchAlbumCover((error, pixelMap) => {
+  if (err) {
+    console.error(TAG, `fetchAlbumCover callback failed, error = ${JSON.stringify(error)}`)
+    return
+  }
+  this.pixelMap = pixelMap
+}
+```
+
+### fetchAlbumCover<sup>11+</sup>
+
+fetchAlbumCover(): Promise\<image.PixelMap>
+
+Obtains the cover of the audio album. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**Return value**
+
+| Type          | Description                                    |
+| -------------- | ---------------------------------------- |
+| Promise\<[image.PixelMap](js-apis-image.md#pixelmap7)> |  Promise used to return the album cover.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Returned by promise. |
+| 5400106  | Unsupported format. Returned by promise.  |
+
+**Example**
+
+```ts
+// Obtain the album cover.
+avMetadataExtractor.fetchAlbumCover().then((pixelMap: image.PixelMap) => {
+  this.pixelMap = pixelMap
+}).catch((error: BusinessError) => {
+  console.error(`fetchAlbumCover catchCallback, error message:${error.message}`);
+});
+```
+
+### release<sup>11+</sup>
+
+release(callback: AsyncCallback<void>): void
+
+Releases this **AVMetadataExtractor** instance. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**Parameters**
+
+| Name  | Type                                        | Mandatory| Description                               |
+| -------- | -------------------------------------------- | ---- | ----------------------------------- |
+| callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Returned by callback. |
+
+**Example**
+
+```ts
+// Release the instance.
+avMetadataExtractor.release((error) => {
+  if (error) {
+    console.error(TAG, `release failed, err = ${JSON.stringify(error)}`)
+    return
+  }
+  console.info(TAG, `release success.`)
+})
+```
+
+### release<sup>11+</sup>
+
+release(): Promise<void>
+
+Releases this **AVMetadataExtractor** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**Return value**
+
+| Type          | Description                                    |
+| -------------- | ---------------------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Returned by promise. |
+
+**Example**
+
+```ts
+// Release the instance.
+avMetadataExtractor.release().then(() => {
+  console.info(TAG, `release success.`)
+}).catch((error: BusinessError) => {
+  console.error(`release catchCallback, error message:${error.message}`);
+});
+```
+
+## AVMetadata<sup>11+</sup>
+
+Defines the audio and video metadata.
+
+**System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+| Name  | Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| album     | string | No  | Title of the album.    |
+| albumArtist | string | No  | Artist of the album.|
+| artist | string | No  | Artist of the media asset.|
+| author | string | No  | Author of the media asset.|
+| dateTime | string | No  | Time when the media asset is created.|
+| dateTimeFormat | string | No  | Time when the media asset is created. The value is in the YYYY-MM-DD HH:mm:ss format.|
+| composer | string | No  | Composer of the media asset.|
+| duration | string | No  | Duration of the media asset.|
+| genre | string | No  | Type or genre of the media asset.|
+| hasAudio | string | No  | Whether the media asset contains audio.|
+| hasVideo | string | No  | Whether the media asset contains a video.|
+| mimeType | string | No  | MIME type of the media asset.|
+| trackCount | string | No  | Number of tracks of the media asset.|
+| sampleRate | string | No  | Audio sampling rate, in Hz.|
+| title | string | No  | Title of the media asset.|
+| videoHeight | string | No  | Video height, in pixels.|
+| videoWidth | string | No  | Video width, in pixels.|
+| videoOrientation | string | No  | Video rotation direction, in degrees.|
+
+## AVImageGenerator<sup>11+</sup>
+
+Provides APIs to obtain a thumbnail from a video. Before calling any API of **AVImageGenerator**, you must use [createAVImageGenerator()](#mediacreateavimagegenerator11) to create an **AVImageGenerator** instance.
+
+For details about the demo for obtaining video thumbnails, see [Obtaining Video Thumbnails](../../media/avimagegenerator.md).
+
+### Attributes
+
+**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
+
+**System API**: This is a system API.
+
+| Name                                               | Type                                                        | Readable| Writable| Description                                                        |
+| --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**. |
+
+### fetchFrameByTime<sup>11+</sup>
+
+fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapParams, callback: AsyncCallback\<image.PixelMap>): void
+
+Obtains a video thumbnail. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                        | Mandatory| Description                               |
+| -------- | -------------------------------------------- | ---- | ----------------------------------- |
+| timeUs | number                   | Yes  | Time of the video for which a thumbnail is to be obtained, in μs.|
+| options | [AVImageQueryOptions](#avimagequeryoptions11)     | Yes  | Relationship between the time passed in and the video frame.|
+| param | [PixelMapParams](#pixelmapparams11)      | Yes  | Format parameters of the thumbnail to be obtained.|
+| callback | AsyncCallback\<[image.PixelMap](js-apis-image.md#pixelmap7)>   | Yes  | Callback used to return the video thumbnail.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Returned by callback. |
+| 5400106  | Unsupported format. Returned by callback.  |
+
+**Example**
+
+```ts
+// Initialize input parameters.
+let timeUs: number = 0
+
+let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC
+
+let param: media.PixelMapParams = {
+  width : 300,
+  height : 300,
+  colorFormat : media.PixelFormat.RGB_565
+}
+
+// Obtain the thumbnail.
+avImageGenerator.fetchFrameByTime(timeUs, queryOption, param, (error, pixelMap) => {
+  if (error) {
+    console.error(TAG, `fetchFrameByTime callback failed, err = ${JSON.stringify(error)}`)
+    return
+  }
+  this.pixelMap = pixelMap
+})
+```
+
+### fetchFrameByTime<sup>11+</sup>
+
+fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapParams): Promise<image.PixelMap>
+
+Obtains a video thumbnail. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                        | Mandatory| Description                               |
+| -------- | -------------------------------------------- | ---- | ----------------------------------- |
+| timeUs | number                   | Yes  | Time of the video for which a thumbnail is to be obtained, in μs.|
+| options | [AVImageQueryOptions](#avimagequeryoptions11)     | Yes  | Relationship between the time passed in and the video frame.|
+| param | [PixelMapParams](#pixelmapparams11)      | Yes  | Format parameters of the thumbnail to be obtained.|
+
+**Return value**
+
+| Type          | Description                                    |
+| -------------- | ---------------------------------------- |
+| Promise\<[image.PixelMap](js-apis-image.md#pixelmap7)> | Promise used to return the video thumbnail.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Returned by promise. |
+| 5400106  | Unsupported format. Returned by promise.  |
+
+**Example**
+
+```ts
+// Initialize input parameters.
+let timeUs: number = 0
+
+let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC
+
+let param: media.PixelMapParams = {
+  width : 300,
+  height : 300,
+  colorFormat : media.PixelFormat.RGB_565
+}
+
+// Obtain the thumbnail.
+avImageGenerator.fetchFrameByTime(timeUs, queryOption, param).then((pixelMap: image.PixelMap) => {
+  this.pixelMap = pixelMap
+}).catch((error: BusinessError) => {
+  console.error(`fetchFrameByTime catchCallback, error message:${error.message}`);
+});
+```
+
+### release<sup>11+</sup>
+
+release(callback: AsyncCallback<void>): void
+
+Releases this **AVImageGenerator** instance. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                        | Mandatory| Description                               |
+| -------- | -------------------------------------------- | ---- | ----------------------------------- |
+| callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Returned by callback. |
+
+**Example**
+
+```ts
+// Release the instance.
+avImageGenerator.release((error) => {
+  if (error) {
+    console.error(TAG, `release failed, err = ${JSON.stringify(error)}`)
+    return
+  }
+  console.info(TAG, `release success.`)
+})
+```
+
+### release<sup>11+</sup>
+
+release(): Promise<void>
+
+Releases this **AVImageGenerator** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type          | Description                                    |
+| -------------- | ---------------------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Returned by promise. |
+
+**Example**
+
+```ts
+// Release the instance.
+avImageGenerator.release().then(() => {
+  console.info(TAG, `release success.`)
+}).catch((error: BusinessError) => {
+  console.error(`release catchCallback, error message:${error.message}`);
+});
+```
+
+## AVImageQueryOptions<sup>11+</sup>
+
+Enumerates the relationship between the video frame and the time at which the video thumbnail is obtained.
+
+The time passed in for obtaining the thumbnail may be different from the time of the video frame for which the thumbnail is actually obtained. Therefore, you need to specify their relationship.
+
+**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
+
+**System API**: This is a system API.
+
+| Name                    | Value             | Description                                                        |
+| ------------------------ | --------------- | ------------------------------------------------------------ |
+| AV_IMAGE_QUERY_NEXT_SYNC       | 0   | The key frame at or next to the specified time is selected.                      |
+| AV_IMAGE_QUERY_PREVIOUS_SYNC        | 1    | The key frame at or prior to the specified time is selected.|
+| AV_IMAGE_QUERY_CLOSEST_SYNC        | 2    | The key frame closest to the specified time is selected.                |
+| AV_IMAGE_QUERY_CLOSEST          | 3      | The frame (not necessarily a key frame) closest to the specified time is selected.    |
+
+## PixelMapParams<sup>11+</sup>
+
+Defines the format parameters of the video thumbnail to be obtained.
+
+**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
+
+**System API**: This is a system API.
+
+| Name    | Type  |  Readable  |   Writable   |  Description                  |
+| -------- | ------ |   ------| ------ | ---------------------- |
+| width     | number |  Yes  |  Yes  |  Width of the thumbnail.        |
+| height | number |  Yes  |  Yes  | Height of the thumbnail.|
+| colorFormat  | [PixelFormat](#pixelformat11) |  Yes  |  Yes  | Color format of the thumbnail.        |
+
+## PixelFormat<sup>11+</sup>
+
+Enumerates the color formats supported by the video thumbnail.
+
+**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
+
+**System API**: This is a system API.
+
+| Name                    | Value             | Description                                                        |
+| ------------------------ | --------------- | ------------------------------------------------------------ |
+| RGB_565       | 2   | RGB_565.                      |
+| RGBA_8888        | 3    | RGBA_8888.|
+| RGB_888        | 5    | RGB_888.                |
 
 ## VideoRecorder<sup>9+</sup>
 
