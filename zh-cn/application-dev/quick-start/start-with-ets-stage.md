@@ -3,7 +3,7 @@
 
 > **说明：**
 >
-> 为确保运行效果，本文以使用**DevEco Studio 4.0 Release**版本为例，点击[此处](../../release-notes/OpenHarmony-v4.0-beta2.md#配套关系)获取下载链接。
+> 为确保运行效果，本文以使用**DevEco Studio 4.0 Release**版本为例，点击[此处](../../release-notes/OpenHarmony-v4.0-release.md#配套关系)获取下载链接。
 
 ## 创建ArkTS工程
 
@@ -192,6 +192,8 @@
 ## 实现页面间的跳转
 
 页面间的导航可以通过[页面路由router](../reference/apis/js-apis-router.md)来实现。页面路由router根据页面url找到目标页面，从而实现跳转。使用页面路由请导入router模块。
+
+如果需要实现更好的转场动效等，推荐使用[Navigation](arkts-navigation-navigation.md)。
 
 1. 第一个页面跳转到第二个页面。
 
