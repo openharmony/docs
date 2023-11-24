@@ -129,7 +129,7 @@ getDLPPermissionInfo(): Promise&lt;DLPPermissionInfo&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 19100001 | Invalid parameter value. |
-| 19100006 | No permission to invoke this API, which is for DLP sandbox application. |
+| 19100006 | This API can only be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **示例：**
@@ -171,7 +171,7 @@ getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100006 | No permission to invoke this API, which is for DLP sandbox application. |
+| 19100006 | This API can only be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **示例：**
@@ -299,7 +299,7 @@ on(type: 'openDLPFile', listener: Callback&lt;AccessedDLPFileInfo&gt;): void
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **示例：**
@@ -339,7 +339,7 @@ off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **示例：**
@@ -545,7 +545,7 @@ setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100006 | No permission to invoke this API, which is for DLP sandbox application. |
+| 19100006 | This API can only be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **示例：**
@@ -588,7 +588,7 @@ setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100006 | No permission to invoke this API, which is for DLP sandbox application. |
+| 19100006 | This API can only be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **示例：**
@@ -728,7 +728,7 @@ getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandb
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **示例：**
@@ -768,7 +768,7 @@ getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **示例：**
@@ -812,7 +812,7 @@ getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **示例：**
@@ -855,7 +855,7 @@ getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **示例：**
@@ -894,7 +894,7 @@ getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **示例：**
@@ -2441,6 +2441,126 @@ try {
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
   fs.closeSync(file);
+}
+```
+
+## dlpPermission.setSandboxAppConfig<sup>11+<sup>
+setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;
+
+设置沙箱应用配置信息，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| configInfo | string | 是 | 沙箱应用配置信息。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
+| 19100011 | System service exception. |
+| 19100018 | Not authorized application. |
+
+**示例：**
+
+```ts
+import dlpPermission from '@ohos.dlpPermission';
+import { BusinessError } from '@ohos.base';
+
+try {
+  dlpPermission.setSandboxAppConfig('configInfo'); // 设置沙箱应用配置信息
+} catch (err) {
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+}
+```
+
+## dlpPermission.cleanSandboxAppConfig<sup>11+<sup>
+cleanSandboxAppConfig(): Promise&lt;void&gt;
+
+清理沙箱应用配置信息，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
+| 19100011 | System service exception. |
+| 19100018 | Not authorized application. |
+
+**示例：**
+
+```ts
+import dlpPermission from '@ohos.dlpPermission';
+import { BusinessError } from '@ohos.base';
+
+try {
+  dlpPermission.cleanSandboxAppConfig(); // 清理沙箱应用配置信息
+} catch (err) {
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+}
+```
+
+## dlpPermission.getSandboxAppConfig<sup>11+<sup>
+getSandboxAppConfig(): Promise&lt;string&gt;
+
+获取沙箱应用配置信息，使用Promise方式异步返回结果
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;string&gt; | Promise对象。返回沙箱应用配置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
+| 19100018 | Not authorized application. |
+
+**示例：**
+
+```ts
+import dlpPermission from '@ohos.dlpPermission';
+import { BusinessError } from '@ohos.base';
+
+try {
+  dlpPermission.getSandboxAppConfig().then((res) => {
+    console.info('res', JSON.stringify(res));
+  }); // 获取沙箱应用配置信息
+} catch (err) {
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
 }
 ```
 
