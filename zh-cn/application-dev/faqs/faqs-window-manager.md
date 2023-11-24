@@ -88,7 +88,7 @@ try {
     });} catch (exception) {
     console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
 }
-//2.窗口实例使用setPreferredOrientation方法，设置窗口的显示方向，PROTRAIT为固定竖屏，其他方向可参照参考链接
+//2.窗口实例使用setPreferredOrientation方法，设置窗口的显示方向，PORTRAIT为固定竖屏，其他方向可参照参考链接
 let orientation = window.Orientation.PORTRAIT;
 if (windowClass) {
     windowClass.setPreferredOrientation(orientation, (err) => {
