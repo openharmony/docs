@@ -222,9 +222,9 @@ struct TreeViewDemo {
   @State numbers: string[] = ['one', 'two', 'three', 'four', 'five', 'six'];
 
   aboutToDisappear(): void {
-    this.treeListener.off(TreeListenType.NODE_CLICK, null);
-    this.treeListener.off(TreeListenType.NODE_ADD, null);
-    this.treeListener.off(TreeListenType.NODE_DELETE, null);
+    this.treeListener.off(TreeListenType.NODE_CLICK, undefined);
+    this.treeListener.off(TreeListenType.NODE_ADD, undefined);
+    this.treeListener.off(TreeListenType.NODE_DELETE, undefined);
   }
 
   aboutToAppear(): void {
