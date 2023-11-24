@@ -201,9 +201,8 @@ async function start() {
       // buf indicates the audio data to be written to the buffer. Before calling AudioRenderer.write(), you can preprocess the audio data for personalized playback. The AudioRenderer reads the audio data written to the buffer for rendering.
       
       let writeSize: number = await (renderModel as audio.AudioRenderer).write(buf);
-        if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RELEASED) { // The rendering stops if the AudioRenderer is in the released state.
+        if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RELEASED) { // Release the instance if the AudioRenderer is in the released state.
         fs.close(file);
-        await (renderModel as audio.AudioRenderer).stop();
       }
       if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RUNNING) {
         if (i === len - 1) { // The rendering stops if the file finishes reading.

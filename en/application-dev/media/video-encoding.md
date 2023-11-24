@@ -54,6 +54,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
    #include <multimedia/player_framework/native_avcodec_base.h>
    #include <multimedia/player_framework/native_avformat.h>
    ```
+
 2. Create an encoder instance.
 
    You can create an encoder by name or MIME type.
@@ -69,6 +70,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
    const char *codecName = OH_AVCapability_GetName(capability);
    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(codecName);
    ```
+
 3. Call **OH_VideoEncoder_SetCallback()** to set callback functions.
 
    > **NOTE**
@@ -108,8 +110,8 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
        // The index of the input frame buffer is sent to InIndexQueue.
        // The input frame data (specified by mem) is sent to InBufferQueue.
        // Perform data processing. For details, see
-       // 7. Write the stream to encode.
-       // 8. Notify the encoder of EOS.
+       // - Write the stream to encode.
+       // - Notify the encoder of EOS.
    }
 
    // Implement the OH_AVCodecOnNewOutputData callback function.
@@ -121,7 +123,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
        // The encoded frame data (specified by mem) is sent to outBufferQueue.
        // The data format of the encoded frame is sent to outAttrQueue.
        // Perform data processing. For details, see
-       // 9. Output the encoded frames.
+       // - Output the encoded frames.
    }
 
    // Call OH_VideoEncoder_SetCallback to set the callback functions.
@@ -131,6 +133,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
        // Exception handling.
    }
    ```
+
 4. Call **OH_VideoEncoder_Configure()** to configure the encoder.
 
    Currently, the following options must be configured for all supported formats: video frame width, video frame height, and video pixel format. In the code snippet below, the following data is used:
@@ -157,6 +160,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
        // Exception handling.
    }
    ```
+
 5. Call **OH_VideoEncoder_Prepare()** to prepare internal resources for the encoder.
 
     
@@ -167,6 +171,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
        // Exception handling.
    }
    ```
+
 6. Call **OH_VideoEncoder_Start()** to start the encoder.
 
    As soon as the encoder starts, the callback functions will be triggered to respond to events. Therefore, you must configure the input file and output file first.
@@ -185,6 +190,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
        // Exception handling.
    }
    ```
+
 7. (Optional) Dynamically configure the encoder instance.
 
    ```c++
@@ -198,7 +204,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
    // Configure the transfer features.
    int32_t transfer = static_cast<int32_t>(OH_TransferCharacteristic::TRANSFER_CHARACTERISTIC_BT709);
    // Configure the maximum matrix coefficient.
-   int32_t matrix = static_cast<int32_t>(OH_MaxtrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
+   int32_t matrix = static_cast<int32_t>(OH_MatrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
    // Configure the encoding profile.
    int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_BASELINE);
    // Configure the encoding bit rate mode.
@@ -227,17 +233,17 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
        // Exception handling.
    }
    ```
+
 8. Call **OH_VideoEncoder_PushInputData()** to push the stream to the input queue for encoding.
 
    In the code snippet below, the following parameters are used:
 
-   - **GetOneFrameSize()**: function for calculating the frame length of the YUV file. For details about the calculation process, see related YUV documents.
    - **mem**: parameter passed in by the callback function **OnNeedInputData**. You can call **OH_AVMemory_GetAddr** to obtain the pointer to the shared memory address.
    - **index**: index of the data queue, which is passed in by the callback function **OnNeedInputData**.
 
    ```c++
    // Process the file stream and obtain the frame length, and then write the data to encode to the memory of the specified index.
-   int32_t frameSize = GetOneFrameSize();
+   int32_t frameSize = OH_MD_KEY_WIDTH * OH_MD_KEY_HEIGHT * 3 / 2; // Formula for calculating the data size of each frame in YUV420P pixel format.
    inputFile->read(reinterpret_cast<char *>(OH_AVMemory_GetAddr(mem)), frameSize);
    // Configure the buffer information.
    OH_AVCodecBufferAttr info;
@@ -251,6 +257,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
        // Exception handling.
    }
    ```
+
 9. Notify the encoder of EOS.
 
    In the code snippet below, **index** specifies the index of the data queue, which is passed in by the callback function **OnNeedInputData**. The API **OH_VideoEncoder_PushInputData** is used to notify the encoder of EOS. This API is also used in step 7 to push the stream to the input queue for encoding. Therefore, in the current step, you must pass in the **AVCODEC_BUFFER_FLAGS_EOS** flag.
@@ -261,12 +268,13 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
    info.size = 0;
    info.offset = 0;
    info.pts = 0;
-   info.flags = AVCODEC_BUFFER_FLAG_EOS;
+   info.flags = AVCODEC_BUFFER_FLAGS_EOS;
    ret = OH_VideoEncoder_PushInputData(videoEnc, index, info);
    if (ret != AV_ERR_OK) {
        // Exception handling.
    }
    ```
+
 10. Call **OH_VideoEncoder_FreeOutputData()** to output the encoded frames.
 
     In the code snippet below, the following parameters are used:
@@ -284,6 +292,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
         // Exception handling.
     }
     ```
+
 11. (Optional) Call **OH_VideoEncoder_Flush()** to refresh the encoder.
 
     After **OH_VideoEncoder_Flush()** is called, the encoder remains in the running state, but the current queue is cleared and the buffer storing the encoded data is freed.
@@ -303,6 +312,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
         // Exception handling.
     }
     ```
+
 12. (Optional) Call **OH_VideoEncoder_Reset()** to reset the encoder.
 
     After **OH_VideoEncoder_Reset()** is called, the encoder returns to the initialized state. To continue encoding, you must call **OH_VideoEncoder_Configure()** and then **OH_VideoEncoder_Start()**.
@@ -320,7 +330,8 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
         // Exception handling.
     }
     ```
-13. Call **OH_VideoEncoder_Stop()** to stop the encoder.
+
+13. (Optional) Call **OH_VideoEncoder_Stop()** to stop the encoder.
 
     ```c++
     int32_t ret;
@@ -330,6 +341,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
         // Exception handling.
     }
     ```
+
 14. Call **OH_VideoEncoder_Destroy()** to destroy the encoder instance and release resources.
 
     > **NOTE**
@@ -360,6 +372,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
    #include <multimedia/player_framework/native_avformat.h>
    #include <multimedia/player_framework/native_avcodec_base.h> 
    ```
+
 2. Create an encoder instance.
 
    You can create an encoder by name or MIME type.
@@ -375,6 +388,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
    const char *codecName = OH_AVCapability_GetName(capability);
    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(codecName);
    ```
+
 3. Call **OH_VideoEncoder_SetCallback()** to set callback functions.
 
    > **NOTE**
@@ -424,7 +438,7 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
        // The encoded frame data (specified by mem) is sent to outBufferQueue.
        // The data format of the encoded frame is sent to outAttrQueue.
        // Perform data processing. For details, see
-       // 10. Output the encoded frames.
+       // - Output the encoded frames.
    }
 
    // Call OH_VideoEncoder_SetCallback to set the callback functions.
@@ -434,21 +448,19 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
        // Exception handling.
    }
    ```
+
 4. Call **OH_VideoEncoder_Configure()** to configure the encoder.
 
    Currently, the following options must be configured for all supported formats: video frame width, video frame height, and video pixel format. In the code snippet below, the following data is used:
 
    - **DEFAULT_WIDTH**: 320 pixels
    - **DEFAULT_HEIGHT**: 240 pixels
-   - **DEFAULT_PIXELFORMAT**: **AV_PIXEL_FORMAT_YUVI420** (the pixel format of the YUV file is YUV420P)
 
    ```c++
    // (Mandatory) Configure the video frame width.
    constexpr uint32_t DEFAULT_WIDTH = 320; 
    // (Mandatory) Configure the video frame height.
    constexpr uint32_t DEFAULT_HEIGHT = 240;
-   // (Mandatory) Configure the video pixel format.
-   constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_YUVI420;
    OH_AVFormat *format = OH_AVFormat_Create();
    // Set the format.
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
@@ -460,14 +472,18 @@ Currently, the **VideoEncoder** module supports only data transferring in asynch
        // Exception handling.
    }
    ```
-5. Call **OH_VideoEncoder_Prepare()** to prepare internal resources for the encoder. 
+
+5. Call **OH_VideoEncoder_Prepare()** to prepare internal resources for the encoder.
+
+    
 
    ```c++
-ret = OH_VideoEncoder_Prepare(videoEnc);
+   ret = OH_VideoEncoder_Prepare(videoEnc);
    if (ret != AV_ERR_OK) {
        // Exception handling.
    }
    ```
+
 6. Obtain a surface.
 
    Obtain the **OHNativeWindow** input in surface input mode. The surface must be obtained before the encoder starts.
@@ -483,7 +499,7 @@ ret = OH_VideoEncoder_Prepare(videoEnc);
    // Configure the surface of the input data through the OHNativeWindow* variable type.
    ```
 
-   For details about how to use the **OHNativeWindow*** variable type, see [NativeWindow](../reference/native-apis/_native_window.md).
+   For details about how to use the **OHNativeWindow*** variable type, see [OHNativeWindow](../reference/native-apis/_native_window.md#ohnativewindow).
 7. Call **OH_VideoEncoder_Start()** to start the encoder.
 
    ```c++
@@ -494,6 +510,7 @@ ret = OH_VideoEncoder_Prepare(videoEnc);
        // Exception handling.
    }
    ```
+
 8. (Optional) Dynamically configure the encoder instance.
 
    ```c++
@@ -507,7 +524,7 @@ ret = OH_VideoEncoder_Prepare(videoEnc);
    // Configure the transfer features.
    int32_t transfer = static_cast<int32_t>(OH_TransferCharacteristic::TRANSFER_CHARACTERISTIC_BT709);
    // Configure the maximum matrix coefficient.
-   int32_t matrix = static_cast<int32_t>(OH_MaxtrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
+   int32_t matrix = static_cast<int32_t>(OH_MatrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
    // Configure the encoding profile.
    int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_BASELINE);
    // Configure the encoding bit rate mode.
@@ -536,6 +553,7 @@ ret = OH_VideoEncoder_Prepare(videoEnc);
        // Exception handling.
    }
    ```
+
 9. Write the stream to encode.
 
    In step 5, you have configured the **OHNativeWindow*** variable type returned by **OH_VideoEncoder_GetSurface**. The data required for encoding is continuously input by the surface. Therefore, you do not need to process the **OnNeedInputData** callback function or use **OH_VideoEncoder_PushInputData** to input data.
@@ -550,6 +568,7 @@ ret = OH_VideoEncoder_Prepare(videoEnc);
         // Exception handling.
     }
     ```
+
 11. Call **OH_VideoEncoder_FreeOutputData()** to output the encoded frames.
 
     In the code snippet below, the following parameters are used:
