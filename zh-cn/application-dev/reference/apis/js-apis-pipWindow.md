@@ -20,15 +20,15 @@ import pipWindow from '@ohos.PiPWindow';
 
 isPiPEnabled(): boolean
 
-用于判断当前系统是否使能画中画功能。
+用于判断当前系统是否开启画中画功能。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
 
-| 类型       | 说明                                   |
-|----------|--------------------------------------|
-| boolean  | 当前系统是否使能画中画功能。true表示使能，false则表示未使能。  |
+| 类型       | 说明                                  |
+|----------|-------------------------------------|
+| boolean  | 当前系统是否开启画中画功能。true表示开启，false则表示未开启。 |
 
 **示例：**
 
@@ -404,9 +404,9 @@ setAutoStartEnabled(enable: boolean): void
 
 **参数：**
 
-| 参数名      | 类型        | 必填    | 说明                     |
-|----------|-----------|-------|------------------------|
-| enable   | boolean   | 是     | true表示自动拉起使能，否则为false。 |
+| 参数名      | 类型        | 必填    | 说明                      |
+|----------|-----------|-------|-------------------------|
+| enable   | boolean   | 是     | true表示设置为自动拉起，否则为false。 |
 
 ```ts
 pipController.setAutoStartEnabled(enable);
