@@ -89,7 +89,7 @@ Pushes the navigation destination page specified by **name** to the navigation s
 | Name   | Type     | Mandatory  | Description                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | Yes   | Name of the navigation destination page.  |
-| param | unknown | Yes   | Parameter information of the navigation destination page.|
+| param | unknown | Yes   | Detailed parameters of the navigation destination page.|
 
 ### pop<sup>10+</sup>
 
@@ -126,7 +126,7 @@ Returns the navigation stack to the first navigation destination page that match
 
 popToIndex(index: number): void
 
-Returns the navigation stack to the navigation destination page that matches the value of **index**.
+Returns the navigation stack to the page specified by **index**.
 
 **Parameters**
 
@@ -262,15 +262,15 @@ constructor(name: string, param: unknown)
 | Name   | Type     | Mandatory  | Description                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | Yes   | Name of the navigation destination page.  |
-| param | unknown | No   | Parameter information of the navigation destination page.|
+| param | unknown | No   | Detailed parameters of the navigation destination page.|
 
 ## NavigationMenuItem
 
 | Name    | Type           | Mandatory  | Description             |
 | ------ | ------------- | ---- | --------------- |
-| value  | string        | Yes   | Text of a menu item.  |
-| icon   | string        | No   | Icon path of a menu item.|
-| action | () =&gt; void | No   | Callback invoked when a menu item is selected.  |
+| value  | string        | Yes   | Text of the menu item. Its visibility varies by the API version.<br>API version 9: visible.<br>API version 10: invisible. |
+| icon   | string        | No   | Icon path of the menu item.|
+| action | () =&gt; void | No   | Callback invoked when the menu item is selected.  |
 
 ## object
 
