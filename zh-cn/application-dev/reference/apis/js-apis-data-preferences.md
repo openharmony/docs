@@ -2194,4 +2194,4 @@ try {
 | Array\<number>  | 表示值类型为数字类型的数组。      |
 | Array\<boolean> | 表示值类型为布尔类型的数组。      |
 | Array\<string>  | 表示值类型为字符串类型的数组。    |
-| Uint8Array11+      | 表示值类型为8位无符号整型的数组。 |
+| Uint8Array<sup>11+</sup>      | 表示值类型为8位无符号整型的数组。 |
