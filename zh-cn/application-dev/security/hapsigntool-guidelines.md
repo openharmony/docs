@@ -190,10 +190,10 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -outFil       # 验证结果文件（包含验证结果和profile内容），json格式，可选项；如果不填，则直接输出到控制台
      ```
 
-11. hap应用包签名。
+11. hap应用包和调试工具签名。
 
       ```
-      sign-app : hap应用包签名 
+      sign-app : hap应用包和调试工具签名 
           ├── -mode          # 签名模式，必填项，包括localSign，remoteSign，remoteResign
           ├── -keyAlias      # 密钥别名，必填项
           ├──-keyPwd         # 密钥口令，可选项
@@ -209,10 +209,10 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
           ├── -signcode      # 是否启用代码签名，1表示开启代码签名，0表示关闭代码签名，默认为1。可选项
       ```
 
-12. hap应用包文件验签。
+12. hap应用包和调试工具文件验签。
 
       ```
-      verify-app : hap应用包文件验签
+      verify-app : hap应用包和调试工具文件验签
           ├── -inFile          # 已签名的应用包文件，hap格式或bin格式，必填项
           ├── -outCertchain    # 签名的证书链文件，必填项
           ├── -outProfile      # 应用包中的profile文件，必填项
