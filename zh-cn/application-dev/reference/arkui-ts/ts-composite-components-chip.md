@@ -2,7 +2,7 @@
 
 操作块，用于搜索框历史记录或者邮件发送列表等场景。
 
-> 说明：
+> **说明：**
 >
 > 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
@@ -38,13 +38,15 @@ ChipOptions定义chip的样式及具体式样参数。
 | label           | [LabelOptions](#labeloptions)           | 是   | 文本属性。                                                   |
 | suffixIcon      | [SuffixIconOptions](#suffixiconoptions) | 否   | 后缀图标属性。                                               |
 | backgroundColor | ResourceColor                           | 否   | 操作块背景颜色。<br/>默认值：$r('sys.float.ohos_id_color_button_normal')。 |
-| borderRadius    | Dimension                               | 否   | 操作块背景圆角半径大小。<br/>默认值：$r('sys.float.ohos_id_corner_radius_button')。 |
+| borderRadius    | Dimension                               | 否   | 操作块背景圆角半径大小，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_corner_radius_button')。 |
 | allowClose      | boolean                                 | 否   | 删除图标是否显示。<br/>默认值：true。                        |
 | onClose         | ()=>void                                | 否   | 默认删除图标点击事件。                                       |
 
-> 说明：
+> **说明：**
 >
 > suffixIcon有传入参数时，allowClose不生效，suffixIcon没有传入参数时，allowClose决定是否显示删除图标。
+>
+> backgroundColor赋值undefined时，显示默认背景颜色。
 
 ## ChipSize
 
@@ -62,8 +64,12 @@ IconCommonOptions定义图标的共通属性。
 | 名称      | 类型          | 必填 | 说明                                                         |
 | --------- | ------------- | ---- | ------------------------------------------------------------ |
 | src       | ResourceStr   | 是   | 图标图片或图片地址引用。                                     |
-| size      | SizeOptions   | 否   | 图标大小。<br/>默认值: {width: 16,height: 16}。               |
-| fillColor | ResourceColor | 否   | 图标填充颜色。  |
+| size      | SizeOptions   | 否   | 图标大小，不支持百分比。<br/>默认值: {width: 16,height: 16}。 |
+| fillColor | ResourceColor | 否   | 图标填充颜色。                                               |
+
+> **说明：**
+>
+> 仅在图片格式为svg时，fillColor生效。
 
 ## PrefixIconOptions
 
@@ -88,7 +94,7 @@ LabelOptions定义文本的属性。
 | 名称        | 类型                                      | 必填 | 说明                                                         |
 | ----------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | text        | string                                    | 是   | 文本文字内容。                                               |
-| fontSize    | Dimension                                 | 否   | 文字字号。<br/>默认值：$r('sys.float.ohos_id_text_size_button3')。 |
+| fontSize    | Dimension                                 | 否   | 文字字号，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_text_size_button3')。 |
 | fontColor   | ResourceColor                             | 否   | 文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary')。 |
 | fontFamily  | string                                    | 否   | 文字字体。<br/>默认值："HarmonyOS Sans"。                    |
 | labelMargin | [LabelMarginOptions](#labelmarginoptions) | 否   | 文本与左右侧图标之间间距。                                   |
@@ -97,10 +103,10 @@ LabelOptions定义文本的属性。
 
 LabelMarginOptions定义文本与左右侧图标之间间距。
 
-| 名称  | 类型      | 必填 | 说明                                       |
-| ----- | --------- | ---- | ------------------------------------------ |
-| left  | Dimension | 否   | 文本与左侧图标之间间距。<br/>默认值：6vp。 |
-| right | Dimension | 否   | 文本与右侧图标之间间距。<br/>默认值：6vp。 |
+| 名称  | 类型      | 必填 | 说明                                                     |
+| ----- | --------- | ---- | -------------------------------------------------------- |
+| left  | Dimension | 否   | 文本与左侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
+| right | Dimension | 否   | 文本与右侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
 
 
 ## 示例

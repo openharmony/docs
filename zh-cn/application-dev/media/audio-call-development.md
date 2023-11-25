@@ -27,7 +27,6 @@ let audioStreamInfo: audio.AudioStreamInfo = {
 }
 let audioRendererInfo: audio.AudioRendererInfo = {
   // 需使用通话场景相应的参数
-  content: audio.ContentType.CONTENT_TYPE_SPEECH, // 音频内容类型：语音
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // 音频流使用类型：语音通信
   rendererFlags: 0 // 音频渲染器标志：默认为0即可
 }

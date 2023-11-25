@@ -79,7 +79,7 @@ Describes the gradient color stop.
 | Name         | Type| Mandatory| Description|
 | ------------- | ------- | ---- | -------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | Yes| Color value.|
-| offset | [Length](ts-types.md#Length) | Yes| Gradient color stop (proportion value between 0 and 1). A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**.|
+| offset | [Length](ts-types.md#Length) | Yes| Gradient color stop (proportion value between 0 and 1). A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**.<br>**NOTE**<br>If the value is a string that represents a number, it will be converted to a number.<br>For example, **'10vp'** is converted to 10, and **'10%'** is converted to 0.1.|
 
 
 

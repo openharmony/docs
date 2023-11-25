@@ -49,6 +49,7 @@
 | X509Cert        | getSubjectAltNames() : DataArray                             | 获取证书主体可选名称                         |
 | X509Cert        | getIssuerAltNames() : DataArray                              | 获取证书颁发者可选名称                       |
 | X509Cert        | getItem(itemType: CertItemType) : DataBlob<sup>10+</sup>          | 获取X509证书对应的字段                       |
+
 **开发步骤**
 
 示例：解析X509证书数据生成证书对象，并调用对象方法（包含场景1-6）
@@ -172,6 +173,7 @@ function certSample(): void {
 | CertExtension | getOidList(valueType : ExtensionOidType) : DataArray         | 获取证书扩展域段对象标识符列表         |
 | CertExtension | getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob | 获取证书扩展域段对象信息               |
 | CertExtension | checkCA() : number                                           | 校验证书是否为CA证书                   |
+| CertExtension | hasUnsupportedCriticalExtension(): boolean<sup>11+</sup>                | 判断证书是否存在不支持的关键扩展                   |
 
 **开发步骤**
 
@@ -237,6 +239,8 @@ function certExtensionSample(): void {
 
       // Check whether the certificate is a CA certificate.
       let pathLen = certExtension.checkCA();
+
+      let hasUnsupportedCriticalExtension = certExtension.hasUnsupportedCriticalExtension();
       console.log('test cert extension success');
     } catch (err) {
       let e: BusinessError = err as BusinessError;
@@ -267,27 +271,28 @@ function certExtensionSample(): void {
 
 | 实例名          | 接口名                                                       | 描述                                                         |
 | --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| cryptoCert | createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : void | 使用callback方式解析X509证书吊销列表数据生成证书吊销列表对象 |
-| cryptoCert | createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>    | 使用promise方式解析X509证书吊销列表数据生成证书吊销列表对象  |
-| X509Crl         | isRevoked(cert : X509Cert) : boolean                     |  检查证书是否被吊销                            |
-| X509Crl         | getType() : string                                           | 获取证书吊销列表类型                                        |
-| X509Crl         | getEncoded(callback : AsyncCallback\<EncodingBlob>) : void    | 使用callback方式获取证书吊销列表序列化数据                   |
-| X509Crl         | getEncoded() : Promise\<EncodingBlob>                         | 使用promise方式获取证书吊销列表序列化数据                    |
-| X509Crl         | verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void  | 使用callback方式进行证书吊销列表验签        |
-| X509Crl         | verify(key : cryptoFramework.PubKey) : Promise\<void>                         | 使用Promise方式进行证书吊销列表验签         |
-| X509Crl         | getVersion() : number                                        | 获取证书吊销列表版本                                        |
-| X509Crl         | getIssuerName() : DataBlob                                   | 获取证书吊销列表颁发者名称                                   |
-| X509Crl         | getLastUpdate() : string                                     | 获取证书吊销列表lastUpdate日期                               |
-| X509Crl         | getNextUpdate() : string                                     | 获取证书吊销列表nextUpdate日期                               |
-| X509Crl         | getRevokedCert(serialNumber : number) : X509CrlEntry         | 通过序列号获取证书吊销列表中的被吊销证书                       |
-| X509Crl         | getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry         | 通过X509证书获取证书吊销列表中的被吊销证书                   |
-| X509Crl         | getRevokedCerts(callback : AsyncCallback\<Array\<X509CrlEntry>>) : void | 使用callback方式获取证书吊销列表的所有被吊销证书    |
-| X509Crl         | getRevokedCerts() : Promise\<Array\<X509CrlEntry>>             | 使用Promise方式获取证书吊销列表的所有被吊销证书              |
-| X509Crl         | getTbsInfo() : DataBlob                                      | 获取证书吊销列表的tbsCertList                                |
-| X509Crl         | getSignature() : DataBlob                                    | 获取证书吊销列表的签名                                       |
-| X509Crl         | getSignatureAlgName() : string                               | 获取证书吊销列表的签名算法名称                                |
-| X509Crl         | getSignatureAlgOid() : string                                | 获取证书吊销列表的签名算法OID                                 |
-| X509Crl         | getSignatureAlgParams() : DataBlob                           | 获取证书吊销列表的签名算法参数                                |
+| cryptoCert | createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : void<sup>11+</sup> | 使用callback方式解析X509证书吊销列表数据生成证书吊销列表对象 |
+| cryptoCert | createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL><sup>11+</sup>    | 使用promise方式解析X509证书吊销列表数据生成证书吊销列表对象  |
+| X509CRL         | isRevoked(cert : X509Cert) : boolean<sup>11+</sup>                     |  检查证书是否被吊销                            |
+| X509CRL         | getType() : string<sup>11+</sup>                                           | 获取证书吊销列表类型                                        |
+| X509CRL         | getEncoded(callback : AsyncCallback\<EncodingBlob>) : void<sup>11+</sup>    | 使用callback方式获取证书吊销列表序列化数据                   |
+| X509CRL         | getEncoded() : Promise\<EncodingBlob><sup>11+</sup>                         | 使用promise方式获取证书吊销列表序列化数据                    |
+| X509CRL         | verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void<sup>11+</sup>  | 使用callback方式进行证书吊销列表验签        |
+| X509CRL         | verify(key : cryptoFramework.PubKey) : Promise\<void><sup>11+</sup>                         | 使用Promise方式进行证书吊销列表验签         |
+| X509CRL         | getVersion() : number<sup>11+</sup>                                        | 获取证书吊销列表版本                                        |
+| X509CRL         | getIssuerName() : DataBlob<sup>11+</sup>                                   | 获取证书吊销列表颁发者名称                                   |
+| X509CRL         | getLastUpdate() : string<sup>11+</sup>                                     | 获取证书吊销列表lastUpdate日期                               |
+| X509CRL         | getNextUpdate() : string<sup>11+</sup>                                     | 获取证书吊销列表nextUpdate日期                               |
+| X509CRL         | getRevokedCert(serialNumber : bigint) : X509CRLEntry<sup>11+</sup>         | 通过序列号获取证书吊销列表中的被吊销证书                       |
+| X509CRL         | getRevokedCertWithCert(cert : X509Cert) : X509CRLEntry<sup>11+</sup>         | 通过X509证书获取证书吊销列表中的被吊销证书                   |
+| X509CRL         | getRevokedCerts(callback : AsyncCallback\<Array\<X509CRLEntry>>) : void<sup>11+</sup> | 使用callback方式获取证书吊销列表的所有被吊销证书    |
+| X509CRL         | getRevokedCerts() : Promise\<Array\<X509CRLEntry>><sup>11+</sup>             | 使用Promise方式获取证书吊销列表的所有被吊销证书              |
+| X509CRL         | getTBSInfo() : DataBlob<sup>11+</sup>                                      | 获取证书吊销列表的tbsCertList                                |
+| X509CRL         | getSignature() : DataBlob<sup>11+</sup>                                    | 获取证书吊销列表的签名                                       |
+| X509CRL         | getSignatureAlgName() : string<sup>11+</sup>                               | 获取证书吊销列表的签名算法名称                                |
+| X509CRL         | getSignatureAlgOid() : string<sup>11+</sup>                                | 获取证书吊销列表的签名算法OID                                 |
+| X509CRL         | getSignatureAlgParams() : DataBlob<sup>11+</sup>                           | 获取证书吊销列表的签名算法参数                                |
+| X509CRL         | getExtensions(): DataBlob<sup>11+</sup>                                    | 获取CRL的扩展                                |
 
 **开发步骤**
 
@@ -385,8 +390,8 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Example of a CRL.
-function crlSample(): void {
+// Example of a X509CRL.
+function sampleCRL(): void {
   let encodingBlob: certFramework.EncodingBlob = {
     // Convert the CRL data from a string to a Uint8Array.
     data: stringToUint8Array(crlData),
@@ -395,20 +400,20 @@ function crlSample(): void {
   };
 
   // Create an X509Crl instance.
-  certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
+  certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
     if (err != null) {
       // Failed to create the X509Crl instance.
-      console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+      console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
       return;
     }
     // The X509Crl instance is successfully created.
-    console.log('createX509Crl success');
+    console.log('createX509CRL success');
 
     // Obtain the CRL version.
-    let version = x509Crl.getVersion();
+    let version = x509CRL.getVersion();
 
     // Obtain the serialized data of the CRL.
-    x509Crl.getEncoded((err, data) => {
+    x509CRL.getEncoded((err, data) => {
       if (err != null) {
         // Failed to obtain the serialized data of the certificate.
         console.error('getEncoded failed, errCode: ' + err.code + ', errMsg: ' + err.message);
@@ -427,7 +432,7 @@ function crlSample(): void {
       if (err == null) {
         try {
           // Check whether the certificate is revoked.
-          let revokedFlag = x509Crl.isRevoked(cert);
+          let revokedFlag = x509CRL.isRevoked(cert);
           console.log('revokedFlag is: ' + revokedFlag);
         } catch (error) {
           let e: BusinessError = error as BusinessError;
@@ -451,7 +456,7 @@ function crlSample(): void {
       keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob, (e, keyPair) => {
         if (e == null) {
           console.log('convert key success');
-          x509Crl.verify(keyPair.pubKey, (err, data) => {
+          x509CRL.verify(keyPair.pubKey, (err, data) => {
             if (err == null) {
               // The signature verification is successful.
               console.log('verify success');
@@ -470,11 +475,11 @@ function crlSample(): void {
     }
 
     // Certificate serial number, which must be set based on the service.
-    let serialNumber = 1000;
+    let serialNumber = BigInt(1000);
 
     // Obtain the revoked certificate based on the serial number.
     try {
-      let entry = x509Crl.getRevokedCert(serialNumber);
+      let entry = x509CRL.getRevokedCert(serialNumber);
       console.log('get getRevokedCert success');
     } catch (error) {
       let e: BusinessError = error as BusinessError;
@@ -610,11 +615,14 @@ function certChainValidatorSample(): void {
 
 | 实例名       | 接口名                                                      | 描述                                      |
 | ------------ | ----------------------------------------------------------- | ---------------------------------------- |
-| X509CrlEntry | getEncoded(callback : AsyncCallback\<EncodingBlob>) : void;  | 使用callback方式获取被吊销证书的序列化数据 |
-| X509CrlEntry | getEncoded() : Promise\<EncodingBlob>;                       | 使用promise方式获取被吊销证书的序列化数据  |
-| X509CrlEntry | getSerialNumber() : number;                                  | 获取被吊销证书的序列号                    |
-| X509CrlEntry | getCertIssuer() : DataBlob;                                  | 获取被吊销证书颁发者                     |
-| X509CrlEntry | getRevocationDate() : string;                                | 获取被吊销证书的吊销日期                  |
+| X509CRLEntry | getEncoded(callback : AsyncCallback\<EncodingBlob>) : void<sup>11+</sup>;  | 使用callback方式获取被吊销证书的序列化数据 |
+| X509CRLEntry | getEncoded() : Promise\<EncodingBlob><sup>11+</sup>;                       | 使用promise方式获取被吊销证书的序列化数据  |
+| X509CRLEntry | getSerialNumber() : bigint<sup>11+</sup>;                                  | 获取被吊销证书的序列号                    |
+| X509CRLEntry | getCertIssuer() : DataBlob<sup>11+</sup>;                                  | 获取被吊销证书颁发者                     |
+| X509CRLEntry | getRevocationDate() : string<sup>11+</sup>;                                | 获取被吊销证书的吊销日期                  |
+| X509CRLEntry | hasExtensions(): boolean<sup>11+</sup>;                                  | 判断CRLEntry是否有扩展                      |
+| X509CRLEntry | getExtensions(): DataBlob<sup>11+</sup>;                                | 获取CRLEntry的扩展                  |
+
 
 **开发步骤**
 
@@ -643,7 +651,7 @@ function stringToUint8Array(str: string): Uint8Array {
 }
 
 // Example of a revoked certificate.
-function crlEntrySample(): void {
+function sampleCrlEntry(): void {
   // Create an **X509Crl** instance by using createX509Crl() of certFramework.
   let encodingBlob: certFramework.EncodingBlob = {
     // Convert the CRL data from a string to a Uint8Array.
@@ -653,18 +661,18 @@ function crlEntrySample(): void {
   };
 
   // Create an X509Crl instance.
-  certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
+  certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
     if (err != null) {
       // Failed to create the X509Crl instance.
-      console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+      console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
       return;
     }
-    console.log('create x509 crl success');
+    console.log('create x509 CRL success');
 
     // Obtain a revoked certificate instance. In this example, the instance is obtained by using getRevokedCert().
     try {
-      let serialNumber = 1000;
-      let crlEntry = x509Crl.getRevokedCert(serialNumber);
+      let serialNumber = BigInt(1000);
+      let crlEntry = x509CRL.getRevokedCert(serialNumber);
 
       // Obtain the serial number of the revoked certificate.
       serialNumber = crlEntry.getSerialNumber();
