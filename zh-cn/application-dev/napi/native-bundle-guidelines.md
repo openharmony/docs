@@ -8,7 +8,7 @@
 
 | 接口名                                                       | 描述                                     |
 | :----------------------------------------------------------- | :--------------------------------------- |
-| OH_NativeBundle_ApplicationInfo OH_NativeBundle_GetCurrentApplicationInfo() | 获取应用自身相关信息。          |
+| [OH_NativeBundle_ApplicationInfo OH_NativeBundle_GetCurrentApplicationInfo()](../reference/native-apis/native__interface__bundle.md) | 获取应用自身相关信息。          |
 
 ## 开发步骤
 
@@ -50,13 +50,13 @@
     EXTERN_C_END
     ```
 
-2. 把src/main/cpp/hello.cpp文件中，增加对应的方法，如下所示
+2. 把src/main/cpp/hello.cpp文件中，增加对应的方法，如下所示：
 
     ```c++
     static napi_value GetCurrentApplicationInfo(napi_env env, napi_callback_info info)
     ```
 
-3. 在hello.cpp文件中获取Native的包信息对象，并转为Js的包信息对象，即可在Js测获取应用的信息：
+3. 在hello.cpp文件中获取Native的包信息对象，并转为js的包信息对象，即可在js测获取应用的信息：
 
     ```c++
     static napi_value GetCurrentApplicationInfo(napi_env env, napi_callback_info info)
@@ -65,19 +65,19 @@
         OH_NativeBundle_ApplicationInfo nativeApplicationInfo = OH_NativeBundle_GetCurrentApplicationInfo();
         napi_value result = nullptr;
         napi_create_object(env, &result);
-        // Native接口获取的应用包名转为Js对象里的bundleName属性
+        // Native接口获取的应用包名转为js对象里的bundleName属性
         napi_value bundleName;
         napi_create_string_utf8(env, nativeApplicationInfo.bundleName, NAPI_AUTO_LENGTH, &bundleName);
         napi_set_named_property(env, result, "bundleName", bundleName);
-        // Native接口获取的指纹信息转为Js对象里的fingerprint属性
+        // Native接口获取的指纹信息转为js对象里的fingerprint属性
         napi_value fingerprint;
         napi_create_string_utf8(env, nativeApplicationInfo.fingerprint, NAPI_AUTO_LENGTH, &fingerprint);
         napi_set_named_property(env, result, "fingerprint", fingerprint);
-        // Native接口获取的appId转为Js对象里的appId属性
+        // Native接口获取的appId转为js对象里的appId属性
         napi_value appId;
         napi_create_string_utf8(env, nativeApplicationInfo.appId, NAPI_AUTO_LENGTH, &appId);
         napi_set_named_property(env, result, "appId", appId);
-        // Native接口获取的载体ID转为Js对象里的appIdentifier属性
+        // Native接口获取的载体ID转为js对象里的appIdentifier属性
         napi_value appIdentifier;
         napi_create_string_utf8(env, nativeApplicationInfo.appIdentifier, NAPI_AUTO_LENGTH, &appIdentifier);
         napi_set_named_property(env, result, "appIdentifier", appIdentifier);
@@ -90,12 +90,12 @@
     }
     ```
 
-**4. Js侧调用**
+**4. js侧调用**
 
-1. 打开src\main\ets\pages\index.ets, 导入"libentry.so";
+1. 打开src\main\ets\pages\index.ets, 导入"libentry.so"。
 
 
-2. 调用Native接口getCurrentApplicationInfo即可获取应用信息。示例如下:
+2. 调用Native接口getCurrentApplicationInfo即可获取应用信息。示例如下：
 
     ```js
     import hilog from '@ohos.hilog';
@@ -139,4 +139,4 @@
     }
     ```
 
-关于包管理NDK开发，可参考[Bundle模块介绍](../reference/native-apis/_bundle.md)
+关于包管理NDK开发，可参考[Bundle模块介绍](../reference/native-apis/_bundle.md)。

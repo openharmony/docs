@@ -3,7 +3,7 @@
 
 ## 概述
 
-包管理（Bundle manager, bundle）支持查询应用自身的相关信息。
+包管理（bundle）模块支持查询应用自身的相关信息。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
