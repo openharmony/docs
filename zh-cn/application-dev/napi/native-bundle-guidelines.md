@@ -14,7 +14,9 @@
 
 **1. 创建工程**
 
-![创建C++应用](figures/rawfile1.png)
+<div style="text-align:center;">
+  <img src="figures/rawfile1.png">
+</div>
 
 **2. 添加依赖**
 
@@ -77,7 +79,7 @@
         napi_value appId;
         napi_create_string_utf8(env, nativeApplicationInfo.appId, NAPI_AUTO_LENGTH, &appId);
         napi_set_named_property(env, result, "appId", appId);
-        // Native接口获取的载体ID转为js对象里的appIdentifier属性
+        // Native接口获取的appIdentifier转为js对象里的appIdentifier属性
         napi_value appIdentifier;
         napi_create_string_utf8(env, nativeApplicationInfo.appIdentifier, NAPI_AUTO_LENGTH, &appIdentifier);
         napi_set_named_property(env, result, "appIdentifier", appIdentifier);

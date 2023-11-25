@@ -17,7 +17,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [native_interface_bundle.h](native_interface_bundle.md) | 提供应用信息数据结构和函数。 |
+| [native_interface_bundle.h](native__interface__bundle.md) | 提供应用信息数据结构和函数。 |
 
 
 ### 结构体定义
@@ -32,4 +32,4 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_NativeBundle_GetCurrentApplicationInfo](native_interface_bundle.md#oh_nativebundle_getcurrentapplicationinfo) | 获取应用自身的相关信息。 |
+| [OH_NativeBundle_GetCurrentApplicationInfo](native__interface__bundle.md#oh_nativebundle_getcurrentapplicationinfo) | 获取应用自身的相关信息。 |

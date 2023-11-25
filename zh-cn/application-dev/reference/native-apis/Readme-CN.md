@@ -94,7 +94,7 @@
   - [native_huks_api.h](native__huks__api_8h.md)
   - [native_huks_param.h](native__huks__param_8h.md)
   - [native_huks_type.h](native__huks__type_8h.md)
-  - [native_interface_bundle.h](native_interface_bundle.md)
+  - [native_interface_bundle.h](native__interface__bundle.md)
   - [data_asset.h](data__asset_8h.md)
   - [oh_cursor.h](oh__cursor_8h.md)
   - [oh_predicates.h](oh__predicates_8h.md)

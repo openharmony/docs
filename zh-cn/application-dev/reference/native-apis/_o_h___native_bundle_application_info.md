@@ -26,7 +26,7 @@ OH_NativeBundle_ApplicationInfo是[OH_NativeBundle_GetCurrentApplicationInfo()](
 | [bundleName](#bundlename) | 应用包名。 |
 | [fingerprint](#fingerprint) | 应用的指纹信息。 |
 | [appId<sup>11+</sup>](#appid) | 应用的appId。 |
-| [appIdentifier<sup>11+</sup>](#appidentifier) | 应用的载体ID。 |
+| [appIdentifier<sup>11+</sup>](#appidentifier) | 应用的appIdentifier。 |
 
 
 ## 结构体成员变量说明
@@ -88,7 +88,7 @@ char* OH_NativeBundle_ApplicationInfo::appIdentifier
 
 **描述：**
 
-应用的载体ID，应用的唯一标识，由云端统一分配。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。
+应用的唯一标识，由云端统一分配。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。
 
 **起始版本：**
 

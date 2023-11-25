@@ -1914,7 +1914,7 @@
       - [native_huks_api.h](reference/native-apis/native__huks__api_8h.md)
       - [native_huks_param.h](reference/native-apis/native__huks__param_8h.md)
       - [native_huks_type.h](reference/native-apis/native__huks__type_8h.md)
-      - [native_interface_bundle.h](reference/native-apis/native_interface_bundle.md)
+      - [native_interface_bundle.h](reference/native-apis/native__interface__bundle.md)
       - [oh_cursor.h](reference/native-apis/oh__cursor_8h.md)
       - [oh_predicates.h](reference/native-apis/oh__predicates_8h.md)
       - [oh_value_object.h](reference/native-apis/oh__value__object_8h.md)
