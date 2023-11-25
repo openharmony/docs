@@ -22,7 +22,10 @@ The decorators described above can observe only the changes of the first layer. 
 
 ## Restrictions
 
-Using \@Observed to decorate a class changes the original prototype chain of the class. Using \@Observed and other class decorators to decorate the same class may cause problems.
+- Using \@Observed to decorate a class changes the original prototype chain of the class. Using \@Observed and other class decorators to decorate the same class may cause problems.
+
+- The \@ObjectLink decorator cannot be used in custom components decorated by \@Entry.
+
 
 ## Decorator Description
 
@@ -35,7 +38,7 @@ Using \@Observed to decorate a class changes the original prototype chain of the
 | ----------------- | ---------------------------------------- |
 | Decorator parameters            | None.                                       |
 | Synchronization type             | No synchronization with the parent component.                        |
-| Allowed variable types        | Objects of \@Observed decorated classes. The type must be specified.<br>Simple type variables are not supported. Use [\@Prop](arkts-prop.md) instead.<br>Instances of classes that inherit **Date** or **Array** are supported. For details, see [Observed Changes](#observed-changes).<br>Union type of @Observed decorated classes and **undefined** or **null**, for example, ClassA \| ClassB, ClassA \| undefined, or ClassA \| null. For details, see [Union Type @ObjectLink](#union-type-objectlink).<br>An \@ObjectLink decorated variable accepts changes to its attributes, but assignment is not allowed. In other words, an \@ObjectLink decorated variable is read-only and cannot be changed. |
+| Allowed variable types        | Objects of \@Observed decorated classes. The type must be specified.<br>Simple type variables are not supported. Use [\@Prop](arkts-prop.md) instead.<br>Instances of classes that inherit **Date** or **Array** are supported. For details, see [Observed Changes](#observed-changes).<br>An \@ObjectLink decorated variable accepts changes to its attributes, but assignment is not allowed. In other words, an \@ObjectLink decorated variable is read-only and cannot be changed. |
 | Initial value for the decorated variable        | Not allowed.                                    |
 
 Example of a read-only \@ObjectLink decorated variable:
@@ -471,83 +474,803 @@ struct IndexPage {
 }
 ```
 
-## Union Type @ObjectLink
+## FAQs
 
-@ObjectLink supports union types of @Observed decorated classes and **undefined** or **null**. In the following example, the type of **count** is ClassA | ClassB | undefined. If the attribute or type of **count** is changed when the button in the parent component **Page2** is clicked, the change will be synced to the child component.
+### Assigning Value to @ObjectLink Decorated Variable in Child Component
+
+It is not allowed to assign a value to an @ObjectLink decorated variable in the child component.
+
+[Incorrect Example]
 
 ```ts
+@Observed
 class ClassA {
-  public a: number;
+  public c: number = 0;
 
-  constructor(a: number) {
-    this.a = a;
+  constructor(c: number) {
+    this.c = c;
   }
 }
 
-class ClassB {
-  public b: number;
+@Component
+struct ObjectLinkChild {
+  @ObjectLink testNum: ClassA;
 
-  constructor(b: number) {
-    this.b = b;
+  build() {
+    Text(`ObjectLinkChild testNum ${this.testNum.c}`)
+      .onClick(() => {
+        // The @ObjectLink decorated variable cannot be assigned a value here.
+        this.testNum = new ClassA(47);
+      })
   }
 }
 
 @Entry
 @Component
-struct Page2 {
-  @State count: ClassA | ClassB | undefined = new ClassA(10)
+struct Parent {
+  @State testNum: ClassA[] = [new ClassA(1)];
 
   build() {
     Column() {
-      Child({ count: this.count })
-
-      Button('change count property')
+      Text(`Parent testNum ${this.testNum[0].c}`)
         .onClick(() => {
-          // Determine the count type and update the attribute.
-          if (this.count instanceof ClassA) {
-            this.count.a += 1
-          } else if (this.count instanceof ClassB) {
-            this.count.b += 1
-          } else {
-            console.info('count is undefined, cannot change property')
-          }
+          this.testNum[0].c += 1;
         })
-
-      Button('change count to ClassA')
-        .onClick(() => {
-          // Assign the value of an instance of ClassA.
-          this.count = new ClassA(100)
-        })
-
-      Button('change count to ClassB')
-        .onClick(() => {
-          // Assign the value of an instance of ClassA.
-          this.count = new ClassB(100)
-        })
-
-      Button('change count to undefined')
-        .onClick(() => {
-          // Assign the value undefined.
-          this.count = undefined
-        })
-    }.width('100%')
-  }
-}
-
-@Component
-struct Child {
-  @ObjectLink count: ClassA | ClassB | undefined
-
-  build() {
-    Column() {
-      Text(`count is instanceof ${this.count instanceof ClassA ? 'ClassA' : this.count instanceof ClassB ? 'ClassB' : 'undefined'}`)
-        .fontSize(30)
-
-      Text(`count's property is  ${this.count instanceof ClassA ? this.count.a : this.count?.b}`).fontSize(15)
-
-    }.width('100%')
+        
+      ObjectLinkChild({ testNum: this.testNum[0] })
+    }
   }
 }
 ```
 
-<!--no_check-->
+In this example, an attempt is made to assign a value to the @ObjectLink decorated variable by clicking **ObjectLinkChild**.
+
+```
+this.testNum = new ClassA(47); 
+```
+
+This is not allowed. For @ObjectLink that implements two-way data synchronization, assigning a value is equivalent to updating the array item or class attribute in the parent component, which is not supported in TypeScript/JavaScript and will result in a runtime error.
+
+[Correct Example]
+
+```ts
+@Observed
+class ClassA {
+  public c: number = 0;
+
+  constructor(c: number) {
+    this.c = c;
+  }
+}
+
+@Component
+struct ObjectLinkChild {
+  @ObjectLink testNum: ClassA;
+
+  build() {
+    Text(`ObjectLinkChild testNum ${this.testNum.c}`)
+      .onClick(() => {
+        //Y ou can assign values to the attributes of the ObjectLink decorated object.
+        this.testNum.c = 47;
+      })
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State testNum: ClassA[] = [new ClassA(1)];
+
+  build() {
+    Column() {
+      Text(`Parent testNum ${this.testNum[0].c}`)
+        .onClick(() => {
+          this.testNum[0].c += 1;
+        })
+        
+      ObjectLinkChild({ testNum: this.testNum[0] })
+    }
+  }
+}
+```
+
+### UI Not Updating on Attribute Changes in Simple Nested Objects
+
+If you find your application UI not updating after an attribute in a nested object is changed, you may want to check the decorators in use.
+
+Each decorator has its scope of observable changes, and only those observed changes can cause the UI to update. The \@Observed decorator can observe the attribute changes of nested objects, while other decorators can observe only the changes at the second layer.
+
+[Incorrect Example]
+
+In the following example, some UI components are not updated.
+
+
+```ts
+class ClassA {
+  a: number;
+
+  constructor(a: number) {
+    this.a = a;
+  }
+
+  getA(): number {
+    return this.a;
+  }
+
+  setA(a: number): void {
+    this.a = a;
+  }
+}
+
+class ClassC {
+  c: number;
+
+  constructor(c: number) {
+    this.c = c;
+  }
+
+  getC(): number {
+    return this.c;
+  }
+
+  setC(c: number): void {
+    this.c = c;
+  }
+}
+
+class ClassB extends ClassA {
+  b: number = 47;
+  c: ClassC;
+
+  constructor(a: number, b: number, c: number) {
+    super(a);
+    this.b = b;
+    this.c = new ClassC(c);
+  }
+
+  getB(): number {
+    return this.b;
+  }
+
+  setB(b: number): void {
+    this.b = b;
+  }
+
+  getC(): number {
+    return this.c.getC();
+  }
+
+  setC(c: number): void {
+    return this.c.setC(c);
+  }
+}
+
+
+@Entry
+@Component
+struct MyView {
+  @State b: ClassB = new ClassB(10, 20, 30);
+
+  build() {
+    Column({ space: 10 }) {
+      Text(`a: ${this.b.a}`)
+      Button("Change ClassA.a")
+        .onClick(() => {
+          this.b.a += 1;
+        })
+
+      Text(`b: ${this.b.b}`)
+      Button("Change ClassB.b")
+        .onClick(() => {
+          this.b.b += 1;
+        })
+
+      Text(`c: ${this.b.c.c}`)
+      Button("Change ClassB.ClassC.c")
+        .onClick(() => {
+          // The <Text> component is not updated when clicked.
+          this.b.c.c += 1;
+        })
+    }
+  }
+}
+```
+
+- The UI is not updated when the last **\<Text>** component Text('c: ${this.b.c.c}') is clicked. This is because, **\@State b: ClassB** can observe only the changes of the **this.b** attribute, such as **this.b.a**, **this.b.b**, and **this.b.c**, but cannot observe the attributes nested in the attribute, that is, **this.b.c.c** (attribute **c** is an attribute of the **ClassC** object nested in **b**).
+
+- To observe the attributes of nested object **ClassC**, you need to make the following changes:
+  - Construct a child component for separate rendering of the **ClassC** instance. Then, in this child component, you can use \@ObjectLink or \@Prop to decorate **c : ClassC**. In general cases, use \@ObjectLink, unless local changes to the **ClassC** object are required.
+  - The nested **ClassC** object must be decorated by \@Observed. When a **ClassC** object is created in **ClassB** (**ClassB(10, 20, 30)** in this example), it is wrapped in the ES6 proxy. When the **ClassC** attribute changes (this.b.c.c += 1), the \@ObjectLink decorated variable is notified of the change.
+
+[Correct Example]
+
+The following example uses \@Observed/\@ObjectLink to observe property changes for nested objects.
+
+
+```ts
+class ClassA {
+  a: number;
+  constructor(a: number) {
+    this.a = a;
+  }
+  getA() : number {
+    return this.a; }
+  setA( a: number ) : void {
+    this.a = a; }
+}
+
+@Observed
+class ClassC {
+  c: number;
+  constructor(c: number) {
+    this.c = c;
+  }
+  getC() : number {
+    return this.c; }
+  setC(c : number) : void {
+    this.c = c; }
+}
+
+class ClassB extends ClassA {
+  b: number = 47;
+  c: ClassC;
+
+  constructor(a: number, b: number, c: number) {
+    super(a);
+    this.b = b;
+    this.c = new ClassC(c);
+  }
+
+  getB() : number {
+    return this.b; }
+  setB(b : number) : void {
+    this.b = b; }
+  getC() : number {
+    return this.c.getC(); }
+  setC(c : number) : void {
+    return this.c.setC(c); }
+}
+
+@Component
+struct ViewClassC {
+
+    @ObjectLink c : ClassC;
+    build() {
+        Column({space:10}) {
+            Text(`c: ${this.c.getC()}`)
+            Button("Change C")
+                .onClick(() => {
+                    this.c.setC(this.c.getC()+1);
+                })
+        }
+    }
+}
+
+@Entry
+@Component
+struct MyView {
+    @State b : ClassB = new ClassB(10, 20, 30);
+
+    build() {
+        Column({space:10}) {
+            Text(`a: ${this.b.a}`)
+             Button("Change ClassA.a")
+            .onClick(() => {
+                this.b.a +=1;
+            })
+
+            Text(`b: ${this.b.b}`)
+            Button("Change ClassB.b")
+            .onClick(() => {
+                this.b.b += 1;
+            })
+
+            ViewClassC({c: this.b.c})   // Equivalent to Text(`c: ${this.b.c.c}`)
+            Button("Change ClassB.ClassC.c")
+            .onClick(() => {
+                this.b.c.c += 1;
+            })
+        }
+     }
+}
+```
+
+### UI Not Updating on Attribute Changes in Complex Nested Objects
+
+[Incorrect Example]
+
+The following example creates a child component with an \@ObjectLink decorated variable to render **ParentCounter** with nested attributes. **SubCounter** nested in **ParentCounter** is decorated with \@Observed.
+
+
+```ts
+let nextId = 1;
+@Observed
+class SubCounter {
+  counter: number;
+  constructor(c: number) {
+    this.counter = c;
+  }
+}
+@Observed
+class ParentCounter {
+  id: number;
+  counter: number;
+  subCounter: SubCounter;
+  incrCounter() {
+    this.counter++;
+  }
+  incrSubCounter(c: number) {
+    this.subCounter.counter += c;
+  }
+  setSubCounter(c: number): void {
+    this.subCounter.counter = c;
+  }
+  constructor(c: number) {
+    this.id = nextId++;
+    this.counter = c;
+    this.subCounter = new SubCounter(c);
+  }
+}
+@Component
+struct CounterComp {
+  @ObjectLink value: ParentCounter;
+  build() {
+    Column({ space: 10 }) {
+      Text(`${this.value.counter}`)
+        .fontSize(25)
+        .onClick(() => {
+          this.value.incrCounter();
+        })
+      Text(`${this.value.subCounter.counter}`)
+        .onClick(() => {
+          this.value.incrSubCounter(1);
+        })
+      Divider().height(2)
+    }
+  }
+}
+@Entry
+@Component
+struct ParentComp {
+  @State counter: ParentCounter[] = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+  build() {
+    Row() {
+      Column() {
+        CounterComp({ value: this.counter[0] })
+        CounterComp({ value: this.counter[1] })
+        CounterComp({ value: this.counter[2] })
+        Divider().height(5)
+        ForEach(this.counter,
+          (item: ParentCounter) => {
+            CounterComp({ value: item })
+          },
+          (item: ParentCounter) => item.id.toString()
+        )
+        Divider().height(5)
+        // First click event
+        Text('Parent: incr counter[0].counter')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter[0].incrCounter();
+            // The value increases by 10 each time the event is triggered.
+            this.counter[0].incrSubCounter(10);
+          })
+        // Second click event
+        Text('Parent: set.counter to 10')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            // The value cannot be set to 10, and the UI is not updated.
+            this.counter[0].setSubCounter(10);
+          })
+        Text('Parent: reset entire counter')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+          })
+      }
+    }
+  }
+}
+```
+
+For the **onClick** event of **Text('Parent: incr counter[0].counter')**, **this.counter[0].incrSubCounter(10)** calls the **incrSubCounter** method to increase the **counter** value of **SubCounter** by 10. The UI is updated to reflect the change.
+
+However, when **this.counter[0].setSubCounter(10)** is called in **onClick** of **Text('Parent: set.counter to 10')**, the **counter** value of **SubCounter** cannot be reset to 10.
+
+**incrSubCounter** and **setSubCounter** are functions of the same **SubCounter**. The UI can be correctly updated when **incrSubCounter** is called for the first click event. However, the UI is not updated when **setSubCounter** is called for the second click event. Actually neither **incrSubCounter** nor **setSubCounter** can trigger an update of **Text('${this.value.subCounter.counter}')**. This is because **\@ObjectLink value: ParentCounter** can only observe the attributes of **ParentCounter**, and **this.value.subCounter.counter** is an attribute of **SubCounter** and therefore cannot be observed.
+
+However, when **this.counter[0].incrCounter()** is called for the first click event, it marks **\@ObjectLink value: ParentCounter** in the **CounterComp** component as changed. In this case, the update of **Text('${this.value.subCounter.counter}')** is triggered. If **this.counter[0].incrCounter()** is deleted from the first click event, the UI cannot be updated.
+
+[Correct Example]
+
+To solve the preceding problem, you can use the following method to directly observe the attributes in **SubCounter** so that the **this.counter[0].setSubCounter(10)** API works:
+
+
+```ts
+@ObjectLink value: ParentCounter = new ParentCounter(0);
+@ObjectLink subValue: SubCounter = new SubCounter(0);
+```
+
+This approach enables \@ObjectLink to serve as a proxy for the attributes of the **ParentCounter** and **SubCounter** classes. In this way, the attribute changes of the two classes can be observed and trigger UI update. Even if **this.counter[0].incrCounter()** is deleted, the UI can be updated correctly.
+
+This method can be used to implement "two-layer" observation, that is, observation of external objects and internal nested objects. However, this method can only be used for the \@ObjectLink decorator and cannot be used for \@Prop (\@Prop passes objects through deep copy). For details, see the differences between @Prop and @ObjectLink.
+
+
+```ts
+let nextId = 1;
+
+@Observed
+class SubCounter {
+  counter: number;
+
+  constructor(c: number) {
+    this.counter = c;
+  }
+}
+
+@Observed
+class ParentCounter {
+  id: number;
+  counter: number;
+  subCounter: SubCounter;
+
+  incrCounter() {
+    this.counter++;
+  }
+
+  incrSubCounter(c: number) {
+    this.subCounter.counter += c;
+  }
+
+  setSubCounter(c: number): void {
+    this.subCounter.counter = c;
+  }
+
+  constructor(c: number) {
+    this.id = nextId++;
+    this.counter = c;
+    this.subCounter = new SubCounter(c);
+  }
+}
+
+@Component
+struct CounterComp {
+  @ObjectLink value: ParentCounter;
+
+  build() {
+    Column({ space: 10 }) {
+      Text(`${this.value.counter}`)
+        .fontSize(25)
+        .onClick(() => {
+          this.value.incrCounter();
+        })
+      CounterChild({ subValue: this.value.subCounter })
+      Divider().height(2)
+    }
+  }
+}
+
+@Component
+struct CounterChild {
+  @ObjectLink subValue: SubCounter;
+
+  build() {
+    Text(`${this.subValue.counter}`)
+      .onClick(() => {
+        this.subValue.counter += 1;
+      })
+  }
+}
+
+@Entry
+@Component
+struct ParentComp {
+  @State counter: ParentCounter[] = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+
+  build() {
+    Row() {
+      Column() {
+        CounterComp({ value: this.counter[0] })
+        CounterComp({ value: this.counter[1] })
+        CounterComp({ value: this.counter[2] })
+        Divider().height(5)
+        ForEach(this.counter,
+          (item: ParentCounter) => {
+            CounterComp({ value: item })
+          },
+          (item: ParentCounter) => item.id.toString()
+        )
+        Divider().height(5)
+        Text('Parent: reset entire counter')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+          })
+        Text('Parent: incr counter[0].counter')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter[0].incrCounter();
+            this.counter[0].incrSubCounter(10);
+          })
+        Text('Parent: set.counter to 10')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter[0].setSubCounter(10);
+          })
+      }
+    }
+  }
+}
+```
+
+### Differences Between \@Prop and \@ObjectLink
+
+In the following example, the \@ObjectLink decorated variable is a reference to the data source. That is, **this.value.subValue** and **this.subValue** are different references to the same object. Therefore, when the click handler of **CounterComp** is clicked, both **this.value.subCounter.counter** and **this.subValue.counter** change, and the corresponding component **Text (this.subValue.counter: ${this.subValue.counter})** is re-rendered.
+
+
+```ts
+let nextId = 1;
+
+@Observed
+class SubCounter {
+  counter: number;
+
+  constructor(c: number) {
+    this.counter = c;
+  }
+}
+
+@Observed
+class ParentCounter {
+  id: number;
+  counter: number;
+  subCounter: SubCounter;
+
+  incrCounter() {
+    this.counter++;
+  }
+
+  incrSubCounter(c: number) {
+    this.subCounter.counter += c;
+  }
+
+  setSubCounter(c: number): void {
+    this.subCounter.counter = c;
+  }
+
+  constructor(c: number) {
+    this.id = nextId++;
+    this.counter = c;
+    this.subCounter = new SubCounter(c);
+  }
+}
+
+@Component
+struct CounterComp {
+  @ObjectLink value: ParentCounter;
+
+  build() {
+    Column({ space: 10 }) {
+      CountChild({ subValue: this.value.subCounter })
+      Text(`this.value.counter: increase 7 `)
+        .fontSize(30)
+        .onClick(() => {
+          // click handler, Text(`this.subValue.counter: ${this.subValue.counter}`) will update
+          this.value.incrSubCounter(7);
+        })
+      Divider().height(2)
+    }
+  }
+}
+
+@Component
+struct CountChild {
+  @ObjectLink subValue: SubCounter;
+
+  build() {
+    Text(`this.subValue.counter: ${this.subValue.counter}`)
+      .fontSize(30)
+  }
+}
+
+@Entry
+@Component
+struct ParentComp {
+  @State counter: ParentCounter[] = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+
+  build() {
+    Row() {
+      Column() {
+        CounterComp({ value: this.counter[0] })
+        CounterComp({ value: this.counter[1] })
+        CounterComp({ value: this.counter[2] })
+        Divider().height(5)
+        ForEach(this.counter,
+          (item: ParentCounter) => {
+            CounterComp({ value: item })
+          },
+          (item: ParentCounter) => item.id.toString()
+        )
+        Divider().height(5)
+        Text('Parent: reset entire counter')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+          })
+        Text('Parent: incr counter[0].counter')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter[0].incrCounter();
+            this.counter[0].incrSubCounter(10);
+          })
+        Text('Parent: set.counter to 10')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter[0].setSubCounter(10);
+          })
+      }
+    }
+  }
+}
+```
+
+Below shows \@ObjectLink working in action.
+
+![en-us_image_0000001651665921](figures/en-us_image_0000001651665921.png)
+
+[Incorrect Example]
+
+If \@Prop is used instead of \@ObjectLink, then: When the first click handler is clicked, the UI is updated properly; However, when the second **onClick** event occurs, the first **Text** component of **CounterComp** is not re-rendered, because \@Prop makes a local copy of the variable.
+
+  **this.value.subCounter** and **this.subValue** are not the same object. Therefore, the change of **this.value.subCounter** does not change the copy object of **this.subValue**, and **Text(this.subValue.counter: ${this.subValue.counter})** is not re-rendered.
+
+```ts
+@Component
+struct CounterComp {
+  @Prop value: ParentCounter = new ParentCounter(0);
+  @Prop subValue: SubCounter = new SubCounter(0);
+  build() {
+    Column({ space: 10 }) {
+      Text(`this.subValue.counter: ${this.subValue.counter}`)
+        .fontSize(20)
+        .onClick(() => {
+          // 1st click handler
+          this.subValue.counter += 7;
+        })
+      Text(`this.value.counter: increase 7 `)
+        .fontSize(20)
+        .onClick(() => {
+          // 2nd click handler
+          this.value.incrSubCounter(7);
+        })
+      Divider().height(2)
+    }
+  }
+}
+```
+
+Below shows \@Prop working in action.
+
+![en-us_image_0000001602146116](figures/en-us_image_0000001602146116.png)
+
+[Correct Example]
+
+Make only one copy of \@Prop value: ParentCounter from **ParentComp** to **CounterComp**. Do not make another copy of **SubCounter**.
+
+- Use only one **\@Prop counter: Counter** in the **CounterComp** component.
+
+- Add another child component **SubCounterComp** that contains **\@ObjectLink subCounter: SubCounter**. This \@ObjectLink ensures that changes to the **SubCounter** object attributes are observed and the UI is updated properly.
+
+- **\@ObjectLink subCounter: SubCounter** shares the same **SubCounter** object with **this.counter.subCounter** of **CounterComp**.
+
+  
+
+```ts
+let nextId = 1;
+
+@Observed
+class SubCounter {
+  counter: number;
+  constructor(c: number) {
+    this.counter = c;
+  }
+}
+
+@Observed
+class ParentCounter {
+  id: number;
+  counter: number;
+  subCounter: SubCounter;
+  incrCounter() {
+    this.counter++;
+  }
+  incrSubCounter(c: number) {
+    this.subCounter.counter += c;
+  }
+  setSubCounter(c: number): void {
+    this.subCounter.counter = c;
+  }
+  constructor(c: number) {
+    this.id = nextId++;
+    this.counter = c;
+    this.subCounter = new SubCounter(c);
+  }
+}
+
+@Component
+struct SubCounterComp {
+  @ObjectLink subValue: SubCounter;
+  build() {
+    Text(`SubCounterComp: this.subValue.counter: ${this.subValue.counter}`)
+      .onClick(() => {
+        // 2nd click handler
+        this.subValue.counter = 7;
+      })
+  }
+}
+@Component
+struct CounterComp {
+  @ObjectLink value: ParentCounter;
+  build() {
+    Column({ space: 10 }) {
+      Text(`this.value.incrCounter(): this.value.counter: ${this.value.counter}`)
+        .fontSize(20)
+        .onClick(() => {
+          // 1st click handler
+          this.value.incrCounter();
+        })
+      SubCounterComp({ subValue: this.value.subCounter })
+      Text(`this.value.incrSubCounter()`)
+        .onClick(() => {
+          // 3rd click handler
+          this.value.incrSubCounter(77);
+        })
+      Divider().height(2)
+    }
+  }
+}
+@Entry
+@Component
+struct ParentComp {
+  @State counter: ParentCounter[] = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+  build() {
+    Row() {
+      Column() {
+        CounterComp({ value: this.counter[0] })
+        CounterComp({ value: this.counter[1] })
+        CounterComp({ value: this.counter[2] })
+        Divider().height(5)
+        ForEach(this.counter,
+          (item: ParentCounter) => {
+            CounterComp({ value: item })
+          },
+          (item: ParentCounter) => item.id.toString()
+        )
+        Divider().height(5)
+        Text('Parent: reset entire counter')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+          })
+        Text('Parent: incr counter[0].counter')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter[0].incrCounter();
+            this.counter[0].incrSubCounter(10);
+          })
+        Text('Parent: set.counter to 10')
+          .fontSize(20).height(50)
+          .onClick(() => {
+            this.counter[0].setSubCounter(10);
+          })
+      }
+    }
+  }
+}
+```
+
+
+Below shows the copy relationship.
+
+
+![en-us_image_0000001653949465](figures/en-us_image_0000001653949465.png)
