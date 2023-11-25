@@ -168,6 +168,8 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 
 发送短信。使用callback异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限**：ohos.permission.SEND_MESSAGES
 
 **系统能力**：SystemCapability.Telephony.SmsMms
@@ -224,6 +226,8 @@ sms.sendShortMessage(options, (err: BusinessError) => {
 sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
 
 发送短信。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SEND_MESSAGES
 
