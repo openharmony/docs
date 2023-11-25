@@ -3740,6 +3740,7 @@ flush(): Promise&lt;void&gt;
   let stream = fs.createStreamSync(filePath, "r+");
   stream.flush().then(() => {
     console.info("flush succeed");
+    stream.close();
   }).catch((err: BusinessError) => {
     console.info("flush failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -3775,6 +3776,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
     } else {
       console.info("flush succeed");
     }
+    stream.close();
   });
   ```
 
@@ -3796,6 +3798,7 @@ flushSync(): void
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   stream.flushSync();
+  stream.close();
   ```
 
 ### write
@@ -3839,6 +3842,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
   option.length = 5;
   stream.write("hello, world", option).then((number: number) => {
     console.info("write succeed and size is:" + number);
+    stream.close();
   }).catch((err: BusinessError) => {
     console.info("write failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -3884,6 +3888,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
     } else {
       if (bytesWritten) {
         console.info("write succeed and size is:" + bytesWritten);
+        stream.close();
       }
     }
   });
@@ -3928,6 +3933,7 @@ writeSync(buffer: ArrayBuffer | string, options?: { offset?: number; length?: nu
   option.offset = 5;
   option.length = 5;
   let num = stream.writeSync("hello, world", option);
+  stream.close();
   ```
 
 ### read
@@ -3974,6 +3980,7 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
     console.info("read data succeed");
     let buf = buffer.from(arrayBuffer, 0, readLen);
     console.log(`The content of file: ${buf.toString()}`);
+    stream.close();
   }).catch((err: BusinessError) => {
     console.info("read data failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -4021,6 +4028,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
       console.info("read data succeed");
       let buf = buffer.from(arrayBuffer, 0, readLen);
       console.log(`The content of file: ${buf.toString()}`);
+      stream.close();
     }
   });
   ```
@@ -4064,6 +4072,7 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
   option.length = 5;
   let buf = new ArrayBuffer(4096);
   let num = stream.readSync(buf, option);
+  stream.close();
   ```
 
 ## File
