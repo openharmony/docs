@@ -1824,6 +1824,19 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------- |-----------|
 | COMPLETE | 'ohos.request.event.COMPLETE' | 表示任务完成事件。 |
 
+## CommonEventData<sup>11+</sup>
+应用接收到的公共事件的数据。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+| 名称 | 类型 | 说明        |
+| -------- | ------- |-----------|
+| event | string | 表示当前接收的公共事件名称。 |
+| bundleName | string | 表示包名称。 |
+| code | number | 表示任务的状态，目前为 0x40 COMPLETE 或 0x41 FAILED。 |
+| data | string | 表示任务的 taskId。 |
+| parameter | {[key: string]: any} | 表示公共事件的附加信息，默认填空。 |
+
 ## FileSpec<sup>10+</sup> 
 表单项的文件信息。
 
@@ -1876,6 +1889,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | gauge | boolean | 否 | 后台任务的过程进度通知策略，仅应用于后台任务，默认值为false。<br/>-false：代表仅完成或失败的通知。<br/>-true，发出每个进度已完成或失败的通知。 |
 | precise | boolean | 否 | -如果设置为true，在上传/下载无法获取文件大小时任务失败。<br/>-如果设置为false，将文件大小设置为-1时任务继续。<br/>默认值为false。 |
 | token | string | 否 | 当创建了一个带有token的任务后，token则为正常查询期间必须提供的，否则将无法通过查询进行检索。其最小为8个字节，最大为2048个字节。默认为空。 |
+| priority | number | 否 | 任务的优先级。任务模式相同的情况下，该配置项的数字越小优先级越高，默认值为0。 |
 | extras | object | 否 | 配置的附加功能，默认为空。 |
 
 ## State<sup>10+</sup>  
@@ -1957,6 +1971,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | description | string | 是 | 任务描述。 |
 | action | [Action](#action10) | 是 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。 |
 | mode | [Mode](#mode10) | 是 | 指定任务模式。<br/>-FOREGROUND表示前端任务。<br/>-BACKGROUND表示后台任务。 |
+| priority | number | 否 | 任务配置中的优先级。前端任务的优先级比后台任务高。相同模式的任务，数字越小优先级越高。 |
 | mimeType | string | 是 | 任务配置中的mimetype。 |
 | progress | [Progress](#progress10) | 是 | 任务的过程进度。 |
 | gauge | boolean | 是 | 后台任务的进度通知策略。 |
