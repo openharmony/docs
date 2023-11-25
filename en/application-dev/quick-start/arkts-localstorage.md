@@ -386,15 +386,14 @@ In the preceding examples, the LocalStorage instance is shared only in an \@Entr
 // EntryAbility.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
-
+let para:Record<string,number> = { 'PropA': 47 };
+let localStorage: LocalStorage = new LocalStorage(para);
 export default class EntryAbility extends UIAbility {
-  storage: LocalStorage = new LocalStorage({
-    'PropA': 47
-  });
+storage: LocalStorage = localStorage
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    windowStage.loadContent('pages/Index', this.storage);
-  }
+onWindowStageCreate(windowStage: window.WindowStage) {
+windowStage.loadContent('pages/Index', this.storage);
+}
 }
 ```
 

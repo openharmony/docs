@@ -2,9 +2,9 @@
 
 You can use the command-line tool to develop a quick fix file, an expeditious approach to resolve application bugs. In this document, an application with the bundle name of **com.ohos.quickfix** in version 1000000 is used as an example to describe how to develop a quick fix file with the command-line tool.
 
-## Writing the patch.json File
+## Writing a patch.json File
 
-Write a **patch.json** file that meets your project requirements and place it in any directory of the project. (Configuring the **patch.json** file is not supported in DevEco Studio.) Create a **patch.json** file on the local computer. Below is an example of the file content:
+Write a **patch.json** file that meets your project requirements on the local computer and place it in any directory of the project. (Configuring the **patch.json** file is not supported in DevEco Studio.) Below is an example of the file content:
 ```json
 {
     "app" : {
@@ -28,12 +28,12 @@ Write a **patch.json** file that meets your project requirements and place it in
 
 ## Generating a Quick Fix File
 ### Quick Fix for TS Code
-* After modifying the TS code file in DevEco Studio and build it into a HAP file, you can find the corresponding .abc file in the project directory, for example, **build\default\cache\default\LegacyCompileETS\jsbundle\temporary\pages\index.abc**.
+Modify the TS code file in DevEco Studio and build it into a HAP file. You can find the corresponding .abc file in the project directory, for example, **build\default\cache\default\LegacyCompileETS\jsbundle\temporary\pages\index.abc**.
 
 ### Quick Fix for C++ Code
 
-* In DevEco Studio, build the original C++ code into a .so file. Fix bugs in the code and rebuild the code into a new .so file. You can find this .so file in the project directory, for example, **build\default\intermediates\libs\default\arm64-v8a\libentry.so**.
-* Locate the **diff.exe** tool in the **toolchains** folder in the local OpenHarmony SDK path. Use this tool to generate a quick fix .so file based on the old and new .so files. The command is as follows:
+* In DevEco Studio, fix bugs in the original C++ code and rebuild the code into a new .so file. You can find this .so file in the project directory, for example, **build\default\intermediates\libs\default\arm64-v8a\libentry.so**.
+* Locate the **diff.exe** tool in the **toolchains** folder in the local SDK path. Use this tool to generate a quick fix .so file based on the old and new .so files. The command is as follows:
 ```shell
 $ diff.exe -s Example.z.so -d Example.z.so -p Example.z.so.diff
 ```
@@ -44,7 +44,7 @@ The command contains the following options:
 
 ## Generating a Quick Fix File in .hqf Format
 
-With the preceding **patch.json**, .abc, and .so files, run the following command to generate an .hqf file using the **app_packing_tool.jar** tool in the **toolchains** folder in the local OpenHarmony SDK path:
+With the preceding **patch.json**, .abc, and .so files, run the following command to generate an .hqf file using the **app_packing_tool.jar** tool in the **toolchains** folder in the local SDK path:
 ```shell
 $ java -jar app_packing_tool.jar --mode hqf --json-path patch.json --lib-path libs --ets-path patchs --out-path entry-default-unsigned.hqf --force true
 ```
@@ -59,7 +59,7 @@ The command contains the following options.
 
 ## Signing the Quick Fix File
 
-Use the [hapsigner](../security/hapsigntool-guidelines.md) tool to sign the **entry-default-unsigned.hqf** file, in the same way you sign a HAP file. To be specific, run the following command to use **hap-sign-tool.jar** in the **toolchains** folder in the local OpenHarmony SDK path:
+Use the [hapsigner](../security/hapsigntool-guidelines.md) tool to sign the **entry-default-unsigned.hqf** file, in the same way you sign a HAP file. To be specific, run the following command to use **hap-sign-tool.jar** in the **toolchains** folder in the local SDK path:
 
 ```shell
 $ java -jar hap-sign-tool.jar sign-app -keyAlias "OpenHarmony Application Release" -signAlg "SHA256withECDSA" -mode "localSign" -appCertFile "OpenHarmonyApplication.pem" -profileFile "ohos_provision_release.p7b" -inFile "entry-default-unsigned.hqf" -keystoreFile "OpenHarmony.p12" -outFile "entry-signed-release.hqf" -keyPwd "123456" -keystorePwd "123456"

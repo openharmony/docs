@@ -22,7 +22,7 @@ A touch event is triggered when a finger is pressed, slides, or is lifted from a
 | touches             | Array&lt;[TouchObject](#touchobject)&gt; | All finger information.     |
 | changedTouches      | Array&lt;[TouchObject](#touchobject)&gt; | Finger information changed.|
 | stopPropagation      | () => void | Stops the event from bubbling upwards or downwards.|
-| timestamp<sup>8+</sup> | number | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts, in milliseconds.|
+| timestamp<sup>8+</sup> | number | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts, in nanoseconds.<br>For example, if the system starts at 2023/10/12 11:33 and the touch event is triggered at 2023/10/12 11:34, then the returned timestamp value is 60,000,000,000 ns.|
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the element that triggers the gesture event.|
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.|
 

@@ -20,7 +20,7 @@ The **module** tag contains the HAP configuration.
 | shortcuts       | Shortcuts of the application. The value is an array of objects, each of which represents a shortcut object.| Object array| Yes (initial value: left empty)|
 | reqPermissions  | Permissions that the application requests from the system when it is running.| Object array| Yes (initial value: left empty)|
 | colorMode       | Color mode of the application. The options are as follows:<br>- **dark**: Resources applicable for the dark mode are used.<br>- **light**: Resources applicable for the light mode are used.<br>- **auto**: Resources are used based on the color mode of the system.| String| Yes (initial value: **auto**)|
-| distributionFilter | Rules for distributing HAP files based on different device specifications, so that precise matching can be performed when the application market distributes applications. All sub-attributes under this attribute are optional. This attribute must be configured in the **/resource/profile** directory. During distribution, a unique HAP is determined based on the mapping between **deviceType** and attributes listed in the table below.| Object| Yes (initial value: left empty) Set this attribute when an application has multiple entry modules.|
+| distroFilter | Rules for distributing HAP files based on different device specifications, so that precise matching can be performed when the application market distributes applications. All sub-attributes under this attribute are optional. This attribute must be configured in the **/resource/profile** directory. During distribution, a unique HAP is determined based on the mapping between **deviceType** and attributes listed in the table below.| Object| Yes (initial value: left empty) Set this attribute when an application has multiple entry modules.|
 |commonEvents        | Information about the common event static subscriber, which must contain the subscriber name, required permissions, and list of the common events subscribed to. When a subscribed event is sent, the static subscriber is started. Unlike the dynamic subscriber, the static subscriber does not need to proactively call the common event subscription API in the service code, and may not be running when the common event is published.| Object array| Yes (initial value: left empty)|
 | entryTheme         | Keyword of an OpenHarmony internal theme. Set it to the resource index of the name.| String| Yes (initial value: left empty)|
 |testRunner          | Test runner configuration.| Object| Yes (initial value: left empty)|
@@ -308,7 +308,7 @@ Example of the **abilities** attribute structure:
     "label": "$string:example",
     "launchType": "standard",
     "orientation": "unspecified",
-    "permissions": [], 
+    "permissions": [],
     "visible": true,
     "skills": [
       {
@@ -321,11 +321,11 @@ Example of the **abilities** attribute structure:
       }
     ],
     "configChanges": [
-      "locale", 
-      "layout", 
-      "fontSize", 
+      "locale",
+      "layout",
+      "fontSize",
       "orientation"
-    ], 
+    ],
     "type": "page",
     "startWindowIcon": "$media:icon",
     "startWindowBackground": "$color:red",
@@ -395,7 +395,7 @@ Example of the **skills** attribute structure:
   {
     "actions": [
       "action.system.home"
-    ], 
+    ],
     "entities": [
       "entity.system.home"
     ],
@@ -467,11 +467,11 @@ Example of the **js** attribute structure:
 ```json
 "js": [
   {
-    "name": "default", 
-    "pages": [      
+    "name": "default",
+    "pages": [
       "pages/index/index",
       "pages/detail/detail"
-    ],     
+    ],
     "window": {
       "designWidth": 720,
       "autoDesignWidth": false
@@ -605,9 +605,9 @@ Example of the **forms** attribute structure:
 ]
 ```
 
-## Internal Structure of the distributionFilter Attribute
+## Internal Structure of the distroFilter Attribute
 
-**Table 21** Internal structure of the distributionFilter attribute
+**Table 21** Internal structure of the distroFilter attribute
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
@@ -663,10 +663,10 @@ Example of the **forms** attribute structure:
 | value | Country code of the area to which the application is to be distributed. The value is a string array, of which each substring indicates a country or region. The substring consists of two uppercase letters.| String array| No|
 
 
-Example of the **distributionFilter** attribute structure:
+Example of the **distroFilter** attribute structure:
 
 ```json
-"distributionFilter":  {
+"distroFilter":  {
   "apiVersion": {
     "policy": "include",
     "value": [4,5]

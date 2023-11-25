@@ -193,108 +193,11 @@ struct CompA {
 }
 ```
 
-### Persistent Subscription and Callback
+### Unrecommended: Using @StorageLink to Implement Event Notification
 
-The persistent subscription and callback can help reduce overhead and enhance code readability.
+Compared with the common mechanism for event notification, the two-way synchronization mechanism of @StorageLink and AppStorage is far less cost efficient and therefore not recommended. This is because AppStorage stores UI-related data, and its changes will cause costly UI refresh.
 
-
-```ts
-// xxx.ets
-import emitter from '@ohos.events.emitter';
-
-let NextID: number = 0;
-
-class ViewData {
-  title: string;
-  uri: Resource;
-  color: Color = Color.Black;
-  id: number;
-
-  constructor(title: string, uri: Resource) {
-    this.title = title;
-    this.uri = uri
-    this.id = NextID++;
-  }
-}
-
-@Entry
-@Component
-struct Gallery2 {
-  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
-  scroller: Scroller = new Scroller()
-  private preIndex: number = -1
-
-  build() {
-    Column() {
-      Grid(this.scroller) {
-        ForEach(this.dataList, (item: ViewData) => {
-          GridItem() {
-            TapImage({
-              uri: item.uri,
-              index: item.id
-            })
-          }.aspectRatio(1)
-          .onClick(() => {
-            if (this.preIndex === item.id) {
-              return
-            }
-            var innerEvent = { eventId: item.id }
-            // Selected: from black to red
-            var eventData = {
-              data: {
-                "colorTag": 1
-              }
-            }
-            emitter.emit(innerEvent, eventData)
-
-            if (this.preIndex != -1) {
-              console.info(`preIndex: ${this.preIndex}, index: ${item.id}, black`)
-              var innerEvent = { eventId: this.preIndex }
-              // Deselected: from red to black
-              var eventData = {
-                data: {
-                  "colorTag": 0
-                }
-              }
-              emitter.emit(innerEvent, eventData)
-            }
-            this.preIndex = item.id
-          })
-
-        }, (item: ViewData) => JSON.stringify(item))
-      }.columnsTemplate('1fr 1fr')
-    }
-
-  }
-}
-
-@Component
-export struct TapImage {
-  @State tapColor: Color = Color.Black;
-  private index: number;
-  private uri: Resource;
-
-  onTapIndexChange(colorTag: emitter.EventData) {
-    this.tapColor = colorTag.data.colorTag ? Color.Red : Color.Black
-  }
-
-  aboutToAppear() {
-    // Define the event ID.
-    var innerEvent = { eventId: this.index }
-    emitter.on(innerEvent, this.onTapIndexChange.bind(this))
-  }
-
-  build() {
-    Column() {
-      Image(this.uri)
-        .objectFit(ImageFit.Cover)
-        .border({ width: 5, style: BorderStyle.Dotted, color: this.tapColor })
-    }
-  }
-}
-```
-
-The following example uses the message mechanism to subscribe to events. Because this mechanism can result in a large number of nodes to listen for and a long implementation time, it is not recommended.
+In the following example, any tap event in the **TapImage** component will trigger a change of the **tapIndex** attribute. As @StorageLink establishes a two-way data synchronization with AppStorage, the local change is synchronized to AppStorage. As a result, all custom components owning the **tapIndex** attribute bound to AppStorage are notified to refresh the UI.  
 
 
 ```ts
@@ -340,8 +243,13 @@ struct Gallery2 {
 export struct TapImage {
   @StorageLink('tapIndex') @Watch('onTapIndexChange') tapIndex: number = -1;
   @State tapColor: Color = Color.Black;
-  private index: number;
-  private uri: Resource;
+  private index: number = 0;
+  private uri: Resource = {
+    id: 0,
+    type: 0,
+    moduleName: "",
+    bundleName: ""
+  };
 
   // Check whether the component is selected.
   onTapIndexChange() {
@@ -368,14 +276,192 @@ export struct TapImage {
 }
 ```
 
+To implement event notification with less overhead and higher code readability, use **emit** instead, with which you can subscribe to an event and receive event callback.
+
+
+```ts
+// xxx.ets
+import emitter from '@ohos.events.emitter';
+
+let NextID: number = 0;
+
+class ViewData {
+  title: string;
+  uri: Resource;
+  color: Color = Color.Black;
+  id: number;
+
+  constructor(title: string, uri: Resource) {
+    this.title = title;
+    this.uri = uri
+    this.id = NextID++;
+  }
+}
+
+@Entry
+@Component
+struct Gallery2 {
+  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
+  scroller: Scroller = new Scroller()
+  private preIndex: number = -1
+
+  build() {
+    Column() {
+      Grid(this.scroller) {
+        ForEach(this.dataList, (item: ViewData) => {
+          GridItem() {
+            TapImage({
+              uri: item.uri,
+              index: item.id
+            })
+          }.aspectRatio(1)
+          .onClick(() => {
+            if (this.preIndex === item.id) {
+              return
+            }
+            let innerEvent: emitter.InnerEvent = { eventId: item.id }
+            // Selected: from black to red
+            let eventData: emitter.EventData = {
+              data: {
+                "colorTag": 1
+              }
+            }
+            emitter.emit(innerEvent, eventData)
+
+            if (this.preIndex != -1) {
+              console.info(`preIndex: ${this.preIndex}, index: ${item.id}, black`)
+              let innerEvent: emitter.InnerEvent = { eventId: this.preIndex }
+              // Deselected: from red to black
+              let eventData: emitter.EventData = {
+                data: {
+                  "colorTag": 0
+                }
+              }
+              emitter.emit(innerEvent, eventData)
+            }
+            this.preIndex = item.id
+          })
+        }, (item: ViewData) => JSON.stringify(item))
+      }.columnsTemplate('1fr 1fr')
+    }
+
+  }
+}
+
+@Component
+export struct TapImage {
+  @State tapColor: Color = Color.Black;
+  private index: number = 0;
+  private uri: Resource = {
+    id: 0,
+    type: 0,
+    moduleName: "",
+    bundleName: ""
+  };
+
+  onTapIndexChange(colorTag: emitter.EventData) {
+    if (colorTag.data != null) {
+      this.tapColor = colorTag.data.colorTag ? Color.Red : Color.Black
+    }
+  }
+
+  aboutToAppear() {
+    // Define the event ID.
+    let innerEvent: emitter.InnerEvent = { eventId: this.index }
+    emitter.on(innerEvent, data => {
+    this.onTapIndexChange(data)
+    })
+  }
+
+  build() {
+    Column() {
+      Image(this.uri)
+        .objectFit(ImageFit.Cover)
+        .border({ width: 5, style: BorderStyle.Dotted, color: this.tapColor })
+    }
+  }
+}
+```
+
+The preceding notification logic is simple. It can be simplified into a ternary expression as follows:
+
+```
+// xxx.ets
+class ViewData {
+  title: string;
+  uri: Resource;
+  color: Color = Color.Black;
+
+  constructor(title: string, uri: Resource) {
+    this.title = title;
+    this.uri = uri
+  }
+}
+
+@Entry
+@Component
+struct Gallery2 {
+  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
+  scroller: Scroller = new Scroller()
+
+  build() {
+    Column() {
+      Grid(this.scroller) {
+        ForEach(this.dataList, (item: ViewData, index?: number) => {
+          GridItem() {
+            TapImage({
+              uri: item.uri,
+              index: index
+            })
+          }.aspectRatio(1)
+
+        }, (item: ViewData, index?: number) => {
+          return JSON.stringify(item) + index;
+        })
+      }.columnsTemplate('1fr 1fr')
+    }
+
+  }
+}
+
+@Component
+export struct TapImage {
+  @StorageLink('tapIndex') tapIndex: number = -1;
+  @State tapColor: Color = Color.Black;
+  private index: number = 0;
+  private uri: Resource = {
+    id: 0,
+    type: 0,
+    moduleName: "",
+    bundleName: ""
+  };
+
+  build() {
+    Column() {
+      Image(this.uri)
+        .objectFit(ImageFit.Cover)
+        .onClick(() => {
+          this.tapIndex = this.index;
+        })
+        .border({
+          width: 5,
+          style: BorderStyle.Dotted,
+          color: (this.tapIndex >= 0 && this.index === this.tapIndex) ? Color.Red : Color.Black
+        })
+    }
+  }
+}
+```
+
+
 
 ## Restrictions
 
 When using AppStorage together with [PersistentStorage](arkts-persiststorage.md) and [Environment](arkts-environment.md), pay attention to the following:
 
-- A call to **PersistentStorage.PersistProp()** after creating the attribute in AppStorage uses the type and value in AppStorage and overwrites any attribute with the same name in PersistentStorage. In light of this, the opposite order of calls is recommended. For an example of incorrect usage, see [Accessing Attribute in AppStorage Before PersistentStorage](arkts-persiststorage.md#accessing-attribute-in-appstorage-before-persistentstorage).
+- A call to **PersistentStorage.persistProp()** after creating the attribute in AppStorage uses the type and value in AppStorage and overwrites any attribute with the same name in PersistentStorage. In light of this, the opposite order of calls is recommended. For an example of incorrect usage, see [Accessing Attribute in AppStorage Before PersistentStorage](arkts-persiststorage.md#accessing-attribute-in-appstorage-before-persistentstorage).
 
-- A call to **Environment.EnvProp()** after creating the attribute in AppStorage will fail. This is because AppStorage already has an attribute with the same name, and the environment variable will not be written into AppStorage. Therefore, you are advised not to use the preset environment variable name in AppStorage.
+- A call to **Environment.envProp()** after creating the attribute in AppStorage will fail. This is because AppStorage already has an attribute with the same name, and the environment variable will not be written into AppStorage. Therefore, you are advised not to use the preset environment variable name in AppStorage.
 
-- Changes to the variables decorated by state decorators will cause UI re-render. If the changes are for message communication, rather than for UI re-render, the emitter mode is recommended. For the example, see [Persistent Subscription and Callback](#persistent-subscription-and-callback).
+- Changes to the variables decorated by state decorators will cause UI re-render. If the changes are for message communication, rather than for UI re-render, the emitter mode is recommended. For the example, see [Unrecommended: Using @StorageLink to Implement Event Notification](#unrecommended-using-storagelink-to-implement-event-notification).
 <!--no_check-->
