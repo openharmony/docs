@@ -260,7 +260,7 @@
 
 允许应用将窗口设置为隐私窗口，禁止截屏录屏。
 
-**权限级别**：system_basic
+**权限级别**：API version 9-10为system_basic；从API version 11开始为normal。
 
 **授权方式**：system_grant
 
