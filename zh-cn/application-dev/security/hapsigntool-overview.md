@@ -36,7 +36,6 @@ Hap包签名工具支持本地签名需求的开发，为OpenHarmony应用和调
 
    [HarmonyAppProvision配置文件](app-provision-structure.md)，hap包中的描述文件，该描述文件描述了已授权的证书权限和设备ID信息等信息。
 
-
 ## 约束与限制
 
  - Hap包签名工具基于Java语言开发，需要Java8以上Java环境运行。
