@@ -131,3 +131,5 @@
 | \*[OH_MD_KEY_DESCRIPTION](_codec_base.md#oh_md_key_description) | 源格式描述的键，值类型为字符串 | 
 | \*[OH_MD_KEY_LYRICS](_codec_base.md#oh_md_key_lyrics) | 源格式歌词的键，值类型为字符串 | 
 | \*[OH_MD_KEY_TRACK_COUNT](_codec_base.md#oh_md_key_track_count) | 源格式轨道计数的键，值类型为uint32_t | 
+| \*[OH_MD_MAX_INPUT_BUFFER_COUNT](_codec_base.md#oh_md_max_input_buffer_count) | 输入buffer的最大个数，值类型为int32_t | 
+| \*[OH_MD_MAX_OUTPUT_BUFFER_COUNT](_codec_base.md#oh_md_max_output_buffer_count) | 输出buffer的最大个数，值类型为int32_t | 
