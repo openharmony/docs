@@ -1089,7 +1089,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   | fd       | number                                   | 是    | 已打开的文件描述符。                             |
   | buffer   | ArrayBuffer                              | 是    | 用于保存读取到的文件数据的缓冲区。                        |
   | options | Object      | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。|
-  | callback | AsyncCallback&lt;number&gt; | 是    | 异步读取数据之后的回调。                             |
+  | callback | AsyncCallback&lt;number&gt; | 是    | 异步读取数据之后的回调。返回读取的实际数据长度。                             |
 
 **错误码：**
 
@@ -3741,6 +3741,7 @@ flush(): Promise&lt;void&gt;
   let stream = fs.createStreamSync(filePath, "r+");
   stream.flush().then(() => {
     console.info("flush succeed");
+    stream.close();
   }).catch((err: BusinessError) => {
     console.info("flush failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -3775,6 +3776,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
       console.info("flush stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("flush succeed");
+      stream.close();
     }
   });
   ```
@@ -3797,6 +3799,7 @@ flushSync(): void
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   stream.flushSync();
+  stream.close();
   ```
 
 ### write
@@ -3840,6 +3843,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
   option.length = 5;
   stream.write("hello, world", option).then((number: number) => {
     console.info("write succeed and size is:" + number);
+    stream.close();
   }).catch((err: BusinessError) => {
     console.info("write failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -3885,6 +3889,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
     } else {
       if (bytesWritten) {
         console.info("write succeed and size is:" + bytesWritten);
+        stream.close();
       }
     }
   });
@@ -3929,6 +3934,7 @@ writeSync(buffer: ArrayBuffer | string, options?: { offset?: number; length?: nu
   option.offset = 5;
   option.length = 5;
   let num = stream.writeSync("hello, world", option);
+  stream.close();
   ```
 
 ### read
@@ -3975,6 +3981,7 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
     console.info("read data succeed");
     let buf = buffer.from(arrayBuffer, 0, readLen);
     console.log(`The content of file: ${buf.toString()}`);
+    stream.close();
   }).catch((err: BusinessError) => {
     console.info("read data failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -4022,6 +4029,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
       console.info("read data succeed");
       let buf = buffer.from(arrayBuffer, 0, readLen);
       console.log(`The content of file: ${buf.toString()}`);
+      stream.close();
     }
   });
   ```
@@ -4065,6 +4073,7 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
   option.length = 5;
   let buf = new ArrayBuffer(4096);
   let num = stream.readSync(buf, option);
+  stream.close();
   ```
 
 ## File
