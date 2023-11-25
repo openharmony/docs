@@ -5,7 +5,7 @@ The **FormHost** module provides APIs related to the widget host, which is an ap
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> This module is deprecated since API version 9. You are advised to use [formHost](js-apis-app-form-formHost.md) instead.
+> This module is deprecated since API version 9. You are advised to use [FormHost](js-apis-app-form-formHost.md) instead.
 > The APIs provided by this module are system APIs.
 
 ## Modules to Import
@@ -242,7 +242,7 @@ Converts a temporary widget to a normal one. This API uses an asynchronous callb
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formId | string | Yes  | Widget ID.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the widget is converted to a normal one, **error** is undefined; otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the widget is converted to a normal one, **err** is undefined; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -303,7 +303,7 @@ Instructs the widget framework to make a widget visible. After this API is calle
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds  | Array&lt;string&gt;       | Yes  | List of widget IDs.        |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If a notification is sent to the widget framework to make the widget visible, **error** is undefined; otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If a notification is sent to the widget framework to make the widget visible, **err** is undefined; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -364,7 +364,7 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds  | Array&lt;string&gt;       | Yes  | List of widget IDs.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If a notification is sent to the widget framework to make the widget invisible, **error** is undefined; otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If a notification is sent to the widget framework to make the widget invisible, **err** is undefined; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -425,7 +425,7 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds  | Array&lt;string&gt;       | Yes  | List of widget IDs.        |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If a notification is sent to the widget framework to make the widget updatable, **error** is undefined; otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If a notification is sent to the widget framework to make the widget updatable, **err** is undefined; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -486,7 +486,7 @@ Instructs the widget framework to make a widget not updatable. After this API is
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds  | Array&lt;string&gt;       | Yes  | List of widget IDs.        |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If a notification is sent to the widget framework to make the widget not updatable, **error** is undefined; otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If a notification is sent to the widget framework to make the widget not updatable, **err** is undefined; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -544,7 +544,7 @@ Checks whether the system is ready. This API uses an asynchronous callback to re
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the check is successful, **error** is undefined; otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the check is successful, **err** is undefined; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -596,7 +596,7 @@ Obtains the widget information provided by all applications on the device. This 
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](js-apis-application-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
 
 **Example**
 
@@ -624,7 +624,7 @@ Obtains the widget information provided by all applications on the device. This 
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[FormInfo](js-apis-application-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
 
 **Example**
 
@@ -651,7 +651,7 @@ Obtains the widget information provided by a given application on the device. Th
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | bundleName | string | Yes| Bundle name of the application.|
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](js-apis-application-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
 
 **Example**
 
@@ -679,9 +679,9 @@ Obtains the widget information provided by a given application on the device. Th
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| bundleName | string | Yes| Bundle name of the application.|
+| bundleName | string | Yes|  Bundle name of the application.|
 | moduleName | string | Yes|  Module name.|
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](js-apis-application-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
 
 **Example**
 
@@ -709,14 +709,14 @@ Obtains the widget information provided by a given application on the device. Th
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| bundleName | string | Yes| Bundle name of the application.|
+| bundleName | string | Yes|  Bundle name of the application.|
 | moduleName | string | No|  Module name.|
 
 **Return value**
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[FormInfo](js-apis-application-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
 
 **Example**
 
@@ -743,7 +743,7 @@ Deletes invalid widgets from the list. This API uses an asynchronous callback to
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | Yes  | List of valid widget IDs.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the invalid widgets are deleted, **error** is undefined and **data** is the number of widgets deleted; otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the invalid widgets are deleted, **err** is undefined and **data** is the number of widgets deleted; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -805,8 +805,8 @@ Obtains the widget state. This API uses an asynchronous callback to return the r
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| want | [Want](js-apis-application-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
-| callback | AsyncCallback&lt;[FormStateInfo](js-apis-application-formInfo.md#formstateinfo)&gt; | Yes| Callback used to return the result. If the widget state is obtained, **error** is undefined and **data** is the widget state obtained; otherwise, **error** is an error object.|
+| want | [Want](js-apis-application-want.md) | Yes  | **Want** information carried to query the widget state.|
+| callback | AsyncCallback&lt;[FormStateInfo](js-apis-application-formInfo.md#formstateinfo)&gt; | Yes| Callback used to return the result. If the widget state is obtained, **err** is undefined and **data** is the widget state obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -909,7 +909,7 @@ Unsubscribes from widget uninstall events. This API uses an asynchronous callbac
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | type | string | Yes  | Event type. The value **'formUninstall'** indicates a widget uninstallation event.|
-| callback | Callback&lt;string&gt; | No| Callback used to return the widget ID. If it is left unspecified, it indicates the callback for all the events that have been subscribed.<br> The value must be the same as that in **on('formUninstall')**.|
+| callback | Callback&lt;string&gt; | No| Callback used to return the widget ID. If it is left unspecified, it indicates the callback for all the events that have been subscribed.|
 
 **Example**
 
@@ -936,7 +936,7 @@ Instructs the widgets to make themselves visible. This API uses an asynchronous 
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
 | isVisible | boolean | Yes  | Whether to make the widgets visible.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the notification is sent, **error** is undefined; otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the notification is sent, **err** is undefined; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -999,7 +999,7 @@ Instructs the widgets to enable or disable updates. This API uses an asynchronou
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
 | isEnableUpdate | boolean | Yes  | Whether to make the widgets updatable.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the notification is sent, **error** is undefined; otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the notification is sent, **err** is undefined; otherwise, **err** is an error object.|
 
 **Example**
 
