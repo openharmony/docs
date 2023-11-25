@@ -62,8 +62,8 @@ console.log(result1.query) // null
 const result2 = new uri.URI("gopher://spinaltap.micro.umn.edu/00/Weather/California/Los%20Angeles#fragment");
 console.log(result2.host) // spinaltap.micro.umn.edu
 console.log(result2.fragment) // fragment
-console.log(result2.path) // /dddd/eee.txt
-console.log(result2.scheme) // ftp
+console.log(result2.path) // /00/Weather/California/Los Angeles
+console.log(result2.scheme) // gopher
 console.log(result2.userInfo) // null
 console.log(result2.port) //-1
 console.log(result2.query) // null
