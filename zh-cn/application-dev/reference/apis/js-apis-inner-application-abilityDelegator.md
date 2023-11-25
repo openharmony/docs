@@ -1271,7 +1271,6 @@ addAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例。 |
-| callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法。                                           |
 
 **错误码**：
 
