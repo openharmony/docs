@@ -150,8 +150,8 @@
    
    if (kvManager !== undefined) {
      kvManager = kvManager as distributedKVStore.KVManager;
-     //进行后续操作
-     //...
+     // 进行后续创建数据库等相关操作
+     // ...
    }
    ```
 
@@ -189,12 +189,12 @@
    }
    if (kvStore !== undefined) {
      kvStore = kvStore as distributedKVStore.SingleKVStore;
-       //进行后续操作
-       //...
+       // 进行后续相关数据操作，包括数据的增、删、改、查、订阅数据变化等操作
+       // ...
    }
    ```
 
-5. 订阅分布式数据变化。
+5. 订阅分布式数据变化，如需关闭订阅分布式数据变化，调用[off('dataChange')](../reference/apis/js-apis-distributedKVStore.md#offdatachange)关闭。
      
    ```ts
    try {
