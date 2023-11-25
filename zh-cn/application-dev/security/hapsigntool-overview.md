@@ -30,7 +30,7 @@ Hap包签名工具支持本地签名需求的开发，为OpenHarmony应用和调
 
  - 调试工具
 
-   为开发者提供c++调试功能的工具链。如：[LLDB](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/tools/lldb-tool.md)
+   为开发者提供c++调试功能的工具链。如：[LLDB工具](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/tools/lldb-tool.md)
 
  - Profile文件：
 
