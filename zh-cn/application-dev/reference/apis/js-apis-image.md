@@ -32,7 +32,6 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 | -------------------------------- | ----------------------------------------------------------------------- |
 | Promise\<[PixelMap](#pixelmap7)> | 返回Pixelmap。<br>当创建的pixelmap大小超过原图大小时，返回原图pixelmap大小。|
 
-
 **示例：**
 
 ```ts
@@ -76,6 +75,7 @@ image.createPixelMap(color, opts, (error : BusinessError, pixelMap : image.Pixel
     }
 })
 ```
+
 ## image.createPixelMapFromParcel<sup>11+</sup>
 
 createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
@@ -1481,7 +1481,6 @@ const rawFileDescriptor : resourceManager.RawFileDescriptor = await resourceMgr.
 const imageSourceApi : image.ImageSource = image.createImageSource(rawFileDescriptor);
 ```
 
-
 ## image.CreateIncrementalSource<sup>9+</sup>
 
 CreateIncrementalSource(buf: ArrayBuffer): ImageSource
@@ -2502,6 +2501,7 @@ imagePackerApi.release().then(()=>{
     console.error('Failed to release image packaging.'); 
 }) 
 ```
+
 ### packToFile<sup>11+</sup>
 
 packToFile(source: ImageSource, fd: number, option: PackingOption, callback: AsyncCallback\<void>): void
