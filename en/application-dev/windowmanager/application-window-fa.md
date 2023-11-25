@@ -23,7 +23,7 @@ The table below lists the common APIs used for application window development. F
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow.<br>**config**: parameters used for creating the window.              |
 | Window static method| findWindow(name: string): Window                             | Finds a window based on the name.                                    |
-| Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads content to this window.                                |
+| Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window. |
 | Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.                                              |
 | Window         | setWindowBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | Sets the background color for this window.                                          |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.                                            |
