@@ -844,6 +844,291 @@ async function attestKey() {
 }
 ```
 
+## huks.anonAttestKeyItem<sup>11+</sup>
+
+anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
+
+获取匿名化密钥证书，使用Callback方式回调异步返回结果。
+
+该操作需要联网进行，且耗时较长。
+
+**系统能力**：SystemCapability.Security.Huks.Extension
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                          |
+| -------- | ---------------------------------------------------- | ---- | --------------------------------------------- |
+| keyAlias | string                                               | 是   | 密钥别名，存放待获取证书密钥的别名。          |
+| options  | [HuksOptions](#huksoptions)                          | 是   | 用于获取证书时指定所需参数与数据。            |
+| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
+**示例：**
+
+```ts
+import huks from '@ohos.security.huks';
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
+    huks.HuksKeyStorageType | huks.HuksKeyPadding | huks.HuksKeyGenerateType |
+    huks.HuksCipherMode | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key anon attest";
+function stringToUint8Array(str: string): Uint8Array {
+    let arr: number[] = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
+        arr.push(str.charCodeAt(i));
+    }
+    let tmpUint8Array = new Uint8Array(arr);
+    return tmpUint8Array;
+}
+
+async function generateKeyThenAttestKey(alias: string): Promise<void> {
+    let aliasString = keyAliasString;
+    let aliasUint8 = stringToUint8Array(aliasString);
+    let generateProperties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+            value: huks.HuksKeyAlg.HUKS_ALG_RSA
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+            value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_DIGEST,
+            value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PADDING,
+            value: huks.HuksKeyPadding.HUKS_PADDING_PSS
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
+            value: huks.HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+            value: huks.HuksCipherMode.HUKS_MODE_ECB
+        }
+    ];
+    let generateOptions: huks.HuksOptions = {
+        properties: generateProperties
+    };
+    let anonAttestProperties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
+            value: securityLevel
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_CHALLENGE,
+            value: challenge
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_VERSION_INFO,
+            value: versionInfo
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_ALIAS,
+            value: aliasUint8
+        }
+    ];
+    let anonAttestOptions: huks.HuksOptions = {
+        properties: anonAttestProperties
+    };
+    try {
+        huks.generateKeyItem(alias, generateOptions, (error, data) => {
+            if (error) {
+                console.error(`callback: generateKeyItem failed`);
+            } else {
+                console.info(`callback: generateKeyItem success`);
+                try {
+                    huks.anonAttestKeyItem(aliasString, anonAttestOptions, (error, data) => {
+                        if (error) {
+                            console.error(`callback: anonAttestKeyItem failed`);
+                        } else {
+                            console.info(`callback: anonAttestKeyItem success`);
+                        }
+                    });
+                } catch (error) {
+                    console.error(`callback: anonAttestKeyItem input arg invalid`);
+                }
+            }
+        });
+    } catch (error) {
+        console.error(`callback: generateKeyItem input arg invalid`);
+    }
+}
+```
+
+## huks.anonAttestKeyItem<sup>11+</sup>
+
+anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
+
+获取匿名化密钥证书，使用Promise方式异步返回结果。
+
+该操作需要联网进行，且耗时较长。
+
+**系统能力**：SystemCapability.Security.Huks.Extension
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                 |
+| -------- | --------------------------- | ---- | ------------------------------------ |
+| keyAlias | string                      | 是   | 密钥别名，存放待获取证书密钥的别名。 |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于获取证书时指定所需参数与数据。   |
+
+**返回值：**
+
+| 类型                                           | 说明                                          |
+| ---------------------------------------------- | --------------------------------------------- |
+| Promise<[HuksReturnResult](#huksreturnresult9)> | Promise对象。不返回err值时表示接口使用成功，其他时为错误。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
+**示例：**
+
+```ts
+import huks from '@ohos.security.huks';
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
+    huks.HuksKeyStorageType | huks.HuksKeyPadding | huks.HuksKeyGenerateType |
+    huks.HuksCipherMode | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key anon attest";
+function stringToUint8Array(str: string): Uint8Array {
+    let arr: number[] = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
+        arr.push(str.charCodeAt(i));
+    }
+    let tmpUint8Array = new Uint8Array(arr);
+    return tmpUint8Array;
+}
+async function generateKey(alias: string): Promise<void> {
+    let properties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+            value: huks.HuksKeyAlg.HUKS_ALG_RSA
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+            value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_DIGEST,
+            value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PADDING,
+            value: huks.HuksKeyPadding.HUKS_PADDING_PSS
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
+            value: huks.HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+            value: huks.HuksCipherMode.HUKS_MODE_ECB
+        }
+    ];
+    let options: huks.HuksOptions = {
+        properties: properties
+    };
+    try {
+        let data = await huks.generateKeyItem(alias, options);
+    } catch (error) {
+        console.error(`promise: generateKeyItem failed`);
+    }
+}
+async function anonAttestKey(): Promise<void> {
+    let aliasString = keyAliasString;
+    let aliasUint8 = stringToUint8Array(aliasString);
+    let properties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
+            value: securityLevel
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_CHALLENGE,
+            value: challenge
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_VERSION_INFO,
+            value: versionInfo
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_ALIAS,
+            value: aliasUint8
+        }
+    ];
+    let options: huks.HuksOptions = {
+        properties: properties
+    };
+    await generateKey(aliasString);
+    try {
+        let data = await huks.anonAttestKeyItem(aliasString, options);
+    } catch (error) {
+        console.error(`promise: anonAttestKeyItem fail`);
+    }
+}
+```
+
 ## huks.importWrappedKeyItem<sup>9+</sup>
 
 importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void
