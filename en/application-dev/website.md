@@ -77,7 +77,6 @@
         - [MVVM](quick-start/arkts-mvvm.md)
         - [Best Practices for State Management](quick-start/arkts-state-management-best-practices.md)
       - Rendering Control
-        - [Overview of Rendering Control](quick-start/arkts-rendering-control-overview.md)
         - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
         - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
@@ -1598,6 +1597,8 @@
       - [File Organization](reference/arkui-js-lite/js-framework-file.md)
       - ["js" Tag](reference/arkui-js-lite/js-framework-js-tag.md)
       - [app.js](reference/arkui-js-lite/js-framework-js-file.md)
+      - [Lifecycle](reference/arkui-js-lite/js-framework-lifecycle.md)
+      - [Multi-Language Capability](reference/arkui-js-lite/js-framework-localization.md)
       - Syntax
         - [HML](reference/arkui-js-lite/js-framework-syntax-hml.md)
         - [CSS](reference/arkui-js-lite/js-framework-syntax-css.md)
