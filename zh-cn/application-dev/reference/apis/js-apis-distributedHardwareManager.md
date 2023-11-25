@@ -1,6 +1,6 @@
 # @ohos.distributedHardware.hardwareManager (分布式硬件管理)
 
-分布式硬件管理模块提供控制分布式硬件的能力，包括暂停、恢复和停止被控端分布式硬件业务等。
+分布式硬件管理模块提供控制分布式硬件的能力，包括暂停、恢复和停止被控端分布式硬件业务。
 
 > **说明：**
 >
@@ -20,26 +20,26 @@ import hardwareManager from '@ohos.distributedHardware.hardwareManager';
 
 **系统能力**：SystemCapability.DistributedHardware.DistributedHardwareFWK
 
-| 名称         | 类型                                                | 必填 | 说明                               |
-| ------------ | --------------------------------------------------- | ---- | ---------------------------------- |
-| type         | [DistributedHardwareType](#distributedhardwaretype) | 是   | 分布式硬件类型。                   |
-| srcNetworkId | string                                              | 否   | 表示源端设备，缺省时表示所有设备。 |
+| 名称         | 类型                                                | 必填 | 说明                                   |
+| ------------ | --------------------------------------------------- | ---- | -------------------------------------- |
+| type         | [DistributedHardwareType](#distributedhardwaretype) | 是   | 分布式硬件类型。                       |
+| srcNetworkId | string                                              | 否   | 表示源端设备，缺省时表示所有源端设备。 |
 
 ## DistributedHardwareType
 
-表示暂停、恢复和停止分布式硬件业务时所需参数分布式硬件类型的枚举。
+表示分布式硬件类型。
 
 **系统能力**：SystemCapability.DistributedHardware.DistributedHardwareFWK
 
-| 名称          | 值   | 说明                      |
-| :------------ | ---- | ------------------------- |
-| ALL           | 0    | 表示默认分布式类型。      |
-| CAMERA        | 1    | 表示分布式相机。          |
-| SCREEN        | 8    | 表示分布式屏幕。          |
-| MODEM_MIC     | 256  | 表示分布式MODEM_MIC。     |
-| MODEM_SPEAKER | 512  | 表示分布式MODEM_SPEAKER。 |
-| MIC           | 1024 | 表示分布式MIC。           |
-| SPEAKER       | 2048 | 表示分布式SPEAKER。       |
+| 名称          | 值   | 说明                         |
+| :------------ | ---- | ---------------------------- |
+| ALL           | 0    | 表示所有分布式应用。         |
+| CAMERA        | 1    | 表示分布式相机。             |
+| SCREEN        | 8    | 表示分布式屏幕。             |
+| MODEM_MIC     | 256  | 表示分布式移动通话的麦克风。 |
+| MODEM_SPEAKER | 512  | 表示分布式移动通话的扬声器。 |
+| MIC           | 1024 | 表示分布式麦克风。           |
+| SPEAKER       | 2048 | 表示分布式扬声器。           |
 
 ## DistributedHardwareErrorCode
 
@@ -67,7 +67,7 @@ pauseDistributedHardware(description: HardwareDescriptor, callback: AsyncCallbac
 | 参数名       | 类型                                      | 必填   | 说明        |
 | --------- | --------------------------------------- | ---- | --------- |
 | description | [HardwareDescriptor](#hardwaredescriptor) | 是    | 硬件描述信息。 |
-| callback  | AsyncCallback&lt;void&gt;               | 是    | 回调函数，暂停被控端分布式硬件业务成功时，err为undefined，否则为错误对象。 |
+| callback  | AsyncCallback&lt;void&gt;               | 是    | 执行回调函数，方法执行成功时err为undefined，方法执行失败时为错误对象。 |
 
 **示例：**
 
@@ -79,7 +79,10 @@ pauseDistributedHardware(description: HardwareDescriptor, callback: AsyncCallbac
     let description: hardwareManager.HardwareDescriptor = {
       type: hardwareManager.DistributedHardwareType.CAMERA
     };
-    hardwareManager.pauseDistributedHardware(description, () => {
+    hardwareManager.pauseDistributedHardware(description, (error:BusinessError) => {
+      if (error.code) {
+        console.error('pauseDistributedHardware failed, cause: ' + JSON.stringify(error));
+      }
       console.log('pause distributed hardware successfully');
     })
   } catch (error) {
@@ -143,7 +146,7 @@ resumeDistributedHardware(description: HardwareDescriptor, callback: AsyncCallba
 | 参数名      | 类型                                      | 必填 | 说明                                                         |
 | ----------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | description | [HardwareDescriptor](#hardwaredescriptor) | 是   | 硬件描述信息。                                               |
-| callback    | AsyncCallback&lt;void&gt;                 | 是   | 回调函数，恢复被控端分布式硬件业务成功时，err为undefined，否则为错误对象。 |
+| callback    | AsyncCallback&lt;void&gt;                 | 是   | 执行回调函数，方法执行成功时err为undefined，方法执行失败时为错误对象。 |
 
 **示例：**
 
@@ -155,11 +158,14 @@ try {
   let description: hardwareManager.HardwareDescriptor = {
     type: hardwareManager.DistributedHardwareType.CAMERA
   };
-  hardwareManager.resumeDistributedHardware(description, () => {
+  hardwareManager.resumeDistributedHardware(description, (error:BusinessError) => {
+    if (error.code) {
+      console.error('resumeDistributedHardware failed, cause: ' + JSON.stringify(error));
+    }
     console.log('resume distributed hardware successfully');
   })
 } catch (error) {
-  console.error('resume distributed hardware failed: ' + JSON.stringify(error))
+  console.error('resume distributed hardware failed: ' + JSON.stringify(error));
 }
   ```
 
@@ -201,7 +207,7 @@ try {
     console.error('resume distributed hardware failed, cause:'+error);
   })
 } catch (error) {
-  console.error('resume distributed hardware failed: ' + JSON.stringify(error))
+  console.error('resume distributed hardware failed: ' + JSON.stringify(error));
 }
   ```
 
@@ -220,7 +226,7 @@ stopDistributedHardware(description: HardwareDescriptor, callback: AsyncCallback
 | 参数名      | 类型                                      | 必填 | 说明                                                         |
 | ----------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | description | [HardwareDescriptor](#hardwaredescriptor) | 是   | 硬件描述信息。                                               |
-| callback    | AsyncCallback&lt;void&gt;                 | 是   | 回调函数，停止被控端分布式硬件业务成功时，err为undefined，否则为错误对象。 |
+| callback    | AsyncCallback&lt;void&gt;                 | 是   | 执行回调函数，方法执行成功时err为undefined，方法执行失败时为错误对象。 |
 
 **示例：**
 
@@ -232,11 +238,14 @@ try {
   let description: hardwareManager.HardwareDescriptor = {
     type: hardwareManager.DistributedHardwareType.CAMERA
   };
-  hardwareManager.stopDistributedHardware(description, () => {
+  hardwareManager.stopDistributedHardware(description, (error:BusinessError) => {
+    if (error.code) {
+      console.error('stopDistributedHardware failed, cause: ' + JSON.stringify(error));
+    }
     console.log('stop distributed hardware successfully');
   })
 } catch (error) {
-  console.error('stop distributed hardware failed: ' + JSON.stringify(error))
+  console.error('stop distributed hardware failed: ' + JSON.stringify(error));
 }
   ```
 
@@ -278,6 +287,6 @@ try {
     console.error('stop distributed hardware failed, cause:'+error);
   })
 } catch (error) {
-  console.error('stop distributed hardware failed: ' + JSON.stringify(error))
+  console.error('stop distributed hardware failed: ' + JSON.stringify(error));
 }
   ```
