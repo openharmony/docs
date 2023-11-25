@@ -619,7 +619,8 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 | slotType | [notification.SlotType](js-apis-notificationManager.md#slottype) | 否 | 指明提醒的slot类型。 |
 | tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，具体请参考[NotificationRequest.tapDismissed](js-apis-inner-notification-notificationRequest.md#notificationrequest)。  |
 | autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，具体请参考[NotificationRequest.autoDeletedTime](js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
-
+| snoozeSlotType<sup>11+</sup> | [notification.SlotType](js-apis-notificationManager.md#slottype) | 否 | 指明延迟提醒的slot类型。 |
+| customRingUri<sup>11+</sup> | string | 否 | 指明自定义提示音的uri。 |
 
 ## ReminderRequestCalendar
 
