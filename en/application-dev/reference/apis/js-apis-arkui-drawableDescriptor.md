@@ -76,7 +76,7 @@ Obtains this **pixelMap** object.
 
 | Type                                      | Description      |
 | ---------------------------------------- | -------- |
-| [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | **pixelMap** object.|
+| [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | **PixelMap** object.|
 
 **Example**
   ```ts
@@ -98,7 +98,7 @@ Obtains the **pixelMap** object where the foreground, background, and mask are b
 
 | Type                                      | Description      |
 | ---------------------------------------- | -------- |
-| [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | **pixelMap** object.|
+| [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | **PixelMap** object.|
 
 **Example**
   ```ts
