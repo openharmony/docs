@@ -1,10 +1,10 @@
 # Getting Started with the Standard System with Hi3516 (CLI Mode)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-caution.gif](public_sys-resources/icon-caution.gif) **CAUTION**
 >
-> Since OpenHarmony 3.2, the standard system does not perform adaptation verification for the Hi3516D V300 development board. You are advised to use RK3568 to develop standard-system devices.
+> **Since OpenHarmony 3.2, the standard system does not perform adaptation verification for the Hi3516D V300 development board. You are advised to use RK3568 to develop standard-system devices.**
 >
-> If you still need to use Hi3516DV300 to develop standard-system devices, adaptation may fail. In this case, contact the chip supplier to obtain the adaptation guide or complete adaptation by yourself.
+> **If you still need to use Hi3516DV300 to develop standard-system devices, adaptation may fail. In this case, contact the chip supplier to obtain the adaptation guide or complete adaptation by yourself.**
 
 
 
