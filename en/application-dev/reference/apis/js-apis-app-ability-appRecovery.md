@@ -60,7 +60,7 @@ Enables application recovery. After this API is called, the first ability that i
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| restart | [RestartFlag](#apprecoveryrestartflag) | No| Whether the application is restarted upon a fault. By default, the application is not restarted.|
+| restart | [RestartFlag](#apprecoveryrestartflag) | No| Whether the application is restarted upon a fault. By default, the application is restarted.|
 | saveOccasion | [SaveOccasionFlag](#apprecoverysaveoccasionflag) | No| Scenario for saving the application state. By default, the state is saved when a fault occurs.|
 | saveMode | [SaveModeFlag](#apprecoverysavemodeflag) | No| Application state saving mode. By default, the application state is written to the local file cache.|
 
@@ -169,7 +169,7 @@ Saves the ability state, which will be used for recovery. This API can be used t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)| No| UIAbility context.|
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)| No| Context of the target ability.|
 
 **Return value**
 

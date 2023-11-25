@@ -689,7 +689,7 @@ Triggers a **WantAgent** object. This API uses an asynchronous callback to retur
 | ----------- | ----------------------------- | ---- | ------------------------------- |
 | agent       | WantAgent                     | Yes  | **WantAgent** object.                  |
 | triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                     | Yes  | **TriggerInfo** object.                |
-| callback    | AsyncCallback\<CompleteData\> | No  | Callback used to return the result.|
+| callback    | Callback\<CompleteData\> | No  | Callback used to return the result.|
 
 **Example**
 
