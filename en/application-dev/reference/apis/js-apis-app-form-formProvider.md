@@ -24,7 +24,7 @@ Sets the next refresh time for a widget. This API uses an asynchronous callback 
 | Name| Type   | Mandatory| Description                                  |
 | ------ | ------ | ---- | ------------------------------------- |
 | formId | string | Yes  | Widget ID.                              |
-| minute | number | Yes  | Refresh interval, in minutes. The value must be greater than or equal to 5.    |
+| minute | number | Yes  | Time for the next refresh. The value must be greater than or equal to 5, in minutes.    |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -46,6 +46,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 ```ts
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let formId: string = '12400633174999288';
 try {
@@ -74,7 +75,7 @@ Sets the next refresh time for a widget. This API uses a promise to return the r
 | Name| Type   | Mandatory| Description                                  |
 | ------ | ------ | ---- | ------------------------------------- |
 | formId | string | Yes  | Widget ID.                              |
-| minute | number | Yes  | Refresh interval, in minutes. The value must be greater than or equal to 5.    |
+| minute | number | Yes  | Time for the next refresh. The value must be greater than or equal to 5, in minutes.    |
 
 **Return value**
 
@@ -101,6 +102,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 ```ts
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let formId: string = '12400633174999288';
 try {
@@ -149,6 +151,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let formId: string = '12400633174999288';
 try {
@@ -209,6 +212,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let formId: string = '12400633174999288';
 let param: Record<string, string> = {
@@ -256,6 +260,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 ```ts
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 try {
   formProvider.getFormsInfo((error, data) => {
@@ -300,6 +305,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 ```ts
 import Base from '@ohos.base';
 import formInfo from '@ohos.app.form.formInfo';
+import formProvider from '@ohos.application.formProvider';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -354,6 +360,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 ```ts
 import formInfo from '@ohos.app.form.formInfo';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -406,6 +413,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 import formBindingData from '@ohos.app.form.formBindingData';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -467,6 +475,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 ```ts
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -529,6 +538,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 ```ts
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -581,6 +591,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 ```ts
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 try {
   formProvider.isRequestPublishFormSupported((error: Base.BusinessError, isSupported: boolean) => {
@@ -646,6 +657,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 ```ts
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 try {
   formProvider.isRequestPublishFormSupported().then((isSupported: boolean) => {

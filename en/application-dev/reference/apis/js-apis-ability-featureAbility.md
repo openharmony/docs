@@ -374,7 +374,7 @@ featureAbility.terminateSelfWithResult(
             }
         },
     }
-).then((data) => {
+).then(() => {
     console.info('==========================>terminateSelfWithResult=======================>');
 });
 ```
@@ -550,7 +550,7 @@ Terminates this ability. This API uses a promise to return the result.
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.terminateSelf().then((data) => {
+featureAbility.terminateSelf().then(() => {
     console.info('==========================>terminateSelf=======================>');
 });
 ```
@@ -596,13 +596,13 @@ let connectId = featureAbility.connectAbility(
     },
     {
         onConnect: (element, remote) => {
-            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
         },
         onDisconnect: (element) => {
-            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}')
+            console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`)
         },
         onFailed: (code) => {
-            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
+            console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`)
         },
     },
 );
@@ -636,13 +636,13 @@ let connectId = featureAbility.connectAbility(
     },
     {
         onConnect: (element, remote) => {
-            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
         },
         onDisconnect: (element) => {
-            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
+            console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`);
         },
         onFailed: (code) => {
-            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+            console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`);
         },
     },
 );
@@ -690,21 +690,21 @@ let connectId = featureAbility.connectAbility(
     },
     {
         onConnect: (element, remote) => {
-            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
         },
         onDisconnect: (element) => {
-            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
+            console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`);
         },
         onFailed: (code) => {
-            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+            console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`);
         },
     },
 );
 
-featureAbility.disconnectAbility(connectId).then((data) => {
-    console.log('data: ${data)}')
+featureAbility.disconnectAbility(connectId).then(() => {
+    console.log('disconnectAbility success')
 }).catch((error: BusinessError)=>{
-    console.error('featureAbilityTest result errCode : ${error.code}');
+    console.error(`featureAbilityTest result errCode : ${error.code}`);
 });
 ```
 
@@ -730,13 +730,19 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 import window from '@ohos.window';
 
-featureAbility.getWindow((error: BusinessError, data: window.Window) => {
-    if (error && error.code !== 0) {
+export default {
+
+  onActive() {
+    console.info("onActive");
+    featureAbility.getWindow((error: BusinessError, data: window.Window) => {
+      if (error && error.code !== 0) {
         console.error(`getWindow fail, error: ${JSON.stringify(error)}`);
-    } else {
-        console.log(`getWindow success, data: ${JSON.stringify(data)}`);
-    }
-});
+      } else {
+        console.log(`getWindow success, data: ${typeof(data)}`);
+      }
+    });
+  }
+}
 ```
 
 ## featureAbility.getWindow<sup>7+</sup>
@@ -757,10 +763,20 @@ Obtains the window corresponding to this ability. This API uses a promise to ret
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
 
-featureAbility.getWindow().then((data) => {
-    console.info('getWindow data: ${typeof(data)}');
-});
+export default {
+
+  onActive() {
+    console.info("onActive");
+    featureAbility.getWindow().then((data: window.Window) => {
+        console.log(`getWindow success, data: ${typeof(data)}`);
+    }).catch((error: BusinessError)=>{
+        console.error(`getWindow fail, error: ${JSON.stringify(error)}`);
+    });
+  }
+}
 ```
 
 ## AbilityWindowConfiguration
@@ -830,28 +846,3 @@ Enumerates the operation types of a DataAbility. The DataAbility can use an enum
 | TYPE_UPDATE<sup>7+</sup> | 2    | Update operation.|
 | TYPE_DELETE<sup>7+</sup> | 3    | Deletion operation.|
 | TYPE_ASSERT<sup>7+</sup> | 4    | Assert operation.|
-
-## flags
-
-Enumerates the flags that specify how the Want will be handled.
-
-**System capability**: SystemCapability.Ability.AbilityBase
-
-| Name                                  | Value        | Description                                      |
-| ------------------------------------ | ---------- | ---------------------------------------- |
-| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Grants the permission to read the URI.                        |
-| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Grants the permission to write data to the URI.                        |
-| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | Returns the result to the ability.                              |
-| FLAG_ABILITY_CONTINUATION            | 0x00000008 | Continues the ability on a remote device.                 |
-| FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | Indicates that a component does not belong to OHOS.                           |
-| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | Indicates whether the FormAbility is enabled.                             |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | Grants the permission to make the URI persistent.<br>**System API**: This is a system API and cannot be called by third-party applications.                         |
-| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | Grants the permission to verify URIs by prefix matching.<br>**System API**: This is a system API and cannot be called by third-party applications.                       |
-| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | Indicates the support for cross-device startup in the distributed scheduler.                       |
-| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | Indicates that the ability is started in the foreground regardless of whether the host application is started.<br>**System API**: This is a system API and cannot be called by third-party applications.          |
-| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | Indicates that the migration is reversible.                              |
-| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                      |
-| FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | Indicates that the specific ability will be installed in the background if it has not been installed.                      |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for [Want](js-apis-application-want.md) under the [parameter](js-apis-inner-ability-startAbilityParameter.md) object passed to the [startAbility](#featureabilitystartability) API in **FeatureAbility**. It must be used together with **flag_ABILITY_NEW_MISSION**.|
-| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Creates a mission on an existing mission stack.                      |
-| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Reuses an ability instance if it is on the top of an existing mission stack; creates an ability instance otherwise.|

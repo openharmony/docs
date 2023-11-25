@@ -14,7 +14,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 ## appManager.isRunningInStabilityTest
 
-static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
+isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether this application is undergoing a stability test. This API uses an asynchronous callback to return the result.
 
@@ -51,7 +51,7 @@ appManager.isRunningInStabilityTest((err, flag) => {
 
 ## appManager.isRunningInStabilityTest
 
-static isRunningInStabilityTest(): Promise&lt;boolean&gt;
+isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 Checks whether this application is undergoing a stability test. This API uses a promise to return the result.
 
@@ -368,7 +368,7 @@ Checks whether the shared library is in use. This API uses an asynchronous callb
 | --------- | ---------------------------------------- | ---- | -------------- |
 | bundleName    | string   | Yes   | Bundle name of the shared library.|
 | versionCode   | number   | Yes   | Version number of the shared library.     |
-|AsyncCallback\<boolean>> | Callback used to return the result. The value **true** means that the shared library is in use, and **false** means the opposite.|
+| callback    | syncCallback\<boolean>> | Yes   | Callback used to return the result. The value **true** means that the shared library is in use, and **false** means the opposite.|
 
 **Error codes**
 
@@ -703,6 +703,12 @@ Obtains applications that are running in the foreground. This API uses an asynch
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Yes| Callback used to return the API call result and an array holding the application state data. You can perform error handling or custom processing in this callback.|
+
 **Error codes**
 
 | ID| Error Message|
@@ -710,12 +716,6 @@ Obtains applications that are running in the foreground. This API uses an asynch
 | 16000050 | Internal error. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Yes| Callback used to return the API call result and an array holding the application state data. You can perform error handling or custom processing in this callback.|
 
 **Example**
 
@@ -1104,11 +1104,11 @@ Obtains the memory size of a process. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1157,11 +1157,11 @@ Obtains the memory size of a process. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1202,11 +1202,11 @@ Obtains information about the running processes by bundle name. This API uses an
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1255,11 +1255,11 @@ Obtains information about the running processes by bundle name. This API uses a 
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1301,11 +1301,11 @@ Obtains information about the running processes by bundle name and user ID. This
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1356,11 +1356,11 @@ Obtains information about the running processes by bundle name and user ID. This
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 

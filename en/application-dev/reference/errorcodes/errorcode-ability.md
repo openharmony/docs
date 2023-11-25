@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Incorrect Ability name. The specified Ability name does not exist.
+The specified ability does not exist.
 
 **Description**
 
@@ -53,7 +53,7 @@ The ability with the specified type does not support the API invocation.
 
 **Error Message**
 
-Input error. The specified ID does not exist.
+Id does not exist.
 
 **Description**
 
@@ -71,7 +71,7 @@ Use the correct ID.
 
 **Error Message**
 
-Visibility verification failed.
+Can not start invisible component.
 
 **Description**
 
@@ -108,7 +108,7 @@ Do not perform a cross-user operation.
 
 **Error Message**
 
-Service busy, please wait and try again.
+Service busy, there are concurrent tasks, waiting for retry.
 
 **Description**
 
@@ -126,7 +126,7 @@ Try again later.
 
 **Error Message**
 
-Crowdtest App Expired.
+The crowdtesting application expires.
 
 **Description**
 
@@ -144,7 +144,7 @@ Expired crowdtesting applications cannot be started.
 
 **Error Message**
 
-Ability cannot be started or sotpped in Wukong mode.
+An ability cannot be started or stopped in Wukong mode.
 
 **Description**
 
@@ -230,6 +230,24 @@ The application is controlled by EDM.
 
 Contact the enterprise device management personnel.
 
+## 16000015 Service Timeout
+
+**Error Message**
+
+Service timeout.
+
+**Description**
+
+This error code is reported when the service requested times out.
+
+**Possible Causes**
+
+The service times out.
+
+**Solution**
+
+Try again later.
+
 ## 16000017 Waiting for the Previous Abilities to Finish Startup
 
 **Error Message**
@@ -308,7 +326,7 @@ Check whether the application supports installation-free.
 
 **Error Message**
 
-The ability is not on the top of UI.
+The ability is not on the top of the UI.
 
 **Description**
 
@@ -344,7 +362,7 @@ Try again later.
 
 **Error Message**
 
-Installation-free time out.
+Installation-free timed out.
 
 **Description**
 
@@ -448,7 +466,7 @@ Sandbox applications cannot authorize URIs.
 
 Use a non-sandbox application.
 
-## 16000101 Unsupport Operation
+## 16000101 shell Command Failure
 
 **Error Message**
 
@@ -581,7 +599,7 @@ The caller has been released.
 
 **Error Message**
 
-The callee does not exist.
+Callee invalid. The callee does not exist.
 
 **Description**
 
@@ -617,7 +635,7 @@ Check whether the caller has registered.
 
 **Error Message**
 
-The method has registered.
+Method registered. The method has registered.
 
 **Description**
 
@@ -635,7 +653,7 @@ Check whether the method has been registered.
 
 **Error Message**
 
-The method is not registered.
+Method not registered. The method has not registered.
 
 **Description**
 
@@ -653,7 +671,7 @@ Check whether the method has been registered.
 
 **Error Message**
 
-The specified mission id does not exist.
+Mission not found.
 
 **Description**
 
@@ -671,7 +689,7 @@ Check the mission ID.
 
 **Error Message**
 
-The specified mission listener does not exist.
+Input error. The specified mission listener does not exist.
 
 **Description**
 
@@ -707,7 +725,7 @@ Ensure that the application to start is the invoker application.
 
 **Error Message**
 
-Invalid bundle name.
+The bundle is not exist or no patch has applied.
 
 **Description**
 

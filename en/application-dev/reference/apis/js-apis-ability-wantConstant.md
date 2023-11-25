@@ -84,6 +84,6 @@ Enumerates the entity constants of the **Want** object. **entity** specifies add
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | Indicates that ability continuation is reversible.<br>**System API**: This is a system API and cannot be called by third-party applications.     |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                             |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | Indicates that the specific ability will be installed in the background if it has not been installed.                             |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for **Want** in the [startAbility](js-apis-ability-featureAbility.md#startability) API passed to the FeatureAbility module. It must be used together with **flag_ABILITY_NEW_MISSION**.|
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for **Want** passed in [startAbility](js-apis-ability-featureAbility.md#startability). It must be used together with **FLAG_ABILITY_NEW_MISSION**.|
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Creates a mission on the history mission stack.                              |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Reuses an ability instance if it is on the top of an existing mission stack; creates an ability instance otherwise.|
