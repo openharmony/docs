@@ -136,6 +136,8 @@ CodecBase模块提供运行音视频编解码通用的结构体、字符常量�
 | \*[OH_MD_KEY_DESCRIPTION](#oh_md_key_description) | 源格式描述的键，值类型为字符串 | 
 | \*[OH_MD_KEY_LYRICS](#oh_md_key_lyrics) | 源格式歌词的键，值类型为字符串 | 
 | \*[OH_MD_KEY_TRACK_COUNT](#oh_md_key_track_count) | 源格式轨道计数的键，值类型为uint32_t | 
+| \*[OH_MD_MAX_INPUT_BUFFER_COUNT](#oh_md_max_input_buffer_count) | 输入buffer的最大个数，值类型为int32_t | 
+| \*[OH_MD_MAX_OUTPUT_BUFFER_COUNT](#oh_md_max_output_buffer_count) | 输出buffer的最大个数，值类型为int32_t | 
 
 
 ## 类型定义说明
@@ -1257,3 +1259,27 @@ const char* OH_MD_KEY_WIDTH
 **描述：**
 
 视频宽度的键，值类型为uint32_t
+
+
+### OH_MD_MAX_INPUT_BUFFER_COUNT
+
+  
+```
+const char* OH_MD_MAX_INPUT_BUFFER_COUNT
+```
+
+**描述：**
+
+输入buffer的最大个数，值类型为int32_t
+
+
+### OH_MD_MAX_OUTPUT_BUFFER_COUNT
+
+  
+```
+const char* OH_MD_MAX_OUTPUT_BUFFER_COUNT
+```
+
+**描述：**
+
+输出buffer的最大个数，值类型为int32_t
