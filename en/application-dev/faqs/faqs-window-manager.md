@@ -1,8 +1,7 @@
 # Window Management Development
 
-## How do I obtain the height of the status bar and navigation bar?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How do I obtain the height of the status bar and navigation bar? (API version 9)
 
 **Solution**
 
@@ -19,7 +18,7 @@ import window from '@ohos.window';
  * @param mainWindow Indicates the main window.
  */
 async function enterImmersion(mainWindow: window.Window) { 
-  mainWindow.on("systemBarTintChange", (data) => {
+  window.on("systemBarTintChange", (data) => {
     let avoidAreaRect = data.regionTint[0].region; // data.regionTint is an array that contains the rectangle coordinates of the status bar and navigation bar.
   })
   await mainWindow.setFullScreen(true)
@@ -42,9 +41,8 @@ export default class MainAbility extends Ability {
 }
 ```
 
-## How do I hide the status bar on the top of an application?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How do I hide the status bar on the top of an application? (API version 9)
 
 **Solution**
 
@@ -59,13 +57,13 @@ onWindowStageCreate(windowStage){
 }
 ```
 
-**Reference**
+**References**
 
 [Window](../reference/apis/js-apis-window.md)
 
-## How do I lock the window in portrait mode so that it does not rotate with the device?
+## How do I lock the window in portrait mode so that it does not rotate with the device? (API version 9)
 
-Applicable to: OpenHarmony SDK 3.2 Beta5 (API version 9, stage model) 
+Applicable to: stage model
 
 **Solution**
 
@@ -88,7 +86,7 @@ try {
     });} catch (exception) {
     console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
 }
-// 2. Call setPreferredOrientation to set the window orientation. The value PROTRAIT indicates that the window is displayed in portrait mode.
+// 2. Call setPreferredOrientation to set the window orientation. The value PORTRAIT indicates that the window is displayed in portrait mode.
 let orientation = window.Orientation.PORTRAIT;
 if (windowClass) {
     windowClass.setPreferredOrientation(orientation, (err) => {
@@ -100,27 +98,28 @@ if (windowClass) {
 }
 ```
 
-**Reference**
+**References**
 
 [window.Orientation](../reference/apis/js-apis-window.md#orientation9)
 
-## Why do the isStatusBarLightIcon and isNavigationBarLightIcon attributes set by calling setWindowSystemBarProperties not take effect?
+## Why do the isStatusBarLightIcon and isNavigationBarLightIcon attributes set by calling setWindowSystemBarProperties not take effect? (API version 9)
 
-Applicable to: OpenHarmony SDK 3.2 Beta5 (API version 9, stage model)
+Applicable to: stage model
 
 **Solution**
 
 In effect, the **isStatusBarLightIcon** and **isNavigationBarLightIcon** attributes turn the font white when set to **true**. If **statusBarContentColor** is also set in **setWindowSystemBarProperties**, the **isStatusBarLightIcon** attribute does not take effect. Similarly, if **navigationBarContentColor** is set, the **isNavigationBarLightIcon** attribute does not take effect.
 
-**Reference**
+**References**
 
 [window.SystemBarProperties](../reference/apis/js-apis-window.md#systembarproperties)
 
-## How do I keep the screen always on?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9) 
+## How do I keep the screen always on? (API version 9)
 
 **Solution**
+
+ 
 
 Obtain a **Window** instance, and call [setWindowKeepScreenOn](../reference/apis/js-apis-window.md#setwindowkeepscreenon9) to keep the screen always on.
 
@@ -139,13 +138,12 @@ try {
 }
 ```
 
-## How do I listen for window size changes?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How do I listen for window size changes? (API version 9)
 
 **Solution**
 
-Obtain a **Window** instance, and call **on\('windowSizeChange'\)** to listen for window size changes.
+Obtain a **Window** instance, and call **on('windowSizeChange')** to listen for window size changes.
 
 ```
 try {
@@ -157,6 +155,6 @@ try {
 }
 ```
 
-**Reference**
+**References**
 
 [window.on\("windowSizeChange"\)](../reference/apis/js-apis-window.md#onwindowsizechange7)

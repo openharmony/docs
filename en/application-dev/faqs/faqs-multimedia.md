@@ -1,8 +1,7 @@
 # Multimedia Development
 
-## How do I obtain the frame data of a camera when using the XComponent to display the preview output stream of the camera?
 
-Applicable to: OpenHarmony 3.2 (API version 9)
+## How do I obtain the frame data of a camera when using the XComponent to display the preview output stream of the camera? (API version 9)
 
 **Symptom**
 
@@ -14,98 +13,76 @@ Create a dual-channel preview to obtain the frame data.
 
 1. Use the XComponent to create a preview stream.
 
-    ```
-    // Obtain a PreviewOutput instance.
-    const surfaceId = globalThis.mxXComponentController.getXComponentSurfaceld();
-    this.mPreviewOutput = await Camera.createPreviewOutput(surfaceld) ;
-    ```
+   ```
+   // Obtain a PreviewOutput instance.
+   const surfaceId = globalThis.mxXComponentController.getXComponentSurfaceld();
+   this.mPreviewOutput = await Camera.createPreviewOutput(surfaceld) ;
+   ```
 
 2. Use imageReceiver to listen for image information.
 
-    ```
-    // Add dual-channel preview.
-    const fullWidth = this.mFullScreenSize.width;
-    const fullHeight = this.mFullScreenSize.height;
-    const imageReceiver = await image.createImageReceiver(fullwidth, fullHeight, 
-      formatImage, capacityImage) ;
-    const photoSurfaceId = await imageReceiver.getReceivingSurfaceld();
-    this.mPreviewOutputDouble = await Camera.createPreviewOutput ( photoSurfaceld)
-    ```
+   ```
+   // Add dual-channel preview.
+   const fullWidth = this.mFullScreenSize.width;
+   const fullHeight = this.mFullScreenSize.height;
+   const imageReceiver = await image.createImageReceiver(fullwidth, fullHeight, 
+     formatImage, capacityImage) ;
+   const photoSurfaceId = await imageReceiver.getReceivingSurfaceld();
+   this.mPreviewOutputDouble = await Camera.createPreviewOutput ( photoSurfaceld)
+   ```
 
 
-## How do I obtain the preview image of the front camera?
-
-Applicable to: OpenHarmony 3.2 (API version 9)
+## How do I obtain the preview image of the front camera? (API version 9)
 
 **Solution**
 
-1. Use the **@ohos.multimedia.camera** module to obtain the physical camera information.
+1. Use the **\@ohos.multimedia.camera** module to obtain the physical camera information.
 
-    ```
-    let cameraManager = await camera.getCameraManager(context);
-    let camerasInfo = await cameraManager.getSupportedCameras();
-    let cameraDevice = this.camerasInfo[0];
-    ```
+   ```
+   let cameraManager = await camera.getCameraManager(context);
+   let camerasInfo = await cameraManager.getSupportedCameras();
+   let cameraDevice = this.camerasInfo[0];
+   ```
 
 2. Create and start the input stream channel of the physical camera.
 
-    ```
-    let cameraInput = await cameraManager.createCameraInput(cameraDevice);
-    await this.cameraInput.open();
-    ```
+   ```
+   let cameraInput = await cameraManager.createCameraInput(cameraDevice);
+   await this.cameraInput.open();
+   ```
 
 3. Obtain the output formats supported by the camera, and create a preview output channel based on the surface ID provided by the XComponent.
 
-    ```
-    let outputCapability = await this.cameraManager.getSupportedOutputCapability(cameraDevice);
-    let previewProfile = this.outputCapability.previewProfiles[0];
-    let previewOutput = await cameraManager.createPreviewOutput(previewProfile, previewId);
-    ```
+   ```
+   let outputCapability = await this.cameraManager.getSupportedOutputCapability(cameraDevice);
+   let previewProfile = this.outputCapability.previewProfiles[0];
+   let previewOutput = await cameraManager.createPreviewOutput(previewProfile, previewId);
+   ```
 
 4. Create a camera session, add the camera input stream and preview output stream to the session, and start the session. The preview image is displayed on the XComponent.
 
-    ```
-    let captureSession = await cameraManager.createCaptureSession();
-    await captureSession.beginConfig();
-    await captureSession.addInput(cameraInput);
-    await captureSession.addOutput(previewOutput);
-    await this.captureSession.commitConfig()
-    await this.captureSession.start();
-    ```
+   ```
+   let captureSession = await cameraManager.createCaptureSession();
+   await captureSession.beginConfig();
+   await captureSession.addInput(cameraInput);
+   await captureSession.addOutput(previewOutput);
+   await this.captureSession.commitConfig()
+   await this.captureSession.start();
+   ```
 
 
-## How do I set the camera focal length?
-
-Applicable to: OpenHarmony 3.2 (API version 9)
+## How do I set the camera focal length? (API version 9)
 
 **Solution**
 
 1. Check whether the camera is a front camera. A front camera does not support focal length setting.
-2. Use **captureSession.getZoomRatioRange\(\)** to obtain the focal length range supported by the device.
-3. Check whether the target focal length is within the range obtained. If yes, call **captureSession.setZoomRatio\(\)** to set the focal length.
 
-## How do I play music in the background?
+2. Use **captureSession.getZoomRatioRange()** to obtain the focal length range supported by the device.
 
-Applicable to: OpenHarmony 3.2 (API version 9)
-
-**Symptom**
-
-Music cannot be played in the background.
-
-**Solution**
-
-**AVSession** controls media playback. When a third-party application switches to the background or encounters a screen lock event, media playback is forcibly paused and the application is unaware of the pause. To enable the application to continue the playback in the background, request a continuous task and access the AVSession capability, which allows Control Panel to control the playback behavior of third-party applications.
-
-**Reference**
-
-[Continuous Task](../task-management/continuous-task.md)
-
-[AVSession Development](../media/using-avsession-developer.md)
+3. Check whether the target focal length is within the range obtained. If yes, call **captureSession.setZoomRatio()** to set the focal length.
 
 
-## What should I do when multiple video components cannot be used for playback?
-
-Applicable to: OpenHarmony 3.2 (API version 9)
+## What should I do when multiple video components cannot be used for playback? (API version 9)
 
 **Symptom**
 
@@ -115,9 +92,8 @@ A large number of video components are created. They cannot play media normally 
 
 A maximum of 13 media player instances can be created.
 
-## How do I invoke the image library directly?
 
-Applicable to: OpenHarmony 3.2 (API version 9)
+## How do I invoke the image library directly? (API version 9)
 
 **Solution**
 
@@ -133,50 +109,52 @@ let context = getContext(this) as common.UIAbilityContext;
 context.startAbility(want);
 ```
 
-## How do I apply for the media read/write permission on a device?
 
-Applicable to: OpenHarmony 3.2 (API version 9, stage model)
+## How do I apply for the media read/write permission on a device? (API version 9)
+
+Applicable to: stage model
 
 **Solution**
 
-1. Configure the permissions **ohos.permission.READ\_MEDIA** and **ohos.permission.WRITE\_MEDIA** in the **module.json5** file.
+1. Configure the permissions **ohos.permission.READ_MEDIA** and **ohos.permission.WRITE_MEDIA** in the **module.json5** file.
 
-    Example:
+   Example:
 
-    ```
-    {
-      "module" : {
-        "requestPermissions":[
-          {
-            "name" : "ohos.permission.READ_MEDIA",
-            "reason": "$string:reason"
-          },
-          {
-            "name" : "ohos.permission.WRITE_MEDIA",
-            "reason": "$string:reason"
-          }
-        ]
-      }
-    }
-    ```
+   ```
+   {
+     "module" : {
+       "requestPermissions":[
+         {
+           "name" : "ohos.permission.READ_MEDIA",
+           "reason": "$string:reason"
+         },
+         {
+           "name" : "ohos.permission.WRITE_MEDIA",
+           "reason": "$string:reason"
+         }
+       ]
+     }
+   }
+   ```
 
-2. Call **requestPermissionsFromUser** to request the permissions from end users in the form of a dialog box. This operation is required because the grant mode of both permissions is **user\_grant**.
+2. Call **requestPermissionsFromUser** to request the permissions from end users in the form of a dialog box. This operation is required because the grant mode of both permissions is **user_grant**.
 
-    ```
-    let context = getContext(this) as common.UIAbilityContext;
-    let atManager = abilityAccessCtrl.createAtManager();
-    let permissions: Array<string> = ['ohos.permission.READ_MEDIA','ohos.permission.WRITE_MEDIA']
-    atManager.requestPermissionsFromUser(context, permissions)
-    .then((data) => {
-        console.log("Succeed to request permission from user with data: " + JSON.stringify(data))
-    }).catch((error) => {
-        console.log("Failed to request permission from user with error: " + JSON.stringify(error))
-    })
-    ```
+   ```
+   let context = getContext(this) as common.UIAbilityContext;
+   let atManager = abilityAccessCtrl.createAtManager();
+   let permissions: Array<string> = ['ohos.permission.READ_MEDIA','ohos.permission.WRITE_MEDIA']
+   atManager.requestPermissionsFromUser(context, permissions)
+   .then((data) => {
+       console.log("Succeed to request permission from user with data: " + JSON.stringify(data))
+   }).catch((error) => {
+       console.log("Failed to request permission from user with error: " + JSON.stringify(error))
+   })
+   ```
 
-## How do I obtain the camera status?
 
-Applicable to: OpenHarmony 3.2 (API version 9, stage model)
+## How do I obtain the camera status? (API version 9)
+
+Applicable to: stage model
 
 **Solution**
 
@@ -188,13 +166,19 @@ cameraManager.on('cameraStatus', (cameraStatusInfo) => {
   console.log(`status: ${cameraStatusInfo.status}`);
 })
 ```
-CameraStatus: Enumerates the camera statuses.
 
-- **CAMERA_STATUS_APPEAR** (0): A camera appears.
-- **CAMERA_STATUS_DISAPPEAR** (1): The camera disappears.
-- **CAMERA_STATUS_AVAILABLE** (2): The camera is available.
-- **CAMERA_STATUS_UNAVAILABLE** (3): The camera is unavailable.
+CameraStatus
 
-**Reference**
+Enumerates the camera statuses.
+
+**CAMERA_STATUS_APPEAR** (0): A camera appears.
+
+**CAMERA_STATUS_DISAPPEAR** (1): The camera disappears.
+
+**CAMERA_STATUS_AVAILABLE** (2): The camera is available.
+
+**CAMERA_STATUS_UNAVAILABLE** (3): The camera is unavailable.
+
+**References**
 
 [CameraStatus](../reference/apis/js-apis-camera.md#oncamerastatus)
