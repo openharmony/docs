@@ -1135,7 +1135,8 @@ async function Demo() {
 
 unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
-从MessageSequence中获取PixelMap。
+从MessageSequence中获取PixelMap，
+如需使用同步方式创建PixelMap可使用：[createPixelMapFromParcel](#imagecreatepixelmapfromparcel11)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1446,6 +1447,40 @@ const data : ArrayBuffer= new ArrayBuffer(112);
 let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
 const imageSourceApi : image.ImageSource = image.createImageSource(data, sourceOptions);
 ```
+## image.createImageSource<sup>11+</sup>
+
+createImageSource(rawFileDescriptor: resourceManager.RawFileDescriptor, options: SourceOptions): ImageSource
+
+通过图像资源文件的RawFileDescriptor创建图片源实例。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名 | 类型                             | 必填 | 说明                                 |
+| ------ | -------------------------------- | ---- | ------------------------------------ |
+| rawFileDescriptor | [resourceManager.RawFileDescriptor](js-apis-resource-manager.md#rawfiledescriptor8) | 是 | 图像资源文件的RawFileDescriptor。 |
+| options | [SourceOptions](#sourceoptions9) | 是 | 图片属性，包括图片序号与默认属性值。 |
+
+**返回值：**
+
+| 类型                        | 说明                                         |
+| --------------------------- | -------------------------------------------- |
+| [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回undefined。 |
+
+**示例：**
+
+Stage模型
+
+```ts
+// Stage模型
+const context : Context = getContext(this);
+// 获取resourceManager资源管理器
+const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
+const rawFileDescriptor : resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
+const imageSourceApi : image.ImageSource = image.createImageSource(rawFileDescriptor);
+```
+
 
 ## image.CreateIncrementalSource<sup>9+</sup>
 
@@ -2467,6 +2502,158 @@ imagePackerApi.release().then(()=>{
     console.error('Failed to release image packaging.'); 
 }) 
 ```
+### packToFile<sup>11+</sup>
+
+packToFile(source: ImageSource, fd: number, option: PackingOption, callback: AsyncCallback\<void>): void
+
+指定打包参数，将ImageSource图片源编码后直接打包进文件。使用callback形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
+
+**参数：**
+
+| 参数名   | 类型                            | 必填 | 说明                           |
+| -------- | ------------------------------- | ---- | ------------------------------ |
+| source   | [ImageSource](#imagesource)     | 是   | 打包的图片源。                 |
+| fd       | number                          | 是   | 文件描述符。                   |
+| option   | [PackingOption](#packingoption) | 是   | 设置打包参数。                 |
+| callback | AsyncCallback\<void>            | 是   | 获取回调，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base'
+import fs from '@ohos.file.fs'
+
+const context : Context = getContext(this);
+const path : string = context.filesDir + "/test.png";
+const imageSourceApi : image.ImageSource = image.createImageSource(path);
+let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 };
+const filePath : string = context.cacheDir + "/image_source.jpg";
+let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+const imagePackerApi : image.ImagePacker = image.createImagePacker();
+imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err : BusinessError) => {})
+```
+
+### packToFile<sup>11+</sup>
+
+packToFile (source: ImageSource, fd: number, option: PackingOption): Promise\<void>
+
+指定打包参数，将ImageSource图片源编码后直接打包进文件。使用Promise形式返回结果。
+
+**参数：**
+
+| 参数名 | 类型                            | 必填 | 说明           |
+| ------ | ------------------------------- | ---- | -------------- |
+| source | [ImageSource](#imagesource)     | 是   | 打包的图片源。 |
+| fd     | number                          | 是   | 文件描述符。   |
+| option | [PackingOption](#packingoption) | 是   | 设置打包参数。 |
+
+**返回值：**
+
+| 类型           | 说明                              |
+| -------------- | --------------------------------- |
+| Promise\<void> | Promise实例，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base'
+import fs from '@ohos.file.fs'
+
+const context : Context = getContext(this);
+const path : string = context.filesDir + "/test.png";
+const imageSourceApi : image.ImageSource = image.createImageSource(path);
+let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 };
+const filePath : string = context.cacheDir + "/image_source.jpg";
+let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+const imagePackerApi : image.ImagePacker = image.createImagePacker();
+imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(()=>{
+    console.log('Succeeded in packToFile.');
+}).catch((error : BusinessError)=>{ 
+    console.log('Failed to packToFile.'); 
+}) 
+```
+
+### packToFile<sup>11+</sup>
+
+packToFile (source: Pixelmap, fd: number, option: PackingOption,  callback: AsyncCallback\<void>): void;
+
+指定打包参数，将PixelMap图片源编码后直接打包进文件。使用callback形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
+
+**参数：**
+
+| 参数名   | 类型                            | 必填 | 说明                           |
+| -------- | ------------------------------- | ---- | ------------------------------ |
+| source   | [PixelMap](#pixelmap7)          | 是   | 打包的PixelMap资源。           |
+| fd       | number                          | 是   | 文件描述符。                   |
+| option   | [PackingOption](#packingoption) | 是   | 设置打包参数。                 |
+| callback | AsyncCallback\<void>            | 是   | 获取回调，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base'
+import fs from '@ohos.file.fs'
+
+const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+let bufferArr : Uint8Array = new Uint8Array(color);
+let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
+    let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 }
+    const context : Context = getContext(this);
+	const path : string = context.cacheDir + "/pixel_map.jpg";
+    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    const imagePackerApi : image.ImagePacker = image.createImagePacker();
+    imagePackerApi.packToFile(pixelmap, file.fd, packOpts, (err : BusinessError) => {})
+})
+```
+
+### packToFile<sup>11+</sup>
+
+packToFile (source: Pixelmap, fd: number, option: PackingOption): Promise\<void>
+
+指定打包参数，将PixelMap图片源编码后直接打包进文件。使用Promise形式返回结果。
+
+**参数：**
+
+| 参数名 | 类型                            | 必填 | 说明                 |
+| ------ | ------------------------------- | ---- | -------------------- |
+| source | [PixelMap](#pixelmap7)          | 是   | 打包的PixelMap资源。 |
+| fd     | number                          | 是   | 文件描述符。         |
+| option | [PackingOption](#packingoption) | 是   | 设置打包参数。       |
+
+**返回值：**
+
+| 类型           | 说明                              |
+| -------------- | --------------------------------- |
+| Promise\<void> | Promise实例，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base'
+import fs from '@ohos.file.fs'
+
+const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+let bufferArr : Uint8Array = new Uint8Array(color);
+let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
+    let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 }
+    const context : Context = getContext(this);
+    const path : string = context.cacheDir + "/pixel_map.jpg";
+    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    const imagePackerApi : image.ImagePacker = image.createImagePacker();
+    imagePackerApi.packToFile(pixelmap, file.fd, packOpts)
+        .then(() => {
+            console.log('Succeeded in packToFile.');
+        }).catch((error : BusinessError) => {
+            console.log('Failed to packToFile.');
+        })
+})
+```
 
 ## image.createImageReceiver<sup>9+</sup>
 
@@ -3283,6 +3470,57 @@ PixelMap的初始化选项。
 
 | 名称              |   值                    | 说明                     |
 | ----------------- | ----------------------- | ------------------------ |
+| BITS_PER_SAMPLE                           | "BitsPerSample"              | 每个像素比特数。                            |
+| ORIENTATION                               | "Orientation"                | 图片方向。                                  |
+| IMAGE_LENGTH                              | "ImageLength"                | 图片长度。                                  |
+| IMAGE_WIDTH                               | "ImageWidth"                 | 图片宽度。                                  |
+| GPS_LATITUDE                              | "GPSLatitude"                | 图片纬度。                                  |
+| GPS_LONGITUDE                             | "GPSLongitude"               | 图片经度。                                  |
+| GPS_LATITUDE_REF                          | "GPSLatitudeRef"             | 纬度引用，例如N或S。                        |
+| GPS_LONGITUDE_REF                         | "GPSLongitudeRef"            | 经度引用，例如W或E。                        |
+| DATE_TIME_ORIGINAL<sup>9+</sup>           | "DateTimeOriginal"           | 拍摄时间，例如2022:09:06 15:48:00。         |
+| EXPOSURE_TIME<sup>9+</sup>                | "ExposureTime"               | 曝光时间，例如1/33 sec。                    |
+| SCENE_TYPE<sup>9+</sup>                   | "SceneType"                  | 拍摄场景模式，例如人像、风光、运动、夜景等。 |
+| ISO_SPEED_RATINGS<sup>9+</sup>            | "ISOSpeedRatings"            | ISO感光度，例如400。                        |
+| F_NUMBER<sup>9+</sup>                     | "FNumber"                    | 光圈值，例如f/1.8。                         |
+| DATE_TIME<sup>10+</sup>                   | "DateTime"                   | 日期时间。                                  |
+| GPS_TIME_STAMP<sup>10+</sup>              | "GPSTimeStamp"               | GPS时间戳。                                   |
+| GPS_DATE_STAMP<sup>10+</sup>              | "GPSDateStamp"               | GPS日期戳。                                   |
+| IMAGE_DESCRIPTION<sup>10+</sup>           | "ImageDescription"           | 图像信息描述。                                |
+| MAKE<sup>10+</sup>                        | "Make"                       | 生产商。                                      |
+| MODEL<sup>10+</sup>                       | "Model"                      | 设备型号。                                    |
+| PHOTO_MODE<sup>10+</sup>                  | "PhotoMode "                 | 拍照模式。                                    |
+| SENSITIVITY_TYPE<sup>10+</sup>            | "SensitivityType"            | 灵敏度类型。                                  |
+| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup> | "StandardOutputSensitivity"  | 标准输出灵敏度。                              |
+| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>  | "RecommendedExposureIndex"   | 推荐曝光指数。                                |
+| ISO_SPEED<sup>10+</sup>                   | "ISOSpeedRatings"            | ISO速度等级。                                 |
+| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"              | 光圈值。                                      |
+| EXPOSURE_BIAS_VALUE<sup>10+</sup>         | "ExposureBiasValue"          | 曝光偏差值。                                  |
+| METERING_MODE<sup>10+</sup>               | "MeteringMode"               | 测光模式。                                    |
+| LIGHT_SOURCE<sup>10+</sup>                | "LightSource"                | 光源。                                        |
+| FLASH <sup>10+</sup>                      | "Flash"                      | 闪光灯,记录闪光灯状态。                       |
+| FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"                | 焦距。                                        |
+| USER_COMMENT <sup>10+</sup>               | "UserComment"                | 用户注释。                                    |
+| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"            | 像素X尺寸。                                   |
+| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"            | 像素Y尺寸。                                   |
+| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"               | 白平衡。                                      |
+| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"      | 焦距35毫米胶片。                              |
+| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"         | 捕获模式，当前为只读属性。                  |
+| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"    | 物理孔径，光圈大小，当前为只读属性。        |
+| ROLL_ANGLE <sup>11+</sup>                 | "HwMnoteRollAngle"           | 滚动角度，当前为只读属性。                  |
+| PITCH_ANGLE<sup>11+</sup>                | "HwMnotePitchAngle"          | 俯仰角度，当前为只读属性。                  |
+| SCENE_FOOD_CONF<sup>11+</sup>             | "HwMnoteSceneFoodConf"       | 拍照场景：食物，当前为只读属性。            |
+| SCENE_STAGE_CONF<sup>11+</sup>           | "HwMnoteSceneStageConf"     | 拍照场景：舞台，当前为只读属性。            |
+| SCENE_BLUE_SKY_CONF<sup>11+</sup>       | "HwMnoteSceneBlueSkyConf"    | 拍照场景：蓝天，当前为只读属性。            |
+| SCENE_GREEN_PLANT_CONF<sup>11+</sup>      | "HwMnoteSceneGreenPlantConf" | 拍照场景：绿植，当前为只读属性。       |
+| SCENE_BEACH_CONF<sup>11+</sup>            | "HwMnoteSceneBeachConf"      | 拍照场景：沙滩，当前为只读属性。            |
+| SCENE_SNOW_CONF<sup>11+</sup>             | "HwMnoteSceneSnowConf"       | 拍照场景：下雪，当前为只读属性。            |
+| SCENE_SUNSET_CONF<sup>11+</sup>           | "HwMnoteSceneSunsetConf"     | 拍照场景：日落，当前为只读属性。            |
+| SCENE_FLOWERS_CONF<sup>11+</sup>          | "HwMnoteSceneFlowersConf"    | 拍照场景：花，当前为只读属性。              |
+| SCENE_NIGHT_CONF<sup>11+</sup>            | "HwMnoteSceneNightConf"      | 拍照场景：夜晚，当前为只读属性。            |
+| SCENE_TEXT_CONF<sup>11+</sup>             | "HwMnoteSceneTextConf"       | 拍照场景：文本，当前为只读属性。            |
+| FACE_COUNT<sup>11+</sup>                  | "HwMnoteFaceCount"           | 人脸数量，当前为只读属性。                  |
+| FOCUS_MODE<sup>11+</sup>                  | "HwMnoteFocusMode"           | 对焦模式，当前为只读属性。                  |
 | BITS_PER_SAMPLE   | "BitsPerSample"         | 每个像素比特数。         |
 | ORIENTATION       | "Orientation"           | 图片方向。               |
 | IMAGE_LENGTH      | "ImageLength"           | 图片长度。               |
