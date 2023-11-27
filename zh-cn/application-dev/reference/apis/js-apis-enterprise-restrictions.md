@@ -403,3 +403,91 @@ restrictions.isHdcDisabled(wantTemp).then((result) => {
   console.error(`Failed to query is hdc disabled or not. Code is ${err.code}, message is ${err.message}`);
 })
 ```
+
+## restrictions.isMicrophoneDisallowed<sup>11+</sup>
+
+isMicrophoneDisallowed(admin: Want): boolean
+
+指定设备管理应用查询麦克风是否被禁用。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                      |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                       |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+
+try {
+  let result = restrictions.isMicrophoneDisallowed(wantTemp);
+} catch (err) {
+  console.error(`Failed to isMicrophoneDisallowed. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## restrictions.disallowMicrophone<sup>11+</sup>
+
+disallowMicrophone(admin: Want, isDisallowed: boolean): void
+
+指定设备管理应用使设备禁用或启用HDC。使用Promise异步回调。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| isDisallowed  | boolean | 是 | true表示禁止使用HDC，false表示允许使用HDC。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                      |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+
+try {
+  restrictions.disallowMicrophone(wantTemp, true);
+} catch (err) {
+  console.error(`Failed to lock screen. Code is ${err.code}, message is ${err.message}`);
+}
+```
