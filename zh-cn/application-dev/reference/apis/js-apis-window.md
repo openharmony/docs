@@ -8537,7 +8537,7 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions, callback: As
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
 
@@ -8571,7 +8571,7 @@ export default class EntryAbility extends UIAbility {
     let windowClass: window.Window | undefined = undefined;
     try {
       let options : window.SubWindowOptions = {
-        title: "title",
+        title: 'title',
         decorEnable: true
       };
       windowStage.createSubWindowWithOptions('mySubWindow', options, (err: BusinessError, data) => {
@@ -8604,7 +8604,7 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
 
@@ -8643,7 +8643,7 @@ export default class EntryAbility extends UIAbility {
     let windowClass: window.Window | undefined = undefined;
     try {
       let options : window.SubWindowOptions = {
-        title: "title",
+        title: 'title',
         decorEnable: true
       };
       let promise = windowStage.createSubWindowWithOptions('mySubWindow', options);
