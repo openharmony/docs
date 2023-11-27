@@ -947,7 +947,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980111| If the operation invalid              |
+| 62980111| If the image source data incomplete          |
 | 62980115| If the image parameter invalid             |
 
 **示例：**
@@ -1069,7 +1069,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 | ------- | --------------------------------------------|
 | 62980115 | If the input parameter invalid              |
 | 62980097 | If the ipc error              |
-| 62980096 | If fail to create async work            |
+| 62980096 | If the operation failed          |
 
 **示例：**
 
@@ -1843,7 +1843,7 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 | 62980096| If the operation failed              |
 | 62980103| If the image data unsupport             |
 | 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
+| 62980111| If the image source data is incomplete              |
 | 62980118| If the image plugin create failed             |
 
 **示例：**
