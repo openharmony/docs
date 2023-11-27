@@ -1674,6 +1674,8 @@ setPrivacyMode(isPrivacyMode: boolean): void
 
 将输入法应用的面板设置为隐私模式，隐私模式不可被录屏、截屏。
 
+**需要权限：** ohos.permission.PRIVACY_WINDOW
+
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -1704,8 +1706,6 @@ try {
 hide(callback: AsyncCallback&lt;void&gt;): void
 
 隐藏输入法。使用callback异步回调。
-
-**需要权限：** ohos.permission.PRIVACY_WINDOW
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
