@@ -87,7 +87,7 @@ class SourceObject {
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         let source: SourceObject = new SourceObject("amy", 18, false);
-        let g_object: distributedObject.DataObject = distributedObject.create(this.context, source);
+        g_object = distributedObject.create(this.context, source);
     }
 }
 ```
@@ -115,7 +115,7 @@ let sessionId: string = distributedObject.genSessionId();
 
 ## SaveSuccessResponse<sup>9+</sup>
 
-Called when the **Save()** API is successfully called.
+Represents the information returned by the callback of [save](#save9).
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -123,11 +123,11 @@ Called when the **Save()** API is successfully called.
 | -------- | -------- | -------- | -------- |
 | sessionId | string | Yes| Unique ID for multi-device collaboration.|
 | version | number | Yes| Version of the distributed data object saved.|
-| deviceId | string | Yes| ID of the device where the distributed data object is stored. The default value is **local**, which identifies a local device. You can set it as required.|
+| deviceId | string | Yes| ID of the device where the distributed data object is stored. The value **local** indicates a local device.|
 
 ## RevokeSaveSuccessResponse<sup>9+</sup>
 
-Called when the **revokeSave()** API is successfully called.
+Represents the information returned by the callback of [revokeSave](#revokesave9).
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -143,7 +143,7 @@ Provides APIs for managing a distributed data object. Before using any API of th
 
 setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a session ID for synchronization. Automatic synchronization is performed for multiple devices with the same session ID on a trusted network.
+Sets a session ID. This API uses an asynchronous callback to return the result. Automatic synchronization is performed for multiple devices with the same session ID on a trusted network.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -153,7 +153,7 @@ Sets a session ID for synchronization. Automatic synchronization is performed fo
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| sessionId | string | Yes| ID of a distributed data object on a trusted network.|
+| sessionId | string | Yes| ID of a distributed data object on a trusted network. If this parameter is set to "", the distributed data object exits the network.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback invoked when the session ID is successfully set.|
 
 **Error codes**
@@ -171,13 +171,17 @@ Sets a session ID for synchronization. Automatic synchronization is performed fo
 g_object.setSessionId(distributedObject.genSessionId(), ()=>{
     console.info("join session");
 });
+// g_object exits the distributed network.
+g_object.setSessionId("", ()=>{
+    console.info("join session");
+});
 ```
 
 ### setSessionId<sup>9+</sup>
 
 setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
-Exits all joined sessions.
+Exits all sessions. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -187,7 +191,7 @@ Exits all joined sessions.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback invoked when the distributed data object exits all joined sessions.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the distributed data object exits all sessions. |
 
 **Error codes**
 
@@ -214,7 +218,7 @@ g_object.setSessionId(() => {
 
 setSessionId(sessionId?: string): Promise&lt;void&gt;
 
-Sets a session ID for synchronization. Automatic synchronization is performed for multiple devices with the same session ID on a trusted network.
+Set a session ID. This API uses a promise to return the result. Automatic synchronization is performed for multiple devices with the same session ID on a trusted network.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -259,7 +263,7 @@ g_object.setSessionId().then (()=>{
 
 ### on('change')<sup>9+</sup>
 
-on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void ): void
+on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void
 
 Subscribes to data changes of this distributed data object.
 
@@ -269,7 +273,7 @@ Subscribes to data changes of this distributed data object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **change**, which indicates data changes.|
+| type | string | Yes| Event type. The value is **change**, which indicates data changes. |
 | callback | Function | Yes| Callback invoked to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
 
 **Example**
@@ -287,7 +291,7 @@ g_object.on("change", (sessionId: string, fields: Array<string>) => {
 
 ### off('change')<sup>9+</sup>
 
-off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void ): void
+off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void): void
 
 Unsubscribes from the data changes of this distributed data object.
 
@@ -297,7 +301,7 @@ Unsubscribes from the data changes of this distributed data object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **change**, which indicates data changes.|
+| type | string | Yes| Event type. The value is **change**, which indicates data changes. |
 | callback | Function | No| Callback for data changes. If this parameter is not specified, all data change callbacks of this distributed data object will be unregistered.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
 
 
@@ -329,7 +333,7 @@ Subscribes to status changes of this distributed data object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
+| type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object. |
 | callback | Function | Yes| Callback invoked to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the device.<br>**status** indicates the object status, which can be online or offline.|
 
 **Example**
@@ -352,7 +356,7 @@ Unsubscribes from the status change of this distributed data object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
+| type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object. |
 | callback | Function | No| Callback for status changes. If this parameter is not specified, all status change callbacks of this distributed data object will be unsubscribed from.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the distributed data object.<br>**status** indicates the object status, which can be online or offline.|
 
 
@@ -387,7 +391,7 @@ The saved data will be released in the following cases:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| deviceId | string | Yes| ID of the device where data is stored. The value **local** indicates the local device.|
+| deviceId | string | Yes| ID of the device where data is stored. The value **local** indicates a local device.|
 | callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Yes| Callback invoked to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
 
 **Example**
@@ -543,9 +547,9 @@ createDistributedObject(source: object): DistributedObject
 
 Creates a distributed data object.
 
-> **NOTE**<br/>
+> **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use **distributedObject.create**.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [distributedObject.create](#distributedobjectcreate9).
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -589,7 +593,7 @@ Provides APIs for managing a distributed data object. Before using any API of th
 
 setSessionId(sessionId?: string): boolean
 
-Sets a session ID for synchronization. Automatic synchronization is performed for multiple devices with the same session ID on a trusted network.
+Sets a session ID. Automatic synchronization is performed for multiple devices with the same session ID on a trusted network.
 
 > **NOTE**
 >
@@ -651,7 +655,7 @@ Subscribes to data changes of this distributed data object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **change**, which indicates data changes.|
+| type | string | Yes| Event type. The value is **change**, which indicates data changes. |
 | callback | Function | Yes| Callback invoked to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
 
 **Example**
@@ -698,7 +702,7 @@ Unsubscribes from the data changes of this distributed data object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **change**, which indicates data changes.|
+| type | string | Yes| Event type. The value is **change**, which indicates data changes. |
 | callback | Function | No| Callback for data changes. If this parameter is not specified, all data change callbacks of this distributed data object will be unregistered.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
 
 **Example**
@@ -748,7 +752,7 @@ Subscribes to status changes of this distributed data object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
+| type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object. |
 | callback | Function | Yes| Callback invoked to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the device.<br>**status** indicates the object status, which can be online or offline.|
 
 **Example**
@@ -791,7 +795,7 @@ Unsubscribes from the status change of this distributed data object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
+| type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object. |
 | callback | Function | No| Callback for status changes. If this parameter is not specified, all status change callbacks of this distributed data object will be unsubscribed from.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the distributed data object.<br>**status** indicates the object status, which can be online or offline.|
 
 

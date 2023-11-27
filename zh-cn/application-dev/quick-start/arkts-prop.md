@@ -32,8 +32,7 @@
 | ----------- | ---------------------------------------- |
 | 装饰器参数       | 无                                        |
 | 同步类型        | 单向同步：对父组件状态变量值的修改，将同步给子组件\@Prop装饰的变量，子组件\@Prop变量的修改不会同步到父组件的状态变量上。嵌套类型的场景请参考[观察变化](#观察变化)。 |
-| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，支持undefined和null。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Prop支持联合类型实例](#@Prop支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Prop a : string \| undefined = undefiend`是推荐的，不推荐`@Prop a: string = undefined`。
-<br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。 <br/>必须指定类型。<br/>**说明** ：<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)；<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 |
+| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>必须指定类型。<br/>**说明** ：<br/>不支持Length、ResourceStr、ResourceColor类型，Length，ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。<br/>在父组件中，传递给\@Prop装饰的值不能为undefined或者null，反例如下所示。<br/>CompA&nbsp;({&nbsp;aProp:&nbsp;undefined&nbsp;})<br/>CompA&nbsp;({&nbsp;aProp:&nbsp;null&nbsp;})<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)；<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 |
 | 嵌套传递层数        | 在组件复用场景，建议@Prop深度嵌套数据不要超过5层，嵌套太多会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题，此时更建议使用[\@ObjectLink](arkts-observed-and-objectlink.md)。如果子组件的数据不想同步回父组件，建议采用@Reusable中的aboutToReuse，实现父组件向子组件传递数据，具体用例请参考[组件复用场景](arkts-state-management-best-practices.md)。 |
 | 被装饰变量的初始值   | 允许本地初始化。                                 |
 
@@ -98,7 +97,7 @@ this.title.value = 'Hi'
 this.title.a.value = 'ArkUi' 
 ```
 
-对于嵌套场景，如果class是被\@Observed装饰的，可以观察到class属性的变化，示例请参考[@Prop嵌套场景](#@Prop嵌套场景)。
+对于嵌套场景，如果class是被\@Observed装饰的，可以观察到class属性的变化，示例请参考[@Prop嵌套场景](#prop嵌套场景)。
 
 当装饰的类型是数组的时候，可以观察到数组本身的赋值、添加、删除和更新。
 
@@ -428,7 +427,7 @@ class Book {
 
 @Component
 struct ReaderComp {
-  @Prop book: Book = new Book();
+  @Prop book: Book = new Book("", 1);
 
   build() {
     Row() {
@@ -451,10 +450,10 @@ struct Library {
       ReaderComp({ book: this.allBooks[2] })
       Divider()
       Text('Books on loaan to a reader')
-      ForEach(this.allBooks, (book: void) => {
+      ForEach(this.allBooks, (book: Book) => {
         ReaderComp({ book: book })
       },
-        (book: number): number => book.id)
+        (book: Book) => book.id.toString())
       Button('Add new')
         .onClick(() => {
           this.allBooks.push(new Book("The C++ Standard Library", 512));
@@ -492,6 +491,8 @@ class Book {
 
 \@Observed装饰的类的实例会被不透明的代理对象包装，此代理可以检测到包装对象内的所有属性更改。如果发生这种情况，此时，代理通知\@Prop，\@Prop对象值被更新。
 
+![Video-prop-UsageScenario-one](figures/Video-prop-UsageScenario-one.gif)
+
 ### \@Prop本地初始化不和父组件同步
 
 为了支持\@Component装饰的组件复用场景，\@Prop支持本地初始化，这样可以让\@Prop是否与父组件建立同步关系变得可选。当且仅当\@Prop有本地初始化时，从父组件向子组件传递\@Prop的数据源才是可选的。
@@ -506,7 +507,7 @@ class Book {
 ```ts
 @Component
 struct MyComponent {
-  @Prop customCounter: number = 0;
+  @Prop customCounter: number;
   @Prop customCounter2: number = 5;
 
   build() {
@@ -558,6 +559,8 @@ struct MainProgram {
 }
 ```
 
+![Video-prop-UsageScenario-two](figures/Video-prop-UsageScenario-two.gif)
+
 ### \@Prop嵌套场景
 
 在嵌套场景下，每一层都要用@Observed装饰，且每一层都要被@Prop接收，这样才能观察到嵌套场景。
@@ -596,11 +599,14 @@ struct Parent {
 
   build() {
     Column() {
-      Button('change')
+      Button('change ClassB name')
         .onClick(() => {
           this.votes.name = "aaaaa"
-          this.votes.a.title = "wwwww"
         })
+      Button('change ClassA title')
+        .onClick(() => {
+          this.votes.a.title = "wwwww"
+        })  
       Child({ vote: this.votes })
     }
 
@@ -641,73 +647,112 @@ struct Child1 {
 }
 ```
 
-## Prop支持联合类型实例
+![Video-prop-UsageScenario-three](figures/Video-prop-UsageScenario-three.gif)
 
-@Prop支持联合类型和undefined和null，在下面的示例中，count类型为ClassA | undefined，点击父组件Library中的Button改变count的属性或者类型，Child中也会对应刷新。
+## 常见问题
+
+### \@Prop装饰状态变量未初始化错误
+
+\@Prop需要被初始化，如果没有进行本地初始化的，则必须通过父组件进行初始化。如果进行了本地初始化，那么是可以不通过父组件进行初始化的。
+
+【反例】
 
 ```ts
-class Animals {
-  public name: string;
+@Observed
+class ClassA {
+  public c: number = 0;
 
-  constructor(name: string) {
-    this.name = name;
+  constructor(c: number) {
+    this.c = c;
   }
 }
 
 @Component
-struct Child {
-  @Prop animal: Animals | undefined;
+struct PropChild {
+  @Prop testNum: ClassA; // 未进行本地初始化
 
   build() {
-    Column() {
-      Text(`Child's animal is  ${this.animal instanceof Animals ? this.animal.name : 'undefined'}`).fontSize(30)
-
-      Button('Child change animals into tigers')
-        .onClick(() => {
-          // 赋值为Animals的实例
-          this.animal = new Animals("Tiger")
-        })
-
-      Button('Child change animal to undefined')
-        .onClick(() => {
-          // 赋值为undefined
-          this.animal = undefined
-        })
-
-    }.width('100%')
+    Text(`PropChild testNum ${this.testNum.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
   }
 }
 
 @Entry
 @Component
-struct Library {
-  @State animal: Animals | undefined = new Animals("lion");
+struct Parent {
+  @State testNum: ClassA[] = [new ClassA(1)];
 
   build() {
     Column() {
-      Text(`Parents' animals are  ${this.animal instanceof Animals ? this.animal.name : 'undefined'}`).fontSize(30)
-
-      Child({animal: this.animal})
-
-      Button('Parents change animals into dogs')
+      Text(`Parent testNum ${this.testNum[0].c}`)
         .onClick(() => {
-          // 判断animal的类型，做属性的更新
-          if (this.animal instanceof Animals) {
-            this.animal.name = "Dog"
-          } else {
-            console.info('num is undefined, cannot change property')
-          }
+          this.testNum[0].c += 1;
         })
-
-      Button('Parents change animal to undefined')
-        .onClick(() => {
-          // 赋值为undefined
-          this.animal = undefined
-        })
+        
+      // @Prop本地没有初始化，也没有从父组件初始化
+      PropChild1()
     }
   }
 }
 ```
 
+【正例】
+
+```ts
+@Observed
+class ClassA {
+  public c: number = 0;
+
+  constructor(c: number) {
+    this.c = c;
+  }
+}
+
+@Component
+struct PropChild1 {
+  @Prop testNum: ClassA; // 未进行本地初始化
+
+  build() {
+    Text(`PropChild1 testNum ${this.testNum.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
+  }
+}
+@Component
+struct PropChild2 {
+  @Prop testNum: ClassA = new ClassA(1); // 进行本地初始化
+
+  build() {
+    Text(`PropChild2 testNum ${this.testNum.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State testNum: ClassA[] = [new ClassA(1)];
+
+  build() {
+    Column() {
+      Text(`Parent testNum ${this.testNum[0].c}`)
+        .onClick(() => {
+          this.testNum[0].c += 1;
+        })
+        
+      // @PropChild1本地没有初始化，必须从父组件初始化
+      PropChild1({ testNum: this.testNum[0] })
+      // @PropChild2本地进行了初始化，可以不从父组件初始化，也可以从父组件初始化
+      PropChild2()
+      PropChild2({ testNum: this.testNum[0] })
+    }
+  }
+}
+```
 
 <!--no_check-->

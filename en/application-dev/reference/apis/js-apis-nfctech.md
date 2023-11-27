@@ -320,7 +320,7 @@ For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode
 
 ```js
 import tag from '@ohos.nfc.tag';
-import {BussinessError} from '@ohos.base';
+import {BusinessError} from '@ohos.base';
 
 // Check whether 'tag.TagInfo' in 'js-apis-nfcTag.md' has obtained 'isoDep' correctly.
 

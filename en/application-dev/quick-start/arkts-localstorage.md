@@ -157,7 +157,7 @@ By decorating a variable with \@LocalStorageProp(key), a one-way data synchroniz
 
 2. Once the attribute with the given key in LocalStorage is updated, all the data (including \@LocalStorageLink and \@LocalStorageProp decorated variables) bound to the attribute key is changed synchronously.
 
-3. When the data decorated by \@LocalStorageProp(key) is a state variable, the change of the data is synchronized to LocalStorage, and the owning custom component is re-rendered.
+3. When the data decorated by \@LocalStorageLink(key) is a state variable, the change of the data is synchronized to LocalStorage, and the owning custom component is re-rendered.
 
 
 ## Application Scenarios

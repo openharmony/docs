@@ -40,11 +40,11 @@ Button('跳转')
   .height('20%')
   .onClick(() => {
     postCardAction(this, {
-      'action': 'router',
-      'bundleName': 'com.example.myapplication',
-      'abilityName': 'EntryAbility',
-      'params': {
-        'message': 'testForRouter' // 自定义要发送的message
+      action: 'router',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      params: {
+        message: 'testForRouter' // 自定义要发送的message
       }
     });
   })
@@ -54,12 +54,12 @@ Button('拉至后台')
   .height('20%')
   .onClick(() => {
     postCardAction(this, {
-      'action': 'call',
-      'bundleName': 'com.example.myapplication',
-      'abilityName': 'EntryAbility',
-      'params': {
-        'method': 'fun', // 自定义调用的方法名，必填
-        'message': 'testForCall' // 自定义要发送的message
+      action: 'call',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      params: {
+        method: 'fun', // 自定义调用的方法名，必填
+        message: 'testForCall' // 自定义要发送的message
       }
     });
   })

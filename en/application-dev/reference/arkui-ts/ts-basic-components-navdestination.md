@@ -38,3 +38,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | onShown(callback: () =&gt; void)<sup>10+</sup> | Called when the navigation destination page is displayed.|
 | onHidden(callback: () =&gt; void)<sup>10+</sup> | Called when the navigation destination page is hidden.|
 | onBackPressed(callback: () =&gt; boolean)<sup>10+</sup> | Called when the back button is pressed.<br>The value **true** means that the back button logic is overridden, and **false** means that the previous page is displayed. |
+
+## Example
+
+For details, see [Example in Navrouter](ts-basic-components-navrouter.md#example).

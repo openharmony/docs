@@ -11,14 +11,14 @@ Regardless of the FA model or stage model, the data read/write function consists
 
 If the client uses the FA model whereas the server is upgraded to the stage model, the client cannot access the server.
 
-To resolve this issue, OpenHarmony provides a solution on the framework side for smooth evolution.
+To resolve this issue, the system provides a solution on the framework side for smooth evolution.
 
 
 ## Basic Principles
 
 A compatible method is that **DataAbilityHelper** determines whether to call the **DataShareHelper** APIs based on the URI prefix (either **DataAbility** or **DataShare**). However, this method requires modification to the URI in the original client code.
 
-Instead of manual modification, OpenHarmony adopts the following processing:
+Instead of manual modification, the system adopts the following processing:
 
 1. The system attempts to start the DataAbility based on the URI passed in. If the startup fails, the system converts the URI prefix to **DataShare** and attempts to start the DataShareExtensionAbility.
 

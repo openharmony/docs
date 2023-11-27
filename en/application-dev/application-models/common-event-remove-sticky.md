@@ -3,7 +3,7 @@
 
 ## When to Use
 
-Subscribers can receive sticky common events that have been sent. If the events are no longer forwarded, the event publisher needs to remove them. OpenHarmony provides an API for removing sticky common events.
+Subscribers can receive sticky common events that have been sent. If the events are no longer forwarded, the event publisher needs to remove them. The system provides an API for removing sticky common events.
 
 ## Available APIs
 

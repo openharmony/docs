@@ -69,6 +69,8 @@
         - [其他状态管理概述](quick-start/arkts-other-state-mgmt-functions-overview.md)
         - [\@Watch装饰器：状态变量更改通知](quick-start/arkts-watch.md)
         - [$$语法：内置组件双向同步](quick-start/arkts-two-way-sync.md)
+      - [MVVM模式](quick-start/arkts-mvvm.md)
+      - [状态管理优秀实践](quick-start/arkts-state-management-best-practices.md)
     - 渲染控制
       - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
       - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)

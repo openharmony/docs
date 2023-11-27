@@ -1,5 +1,7 @@
 # @ohos.process (Obtaining Process Information)
 
+The **process** module provides process management APIs, for example, APIs for obtaining process information.
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -368,7 +370,7 @@ let pres = process.getEnvironmentVar("PATH")
 ```
 
 
-## ProcessManager<sup>9+</sup>	
+## ProcessManager<sup>9+</sup>
 
 Provides APIs for throwing exceptions during the addition of a process.
 

@@ -55,7 +55,11 @@ dialCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.dialCall("138xxxxxxxx", (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`dialCall fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`dialCall success.`);
+    }
 });
 ```
 
@@ -108,7 +112,11 @@ let dialCallOptions: call.DialCallOptions = {
     dialType: 0,
 }
 call.dialCall("138xxxxxxxx", dialCallOptions, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`dialCall fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`dialCall success.`);
+    }
 });
 ```
 
@@ -212,7 +220,7 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback\<boolea
 
 > **说明：**
 >
-> 从API version 6 开始支持，从API version 9 开始废弃。请使用[dialCall](#calldialcall9)替代，替代接口能力仅对系统应用开放。
+> 从API version 6 开始支持，从API version 9 开始废弃。请使用[dialCall](#calldialcall9-1)替代，替代接口能力仅对系统应用开放。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
@@ -247,7 +255,7 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise\<boolean\>
 
 > **说明：**
 >
-> 从API version 6 开始支持，从API version 9 开始废弃。请使用[dialCall](#calldialcall9)替代，替代接口能力仅对系统应用开放。
+> 从API version 6 开始支持，从API version 9 开始废弃。请使用[dialCall](#calldialcall9-2)替代，替代接口能力仅对系统应用开放。
 
 **需要权限**：ohos.permission.PLACE_CALL
 
@@ -314,7 +322,11 @@ makeCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.makeCall("138xxxxxxxx", (err: BusinessError) => {
-    console.log(`makeCall callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`makeCall fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`makeCall success`);
+    }
 });
 ```
 
@@ -383,7 +395,11 @@ hasCall\(callback: AsyncCallback\<boolean\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.hasCall((err: BusinessError, data: boolean) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`hasCall fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`hasCall success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -456,7 +472,11 @@ getCallState\(callback: AsyncCallback\<CallState\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.getCallState((err: BusinessError, data: call.CallState) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getCallState fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`getCallState success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -560,7 +580,11 @@ isEmergencyPhoneNumber\(phoneNumber: string, callback: AsyncCallback\<boolean\>\
 import { BusinessError } from '@ohos.base';
 
 call.isEmergencyPhoneNumber("138xxxxxxxx", (err: BusinessError, data: boolean) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`isEmergencyPhoneNumber fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`isEmergencyPhoneNumber success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -600,7 +624,11 @@ import { BusinessError } from '@ohos.base';
 
 let options: call.EmergencyNumberOptions = {slotId: 1}
 call.isEmergencyPhoneNumber("112", options, (err: BusinessError, data: boolean) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`isEmergencyPhoneNumber fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`isEmergencyPhoneNumber success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -686,7 +714,11 @@ formatPhoneNumber\(phoneNumber: string, callback: AsyncCallback\<string\>\): voi
 import { BusinessError } from '@ohos.base';
 
 call.formatPhoneNumber("138xxxxxxxx", (err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`formatPhoneNumber fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`formatPhoneNumber success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -729,7 +761,11 @@ let options: call.NumberFormatOptions = {
     countryCode: "CN"
 }
 call.formatPhoneNumber("138xxxxxxxx", options, (err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`formatPhoneNumber fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`formatPhoneNumber success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -820,7 +856,11 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string, callback: Asy
 import { BusinessError } from '@ohos.base';
 
 call.formatPhoneNumberToE164("138xxxxxxxx", "CN", (err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`formatPhoneNumberToE164 fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`formatPhoneNumberToE164 success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -890,7 +930,7 @@ muteRinger\(callback: AsyncCallback\<void\>\): void
 
 | 参数名      | 类型                      | 必填 | 说明       |
 | ----------- | ------------------------- | ---- | ---------- |
-| callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回停止铃声的结果。 |
 
 **错误码：**
 
@@ -912,7 +952,11 @@ muteRinger\(callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.muteRinger((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`muteRinger fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`muteRinger success.`);
+    }
 });
 ```
 
@@ -977,7 +1021,7 @@ answerCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明                                            |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
 | callId   | number                    | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回接听电话的结果。            |
 
 **错误码：**
 
@@ -999,7 +1043,11 @@ answerCall\(callId: number, callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.answerCall(1, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`answerCall fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`answerCall success.`);
+    }
 });
 ```
 
@@ -1071,7 +1119,7 @@ answerCall\(callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回接听电话的结果。 |
 
 **错误码：**
 
@@ -1093,7 +1141,11 @@ answerCall\(callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.answerCall((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`answerCall fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`answerCall success.`);
+    }
 });
 ```
 
@@ -1115,7 +1167,7 @@ hangUpCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明                                            |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
 | callId   | number                    | 是   | 呼叫id。可以通过订阅callDetailsChange事件获得。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回挂断电话的结果。                                      |
 
 **错误码：**
 
@@ -1137,7 +1189,11 @@ hangUpCall\(callId: number, callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.hangUpCall(1, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`hangUpCall fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`hangUpCall success.`);
+    }
 });
 ```
 
@@ -1209,7 +1265,7 @@ hangUpCall\(callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回挂断电话的结果。 |
 
 **错误码：**
 
@@ -1232,7 +1288,11 @@ hangUpCall\(callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.hangUpCall((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`hangUpCall fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`hangUpCall success.`);
+    }
 });
 ```
 
@@ -1254,7 +1314,7 @@ rejectCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明                                            |
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
 | callId   | number                    | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回拒接电话的结果。                           |
 
 **错误码：**
 
@@ -1277,7 +1337,11 @@ rejectCall\(callId: number, callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.rejectCall(1, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`rejectCall fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`rejectCall success.`);
+    }
 });
 ```
 
@@ -1300,7 +1364,7 @@ rejectCall\(callId: number, options: RejectMessageOptions, callback: AsyncCallba
 | -------- | ---------------------------------------------- | ---- | ----------------------------------------------- |
 | callId   | number                                         | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
 | options  | [RejectMessageOptions](#rejectmessageoptions7) | 是   | 拒绝消息选项。                                  |
-| callback | AsyncCallback&lt;void&gt;                      | 是   | 回调函数。                                      |
+| callback | AsyncCallback&lt;void&gt;                      | 是   | 以回调函数的方式返回拒接电话的结果。                                      |
 
 **错误码：**
 
@@ -1325,7 +1389,11 @@ let rejectMessageOptions : call.RejectMessageOptions = {
     messageContent: "拦截陌生号码"
 }
 call.rejectCall(1, rejectMessageOptions, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`rejectCall fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`rejectCall success.`);
+    }
 });
 ```
 
@@ -1401,7 +1469,7 @@ rejectCall\(callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回拒接电话的结果。 |
 
 **错误码：**
 
@@ -1423,7 +1491,11 @@ rejectCall\(callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.rejectCall((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`rejectCall fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`rejectCall success.`);
+    }
 });
 ```
 
@@ -1445,7 +1517,7 @@ rejectCall\(options: RejectMessageOptions, callback: AsyncCallback\<void\>\): vo
 | 参数名   | 类型                                           | 必填 | 说明           |
 | -------- | ---------------------------------------------- | ---- | -------------- |
 | options  | [RejectMessageOptions](#rejectmessageoptions7) | 是   | 拒绝消息选项。 |
-| callback | AsyncCallback&lt;void&gt;                      | 是   | 回调函数。     |
+| callback | AsyncCallback&lt;void&gt;                      | 是   | 以回调函数的方式返回拒接电话的结果。     |
 
 **错误码：**
 
@@ -1470,7 +1542,11 @@ let rejectMessageOptions: call.RejectMessageOptions = {
     messageContent: "拦截陌生号码"
 }
 call.rejectCall(rejectMessageOptions, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`rejectCall fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`rejectCall success.`);
+    }
 });
 ```
 
@@ -1492,7 +1568,7 @@ holdCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回保持电话的结果。 |
 
 **错误码：**
 
@@ -1514,7 +1590,11 @@ holdCall\(callId: number, callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.holdCall(1, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`holdCall fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`holdCall success.`);
+    }
 });
 ```
 
@@ -1586,7 +1666,7 @@ unHoldCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回取消保持电话的结果。 |
 
 **错误码：**
 
@@ -1608,7 +1688,11 @@ unHoldCall\(callId: number, callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.unHoldCall(1, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`unHoldCall fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`unHoldCall success.`);
+    }
 });
 ```
 
@@ -1680,7 +1764,7 @@ switchCall\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回交换电话的结果。 |
 
 **错误码：**
 
@@ -1702,7 +1786,11 @@ switchCall\(callId: number, callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.switchCall(1, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`switchCall fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`switchCall success.`);
+    }
 });
 ```
 
@@ -1772,7 +1860,7 @@ combineConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回合并会议的结果。 |
 
 **错误码：**
 
@@ -1782,6 +1870,7 @@ combineConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1792,7 +1881,11 @@ combineConference\(callId: number, callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.combineConference(1, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`combineConference fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`combineConference success.`);
+    }
 });
 ```
 
@@ -1827,6 +1920,7 @@ combineConference\(callId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1860,7 +1954,7 @@ kickOutFromConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回移出会议的结果。 |
 
 **错误码：**
 
@@ -1882,7 +1976,11 @@ kickOutFromConference\(callId: number, callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.kickOutFromConference(1, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`kickOutFromConference fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`kickOutFromConference success.`);
+    }
 });
 ```
 
@@ -1961,6 +2059,7 @@ getMainCallId\(callId: number, callback: AsyncCallback\<number\>\): void
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1972,7 +2071,11 @@ getMainCallId\(callId: number, callback: AsyncCallback\<number\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.getMainCallId(1, (err: BusinessError, data: number) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getMainCallId fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`getMainCallId success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -2007,6 +2110,7 @@ getMainCallId\(callId: number\): Promise\<number\>
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2049,6 +2153,7 @@ getSubCallIdList\(callId: number, callback: AsyncCallback\<Array\<string\>\>\): 
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2059,7 +2164,11 @@ getSubCallIdList\(callId: number, callback: AsyncCallback\<Array\<string\>\>\): 
 import { BusinessError } from '@ohos.base';
 
 call.getSubCallIdList(1, (err: BusinessError, data: Array<string>) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getSubCallIdList fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`getSubCallIdList success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -2094,6 +2203,7 @@ getSubCallIdList\(callId: number\): Promise\<Array\<string\>\>
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2135,6 +2245,7 @@ getCallIdListForConference\(callId: number, callback: AsyncCallback\<Array\<stri
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2145,7 +2256,11 @@ getCallIdListForConference\(callId: number, callback: AsyncCallback\<Array\<stri
 import { BusinessError } from '@ohos.base';
 
 call.getCallIdListForConference(1, (err: BusinessError, data: Array<string>) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getCallIdListForConference fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`getCallIdListForConference success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -2180,6 +2295,7 @@ getCallIdListForConference\(callId: number\): Promise\<Array\<string\>\>
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2235,7 +2351,11 @@ getCallWaitingStatus\(slotId: number, callback: AsyncCallback\<CallWaitingStatus
 import { BusinessError } from '@ohos.base';
 
 call.getCallWaitingStatus(0, (err: BusinessError, data: call.CallWaitingStatus) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getCallWaitingStatus fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`getCallWaitingStatus success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -2308,7 +2428,7 @@ setCallWaiting\(slotId: number, activate: boolean, callback: AsyncCallback\<void
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
 | activate | boolean              | 是   | 呼叫等待是否处于启用状态。<br/>- false：禁用呼叫等待<br/>- true：启用呼叫等待 |
-| callback | AsyncCallback<void\> | 是   | 回调函数。                                                   |
+| callback | AsyncCallback<void\> | 是   | 以回调函数的方式返回设置呼叫等待的结果。                                                   |
 
 **错误码：**
 
@@ -2330,7 +2450,11 @@ setCallWaiting\(slotId: number, activate: boolean, callback: AsyncCallback\<void
 import { BusinessError } from '@ohos.base';
 
 call.setCallWaiting(0, true, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`setCallWaiting fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`setCallWaiting success.`);
+    }
 });
 ```
 
@@ -2402,7 +2526,7 @@ startDTMF\(callId: number, character: string, callback: AsyncCallback\<void\>\):
 | --------- | -------------------- | ---- | ---------- |
 | callId    | number               | 是   | 呼叫Id。   |
 | character | string               | 是   | DTMF码。   |
-| callback  | AsyncCallback<void\> | 是   | 回调函数。 |
+| callback  | AsyncCallback<void\> | 是   | 以回调函数的方式返回启动双音多频的结果。 |
 
 **错误码：**
 
@@ -2412,6 +2536,7 @@ startDTMF\(callId: number, character: string, callback: AsyncCallback\<void\>\):
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2422,7 +2547,11 @@ startDTMF\(callId: number, character: string, callback: AsyncCallback\<void\>\):
 import { BusinessError } from '@ohos.base';
 
 call.startDTMF(1, "0", (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    id (err) {
+        console.error(`startDTMF fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`startDTMF success.`);
+    }
 });
 ```
 
@@ -2458,6 +2587,7 @@ startDTMF\(callId: number, character: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2489,7 +2619,7 @@ stopDTMF\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回停止双音多频的结果。 |
 
 **错误码：**
 
@@ -2499,6 +2629,7 @@ stopDTMF\(callId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2509,7 +2640,11 @@ stopDTMF\(callId: number, callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.stopDTMF(1, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`stopDTMF fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`stopDTMF success.`);
+    }
 });
 ```
 
@@ -2544,6 +2679,7 @@ stopDTMF\(callId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2576,7 +2712,7 @@ isInEmergencyCall\(callback: AsyncCallback\<boolean\>\): void
 
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 以回调函数的方式返回结果，true表示紧急号码，false表示非紧急号码。 |
 
 **错误码：**
 
@@ -2598,7 +2734,11 @@ isInEmergencyCall\(callback: AsyncCallback\<boolean\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.isInEmergencyCall((err: BusinessError, data: boolean) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`isInEmergencyCall fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`isInEmergencyCall success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -2619,7 +2759,7 @@ isInEmergencyCall\(\): Promise\<boolean\>
 
 | 类型                   | 说明                        |
 | ---------------------- | --------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回结果。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回结果，true表示正在处于紧急呼叫，false表示不处于紧急呼叫。 |
 
 **错误码：**
 
@@ -2662,7 +2802,7 @@ on\(type: 'callDetailsChange', callback: Callback\<CallAttributeOptions\>\): voi
 | 参数名   | 类型                                                    | 必填 | 说明                       |
 | -------- | ------------------------------------------------------- | ---- | -------------------------- |
 | type     | string                                                  | 是   | 通话时监听通话详情的变化，参数固定为'callDetailsChange'。 |
-| callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | 是  | 回调函数。                 |
+| callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | 是  | 以回调函数的方式返回订阅callDetailsChange事件的结果。                 |
 
 **错误码：**
 
@@ -2703,7 +2843,7 @@ on\(type: 'callEventChange', callback: Callback\<CallEventOptions\>\): void
 | 参数名   | 类型                                             | 必填 | 说明                       |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | type     | string                                           | 是   | 通话时监听通话事件的变化，参数固定为'callEventChange'。 |
-| callback | Callback<[CallEventOptions](#calleventoptions8)> | 是   | 回调函数。                 |
+| callback | Callback<[CallEventOptions](#calleventoptions8)> | 是   | 以回调函数的方式返回订阅callEventChange事件的结果。                 |
 
 **错误码：**
 
@@ -2744,7 +2884,7 @@ on\(type: 'callDisconnectedCause', callback: Callback\<DisconnectedDetails\>\): 
 | 参数名   | 类型                                                   | 必填 | 说明                       |
 | -------- | ------------------------------------------------------ | ---- | -------------------------- |
 | type     | string                                                 | 是   | 通话时监听断开连接的原因，参数固定为'callDisconnectedCause'。 |
-| callback | Callback<[DisconnectedDetails](#disconnecteddetails9)> | 是   | 回调函数。                 |
+| callback | Callback<[DisconnectedDetails](#disconnecteddetails9)> | 是   | 以回调函数的方式返回订阅callDisconnectedCausee事件的结果。                 |
 
 **错误码：**
 
@@ -2785,7 +2925,7 @@ on\(type: 'mmiCodeResult', callback: Callback\<MmiCodeResults\>\): void
 | 参数名   | 类型                                         | 必填 | 说明                  |
 | -------- | -------------------------------------------- | ---- | --------------------- |
 | type     | string                                       | 是   | 通话时监听MMI码结果，参数固定为'mmiCodeResult'。 |
-| callback | Callback<[MmiCodeResults](#mmicoderesults9)> | 是   | 回调函数。            |
+| callback | Callback<[MmiCodeResults](#mmicoderesults9)> | 是   | 以回调函数的方式返回订阅mmiCodeResult事件的结果。            |
 
 **错误码：**
 
@@ -2991,7 +3131,7 @@ on\(type: 'audioDeviceChange', callback: Callback\<AudioDeviceCallbackInfo\>\): 
 | 参数名   | 类型                                             | 必填 | 说明                                                |
 | -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
 | type     | string                                          | 是   | 通话音频设备发生变化，参数固定为'audioDeviceChange'。 |
-| callback | Callback<[AudioDeviceCallbackInfo](#audiodevicecallbackinfo10)> | 是   | 回调函数。                                           |
+| callback | Callback<[AudioDeviceCallbackInfo](#audiodevicecallbackinfo10)> | 是   | 以回调函数的方式返回订阅通话音频设备切换事件的结果。                                           |
 
 **错误码：**
 
@@ -3072,7 +3212,7 @@ isNewCallAllowed\(callback: AsyncCallback\<boolean\>\): void
 
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 以回调函数的方式返回结果，true表示允许拨打，false表示不可拨打。 |
 
 **错误码：**
 
@@ -3093,7 +3233,11 @@ isNewCallAllowed\(callback: AsyncCallback\<boolean\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.isNewCallAllowed((err: BusinessError, data: boolean) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`isNewCallAllowed fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`isNewCallAllowed success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -3112,7 +3256,7 @@ isNewCallAllowed\(\): Promise\<boolean\>
 
 | 类型                   | 说明                        |
 | ---------------------- | --------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回结果。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回结果，true表示允许拨打，false表示不可拨打。 |
 
 **错误码：**
 
@@ -3152,7 +3296,7 @@ separateConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callId   | number                    | 是   | 呼叫Id。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回分离会议电话的结果。 |
 
 **错误码：**
 
@@ -3173,7 +3317,11 @@ separateConference\(callId: number, callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.separateConference(1, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`separateConference fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`separateConference success.`);
+    }
 });
 ```
 
@@ -3265,7 +3413,11 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType, callback: A
 import { BusinessError } from '@ohos.base';
 
 call.getCallRestrictionStatus(0, 1, (err: BusinessError, data: call.RestrictionStatus) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getCallRestrictionStatus fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`getCallRestrictionStatus success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -3339,7 +3491,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo, callback: AsyncCa
 | -------- | ------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | info     | [CallRestrictionInfo](#callrestrictioninfo8) | 是   | 呼叫限制信息。                         |
-| callback | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;void&gt;                   | 是   | 以回调函数的方式返回设置呼叫限制状态的结果。                             |
 
 **错误码：**
 
@@ -3366,7 +3518,11 @@ let callRestrictionInfo: call.CallRestrictionInfo = {
     mode: call.CallRestrictionMode.RESTRICTION_MODE_ACTIVATION
 }
 call.setCallRestriction(0, callRestrictionInfo, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`setCallRestriction fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`setCallRestriction success.`);
+    }
 });
 ```
 
@@ -3446,7 +3602,7 @@ setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: st
 | slotId          | number                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | oldPassword     | string                                      | 是   | 呼叫限制旧密码。                       |
 | newPassword     | string                                      | 是   | 呼叫限制新密码。                       |
-| callback        | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。                             |
+| callback        | AsyncCallback&lt;void&gt;                   | 是   | 以回调函数的方式返回修改呼叫限制密码的结果。                             |
 
 **错误码：**
 
@@ -3468,7 +3624,11 @@ setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: st
 import { BusinessError } from '@ohos.base';
 
 call.setCallRestrictionPassword(0, "123456", "654321", (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`setCallRestrictionPassword fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`setCallRestrictionPassword success.`);
+    }
 });
 ```
 
@@ -3564,7 +3724,11 @@ getCallTransferInfo\(slotId: number, type: CallTransferType, callback: AsyncCall
 import { BusinessError } from '@ohos.base';
 
 call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY, (err: BusinessError, data: call.CallTransferResult) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getCallTransferInfo fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`getCallTransferInfo success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -3638,7 +3802,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo, callback: AsyncCallback
 | -------- | ------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | info     | [CallTransferInfo](#calltransferinfo8) | 是   | 呼叫转移信息。                        |
-| callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;void&gt;             | 是   | 以回调函数的方式返回设置呼叫转移信息的结果。                             |
 
 **错误码：**
 
@@ -3665,7 +3829,11 @@ let callTransferInfo: call.CallTransferInfo = {
     settingType: call.CallTransferSettingType.CALL_TRANSFER_ENABLE
 }
 call.setCallTransfer(0, callTransferInfo, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`setCallTransfer fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`setCallTransfer success.`);
+    }
 });
 ```
 
@@ -3742,7 +3910,7 @@ isRinging\(callback: AsyncCallback\<boolean\>\): void
 
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 以回调函数的方式返回是否正在响铃的结果，true表示正在响铃，false表示没有在响铃。 |
 
 **错误码：**
 
@@ -3764,7 +3932,11 @@ isRinging\(callback: AsyncCallback\<boolean\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.isRinging((err: BusinessError, data: boolean) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`isRinging fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`isRinging success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -3785,7 +3957,7 @@ isRinging\(\): Promise\<boolean\>
 
 | 类型                   | 说明                        |
 | ---------------------- | --------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回结果。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回结果，true表示正在响铃，false表示没有响铃。 |
 
 **错误码：**
 
@@ -3825,7 +3997,7 @@ setMuted\(callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回设置通话中的静音的结果。 |
 
 **错误码：**
 
@@ -3846,7 +4018,11 @@ setMuted\(callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.setMuted((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`setMuted fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`setMuted success.`);
+    }
 });
 ```
 
@@ -3904,7 +4080,7 @@ cancelMuted\(callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回取消通话中的静音的结果。 |
 
 **错误码：**
 
@@ -3925,7 +4101,11 @@ cancelMuted\(callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.cancelMuted((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`cancelMuted fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`cancelMuted success.`);
+    }
 });
 ```
 
@@ -3986,7 +4166,7 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
 | device   | [AudioDevice](#audiodevice10)| 是   | 音频设备。 |
-| callback | AsyncCallback&lt;void&gt;    | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;void&gt;    | 是   | 以回调函数的方式返回设置通话音频设备的结果。 |
 
 **错误码：**
 
@@ -4011,7 +4191,11 @@ let audioDevice: call.AudioDevice = {
     deviceType: call.AudioDeviceType.DEVICE_EARPIECE
 }
 call.setAudioDevice(audioDevice, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`setAudioDevice fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`setAudioDevice success.`);
+    }
 });
 ```
 
@@ -4084,7 +4268,7 @@ joinConference\(mainCallId: number, callNumberList: Array\<string\>, callback: A
 | -------------- | ------------------------- | ---- | --------------- |
 | mainCallId     | number                    | 是   | 主通话Id。      |
 | callNumberList | Array<string\>            | 是   | 呼叫号码列表。 |
-| callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。      |
+| callback       | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回加入会议的结果。      |
 
 **错误码：**
 
@@ -4108,7 +4292,11 @@ let callNumberList: Array<string> = [
     "138XXXXXXXX"
 ];
 call.joinConference(1, callNumberList, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`joinConference fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`joinConference success.`);
+    }
 });
 ```
 
@@ -4179,7 +4367,7 @@ updateImsCallMode\(callId: number, mode: ImsCallMode, callback: AsyncCallback\<v
 | -------- | ---------------------------- | ---- | -------------- |
 | callId   | number                       | 是   | 呼叫Id。       |
 | mode     | [ImsCallMode](#imscallmode8) | 是   | Ims呼叫模式。 |
-| callback | AsyncCallback&lt;void&gt;    | 是   | 回调函数。     |
+| callback | AsyncCallback&lt;void&gt;    | 是   | 以回调函数的方式返回更新Ims呼叫模式的结果。     |
 
 **错误码：**
 
@@ -4200,7 +4388,11 @@ updateImsCallMode\(callId: number, mode: ImsCallMode, callback: AsyncCallback\<v
 import { BusinessError } from '@ohos.base';
 
 call.updateImsCallMode(1, 1, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`updateImsCallMode fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`updateImsCallMode success.`);
+    }
 });
 ```
 
@@ -4269,7 +4461,7 @@ enableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明                                   |
 | -------- | ------------------------- | ---- | -------------------------------------- |
 | slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回启用Ims开关的结果。                             |
 
 **错误码：**
 
@@ -4291,7 +4483,11 @@ enableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.enableImsSwitch(0, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`enableImsSwitch fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`enableImsSwitch success.`);
+    }
 });
 ```
 
@@ -4362,7 +4558,7 @@ disableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明                                   |
 | -------- | ------------------------- | ---- | -------------------------------------- |
 | slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回禁用Ims开关的结果。                             |
 
 **错误码：**
 
@@ -4384,7 +4580,11 @@ disableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.disableImsSwitch(0, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`disableImsSwitch fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`disableImsSwitch success.`);
+    }
 });
 ```
 
@@ -4453,7 +4653,7 @@ isImsSwitchEnabled\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 参数名   | 类型                         | 必填 | 说明                                   |
 | -------- | ---------------------------- | ---- | -------------------------------------- |
 | slotId   | number                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 以回调函数的方式返回判断Ims开关是否启用的结果。                             |
 
 **错误码：**
 
@@ -4474,7 +4674,11 @@ isImsSwitchEnabled\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.isImsSwitchEnabled(0, (err: BusinessError, data: boolean) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`isImsSwitchEnabled fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`isImsSwitchEnabled success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -4498,7 +4702,7 @@ isImsSwitchEnabled\(slotId: number\): Promise\<boolean\>
 
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回结果。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回结果，true表示Ims开关启用，false表示未启用。 |
 
 **错误码：**
 
@@ -4543,7 +4747,7 @@ closeUnfinishedUssd\(slotId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明                                    |
 | -------- | ------------------------- | ---- | -------------------------------------- |
 | slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2  |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                              |
+| callback | AsyncCallback&lt;void&gt; | 是   | 以回调函数的方式返回取消未激活完成的非结构化补充数据业务的结果。                              |
 
 **错误码：**
 
@@ -4566,7 +4770,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 call.closeUnfinishedUssd(slotId, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`closeUnfinishedUssd fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`closeUnfinishedUssd success.`);
+    }
 });
 ```
 
@@ -4640,7 +4848,7 @@ setVoNRState\(slotId: number, state: VoNRState, callback: AsyncCallback\<void\>\
 | ----------- | ----------------------------- | ---- | ---------------------------------------------------- |
 | slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                |
 | state       | [VoNRState](#vonrstate10)     | 是   | 开关状态。                                            |
-| callback    | AsyncCallback&lt;void&gt;  | 是   | 回调函数。 |
+| callback    | AsyncCallback&lt;void&gt;  | 是   | 以回调函数的方式返回设置NR语音的开关状态的结果。 |
 
 **错误码：**
 
@@ -4664,7 +4872,11 @@ import { BusinessError } from '@ohos.base';
 let slotId: number = 0;
 let state: call.VoNRState = call.VoNRState.VONR_STATE_ON;
 call.setVoNRState(slotId, state, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`setVoNRState fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`setVoNRState success`);
+    }
 });
 ```
 
@@ -4763,7 +4975,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 call.getVoNRState(slotId, (err: BusinessError, data: call.VoNRState) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getVoNRState fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`getVoNRState success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -4860,7 +5076,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 call.canSetCallTransferTime(slotId, (err: BusinessError, data: boolean) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`canSetCallTransferTime fail, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`canSetCallTransferTime success, data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -4934,7 +5154,7 @@ inputDialerSpecialCode\(inputCode: string, callback: AsyncCallback\<void\>\): vo
 | 参数名      | 类型                         | 必填 | 说明                                       |
 | ----------- | ---------------------------- | ---- | ----------------------------------------- |
 | inputCode   | string                       | 是   | 暗码。支持暗码字段, 如：2846579(工程菜单)。 |
-| callback    | AsyncCallback&lt;void&gt;    | 是   | 回调函数                                   |
+| callback    | AsyncCallback&lt;void&gt;    | 是   | 以回调函数的方式返回暗码广播的结果。                                   |
 
 **错误码：**
 
@@ -4955,7 +5175,11 @@ inputDialerSpecialCode\(inputCode: string, callback: AsyncCallback\<void\>\): vo
 import { BusinessError } from '@ohos.base';
 
 call.inputDialerSpecialCode('2846579', (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`inputDialerSpecialCode fail, err->${JSON.stringify(error)}`);
+    } else {
+        console.log(`inputDialerSpecialCode success`);
+    }
 });
 ```
 
@@ -5005,7 +5229,7 @@ try {
     call.inputDialerSpecialCode('2846579');
     console.log(`inputDialerSpecialCode success`);
 } catch (error) {
-    console.log(`inputDialerSpecialCode fail, promise: err->${JSON.stringify(error)}`);
+    console.error(`inputDialerSpecialCode fail, promise: err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -5026,7 +5250,7 @@ removeMissedIncomingCallNotification\(callback: AsyncCallback\<void\>\): void
 
 | 参数名      | 类型                         | 必填 | 说明                                      |
 | ----------- | ---------------------------- | ---- | ---------------------------------------   |
-| callback    | AsyncCallback&lt;void&gt;    | 是   | 回调函数                                  |
+| callback    | AsyncCallback&lt;void&gt;    | 是   | 以回调函数的方式返回删除未接来电通知的结果。                                  |
 
 **错误码：**
 
@@ -5047,7 +5271,11 @@ removeMissedIncomingCallNotification\(callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 call.removeMissedIncomingCallNotification((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`removeMissedIncomingCallNotification failed, err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`removeMissedIncomingCallNotification success`);
+    }
 });
 ```
 
@@ -5090,7 +5318,7 @@ import { BusinessError } from '@ohos.base';
 call.removeMissedIncomingCallNotification().then(() => {
     console.log(`removeMissedIncomingCallNotification success`);
 }).catch((err: BusinessError) => {
-    console.log(`removeMissedIncomingCallNotification failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`removeMissedIncomingCallNotification failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -5263,7 +5491,7 @@ IP多媒体系统调用模式。
 | settingType              | [CallTransferSettingType](#calltransfersettingtype8) | 是   | 设置呼叫转移类型 |
 | startHour<sup>9+</sup>   | number                                               | 否   | 开始时间的小时数 |
 | startMinute<sup>9+</sup> | number                                               | 否   | 开始时间的分钟数 |
-| endHour<sup>9+</sup>     | number                                               | 否   | 结束时间的分钟数 |
+| endHour<sup>9+</sup>     | number                                               | 否   | 结束时间的小时数 |
 | endMinute<sup>9+</sup>   | number                                               | 否   | 结束时间的分钟数 |
 
 ## CallTransferType<sup>8+</sup>
@@ -5486,7 +5714,7 @@ IP多媒体系统调用模式。
 | number                   | string                             |  是  | 号码             |
 | startHour<sup>9+</sup>   | number                             |  是  | 开始时间的小时数 |
 | startMinute<sup>9+</sup> | number                             |  是  | 开始时间的分钟数 |
-| endHour<sup>9+</sup>     | number                             |  是  | 结束时间的分钟数 |
+| endHour<sup>9+</sup>     | number                             |  是  | 结束时间的小时数 |
 | endMinute<sup>9+</sup>   | number                             |  是  | 结束时间的分钟数 |
 
 ## CallWaitingStatus<sup>7+</sup>

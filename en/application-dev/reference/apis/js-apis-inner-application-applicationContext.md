@@ -17,12 +17,6 @@ import common from '@ohos.app.ability.common';
 
 Before calling any APIs in **ApplicationContext**, obtain an **ApplicationContext** instance through the **context** instance.
 
-```ts
-import common from '@ohos.app.ability.common';
-
-let applicationContext: common.ApplicationContext = this.context.getApplicationContext();
-```
-
 ## ApplicationContext.on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback)
 
 on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): **number**;

@@ -1,27 +1,26 @@
 # @ohos.multimodalInput.inputMonitor (Input Monitor)
 
-The **inputMonitor** module provides APIs to listen for touch events of input devices including touchscreen, mouse, and touchpad.
+The **inputMonitor** module implements listening for events of input devices, including the touchscreen, mouse, touchpad, etc.
 
->  **NOTE**
+>**NOTE**
 >
->  - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>- The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
->  - The APIs provided by this module are system APIs.
-
+>- The APIs provided by this module are system APIs.
+>
+>- In this document, **global** indicates the entire touchscreen or touchpad. For example, listening for global touch events means to listen for touch events of the entire touchpad when a user touches at any position on the touchpad.
 
 ## Modules to Import
-
 
 ```js
 import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 ```
 
-
 ## inputMonitor.on('touch')
 
 on(type: 'touch', receiver: TouchEventReceiver): void
 
-Enables listening for global touch events.
+Enables listening for global touch (touchscreen) events.
 
 **Required permissions**: ohos.permission.INPUT_MONITORING
 
@@ -31,12 +30,13 @@ Enables listening for global touch events.
 
 | Name      | Type                                      | Mandatory  | Description                 |
 | -------- | ---------------------------------------- | ---- | ------------------- |
-| type     | string                                   | Yes   | Type of the input device event. The value is **touch**.|
+| type     | string                                   | Yes   | Event type. This field has a fixed value of **touch**.|
 | receiver | [TouchEventReceiver](#toucheventreceiver) | Yes   | Callback used to return the touch event asynchronously.|
 
 **Example**
 
 ```js
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
 try {
   inputMonitor.on('touch', (touchEvent: TouchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -61,7 +61,7 @@ Enables listening for global mouse events.
 
 | Name      | Type                        | Mandatory  | Description                 |
 | -------- | -------------------------- | ---- | ------------------- |
-| type     | string                     | Yes   | Type of the input device event. The value is **mouse**.|
+| type     | string                     | Yes   | Event type. This field has a fixed value of **mouse**.|
 | receiver | Callback&lt;MouseEvent&gt; | Yes   | Callback used to return the mouse event asynchronously. |
 
   **Example**
@@ -79,13 +79,11 @@ try {
 }
 ```
 
-
-
 ## inputMonitor.off('touch')
 
 off(type: 'touch', receiver?: TouchEventReceiver): void
 
-Disables listening for global touch events.
+Disables listening for global touch (touchscreen) events.
 
 **Required permissions**: ohos.permission.INPUT_MONITORING
 
@@ -95,12 +93,13 @@ Disables listening for global touch events.
 
 | Name      | Type                                      | Mandatory  | Description                 |
 | -------- | ---------------------------------------- | ---- | ------------------- |
-| type     | string                                   | Yes   | Type of the input device event. The value is **touch**.|
+| type     | string                                   | Yes   | Event type. This field has a fixed value of **touch**.|
 | receiver | [TouchEventReceiver](#toucheventreceiver) | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application. |
 
 **Example**
 
 ```js
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
 // Disable listening for a single callback.
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -116,6 +115,7 @@ try {
 ```
 
 ```js
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
 // Cancel listening for all callbacks.
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -144,12 +144,13 @@ Disables listening for global mouse events.
 
 | Name      | Type                        | Mandatory  | Description                 |
 | -------- | -------------------------- | ---- | ------------------- |
-| type     | string                     | Yes   | Type of the input device event. The value is **mouse**.|
+| type     | string                     | Yes   | Event type. This field has a fixed value of **mouse**.|
 | receiver | Callback&lt;MouseEvent&gt; | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
 
 **Example**
 
 ```js
+import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
 // Disable listening for a single callback.
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -165,6 +166,7 @@ try {
 ```
 
 ```js
+import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
 // Cancel listening for all callbacks.
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -181,7 +183,7 @@ try {
 
 ## TouchEventReceiver
 
-Represents the callback used to return the touch event.
+Defines the callback for touch (touchscreen) events.
 
 **Required permissions**: ohos.permission.INPUT_MONITORING
 
@@ -191,7 +193,7 @@ Represents the callback used to return the touch event.
 
 | Name        | Type                                      | Mandatory  | Description                                      |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| touchEvent | [TouchEvent](../arkui-js/js-components-common-events.md) | Yes   | Touch event.|
+| touchEvent | [TouchEvent](./js-apis-touchevent.md) | Yes   | Touch event.|
 
 **Return value**
 
@@ -202,6 +204,7 @@ Represents the callback used to return the touch event.
 **Example**
 
 ```js
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
 try {
   inputMonitor.on('touch', touchEvent => {
     if (touchEvent.touches.length == 3) {// Three fingers are pressed.
@@ -234,6 +237,7 @@ Enables listening for global touchpad pinch events.
   **Example**
 
 ```js
+import type { Pinch } from '@ohos.multimodalInput.gestureEvent';
 try {
   inputMonitor.on('pinch', (pinchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);

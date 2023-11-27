@@ -184,7 +184,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import rpc from '@ohos.rpc';
-import common from '@ohos.app.ability.common';
+import Base from '@ohos.base';
 
 let commRemote: rpc.IRemoteObject | null = null;
 export default class MyFormExtensionAbility extends FormExtensionAbility {

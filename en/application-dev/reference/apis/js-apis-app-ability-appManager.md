@@ -1215,7 +1215,7 @@ import appManager from '@ohos.app.ability.appManager';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = "bundleName";
-function getRunningProcessInfoByBundleNameCallback(err: BusinessError, data: appManager.Array<ProcessInformation>) {
+function getRunningProcessInfoByBundleNameCallback(err: BusinessError, data: Array<appManager.ProcessInformation>) {
     if (err) {
         console.error(`getRunningProcessInfoByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
     } else {

@@ -47,9 +47,9 @@ Creates a **DeviceManager** instance.
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base'
 
-  let dmInstance: deviceManager.Devicemanager | null = null;
+  let dmInstance: deviceManager.DeviceManager | null = null;
   try {
-    deviceManager.createDeviceManager("ohos.samples.jshelloworld", (err: BusinessError, data: deviceManager.Devicemanager) => {
+    deviceManager.createDeviceManager("ohos.samples.jshelloworld", (err: BusinessError, data: deviceManager.DeviceManager) => {
       if (err) { 
         console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
         return;
@@ -271,9 +271,9 @@ Obtains all trusted devices synchronously.
 
 **Return value**
 
-| Name                                    | Description       |
-| -------------------------------------- | --------- |
-| Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of trusted devices obtained.|
+  | Name                                    | Description       |
+  | -------------------------------------- | --------- |
+  | Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of trusted devices obtained.|
 
 **Error codes**
 
@@ -353,8 +353,8 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                   |
-| -------- | ---------------------------------------- | ---- | --------------------- |
+  | Name      | Type                                    | Mandatory  | Description                   |
+  | -------- | ---------------------------------------- | ---- | --------------------- |
 | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Yes   | Callback invoked to return the list of trusted devices.|
 
 **Example**
@@ -363,7 +363,7 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base'
   try {
-    dmInstance.getTrustedDeviceList((err: BusinessError, data: deviceManager.DeviceInfo) => {
+    dmInstance.getTrustedDeviceList((err: BusinessError, data: Array<deviceManager.DeviceInfo>) => {
       if (err) {
         console.error("getTrustedDeviceList errCode:" + err.code + ",errMessage:" + err.message);
         return;
@@ -388,9 +388,9 @@ Obtains all trusted devices. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                      | Description                   |
-| ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the result.|
+  | Type                                      | Description                   |
+  | ---------------------------------------- | --------------------- |
+  | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -417,9 +417,9 @@ Obtains local device information synchronously.
 
 **Return value**
 
-| Name                     | Description             |
-| ------------------------- | ---------------- |
-| [DeviceInfo](#deviceinfo) | List of local devices obtained.|
+  | Name                     | Description             |
+  | ------------------------- | ---------------- |
+  | [DeviceInfo](#deviceinfo) | List of local devices obtained.|
 
 **Error codes**
 
@@ -455,8 +455,8 @@ Obtains local device information. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
+  | Name      | Type                                    | Mandatory  | Description       |
+  | -------- | ---------------------------------------- | ---- | --------- |
 | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback invoked to return the local device information.|
 
 **Example**
@@ -492,9 +492,9 @@ Obtains local device information. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                      | Description                   |
-| ---------------------------------------- | --------------------- |
-| Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
+  | Type                                      | Description                   |
+  | ---------------------------------------- | --------------------- |
+  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -521,9 +521,9 @@ Obtains the information about a specific device based on the network ID. This AP
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| networkId| string                                   | Yes  | Network ID of the device.|
+  | Name      | Type                                    | Mandatory  | Description       |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | networkId| string                                   | Yes  | Network ID of the device.|
 | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback invoked to return the information about the specified device.|
 
 **Example**
@@ -560,15 +560,15 @@ Obtains the information about a specific device based on the network ID. This AP
 
 **Parameters**
 
-| Name  | Type                                    | Mandatory| Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| networkId| string                                   | Yes  | Network ID of the device.|
-
+  | Name  | Type                                    | Mandatory| Description       |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | networkId| string                                   | Yes  | Network ID of the device.|
+  
 **Return value**
 
-| Type                                      | Description                   |
-| ---------------------------------------- | --------------------- |
-| Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
+  | Type                                      | Description                   |
+  | ---------------------------------------- | --------------------- |
+  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -597,9 +597,9 @@ Starts to discover peripheral devices. The discovery process automatically stops
 
 **Parameters**
 
-| Name           | Type                      | Mandatory| Description   |
-| ------------- | ------------------------------- | ---- | ----- |
-| subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
+  | Name           | Type                      | Mandatory| Description   |
+  | ------------- | ------------------------------- | ---- | ----- |
+  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
 
 **Error codes**
 
@@ -656,10 +656,10 @@ Starts to discover peripheral devices and filters discovered devices. The discov
 
 **Parameters**
 
-| Name           | Type                      | Mandatory  | Description   |
-| ------------- | ------------------------------- | ---- | -----  |
-| subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
-| filterOptions | string                          | No  | Options for filtering discovered devices. Optional. The default value is **undefined**, which indicates discovery of offline devices.|
+  | Name           | Type                      | Mandatory  | Description   |
+  | ------------- | ------------------------------- | ---- | -----  |
+  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
+| filterOptions | string                          | No  | Options for filtering discovered devices. The default value is **undefined**, which indicates discovery of offline devices.|
 
 **Error codes**
 
@@ -738,9 +738,9 @@ Stops device discovery.
 
 **Parameters**
 
-| Name         | Type  | Mandatory  | Description   |
-| ----------- | ------ | ---- | ----- |
-| subscribeId | number | Yes   | Subscription ID.|
+  | Name         | Type  | Mandatory  | Description   |
+  | ----------- | ------ | ---- | ----- |
+  | subscribeId | number | Yes   | Subscription ID.|
 
 **Error codes**
 
@@ -777,9 +777,9 @@ Publishes device information for discovery purposes. The publish process automat
 
 **Parameters**
 
-| Name         | Type                       | Mandatory| Description   |
-| ------------- | ------------------------------- | ---- | ----- |
-| publishInfo   | [PublishInfo](#publishinfo)     | Yes  | Device information to publish.|
+  | Name         | Type                       | Mandatory| Description   |
+  | ------------- | ------------------------------- | ---- | ----- |
+  | publishInfo   | [PublishInfo](#publishinfo)     | Yes  | Device information to publish.|
 
 **Error codes**
 
@@ -831,9 +831,9 @@ Stops publishing device information.
 
 **Parameters**
 
-| Name       | Type| Mandatory| Description |
-| ----------- | -------- | ---- | ----- |
-| publishId   | number   | Yes  | Publish ID.|
+  | Name       | Type| Mandatory| Description |
+  | ----------- | -------- | ---- | ----- |
+  | publishId   | number   | Yes  | Publish ID.|
 
 **Error codes**
 
@@ -870,10 +870,10 @@ Authenticates a device.
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description     |
-| ---------- | ---------------------------------------- | ---- | ------- |
-| deviceInfo | [DeviceInfo](#deviceinfo)                | Yes   | Device information.  |
-| authParam  | [AuthParam](#authparam)                  | Yes   | Authentication parameter.  |
+  | Name        | Type                                    | Mandatory  | Description     |
+  | ---------- | ---------------------------------------- | ---- | ------- |
+  | deviceInfo | [DeviceInfo](#deviceinfo)                | Yes   | Device information.  |
+  | authParam  | [AuthParam](#authparam)                  | Yes   | Authentication parameter.  |
 | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;pinToken&nbsp;?:&nbsp;number}&gt; | Yes   | Callback invoked to return the authentication result.|
 
 **Example**
@@ -907,12 +907,13 @@ Authenticates a device.
   }
 
   // Information about the device to authenticate. The information can be obtained from the device discovery result.
-  let deviceInfo: DeviceInfo = {
+  let deviceInfo: deviceManager.DeviceInfo = {
     deviceId: "XXXXXXXX",
     deviceName: "",
     deviceType: 0x0E,
     networkId: "xxxxxxx",
-    range: 0
+    range: 0,
+    authForm: 0
   };
   let extraInfo: ExtraInfo = {
     targetPkgName: 'ohos.samples.xxx',
@@ -952,9 +953,9 @@ Deauthenticates a device.
 
 **Parameters**
 
-| Name        | Type                     | Mandatory  | Description   |
-| ---------- | ------------------------- | ---- | ----- |
-| deviceInfo | [DeviceInfo](#deviceinfo) | Yes   | Device information.|
+  | Name        | Type                     | Mandatory  | Description   |
+  | ---------- | ------------------------- | ---- | ----- |
+  | deviceInfo | [DeviceInfo](#deviceinfo) | Yes   | Device information.|
 
 **Error codes**
 
@@ -978,12 +979,13 @@ For details about the error codes, see [Device Management Error Codes](../errorc
   }
 
   try {
-    let deviceInfo: DeviceInfo = {
+    let deviceInfo: deviceManager.DeviceInfo = {
       deviceId: "XXXXXXXX",
       deviceName: "",
       deviceType: 0x0E,
       networkId: "xxxxxxx",
-      range: 0
+      range: 0,
+      authForm: 0
     };
     dmInstance.unAuthenticateDevice(deviceInfo);
   } catch (err) {
@@ -1004,9 +1006,9 @@ Verifies authentication information.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description     |
-| -------- | ---------------------------------------- | ---- | ------- |
-| authInfo | [AuthInfo](#authinfo)                    | Yes   | Authentication information.  |
+  | Name      | Type                                    | Mandatory  | Description     |
+  | -------- | ---------------------------------------- | ---- | ------- |
+  | authInfo | [AuthInfo](#authinfo)                    | Yes   | Authentication information.  |
 | callback | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;level:&nbsp;number}&gt; | Yes   | Callback invoked to return the verification result.|
 
 **Example**
@@ -1066,10 +1068,10 @@ Sets a user operation.
 
 **Parameters**
 
-| Name      | Type           | Mandatory | Description               |
-| ------------- | --------------- | ---- | ------------------- |
-| operateAction | number          | Yes   | User operation.      |
-| params        | string          | Yes   | Input parameters of the user.|
+  | Name      | Type           | Mandatory | Description               |
+  | ------------- | --------------- | ---- | ------------------- |
+  | operateAction | number          | Yes   | User operation.      |
+  | params        | string          | Yes   | Input parameters of the user.|
 
 **Example**
 
@@ -1105,9 +1107,9 @@ Obtains the registration information of the credential.
 
 **Parameters**
 
-| Name      | Type           | Mandatory | Description               |
-| ------------- | --------------- | ---- | ------------------- |
-| requestInfo   | string          | Yes   | Request credential information.      |
+  | Name      | Type           | Mandatory | Description               |
+  | ------------- | --------------- | ---- | ------------------- |
+  | requestInfo   | string          | Yes   | Request credential information.      |
 | callback      | AsyncCallback<{registerInfo: string}>         | Yes   | Callback invoked to return the credential registration information.|
 
 **Example**
@@ -1128,9 +1130,9 @@ Obtains the registration information of the credential.
     version: "1.2.3",
     userId: "123"
   }
-
   try {
-    dmInstance.requestCredentialRegisterInfo(credentialInfo, (data: Data) => {
+    var jsonCredentialInfo = JSON.stringify(credentialInfo)
+    dmInstance.requestCredentialRegisterInfo(jsonCredentialInfo, (err: BusinessError, data: Data) => {
       if (data) {
           console.info("requestCredentialRegisterInfo result:" + JSON.stringify(data));
       } else {
@@ -1155,9 +1157,9 @@ Imports credential information.
 
 **Parameters**
 
-| Name      | Type           | Mandatory | Description               |
-| ------------- | --------------- | ---- | ------------------- |
-| credentialInfo| string          | Yes   | Credential information to import.      |
+  | Name      | Type           | Mandatory | Description               |
+  | ------------- | --------------- | ---- | ------------------- |
+  | credentialInfo| string          | Yes   | Credential information to import.      |
 | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback invoked to return the result.|
 
 **Example**
@@ -1199,7 +1201,6 @@ Imports credential information.
     peerDeviceId: ""
   }
 
-
   let credentialInfo: CredentialInfo = {
     processType: 1,
     authType: 1,
@@ -1211,7 +1212,8 @@ Imports credential information.
   }
 
   try {
-    dmInstance.importCredential(credentialInfo, (data: Data) => {
+    var jsonCredentialInfo = JSON.stringify(credentialInfo)
+    dmInstance.importCredential(jsonCredentialInfo, (err: BusinessError, data: Data) => {
       if (data) {
           console.info("importCredential result:" + JSON.stringify(data));
       } else {
@@ -1236,9 +1238,9 @@ Deletes credential information.
 
 **Parameters**
 
-| Name      | Type           | Mandatory | Description               |
-| ------------- | --------------- | ---- | ------------------- |
-| queryInfo     | string          | Yes   | Credential information to delete.      |
+  | Name      | Type           | Mandatory | Description               |
+  | ------------- | --------------- | ---- | ------------------- |
+  | queryInfo     | string          | Yes   | Credential information to delete.      |
 | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback invoked to return the result.|
 
 **Example**
@@ -1263,7 +1265,8 @@ Deletes credential information.
   }
 
   try {
-    dmInstance.deleteCredential(queryInfo, (data: Data) => {
+    var jsonQueryInfo = JSON.stringify(queryInfo)
+    dmInstance.deleteCredential(jsonQueryInfo, (err: BusinessError, data: Data) => {
       if (data) {
           console.info("deleteCredential result:" + JSON.stringify(data));
       } else {
@@ -1288,8 +1291,8 @@ Subscribes to UI status changes.
 
 **Parameters**
 
-| Name     | Type                            | Mandatory| Description                           |
-| -------- | ------------------------------------ | ---- | ------------------------------ |
+  | Name     | Type                            | Mandatory| Description                           |
+  | -------- | ------------------------------------ | ---- | ------------------------------ |
 | type     | string                                | Yes | Event type. The value **'uiStateChange'** indicates UI status changes. |
 | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback invoked to return the UI status.       |
 
@@ -1331,8 +1334,8 @@ Unsubscribes from UI status changes.
 
 **Parameters**
 
-| Name     | Type                             | Mandatory| Description                           |
-| -------- | ------------------------------------- | ---- | ------------------------------ |
+  | Name     | Type                             | Mandatory| Description                           |
+  | -------- | ------------------------------------- | ---- | ------------------------------ |
 | type     | string                                | Yes  | Event type. The value **'uiStateChange'** indicates UI status changes. |
 | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback for the UI status change. |
 
@@ -1361,8 +1364,8 @@ Subscribes to device state changes.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                            |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | Name      | Type                                    | Mandatory  | Description                            |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes. |
 | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback invoked to return the device information and state.     |
 
@@ -1406,8 +1409,8 @@ Unsubscribes from device state changes.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                         |
-| -------- | ---------------------------------------- | ---- | --------------------------- |
+  | Name      | Type                                    | Mandatory  | Description                         |
+  | -------- | ---------------------------------------- | ---- | --------------------------- |
 | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.      |
 | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback for the device state change. |
 
@@ -1451,8 +1454,8 @@ Subscribes to device discovery events.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                        |
-| -------- | ---------------------------------------- | ---- | -------------------------- |
+  | Name      | Type                                    | Mandatory  | Description                        |
+  | -------- | ---------------------------------------- | ---- | -------------------------- |
 | type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates discovery of a device. |
 | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback invoked to return the discovery of a device. |
 
@@ -1464,7 +1467,14 @@ Subscribes to device discovery events.
 
   class Data {
     subscribeId: number = 0
-    device: deviceManager.DeviceInfo = {}
+    device: deviceManager.DeviceInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: 0,
+      networkId: "",
+      range: 0,
+      authForm:0,
+    }
   }
 
   try {
@@ -1489,8 +1499,8 @@ Unsubscribes from device discovery events.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                         |
-| -------- | ---------------------------------------- | ---- | --------------------------- |
+  | Name      | Type                                    | Mandatory  | Description                         |
+  | -------- | ---------------------------------------- | ---- | --------------------------- |
 | type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates discovery of a device. |
 | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback for the device discovery event. |
 
@@ -1534,8 +1544,8 @@ Subscribes to device discovery failures.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                            |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | Name      | Type                                    | Mandatory  | Description                            |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | type     | string                                   | Yes   | Event type. The value **'discoverFail'** indicates a failure in discovering devices. |
 | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback invoked to report a device discovery failure. |
 
@@ -1571,8 +1581,8 @@ Unsubscribes from device discovery failures.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description               |
-| -------- | ---------------------------------------- | ---- | ----------------- |
+  | Name      | Type                                    | Mandatory  | Description               |
+  | -------- | ---------------------------------------- | ---- | ----------------- |
 | type     | string                                   | Yes   | Event type. The value **'discoverFail'** indicates a failure in discovering devices. |
 | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback for the device discovery failure. |
 
@@ -1608,9 +1618,9 @@ Subscribes to device information publication success events.
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                      |
-| -------- | ---------------------------------------- | ---- | -------------------------- |
-| type     | string                                   | Yes  | Event type. The value **'publishSuccess'** indicates an event reported when device information is published.|
+  | Name    | Type                                | Mandatory| Description                      |
+  | -------- | ---------------------------------------- | ---- | -------------------------- |
+  | type     | string                                   | Yes  | Event type. The value **'publishSuccess'** indicates an event reported when device information is published.|
 | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | Yes  | Callback invoked to return the publish ID.              |
 
 
@@ -1645,8 +1655,8 @@ Unsubscribes from device information publication success events.
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                         |
-| -------- | ---------------------------------------- | ---- | --------------------------- |
+  | Name    | Type                                | Mandatory| Description                         |
+  | -------- | ---------------------------------------- | ---- | --------------------------- |
 | type     | string                                   | Yes  | Event type. The value **'publishSuccess'** indicates an event of the success in publishing device information. |
 | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | No  | Callback for the device information publication success event. |
 
@@ -1681,8 +1691,8 @@ Subscribes to device information publication failures.
 
 **Parameters**
 
-| Name    | Type                                             | Mandatory| Description                            |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------ |
+  | Name    | Type                                             | Mandatory| Description                            |
+  | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                                | Yes  | Event type. The value **'publishFail'** indicates an event reported when publishing device information fails. |
 | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes  | Callback invoked to report a publication failure. |
 
@@ -1718,8 +1728,8 @@ Unsubscribes from device information publication failures.
 
 **Parameters**
 
-| Name    | Type                                             | Mandatory| Description               |
-| -------- | ----------------------------------------------------- | ---- | ----------------- |
+  | Name    | Type                                             | Mandatory| Description               |
+  | -------- | ----------------------------------------------------- | ---- | ----------------- |
 | type     | string                                                | Yes  | Event type. The value **'publishFail'** indicates a failure in publishing device information. |
 | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No  | Callback for the device information publication failure. |
 
@@ -1755,10 +1765,10 @@ Subscribes to dead events of the **DeviceManager** service.
 
 **Parameters**
 
-| Name      | Type                   | Mandatory  | Description                                      |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
+  | Name      | Type                   | Mandatory  | Description                                      |
+  | -------- | ----------------------- | ---- | ---------------------------------------- |
 | type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
-| callback | ()&nbsp;=&gt;&nbsp;void | Yes   | Callback invoked when a dead event of the **DeviceManager** service occurs.                      |
+  | callback | ()&nbsp;=&gt;&nbsp;void | Yes   | Callback invoked when a dead event of the **DeviceManager** service occurs.                      |
 
 **Example**
 
@@ -1787,8 +1797,8 @@ Unsubscribes from dead events of the **DeviceManager** service.
 
 **Parameters**
 
-| Name      | Type                   | Mandatory  | Description                                      |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
+  | Name      | Type                   | Mandatory  | Description                                      |
+  | -------- | ----------------------- | ---- | ---------------------------------------- |
 | type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates a dead event of the **DeviceManager** service. |
 | callback | ()&nbsp;=&gt;&nbsp;void | No   | Callback for the dead event of the **DeviceManager** service.                  |
 

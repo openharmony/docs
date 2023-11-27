@@ -45,16 +45,14 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果指定了别名，则通过别名来绑定变量；如果未指定别名，则通过变量名绑定变量。 |
 | 同步类型           | 双向同步。<br/>从\@Provide变量到所有\@Consume变量以及相反的方向的数据同步。双向同步的操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Provide a : string \| undefined = undefiend`是推荐的，不推荐`@Provide a: string = undefined`。
-<br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>不支持any。<br/>必须指定类型。\@Provide变量的\@Consume变量的类型必须相同。|
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>必须指定类型。\@Provide变量的\@Consume变量的类型必须相同。<br/>**说明：**<br/>不支持Length、ResourceStr、ResourceColor类型，Length、ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。 |
 | 被装饰变量的初始值      | 必须指定。                                    |
 
 | \@Consume变量装饰器 | 说明                                       |
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果提供了别名，则必须有\@Provide的变量和其有相同的别名才可以匹配成功；否则，则需要变量名相同才能匹配成功。 |
 | 同步类型           | 双向：从\@Provide变量（具体请参见\@Provide）到所有\@Consume变量，以及相反的方向。双向同步操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Consume a : string \| undefined`是推荐的，不推荐`@Consume a: string`。
-<br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>不支持any。<br/>必须指定类型。\@Provide变量的\@Consume变量的类型必须相同。<br/>**说明：**<br/>\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。 |
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any，不允许使用undefined和null。<br/>必须指定类型。\@Provide变量的\@Consume变量的类型必须相同。<br/>**说明：**<br/>\@Consume装饰的变量，在其父节点或者祖先节点上，必须有对应的属性和别名的\@Provide装饰的变量。 |
 | 被装饰变量的初始值      | 无，禁止本地初始化。                               |
 
 
@@ -70,7 +68,7 @@
 | 是否支持组件外访问      | 私有，仅可以在所属组件内访问。                          |
 
 
-  **图1** \@Provide初始化规则图示  
+  **图1** \@Provide初始化规则图示  
 
 
 ![zh-cn_image_0000001552614217](figures/zh-cn_image_0000001552614217.png)
@@ -84,7 +82,7 @@
 | 是否支持组件外访问      | 私有，仅可以在所属组件内访问                           |
 
 
-  **图2** \@Consume初始化规则图示  
+  **图2** \@Consume初始化规则图示  
 
 
 ![zh-cn_image_0000001502094666](figures/zh-cn_image_0000001502094666.png)
@@ -224,51 +222,6 @@ struct CompA {
       Button(`reviewVotes(${this.reviewVotes}), give +1`)
         .onClick(() => this.reviewVotes += 1)
       CompB()
-    }
-  }
-}
-```
-
-## Provide_and_Consume支持联合类型实例
-
-@Provide和@Consume支持联合类型和undefined和null，在下面的示例中，count类型为string | undefined，点击父组件Parent中的Button改变count的属性或者类型，Child中也会对应刷新。
-
-```ts
-@Component
-struct Child {
-  // @Consume装饰的变量通过相同的属性名绑定其祖先组件Ancestors内的@Provide装饰的变量
-  @Consume count: string | undefined;
-
-  build() {
-    Column() {
-      Text(`count(${this.count})`)
-      Button(`count(${this.count}), Child`)
-        .onClick(() => this.count = 'Ancestors')
-    }
-    .width('50%')
-  }
-}
-
-@Component
-struct Parent {
-  build() {
-    Row({ space: 5 }) {
-      Child()
-    }
-  }
-}
-
-@Entry
-@Component
-struct Ancestors {
-  // @Provide装饰的联合类型count由入口组件Ancestors提供其后代组件
-  @Provide count: string | undefined = 'Child';
-
-  build() {
-    Column() {
-      Button(`count(${this.count}), Child`)
-        .onClick(() => this.count = undefined)
-      Parent()
     }
   }
 }

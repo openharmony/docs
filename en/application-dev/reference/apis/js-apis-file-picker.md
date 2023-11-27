@@ -1,10 +1,10 @@
 # @ohos.file.picker (Picker)
 
-**picker** encapsulates APIs such as **PhotoViewPicker**, **DocumentViewPicker**, and **AudioViewPicker** to provide capabilities for selecting and saving images and videos, audio clips, or documents. The application can select the picker as required. The APIs of this module must be called in UIAbility. Otherwise, the **photoPicker** or **FilePicker** application cannot be started.
-
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+**picker** encapsulates APIs such as **PhotoViewPicker**, **DocumentViewPicker**, and **AudioViewPicker** to provide capabilities for selecting and saving images and videos, audio clips, or documents. The application can select the picker as required. The APIs of this module must be called in UIAbility. Otherwise, the **photoPicker** or **FilePicker** application cannot be started.
 
 ## Modules to Import
 
@@ -124,7 +124,7 @@ Starts a **photoPicker** page for the user to select one or more images/videos. 
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback invoked to return a **PhotoSelectResult** object. |
+| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback invoked to return a **PhotoSelectResult** object.|
 
 **Example**
 
@@ -544,7 +544,7 @@ Starts an **audioPicker** page (currently, a **documentPicker** page is displaye
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| option | [AudioSelectOptions](#audioselectoptions) | No  | Options for selecting the audio files. If this parameter is not specified, the **audioPicker** page is displayed by default. |
+| option | [AudioSelectOptions](#audioselectoptions) | No  | Options for selecting the audio clips. If this parameter is not specified, the **audioPicker** page is displayed by default. |
 
 **Return value**
 
@@ -662,7 +662,7 @@ Starts an **audioPicker** page (currently, a **documentPicker** page is displaye
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| option | [AudioSaveOptions](#audiosaveoptions) | No  | Options for saving audio files. If this parameter is not specified, an **audioPicker** page will be displayed for the user to enter the names of the files to save.|
+| option | [AudioSaveOptions](#audiosaveoptions) | No  | Options for saving audio clips. If this parameter is not specified, an **audioPicker** page will be displayed for the user to enter the names of the files to save.|
 
 **Return value**
 
@@ -788,7 +788,7 @@ Defines the options for selecting images/videos.
 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Types of the media files to select. **IMAGE_VIDEO_TYPE** is used by default. |
+| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Types of the media files to select. **IMAGE_VIDEO_TYPE** is used by default.|
 | maxSelectNumber       | number | No  | Maximum number of media files to select. The default value is **50**, and the maximum value is **500**.     |
 
 ## PhotoSelectResult
@@ -800,7 +800,7 @@ Defines information about the images/videos selected.
 | Name                   | Type               | Readable| Writable| Description                          |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
 | photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the images/videos selected. The URI array can be used only by calling [photoAccessHelper.getAssets](js-apis-photoAccessHelper.md#getassets) with temporary authorization. For details about how to use the media file URI, see [Using a Media File URI] (../../file-management/user-file-uri-intro.md#using-a-media-file-uri).|
-| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected image is the original one. |
+| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected image is the original one.|
 
 ## PhotoSaveOptions
 
@@ -821,8 +821,8 @@ Defines the options for selecting documents.
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | maxSelectNumber<sup>10+</sup>       | number  | No  | Maximum number of documents or directories that can be selected.<br>Value range: 1 to 500 |
-| defaultFilePathUri<sup>10+</sup>    | string  | No  | Path of the document or directory to select. |
-| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt; | No  | File name extension types to select. Use a comma (,) to seperate multiple file name extensions.|
+| defaultFilePathUri<sup>10+</sup>    | string  | No  | Path of the document or directory to select.|
+| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt; | No  | File name extension types to select. Use a comma (,) to separate multiple file name extensions.|
 
 ## DocumentSaveOptions
 
@@ -833,7 +833,7 @@ Defines the options for saving documents.
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
 | newFileNames            | Array&lt;string&gt;    | No  | Names of the documents to save. If this parameter is not specified, the user needs to enter the document names. |
-| defaultFilePathUri<sup>10+</sup>    | string  | No  | Path of the file or directory to save.|
+| defaultFilePathUri<sup>10+</sup>    | string  | No  | Path of the document or directory to save.|
 | fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | No  | File name extensions of the documents to save.|
 
 ## AudioSelectOptions

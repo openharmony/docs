@@ -269,8 +269,6 @@
   export default class BgTaskAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       console.info("[Demo] BgTaskAbility onCreate");
-      this.callee.on('test', sendMsgCallback);
-
       try {
         this.callee.on(MSG_SEND_METHOD, sendMsgCallback)
       } catch (error) {
@@ -400,6 +398,7 @@
 
   let mMyStub: MyStub;
 
+  // 采用connectAbility的方式启动服务
   class MyStub extends rpc.RemoteObject {
     constructor(des: string) {
       super(des);
@@ -422,10 +421,11 @@
     }
   }
 
+  // 采用startAbility的方式启动服务
   class ServiceAbility {
     onStart(want: Want) {
       console.info('ServiceAbility onStart');
-      let mMyStub: MyStub = new MyStub("ServiceAbility-test");
+      mMyStub = new MyStub("ServiceAbility-test");
       // 在执行长时任务前，调用申请接口。
       startContinuousTask();
       processAsyncJobs();

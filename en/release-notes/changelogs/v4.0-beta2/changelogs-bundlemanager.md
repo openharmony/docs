@@ -1,4 +1,4 @@
-# Bundle Management Subsystem Changelog
+# Bundle Manager Changelog
 
 
 ## cl.bundlemanager.1 Bottom Layer Implementation of getAllBundleInfo in \@ohos.bundle.d.ts Changed

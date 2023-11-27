@@ -29,7 +29,7 @@
 
 - 事件方法：组件可以通过链式调用设置多个事件的响应逻辑，如跟随在Button后面的onClick()。
 
-- 系统组件、属性方法、事件方法具体使用可参考[基于ArkTS的声明式开发范式](../reference/arkui-ts/Readme-CN.md)。
+- 系统组件、属性方法、事件方法具体使用可参考[基于ArkTS的声明式开发范式](../reference/arkui-ts/ts-universal-events-click.md)。
 
 除此之外，ArkTS扩展了多种语法范式来使开发更加便捷：
 

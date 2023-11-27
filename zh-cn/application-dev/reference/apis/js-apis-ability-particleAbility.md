@@ -1,6 +1,6 @@
 # @ohos.ability.particleAbility (ParticleAbility模块)
 
-particleAbility模块提供了操作Service类型的Ability的能力，包括启动、停止指定的particleAbility，获取dataAbilityHelper，连接、断连指定的ServiceAbility等。
+particleAbility模块提供了操作Data和Service类型的Ability的能力，包括启动、停止指定的particleAbility，获取dataAbilityHelper，连接、断连指定的ServiceAbility等。
 
 > **说明：**
 > 
@@ -53,7 +53,7 @@ particleAbility.startAbility(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: '',
             bundleName: 'com.example.Data',
-            abilityName: 'EntryAbility',
+            abilityName: 'com.example.Data.EntryAbility',
             uri: ''
         },
     },
@@ -69,7 +69,7 @@ particleAbility.startAbility(
 
 ## particleAbility.startAbility
 
-startAbility(parameter: StartAbilityParameter): Promise\<void>;
+startAbility(parameter: StartAbilityParameter): Promise\<void>
 
 启动指定的particleAbility（Promise形式）。
 
@@ -108,11 +108,11 @@ particleAbility.startAbility(
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: '',
             bundleName: 'com.example.Data',
-            abilityName: 'EntryAbility',
+            abilityName: 'com.example.Data.EntryAbility',
             uri: ''
         },
     },
-).then((data) => {
+).then(() => {
     console.info('particleAbility startAbility');
 });
 ```
@@ -137,11 +137,9 @@ terminateSelf(callback: AsyncCallback\<void>): void
 import particleAbility from '@ohos.ability.particleAbility';
 
 particleAbility.terminateSelf(
-    (error, data) => {
+    (error) => {
         if (error && error.code !== 0) {
             console.error(`terminateSelf fail, error: ${JSON.stringify(error)}`);
-        } else {
-            console.log(`terminateSelf success, data: ${JSON.stringify(data)}`);
         }
     }
 );
@@ -166,7 +164,7 @@ terminateSelf(): Promise\<void>
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 
-particleAbility.terminateSelf().then((data) => {
+particleAbility.terminateSelf().then(() => {
 	console.info('particleAbility terminateSelf');
 });
 ```
@@ -209,9 +207,9 @@ particleAbility.acquireDataAbilityHelper(uri);
 ```
 
 
-## particleAbility.startBackgroundRunning
+## particleAbility.startBackgroundRunning<sup>(deprecated)</sup>
 
-startBackgroundRunning(id: number, request: NotificationRequest, callback: AsyncCallback&lt;void&gt;): void;
+startBackgroundRunning(id: number, request: NotificationRequest, callback: AsyncCallback&lt;void&gt;): void
 
 向系统申请长时任务，使用callback形式返回结果，建议使用新接口[backgroundTaskManager.startBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning8)。
 
@@ -273,7 +271,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 
 ```
 
-## particleAbility.startBackgroundRunning
+## particleAbility.startBackgroundRunning<sup>(deprecated)</sup>
 
 startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;void&gt;
 
@@ -338,9 +336,9 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 
 ```
 
-## particleAbility.cancelBackgroundRunning
+## particleAbility.cancelBackgroundRunning<sup>(deprecated)</sup>
 
-cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void;
+cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void
 
 向系统申请取消长时任务，使用callback形式返回结果，建议使用新接口[backgroundTaskManager.stopBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning8)。
 
@@ -370,9 +368,9 @@ particleAbility.cancelBackgroundRunning(callback);
 
 ```
 
-## particleAbility.cancelBackgroundRunning
+## particleAbility.cancelBackgroundRunning<sup>(deprecated)</sup>
 
-cancelBackgroundRunning(): Promise&lt;void&gt;;
+cancelBackgroundRunning(): Promise&lt;void&gt;
 
 向系统申请取消长时任务，使用promise形式返回结果，建议使用新接口[backgroundTaskManager.stopBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning8-1)。
 
@@ -388,6 +386,7 @@ cancelBackgroundRunning(): Promise&lt;void&gt;;
 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
+import { BusinessError } from '@ohos.base';
 
 particleAbility.cancelBackgroundRunning().then(() => {
     console.info('Operation succeeded');
@@ -418,12 +417,19 @@ connectAbility(request: Want, options:ConnectOptions): number
 | request | [Want](js-apis-application-want.md)           | 是   | 表示被连接的ServiceAbility。 |
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是   | 连接回调方法。           |
 
+**返回值：**
+
+| 类型     | 说明                   |
+| ------ | -------------------- |
+| number | 连接的ServiceAbility的ID(ID从0开始自增，每连接成功一次ID加1)。 |
+
 
 **示例**：
 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 import rpc from '@ohos.rpc';
+import { BusinessError } from '@ohos.base';
 
 let connId = particleAbility.connectAbility(
     {
@@ -452,7 +458,7 @@ particleAbility.disconnectAbility(connId).then((data) => {
 
 ## particleAbility.disconnectAbility
 
-disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
+disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 断开当前ability与指定ServiceAbility的连接（callback形式）。
 
@@ -462,6 +468,7 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
+  | connection | number               | 是    | 表示断开连接的ServiceAbility的ID。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回断开连接的结果 |
 
 **示例**：
@@ -496,7 +503,7 @@ particleAbility.disconnectAbility(connId, (err) => {
 
 ## particleAbility.disconnectAbility
 
-disconnectAbility(connection: number): Promise\<void>;
+disconnectAbility(connection: number): Promise\<void>
 
 断开当前ability与指定ServiceAbility的连接（Promise形式）。
 
@@ -506,6 +513,7 @@ disconnectAbility(connection: number): Promise\<void>;
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
+| connection | number               | 是    | 表示断开连接的ServiceAbility的ID。 |
 | Promise\<void> | 使用Promise形式返回结果。 |
 
 **示例**：
@@ -533,8 +541,8 @@ let connId = particleAbility.connectAbility(
     },
 );
 
-particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(`data: ${data}`);
+particleAbility.disconnectAbility(connId).then(() => {
+    console.log('disconnectAbility success');
 }).catch((error: BusinessError) => {
     console.error(`particleAbilityTest result errCode : ${error.code}`);
 });

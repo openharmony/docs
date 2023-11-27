@@ -15,7 +15,7 @@ import calendarManager from '@ohos.calendarManager';
 
 ## calendarManager.getCalendarManager
 
-getCalendarManager(context : Context): CalendarManager;
+getCalendarManager(context : Context): CalendarManager
 
 Obtains a **CalendarManager** object based on the context.
 
@@ -29,22 +29,31 @@ Obtains a **CalendarManager** object based on the context.
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                     | Yes  | Application context. For details about the application context of the stage model, see [Context](js-apis-inner-application-context.md).|
 
+**Return value**
+
+| Type                          | Description                                 |
+| ------------------------------ | ------------------------------------- |
+| CalendarManager | **CalendarManager** object obtained.|
 
 **Example**
 
 ```ts
   // Obtain the context.
+  // Obtain a calendarManager object.
   // In the following code, class EntryAbility extends UIAbility and onWindowStageCreate are available in main/ets/entryability/EntryAbility.ets and ohosTest/ets/testability/TestAbility.ets files and can be directly used.
   import UIAbility from '@ohos.app.ability.UIAbility';
   import common from '@ohos.app.ability.common';
+  import window from '@ohos.window';
 
   export let mContext : common.UIAbilityContext | null = null;
+  export let calendarMgr : calendarManager.CalendarManager | null = null;
   class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage){
       mContext = this.context;
     }
+    calendarMgr = calendarManager.getCalendarManager(mContext);
   }
-  let calendarMgr:calendarManager.CalendarManager = calendarManager.getCalendarManager(mContext as Context);
+   
 ```
 
 ## CalendarManager
@@ -73,8 +82,9 @@ Creates a **Calendar** object based on the calendar account information. This AP
 
 ```typescript
 import { BusinessError } from '@ohos.base';
+import {calendarMgr} from '../testability/TestAbility'; // The path is applicable to the test module.
 
-let calendar : calendarManager.Calendar | undefined = undefined;
+let calendar: calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
@@ -119,6 +129,7 @@ Creates a **Calendar** object based on the calendar account information. This AP
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import {calendarMgr} from '../testability/TestAbility'; // The path is applicable to the test module.
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
@@ -148,13 +159,14 @@ Deletes a specified **Calendar** object. This API uses an asynchronous callback 
 
 | Name  | Type                 | Mandatory| Description          |
 | -------- | --------------------- | ---- | -------------- |
-| calendar | [Calendar](#calendar) | Yes  | **Calendar** object.|
-| callback | AsyncCallback\<void>  | Yes  | Callback used to return the result.    |
+| calendar | [Calendar](#calendar) | Yes  | **Calendar** object to delete.|
+| callback | AsyncCallback\<void>  | Yes  | Asynchronous callback that returns no value.    |
 
 **Example**
 
 ```typescript
 import { BusinessError } from '@ohos.base';
+import {calendarMgr} from '../testability/TestAbility'; // The path is applicable to the test module.
 
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
@@ -190,7 +202,7 @@ Deletes a specified **Calendar** object. This API uses a promise to return the r
 
 | Name  | Type                 | Mandatory| Description          |
 | -------- | --------------------- | ---- | -------------- |
-| calendar | [Calendar](#calendar) | Yes  | **Calendar** object.|
+| calendar | [Calendar](#calendar) | Yes  | **Calendar** object to delete.|
 
 **Return value**
 
@@ -202,6 +214,7 @@ Deletes a specified **Calendar** object. This API uses a promise to return the r
 
 ```typescript
 import { BusinessError } from '@ohos.base';
+import {calendarMgr} from '../testability/TestAbility'; // The path is applicable to the test module.
 
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
@@ -239,6 +252,7 @@ Obtains the default **Calendar** object, which is created when the data storage 
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import {calendarMgr} from '../testability/TestAbility'; // The path is applicable to the test module.
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 calendarMgr.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
@@ -272,6 +286,7 @@ Obtains a specified **Calendar** object. This API uses an asynchronous callback 
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import {calendarMgr} from '../testability/TestAbility'; // The path is applicable to the test module.
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
@@ -314,6 +329,7 @@ Obtains the default **Calendar** object or a specified **Calendar** object. This
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import {calendarMgr} from '../testability/TestAbility'; // The path is applicable to the test module.
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 calendarMgr.getCalendar().then((data: calendarManager.Calendar) => {
@@ -344,6 +360,7 @@ Obtains the created and default **Calendar** objects of the current application.
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import {calendarMgr} from '../testability/TestAbility'; // The path is applicable to the test module.
 
 calendarMgr.getAllCalendars((err: BusinessError, data: calendarManager.Calendar[]) => {
   if (err) {
@@ -378,6 +395,7 @@ Obtains the created and default **Calendar** objects of the current application.
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import {calendarMgr} from '../testability/TestAbility'; // The path is applicable to the test module.
 
 calendarMgr.getAllCalendars().then((data: calendarManager.Calendar[]) => {
   console.info(`Succeeded in getting all calendars->${JSON.stringify(data)}`);
@@ -400,7 +418,7 @@ In the following API examples, you need to use [createCalendar()](#createcalenda
 
 | Name| Type  | Read-only| Mandatory| Description    |
 | ---- | ------ | ---- | ---- | -------- |
-| id   | number | Yes  | Yes  | Account ID.|
+| id   | number | Yes  | Yes  | Calendar account ID.|
 
 ### addEvent
 
@@ -945,7 +963,8 @@ Sets the calendar configuration information. This API uses a promise to return t
 import { BusinessError } from '@ohos.base';
 
 const config: calendarManager.CalendarConfig = {
-  enableReminder: true
+  enableReminder: true,
+  color: '#aabbcc'
 };
 calendar.setConfig(config).then(() => {
   console.info("Succeeded in setting config");
@@ -996,7 +1015,7 @@ Describes the calendar configuration information.
 | Name          | Type                                               | Read-only| Mandatory| Description                                                        |
 | -------------- | --------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | enableReminder | boolean                                             | No  | No  | Whether to enable the reminder for events in the calendar. The value **true** means to enable the reminder for events in the calendar, and **false** means the opposite. The default value is **true**.|
-| color          | [ResourceColor](../arkui-ts/ts-types.md#resourcecolor) | No  | No  | Calendar color. If this parameter is not set, the default value **'#0A59F7'** is used.               |
+| color          | string/number | No  | No  | Calendar color. If this parameter is not set, the default value **'#0A59F7'** is used.               |
 
 ## Event
 

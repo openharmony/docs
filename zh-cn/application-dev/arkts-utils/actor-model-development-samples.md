@@ -18,6 +18,7 @@ Actor并发模型对比内存共享并发模型的优势在于不同线程间内
 为了避免不同生产者或消费者同时访问一块共享内存的容器时产生的脏读，脏写现象，同一时间只能有一个生产者或消费者访问该容器，也就是不同生产者和消费者争夺使用容器的锁。当一个角色获取锁之后其他角色需要等待该角色释放锁之后才能重新尝试获取锁以访问该容器。
 
 ```
+// 此段示例为伪代码仅作为逻辑示意，便于开发者理解使用内存共享模型和Actor模型的区别
 BufferQueue {
     Queue queue
     Mutex mutex
@@ -85,17 +86,17 @@ Actor模型不同角色之间并不共享内存，生产者线程和UI线程都�
 import taskpool from '@ohos.taskpool';
 // 跨线程并发任务
 @Concurrent
-async function produce() {
+async function produce(): Promise<number>{
   // 添加生产相关逻辑
   console.log("producing...")
   return Math.random()
 }
 
 class Consumer {
-    public consume(value : number) {
-        // 添加消费相关逻辑
-        console.log("consuming value: " + value)
-    }
+  public consume(value : number) {
+    // 添加消费相关逻辑
+    console.log("consuming value: " + value)
+  }
 }
 
 @Entry
@@ -112,16 +113,16 @@ struct Index {
         Button() {
           Text("start")
         }.onClick(() => {
-            let produceTask = new taskpool.Task(produce)
-            let consumer = new Consumer()
-            for (let index = 0; index < 10; index++) {
-                // 执行生产异步并发任务
-                taskpool.execute(produceTask).then((res : number) => {
-                    consumer.consume(res)
-                }).catch((e : Error) => {
-                    console.error(e.message)
-                })
-            }
+          let produceTask: taskpool.Task = new taskpool.Task(produce)
+          let consumer: Consumer = new Consumer()
+          for (let index: number = 0; index < 10; index++) {
+            // 执行生产异步并发任务
+            taskpool.execute(produceTask).then((res : number) => {
+              consumer.consume(res)
+            }).catch((e : Error) => {
+              console.error(e.message)
+            })
+          }
         })
         .width('20%')
         .height('20%')

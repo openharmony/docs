@@ -494,9 +494,9 @@ Sets the display orientation for this ability. This API uses an asynchronous cal
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import bundle from '@ohos.bundle.bundleManager';
+import bundleManager from '@ohos.bundle.bundleManager';
 let context: featureAbility.Context = featureAbility.getContext();
-let orientation = bundle.DisplayOrientation.UNSPECIFIED;
+let orientation = bundleManager.DisplayOrientation.LANDSCAPE;
 context.setDisplayOrientation(orientation, (error) => {
     console.error(`setDisplayOrientation fail, error: ${JSON.stringify(error)}`);
 });
@@ -521,9 +521,9 @@ Sets the display orientation for this ability. This API uses a promise to return
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import bundle from '@ohos.bundle.bundleManager';
+import bundleManager from '@ohos.bundle.bundleManager';
 let context: featureAbility.Context = featureAbility.getContext();
-let orientation = bundle.DisplayOrientation.UNSPECIFIED;
+let orientation = bundleManager.DisplayOrientation.UNSPECIFIED;
 context.setDisplayOrientation(orientation).then((data) => {
     console.info(`setDisplayOrientation data: ${JSON.stringify(data)}`);
 });

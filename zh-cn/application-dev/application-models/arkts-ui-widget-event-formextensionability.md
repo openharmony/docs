@@ -28,9 +28,9 @@
           .margin(15).width('90%')
           .onClick(() => {
             postCardAction(this, {
-              'action': 'message',
-              'params': {
-                'msgTest': 'messageEvent'
+              action: 'message',
+              params: {
+                msgTest: 'messageEvent'
               }
             });
           })

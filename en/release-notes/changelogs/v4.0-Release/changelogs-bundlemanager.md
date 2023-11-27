@@ -1,4 +1,4 @@
-# Bundle Manager Changelogs
+# Bundle Manager Changelog
 ## cl.bundlemanager.1 APP_ACCOUNT_AUTHORIZATION Deleted from ExtensionAbilityType
 
 **APP_ACCOUNT_AUTHORIZATION** is deleted from this version.

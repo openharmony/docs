@@ -75,7 +75,6 @@ Creates an **AudioRenderer** instance. This API uses an asynchronous callback to
 **Example**
 
 ```ts
-import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
@@ -129,7 +128,6 @@ Creates an **AudioRenderer** instance. This API uses a promise to return the res
 **Example**
 
 ```ts
-import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 
@@ -169,6 +167,8 @@ Creates an **AudioCapturer** instance. This API uses an asynchronous callback to
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
 **Required permissions**: ohos.permission.MICROPHONE
+
+This permission is required only when [SourceType](#sourcetype) is set to **SOURCE_TYPE_MIC**.
 
 **Parameters**
 
@@ -217,6 +217,8 @@ Creates an **AudioCapturer** instance. This API uses a promise to return the res
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
 **Required permissions**: ohos.permission.MICROPHONE
+
+This permission is required only when [SourceType](#sourcetype) is set to **SOURCE_TYPE_MIC**.
 
 **Parameters**
 
@@ -384,15 +386,15 @@ Enumerates the audio device flags.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
-| Name                           |  Value    | Description                                             |
-| ------------------------------- | ------ | ------------------------------------------------- |
-| NONE_DEVICES_FLAG<sup>9+</sup>  | 0      | No device.<br>This is a system API.       |
-| OUTPUT_DEVICES_FLAG             | 1      | Output device.|
-| INPUT_DEVICES_FLAG              | 2      | Input device.|
-| ALL_DEVICES_FLAG                | 3      | All devices.|
-| DISTRIBUTED_OUTPUT_DEVICES_FLAG<sup>9+</sup> | 4   | Distributed output device.<br>This is a system API. |
-| DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | Distributed input device.<br>This is a system API. |
-| ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | Distributed input and output device.<br>This is a system API. |
+| Name                           |  Value    | Description                       |
+| ------------------------------- | ------ |---------------------------|
+| NONE_DEVICES_FLAG<sup>9+</sup>  | 0      | No device is available.<br>This is a system API.       |
+| OUTPUT_DEVICES_FLAG             | 1      | Output device.                    |
+| INPUT_DEVICES_FLAG              | 2      | Input device.                    |
+| ALL_DEVICES_FLAG                | 3      | All devices.                    |
+| DISTRIBUTED_OUTPUT_DEVICES_FLAG<sup>9+</sup> | 4   | Distributed output device.<br>This is a system API.   |
+| DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | Distributed input device.<br>This is a system API.   |
+| ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | Distributed input and output device.<br>This is a system API.|
 
 ## DeviceRole
 
@@ -483,10 +485,10 @@ Enumerates the audio channels.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name     |  Value      | Description    |
-| --------- | -------- | -------- |
-| CHANNEL_1 | 0x1 << 0 | Channel 1.|
-| CHANNEL_2 | 0x1 << 1 | Channel 2.|
+| Name     |  Value      | Description  |
+| --------- | -------- |------|
+| CHANNEL_1 | 0x1 << 0 | Mono.|
+| CHANNEL_2 | 0x1 << 1 | Stereo.|
 
 ## AudioSamplingRate<sup>8+</sup>
 
@@ -519,9 +521,13 @@ Enumerates the audio encoding types.
 | ENCODING_TYPE_INVALID | -1     | Invalid.   |
 | ENCODING_TYPE_RAW     | 0      | PCM encoding.|
 
-## ContentType
+## ContentType<sup>(deprecated)</sup>
 
 Enumerates the audio content types.
+
+> **NOTE**
+> 
+> This API is supported since API version 7 and deprecated since API version 10. You are advised to use [StreamUsage](#streamusage) instead.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -533,33 +539,34 @@ Enumerates the audio content types.
 | CONTENT_TYPE_MOVIE                 | 3      | Movie.    |
 | CONTENT_TYPE_SONIFICATION          | 4      | Notification tone.  |
 | CONTENT_TYPE_RINGTONE<sup>8+</sup> | 5      | Ringtone.    |
+
 ## StreamUsage
 
 Enumerates the audio stream usage.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name                                     |  Value   | Description      |
-| ------------------------------------------| ------ | ---------- |
-| STREAM_USAGE_UNKNOWN                      | 0      | Unknown usage.|
-| STREAM_USAGE_MEDIA                        | 1      | Media.    |
-| STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | Music.    |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | Voice communication.|
-| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | Voice assistant.|
-| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | Alarming.    |
-| STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | Voice message.|
-| STREAM_USAGE_NOTIFICATION_RINGTONE        | 6      | Notification tone.|
-| STREAM_USAGE_RINGTONE<sup>10+</sup>       | 6      | Ringtone.    |
-| STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | Notification.    |
-| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | Accessibility.  |
-| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9      | System tone (such as screen lock sound effect or key tone).<br>This is a system API.|
-| STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | Movie or video.|
-| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | Game sound effect. |
-| STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | Audiobook. |
-| STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | Navigation.    |
-| STREAM_USAGE_DTMF<sup>10+</sup>           | 14     | Dial tone.<br>This is a system API.|
-| STREAM_USAGE_ENFORCED_TONE<sup>10+</sup>  | 15     | Forcible tone (such as camera shutter sound effect).<br>This is a system API.|
-| STREAM_USAGE_ULTRASONIC<sup>10+</sup>     | 16     | Ultrasonic.<br>This is a system API.|
+| Name                                     |  Value   | Description                             |
+| ------------------------------------------| ------ |---------------------------------|
+| STREAM_USAGE_UNKNOWN                      | 0      | Unknown usage.                          |
+| STREAM_USAGE_MEDIA<sup>(deprecated)</sup>                        | 1      | Media.<br>This enumerated value is supported since API version 7 and deprecated since API version 10. You are advised to use **STREAM_USAGE_MUSIC**, **STREAM_USAGE_MOVIE**, **STREAM_USAGE_GAME**, or **STREAM_USAGE_AUDIOBOOK** instead.|
+| STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | Music.                            |
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | Voice communication.                          |
+| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | Voice assistant.                          |
+| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | Alarming.                            |
+| STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | Voice message.                          |
+| STREAM_USAGE_NOTIFICATION_RINGTONE<sup>(deprecated)</sup>        | 6      | Notification tone.<br>This enumerated value is deprecated since API version 10. You are advised to use **STREAM_USAGE_RINGTONE** instead.                         |
+| STREAM_USAGE_RINGTONE<sup>10+</sup>       | 6      | Ringtone.                            |
+| STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | Notification.                            |
+| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | Accessibility.                           |
+| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9      | System tone (such as screen lock sound effect or key tone).<br>This is a system API.  |
+| STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | Movie or video.                         |
+| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | Game sound effect.                          |
+| STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | Audiobook.                          |
+| STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | Navigation.                            |
+| STREAM_USAGE_DTMF<sup>10+</sup>           | 14     | Dial tone.<br>This is a system API.             |
+| STREAM_USAGE_ENFORCED_TONE<sup>10+</sup>  | 15     | Forcible tone (such as camera shutter sound effect).<br>This is a system API.     |
+| STREAM_USAGE_ULTRASONIC<sup>10+</sup>     | 16     | Ultrasonic.<br>This is a system API.             |
 
 
 ## InterruptRequestType<sup>9+</sup>
@@ -585,7 +592,7 @@ Enumerates the audio states.
 | STATE_INVALID  | -1     | Invalid state.      |
 | STATE_NEW      | 0      | Creating instance state.|
 | STATE_PREPARED | 1      | Prepared.      |
-| STATE_RUNNING  | 2      | Running.    |
+| STATE_RUNNING  | 2      | Running.|
 | STATE_STOPPED  | 3      | Stopped.      |
 | STATE_RELEASED | 4      | Released.      |
 | STATE_PAUSED   | 5      | Paused.      |
@@ -879,6 +886,8 @@ Enumerates the audio scenes.
 
 Enumerates the volume adjustment types.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
 | Name                  |  Value    | Description                                         |
@@ -1039,7 +1048,7 @@ Sets an audio scene. This API uses an asynchronous callback to return the result
 import { BusinessError } from '@ohos.base';
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err: BusinessError) => {
   if (err) {
-    console.error(`Failed to set the audio scene mode.​ ${err}`);
+    console.error(`Failed to set the audio scene mode. ${err}`);
     return;
   }
   console.info('Callback invoked to indicate a successful setting of the audio scene mode.');
@@ -1099,7 +1108,7 @@ Obtains the audio scene. This API uses an asynchronous callback to return the re
 import { BusinessError } from '@ohos.base';
 audioManager.getAudioScene((err: BusinessError, value: audio.AudioScene) => {
   if (err) {
-    console.error(`Failed to obtain the audio scene mode.​ ${err}`);
+    console.error(`Failed to obtain the audio scene mode. ${err}`);
     return;
   }
   console.info(`Callback invoked to indicate that the audio scene mode is obtained ${value}.`);
@@ -1167,6 +1176,12 @@ Obtains an **AudioVolumeManager** instance.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
+**Return value**
+
+| Type                                     | Description                         |
+|-----------------------------------------| ----------------------------- |
+| [AudioVolumeManager](#audiovolumemanager9) | **AudioVolumeManager** instance.|
+
 **Example**
 
 ```ts
@@ -1182,6 +1197,12 @@ Obtains an **AudioStreamManager** instance.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
+**Return value**
+
+| Type                                        | Description                         |
+|--------------------------------------------| ----------------------------- |
+| [AudioStreamManager](#audiostreammanager9) | **AudioStreamManager** instance.|
+
 **Example**
 
 ```ts
@@ -1196,6 +1217,12 @@ getRoutingManager(): AudioRoutingManager
 Obtains an **AudioRoutingManager** instance.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Return value**
+
+| Type                                      | Description                         |
+|------------------------------------------| ----------------------------- |
+| [AudioRoutingManager](#audioroutingmanager9) | **AudioRoutingManager** instance.|
 
 **Example**
 
@@ -1694,7 +1721,7 @@ This permission is required only for muting or unmuting the ringer.
 import { BusinessError } from '@ohos.base';
 audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err: BusinessError) => {
   if (err) {
-    console.error(`Failed to set the ringer mode.​ ${err}`);
+    console.error(`Failed to set the ringer mode. ${err}`);
     return;
   }
   console.info('Callback invoked to indicate a successful setting of the ringer mode.');
@@ -1762,7 +1789,7 @@ Obtains the ringer mode. This API uses an asynchronous callback to return the re
 import { BusinessError } from '@ohos.base';
 audioManager.getRingerMode((err: BusinessError, value: audio.AudioRingMode) => {
   if (err) {
-    console.error(`Failed to obtain the ringer mode.​ ${err}`);
+    console.error(`Failed to obtain the ringer mode. ${err}`);
     return;
   }
   console.info(`Callback invoked to indicate that the ringer mode is obtained ${value}.`);
@@ -2139,7 +2166,7 @@ Currently, when multiple **AudioManager** instances are used in a single process
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | Yes  | Event type. The event **'volumeChange'** is triggered when the system volume is changed.|
-| callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the result.                                                  |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the changed volume.|
 
 **Example**
 
@@ -2170,7 +2197,7 @@ Subscribes to ringer mode change events.
 | Name  | Type                                     | Mandatory| Description                                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                    | Yes  | Event type. The event **'ringerModeChange'** is triggered when the ringer mode is changed.|
-| callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the result.                                                  |
+| callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the changed ringer mode.                                                  |
 
 **Example**
 
@@ -2197,7 +2224,7 @@ Subscribes to device change events. When a device is connected or disconnected, 
 | Name  | Type                                                | Mandatory| Description                                      |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string                                               | Yes  | Event type. The event **'deviceChange'** is triggered when the device connection status is changed.|
-| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | Yes  | Callback used to return the device update details.                        |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | Yes  | Callback used to return the device update details.|
 
 **Example**
 
@@ -2227,7 +2254,7 @@ Unsubscribes from device change events.
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | Yes  | Event type. The event **'deviceChange'** is triggered when the device connection status is changed.|
-| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No  | Callback used to return the device update details.                        |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No  | Callback used to return the device update details.|
 
 **Example**
 
@@ -2247,10 +2274,10 @@ Same as [on('audioInterrupt')](#onaudiointerrupt9), this API is used to listen f
 
 **Parameters**
 
-| Name   | Type                                         | Mandatory| Description                                                        |
-| --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type      | string                                        | Yes  | Event type. The event **'interrupt'** is triggered when the audio playback of the current application is interrupted by another application.|
-| interrupt | AudioInterrupt                                | Yes  | Audio interruption event type.                                    |
+| Name   | Type                                                     | Mandatory| Description                                                        |
+| --------- |---------------------------------------------------------| ---- | ------------------------------------------------------------ |
+| type      | string                                                  | Yes  | Event type. The event **'interrupt'** is triggered when the audio playback of the current application is interrupted by another application.|
+| interrupt | [AudioInterrupt](#audiointerruptdeprecated)             | Yes  | Audio interruption event type.                                    |
 | callback  | Callback<[InterruptAction](#interruptactiondeprecated)> | Yes  | Callback invoked for the audio interruption event.                                      |
 
 **Example**
@@ -2284,10 +2311,10 @@ Unsubscribes from audio interruption events.
 
 **Parameters**
 
-| Name   | Type                                         | Mandatory| Description                                                        |
-| --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type      | string                                        | Yes  | Event type. The event **'interrupt'** is triggered when the audio playback of the current application is interrupted by another application.|
-| interrupt | AudioInterrupt                                | Yes  | Audio interruption event type.                                    |
+| Name   | Type                                                     | Mandatory| Description                                                        |
+| --------- |---------------------------------------------------------| ---- | ------------------------------------------------------------ |
+| type      | string                                                  | Yes  | Event type. The event **'interrupt'** is triggered when the audio playback of the current application is interrupted by another application.|
+| interrupt | [AudioInterrupt](#audiointerruptdeprecated)                       | Yes  | Audio interruption event type.                                    |
 | callback  | Callback<[InterruptAction](#interruptactiondeprecated)> | No  | Callback invoked for the audio interruption event.                                      |
 
 **Example**
@@ -2434,8 +2461,8 @@ Obtains the volume group manager. This API uses an asynchronous callback to retu
 
 ```ts
 import { BusinessError } from '@ohos.base';
-let groupid: number = audio.DEFAULT_VOLUME_GROUP_ID;
-audioVolumeManager.getVolumeGroupManager(groupid, (err: BusinessError, value: audio.AudioVolumeGroupManager) => {
+let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
+audioVolumeManager.getVolumeGroupManager(groupId, (err: BusinessError, value: audio.AudioVolumeGroupManager) => {
   if (err) {
     console.error(`Failed to obtain the volume group infos list. ${err}`);
     return;
@@ -2469,10 +2496,10 @@ Obtains the volume group manager. This API uses a promise to return the result.
 
 ```ts
 import audio from '@ohos.multimedia.audio';
-let groupid: number = audio.DEFAULT_VOLUME_GROUP_ID;
+let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
 let audioVolumeGroupManager: audio.AudioVolumeGroupManager | undefined = undefined;
 async function getVolumeGroupManager(){
-  audioVolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(groupid);
+  audioVolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(groupId);
   console.info('Callback invoked to indicate that the volume group infos list is obtained.');
 }
 ```
@@ -2532,7 +2559,7 @@ Subscribes to system volume change events. This API uses an asynchronous callbac
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | Yes  | Event type. The event **'volumeChange'** is triggered when the system volume is changed.|
-| callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the result.                                                  |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the changed volume.|
 
 **Error codes**
 
@@ -2720,7 +2747,7 @@ try {
   console.info(`Indicate that the volume is obtained ${value}.`);
 } catch (err) {
   let error = err as BusinessError;
-  console.info(`Failed to obtain the volume, error ${error}.`);
+  console.error(`Failed to obtain the volume, error ${error}.`);
 }
 ```
 
@@ -3115,7 +3142,7 @@ This permission is required only for muting or unmuting the ringer.
 import { BusinessError } from '@ohos.base';
 audioVolumeGroupManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err: BusinessError) => {
   if (err) {
-    console.error(`Failed to set the ringer mode.​ ${err}`);
+    console.error(`Failed to set the ringer mode. ${err}`);
     return;
   }
   console.info('Callback invoked to indicate a successful setting of the ringer mode.');
@@ -3176,7 +3203,7 @@ Obtains the ringer mode. This API uses an asynchronous callback to return the re
 import { BusinessError } from '@ohos.base';
 audioVolumeGroupManager.getRingerMode((err: BusinessError, value: audio.AudioRingMode) => {
   if (err) {
-    console.error(`Failed to obtain the ringer mode.​ ${err}`);
+    console.error(`Failed to obtain the ringer mode. ${err}`);
     return;
   }
   console.info(`Callback invoked to indicate that the ringer mode is obtained ${value}.`);
@@ -3246,7 +3273,7 @@ Subscribes to ringer mode change events.
 | Name  | Type                                     | Mandatory| Description                                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                    | Yes  | Event type. The event **'ringerModeChange'** is triggered when the ringer mode is changed.|
-| callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the result.                                                  |
+| callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the changed ringer mode.|
 
 **Error codes**
 
@@ -3415,7 +3442,7 @@ Currently, when multiple **AudioManager** instances are used in a single process
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | Yes  | Event type. The event **'micStateChange'** is triggered when the system microphone state is changed.|
-| callback | Callback<[MicStateChangeEvent](#micstatechangeevent9)> | Yes  | Callback used to return the changed microphone state.                                                  |
+| callback | Callback<[MicStateChangeEvent](#micstatechangeevent9)> | Yes  | Callback used to return the changed microphone state.|
 
 **Error codes**
 
@@ -3856,7 +3883,6 @@ async function getCurrentAudioRendererInfoArray(){
   });
 }
 ```
-
 ### getCurrentAudioRendererInfoArraySync<sup>10+</sup>
 
 getCurrentAudioRendererInfoArraySync(): AudioRendererChangeInfoArray
@@ -3997,7 +4023,6 @@ async function getCurrentAudioCapturerInfoArray(){
   });
 }
 ```
-
 ### getCurrentAudioCapturerInfoArraySync<sup>10+</sup>
 
 getCurrentAudioCapturerInfoArraySync(): AudioCapturerChangeInfoArray
@@ -4058,7 +4083,7 @@ Subscribes to audio renderer change events.
 | Name     | Type                                                         | Mandatory | Description                                                  |
 | -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes       | Event type. The event `'audioRendererChange'` is triggered when the audio renderer is changed. |
-| callback | Callback<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)> | Yes       | Callback used to return the result.                          |
+| callback | Callback<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)> | Yes       | Callback used to return the new audio renderer information.  |
 
 **Error codes**
 
@@ -4066,7 +4091,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| 6800101 | if input parameter value error              |
 
 **Example**
 
@@ -4115,7 +4140,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| 6800101 | if input parameter value error              |
 
 **Example**
 
@@ -4137,7 +4162,7 @@ Subscribes to audio capturer change events.
 | Name     | Type                                                         | Mandatory | Description                                                  |
 | -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes       | Event type. The event `'audioCapturerChange'` is triggered when the audio capturer is changed. |
-| callback | Callback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | Yes       | Callback used to return the result.                          |
+| callback | Callback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | Yes       | Callback used to return the new audio capturer information.  |
 
 **Error codes**
 
@@ -4145,7 +4170,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| 6800101 | if input parameter value error              |
 
 **Example**
 
@@ -4158,7 +4183,6 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray: audi
     console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
     console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
     console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);
-    let devDescriptor: audio.AudioCapturerChangeInfo = AudioCapturerChangeInfoArray[i].deviceDescriptors;
     for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
       console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
       console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -4171,7 +4195,6 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray: audi
     }
   }
 });
-
 ```
 
 ### off('audioCapturerChange')<sup>9+</sup>
@@ -4194,14 +4217,13 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| 6800101 | if input parameter value error              |
 
 **Example**
 
 ```ts
 audioStreamManager.off('audioCapturerChange');
 console.info('######### CapturerChange Off is called #########');
-
 
 ```
 
@@ -4231,7 +4253,6 @@ if (err) {
 }
   console.info(`Callback invoked to indicate that the active status of the stream is obtained ${value}.`);
 });
-
 ```
 
 ### isActive<sup>9+</sup>
@@ -4260,7 +4281,6 @@ Checks whether a stream is active. This API uses a promise to return the result.
 audioStreamManager.isActive(audio.AudioVolumeType.MEDIA).then((value: boolean) => {
   console.info(`Promise returned to indicate that the active status of the stream is obtained ${value}.`);
 });
-
 ```
 
 ### isActiveSync<sup>10+</sup>
@@ -4289,7 +4309,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID      | Error Message           |
 | ------- | ----------------------- |
-| 6800101 | invalid parameter error |
+| 6800101 | invalid parameter error              |
 
 **Example**
 
@@ -4303,7 +4323,6 @@ try {
   let error = err as BusinessError;
   console.error(`Failed to obtain the active status of the stream ${error}.`);
 }
-
 ```
 
 ### getAudioEffectInfoArray<sup>10+</sup>
@@ -4326,8 +4345,8 @@ Obtains information about the sound effect mode in use. This API uses an asynchr
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
 | ID      | Error Message                                |
-| ------- | -------------------------------------------- |
-| 6800101 | Invalid parameter error. Return by callback. |
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error. Return by callback.|
 
 **Example**
 
@@ -4342,7 +4361,6 @@ audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA,
     console.info(`The effect modes are: ${audioEffectInfoArray}`);
   }
 });
-
 ```
 
 ### getAudioEffectInfoArray<sup>10+</sup>
@@ -4383,7 +4401,6 @@ audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA)
 }).catch((err: BusinessError) => {
   console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
 });
-
 ```
 
 ### getAudioEffectInfoArraySync<sup>10+</sup>
@@ -4426,7 +4443,6 @@ try {
   let error = err as BusinessError;
   console.error(`getAudioEffectInfoArraySync ERROR: ${error}`);
 }
-
 ```
 
 ## AudioRoutingManager<sup>9+</sup>
@@ -4459,7 +4475,6 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err: Busin
   }
   console.info('Callback invoked to indicate that the device list is obtained.');
 });
-
 ```
 
 ### getDevices<sup>9+</sup>
@@ -4488,7 +4503,6 @@ Obtains the audio devices with a specific flag. This API uses a promise to retur
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
 });
-
 ```
 
 ### getDevicesSync<sup>10+</sup>
@@ -4517,7 +4531,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID      | Error Message           |
 | ------- | ----------------------- |
-| 6800101 | invalid parameter error |
+| 6800101 | invalid parameter error              |
 
 **Example**
 
@@ -4531,7 +4545,6 @@ try {
   let error = err as BusinessError;
   console.error(`Failed to obtain the device list. ${error}`);
 }
-
 ```
 
 ### on('deviceChange')<sup>9+</sup>
@@ -4548,7 +4561,7 @@ Subscribes to device change events. When a device is connected or disconnected, 
 | :--------- | :--------------------------------------------------- | :-------- | :----------------------------------------------------------- |
 | type       | string                                               | Yes       | Event type. The event **'deviceChange'** is triggered when the device connection status is changed. |
 | deviceFlag | [DeviceFlag](#deviceflag)                            | Yes       | Audio device flag.                                           |
-| callback   | Callback<[DeviceChangeAction](#devicechangeaction)\> | Yes       | Callback used to return the device update details.           |
+| callback   | Callback<[DeviceChangeAction](#devicechangeaction)\> | Yes       | Callback used to return the device update details.                  |
 
 **Error codes**
 
@@ -4556,7 +4569,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| 6800101 | if input parameter value error              |
 
 **Example**
 
@@ -4567,7 +4580,6 @@ audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (de
   console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
   console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);
 });
-
 ```
 
 ### off('deviceChange')<sup>9+</sup>
@@ -4583,7 +4595,7 @@ Unsubscribes from device change events.
 | Name     | Type                                                | Mandatory | Description                                                  |
 | -------- | --------------------------------------------------- | --------- | ------------------------------------------------------------ |
 | type     | string                                              | Yes       | Event type. The event **'deviceChange'** is triggered when the device connection status is changed. |
-| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No        | Callback used to return the device update details.           |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No        | Callback used to return the device update details.                  |
 
 **Error codes**
 
@@ -4591,13 +4603,12 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| 6800101 | if input parameter value error              |
 
 **Example**
 
 ```ts
 audioRoutingManager.off('deviceChange');
-
 ```
 
 ### selectInputDevice<sup>9+</sup>
@@ -4618,13 +4629,12 @@ Selects an audio input device. Only one input device can be selected. This API u
 | callback          | AsyncCallback&lt;void&gt;                         | Yes       | Callback used to return the result. |
 
 **Example**
-
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
   deviceRole : audio.DeviceRole.INPUT_DEVICE,
-  deviceType : audio.DeviceType.EARPIECE,
+  deviceType : audio.DeviceType.MIC,
   id : 1,
   name : "",
   address : "",
@@ -4646,7 +4656,6 @@ async function selectInputDevice(){
     }
   });
 }
-
 ```
 
 ### selectInputDevice<sup>9+</sup>
@@ -4678,7 +4687,7 @@ import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
   deviceRole : audio.DeviceRole.INPUT_DEVICE,
-  deviceType : audio.DeviceType.EARPIECE,
+  deviceType : audio.DeviceType.MIC,
   id : 1,
   name : "",
   address : "",
@@ -4698,7 +4707,6 @@ async function getRoutingManager(){
     console.error(`Result ERROR: ${err}`);
   });
 }
-
 ```
 
 ### setCommunicationDevice<sup>9+</sup>
@@ -4728,7 +4736,6 @@ audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER
   }
   console.info('Callback invoked to indicate that the device is set to the active status.');
 });
-
 ```
 
 ### setCommunicationDevice<sup>9+</sup>
@@ -4758,7 +4765,6 @@ Sets a communication device to the active state. This API uses a promise to retu
 audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER, true).then(() => {
   console.info('Promise returned to indicate that the device is set to the active status.');
 });
-
 ```
 
 ### isCommunicationDeviceActive<sup>9+</sup>
@@ -4787,7 +4793,6 @@ audioRoutingManager.isCommunicationDeviceActive(audio.CommunicationDeviceType.SP
   }
   console.info('Callback invoked to indicate that the active status of the device is obtained.');
 });
-
 ```
 
 ### isCommunicationDeviceActive<sup>9+</sup>
@@ -4806,7 +4811,7 @@ Checks whether a communication device is active. This API uses a promise to retu
 
 **Return value**
 
-| Type                   | Description                                            |
+| Type                   | Description                     |
 | ---------------------- | ------------------------------------------------------ |
 | Promise&lt;boolean&gt; | Promise used to return the active state of the device. |
 
@@ -4816,7 +4821,6 @@ Checks whether a communication device is active. This API uses a promise to retu
 audioRoutingManager.isCommunicationDeviceActive(audio.CommunicationDeviceType.SPEAKER).then((value: boolean) => {
   console.info(`Promise returned to indicate that the active status of the device is obtained ${value}.`);
 });
-
 ```
 
 ### isCommunicationDeviceActiveSync<sup>10+</sup>
@@ -4835,7 +4839,7 @@ Checks whether a communication device is active. This API returns the result syn
 
 **Return value**
 
-| Type    | Description                 |
+| Type                   | Description                     |
 | ------- | --------------------------- |
 | boolean | Active state of the device. |
 
@@ -4845,7 +4849,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID      | Error Message           |
 | ------- | ----------------------- |
-| 6800101 | invalid parameter error |
+| 6800101 | invalid parameter error              |
 
 **Example**
 
@@ -4859,7 +4863,6 @@ try {
   let error = err as BusinessError;
   console.error(`Failed to obtain the active status of the device ${error}.`);
 }
-
 ```
 
 ### selectOutputDevice<sup>9+</sup>
@@ -4880,7 +4883,6 @@ Selects an audio output device. Currently, only one output device can be selecte
 | callback           | AsyncCallback&lt;void&gt;                         | Yes       | Callback used to return the result. |
 
 **Example**
-
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
@@ -4907,7 +4909,6 @@ async function selectOutputDevice(){
       console.info('Select output devices result callback: SUCCESS'); }
   });
 }
-
 ```
 
 ### selectOutputDevice<sup>9+</sup>
@@ -4959,7 +4960,6 @@ async function selectOutputDevice(){
     console.error(`Result ERROR: ${err}`);
   });
 }
-
 ```
 
 ### selectOutputDeviceByFilter<sup>9+</sup>
@@ -4981,7 +4981,6 @@ Selects an audio output device based on the filter criteria. Currently, only one
 | callback           | AsyncCallback&lt;void&gt;                         | Yes       | Callback used to return the result. |
 
 **Example**
-
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
@@ -5018,7 +5017,6 @@ async function selectOutputDeviceByFilter(){
       console.info('Select output devices by filter result callback: SUCCESS'); }
   });
 }
-
 ```
 
 ### selectOutputDeviceByFilter<sup>9+</sup>
@@ -5081,7 +5079,6 @@ async function selectOutputDeviceByFilter(){
     console.error(`Result ERROR: ${err}`);
   })
 }
-
 ```
 
 ### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
@@ -5103,8 +5100,8 @@ Obtains the output device with the highest priority based on the audio renderer 
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message                                       |
-| ------- | --------------------------------------------------- |
+| ID      | Error Message                                    |
+| ------- | ------------------------------------------------ |
 | 6800101 | Input parameter value error. Return by callback. |
 | 6800301 | System error. Return by callback.                |
 
@@ -5151,8 +5148,8 @@ Obtains the output device with the highest priority based on the audio renderer 
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message                                      |
-| ------- | -------------------------------------------------- |
+| ID      | Error Message                                   |
+| ------- | ----------------------------------------------- |
 | 6800101 | Input parameter value error. Return by promise. |
 | 6800301 | System error. Return by promise.                |
 
@@ -5174,6 +5171,7 @@ async function getPreferOutputDevice() {
   })
 }
 ```
+
 ### getPreferredOutputDeviceForRendererInfoSync<sup>10+</sup>
 getPreferredOutputDeviceForRendererInfoSync(rendererInfo: AudioRendererInfo): AudioDeviceDescriptors
 
@@ -5272,7 +5270,7 @@ Unsubscribes from the change of the output device with the highest priority.
 | Name     | Type                                                        | Mandatory | Description                                                  |
 | -------- | ----------------------------------------------------------- | --------- | ------------------------------------------------------------ |
 | type     | string                                                      | Yes       | Event type. The event **'preferOutputDeviceChangeForRendererInfo'** is triggered when the output device with the highest priority is changed. |
-| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | No        | Callback used for unsubscription.                            |
+| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | No        | Callback used to return the information about the output device with the highest priority. |
 
 **Error codes**
 
@@ -5475,7 +5473,7 @@ Unsubscribes from the change of the input device with the highest priority.
 | Name     | Type                                                        | Mandatory | Description                                                  |
 | -------- | ----------------------------------------------------------- | --------- | ------------------------------------------------------------ |
 | type     | string                                                      | Yes       | Event type. The event **'preferredInputDeviceChangeForCapturerInfo'** is triggered when the input device with the highest priority is changed. |
-| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | No        | Callback used for unsubscription.                            |
+| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | No        | Callback used to return the information about the input device with the highest priority. |
 
 **Error codes**
 
@@ -5621,16 +5619,16 @@ Describes an audio device.
 
 | Name                          | Type                                                  | Readable | Writable | Description                                                  |
 | ----------------------------- | ----------------------------------------------------- | -------- | -------- | ------------------------------------------------------------ |
-| deviceRole                    | [DeviceRole](#devicerole)                             | Yes      | No       | Device role.                                                 |
-| deviceType                    | [DeviceType](#devicetype)                             | Yes      | No       | Device type.                                                 |
-| id<sup>9+</sup>               | number                                                | Yes      | No       | Device ID, which is unique.                                  |
+| deviceRole                    | [DeviceRole](#devicerole)                             | Yes      | No       | Device role. |
+| deviceType                    | [DeviceType](#devicetype)                             | Yes      | No       | Device type. |
+| id<sup>9+</sup>               | number                                                | Yes      | No       | Device ID, which is unique. |
 | name<sup>9+</sup>             | string                                                | Yes      | No       | Device name.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission. |
 | address<sup>9+</sup>          | string                                                | Yes      | No       | Device address.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission. |
-| sampleRates<sup>9+</sup>      | Array&lt;number&gt;                                   | Yes      | No       | Supported sampling rates.                                    |
-| channelCounts<sup>9+</sup>    | Array&lt;number&gt;                                   | Yes      | No       | Number of channels supported.                                |
-| channelMasks<sup>9+</sup>     | Array&lt;number&gt;                                   | Yes      | No       | Supported channel masks.                                     |
-| displayName<sup>10+</sup>     | string                                                | Yes      | No       | Display name of the device.                                  |
-| networkId<sup>9+</sup>        | string                                                | Yes      | No       | ID of the device network.<br>This is a system API.           |
+| sampleRates<sup>9+</sup>      | Array&lt;number&gt;                                   | Yes      | No       | Supported sampling rates. |
+| channelCounts<sup>9+</sup>    | Array&lt;number&gt;                                   | Yes      | No       | Number of channels supported. |
+| channelMasks<sup>9+</sup>     | Array&lt;number&gt;                                   | Yes      | No       | Supported channel masks. |
+| displayName<sup>10+</sup>     | string                                                | Yes      | No       | Display name of the device. |
+| networkId<sup>9+</sup>        | string                                                | Yes      | No       | ID of the device network.<br>This is a system API. |
 | interruptGroupId<sup>9+</sup> | number                                                | Yes      | No       | ID of the interruption group to which the device belongs.<br>This is a system API. |
 | volumeGroupId<sup>9+</sup>    | number                                                | Yes      | No       | ID of the volume group to which the device belongs.<br>This is a system API. |
 
@@ -5892,8 +5890,8 @@ Obtains the stream ID of this **AudioRenderer** instance. This API uses an async
 
 ```ts
 import { BusinessError } from '@ohos.base';
-audioRenderer.getAudioStreamId((err: BusinessError, streamid: number) => {
-  console.info(`Renderer GetStreamId: ${streamid}`);
+audioRenderer.getAudioStreamId((err: BusinessError, streamId: number) => {
+  console.info(`Renderer GetStreamId: ${streamId}`);
 });
 ```
 
@@ -5915,8 +5913,8 @@ Obtains the stream ID of this **AudioRenderer** instance. This API uses a promis
 
 ```ts
 import { BusinessError } from '@ohos.base';
-audioRenderer.getAudioStreamId().then((streamid: number) => {
-  console.info(`Renderer getAudioStreamId: ${streamid}`);
+audioRenderer.getAudioStreamId().then((streamId: number) => {
+  console.info(`Renderer getAudioStreamId: ${streamId}`);
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
@@ -5942,8 +5940,8 @@ Obtains the stream ID of this **AudioRenderer** instance. This API returns the r
 import { BusinessError } from '@ohos.base';
 
 try {
-  let streamid: number = audioRenderer.getAudioStreamIdSync();
-  console.info(`Renderer getAudioStreamIdSync: ${streamid}`);
+  let streamId: number = audioRenderer.getAudioStreamIdSync();
+  console.info(`Renderer getAudioStreamIdSync: ${streamId}`);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`ERROR: ${error}`);
@@ -6043,11 +6041,11 @@ Obtains the audio effect mode in use. This API uses an asynchronous callback to 
 
 ```ts
 import { BusinessError } from '@ohos.base';
-audioRenderer.getAudioEffectMode((err: BusinessError, effectmode: audio.AudioEffectMode) => {
+audioRenderer.getAudioEffectMode((err: BusinessError, effectMode: audio.AudioEffectMode) => {
   if (err) {
     console.error('Failed to get params');
   } else {
-    console.info(`getAudioEffectMode: ${effectmode}`);
+    console.info(`getAudioEffectMode: ${effectMode}`);
   }
 });
 ```
@@ -6070,8 +6068,8 @@ Obtains the audio effect mode in use. This API uses a promise to return the resu
 
 ```ts
 import { BusinessError } from '@ohos.base';
-audioRenderer.getAudioEffectMode().then((effectmode: audio.AudioEffectMode) => {
-  console.info(`getAudioEffectMode: ${effectmode}`);
+audioRenderer.getAudioEffectMode().then((effectMode: audio.AudioEffectMode) => {
+  console.info(`getAudioEffectMode: ${effectMode}`);
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
@@ -6356,6 +6354,8 @@ Writes the buffer. This API uses an asynchronous callback to return the result.
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import fs from '@ohos.file.fs';
+
 let bufferSize: number;
 class Options {
   offset?: number;
@@ -6403,6 +6403,12 @@ Writes the buffer. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
+**Parameters**
+
+| Name   | Type        | Mandatory | Description           |
+| ------ | ----------- | --------- | --------------------- |
+| buffer | ArrayBuffer | Yes       | Buffer to be written. |
+
 **Return value**
 
 | Type             | Description                                                  |
@@ -6413,6 +6419,8 @@ Writes the buffer. This API uses a promise to return the result.
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import fs from '@ohos.file.fs';
+
 let bufferSize: number;
 class Options {
   offset?: number;
@@ -6442,8 +6450,8 @@ audioRenderer.getBufferSize().then((data: number) => {
       }
     }
   });
-  }).catch((err: BusinessError) => {
-    console.info(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
+}).catch((err: BusinessError) => {
+  console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
 ```
 
@@ -6685,8 +6693,8 @@ Obtains the current render rate. This API uses an asynchronous callback to retur
 
 ```ts
 import { BusinessError } from '@ohos.base';
-audioRenderer.getRenderRate((err: BusinessError, renderrate: audio.AudioRendererRate) => {
-  console.info(`getRenderRate: ${renderrate}`);
+audioRenderer.getRenderRate((err: BusinessError, renderRate: audio.AudioRendererRate) => {
+  console.info(`getRenderRate: ${renderRate}`);
 });
 ```
 
@@ -7142,9 +7150,9 @@ Obtains the output device descriptors of the audio streams. This API uses an asy
 
 **Parameters**
 
-| Name     | Type                                        | Mandatory | Description                                            |
-| -------- | ------------------------------------------- | --------- | ------------------------------------------------------ |
-| callback | AsyncCallback&lt;AudioDeviceDescriptors&gt; | Yes       | Callback used to return the output device descriptors. |
+| Name     | Type                                                         | Mandatory | Description                                            |
+| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------ |
+| callback | AsyncCallback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | Yes       | Callback used to return the output device descriptors. |
 
 **Example**
 
@@ -7177,9 +7185,9 @@ Obtains the output device descriptors of the audio streams. This API uses a prom
 
 **Return value**
 
-| Type                                  | Description                                           |
-| ------------------------------------- | ----------------------------------------------------- |
-| Promise&lt;AudioDeviceDescriptors&gt; | Promise used to return the output device descriptors. |
+| Type                                                         | Description                                           |
+| ------------------------------------------------------------ | ----------------------------------------------------- |
+| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Promise used to return the output device descriptors. |
 
 **Example**
 
@@ -7211,9 +7219,9 @@ Obtains the output device descriptors of the audio streams. This API returns the
 
 **Return value**
 
-| Type                   | Description                |
-| ---------------------- | -------------------------- |
-| AudioDeviceDescriptors | Output device descriptors. |
+| Type                                              | Description                |
+| ------------------------------------------------- | -------------------------- |
+| [AudioDeviceDescriptors](#audiodevicedescriptors) | Output device descriptors. |
 
 **Example**
 
@@ -7253,7 +7261,7 @@ Same as [on('interrupt')](#oninterrupt), this API is used to listen for focus ch
 | Name     | Type                                           | Mandatory | Description                                                  |
 | -------- | ---------------------------------------------- | --------- | ------------------------------------------------------------ |
 | type     | string                                         | Yes       | Event type. The event **'audioInterrupt'** is triggered when audio rendering is interrupted. |
-| callback | Callback\<[InterruptEvent](#interruptevent9)\> | Yes       | Callback used to return the audio interruption event.        |
+| callback | Callback\<[InterruptEvent](#interruptevent9)\> | Yes       | Callback used to return the audio interruption event received by the application when playback is interrupted. |
 
 **Error codes**
 
@@ -7351,7 +7359,7 @@ Subscribes to mark reached events. When the number of frames rendered reaches th
 | :------- | :---------------- | :-------- | :----------------------------------------------------------- |
 | type     | string            | Yes       | Event type. The value is fixed at **'markReach'**.           |
 | frame    | number            | Yes       | Number of frames to trigger the event. The value must be greater than **0**. |
-| callback | Callback\<number> | Yes       | Callback invoked when the event is triggered.                |
+| callback | Callback\<number> | Yes       | Callback used to return the value of the **frame** parameter. |
 
 **Example**
 
@@ -7398,7 +7406,7 @@ Subscribes to period reached events. When the number of frames rendered reaches 
 | :------- | :---------------- | :-------- | :----------------------------------------------------------- |
 | type     | string            | Yes       | Event type. The value is fixed at **'periodReach'**.         |
 | frame    | number            | Yes       | Number of frames to trigger the event. The value must be greater than **0**. |
-| callback | Callback\<number> | Yes       | Callback invoked when the event is triggered.                |
+| callback | Callback\<number> | Yes       | Callback used to return the value of the **frame** parameter. |
 
 **Example**
 
@@ -7430,7 +7438,7 @@ Unsubscribes from period reached events.
 audioRenderer.off('periodReach')
 ```
 
-### on('stateChange') <sup>8+</sup>
+### on('stateChange')<sup>8+</sup>
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
@@ -7443,7 +7451,7 @@ Subscribes to state change events.
 | Name     | Type                                  | Mandatory | Description                                                  |
 | :------- | :------------------------------------ | :-------- | :----------------------------------------------------------- |
 | type     | string                                | Yes       | Event type. The value **stateChange** means the state change event. |
-| callback | Callback\<[AudioState](#audiostate8)> | Yes       | Callback used to return the state change.                    |
+| callback | Callback\<[AudioState](#audiostate8)> | Yes       | Callback used to return the audio status.                    |
 
 **Example**
 
@@ -7471,7 +7479,7 @@ Subscribes to audio output device change events.
 | Name     | Type                                                         | Mandatory | Description                                                  |
 | :------- | :----------------------------------------------------------- | :-------- | :----------------------------------------------------------- |
 | type     | string                                                       | Yes       | Event type. The event **'outputDeviceChange'** is triggered when the audio output device is changed. |
-| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | Yes       | Callback used to return the audio output device change.      |
+| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | Yes       | Callback used to return the output device descriptor of the current audio stream. |
 
 **Error codes**
 
@@ -7501,7 +7509,7 @@ Unsubscribes from audio output device change events.
 | Name     | Type                                                         | Mandatory | Description                                                  |
 | :------- | :----------------------------------------------------------- | :-------- | :----------------------------------------------------------- |
 | type     | string                                                       | Yes       | Event type. The event **'outputDeviceChange'** is triggered when the audio output device is changed. |
-| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | No        | Callback used for unsubscription.                            |
+| callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | No        | Callback used to return the output device descriptor of the current audio stream. |
 
 **Error codes**
 
@@ -7548,9 +7556,9 @@ Obtains the capturer information of this **AudioCapturer** instance. This API us
 
 **Parameters**
 
-| Name     | Type                              | Mandatory | Description                                       |
-| :------- | :-------------------------------- | :-------- | :------------------------------------------------ |
-| callback | AsyncCallback<AudioCapturerInfo\> | Yes       | Callback used to return the capturer information. |
+| Name     | Type                                                    | Mandatory | Description                                       |
+| :------- | :------------------------------------------------------ | :-------- | :------------------------------------------------ |
+| callback | AsyncCallback<[AudioCapturerInfo](#audiocapturerinfo)\> | Yes       | Callback used to return the capturer information. |
 
 **Example**
 
@@ -7738,8 +7746,8 @@ Obtains the stream ID of this **AudioCapturer** instance. This API uses an async
 
 ```ts
 import { BusinessError } from '@ohos.base';
-audioCapturer.getAudioStreamId((err: BusinessError, streamid: number) => {
-  console.info(`audioCapturer GetStreamId: ${streamid}`);
+audioCapturer.getAudioStreamId((err: BusinessError, streamId: number) => {
+  console.info(`audioCapturer GetStreamId: ${streamId}`);
 });
 ```
 
@@ -7761,8 +7769,8 @@ Obtains the stream ID of this **AudioCapturer** instance. This API uses a promis
 
 ```ts
 import { BusinessError } from '@ohos.base';
-audioCapturer.getAudioStreamId().then((streamid: number) => {
-  console.info(`audioCapturer getAudioStreamId: ${streamid}`);
+audioCapturer.getAudioStreamId().then((streamId: number) => {
+  console.info(`audioCapturer getAudioStreamId: ${streamId}`);
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
@@ -7788,8 +7796,8 @@ Obtains the stream ID of this **AudioCapturer** instance. This API returns the r
 import { BusinessError } from '@ohos.base';
 
 try {
-  let streamid: number = audioCapturer.getAudioStreamIdSync();
-  console.info(`audioCapturer getAudioStreamIdSync: ${streamid}`);
+  let streamId: number = audioCapturer.getAudioStreamIdSync();
+  console.info(`audioCapturer getAudioStreamIdSync: ${streamId}`);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`ERROR: ${error}`);
@@ -7851,7 +7859,7 @@ audioCapturer.start().then(() => {
     console.info('AudioFrameworkRecLog: AudioCapturer is in Running State');
   }
 }).catch((err: BusinessError) => {
-  console.info(`AudioFrameworkRecLog: Capturer start :ERROR : ${err}`);
+  console.error(`AudioFrameworkRecLog: Capturer start :ERROR : ${err}`);
 });
 ```
 
@@ -7908,7 +7916,7 @@ audioCapturer.stop().then(() => {
     console.info('AudioFrameworkRecLog: State is Stopped:');
   }
 }).catch((err: BusinessError) => {
-  console.info(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
+  console.error(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
 });
 ```
 
@@ -7963,7 +7971,7 @@ audioCapturer.release().then(() => {
   console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
   console.info(`AudioFrameworkRecLog: AudioCapturer : STATE : ${audioCapturer.state}`);
 }).catch((err: BusinessError) => {
-  console.info(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
+  console.error(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
 });
 ```
 
@@ -8031,13 +8039,13 @@ audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
 }).catch((err: BusinessError) => {
-  console.info(`AudioFrameworkRecLog: getBufferSize: ERROR ${err}`);
+  console.error(`AudioFrameworkRecLog: getBufferSize: ERROR ${err}`);
 });
 console.info(`Buffer size: ${bufferSize}`);
 audioCapturer.read(bufferSize, true).then((buffer: ArrayBuffer) => {
   console.info('buffer read successfully');
 }).catch((err: BusinessError) => {
-  console.info(`ERROR : ${err}`);
+  console.error(`ERROR : ${err}`);
 });
 ```
 
@@ -8085,7 +8093,7 @@ import { BusinessError } from '@ohos.base';
 audioCapturer.getAudioTime().then((audioTime: number) => {
   console.info(`AudioFrameworkRecLog: AudioCapturer getAudioTime : Success ${audioTime}`);
 }).catch((err: BusinessError) => {
-  console.info(`AudioFrameworkRecLog: AudioCapturer Created : ERROR : ${err}`);
+  console.error(`AudioFrameworkRecLog: AudioCapturer Created : ERROR : ${err}`);
 });
 ```
 
@@ -8113,7 +8121,7 @@ try {
   console.info(`AudioFrameworkRecLog: AudioCapturer getAudioTimeSync : Success ${audioTime}`);
 } catch (err) {
   let error = err as BusinessError;
-  console.info(`AudioFrameworkRecLog: AudioCapturer getAudioTimeSync : ERROR : ${error}`);
+  console.error(`AudioFrameworkRecLog: AudioCapturer getAudioTimeSync : ERROR : ${error}`);
 }
 ```
 
@@ -8170,7 +8178,7 @@ audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize :SUCCESS ${data}`);
   bufferSize = data;
 }).catch((err: BusinessError) => {
-  console.info(`AudioFrameworkRecLog: getBufferSize :ERROR : ${err}`);
+  console.error(`AudioFrameworkRecLog: getBufferSize :ERROR : ${err}`);
 });
 ```
 
@@ -8199,7 +8207,7 @@ try {
   console.info(`AudioFrameworkRecLog: getBufferSizeSync :SUCCESS ${bufferSize}`);
 } catch (err) {
   let error = err as BusinessError;
-  console.info(`AudioFrameworkRecLog: getBufferSizeSync :ERROR : ${error}`);
+  console.error(`AudioFrameworkRecLog: getBufferSizeSync :ERROR : ${error}`);
 }
 ```
 
@@ -8218,7 +8226,7 @@ Same as [on('interrupt')](#oninterrupt), this API is used to listen for focus ch
 | Name     | Type                                           | Mandatory | Description                                                  |
 | -------- | ---------------------------------------------- | --------- | ------------------------------------------------------------ |
 | type     | string                                         | Yes       | Event type. The event **'audioInterrupt'** is triggered when audio capturing is interrupted. |
-| callback | Callback\<[InterruptEvent](#interruptevent9)\> | Yes       | Callback used to return the audio interruption event.        |
+| callback | Callback\<[InterruptEvent](#interruptevent9)\> | Yes       | Callback used to return the audio interruption event received by the application when playback is interrupted. |
 
 **Error codes**
 
@@ -8300,7 +8308,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 6800101 | if input parameter value error              |
+| 6800101 | if input parameter value error |
 
 **Example**
 
@@ -8323,7 +8331,7 @@ Subscribes to mark reached events. When the number of frames captured reaches th
 | :------- | :---------------- | :-------- | :----------------------------------------------------------- |
 | type     | string            | Yes       | Event type. The value is fixed at **'markReach'**.           |
 | frame    | number            | Yes       | Number of frames to trigger the event. The value must be greater than **0**. |
-| callback | Callback\<number> | Yes       | Callback invoked when the event is triggered.                |
+| callback | Callback\<number> | Yes       | Callback used to return the value of the **frame** parameter. |
 
 **Example**
 
@@ -8401,7 +8409,7 @@ Unsubscribes from period reached events.
 audioCapturer.off('periodReach')
 ```
 
-### on('stateChange') <sup>8+</sup>
+### on('stateChange')<sup>8+</sup>
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
@@ -8414,7 +8422,7 @@ Subscribes to state change events.
 | Name     | Type                                  | Mandatory | Description                                                  |
 | :------- | :------------------------------------ | :-------- | :----------------------------------------------------------- |
 | type     | string                                | Yes       | Event type. The value **stateChange** means the state change event. |
-| callback | Callback\<[AudioState](#audiostate8)> | Yes       | Callback used to return the state change.                    |
+| callback | Callback\<[AudioState](#audiostate8)> | Yes       | Callback used to return the audio status.                    |
 
 **Example**
 

@@ -75,7 +75,8 @@
     }
 
     onConfigurationUpdate(config: Configuration) {
-      // 当系统配置信息更新时触发的回调
+      // 当前formExtensionAbility存活时更新系统配置信息时触发的回调。
+      // 需要注意，formExtensionAbility创建后5秒内无操作将会被清理。
       console.info('[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
     }
 

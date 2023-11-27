@@ -1896,7 +1896,7 @@ try {
 
 ## notifyFormsPrivacyProtected
 
-notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Promise\<void\>;
+notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Promise\<void\>
 
 Notifies that the privacy protection status of the specified widgets changes. This API uses a promise to return the result.
 
@@ -1948,7 +1948,7 @@ try {
 
 ## acquireFormData<sup>10+</sup>
 
-acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>): void;
+acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>): void
 
 Requests data from the widget provider. This API uses an asynchronous callback to return the result.
 
@@ -2000,7 +2000,7 @@ try {
 
 ## acquireFormData<sup>10+</sup>
 
-acquireFormData(formId: string): Promise<{[key: string]: Object}>;
+acquireFormData(formId: string): Promise<{[key: string]: Object}>
 
 Requests data from the widget provider. This API uses a promise to return the result.
 

@@ -522,7 +522,6 @@ try {
 setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 
 Sets the sandbox retention state. This API uses a promise to return the result. 
-
 A sandbox application is automatically installed when a DLP file is opened, and automatically uninstalled when the DLP file is closed. Once the sandbox retention state is set for a DLP file, the sandbox application will not be automatically uninstalled when the DLP file is closed.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
@@ -572,7 +571,6 @@ try {
 setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the sandbox retention state. This API uses an asynchronous callback to return the result. 
-
 A sandbox application is automatically installed when a DLP file is opened, and automatically uninstalled when the DLP file is closed. Once the sandbox retention state is set for a DLP file, the sandbox application will not be automatically uninstalled when the DLP file is closed.
 
 **System capability**: SystemCapability.Security.DataLossPrevention

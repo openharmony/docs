@@ -102,6 +102,7 @@ import router from '@ohos.router';
 @Component
 struct MyComponent {
   @State showChild: boolean = true;
+  @State btnColor:string = "#FF007DFF"
 
   // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onPageShow() {
@@ -115,6 +116,8 @@ struct MyComponent {
   // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onBackPress() {
     console.info('Index onBackPress');
+    this.btnColor ="#FFEE0606"
+    return true // 返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理
   }
 
   // 组件生命周期
@@ -134,13 +137,16 @@ struct MyComponent {
         Child()
       }
       // this.showChild为false，删除Child子组件，执行Child aboutToDisappear
-      Button('delete Child').onClick(() => {
+      Button('delete Child')
+      .margin(20)
+      .backgroundColor(this.btnColor)
+      .onClick(() => {
         this.showChild = false;
       })
-      // push到Page2页面，执行onPageHide
+      // push到page页面，执行onPageHide
       Button('push to next page')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Page2' });
+          router.pushUrl({ url: 'pages/page' });
         })
     }
 
@@ -160,13 +166,52 @@ struct Child {
   }
 
   build() {
-    Text(this.title).fontSize(50).onClick(() => {
+    Text(this.title).fontSize(50).margin(20).onClick(() => {
       this.title = 'Hello ArkUI';
     })
   }
 }
 ```
+```ts
+// page.ets
+@Entry
+@Component
+struct page {
+  @State textColor: Color = Color.Black;
+  @State num: number = 0
 
+  onPageShow() {
+    this.num = 5
+  }
+
+  onPageHide() {
+    console.log("page onPageHide");
+  }
+
+  onBackPress() { // 不设置返回值按照false处理
+    this.textColor = Color.Grey
+    this.num = 0
+  }
+
+  aboutToAppear() {
+    this.textColor = Color.Blue
+  }
+
+  build() {
+    Column() {
+      Text(`num 的值为：${this.num}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .fontColor(this.textColor)
+        .margin(20)
+        .onClick(() => {
+          this.num += 5
+        })
+    }
+    .width('100%')
+  }
+}
+```
 
 以上示例中，Index页面包含两个自定义组件，一个是被\@Entry装饰的MyComponent，也是页面的入口组件，即页面的根节点；一个是Child，是MyComponent的子组件。只有\@Entry装饰的节点才可以使页面级别的生命周期方法生效，所以MyComponent中声明了当前Index页面的页面生命周期函数。MyComponent和其子组件Child也同时声明了组件的生命周期函数。
 

@@ -50,9 +50,9 @@
             .onChange((value: boolean) => {
               this.selectA = value;
               postCardAction(this, {
-                'action': 'message',
-                'params': {
-                  'selectA': JSON.stringify(value)
+                action: 'message',
+                params: {
+                  selectA: JSON.stringify(value)
                 }
               });
             })
@@ -65,9 +65,9 @@
             .onChange((value: boolean) => {
               this.selectB = value;
               postCardAction(this, {
-                'action': 'message',
-                'params': {
-                  'selectB': JSON.stringify(value)
+                action: 'message',
+                params: {
+                  selectB: JSON.stringify(value)
                 }
               });
             })
