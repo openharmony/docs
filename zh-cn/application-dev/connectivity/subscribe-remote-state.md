@@ -80,7 +80,7 @@ bool result = object->AddDeathRecipient(deathRecipient); // 注册消亡通知
 result = object->RemoveDeathRecipient(deathRecipient); // 移除消亡通知
 ```
 
-## JS侧接口
+## ArkTS侧接口
 
 | 接口名                                                       | 返回值类型 | 功能描述                                                     |
 | ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ |
