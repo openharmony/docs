@@ -17,6 +17,7 @@
 | int OH_ResourceManager_SeekRawFile(const RawFile *rawFile, long offset, int whence) | 指定rawfile内偏移量。                    |
 | long OH_ResourceManager_GetRawFileOffset(const RawFile *rawFile) | 获取rawfile偏移量。                      |
 | int OH_ResourceManager_ReadRawFile(const RawFile *rawFile, void *buf, size_t length) | 读取rawfile文件内容。                    |
+| int64_t OH_ResourceManager_GetRawFileRemainingLength(const RawFile *rawFile) | 获取rawfile文件剩余长度。                    |
 | void OH_ResourceManager_CloseRawFile(RawFile *rawFile)       | 释放rawfile文件相关资源。                |
 | void OH_ResourceManager_CloseRawDir(RawDir *rawDir)          | 释放rawfile目录相关资源。                |
 | bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDescriptor &descriptor) | 获取rawfile的fd。                        |
@@ -78,32 +79,38 @@
     long rawFileOffset = OH_ResourceManager_ReadRawFile(rawFile, mediaData.get(), rawFileSize);
     ```
 
-9. 根据RawFile实例，使用OH_ResourceManager_CloseRawFile接口释放rawfile文件相关资源。
+9. 根据RawFile实例，使用OH_ResourceManager_GetRawFileRemainingLength接口读取rawfile文件的剩余长度。
+
+    ```c++
+    int64_t rawFileRemainingSize = OH_ResourceManager_GetRawFileRemainingLength(rawFile);
+    ```
+
+10. 根据RawFile实例，使用OH_ResourceManager_CloseRawFile接口释放rawfile文件相关资源。
 
     ```c++
     OH_ResourceManager_CloseRawFile(rawFile);
     ```
 
-10. 根据RawDir实例，使用OH_ResourceManager_CloseRawDir接口释放rawfile目录相关资源。
+11. 根据RawDir实例，使用OH_ResourceManager_CloseRawDir接口释放rawfile目录相关资源。
 
     ```c++
     OH_ResourceManager_CloseRawDir(rawDir);
     ```
 
-11. 根据RawFile实例，使用OH_ResourceManager_GetRawFileDescriptor接口获取rawfile的RawFileDescriptor。
+12. 根据RawFile实例，使用OH_ResourceManager_GetRawFileDescriptor接口获取rawfile的RawFileDescriptor。
 
     ```c++
     RawFileDescriptor descriptor;
     bool result = OH_ResourceManager_GetRawFileDescriptor(rawFile, descriptor);
     ```
 
-12. 根据RawFileDescriptor实例，使用OH_ResourceManager_ReleaseRawFileDescriptor接口关闭rawfile的fd。
+13. 根据RawFileDescriptor实例，使用OH_ResourceManager_ReleaseRawFileDescriptor接口关闭rawfile的fd。
 
     ```c++
     OH_ResourceManager_ReleaseRawFileDescriptor(descriptor);
     ```
 
-13. 根据NativeResourceManager实例，使用OH_ResourceManager_ReleaseNativeResourceManager接口释放native resource manager。
+14. 根据NativeResourceManager实例，使用OH_ResourceManager_ReleaseNativeResourceManager接口释放native resource manager。
 
     ```c++
     OH_ResourceManager_ReleaseNativeResourceManager(nativeResourceManager);
@@ -258,8 +265,17 @@
         // 获取rawfile大小并申请内存
         long len = OH_ResourceManager_GetRawFileSize(rawFile);
         std::unique_ptr<uint8_t[]> data= std::make_unique<uint8_t[]>(len);
-        // 读取rawfile
+
+        // 一次性读取rawfile全部内容
         int res = OH_ResourceManager_ReadRawFile(rawFile, data.get(), len);
+
+        // 多次部分读取rawfile, 每次读取100 Byte。获取全部内容
+        // long offset = 0;
+        // while (OH_ResourceManager_GetRawFileRemainingLength(rawFile) > 0) {
+        //     OH_ResourceManager_ReadRawFile(rawFile, data.get() + offset, 100);
+        //     offset += 100;
+        // }
+
         // 关闭打开的指针对象
         OH_ResourceManager_CloseRawFile(rawFile);
         OH_ResourceManager_ReleaseNativeResourceManager(mNativeResMgr);
