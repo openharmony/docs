@@ -439,7 +439,7 @@ closeSelectionMenu(): void
 | size  | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)]  | 否 | 图片宽度和高度。 |
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 图片垂直对齐方式。<br/>默认值:ImageSpanAlignment.BASELINE |
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | 否 | 图片缩放类型。<br/> 默认值:ImageFit.Cover。 |
-
+| layoutStyle<sup>11+</sup>  |{<br/>margin&nbsp;?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[Margin](ts-types.md#margin),<br/> borderRadius&nbsp;?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9)<br/>}| 否 | 图片布局风格。<br/>|
 ## RichEditorRange
 
 范围信息。
@@ -1117,3 +1117,621 @@ struct SelectionMenu {
 > 系统暂未预置加粗、斜体等图标，示例代码使用系统默认图标，开发者使用时需自行替换iconArr中的资源。
 
 ![selectionMenu](figures/richEditorSelectionMenu.png)
+
+### 示例4
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  private start: number = -1;
+  private end: number = -1;
+  @State message: string = "[-1, -1]"
+  @State content: string = ""
+  @State paddingVal: number = 5
+  @State borderRad: number = 4
+
+  build() {
+    Column() {
+      Column() {
+        Text("selection range:").width("100%")
+        Text() {
+          Span(this.message)
+        }.width("100%")
+        Text("selection content:").width("100%")
+        Text() {
+          Span(this.content)
+        }.width("100%")
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("20%")
+
+      Row() {
+        Button("updateSpanStyle1")
+          .fontSize(12)
+          .onClick(() => {
+            this.controller.updateSpanStyle({
+              start: this.start,
+              textStyle:
+              {
+                fontWeight: FontWeight.Bolder
+              },
+              imageStyle: {
+                size: ["80px", "80px"],
+                layoutStyle: {
+                  borderRadius: undefined,
+                  margin: undefined
+                }
+              }
+            })
+          })
+
+        Button("updateSpanStyle2")
+          .fontSize(12)
+          .onClick(() => {
+            this.controller.updateSpanStyle({
+              start: this.start,
+              textStyle:
+              {
+                fontWeight: FontWeight.Bolder
+              },
+              imageStyle: {
+                size: ["70px", "70px"],
+                layoutStyle: {
+                  borderRadius: { topLeft: '100px', topRight: '20px', bottomLeft: '100px', bottomRight: '20px' },
+                  margin: { left: '30px', top: '20px', right: '20px', bottom: '20px' }
+                }
+              }
+            })
+          })
+
+        Button("updateSpanStyle3")
+          .fontSize(12)
+          .onClick(() => {
+            this.controller.updateSpanStyle({
+              start: this.start,
+              textStyle:
+              {
+                fontWeight: FontWeight.Bolder
+              },
+              imageStyle: {
+                size: ["60px", "60px"],
+                layoutStyle: {
+                  borderRadius: '-10px',
+                  margin: '-10px'
+                }
+              }
+            })
+          })
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("10%")
+
+      Row() {
+        Button('addImageSpan1')
+          .fontSize(12)
+          .onClick(() => {
+            this.controller.addImageSpan($r('app.media.app_icon'), {
+              imageStyle: {
+                size: ["80px", "80px"],
+                layoutStyle: {
+                  borderRadius: '50px',
+                  margin: '40px'
+                }
+              }
+            })
+          })
+
+        Button('addImageSpan2')
+          .fontSize(12)
+          .onClick(() => {
+            this.controller.addImageSpan($r('app.media.app_icon'), {
+              imageStyle: {
+                size: ["100px", "100px"],
+                verticalAlign: ImageSpanAlignment.BOTTOM,
+                layoutStyle: {
+                  borderRadius: undefined,
+                  margin: undefined
+                }
+              }
+            })
+          })
+
+        Button('addImageSpan3')
+          .fontSize(12)
+          .onClick(() => {
+            this.controller.addImageSpan($r('app.media.app_icon'), {
+              imageStyle: {
+                size: ["60px", "60px"],
+                verticalAlign: ImageSpanAlignment.BOTTOM,
+                layoutStyle: {
+                  borderRadius: { topLeft: '10px', topRight: '20px', bottomLeft: '30px', bottomRight: '40px' },
+                  margin: { left: '10px', top: '20px', right: '30px', bottom: '40px' }
+                }
+              }
+            })
+          })
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("10%")
+
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan("0123456789",
+              {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 30
+                }
+              })
+
+            this.controller.addImageSpan($r("app.media.app_icon"),
+              {
+                imageStyle:
+                {
+                  size: ["60px", "60px"],
+                  verticalAlign: ImageSpanAlignment.BOTTOM,
+                  layoutStyle: {
+                    borderRadius: { topLeft: '10px', topRight: '20px', bottomLeft: '30px', bottomRight: '40px' },
+                    margin: { left: '10px', top: '20px', right: '30px', bottom: '40px' }
+                  }
+                }
+              })
+
+            this.controller.addTextSpan("0123456789",
+              {
+                style:
+                {
+                  fontColor: Color.Black,
+                  fontSize: 30
+                }
+              })
+          })
+          .onSelect((value: RichEditorSelection) => {
+            this.start = value.selection[0];
+            this.end = value.selection[1];
+            this.message = "[" + this.start + ", " + this.end + "]"
+          })
+          .aboutToIMEInput((value: RichEditorInsertValue) => {
+            console.log("---------------------- aboutToIMEInput ----------------------")
+            console.log("insertOffset:" + value.insertOffset)
+            console.log("insertValue:" + value.insertValue)
+            return true;
+          })
+          .onIMEInputComplete((value: RichEditorTextSpanResult) => {
+            console.log("---------------------- onIMEInputComplete ---------------------")
+            console.log("spanIndex:" + value.spanPosition.spanIndex)
+            console.log("spanRange:[" + value.spanPosition.spanRange[0] + "," + value.spanPosition.spanRange[1] + "]")
+            console.log("offsetInSpan:[" + value.offsetInSpan[0] + "," + value.offsetInSpan[1] + "]")
+            console.log("value:" + value.value)
+          })
+          .aboutToDelete((value: RichEditorDeleteValue) => {
+            console.log("---------------------- aboutToDelete --------------------------")
+            console.log("offset:" + value.offset)
+            console.log("direction:" + value.direction)
+            console.log("length:" + value.length)
+            value.richEditorDeleteSpans.forEach(item => {
+              console.log("---------------------- item --------------------------")
+              console.log("spanIndex:" + item.spanPosition.spanIndex)
+              console.log("spanRange:[" + item.spanPosition.spanRange[0] + "," + item.spanPosition.spanRange[1] + "]")
+              console.log("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]")
+              if (typeof (item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
+                console.log("image:" + (item as RichEditorImageSpanResult).valueResourceStr)
+              } else {
+                console.log("text:" + (item as RichEditorTextSpanResult).value)
+              }
+            })
+            return true;
+          })
+          .onDeleteComplete(() => {
+            console.log("---------------------- onDeleteComplete ------------------------")
+          })
+          .borderWidth(1)
+          .borderColor(Color.Green)
+          .width("100%")
+          .height('80.00%')
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("70%")
+    }
+  }
+}
+```
+![ImageSpanStyle](figures/richEditorImageSpanStyle.gif)
+
+### 示例5
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  controller: RichEditorController = new RichEditorController()
+  options: RichEditorOptions = { controller: this.controller };
+  @State textFlag: string = "TextFlag";
+
+  build() {
+    Column() {
+      Column() {
+        Text(this.textFlag)
+          .copyOption(CopyOptions.InApp)
+          .fontSize(50)
+      }
+      Divider()
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan('Area1\n', {
+              style:
+              {
+                fontColor: Color.Orange,
+                fontSize: 50
+              },
+              gesture:
+              {
+                onClick: () => {
+                  this.textFlag = "Area1 is onClick."
+                },
+                onLongPress: () => {
+                  this.textFlag = "Area1 is onLongPress."
+                }
+              }
+            })
+
+            this.controller.addTextSpan('Area2\n', {
+              style:
+              {
+                fontColor: Color.Blue,
+                fontSize: 50
+              },
+              gesture:
+              {
+                onClick: () => {
+                  this.textFlag = "Area2 is onClick."
+                },
+                onLongPress: () => {
+                  this.textFlag = "Area2 is onLongPress."
+                }
+              }
+            })
+
+            this.controller.addImageSpan($r("app.media.icon"),
+              {
+                imageStyle:
+                {
+                  size: ["100px", "100px"],
+                  layoutStyle: {
+                    margin: 5,
+                    borderRadius: 15
+                  }
+                },
+                gesture:
+                {
+                  onClick: () => {
+                    this.textFlag = "ImageSpan is onClick."
+                  },
+                  onLongPress: () => {
+                    this.textFlag = "ImageSpan is onLongPress."
+                  }
+                }
+              })
+          })
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("70%")
+    }
+  }
+}
+```
+![OnClickAndLongPress](figures/richEditorOnClickAndLongPress.gif)
+
+### 示例6
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  controller: RichEditorController = new RichEditorController();
+  private spanParagraphs: RichEditorParagraphResult[] = [];
+
+  build() {
+    Column() {
+      RichEditor({ controller: this.controller })
+        .onReady(() => {
+          this.controller.addTextSpan("0123456789\n", {
+            style: {
+              fontColor: Color.Pink,
+              fontSize: "32",
+            },
+            paragraphStyle: {
+              textAlign: TextAlign.Start,
+              leadingMargin: 16
+            }
+          })
+          this.controller.addTextSpan("0123456789")
+        })
+        .width("80%")
+        .height("30%")
+        .border({ width: 1, radius: 5 })
+        .draggable(false)
+
+      Column({ space: 5 }) {
+        Button("段落左对齐").onClick(() => {
+          this.controller.updateParagraphStyle({ start: -1, end: -1,
+            style: {
+              textAlign: TextAlign.Start,
+            }
+          })
+        })
+
+        Button("段落右对齐").onClick(() => {
+          this.controller.updateParagraphStyle({ start: -1, end: -1,
+            style: {
+              textAlign: TextAlign.End,
+            }
+          })
+        })
+
+        Button("段落居中").onClick(() => {
+          this.controller.updateParagraphStyle({ start: -1, end: -1,
+            style: {
+              textAlign: TextAlign.Center,
+            }
+          })
+        })
+        Divider()
+        Button("getParagraphs").onClick(() => {
+          this.spanParagraphs = this.controller.getParagraphs({ start: -1, end: -1 })
+          console.log("RichEditor getParagraphs:" + JSON.stringify(this.spanParagraphs))
+        })
+
+        Button("UpdateSpanStyle1").onClick(() => {
+          this.controller.updateSpanStyle({ start: -1, end: -1,
+            textStyle: {
+              fontColor: Color.Brown,
+              fontSize: 20
+            }
+          })
+        })
+
+        Button("UpdateSpanStyle2").onClick(() => {
+          this.controller.updateSpanStyle({ start: -1, end: -1,
+            textStyle: {
+              fontColor: Color.Green,
+              fontSize: 30
+            }
+          })
+        })
+      }
+    }
+  }
+}
+```
+![TextAlignAndGetParagraphInfo](figures/richEditorTextAlignAndGetParagraphInfo.gif)
+
+### 示例7
+
+```ts
+// xxx.ets
+import font from '@ohos.font'
+const canvasWidth = 1000
+const canvasHeight = 100
+const Indentation = 10
+class LeadingMarginCreator {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(canvasWidth, canvasHeight);
+  private offContext: OffscreenCanvasRenderingContext2D = this.offscreenCanvas.getContext("2d", this.settings);
+  public static instance: LeadingMarginCreator = new LeadingMarginCreator();
+
+  public genStrMark(fontSize: number, str: string): PixelMap {
+    this.offContext = this.offscreenCanvas.getContext("2d", this.settings);
+    this.clearCanvas();
+    this.offContext.font = fontSize + 'vp sans-serif';
+    this.offContext.fillText(str + '.', 0, fontSize * 0.9);
+    return this.offContext.getPixelMap(0, 0, fontSize * (str.length + 1) / 1.75, fontSize);
+  }
+
+  public genSquareMark(fontSize: number): PixelMap {
+    this.offContext = this.offscreenCanvas.getContext("2d", this.settings);
+    this.clearCanvas();
+    const coordinate = fontSize * (1 - 1 / 1.5) / 2;
+    const sideLength = fontSize / 1.5;
+    this.offContext.fillRect(coordinate, coordinate, sideLength, sideLength);
+    return this.offContext.getPixelMap(0, 0, fontSize, fontSize);
+  }
+
+  public genCircleMark(fontSize: number): PixelMap {
+    this.offContext = this.offscreenCanvas.getContext("2d", this.settings);
+    this.clearCanvas();
+    const centerCoordinate = fontSize / 2;
+    const radius = fontSize / 3;
+    this.offContext.ellipse(centerCoordinate, centerCoordinate, radius, radius, 0, 0, 2 * Math.PI);
+    this.offContext.fillStyle = Color.Black;
+    this.offContext.fill();
+    return this.offContext.getPixelMap(0, 0, fontSize, fontSize);
+  }
+
+  private clearCanvas() {
+    this.offContext.clearRect(0, 0, canvasWidth, canvasHeight);
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  private leadingMarkCreatorInstance = LeadingMarginCreator.instance;
+  private fontNameRawFile: string = 'MiSans-Bold'
+  @State fs: number = 30
+  @State cl: number = Color.Black
+  private leftMargin: Dimension = 0;
+  private richEditorTextStyle: RichEditorTextStyle = {};
+
+  aboutToAppear() {
+    font.registerFont({
+      familyName: 'MiSans-Bold',
+      familySrc: '/font/MiSans-Bold.ttf'
+    })
+  }
+
+  build() {
+    Scroll() {
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan("0123456789\n",
+              {
+                style:
+                {
+                  fontWeight: 'medium',
+                  fontFamily: this.fontNameRawFile,
+                  fontColor: Color.Red,
+                  fontSize: 50,
+                  fontStyle: FontStyle.Italic,
+                  decoration: { type: TextDecorationType.Underline, color: Color.Green }
+                }
+              })
+
+            this.controller.addTextSpan("abcdefg",
+              {
+                style:
+                {
+                  fontWeight: FontWeight.Lighter,
+                  fontFamily: 'HarmonyOS Sans',
+                  fontColor: 'rgba(0,128,0,0.5)',
+                  fontSize: 30,
+                  fontStyle: FontStyle.Normal,
+                  decoration: { type: TextDecorationType.Overline, color: 'rgba(169, 26, 246, 0.50)' }
+                }
+              })
+          })
+          .borderWidth(1)
+          .borderColor(Color.Green)
+          .width("100%")
+          .height("50%")
+
+        Row({ space: 5 }) {
+          Button('setTypingStyle1')
+            .fontSize(10)
+            .onClick(() => {
+              this.controller.setTypingStyle(
+                {
+                  fontWeight: 'medium',
+                  fontFamily: this.fontNameRawFile,
+                  fontColor: Color.Blue,
+                  fontSize: 50,
+                  fontStyle: FontStyle.Italic,
+                  decoration: { type: TextDecorationType.Underline, color: Color.Green }
+                })
+            })
+
+          Button('setTypingStyle2')
+            .fontSize(10)
+            .onClick(() => {
+              this.controller.setTypingStyle(
+                {
+                  fontWeight: FontWeight.Lighter,
+                  fontFamily: 'HarmonyOS Sans',
+                  fontColor: Color.Green,
+                  fontSize: '30',
+                  fontStyle: FontStyle.Normal,
+                  decoration: { type: TextDecorationType.Overline, color: 'rgba(169, 26, 246, 0.50)' }
+                })
+            })
+        }
+        Divider()
+        Button("getTypingStyle").onClick(() => {
+          this.richEditorTextStyle = this.controller.getTypingStyle()
+          console.log("RichEditor getTypingStyle:" + JSON.stringify(this.richEditorTextStyle))
+        })
+        Divider()
+        Row({ space: 5 }) {
+          Button("向右列表缩进").onClick(() => {
+            let margin = Number(this.leftMargin)
+            if (margin < 200) {
+              margin += Indentation;
+              this.leftMargin = margin;
+            }
+            this.controller.updateParagraphStyle({
+              start: -10,
+              end: -10,
+              style: {
+                leadingMargin : {
+                  pixelMap : this.leadingMarkCreatorInstance.genCircleMark(16), size: [margin, 30]
+                }
+              }
+            })
+          })
+
+          Button("向左列表缩进").onClick(() => {
+            let margin = Number(this.leftMargin)
+            if (margin > 0) {
+              margin -= Indentation;
+              this.leftMargin = margin;
+            }
+            this.controller.updateParagraphStyle({
+              start: -10,
+              end: -10,
+              style: {
+                leadingMargin : {
+                  pixelMap : this.leadingMarkCreatorInstance.genCircleMark(16), size: [margin, 30]
+                }
+              }
+            })
+          })
+        }
+        Divider()
+        Row({ space: 5 }) {
+          Button("向右空白缩进").onClick(() => {
+            let margin = Number(this.leftMargin)
+            if (margin < 200) {
+              margin += Indentation;
+              this.leftMargin = margin;
+            }
+            this.controller.updateParagraphStyle({
+              start: -10,
+              end: -10,
+              style: {
+                leadingMargin: margin
+              }
+            })
+          })
+
+          Button("向左空白缩进").onClick(() => {
+            let margin = Number(this.leftMargin)
+            if (margin > 0) {
+              margin -= Indentation;
+              this.leftMargin = margin;
+            }
+            this.controller.updateParagraphStyle({
+              start: -10,
+              end: -10,
+              style: {
+                leadingMargin: margin
+              }
+            })
+          })
+        }
+      }.borderWidth(1).borderColor(Color.Red)
+    }
+  }
+}
+```
+![UpdateParagraphAndTypingStyle](figures/richEditorUpdateParagraphAndTypingStyle.gif)
