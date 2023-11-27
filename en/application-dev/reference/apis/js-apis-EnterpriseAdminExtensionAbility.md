@@ -6,9 +6,9 @@ To have the capabilities provided by this module, for example, to receive a noti
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > 
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
 
@@ -154,6 +154,51 @@ Called when an application is stopped.
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAppStop(bundleName: string) {
     console.info(`Succeeded in calling onAppStop callback, stopped bundle name : ${bundleName}`);
+  }
+};
+```
+## EnterpriseAdminExtensionAbility.onSystemUpdate<sup>11+</sup>
+
+onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo): void
+
+Called to report a system update event.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name             | Type                                                     | Mandatory | Description        |
+| ---------------- | ------------------------------------------------------- | --- | ---------- |
+| systemUpdateInfo | [systemManager.SystemUpdateInfo](js-apis-enterprise-systemManager.md#systemupdateinfo11) | Yes  | Information about the version update.|
+
+**Example**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo) {
+    console.info(`Succeeded in calling onSystemUpdate callback, version name  : ${systemUpdateInfo.versionName}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onStart<sup>11+</sup>
+
+onStart(): void
+
+Called when EnterpriseAdminExtensionAbility starts.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Example**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onStart() {
+    console.info(`Succeeded in calling onStart callback.`);
   }
 };
 ```
