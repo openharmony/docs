@@ -104,7 +104,7 @@ let timer: reminderAgentManager.ReminderRequestTimer = {
 }
 
 reminderAgentManager.publishReminder(timer).then((reminderId: number) => {
-  console.error("promise, reminderId = " + reminderId);
+  console.log("promise, reminderId = " + reminderId);
 }).catch((err: BusinessError) => {
   console.error("promise err code:" + err.code + " message:" + err.message);
 });
@@ -186,7 +186,7 @@ import { BusinessError } from '@ohos.base';
 
 let reminderId: number = 1;
 reminderAgentManager.cancelReminder(reminderId).then(() => {
-  console.error("cancelReminder promise");
+  console.log("cancelReminder promise");
 }).catch((err: BusinessError) => {
   console.error("promise err code:" + err.code + " message:" + err.message);
 });
@@ -278,28 +278,28 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 import { BusinessError } from '@ohos.base';
 
 reminderAgentManager.getValidReminders().then((reminders: Array<reminderAgentManager.ReminderRequest>) => {
-  console.error("promise, getValidReminders length = " + reminders.length);
+  console.log("promise, getValidReminders length = " + reminders.length);
   for (let i = 0; i < reminders.length; i++) {
-    console.error("getValidReminders = " + reminders[i]);
-    console.error("getValidReminders, reminderType = " + reminders[i].reminderType);
+    console.log("getValidReminders = " + reminders[i]);
+    console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
     const actionButton = reminders[i].actionButton || [];
     for (let j = 0; j < actionButton.length; j++) {
-      console.error("getValidReminders, actionButton.title = " + actionButton[j]?.title);
-      console.error("getValidReminders, actionButton.type = " + actionButton[j]?.type);
+      console.log("getValidReminders, actionButton.title = " + actionButton[j]?.title);
+      console.log("getValidReminders, actionButton.type = " + actionButton[j]?.type);
     }
-    console.error("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
-    console.error("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
-    console.error("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
-    console.error("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
-    console.error("getValidReminders, ringDuration = " + reminders[i].ringDuration);
-    console.error("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
-    console.error("getValidReminders, timeInterval = " + reminders[i].timeInterval);
-    console.error("getValidReminders, title = " + reminders[i].title);
-    console.error("getValidReminders, content = " + reminders[i].content);
-    console.error("getValidReminders, expiredContent = " + reminders[i].expiredContent);
-    console.error("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
-    console.error("getValidReminders, notificationId = " + reminders[i].notificationId);
-    console.error("getValidReminders, slotType = " + reminders[i].slotType);
+    console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
+    console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
+    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
+    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
+    console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
+    console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
+    console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
+    console.log("getValidReminders, title = " + reminders[i].title);
+    console.log("getValidReminders, content = " + reminders[i].content);
+    console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
+    console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
+    console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
+    console.log("getValidReminders, slotType = " + reminders[i].slotType);
   }
 }).catch((err: BusinessError) => {
   console.error("promise err code:" + err.code + " message:" + err.message);
@@ -370,7 +370,7 @@ cancelAllReminders(): Promise\<void>
 import { BusinessError } from '@ohos.base';
 
 reminderAgentManager.cancelAllReminders().then(() => {
-  console.error("cancelAllReminders promise")
+  console.log("cancelAllReminders promise")
 }).catch((err: BusinessError) => {
   console.error("promise err code:" + err.code + " message:" + err.message);
 });
@@ -442,7 +442,7 @@ let mySlot: notification.NotificationSlot = {
   type: notification.SlotType.SOCIAL_COMMUNICATION
 }
 reminderAgentManager.addNotificationSlot(mySlot).then(() => {
-  console.error("addNotificationSlot promise");
+  console.log("addNotificationSlot promise");
 }).catch((err: BusinessError) => {
   console.error("promise err code:" + err.code + " message:" + err.message);
 });
@@ -508,7 +508,7 @@ import notification from '@ohos.notificationManager'
 import { BusinessError } from '@ohos.base';
 
 reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
-  console.error("removeNotificationSlot promise");
+  console.log("removeNotificationSlot promise");
 }).catch((err: BusinessError) => {
   console.error("promise err code:" + err.code + " message:" + err.message);
 });
