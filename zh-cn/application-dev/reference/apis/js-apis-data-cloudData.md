@@ -406,7 +406,7 @@ try {
 | 参数名   | 类型                      | 必填 | 说明                                    |
 | -------- | ------------------------- | ---- | --------------------------------------- |
 | extInfo  | [ExtraData](#extradata11)   | 是   | 透传数据，包含通知数据变更后的应用信息。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                              |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当数据变更通知成功，err为undefined，否则为错误对象。|
 
 **示例：**
 
@@ -447,7 +447,7 @@ static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallba
 | -------- | ------------------------- | ---- | ----------------------------------------------- |
 | extInfo  | [ExtraData](#extradata11)   | 是   | 透传数据，包含通知数据变更后的应用信息。        |
 | userId   | number                    | 是   | 用户ID。对应为系统中现有的用户ID。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当数据变更通知成功，err为undefined，否则为错误对象。|
 
 ```ts
 import { BusinessError } from '@ohos.base';
