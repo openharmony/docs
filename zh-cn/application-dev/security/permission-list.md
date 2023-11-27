@@ -3540,7 +3540,7 @@
 
 ## ohos.permission.REQUEST_ANONYMOUS_ATTEST
 
-允许调用方使用设备匿名证明能力。
+允许系统应用使用设备匿名证明能力。
 
 **权限级别**：system_basic
 
