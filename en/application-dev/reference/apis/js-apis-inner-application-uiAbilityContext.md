@@ -1,6 +1,6 @@
 # UIAbilityContext
 
-**UIAbilityContext**, inherited from [Context](js-apis-inner-application-context.md), provides the context environment for [UIAbility](js-apis-app-ability-uiAbility.md). **UIAbilityContext** provides UIAbility-related configuration and APIs for operating UIAbilities and ServiceExtensionAbilities. For example, you can use the APIs to start a UIAbility, terminate a UIAbility to which the UIAbilityContext belongs, and start, terminate, connect to, or disconnect from a ServiceExtensionAbility.
+**UIAbilityContext**, inherited from [Context](js-apis-inner-application-context.md), provides the context environment for [UIAbility](js-apis-app-ability-uiAbility.md) that needs to store its status. **UIAbilityContext** provides UIAbility-related configuration and APIs for operating UIAbilities and ServiceExtensionAbilities. For example, you can use the APIs to start a UIAbility, terminate a UIAbility to which the UIAbilityContext belongs, and start, terminate, connect to, or disconnect from a ServiceExtensionAbility.
 
 > **NOTE**
 >
@@ -29,7 +29,7 @@ import common from '@ohos.app.ability.common';
 
 ## UIAbilityContext.startAbility
 
-startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 Starts an ability. This API uses an asynchronous callback to return the result.
 
@@ -107,7 +107,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbility
 
-startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 Starts an ability with the start options specified. This API uses an asynchronous callback to return the result.
 
@@ -190,7 +190,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbility
 
-startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
+startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 Starts an ability. This API uses a promise to return the result.
 
@@ -277,7 +277,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityForResult
 
-startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
+startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 Starts an ability. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
@@ -359,7 +359,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityForResult
 
-startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
+startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 Starts an ability with the start options specified. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
@@ -447,7 +447,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityForResult
 
-startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
+startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
 Starts an ability. This API uses a promise to return the result when the ability is terminated. The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
@@ -539,7 +539,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityForResultWithAccount
 
-startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void;
+startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void
 
 Starts an ability with the account ID specified. This API uses an asynchronous callback to return the result when the ability is terminated.
 
@@ -563,7 +563,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -630,7 +630,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityForResultWithAccount
 
-startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
+startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
 Starts an ability with the start options and account ID specified. This API uses an asynchronous callback to return the result when the ability is terminated.
 
@@ -654,7 +654,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback invoked when the ability is terminated.|
 
@@ -725,7 +725,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityForResultWithAccount
 
-startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>;
+startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>
 
 Starts an ability with the account ID specified. This API uses a promise to return the result when the ability is terminated.
 
@@ -749,7 +749,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
@@ -823,7 +823,7 @@ export default class EntryAbility extends UIAbility {
 ```
 ## UIAbilityContext.startServiceExtensionAbility
 
-startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
+startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
 Starts a ServiceExtensionAbility. This API uses an asynchronous callback to return the result.
 
@@ -894,7 +894,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startServiceExtensionAbility
 
-startServiceExtensionAbility(want: Want): Promise\<void>;
+startServiceExtensionAbility(want: Want): Promise\<void>
 
 Starts a ServiceExtensionAbility. This API uses a promise to return the result.
 
@@ -964,7 +964,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startServiceExtensionAbilityWithAccount
 
-startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
 Starts a ServiceExtensionAbility with the account ID specified. This API uses an asynchronous callback to return the result.
 
@@ -983,7 +983,7 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses an
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1043,7 +1043,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startServiceExtensionAbilityWithAccount
 
-startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
+startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
 Starts a ServiceExtensionAbility with the account ID specified. This API uses a promise to return the result.
 
@@ -1062,7 +1062,7 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses a 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 
 **Error codes**
 
@@ -1120,7 +1120,7 @@ export default class EntryAbility extends UIAbility {
 ```
 ## UIAbilityContext.stopServiceExtensionAbility
 
-stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
+stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
 Stops a ServiceExtensionAbility in the same application. This API uses an asynchronous callback to return the result.
 
@@ -1190,7 +1190,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.stopServiceExtensionAbility
 
-stopServiceExtensionAbility(want: Want): Promise\<void>;
+stopServiceExtensionAbility(want: Want): Promise\<void>
 
 Stops a ServiceExtensionAbility in the same application. This API uses a promise to return the result.
 
@@ -1257,7 +1257,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.stopServiceExtensionAbilityWithAccount
 
-stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
 Stops a ServiceExtensionAbility with the account ID specified in the same application. This API uses an asynchronous callback to return the result.
 
@@ -1276,7 +1276,7 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1333,7 +1333,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.stopServiceExtensionAbilityWithAccount
 
-stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
+stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
 Stops a ServiceExtensionAbility with the account ID specified in the same application. This API uses a promise to return the result.
 
@@ -1352,7 +1352,7 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 
 **Error codes**
 
@@ -1408,7 +1408,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.terminateSelf
 
-terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
+terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 Terminates this ability. This API uses an asynchronous callback to return the result.
 
@@ -1465,7 +1465,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.terminateSelf
 
-terminateSelf(): Promise&lt;void&gt;;
+terminateSelf(): Promise&lt;void&gt;
 
 Terminates this ability. This API uses a promise to return the result.
 
@@ -1522,7 +1522,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.terminateSelfWithResult
 
-terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void;
+terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
 Terminates this ability. If the ability is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the caller in the form of an asynchronous callback when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
 
@@ -1565,7 +1565,7 @@ export default class EntryAbility extends UIAbility {
     };
     let resultCode = 100;
     // AbilityResult information returned to the caller.
-    let abilityResult = {
+    let abilityResult: common.AbilityResult = {
       want,
       resultCode
     };
@@ -1593,7 +1593,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.terminateSelfWithResult
 
-terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
+terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
 Terminates this ability. If the ability is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the caller in the form of a promise when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
 
@@ -1641,7 +1641,7 @@ export default class EntryAbility extends UIAbility {
     };
     let resultCode = 100;
     // AbilityResult information returned to the caller.
-    let abilityResult = {
+    let abilityResult: : common.AbilityResult = {
       want,
       resultCode
     };
@@ -1668,7 +1668,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.connectServiceExtensionAbility
 
-connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
+connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERVICE** template.
 
@@ -1750,7 +1750,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.connectServiceExtensionAbilityWithAccount
 
-connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
+connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number
 
 Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERVICE** template, with the account ID specified.
 
@@ -1769,7 +1769,7 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes| Instance of the callback function after the connection to the ServiceExtensionAbility is set up.|
 
 **Return value**
@@ -1841,7 +1841,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.disconnectServiceExtensionAbility
 
-disconnectServiceExtensionAbility(connection: number): Promise\<void>;
+disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
 Disconnects this ability from a ServiceExtensionAbility and after the successful disconnection, sets the remote object returned upon the connection to void. This API uses a promise to return the result.
 
@@ -1904,7 +1904,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.disconnectServiceExtensionAbility
 
-disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<void>): void;
+disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<void>): void
 
 Disconnects this ability from a ServiceExtensionAbility and after the successful disconnection, sets the remote object returned upon the connection to void. This API uses an asynchronous callback to return the result.
 
@@ -1964,7 +1964,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityByCall
 
-startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
+startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 Starts an ability in the foreground or background and obtains the caller object for communicating with the ability.
 
@@ -2096,7 +2096,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void\>): void;
+startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void\>): void
 
 Starts an ability with the account ID specified. This API uses an asynchronous callback to return the result.
 
@@ -2120,7 +2120,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -2185,7 +2185,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
+startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
 Starts an ability with the account ID and start options specified. This API uses an asynchronous callback to return the result.
 
@@ -2209,7 +2209,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
@@ -2279,7 +2279,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void\>;
+startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void\>
 
 Starts an ability with the account ID specified. This API uses a promise to return the result.
 
@@ -2303,7 +2303,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Error codes**
@@ -2371,7 +2371,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.setMissionLabel
 
-setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
+setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets a label for this UIAbility in the mission. This API uses an asynchronous callback to return the result.
 
@@ -2411,7 +2411,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.setMissionLabel
 
-setMissionLabel(label: string): Promise&lt;void&gt;;
+setMissionLabel(label: string): Promise&lt;void&gt;
 
 Sets a label for this UIAbility in the mission. This API uses a promise to return the result.
 
@@ -2459,7 +2459,7 @@ export default class EntryAbility extends UIAbility {
   ```
 ## UIAbilityContext.setMissionIcon
 
-setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
+setMissionIcon(icon: image.PixelMap, callback: AsyncCallback\<void>): void
 
 Sets an icon for this ability in the mission. This API uses an asynchronous callback to return the result. The maximum size of the icon is 600 MB.
 
@@ -2515,7 +2515,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.setMissionIcon
 
-setMissionIcon(icon: image.PixelMap): Promise\<void>;
+setMissionIcon(icon: image.PixelMap): Promise\<void>
 
 Sets an icon for this ability in the mission. This API uses a promise to return the result. The maximum size of the icon is 600 MB.
 
@@ -2579,7 +2579,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## UIAbilityContext.setMissionContinueState<sup>10+</sup>
 
-setMissionContinueState(state: AbilityConstant.ContinueState, callback:AsyncCallback&lt;void&gt;): void;
+setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the mission continuation state of this UIAbility. This API uses an asynchronous callback to return the result.
 
@@ -2619,7 +2619,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.setMissionContinueState<sup>10+</sup>
 
-setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&gt;;
+setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&gt;
 
 Sets the mission continuation state of this UIAbility. This API uses a promise to return the result.
 
@@ -2666,7 +2666,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.restoreWindowStage
 
-restoreWindowStage(localStorage: LocalStorage) : void;
+restoreWindowStage(localStorage: LocalStorage): void
 
 Restores the WindowStage data in the UIAbility.
 
@@ -2702,7 +2702,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.isTerminating
 
-isTerminating(): boolean;
+isTerminating(): boolean
 
 Checks whether this UIAbility is in the terminating state.
 
@@ -2737,7 +2737,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.requestDialogService
 
-requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestResult&gt;): void;
+requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestResult&gt;): void
 
 Starts a ServiceExtensionAbility that supports modal dialog boxes. After the ServiceExtensionAbility is started, the application displays a modal dialog box. You can call [setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult) to obtain the result.
 
@@ -2753,7 +2753,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md)&gt; | Yes| Callback used to return the result.|
+| result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md#requestresult)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -2815,7 +2815,7 @@ export default class EntryAbility extends UIAbility {
 
   ## UIAbilityContext.requestDialogService
 
-requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;;
+requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 
 Starts a ServiceExtensionAbility that supports modal dialog boxes. After the ServiceExtensionAbility is started, the application displays a modal dialog box. You can call [setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult) to obtain the result, which is returned to the caller in promise mode.
 
@@ -2898,7 +2898,7 @@ export default class EntryAbility extends UIAbility {
 ```
   ## UIAbilityContext.startRecentAbility
 
-startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
+startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 Starts an ability. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result.
 
@@ -2976,7 +2976,7 @@ export default class EntryAbility extends UIAbility {
 ```
 ## UIAbilityContext.startRecentAbility
 
-startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
+startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 Starts an ability with the start options specified. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result.
 You can use this API to carry start options.
@@ -3061,7 +3061,7 @@ export default class EntryAbility extends UIAbility {
 ```
 ## UIAbilityContext.startRecentAbility
 
-startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
+startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 Starts an ability. If the ability has multiple instances, the latest instance is started.
 This API uses a promise to return the result.
@@ -3145,7 +3145,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityByCallWithAccount<sup>10+</sup>
 
-startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;;
+startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;
 
 Starts an ability with the account ID specified and obtains the caller object for communicating with the ability.
 
@@ -3240,7 +3240,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
+startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
 Starts an ability with the caller information specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses an asynchronous callback to return the result.
 
@@ -3312,7 +3312,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
+startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
 Starts an ability with the caller information and start options specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses an asynchronous callback to return the result.
 
@@ -3388,7 +3388,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
+startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
 Starts an ability with the caller information specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses a promise to return the result.
 
@@ -3472,7 +3472,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.reportDrawnCompleted<sup>10+</sup>
 
-reportDrawnCompleted(callback: AsyncCallback\<void>): void;
+reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 Reports an event indicating that page loading is complete (**loadContent()** is successfully called). This API uses an asynchronous callback to return the result.
  **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -3530,7 +3530,7 @@ export default class EntryAbility extends UIAbility {
 ## UIAbilityContext.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
-    abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>) : void;
+    abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>) : void
 
 Implicitly starts a given type of UIExtensionAbility. This API uses an asynchronous callback to return the result.
 
@@ -3582,7 +3582,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ## UIAbilityContext.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
-    abilityStartCallback: AbilityStartCallback) : Promise\<void>;
+    abilityStartCallback: AbilityStartCallback) : Promise\<void>
 
 Implicitly starts a given type of UIExtensionAbility. This API uses a promise to return the result.
 

@@ -155,7 +155,6 @@ Subscribes to widget removal events for a given bundle, which functions as the w
 | hostBundleName | string | Yes| Name of the bundle that functions as the widget host. If no value is passed in, widget removal events of all widget hosts are subscribed to.|
 | observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | Yes| Callback used to return **RunningFormInfo** of the widget.|
 
-
 **Example**
 
 ```ts
@@ -683,6 +682,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
+**Example**
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
@@ -746,6 +746,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
+**Example**
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
@@ -800,6 +801,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
+**Example**
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
@@ -850,6 +852,8 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
+**Example**
+
 ```ts
 import formObserver from '@ohos.app.form.formObserver';
 import formInfo from '@ohos.app.form.formInfo';
@@ -898,6 +902,8 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
+
+**Example**
 
 ```ts
 import formObserver from '@ohos.app.form.formObserver';

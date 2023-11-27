@@ -17,23 +17,23 @@ import common from '@ohos.app.ability.common';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name         | Type    | Readable  | Writable  | Description     |
+| Name         | Type    | Read-only  | Mandatory  | Description     |
 | ----------- | ------ | ---- | ---- | ------- |
-| resourceManager     | resmgr.[ResourceManager](js-apis-resource-manager.md) | Yes   | No   | Object for resource management.  |
-| applicationInfo | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md) | Yes   | No   | Application information.|
-| cacheDir | string | Yes   | No   | Cache directory.|
-| tempDir | string | Yes   | No   | Temporary directory.|
-| filesDir | string | Yes   | No   | File directory.|
-| databaseDir | string | Yes   | No   | Database directory.|
-| preferencesDir | string | Yes   | No   | Preferences directory.|
-| bundleCodeDir | string | Yes   | No   | Bundle code directory. Do not access resource files by concatenating paths. Use the [resourceManager API](js-apis-resource-manager.md) instead.|
-| distributedFilesDir | string | Yes   | No   | Distributed file directory.|
-| eventHub | [EventHub](js-apis-inner-application-eventHub.md) | Yes   | No   | Event hub that implements event subscription, unsubscription, and triggering.|
-| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | Yes   | No   | Encryption level of the directory.|
+| resourceManager     | resmgr.[ResourceManager](js-apis-resource-manager.md#resourcemanager) | No   | Yes   | Object for resource management.  |
+| applicationInfo | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | No   | Yes   | Application information.|
+| cacheDir | string | No   | Yes   | Cache directory.|
+| tempDir | string | No   | Yes   | Temporary directory.|
+| filesDir | string | No   | Yes   | File directory.|
+| databaseDir | string | No   | Yes   | Database directory.|
+| preferencesDir | string | No   | Yes   | Preferences directory.|
+| bundleCodeDir | string | No   | Yes   | Bundle code directory. Do not access resource files by concatenating paths. Use the [resourceManager API](js-apis-resource-manager.md) instead.|
+| distributedFilesDir | string | Yes   | Yes   | Distributed file directory.|
+| eventHub | [EventHub](js-apis-inner-application-eventHub.md) | No   | Yes   | Event hub that implements event subscription, unsubscription, and triggering.|
+| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | No   | Yes   | Encryption level of the directory.|
 
 ## Context.createBundleContext
 
-createBundleContext(bundleName: string): Context;
+createBundleContext(bundleName: string): Context
 
 Creates the context based on the bundle name.
 
@@ -76,7 +76,7 @@ export default class EntryAbility extends UIAbility {
 
 ## Context.createModuleContext
 
-createModuleContext(moduleName: string): Context;
+createModuleContext(moduleName: string): Context
 
 Creates the context based on the module name.
 
@@ -119,7 +119,7 @@ export default class EntryAbility extends UIAbility {
 
 ## Context.createModuleContext
 
-createModuleContext(bundleName: string, moduleName: string): Context;
+createModuleContext(bundleName: string, moduleName: string): Context
 
 Creates the context based on the bundle name and module name.
 
@@ -161,7 +161,7 @@ export default class EntryAbility extends UIAbility {
 
 ## Context.getApplicationContext
 
-getApplicationContext(): ApplicationContext;
+getApplicationContext(): ApplicationContext
 
 Obtains the context of this application.
 
@@ -194,7 +194,7 @@ export default class EntryAbility extends UIAbility {
 
 ## Context.getGroupDir<sup>10+</sup>
 
-getGroupDir(dataGroupID: string): Promise\<string>;
+getGroupDir(dataGroupID: string): Promise\<string>
 
 Obtains the shared directory based on a group ID. This API uses a promise to return the result.
 
@@ -214,11 +214,10 @@ Obtains the shared directory based on a group ID. This API uses a promise to ret
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message|
 | ------- | -------- |
 | 16000011 | The context does not exist. |
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -244,7 +243,7 @@ export default class EntryAbility extends UIAbility {
 
 ## Context.getGroupDir<sup>10+</sup>
 
-getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void;
+getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 
 Obtains the shared directory based on a group ID. This API uses an asynchronous callback to return the result.
 
@@ -259,11 +258,11 @@ Obtains the shared directory based on a group ID. This API uses an asynchronous 
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message|
 | ------- | -------- |
 | 16000011 | The context does not exist. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
