@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import reminderAgentManager from'@ohos.reminderAgentManager';
+import reminderAgentManager from '@ohos.reminderAgentManager';
 ```
 
 ## reminderAgentManager.publishReminder
@@ -53,8 +53,8 @@ let timer: reminderAgentManager.ReminderRequestTimer = {
 }
 
 reminderAgentManager.publishReminder(timer, (err: BusinessError, reminderId: number) => {
-  if (err) {
-    console.log("callback err code:" + err.code + " message:" + err.message);
+  if (err.code) {
+    console.error("callback err code:" + err.code + " message:" + err.message);
   } else {
     console.log("callback, reminderId = " + reminderId);
   }
@@ -104,9 +104,9 @@ let timer: reminderAgentManager.ReminderRequestTimer = {
 }
 
 reminderAgentManager.publishReminder(timer).then((reminderId: number) => {
-  console.log("promise, reminderId = " + reminderId);
+  console.error("promise, reminderId = " + reminderId);
 }).catch((err: BusinessError) => {
-  console.log("promise err code:" + err.code + " message:" + err.message);
+  console.error("promise err code:" + err.code + " message:" + err.message);
 });
 ```
 
@@ -141,9 +141,9 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 import { BusinessError } from '@ohos.base';
 
 let reminderId: number = 1;
-reminderAgentManager.cancelReminder(reminderId, (err: BusinessError, data: void) => {
-  if (err) {
-    console.log("callback err code:" + err.code + " message:" + err.message);
+reminderAgentManager.cancelReminder(reminderId, (err: BusinessError) => {
+  if (err.code) {
+    console.error("callback err code:" + err.code + " message:" + err.message);
   } else {
     console.log("cancelReminder callback");
   }
@@ -186,9 +186,9 @@ import { BusinessError } from '@ohos.base';
 
 let reminderId: number = 1;
 reminderAgentManager.cancelReminder(reminderId).then(() => {
-  console.log("cancelReminder promise");
+  console.error("cancelReminder promise");
 }).catch((err: BusinessError) => {
-  console.log("promise err code:" + err.code + " message:" + err.message);
+  console.error("promise err code:" + err.code + " message:" + err.message);
 });
 ```
 
@@ -220,8 +220,8 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 import { BusinessError } from '@ohos.base';
 
 reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<reminderAgentManager.ReminderRequest>) => {
-  if (err) {
-    console.log("callback err code:" + err.code + " message:" + err.message);
+  if (err.code) {
+    console.error("callback err code:" + err.code + " message:" + err.message);
   } else {
     console.log("callback, getValidReminders length = " + reminders.length);
     for (let i = 0; i < reminders.length; i++) {
@@ -278,31 +278,31 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 import { BusinessError } from '@ohos.base';
 
 reminderAgentManager.getValidReminders().then((reminders: Array<reminderAgentManager.ReminderRequest>) => {
-  console.log("promise, getValidReminders length = " + reminders.length);
+  console.error("promise, getValidReminders length = " + reminders.length);
   for (let i = 0; i < reminders.length; i++) {
-    console.log("getValidReminders = " + reminders[i]);
-    console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
+    console.error("getValidReminders = " + reminders[i]);
+    console.error("getValidReminders, reminderType = " + reminders[i].reminderType);
     const actionButton = reminders[i].actionButton || [];
     for (let j = 0; j < actionButton.length; j++) {
-      console.log("getValidReminders, actionButton.title = " + actionButton[j]?.title);
-      console.log("getValidReminders, actionButton.type = " + actionButton[j]?.type);
+      console.error("getValidReminders, actionButton.title = " + actionButton[j]?.title);
+      console.error("getValidReminders, actionButton.type = " + actionButton[j]?.type);
     }
-    console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
-    console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
-    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
-    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
-    console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
-    console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
-    console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
-    console.log("getValidReminders, title = " + reminders[i].title);
-    console.log("getValidReminders, content = " + reminders[i].content);
-    console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
-    console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
-    console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
-    console.log("getValidReminders, slotType = " + reminders[i].slotType);
+    console.error("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
+    console.error("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
+    console.error("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
+    console.error("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
+    console.error("getValidReminders, ringDuration = " + reminders[i].ringDuration);
+    console.error("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
+    console.error("getValidReminders, timeInterval = " + reminders[i].timeInterval);
+    console.error("getValidReminders, title = " + reminders[i].title);
+    console.error("getValidReminders, content = " + reminders[i].content);
+    console.error("getValidReminders, expiredContent = " + reminders[i].expiredContent);
+    console.error("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
+    console.error("getValidReminders, notificationId = " + reminders[i].notificationId);
+    console.error("getValidReminders, slotType = " + reminders[i].slotType);
   }
 }).catch((err: BusinessError) => {
-  console.log("promise err code:" + err.code + " message:" + err.message);
+  console.error("promise err code:" + err.code + " message:" + err.message);
 }); 
 ```
 
@@ -333,9 +333,9 @@ cancelAllReminders(callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-reminderAgentManager.cancelAllReminders((err: BusinessError, data: void) =>{
-  if (err) {
-    console.log("callback err code:" + err.code + " message:" + err.message);
+reminderAgentManager.cancelAllReminders((err: BusinessError) =>{
+  if (err.code) {
+    console.error("callback err code:" + err.code + " message:" + err.message);
   } else {
     console.log("cancelAllReminders callback")
   }
@@ -370,9 +370,9 @@ cancelAllReminders(): Promise\<void>
 import { BusinessError } from '@ohos.base';
 
 reminderAgentManager.cancelAllReminders().then(() => {
-  console.log("cancelAllReminders promise")
+  console.error("cancelAllReminders promise")
 }).catch((err: BusinessError) => {
-  console.log("promise err code:" + err.code + " message:" + err.message);
+  console.error("promise err code:" + err.code + " message:" + err.message);
 });
 ```
 
@@ -402,9 +402,9 @@ let mySlot: notification.NotificationSlot = {
   type: notification.SlotType.SOCIAL_COMMUNICATION
 }
 
-reminderAgentManager.addNotificationSlot(mySlot, (err: BusinessError, data: void) => {
-  if (err) {
-    console.log("callback err code:" + err.code + " message:" + err.message);
+reminderAgentManager.addNotificationSlot(mySlot, (err: BusinessError) => {
+  if (err.code) {
+    console.error("callback err code:" + err.code + " message:" + err.message);
   } else {
     console.log("addNotificationSlot callback");
   }
@@ -442,9 +442,9 @@ let mySlot: notification.NotificationSlot = {
   type: notification.SlotType.SOCIAL_COMMUNICATION
 }
 reminderAgentManager.addNotificationSlot(mySlot).then(() => {
-  console.log("addNotificationSlot promise");
+  console.error("addNotificationSlot promise");
 }).catch((err: BusinessError) => {
-  console.log("promise err code:" + err.code + " message:" + err.message);
+  console.error("promise err code:" + err.code + " message:" + err.message);
 });
 ```
 
@@ -471,9 +471,9 @@ import notification from '@ohos.notificationManager'
 import { BusinessError } from '@ohos.base';
 
 reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION,
-  (err: BusinessError, data: void) => {
-  if (err) {
-    console.log("callback err code:" + err.code + " message:" + err.message);
+  (err: BusinessError) => {
+  if (err.code) {
+    console.error("callback err code:" + err.code + " message:" + err.message);
   } else {
     console.log("removeNotificationSlot callback");
   }
@@ -508,9 +508,9 @@ import notification from '@ohos.notificationManager'
 import { BusinessError } from '@ohos.base';
 
 reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
-  console.log("removeNotificationSlot promise");
+  console.error("removeNotificationSlot promise");
 }).catch((err: BusinessError) => {
-  console.log("promise err code:" + err.code + " message:" + err.message);
+  console.error("promise err code:" + err.code + " message:" + err.message);
 });
 ```
 
@@ -604,7 +604,7 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertype) | 是 | 指明代理提醒类型。 |
-| actionButton | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮。<br>-普通应用：最多支持两个按钮。<br>-系统应用：API9最多支持两个按钮，在API10开始最多支持三个按钮。 |
+| actionButton | [[ActionButton?, ActionButton?, ActionButton?]](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮。<br>-普通应用：最多支持两个按钮。<br>-系统应用：API9最多支持两个按钮，在API10开始最多支持三个按钮。 |
 | wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时，全屏显示自动拉起目标的ability信息。如果设备正在使用中，则弹出一个通知框。 <br> 说明：该接口为预留接口，暂不支持使用。|
 | ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |
