@@ -4616,6 +4616,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 | SERVICE_INFORMATION  | 2 | 服务类型。 |
 | CONTENT_INFORMATION  | 3 | 内容类型。 |
 | LIVE_VIEW            | 4 | 实况窗类型（仅对系统应用开放）。 |
+| CUSTOMER_SERVICE     | 5 | 客户服务类型。  |
 | OTHER_TYPES          | 0xFFFF | 其他类型。 |
 
 
