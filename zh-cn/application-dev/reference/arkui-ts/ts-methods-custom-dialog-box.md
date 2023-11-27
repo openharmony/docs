@@ -53,8 +53,9 @@ close(): void
 
 关闭显示的自定义弹窗，若已关闭，则不生效。
 
+## 示例
 
-## 示例																				
+### 示例1
 
 ```ts
 // xxx.ets
@@ -145,8 +146,6 @@ struct CustomDialogUser {
     alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -20 },
     gridCount: 4,
-    showInSubWindow: true,
-    isModal: true,
     customStyle: false,
     cornerRadius: 10,
   })
@@ -170,6 +169,82 @@ struct CustomDialogUser {
   build() {
     Column() {
       Button(this.inputValue)
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.dialogController.open()
+          }
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![zh-cn_image_custom](figures/zh-cn_image_custom.gif)
+
+### 示例2
+
+```ts
+// xxx.ets
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController
+  cancel: () => void = () => {
+  }
+  confirm: () => void = () => {
+  }
+  build() {
+    Column() {
+      Text('可展示在主窗口外的弹窗')
+        .fontSize(30)
+        .height(100)
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.controller != undefined) {
+            this.controller.close()
+          }
+        })
+        .margin(20)
+    }
+  }
+}
+@Entry
+@Component
+struct CustomDialogUser {
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample({
+      cancel: this.onCancel,
+      confirm: this.onAccept
+    }),
+    cancel: this.existApp,
+    autoCancel: true,
+    alignment: DialogAlignment.Center,
+    offset: { dx: 0, dy: -20 },
+    gridCount: 4,
+    showInSubWindow: true,
+    isModal: true,
+    customStyle: false,
+    cornerRadius: 10,
+  })
+  // 在自定义组件即将析构销毁时将dialogControlle置空
+  aboutToDisappear() {
+    this.dialogController = null // 将dialogController置空
+  }
+
+  onCancel() {
+    console.info('Callback when the first button is clicked')
+  }
+
+  onAccept() {
+    console.info('Callback when the second button is clicked')
+  }
+
+  existApp() {
+    console.info('Click the callback in the blank area')
+  }
+
+  build() {
+    Column() {
+      Button('click me')
         .onClick(() => {
           if (this.dialogController != null) {
             this.dialogController.open()
