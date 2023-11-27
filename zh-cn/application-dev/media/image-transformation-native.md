@@ -41,7 +41,7 @@ EXTERN_C_END
 
 打开src/main/cpp/hello.cpp，添加引用文件
 ```c++
-    #include<multimedia/image_framework/image_pixel_map_napi.h>
+#include<multimedia/image_framework/image_pixel_map_napi.h>
 ```
     
 1. 获取**PixelMap**的信息，并记录信息到**OhosPixelMapInfo**结构中。
