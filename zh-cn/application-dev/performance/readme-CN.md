@@ -13,6 +13,7 @@
     - [合理进行状态管理](proper_state_management.md)
     - [精准控制组件的更新范围](precisely-control-render-scope.md)
     - [减少动画丢帧](reduce-animation-frame-loss.md)
+    - [Grid高性能开发指导](grid_optimization.md)
   - 提升应用启动和响应速度
     - [提升应用冷启动速度](improve-application-cold-start-speed.md)
     - [提升应用响应速度](improve-application-response.md)
