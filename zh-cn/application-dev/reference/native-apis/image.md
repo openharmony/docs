@@ -608,7 +608,7 @@ int32_t OHOS::Media::OH_AccessPixels (napi_env env, napi_value value, void ** ad
 
 **参见：**
 
-UnAccessPixels
+[UnAccessPixels](image.md#oh_unaccesspixels)
 
 
 ### OH_GetImageInfo()
@@ -2243,7 +2243,7 @@ int32_t OH_PixelMap_AccessPixels (const NativePixelMap * native, void ** addr )
 
 **参见：**
 
-AccessPixels
+[AccessPixels](image.md#oh_pixelmap_accesspixels)
 
 
 ### OH_PixelMap_CreateAlphaPixelMap()
@@ -2330,7 +2330,7 @@ int32_t OH_PixelMap_CreateAlphaPixelMap (napi_env env, napi_value source, napi_v
 
 **参见：**
 
-CreateAlphaPixelMap
+[CreateAlphaPixelMap](image.md#oh_pixelmap_createalphapixelmap)
 
 
 ### OH_PixelMap_CreatePixelMap()
@@ -2419,7 +2419,7 @@ Creates a **PixelMap** object.
 
 **参见：**
 
-CreatePixelMap
+[CreatePixelMap](image.md#oh_pixelmap_createpixelmap)
 
 
 ### OH_PixelMap_Crop()
@@ -2490,7 +2490,7 @@ int32_t OH_PixelMap_Crop (const NativePixelMap * native, int32_t x, int32_t y, i
 
 **参见：**
 
-Crop
+[Crop](image.md#oh_pixelmap_crop)
 
 
 ### OH_PixelMap_Flip()
@@ -2559,7 +2559,7 @@ int32_t OH_PixelMap_Flip (const NativePixelMap * native, int32_t x, int32_t y )
 
 **参见：**
 
-Flip
+[Flip](image.md#oh_pixelmap_flip)
 
 
 ### OH_PixelMap_GetBytesNumberPerRow()
@@ -2601,7 +2601,7 @@ int32_t OH_PixelMap_GetBytesNumberPerRow (const NativePixelMap * native, int32_t
 
 **参见：**
 
-GetBytesNumberPerRow
+[GetBytesNumberPerRow](image.md#oh_pixelmap_getbytesnumberperrow)
 
 
 ### OH_PixelMap_GetDensity()
@@ -2643,7 +2643,7 @@ int32_t OH_PixelMap_GetDensity (const NativePixelMap * native, int32_t * density
 
 **参见：**
 
-GetDensity
+[GetDensity](image.md#oh_pixelmap_getdensity)
 
 
 ### OH_PixelMap_GetImageInfo()
@@ -2753,7 +2753,7 @@ int32_t OH_PixelMap_GetIsEditable (const NativePixelMap * native, int32_t * edit
 
 **参见：**
 
-GetIsEditable
+[GetIsEditable](image.md#oh_pixelmap_getiseditable)
 
 
 ### OH_PixelMap_InitNativePixelMap()
@@ -2783,7 +2783,7 @@ NativePixelMap* OH_PixelMap_InitNativePixelMap (napi_env env, napi_value source 
 
 **参见:**
 
-InitNativePixelMap
+[InitNativePixelMap](image.md#oh_pixelmap_initnativepixelmap)
 
 
 ### OH_PixelMap_IsSupportAlpha()
@@ -2825,7 +2825,7 @@ int32_t OH_PixelMap_IsSupportAlpha (const NativePixelMap * native, int32_t * alp
 
 **参见：**
 
-IsSupportAlpha
+[IsSupportAlpha](image.md#oh_pixelmap_issupportalpha)
 
 
 ### OH_PixelMap_Rotate()
@@ -2893,7 +2893,7 @@ int32_t OH_PixelMap_Rotate (const NativePixelMap * native, float angle )
 
 **参见：**
 
-Rotate
+[Rotate](image.md#oh_pixelmap_rotate)
 
 
 ### OH_PixelMap_Scale()
@@ -2964,7 +2964,7 @@ int32_t OH_PixelMap_Scale (const NativePixelMap * native, float x, float y )
 
 **参见：**
 
-Scale
+[Scale](image.md#oh_pixelmap_scale)
 
 
 ### OH_PixelMap_SetAlphaAble()
@@ -3006,7 +3006,7 @@ int32_t OH_PixelMap_SetAlphaAble (const NativePixelMap * native, int32_t alpha )
 
 **参见：**
 
-SetAlphaAble
+[SetAlphaAble](image.md#oh_pixelmap_setalphaable)
 
 
 ### OH_PixelMap_SetDensity()
@@ -3049,7 +3049,7 @@ int32_t OH_PixelMap_SetDensity (const NativePixelMap * native, int32_t density )
 
 **参见：**
 
-GetDensity
+[GetDensity](oh_pixelmap_getdensity)
 
 
 ### OH_PixelMap_SetOpacity()
@@ -3091,7 +3091,7 @@ int32_t OH_PixelMap_SetOpacity (const NativePixelMap * native, float opacity )
 
 **参见：**
 
-SetOpacity
+[SetOpacity](image.md#oh_pixelmap_setopacity)
 
 
 ### OH_PixelMap_Translate()
@@ -3160,7 +3160,7 @@ int32_t OH_PixelMap_Translate (const NativePixelMap * native, float x, float y )
 
 **参见：**
 
-Translate
+[Translate](image.md#oh_pixelmap_translate)
 
 
 ### OH_PixelMap_UnAccessPixels()
@@ -3227,7 +3227,7 @@ int32_t OH_PixelMap_UnAccessPixels (const NativePixelMap * native)
 
 **参见：**
 
-UnAccessPixels
+[UnAccessPixels](image.md#oh_pixelmap_unaccesspixels)
 
 
 ### OH_UnAccessPixels()
@@ -3261,7 +3261,7 @@ int32_t OHOS::Media::OH_UnAccessPixels (napi_env env, napi_value value )
 
 **参见：**
 
-AccessPixels
+[AccessPixels](image.md#oh_accesspixels)
 
 
 ## 变量说明
