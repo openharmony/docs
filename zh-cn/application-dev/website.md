@@ -755,6 +755,7 @@
       - [精准控制组件的更新范围](performance/precisely-control-render-scope.md)
       - [合理使用renderGroup](performance/reasonable-using-renderGroup.md)
       - [减少动画丢帧](performance/reduce-animation-frame-loss.md)
+      - [Grid高性能开发指导](performance/grid_optimization.md)
     - 提升应用启动和响应速度
       - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
       - [提升应用响应速度](performance/improve-application-response.md)
