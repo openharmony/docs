@@ -1,7 +1,7 @@
 # Enterprise Device Management Overview (for System Applications Only)
 
 ## Overview
-OpenHarmony provides Enterprise Device Management APIs to support enterprise APIs. You can use the APIs to implement system-level management and configuration of employee devices. For example, the IT personnel need to install enterprise applications, set security policies, set enterprise email addresses, access enterprise networks, and remotely restore factory settings (to clear lost or stolen device data).
+Enterprise Device Management APIs provide support for enterprise APIs. You can use these APIs to implement system-level management and configuration of employee devices. For example, the IT personnel can install enterprise applications, set security policies, set enterprise email addresses, access enterprise networks, and remotely restore factory settings (to clear lost or stolen device data) for employee devices.
 
 ## Developing Enterprise Management Applications
 
