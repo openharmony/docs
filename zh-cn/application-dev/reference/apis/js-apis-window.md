@@ -311,6 +311,21 @@ import window from '@ohos.window';
 | WINDOW_INACTIVE   | 3      | 失焦状态。 |
 | WINDOW_HIDDEN     | 4      | 切到后台。 |
 
+## WindowLimits<sup>11+<sup>
+
+窗口尺寸限制参数。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称      | 类型   | 可读 | 可写 | 说明                                                         |
+| :-------- | :----- | :--- | :--- | :----------------------------------------------------------- |
+| maxWidth  | number | 否   | 是   | 窗口的最大宽度。该参数为整数, 默认值为0, 为0时按照原来参数设置。 |
+| maxHeight | number | 否   | 是   | 窗口的最大高度。该参数为整数, 默认值为0, 为0时按照原来参数设置。 |
+| minWidth  | number | 否   | 是   | 窗口的最小宽度。该参数为整数, 默认值为0, 为0时按照原来参数设置。 |
+| minHeight | number | 否   | 是   | 窗口的最小高度。该参数为整数, 默认值为0, 为0时按照原来参数设置。 |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -6361,6 +6376,127 @@ export default class EntryAbility extends UIAbility {
       });
     })
   }
+}
+```
+
+### getWindowLimits<sup>11+<sup>
+
+getWindowLimits(): WindowLimits
+
+获取当前窗口的尺寸限制。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                          | **说明**           |
+| ----------------------------- | ------------------ |
+| [WindowLimits](#WindowLimits) | 当前窗口尺寸限制。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| :------- | :----------------------------- |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+try {
+    let windowLimits = windowClass.getWindowLimits();
+} catch (excetpion) {
+    console.error('Failed to obtain the window limits of window. Cause: ' + JSON.stringify(excetpion));
+}
+```
+
+###  setWindowLimits<sup>11+<sup>
+
+setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
+
+设置当前窗口的尺寸限制，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名       | 类型                          | 必填 | 说明                           |
+| :----------- | :---------------------------- | :--- | :----------------------------- |
+| windowLimits | [WindowLimits](#WindowLimits) | 是   | 目标窗口的尺寸限制，单位为px。 |
+
+**返回值：**
+
+| 类型                                         | 说明                                |
+| :------------------------------------------- | :---------------------------------- |
+| Promise&lt;[WindowLimits](#WindowLimits)&gt; | Promise对象。返回设置后的尺寸限制。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| :------- | :-------------------------------------------- |
+| 1300002  | This window state is abnormal.                |
+| 1300003  | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+    let promise = windowClass.setWindowLimits(windowLimits);
+    promise.then((data) => {
+        console.info('Succeeded in changing the window limits. Cause:' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        console.error('Failed to change the widnow limits. Cause: ' + JSON.stringify(err));
+    });
+} catch (excetpion) {
+    console.error('Failed to change the window limits. Cause:' + JSON.stringify(excetpion));
+}
+```
+
+### setWindowLimits<sup>11+<sup>
+
+setWindowLimits(windowLimits: WindowLimits, callback: AsyncCallback&lt;WindowLimits&gt;): void
+
+设置当前窗口的尺寸限制，使用callback异步回调。
+
+**系统能力:** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名       | 类型                                               | 必填 | 说明                             |
+| :----------- | :------------------------------------------------- | :--- | :------------------------------- |
+| windowLimits | [WindowLimits](#WindowLimits)                      | 是   | 目标窗口的尺寸限制，单位为px。   |
+| callback     | AsyncCallback&lt;[WindowLimits](#WindowLimits)&gt; | 是   | 回调函数。返回设置后的尺寸限制。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| :------- | :-------------------------------------------- |
+| 1300002  | This window state is abnormal.                |
+| 1300003  | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+    let winowLimits: window.WindowLimits = {
+        maxWidth: 1500,
+        maxHeight: 1000,
+        minWidth: 500,
+        minHeight: 400
+    };
+    windowClass.setWindowLimits(windowLimits, (err,data) => {
+        if (err.code) {
+            console.error('Failed to change the window limits of window. Cause:' + JSON.stringify(err));
+        }
+        console.info('Succeeded in changing the window limits of window.Cause:' + JSON.string.ify(data));
+    });
+} catch (exception) {
+    console.error('Failed to change the window limits of window. Cause:' + JSON.stringify(exception));
 }
 ```
 
