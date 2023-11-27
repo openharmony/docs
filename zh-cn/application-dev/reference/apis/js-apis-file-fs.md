@@ -2717,15 +2717,23 @@ moveDirSync(src: string, dest: string, mode?: number): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  // move directory from srcPath to destPath
-  let srcPath = pathDir + "/srcDir/";
-  let destPath = pathDir + "/destDir/";
-  try {
-    fs.moveDirSync(srcPath, destPath, 1);
-    console.info("move directory succeed");
-  } catch (err) {
+import fs, { ConflictFiles } from '@ohos.file.fs';
+// move directory from srcPath to destPath
+let srcPath = pathDir + "/srcDir/";
+let destPath = pathDir + "/destDir/";
+try {
+  fs.moveDirSync(srcPath, destPath, 1);
+  console.info("move directory succeed");
+} catch (error) {
+  let err: BusinessError<Array<ConflictFiles>> = error as BusinessError<Array<ConflictFiles>>;
+  if (err.code == 13900015) {
+    for (let i = 0; i < err.data.length; i++) {
+      console.info("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+    }
+  } else {
     console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
   }
+}
   ```
 
 ## fs.moveFile
