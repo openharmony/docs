@@ -7,6 +7,10 @@
 **添加依赖**
 
 在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加image的libpixelmap_ndk.z.so以及日志依赖libhilog_ndk.z.so。
+打开src/main/cpp/hello.cpp，添加头文件
+```c++
+    #include<multimedia/image_framework/image_pixel_map_napi.h>
+```
 
 ```txt
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelmap_ndk.z.so)
