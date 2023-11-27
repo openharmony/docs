@@ -5,11 +5,9 @@
 
 The **NativeWindow** module provides the **NativeWindow** capability for connection to the EGL.
 
-\@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
-**Since**
-
-8
+**Since**: 8
 
 
 ## Summary
@@ -19,7 +17,7 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 
 | Name| Description|
 | -------- | -------- |
-| [external_window.h](external__window_8h.md) | Declares the functions for obtaining and using **NativeWindow**.<br>File to include: &lt;native_window/external_window.h&gt; <br>Library: libnative_window.so|
+| [external_window.h](external__window_8h.md) | Declares the functions for obtaining and using **NativeWindow**.<br>**File to include**: &lt;native_window/external_window.h&gt;<br>**Library**: libnative_window.so|
 
 
 ### Structs
@@ -54,28 +52,29 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 | Name| Description|
 | -------- | -------- |
 | [OH_NativeWindow_CreateNativeWindow](#oh_nativewindow_createnativewindow) (void \*pSurface) | Creates an **OHNativeWindow** instance. A new **OHNativeWindow** instance is created each time this function is called.|
-| [OH_NativeWindow_DestroyNativeWindow](#oh_nativewindow_destroynativewindow) (OHNativeWindow \*window) | Decreases the reference count of an **OHNativeWindow** instance by 1 and when the reference count reaches 0, destroys the instance.|
+| [OH_NativeWindow_DestroyNativeWindow](#oh_nativewindow_destroynativewindow) ([OHNativeWindow](#ohnativewindow) \*window) | Decreases the reference count of an **OHNativeWindow** instance by 1 and when the reference count reaches 0, destroys the instance.|
 | [OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer](#oh_nativewindow_createnativewindowbufferfromsurfacebuffer) (void \*pSurfaceBuffer) | Creates an **OHNativeWindowBuffer** instance. A new **OHNativeWindowBuffer** instance is created each time this function is called.|
-| [OH_NativeWindow_DestroyNativeWindowBuffer](#oh_nativewindow_destroynativewindowbuffer) (OHNativeWindowBuffer \*buffer) | Decreases the reference count of an **OHNativeWindowBuffer** instance by 1 and when the reference count reaches 0, destroys the instance.|
-| [OH_NativeWindow_NativeWindowRequestBuffer](#oh_nativewindow_nativewindowrequestbuffer) (OHNativeWindow \*window, OHNativeWindowBuffer \*\*buffer, int \*fenceFd) | Requests an **OHNativeWindowBuffer** through an **OHNativeWindow** instance for content production.|
-| [OH_NativeWindow_NativeWindowFlushBuffer](#oh_nativewindow_nativewindowflushbuffer) (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer, int fenceFd, Region region) | Flushes the **OHNativeWindowBuffer** filled with the content to the buffer queue through an **OHNativeWindow** instance for content consumption.|
-| [OH_NativeWindow_NativeWindowAbortBuffer](#oh_nativewindow_nativewindowabortbuffer) (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer) | Returns the **OHNativeWindowBuffer** to the buffer queue through an **OHNativeWindow** instance, without filling in any content. The **OHNativeWindowBuffer** can be used for a new request.|
-| [OH_NativeWindow_NativeWindowHandleOpt](#oh_nativewindow_nativewindowhandleopt) (OHNativeWindow \*window, int code,...) | Sets or obtains the attributes of an **OHNativeWindow**, including the width, height, and content format.|
-| [OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative) (OHNativeWindowBuffer \*buffer) | Obtains the pointer to a **BufferHandle** of an **OHNativeWindowBuffer** instance.|
+| [OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer) ([OH_NativeBuffer](_o_h___native_buffer.md#oh_nativebuffer) \*nativeBuffer) | Creates an **OHNativeWindowBuffer** instance. A new **OHNativeWindowBuffer** instance is created each time this function is called.|
+| [OH_NativeWindow_DestroyNativeWindowBuffer](#oh_nativewindow_destroynativewindowbuffer) ([OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Decreases the reference count of an **OHNativeWindowBuffer** instance by 1 and when the reference count reaches 0, destroys the instance.|
+| [OH_NativeWindow_NativeWindowRequestBuffer](#oh_nativewindow_nativewindowrequestbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*buffer, int \*fenceFd) | Requests an **OHNativeWindowBuffer** through an **OHNativeWindow** instance for content production.|
+| [OH_NativeWindow_NativeWindowFlushBuffer](#oh_nativewindow_nativewindowflushbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer, int fenceFd, [Region](_region.md) region) | Flushes the **OHNativeWindowBuffer** filled with the content to the buffer queue through an **OHNativeWindow** instance for content consumption.|
+| [OH_NativeWindow_GetLastFlushedBuffer](#oh_nativewindow_getlastflushedbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Obtains the **OHNativeWindowBuffer** that was flushed to the buffer queue last time through an **OHNativeWindow** instance.|
+| [OH_NativeWindow_NativeWindowAbortBuffer](#oh_nativewindow_nativewindowabortbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Returns the **OHNativeWindowBuffer** to the buffer queue through an **OHNativeWindow** instance, without filling in any content. The **OHNativeWindowBuffer** can be used for a new request.|
+| [OH_NativeWindow_NativeWindowHandleOpt](#oh_nativewindow_nativewindowhandleopt) ([OHNativeWindow](#ohnativewindow) \*window, int code,...) | Sets or obtains the attributes of an **OHNativeWindow**, including the width, height, and content format.|
+| [OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative) ([OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | Obtains the pointer to a **BufferHandle** of an **OHNativeWindowBuffer** instance.|
 | [OH_NativeWindow_NativeObjectReference](#oh_nativewindow_nativeobjectreference) (void \*obj) | Adds the reference count of a native object.|
 | [OH_NativeWindow_NativeObjectUnreference](#oh_nativewindow_nativeobjectunreference) (void \*obj) | Decreases the reference count of a native object and when the reference count reaches 0, destroys this object.|
 | [OH_NativeWindow_GetNativeObjectMagic](#oh_nativewindow_getnativeobjectmagic) (void \*obj) | Obtains the magic ID of a native object.|
-| [OH_NativeWindow_NativeWindowSetScalingMode](#oh_nativewindow_nativewindowsetscalingmode) (OHNativeWindow \*window, uint32_t sequence, OHScalingMode scalingMode) | Sets a scaling mode for an **OHNativeWindow**.|
-| [OH_NativeWindow_NativeWindowSetMetaData](#oh_nativewindow_nativewindowsetmetadata) (OHNativeWindow \*window, uint32_t sequence, int32_t size, const OHHDRMetaData \*metaData) | Sets metadata for an **OHNativeWindow**.|
-| [OH_NativeWindow_NativeWindowSetMetaDataSet](#oh_nativewindow_nativewindowsetmetadataset) (OHNativeWindow*window, uint32_t sequence, OHHDRMetadataKey key, int32_t size, const uint8_t \*metaData) | Sets a metadata set for an **OHNativeWindow**.|
-| [OH_NativeWindow_NativeWindowSetTunnelHandle](#oh_nativewindow_nativewindowsettunnelhandle) (OHNativeWindow \*window, const OHExtDataHandle \*handle) | Sets a tunnel handle to an **OHNativeWindow**.|
+| [OH_NativeWindow_NativeWindowSetScalingMode](#oh_nativewindow_nativewindowsetscalingmode) ([OHNativeWindow](#ohnativewindow) \*window, uint32_t sequence, [OHScalingMode](#ohscalingmode) scalingMode) | Sets a scaling mode for an **OHNativeWindow**.|
+| [OH_NativeWindow_NativeWindowSetMetaData](#oh_nativewindow_nativewindowsetmetadata) ([OHNativeWindow](#ohnativewindow) \*window, uint32_t sequence, int32_t size, const [OHHDRMetaData](_o_h_h_d_r_meta_data.md) \*metaData) | Sets metadata for an **OHNativeWindow**.|
+| [OH_NativeWindow_NativeWindowSetMetaDataSet](#oh_nativewindow_nativewindowsetmetadataset) ([OHNativeWindow](#ohnativewindow) \*window, uint32_t sequence, [OHHDRMetadataKey](#ohhdrmetadatakey) key, int32_t size, const uint8_t \*metaData) | Sets a metadata set for an **OHNativeWindow**.|
+| [OH_NativeWindow_NativeWindowSetTunnelHandle](#oh_nativewindow_nativewindowsettunnelhandle) ([OHNativeWindow](#ohnativewindow) \*window, const [OHExtDataHandle](_o_h_ext_data_handle.md) \*handle) | Sets a tunnel handle to an **OHNativeWindow**.|
 
 
 ## Type Description
 
 
 ### OHNativeWindow
-
 
 ```
 typedef struct NativeWindow OHNativeWindow
@@ -85,9 +84,10 @@ typedef struct NativeWindow OHNativeWindow
 
 Provides the capability of accessing the **OHNativeWindow**.
 
+**Since**: 8
+
 
 ### OHNativeWindowBuffer
-
 
 ```
 typedef struct NativeWindowBuffer OHNativeWindowBuffer
@@ -97,24 +97,26 @@ typedef struct NativeWindowBuffer OHNativeWindowBuffer
 
 Provides the capability of accessing the **OHNativeWindowBuffer**.
 
+**Since**: 8
+
 
 ### Region
 
-
 ```
-typedef struct Region Region
+typedef struct RegionRegion
 ```
 
 **Description**
 
 Defines the rectangle (dirty region) where the content is to be updated in the local **OHNativeWindow**.
 
+**Since**: 8
+
 
 ## Enum Description
 
 
 ### NativeWindowOperation
-
 
 ```
 enum NativeWindowOperation
@@ -123,6 +125,8 @@ enum NativeWindowOperation
 **Description**
 
 Enumerates the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** function.
+
+**Since**: 8
 
 | Value| Description|
 | -------- | -------- |
@@ -147,7 +151,6 @@ Enumerates the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** 
 
 ### OHHDRMetadataKey
 
-
 ```
 enum OHHDRMetadataKey
 ```
@@ -156,13 +159,9 @@ enum OHHDRMetadataKey
 
 Enumerates the HDR metadata keys.
 
-**Since**
+**Since**: 9
 
-9
-
-**Deprecated**
-
-This enum is deprecated since API version 10. No substitute enum is provided.
+**Deprecated**: This enum is deprecated since API version 10. No substitute enum is provided.
 
 | Value| Description|
 | -------- | -------- |
@@ -184,7 +183,6 @@ This enum is deprecated since API version 10. No substitute enum is provided.
 
 ### OHScalingMode
 
-
 ```
 enum OHScalingMode
 ```
@@ -193,13 +191,9 @@ enum OHScalingMode
 
 Enumerates the scaling modes.
 
-**Since**
+**Since**: 9
 
-9
-
-**Deprecated**
-
-This enum is deprecated since API version 10. No substitute enum is provided.
+**Deprecated**: This enum is deprecated since API version 10. No substitute enum is provided.
 
 | Value| Description|
 | -------- | -------- |
@@ -214,7 +208,6 @@ This enum is deprecated since API version 10. No substitute enum is provided.
 
 ### OH_NativeWindow_CreateNativeWindow()
 
-
 ```
 OHNativeWindow* OH_NativeWindow_CreateNativeWindow (void * pSurface)
 ```
@@ -223,7 +216,9 @@ OHNativeWindow* OH_NativeWindow_CreateNativeWindow (void * pSurface)
 
 Creates an **OHNativeWindow** instance. A new **OHNativeWindow** instance is created each time this function is called.
 
-\@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 8
 
 **Parameters**
 
@@ -236,8 +231,32 @@ Creates an **OHNativeWindow** instance. A new **OHNativeWindow** instance is cre
 Returns the pointer to the **OHNativeWindow** instance created.
 
 
-### OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer()
+### OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer()
 
+```
+OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer (OH_NativeBuffer * nativeBuffer)
+```
+
+**Description**
+
+Creates an **OHNativeWindowBuffer** instance. A new **OHNativeWindowBuffer** instance is created each time this function is called.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| nativeBuffer | Pointer to an **OH_NativeBuffer** instance.|
+
+**Returns**
+
+Returns the pointer to the **OHNativeWindowBuffer** instance created.
+
+
+### OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer()
 
 ```
 OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer (void * pSurfaceBuffer)
@@ -247,7 +266,9 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer 
 
 Creates an **OHNativeWindowBuffer** instance. A new **OHNativeWindowBuffer** instance is created each time this function is called.
 
-\@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 8
 
 **Parameters**
 
@@ -262,16 +283,17 @@ Returns the pointer to the **OHNativeWindowBuffer** instance created.
 
 ### OH_NativeWindow_DestroyNativeWindow()
 
-
 ```
-void OH_NativeWindow_DestroyNativeWindow (OHNativeWindow *  window)
+void OH_NativeWindow_DestroyNativeWindow (OHNativeWindow * window)
 ```
 
 **Description**
 
 Decreases the reference count of an **OHNativeWindow** instance by 1 and when the reference count reaches 0, destroys the instance.
 
-\@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 8
 
 **Parameters**
 
@@ -282,16 +304,17 @@ Decreases the reference count of an **OHNativeWindow** instance by 1 and when th
 
 ### OH_NativeWindow_DestroyNativeWindowBuffer()
 
-
 ```
-void OH_NativeWindow_DestroyNativeWindowBuffer (OHNativeWindowBuffer *  buffer)
+void OH_NativeWindow_DestroyNativeWindowBuffer (OHNativeWindowBuffer * buffer)
 ```
 
 **Description**
 
 Decreases the reference count of an **OHNativeWindowBuffer** instance by 1 and when the reference count reaches 0, destroys the instance.
 
-\@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 8
 
 **Parameters**
 
@@ -302,16 +325,17 @@ Decreases the reference count of an **OHNativeWindowBuffer** instance by 1 and w
 
 ### OH_NativeWindow_GetBufferHandleFromNative()
 
-
 ```
-BufferHandle* OH_NativeWindow_GetBufferHandleFromNative (OHNativeWindowBuffer *  buffer)
+BufferHandle* OH_NativeWindow_GetBufferHandleFromNative (OHNativeWindowBuffer * buffer)
 ```
 
 **Description**
 
 Obtains the pointer to a **BufferHandle** of an **OHNativeWindowBuffer** instance.
 
-\@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 8
 
 **Parameters**
 
@@ -324,8 +348,33 @@ Obtains the pointer to a **BufferHandle** of an **OHNativeWindowBuffer** instanc
 Returns the pointer to the **BufferHandle** instance obtained.
 
 
-### OH_NativeWindow_GetNativeObjectMagic()
+### OH_NativeWindow_GetLastFlushedBuffer()
 
+```
+int32_t OH_NativeWindow_GetLastFlushedBuffer (OHNativeWindow * window, OHNativeWindowBuffer **buffer )
+```
+
+**Description**
+
+Obtains the **OHNativeWindowBuffer** that was flushed to the buffer queue last time through an **OHNativeWindow** instance.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 11
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| window | Pointer to an **OHNativeWindow** instance.|
+| buffer | Double pointer to an **OHNativeWindowBuffer** instance.|
+
+**Returns**
+
+Returns **0** if the operation is successful.
+
+
+### OH_NativeWindow_GetNativeObjectMagic()
 
 ```
 int32_t OH_NativeWindow_GetNativeObjectMagic (void * obj)
@@ -335,7 +384,9 @@ int32_t OH_NativeWindow_GetNativeObjectMagic (void * obj)
 
 Obtains the magic ID of a native object.
 
-\@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 8
 
 **Parameters**
 
@@ -350,7 +401,6 @@ Returns the magic ID, which is unique for each native object.
 
 ### OH_NativeWindow_NativeObjectReference()
 
-
 ```
 int32_t OH_NativeWindow_NativeObjectReference (void * obj)
 ```
@@ -359,7 +409,9 @@ int32_t OH_NativeWindow_NativeObjectReference (void * obj)
 
 Adds the reference count of a native object.
 
-\@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 8
 
 **Parameters**
 
@@ -374,7 +426,6 @@ Returns **0** if the operation is successful.
 
 ### OH_NativeWindow_NativeObjectUnreference()
 
-
 ```
 int32_t OH_NativeWindow_NativeObjectUnreference (void * obj)
 ```
@@ -383,7 +434,9 @@ int32_t OH_NativeWindow_NativeObjectUnreference (void * obj)
 
 Decreases the reference count of a native object and when the reference count reaches 0, destroys this object.
 
-\@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 8
 
 **Parameters**
 
@@ -398,16 +451,17 @@ Returns **0** if the operation is successful.
 
 ### OH_NativeWindow_NativeWindowAbortBuffer()
 
-
 ```
-int32_t OH_NativeWindow_NativeWindowAbortBuffer (OHNativeWindow *  window, OHNativeWindowBuffer *  buffer )
+int32_t OH_NativeWindow_NativeWindowAbortBuffer (OHNativeWindow * window, OHNativeWindowBuffer * buffer )
 ```
 
 **Description**
 
 Returns the **OHNativeWindowBuffer** to the buffer queue through an **OHNativeWindow** instance, without filling in any content. The **OHNativeWindowBuffer** can be used for a new request.
 
-\@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 8
 
 **Parameters**
 
@@ -423,16 +477,17 @@ Returns **0** if the operation is successful.
 
 ### OH_NativeWindow_NativeWindowFlushBuffer()
 
-
 ```
-int32_t OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow *  window, OHNativeWindowBuffer *  buffer, int fenceFd, Region region )
+int32_t OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow * window, OHNativeWindowBuffer * buffer, int fenceFd, Region region )
 ```
 
 **Description**
 
 Flushes the **OHNativeWindowBuffer** filled with the content to the buffer queue through an **OHNativeWindow** instance for content consumption.
 
-\@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 8
 
 **Parameters**
 
@@ -450,16 +505,17 @@ Returns **0** if the operation is successful.
 
 ### OH_NativeWindow_NativeWindowHandleOpt()
 
-
 ```
-int32_t OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow *  window, int code,  ... )
+int32_t OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow * window, int code,  ... )
 ```
 
 **Description**
 
 Sets or obtains the attributes of an **OHNativeWindow**, including the width, height, and content format.
 
-\@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 8
 
 **Parameters**
 
@@ -476,16 +532,17 @@ Returns **0** if the operation is successful.
 
 ### OH_NativeWindow_NativeWindowRequestBuffer()
 
-
 ```
-int32_t OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow *  window, OHNativeWindowBuffer **  buffer, int * fenceFd )
+int32_t OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow * window, OHNativeWindowBuffer ** buffer, int * fenceFd )
 ```
 
 **Description**
 
 Requests an **OHNativeWindowBuffer** through an **OHNativeWindow** instance for content production.
 
-\@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 8
 
 **Parameters**
 
@@ -502,16 +559,17 @@ Returns **0** if the operation is successful.
 
 ### OH_NativeWindow_NativeWindowSetMetaData()
 
-
 ```
-int32_t OH_NativeWindow_NativeWindowSetMetaData (OHNativeWindow *  window, uint32_t sequence, int32_t size, const OHHDRMetaData *  metaData )
+int32_t OH_NativeWindow_NativeWindowSetMetaData (OHNativeWindow * window, uint32_t sequence, int32_t size, const OHHDRMetaData * metaData )
 ```
 
 **Description**
 
 Sets metadata for an **OHNativeWindow**.
 
-\@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 9
 
 **Parameters**
 
@@ -526,10 +584,6 @@ Sets metadata for an **OHNativeWindow**.
 
 Returns **0** if the operation is successful.
 
-**Since**
-
-9
-
 **Deprecated**
 
 This function is deprecated since API version 10. No substitute function is provided.
@@ -537,16 +591,17 @@ This function is deprecated since API version 10. No substitute function is prov
 
 ### OH_NativeWindow_NativeWindowSetMetaDataSet()
 
-
 ```
-int32_t OH_NativeWindow_NativeWindowSetMetaDataSet (OHNativeWindow *  window, uint32_t sequence, OHHDRMetadataKey key, int32_t size, const uint8_t * metaData )
+int32_t OH_NativeWindow_NativeWindowSetMetaDataSet (OHNativeWindow * window, uint32_t sequence, OHHDRMetadataKey key, int32_t size, const uint8_t * metaData )
 ```
 
 **Description**
 
 Sets a metadata set for an **OHNativeWindow**.
 
-\@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 9
 
 **Parameters**
 
@@ -562,10 +617,6 @@ Sets a metadata set for an **OHNativeWindow**.
 
 Returns **0** if the operation is successful.
 
-**Since**
-
-9
-
 **Deprecated**
 
 This function is deprecated since API version 10. No substitute function is provided.
@@ -573,16 +624,17 @@ This function is deprecated since API version 10. No substitute function is prov
 
 ### OH_NativeWindow_NativeWindowSetScalingMode()
 
-
 ```
-int32_t OH_NativeWindow_NativeWindowSetScalingMode (OHNativeWindow *  window, uint32_t sequence, OHScalingMode scalingMode )
+int32_t OH_NativeWindow_NativeWindowSetScalingMode (OHNativeWindow * window, uint32_t sequence, OHScalingMode scalingMode )
 ```
 
 **Description**
 
 Sets a scaling mode for an **OHNativeWindow**.
 
-\@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 9
 
 **Parameters**
 
@@ -596,10 +648,6 @@ Sets a scaling mode for an **OHNativeWindow**.
 
 Returns **0** if the operation is successful.
 
-**Since**
-
-9
-
 **Deprecated**
 
 This function is deprecated since API version 10. No substitute function is provided.
@@ -607,16 +655,17 @@ This function is deprecated since API version 10. No substitute function is prov
 
 ### OH_NativeWindow_NativeWindowSetTunnelHandle()
 
-
 ```
-int32_t OH_NativeWindow_NativeWindowSetTunnelHandle (OHNativeWindow *  window, const OHExtDataHandle *  handle )
+int32_t OH_NativeWindow_NativeWindowSetTunnelHandle (OHNativeWindow * window, const OHExtDataHandle * handle )
 ```
 
 **Description**
 
 Sets a tunnel handle to an **OHNativeWindow**.
 
-\@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 9
 
 **Parameters**
 
@@ -628,10 +677,6 @@ Sets a tunnel handle to an **OHNativeWindow**.
 **Returns**
 
 Returns **0** if the operation is successful.
-
-**Since**
-
-9
 
 **Deprecated**
 
