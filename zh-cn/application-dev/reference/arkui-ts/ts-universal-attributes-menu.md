@@ -7,6 +7,8 @@
 >  - 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  - CustomBuilder里不支持再使用bindMenu、bindContextMenu弹出菜单。多级菜单可使用[Menu组件](ts-basic-components-menu.md)。
+>
+>  - 弹出菜单的文本内容不支持长按选中。
 
 
 ## 属性
