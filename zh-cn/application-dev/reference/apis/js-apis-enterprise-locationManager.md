@@ -18,7 +18,7 @@ import locationManager from '@ohos.enterprise.locationManager';
 
 ## locationManager.setLocationPolicy
 
-setLocationPolicy(admin: Want, policy: LocationPolicy): void;
+setLocationPolicy(admin: Want, policy: LocationPolicy): void
 
 以同步方法设置位置服务管理策略。失败抛出对应异常。
 
@@ -33,7 +33,7 @@ setLocationPolicy(admin: Want, policy: LocationPolicy): void;
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| policy | [LocationPolicy](js-apis-enterprise-locationManager.md) | 是    | 位置服务策略，0：默认策略 1：禁用 2：强制启用。 |
+| policy | [LocationPolicy](js-apis-enterprise-locationManager.md) | 是    | 位置服务策略。<br>- 0：默认策略<br>- 1：禁用<br>- 2：强制启用。 |
 
 **错误码**：
 
@@ -64,7 +64,7 @@ try {
 ```
 ## locationManager.getLocationPolicy
 
-getLocationPolicy(admin: Want): LocationPolicy;
+getLocationPolicy(admin: Want): LocationPolicy
 
 以同步方法查询位置服务策略。成功返回位置服务策略，失败抛出对应异常。
 
