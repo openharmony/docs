@@ -49,7 +49,7 @@
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // 普通文本类型通知
+          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // 普通文本类型通知
           normal: {
             title: 'test_title',
             text: 'test_text',
@@ -75,7 +75,7 @@
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // 长文本类型通知
+          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // 长文本类型通知
           longText: {
             title: 'test_title',
             text: 'test_text',
@@ -105,7 +105,7 @@
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // 多行文本类型通知
+          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // 多行文本类型通知
           multiLine: {
             title: 'test_title',
             text: 'test_text',
@@ -150,7 +150,7 @@
         let notificationRequest: notificationManager.NotificationRequest = {
           id: 1,
           content: {
-            contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
+            notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
             picture: {
               title: 'test_title',
               text: 'test_text',
@@ -196,7 +196,7 @@
         slotType: LIVE_VIEW, // 实况窗类型
         id: 0, // 通知id，默认为0
         content: {
-          contentType = notificationManager.ContentType.NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW,
+          notificationContentType : notificationManager.ContentType.NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW,
           systemLiveView: {
             title: "test_title",
             text:"test_text",
