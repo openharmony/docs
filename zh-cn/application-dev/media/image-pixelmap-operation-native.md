@@ -32,6 +32,7 @@ static napi_value Init(napi_env env, napi_value exports)
 EXTERN_C_END
 ```
 
+
 **Native接口调用**
 
 具体接口说明请参考[API文档](../reference/native-apis/image.md)
