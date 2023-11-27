@@ -7,10 +7,6 @@
 **添加依赖**
 
 在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加image的libpixelmap_ndk.z.so以及日志依赖libhilog_ndk.z.so。
-打开src/main/cpp/hello.cpp，添加头文件
-```c++
-    #include<multimedia/image_framework/image_pixel_map_napi.h>
-```
 
 ```txt
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelmap_ndk.z.so)
@@ -42,6 +38,11 @@ EXTERN_C_END
 具体接口说明请参考[API文档](../reference/native-apis/image.md)
 
 在hello.cpp文件中获取JS的资源对象，并转为Native的资源对象，即可调用Native接口，调用方式示例代码如下：
+
+打开src/main/cpp/hello.cpp，添加引用文件
+```c++
+    #include<multimedia/image_framework/image_pixel_map_napi.h>
+```
     
 1. 获取**PixelMap**的信息，并记录信息到**OhosPixelMapInfo**结构中。
    ```c++
