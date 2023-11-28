@@ -105,19 +105,19 @@
 8. 调用AcquireVideoBuffer()获取视频原始码流数据。
      
     ```c++
-    OH_NativeBuffer* buffer = OH_ScreenCapture_AcquireVideoBuffer(capture, &fence, &timestamp, &damage);
+    OH_NativeBuffer* buffer = OH_AVScreenCapture_AcquireVideoBuffer(capture, &fence, &timestamp, &damage);
     ```
 
 9. 调用ReleaseAudioBuffer方法释放音频buffer。
      
     ```c++
-    OH_ScreenCapture_ReleaseAudioBuffer(capture, type);
+    OH_AVScreenCapture_ReleaseAudioBuffer(capture, type);
     ```
 
 10. 调用ReleaseVideoBuffer()释放视频数据。
      
     ```c++
-    OH_ScreenCapture_ReleaseVideoBuffer(capture);
+    OH_AVScreenCapture_ReleaseVideoBuffer(capture);
     ```
 
 11. 调用release()方法销毁实例，释放资源。
@@ -218,12 +218,12 @@ int main()
     //开始录屏
     int32_t ret = OH_AVScreenCapture_StartScreenCapture(capture);
     //mic开关设置
-    int32_t ret = OH_ScreenCapture_SetMicrophoneEnable(capture, true);
+    int32_t ret = OH_AVScreenCapture_SetMicrophoneEnabled(capture, true);
     sleep(10); //录制10s
     //结束录屏
-    int32_t ret = OH_ScreenCapture_StopScreenCapture(capture);
+    int32_t ret = OH_AVScreenCapture_StopScreenCapture(capture);
     //释放ScreenCapture
-    int32_t ret = OH_ScreenCapture_Realease(capture);
+    int32_t ret = OH_AVScreenCapture_Release(capture);
     return 0;
 }
 ```
