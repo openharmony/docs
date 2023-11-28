@@ -98,7 +98,7 @@ struct Index {
             try {
               const context = getContext(this);
               let helper = photoAccessHelper.getPhotoAccessHelper(context);
-              // onClick触发后5秒内通过createAsset接口创建图片文件，5秒后createAsset权限收回。
+              // onClick触发后10秒内通过createAsset接口创建图片文件，10秒后createAsset权限收回。
               let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'png');
               // 使用uri打开文件，可以持续写入内容，写入过程不受时间限制
               let file = await fs.open(uri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
