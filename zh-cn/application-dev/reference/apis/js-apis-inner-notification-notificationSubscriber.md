@@ -271,7 +271,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## onDoNotDisturbDateChange<sup>8+</sup>(deprecated)
 
-onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
+onDoNotDisturbDateChange?:(mode: notificationManager.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
 
 免打扰时间选项发生变更时的回调函数。
 
@@ -287,7 +287,7 @@ onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notific
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| onDoNotDisturbDateChange | (mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void | 是 | 回调返回免打扰时间选项变更。 |
+| onDoNotDisturbDateChange | (mode: notificationManager.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void | 是 | 回调返回免打扰时间选项变更。 |
 
 **示例：**
 
@@ -316,7 +316,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## onDoNotDisturbChanged<sup>11+</sup>
 
-onDoNotDisturbChanged?:(mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
+onDoNotDisturbChanged?:(mode: notificationManager.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
 
 免打扰时间选项发生变更时的回调函数。
 
@@ -328,7 +328,7 @@ onDoNotDisturbChanged?:(mode: notification.[DoNotDisturbDate](js-apis-notificati
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| onDoNotDisturbChanged | (mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void | 是 | 回调返回免打扰时间选项变更。 |
+| onDoNotDisturbChanged | (mode: notificationManager.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void | 是 | 回调返回免打扰时间选项变更。 |
 
 **示例：**
 
