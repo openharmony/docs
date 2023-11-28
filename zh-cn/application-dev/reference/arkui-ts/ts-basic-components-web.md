@@ -1601,7 +1601,8 @@ nestedScroll(value: NestedScrollOptions)
 > **说明：**
 >
 > - 设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
-> - 目前只支持前向后向模式相同，若模式不同则为默认模式。
+> - 支持设置不同的向前向后两个方向上的嵌套滚动模式。
+> - 默认模式为NestedScrollOptions.SELF_FIRST。
 
 **参数：**
 
