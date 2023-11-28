@@ -28,7 +28,6 @@ https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/a
 {
   "name": "Scroll",
   "attrs": []
-  ...
 }
 ```
 修改后：
@@ -37,7 +36,6 @@ https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/a
   "name": "Scroll",
   "single": true,
   "attrs": []
-  ...
 }
 ```
 **适配指导**
