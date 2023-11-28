@@ -335,7 +335,7 @@ import { BusinessError } from '@ohos.base';
 
 reminderAgentManager.cancelAllReminders((err: BusinessError) =>{
   if (err.code) {
-    console.log("callback err code:" + err.code + " message:" + err.message);
+    console.error("callback err code:" + err.code + " message:" + err.message);
   } else {
     console.log("cancelAllReminders callback")
   }
