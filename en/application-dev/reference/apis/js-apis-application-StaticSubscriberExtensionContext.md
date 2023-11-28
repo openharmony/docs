@@ -49,8 +49,6 @@ Observe the following when using this API:
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 16000001 | The specified ability does not exist.                        |
@@ -66,6 +64,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16000055 | Installation-free timed out.                                 |
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not self application.              |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -135,8 +135,6 @@ Observe the following when using this API:
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 16000001 | The specified ability does not exist.                        |
@@ -152,6 +150,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16000055 | Installation-free timed out.                                 |
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not self application.              |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
