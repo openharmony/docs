@@ -449,9 +449,9 @@ try {
 
 ## restrictions.disallowMicrophone<sup>11+</sup>
 
-disallowMicrophone(admin: Want, isDisallowed: boolean): void
+disallowMicrophone(admin: Want, disallow: boolean): void
 
-指定设备管理应用使设备禁用或启用HDC。使用Promise异步回调。
+指定设备管理应用使设备禁用或启用麦克风。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -464,7 +464,7 @@ disallowMicrophone(admin: Want, isDisallowed: boolean): void
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| isDisallowed  | boolean | 是 | true表示禁止使用HDC，false表示允许使用HDC。 |
+| disallow  | boolean | 是 | true表示禁止使用麦克风，false表示允许使用麦克风。 |
 
 **错误码**：
 
