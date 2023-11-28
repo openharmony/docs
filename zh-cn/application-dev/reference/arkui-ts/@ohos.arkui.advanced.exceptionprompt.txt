@@ -11,7 +11,7 @@ ExceptionPrompt适用于有离线内容可显示的情况。
 ## 导入模块
 
 ```ts
-import {ExceptionPrompt} from '@ohos.arkui.advanced.exceptionprompt';
+import {ExceptionPrompt} from '@ohos.arkui.advanced.ExceptionPrompt';
 ```
 
 ##  子组件
