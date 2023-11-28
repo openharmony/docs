@@ -3561,3 +3561,15 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.ACCESS_ACCOUNT_KIT_UI
+
+允许系统应用拉起账号用户认证界面。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
