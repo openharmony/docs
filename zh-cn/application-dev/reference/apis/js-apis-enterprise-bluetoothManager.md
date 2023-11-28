@@ -38,7 +38,7 @@ getBluetoothInfo(admin: Want): BluetoothInfo;
 
 | 类型             | 说明                                                   |
 | ---------------- | ------------------------------------------------------ |
-| BluetoothInfo (js-apis-enterprise-bluetoothManager.md)| 蓝牙信息，包含蓝牙名称、蓝牙状态和蓝牙连接状态。 |
+| [BluetoothInfo](#bluetoothinfo)| 蓝牙信息，包含蓝牙名称、蓝牙状态和蓝牙连接状态。 |
 
 **错误码**：
 
@@ -73,12 +73,12 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**系统API: ** 此接口为系统接口
+**系统API:** 此接口为系统接口
 
-**模型约束: ** 此接口仅可在Stage模型下使用
+**模型约束:** 此接口仅可在Stage模型下使用
 
 | 名称         | 类型     | 必填 | 说明                            |
 | ----------- | --------| ---- | ------------------------------- |
 | name        | string   | 是   | 表示设备的蓝牙名称。 |
-| state |access.BluetoothState (js-apis-bluetooth-access.md)  | 是   | 表示设备的蓝牙状态。 |
-| connectionState | constant.ProfileConnectionState (js-apis-bluetooth-constant.md)  | 是   | 表示设备的蓝牙连接状态。 |
+| state |[access.BluetoothState](js-apis-bluetooth-access.md#bluetoothstate)  | 是   | 表示设备的蓝牙状态。 |
+| connectionState | [constant.ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate)  | 是   | 表示设备的蓝牙连接状态。 |
