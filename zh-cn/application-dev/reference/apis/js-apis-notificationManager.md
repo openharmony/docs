@@ -249,9 +249,7 @@ let notificationRequest: notificationManager.NotificationRequest = {
         }
     }
 };
-
 let userId: number = 1;
-
 notificationManager.publish(notificationRequest, userId).then(() => {
 	console.info("publish success");
 }).catch((err: Base.BusinessError) => {
@@ -274,7 +272,7 @@ cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 | -------- | --------------------- | ---- | -------------------- |
 | id       | number                | 是   | 通知ID。               |
 | label    | string                | 是   | 通知标签。             |
-| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定通知的回调方法。 |
 
 **错误码：**
 
@@ -307,7 +305,7 @@ notificationManager.cancel(0, "label", cancelCallback);
 
 cancel(id: number, label?: string): Promise\<void\>
 
-取消与指定通知ID相匹配的已发布通知，label可以指定也可以不指定（Promise形式）。
+通过通知ID和通知标签取消已发布的通知，若label为空表示取消与指定通知ID相匹配的已发布通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -360,7 +358,7 @@ cancel(id: number, callback: AsyncCallback\<void\>): void
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
 | id       | number                | 是   | 通知ID。               |
-| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定通知的回调方法。 |
 
 **错误码：**
 
@@ -411,7 +409,7 @@ cancelAll(callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定通知的回调方法。 |
 
 **示例：**
 
@@ -482,7 +480,7 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
 | slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)       | 是   | 要创建的通知通道对象。 |
-| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定通道的回调方法。 |
 
 **错误码：**
 
@@ -579,7 +577,7 @@ addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 | 参数名     | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
 | type     | [SlotType](#slottype)              | 是   | 要创建的通知通道的类型。 |
-| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。   |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定通道的回调方法。   |
 
 **错误码：**
 
@@ -668,7 +666,7 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 | 参数名     | 类型                      | 必填 | 说明                     |
 | -------- | ------------------------- | ---- | ------------------------ |
 | slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 要创建的通知通道对象数组。 |
-| callback | AsyncCallback\<void\>     | 是   | 表示被指定的回调方法。     |
+| callback | AsyncCallback\<void\>     | 是   | 表示被指定通道的回调方法。     |
 
 **错误码：**
 
@@ -701,7 +699,6 @@ let notificationSlot: notificationManager.NotificationSlot = {
 // 通知slot array 对象
 let notificationSlotArray: notificationManager.NotificationSlot[] = new Array();
 notificationSlotArray[0] = notificationSlot;
-
 notificationManager.addSlots(notificationSlotArray, addSlotsCallBack);
 ```
 
@@ -752,7 +749,6 @@ let notificationSlot: notificationManager.NotificationSlot = {
 // 通知slot array 对象
 let notificationSlotArray: notificationManager.NotificationSlot[] = new Array();
 notificationSlotArray[0] = notificationSlot;
-
 notificationManager.addSlots(notificationSlotArray).then(() => {
 	console.info("addSlots success");
 }).catch((err: Base.BusinessError) => {
@@ -838,7 +834,6 @@ getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 import Base from '@ohos.base';
 
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
-
 notificationManager.getSlot(slotType).then((data: notificationManager.NotificationSlot) => {
     console.info("getSlot success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -927,7 +922,7 @@ notificationManager.getSlots().then((data: Array<notificationManager.Notificatio
 
 removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 
-删除指定类型的通知通道（callback形式）。
+删除此应用程序指定类型的通知通道（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -936,7 +931,7 @@ removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 | 参数名     | 类型                  | 必填 | 说明                                                        |
 | -------- | --------------------- | ---- | ----------------------------------------------------------- |
 | slotType | [SlotType](#slottype)              | 是   | 通知渠道类型,目前分为社交通信、服务提醒、内容咨询和其他类型。 |
-| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。                                        |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定通道的回调方法。                                        |
 
 **错误码：**
 
@@ -969,7 +964,7 @@ notificationManager.removeSlot(slotType, removeSlotCallback);
 
 removeSlot(slotType: SlotType): Promise\<void\>
 
-删除指定类型的通知通道（Promise形式）。
+删除此应用程序指定类型的通知通道（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1020,7 +1015,7 @@ removeAllSlots(callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定通道的回调方法。 |
 
 **错误码：**
 
@@ -1051,7 +1046,7 @@ notificationManager.removeAllSlots(removeAllCallBack);
 
 removeAllSlots(): Promise\<void\>
 
-删除所有通知通道（Promise形式）。
+删除此应用程序所有通知通道（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1087,7 +1082,7 @@ notificationManager.removeAllSlots().then(() => {
 
 setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
 
-设定指定应用的通知使能状态（Callback形式）。
+设定指定应用的通知使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1187,7 +1182,7 @@ notificationManager.setNotificationEnable(bundle, false).then(() => {
 
 isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
-获取指定应用的通知使能状态（Callback形式）。
+获取指定应用的通知使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1225,11 +1220,9 @@ let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): vo
         console.info(`isNotificationEnabled success, data is ${JSON.stringify(data)}`);
     }
 }
-
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 notificationManager.isNotificationEnabled(bundle, isNotificationEnabledCallback);
 ```
 
@@ -1287,7 +1280,7 @@ notificationManager.isNotificationEnabled(bundle).then((data: boolean) => {
 
 isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
-获取通知使能状态（Callback形式）。
+获取通知使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1323,7 +1316,6 @@ let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): vo
         console.info(`isNotificationEnabled success, data is ${JSON.stringify(data)}`);
     }
 }
-
 notificationManager.isNotificationEnabled(isNotificationEnabledCallback);
 ```
 
@@ -1371,7 +1363,7 @@ notificationManager.isNotificationEnabled().then((data: boolean) => {
 
 isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
 
-获取制定用户ID下的通知使能状态（Callback形式）。
+获取指定用户ID下的通知使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1409,9 +1401,7 @@ let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): vo
         console.info(`isNotificationEnabled success, data is ${JSON.stringify(data)}`);
     }
 }
-
 let userId: number = 1;
-
 notificationManager.isNotificationEnabled(userId, isNotificationEnabledCallback);
 ```
 
@@ -1456,7 +1446,6 @@ isNotificationEnabled(userId: number): Promise\<boolean\>
 import Base from '@ohos.base';
 
 let userId: number = 1;
-
 notificationManager.isNotificationEnabled(userId).then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -1468,7 +1457,7 @@ notificationManager.isNotificationEnabled(userId).then((data: boolean) => {
 
 displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
 
-设定指定应用的角标使能状态（Callback形式）。
+设定指定应用的角标使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1568,7 +1557,7 @@ notificationManager.displayBadge(bundle, false).then(() => {
 
 isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
-获取指定应用的角标使能状态（Callback形式）。
+获取指定应用的角标使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1655,7 +1644,6 @@ import Base from '@ohos.base';
 let bundle: notificationManager.BundleOption = {
   bundle: "bundleName1",
 };
-
 notificationManager.isBadgeDisplayed(bundle).then((data: boolean) => {
 	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -1698,7 +1686,6 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 import Base from '@ohos.base';
 
 let badgeNumber: number = 10;
-
 notificationManager.setBadgeNumber(badgeNumber).then(() => {
 	console.info("displayBadge success");
 }).catch((err: Base.BusinessError) => {
@@ -1710,7 +1697,7 @@ notificationManager.setBadgeNumber(badgeNumber).then(() => {
 
 setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 
-设定角标个数，在应用的桌面图标上呈现（Callback形式）。
+设定角标个数，在应用的桌面图标上呈现（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1744,7 +1731,6 @@ let setBadgeNumberCallback = (err: Base.BusinessError): void => {
         console.info("displayBadge success");
     }
 }
-
 let badgeNumber: number = 10;
 notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
 ```
@@ -1753,7 +1739,7 @@ notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
-设定指定应用的通知通道（Callback形式）。
+设定指定应用的通知通道（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1845,11 +1831,9 @@ import Base from '@ohos.base';
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 let notificationSlot: notificationManager.NotificationSlot = {
     type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
-
 notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("setSlotByBundle success");
 }).catch((err: Base.BusinessError) => {
@@ -1861,7 +1845,7 @@ notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 
 getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
-获取指定应用的所有通知通道（Callback形式）。
+获取指定应用的所有通知通道（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1948,7 +1932,6 @@ import Base from '@ohos.base';
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 notificationManager.getSlotsByBundle(bundle).then((data: Array<notificationManager.NotificationSlot>) => {
 	console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -1960,7 +1943,7 @@ notificationManager.getSlotsByBundle(bundle).then((data: Array<notificationManag
 
 getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): void
 
-获取指定应用的通知通道数量（Callback形式）。
+获取指定应用的通知通道数量（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1998,11 +1981,9 @@ let getSlotNumByBundleCallback = (err: Base.BusinessError, data: number): void =
         console.info(`getSlotNumByBundle success data is ${JSON.stringify(data)}`);
     }
 }
-
 let bundle: notificationManager.BundleOption = {
   bundle: "bundleName1",
 };
-
 notificationManager.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
 ```
 
@@ -2049,7 +2030,6 @@ import Base from '@ohos.base';
 let bundle: notificationManager.BundleOption = {
   bundle: "bundleName1",
 };
-
 notificationManager.getSlotNumByBundle(bundle).then((data: number) => {
 	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -2062,7 +2042,7 @@ notificationManager.getSlotNumByBundle(bundle).then((data: number) => {
 
 getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): void
 
-获取当前未删除的所有通知（Callback形式）。
+获取当前未删除的所有通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2098,7 +2078,6 @@ let getAllActiveNotificationsCallback = (err: Base.BusinessError, data: Array<no
         console.info(`getAllActiveNotifications success, data is ${JSON.stringify(data)}`);
     }
 }
-
 notificationManager.getAllActiveNotifications(getAllActiveNotificationsCallback);
 ```
 
@@ -2146,7 +2125,7 @@ notificationManager.getAllActiveNotifications().then((data: Array<notificationMa
 
 getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 
-获取当前应用未删除的通知数（Callback形式）。
+获取当前应用未删除的通知数（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2178,7 +2157,6 @@ let getActiveNotificationCountCallback = (err: Base.BusinessError, data: number)
         console.info(`getActiveNotificationCount success, data is ${JSON.stringify(data)}`);
     }
 }
-
 notificationManager.getActiveNotificationCount(getActiveNotificationCountCallback);
 ```
 
@@ -2222,7 +2200,7 @@ notificationManager.getActiveNotificationCount().then((data: number) => {
 
 getActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): void
 
-获取当前应用未删除的通知列表（Callback形式）。
+获取当前应用未删除的通知列表（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2254,7 +2232,6 @@ let getActiveNotificationsCallback = (err: Base.BusinessError, data: Array<notif
         console.info("getActiveNotifications success");
     }
 }
-
 notificationManager.getActiveNotifications(getActiveNotificationsCallback);
 ```
 
@@ -2298,7 +2275,7 @@ notificationManager.getActiveNotifications().then((data: Array<notificationManag
 
 cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
-取消本应用指定组下的通知（Callback形式）。
+取消本应用指定组下的通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2331,9 +2308,7 @@ let cancelGroupCallback = (err: Base.BusinessError): void => {
         console.info("cancelGroup success");
     }
 }
-
 let groupName: string = "GroupName";
-
 notificationManager.cancelGroup(groupName, cancelGroupCallback);
 ```
 
@@ -2384,7 +2359,7 @@ notificationManager.cancelGroup(groupName).then(() => {
 
 removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCallback\<void\>): void
 
-删除指定应用的指定组下的通知（Callback形式）。
+删除指定应用的指定组下的通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2423,10 +2398,8 @@ let removeGroupByBundleCallback = (err: Base.BusinessError): void => {
         console.info("removeGroupByBundle success");
     }
 }
-
 let bundleOption: notificationManager.BundleOption = { bundle: "Bundle" };
 let groupName: string = "GroupName";
-
 notificationManager.removeGroupByBundle(bundleOption, groupName, removeGroupByBundleCallback);
 ```
 
@@ -2485,7 +2458,7 @@ notificationManager.removeGroupByBundle(bundleOption, groupName).then(() => {
 
 setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): void
 
-设置免打扰时间（Callback形式）。
+设置免打扰时间（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2523,13 +2496,11 @@ let setDoNotDisturbDateCallback = (err: Base.BusinessError): void => {
         console.info("setDoNotDisturbDate success");
     }
 }
-
 let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 };
-
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCallback);
 ```
 
@@ -2591,7 +2562,7 @@ notificationManager.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 
 setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallback\<void\>): void
 
-指定用户设置免打扰时间（Callback形式）。
+指定用户设置免打扰时间（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2631,15 +2602,12 @@ let setDoNotDisturbDateCallback = (err: Base.BusinessError): void => {
         console.info("setDoNotDisturbDate success");
     }
 }
-
 let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 };
-
 let userId: number = 1;
-
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDisturbDateCallback);
 ```
 
@@ -2690,9 +2658,7 @@ let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 };
-
 let userId: number = 1;
-
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 	console.info("setDoNotDisturbDate success");
 }).catch((err: Base.BusinessError) => {
@@ -2705,7 +2671,7 @@ notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 
 getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
-查询免打扰时间（Callback形式）。
+查询免打扰时间（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2742,7 +2708,6 @@ let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: notificationMa
         console.info(`getDoNotDisturbDate success, data is ${JSON.stringify(data)}`);
     }
 }
-
 notificationManager.getDoNotDisturbDate(getDoNotDisturbDateCallback);
 ```
 
@@ -2792,7 +2757,7 @@ notificationManager.getDoNotDisturbDate().then((data: notificationManager.DoNotD
 
 getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>): void
 
-查询指定用户的免打扰时间（Callback形式）。
+查询指定用户的免打扰时间（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2831,9 +2796,7 @@ let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: notificationMa
         console.info(`getDoNotDisturbDate success, data is ${JSON.stringify(data)}`);
     }
 }
-
 let userId: number = 1;
-
 notificationManager.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
 ```
 
@@ -2879,7 +2842,6 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 import Base from '@ohos.base';
 
 let userId: number = 1;
-
 notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.DoNotDisturbDate) => {
 	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -2892,7 +2854,7 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 
  isSupportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
 
-查询是否支持免打扰功能（Callback形式）。
+查询是否支持免打扰功能（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2928,7 +2890,6 @@ let isSupportDoNotDisturbModeCallback = (err: Base.BusinessError, data: boolean)
         console.info("isSupportDoNotDisturbMode success");
     }
 }
-
 notificationManager.isSupportDoNotDisturbMode(isSupportDoNotDisturbModeCallback);
 ```
 
@@ -2948,7 +2909,7 @@ isSupportDoNotDisturbMode(): Promise\<boolean\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取是否支持免打扰功能的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取是否支持免打扰功能的结果（true：支持，false：不支持）。 |
 
 **错误码：**
 
@@ -2976,7 +2937,7 @@ notificationManager.isSupportDoNotDisturbMode().then((data: boolean) => {
 
 isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): void
 
-查询模板是否存在（Callback形式）。
+查询模板是否存在（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2985,7 +2946,7 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 | 参数名       | 类型                     | 必填 | 说明                       |
 | ------------ | ------------------------ | ---- | -------------------------- |
 | templateName | string                   | 是   | 模板名称。                   |
-| callback     | AsyncCallback\<boolean\> | 是   | 查询模板是否存在的回调函数。 |
+| callback     | AsyncCallback\<boolean\> | 是   | 查询模板是否存在的回调函数（true：存在，false：不存在）。 |
 
 **错误码：**
 
@@ -3010,7 +2971,6 @@ let isSupportTemplateCallback = (err: Base.BusinessError, data: boolean): void =
         console.info("isSupportTemplate success");
     }
 }
-
 notificationManager.isSupportTemplate(templateName, isSupportTemplateCallback);
 ```
 
@@ -3032,7 +2992,7 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 
 | 类型               | 说明            |
 | ------------------ | --------------- |
-| Promise\<boolean\> | Promise方式返回模板是否存在的结果。 |
+| Promise\<boolean\> | Promise方式返回模板是否存在的结果（true：存在，false：不存在）。 |
 
 **错误码：**
 
@@ -3062,7 +3022,7 @@ notificationManager.isSupportTemplate(templateName).then((data: boolean) => {
 
 requestEnableNotification(callback: AsyncCallback\<void\>): void
 
-应用请求通知使能（Callback形式）。
+应用请求通知使能（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3094,7 +3054,6 @@ let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
         console.info("requestEnableNotification success");
     }
 };
-
 notificationManager.requestEnableNotification(requestEnableNotificationCallback);
 ```
 
@@ -3138,7 +3097,7 @@ notificationManager.requestEnableNotification().then(() => {
 
 requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void
 
-应用请求通知使能模态弹窗（Callback形式）。
+应用请求通知使能模态弹窗（callback形式）。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -3178,7 +3137,6 @@ class MyAbility extends UIAbility {
         console.info("requestEnableNotification success");
       }
     };
-
     notificationManager.requestEnableNotification(this.context, requestEnableNotificationCallback);
   }
 }
@@ -3239,7 +3197,7 @@ class MyAbility extends UIAbility {
 
 setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
-设置设备是否支持分布式通知（Callback形式）。
+设置设备是否支持分布式通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3251,7 +3209,7 @@ setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| enable   | boolean                  | 是   | 是否支持。 |
+| enable   | boolean                  | 是   | 是否支持（true：支持，false：不支持）。 |
 | callback | AsyncCallback\<void\> | 是   | 设置设备是否支持分布式通知的回调函数。 |
 
 **错误码：**
@@ -3277,9 +3235,7 @@ let setDistributedEnableCallback = (err: Base.BusinessError): void => {
         console.info("setDistributedEnable success");
     }
 };
-
 let enable: boolean = true;
-
 notificationManager.setDistributedEnable(enable, setDistributedEnableCallback);
 ```
 
@@ -3299,7 +3255,7 @@ setDistributedEnable(enable: boolean): Promise\<void>
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| enable   | boolean                  | 是   | 是否支持。 |
+| enable   | boolean                  | 是   | 是否支持（true：支持，false：不支持）。 |
 
 **错误码：**
 
@@ -3318,7 +3274,6 @@ setDistributedEnable(enable: boolean): Promise\<void>
 import Base from '@ohos.base';
 
 let enable: boolean = true;
-
 notificationManager.setDistributedEnable(enable).then(() => {
     console.info("setDistributedEnable success");
 }).catch((err: Base.BusinessError) => {
@@ -3330,7 +3285,7 @@ notificationManager.setDistributedEnable(enable).then(() => {
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
-查询设备是否支持分布式通知（Callback形式）。
+查询设备是否支持分布式通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3338,7 +3293,7 @@ isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<boolean\> | 是   | 设备是否支持分布式通知的回调函数。 |
+| callback | AsyncCallback\<boolean\> | 是   | 设备是否支持分布式通知的回调函数（true：支持，false：不支持）。 |
 
 **错误码：**
 
@@ -3363,7 +3318,6 @@ let isDistributedEnabledCallback = (err: Base.BusinessError, data: boolean): voi
         console.info("isDistributedEnabled success " + JSON.stringify(data));
     }
 };
-
 notificationManager.isDistributedEnabled(isDistributedEnabledCallback);
 ```
 
@@ -3381,7 +3335,7 @@ isDistributedEnabled(): Promise\<boolean>
 
 | 类型               | 说明                                          |
 | ------------------ | --------------------------------------------- |
-| Promise\<boolean\> | Promise方式返回设备是否支持分布式通知的结果。 |
+| Promise\<boolean\> | Promise方式返回设备是否支持分布式通知的结果（true：支持，false：不支持）。 |
 
 **错误码：**
 
@@ -3412,7 +3366,7 @@ notificationManager.isDistributedEnabled()
 
 setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void>): void
 
-设置指定应用是否支持分布式通知（Callback形式）。
+设置指定应用是否支持分布式通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3426,7 +3380,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包信息。                   |
 | enable   | boolean                  | 是   | 是否支持。                       |
-| callback | AsyncCallback\<void\> | 是   | 应用程序是否支持分布式通知的回调函数。 |
+| callback | AsyncCallback\<void\> | 是   | 应用程序是否支持分布式通知的回调函数（true：支持，false：不支持）。 |
 
 **错误码：**
 
@@ -3452,13 +3406,10 @@ let setDistributedEnableByBundleCallback = (err: Base.BusinessError): void => {
         console.info("enableDistributedByBundle success");
     }
 };
-
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 let enable: boolean = true;
-
 notificationManager.setDistributedEnableByBundle(bundle, enable, setDistributedEnableByBundleCallback);
 ```
 
@@ -3481,7 +3432,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包。                |
-| enable   | boolean                  | 是   | 是否支持。                  |
+| enable   | boolean                  | 是   | 指定应用是否支持分布式通知（true：支持，false：不支持）。                  |
 
 **错误码：**
 
@@ -3503,9 +3454,7 @@ import Base from '@ohos.base';
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 let enable: boolean = true;
-
 notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
     console.info("setDistributedEnableByBundle success");
 }).catch((err: Base.BusinessError) => {
@@ -3517,7 +3466,7 @@ notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
 
 isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<boolean>): void
 
-根据应用的包获取应用程序是否支持分布式通知（Callback形式）。
+根据应用的包获取应用程序是否支持分布式通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3530,7 +3479,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包。                     |
-| callback | AsyncCallback\<boolean\> | 是   | 查询指定应用是否支持分布式通知的回调函数。 |
+| callback | AsyncCallback\<boolean\> | 是   | 查询指定应用是否支持分布式通知的回调函数（true：支持，false：不支持）。 |
 
 **错误码：**
 
@@ -3556,11 +3505,9 @@ let isDistributedEnabledByBundleCallback = (err: Base.BusinessError, data: boole
         console.info("isDistributedEnabledByBundle success" + JSON.stringify(data));
     }
 };
-
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 notificationManager.isDistributedEnabledByBundle(bundle, isDistributedEnabledByBundleCallback);
 ```
 
@@ -3586,7 +3533,7 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
 | 类型               | 说明                                              |
 | ------------------ | ------------------------------------------------- |
-| Promise\<boolean\> | Promise方式返回指定应用是否支持分布式通知的结果。 |
+| Promise\<boolean\> | Promise方式返回指定应用是否支持分布式通知的结果（true：支持，false：不支持）。 |
 
 **错误码：**
 
@@ -3608,7 +3555,6 @@ import Base from '@ohos.base';
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 notificationManager.isDistributedEnabledByBundle(bundle).then((data: boolean) => {
     console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -3621,7 +3567,7 @@ notificationManager.isDistributedEnabledByBundle(bundle).then((data: boolean) =>
 
 getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
-获取通知的提醒方式（Callback形式）。
+获取通知的提醒方式（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3657,7 +3603,6 @@ let getDeviceRemindTypeCallback = (err: Base.BusinessError, data: notificationMa
         console.info(`getDeviceRemindType success, data is ${JSON.stringify(data)}`);
     }
 };
-
 notificationManager.getDeviceRemindType(getDeviceRemindTypeCallback);
 ```
 
@@ -3721,7 +3666,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | representativeBundle | string                                      | 是   | 被代理应用的包名。                       |
 | userId               | number                                      | 是   | 用户ID。                                 |
-| callback             | AsyncCallback                               | 是   | 发布代理通知的回调方法。                 |
+| callback             | AsyncCallback\<void\>                       | 是   | 发布代理通知的回调方法。                 |
 
 **错误码：**
 
@@ -3767,7 +3712,6 @@ let request: notificationManager.NotificationRequest = {
         }
     }
 };
-
 notificationManager.publishAsBundle(request, representativeBundle, userId, callback);
 ```
 
@@ -3834,7 +3778,6 @@ let request: notificationManager.NotificationRequest = {
         }
     }
 };
-
 notificationManager.publishAsBundle(request, representativeBundle, userId).then(() => {
 	console.info("publishAsBundle success");
 }).catch((err: Base.BusinessError) => {
@@ -3892,7 +3835,6 @@ let cancelAsBundleCallback = (err: Base.BusinessError): void => {
 let representativeBundle: string = "com.example.demo";
 // 用户ID
 let userId: number = 100;
-
 notificationManager.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
 ```
 
@@ -3943,7 +3885,6 @@ import Base from '@ohos.base';
 let representativeBundle: string = "com.example.demo";
 // 用户ID
 let userId: number = 100;
-
 notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 	console.info("cancelAsBundle success");
 }).catch((err: Base.BusinessError) => {
@@ -3955,7 +3896,7 @@ notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 
 setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback\<void>): void
 
-设置指定应用的指定渠道类型的使能状态（Callback形式）。
+设置指定应用的指定渠道类型的使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3969,7 +3910,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | -------- | ----------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。           |
 | type     | [SlotType](#slottype)         | 是   | 指定渠道类型。         |
-| enable   | boolean                       | 是   | 使能状态。             |
+| enable   | boolean                       | 是   | 使能状态（true：使能，false：禁止）。             |
 | callback | AsyncCallback\<void\>         | 是   | 设置渠道使能回调函数。 |
 
 **错误码：**
@@ -3996,7 +3937,6 @@ let setNotificationEnableSlotCallback = (err: Base.BusinessError): void => {
         console.info("setNotificationEnableSlot success");
     }
 };
-
 notificationManager.setNotificationEnableSlot(
     { bundle: "ohos.samples.notification", },
     notificationManager.SlotType.SOCIAL_COMMUNICATION,
@@ -4022,7 +3962,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean)
 | ------ | ----------------------------- | ---- | -------------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。   |
 | type   | [SlotType](#slottype)         | 是   | 渠道类型。 |
-| enable | boolean                       | 是   | 使能状态。     |
+| enable | boolean                       | 是   | 使能状态（true：使能，false：禁止）。     |
 
 **错误码：**
 
@@ -4055,7 +3995,7 @@ notificationManager.setNotificationEnableSlot(
 
 isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback\<boolean\>): void
 
-获取指定应用的指定渠道类型的使能状态（Callback形式）。
+获取指定应用的指定渠道类型的使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4069,7 +4009,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 | -------- | ----------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。           |
 | type     | [SlotType](#slottype)         | 是   | 渠道类型。         |
-| callback | AsyncCallback\<boolean\>         | 是   | 获取渠道使能状态回调函数。 |
+| callback | AsyncCallback\<boolean\>         | 是   | 获取渠道使能状态回调函数（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -4095,7 +4035,6 @@ let getEnableSlotCallback = (err: Base.BusinessError, data: boolean): void => {
         console.info(`isNotificationSlotEnabled success, data is ${JSON.stringify(data)}`);
     }
 };
-
 notificationManager.isNotificationSlotEnabled(
     { bundle: "ohos.samples.notification", },
     notificationManager.SlotType.SOCIAL_COMMUNICATION,
@@ -4170,7 +4109,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | 是   | 用户ID。   |
-| enable | boolean | 是   | 是否启用。   |
+| enable | boolean | 是   | 是否启用（true：使能，false：禁止）。   |
 | callback | AsyncCallback\<void\>    | 是   | 设置是否将通知同步到未安装应用程序的设备的回调函数。 |
 
 **错误码：**
@@ -4191,7 +4130,6 @@ import Base from '@ohos.base';
 
 let userId: number = 100;
 let enable: boolean = true;
-
 let callback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
@@ -4199,7 +4137,6 @@ let callback = (err: Base.BusinessError): void => {
         console.info("setSyncNotificationEnabledWithoutApp success");
     }
 }
-
 notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable, callback);
 ```
 
@@ -4221,7 +4158,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | 是   | 用户ID。   |
-| enable | boolean | 是   | 是否启用。   |
+| enable | boolean | 是   | 是否启用（true：使能，false：禁止）。   |
 
 **返回值：**
 
@@ -4247,7 +4184,6 @@ import Base from '@ohos.base';
 
 let userId: number = 100;
 let enable: boolean = true;
-
 notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
     console.info('setSyncNotificationEnabledWithoutApp success');
 }).catch((err: Base.BusinessError) => {
@@ -4273,7 +4209,7 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | 是   | 用户ID。   |
-| callback | AsyncCallback\<boolean\>         | 是   | 获取同步通知到未安装应用程序设备的开关是否开启的回调函数。 |
+| callback | AsyncCallback\<boolean\>         | 是   | 获取同步通知到未安装应用程序设备的开关是否开启的回调函数（true：开启，false：未开启）。 |
 
 **错误码：**
 
@@ -4292,7 +4228,6 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 import Base from '@ohos.base';
 
 let userId: number = 100;
-
 let getSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.info('getSyncNotificationEnabledWithoutAppCallback, err:' + err);
@@ -4300,7 +4235,6 @@ let getSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError, dat
         console.info('getSyncNotificationEnabledWithoutAppCallback, data:' + data);
     }
 }
-
 notificationManager.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
 ```
 
@@ -4327,7 +4261,7 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
 | 类型               | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取同步通知到未安装应用程序设备的开关是否开启的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取同步通知到未安装应用程序设备的开关是否开启的结果（true：开启，false：未开启）。 |
 
 **错误码：**
 
@@ -4346,7 +4280,6 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 import Base from '@ohos.base';
 
 let userId: number = 100;
-
 notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boolean) => {
   console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
 }).catch((err: Base.BusinessError) => {
