@@ -68,7 +68,7 @@
      // 播放器逻辑··· 引发媒体信息与播放状态的变更
      // 设置必要的媒体信息
      let metadata: AVSessionManager.AVMetadata = {
-       assetId: '0',
+       assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体
        title: 'TITLE',
        artist: 'ARTIST'
      };
