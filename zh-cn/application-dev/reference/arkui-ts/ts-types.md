@@ -130,7 +130,7 @@
 | string                              | rgb或者argb格式颜色。示例：'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'。 |
 | [Resource](#resource)               | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。              |
 
-## ColoringStrategy
+## ColoringStrategy<sup>10+</sup>
 
 智能取色枚举类型，用于设置前景色。
 
