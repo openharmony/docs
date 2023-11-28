@@ -23,6 +23,7 @@ https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/a
 **变更的接口/组件**
 
 通过增加single:true配置项，使得工具链编译时报错。
+
 修改前：
 ```json
 {
