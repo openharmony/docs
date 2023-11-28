@@ -397,6 +397,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 1. 在调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，增加[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数。
 2. 在[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数中设置`windowMode`字段为`WINDOW_MODE_FLOATING`，表示启动的UIAbility将以悬浮窗的形式展示。
+3. `windowMode`属性仅适用于系统应用，三方应用可以使用`displayId`属性。
 
 示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
 

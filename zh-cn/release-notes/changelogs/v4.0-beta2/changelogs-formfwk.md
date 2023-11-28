@@ -9,7 +9,7 @@
 
 **变更影响**
 
-对于已发布的js接口，可能影响三方应用的兼容性。
+对于已发布的ArkTS接口，可能影响三方应用的兼容性。
 
 **关键的接口/组件变更**
 
@@ -34,10 +34,12 @@
 **示例：**
 
 ```js
-import formObserver from @ohos.app.form.formObserver.d.ts;
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formObserver.getRunningFormInfos((error, data) => {
+  formObserver.getRunningFormInfos((error: Base.BusinessError, data: formInfo.RunningFormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -56,7 +58,7 @@ try {
 
 **变更影响**
 
-对于已发布的js接口，可能影响三方应用的兼容性。
+对于已发布的ArkTS接口，可能影响三方应用的兼容性。
 
 **关键的接口/组件变更**
 
