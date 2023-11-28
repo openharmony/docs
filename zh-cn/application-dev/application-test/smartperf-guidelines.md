@@ -298,21 +298,21 @@ command exec finished!
 
 - 打开data.csv查看数据
 
-在自定义导出路径里找到data.csv文件打开查看采集数据表，data.csv数据名描述如下
+  在自定义导出路径里找到data.csv文件打开查看采集数据表，data.csv数据名描述如下
 
-| 被测数据项    | 含义             |备注|
-| :-----| :--------------------- |:-----|
-| cpuFrequ     | CPU的频率        |单位Hz|
-| cpuLoad      | CPU的负载占比     |%|
-| currentNow   | 当前读到的电流值  |单位mA|  
-| fps          | 屏幕刷新帧率      |单位fps|
-| fpsJitters   | 每一帧绘制间隔    |单位ns|
-| gpuFrequ     | GPU的频率         |单位Hz|
-| gpuLoad      | GPU的负载占比     |%|
-| shell_front  | 前壳温度          |单位°C|
-| shell_frame  | 边框温度          |单位°C|
-| shell_back   | 后壳温度          |单位°C|
-| soc_thermal  | SOC温度           |单位°C|
-| system_h     | 系统温度          |单位°C|
-| timeStamp    | 当前时间戳        |对应采集时间|
-| voltageNow   | 当前读到的电压值   |单位μV(微伏)|
+  | 被测数据项    | 含义             |备注|
+  | :-----| :--------------------- |:-----|
+  | cpuFrequ     | CPU的频率        |单位Hz|
+  | cpuLoad      | CPU的负载占比     |%|
+  | currentNow   | 当前读到的电流值  |单位mA|  
+  | fps          | 屏幕刷新帧率      |单位fps|
+  | fpsJitters   | 每一帧绘制间隔    |单位ns|
+  | gpuFrequ     | GPU的频率         |单位Hz|
+  | gpuLoad      | GPU的负载占比     |%|
+  | shell_front  | 前壳温度          |单位°C|
+  | shell_frame  | 边框温度          |单位°C|
+  | shell_back   | 后壳温度          |单位°C|
+  | soc_thermal  | SOC温度           |单位°C|
+  | system_h     | 系统温度          |单位°C|
+  | timeStamp    | 当前时间戳        |对应采集时间|
+  | voltageNow   | 当前读到的电压值   |单位μV(微伏)|
