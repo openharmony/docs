@@ -31,3 +31,23 @@
 **适配指导**
 
 此次变更，会返回开发者准确的控件坐标下的数据，无需新增适配。
+
+## cl.ArkUI.2 TextInput组件selectBackgroundColor接口变更
+
+**访问级别**
+公开接口
+
+**变更原因**
+使用selectedBackgroundColor设置ResourceColor，未设置不透明度时，选中文本会遮罩所选文字。
+
+**变更影响**
+该变更为兼容性变更，在开发者设置selectedBackgroundColor的ResourceColor时，如果未指明不透明度，默认设置20%的不透明度。
+
+**变更发生版本**
+从OpenHarmony SDK 4.1.3.3开始。
+
+**变更的接口/组件**
+TextInput组件的selectedBackgroundColor接口。
+
+**适配指导**
+默认行为变更，不涉及适配。
