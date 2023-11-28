@@ -51,3 +51,95 @@
 例子2：滚动鼠标滚轮、双指在触控板纵向滑动可以触发事件响应。
 
 例子3：滚动鼠标滚轮、双指在触控板纵向滑动会触发父组件的滑动事件响应，Shift+滚动鼠标滚轮、双指在触控板横向滑动会触发子组件的滑动事件响应。
+## cl.arkui.2 UIContext的showActionMenu的接口修改
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UIContext的showActionMenu的接口callback参数类型定义错误，导致接口回调不可用。
+
+**变更影响**
+
+该变更为非兼容性变更，存在API变更，修改原始不可用的接口参数，使得开发者可以如预期调用接口实现对应回调的接收和使用。若存在应用使用该错误接口，传入callback参数，则对应功能不可用。
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.1 开始。
+
+**变更的接口/组件**
+
+受影响的接口有：@ohos.arkui.UIContext的showActionMenu方法。
+
+**适配指导**
+
+变更前：
+
+callback参数为promptAction.ActionMenuSuccessResponse，为一个数据对象，若按照接口定义传入promptAction.ActionMenuSuccessResponse则该接口无法使用。
+
+```ts
+import { PromptAction, UIInspector } from '@ohos.arkui.UIContext';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+
+let promptActionF: PromptAction = uiContext.getPromptAction();
+try {
+    promptActionF.showActionMenu({
+      title: 'Title Info',
+      buttons: [
+        {
+          text: 'item1',
+          color: '#666666'
+        },
+        {
+          text: 'item2',
+          color: '#000000'
+        }
+      ]
+    },  (data:promptAction.ActionMenuSuccessResponse))
+} catch (error) {
+  let message = (error as BusinessError).message;
+  let code = (error as BusinessError).code;
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
+};
+```
+
+变更后：
+
+callback参数数据类型为AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](../../../application-dev/reference/apis/js-apis-promptAction.md#actionmenusuccessresponse)&gt;，为回调方法。使用AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](../../../application-dev/reference/apis/js-apis-promptAction.md#actionmenusuccessresponse)&gt;作为callback的入参接口可以正常使用。
+
+```ts
+import { PromptAction, UIInspector } from '@ohos.arkui.UIContext';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+
+let promptActionF: PromptAction = uiContext.getPromptAction();
+try {
+    promptActionF.showActionMenu({
+      title: 'Title Info',
+      buttons: [
+        {
+          text: 'item1',
+          color: '#666666'
+        },
+        {
+          text: 'item2',
+          color: '#000000'
+        }
+      ]
+    }, (err:BusinessError, data:promptAction.ActionMenuSuccessResponse) => {
+        if (err) {
+        console.info('showDialog err: ' + err);
+        return;
+        }
+        console.info('showDialog success callback, click button: ' + data.index);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    let code = (error as BusinessError).code;
+    console.error(`showActionMenu args error code is ${code}, message is ${message}`);
+};
+```
+
