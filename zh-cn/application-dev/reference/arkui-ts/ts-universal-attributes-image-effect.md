@@ -40,7 +40,7 @@
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | radius  | number \| [Resource](ts-types.md#resource) | 是    | 阴影模糊半径。<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。 |
 | type<sup>10+</sup> | [ShadowType](ts-appendix-enums.md#shadowtype)  |      否    | 阴影类型。<br/>默认为COLOR。        |
-| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy](ts-types.md#coloringstrategy)<sup>11+</sup>  | 否    | 阴影的颜色。<br/>默认为黑色。 <br/>**说明：** <br/>从API version 11开始，该接口支持使用主色智能取色。设置其他取色模式无效，取默认值。[textShadow](ts-basic-components-text.md#属性)中该字段不生效。<br/>支持使用'primary'字符串触发智能平均取色模式。                       |
+| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy](ts-types.md#coloringstrategy)<sup>11+</sup>  | 否    | 阴影的颜色。<br/>默认为黑色。 <br/>**说明：** <br/>从API version 11开始，该接口支持使用[ColoringStrategy](ts-types.md#coloringstrategy)实现智能取色，智能取色功能不支持在ArkTS卡片、[textShadow](ts-basic-components-text.md#属性)中使用。<br/>当前仅支持平均取色和主色取色，智能取色区域为shadow绘制区域。<br/>支持使用'average'字符串触发智能平均取色模式，支持使用'primary'字符串触发智能主色模式。                       |
 | offsetX | number \| [Resource](ts-types.md#resource) | 否    | 阴影的X轴偏移量。<br/>默认为0。                      |
 | offsetY | number \| [Resource](ts-types.md#resource) | 否    | 阴影的Y轴偏移量。<br/>默认为0。                      |
 | fill<sup>11+</sup>     | boolean                                    | 否    | 阴影是否内部填充。<br/>默认为false。<br/>**说明：**<br/>[textShadow](ts-basic-components-text.md#属性)中该字段不生效                 |
