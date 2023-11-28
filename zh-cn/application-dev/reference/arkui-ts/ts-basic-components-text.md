@@ -46,8 +46,9 @@ Text(content?: string | Resource)
 | heightAdaptivePolicy<sup>10+</sup> | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 设置文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST。<br/>**说明：**<br/>当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用`maxLines`属性来调整文本高度。如果使用`maxLines`属性的布局大小超过了布局约束，则尝试在`minFontSize`和`maxFontSize`的范围内缩小字体以显示更多文本。<br/>当设置为TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST时，优先使用`minFontSize`属性来调整文本高度。如果使用`minFontSize`属性可以将文本布局在一行中，则尝试在`minFontSize`和`maxFontSize`的范围内增大字体并使用最大可能的字体大小。<br/>当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，优先使用布局约束来调整文本高度。如果布局大小超过布局约束，则尝试在`minFontSize`和`maxFontSize`的范围内缩小字体以满足布局约束。如果将字体大小缩小到`minFontSize`后，布局大小仍然超过布局约束，则删除超过布局约束的行。|
 | textIndent<sup>10+</sup> | number&nbsp;\|&nbsp;string | 设置首行文本缩进，默认值0。 |
 | font<sup>10+</sup> | [Font](ts-types.md#font) | 设置文本样式。包括字体大小、字体粗细、字体族和字体风格。 |
-| wordBreak<sup>11+</sup> | [WorkBreak](ts-appendix-enums.md#wordbreak) | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，`maxLines`组合使用可实现英文单词按字母截断，超出部分以省略号显示|
+| wordBreak<sup>11+</sup> | [WorkBreak](ts-appendix-enums.md#wordbreak11) | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，`maxLines`组合使用可实现英文单词按字母截断，超出部分以省略号显示|
 | selection<sup>11+</sup> |(selectionStart:&nbsp;number, selectionEnd:&nbsp;number)| 设置选中区域。选中区域高亮且显示手柄和文本选择菜单。 <br />默认值：（-1，-1） <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>当`copyOption`设置为CopyOptions.None时，设置`selection`属性不生效。<br/>当`overflow`设置为TextOverflow.Marquee时，设置`selection`属性不生效。<br/>当`selectionStart`大于等于`selectionEnd`时不选中。可选范围为[0, textSize],textSize为文本内容最大字符数，入参小于0处理为0，大于textSize处理为textSize。<br/>当`selectionStart`或`selectionEnd`在截断不可见区域时不选中。截断为false时超出父组件的文本选中区域生效。|
+| ellipsisMode<sup>11+</sup> |[EllipsisMode](ts-appendix-enums.md#ellipsismode11)| 设置省略位置。 <br />默认值：EllipsisMode.END <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>当`ellipsisMode`设置为EllipsisMode.END，需要配合`overflow`设置为TextOverflow.Ellipsis以及maxLines使用，单独设置`ellipsisMode`属性不生效。<br/>EllipsisMode.START和EllipsisMode.CENTER仅在单行超长文本生效。|
 
 >  **说明：**
 >
@@ -328,22 +329,24 @@ wordBreak使用示例
 @Component
 struct TextExample4 {
   @State type: string = 'WordBreakType:Normal且clip为true'
-  @State text: string = 'This is a long and Honorificabilitudinitatibus califragilisticexpialidocious 你好Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉'
+  @State text: string = 'This is set wordBreak to WordBreak text content This is set wordBreak to WordBreak text content.'
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
       Text(this.type).fontSize(9).fontColor(0xCCCCCC)
-      Text(this.text)
+      Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')
         .fontSize(12)
         .border({ width: 1 })
         .wordBreak(WordBreak.NORMAL)
         .lineHeight(20)
+        .maxLines(2)
       Text('WordBreakType:Normal且clip为false').fontSize(9).fontColor(0xCCCCCC)
-      Text(this.text)
+      Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')
         .fontSize(12)
         .border({ width: 1 })
         .wordBreak(WordBreak.NORMAL)
         .lineHeight(20)
+        .maxLines(2)
         .clip(false)
       Text("WordBreakType:BreakAll").fontSize(9).fontColor(0xCCCCCC)
       Text(this.text)
@@ -359,10 +362,9 @@ struct TextExample4 {
         .border({ width: 1 })
         .maxLines(2)
         .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .textIndent(100)
         .wordBreak(WordBreak.BREAK_WORD)
         .lineHeight(20)
-    }.height(600).width(335).padding({ left: 35, right: 35, top: 35 })
+    }.height(300).width(335).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
@@ -374,11 +376,11 @@ selection, onCopy使用示例
 ```ts
 @Entry
 @Component
-struct TextExample4 {
+struct TextExample5 {
   @State onCopy: string = ''
-  @State text: string = 'This is a long and Honorificabilitudinitatibus califragilisticexpialidocious 你好Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉'
+  @State text: string = 'This is set selection to Selection text content This is set selection to Selection text content.'
   @State start: number = 0
-  @State end: number = 90
+  @State end: number = 20
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -396,8 +398,8 @@ struct TextExample4 {
         .margin({left:20})
         .onClick(() => {
           // 变更文本选中起始点、终点
-          this.start = 60
-          this.end = 200
+          this.start = 10
+          this.end = 30
         })
       Text(this.onCopy).fontSize(12).margin(10).key('copy')
     }.height(600).width(335).padding({ left: 35, right: 35, top: 35 })
@@ -405,3 +407,40 @@ struct TextExample4 {
 }
 ```
 ![](figures/textExample5.jpeg)
+
+### 示例6
+ellipsisMode使用示例
+
+```ts
+@Entry
+@Component
+struct TextExample6 {
+  @State text: string = 'This is set ellipsisMode to EllipsisMode text content This is set ellipsisMode to EllipsisMode text content.'
+  @State ellipsisModeIndex: number = 0;
+  @State ellipsisMode: EllipsisMode[] = [EllipsisMode.START, EllipsisMode.CENTER, EllipsisMode.END]
+  @State ellipsisModeStr: string[] = ['START', 'CENTER', 'END']
+  build() {
+    Column() {
+      Text(this.text)
+        .fontSize(16)
+        .border({ width: 1 })
+        .lineHeight(20)
+        .maxLines(1)
+        .textOverflow({overflow:TextOverflow.Ellipsis})
+        .ellipsisMode(this.ellipsisMode[this.ellipsisModeIndex])
+        .width(300)
+        .margin({ left: 20, top: 20 })
+
+      Row() {
+        Button('更改省略号位置：' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
+          this.ellipsisModeIndex++
+          if(this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
+            this.ellipsisModeIndex = 0
+          }
+        })
+      }.margin({ top: 10 })
+    }
+  }
+}
+```
+![](figures/textExample6.gif)
