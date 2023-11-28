@@ -3537,3 +3537,15 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.REQUEST_ANONYMOUS_ATTEST
+
+允许系统应用使用设备匿名证明能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
