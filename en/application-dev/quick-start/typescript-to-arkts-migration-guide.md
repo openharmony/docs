@@ -471,7 +471,7 @@ let value_o2: Object = 42
 
 **See also**
 
-* Recipe: Strict Type Checking Is Enforced
+Recipe: Strict Type Checking Is Enforced
 
 ### Recipe: Use `class` Instead of a Type with a Call Signature
 
@@ -516,7 +516,7 @@ doSomething(new DescribableFunction())
 
 **See also**
 
-* Recipe: Use class Instead of a Type with a Constructor Signature
+Recipe: Use class Instead of a Type with a Constructor Signature
 
 ### Recipe: Use `class` Instead of a Type with a Constructor Signature
 
@@ -557,7 +557,7 @@ function fn(s: string): SomeObject {
 
 **See also**
 
-* Recipe: Use `class` Instead of a Type with a Call Signature
+Recipe: Use `class` Instead of a Type with a Call Signature
 
 ### Recipe: Only One Static Block Is Supported
 
@@ -821,7 +821,7 @@ function fn(i: I) {
 
 **See also**
 
-* Recipe: Use `class` Instead of a Type with a Constructor Signature
+Recipe: Use `class` Instead of a Type with a Constructor Signature
 
 ### Recipe: Indexed Access Types Are Not Supported
 
@@ -1933,7 +1933,7 @@ try {
 
 **See also**
 
-* Recipe: `throw` Statements Do Not Accept Values of Arbitrary Types
+Recipe: `throw` Statements Do Not Accept Values of Arbitrary Types
 
 ### Recipe: `for .. in` Is Not Supported
 
@@ -2226,7 +2226,7 @@ function main(): void {
 
 **See also**
 
-* Recipe: `Function.apply`, `Function.bind`, and `Function.call` Are Not Supported
+Recipe: `Function.apply`, `Function.bind`, and `Function.call` Are Not Supported
 
 ### Recipe: Generator Functions Are Not Supported
 
@@ -2845,7 +2845,7 @@ import * as m from 'mod'
 
 **See also**
 
-* Recipe: `export = ...` Is Not Supported
+Recipe: `export = ...` Is Not Supported
 
 ### Recipe: `export = ...` Is Not Supported
 
@@ -2890,7 +2890,7 @@ let p = Pt.Point.origin
 
 **See also**
 
-* Recipe: `require` and `import` Assignment Are Not Supported
+Recipe: `require` and `import` Assignment Are Not Supported
 
 ### Recipe: Ambient Module Declaration Is Not Supported
 
@@ -2917,7 +2917,7 @@ import { normalize } from "someModule"
 
 **See also**
 
-* Recipe: Wildcards in Module Names Are Not Supported
+Recipe: Wildcards in Module Names Are Not Supported
 
 ### Recipe: Wildcards in Module Names Are Not Supported
 
@@ -2995,7 +2995,7 @@ mathLib.isPrime(2)
 
 **See also**
 
-* Recipe: Wildcards in Module Names Are Not Supported
+Recipe: Wildcards in Module Names Are Not Supported
 
 ### Recipe: `new.target` Is Not Supported
 
@@ -3092,7 +3092,7 @@ class C {
 
 **See also**
 
-* Recipe: new.target Is Not Supported
+Recipe: new.target Is Not Supported
 
 ### Recipe: `globalThis` Is Not Supported
 
@@ -3153,7 +3153,7 @@ this rule and their layout cannot be changed at runtime.
 
 **See also**
 
-* Recipe: `globalThis` Is Not Supported
+Recipe: `globalThis` Is Not Supported
 
 ### Recipe: `Function.apply`, `Function.bind`, and `Function.call` Are Not Supported
 
