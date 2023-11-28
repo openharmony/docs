@@ -41,6 +41,8 @@ boolean返回值的含义：True表示开启，False表示关闭。
 
 enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): Promise&lt;void&gt;;
 
+权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+
 启用辅助扩展，使用Promise异步回调。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
@@ -88,6 +90,8 @@ config.enableAbility(name, capability).then(() => {
 
 enableAbility(name: string, capability: Array&lt;[accessibility.Capability](js-apis-accessibility.md#capability)&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
+权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+
 启用辅助扩展，使用callback异步回调。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
@@ -132,6 +136,8 @@ config.enableAbility(name, capability, (err: BusinessError) => {
 
 disableAbility(name: string): Promise&lt;void&gt;;
 
+权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+
 关闭辅助扩展，使用Promise异步回调。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
@@ -175,6 +181,8 @@ config.disableAbility(name).then(() => {
 ## disableAbility
 
 disableAbility(name: string, callback: AsyncCallback&lt;void&gt;): void;
+
+权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 关闭辅助扩展，使用callback异步回调。
 
