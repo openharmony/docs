@@ -3537,3 +3537,15 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.ACCESS_ACCOUNT_KIT_SERVICE
+
+允许账号服务查询、修改账号数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
