@@ -46,7 +46,6 @@ zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md @zhang_
 zh-cn/application-dev/ability/ @huipeizi @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/IDL/ @RayShih @littlejerry1 @gwang2008 @ccllee @chengxingzhen
 zh-cn/application-dev/device-usage-statistics/ @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
-zh-cn/application-dev/notification/ @huipeizi @jayleehw @li-weifeng2 @currydavids
 zh-cn/application-dev/windowmanager/ @ge-yafang @zhangqiang183  @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/webgl/ @ge-yafang @zhangqiang183  @wind_zj @zxg-gitee
 zh-cn/application-dev/task-management/background-task-overview.md @chenmingJay @ningningW @very0228 @iceice1001
@@ -93,62 +92,20 @@ zh-cn/application-dev/quick-start/start-overview.md @ge-yafang
 zh-cn/application-dev/quick-start/start-with-ets-stage.md @ge-yafang
 zh-cn/application-dev/quick-start/start-with-ets-fa.md @ge-yafang
 zh-cn/application-dev/quick-start/start-with-js-fa.md @ge-yafang  
-zh-cn/application-dev/quick-start/application-package-overview.md @huipeizi
-zh-cn/application-dev/quick-start/application-package-structure-stage.md @huipeizi
-zh-cn/application-dev/quick-start/application-package-structure-fa.md @huipeizi
-zh-cn/application-dev/quick-start/har-structure.md @huipeizi
-zh-cn/application-dev/quick-start/multi-hap-objective.md @huipeizi
-zh-cn/application-dev/quick-start/multi-hap-build-view.md @huipeizi
-zh-cn/application-dev/quick-start/multi-hap-release-deployment.md @huipeizi
-zh-cn/application-dev/quick-start/multi-hap-rules.md @huipeizi
-zh-cn/application-dev/quick-start/multi-hap-principles.md @huipeizi
-zh-cn/application-dev/quick-start/application-package-install-uninstall.md @huipeizi
-zh-cn/application-dev/quick-start/application-configuration-file-overview-stage.md @huipeizi
-zh-cn/application-dev/quick-start/app-configuration-file.md @huipeizi
-zh-cn/application-dev/quick-start/module-configuration-file.md @huipeizi
-zh-cn/application-dev/quick-start/application-configuration-file-overview-fa.md @huipeizi
-zh-cn/application-dev/quick-start/app-structure.md @huipeizi
-zh-cn/application-dev/quick-start/deviceconfig-structure.md @huipeizi
-zh-cn/application-dev/quick-start/module-structure.md @huipeizi
 zh-cn/application-dev/quick-start/resource-categories-and-access.md @Buda-Liu @ningningW @mengjingzhimo @yangqing3
 zh-cn/application-dev/napi/napi-guidelines.md @RayShih @niulihua @tomatodevboy
 zh-cn/application-dev/napi/drawing-guidelines.md @ge-yafang @zhangqiang183  @wind_zj @zxg-gitee
 zh-cn/application-dev/napi/rawfile-guidelines.md @ningningW @Buda-Liu @budda-wang @yangqing3
 zh-cn/application-dev/reference/js-service-widget-ui/ @HelloCrease
-
 zh-cn/application-dev/application-test/ @ningningW
 zh-cn/application-dev/device-usage-statistics/ @chenmingJay @ningningW @tangtiantian2021 @nan-xiansen @iceice1001
 zh-cn/application-dev/web/ @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
 zh-cn/application-dev/key-features/multi-device-app-dev/ @HelloCrease @uhamc
-
-zh-cn/application-dev/reference/apis/js-apis-ability-context.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-ability-errorCode.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-ability-wantConstant.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-abilityDelegatorRegistry.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-abilityrunninginfo.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-abilitystagecontext.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-accessibility-extension-context.md @mupceet @RayShih @mupceet @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-animator.md @HelloCrease @niulihua @tomatodevboy
-zh-cn/application-dev/reference/apis/js-apis-application-ability.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-abilityConstant.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-abilityDelegator.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-abilityDelegatorArgs.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-abilityLifecycleCallback.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-abilityManager.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-abilityMonitor.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-abilitystage.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-AccessibilityExtensionAbility.md @mupceet @RayShih @mupceet @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-applicationContext.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-context.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-DataShareExtensionAbility.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-application-EnvironmentCallback.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-MissionSnapshot.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-shellCmdResult.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-StartOptions.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-staticSubscriberExtensionAbility.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-Want.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
+
 zh-cn/application-dev/reference/apis/js-apis-application-WindowExtensionAbility.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/application-models/windowextensionability.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
+
 zh-cn/application-dev/reference/apis/js-apis-inner-application-windowExtensionContext.md @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis/js-apis-appmanager.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-arraylist.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
@@ -157,32 +114,13 @@ zh-cn/application-dev/reference/apis/js-apis-battery-info.md  @warehouse12  @ali
 zh-cn/application-dev/reference/apis/js-apis-bluetooth.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-brightness.md  @warehouse12  @alien0208
 zh-cn/application-dev/reference/apis/js-apis-buffer.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
-zh-cn/application-dev/reference/apis/js-apis-bundle-AbilityInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundle-ApplicationInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundle-BundleInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundle-BundleInstaller.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundle-CustomizeData.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-Bundle-distributedBundle.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundle-ElementName.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundle-HapModuleInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-Bundle-InnerBundleManager.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundle-LauncherAbilityInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundle-ModuleInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundle-PermissionDef.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundle-remoteAbilityInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundle-ShortcutInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-Bundle.md @shuaytao @huipeizi @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-call.md @zhang-hai-feng @zhang_yixin13 @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-cardEmulation.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
-zh-cn/application-dev/reference/apis/js-apis-commonEvent.md @jayleehw @huipeizi @li-weifeng2 @currydavids
 zh-cn/application-dev/reference/apis/js-apis-configuration.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-configurationconstant.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-connectedTag.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-contact.md @zhang-hai-feng @zhang_yixin13 @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-Context.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-continuation-continuationExtraParams.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-continuation-continuationManager.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-continuation-continuationResult.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-convertxml.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-data-ability.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
 zh-cn/application-dev/reference/apis/js-apis-data-dataShare.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
@@ -253,7 +191,6 @@ zh-cn/application-dev/reference/apis/js-apis-mouseevent.md @yuanxinying @ningnin
 zh-cn/application-dev/reference/apis/js-apis-net-connection.md @zhang-hai-feng @zhang_yixin13 @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-nfcController.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-nfcTag.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
-zh-cn/application-dev/reference/apis/js-apis-notification.md @jayleehw @huipeizi @li-weifeng2 @currydavids
 zh-cn/application-dev/reference/apis/js-apis-observer.md @zhang-hai-feng @zhang_yixin13 @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-particleAbility.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-pasteboard.md @han-zhengshi @HelloCrease @logic42
@@ -328,7 +265,6 @@ zh-cn/application-dev/reference/apis/js-apis-vibrator.md @hellohyh001 @hu-zhiqio
 zh-cn/application-dev/reference/apis/js-apis-wallpaper.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @wangzhangjun 
 zh-cn/application-dev/reference/apis/js-apis-WallpaperExtensionAbility.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @wangzhangjun
 zh-cn/application-dev/reference/apis/js-apis-screen-lock.md @hu-zhiqiong @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
-zh-cn/application-dev/reference/apis/js-apis-wantAgent.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-webgl.md @zhangqiang183  @ge-yafang @wind_zj @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-webgl2.md @zhangqiang183  @ge-yafang @wind_zj @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-webSocket.md @zhang-hai-feng @zhang_yixin13 @jyh926 @gaoxi785
@@ -345,37 +281,13 @@ zh-cn/application-dev/reference/apis/js-apis-xml.md @gongjunsong @ge-yafang @fly
 zh-cn/application-dev/reference/apis/js-apis-zlib.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-webview.md @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
 zh-cn/application-dev/reference/arkui-ts/ts-basic-components-web.md @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
-zh-cn/application-dev/reference/apis/js-apis-ability-ability.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-ability-abilityResult.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-ability-Want.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-accessibility-config.md @mupceet @RayShih @mupceet @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePath.md @mupceet @RayShih @mupceet @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePoint.md @mupceet @RayShih @mupceet @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-accessibility.md @mupceet @RayShih @mupceet @gaoxi785
-zh-cn/application-dev/reference/apis/js-apis-app-ability-appRecovery.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-appControl.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-configuration.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-configurationConstant.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-quickFixManager.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-batteryStatistics.md  @warehouse12  @alien0208
-zh-cn/application-dev/reference/apis/js-apis-Bundle-BundleStatusCallback.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundleManager-abilityInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundleManager-applicationInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundleManager-bundleInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundleManager-dispatchInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundleManager-elementName.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundleManager-extensionAbilityInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundleManager-hapModuleInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundleManager-launcherAbilityInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundleManager-metadata.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundleManager-packInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundleManager-permissionDef.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundleManager-remoteAbilityInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundleManager-shortcutInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundleManager.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-bundleMonitor.md @shuaytao @huipeizi @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-colorSpaceManager.md @zhangqiang183  @ge-yafang @liuchao92 @zxg-gitee
-zh-cn/application-dev/reference/apis/js-apis-commonEventManager.md @jayleehw @huipeizi @li-weifeng2 @currydavids
 zh-cn/application-dev/reference/apis/js-apis-configPolicy.md @liuzuming @ningningW @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-cooperate.md @yuanxinying @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-curve.md @HelloCrease @niulihua @tomatodevboy
@@ -395,11 +307,8 @@ zh-cn/application-dev/reference/apis/js-apis-EnterpriseAdminExtensionAbility.md 
 zh-cn/application-dev/reference/apis/js-apis-enterprise-restrictions.md @liuzuming @ningningW @yangqing3 @caiminggang
 zh-cn/application-dev/reference/apis/js-apis-enterprise-usbManager.md @liuzuming @ningningW @yangqing3 @caiminggang
 zh-cn/application-dev/reference/apis/js-apis-enterprise-wifiManager.md @liuzuming @ningningW @yangqing3 @caiminggang
-zh-cn/application-dev/reference/apis/js-apis-freeInstall.md @shuaytao @huipeizi @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-geoLocationManager.md @cheng_guohong @RayShih @cheng_guohong @xiangkejin123
 zh-cn/application-dev/reference/apis/js-apis-inputmethod-subtype.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @SuperShrimp @murphy1984
-zh-cn/application-dev/reference/apis/js-apis-installer.md @shuaytao @huipeizi @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-launcherBundleManager.md @shuaytao @huipeizi @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-matrix4.md @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-net-ethernet.md @zhang-hai-feng @zhang_yixin13 @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-net-sharing.md @zhang-hai-feng @zhang_yixin13 @jyh926 @gaoxi785
@@ -420,16 +329,13 @@ zh-cn/application-dev/reference/apis/js-apis-arkui-UIContext.md @HelloCrease @ni
 zh-cn/application-dev/reference/apis/js-apis-font.md @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-plugincomponent.md @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-uiappearance.md @HelloCrease @niulihua @tomatodevboy
-zh-cn/application-dev/reference/errorcodes/errorcode-ability.md @huipeizi
 zh-cn/application-dev/reference/errorcodes/errorcode-accessibility.md @RayShih
 zh-cn/application-dev/reference/errorcodes/errorcode-animator.md @HelloCrease
 zh-cn/application-dev/reference/errorcodes/errorcode-backgroundTaskMgr.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-batteryStatistics.md @warehouse12
 zh-cn/application-dev/reference/errorcodes/errorcode-brightness.md @warehouse12
 zh-cn/application-dev/reference/errorcodes/errorcode-buffer.md @ge-yafang
-zh-cn/application-dev/reference/errorcodes/errorcode-bundle.md @huipeizi
 zh-cn/application-dev/reference/errorcodes/errorcode-colorspace-manager.md @ge-yafang
-zh-cn/application-dev/reference/errorcodes/errorcode-CommonEventService.md @huipeizi
 zh-cn/application-dev/reference/errorcodes/errorcode-containers.md @ge-yafang
 zh-cn/application-dev/reference/errorcodes/errorcode-data-rdb.md @ge-yafang
 zh-cn/application-dev/reference/errorcodes/errorcode-datashare.md @ge-yafang
@@ -763,90 +669,102 @@ zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-click.md	@jiang
 
 
 [入门-开发基础知识-应用程序包基础知识与应用配置文件]
-zh-cn/application-dev/quick-start/app*.md @huipeizi @lixiaogang30
-zh-cn/application-dev/quick-start/module*.md @huipeizi @lixiaogang30
-zh-cn/application-dev/quick-start/multi-hap*.md @huipeizi @lixiaogang30
-zh-cn/application-dev/quick-start/deviceconfig-structure.md @huipeizi @lixiaogang30
-zh-cn/application-dev/quick-start/shared-guide.md @huipeizi @lixiaogang30
-zh-cn/application-dev/quick-start/har-package.md @huipeizi @lixiaogang30
-zh-cn/application-dev/quick-start/in-app-hsp.md @huipeizi @lixiaogang30
-zh-cn/application-dev/quick-start/quickfix*.md @huipeizi @lixiaogang30
+zh-cn/application-dev/quick-start/app*.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/quick-start/module*.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/quick-start/multi-hap*.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/quick-start/deviceconfig-structure.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/quick-start/shared-guide.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/quick-start/har-package.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/quick-start/in-app-hsp.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/quick-start/quickfix*.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
 
 
 [开发-应用模型]
-zh-cn/application-dev/application-models/ @huipeizi @lixiaogang30
+zh-cn/application-dev/application-models/ @huipeizi  @ccllee  @lxfycode  @lixiaogang30
+zh-cn/application-dev/application-models/uiability*.md @huipeizi  @li-weifeng2  @lxfycode  @lixiaogang30
+zh-cn/application-dev/application-models/*widget*.md @huipeizi  @li-weifeng2  @lxfycode  @lixiaogang30
+zh-cn/application-dev/application-models/thread*.md @huipeizi  @li-weifeng2  @lxfycode  @lixiaogang30
+zh-cn/application-dev/application-models/itc*.md @huipeizi  @li-weifeng2  @lxfycode  @lixiaogang30
+zh-cn/application-dev/application-models/common-event*.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/application-models/windowextensionability.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
 
 [开发-通知]
-zh-cn/application-dev/notification/ @huipeizi @lixiaogang30
+zh-cn/application-dev/notification/ @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
 
 [开发-性能]
-zh-cn/application-dev/performance/ @huipeizi 
+zh-cn/application-dev/performance/ @huipeizi
+zh-cn/application-dev/performance/reduce-package-size.md  @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
 
 [工具-调试工具]
-zh-cn/application-dev/tools/aa-tool.md @huipeizi @lixiaogang30
-zh-cn/application-dev/tools/bm-tool.md @huipeizi @lixiaogang30
-zh-cn/application-dev/tools/packing-tool.md @huipeizi @lixiaogang30
-zh-cn/application-dev/tools/unpacking-tool.md @huipeizi @lixiaogang30
+zh-cn/application-dev/tools/aa-tool.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
+zh-cn/application-dev/tools/bm-tool.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/tools/packing-tool.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/tools/unpacking-tool.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/tools/cem-tool.md @huipeizi   @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/tools/anm-tool.md @huipeizi   @idanny  @suzhenxuan  @lixiaogang30
+
 
 
 [API参考-Ability]
-zh-cn/application-dev/reference/apis/js-apis-ability*.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-application*.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-app-*.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-businessAbilityRouter.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-continuation*.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-inner-ability*.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-inner-app*.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-inner-wantAgent*.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-uripermissionmanager.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-wantAgent.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-ability*.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-application*.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-app-*.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-businessAbilityRouter.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-continuation*.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-inner-ability*.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-inner-app*.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-inner-wantAgent*.md @huipeizi  @li-weifeng2  @lxfycode  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-uripermissionmanager.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-wantAgent.md @huipeizi  @li-weifeng2  @lxfycode  @lixiaogang30
+
+zh-cn/application-dev/reference/apis/js-apis-application-AccessibilityExtensionAbility.md @mupceet @RayShih @mupceet @chengxingzhen
+zh-cn/application-dev/reference/apis/js-apis-application-DataShareExtensionAbility.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
 
 
 [API参考-包管理]
-zh-cn/application-dev/reference/apis/js-apis-bundle*.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-appControl.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-defaultAppManager.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-distributedBundleManager.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-freeInstall.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-installer.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-launcherBundleManager.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-overlay.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-zlib.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-bundle*.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-appControl.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-defaultAppManager.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-distributedBundleManager.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-freeInstall.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-installer.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-launcherBundleManager.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-overlay.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-zlib.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
 
 
 [API参考-公共事件与通知]
-zh-cn/application-dev/reference/apis/js-apis-commonEvent*.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-inner-commonEvent*.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-inner-notification*.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-notification*.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/js-apis-emitter.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/common_event/commonEvent-definitions.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/common_event/commonEventManager-definitions.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/common_event/commonEvent-ability.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/apis/common_event/commonEvent-bundleManager.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-commonEvent*.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-inner-commonEvent*.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-inner-notification*.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-notification*.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/reference/apis/js-apis-emitter.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/reference/apis/common_event/commonEvent-definitions.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/reference/apis/common_event/commonEventManager-definitions.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/reference/apis/common_event/commonEvent-ability.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/reference/apis/common_event/commonEvent-bundleManager.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
 
 
 [错误码-Ability]
-zh-cn/application-dev/reference/errorcodes/errorcode-ability.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/errorcodes/errorcode-DistributedSchedule.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/errorcodes/errorcode-form.md @huipeizi @lixiaogang30
-
+zh-cn/application-dev/reference/errorcodes/errorcode-ability.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-DistributedSchedule.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-form.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
 
 [错误码-包管理]
-zh-cn/application-dev/reference/errorcodes/errorcode-bundle.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/errorcodes/errorcode-zlib.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-bundle.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-zlib.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
 
 
 [错误码-公共事件与通知]
-zh-cn/application-dev/reference/errorcodes/errorcode-CommonEventService.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/errorcodes/errorcode-notification.md @huipeizi @lixiaogang30
-zh-cn/application-dev/reference/errorcodes/errorcode-DistributedNotificationService.md @huipeizi @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-CommonEventService.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-notification.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/reference/errorcodes/errorcode-DistributedNotificationService.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
 
 
 [FAQ]
-zh-cn/application-dev/faqs/faqs-ability.md @huipeizi @lixiaogang30
-zh-cn/application-dev/faqs/faqs-bundle-management.md @huipeizi @lixiaogang30
-zh-cn/application-dev/faqs/faqs-event-notification.md @huipeizi @lixiaogang30
+zh-cn/application-dev/faqs/faqs-ability.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
+zh-cn/application-dev/faqs/faqs-bundle-management.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
+zh-cn/application-dev/faqs/faqs-event-notification.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
 
 [开发指南-媒体]
 zh-cn/application-dev/media/ @zengyawen
@@ -859,8 +777,8 @@ zh-cn/application-dev/file-management/ @zengyawen
 
 [开发指南-DFX]
 zh-cn/application-dev/dfx/
-zh-cn/application-dev/dfx/errormanager-guidelines.md @huipeizi @lixiaogang30
-zh-cn/application-dev/dfx/errormanager-guidelines.md @huipeizi @lixiaogang30
+zh-cn/application-dev/dfx/errormanager-guidelines.md  @huipeizi @lixiaogang30  @Maplestorys
+zh-cn/application-dev/dfx/apprecovery-guidelines.md   @huipeizi @lixiaogang30  @Maplestorys
 
 [FAQ]
 zh-cn/application-dev/faqs/ @zengyawen
