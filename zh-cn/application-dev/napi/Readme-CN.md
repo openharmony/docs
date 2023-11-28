@@ -23,6 +23,9 @@
 - 数据管理
   - [RelationalStore开发指导](native-relational-store-guidelines.md)
 
+- 包管理
+  - [NativeBundle开发指导](native-bundle-guidelines.md)
+
 - 硬件兼容性
   - [硬件兼容性简介](hw-guide.md)
   - [OpenHarmony ABI](ohos-abi.md)
