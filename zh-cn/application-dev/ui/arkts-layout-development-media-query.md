@@ -25,14 +25,14 @@ import mediaquery from '@ohos.mediaquery';
 
 
 ```ts
-let listener:mediaquery = mediaquery.matchMediaSync('(orientation: landscape)');
+let listener: mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)');
 ```
 
 给条件监听句柄listener绑定回调函数onPortrait，当listener检测设备状态变化时执行回调函数。在回调函数内，根据不同设备状态更改页面布局或者实现业务逻辑。
 
 
 ```ts
-onPortrait(mediaQueryResult:mediaquery) {
+onPortrait(mediaQueryResult: mediaquery.MediaQueryResult) {
   if (mediaQueryResult.matches as boolean) {
     // do something here
   } else {
@@ -62,7 +62,7 @@ listener.on('change', onPortrait);
 
 - screen and (round-screen: true) ：表示当设备屏幕是圆形时条件成立。
 
-- (max-height: 800) ：表示当高度小于等于800时条件成立。
+- (max-height: 800vp) ：表示当高度小于等于800时条件成立。
 
 - (height &lt;= 800) ：表示当高度小于等于800时条件成立。（媒体特性不确定具体值时推荐使用媒体逻辑范围操作符）
 
