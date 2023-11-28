@@ -13,6 +13,7 @@ The custom component has the following features:
 
 - Data-driven update: holds some state and triggers UI re-rendering with the change of state variables.
 
+## Basic Usage of Custom Components
 
 The following example shows the basic usage of a custom component.
 
@@ -113,7 +114,7 @@ To fully understand the preceding example, a knowledge of the following concepts
   >
   > Since API version 9, this decorator is supported in ArkTS widgets.
   >
-  > Since API version 10, the \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md) or type [EntryOptions](#entryoptions10).
+  > Since API version 10, the \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md) or type [EntryOptions](#entryOptions).
 
   ```ts
   @Entry
@@ -160,7 +161,7 @@ In addition to the mandatory **build()** function, a custom component may implem
 
 - Static functions are not supported.
 
-- Access to the member functions is always private.
+- Access to the member functions is private.
 
 
 A custom component can also implement member variables with the following restrictions:
@@ -168,14 +169,14 @@ A custom component can also implement member variables with the following restri
 
 - Static member variables are not supported.
 
-- Access to the member variables is always private. The access rules of member variables are the same as those of member functions.
+- Access to the member variables is private. The access rules of member variables are the same as those of member functions.
 
 - Local initialization is optional for some member variables and mandatory for others. For details about whether local initialization or initialization from the parent component is required, see [State Management](arkts-state-management-overview.md).
 
 
 ## Rules of for Custom Component Parameters
 
-As can be learnt from preceding examples, a custom component can be created from a **build** or [@Builder](arkts-builder.md) function, and during the creation, parameters can be supplied to the component.
+As can be learnt from preceding examples, a custom component can be created from a **build** or [@Builder](arkts-builder.md) decorated function. During the creation, the custom component's parameters are initialized based on the decorator rules.
 
 
 ```ts
@@ -203,12 +204,12 @@ struct ParentComponent {
 ```
 
 
-## build Function
+## build() Function
 
-All languages declared in the **build** function are called UI description languages. The UI description languages must comply with the following rules:
+Whatever declared in the **build()** function are called UI descriptions. UI descriptions must comply with the following rules:
 
-- For an \@Entry decorated custom component, exactly one root component is required under the **build** function. This root component must be a container component. **ForEach** is not allowed at the top level.
-  For an \@Component decorated custom component, exactly one root component is required under the **build** function. This root component is not necessarily a container component. **ForEach** is not allowed at the top level.
+- For an \@Entry decorated custom component, exactly one root component is required under the **build()** function. This root component must be a container component. **ForEach** is not allowed at the top level.
+  For an \@Component decorated custom component, exactly one root component is required under the **build()** function. This root component is not necessarily a container component. **ForEach** is not allowed at the top level.
 
   ```ts
   @Entry
@@ -221,7 +222,7 @@ All languages declared in the **build** function are called UI description langu
       }
     }
   }
-
+  
   @Component
   struct ChildComponent {
     build() {
@@ -231,36 +232,36 @@ All languages declared in the **build** function are called UI description langu
   }
   ```
 
-- Local variable declaration is not allowed. The following example is invalid:
+- Local variable declaration is not allowed. The following example should be avoided:
 
   ```ts
   build() {
-    // Invalid: Local variable declaration is not allowed.
+    // Avoid: declaring a local variable.
     let a: number = 1;
   }
   ```
 
-- **console.info** cannot be directly used in the UI description, but can be used in methods or functions. The following is an example:
+- **console.info** can be used in the UI description only when it is in a method or function. The following example should be avoided:
 
   ```ts
   build() {
-    // Invalid: Use of console.info is not allowed.
+    // Avoid: using console.info directly.
     console.info('print debug log');
   }
   ```
 
-- Creation of a local scope is not allowed. The following example is invalid:
+- Creation of a local scope is not allowed. The following example should be avoided:
 
   ```ts
   build() {
-    // Invalid: Creation of local scope is not allowed.
+    // Avoid: creating a local scope.
     {
       ...
     }
   }
   ```
 
-- Calling a function other than the \@Builder decorated is not allowed. The parameters of built-in components can be the return values of TS methods.
+- Only methods decorated by \@Builder can be called. The parameters of built-in components can be the return values of TS methods.
 
   ```ts
   @Component
@@ -278,23 +279,23 @@ All languages declared in the **build** function are called UI description langu
 
     build() {
       Column() {
-        // Invalid: No function calls except @Builder functions.
+        // Avoid: calling a method not decorated by @Builder.
         this.doSomeCalculations();
-        // Valid: The function can be called.
+        // Prefer: Call an @Builder decorated method.
         this.doSomeRender();
-        // Valid: The parameter can be the return value of a TS method.
+        // Prefer: Pass the return value of a TS method as the parameter.
         Text(this.calcTextValue())
       }
     }
   }
   ```
 
-- The **switch** syntax is not allowed. Use **if** instead. The following example is invalid:
+- The **switch** syntax is not allowed. Use **if** instead. The following example should be avoided:
 
   ```ts
   build() {
     Column() {
-      // Invalid: The switch syntax is not allowed.
+      // Avoid: using the switch syntax.
       switch (expression) {
         case 1:
           Text('...')
@@ -310,17 +311,74 @@ All languages declared in the **build** function are called UI description langu
   }
   ```
 
-- Expressions are not allowed. The following example is invalid:
+- Expressions are not allowed. The following example should be avoided:
 
   ```ts
   build() {
     Column() {
-      // Invalid: Expressions are not allowed.
+      // Avoid: expressions.
       (this.aVar > 10) ? Text('...') : Image('...')
     }
   }
   ```
 
+- Directly changing a state variable is not allowed. The following example should be avoided:
+
+  ```ts
+  @Component
+  struct CompA {
+    @State col1: Color = Color.Yellow;
+    @State col2: Color = Color.Green;
+    @State count: number = 1;
+    build() {
+      Column() {
+        // Avoid: directly changing the value of count in the <Text> component.
+        Text(`${this.count++}`)
+          .width(50)
+          .height(50)
+          .fontColor(this.col1)
+          .onClick(() => {
+            this.col2 = Color.Red;
+          })
+        Button("change col1").onClick(() =>{
+          this.col1 = Color.Pink;
+        })
+      }
+      .backgroundColor(this.col2)
+    }
+  }
+  ```
+
+  In ArkUI state management, UI re-render is driven by state.
+
+  ![en-us_image_0000001651365257](figures/en-us_image_0000001651365257.png)
+
+  Therefore, do not change any state variable in the **build()** or \@Builder decorated method of a custom component. Otherwise, loop rendering may result. Depending on the update mode (full update or minimum update), **Text('${this.count++}')** imposes different effects:
+
+  - Full update: ArkUI may fall into an infinite re-rendering loop because each rendering of the **Text** component changes the application state and causes a new round of re-renders. When **this.col2** is changed, the entire **build** function is executed. As a result, the text bound to **Text(${this.count++})** is also changed. Each time **Text(${this.count++})** is re-rendered, the **this.count** state variable is updated, and a new round of **build** execution follows, resulting in an infinite loop.
+  - Minimum update: When **this.col2** is changed, only the **Column** component is updated, and the **Text** component remains unchanged. When **this.col1** is changed, the entire **Text** component is updated and all of its attribute functions are executed. As a result, the value of **${this.count++}** in the **Text** component is changed. Currently, the UI is updated by component. If an attribute of a component changes, the entire component is updated. Therefore, the overall update link is as follows: **this.col2** = **Color.Red** - > **Text** component re-render - > **this.count++** - > **Text** component re-render. It should be noted that this way of writing causes the **Text** component to be rendered twice during the initial render, which affects the performance.
+
+  The behavior of changing the application state in the **build** function may be more covert than that in the preceding example. The following are some examples:
+
+  - Changing the state variable within the \@Builder, \@Extend, or \@Styles decorated method
+
+  - Changing the application state variable in the function called during parameter calculation, for example, **Text('${this.calcLabel()}')**
+
+  - Modifying the current array: In the following code snippet, **sort()** changes the array **this.arr**, and the subsequent **filter** method returns a new array.
+
+    ```ts
+    // Negative example
+    @State arr : Array<...> = [ ... ];
+    ForEach(this.arr.sort().filter(...), 
+      item => { 
+      ...
+    })
+    // Prefer: Call filter before sort() to return a new array. In this way, sort() does not change this.arr.
+    ForEach(this.arr.filter(...).sort(), 
+      item => { 
+      ...
+    })
+    ```
 
 ## Universal Style of a Custom Component
 
