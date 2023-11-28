@@ -133,7 +133,7 @@ Tabs({ barPosition: BarPosition.Start }) {
 
 >**说明：**
 >
-> - vertical为true时，tabbar宽度会默认撑满屏幕的宽度，需要设置barWidth为合适值。
+> - vertical为false时，tabbar宽度会默认撑满屏幕的宽度，需要设置barWidth为合适值。
 >
 > - vertical为true时，tabbar的高度会默认实际内容高度，需要设置barHeight为合适值。
 
