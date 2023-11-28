@@ -85,7 +85,7 @@ The development process consists of the following main steps:
     The required model can be downloaded directly or obtained using the model conversion tool.
   
      - If the downloaded model is in the `.ms` format, you can use it directly for inference. The following uses the **mobilenetv2.ms** model as an example.
-     - If the downloaded model uses a third-party framework, such as TensorFlow, TensorFlow Lite, Caffe, or ONNX, you can use the [model conversion tool](https://www.mindspore.cn/lite/docs/en/r1.5/use/downloads.html#id1) to convert it to the .ms format.
+     - If the downloaded model uses a third-party framework, such as TensorFlow, TensorFlow Lite, Caffe, or ONNX, you can use the [model conversion tool](downloads.html#i) to convert it to the .ms format.
 
 2. Create a context, and set parameters such as the number of runtime threads and device type.
 

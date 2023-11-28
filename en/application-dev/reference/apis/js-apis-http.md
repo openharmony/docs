@@ -46,15 +46,15 @@ httpRequest.request(
   "EXAMPLE_URL",
   {
     method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
-    // You can add header fields based on service requirements.
-    header: new Header('application/json'),
     // This parameter is used to transfer data when the POST request is used.
     extraData: new ExtraData('data to send'),
     expectDataType: http.HttpDataType.STRING, // Optional. This parameter specifies the type of the return data.
     usingCache: true, // Optional. The default value is true.
     priority: 1, // Optional. The default value is 1.
-    connectTimeout: 60000 // Optional. The default value is 60000, in ms.
+    // You can add header fields based on service requirements.
+    header: new Header('application/json'),
     readTimeout: 60000, // Optional. The default value is 60000, in ms.
+    connectTimeout: 60000 // Optional. The default value is 60000, in ms.
     usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
     usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API version 10.
     caPath: "", // Optional. The preset CA certificate is used by default. This field is supported since API version 10.
@@ -77,8 +77,7 @@ httpRequest.request(
     httpRequest.off('headersReceive');
     // Call destroy() to destroy the JavaScript object after the HTTP request is complete.
     httpRequest.destroy();
-  }
-);
+  }});
 ```
 
 > **NOTE**
