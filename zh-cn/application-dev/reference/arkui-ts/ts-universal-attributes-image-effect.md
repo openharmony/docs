@@ -19,7 +19,7 @@
 | brightness                       | number                                   | 1.0    | 为当前组件添加高光效果，入参为高光比例，值为1时没有效果，小于1时亮度变暗，0为全黑，大于1时亮度增加，数值越大亮度越大。<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | saturate                         | number                                   | 1.0    | 为当前组件添加饱和度效果，饱和度为颜色中的含色成分和消色成分(灰)的比例，入参为1时，显示原图像，大于1时含色成分越大，饱和度越大，小于1时消色成分越大，饱和度越小。（百分比）<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | contrast                         | number                                   | 1.0    | 为当前组件添加对比度效果，入参为对比度的值。值为1时，显示原图，大于1时，值越大对比度越高，图像越清晰醒目，小于1时，值越小对比度越低，当对比度为0时，图像变为全灰。（百分比）<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| invert                           | number                                   | 0      | 反转输入的图像。入参为图像反转的比例，值为1时完全反转，值为0则图像无变化。（百分比）<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置小于0的值时，按值为0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| invert                           | number  \| [InvertOptions<sup>11+<sup>](#invertoptions11对象说明)    | -      | 反转输入的图像。<br/>入参对象为number时,入参为图像反转的比例，值为1时完全反转，值为0则图像无变化。（百分比）<br/>取值范围：[0, 1] <br/>设置小于0的值时，按值为0处理。<br/> 入参对象为 InvertOptions时 对比背景颜色和threshold，当背景颜色的的灰度值大于threshold时反色取high值，当背景颜色灰度值小于threshold时反色取low值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | sepia                            | number                                   | 0      | 将图像转换为深褐色。入参为图像反转的比例，值为1则完全是深褐色的，值为0图像无变化。&nbsp;（百分比）<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | hueRotate                        | number&nbsp;\|&nbsp;string               | '0deg' | 色相旋转效果，输入参数为旋转角度。<br/>取值范围：(-∞, +∞)<br/>**说明：** <br/>色调旋转360度会显示原始颜色。先将色调旋转180 度，然后再旋转-180度会显示原始颜色。数据类型为number时，值为90和'90deg'效果一致。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | colorBlend&nbsp;<sup>8+</sup>    | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | -      | 为当前组件添加颜色叠加效果，入参为叠加的颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
@@ -63,6 +63,17 @@
 | NORMAL         | 将上层图像直接覆盖到下层图像上，不进行任何混合操作。                  |
 | SOURCE_IN      | r = s * da,以上层图像的透明度作为权重，将其与下层图像的颜色值进行混合。|
 | DESTINATION_IN | r = d * sa,以下层图像的透明度作为权重，将其与上层图像的颜色值进行混合。|
+
+## InvertOptions<sup>11+</sup>对象说明
+
+前景智能取反色。
+
+| 名称            |  类型  | 必填  | 说明                                       |
+| -------------- | ------ | ----- | ------------------------------------------ |
+| low            | number | 是    | 背景色小于二分插值时的取值。                  |
+| high           | number | 是    | 背景色大于等于二分插值时的取值。              |
+| threshold      | number | 是    | 二分插值。                                  |
+| thresholdRange | number | 是    | 二分差值智能取色范围。<br/>**说明：**<br/>二分差值上下偏移thresholdRange区间内取均色作为新的threshold。|   
 
 ## 示例
 
@@ -527,3 +538,40 @@ struct Index {
 ```
 
 ![testDestinationIn_lockDemo](figures/testDestinationIn_lockDemo.jpeg)
+
+### 示例11
+通过 InvertOptions 实现反色。
+```ts
+// xxx.ets
+ @Entry
+ @Component
+ struct Index {
+   build() {
+    Stack() {
+      Column()
+        Stack(){
+          Image($r('app.media.r')).width('100%')
+         Column(){
+           Column().width("100%").height(30).invert({
+             low:0,
+             high:1,
+             threshold:0.5,
+             thresholdRange:0.2
+           })
+           Column().width("100%").height(30).invert({
+             low:0.2,
+             high:0.5,
+             threshold:0.3,
+             thresholdRange:0.2
+           })
+         }
+        }
+        .width('100%')
+        .height('100%')
+    }
+  }
+ }
+
+```
+
+![testDestinationIn_lockDemo](figures/testInvertOptions.png)

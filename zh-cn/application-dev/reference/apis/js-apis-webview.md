@@ -5392,7 +5392,7 @@ static configCookie(url: string, value: string): Promise\<void>
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| Promise\<string> | Promise实例，用于获取指定url设置单个cookie值是否成功。 |
+| Promise\<void> | Promise实例，用于获取指定url设置单个cookie值是否成功。 |
 
 **错误码：**
 

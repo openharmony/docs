@@ -223,11 +223,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 10. （可选）调用OH_VideoDecoder_Flush()刷新解码器。
 
-   调用OH_VideoDecoder_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。
+    调用OH_VideoDecoder_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。
 
-   此时需要调用OH_VideoDecoder_Start()重新开始解码。
+    此时需要调用OH_VideoDecoder_Start()重新开始解码。
 
-   ``` c++
+    ``` c++
     int32_t ret;
     // 刷新解码器 videoDec
     ret = OH_VideoDecoder_Flush(videoDec);
@@ -236,7 +236,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     // 重新开始解码
     ret = OH_VideoDecoder_Start(videoDec);
-   ```
+    ```
 
 11. （可选）调用OH_VideoDecoder_Reset()重置解码器。
 

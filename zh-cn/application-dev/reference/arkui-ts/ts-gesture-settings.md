@@ -10,6 +10,7 @@
 ## 绑定手势识别
 
 通过如下属性给组件绑定手势识别，手势识别成功后可以通过事件回调通知组件。
+可以通过[触摸热区](ts-universal-attributes-touch-target.md)指定可识别手势的区域。
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -57,7 +58,7 @@
 | pinchCenterX | number | 捏合手势中心点相对于当前组件元素原始区域左上角x轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
 | pinchCenterY | number | 捏合手势中心点相对于当前组件元素原始区域左上角y轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
 | speed<sup>8+</sup> | number | 滑动手势速度，即所有手指相对当前组件元素原始区域滑动的平均速度，单位为vp/秒，用于SwipeGesture手势触发场景。 |
-| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo对象说明)[] | 触发事件的所有手指信息，用于LongPressGesture与TapGesture手势触发场景。 |
+| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo对象说明)[] | 触发事件的所有手指信息，用于LongPressGesture与TapGesture手势触发场景。<br/>**说明：**<br/>fingerList数组的第1个元素（即fingerList[0]）为FingerInfo对象。 |
 | timestamp<sup>8+</sup> | number | 事件时间戳。 |
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象显示区域。 |
 | source<sup>8+</sup> | [SourceType](#sourcetype枚举说明) | 事件输入设备。 |

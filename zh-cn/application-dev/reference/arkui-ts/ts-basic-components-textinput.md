@@ -146,7 +146,9 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number): void
 | -------------- | -------- | ---- | ---------------------- |
 | selectionStart | number   | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
 | selectionEnd   | number   | 是   | 文本选择区域结束位置。 |
-
+>  **说明：**
+>
+>  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
 ### stopEditing<sup>10+</sup>
 
 stopEditing(): void

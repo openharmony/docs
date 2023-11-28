@@ -1,10 +1,10 @@
-# Application Configuration File Overview (FA Model)
+# Application Configuration Files (FA Model)
 
 
-Each application project must have configuration files in its code directory. These configuration files provide basic application information for OpenHarmony build tools, the operating system, and application markets.
+Each application project must have configuration files in its code directory. These configuration files provide basic application information for build tools, the operating system, and application markets.
 
 
-The application configuration file must contain the following information:
+The application configuration file contains the following information:
 
 
 - Basic information of the application, including the bundle name, vendor, and version number. Such information must be set under the **app** tag.
@@ -23,8 +23,8 @@ The **config.json** file consists of three mandatory tags, namely, **app**, **de
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| [app](app-structure.md) | Application-wide configuration. Different HAP files of an application must use the same **app** configuration. | Object| No|
-| [deviceConfig](deviceconfig-structure.md) | Device-specific configuration. | Object| No|
+| [app](app-structure.md) | Application-wide configuration. Different HAP files of an application must use the same **app** configuration.| Object| No|
+| [deviceConfig](deviceconfig-structure.md) | Device-specific configuration.| Object| No|
 | [module](module-structure.md) | HAP configuration. It is valid only for the current HAP file.| Object| No|
 
 Example of the **config.json** file:

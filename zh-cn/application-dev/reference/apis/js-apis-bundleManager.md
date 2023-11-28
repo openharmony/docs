@@ -4577,3 +4577,50 @@ try {
     hilog.error(0x0000, 'testTag', 'getRecoverableApplicationInfo failed: %{public}s', message);
 }
 ```
+
+### bundleManager.setAdditionalInfo<sup>11+</sup>
+
+setAdditionalInfo(bundleName: string, additionalInfo: string): void
+
+设置指定应用的额外信息。此接口仅供应用市场调用。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名                | 类型                             | 必填 | 说明                                               |
+| --------------------- | ------------------------------- | ---- | -------------------------------------------------- |
+| bundleName            | string                          | 是   | 指定应用的包名。                                    |
+| additionalInfo        | string                          | 是   | 需要设置的应用的额外信息。                           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                    |
+| -------- | ---------------------------------------------------------- |
+| 17700001 | The specified bundleName is not found.                     |
+| 17700053 | Not app gallery call.                                      |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+
+let bundleName = "com.example.myapplication";
+let additionalInfo = "xxxxxxxxx,formUpdateLevel:4";
+
+try {
+    bundleManager.setAdditionalInfo(bundleName, additionalInfo);
+    hilog.info(0x0000, 'testTag', 'setAdditionalInfo successfully.');
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'setAdditionalInfo failed. Cause: %{public}s', message);
+}
+```

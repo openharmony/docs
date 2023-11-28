@@ -1,4 +1,4 @@
-# Application Installation and Uninstallation Process
+# Application Installation and Uninstallation
 
 ## Developers
 Developers can install and uninstall applications by running debug commands. For details, see [Multi-HAP Development, Debugging, Release, and Deployment Process](multi-hap-release-deployment.md#debugging).

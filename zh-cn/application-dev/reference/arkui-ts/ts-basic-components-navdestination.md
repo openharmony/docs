@@ -1,6 +1,6 @@
 # NavDestination
 
-作为NavRouter组件的子组件，用于显示导航内容区。
+作为子页面的根容器，用于显示[Navigation](ts-basic-components-navigation.md)的内容区。
 
 > **说明：**
 >
