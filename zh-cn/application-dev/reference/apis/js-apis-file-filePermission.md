@@ -64,16 +64,18 @@ import filePermission from "@ohos.file.filePermission";
 
 需要授予或使能权限URI的策略信息。
 
-| 名称        | 类型       | 说明          |
-| ----------- | --------------- |-------------|
-| uri | string     | 需要授予或使能权限的URI。   |
-| operateMode    | number     | 授予或使能权限的URI访问模式。 |
+| 名称        | 类型       | 必填  | 说明             |
+| ----------- | ---------|-----|----------------|
+| uri | string     | 是   | 需要授予或使能权限的URI。 |
+| operateMode    | number  | 是   | 授予或使能权限的URI访问模式。 |
 
 ## grantPolicy<sup>11+</sup>
 
 grantPolicy(tokenId: number, policies: Array&lt;PolicyInfo>, policyFlag: number): Promise&lt;void&gt;
 
 异步方法对所选择的文件或目录URI临时授权，以promise形式返回结果。
+
+**需要权限**：ohos.permission.SET_SANDBOX_POLICY
 
 **系统能力：** SystemCapability.FileManagement.AppFileService
 
@@ -207,9 +209,9 @@ async function persistPermissionExample01() {
 }
   ```
 
-## desistPersistPermission<sup>11+</sup>
+## desistPersistedPermission<sup>11+</sup>
 
-desistPersistPermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
+desistPersistedPermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 异步方法对所选择的文件或目录uri取消持久化授权，以promise形式返回结果。
 
@@ -249,7 +251,7 @@ desistPersistPermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
 
-async function desistPersistPermissionExample01() {
+async function desistPersistedPermissionExample01() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
     let documentPicker = new picker.DocumentViewPicker();
@@ -259,10 +261,10 @@ async function desistPersistPermissionExample01() {
       operateMode: filePermission.OperateMode.READ_MODE,
     };
     let policies: Array<filePermission.PolicyInfo> = [policyInfo];
-    filePermission.desistPersistPermission(policies).then(() => {
-      console.info("desistPersistPermission successfully");
+    filePermission.desistPersistedPermission(policies).then(() => {
+      console.info("desistPersistedPermission successfully");
     }).catch((err: BusinessError) => {
-      console.info("desistPersistPermission failed with error message: " + err.message + ", error code: " + err.code);
+      console.info("desistPersistedPermission failed with error message: " + err.message + ", error code: " + err.code);
       if(err.code == 13900001){
         console.log("error code : " + JSON.stringify(err.data[0].code));
         console.log("error uri : " + JSON.stringify(err.data[0].uri));
@@ -271,7 +273,7 @@ async function desistPersistPermissionExample01() {
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('desistPersistPermission failed with err: ' + JSON.stringify(err));
+    console.error('desistPersistedPermission failed with err: ' + JSON.stringify(err));
   }
 }
 ```
