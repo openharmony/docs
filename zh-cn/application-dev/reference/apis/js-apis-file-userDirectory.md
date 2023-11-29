@@ -176,9 +176,9 @@ try {
 }
 ```
 
-## userDirectory.getExternalUsbDir<sup>11+</sup>
+## userDirectory.getExternalStorageDir<sup>11+</sup>
 
-getExternalUsbDir(): string;
+getExternalStorageDir(): string;
 
 以同步方法获取外卡根目录的沙箱路径
 
@@ -210,10 +210,10 @@ getExternalUsbDir(): string;
 ```ts
 import { BusinessError } from '@ohos.base';
 try {
-  let path = userDirectory.getExternalUsbDir();
-  console.log(`success to getExternalUsbDir: ${JSON.stringify(path)}`);
+  let path = userDirectory.getExternalStorageDir();
+  console.log(`success to getExternalStorageDir: ${JSON.stringify(path)}`);
 } catch (error) {
-  console.error(`failed to getExternalUsbDir because: ${JSON.stringify(error)}`);
+  console.error(`failed to getExternalStorageDir because: ${JSON.stringify(error)}`);
 }
 ```
 

@@ -50,12 +50,12 @@ import filePermission from "@ohos.file.filePermission";
 
 **系统能力**：SystemCapability.FileManagement.AppFileService
 
-授予或使能权限失败的URI策略结果，支持persistPermission、desistPersistedPermission、activateAccessingUri、deactivateAccessingUri接口抛出错误时使用。
+授予或使能权限失败的URI策略结果，支持persistPermission、desistPermission、activateAccessingUri、deactivateAccessingUri接口抛出错误时使用。
 
 | 名称      | 类型                                  | 说明                |
 |---------|-------------------------------------|-------------------|
 | uri     | string                              | 授予或使能权限失败的URI。         |
-| code    | [PolicyErrorCode](#policyErrorCode) | 授权策略失败的URI对应的错误码。 |
+| code    | [PolicyErrorCode](#policyerrorcode) | 授权策略失败的URI对应的错误码。 |
 | message | string                              | 授权策略失败的URI对应的原因。  |
 
 ## PolicyInfo<sup>11+</sup>
@@ -86,7 +86,7 @@ grantPolicy(tokenId: number, policies: Array&lt;PolicyInfo>, policyFlag: number)
 | 参数名     | 类型                                  | 必填 | 说明                      |
 |---------|-------------------------------------| -------- |-------------------------|
 | tokenId | number                              | 是 | 拉起filePicker应用的tokenId。 |
-| policies| Array&lt;[PolicyInfo](#policyInfo)> | 是 | 需要授权URI的策略信息。           |
+| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
 | policyFlag    | number                              | 是 | 授权的URI策略。                |
 
 **返回值：**
@@ -154,7 +154,7 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 | 参数名 | 类型                 | 必填 | 说明                      |
 | -------- |--------------------| -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyInfo)> | 是 | 需要授权URI的策略信息。           |
+| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
 
 **返回值：**
 
@@ -165,7 +165,7 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-如果只有部分URI持久化授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyErrorResult)>形式提供错误信息。
+如果只有部分URI持久化授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -209,9 +209,9 @@ async function persistPermissionExample01() {
 }
   ```
 
-## desistPersistedPermission<sup>11+</sup>
+## desistPermission<sup>11+</sup>
 
-desistPersistedPermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
+desistPermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 异步方法对所选择的文件或目录uri取消持久化授权，以promise形式返回结果。
 
@@ -223,7 +223,7 @@ desistPersistedPermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt
 
 | 参数名 | 类型                 | 必填 | 说明                      |
 | -------- |--------------------| -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyInfo)> | 是 | 需要授权URI的策略信息。           |
+| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
 
 **返回值：**
 
@@ -234,7 +234,7 @@ desistPersistedPermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-如果只有部分URI持久化授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyErrorResult)>形式提供错误信息。
+如果只有部分URI持久化授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -251,7 +251,7 @@ desistPersistedPermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
 
-async function desistPersistedPermissionExample01() {
+async function desistPermissionExample01() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
     let documentPicker = new picker.DocumentViewPicker();
@@ -261,10 +261,10 @@ async function desistPersistedPermissionExample01() {
       operateMode: filePermission.OperateMode.READ_MODE,
     };
     let policies: Array<filePermission.PolicyInfo> = [policyInfo];
-    filePermission.desistPersistedPermission(policies).then(() => {
-      console.info("desistPersistedPermission successfully");
+    filePermission.desistPermission(policies).then(() => {
+      console.info("desistPermission successfully");
     }).catch((err: BusinessError) => {
-      console.info("desistPersistedPermission failed with error message: " + err.message + ", error code: " + err.code);
+      console.info("desistPermission failed with error message: " + err.message + ", error code: " + err.code);
       if(err.code == 13900001){
         console.log("error code : " + JSON.stringify(err.data[0].code));
         console.log("error uri : " + JSON.stringify(err.data[0].uri));
@@ -273,7 +273,7 @@ async function desistPersistedPermissionExample01() {
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('desistPersistedPermission failed with err: ' + JSON.stringify(err));
+    console.error('desistPermission failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -290,7 +290,7 @@ activateAccessingUri(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                      |
 | -------- | -------- | -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyInfo)> | 是 | 需要授权URI的策略信息。           |
+| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
 
 **返回值：**
 
@@ -301,7 +301,7 @@ activateAccessingUri(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-如果只有部分URI持久化授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyErrorResult)>形式提供错误信息。
+如果只有部分URI持久化授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -355,7 +355,7 @@ deactivateAccessingUri(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                      |
 | -------- | -------- | -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyInfo)> | 是 | 需要授权URI的策略信息。           |
+| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
 
 **返回值：**
 
@@ -366,7 +366,7 @@ deactivateAccessingUri(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-如果只有部分URI持久化授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyErrorResult)>形式提供错误信息。
+如果只有部分URI持久化授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
