@@ -3082,8 +3082,8 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
   import { BusinessError } from '@ohos.base';
   // Obtain the context.
   let context = getContext(this) as Context;
-  contact.queryGroups(context, (err, data) => {
-      if (err: BusinessError) {
+  contact.queryGroups(context, (err: BusinessError, data) => {
+      if (err) {
           console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
           return;
       }
@@ -3747,8 +3747,7 @@ Create contact data in JSON format:
 
 
 ```js
-// The sample code applies only to JS source files.
-let myContact = {
+let myContact: contact.Contact = {
     phoneNumbers: [{
         phoneNumber: "138xxxxxxxx"
     }],
@@ -3766,7 +3765,6 @@ let myContact = {
   Or, create data by configuring a new Contact object.
 
 ```js
-// The sample code applies only to JS source files.
 let myContact = new contact.Contact();
 let name = new contact.Name();
 name.fullName = "fullName";
@@ -3795,8 +3793,7 @@ Create contact data in JSON format:
 
 
 ```js
-// The sample code applies only to JS source files.
-let contactAttributes = {
+let contactAttributes: contact.ContactAttributes = {
     attributes: [
         contact.Attribute.ATTR_EMAIL,
         contact.Attribute.ATTR_NAME,
@@ -3809,7 +3806,6 @@ Or, create data by configuring a **ContactAttributes** object.
 
 
 ```js
-// The sample code applies only to JS source files.
 let contactAttributes = new contact.ContactAttributes();
 contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 ```
@@ -3844,7 +3840,6 @@ Enumerates contact attributes.
 Create contact data in JSON format:
 
 ```js
-// The sample code applies only to JS source files.
 let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE];
 ```
 
@@ -3881,8 +3876,7 @@ Defines a contact's email.
   Create contact data in JSON format:
 
 ```js
-// The sample code applies only to JS source files.
-let email = {
+let email: contact.Email = {
     email: "xxx@email.com",
     displayName: "displayName"
 }
@@ -3892,7 +3886,6 @@ let email = {
   Or, create data by configuring an **Email** object.
 
 ```js
-// The sample code applies only to JS source files.
 let email = new contact.Email();
 email.email = "xxx@email.com";
 ```
@@ -3916,8 +3909,7 @@ Defines an application that creates the contact.
   Create contact data in JSON format:
 
 ```js
-// The sample code applies only to JS source files.
-let holder = {
+let holder: contact.Holder = {
   holderId: 0
 };
 ```
@@ -3925,7 +3917,6 @@ let holder = {
   Or, create data by configuring a **Holder** object.
 
 ```js
-// The sample code applies only to JS source files.
 let holder = new contact.Holder();
 holder.holderId = 0;
 ```
@@ -3962,8 +3953,7 @@ Defines a contact's event.
   Create contact data in JSON format:
 
 ```js
-// The sample code applies only to JS source files.
-let event = {
+let event: contact.Event = {
     eventDate: "xxxxxx"
 };
 ```
@@ -3971,7 +3961,6 @@ let event = {
   Or, create data by configuring an **Event** object.
 
 ```js
-// The sample code applies only to JS source files.
 let event = new contact.Event();
 event.eventDate = "xxxxxx";
 ```
@@ -3994,8 +3983,7 @@ Defines a contact group.
   Create contact data in JSON format:
 
 ```js
-// The sample code applies only to JS source files.
-let group = {
+let group: contact.Group = {
     groupId: 1,
     title: "title"
 };
@@ -4004,7 +3992,6 @@ let group = {
   Or, create data by configuring a **Group** object.
 
 ```js
-// The sample code applies only to JS source files.
 let group = new contact.Group();
 group.title = "title";
 ```
@@ -4045,8 +4032,7 @@ Enumerates IM addresses.
   Create contact data in JSON format:
 
 ```js
-// The sample code applies only to JS source files.
-let imAddress = {
+let imAddress: contact.ImAddress = {
     imAddress: "imAddress",
     labelName: "labelName"
 };
@@ -4056,7 +4042,6 @@ let imAddress = {
   Or, create data by configuring an **ImAddress** object.
 
 ```js
-// The sample code applies only to JS source files.
 let imAddress = new contact.ImAddress();
 imAddress.imAddress = "imAddress";
 ```
@@ -4086,8 +4071,7 @@ Defines a contact's name.
   Create contact data in JSON format:
 
 ```js
-// The sample code applies only to JS source files.
-let name = {
+let name: contact.Name = {
     familyName: "familyName",
     fullName: "fullName"
 };
@@ -4096,7 +4080,6 @@ let name = {
   Or, create data by configuring a **Name** object.
 
 ```js
-// The sample code applies only to JS source files.
 let name = new contact.Name();
 name.familyName = "familyName";
 name.fullName = "fullName";
@@ -4119,8 +4102,7 @@ Defines a contact's nickname.
   Create contact data in JSON format:
 
 ```js
-// The sample code applies only to JS source files.
-let nickName = {
+let nickName: contact.NickName = {
     nickName: "nickName"
 };
 ```
@@ -4128,7 +4110,6 @@ let nickName = {
   Or, create data by configuring a **NickName** object.
 
 ```js
-// The sample code applies only to JS source files.
 let nickName = new contact.NickName();
 nickName.nickName = "nickName";
 ```
@@ -4150,8 +4131,7 @@ Defines a contact's note.
   Create contact data in JSON format:
 
 ```js
-// The sample code applies only to JS source files.
-let note = {
+let note: contact.Note = {
     noteContent: "noteContent"
 };
 ```
@@ -4159,7 +4139,6 @@ let note = {
   Or, create data by configuring a **Note** object.
 
 ```js
-// The sample code applies only to JS source files.
 let note = new contact.Note();
 note.noteContent = "noteContent";
 ```
@@ -4182,8 +4161,7 @@ Defines a contact's organization.
   Create contact data in JSON format:
 
 ```js
-// The sample code applies only to JS source files.
-let organization = {
+let organization: contact.Organization = {
     name: "name",
     title: "title"
 };
@@ -4192,7 +4170,6 @@ let organization = {
   Or, create data by configuring an **Organization** object.
 
 ```js
-// The sample code applies only to JS source files.
 let organization = new contact.Organization();
 organization.name = "name";
 organization.title = "title";
@@ -4247,8 +4224,7 @@ Defines a contact's phone number.
   Create contact data in JSON format:
 
 ```js
-// The sample code applies only to JS source files.
-let phoneNumber = {
+let phoneNumber: contact.PhoneNumber = {
     phoneNumber: "138xxxxxxxx",
     labelId: contact.PhoneNumber.NUM_HOME
 };
@@ -4257,7 +4233,6 @@ let phoneNumber = {
   Or, create data by configuring a new **PhoneNumber** object.
 
 ```js
-// The sample code applies only to JS source files.
 let phoneNumber = new contact.PhoneNumber();
 phoneNumber.phoneNumber = "138xxxxxxxx";
 ```
@@ -4279,8 +4254,7 @@ Defines a contact's portrait.
   Create contact data in JSON format:
 
 ```js
-// The sample code applies only to JS source files.
-let portrait = {
+let portrait: contact.Portrait = {
     uri: "uri"
 };
 ```
@@ -4288,7 +4262,6 @@ let portrait = {
   Or, create data by configuring a new **Portrait** object.
 
 ```js
-// The sample code applies only to JS source files.
 let portrait = new contact.Portrait();
 portrait.uri = "uri";
 ```
@@ -4332,8 +4305,7 @@ Defines a contact's postal address.
   Create contact data in JSON format:
 
 ```js
-// The sample code applies only to JS source files.
-let postalAddress = {
+let postalAddress: contact.PostalAddress = {
     city: "city"
 };
 ```
@@ -4341,7 +4313,6 @@ let postalAddress = {
   Or, create data by configuring a new **PostalAddress** object.
 
 ```js
-// The sample code applies only to JS source files.
 let postalAddress = new contact.PostalAddress();
 postalAddress.city = "city";
 ```
@@ -4389,8 +4360,7 @@ Defines a contact's relationship.
   Create contact data in JSON format:
 
 ```js
-// The sample code applies only to JS source files.
-let relation = {
+let relation: contact.Relation = {
     relationName: "relationName",
     labelId: contact.Relation.RELATION_ASSISTANT
 };
@@ -4399,7 +4369,6 @@ let relation = {
   Or, create data by configuring a new **Relation** object.
 
 ```js
-// The sample code applies only to JS source files.
 let relation = new contact.Relation();
 relation.relationName = "relationName";
 relation.labelId = contact.Relation.RELATION_ASSISTANT;
@@ -4436,8 +4405,7 @@ Defines a contact's SIP address.
   Create contact data in JSON format:
 
 ```js
-// The sample code applies only to JS source files.
-var sipAddress = {
+let sipAddress: contact.SipAddress = {
     sipAddress: "sipAddress"
 };
 ```
@@ -4445,7 +4413,6 @@ var sipAddress = {
   Or, create data by configuring a new **SipAddress** object.
 
 ```js
-// The sample code applies only to JS source files.
 let sipAddress = new contact.SipAddress();
 sipAddress.sipAddress = "sipAddress";
 ```
@@ -4467,8 +4434,7 @@ Defines a contact's website.
   Create contact data in JSON format:
 
 ```js
-// The sample code applies only to JS source files.
-let website = {
+let website: contact.Website = {
     website: "website"
 };
 ```
@@ -4476,7 +4442,6 @@ let website = {
   Or, create data by configuring a new **Website** object.
 
 ```js
-// The sample code applies only to JS source files.
 let website = new contact.Website();
 website.website = "website";
 ```

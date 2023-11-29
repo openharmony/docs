@@ -6,7 +6,7 @@ If coding specification issues or errors exist in the code of an application, th
 
 ## Available APIs
 
-Application error management APIs are provided by the **errorManager** module. For details about how to import the module to use related APIs, see [Development Example](#development-example).
+Application error management APIs are provided by the [errorManager](../reference/apis/js-apis-app-ability-errorManager.md) module. For details about how to import the module to use related APIs, see [Development Example](#development-example).
 
 **Table 1** Description of application error management APIs
 
