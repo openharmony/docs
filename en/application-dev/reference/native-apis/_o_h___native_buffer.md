@@ -5,7 +5,7 @@
 
 The **OH_NativeBuffer** module provides the capabilities of **NativeBuffer**. Using the functions provided by this module, you can apply for, use, and release the shared memory, and query its attributes.
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+\@syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Since**
 
@@ -78,7 +78,7 @@ OH_NativeBuffer* OH_NativeBuffer_Alloc (const OH_NativeBuffer_Config * config)
 
 Creates an **OH_NativeBuffer** instance based on an **OH_NativeBuffer_Config** struct. A new **OH_NativeBuffer** instance is created each time this function is called.
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+\@syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Parameters**
 
@@ -102,7 +102,7 @@ void OH_NativeBuffer_GetConfig (OH_NativeBuffer * buffer, OH_NativeBuffer_Config
 
 Obtains the attributes of an **OH_NativeBuffer** instance.
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+\@syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Parameters**
 
@@ -123,7 +123,7 @@ uint32_t OH_NativeBuffer_GetSeqNum (OH_NativeBuffer * buffer)
 
 Obtains the sequence number of an **OH_NativeBuffer** instance.
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+\@syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Parameters**
 
@@ -147,7 +147,7 @@ int32_t OH_NativeBuffer_Map (OH_NativeBuffer * buffer, void ** virAddr )
 
 Maps the ION memory corresponding to an **OH_NativeBuffer** instance to the process address space.
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+\@syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Parameters**
 
@@ -172,7 +172,7 @@ int32_t OH_NativeBuffer_Reference (OH_NativeBuffer * buffer)
 
 Increases the reference count of an **OH_NativeBuffer** instance by 1.
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+\@syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Parameters**
 
@@ -196,7 +196,7 @@ int32_t OH_NativeBuffer_Unmap (OH_NativeBuffer * buffer)
 
 Unmaps the ION memory corresponding to an **OH_NativeBuffer** instance from the process address space.
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+\@syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Parameters**
 
@@ -220,7 +220,7 @@ int32_t OH_NativeBuffer_Unreference (OH_NativeBuffer * buffer)
 
 Decreases the reference count of an **OH_NativeBuffer** instance by 1 and, when the reference count reaches 0, destroys the instance.
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+\@syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Parameters**
 
