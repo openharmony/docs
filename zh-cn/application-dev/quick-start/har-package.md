@@ -14,7 +14,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 ```
 artifactType字段有以下两种取值，默认缺省为original。
 - original：不混淆。
-- obfuscation：混淆，目前仅支持uglify混淆。
+- obfuscation：混淆。
 
 需要对代码资产进行保护时，建议开启混淆能力，混淆能力开启后，DevEco Studio在构建HAR时，会对代码进行编译、混淆及压缩处理，保护代码资产。
 注意：artifactType字段设置为obfuscation时，apiType字段必须设置为stageMode，因为Stage模型才支持混淆。
