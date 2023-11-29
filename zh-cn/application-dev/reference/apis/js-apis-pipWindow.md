@@ -43,10 +43,10 @@ create(config: PiPConfiguration, callback: AsyncCallback&lt;PiPController&gt;): 
 
 **参数：**
 
-| 参数名      | 类型                                                              | 必填   | 说明             |
-|----------|-----------------------------------------------------------------|------|------------- ---|
-| config   | [PiPConfiguration](#pipconfiguration)                | 是    | 创建画中画控制器时的参数。  |
-| callback | AsyncCallback&lt;[PiPController](#pipcontroller)&gt; | 是    | 回调函数。返回画中画控制器。 |
+| 参数名        | 类型                                                    | 必填     | 说明               |
+|------------|-------------------------------------------------------|--------|------------------|
+| config     | [PiPConfiguration](#pipconfiguration)                 | 是      | 创建画中画控制器时的参数。    |
+| callback   | AsyncCallback&lt;[PiPController](#pipcontroller)&gt;  | 是      | 回调函数。返回画中画控制器。   |
 
 **示例：**
 
@@ -123,7 +123,7 @@ promise.then((data) => {
   pipController = data;
   console.info(`Succeeded in creating pip controller. Data: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to create pip controller. Cause: ${errCode}, message:${err.message}`);
+  console.error(`Failed to create pip controller. Cause: ${err.code}, message:${err.message}`);
 });
 ```
 
@@ -289,7 +289,7 @@ let promise = pipController.startPiP();
 promise.then((data) => {
   console.info(`Succeeded in starting pip. Data: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to start pip. Cause: ${errCode}, message:${err.message}`);
+  console.error(`Failed to start pip. Cause: ${err.code}, message:${err.message}`);
 });
 ```
 
@@ -365,7 +365,7 @@ let promise = pipController.stopPiP();
 promise.then((data) => {
   console.info(`Succeeded in stopping pip. Data: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to stop pip. Cause: ${errCode}, message:${err.message}`);
+  console.error(`Failed to stop pip. Cause: ${err.code}, message:${err.message}`);
 });
 ```
 
