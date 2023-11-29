@@ -54,7 +54,7 @@
    import dlpPermission from '@ohos.dlpPermission';
    ```
 
-2. 打开DLP文件，系统会自动安装应用的DLP沙箱分身应用。
+2. 打开DLP文件，系统会自动安装应用的DLP沙箱分身应用。以下代码应在应用页Ability中使用。
 
     ```ts
     async OpenDlpFile(dlpUri: string, fileName: string, fd: number) {
@@ -76,8 +76,8 @@
 
       try {
         console.log("openDLPFile:" + JSON.stringify(want));
-        console.log("openDLPFile: delegator:" + JSON.stringify(CustomGlobal.context));
-        CustomGlobal.context.startAbility(want);
+        console.log("openDLPFile: delegator:" + JSON.stringify(this.context));
+        this.context.startAbility(want);
       } catch (err) {
         console.error('openDLPFile startAbility failed', (err as BusinessError).code, (err as BusinessError).message);
         return;
