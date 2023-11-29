@@ -947,7 +947,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980111| If the operation invalid              |
+| 62980111| If the image source data incomplete             |
 | 62980115| If the image parameter invalid             |
 
 **示例：**
