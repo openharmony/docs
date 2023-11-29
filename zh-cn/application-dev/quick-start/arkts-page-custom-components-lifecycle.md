@@ -4,19 +4,19 @@
 在开始之前，我们先明确自定义组件和页面的关系：
 
 
-- 自定义组件：\@Component装饰的UI单元，可以组合多个系统组件实现UI的复用。
+- 自定义组件：\@Component装饰的UI单元，可以组合多个系统组件实现UI的复用，可以调用组件的生命周期。
 
-- 页面：即应用的UI页面。可以由一个或者多个自定义组件组成，\@Entry装饰的自定义组件为页面的入口组件，即页面的根节点，一个页面有且仅能有一个\@Entry。只有被\@Entry装饰的组件才可以调用页面的生命周期。
+- 页面：即应用的UI页面。可以由一个或者多个自定义组件组成，[@Entry](arkts-create-custom-components.md#自定义组件的基本结构)装饰的自定义组件为页面的入口组件，即页面的根节点，一个页面有且仅能有一个\@Entry。只有被\@Entry装饰的组件才可以调用页面的生命周期。
 
 
 页面生命周期，即被\@Entry装饰的组件生命周期，提供以下生命周期接口：
 
 
-- [onPageShow](../reference/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)：页面每次显示时触发。
+- [onPageShow](../reference/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)：页面每次显示时触发一次，包括路由过程、应用进入前台等场景，仅@Entry装饰的自定义组件生效。
 
-- [onPageHide](../reference/arkui-ts/ts-custom-component-lifecycle.md#onpagehide)：页面每次隐藏时触发一次。
+- [onPageHide](../reference/arkui-ts/ts-custom-component-lifecycle.md#onpagehide)：页面每次隐藏时触发一次，包括路由过程、应用进入前后台等场景，仅@Entry装饰的自定义组件生效。
 
-- [onBackPress](../reference/arkui-ts/ts-custom-component-lifecycle.md#onbackpress)：当用户点击返回按钮时触发。
+- [onBackPress](../reference/arkui-ts/ts-custom-component-lifecycle.md#onbackpress)：当用户点击返回按钮时触发，仅@Entry装饰的自定义组件生效。
 
 
 组件生命周期，即一般用\@Component装饰的自定义组件的生命周期，提供以下生命周期接口：
@@ -24,7 +24,7 @@
 
 - [aboutToAppear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)：组件即将出现时回调该接口，具体时机为在创建自定义组件的新实例后，在执行其build()函数之前执行。
 
-- [aboutToDisappear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)：在自定义组件即将析构销毁时执行。
+- [aboutToDisappear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)：aboutToDisappear函数在自定义组件析构销毁之前执行。不允许在aboutToDisappear函数中改变状态变量，特别是@Link变量的修改可能会导致应用程序行为不稳定。
 
 
 生命周期流程如下图所示，下图展示的是被\@Entry装饰的组件（首页）生命周期。
