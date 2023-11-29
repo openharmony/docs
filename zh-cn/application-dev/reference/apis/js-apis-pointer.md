@@ -1207,7 +1207,7 @@ setTouchpadScrollDirection(state: boolean): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean| 是    |  state为触控板滚轴的方向。true与手指滑动的方向一致，false与手指滑动的方向相反，默认为true。     |
+| state | boolean| 是    |  state为触控板滚轴的方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true|
 
 **返回值**：
 
@@ -1801,7 +1801,7 @@ setTouchpadRightClickType(type: RightClickType, callback: AsyncCallback\<void>):
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| type| RightClickType| 是    |type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。  |
+| type| [RightClickType](#rightclicktype10)| 是    |type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。  |
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
 **示例**：
@@ -1834,7 +1834,7 @@ setTouchpadRightClickType(type: RightClickType): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| type| RightClickType| 是    | type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。 |
+| type| [RightClickType](#rightclicktype10)| 是    | type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。 |
 
 **返回值**：
 
@@ -1868,7 +1868,7 @@ getTouchpadRightClickType(callback: AsyncCallback\<RightClickType>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<RightClickType> | 是    | 回调函数，异步返回触控板右键菜单类型。 |
+| callback | AsyncCallback\<[RightClickType](#rightclicktype10)> | 是    | 回调函数，异步返回触控板右键菜单类型。 |
 
 **示例**：
 
@@ -1896,7 +1896,7 @@ getTouchpadRightClickType(): Promise\<RightClickType>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise\<RightClickType > | Promise实例，异步返回触控板右键菜单类型。 |
+| Promise\<[RightClickType](#rightclicktype10) > | Promise实例，异步返回触控板右键菜单类型。 |
 
 **示例**：
 
