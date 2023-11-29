@@ -3573,3 +3573,15 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.START_RECENT_ABILITY
+
+允许应用启动指定的UIAbility，如果该UIAbility有多个实例，将启动最近启动的实例。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
