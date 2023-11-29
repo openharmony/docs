@@ -610,7 +610,7 @@ adminManager.isSuperAdmin(bundleName).then((result) => {
 
 ## adminManager.setEnterpriseInfo
 
-setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback\<void>;): void
+setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback\<void>): void
 
 设置指定的设备管理应用的企业信息。使用callback异步回调。
 
@@ -662,7 +662,7 @@ adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, (err) => {
 
 ## adminManager.setEnterpriseInfo
 
-setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
+setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>
 
 设置指定的设备管理应用的企业信息。使用promise异步回调。
 
