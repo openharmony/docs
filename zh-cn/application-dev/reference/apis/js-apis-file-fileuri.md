@@ -105,6 +105,48 @@ toString(): string
   console.info("The uri of FileUri is " + fileUriObject.toString());
   ```
 
+### getFullDirectoryUri<sup>11+</sup>
+
+getFullDirectoryUri(): string
+
+通过文件或文件夹URI获取当前所在路径的URI。
+
+如果当前FileUri指向文件，将返回文件所在路径URI。如`xxx/example.txt`，将返回`xxx`。
+
+如果当前FileUri指向目录，将返回当前路径URI。
+
+**系统能力**：SystemCapability.FileManagement.AppFileService
+
+**返回值：**
+
+| 类型                  | 说明                                |
+| --------------------- |-----------------------------------|
+| string | 获取所在路径URI，文件获取所在路径URI，目录获取当前路径URI |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息                      |
+| ---------------------------- |---------------------------|
+| 13900002 | No such file or directory |
+| 13900012 | Permission denied         |
+| 13900042 | Unknown error             |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  try {
+    let path = pathDir + '/test.txt';
+    let fileUriObject = new fileuri.FileUri(path);
+    let directoryUri = fileUriObject.getFullDirectoryUri();
+    console.log(`success to getFullDirectoryUri: ${JSON.stringify(directoryUri)}`);
+  } catch (error) {
+    console.error(`failed to getFullDirectoryUri because: ${JSON.stringify(error)}`);
+  }
+  ```
+
 ## fileuri.getUriFromPath
 
 getUriFromPath(path: string): string
