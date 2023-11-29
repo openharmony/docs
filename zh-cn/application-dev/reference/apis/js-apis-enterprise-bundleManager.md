@@ -18,7 +18,7 @@ import bundleManager from '@ohos.enterprise.bundleManager';
 
 ## bundleManager.addAllowedInstallBundles
 
-addAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
+addAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
 指定设备管理应用添加应用至包安装白名单，添加至白名单的应用允许在当前用户下安装，否则不允许安装，使用callback异步回调。
 
@@ -66,7 +66,7 @@ bundleManager.addAllowedInstallBundles(wantTemp, appIds, (err) => {
 
 ## bundleManager.addAllowedInstallBundles
 
-addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
+addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
 指定设备管理应用添加应用至包安装白名单，添加至白名单的应用允许在指定用户（通过userId指定）下安装，否则不允许安装，使用callback异步回调。
 
@@ -115,7 +115,7 @@ bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
 
 ## bundleManager.addAllowedInstallBundles
 
-addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
+addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
 指定设备管理应用添加应用至包安装白名单，添加至白名单的应用允许在当前/指定用户下安装，否则不允许安装。使用promise异步回调。
 
@@ -168,7 +168,7 @@ bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
 
 ## bundleManager.removeAllowedInstallBundles
 
-removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
+removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
 指定设备管理应用在包安装白名单中移除应用，在白名单存在的情况下，不在包安装白名单中的应用不允许在当前用户下安装，使用callback异步回调。
 
@@ -216,7 +216,7 @@ bundleManager.removeAllowedInstallBundles(wantTemp, appIds, (err) => {
 
 ## bundleManager.removeAllowedInstallBundles
 
-removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
+removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
 指定设备管理应用在包安装白名单中移除应用，在白名单存在的情况下，不在包安装白名单中的应用不允许在指定用户（通过userId指定）下安装，使用callback异步回调。
 
@@ -265,7 +265,7 @@ bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
 
 ## bundleManager.removeAllowedInstallBundles
 
-removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
+removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
 指定设备管理应用在包安装白名单中移除应用，在白名单存在的情况下，不在包安装白名单中的应用不允许在当前/指定用户下安装。使用promise异步回调。
 
@@ -318,7 +318,7 @@ bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
 
 ## bundleManager.getAllowedInstallBundles
 
-getAllowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
+getAllowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 指定设备管理应用获取当前用户下的包安装白名单，使用callback异步回调。
 
@@ -364,7 +364,7 @@ bundleManager.getAllowedInstallBundles(wantTemp, (err, result) => {
 
 ## bundleManager.getAllowedInstallBundles
 
-getAllowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
+getAllowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 指定设备管理应用获取指定用户（通过userId指定）下的包安装白名单，使用callback异步回调。
 
@@ -411,7 +411,7 @@ bundleManager.getAllowedInstallBundles(wantTemp, 100, (err, result) => {
 
 ## bundleManager.getAllowedInstallBundles
 
-getAllowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;;
+getAllowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;
 
 指定设备管理应用获取当前/指定用户下的包安装白名单，使用promise异步回调。
 
@@ -462,7 +462,7 @@ bundleManager.getAllowedInstallBundles(wantTemp, 100).then((result) => {
 
 ## bundleManager.addDisallowedInstallBundles
 
-addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
+addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
 指定设备管理应用添加应用至包安装黑名单，添加至黑名单的应用不允许在当前用户下安装，使用callback异步回调。
 
@@ -510,7 +510,7 @@ bundleManager.addDisallowedInstallBundles(wantTemp, appIds, (err) => {
 
 ## bundleManager.addDisallowedInstallBundles
 
-addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
+addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
 指定设备管理应用添加应用至包安装黑名单，添加至黑名单的应用不允许在指定用户（通过userId指定）下安装。使用callback异步回调。
 
@@ -559,7 +559,7 @@ bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
 
 ## bundleManager.addDisallowedInstallBundles
 
-addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
+addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
 指定设备管理应用添加应用至包安装黑名单，添加至黑名单的应用不允许在当前/指定用户下安装。使用promise异步回调。
 
@@ -612,7 +612,7 @@ bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
 
 ## bundleManager.removeDisallowedInstallBundles
 
-removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
+removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
 指定设备管理应用在包安装黑名单中移除应用，在黑名单存在的情况下，在包安装黑名单中的应用不允许在当前用户下安装。使用callback异步回调。
 
@@ -660,7 +660,7 @@ bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, (err) => {
 
 ## bundleManager.removeDisallowedInstallBundles
 
-removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
+removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
 指定设备管理应用在包安装黑名单中移除应用，在黑名单存在的情况下，在包安装黑名单中的应用不允许在指定用户（通过userId指定）下安装，使用callback异步回调。
 
@@ -709,7 +709,7 @@ bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
 
 ## bundleManager.removeDisallowedInstallBundles
 
-removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
+removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
 指定设备管理应用在包安装黑名单中移除应用，在黑名单存在的情况下，在包安装黑名单中的应用不允许在当前/指定用户下安装。使用promise异步回调。
 
@@ -762,7 +762,7 @@ bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
 
 ## bundleManager.getDisallowedInstallBundles
 
-getDisallowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
+getDisallowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 指定设备管理应用获取当前用户下的包安装黑名单，使用callback异步回调。
 
@@ -808,7 +808,7 @@ bundleManager.getDisallowedInstallBundles(wantTemp, (err, result) => {
 
 ## bundleManager.getDisallowedInstallBundles
 
-getDisallowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
+getDisallowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 指定设备管理应用获取指定用户（通过userId指定）下的包安装黑名单，使用callback异步回调。
 
@@ -855,7 +855,7 @@ bundleManager.getDisallowedInstallBundles(wantTemp, 100, (err, result) => {
 
 ## bundleManager.getDisallowedInstallBundles
 
-getDisallowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;;
+getDisallowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;
 
 指定设备管理应用获取当前/指定用户下的包安装黑名单，使用promise异步回调。
 
