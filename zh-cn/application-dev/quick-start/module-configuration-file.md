@@ -98,7 +98,7 @@ module.json5配置文件包含以下标签。
 | [proxyData](#proxydata标签) | 标识当前Module提供的数据代理列表。| 对象数组 | 该标签可缺省，缺省值为空。|
 | isolationMode | 标识当前Module的多进程配置项。支持的取值如下：<br/>-&nbsp;nonisolationFirst：优先在非独立进程中运行。<br/>-&nbsp;isolationFirst：优先在独立进程中运行。<br/>-&nbsp;isolationOnly：只在独立进程中运行。<br/>-&nbsp;nonisolationOnly：只在非独立进程中运行。 |字符串|该标签可缺省，缺省值为nonisolationFirst。|
 | generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。当配置为true时，如果系统OTA升级时应用versionCode保持不变，可根据哈希值判断应用是否需要升级。<br/>该字段仅在[app.json5文件](./app-configuration-file.md)中的generateBuildHash字段为false时使能。**<br/>说明：**<br/>该字段仅对预置应用生效。|布尔值|该标签可缺省，缺省值为false。|
-| compressNativeLibs | 标识libs库是否以压缩存储的方式打包到HAP。<br/>-&nbsp;true：libs库以压缩方式存储。<br/>-&nbsp;false：libs库以不压缩方式存储，HAP在安装时无需解压libs，运行时会直接从HAP内加载libs库。 | 布尔值 | 该标签可缺省，缺省值为true。 |
+| compressNativeLibs | 标识libs库是否以压缩存储的方式打包到HAP。<br/>-&nbsp;true：libs库以压缩方式存储。<br/>-&nbsp;false：libs库以不压缩方式存储。 | 布尔值 | 该标签可缺省，缺省值为true。 |
 | libIsolation | 用于区分同应用不同HAP下的.so文件，以防止.so冲突。<br/>-&nbsp;true：当前HAP的.so文件会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前HAP的.so文件会直接储存在libs目录中。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | fileContextMenu | 标识当前HAP的右键菜单配置项。 | 字符串 | 该标签可缺省，缺省值为空。 |
 
