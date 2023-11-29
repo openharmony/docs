@@ -139,7 +139,7 @@ struct BasketModifier {
 struct TotalView {
   @Prop @Watch('onCountUpdated') count: number;
   @State total: number = 0;
-  // @Watch cb
+  // @Watch 回调
   onCountUpdated(propName: string): void {
     this.total += this.count;
   }
