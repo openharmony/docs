@@ -200,7 +200,7 @@
     ```ts
     async func() {
       try {
-        await dlpPermission.setSandboxAppConfig('configInfo'); // 获取沙箱保留列表
+        await dlpPermission.setSandboxAppConfig('configInfo'); // 设置沙箱应用配置信息
       } catch (err) {
         console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
       }
@@ -211,7 +211,7 @@
     ```ts
     async func() {
       try {
-        await dlpPermission.cleanSandboxAppConfig(); // 获取沙箱保留列表
+        await dlpPermission.cleanSandboxAppConfig(); // 清理沙箱应用配置信息
       } catch (err) {
         console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
       }
@@ -222,7 +222,7 @@
     ```ts
     async func() {
       try {
-        let res:string = await dlpPermission.getSandboxAppConfig(); // 获取沙箱保留列表
+        let res:string = await dlpPermission.getSandboxAppConfig(); // 查询沙箱应用配置信息
         console.info('res', JSON.stringify(res))
       } catch (err) {
         console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
