@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -14,9 +14,9 @@ import userDirectory from '@ohos.file.userDirectory';
 
 ## userDirectory.getUserDownloadDir<sup>11+</sup>
 
-getUserDownloadDir(): string;
+getUserDownloadDir(): string
 
-以同步方法获取当前用户预授权下载目录的沙箱路径
+以同步方法获取当前用户预授权下载目录的沙箱路径，该接口仅对特定设备开放。
 
 **需要权限**：ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
 
@@ -35,10 +35,7 @@ getUserDownloadDir(): string;
 | 错误码ID    | 错误信息       |
 |----------| --------- |
 | 201      | Permission denied. |
-| 401      | The input parameter is invalid |
 | 801      | Capability not supported |
-| 13900002 | No such file or directory              |
-| 13900012 | Permission denied                       |
 | 13900042 | Unknown error |
 
 **示例：**
@@ -55,9 +52,9 @@ try {
 
 ## userDirectory.getUserDesktopDir<sup>11+</sup>
 
-getUserDesktopDir(): string;
+getUserDesktopDir(): string
 
-以同步方法获取当前用户预授权桌面目录的沙箱路径
+以同步方法获取当前用户预授权桌面目录的沙箱路径，该接口仅对特定设备开放。
 
 **需要权限**：ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
 
@@ -76,10 +73,7 @@ getUserDesktopDir(): string;
 | 错误码ID    | 错误信息       |
 |----------| --------- |
 | 201      | Permission denied. |
-| 401      | The input parameter is invalid |
 | 801      | Capability not supported |
-| 13900002 | No such file or directory              |
-| 13900012 | Permission denied                       |
 | 13900042 | Unknown error |
 
 **示例：**
@@ -96,9 +90,9 @@ try {
 
 ## userDirectory.getUserDocumentsDir<sup>11+</sup>
 
-getUserDocumentsDir(): string;
+getUserDocumentsDir(): string
 
-以同步方法获取当前用户预授权文档目录的沙箱路径
+以同步方法获取当前用户预授权文档目录的沙箱路径，该接口仅对特定设备开放。
 
 **需要权限**：ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
 
@@ -117,10 +111,7 @@ getUserDocumentsDir(): string;
 | 错误码ID    | 错误信息       |
 |----------| --------- |
 | 201      | Permission denied. |
-| 401      | The input parameter is invalid |
 | 801      | Capability not supported |
-| 13900002 | No such file or directory              |
-| 13900012 | Permission denied                       |
 | 13900042 | Unknown error |
 
 **示例：**
@@ -137,9 +128,9 @@ try {
 
 ## userDirectory.getUserHomeDir<sup>11+</sup>
 
-getUserHomeDir(): string;
+getUserHomeDir(): string
 
-以同步方法获取当前用户根目录的沙箱路径
+以同步方法获取当前用户根目录的沙箱路径，该接口仅对特定设备开放。
 
 **系统能力**：SystemCapability.FileManagement.AppFileService
 
@@ -159,9 +150,6 @@ getUserHomeDir(): string;
 | ---------------------------- | --------- |
 | 202 | The caller is not a system application |
 | 801 | Capability not supported |
-| 13900002 | No such file or directory              |
-| 13900012 | Permission denied                       |
-| 13900020 | Invalid argument |
 | 13900042 | Unknown error |
 
 **示例：**
@@ -178,9 +166,9 @@ try {
 
 ## userDirectory.getExternalStorageDir<sup>11+</sup>
 
-getExternalStorageDir(): string;
+getExternalStorageDir(): string
 
-以同步方法获取外卡根目录的沙箱路径
+以同步方法获取外卡根目录的沙箱路径，该接口仅对特定设备开放。
 
 **系统能力**：SystemCapability.FileManagement.AppFileService
 
@@ -200,9 +188,6 @@ getExternalStorageDir(): string;
 | ---------------------------- | --------- |
 | 202 | The caller is not a system application |
 | 801 | Capability not supported |
-| 13900002 | No such file or directory              |
-| 13900012 | Permission denied                       |
-| 13900020 | Invalid argument |
 | 13900042 | Unknown error |
 
 **示例：**
@@ -219,9 +204,9 @@ try {
 
 ## userDirectory.getUserShareDir<sup>11+</sup>
 
-getUserShareDir(): string;
+getUserShareDir(): string
 
-以同步方法获取共享盘目录的沙箱路径
+以同步方法获取共享盘目录的沙箱路径，该接口仅对特定设备开放。
 
 **系统能力**：SystemCapability.FileManagement.AppFileService
 
@@ -241,9 +226,6 @@ getUserShareDir(): string;
 | ---------------------------- | --------- |
 | 202 | The caller is not a system application |
 | 801 | Capability not supported |
-| 13900002 | No such file or directory              |
-| 13900012 | Permission denied                       |
-| 13900020 | Invalid argument |
 | 13900042 | Unknown error |
 
 **示例：**

@@ -73,7 +73,7 @@ import filePermission from "@ohos.file.filePermission";
 
 grantPolicy(tokenId: number, policies: Array&lt;PolicyInfo>, policyFlag: number): Promise&lt;void&gt;
 
-异步方法对所选择的文件或目录URI临时授权，以promise形式返回结果。
+异步方法对所选择的文件或目录URI临时授权，以promise形式返回结果，该接口仅对特定设备开放。
 
 **需要权限**：ohos.permission.SET_SANDBOX_POLICY
 
@@ -144,7 +144,7 @@ async function grantPolicyExample01() {
 
 persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法对所选择的文件或目录URI持久化授权，以promise形式返回结果。
+异步方法对所选择的文件或目录URI持久化授权，以promise形式返回结果，该接口仅对特定设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -213,7 +213,7 @@ async function persistPermissionExample01() {
 
 desistPermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
-异步方法对所选择的文件或目录uri取消持久化授权，以promise形式返回结果。
+异步方法对所选择的文件或目录uri取消持久化授权，以promise形式返回结果，该接口仅对特定设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -282,7 +282,7 @@ async function desistPermissionExample01() {
 
 activateAccessingUri(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法使能某个已经永久授权过的文件或目录，以promise形式返回结果。
+异步方法使能某个已经永久授权过的文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
 
 **系统能力：** SystemCapability.FileManagement.AppFileService
 
@@ -347,7 +347,7 @@ async function activateAccessingUriExample01() {
 
 deactivateAccessingUri(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法取消使能授权过的文件或目录，以promise形式返回结果。
+异步方法取消使能授权过的文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
 
 **系统能力：** SystemCapability.FileManagement.AppFileService
 
