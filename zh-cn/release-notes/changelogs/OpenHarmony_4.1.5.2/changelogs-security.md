@@ -96,6 +96,7 @@ Native接口：
 **变更的接口**
 
 | 接口声明 | 变更前 | 变更后 |
+| ------- | ----- | ------ |
 | attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksReturnResult>) : void | 无权限管控 | 需要ohos.permission.ATTEST_KEY权限 |
 | attestKeyItem(keyAlias: string, options: HuksOptions) : Promise<HuksReturnResult> | 无权限管控 | 需要ohos.permission.ATTEST_KEY权限 |
 | struct OH_Huks_Result OH_Huks_AttestKeyItem(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_CertChain *certChain) | 无权限管控 | 需要ohos.permission.ATTEST_KEY权限 |
@@ -104,6 +105,7 @@ Native接口：
 
 适配方式1：业务切换如下匿名化密钥证明接口，无权限管控
 | 接口声明 |
+| ------- |
 | anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksReturnResult>): void; |
 | anonAttestKeyItem(keyAlias: string, options: HuksOptions): Promise<HuksReturnResult> |
 | struct OH_Huks_Result OH_Huks_AnonAttestKeyItem(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_CertChain *certChain) |
