@@ -23,14 +23,14 @@
 ArkTS接口：
 | 接口声明                                                     | 废弃说明                                                     | 替代接口                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| function getSdkVersion(options: HuksOptions): string; | 该接口为预留接口，实际功能未实现。             | 无 |
-| enum HUKS_AES_KEY_SIZE_512                           | 该接口为预留接口，实际功能未实现。                 | 无          |
+| function getSdkVersion(options: HuksOptions): string; | 该接口为预留接口，实际功能未实现。             | 不涉及 |
+| enum HUKS_AES_KEY_SIZE_512                           | 该接口为预留接口，实际功能未实现。                 | 不涉及          |
 
 Native接口：
 | 接口声明                                                     | 废弃说明                                                     | 替代接口                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| struct OH_Huks_Result OH_Huks_GetSdkVersion(struct OH_Huks_Blob *sdkVersion); | 该接口为预留接口，实际功能未实现。             | 无 |
-| enum OH_HUKS_AES_KEY_SIZE_512                           | 该接口为预留接口，实际功能未实现。                 | 无          |
+| struct OH_Huks_Result OH_Huks_GetSdkVersion(struct OH_Huks_Blob *sdkVersion); | 该接口为预留接口，实际功能未实现。             | 不涉及 |
+| enum OH_HUKS_AES_KEY_SIZE_512                           | 该接口为预留接口，实际功能未实现。                 | 不涉及          |
 
 **适配指导**
 
