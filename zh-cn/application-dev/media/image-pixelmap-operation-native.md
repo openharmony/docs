@@ -21,7 +21,7 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
-        { "createPixelMaptest", nullptr, CreatePixelMaptest, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "createPixelMapTest", nullptr, CreatePixelMapTest, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "createAlphaPixelMap", nullptr, CreateAlphaPixelMap, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "transform", nullptr, Transform, nullptr, nullptr, nullptr, napi_default, nullptr },
     };
@@ -43,13 +43,13 @@ EXTERN_C_END
 
     #include <multimedia/image_framework/image_mdk_common.h>
     #include <multimedia/image_framework/image_pixel_map_mdk.h>
-    #include <memory>
+    #include <stdlib.h>
     
 1. 创建一个 **PixelMap** 对象。
     ```c++
-    napi_value CreatePixelMaptest(napi_env env, napi_callback_info info) {
+    napi_value CreatePixelMapTest(napi_env env, napi_callback_info info) {
         napi_value udfVar = nullptr;
-        napi_value pixelmap = nullptr;
+        napi_value pixelMap = nullptr;
 
         struct OhosPixelMapCreateOps createOps;
         createOps.width = 4;
@@ -63,11 +63,11 @@ EXTERN_C_END
         for (int i = 0; i < 96; i++) {
             *(cc++) = (char)i;
         }
-        int32_t res = OH_PixelMap_CreatePixelMap(env, createOps, (uint8_t *)buff, bufferSize, &pixelmap);
-        if (res != IMAGE_RESULT_SUCCESS || pixelmap == nullptr) {
+        int32_t res = OH_PixelMap_CreatePixelMap(env, createOps, (uint8_t *)buff, bufferSize, &pixelMap);
+        if (res != IMAGE_RESULT_SUCCESS || pixelMap == nullptr) {
             return udfVar;
         }
-        return pixelmap;
+        return pixelMap;
     }
     ```
 2. 根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的 **PixelMap** 对象。
@@ -78,7 +78,7 @@ EXTERN_C_END
         napi_value argValue[1] = {0};
         size_t argCount = 1;
 
-        napi_value alphaPixelmap = nullptr;
+        napi_value alphaPixelMap = nullptr;
 
         napi_get_undefined(env, &udfVar);
 
@@ -86,11 +86,11 @@ EXTERN_C_END
             argValue[0] == nullptr) {
             return udfVar;
         }
-        int32_t res = OH_PixelMap_CreateAlphaPixelMap(env, argValue[0], &alphaPixelmap);
-        if (res != IMAGE_RESULT_SUCCESS || alphaPixelmap == nullptr) {
+        int32_t res = OH_PixelMap_CreateAlphaPixelMap(env, argValue[0], &alphaPixelMap);
+        if (res != IMAGE_RESULT_SUCCESS || alphaPixelMap == nullptr) {
             return udfVar;
         }
-        return alphaPixelmap;
+        return alphaPixelMap;
     }
     ```
 3. 对 **PixelMap** 数据进行处理。
@@ -114,8 +114,8 @@ EXTERN_C_END
         }
 
         // 获取图片信息。
-        struct OhosPixelMapInfos pixelmapInfo;
-        OH_PixelMap_GetImageInfo(native, &pixelmapInfo);
+        struct OhosPixelMapInfos pixelMapInfo;
+        OH_PixelMap_GetImageInfo(native, &pixelMapInfo);
 
         // 获取PixelMap对象每行字节数。
         int32_t rowBytes;
@@ -200,7 +200,7 @@ EXTERN_C_END
     ```js
     import image from '@ohos.multimedia.image'
 
-    export const createPixelMaptest: () => image.PixelMap;
+    export const createPixelMapTest: () => image.PixelMap;
     export const transform: (a: image.PixelMap) => image.PixelMap;
     ```
     
@@ -223,7 +223,7 @@ EXTERN_C_END
                 .height(100)
                 .onClick(() => {
                     console.log("com.example.native_ndk_api10 button click in");
-                    this._pixelMap = testNapi.createPixelMaptest();
+                    this._pixelMap = testNapi.createPixelMapTest();
                     testNapi.transform(this._pixelMap);
                 })
                 Image(this._pixelMap)

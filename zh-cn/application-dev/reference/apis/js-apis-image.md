@@ -1968,7 +1968,7 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 | 62980096| If the operation failed              |
 | 62980103| If the image data unsupport             |
 | 62980110| If the image source data error              |
-| 62980111| If the image source data is incomplete            |
+| 62980111| If the image source data incomplete            |
 | 62980118| If the image plugin create failed             |
 
 **示例：**
