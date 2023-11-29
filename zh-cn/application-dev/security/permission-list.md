@@ -52,6 +52,18 @@
 
 **起始版本**：10
 
+## ohos.permission.GET_BLUETOOTH_LOCAL_MAC
+
+允许应用获取本机的蓝牙MAC地址。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.INTERNET
 
 允许使用Internet网络。
