@@ -2093,6 +2093,10 @@ setPointerColor(color: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置鼠标光标颜色，使用AsyncCallback异步方式返回结果。
 
+**说明**
+>
+> 设置和调试时，需连接外部设备，如鼠标、蓝牙等。
+
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
 **系统API**: 此接口为系统接口。
@@ -2125,6 +2129,10 @@ try {
 setPointerColor(color: number): Promise&lt;void&gt;
 
 设置鼠标光标颜色，使用Promise异步方式返回结果。
+
+**说明**
+>
+> 设置和调试时，需连接外部设备，如鼠标、蓝牙等。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -2159,6 +2167,10 @@ try {
 setPointerColorSync(color: number): void
 
 使用同步方式设置鼠标光标颜色。
+
+**说明**
+>
+> 设置和调试时，需连接外部设备，如鼠标、蓝牙等。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
