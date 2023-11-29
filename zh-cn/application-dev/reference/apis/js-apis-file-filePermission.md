@@ -118,17 +118,17 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 async function grantPolicyExample01() {
   try {
-    let uri = "file://docs/storage/Users/username/1.txt";//uri为filepicker应用获取的选择路径
+    let uri = "file://docs/storage/Users/username/1.txt";
     let bundleName = 'com.example.myapplication';
     let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
     let applicationInfo = await bundleManager.getApplicationInfo(bundleName, appFlags);
-    let tokenId = applicationInfo.accessTokenId;//tokenId为拉起filepicker应用的tokenid
+    let tokenId = applicationInfo.accessTokenId;
     let policyInfo: filePermission.PolicyInfo = {
       uri: uri, 
       operateMode: filePermission.OperateMode.READ_MODE,
     };
-    let policies: Array<filepermission.PolicyInfo> = [policyInfo];
-    filePermission.grantPolicy(tokenId, policies, filePermission.PolicyFlag.ALLOWED_PERSIST).then(() => {
+    let policies: Array<filePermission.PolicyInfo> = [policyInfo];
+    filePermission.grantPolicy(tokenId, policies, filePermission.PolicyFlag.ALLOW_PERSISTENCE).then(() => {
       console.info("grantPolicy successfully");
     }).catch((err: BusinessError) => {
       console.info("grantPolicy failed with error message: " + err.message + ", error code: " + err.code);
@@ -188,7 +188,7 @@ async function persistPermissionExample01() {
     let documentPicker = new picker.DocumentViewPicker();
     let uris = await documentPicker.select(DocumentSelectOptions);
     let policyInfo: filePermission.PolicyInfo = {
-      uri: uri, 
+      uri: uris[0], 
       operateMode: filePermission.OperateMode.READ_MODE,
     };
     let policies: Array<filePermission.PolicyInfo> = [policyInfo];
@@ -257,7 +257,7 @@ async function desistPersistedPermissionExample01() {
     let documentPicker = new picker.DocumentViewPicker();
     let uris = await documentPicker.select(DocumentSelectOptions);
     let policyInfo: filePermission.PolicyInfo = {
-      uri: uri,
+      uri: uris[0], 
       operateMode: filePermission.OperateMode.READ_MODE,
     };
     let policies: Array<filePermission.PolicyInfo> = [policyInfo];

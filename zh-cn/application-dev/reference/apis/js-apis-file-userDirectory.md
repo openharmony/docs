@@ -46,12 +46,12 @@ getUserDownloadDir(): string;
 ```ts
 import { BusinessError } from '@ohos.base';
 try {
-    let path = userDirectory.getUserDownloadDir();
-    console.log(`success to getUserDownloadDir: ${JSON.stringify(colors)}`);
+  let path = userDirectory.getUserDownloadDir();
+  console.log(`success to getUserDownloadDir: ${JSON.stringify(path)}`);
 } catch (error) {
-    console.error(`failed to getUserDownloadDir because: ${JSON.stringify(error)}`);
+  console.error(`failed to getUserDownloadDir because: ${JSON.stringify(error)}`);
 }
-  ```
+```
 
 ## userDirectory.getUserDesktopDir<sup>11+</sup>
 
@@ -87,12 +87,12 @@ getUserDesktopDir(): string;
 ```ts
 import { BusinessError } from '@ohos.base';
 try {
-    let path = userDirectory.getUserDesktopDir();
-    console.log(`success to getUserDesktopDir: ${JSON.stringify(colors)}`);
+  let path = userDirectory.getUserDesktopDir();
+  console.log(`success to getUserDesktopDir: ${JSON.stringify(path)}`);
 } catch (error) {
-    console.error(`failed to getUserDesktopDir because: ${JSON.stringify(error)}`);
+  console.error(`failed to getUserDesktopDir because: ${JSON.stringify(error)}`);
 }
-  ```
+```
 
 ## userDirectory.getUserDocumentsDir<sup>11+</sup>
 
@@ -128,12 +128,12 @@ getUserDocumentsDir(): string;
 ```ts
 import { BusinessError } from '@ohos.base';
 try {
-    let path = userDirectory.getUserDocumentsDir();
-    console.log(`success to getUserDocumentsDir: ${JSON.stringify(colors)}`);
+  let path = userDirectory.getUserDocumentsDir();
+  console.log(`success to getUserDocumentsDir: ${JSON.stringify(path)}`);
 } catch (error) {
-    console.error(`failed to getUserDocumentsDir because: ${JSON.stringify(error)}`);
+  console.error(`failed to getUserDocumentsDir because: ${JSON.stringify(error)}`);
 }
-  ```
+```
 
 ## userDirectory.getUserHomeDir<sup>11+</sup>
 
@@ -166,15 +166,15 @@ getUserHomeDir(): string;
 
 **示例：**
 
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  try {
-    let path = userDirectory.getUserHomeDir();
-    console.log(`success to getUserHomeDir: ${JSON.stringify(path)}`);
+```ts
+import { BusinessError } from '@ohos.base';
+try {
+  let path = userDirectory.getUserHomeDir();
+  console.log(`success to getUserHomeDir: ${JSON.stringify(path)}`);
 } catch (error) {
-    console.error(`failed to getUserHomeDir because: ${JSON.stringify(error)}`);
+  console.error(`failed to getUserHomeDir because: ${JSON.stringify(error)}`);
 }
-  ```
+```
 
 ## userDirectory.getExternalUsbDir<sup>11+</sup>
 
@@ -207,15 +207,15 @@ getExternalUsbDir(): string;
 
 **示例：**
 
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  try {
-    let path = userDirectory.getExternalUsbDir();
-    console.log(`success to getExternalUsbDir: ${JSON.stringify(path)}`);
+```ts
+import { BusinessError } from '@ohos.base';
+try {
+  let path = userDirectory.getExternalUsbDir();
+  console.log(`success to getExternalUsbDir: ${JSON.stringify(path)}`);
 } catch (error) {
-    console.error(`failed to getExternalUsbDir because: ${JSON.stringify(error)}`);
+  console.error(`failed to getExternalUsbDir because: ${JSON.stringify(error)}`);
 }
-  ```
+```
 
 ## userDirectory.getUserShareDir<sup>11+</sup>
 
@@ -248,12 +248,12 @@ getUserShareDir(): string;
 
 **示例：**
 
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  try {
-    let path = userDirectory.getUserShareDir();
-    console.log(`success to getUserShareDir: ${JSON.stringify(path)}`);
+```ts
+import { BusinessError } from '@ohos.base';
+try {
+  let path = userDirectory.getUserShareDir();
+  console.log(`success to getUserShareDir: ${JSON.stringify(path)}`);
 } catch (error) {
-    console.error(`failed to getUserShareDir because: ${JSON.stringify(error)}`);
+  console.error(`failed to getUserShareDir because: ${JSON.stringify(error)}`);
 }
-  ```
+```
