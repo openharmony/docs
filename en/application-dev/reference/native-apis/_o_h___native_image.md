@@ -5,7 +5,7 @@
 
 The **OH_NativeImage** module provides the capabilities of **NativeImage**. Functioning as a data consumer, it is used to associate data with the OpenGL texture. It is used in the OpenGL environment.
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **Since**
 
@@ -85,7 +85,7 @@ OHNativeWindow* OH_NativeImage_AcquireNativeWindow (OH_NativeImage * image)
 
 Obtains an **OHNativeWindow** instance associated with an **OH_NativeImage** instance. You need to call **OH_NativeWindow_DestroyNativeWindow** to release the **OHNativeWindow** instance when it is no longer required. 
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **Parameters**
 
@@ -111,7 +111,7 @@ Attaches an **OH_NativeImage** instance to the current OpenGL ES context.
 
 The OpenGL ES texture will be bound to an **GL_TEXTURE_EXTERNAL_OES** instance and updated through the **OH_NativeImage** instance.
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **Parameters**
 
@@ -136,7 +136,7 @@ OH_NativeImage* OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarge
 
 Creates an **OH_NativeImage** instance to be associated with the OpenGL ES texture ID and target.
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **Parameters**
 
@@ -161,7 +161,7 @@ void OH_NativeImage_Destroy (OH_NativeImage ** image)
 
 Destroys an **OH_NativeImage** instance created by calling **OH_NativeImage_Create**. After the instance is destroyed, the pointer to the **OH_NativeImage** instance is assigned **NULL**.
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **Parameters**
 
@@ -181,7 +181,7 @@ int32_t OH_NativeImage_DetachContext (OH_NativeImage * image)
 
 Detaches an **OH_NativeImage** instance from the current OpenGL ES context.
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **Parameters**
 
@@ -205,7 +205,7 @@ int64_t OH_NativeImage_GetTimestamp (OH_NativeImage * image)
 
 Obtains the timestamp of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function.
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **Parameters**
 
@@ -229,7 +229,7 @@ int32_t OH_NativeImage_GetTransformMatrix (OH_NativeImage * image, float matrix[
 
 Obtains the transform matrix of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function.
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **Parameters**
 
@@ -254,7 +254,7 @@ int32_t OH_NativeImage_UpdateSurfaceImage (OH_NativeImage * image)
 
 Updates the OpenGL ES texture associated with the latest frame through an **OH_NativeImage** instance.
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **Parameters**
 
