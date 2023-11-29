@@ -22,7 +22,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
   ```
   artifactType字段有以下两种取值，默认缺省为original。
   - original：不混淆。
-  - obfuscation：混淆，目前仅支持uglify混淆。
+  - obfuscation：混淆。
 
 - 在API10中，HAR模块默认开启混淆能力，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行设置，配置如下所示：
 
