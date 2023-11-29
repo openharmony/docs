@@ -610,7 +610,7 @@ adminManager.isSuperAdmin(bundleName).then((result) => {
 
 ## adminManager.setEnterpriseInfo
 
-setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback\<void>;): void
+setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback\<void>): void
 
 设置指定的设备管理应用的企业信息。使用callback异步回调。
 
@@ -628,7 +628,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 | -------------- | ----------------------------------- | ---- | ---------------------- |
 | admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。                |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理应用的企业信息。           |
-| callback       | AsyncCallback\<void>;               | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
+| callback       | AsyncCallback\<void>              | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
@@ -662,7 +662,7 @@ adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, (err) => {
 
 ## adminManager.setEnterpriseInfo
 
-setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
+setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>
 
 设置指定的设备管理应用的企业信息。使用promise异步回调。
 

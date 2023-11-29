@@ -18,7 +18,7 @@ import applicationManager from '@ohos.enterprise.applicationManager';
 
 ## applicationManager.addDisallowedRunningBundles
 
-addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
+addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
 指定设备管理应用添加应用至应用运行黑名单，添加至黑名单的应用不允许在当前用户下运行，否则允许运行。使用callback异步回调。
 
@@ -67,7 +67,7 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, (err) => {
 
 ## applicationManager.addDisallowedRunningBundles
 
-addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
+addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
 指定设备管理应用添加应用至应用运行黑名单，添加至黑名单的应用不允许在指定用户（通过userId指定）下运行，否则允许运行。使用callback异步回调。
 
@@ -116,7 +116,7 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100, (err) => {
 
 ## applicationManager.addDisallowedRunningBundles
 
-addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
+addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
 指定设备管理应用添加应用至应用运行黑名单，添加至黑名单的应用不允许在当前/指定用户下运行。使用promise异步回调。
 
@@ -169,7 +169,7 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100).then(() =>
 
 ## applicationManager.removeDisallowedRunningBundles
 
-removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
+removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
 指定设备管理应用在应用运行黑名单中移除应用，在黑名单存在的情况下，在应用运行黑名单中的应用不允许在当前用户下运行。使用callback异步回调。
 
@@ -217,7 +217,7 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, (err) => {
 
 ## applicationManager.removeDisallowedRunningBundles
 
-removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
+removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
 指定设备管理应用在应用运行黑名单中移除应用，在黑名单存在的情况下，在应用运行黑名单中的应用不允许在指定用户（通过userId指定）下运行。使用callback异步回调。
 
@@ -266,7 +266,7 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100, (err) =
 
 ## applicationManager.removeDisallowedRunningBundles
 
-removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
+removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
 指定当前/指定用户下的设备管理应用在应用运行黑名单中移除应用，使用promise异步回调。
 
@@ -319,7 +319,7 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100).then(()
 
 ## applicationManager.getDisallowedRunningBundles
 
-getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
+getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 指定设备管理应用获取当前用户下的应用运行黑名单。使用callback异步回调。
 
@@ -365,7 +365,7 @@ applicationManager.getDisallowedRunningBundles(wantTemp, (err, result) => {
 
 ## applicationManager.getDisallowedRunningBundles
 
-getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
+getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 指定设备管理应用获取指定用户（通过userId指定）下的应用运行黑名单。使用callback异步回调。
 
@@ -412,7 +412,7 @@ applicationManager.getDisallowedRunningBundles(wantTemp, 100, (err, result) => {
 
 ## applicationManager.getDisallowedRunningBundles
 
-getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;;
+getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;
 
 指定设备管理应用获取当前/指定用户下的应用运行黑名单，使用promise异步回调。
 
