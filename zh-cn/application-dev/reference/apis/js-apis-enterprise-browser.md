@@ -18,7 +18,7 @@ import browser from '@ohos.enterprise.browser';
 
 ## browser.setPolicies
 
-setPolicies(admin: Want, appId: string, policies: string, callback: AsyncCallback&lt;void&gt;): void;
+setPolicies(admin: Want, appId: string, policies: string, callback: AsyncCallback&lt;void&gt;): void
 
 指定设备管理应用为指定的浏览器设置浏览策略，使用callback异步回调。
 
@@ -67,7 +67,7 @@ browser.setPolicies(wantTemp, appId, policies, (err) => {
 
 ## browser.setPolicies
 
-setPolicies(admin: Want, appId: string, policies: string): Promise&lt;void&gt;;
+setPolicies(admin: Want, appId: string, policies: string): Promise&lt;void&gt;
 
 指定设备管理应用为指定的浏览器设置浏览策略，使用promise异步回调。
 
@@ -120,7 +120,7 @@ browser.setPolicies(wantTemp, appId, policies).then(() => {
 
 ## browser.getPolicies
 
-getPolicies(admin: Want, appId: string, callback: AsyncCallback&lt;string&gt;): void;
+getPolicies(admin: Want, appId: string, callback: AsyncCallback&lt;string&gt;): void
 
 指定管理员应用获取指定浏览器的策略，使用callback异步回调。
 
@@ -164,7 +164,7 @@ browser.getPolicies(wantTemp, appId, (err, result) => {
 
 ## browser.getPolicies
 
-getPolicies(admin: Want, appId: string): Promise&lt;string&gt;;
+getPolicies(admin: Want, appId: string): Promise&lt;string&gt;
 
 指定管理员应用获取指定浏览器的策略，使用promise异步回调。
 
