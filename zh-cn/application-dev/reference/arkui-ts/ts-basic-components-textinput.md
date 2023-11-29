@@ -57,7 +57,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | passwordRules<sup>11+<sup> | string | 定义生成密码的规则。 |
 | cancelButton<sup>11+</sup> | {<br/>style? : [CancelButtonStyle](ts-basic-components-search.md#cancelbuttonstyle10枚举说明)<br/>icon?: [IconOptions](ts-basic-components-search.md#iconoptions10对象说明) <br/>} | 设置右侧清除按钮样式。<br />默认值：<br />{<br />style：CancelButtonStyle.INPUT<br />} |
 | selectAll<sup>11+</sup> | boolean | 初始状态，是否全选文本。<br />默认值：false |
-| showCounter<sup>11+</sup> | value: boolean, options?: [InputCounterOptions](#inputcounteroptions11对象说明) | 参数value为true时，文本框开启计数下标功能，且在此前提下才能设置options。文本框开启计数下标功能，需要配合maxlength（设置最大字符限制）一起使用，字符计数器显示的效果是当前输入字符数/最大可输入字符数。例如开发者设置最大字符数，options为50，当用户输入字符数达到最大字符限制乘50%时，显示字符计数器。 |
+| showCounter<sup>11+</sup> | value: boolean, options?: [InputCounterOptions](#inputcounteroptions11对象说明) | 参数value为true时，才能设置options，文本框开启计数下标功能，需要配合maxlength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。 |
 |  |  |  |
 >  **说明：**    
 >  [通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }    
@@ -218,7 +218,7 @@ getCaretOffset(): CaretOffset
 
 | 参数名              | 类型   | 描述                                                         |
 | ------------------- | ------ | ------------------------------------------------------------ |
-| thresholdPercentage | number | thresholdPercentage是用户可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。例如设置最大字符数10，thresholdPercentage为50，当输入字符数达到10乘50%时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，如果用户设置的number超出有效值区间内，不显示字符计数器。 |
+| thresholdPercentage | number | thresholdPercentage是可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，如果用户设置的number超出有效值区间内，不显示字符计数器。 |
 
 ## 示例
 
