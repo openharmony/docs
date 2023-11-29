@@ -1,10 +1,6 @@
 # @ohos.PiPWindow (画中画窗口)
 
-支持应用在视频播放、视频通话或视频会议场景下，以小窗（画中画）模式呈现内容。该模块提供画中画基础功能，包括判断当前系统是否开启画中画功能，以及创建画中画控制器用于启动、停止画中画等。
-
-该模块提供以下常用功能：
-
-- [PiPController](#pipcontroller)：画中画控制器。控制画中画启动、停止、状态或事件回调等。
+该模块提供画中画基础功能，包括判断当前系统是否开启画中画功能，以及创建画中画控制器用于启动、停止画中画等。主要用于视频播放、视频通话或视频会议场景下，以小窗（画中画）模式呈现内容。
 
 > **说明：**
 >
@@ -33,15 +29,13 @@ isPiPEnabled(): boolean
 **示例：**
 
 ```ts
-import pipWindow from '@ohos.PiPWindow';
-
 let enable: boolean = pipWindow.isPiPEnabled();
-console.log("isPipEnabled:" + enable);
+console.info('isPipEnabled:' + enable);
 ```
 
 ## pipWindow.create
 
-create(config: PiPConfiguration, callback: AsyncCallback&lt;[PiPController](#pipcontroller)&gt;): void
+create(config: PiPConfiguration, callback: AsyncCallback&lt;PiPController&gt;): void
 
 创建画中画控制器，使用callback异步回调。
 
@@ -50,8 +44,8 @@ create(config: PiPConfiguration, callback: AsyncCallback&lt;[PiPController](#pip
 **参数：**
 
 | 参数名      | 类型                                                              | 必填   | 说明             |
-|----------|-----------------------------------------------------------------|------|----------------|
-| config   | [PiPConfiguration](#pipconfiguration)                | 是    | 创建窗口时的参数。      |
+|----------|-----------------------------------------------------------------|------|------------- ---|
+| config   | [PiPConfiguration](#pipconfiguration)                | 是    | 创建画中画控制器时的参数。  |
 | callback | AsyncCallback&lt;[PiPController](#pipcontroller)&gt; | 是    | 回调函数。返回画中画控制器。 |
 
 **示例：**
@@ -66,7 +60,7 @@ if (!pipWindow.isPiPEnabled()) {
 let config: pipWindow.PiPConfiguration = {
   context: getContext(this),
   componentController: xComponentController,
-  navigationId: "navigationId",
+  navigationId: 'navigationId',
   templateType: pipWindow.PiPTemplateType.VIDEO_PLAY,
   contentWidth: 800,
   contentHeight: 600,
@@ -75,7 +69,7 @@ try {
   pipWindow.create(config, (err: BusinessError, data) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error(`Failed to create pip controller. Cause: ${err}`);
+      console.error(`Failed to create pip controller. Cause: ${errCode}, message:${err.message}`);
       return;
     }
     pipController = data;
@@ -118,22 +112,19 @@ if (!pipWindow.isPiPEnabled()) {
 let config: pipWindow.PiPConfiguration = {
   context: getContext(this),
   componentController: xComponentController,
-  navigationId: "navigationId",
+  navigationId: 'navigationId',
   templateType: pipWindow.PiPTemplateType.VIDEO_PLAY,
   contentWidth: 800,
   contentHeight: 600,
 };
-try {
-  let promise = pipWindow.create(config);
-  promise.then((data) => {
-    pipController = data;
-    console.info(`Succeeded in creating pip controller. Data: ${data}`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to create pip controller. Cause: ${err}`);
-  });
-} catch (exception) {
-  console.error(`Failed to create pip controller. Cause: ${exception}`);
-}
+
+let promise = pipWindow.create(config);
+promise.then((data) => {
+  pipController = data;
+  console.info(`Succeeded in creating pip controller. Data: ${data}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create pip controller. Cause: ${errCode}, message:${err.message}`);
+});
 ```
 
 ## PiPConfiguration
@@ -142,14 +133,14 @@ try {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称                  | 类型                                                                    | 必填  | 说明                                                         |
-|---------------------|-----------------------------------------------------------------------|-----|------------------------------------------------------------|
-| context             | [BaseContext](js-apis-inner-application-baseContext.md)               | 是   | 表示上下文环境。                                                   |
-| componentController | [XComponentController](../arkui-ts/ts-basic-components-xcomponent.md) | 是   | 表示原始XComponent控制器。                                         |
-| navigationId        | string                                                                | 否   | 当前page导航ID。如果当前页面是通过NavRouter跳转而来，取NavRouter的name属性；否则取空值。 |
-| templateType        | [PiPTemplateType](#piptemplatetype)                                   | 否   | 模板类型，用以区分视频播放、视频通话或视频会议。                                   |
-| contentWidth        | number                                                                | 否   | 原始内容宽度，用于确定画中画窗口比例。                                        |
-| contentHeight       | number                                                                | 否   | 原始内容高度，用于确定画中画窗口比例。                                        |
+| 名称                  | 类型                                                                    | 必填  | 说明                                                                                                                                                                            |
+|---------------------|-----------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| context             | [BaseContext](js-apis-inner-application-baseContext.md)               | 是   | 表示上下文环境。                                                                                                                                                                      |
+| componentController | [XComponentController](../arkui-ts/ts-basic-components-xcomponent.md) | 是   | 表示原始XComponent控制器。                                                                                                                                                            |
+| navigationId        | string                                                                | 否   | 当前page导航ID。如果当前页面是通过[NavRouter](../arkui-ts/ts-basic-components-navrouter.md)跳转而来，取其参数[RouteInfo](../arkui-ts/ts-basic-components-navrouter.md/#routeinfo10对象说明)的name值；否则取空值。 |
+| templateType        | [PiPTemplateType](#piptemplatetype)                                   | 否   | 模板类型，用以区分视频播放、视频通话或视频会议。                                                                                                                                                      |
+| contentWidth        | number                                                                | 否   | 原始内容宽度，单位为px。用于确定画中画窗口比例。                                                                                                                                                      |
+| contentHeight       | number                                                                | 否   | 原始内容高度，单位为px。用于确定画中画窗口比例。                                                                                                                                                      |
 
 ## PiPTemplateType
 
@@ -176,11 +167,11 @@ try {
 | ABOUT_TO_STOP        | 3   | 表示画中画将要停止。            |
 | STOPPED              | 4   | 表示画中画已经停止。            |
 | ABOUT_TO_RESTORE     | 5   | 表示画中画将从小窗播放恢复到原始播放界面。 |
-| ERROR                | 6   | 表示画中画生命周期执行过程出现异常。    |
+| ERROR                | 6   | 表示画中画生命周期执行过程出现了异常。   |
 
 ## PiPActionEventType
 
-画中画窗口控制事件类型，支持以下三种。
+画中画控制事件类型，支持以下三种。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -196,9 +187,9 @@ try {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称                     | 类型       | 说明                                                                                                 |
-|------------------------|----------|----------------------------------------------------------------------------------------------------|
-| PiPVideoActionEvent    | string   | 有以下取值：<br/>-'playbackStateChanged'：播放状态变化，如播放、暂停。<br>-'nextVideo'：播放下一个视频。<br>-'previousVideo'：播放上一个视频。 |
+| 名称                     | 类型       | 说明                                                                                                  |
+|------------------------|----------|-----------------------------------------------------------------------------------------------------|
+| PiPVideoActionEvent    | string   | 有以下取值：<br/>-'playbackStateChanged'：播放状态发生了变化。<br>-'nextVideo'：播放下一个视频。<br>-'previousVideo'：播放上一个视频。 |
 
 ## PiPCallActionEvent
 
@@ -208,7 +199,7 @@ try {
 
 | 名称                     | 类型     | 说明                  |
 |------------------------|--------|---------------------|
-| PiPCallActionEvent     | string | 值为 'hangUp'：挂断视频通话。 |
+| PiPCallActionEvent     | string | 值为'hangUp'：挂断视频通话。 |
 
 ## PiPMeetingActionEvent
 
@@ -218,13 +209,13 @@ try {
 
 | 名称                         | 类型         | 说明                  |
 |----------------------------|------------|---------------------|
-| PiPMeetingActionEvent      | string     | 值为 'hangUp'：挂断视频会议。 |
+| PiPMeetingActionEvent      | string     | 值为'hangUp'：挂断视频会议。 |
 
 ## PiPController
 
 画中画控制器实例。用于启动、停止画中画以及更新回调注册等。
 
-下列API示例中都需先使用[pipWindow.create(config: PiPConfiguration, callback: AsyncCallback<PiPController>)](#pipwindowcreate)或[pipWindow.create(config: PiPConfiguration)](#pipwindowcreate-1)方法获取到PiPController实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[pipWindow.create()](#pipwindowcreate)方法获取到PiPController实例，再通过此实例调用对应方法。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -256,18 +247,14 @@ startPiP(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-try {
-  let promise = pipController.startPiP((err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Succeeded in starting pip. Cause: ${err}`);
-      return;
-    }
-    console.info('Failed to start pip.');
-  });
-} catch (exception) {
-  console.error(`Failed to start pip: ${exception}`);
-}
+let promise = pipController.startPiP((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Succeeded in starting pip. Cause: ${errCode}, message:${err.message}`);
+    return;
+  }
+  console.info('Failed to start pip.');
+});
 ```
 
 ### startPiP
@@ -298,16 +285,12 @@ startPiP(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-try {
-  let promise = pipController.startPiP();
-  promise.then((data) => {
-    console.info(`Succeeded in starting pip. Data: ${data}`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to start pip. Cause: ${err}`);
-  });
-} catch (exception) {
-  console.error(`Failed to start pip. Cause: ${exception}`);
-}
+let promise = pipController.startPiP();
+promise.then((data) => {
+  console.info(`Succeeded in starting pip. Data: ${data}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to start pip. Cause: ${errCode}, message:${err.message}`);
+});
 ```
 
 ### stopPiP
@@ -341,7 +324,7 @@ try {
   let promise = pipController.stopPiP((err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error(`Succeeded in stopping pip. Cause: ${err}`);
+      console.error(`Succeeded in stopping pip. Cause: ${errCode}, message:${err.message}`);
       return;
     }
     console.info('Failed to stop pip.');
@@ -378,16 +361,12 @@ stopPiP(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-try {
-  let promise = pipController.stopPiP();
-  promise.then((data) => {
-    console.info(`Succeeded in stopping pip. Data: ${data}`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to stop pip. Cause: ${err}`);
-  });
-} catch (exception) {
-  console.error(`Failed to stop pip. Cause: ${exception}`);
-}
+let promise = pipController.stopPiP();
+promise.then((data) => {
+  console.info(`Succeeded in stopping pip. Data: ${data}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to stop pip. Cause: ${errCode}, message:${err.message}`);
+});
 ```
 
 ### setAutoStartEnabled
@@ -400,11 +379,12 @@ setAutoStartEnabled(enable: boolean): void
 
 **参数：**
 
-| 参数名      | 类型        | 必填    | 说明                      |
-|----------|-----------|-------|-------------------------|
-| enable   | boolean   | 是     | true表示设置为自动拉起，否则为false。 |
+| 参数名      | 类型        | 必填    | 说明                              |
+|----------|-----------|-------|---------------------------------|
+| enable   | boolean   | 是     | true表示设置返回桌面时自动启动画中画，否则为false。  |
 
 ```ts
+let enable: boolean = true;
 pipController.setAutoStartEnabled(enable);
 ```
 
@@ -418,12 +398,14 @@ updateContentSize(width: number, height: number): void
 
 **参数：**
 
-| 参数名    | 类型     | 必填  | 说明                    |
-|--------|--------|-----|-----------------------|
-| width  | number | 是   | 表示媒体内容宽度，用于更新画中画窗口比例。 |
-| height | number | 是   | 表示媒体内容高度，用于更新画中画窗口比例。 |
+| 参数名    | 类型     | 必填  | 说明                           |
+|--------|--------|-----|------------------------------|
+| width  | number | 是   | 表示媒体内容宽度，单位为px。用于更新画中画窗口比例。   |
+| height | number | 是   | 表示媒体内容高度，单位为px。用于更新画中画窗口比例。   |
 
 ```ts
+let width: number = 540;
+let height: number = 960;
 pipController.updateContentSize(width, height);
 ```
 
@@ -437,37 +419,37 @@ on(type: 'stateChange', callback: (state: PiPState, reason: string) => void): vo
 
 **参数：**
 
-| 参数名        | 类型        | 必填   | 说明                                                                                                             |
-|------------|-----------|------|----------------------------------------------------------------------------------------------------------------|
-| type       | string    | 是    | 监听事件，固定为'stateChange'，即画中画生命周期状态变化事件。                                                                          |
-| callback   | function  | 是    | 回调生命周期状态变化事件以及原因:<br/>state: [PiPState](#pipstate)，表示当前画中画生命周期状态；<br/>reason: string，表示当前生命周期的切换原因。 |
+| 参数名        | 类型        | 必填   | 说明                                                                                                |
+|------------|-----------|------|---------------------------------------------------------------------------------------------------|
+| type       | string    | 是    | 监听事件，固定为'stateChange'，即画中画生命周期状态变化事件。                                                             |
+| callback   | function  | 是    | 回调生命周期状态变化事件以及原因：<br/>state：[PiPState](#pipstate)，表示当前画中画生命周期状态；<br/>reason：string，表示当前生命周期的切换原因。 |
 
 ```ts
-pipController.on("stateChange", (state: pipWindow.PiPState, reason: string) => {
-  let curState: string = "";
+pipController.on('stateChange', (state: pipWindow.PiPState, reason: string) => {
+  let curState: string = '';
   switch (state) {
     case pipWindow.PiPState.ABOUT_TO_START:
-      curState = "ABOUT_TO_START";
+      curState = 'ABOUT_TO_START';
       break;
-    case pipWindow.PiPState.ABOUT_TO_START:
-      curState = "ABOUT_TO_START";
+    case pipWindow.PiPState.STARTED:
+      curState = 'STARTED';
       break;
-    case pipWindow.PiPState.ABOUT_TO_START:
-      curState = "ABOUT_TO_START";
+    case pipWindow.PiPState.ABOUT_TO_STOP:
+      curState = 'ABOUT_TO_STOP';
       break;
-    case pipWindow.PiPState.ABOUT_TO_START:
-      curState = "ABOUT_TO_START";
+    case pipWindow.PiPState.STOPPED:
+      curState = 'STOPPED';
       break;
-    case pipWindow.PiPState.ABOUT_TO_START:
-      curState = "ABOUT_TO_START";
+    case pipWindow.PiPState.ABOUT_TO_RESTORE:
+      curState = 'ABOUT_TO_RESTORE';
       break;
-    case pipWindow.PiPState.ABOUT_TO_START:
-      curState = "ABOUT_TO_START";
+    case pipWindow.PiPState.ERROR:
+      curState = 'ERROR';
       break;
     default:
       break;
   }
-  console.log("stateChange:" + curState + " reason:" + reason);
+  console.info('stateChange:' + curState + ' reason:' + reason);
 });
 ```
 
@@ -481,14 +463,14 @@ off(type: 'stateChange'): void
 
 **参数：**
 
-| 参数名       | 类型            | 必填    | 说明                                           |
-|-----------|---------------|-------|----------------------------------------------|
-| type      | string        | 是     | 监听事件，固定为'windowSizeChange'，即画中画生命周期状态变化事件。   |
+| 参数名       | 类型            | 必填    | 说明                                     |
+|-----------|---------------|-------|----------------------------------------|
+| type      | string        | 是     | 监听事件，固定为'stateChange'，即画中画生命周期状态变化事件。  |
 
 **示例：**
 
 ```ts
-pipController.off("stateChange");
+pipController.off('stateChange');
 ```
 
 ### on('controlPanelActionEvent')
@@ -507,21 +489,21 @@ on(type: 'controlPanelActionEvent', callback: (event: PiPActionEventType) => voi
 | callback | function   | 是     | 回调画中画控制事件:<br/>event: [PiPActionEventType](#pipactioneventtype)，表示控制事件类型。应用依据控制事件做相应处理，如收到'playbackStateChanged'时，需要开始/停止媒体流。 |
 
 ```ts
-pipController.on("controlPanelActionEvent", (event: pipWindow.PiPActionEventType) => {
+pipController.on('controlPanelActionEvent', (event: pipWindow.PiPActionEventType) => {
   switch (event) {
-    case "playbackStateChanged":
-    // start or stop video
+    case 'playbackStateChanged':
+      // start or stop video
       break;
-    case "nextVideo":
-    // next video, change video source here
+    case 'nextVideo':
+      // next video, change video source here
       break;
-    case "previousVideo":
-    // previousVideo, change video source here
+    case 'previousVideo':
+      // previousVideo, change video source here
       break;
     default:
       break;
   }
-  console.log("registerActionEventCallback, event:" + event);
+  console.info('registerActionEventCallback, event:' + event);
 });
 ```
 
@@ -542,5 +524,5 @@ off(type: 'controlPanelActionEvent'): void
 **示例：**
 
 ```ts
-pipController.off("controlPanelActionEvent");
+pipController.off('controlPanelActionEvent');
 ```
