@@ -312,7 +312,7 @@ try {
 
 getUserHomeDir(): string
 
-获取当前用户根目录的沙箱路径，该接口仅对特定设备开放。
+获取当前用户下应用沙箱路径的内卡目录，该接口仅对特定设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
