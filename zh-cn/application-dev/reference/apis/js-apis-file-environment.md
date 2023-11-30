@@ -152,3 +152,193 @@ getUserDataDir(callback:AsyncCallback&lt;string&gt;): void
     }
   });
   ```
+
+## environment.getUserDownloadDir<sup>11+</sup>
+
+getUserDownloadDir(): string
+
+以同步方法获取当前用户预授权下载目录的沙箱路径，该接口仅对特定设备开放。
+
+**需要权限**：ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
+
+**系统能力**：SystemCapability.FileManagement.AppFileService
+
+**返回值：**
+
+| 类型                  | 说明                 |
+| --------------------- |--------------------|
+| string | 返回当前用户预授权下载目录的沙箱路径 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息       |
+|----------| --------- |
+| 201      | Permission denied. |
+| 801      | Capability not supported |
+| 13900042 | Unknown error |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+try {
+  let path = environment.getUserDownloadDir();
+  console.log(`success to getUserDownloadDir: ${JSON.stringify(path)}`);
+} catch (error) {
+  console.error(`failed to getUserDownloadDir because: ${JSON.stringify(error)}`);
+}
+```
+
+## environment.getUserDesktopDir<sup>11+</sup>
+
+getUserDesktopDir(): string
+
+以同步方法获取当前用户预授权桌面目录的沙箱路径，该接口仅对特定设备开放。
+
+**需要权限**：ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
+
+**系统能力**：SystemCapability.FileManagement.AppFileService
+
+**返回值：**
+
+| 类型                  | 说明                 |
+| --------------------- |--------------------|
+| string | 返回当前用户预授权桌面目录的沙箱路径 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息       |
+|----------| --------- |
+| 201      | Permission denied. |
+| 801      | Capability not supported |
+| 13900042 | Unknown error |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+try {
+  let path = environment.getUserDesktopDir();
+  console.log(`success to getUserDesktopDir: ${JSON.stringify(path)}`);
+} catch (error) {
+  console.error(`failed to getUserDesktopDir because: ${JSON.stringify(error)}`);
+}
+```
+
+## environment.getUserDocumentsDir<sup>11+</sup>
+
+getUserDocumentsDir(): string
+
+以同步方法获取当前用户预授权文档目录的沙箱路径，该接口仅对特定设备开放。
+
+**需要权限**：ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+
+**系统能力**：SystemCapability.FileManagement.AppFileService
+
+**返回值：**
+
+| 类型                  | 说明                 |
+| --------------------- |--------------------|
+| string | 返回当前用户预授权文档目录的沙箱路径 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息       |
+|----------| --------- |
+| 201      | Permission denied. |
+| 801      | Capability not supported |
+| 13900042 | Unknown error |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+try {
+  let path = environment.getUserDocumentsDir();
+  console.log(`success to getUserDocumentsDir: ${JSON.stringify(path)}`);
+} catch (error) {
+  console.error(`failed to getUserDocumentsDir because: ${JSON.stringify(error)}`);
+}
+```
+
+## environment.getUserHomeDir<sup>11+</sup>
+
+getUserHomeDir(): string
+
+以同步方法获取当前用户根目录的沙箱路径，该接口仅对特定设备开放。
+
+**系统能力**：SystemCapability.FileManagement.AppFileService
+
+**系统接口**：此接口为系统接口。
+
+**返回值：**
+
+| 类型                  | 说明               |
+| --------------------- |------------------|
+| string | 返回当前用户根目录的沙箱路径 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息       |
+| ---------------------------- | --------- |
+| 202 | The caller is not a system application |
+| 801 | Capability not supported |
+| 13900042 | Unknown error |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+try {
+  let path = environment.getUserHomeDir();
+  console.log(`success to getUserHomeDir: ${JSON.stringify(path)}`);
+} catch (error) {
+  console.error(`failed to getUserHomeDir because: ${JSON.stringify(error)}`);
+}
+```
+
+## environment.getExternalStorageDir<sup>11+</sup>
+
+getExternalStorageDir(): string
+
+以同步方法获取外卡根目录的沙箱路径，该接口仅对特定设备开放。
+
+**系统能力**：SystemCapability.FileManagement.AppFileService
+
+**系统接口**：此接口为系统接口。
+
+**返回值：**
+
+| 类型                  | 说明               |
+| --------------------- |------------------|
+| string | 返回外卡根目录的沙箱路径 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息       |
+| ---------------------------- | --------- |
+| 202 | The caller is not a system application |
+| 801 | Capability not supported |
+| 13900042 | Unknown error |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+try {
+  let path = environment.getExternalStorageDir();
+  console.log(`success to getExternalStorageDir: ${JSON.stringify(path)}`);
+} catch (error) {
+  console.error(`failed to getExternalStorageDir because: ${JSON.stringify(error)}`);
+}
+```

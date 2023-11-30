@@ -12,6 +12,64 @@
 import fileShare from '@ohos.fileshare';
 ```
 
+## fileShare.OperateMode<sup>11+</sup>
+
+枚举，授予或使能权限的URI访问模式。
+
+**系统能力：** SystemCapability.FileManagement.AppFileService
+
+| 名称  | 值   | 说明  |
+| ----- |-----|-----|
+| READ_MODE  | 0b1 | 读权限 |
+| WRITE_MODE  | 0b10 | 写权限 |
+
+## fileShare.PolicyFlag<sup>11+</sup>
+
+枚举，授予或使能权限的URI策略。
+
+**系统能力：** SystemCapability.FileManagement.AppFileService
+
+| 名称  | 值   | 说明      |
+| ----- |-----|---------|
+| ALLOW_PERSISTENCE  | 0b1 | 允许应用持久化 |
+| FORBID_PERSISTENCE  | 0b10 | 禁止应用持久化 |
+
+## fileShare.PolicyErrorCode<sup>11+</sup>
+
+枚举，授予或使能权限策略失败的URI对应的错误码。
+
+**系统能力：** SystemCapability.FileManagement.AppFileService
+
+| 名称  | 值   | 说明        |
+| ----- |-----|-----------|
+| FORBIDDEN_TO_BE_PERSISTED  | 1   | URI禁止被持久化 |
+| INVALID_MODE  | 2   | 无效的模式     |
+| INVALID_PATH  | 3   | 无效的路径     |
+
+## fileShare.PolicyErrorResult<sup>11+</sup>
+
+**系统能力**：SystemCapability.FileManagement.AppFileService
+
+授予或使能权限失败的URI策略结果，支持persistPermission、desistPermission、activateAccessingUri、deactivateAccessingUri接口抛出错误时使用。
+
+| 名称      | 类型                                  | 说明                |
+|---------|-------------------------------------|-------------------|
+| uri     | string                              | 授予或使能权限失败的URI。         |
+| code    | [PolicyErrorCode](#policyerrorcode) | 授权策略失败的URI对应的错误码。 |
+| message | string                              | 授权策略失败的URI对应的原因。  |
+
+## fileShare.PolicyInfo<sup>11+</sup>
+
+**系统能力**：SystemCapability.FileManagement.AppFileService
+
+需要授予或使能权限URI的策略信息。
+
+| 名称        | 类型       | 必填  | 说明             |
+| ----------- | ---------|-----|----------------|
+| uri | string     | 是   | 需要授予或使能权限的URI。 |
+| operateMode    | number  | 是   | 授予或使能权限的URI访问模式。 |
+
+
 ## fileShare.grantUriPermission
 
 grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags, callback: AsyncCallback&lt;void&gt;): void
@@ -122,3 +180,341 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): P
     console.error("grantUriPermission failed with error:" + JSON.stringify(error));
   }
   ```
+
+## fileShare.grantPolicy<sup>11+</sup>
+
+grantPolicy(tokenId: number, policies: Array&lt;PolicyInfo>, policyFlag: number): Promise&lt;void&gt;
+
+异步方法对所选择的文件或目录URI临时授权，以promise形式返回结果，该接口仅对特定设备开放。
+
+**需要权限**：ohos.permission.SET_SANDBOX_POLICY
+
+**系统能力：** SystemCapability.FileManagement.AppFileService
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名     | 类型                                  | 必填 | 说明                      |
+|---------|-------------------------------------| -------- |-------------------------|
+| tokenId | number                              | 是 | 拉起filePicker应用的tokenId。 |
+| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
+| policyFlag    | number                              | 是 | 授权的URI策略。                |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息                                   |
+|----------|----------------------------------------|
+| 201      | Permission denied.|
+| 202      | The caller is not a system application |
+| 401      | The input parameter is invalid         |
+| 801      | Capability not supported               |
+| 13900001 | Operation not permitted.            |
+| 13900042 | Unknown error                          |
+
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
+import bundleManager from '@ohos.bundle.bundleManager';
+
+async function grantPolicyExample01() {
+  try {
+    let uri = "file://docs/storage/Users/username/1.txt";
+    let bundleName = 'com.example.myapplication';
+    let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
+    let applicationInfo = await bundleManager.getApplicationInfo(bundleName, appFlags);
+    let tokenId = applicationInfo.accessTokenId;
+    let policyInfo: fileShare.PolicyInfo = {
+      uri: uri, 
+      operateMode: fileShare.OperateMode.READ_MODE,
+    };
+    let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+    fileShare.grantPolicy(tokenId, policies, fileShare.PolicyFlag.ALLOW_PERSISTENCE).then(() => {
+      console.info("grantPolicy successfully");
+    }).catch((err: BusinessError) => {
+      console.info("grantPolicy failed with error message: " + err.message + ", error code: " + err.code);
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('grantPolicy failed with err: ' + JSON.stringify(err));
+  }
+}
+```
+
+## fileShare.persistPermission<sup>11+</sup>
+
+persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
+
+异步方法对所选择的文件或目录URI持久化授权，以promise形式返回结果，该接口仅对特定设备开放。
+
+**需要权限**：ohos.permission.FILE_ACCESS_PERSIST
+
+**系统能力：** SystemCapability.FileManagement.AppFileService
+
+**参数：**
+
+| 参数名 | 类型                 | 必填 | 说明                      |
+| -------- |--------------------| -------- |-------------------------|
+| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+如果只有部分URI持久化授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
+
+| 错误码ID    | 错误信息       |
+|----------| --------- |
+| 201      | Permission denied.|
+| 401      | The input parameter is invalid |
+| 801      | Capability not supported |
+| 13900001 | Operation not permitted.            |
+| 13900042 | Unknown error                          |
+
+
+**示例：**
+
+  ```ts
+import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
+
+async function persistPermissionExample01() {
+  try {
+    let DocumentSelectOptions = new picker.DocumentSelectOptions();
+    let documentPicker = new picker.DocumentViewPicker();
+    let uris = await documentPicker.select(DocumentSelectOptions);
+    let policyInfo: fileShare.PolicyInfo = {
+      uri: uris[0], 
+      operateMode: fileShare.OperateMode.READ_MODE,
+    };
+    let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+    fileShare.persistPermission(policies).then(() => {
+      console.info("persistPermission successfully");
+    }).catch((err: BusinessError) => {
+      console.info("persistPermission failed with error message: " + err.message + ", error code: " + err.code);
+      if(err.code == 13900001){
+        console.log("error code : " + JSON.stringify(err.data[0].code));
+        console.log("error uri : " + JSON.stringify(err.data[0].uri));
+        console.log("error reason : " + JSON.stringify(err.data[0].message));
+      }
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('persistPermission failed with err: ' + JSON.stringify(err));
+  }
+}
+  ```
+
+## fileShare.desistPermission<sup>11+</sup>
+
+desistPermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
+
+异步方法对所选择的文件或目录uri取消持久化授权，以promise形式返回结果，该接口仅对特定设备开放。
+
+**需要权限**：ohos.permission.FILE_ACCESS_PERSIST
+
+**系统能力：** SystemCapability.FileManagement.AppFileService
+
+**参数：**
+
+| 参数名 | 类型                 | 必填 | 说明                      |
+| -------- |--------------------| -------- |-------------------------|
+| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+如果只有部分URI持久化授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
+
+| 错误码ID    | 错误信息       |
+|----------| --------- |
+| 201      | Permission denied.|
+| 401      | The input parameter is invalid |
+| 801      | Capability not supported |
+| 13900001 | Operation not permitted.            |
+| 13900042 | Unknown error                          |
+
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
+
+async function desistPermissionExample01() {
+  try {
+    let DocumentSelectOptions = new picker.DocumentSelectOptions();
+    let documentPicker = new picker.DocumentViewPicker();
+    let uris = await documentPicker.select(DocumentSelectOptions);
+    let policyInfo: fileShare.PolicyInfo = {
+      uri: uris[0], 
+      operateMode: fileShare.OperateMode.READ_MODE,
+    };
+    let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+    fileShare.desistPermission(policies).then(() => {
+      console.info("desistPermission successfully");
+    }).catch((err: BusinessError) => {
+      console.info("desistPermission failed with error message: " + err.message + ", error code: " + err.code);
+      if(err.code == 13900001){
+        console.log("error code : " + JSON.stringify(err.data[0].code));
+        console.log("error uri : " + JSON.stringify(err.data[0].uri));
+        console.log("error reason : " + JSON.stringify(err.data[0].message));
+      }
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('desistPermission failed with err: ' + JSON.stringify(err));
+  }
+}
+```
+
+## fileShare.activateAccessingUri<sup>11+</sup>
+
+activateAccessingUri(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
+
+异步方法使能某个已经永久授权过的文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
+
+**系统能力：** SystemCapability.FileManagement.AppFileService
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                      |
+| -------- | -------- | -------- |-------------------------|
+| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+如果只有部分URI持久化授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
+
+| 错误码ID    | 错误信息       |
+|----------| --------- |
+| 201      | Permission denied.|
+| 401      | The input parameter is invalid |
+| 801      | Capability not supported |
+| 13900001 | Operation not permitted.            |
+| 13900042 | Unknown error                          |
+
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
+
+async function activateAccessingUriExample01() {
+  try {
+    let uri = "file://docs/storage/Users/username/tmp.txt";//uri为应用重启后读取的最近使用文件
+    let policyInfo: fileShare.PolicyInfo = {
+      uri: uri,
+      operateMode: fileShare.OperateMode.READ_MODE,
+    };
+    let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+    fileShare.activateAccessingUri(policies).then(() => {
+      console.info("activateAccessingUri successfully");
+    }).catch((err: BusinessError) => {
+      console.info("activateAccessingUri failed with error message: " + err.message + ", error code: " + err.code);
+      if(err.code == 13900001){
+      console.log("error code : " + JSON.stringify(err.data[0].code));
+      console.log("error uri : " + JSON.stringify(err.data[0].uri));
+      console.log("error reason : " + JSON.stringify(err.data[0].message));
+      }
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('activateAccessingUri failed with err: ' + JSON.stringify(err));
+  }
+}
+```
+
+## fileShare.deactivateAccessingUri<sup>11+</sup>
+
+deactivateAccessingUri(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
+
+异步方法取消使能授权过的文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
+
+**系统能力：** SystemCapability.FileManagement.AppFileService
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                      |
+| -------- | -------- | -------- |-------------------------|
+| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+如果只有部分URI持久化授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
+
+| 错误码ID    | 错误信息       |
+|----------| --------- |
+| 201      | Permission denied.|
+| 401      | The input parameter is invalid |
+| 801      | Capability not supported |
+| 13900001 | Operation not permitted.            |
+| 13900042 | Unknown error                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
+
+async function deactivateAccessingUriExample01() {
+  try {
+    let uri = "file://docs/storage/Users/username/tmp.txt";//uri为应用重启后读取的最近使用文件
+    let policyInfo: fileShare.PolicyInfo = {
+      uri: uri,
+      operateMode: fileShare.OperateMode.READ_MODE,
+    };
+    let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+    fileShare.deactivateAccessingUri(policies).then(() => {
+      console.info("deactivateAccessingUri successfully");
+    }).catch((err: BusinessError) => {
+      console.info("deactivateAccessingUri failed with error message: " + err.message + ", error code: " + err.code);
+      if(err.code == 13900001){
+        console.log("error code : " + JSON.stringify(err.data[0].code));
+        console.log("error uri : " + JSON.stringify(err.data[0].uri));
+        console.log("error reason : " + JSON.stringify(err.data[0].message));
+      }
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('deactivateAccessingUri failed with err: ' + JSON.stringify(err));
+  }
+}
+```
