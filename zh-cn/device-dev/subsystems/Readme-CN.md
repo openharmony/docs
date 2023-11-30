@@ -25,7 +25,8 @@
       - [ 常见问题](subsys-build-FAQ.md)
 - [ArkCompiler](subsys-arkcompiler-guide.md)
 - ArkUI
-    - [窗口标题栏定制](subsys-arkui-customize_titlebar.md)
+    - [窗口标题栏定制开发指导（ArkTs）](subsys-arkui-customize-titlebar-arkts.md)
+    - [窗口标题栏定制开发指导（C++）](subsys-arkui-customize-titlebar-c++.md)
 - 小型系统图形图像
     - [小型系统图形图像概述](subsys-graphics-overview.md)
     - [普通组件开发指导](subsys-graphics-common-guide.md)
