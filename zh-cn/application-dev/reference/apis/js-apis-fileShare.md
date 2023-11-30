@@ -396,6 +396,8 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 异步方法使能某个已经永久授权过的文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
 
+**需要权限**：ohos.permission.FILE_ACCESS_PERSIST
+
 **系统能力：** SystemCapability.FileManagement.AppFileService
 
 **参数：**
@@ -460,6 +462,8 @@ async function activatePermissionExample() {
 deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 异步方法取消使能授权过的文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
+
+**需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
 **系统能力：** SystemCapability.FileManagement.AppFileService
 
