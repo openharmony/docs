@@ -138,7 +138,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -203,7 +203,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -475,7 +475,7 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -525,7 +525,7 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -661,7 +661,7 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -715,7 +715,7 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1093,7 +1093,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCall
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1142,7 +1142,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1191,7 +1191,7 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -1243,7 +1243,7 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1293,7 +1293,7 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1337,7 +1337,7 @@ isNotificationEnabled(): Promise\<boolean\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **返回值：**
 
@@ -1377,7 +1377,7 @@ isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1425,7 +1425,7 @@ isNotificationEnabled(userId: number): Promise\<boolean\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1474,7 +1474,7 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1523,7 +1523,7 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1574,7 +1574,7 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1622,7 +1622,7 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1759,7 +1759,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1811,7 +1811,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1867,7 +1867,7 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<Notificat
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1915,7 +1915,7 @@ getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1966,7 +1966,7 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2016,7 +2016,7 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2068,7 +2068,7 @@ getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>)
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2112,7 +2112,7 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **返回值：**
 
@@ -2390,7 +2390,7 @@ removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCall
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2440,7 +2440,7 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2491,7 +2491,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2543,7 +2543,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2597,7 +2597,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2653,7 +2653,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2711,7 +2711,7 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2756,7 +2756,7 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **返回值：**
 
@@ -2798,7 +2798,7 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2847,7 +2847,7 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2898,7 +2898,7 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2942,7 +2942,7 @@ isSupportDoNotDisturbMode(): Promise\<boolean\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **返回值：**
 
@@ -3081,6 +3081,8 @@ requestEnableNotification(callback: AsyncCallback\<void\>): void
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600004  | Notification is not enabled.          |
+| 1600013  | Enable Notification Dialog has been popping already.          |
 
 **示例：**
 
@@ -3094,7 +3096,6 @@ let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
         console.info("requestEnableNotification success");
     }
 };
-
 notificationManager.requestEnableNotification(requestEnableNotificationCallback);
 ```
 
@@ -3121,6 +3122,8 @@ requestEnableNotification(): Promise\<void\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600004  | Notification is not enabled.          |
+| 1600013  | Enable Notification Dialog has been popping already.          |
 
 **示例：**
 
@@ -3160,6 +3163,8 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600004  | Notification is not enabled.          |
+| 1600013  | Enable Notification Dialog has been popping already.          |
 
 **示例：**
 
@@ -3178,12 +3183,10 @@ class MyAbility extends UIAbility {
         console.info("requestEnableNotification success");
       }
     };
-
     notificationManager.requestEnableNotification(this.context, requestEnableNotificationCallback);
   }
 }
 ```
-
 ## notificationManager.requestEnableNotification<sup>10+<sup>
 
 requestEnableNotification(context: UIAbilityContext): Promise\<void\>
@@ -3215,6 +3218,8 @@ requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600004  | Notification is not enabled.          |
+| 1600013  | Enable Notification Dialog has been popping already.          |
 
 **示例：**
 
@@ -3245,7 +3250,7 @@ setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -3293,7 +3298,7 @@ setDistributedEnable(enable: boolean): Promise\<void>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -3419,7 +3424,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -3475,7 +3480,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -3524,7 +3529,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -3575,7 +3580,7 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -3628,7 +3633,7 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -3672,7 +3677,7 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **返回值：**
 
@@ -3713,7 +3718,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -3782,7 +3787,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -3853,7 +3858,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -3907,7 +3912,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -3960,7 +3965,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -4013,7 +4018,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean)
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -4060,7 +4065,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -4111,7 +4116,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -4162,7 +4167,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -4213,7 +4218,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -4265,7 +4270,7 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -4314,7 +4319,7 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -4363,7 +4368,7 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
@@ -4412,7 +4417,7 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
@@ -4557,7 +4562,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 名称  | 类型                                  | 必填 | 说明                   |
 | ----- | ------------------------------------- | ---- | ---------------------- |
@@ -4569,7 +4574,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 | 名称         | 值               | 说明                                       |
 | ------------ | ---------------- | ------------------------------------------ |
@@ -4590,7 +4595,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 | NOTIFICATION_CONTENT_PICTURE      | NOTIFICATION_CONTENT_PICTURE | 图片类型通知。          |
 | NOTIFICATION_CONTENT_CONVERSATION | NOTIFICATION_CONTENT_CONVERSATION | 社交类型通知（暂不支持该类型）。 |
 | NOTIFICATION_CONTENT_MULTILINE    | NOTIFICATION_CONTENT_MULTILINE | 多行文本类型通知。        |
-| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW    | NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW | 实况窗类型通知（仅对系统应用开放）。        |
+| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW<sup>11+</sup>    | NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW | 实况窗类型通知（仅对系统应用开放）。        |
 
 ## SlotLevel
 
@@ -4615,8 +4620,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 | SOCIAL_COMMUNICATION | 1 | 社交类型。 |
 | SERVICE_INFORMATION  | 2 | 服务类型。 |
 | CONTENT_INFORMATION  | 3 | 内容类型。 |
-| LIVE_VIEW            | 4 | 实况窗类型（仅对系统应用开放）。 |
-| CUSTOMER_SERVICE     | 5 | 客户服务类型。该类型用于用户与商家之间的客服消息，需由用户主动发起。  |
+| LIVE_VIEW<sup>11+</sup>            | 4 | 实况窗类型（仅对系统应用开放）。 |
 | OTHER_TYPES          | 0xFFFF | 其他类型。 |
 
 
@@ -4626,7 +4630,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 | 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
@@ -4640,7 +4644,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 | 名称                 | 值  | 说明                  |
 | -------------------- | --- | -------------------- |
@@ -4652,7 +4656,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
@@ -4666,7 +4670,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
@@ -4684,10 +4688,12 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **系统接口**：此接口为系统接口。
 
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
 | 名称    | 类型                                  | 必填 | 说明                   |
 | ------- | ------------------------------------ | ---- | ---------------------- |
 | buttonName    | string                         | 是   | 按钮名称。 |
+
 
 
 ## SystemLiveViewSubscriber<sup>11+</sup>
