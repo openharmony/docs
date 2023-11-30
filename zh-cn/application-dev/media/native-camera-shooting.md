@@ -1,10 +1,10 @@
-# 拍照(Native)
+# 拍照(C/C++)
 
 拍照是相机的最重要功能之一，拍照模块基于相机复杂的逻辑，为了保证用户拍出的照片质量，在中间步骤可以设置分辨率、闪光灯、焦距、照片质量及旋转角度等信息。
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考]。
+详细的API说明请参考[Camera API参考](../reference/native-apis/_o_h___camera.md)。
 
 1. 导入image接口。创建拍照输出流的SurfaceId以及拍照输出的数据，都需要用到系统提供的image接口能力，导入image接口的方法如下。
      
@@ -195,7 +195,7 @@
    ```c++
     Camera_PhotoCaptureSetting* photoSetting = nullptr;
     photoSetting->quality = QUALITY_LEVEL_HIGH; // 设置图片质量高
-    photoSetting->rotation = IAMGE_ROTATION_0; // 设置图片旋转角度0
+    photoSetting->rotation = IMAGE_ROTATION_0; // 设置图片旋转角度0
 
     // 使用当前拍照设置进行拍照
     ret = OH_PhotoOutput_Capture_WithCaptureSetting(photoOutput, photoSetting);

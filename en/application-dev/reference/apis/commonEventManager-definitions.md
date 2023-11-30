@@ -334,9 +334,9 @@ Indicates that the Wi-Fi P2P group information has changed.
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 * COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_NAME_UPDATE
-  (Reserved, not supported yet) Indicates that the friendly name of a remote Bluetooth device is retrieved for the first time or has changed since the last retrieval.
+  Indicates that the friendly name of a remote Bluetooth device is retrieved for the first time or has changed since the last retrieval.
   - Value: **usual.event.bluetooth.remotedevice.NAME_UPDATE**
-  - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
+  - Required subscriber permissions: ohos.permission.ACCESS_BLUETOOTH
 
 * COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE
   (Reserved, not supported yet) Indicates that the connection state with a remote Bluetooth device has changed.
@@ -354,9 +354,9 @@ Indicates that the Wi-Fi P2P group information has changed.
   - Required subscriber permissions: none
 
 * COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_UUID_VALUE
-  (Reserved, not supported yet) Indicates the UUID connection state with a remote Bluetooth device.
+  Indicates the UUID connection state with a remote Bluetooth device.
   - Value: **usual.event.bluetooth.remotedevice.UUID_VALUE**
-  - Required subscriber permissions: ohos.permission.DISCOVER_BLUETOOTH
+  - Required subscriber permissions: ohos.permission.ACCESS_BLUETOOTH
 
 * COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_REQ
   (Reserved, not supported yet) Indicates the pairing request from a remote Bluetooth device.
@@ -404,9 +404,9 @@ Indicates that the Wi-Fi P2P group information has changed.
   - Required subscriber permissions: none
 
 * COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE
-  (Reserved, not supported yet) Indicates that the state of a Bluetooth adapter has changed, for example, Bluetooth has been enabled or disabled.
+  Indicates that the state of a Bluetooth adapter has changed, for example, Bluetooth has been enabled or disabled.
   - Value: **usual.event.bluetooth.host.STATE_UPDATE**
-  - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
+  - Required subscriber permissions: none
 
 * COMMON_EVENT_BLUETOOTH_HOST_REQ_DISCOVERABLE
   (Reserved, not supported yet) Indicates the request for the user to allow Bluetooth device scanning.
@@ -429,19 +429,19 @@ Indicates that the Wi-Fi P2P group information has changed.
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 * COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED
-  (Reserved, not supported yet) Indicates that Bluetooth scanning has been started on the device. 
+  Indicates that Bluetooth scanning has been started on the device. 
   - Value: **usual.event.bluetooth.host.DISCOVERY_STARTED**
-  - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
+  - Required subscriber permissions: ohos.permission.ACCESS_BLUETOOTH
 
 * COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_FINISHED
-  (Reserved, not supported yet) Indicates that Bluetooth scanning is finished on the device.
+  Indicates that Bluetooth scanning is finished on the device.
   - Value: **usual.event.bluetooth.host.DISCOVERY_FINISHED**
-  - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
+  - Required subscriber permissions: ohos.permission.ACCESS_BLUETOOTH
 
 * COMMON_EVENT_BLUETOOTH_HOST_NAME_UPDATE
-  (Reserved, not supported yet) Indicates that the Bluetooth adapter name of the device has changed.
+  Indicates that the Bluetooth adapter name of the device has changed.
   - Value: **usual.event.bluetooth.host.NAME_UPDATE**
-  - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
+  - Required subscriber permissions: ohos.permission.ACCESS_BLUETOOTH
 
 * COMMON_EVENT_BLUETOOTH_A2DPSINK_CONNECT_STATE_UPDATE
   (Reserved, not supported yet) Indicates that the connection state of Bluetooth A2DP Sink has changed.

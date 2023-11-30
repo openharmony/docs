@@ -379,6 +379,13 @@
 | Static   | 目标页面元素的位置保持不变，可以配置透明度动画。目前，只有为重定向到目标页面而配置的静态效果才会生效。 |
 | Exchange | 将源页面元素移动到目标页面元素位置并适当缩放。                  |
 
+## ShadowType<sup>10+<sup>
+
+| 名称       | 描述                                   |
+| -------- | ---------------------------------------- |
+| COLOR    | 颜色。                                    |
+| BLUR     | 模糊。                                    |
+
 ## FontStyle
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -450,6 +457,14 @@
 | ---------- | ------------- |
 | LongPress  | 通过长按触发菜单弹出。   |
 | RightClick | 通过鼠标右键触发菜单弹出。 |
+
+## RichEditorResponseType<sup>11+</sup>
+
+| 名称         | 描述            |
+| ---------- | ------------- |
+| LONG_PRESS  | 通过长按触发菜单弹出。   |
+| RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
+| SELECT | 通过鼠标选中触发菜单弹出。 |
 
 ## HoverEffect<sup>8+</sup>
 
@@ -639,3 +654,21 @@ Nullable\<T> {
 | color        | [Color](ts-appendix-enums.md#color)        |   否   |   背景光源颜色，默认透明色。  |
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。   |
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
+## EllipsisMode<sup>11+</sup>
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+| 名称  | 描述                                   |
+| ----- | -------------------------------------- |
+| START  | 省略行首内容。|
+| CENTER | 省略行中内容。|
+| END | 省略行末内容。|
+
+## ArrowPointPosition<sup>11+</sup>
+
+| 名称            | 描述                                     |
+| ------------- | -------------------------------------- |
+| START | 水平方向：位于父组件最左侧，垂直方向：位于父组件最上侧。 |
+| CENTER | 位于父组件居中位置。 |
+| END | 水平方向：位于父组件最右侧，垂直方向：位于父组件最下侧。 |
+

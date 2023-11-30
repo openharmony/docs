@@ -22,7 +22,7 @@
       - 共享包
         - [共享包概述](quick-start/shared-guide.md)
         - [HAR](quick-start/har-package.md)
-        - [HSP](quick-start/in-app-hsp.md)        
+        - [HSP](quick-start/in-app-hsp.md)
       - 应用程序包快速修复
         - [快速修复概述](quick-start/quickfix-principles.md)
         - [快速修复命令行调试开发指导](quick-start/quickfix-debug.md)
@@ -524,7 +524,7 @@
       - [图片编码](media/image-encoding.md)
       - [图片工具](media/image-tool.md)
   - 安全
-    - 访问控制  
+    - 访问控制
       - [访问控制（权限）开发概述](security/accesstoken-overview.md)
       - [访问控制授权申请指导](security/accesstoken-guidelines.md)
       - [访问控制权限校验指导](security/permission-verify-guidelines.md)
@@ -727,6 +727,8 @@
       - [Vulkan开发指导](napi/vulkan-guidelines.md)
     - 资源管理
       - [Rawfile开发指导](napi/rawfile-guidelines.md)
+    - 资源调度
+      - [FFRT开发指导](napi/ffrt-guidelines.md)
     - AI
       - [使用MindSpore Lite引擎进行模型推理](napi/mindspore-lite-guidelines.md)
       - [使用MindSpore Lite进行离线模型的转换及推理](napi/mindspore-lite-offline-model-guidelines.md)
@@ -737,6 +739,8 @@
       - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
     - 数据管理
       - [RelationalStore开发指导](napi/native-relational-store-guidelines.md)
+    - 包管理
+      - [NativeBundle开发指导](napi/native-bundle-guidelines.md)
   - 性能
     - [性能优化概览](performance/performance-overview.md)
     - ArkTS高性能编程
@@ -753,6 +757,7 @@
       - [精准控制组件的更新范围](performance/precisely-control-render-scope.md)
       - [合理使用renderGroup](performance/reasonable-using-renderGroup.md)
       - [减少动画丢帧](performance/reduce-animation-frame-loss.md)
+      - [Grid高性能开发指导](performance/grid_optimization.md)
     - 提升应用启动和响应速度
       - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
       - [提升应用响应速度](performance/improve-application-response.md)
@@ -765,6 +770,7 @@
       - [列表场景性能提升实践](performance/list-perf-improvment.md)
       - [动效能力实践](performance/animation_practice.md)
       - [性能提升的其他方法](performance/arkts-performance-improvement-recommendation.md)
+      - [运行时动态加载页面提升性能](performance/performance-dynamic-import.md)
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
       - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)
@@ -783,7 +789,7 @@
     - [LLDB调试器使用指导](tools/lldb-tool.md)
 - 示例教程
   - [开发案例](https://gitee.com/openharmony/docs/blob/master/zh-cn/third-party-cases/Readme-CN.md)
-  - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
+  - [示例代码](Samples.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
   - [系统能力SystemCapability使用指南](reference/syscap.md)
@@ -1527,7 +1533,7 @@
     - [枚举说明](reference/arkui-ts/ts-appendix-enums.md)
     - [类型定义](reference/arkui-ts/ts-types.md)
     - 已停止维护的组件
-      - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)  
+      - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)
       - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
     - 已停止维护的接口
       - [点击控制](reference/arkui-ts/ts-universal-attributes-click.md)
@@ -1852,6 +1858,7 @@
       - [UsbDdk](reference/native-apis/_usb_ddk.md)
       - [Hitrace](reference/native-apis/_hitrace.md)
       - [Vulkan](reference/native-apis/_vulkan.md)
+      - [Bundle](reference/native-apis/_bundle.md)
     - 头文件
       - [drawing_bitmap.h](reference/native-apis/drawing__bitmap_8h.md)
       - [drawing_brush.h](reference/native-apis/drawing__brush_8h.md)
@@ -1911,6 +1918,7 @@
       - [native_huks_api.h](reference/native-apis/native__huks__api_8h.md)
       - [native_huks_param.h](reference/native-apis/native__huks__param_8h.md)
       - [native_huks_type.h](reference/native-apis/native__huks__type_8h.md)
+      - [native_interface_bundle.h](reference/native-apis/native__interface__bundle.md)
       - [oh_cursor.h](reference/native-apis/oh__cursor_8h.md)
       - [oh_predicates.h](reference/native-apis/oh__predicates_8h.md)
       - [oh_value_object.h](reference/native-apis/oh__value__object_8h.md)
@@ -1925,6 +1933,7 @@
       - [vulkan_ohos.h](reference/native-apis/vulkan__ohos_8h.md)
     - 结构体
       - [OH_Drawing_BitmapFormat](reference/native-apis/_o_h___drawing___bitmap_format.md)
+      - [OH_NativeBundle_ApplicationInfo](reference/native-apis/_o_h___native_bundle_application_info.md)
       - [OH_NativeBuffer_Config](reference/native-apis/_o_h___native_buffer___config.md)
       - [OH_NativeXComponent_Callback](reference/native-apis/_o_h___native_x_component___callback.md)
       - [OH_NativeXComponent_MouseEvent](reference/native-apis/_o_h___native_x_component___mouse_event.md)

@@ -1159,3 +1159,4 @@ Enumerates the system management events that can be subscribed to.
 | MANAGED_EVENT_BUNDLE_REMOVED | 1  | Application uninstalled.|
 | MANAGED_EVENT_APP_START<sup>10+</sup> | 2    | Application started.|
 | MANAGED_EVENT_APP_STOP<sup>10+</sup> | 3  | Application stopped.|
+| MANAGED_EVENT_SYSTEM_UPDATE<sup>11+</sup> | 4   | System updated.|

@@ -497,16 +497,15 @@ class EntryAbility extends UIAbility {
 
 管理关系数据库配置。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
 | 名称        | 类型          | 必填 | 说明                                                      |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
-| name          | string        | 是   | 数据库文件名。                                            |
-| securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别                                        |
-| encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。 |
-| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。 |
-| customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。 |
-| isSearchable<sup>11+</sup> | boolean | 否 | 指定数据库是否支持搜索，true表示支持搜索，false表示不支持搜索，默认不支持搜索。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 11开始，支持此可选参数。 |
+| name          | string        | 是   | 数据库文件名。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core   |
+| securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core|
+| encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| isSearchable<sup>11+</sup> | boolean | 否 | 指定数据库是否支持搜索，true表示支持搜索，false表示不支持搜索，默认不支持搜索。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| autoCleanDirtyData<sup>11+<sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## SecurityLevel
 
@@ -635,6 +634,30 @@ class EntryAbility extends UIAbility {
 | SYNC_MODE_TIME_FIRST<sup>10+</sup>   | -   | 表示数据从修改时间较近的一端同步到修改时间较远的一端。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 | SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | -   | 表示数据从本地设备同步到云端。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
 | SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | -   | 表示数据从云端同步到本地设备。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
+
+## Origin<sup>11+</sup>
+
+表示数据来源。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+| 名称           | 值   | 说明                               |
+| -------------- | ---- | ---------------------------------- |
+| LOCAL       | -   | 表示本地数据。请使用枚举名称而非枚举值。      |
+| CLOUD       | -   | 表示云端同步的数据。请使用枚举名称而非枚举值。     |
+| REMOTE      | -   | 表示端端同步的数据。请使用枚举名称而非枚举值。 |
+
+## Field<sup>11+</sup>
+
+用于谓词查询条件的特殊字段。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+| 名称           | 值   | 说明                               |
+| -------------- | ---- | ---------------------------------- |
+| CURSOR_FIELD        | '#_cursor'     | 用于cursor查找的字段名。|
+| ORIGIN_FIELD        | '#_origin'     | 用于cursor查找时指定数据来源的字段名。    |
+| DELETED_FLAG_FIELD  | '#_deleted_flag' | 用于cursor查找的结果集返回时填充的字段，表示云端删除的数据同步到本地后数据未清理。<br>返回的结果集中，该字段对应的value为false表示数据未清理，true表示数据已清理。|
 
 ## SubscribeType
 
@@ -883,7 +906,7 @@ predicates.inAllDevices();
 equalTo(field: string, value: ValueType): RdbPredicates
 
 
-配置谓词以匹配数据字段为ValueType且值等于指定值的字段。
+配置谓词以匹配数据表的field列中值为value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -913,7 +936,7 @@ predicates.equalTo("NAME", "lisi");
 notEqualTo(field: string, value: ValueType): RdbPredicates
 
 
-配置谓词以匹配数据字段为ValueType且值不等于指定值的字段。
+配置谓词以匹配数据表的field列中值不为value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1041,7 +1064,7 @@ predicates.equalTo("NAME", "Lisa")
 
 contains(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据字段为string且value包含指定值的字段。
+配置谓词以匹配数据表的field列中包含value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1069,7 +1092,7 @@ predicates.contains("NAME", "os");
 
 beginsWith(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据字段为string且值以指定字符串开头的字段。
+配置谓词以匹配数据表的field列中以value开头的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1097,7 +1120,7 @@ predicates.beginsWith("NAME", "os");
 
 endsWith(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据字段为string且值以指定字符串结尾的字段。
+配置谓词以匹配数据表的field列中以value结尾的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1125,7 +1148,7 @@ predicates.endsWith("NAME", "se");
 
 isNull(field: string): RdbPredicates
 
-配置谓词以匹配值为null的字段。
+配置谓词以匹配数据表的field列中值为null的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1152,7 +1175,7 @@ predicates.isNull("NAME");
 
 isNotNull(field: string): RdbPredicates
 
-配置谓词以匹配值不为null的指定字段。
+配置谓词以匹配数据表的field列中值不为null的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1179,7 +1202,7 @@ predicates.isNotNull("NAME");
 
 like(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据字段为string且值类似于指定字符串的字段。
+配置谓词以匹配数据表的field列中值类似于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1207,7 +1230,7 @@ predicates.like("NAME", "%os%");
 
 glob(field: string, value: string): RdbPredicates
 
-配置RdbPredicates匹配数据字段为string的指定字段。
+配置谓词匹配数据字段为string的指定字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1235,7 +1258,7 @@ predicates.glob("NAME", "?h*g");
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-将谓词配置为匹配数据字段为ValueType且value在给定范围内的指定字段。
+配置谓词以匹配数据表的field列中值在给定范围内的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1264,7 +1287,7 @@ predicates.between("AGE", 10, 50);
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-配置RdbPredicates以匹配数据字段为ValueType且value超出给定范围的指定字段。
+配置谓词以匹配数据表的field列中值超出给定范围的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1293,7 +1316,7 @@ predicates.notBetween("AGE", 10, 50);
 
 greaterThan(field: string, value: ValueType): RdbPredicates
 
-配置谓词以匹配数据字段为ValueType且值大于指定值的字段。
+配置谓词以匹配数据表的field列中值大于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1321,7 +1344,7 @@ predicates.greaterThan("AGE", 18);
 
 lessThan(field: string, value: ValueType): RdbPredicates
 
-配置谓词以匹配数据字段为valueType且value小于指定值的字段。
+配置谓词以匹配数据表的field列中值小于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1349,7 +1372,7 @@ predicates.lessThan("AGE", 20);
 
 greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
-配置谓词以匹配数据字段为ValueType且value大于或等于指定值的字段。
+配置谓词以匹配数据表的field列中值大于或者等于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1377,7 +1400,7 @@ predicates.greaterThanOrEqualTo("AGE", 18);
 
 lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
-配置谓词以匹配数据字段为ValueType且value小于或等于指定值的字段。
+配置谓词以匹配数据表的field列中值小于或者等于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1405,7 +1428,7 @@ predicates.lessThanOrEqualTo("AGE", 20);
 
 orderByAsc(field: string): RdbPredicates
 
-配置谓词以匹配其值按升序排序的列。
+配置谓词以匹配数据表的field列中值按升序排序的列。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1432,7 +1455,7 @@ predicates.orderByAsc("NAME");
 
 orderByDesc(field: string): RdbPredicates
 
-配置谓词以匹配其值按降序排序的列。
+配置谓词以匹配数据表的field列中值按降序排序的列。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1507,7 +1530,7 @@ predicates.equalTo("NAME", "Rose").limitAs(3);
 
 offsetAs(rowOffset: number): RdbPredicates
 
-配置RdbPredicates以指定返回结果的起始位置。
+配置谓词以指定返回结果的起始位置。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1534,7 +1557,7 @@ predicates.equalTo("NAME", "Rose").offsetAs(3);
 
 groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
-配置RdbPredicates按指定列分组查询结果。
+配置谓词按指定列分组查询结果。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1561,7 +1584,7 @@ predicates.groupBy(["AGE", "NAME"]);
 
 indexedBy(field: string): RdbPredicates
 
-配置RdbPredicates以指定索引列。
+配置谓词以指定索引列。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1589,7 +1612,7 @@ predicates.indexedBy("SALARY_INDEX");
 
 in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
-配置RdbPredicates以匹配数据字段为ValueType数组且值在给定范围内的指定字段。
+配置谓词以匹配数据表的field列中值在给定范围内的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1617,7 +1640,7 @@ predicates.in("AGE", [18, 20]);
 
 notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
-将RdbPredicates配置为匹配数据字段为ValueType且值超出给定范围的指定字段。
+将谓词配置为匹配数据字段为ValueType且值超出给定范围的指定字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4794,6 +4817,123 @@ emit(event: string): void
 ```ts
 if(store != undefined) {
   (store as relationalStore.RdbStore).emit('storeObserver');
+}
+```
+
+### cleanDirtyData<sup>11+</sup>
+
+cleanDirtyData(table: string, cursor: number, callback: AsyncCallback&lt;void&gt;): void
+
+清理云端删除的数据同步到本地后，未自动清理的，且数据的游标（cursor）小于指定游标的数据。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| table     | string                        | 是   | 表示当前数据库的表的名称。                             |
+| cursor    | number                        | 是   | 整数类型，表示数据游标，小于此游标的脏数据将被清理。     |
+| callback  | AsyncCallback&lt;void&gt;     | 是   | 指定的callback回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+if(store != undefined) {
+ (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100, (err) => {
+    if (err) {
+      console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('clean dirty data succeeded');
+  })
+}
+```
+
+### cleanDirtyData<sup>11+</sup>
+
+cleanDirtyData(table: string, callback: AsyncCallback&lt;void&gt;): void
+
+清理云端删除的数据同步到本地后，未自动清理的所有数据。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| table     | string                        | 是   | 表示当前数据库的表的名称。 |
+| callback  | AsyncCallback&lt;void&gt;     | 是   | 指定的callback回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cleanDirtyData('test_table', (err) => {
+    if (err) {
+      console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('clean dirty data succeeded');
+  })
+}
+```
+
+### cleanDirtyData<sup>11+</sup>
+
+cleanDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
+
+清理云端删除的数据同步到本地后，未自动清理的，且数据的游标（cursor）小于指定游标的数据。若无cursor参数，将全部清理。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| table     | string           | 是   | 表示当前数据库的表的名称。           |
+| cursor    | number           | 否   | 整数类型，表示数据游标，小于此游标的脏数据将被清理。当此参数不填时，清理当前表的所有脏数据。 |
+
+**返回值：**
+| 参数名    | 说明                                               |
+| -------- | ------------------------------------------------- |
+| Promise<void> | 无返回结果的Promise对象。        |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+if(store != undefined) {
+    (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100).then(() => {
+        console.info('clean dirty data  succeeded');
+    }).catch ((err: BusinessError) => {
+        console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
+    })
 }
 ```
 

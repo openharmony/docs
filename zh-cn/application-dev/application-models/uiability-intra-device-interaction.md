@@ -94,7 +94,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    >
    > 调用[`terminateSelf()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法停止当前UIAbility实例时，默认会保留该实例的快照（Snapshot），即在最近任务列表中仍然能查看到该实例对应的任务。如不需要保留该实例的快照，可以在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，将[abilities标签](../quick-start/module-configuration-file.md#abilities标签)的removeMissionAfterTerminate字段配置为true。
 
-4. 如需要关闭应用所有的UIAbility实例，可以调用[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md)的[`killProcessBySelf()`](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses9)方法实现关闭应用所有的进程。
+4. 如需要关闭应用所有的UIAbility实例，可以调用[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md)的[`killProcessBySelf()`](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses)方法实现关闭应用所有的进程。
 
 
 ## 启动应用内的UIAbility并获取返回结果
@@ -232,10 +232,10 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    let context: common.UIAbilityContext = this.context; // UIAbilityContext
    let want: Want = {
      deviceId: '', // deviceId为空表示本设备
-     // uncomment line below if wish to implicitly query only in the specific bundle.
+     // 如果希望隐式仅在特定的捆绑包中进行查询，请取消下面的注释。
      // bundleName: 'com.example.myapplication',
      action: 'ohos.want.action.viewData',
-     // entities can be omitted.
+     // entities可以被省略
      entities: ['entity.system.default'],
    }
 
@@ -397,6 +397,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 1. 在调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，增加[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数。
 2. 在[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数中设置`windowMode`字段为`WINDOW_MODE_FLOATING`，表示启动的UIAbility将以悬浮窗的形式展示。
+3. `windowMode`属性仅适用于系统应用，三方应用可以使用`displayId`属性。
 
 示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
 

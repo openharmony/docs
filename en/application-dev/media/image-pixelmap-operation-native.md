@@ -72,7 +72,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
     ```
 2. Create a **PixelMap** object that contains only alpha channel information.
     ```c++
-    napi_value CreateAlphaPixelMap(napi_env, napi_callback_info info) {
+    napi_value CreateAlphaPixelMap(napi_env env, napi_callback_info info) {
         napi_value udfVar = nullptr;
         napi_value thisVar = nullptr;
         napi_value argValue[1] = {0};
@@ -87,7 +87,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
             return udfVar;
         }
         int32_t res = OH_PixelMap_CreateAlphaPixelMap(env, argValue[0], &alphaPixelmap);
-        if (res != IMAGE_RESULT_SUCCESS || alphaPixelmap == nulllptr) {
+        if (res != IMAGE_RESULT_SUCCESS || alphaPixelmap == nullptr) {
             return udfVar;
         }
         return alphaPixelmap;
@@ -168,7 +168,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
         // flipY: whether to flip the image vertically. The value 1 means to flip the image and 0 means the opposite.
         int32_t flipX = 0;
         int32_t flipY = 1;
-        OH_PixelMap_Flip(native, filpX, filpY);
+        OH_PixelMap_Flip(native, flipX, flipY);
 
         // Crop the image.
         // cropX: x-axis coordinate of the start point for cropping.

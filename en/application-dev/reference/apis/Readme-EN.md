@@ -302,7 +302,7 @@
 
 - File Management
   - [@ohos.application.BackupExtensionAbility (BackupExtensionAbility)](js-apis-application-backupExtensionAbility.md)
-  - [@ohos.file.backup (Backup and Restoration)](js-apis-file-backup.md)
+  - [@ohos.file.backup (Backup and Restore)](js-apis-file-backup.md)
   - [@ohos.file.cloudSync (Device-Cloud Synchronization)](js-apis-file-cloudsync.md)
   - [@ohos.file.cloudSyncManager (Device-Cloud Synchronization Management)](js-apis-file-cloudsyncmanager.md)
   - [@ohos.file.environment (Directory Environment Capability)](js-apis-file-environment.md)
@@ -477,6 +477,7 @@
   - [@ohos.enterprise.networkManager (Network Management)](js-apis-enterprise-networkManager.md)
   - [@ohos.enterprise.restrictions (Restrictions)](js-apis-enterprise-restrictions.md)
   - [@ohos.enterprise.securityManager (Security Management)](js-apis-enterprise-securityManager.md)
+  - [@ohos.enterprise.bluetoothManager (Bluetooth Management)](js-apis-enterprise-bluetoothManager.md)
   - [@ohos.enterprise.systemManager (System Management)](js-apis-enterprise-systemManager.md)
   - [@ohos.enterprise.usbManager (USB Management)](js-apis-enterprise-usbManager.md)
   - [@ohos.enterprise.wifiManager (Wi-Fi Management)](js-apis-enterprise-wifiManager.md)

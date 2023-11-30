@@ -1,4 +1,4 @@
-# 元数据(Native)
+# 元数据(C/C++)
 
 元数据（Metadata）是对相机返回的图像信息数据的描述和上下文，针对图像信息，提供的更详细的数据，如照片或视频中，识别人像的取景框坐标等信息。
 
@@ -6,9 +6,10 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考]。
+详细的API说明请参考[Camera API参考](../reference/native-apis/_o_h___camera.md)。
 
 1. 导入NDK接口，导入方法如下。
+
    ```c++
     // 导入NDK接口头文件 （参考ndk demo：在camera_manager.cpp中调用）
     #include "multimedia/camera_framework/camera.h"

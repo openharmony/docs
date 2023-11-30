@@ -47,7 +47,7 @@ FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.m
 
 setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 
-以异步方法设置数据标签，以promise形式返回结果。
+以异步方法设置数据标签，以Promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -177,7 +177,7 @@ securityLabel.setSecurityLabelSync(filePath, "s0");
 
 getSecurityLabel(path:string):Promise&lt;string&gt;
 
-异步方法获取数据标签，以promise形式返回结果。
+异步方法获取数据标签，以Promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 

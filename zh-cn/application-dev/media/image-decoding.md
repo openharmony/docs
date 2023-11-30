@@ -118,7 +118,7 @@
       ```ts
       const imageSource : image.ImageSource = image.createImageSource(buffer);
       ```
-   - 方法四：通过资源文件的RawFileDescriptor创建ImageSource。缓冲区数组可以通过步骤2的方案四获取。
+   - 方法四：通过资源文件的RawFileDescriptor创建ImageSource。RawFileDescriptor可以通过步骤2的方案四获取。
         
       ```ts
       const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);

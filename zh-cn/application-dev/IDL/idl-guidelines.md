@@ -447,6 +447,320 @@ export default class MySequenceable implements rpc.Sequenceable {
 }
 ```
 
+### C++开发SA步骤（编译期自动生成SA接口模板代码）
+
+#### 创建.idl文件
+
+开发者使用C++编程语言构建.idl文件。
+
+例如，此处构建一个名为IQuickFixManager.idl的文件，文件内具体内容如下：
+
+```
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+sequenceable QuickFixInfo..OHOS.AAFwk.ApplicationQuickFixInfo;
+interface OHOS.AAFwk.IQuickFixManager {
+    void ApplyQuickFix([in] String[] quickFixFiles, [in] boolean isDebug);
+    void GetApplyedQuickFixInfo([in] String bundleName, [out] ApplicationQuickFixInfo quickFixInfo);
+    void RevokeQuickFix([in] String bundleName);
+}
+```
+
+#### 修改BUILD.gn文件
+
+1. 导入IDL工具模板到当前BUILD.gn文件。
+
+   ```bash
+   # 此处不需要修改，直接复制到gn中即可
+   import("//foundation/ability/idl_tool/idl_config.gni")
+   ```
+
+2. 调用IDL工具生成C++模板文件。
+
+   示例中的axx_bxx_cxx需要替换为生成的stub和proxy的.cpp名。
+
+   ```bash
+   idl_interface_sources = [
+     # axx_bxx_cxx为需要修改为生成proxy的.cpp名
+     "${target_gen_dir}/axx_bxx_cxx_proxy.cpp",                                            
+     # axx_bxx_cxx为需要修改为生成stub的.cpp名
+     "${target_gen_dir}/axx_bxx_cxx_stub.cpp",
+   ]
+   
+   # 使用idl_gen_interface生成模板文件、需输入参数名后面的deps中会使用
+   idl_gen_interface("EEEFFFGGG") {
+     # 开发者定义的.idl名，与gn文件在同一路径下
+     src_idl = rebase_path("IAxxBxxCxx.idl")
+     # proxy和stub模板.cpp文件, 此处不需要修改，直接复制到gn中即可
+     dst_file = string_join(",", idl_interface_sources)
+     # 开启hitrace，值是hitrace_meter.h文件中定义的uint64_t类型标识,需要填入常量的变量名
+     hitrace = "HITRACE_TAG_ABILITY_MANAGER"
+     # 开启hilog，Domain ID 使用16进制的整数
+     log_domainid = "0xD003900"
+     # 开启hilog，字符串类型tag名、一般为子系统名称
+     log_tag = "QuickFixManagerService"
+   }
+   ```
+
+   axx_bxx_cxx_proxy.cpp和axx_bxx_cxx_stub.cpp的命名与.idl文件小写名相同，遇到大写时加"_"。
+
+   ```bash
+   # 例：.idl文件为IQuickFixManager.idl
+   axx_bxx_cxx_proxy.cpp为：quick_fix_manager_proxy.cpp
+   axx_bxx_cxx_stub.cpp为：quick_fix_manager_stub.cpp
+   ```
+
+   如果需要生成的模板文件名第一个字母为I时，需要在interface命名时在前面加一个I。
+
+   ```bash
+   # 例：生成的模板文件为quick_fix_manager_proxy.cpp时interface的名称应为IQuickFixManager
+   # .idl文件中的定义
+   interface OHOS.AAFwk.IQuickFixManager {
+       void ApplyQuickFix([in] String[] quickFixFiles, [in] boolean isDebug);
+       void GetApplyedQuickFixInfo([in] String bundleName, [out] ApplicationQuickFixInfo quickFixInfo);
+       void RevokeQuickFix([in] String bundleName);
+   }
+   ```
+
+   配置hilog，参数log_domainid和log_tag必须成对出现，若只写一个会编译错误。
+
+   ```bash
+   idl_gen_interface("quickfix_manager_interface") {
+     src_idl = rebase_path("IQuickFixManager.idl")
+     dst_file = string_join(",", idl_interface_sources)
+     hitrace = "HITRACE_TAG_ABILITY_MANAGER"
+     log_domainid = "0xD003900"
+     log_tag = "QuickFixManagerService"    #只有一个log_tag，编译会错误，同理只有log_domainid，编译也会错误
+   }
+   ```
+
+3. 在BUILD.gn中添加模板文件的头文件路径。
+
+   只需将“${target_gen_dir}”名添加到现有include_dirs中即可，其它不需要更改。
+
+   ```bash
+   include_dirs = [
+     "aaa/bbb/ccc",        # 原有头文件路径
+     "${target_gen_dir}",  # 模板头文件路径
+   ]
+   ```
+
+4. 在BUILD.gn中添加模板文件.cpp文件路径。
+
+   若sources中有axx_bxx_cxx_proxy.cpp和axx_bxx_cxx_stub.cpp需要删除，并加上sources += filter_include(output_values, [ "*.cpp" ])。
+
+   ```bash
+   output_values = get_target_outputs(":EEEFFFGGG") # 返回给定目标标签的输出文件列表，替换EEEFFFGGG
+   sources = [ "axx_bxx_cxx_proxy.cpp" ]  # 需要删除axx_bxx_cxx_proxy.cpp
+   sources += filter_include(output_values, [ "*.cpp" ]) # filter_include选中符合的列表，直接复制即可
+   ```
+
+5. 在BUILD.gn中添加依赖“EEEFFFGGG”。
+
+   ```bash
+   deps = [
+       ":EEEFFFGGG",
+     ]
+   ```
+
+   deps添加的依赖名，必须同idl_gen_interface函数参数名相同。
+
+   ```bash
+   idl_gen_interface("quickfix_manager_interface") {
+     src_idl = rebase_path("IQuickFixManager.idl")
+     dst_file = string_join(",", idl_interface_sources)
+     hitrace = "HITRACE_TAG_ABILITY_MANAGER"
+     log_domainid = "0xD003900"
+     log_tag = "QuickFixManagerService"
+   }
+   deps = [
+    "${ability_runtime_innerkits_path}/app_manager:app_manager",
+    ":quickfix_manager_interface"]    # idl_gen_interface函数参数名相同
+   ```
+
+6. 在BUILD.gn中添加模板文件的外部依赖。
+
+   模板文件的外部依赖需要自己添加到external_deps里。
+
+   若之前已存在，不需要重复添加，若重复添加会导致编译错误。
+
+   ```bash
+     external_deps = [
+     # 模板文件必须的依赖
+     "c_utils:utils",
+     # hilog输出必须的依赖
+     "hilog:libhilog",
+     # hitrace输出必须的依赖
+     "hitrace:hitrace_meter",
+     # 模板文件必须的依赖
+     "ipc:ipc_core",
+   ]
+   ```
+
+#### 实例
+
+**以应用快速修复服务为例：**
+
+1. 创建名为IQuickFixManager.idl文件。
+
+   在创建.idl文件时，interface名称必须和.idl文件名相同，否则会在生成代码时出现错误。
+
+   创建.idl的文件路径与功能代码BUILD.gn的路径相同。
+
+   实例中的位置为：foundation/ability/ability_runtime/interfaces/inner_api/quick_fix/。
+
+   ```bash
+   /*
+    * Copyright (c) 2023 Huawei Device Co., Ltd.
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    *     http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+    */
+   
+   sequenceable QuickFixInfo..OHOS.AAFwk.ApplicationQuickFixInfo;
+   interface OHOS.AAFwk.IQuickFixManager {
+       void ApplyQuickFix([in] String[] quickFixFiles, [in] boolean isDebug);
+       void GetApplyedQuickFixInfo([in] String bundleName, [out] ApplicationQuickFixInfo quickFixInfo);
+       void RevokeQuickFix([in] String bundleName);
+   }
+   ```
+
+   在创建.idl文件时，需要将返回值为int的函数，修改为void。
+
+   ```bash
+   # 例 quick_fix_manager_client.h中的函数
+       int32_t ApplyQuickFix(const std::vector<std::string> &quickFixFiles);
+       int32_t GetApplyedQuickFixInfo(const std::string &bundleName, ApplicationQuickFixInfo &quickFixInfo);
+       int32_t RevokeQuickFix(const std::string &bundleName);
+   # .idl文件中的定义
+   interface OHOS.AAFwk.QuickFixManager {
+       void ApplyQuickFix([in] String[] quickFixFiles);
+       void GetApplyedQuickFixInfo([in] String bundleName, [out] ApplicationQuickFixInfo quickFixInfo);
+       void RevokeQuickFix([in] String bundleName);
+   }
+   ```
+
+2. 修改BUILD.gn文件。
+
+   ```bash
+   # Copyright (c) 2023 Huawei Device Co., Ltd.
+   # Licensed under the Apache License, Version 2.0 (the "License");
+   # you may not use this file except in compliance with the License.
+   # You may obtain a copy of the License at
+   #
+   #     http://www.apache.org/licenses/LICENSE-2.0
+   #
+   # Unless required by applicable law or agreed to in writing, software
+   # distributed under the License is distributed on an "AS IS" BASIS,
+   # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   # See the License for the specific language governing permissions and
+   # limitations under the License.
+   
+   import("//build/ohos.gni")
+   import("//foundation/ability/ability_runtime/ability_runtime.gni")
+   import("//foundation/ability/idl_tool/idl_config.gni")
+   
+   idl_interface_sources = [
+     "${target_gen_dir}/quick_fix_manager_proxy.cpp",
+     "${target_gen_dir}/quick_fix_manager_stub.cpp",
+   ]
+   
+   idl_gen_interface("quickfix_manager_interface") {
+     src_idl = rebase_path("IQuickFixManager.idl")
+     dst_file = string_join(",", idl_interface_sources)
+     hitrace = "HITRACE_TAG_ABILITY_MANAGER"
+     log_domainid = "0xD003900"
+     log_tag = "QuickFixManagerService"
+   }
+   
+   config("quickfix_config") {
+     visibility = [ ":*" ]
+     include_dirs = [
+       "include",
+       "${target_gen_dir}",
+     ]
+     cflags = []
+     if (target_cpu == "arm") {
+       cflags += [ "-DBINDER_IPC_32BIT" ]
+     }
+   }
+   
+   ohos_shared_library("quickfix_manager") {
+     configs = [ "${ability_runtime_services_path}/common:common_config" ]
+     public_configs = [ ":quickfix_config" ]
+   
+     output_values = get_target_outputs(":quickfix_manager_interface")
+     sources = [
+       "src/quick_fix_error_utils.cpp",
+       "src/quick_fix_info.cpp",
+       "src/quick_fix_load_callback.cpp",
+       "src/quick_fix_manager_client.cpp",
+       "src/quick_fix_utils.cpp",
+     ]
+     sources += filter_include(output_values, [ "*.cpp" ])
+     defines = [ "AMS_LOG_TAG = \"QuickFixService\"" ]
+     deps = [
+       ":quickfix_manager_interface",
+       "${ability_runtime_innerkits_path}/app_manager:app_manager",
+     ]
+   
+     external_deps = [
+       "ability_base:want",
+       "bundle_framework:appexecfwk_base",
+       "bundle_framework:appexecfwk_core",
+       "c_utils:utils",
+       "hilog:libhilog",
+       "hitrace:hitrace_meter",
+       "ipc:ipc_single",
+       "safwk:system_ability_fwk",
+       "samgr:samgr_proxy",
+     ]
+   
+     innerapi_tags = [ "platformsdk" ]
+     subsystem_name = "ability"
+     part_name = "ability_runtime"
+   }
+   ```
+
+3. 生成模板文件的路径及目录结构。
+
+   编译以rk3568为例，实例中生成的模板文件路径为：out/rk3568/gen/foundation/ability/ability_runtime/interfaces/inner_api/quick_fix/。
+
+   其中foundation/ability/ability_runtime/interfaces/inner_api/quick_fix/为.idl文件所在的相对路径。
+
+   生成文件目录结构为：
+
+   ```bash
+   |-- out/rk3568/gen/foundation/ability/ability_runtime/interfaces/inner_api/quick_fix/
+      |-- iquick_fix_manager.h
+      |-- quick_fix_manager_stub.h
+      |-- quick_fix_manager_stub.cpp
+      |-- quick_fix_manager_proxy.h
+      |-- quick_fix_manager_proxy.cpp
+   ```
+
+
 ## 相关实例
 
 针对IDL的使用，有以下相关实例可供参考：

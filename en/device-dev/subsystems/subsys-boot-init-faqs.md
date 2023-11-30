@@ -79,9 +79,9 @@ After a code review on the init process, it is found that the service does not e
 
    2. Check whether the **fstab.required** file exists in **ramdisk.img**.
 
-4. Cause analysis: The graphics service is not started. As a result, no startup animation is displayed.
+4. Cause analysis: **com.ohos.launcher** is not started. As a result, no startup animation is displayed.
 
-     Solution: Run the **ps -ef** command to check whether the graphics service is available. Analyze the fault cause based on the log.
+     Solution: Run the **ps -ef** command to check whether **com.ohos.launcher** is available. Analyze the fault cause based on the log.
 
 5. Cause analysis: The **bootanimation** service fails to start.
 

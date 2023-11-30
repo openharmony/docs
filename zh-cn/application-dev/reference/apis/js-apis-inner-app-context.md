@@ -436,11 +436,12 @@ context.getDisplayOrientation().then((data) => {
 });
 ```
 
-## Context.getExternalCacheDir
+## Context.getExternalCacheDir<sup>(deprecated)</sup>
 
 getExternalCacheDir(callback: AsyncCallback\<string>): void
 
 获取应用程序的外部缓存目录（callback形式）。
+> 从API version 7开始不再支持。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -465,11 +466,12 @@ context.getExternalCacheDir((error, data) => {
 });
 ```
 
-## Context.getExternalCacheDir
+## Context.getExternalCacheDir<sup>(deprecated)</sup>
 
 getExternalCacheDir(): Promise\<string>
 
 获取应用程序的外部缓存目录（Promise形式）。
+> 从API version 7开始不再支持。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

@@ -55,6 +55,7 @@
     - [安全区域](ts-universal-attributes-expand-safe-area.md)
     - [特效绘制合并](ts-universal-attributes-use-effect.md)
     - [组件内容填充方式](ts-universal-attributes-renderfit.md)
+    - [事件独占控制](ts-universal-attributes-monopolize-events.md)
   - 手势处理
     - [绑定手势方法](ts-gesture-settings.md)
     - 基础手势
@@ -178,6 +179,7 @@
   - [@ohos.arkui.advanced.Filter (多条件筛选)](ts-composite-components-filter.md)
   - [@ohos.arkui.advanced.ProgressButton (下载按钮)](ts-composite-components-progressbutton.md)
   - [@ohos.arkui.advanced.SegmentButton (分段按钮)](ohos-arkui-advanced-segmentbutton.md)
+  - [@ohos.arkui.advanced.SelectionMenu(文本选择菜单)](ts-composite-components-selectionmenu.md)
   - [@ohos.arkui.advanced.SelectTitleBar (下拉菜单标题栏)](ts-composite-components-selecttitlebar.md)
   - [@ohos.arkui.advanced.SplitLayout (上下结构布局)](ts-composite-components-splitlayout.md)
   - [@ohos.arkui.advanced.SubHeader (子标题)](ts-composite-components-subheader.md)

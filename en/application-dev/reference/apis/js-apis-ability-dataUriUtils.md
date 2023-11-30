@@ -1,10 +1,10 @@
 # @ohos.ability.dataUriUtils (DataUriUtils)
 
-The **DataUriUtils** module provides APIs to process URI objects. You can use the APIs to attach an ID to the end of a given URI and obtain, delete, or update the ID attached to the end of a given URI. This module will be replaced by the **app.ability.dataUriUtils** module in the near future. You are advised to use the **[@ohos.app.ability.dataUriUtils](js-apis-app-ability-dataUriUtils.md)** module.
+The **DataUriUtils** module provides APIs to process URI objects. You can use the APIs to attach an ID to the end of a given URI and obtain, delete, or update the ID attached to the end of a given URI.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module are supported since API version 7 and deprecated since API version 9. You are advised to use [@ohos.app.ability.dataUriUtils](js-apis-app-ability-dataUriUtils.md) instead.
 
 ## Modules to Import
 

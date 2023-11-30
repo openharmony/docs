@@ -1,12 +1,12 @@
-# 录像流二次处理(Native)
+# 录像流二次处理(C/C++)
 
 通过ImageReceiver创建录像输出，获取录像流实时数据，以供后续进行图像二次处理，比如应用可以对其添加滤镜算法等。
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考]。
+详细的API说明请参考[Camera API参考](../reference/native-apis/_o_h___camera.md)。
 
-1. 导入image模块。创建拍照输出流的SurfaceId以及拍照输出的数据，都需要用到系统提供的image接口能力，导入image接口的方法如下。
+1. 导入image模块。创建拍照输出流的SurfaceId以及录像输出的数据，都需要用到系统提供的image接口能力，导入image接口的方法如下。
      
    ```ts
    // ts侧需要导入image接口
@@ -15,7 +15,7 @@
 
 2. 获取SurfaceId。
    
-   通过image的createImageReceiver方法创建ImageReceiver实例，再通过实例的getReceivingSurfaceId方法获取SurfaceId，与预览输出流相关联，获取预览输出流的数据。
+   通过image的createImageReceiver方法创建ImageReceiver实例，再通过实例的getReceivingSurfaceId方法获取SurfaceId，与录像输出流相关联，获取录像输出流的数据。
  
    ```ts
    async function getVideoSurfaceId(): Promise<string | undefined> {

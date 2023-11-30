@@ -24,7 +24,7 @@ For details, see [Window](../reference/apis/js-apis-window.md).
 | Window static method   | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow or system window.<br>**config**: parameters used for creating the window.    |
 | Window            | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.                                          |
 | Window            | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.                                          |
-| Window            | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads content to this window.                                    |
+| Window            | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window. |
 | Window            | showWindow(callback: AsyncCallback\<void>): void             | Shows this window.                                              |
 | Window            | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Subscribes to touch events outside this window.                          |
 | Window            | hide (callback: AsyncCallback\<void>): void                  | Hides this window. This is a system API.                            |

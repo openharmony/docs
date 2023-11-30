@@ -1,8 +1,7 @@
 # Resource Manager Development
 
-## How do I read an XML file in rawfile and convert the data in it to the string type?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How do I read an XML file in rawfile and convert the data in it to the string type? (API 9)
 
 **Solution**
 
@@ -25,9 +24,8 @@ resourceManager.getRawFileContent('test.xml', (error, value) => {
 
 [Resource Manager](../reference/apis/js-apis-resource-manager.md)
 
-## How do I obtain resources in the stage model?
 
-Applicable to: OpenHarmony 3.1 Beta 5 (API version 9)
+## How do I obtain resources in the stage model? (API 9)
 
 **Solution**
 
@@ -45,9 +43,8 @@ context
 })
 ```
 
-## How do I obtain the path of the resource directory by using an API?
 
-Applicable to: OpenHarmony 3.1 Beta 5 (API version 9)
+## How do I obtain the path of the resource directory by using an API? (API 9)?
 
 **Symptom**
 
@@ -59,7 +56,7 @@ Because the application is installed in HAP mode and the HAP package is not deco
 
 To obtain the path of the **resource** directory, try either of the following ways:
 
-1. Use **\$r** or **\$rawfile** for access. This method applies to static access, during which the **resource** directory remains unchanged when the application is running.
+1. Use **$r** or **$rawfile** for access. This method applies to static access, during which the **resource** directory remains unchanged when the application is running.
 
 2. Use **ResourceManager** for access. This method applies to dynamic access, during which the **resource** directory dynamically changes when the application is running.
 
@@ -67,9 +64,8 @@ To obtain the path of the **resource** directory, try either of the following wa
 
 [Resource Categories and Access](../quick-start/resource-categories-and-access.md) and [Resource Manager](../reference/apis/js-apis-resource-manager.md)
 
-## Why does getPluralString return an incorrect value?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## Why does getPluralString return an incorrect value? (API 9)
 
 **Symptom**
 
@@ -79,9 +75,8 @@ The value obtained by the **getPluralString** is **other**, which is incorrect.
 
 The **getPluralString** API is effective only when the system language is English.
 
-## How do I obtain the customized string fields in the resources directory?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How do I obtain the customized string fields in the resources directory? (API 9)
 
 **Solution**
 
@@ -91,60 +86,56 @@ Use **getStringValue** of the **ResourceManager** module.
 
 [Resource Manager](../reference/apis/js-apis-resource-manager.md#getstringvalue9)
 
-## How do I reference resources such as images and text in AppScope?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
-
-**Solution**
-
-Reference resources in the **\$r\('app.type.name'\)** format. Wherein, **type** indicates the resource type, such as color, string, and media, and **name** indicates the resource name.
-
-## How do I convert resources to strings?
-
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How do I reference resources such as images and text in AppScope? (API 9)
 
 **Solution**
 
-For a qualifier directory, use **this.context.resourceManager.getStringSync\(\$r\('app.string.test'\).id\)** to covert resources to strings synchronously. Note that the **\$r\('app.string.test', 2\)** mode is not supported.
+Resources are referenced in the **$r('app.type.name')** format. Where, **type** indicates the resource type, such as color, string, and media, and **name** indicates the resource name.
+
+
+## How do I convert resources to strings? (API 9)
+
+**Solution**
+
+If the resource type is set to **string**, the qualifier directory can be set as **this.context.resourceManager.getStringSync($r('app.string.test').id)** and can be converted synchronously. The **$r('app.string.test', 2)** mode is not supported.
 
 **Reference Link**
 
 [Resource Manager](../reference/apis/js-apis-resource-manager.md#getstringsync9)
 
-## Can $ be used to reference constants in the form\_config.json file?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## Can $ be used to reference constants in the form\_config.json file? (API 9)
 
-**\$** cannot be used to reference constants in the **form\_config.json** file.
+In the **form_config.json** file, **$** cannot be used to reference constants.
 
-## How does ArkTS parse XML files?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How does ArkTS parse XML files? (API 9)
 
 **Solution**
 
-1.  Create the following XML file in the **rawfile** directory:
+1. Create the following XML file in the **rawfile** directory:
 
-    ```
-    <?xml version="1.0" encoding="utf-8"?>
-    <user>
-        <name>Jacky</name>
-        <age>18</age>
-    </user>
-    ```
+   ```
+   <?xml version="1.0" encoding="utf-8"?>
+   <user>
+       <name>Jacky</name>
+       <age>18</age>
+   </user>
+   ```
 
-2.  Use **resourceManager.getRawFileContent** to obtain the byte arrays of the XML file.
+2. Use **resourceManager.getRawFileContent** to obtain the byte arrays of the XML file.
 
-    ```
-    import resourceManager from '@ohos.resourceManager';
-    resourceManager.getRawFileContent("test.xml", (error, value) => {
-      if (error != null) {
-        console.log("error is " + error);
-        return
-      }
-      let arrayBuffer = value.buffer; // unit8Array
-      var xmpParser = new xml.XmlPullParser(arrayBuffer);
-      var tagName = ""
-      //do something
-    }
-    ```
+   ```
+   import resourceManager from '@ohos.resourceManager';
+   resourceManager.getRawFileContent("test.xml", (error, value) => {
+     if (error != null) {
+       console.log("error is " + error);
+       return
+     }
+     let arrayBuffer = value.buffer; // unit8Array
+     var xmpParser = new xml.XmlPullParser(arrayBuffer);
+     var tagName = ""
+     //do something
+   }
+   ```

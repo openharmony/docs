@@ -1,10 +1,11 @@
 # TextClock
 
-TextClock组件通过文本将当前系统时间显示在设备上。支持不同时区的时间显示，最高精度到秒级。
+TextClock组件通过文本将当前系统时间显示在设备上。支持不同时区的时间显示，最高精度到毫秒级。
 
 >**说明：**
 >
 >该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
 
 ## 子组件
 
@@ -13,6 +14,8 @@ TextClock组件通过文本将当前系统时间显示在设备上。支持不�
 ## 接口
 
 TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController })
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **参数：** 
 
@@ -27,7 +30,9 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 | 名称   | 参数类型 | 描述                                                         |
 | ------ | -------- | ------------------------------------------------------------ |
-| format | string   | y：年（yyyy表示完整年份，yy表示年份后两位）<br />M：月（若想使用01月则使用MM）<br />d：日（若想使用01日则使用dd）<br />E：星期（若想使用星期六则使用EEEE，若想使用周六则使用E、EE、EEE）<br />H：小时（24小时制）   h：小时（12小时制）    <br/>m：分钟<br/>s：秒<br/>SS：厘秒(format中S个数<3，全部按厘秒处理)<br />SSS：毫秒(format中S个数>=3，全部按毫秒处理<br/>a：上午/下午（当设置小时制式为H时，该参数不生效）<br />日期间隔符："年月日"、“/”、"-"、"."（可以自定义间隔符样式，间隔符不可以为字母，汉字则作为间隔符处理）<br />允许自行拼接组合显示格式，即：年、月、日、星期、时、分、秒、毫秒可拆分为子元素，可自行排布组合。<br />当设置无效字母时（非上述字母被认为是无效字母，多个有效字母会识别其中的有效组合进行匹配，例：yyyyy会匹配其中的yyyy为有效组合，多余的y认为是无效字母），该字母会被忽略。如果format全是无效字母时，显示为格式yyyy/MM/dd aa hh:mm:ss.SS<br />若format为空或者undefined，则使用默认值。<br />默认值：aa hh:mm:ss |
+| format | string   | y：年（yyyy表示完整年份，yy表示年份后两位）<br />M：月（若想使用01月则使用MM）<br />d：日（若想使用01日则使用dd）<br />E：星期（若想使用星期六则使用EEEE，若想使用周六则使用E、EE、EEE）<br />H：小时（24小时制）   h：小时（12小时制）    <br/>m：分钟<br/>s：秒<br/>SS：厘秒(format中S个数<3，全部按厘秒处理)<br />SSS：毫秒(format中S个数>=3，全部按毫秒处理)<br/>a：上午/下午（当设置小时制式为H时，该参数不生效）<br />日期间隔符："年月日"、“/”、"-"、"."（可以自定义间隔符样式，间隔符不可以为字母，汉字则作为间隔符处理）<br/>允许自行拼接组合显示格式，即：年、月、日、星期、时、分、秒、毫秒可拆分为子元素，可自行排布组合。时间更新频率最高为一秒一次，不建议单独设置厘秒和毫秒格式。<br />当设置无效字母时（非上述字母被认为是无效字母），该字母会被忽略。如果format全是无效字母时，显示为格式yyyy/MM/dd aa hh:mm:ss.SSS<br />若format为空或者undefined，则使用默认值。<br /><br />- 非卡片中默认值：aa hh:mm:ss<br/>- 卡片中默认值：hh:mm <br />- 卡片中使用时，最小时间单位为分钟。如果设置格式中有秒或厘秒按默认值处理。<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。 |
+| textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明) | 设置文字阴影效果。<br/>**说明**：不支持fill字段。该接口支持以数组形式入参，实现多重文字阴影。<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。|
+| fontFeature<sup>11+</sup> | string   | 设置文字特性效果，比如数字等宽的特性。<br />格式为：normal \| \<feature-tag-value\><br />-  \<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]<br />- \<feature-tag-value\>的个数可以有多个，中间用','隔开。 <br />例如，使用等宽时钟数字的输入格式为："ss01" on<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。|
 
 以下是format输入的格式样式及对应的显示效果：
 
@@ -69,11 +74,13 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 | 名称                                         | 功能描述                                                     |
 | -------------------------------------------- | ------------------------------------------------------------ |
-| onDateChange(event: (value: number) => void) | 提供时间变化回调，该事件回调间隔为秒。<br/>- value: Unix Time Stamp，即自1970年1月1日（UTC）起经过的秒数。 |
+| onDateChange(event: (value: number) => void) | 提供时间变化回调，该事件回调间隔为秒。<br/>- value: Unix Time Stamp，即自1970年1月1日（UTC）起经过的秒数。<br/>- 组件不可见时不回调。<br/>- 非卡片中使用时，该事件回调间隔为秒。<br/>- 卡片中使用时，该事件回调间隔为分钟。<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。|
 
 ## TextClockController
 
 TextClock容器组件的控制器，可以将该控制器绑定到TextClock组件，通过它控制文本时钟的启动与停止。一个TextClock组件仅支持绑定一个控制器。
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 ### 导入对象
 
@@ -87,11 +94,15 @@ start()
 
 启动文本时钟。
 
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 ### stop
 
 stop()
 
 停止文本时钟。
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 ## 示例
 

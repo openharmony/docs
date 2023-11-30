@@ -355,7 +355,7 @@ try {
     }
     windowClass = data;
     console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
-    windowClass.resetSize(500, 1000);
+    windowClass.resize(500, 1000);
   });
 } catch (exception) {
   console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
@@ -2182,7 +2182,6 @@ The minimum width and height of the main window and subwindow of the application
 The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
 
 The window width and height you set must meet the limits. The rules are as follows:
-
 - If the window width or height you set is less than the minimum width or height limit, then the minimum width or height limit takes effect.
 - If the window width or height you set is greater than the maximum width or height limit, then the maximum width or height limit takes effect.
 
@@ -2857,7 +2856,7 @@ export default class EntryAbility extends UIAbility {
 
 setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-Loads content from a page to this window. This API uses an asynchronous callback to return the result.
+Loads the content of a page, with its path in the current project specified, to this window. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2865,7 +2864,7 @@ Loads content from a page to this window. This API uses an asynchronous callback
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | -------------------- |
-| path     | string                    | Yes| Path of the page from which the content will be loaded.|
+| path     | string                    | Yes| Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.         |
 
 **Error codes**
@@ -2901,7 +2900,7 @@ try {
 
 setUIContent(path: string): Promise&lt;void&gt;
 
-Loads content from a page to this window. This API uses a promise to return the result.
+Loads the content of a page, with its path in the current project specified, to this window. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2909,7 +2908,7 @@ Loads content from a page to this window. This API uses a promise to return the 
 
 | Name| Type| Mandatory| Description|
 | ---- | ------ | -- | ------------------ |
-| path | string | Yes| Path of the page from which the content will be loaded.|
+| path | string | Yes| Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project.|
 
 **Return value**
 
@@ -2948,7 +2947,7 @@ try {
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-Loads content from a page associated with a local storage to this window. This API uses an asynchronous callback to return the result.
+Loads the content of a page, with its path in the current project specified, to this window, and transfers the state attribute to the page through a local storage. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -2958,8 +2957,8 @@ Loads content from a page associated with a local storage to this window. This A
 
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| path     | string                                          | Yes  | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.|
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 | callback | AsyncCallback&lt;void&gt;                       | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -3011,7 +3010,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 
-Loads content from a page associated with a local storage to this window. This API uses a promise to return the result.
+Loads the content of a page, with its path in the current project specified, to this window, and transfers the status attribute to the page through a local storage. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -3021,8 +3020,8 @@ Loads content from a page associated with a local storage to this window. This A
 
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| path    | string                                          | Yes  | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.|
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 
 **Return value**
 
@@ -3077,7 +3076,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-Loads content from the [named route](../../ui/arkts-routing.md#named-route) page associated with a local storage to this window. This API uses an asynchronous callback to return the result.
+Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page to this window, and transfers the state attribute to the page through a local storage. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -3088,7 +3087,7 @@ Loads content from the [named route](../../ui/arkts-routing.md#named-route) page
 | Name  | Type                                                   | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | name     | string                                                  | Yes  | Name of the named route page.                                            |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 | callback | AsyncCallback&lt;void&gt;                               | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -3161,7 +3160,7 @@ export struct Index {
 
 loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Loads content from the [named route](../../ui/arkts-routing.md#named-route) page to this window. This API uses an asynchronous callback to return the result.
+Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page to this window. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -3242,7 +3241,7 @@ export struct Index {
 
 loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 
-Loads content from the [named route](../../ui/arkts-routing.md#named-route) page associated with a local storage to this window. This API uses a promise to return the result.
+Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page to this window, and transfers the state attribute to the page through a local storage. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -3253,7 +3252,7 @@ Loads content from the [named route](../../ui/arkts-routing.md#named-route) page
 | Name | Type                                                   | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | name    | string                                                  | Yes  | Name of the named route page.                                            |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 
 **Return value**
 
@@ -6141,7 +6140,6 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ------- | --------------------------------------------- |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
 
 **Example**
 
@@ -7297,10 +7295,10 @@ Loads content from a page to this window. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                                             |
-| -------- | ------------------------- | --------- | ------------------------------------------------------- |
-| path     | string                    | Yes       | Path of the page from which the content will be loaded. |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                     |
+| Name     | Type                      | Mandatory | Description                                                  |
+| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
+| path     | string                    | Yes       | Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project. |
+| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Example**
 
@@ -7333,9 +7331,9 @@ Loads content from a page to this window. This API uses a promise to return the 
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                             |
-| ---- | ------ | --------- | ------------------------------------------------------- |
-| path | string | Yes       | Path of the page from which the content will be loaded. |
+| Name | Type   | Mandatory | Description                                                  |
+| ---- | ------ | --------- | ------------------------------------------------------------ |
+| path | string | Yes       | Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project. |
 
 **Return value**
 
@@ -8552,7 +8550,7 @@ export default class EntryAbility extends UIAbility {
           console.info('Failed to load the content. Cause: windowClass is null');
         }
         else {
-          (windowClass as window.Window).resetSize(500, 1000);
+          (windowClass as window.Window).resize(500, 1000);
         }
       });
 
@@ -8728,7 +8726,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-Loads content from a page associated with a local storage to the main window in this window stage. This API uses an asynchronous callback to return the result.
+Loads the content of a page, with its path in the current project specified, to the main window of this window stage, and transfers the status attribute to the page through a local storage. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -8738,8 +8736,8 @@ Loads content from a page associated with a local storage to the main window in 
 
 | Name     | Type                                                    | Mandatory | Description                                                  |
 | -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| path     | string                                                  | Yes       | Path of the page from which the content will be loaded.      |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes       | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. |
+| path     | string                                                  | Yes       | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project. |
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes       | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
 | callback | AsyncCallback&lt;void&gt;                               | Yes       | Callback used to return the result.                          |
 
 **Error codes**
@@ -8787,7 +8785,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
-Loads content from a page associated with a local storage to the main window in this window stage. This API uses a promise to return the result.
+Loads the content of a page, with its path in the current project specified, to the main window of this window stage, and transfers the status attribute to the page through a local storage. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -8797,8 +8795,8 @@ Loads content from a page associated with a local storage to the main window in 
 
 | Name    | Type                                                    | Mandatory | Description                                                  |
 | ------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| path    | string                                                  | Yes       | Path of the page from which the content will be loaded.      |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No        | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. |
+| path    | string                                                  | Yes       | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project. |
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No        | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
 
 **Return value**
 
@@ -8858,10 +8856,10 @@ Loads content from a page to this window stage. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                                             |
-| -------- | ------------------------- | --------- | ------------------------------------------------------- |
-| path     | string                    | Yes       | Path of the page from which the content will be loaded. |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                     |
+| Name     | Type                      | Mandatory | Description                                                  |
+| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
+| path     | string                    | Yes       | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project. |
+| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Error codes**
 
@@ -8905,7 +8903,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-Loads content from the [named route](../../ui/arkts-routing.md#named-route) page associated with a local storage to this window stage. This API uses an asynchronous callback to return the result.
+Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page to this window stage, and transfers the state attribute to the page through a local storage. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -8916,7 +8914,7 @@ Loads content from the [named route](../../ui/arkts-routing.md#named-route) page
 | Name     | Type                                                    | Mandatory | Description                                                  |
 | -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
 | name     | string                                                  | Yes       | Name of the named route page.                                |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes       | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. |
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes       | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
 | callback | AsyncCallback&lt;void&gt;                               | Yes       | Callback used to return the result.                          |
 
 **Error codes**
@@ -8988,7 +8986,7 @@ export struct Index {
 
 loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Loads content from the [named route](../../ui/arkts-routing.md#named-route) page to this window stage. This API uses an asynchronous callback to return the result.
+Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page to this window stage. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -9067,7 +9065,7 @@ export struct Index {
 
 loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;;
 
-Loads content from the [named route](../../ui/arkts-routing.md#named-route) page to this window stage. This API uses a promise to return the result.
+Loads the content a [named route](../../ui/arkts-routing.md#named-route) page to this window stage, and transfers the state attribute to the page through a local storage. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -9078,7 +9076,7 @@ Loads content from the [named route](../../ui/arkts-routing.md#named-route) page
 | Name    | Type         | Mandatory | Description                                                  |
 | ------- | ------------ | --------- | ------------------------------------------------------------ |
 | name    | string       | Yes       | Name of the named route page.                                |
-| storage | LocalStorage | No        | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. |
+| storage | LocalStorage | No        | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
 
 **Error codes**
 

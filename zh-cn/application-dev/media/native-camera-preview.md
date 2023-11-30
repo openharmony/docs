@@ -1,10 +1,10 @@
-# 预览(Native)
+# 预览(C/C++)
 
 预览是启动相机后看见的画面，通常在拍照和录像前执行。
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考]。
+详细的API说明请参考[Camera API参考](../reference/native-apis/_o_h___camera.md)。
 
 1. 导入NDK接口，接口中提供了相机相关的属性和方法，导入方法如下。
      

@@ -31,7 +31,7 @@ const.telephony.enable=false|true
   | Category| Name| Example| Description|
   | -------- | -------- | -------- | -------- |
   | Parameter| Parameter Name | const.product.**name** | Complete system parameter name. It does not end with a period (.).|
-  | Directory| Parameter Directory | const.product **.** | Name of the directory storing system parameters with the same prefix. It ends with a period (.).|
+  | Directory| Parameter Directory | const.**. | Name of the directory storing system parameters with the same prefix. It ends with a period (.).|
 
 - Type
 

@@ -1,4 +1,4 @@
-# Camera Photographing
+# Camera Photographing (ArkTS)
 
 Photographing is an important function of the camera application. Based on the complex logic of the camera hardware, the camera module provides APIs for you to set information such as resolution, flash, focal length, photo quality, and rotation angle.
 
@@ -155,7 +155,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 During camera application development, you can listen for the status of the photo output stream, including the start of the photo stream, the start and end of the photo frame, and the errors of the photo output stream.
 
-- Register the 'captureStart' event to listen for photographing start events. This event can be registered when a **PhotoOutput** object is created and is triggered when the bottom layer starts exposure for photographing for the first time. The capture ID is returned.
+- Register the **'captureStart'** event to listen for photographing start events. This event can be registered when a **PhotoOutput** object is created and is triggered when the bottom layer starts exposure for photographing for the first time. The capture ID is returned.
     
   ```ts
   function onPhotoOutputCaptureStart(photoOutput: camera.PhotoOutput): void {
@@ -165,7 +165,7 @@ During camera application development, you can listen for the status of the phot
   }
   ```
 
-- Register the 'captureEnd' event to listen for photographing end events. This event can be registered when a **PhotoOutput** object is created and is triggered when the photographing is complete. [CaptureEndInfo](../reference/apis/js-apis-camera.md#captureendinfo) is returned.
+- Register the **'captureEnd'** event to listen for photographing end events. This event can be registered when a **PhotoOutput** object is created and is triggered when the photographing is complete. [CaptureEndInfo](../reference/apis/js-apis-camera.md#captureendinfo) is returned.
     
   ```ts
   function onPhotoOutputCaptureEnd(photoOutput: camera.PhotoOutput): void {
@@ -176,7 +176,7 @@ During camera application development, you can listen for the status of the phot
   }
   ```
 
-- Register the 'error' event to listen for photo output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
+- Register the **'error'** event to listen for photo output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
     
   ```ts
   function onPhotoOutputError(photoOutput: camera.PhotoOutput): void {

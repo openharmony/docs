@@ -1425,7 +1425,7 @@ try {
 
 show(callback: AsyncCallback\<void>): void
 
-显示当前输入法面板，使用callback异步回调。
+显示当前输入法面板，使用callback异步回调。输入法应用与编辑框绑定成功后可正常调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1453,7 +1453,7 @@ panel.show((err: BusinessError) => {
 
 show(): Promise\<void>
 
-显示当前输入法面板，使用promise异步回调。
+显示当前输入法面板，使用promise异步回调。输入法应用与编辑框绑定成功后可正常调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1673,6 +1673,8 @@ try {
 setPrivacyMode(isPrivacyMode: boolean): void
 
 将输入法应用的面板设置为隐私模式，隐私模式不可被录屏、截屏。
+
+**需要权限：** ohos.permission.PRIVACY_WINDOW
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 

@@ -260,7 +260,7 @@
 
 允许应用将窗口设置为隐私窗口，禁止截屏录屏。
 
-**权限级别**：system_basic
+**权限级别**：API version 9-10为system_basic；从API version 11开始为normal。
 
 **授权方式**：system_grant
 
@@ -351,6 +351,18 @@
 **ACL使能**：TRUE
 
 **起始版本**：7
+
+## ohos.permission.SYSTEM_LIGHT_CONTROL
+
+允许应用控制灯，包括打开、关闭等操作。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+**起始版本**：11
 
 ## ohos.permission.CONNECT_IME_ABILITY
 
@@ -3310,6 +3322,18 @@
 
 **起始版本**：11
 
+## ohos.permission.SET_SANDBOX_POLICY
+
+允许系统应用设置动态沙箱策略。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.MANAGE_APP_INSTALL_INFO
 
 允许应用创建、管理应用安装任务。
@@ -3453,3 +3477,135 @@
 **ACL使能**：TRUE
 
 **起始版本**: 11
+
+## ohos.permission.MANAGE_APP_BOOT
+
+允许系统应用设置其他应用开机自启配置。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.CONNECT_UI_EXTENSION_ABILITY
+
+允许系统服务连接UIExtensionAbility。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_HIVIEWCARE
+
+允许系统应用拉起智能检测能力。
+
+**授权级别**: system_basic
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
+
+**起始版本**：11
+
+## ohos.permission.START_ABILITY_WITH_ANIMATION
+
+允许应用取消Ability启动动效。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**: 11
+
+## ohos.permission.ACCESS_DDK_USB
+
+允许扩展外设驱动访问USB DDK接口开发USB总线扩展外设驱动。
+
+**权限级别**：system_basic
+
+**授权方式**: system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
+
+允许应用使用外接设备增强功能。
+
+**权限级别**：normal
+
+**授权方式**: system_grant
+
+**ACL使能**：FALSE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_DDK_HID
+
+允许扩展外设驱动访问HID DDK接口开发HID类扩展外设驱动。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_ACCOUNT_KIT_SERVICE
+
+允许账号服务查询、修改账号数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.REQUEST_ANONYMOUS_ATTEST
+
+允许系统应用使用设备匿名证明能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_ACCOUNT_KIT_UI
+
+允许系统应用拉起账号用户认证界面。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.START_RECENT_ABILITY
+
+允许应用启动指定的UIAbility，如果该UIAbility有多个实例，将启动最近启动的实例。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11

@@ -7,13 +7,11 @@ Provides APIs to access the result set obtained by querying the RDB store.
 
 A result set is a set of results returned by **query()**.
 
-**Since**
+**Library**: libnative_rdb_ndk.z.so
 
-10
+**Since**: 10
 
-**Related Modules**
-
-[RDB](_r_d_b.md)
+**Related modules**: [RDB](_r_d_b.md)
 
 
 ## Summary
@@ -23,19 +21,19 @@ A result set is a set of results returned by **query()**.
 
 | Name| Description|
 | -------- | -------- |
-| [OH_Cursor](_o_h___cursor.md) | Defines a result set.|
+| [OH_Cursor](_o_h___cursor.md) | Defines a result set. |
 
 
 ### Types
 
 | Name| Description|
 | -------- | -------- |
-| [OH_ColumnType](_r_d_b.md#oh_columntype) | Enumerates the field types in an RDB store.|
-| [OH_Cursor](_r_d_b.md#oh_cursor) | Indicates a result set.|
+| [OH_ColumnType](_r_d_b.md#oh_columntype) | Defines an enum for the types of fields in an RDB store. |
+| [OH_Cursor](_r_d_b.md#oh_cursor) | Defines a struct for a result set. |
 
 
 ### Enums
 
 | Name| Description|
 | -------- | -------- |
-| [OH_ColumnType](_r_d_b.md#oh_columntype) {<br>TYPE_NULL = 0, TYPE_INT64, TYPE_REAL, TYPE_TEXT,<br>TYPE_BLOB<br>} | Enumerates the field types in an RDB store.|
+| [OH_ColumnType](_r_d_b.md#oh_columntype) {<br>TYPE_NULL = 0, TYPE_INT64, TYPE_REAL, TYPE_TEXT,<br>TYPE_BLOB, TYPE_ASSET, TYPE_ASSETS<br>} | Enumerates the types of fields in an RDB store. |

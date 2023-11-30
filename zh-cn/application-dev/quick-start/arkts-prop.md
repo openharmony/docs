@@ -318,7 +318,7 @@ struct Index {
 初始渲染创建6个子组件实例，每个\@Prop装饰的变量初始化都在本地拷贝了一份数组项。子组件onclick事件处理程序会更改局部变量值。
 
 
-假设我们点击了多次，所有变量的本地取值都是“7”。
+如果点击界面上的“1”、“2”、“3”，将所有变量的本地取值都变为“7”。
 
 
 
@@ -492,6 +492,8 @@ class Book {
 
 \@Observed装饰的类的实例会被不透明的代理对象包装，此代理可以检测到包装对象内的所有属性更改。如果发生这种情况，此时，代理通知\@Prop，\@Prop对象值被更新。
 
+![Video-prop-UsageScenario-one](figures/Video-prop-UsageScenario-one.gif)
+
 ### \@Prop本地初始化不和父组件同步
 
 为了支持\@Component装饰的组件复用场景，\@Prop支持本地初始化，这样可以让\@Prop是否与父组件建立同步关系变得可选。当且仅当\@Prop有本地初始化时，从父组件向子组件传递\@Prop的数据源才是可选的。
@@ -506,7 +508,7 @@ class Book {
 ```ts
 @Component
 struct MyComponent {
-  @Prop customCounter: number = 0;
+  @Prop customCounter: number;
   @Prop customCounter2: number = 5;
 
   build() {
@@ -558,6 +560,8 @@ struct MainProgram {
 }
 ```
 
+![Video-prop-UsageScenario-two](figures/Video-prop-UsageScenario-two.gif)
+
 ### \@Prop嵌套场景
 
 在嵌套场景下，每一层都要用@Observed装饰，且每一层都要被@Prop接收，这样才能观察到嵌套场景。
@@ -595,11 +599,14 @@ struct Parent {
 
   build() {
     Column() {
-      Button('change')
+      Button('change ClassB name')
         .onClick(() => {
           this.votes.name = "aaaaa"
-          this.votes.a.title = "wwwww"
         })
+      Button('change ClassA title')
+        .onClick(() => {
+          this.votes.a.title = "wwwww"
+        })  
       Child({ vote: this.votes })
     }
 
@@ -639,6 +646,8 @@ struct Child1 {
   }
 }
 ```
+
+![Video-prop-UsageScenario-three](figures/Video-prop-UsageScenario-three.gif)
 
 ## Prop支持联合类型实例
 

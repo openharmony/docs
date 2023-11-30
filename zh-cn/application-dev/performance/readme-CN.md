@@ -14,6 +14,7 @@
     - [精准控制组件的更新范围](precisely-control-render-scope.md)
     - [合理使用renderGroup](reasonable-using-renderGroup.md)
     - [减少动画丢帧](reduce-animation-frame-loss.md)
+    - [Grid高性能开发指导](grid_optimization.md)
   - 提升应用启动和响应速度
     - [提升应用冷启动速度](improve-application-cold-start-speed.md)
     - [提升应用响应速度](improve-application-response.md)
@@ -26,6 +27,7 @@
     - [列表场景性能提升实践](list-perf-improvment.md)
     - [动效能力实践](animation_practice.md)
     - [性能提升的其他方法](arkts-performance-improvement-recommendation.md)
+    - [运行时动态加载页面提升性能](performance-dynamic-import.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)

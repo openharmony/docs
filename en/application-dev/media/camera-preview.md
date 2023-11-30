@@ -1,4 +1,4 @@
-# Camera Preview
+# Camera Preview (ArkTS)
 
 Preview is the image you see after you start the camera application but before you take photos or record videos.
 
@@ -51,7 +51,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    }
    ```
 
-3. Call **previewProfiles()** in the **CameraOutputCapability** class to obtain the preview capabilities, in the format of an **previewProfilesArray** array, supported by the current device. Then call **createPreviewOutput()** to create a preview output stream, with the first parameter set to the first item in the **previewProfilesArray** array and the second parameter set to the surface ID obtained in step 2.
+3. Call **previewProfiles()** in the **CameraOutputCapability** class to obtain the preview output capabilities, in the format of an **previewProfilesArray** array, supported by the current device. Then call **createPreviewOutput()** to create a **PreviewOutput** object, with the first parameter set to the first item in the **previewProfilesArray** array and the second parameter set to the surface ID obtained in step 2.
      
    ```ts
    function getPreviewOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability, surfaceId: string): camera.PreviewOutput | undefined {
@@ -84,7 +84,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 During camera application development, you can listen for the preview output stream status, including preview stream start, preview stream end, and preview stream output errors.
 
-- Register the 'frameStart' event to listen for preview start events. This event can be registered when a **PreviewOutput** object is created and is triggered when the bottom layer starts exposure for the first time. The preview stream is started as long as a result is returned.
+- Register the **'frameStart'** event to listen for preview start events. This event can be registered when a **PreviewOutput** object is created and is triggered when the bottom layer starts exposure for the first time. The preview stream starts as long as a result is returned.
     
   ```ts
   function onPreviewOutputFrameStart(previewOutput: camera.PreviewOutput): void {
@@ -94,7 +94,7 @@ During camera application development, you can listen for the preview output str
   }
   ```
 
-- Register the 'frameEnd' event to listen for preview end events. This event can be registered when a **PreviewOutput** object is created and is triggered when the last frame of preview ends. The preview stream ends as long as a result is returned.
+- Register the **'frameEnd'** event to listen for preview end events. This event can be registered when a **PreviewOutput** object is created and is triggered when the last frame of preview ends. The preview stream ends as long as a result is returned.
     
   ```ts
   function onPreviewOutputFrameEnd(previewOutput: camera.PreviewOutput): void {
@@ -104,7 +104,7 @@ During camera application development, you can listen for the preview output str
   }
   ```
 
-- Register the 'error' event to listen for preview output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
+- Register the **'error'** event to listen for preview output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
     
   ```ts
   function onPreviewOutputError(previewOutput: camera.PreviewOutput): void {

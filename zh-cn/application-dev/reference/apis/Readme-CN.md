@@ -10,6 +10,8 @@
     - [@ohos.app.ability.AbilityStage (AbilityStage)](js-apis-app-ability-abilityStage.md)
     - [@ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)](js-apis-app-ability-actionExtensionAbility.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](js-apis-app-ability-applicationStateChangeCallback.md)
+    - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility)](js-apis-app-ability-autoFillExtensionAbility.md)
+    - [@ohos.app.ability.AutoFillManager (AutoFillManager)](js-apis-app-ability-autoFillManager.md)
     - [@ohos.app.ability.ChildProcess](js-apis-app-ability-childProcess.md)
     - [@ohos.app.ability.childProcessManager (childProcessManager)](js-apis-app-ability-childProcessManager.md)
     - [@ohos.app.ability.common (应用上下文Context)](js-apis-app-ability-common.md)
@@ -100,6 +102,9 @@
       - [ApplicationContext](js-apis-inner-application-applicationContext.md)
       - [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)
       - [AppStateData](js-apis-inner-application-appStateData.md)
+      - [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext.md)
+      - [AutoFillRequest](js-apis-inner-application-autoFillRequest.md)
+      - [AutoFillType](js-apis-inner-application-autoFillType.md)
       - [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)
       - [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)
       - [BaseContext](js-apis-inner-application-baseContext.md)
@@ -118,6 +123,7 @@
       - [MissionListener](js-apis-inner-application-missionListener.md)
       - [MissionParameter](js-apis-inner-application-missionParameter.md)
       - [MissionSnapshot](js-apis-inner-application-missionSnapshot.md)
+      - [PageNodeInfo](js-apis-inner-application-pageNodeInfo.md)
       - [ProcessData](js-apis-inner-application-processData.md)
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
       - [ProcessInformation](js-apis-inner-application-processInformation.md)
@@ -125,6 +131,7 @@
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)
       - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)
+      - [ViewData](js-apis-inner-application-viewData.md)
       - [WindowExtensionContext](js-apis-inner-application-windowExtensionContext.md)
     - wantAgent
       - [triggerInfo](js-apis-inner-wantAgent-triggerInfo.md)
@@ -426,6 +433,7 @@
   - [@ohos.deviceInfo (设备信息)](js-apis-device-info.md)
   - [@ohos.distributedDeviceManager (设备管理)](js-apis-distributedDeviceManager.md)
   - [@ohos.distributedHardware.deviceManager (设备管理)](js-apis-device-manager.md)
+  - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)](js-apis-distributedHardwareManager.md)
   - [@ohos.driver.deviceManager (外设管理)](js-apis-driver-deviceManager.md)
   - [@ohos.geoLocationManager (位置服务)](js-apis-geoLocationManager.md)
   - [@ohos.multimodalInput.gestureEvent (手势事件)](js-apis-multimodalinput-gestureevent.md)
@@ -456,7 +464,7 @@
   - [@ohos.vibrator (振动)](js-apis-vibrator.md)
   - application
     - [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)
-
+  
 - 帐号管理
   - [@ohos.account.appAccount (应用帐号管理)](js-apis-appAccount.md)
   - [@ohos.account.distributedAccount (分布式帐号管理)](js-apis-distributed-account.md)

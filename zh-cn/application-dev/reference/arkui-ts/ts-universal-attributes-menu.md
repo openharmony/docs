@@ -7,6 +7,8 @@
 >  - 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  - CustomBuilder里不支持再使用bindMenu、bindContextMenu弹出菜单。多级菜单可使用[Menu组件](ts-basic-components-menu.md)。
+>
+>  - 弹出菜单的文本内容不支持长按选中。
 
 
 ## 属性
@@ -15,6 +17,7 @@
 | 名称                           | 参数类型                                     | 描述                                       |
 | ---------------------------- | ---------------------------------------- | ---------------------------------------- |
 | bindMenu                     | content: Array<[MenuElement](#menuelement)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br>options?: [MenuOptions](#menuoptions10) | 给组件绑定菜单，点击后弹出菜单。弹出菜单项支持图标+文本排列和自定义两种功能。<br/>content: 配置菜单项图标和文本的数组，或者自定义组件。<br/>options: 配置弹出菜单的参数。 |
+| bindMenu                     | isShow<sup>11+</sup>: boolean,<br>content: Array<[MenuElement](#menuelement)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br>options?: [MenuOptions](#menuoptions10) | 给组件绑定菜单，点击后弹出菜单。弹出菜单项支持图标+文本排列和自定义两种功能。<br/>isShow: 支持开发者通过状态变量控制显隐，默认值为false，menu弹窗必须等待页面全部构建才能展示，因此不能在页面构建中设置为true，否则会导致显示位置及形状错误，当前不支持双向绑定。<br/>content: 配置菜单项图标和文本的数组，或者自定义组件。<br/>options: 配置弹出菜单的参数。 |
 | bindContextMenu<sup>8+</sup> | content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)<br>options?: [ContextMenuOptions](#contextmenuoptions10) | 给组件绑定菜单，触发方式为长按或者右键点击，弹出菜单项需要自定义。<br/>responseType: 菜单弹出条件，长按或者右键点击。<br/>options: 配置弹出菜单的参数。 |
 
 ## MenuElement

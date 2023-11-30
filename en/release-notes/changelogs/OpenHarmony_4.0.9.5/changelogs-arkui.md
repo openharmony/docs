@@ -30,7 +30,6 @@ In API version 9, the **value** sub-attribute of the **menus** attribute is disp
 ![Navigation](figures/navigation_menu_api9.png)
 
 In API version 10, the **value** sub-attribute of the **menus** attribute is not displayed.
-
 ![Navigation](figures/navigation_menu_api10.png)
 
 ## cl.arkui.2 Change of the Default Display Position for Free Mode of the titleMode Attribute in \<Navigation>
@@ -221,3 +220,58 @@ struct SwiperExample {
 **Change Impact**
 
 Changed the right margin of the rightmost menu icons in the **\<Navigation>** component menus from 36 vp to 24 vp, to account for the offset of menus by 12 vp on the right.
+
+## cl.arkui.8 Change in Pixel Rounding
+
+**Change Impact**
+
+Coordinates, widths, and heights with decimals are rounded off to integers.
+
+API version 9: The pixel coordinates, component widths and heights, and border widths are not rounded.
+
+API version 10: The pixel coordinates, component widths and heights, and border widths are rounded off to integers.
+
+**Example**
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Row() {
+        Row() {
+          Row() {
+            Row() {
+              Row()
+                .width('100%')
+                .height('100%')
+                .border({width: '1', color: 'blue'})
+            }
+            .width('100%')
+            .height('100%')
+            .border({width: '1', color: 'red'})
+          }
+          .width('100%')
+          .height('100%')
+          .border({width: '1', color: 'blue'})
+        }
+        .width('100%')
+        .height('100%')
+        .border({width: '1', color: 'red'})
+      }
+      .width('81')
+      .height('81')
+      .border({width: '1', color: 'blue'})
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+API version 9: The pixel coordinates, component widths and heights, and border widths are not rounded.
+
+![Navigation](figures/pixl_round_api9.png) 
+
+API version 10: The widths of the left and top borders are rounded up, and the widths of the right and bottom borders are rounded down.
+
+![Navigation](figures/pixl_round_api10.png)
