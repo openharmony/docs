@@ -8,7 +8,6 @@
 
 ```ts
 import audio from '@ohos.multimedia.audio';  // 导入audio模块
-
 import { BusinessError } from '@ohos.base'; // 导入BusinessError
 
 let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
@@ -66,6 +65,7 @@ audioRoutingManager.off('deviceChange', (deviceChanged: audio.DeviceChangeAction
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
     deviceRole : audio.DeviceRole.INPUT_DEVICE,
     deviceType : audio.DeviceType.EARPIECE,
