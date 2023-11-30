@@ -1311,6 +1311,10 @@ getPluralStringValueSync(resId: number, num: number): string
 
 根据指定数量获取指定ID字符串表示的单复数字符串，使用同步方式返回字符串。
 
+**说明**
+>
+>中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1354,6 +1358,10 @@ getPluralStringValueSync(resId: number, num: number): string
 getPluralStringValueSync(resource: Resource, num: number): string
 
 根据指定数量获取指定resource对象表示的单复数字符串，使用同步方式返回字符串。
+
+**说明**
+>
+>中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1407,6 +1415,10 @@ getPluralStringByNameSync(resName: string, num: number): string
 
 根据指定数量获取指定资源名称表示的单复数字符串，使用同步方式返回字符串。
 
+**说明**
+>
+>中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1450,6 +1462,10 @@ getPluralStringByNameSync(resName: string, num: number): string
 getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
 
 根据指定数量获取指定ID字符串表示的单复数字符串，使用callback形式返回字符串。
+
+**说明**
+>
+>中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1495,6 +1511,10 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 根据指定数量获取对指定ID字符串表示的单复数字符串，使用Promise形式返回字符串。
+
+**说明**
+>
+>中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1543,6 +1563,10 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt;string&gt;): void
 
 根据指定数量获取指定resource对象表示的单复数字符串，使用callback形式返回字符串。
+
+**说明**
+>
+>中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1596,6 +1620,10 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 根据指定数量获取对指定resource对象表示的单复数字符串，使用Promise形式返回字符串。
+
+**说明**
+>
+>中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -5116,6 +5144,10 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 根据指定数量获取对指定ID字符串表示的单复数字符串，使用Promise形式返回字符串。
 
+**说明**
+>
+>中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+
 从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue9)代替。
 
 **系统能力**：SystemCapability.Global.ResourceManager
@@ -5152,6 +5184,10 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
 
 根据指定数量获取指定ID字符串表示的单复数字符串，使用callback形式返回字符串。
+
+**说明**
+>
+>中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue9-1)代替。
 
