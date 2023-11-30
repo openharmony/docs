@@ -649,7 +649,7 @@ class MyDataSource extends BasicDataSource {
   }
   
   public changeData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
+    this.dataArray.splice(index, 1, data);
     this.notifyDataChange(index);
   }
 }
