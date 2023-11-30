@@ -37,7 +37,7 @@ Zips a file. This API uses a promise to return the result.
 | -------------- | ------------------------------------------------------------ |
 | Promise\<void> | Promise that returns no value.|
 
-**Example 1**
+**Example**
 
 ```typescript
 // The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
@@ -53,26 +53,6 @@ let options = {
 zlib.zipFile(inFile, outFile, options).then((data) => {
     console.info('zipFile result is ' + JSON.stringify(data));
 }).catch((err) => {
-    console.error('error is ' + JSON.stringify(err));
-});
-```
-
-**Example 2**
-
-```typescript
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
-import zlib from '@ohos.zlib';
-let inFile = '/xxx/xxx';
-let outFile = '/xxx/xxx.zip';
-let options = {
-  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
-  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
-  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
-};
-
-zlib.zipFile(inFile , outFile, options).then((data) => {
-    console.info('zipFile result is ' + JSON.stringify(data));
-}).catch((err)=>{
     console.error('error is ' + JSON.stringify(err));
 });
 ```
@@ -188,6 +168,12 @@ Compresses a file. This API uses a promise to return the result. If the operatio
 | outFile | string              | Yes  | Path of the compressed file.                                          |
 | options | [Options](#options) | Yes  | Compression parameters.                                              |
 
+**Return value**
+
+| Type          | Description                   |
+| -------------- | ----------------------- |
+| Promise\<void> | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [zlib Error Codes](../errorcodes/errorcode-zlib.md).
@@ -196,6 +182,8 @@ For details about the error codes, see [zlib Error Codes](../errorcodes/errorcod
 | -------- | ------------------------------------- |
 | 900001   | The Input source file is invalid.      |
 | 900002   | The Input destination file is invalid. |
+
+**Example**
 
 ```typescript
 // The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
@@ -286,6 +274,12 @@ Decompresses a file. This API uses a promise to return the result.
 | inFile  | string              | Yes  | Path of the file to decompress. The file name extension must be .zip. For details about the path, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
 | outFile | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
 | options | [Options](#options) | Yes  | Decompression parameters.                                          |
+
+**Return value**
+
+| Type          | Description                   |
+| -------------- | ----------------------- |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
