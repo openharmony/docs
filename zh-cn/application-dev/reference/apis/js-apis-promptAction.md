@@ -180,6 +180,41 @@ try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
     message: 'Message Info',
+    buttons: [
+      {
+        text: 'button1',
+        color: '#000000'
+      },
+      {
+        text: 'button2',
+        color: '#000000'
+      }
+    ]
+  }, (err, data) => {
+    if (err) {
+      console.info('showDialog err: ' + err);
+      return;
+    }
+    console.info('showDialog success callback, click button: ' + data.index);
+  });
+} catch (error) {
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
+};
+```
+
+![zh-cn_image_0002](figures/zh-cn_image_0002.gif)
+
+当弹窗的showInSubWindow属性为true时，弹窗可显示在窗口外
+
+```ts
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+try {
+  promptAction.showDialog({
+    title: 'showDialog Title Info',
+    message: 'Message Info',
     isModal: true,
     showInSubWindow: true,
     buttons: [
@@ -268,8 +303,6 @@ import { BusinessError } from '@ohos.base';
 try {
   promptAction.showActionMenu({
     title: 'Title Info',
-    showInSubWindow: true,
-    isModal: true,
     buttons: [
       {
         text: 'item1',
@@ -294,7 +327,7 @@ try {
 };
 ```
 
-![zh-cn_image_0005_showinsubwindow](figures/zh-cn_image_0005_showinsubwindow.jpg)
+![zh-cn_image_0005](figures/zh-cn_image_0005.gif)
 
 ## promptAction.showActionMenu
 
