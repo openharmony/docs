@@ -404,9 +404,9 @@ restrictions.isHdcDisabled(wantTemp).then((result) => {
 })
 ```
 
-## restrictions.isMicrophoneDisallowed<sup>11+</sup>
+## restrictions.isMicrophoneDisabled<sup>11+</sup>
 
-isMicrophoneDisallowed(admin: Want): boolean
+isMicrophoneDisabled(admin: Want): boolean
 
 指定设备管理应用查询麦克风是否被禁用。
 
@@ -436,22 +436,23 @@ isMicrophoneDisallowed(admin: Want): boolean
 ```ts
 import Want from '@ohos.app.ability.Want';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {
-  let result = restrictions.isMicrophoneDisallowed(wantTemp);
+  let result = restrictions.isMicrophoneDisabled(wantTemp);
+  console.info(`Succeeded in querying is microphone disabled : ${result}`);
 } catch (err) {
-  console.error(`Failed to isMicrophoneDisallowed. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to query is microphone disabled or not. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
-## restrictions.disallowMicrophone<sup>11+</sup>
+## restrictions.disableMicrophone<sup>11+</sup>
 
-disallowMicrophone(admin: Want, disallow: boolean): void
+disableMicrophone(admin: Want, disable: boolean): void
 
-指定设备管理应用使设备禁用或启用麦克风。使用Promise异步回调。
+指定设备管理应用使设备禁用或启用麦克风。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -464,7 +465,7 @@ disallowMicrophone(admin: Want, disallow: boolean): void
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| disallow  | boolean | 是 | true表示禁止使用麦克风，false表示允许使用麦克风。 |
+| disable  | boolean | 是 | true表示禁止使用麦克风，false表示允许使用麦克风。 |
 
 **错误码**：
 
@@ -481,13 +482,14 @@ disallowMicrophone(admin: Want, disallow: boolean): void
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 try {
-  restrictions.disallowMicrophone(wantTemp, true);
+  restrictions.disableMicrophone(wantTemp, true);
+  console.info('Succeeded in setting microphone disabled');
 } catch (err) {
-  console.error(`Failed to lock screen. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to disable microphone. Code is ${err.code}, message is ${err.message}`);
 }
 ```
