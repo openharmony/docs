@@ -94,7 +94,10 @@ Starts call chain tracing. This API returns the result synchronously.
 **Example**
 
 ```ts
-let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC | hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
+// Start call chain trace. The trace flag is the union of INCLUDE_ASYNC and DONOT_CREATE_SPAN.
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC | hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
+// End the call chain tracing after the service logic is executed for several times.
+hiTraceChain.end(traceId);
 ```
 
 ## hiTraceChain.end
@@ -114,9 +117,10 @@ Stops call chain tracing. This API works in synchronous manner.
 **Example**
 
 ```ts
-let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
+// Enable call chain trace. The trace flag is DEFAULT.
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // End the call chain tracing after the service logic is executed for several times.
-hiTraceChain.end(asyncTraceId);
+hiTraceChain.end(traceId);
 ```
 
 ## hiTraceChain.getId
@@ -136,9 +140,16 @@ Obtains the trace ID. This API returns the result synchronously.
 **Example**
 
 ```ts
+// Enable call chain trace. The trace flag is DEFAULT.
 let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
-// Obtain the current trace ID after the service logic is executed for several times.
+// After the service logic is executed for several times, obtain the current trace ID.
 let curTraceId = hiTraceChain.getId();
+// The call chain IDs in the trace IDs obtained from the same call chain trace must be the same.
+if (curTraceId.chainId != traceId.chainId) {
+// Processing logic for exceptions.
+}
+// End the call chain tracing after the service logic is executed for several times.
+hiTraceChain.end(traceId);
 ```
 
 ## hiTraceChain.setId
@@ -158,11 +169,10 @@ Sets a trace ID. This API returns the result synchronously.
 **Example**
 
 ```ts
-let asyncTraceId: hiTraceChain.HiTraceId;
-hiTraceChain.end(asyncTraceId);
-let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
-// Set the previous trace ID to the current trace ID after the service logic is executed for several times.
-hiTraceChain.setId(asyncTraceId);
+// Obtain the trace ID of the current call chain.
+let traceId = hiTraceChain.GetId();
+// Set traceId to the obtained trace ID.
+hiTraceChain.setId(traceId);
 ```
 
 ## hiTraceChain.clearId
@@ -176,9 +186,12 @@ Clears the trace ID. This API returns the result synchronously.
 **Example**
 
 ```ts
-let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
-// Clear the current trace ID after the service logic is executed for several times.
+// Before the service starts, try to clear the trace ID.
 hiTraceChain.clearId();
+// Enable call chain trace. The trace flag is DEFAULT.
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
+// End the call chain tracing after the service logic is executed for several times.
+hiTraceChain.end(traceId);
 ```
 
 ## hiTraceChain.createSpan
@@ -198,9 +211,16 @@ Creates a trace span. This API works in synchronous manner.
 **Example**
 
 ```ts
+// Enable call chain trace. The trace flag is DEFAULT.
 let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // Create a trace span after the service logic is executed for several times.
 let spanTraceId = hiTraceChain.createSpan();
+// The call chain IDs in the trace IDs obtained from the same call chain trace must be the same.
+if (spanTraceId.chainId != traceId.chainId) {
+// Processing logic for exceptions.
+}
+// The service is complete. Disable call chain trace.
+hiTraceChain.end(traceId);
 ```
 
 ## hiTraceChain.tracepoint
@@ -223,9 +243,12 @@ Triggers a trace point. This API returns the result synchronously.
 **Example**
 
 ```ts
-let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC | hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
+// Start call chain trace. The trace flag is the union of INCLUDE_ASYNC and DONOT_CREATE_SPAN.
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC | hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
 // Trigger the trace point after the service logic is executed for several times.
-hiTraceChain.tracepoint(hiTraceChain.HiTraceCommunicationMode.THREAD, hiTraceChain.HiTraceTracepointType.SS, asyncTraceId, "Just a example");
+hiTraceChain.tracepoint(hiTraceChain.HiTraceCommunicationMode.THREAD, hiTraceChain.HiTraceTracepointType.SS, traceId, "Just a example");
+// The service is complete. Disable call chain trace.
+hiTraceChain.end(traceId);
 ```
 
 ## hiTraceChain.isValid
@@ -251,8 +274,15 @@ Checks whether a **HiTraceId** instance is valid. This API returns the result sy
 **Example**
 
 ```ts
+// Enable call chain trace. The trace flag is DEFAULT.
 let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
+// Set the value of traceIdIsvalid to true.
 let traceIdIsvalid = hiTraceChain.isValid(traceId);
+if (traceIdIsvalid) {
+// Processing logic for the scenario where the validity check on the trace ID is successful.
+}
+// The service is complete. Disable call chain trace.
+hiTraceChain.end(traceId);
 ```
 
 ## hiTraceChain.isFlagEnabled
@@ -279,9 +309,15 @@ Checks whether the specified trace flag in the **HiTraceId** instance is enabled
 **Example**
 
 ```ts
-let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
-// The value of enabledDoNotCreateSpanFlag is true.
-let enabledDoNotCreateSpanFlag = hiTraceChain.isFlagEnabled(asyncTraceId, hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
+// Enable call chain trace. The trace flag is INCLUDE_ASYNC.
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
+// Set the value of enabledIncludeAsyncFlag to true.
+let enabledIncludeAsyncFlag = hiTraceChain.isFlagEnabled(traceId, hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
+if (enabledIncludeAsyncFlag) {
+// Processing logic for the scenario where the INCLUDE_ASYNC trace flag has been set.
+}
+// The service is complete. Disable call chain trace.
+hiTraceChain.end(traceId);
 ```
 
 ## hiTraceChain.enableFlag
@@ -302,8 +338,17 @@ Enables the specified trace flag in the **HiTraceId** instance. This API returns
 **Example**
 
 ```ts
-let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
-hiTraceChain.enableFlag(asyncTraceId, hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
-// The value of enabledDoNotCreateSpanFlag is true.
-let enabledDoNotCreateSpanFlag = hiTraceChain.isFlagEnabled(asyncTraceId, hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
+// Enable call chain trace. The trace flag is INCLUDE_ASYNC.
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
+// Set the value of enabledDoNotCreateSpanFlag to false.
+let enabledDoNotCreateSpanFlag = hiTraceChain.isFlagEnabled(traceId, hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
+// Set the DONOT_CREATE_SPAN trace flag.
+hiTraceChain.enableFlag(traceId, hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
+// Set the value of enabledDoNotCreateSpanFlag to true.
+enabledDoNotCreateSpanFlag = hiTraceChain.isFlagEnabled(traceId, hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
+if (enabledDoNotCreateSpanFlag) {
+// Processing logic for the scenario where the DONOT_CREATE_SPAN trace flag has been set.
+}
+// The service is complete. Disable call chain trace.
+hiTraceChain.end(traceId);
 ```
