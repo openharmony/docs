@@ -105,22 +105,6 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-let pipController: pipWindow.PiPController | undefined = undefined;
-let mXComponentController: XComponentController = new XComponentController();
-let navId: string = "page_1";
-let contentWidth: number = 800;
-let contentHeight: number = 600;
-let config: pipWindow.PiPConfiguration = {
-  context: getContext(this),
-  componentController: mXComponentController,
-  navigationId: navId,
-  templateType: pipWindow.PiPTemplateType.VIDEO_PLAY,
-  contentWidth: contentWidth,
-  contentHeight: contentHeight,
-};
-
 let promise = pipWindow.create(config);
 promise.then((data) => {
   pipController = data;
