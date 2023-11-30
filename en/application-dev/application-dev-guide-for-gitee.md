@@ -8,15 +8,13 @@ The documents are carefully organized as follows:
 
 [Here](quick-start/Readme-EN.md) you can learn how to better prepare yourself for application development.
 
-Browse the documents on the instructions for quickly building your first application and the basics about OpenHarmony applications.
-
-Check out the development fundamentals, which comprise descriptions of the package structure configuration file for OpenHarmony applications and the instructions for use of resource files.
+In this part, you will learn the application package structure, resource file usage, and core functions and syntax of ArkTS. You can even build your first OpenHarmony application with simple operations. All these lay a foundation for your subsequent development.
 
 ### Development
 
 To facilitate your application development, we provide development guidelines for key features.
 
-First thing first, familiarize yourself with the two cornerstone frameworks in OpenHarmony applications:
+First, familiarize yourself with the two cornerstone frameworks in OpenHarmony applications:
 
 - Application framework: [Application Models](application-models/Readme-EN.md)
 - UI framework: [UI Development](ui/Readme-EN.md)
@@ -53,7 +51,7 @@ DevEco Studio is a high-performance integrated development environment (IDE) rec
 
 ### Hands-On Tutorials
 
-To make you better understand how functions work together and jumpstart your application development projects, we provide stripped-down, real-world [samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md).
+To make you better understand how functions work together and jumpstart your application development projects, we provide stripped-down, real-world [samples](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-4.0-Release/README.md) and [codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md).
 
 ### API References
 
