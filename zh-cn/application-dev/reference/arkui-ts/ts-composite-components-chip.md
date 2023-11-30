@@ -32,7 +32,7 @@ ChipOptions定义chip的样式及具体式样参数。
 
 | 名称            | 类型                                    | 必填 | 说明                                                         |
 | --------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| size            | [ChipSize](#chipsize) \| SizeOptions    | 否   | 操作块尺寸。<br/>默认值：ChipSize：ChipSize.NORMAL，<br/>                SizeOptions：{width:-,height:36vp} |
+| size            | [ChipSize](#chipsize) \| SizeOptions    | 否   | 操作块尺寸。<br/>默认值：ChipSize：ChipSize.NORMAL，<br/>   SizeOptions类型参数不支持百分比设置。|
 | enabled         | boolean                                 | 否   | 操作块是否可选中。<br>默认值：true。                         |
 | prefixIcon      | [PrefixIconOptions](#prefixiconoptions) | 否   | 前缀图标属性。                                               |
 | label           | [LabelOptions](#labeloptions)           | 是   | 文本属性。                                                   |
