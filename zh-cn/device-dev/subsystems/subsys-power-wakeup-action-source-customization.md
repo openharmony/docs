@@ -96,7 +96,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
                     "//vendor/hihope/rk3568/preinstall-config:preinstall-config",
                     "//vendor/hihope/rk3568/resourceschedule:resourceschedule",
                     "//vendor/hihope/rk3568/etc:product_etc_conf",
-                    "//vendor/hihope/rk3568/power_manager/profile:wakeup_action_config" //添加wakeup_config的编译
+                    "//vendor/hihope/rk3568/power_manager/profile:wakeup_action_config" //添加wakeup_action_config的编译
                 ]
             }
         },
