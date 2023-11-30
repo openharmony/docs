@@ -5,7 +5,7 @@
 
 提供NativeImage功能，作为数据消费者，主要用来将数据和OpenGL纹理对接，需在OpenGL环境下使用
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **起始版本:**
 
@@ -87,7 +87,7 @@ OHNativeWindow* OH_NativeImage_AcquireNativeWindow (OH_NativeImage * image)
 
 OH_NativeWindow_DestroyNativeWindow释放
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **参数:**
 
@@ -113,7 +113,7 @@ int32_t OH_NativeImage_AttachContext (OH_NativeImage * image, uint32_t textureId
 
 GL_TEXTURE_EXTERNAL_OES, 并通过OH_NativeImage进行更新
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **参数:**
 
@@ -138,7 +138,7 @@ OH_NativeImage* OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarge
 
 创建一个**OH_NativeImage**实例，该实例与OpenGL ES的纹理ID和纹理目标相关联
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **参数:**
 
@@ -165,7 +165,7 @@ void OH_NativeImage_Destroy (OH_NativeImage ** image)
 
 **OH_NativeImage**指针会被赋值为空
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **参数:**
 
@@ -185,7 +185,7 @@ int32_t OH_NativeImage_DetachContext (OH_NativeImage * image)
 
 将OH_NativeImage实例从当前OpenGL ES上下文分离
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **参数:**
 
@@ -209,7 +209,7 @@ int64_t OH_NativeImage_GetTimestamp (OH_NativeImage * image)
 
 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的相关时间戳
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **参数:**
 
@@ -233,7 +233,7 @@ int32_t OH_NativeImage_GetTransformMatrix (OH_NativeImage * image, float matrix[
 
 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **参数:**
 
@@ -258,7 +258,7 @@ int32_t OH_NativeImage_UpdateSurfaceImage (OH_NativeImage * image)
 
 通过OH_NativeImage获取最新帧更新相关联的OpenGL ES纹理
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeImage
+\@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 
 **参数:**
 

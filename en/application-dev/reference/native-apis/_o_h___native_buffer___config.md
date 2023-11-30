@@ -5,7 +5,7 @@
 
 The **OH_NativeBuffer_Config** struct defines the **OH_NativeBuffer** attribute configuration, which is used when you apply for a new **OH_NativeBuffer** instance or query the attributes of an existing instance.
 
-\@syscap SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+\@syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Since**
 
