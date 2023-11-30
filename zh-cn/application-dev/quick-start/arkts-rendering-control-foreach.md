@@ -13,8 +13,8 @@ ForEach接口基于数组类型数据来进行循环渲染，需要与容器组�
 ```ts
 ForEach(
   arr: Array,
-  itemGenerator: (item: Array, index?: number) => void,
-  keyGenerator?: (item: Array, index?: number): string => string
+  itemGenerator: (item: any, index?: number) => void,
+  keyGenerator?: (item: any, index?: number): string => string
 )
 ```
 
