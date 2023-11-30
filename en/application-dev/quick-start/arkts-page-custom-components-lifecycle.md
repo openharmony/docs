@@ -6,25 +6,25 @@ Before we dive into the page and custom component lifecycle, it would be helpful
 
 - Custom component: \@Component decorated UI unit, which can combine multiple built-in components for component reusability.
 
-- Page: UI page of an application. A page can consist of one or more custom components. A custom component decorated with \@Entry is used as the default entry component of the page. Exactly one component can be decorated with \@Entry in a single source file. Only components decorated by \@Entry can call the lifecycle callbacks of a page.
+- Page: UI page of an application. A page consists of one or more custom components. A custom component decorated with \@Entry is used as the default entry component of the page. Exactly one component can be decorated with \@Entry in a single source file. Only components decorated by \@Entry can call the lifecycle callbacks of a page.
 
 
-The following lifecycle callbacks are provided for the lifecycle of a page, that is, the lifecycle of a custom component decorated with \@Entry:
+The following lifecycle callbacks are provided for a page, that is, a custom component decorated with \@Entry:
 
 
 - [onPageShow](../reference/arkui-ts/ts-custom-component-lifecycle.md#onpageshow): Invoked when the page is displayed.
 
 - [onPageHide](../reference/arkui-ts/ts-custom-component-lifecycle.md#onpagehide): Invoked when the page is hidden.
 
-- [onBackPress](../reference/arkui-ts/ts-custom-component-lifecycle.md#onbackpress): Invoked when the user clicks the Back button.
+- [onBackPress](../reference/arkui-ts/ts-custom-component-lifecycle.md#onbackpress): Invoked when the user clicks the **Back** button.
 
 
-The following lifecycle callbacks are provided for the lifecycle of a component, that is, the lifecycle of a custom component decorated with \@Component:
+The following lifecycle callbacks are provided for a custom component decorated with \@Component:
 
 
-- [aboutToAppear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear): Invoked when the custom component is about to appear. Specifically, it is invoked after a new instance of the custom component is created and before its **build** function is executed.
+- [aboutToAppear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear): Invoked when the custom component is about to appear. Specifically, it is invoked after an instance of the custom component is created and before its **build** function is executed.
 
-- [aboutToDisappear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear): Invoked before the destructor of the custom component is consumed.
+- [aboutToDisappear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear): Invoked before the instance of the custom component is about to be destroyed.
 
 
 The following figure shows the lifecycle of a component (home page) decorated with \@Entry.
@@ -33,14 +33,14 @@ The following figure shows the lifecycle of a component (home page) decorated wi
 ![en-us_image_0000001502372786](figures/en-us_image_0000001502372786.png)
 
 
-Based on the preceding figure, let's look into the initial creation, re-rendering, and deletion of a custom component.
+Based on the preceding figure, let's look into the creation, re-rendering, and deletion of a custom component.
 
 
 ## Custom Component Creation and Rendering
 
 1. Custom component creation: An instance of a custom component is created by the ArkUI framework.
 
-2. Initialization of custom component member variables: The member variables are initialized with locally defined default values or component constructor parameters. The initialization happens in the document order, which is the order in which the member variables are defined.
+2. Initialization of custom component member variables: The member variables are initialized with locally defined defaults or component constructor parameters. The initialization happens in the document order, which is the order in which the member variables are defined.
 
 3. If defined, the component's **aboutToAppear** callback is invoked.
 
@@ -64,7 +64,7 @@ Based on the preceding figure, let's look into the initial creation, re-renderin
    ```
 
 
-When the application is started in the background, since the application process is not destroyed, only the **onPageShow** callback is invoked.
+When the application is started in the background, because the application process is not destroyed, only the **onPageShow** callback is invoked.
 
 
 ## Custom Component Re-rendering
@@ -180,7 +180,7 @@ In the preceding example, the **Index** page contains two custom components. One
 
 - If **router.replaceUrl** is called, the **Index** page is destroyed. In this case, the execution of lifecycle callbacks changes to: Index onPageHide -> MyComponent aboutToDisappear -> Child aboutToDisappear. As aforementioned, a component is destroyed by directly removing it from the component tree. Therefore, **aboutToDisappear** of the parent component is called first, followed by **aboutToDisAppear** of the child component, and then the process of initializing the lifecycle of the new page is executed.
 
-- When the Back button is clicked, the **Index onBackPress** callback is invoked. When the application is minimized or switched to the background, the **Index onPageHide** callback is invoked. The application is not destroyed in these two states. Therefore, the **aboutToDisappear** callback of the component is not executed. When the application returns to the foreground, the **Index onPageShow** callback is invoked.
+- When the **Back** button is clicked, the **Index onBackPress** callback is invoked. When the application is minimized or switched to the background, the **Index onPageHide** callback is invoked. The application is not destroyed in these two states. Therefore, the **aboutToDisappear** callback of the component is not executed. When the application returns to the foreground, the **Index onPageShow** callback is invoked.
 
 
 - When the application exits, the following callbacks are executed in order: Index onPageHide -> MyComponent aboutToDisappear -> Child aboutToDisappear.

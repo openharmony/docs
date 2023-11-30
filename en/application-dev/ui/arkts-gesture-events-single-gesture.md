@@ -1,7 +1,7 @@
 # Single Gesture
 
 
-## TapGesture
+## Tap Gesture
 
 
 ```ts
@@ -12,7 +12,7 @@ TapGesture(value?:{count?:number; fingers?:number})
 Triggers a tap gesture with one or more taps. This API has two optional parameters:
 
 
-- **count**: number of consecutive taps required for gesture recognition. The default value is 1. A value less than 1 evaluates to the default value **1**. If multi-tap is configured, the timeout interval between a lift and the next tap is 300 ms.
+- **count**: number of consecutive taps required for gesture recognition. The default value is **1**. A value less than 1 evaluates to the default value **1**. If there are multiple taps, the timeout interval between a lift and the next tap is 300 ms.
 
 - **fingers**: number of fingers required for gesture recognition. The value ranges from 1 to 10. The default value is **1**. If the number of fingers used for the tap is less than the specified one within 300 ms after the first finger is tapped, the gesture fails to be recognized. Gesture recognition also fails if the number of fingers used for the tap exceeds the value of **fingers**.
     The following example binds a double-tap gesture (a tap gesture whose **count** value is **2**) to the **\<Text>** component:
@@ -47,7 +47,7 @@ Triggers a tap gesture with one or more taps. This API has two optional paramete
   ![tap](figures/tap.gif)
 
 
-## LongPressGesture
+## Long Press Gesture
 
 
 ```ts
@@ -80,7 +80,7 @@ struct Index {
     Column() {
       Text('LongPress OnAction:' + this.count).fontSize(28)
         .gesture(
-          // Bind the long press gesture that can be triggered repeatedly.
+          // Bind a long press gesture that can be triggered repeatedly.
           LongPressGesture({ repeat: true })
             .onAction((event: GestureEvent) => {
               if (event.repeat) {
@@ -105,7 +105,7 @@ struct Index {
 ![longPress](figures/longPress.gif)
 
 
-## PanGesture
+## Pan Gesture
 
 
 ```ts
@@ -120,7 +120,7 @@ Triggers a pan gesture, which requires the minimum movement distance (5 vp by de
 
 - **direction**: pan direction. The enumerated value supports the AND (&amp;) and OR (\|) operations. The default value is **Pandirection.All.**
 
-- **distance**: minimum pan distance required for gesture recognition, in vp. The default value is **5**.
+- **distance**: minimum amount of finger movement required for gesture recognition, in vp. The default value is **5**.
 
 
 The following exemplifies how to bind a pan gesture to the **\<Text>** component. You can pan a component by modifying the layout and position information of the component in the **PanGesture** callback.
@@ -148,12 +148,12 @@ struct Index {
           // Bind the layout and position information to the component.
         .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
         .gesture(
-          // Bind the pan gesture to the component.
+          // Bind a pan gesture to the component.
           PanGesture()
             .onActionStart((event: GestureEvent) => {
               console.info('Pan start');
             })
-              // When the drag gesture is triggered, modify the layout and position information of the component based on the callback.
+              // When the pan gesture is recognized, modify the layout and position information of the component based on the callback.
             .onActionUpdate((event: GestureEvent) => {
               this.offsetX = this.positionX + event.offsetX;
               this.offsetY = this.positionY + event.offsetY;
@@ -176,12 +176,12 @@ struct Index {
 
 >**NOTE**
 >
->Most slidable components, such as **\<List>**, **\<Grid>**, **\<Scroll>**, and **\<Tab>**, slide through the pan gesture. Therefore, binding the [pan gesture](#pangesture) or [swipe gesture](#swipegesture) to child components will cause gesture competition.
+>Most swipeable components, such as **\<List>**, **\<Grid>**, **\<Scroll>**, and **\<Tab>**, allow for swiping through the pan gesture. If you bind the pan gesture or [swipe gesture](#swipe-gesture) to a child of these components, competition for gesture recognition will result.
 >
->When a child component is bound to the pan gesture, sliding in the child component area triggers only the pan gesture of the child component. If the parent component needs to respond, you need to modify the gesture binding method or transfer messages from the child component to the parent component, or modify the **PanGesture** parameter distance of the parent and child components to make the panning more sensitive. When a child component is bound to the swipe gesture, you need to modify the parameters of **PanGesture** and **SwipeGesture** to achieve the required effect because the triggering conditions of **PanGesture** and **SwipeGesture** are different.
+>If the pan gesture is bound to a child component, the component, instead of its parent, responds to the pan gestures recognized. If you want the parent component to respond, you need to modify the gesture binding method or transfer messages from the child component to the parent component, or modify the **distance** parameters in **PanGesture** for the components. If the swipe gesture is bound to a child component, to allow the parent component to respond to gestures, you need to modify the parameters of **PanGesture** and **SwipeGesture**, since the swipe gesture and pan gesture are recognized with different conditions.
 
 
-## PinchGesture
+## Pinch Gesture
 
 
 ```ts
@@ -189,15 +189,15 @@ PinchGesture(value?:{fingers?:number; distance?:number})
 ```
 
 
-The pinch gesture is used to trigger a pinch gesture event. A minimum quantity of fingers that trigger the pinch gesture is two fingers, a maximum quantity of fingers that trigger the pinch gesture is five fingers, a minimum recognition distance is 3vp, and there are two optional parameters:
+Triggers a pinch gesture. This API has two optional parameters:
 
 
-- fingers: specifies the minimum number of fingers required to trigger a pinch gesture. This parameter is optional. The minimum value is 2 and the maximum value is 5. The default value is 2.
+- **fingers**: minimum number of fingers required for gesture recognition. The value ranges from 2 to 5. The default value is **2**. This parameter is optional.
 
-- distance: specifies the minimum distance for triggering the pinch gesture. This parameter is optional. The unit is vp. The default value is 3.
+- **distance**: minimum distance between fingers required for gesture recognition, in vp. The default value is **5**.
 
 
-For example, to bind a three-finger pinch gesture to the Column component, you can obtain the zoom ratio from the function callback of the pinch gesture to zoom out or zoom in the component.
+The following exemplifies how to bind a three-finger pinch gesture to the **\<Column>** component. You can obtain the scale factor from the callback of **PinchGesture** to scale the component.
 
 
 
@@ -221,10 +221,10 @@ struct Index {
       .width(300)
       .border({ width: 3 })
       .margin({ top: 100 })
-      // Bind the zoom ratio to the component. You can change the zoom ratio to zoom out or zoom in the component.
+      // Bind the scale factor to the component so that it is scaled by changing the scale factor.
       .scale({ x: this.scaleValue, y: this.scaleValue, z: 1 })
       .gesture(
-        // Bind the pinch gesture triggered by three fingers to the widget.
+        // Bind a three-finger pinch gesture to the component.
         PinchGesture({ fingers: 3 })
           .onActionStart((event: GestureEvent) => {
             console.info('Pinch start');
@@ -249,7 +249,7 @@ struct Index {
 ![pinch](figures/pinch.png)
 
 
-## RotationGesture
+## Rotation Gesture
 
 
 ```ts
@@ -257,15 +257,15 @@ RotationGesture(value?:{fingers?:number; angle?:number})
 ```
 
 
-The rotation gesture is used to trigger a rotation gesture event. A minimum quantity of fingers that trigger the rotation gesture is two fingers, a maximum quantity of fingers that trigger the rotation gesture is five fingers, a minimum change degree is one degree, and there are two optional parameters:
+Triggers a rotation gesture. A minimum quantity of fingers that trigger the rotation gesture is two fingers, a maximum quantity of fingers that trigger the rotation gesture is five fingers, a minimum change degree is one degree, and there are two optional parameters:
 
 
-- **fingers**: minimum number of fingers required to trigger a rotation gesture. This parameter is optional. The minimum value is 2 and the maximum value is 5. The default value is 2.
+- **fingers**: minimum number of fingers required for gesture recognition. The value ranges from 2 to 5. The default value is **2**. This parameter is optional.
 
-- **angle**: minimum change degree for triggering the rotation gesture. This parameter is optional. The unit is deg. The default value is 1.
+- **angle**: minimum angle of rotation required for gesture recognition, in deg. The default value is **1**. This parameter is optional.
 
 
-For example, a rotation gesture is bound to a **\<Text>** component to implement rotation of the component. A rotation angle may be obtained from a callback function of the rotation gesture, so as to implement rotation of the component:
+The following exemplifies how to bind a rotation gesture to the **\<Text>** component. You can obtain the rotation angle from the callback of **RotationGesture** and implement rotation on the component.
 
 
 
@@ -280,7 +280,7 @@ struct Index {
   build() {
     Column() {
       Text('RotationGesture angle:' + this.angle).fontSize(28)
-        // Bind the rotation layout to the component. You can change the rotation angle to rotate the component.
+        // Bind the rotation to the component so that it is rotated by changing the rotation angle.
         .rotate({ angle: this.angle })
         .gesture(
           RotationGesture()
@@ -292,7 +292,7 @@ struct Index {
               this.angle = this.rotateValue + event.angle;
               console.info('RotationGesture is onActionEnd');
             })
-              // Angle of the fixed component at the end of the rotation when the rotation ends and the handle is raised
+              // When the fingers lift from the screen, the component is fixed at the angle where rotation ends.
             .onActionEnd(() => {
               this.rotateValue = this.angle;
               console.info('RotationGesture is onActionEnd');
@@ -312,7 +312,7 @@ struct Index {
 ![rotation](figures/rotation.png)
 
 
-## SwipeGesture
+## Swipe Gesture
 
 
 ```ts
@@ -320,17 +320,17 @@ SwipeGesture(value?:{fingers?:number; direction?:SwipeDirection; speed?:number})
 ```
 
 
-Swipe gestures are used to trigger swipe events. A swipe gesture is recognized when the swipe speed is 100 vp/s or higher. There are three optional parameters:
+Triggers a swipe gesture, which can be recognized when the swipe speed is 100 vp/s or higher. This API has three optional parameters:
 
 
-- **fingers**: minimum number of fingers required to trigger a swipe gesture. TThe minimum value is 1 and the maximum value is 10. The default value is 1.
+- **fingers**: minimum number of fingers required for gesture recognition. The value ranges from 1 to 10. The default value is **1**.
 
 - **direction**: swipe direction. The enumerated values support the AND and OR operations. The default value is **SwipeDirection.All**.
 
 - **speed**: minimum speed of the swipe gesture, in vp/s. The default value is **100**.
 
 
-The following describes how to bind a sliding gesture to the Column component to rotate the component:
+The following exemplifies how to bind a swipe gesture to the **\<Column>** component to rotate the component:
 
 
 
@@ -352,10 +352,10 @@ struct Index {
       .width(300)
       .height(200)
       .margin(100)
-      // Bind rotation to the Column component and change the rotation angle based on the sliding speed and angle of the sliding gesture.
+      // Bind rotation to the <Column> component and change the rotation angle through the swipe speed and angle.
       .rotate({ angle: this.rotateAngle })
       .gesture(
-        // Bind the sliding gesture and restrict it to be triggered only when the user slides in the vertical direction.
+        // Bind to the component the swipe gesture that can be triggered only when the user swipes in the vertical direction.
         SwipeGesture({ direction: SwipeDirection.Vertical })
           // When the swipe gesture is triggered, the swipe speed and angle are obtained, which can be used to modify the layout parameters.
           .onAction((event: GestureEvent) => {
@@ -374,4 +374,4 @@ struct Index {
 
 >**NOTE**
 >
->When SwipeGesture and PanGesture are bound at the same time, competition occurs if they are bound in default mode or mutually exclusive mode. The trigger condition of SwipeGesture is that the sliding speed reaches 100 vp/s. The trigger condition of PanGesture is that the sliding distance reaches 5 vp and the trigger condition is met first. You can modify the parameters of SwipeGesture and PanGesture to achieve different effects.
+>When the swipe gesture and pan gesture are simultaneously bound to a component in default or mutually exclusive mode, competition for gesture recognition occurs. Whichever gesture meets the trigger condition first is recognized. By default, a swipe gesture is recognized when the swipe speed reaches 100 vp/s, and a pan gesture is recognized when the amount of finger movement reaches 5 vp. To allow a specific gesture to be recognized before the other, you can modify the parameter settings in **SwipeGesture** and **PanGesture**.

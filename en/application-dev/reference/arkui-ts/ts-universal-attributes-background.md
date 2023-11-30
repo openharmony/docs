@@ -1,6 +1,6 @@
 # Background
 
-You can set the background of a component.
+You can set the background for a component.
 
 >  **NOTE**
 >

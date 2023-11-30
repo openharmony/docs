@@ -1,6 +1,6 @@
-# @ohos.accessibility.config
+# @ohos.accessibility.config (System Accessibility Configuration)
 
-The System Accessibility Configuration module allows you to configure system accessibility features, including accessibility extension, high-contrast text, mouse buttons, and captions.
+The **accessibility.config** module provides APIs for configuring system accessibility features, including accessibility extension, high-contrast text, mouse buttons, and captions.
 
 > **NOTE**
 >
@@ -270,6 +270,8 @@ Implements configuration, acquisition, and listening for attributes.
 
 set(value: T): Promise&lt;void&gt;;
 
+**Required permissions**: ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+
 Sets the attribute value. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
@@ -304,6 +306,8 @@ try {
 ### set
 
 set(value: T, callback: AsyncCallback&lt;void&gt;): void;
+
+**Required permissions**: ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 Sets the attribute value. This API uses an asynchronous callback to return the result.
 
@@ -391,6 +395,8 @@ config.highContrastText.get((err, data) => {
 
 on(callback: Callback&lt;T&gt;): void;
 
+**Required permissions**: ohos.permission.READ_ACCESSIBILITY_CONFIG
+
 Adds a listener for attribute changes. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
@@ -416,6 +422,8 @@ try {
 ### off
 
 off(callback?: Callback&lt;T&gt;): void;
+
+**Required permissions**: ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 Cancels the listener for attribute changes. This API uses an asynchronous callback to return the result.
 

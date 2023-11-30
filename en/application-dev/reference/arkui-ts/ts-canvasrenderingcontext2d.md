@@ -1542,7 +1542,10 @@ Since API version 9, this API is supported in ArkTS widgets.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.beginPath()
-            this.context.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2)
+            this.context.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2, false)
+            this.context.stroke()
+            this.context.beginPath()
+            this.context.ellipse(200, 300, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2, true)
             this.context.stroke()
           })
       }
@@ -1552,7 +1555,7 @@ Since API version 9, this API is supported in ArkTS widgets.
   }
   ```
 
-  ![en-us_image_0000001256978339](figures/en-us_image_0000001256978339.png)
+  ![en-us_image_0000001194192440](figures/en-us_image_0000001194192440.png)
 
 
 ### rect
@@ -2508,10 +2511,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-| Name    | Type  | Mandatory  | Description                                      |
-| ------- | ------ | ---- | ---------------------------------------- |
-| type    | string | No   | Image format. The default value is **image/png**.           |
-| quality | number | No   | Image quality, which ranges from 0 to 1, when the image format is **image/jpeg** or **image/webp**. If the set value is beyond the value range, the default value **0.92** is used.|
+| Name    | Type  | Mandatory  | Default Value         | Description                                      |
+| ------- | ------ | ---- | ----- | ---------------------------------------- |
+| type    | string | No   | "image/png"    | Image format. The default value is **image/png**.           |
+| quality | number | No   | 0.92    | Image quality, which ranges from 0 to 1, when the image format is **image/jpeg** or **image/webp**. If the set value is beyond the value range, the default value **0.92** is used.|
 
 **Return value**
 
@@ -2525,25 +2528,30 @@ Since API version 9, this API is supported in ArkTS widgets.
   // xxx.ets
   @Entry
   @Component
-  struct ToDataURL {
+  struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    @State toDataURL: string = ""
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
+          .width(100)
+          .height(100)
           .onReady(() =>{
-            var dataURL = this.context.toDataURL()
+            this.context.fillStyle = "#00ff00"
+            this.context.fillRect(0,0,100,100)
+            this.toDataURL = this.context.toDataURL("image/png", 0.92)
           })
+        Text(this.toDataURL)
       }
       .width('100%')
       .height('100%')
+      .backgroundColor('#ffff00')
     }
   }
   ```
+  ![en-us_image_0000001238952387](figures/en-us_image_0000001194192441.png)  
 
 
 ### restore
@@ -2728,6 +2736,7 @@ Since API version 9, this API is supported in ArkTS widgets.
   ```
 
   ![en-us_image_0000001257058405](figures/en-us_image_0000001257058405.png)
+
 
 ## CanvasPattern
 

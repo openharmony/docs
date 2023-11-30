@@ -211,7 +211,7 @@ createPlainTextData(text: string): PasteData
 Creates a **PasteData** object of the plain text type.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.createData](#pasteboardcreatedata9).
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [pasteboard.createData](#pasteboardcreatedata9).
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -1650,7 +1650,7 @@ setPasteData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 Writes a **PasteData** object to the pasteboard. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setData](#setdata9).
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setData](#setdata9).
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -1681,7 +1681,7 @@ setPasteData(data: PasteData): Promise&lt;void&gt;
 Writes a **PasteData** object to the pasteboard. This API uses a promise to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setData](#setdata9-1).
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setData](#setdata9-1).
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 

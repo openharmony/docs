@@ -84,6 +84,24 @@ export { Log } from './src/main/ts/test'
 export { func } from './src/main/ts/test'
 export { func2 } from './src/main/ts/test'
 ```
+
+### Exporting Native Methods
+The HAR can contain .so files compiled in C++. Native methods in the .so file can be exported from the HAR in the following way. In the example, the **add** API in the **libnative.so** file is exported.
+```ts
+// library/src/main/ets/utils/nativeTest.ts
+import native from "libnative.so"
+
+export function nativeAdd(a: number, b: number) {
+    let result: number = native.add(a, b);
+    return result;
+}
+```
+In the **Index.ets** file, declare the APIs that the HAR exposes to external systems. The code snippet is as follows:
+```ts
+// library/Index.ets
+export { nativeAdd } from './src/main/ets/utils/nativeTest'
+```
+
 ### Resources
 Resources are packed into the HAR when it is being compiled and packaged. During compilation and building of a HAP, DevEco Studio collects resource files from the HAP module and its dependent modules. If the resource files of different modules have the same name, DevEco Studio overwrites the resource files based on the following priorities (in descending order):
 - AppScope (only for the stage model of API version 9)
@@ -145,10 +163,39 @@ struct Index {
   }
 }
 ```
+
+### Referencing Native Methods in the HAR
+To reference the native methods exported from the HAR, use **import** as follows:
+```ts
+// entry/src/main/ets/pages/Index.ets
+import { nativeAdd } from "library"
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button('nativeAdd(1, 2)')
+          .onClick(()=> {
+            this.message = "result: " + nativeAdd(1, 2);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ### Referencing Resources in the HAR
 Use **$r** to reference resources in the HAR. For example, add the **name: hello_har** string (defined in the **string.json** file) and **icon_har.png** image to the **src/main/resources** directory of the HAR module, and then reference the string and image in the entry module. The code snippet is as follows:
 ```js
-// entry/src/main/ets/pages/index.ets
+// entry/src/main/ets/pages/Index.ets
 @Entry
 @Component
 struct Index {
