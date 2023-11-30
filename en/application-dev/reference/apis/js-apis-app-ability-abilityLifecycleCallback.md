@@ -3,8 +3,8 @@
 The **AbilityLifecycleCallback** module defines the callbacks to receive lifecycle changes of [ApplicationContext](js-apis-inner-application-applicationContext.md). The callbacks include [onAbilityCreate](#abilitylifecyclecallbackonabilitycreate), [onWindowStageCreate](#abilitylifecyclecallbackonwindowstagecreate), [onWindowStageActive](#abilitylifecyclecallbackonwindowstageactive), [onWindowStageInactive](#abilitylifecyclecallbackonwindowstageinactive), [onWindowStageDestroy](#abilitylifecyclecallbackonwindowstagedestroy), [onAbilityDestroy](#abilitylifecyclecallbackonabilitydestroy), [onAbilityForeground](#abilitylifecyclecallbackonabilityforeground), [onAbilityBackground](#abilitylifecyclecallbackonabilitybackground), and [onAbilityContinue](#abilitylifecyclecallbackonabilitycontinue).
 
 > **NOTE**
-> 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+>
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
@@ -23,16 +23,17 @@ Called when an ability is created.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.| 
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
 
 **Example**
 ```ts
 let abilityLifecycleCallback =  {
     onAbilityCreate(ability){
-        console.log('AbilityLifecycleCallback onAbilityCreate.');  
+        console.log('AbilityLifecycleCallback onAbilityCreate.');
     }
+    ...
 };
 ```
 
@@ -46,10 +47,10 @@ Called when the window stage of an ability is created.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|  
-  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|    
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|
 
 **Example**
 ```ts
@@ -70,10 +71,10 @@ Called when the window stage of an ability gains focus.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|  
-  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|    
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|
 
 **Example**
 ```ts
@@ -94,10 +95,10 @@ Called when the window stage of an ability loses focus.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|  
-  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|  
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|
 
 **Example**
 ```ts
@@ -118,10 +119,10 @@ Called when the window stage of an ability is destroyed.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|  
-  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|  
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|
 
 **Example**
 ```ts
@@ -142,9 +143,9 @@ Called when an ability is destroyed.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.| 
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
 
 **Example**
 ```ts
@@ -165,9 +166,9 @@ Called when an ability is switched from the background to the foreground.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.| 
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
 
 **Example**
 ```ts
@@ -188,9 +189,9 @@ Called when an ability is switched from the foreground to the background.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.| 
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
 
 **Example**
 ```ts
@@ -211,9 +212,9 @@ Called when an ability is continued on another device.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.| 
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes| **Ability** object.|
 
 **Example**
 ```ts
@@ -229,6 +230,7 @@ let abilityLifecycleCallback =  {
 **Example**
 
 MyFirstAbility.ts
+First ability of the application
 ```ts
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 import AbilityStage from '@ohos.app.ability.AbilityStage';
@@ -237,7 +239,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 // Declare the ability lifecycle callbacks. A listener can be registered in applicationContext only after all the callbacks are configured.
 let abilityLifecycleCallback = {
     onAbilityCreate(ability){
-        console.log('AbilityLifecycleCallback onAbilityCreate.');  
+        console.log('AbilityLifecycleCallback onAbilityCreate.');
     },
     onWindowStageCreate(ability, windowStage){
         console.log('AbilityLifecycleCallback onWindowStageCreate.');
@@ -282,6 +284,7 @@ export default class MyFirstAbility extends UIAbility {
 ```
 
 MySecondAbility.ts
+Second ability of the application
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 

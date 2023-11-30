@@ -3,7 +3,7 @@
 The **wantConstant** module provides the actions, entities, and flags used in **Want** objects.
 
 > **NOTE**
-> 
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -14,7 +14,7 @@ import wantConstant from '@ohos.app.ability.wantConstant';
 
 ## wantConstant.Params
 
-Enumerates the action constants of the **Want** object. **action** specifies the operation to execute.
+Enumerates the action constants of the **Want** object.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
@@ -29,7 +29,7 @@ Enumerates the action constants of the **Want** object. **action** specifies the
 
 ## wantConstant.Flags
 
- Enumerates the flags that specify how the Want will be handled.
+ 
 
 **System capability**: SystemCapability.Ability.AbilityBase
 

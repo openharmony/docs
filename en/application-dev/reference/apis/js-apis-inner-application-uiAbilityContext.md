@@ -1,8 +1,6 @@
 # UIAbilityContext
 
-The **UIAbilityContext** module, inherited from **Context**, implements the context for UIAbilities.
-
-This module provides APIs for accessing UIAbility-specific resources. You can use the APIs to start and terminate a UIAbility, obtain the caller interface, and request permissions from users by displaying a dialog box.
+**UIAbilityContext**, inherited from [Context](js-apis-inner-application-context.md), provides the context environment for [UIAbility](js-apis-app-ability-uiAbility.md) that needs to store its status. **UIAbilityContext** provides UIAbility-related configuration and APIs for operating UIAbilities and ServiceExtensionAbilities. For example, you can use the APIs to start a UIAbility, terminate a UIAbility to which the UIAbilityContext belongs, and start, terminate, connect to, or disconnect from a ServiceExtensionAbility.
 
 > **NOTE**
 >

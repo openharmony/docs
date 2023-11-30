@@ -20,8 +20,8 @@ Enumerates the application restart flags. This enum is used as an input paramete
 | Name      | Value  | Description      |
 | ---------- | ---- | ---------- |
 | ALWAYS_RESTART   | 0    | The application is restarted in all cases.|
-| RESTART_WHEN_JS_CRASH   | 0x0001    | The application is restarted in the case of JS_CRASH. |
-| RESTART_WHEN_APP_FREEZE   | 0x0002    | The application is restarted in the case of APP_FREEZE. |
+| RESTART_WHEN_JS_CRASH   | 0x0001    | The application is restarted in the case of JS_CRASH.|
+| RESTART_WHEN_APP_FREEZE   | 0x0002    | The application is restarted in the case of APP_FREEZE.|
 | NO_RESTART           | 0xFFFF    | The application is not restarted in any case.|
 
 ## appRecovery.SaveOccasionFlag
@@ -50,7 +50,7 @@ Enumerates the application state saving modes. This enum is used as an input par
 
 enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion?: [SaveOccasionFlag](#apprecoverysaveoccasionflag), saveMode?: [SaveModeFlag](#apprecoverysavemodeflag)) : void;
 
-Enables application recovery. After this API is called, the first ability that is displayed when the application is started from the initiator can be restored.
+Enables application recovery.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -58,7 +58,7 @@ Enables application recovery. After this API is called, the first ability that i
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| restart | [RestartFlag](#apprecoveryrestartflag) | No| Whether the application is restarted upon a fault. By default, the application is not restarted.|
+| restart | [RestartFlag](#apprecoveryrestartflag) | No| Whether the application is restarted upon a fault. By default, the application is restarted.|
 | saveOccasion | [SaveOccasionFlag](#apprecoverysaveoccasionflag) | No| Scenario for saving the application state. By default, the state is saved when a fault occurs.|
 | saveMode | [SaveModeFlag](#apprecoverysavemodeflag) | No| Application state saving mode. By default, the application state is written to the local file cache.|
 
@@ -112,9 +112,15 @@ try {
 
 saveAppState(): boolean;
 
-Saves the application state. This API can be used together with APIs of [errorManager](js-apis-app-ability-errorManager.md).
+Saves the application state. This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)| No| Context of the target ability.|
 
 **Return value**
 
