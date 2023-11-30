@@ -42,7 +42,7 @@ import fileShare from '@ohos.fileshare';
 
 | 名称  | 值   | 说明        |
 | ----- |-----|-----------|
-| ALLOW_PERSISTENCE  | 1   | URI禁止被持久化 |
+| PERSISTENCE_FORBIDDEN  | 1   | URI禁止被持久化 |
 | INVALID_MODE  | 2   | 无效的模式     |
 | INVALID_PATH  | 3   | 无效的路径     |
 
