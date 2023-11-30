@@ -229,9 +229,9 @@ try {
 }
 ```
 
-## environment.getUserDocumentsDir<sup>11+</sup>
+## environment.getUserDocumentDir<sup>11+</sup>
 
-getUserDocumentsDir(): string
+getUserDocumentDir(): string
 
 获取当前用户预授权文档目录的沙箱路径，该接口仅对特定设备开放。
 
@@ -260,10 +260,10 @@ getUserDocumentsDir(): string
 ```ts
 import { BusinessError } from '@ohos.base';
 try {
-  let path = environment.getUserDocumentsDir();
-  console.log(`success to getUserDocumentsDir: ${JSON.stringify(path)}`);
+  let path = environment.getUserDocumentDir();
+  console.log(`success to getUserDocumentDir: ${JSON.stringify(path)}`);
 } catch (error) {
-  console.error(`failed to getUserDocumentsDir because: ${JSON.stringify(error)}`);
+  console.error(`failed to getUserDocumentDir because: ${JSON.stringify(error)}`);
 }
 ```
 

@@ -50,7 +50,7 @@ import fileShare from '@ohos.fileshare';
 
 **系统能力**：SystemCapability.FileManagement.AppFileService
 
-授予或使能权限失败的URI策略结果，支持persistPermission、desistPermission、activateAccessingUri、deactivateAccessingUri接口抛出错误时使用。
+授予或使能权限失败的URI策略结果，支持persistPermission、revokePermission、activatePermission、deactivatePermission接口抛出错误时使用。
 
 | 名称      | 类型                                  | 说明                |
 |---------|-------------------------------------|-------------------|
@@ -181,9 +181,9 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): P
   }
   ```
 
-## fileShare.grantPolicy<sup>11+</sup>
+## fileShare.grantPermission<sup>11+</sup>
 
-grantPolicy(tokenId: number, policies: Array&lt;PolicyInfo>, policyFlag: number): Promise&lt;void&gt;
+grantPermission(tokenId: number, policies: Array&lt;PolicyInfo>, policyFlag: number): Promise&lt;void&gt;
 
 异步方法对所选择的文件或目录URI临时授权，以promise形式返回结果，该接口仅对特定设备开放。
 
@@ -228,7 +228,7 @@ import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
 import bundleManager from '@ohos.bundle.bundleManager';
 
-async function grantPolicyExample01() {
+async function grantPermissionExample() {
   try {
     let uri = "file://docs/storage/Users/username/1.txt";
     let bundleName = 'com.example.myapplication';
@@ -240,14 +240,14 @@ async function grantPolicyExample01() {
       operateMode: fileShare.OperateMode.READ_MODE,
     };
     let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-    fileShare.grantPolicy(tokenId, policies, fileShare.PolicyFlag.ALLOW_PERSISTENCE).then(() => {
-      console.info("grantPolicy successfully");
+    fileShare.grantPermission(tokenId, policies, fileShare.PolicyFlag.ALLOW_PERSISTENCE).then(() => {
+      console.info("grantPermission successfully");
     }).catch((err: BusinessError) => {
-      console.info("grantPolicy failed with error message: " + err.message + ", error code: " + err.code);
+      console.info("grantPermission failed with error message: " + err.message + ", error code: " + err.code);
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('grantPolicy failed with err: ' + JSON.stringify(err));
+    console.error('grantPermission failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -294,7 +294,7 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
 
-async function persistPermissionExample01() {
+async function persistPermissionExample() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
     let documentPicker = new picker.DocumentViewPicker();
@@ -321,9 +321,9 @@ async function persistPermissionExample01() {
 }
   ```
 
-## fileShare.desistPermission<sup>11+</sup>
+## fileShare.revokePermission<sup>11+</sup>
 
-desistPermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
+revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 异步方法对所选择的文件或目录uri取消持久化授权，以promise形式返回结果，该接口仅对特定设备开放。
 
@@ -363,7 +363,7 @@ desistPermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
 
-async function desistPermissionExample01() {
+async function revokePermissionExample() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
     let documentPicker = new picker.DocumentViewPicker();
@@ -373,10 +373,10 @@ async function desistPermissionExample01() {
       operateMode: fileShare.OperateMode.READ_MODE,
     };
     let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-    fileShare.desistPermission(policies).then(() => {
-      console.info("desistPermission successfully");
+    fileShare.revokePermission(policies).then(() => {
+      console.info("revokePermission successfully");
     }).catch((err: BusinessError) => {
-      console.info("desistPermission failed with error message: " + err.message + ", error code: " + err.code);
+      console.info("revokePermission failed with error message: " + err.message + ", error code: " + err.code);
       if(err.code == 13900001){
         console.log("error code : " + JSON.stringify(err.data[0].code));
         console.log("error uri : " + JSON.stringify(err.data[0].uri));
@@ -385,14 +385,14 @@ async function desistPermissionExample01() {
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('desistPermission failed with err: ' + JSON.stringify(err));
+    console.error('revokePermission failed with err: ' + JSON.stringify(err));
   }
 }
 ```
 
-## fileShare.activateAccessingUri<sup>11+</sup>
+## fileShare.activatePermission<sup>11+</sup>
 
-activateAccessingUri(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
+activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 异步方法使能某个已经永久授权过的文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
 
@@ -430,18 +430,18 @@ activateAccessingUri(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
 
-async function activateAccessingUriExample01() {
+async function activatePermissionExample() {
   try {
-    let uri = "file://docs/storage/Users/username/tmp.txt";//uri为应用重启后读取的最近使用文件
+    let uri = "file://docs/storage/Users/username/tmp.txt";
     let policyInfo: fileShare.PolicyInfo = {
       uri: uri,
       operateMode: fileShare.OperateMode.READ_MODE,
     };
     let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-    fileShare.activateAccessingUri(policies).then(() => {
-      console.info("activateAccessingUri successfully");
+    fileShare.activatePermission(policies).then(() => {
+      console.info("activatePermission successfully");
     }).catch((err: BusinessError) => {
-      console.info("activateAccessingUri failed with error message: " + err.message + ", error code: " + err.code);
+      console.info("activatePermission failed with error message: " + err.message + ", error code: " + err.code);
       if(err.code == 13900001){
       console.log("error code : " + JSON.stringify(err.data[0].code));
       console.log("error uri : " + JSON.stringify(err.data[0].uri));
@@ -450,14 +450,14 @@ async function activateAccessingUriExample01() {
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('activateAccessingUri failed with err: ' + JSON.stringify(err));
+    console.error('activatePermission failed with err: ' + JSON.stringify(err));
   }
 }
 ```
 
-## fileShare.deactivateAccessingUri<sup>11+</sup>
+## fileShare.deactivatePermission<sup>11+</sup>
 
-deactivateAccessingUri(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
+deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 异步方法取消使能授权过的文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
 
@@ -494,18 +494,18 @@ deactivateAccessingUri(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
 
-async function deactivateAccessingUriExample01() {
+async function deactivatePermissionExample() {
   try {
-    let uri = "file://docs/storage/Users/username/tmp.txt";//uri为应用重启后读取的最近使用文件
+    let uri = "file://docs/storage/Users/username/tmp.txt";
     let policyInfo: fileShare.PolicyInfo = {
       uri: uri,
       operateMode: fileShare.OperateMode.READ_MODE,
     };
     let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-    fileShare.deactivateAccessingUri(policies).then(() => {
-      console.info("deactivateAccessingUri successfully");
+    fileShare.deactivatePermission(policies).then(() => {
+      console.info("deactivatePermission successfully");
     }).catch((err: BusinessError) => {
-      console.info("deactivateAccessingUri failed with error message: " + err.message + ", error code: " + err.code);
+      console.info("deactivatePermission failed with error message: " + err.message + ", error code: " + err.code);
       if(err.code == 13900001){
         console.log("error code : " + JSON.stringify(err.data[0].code));
         console.log("error uri : " + JSON.stringify(err.data[0].uri));
@@ -514,7 +514,7 @@ async function deactivateAccessingUriExample01() {
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('deactivateAccessingUri failed with err: ' + JSON.stringify(err));
+    console.error('deactivatePermission failed with err: ' + JSON.stringify(err));
   }
 }
 ```
