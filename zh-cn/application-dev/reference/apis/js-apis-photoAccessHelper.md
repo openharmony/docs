@@ -956,6 +956,219 @@ async function example() {
 }
 ```
 
+### getHiddenAlbums<sup>11+</sup>
+
+getHiddenAlbums(mode: HiddenPhotosDisplayMode, options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
+
+根据隐藏文件显示模式和检索选项获取系统中的隐藏相册，使用callback方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | 是   | 隐藏文件显示模式  |
+| options  | [FetchOptions](#fetchoptions)         | 是   |  检索选项  |
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied.         |
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+// 获取系统中包含隐藏文件且相册名为'newAlbumName'的相册
+async function getHiddenAlbumsView() {
+  console.info('getHiddenAlbumsViewDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  predicates.equalTo('album_name', 'newAlbumName');
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE, fetchOptions,
+    async (err, fetchResult) => {
+      if (fetchResult == undefined) {
+        console.error('getHiddenAlbumsViewCallback fetchResult is undefined');
+        return;
+      }
+      let album = await fetchResult.getFirstObject();
+      console.info('getHiddenAlbumsViewCallback successfully, album name: ' + album.albumName);
+      fetchResult.close();
+  });
+}
+```
+
+### getHiddenAlbums<sup>11+</sup>
+
+getHiddenAlbums(mode: HiddenPhotosDisplayMode, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
+
+根据隐藏文件显示模式获取系统中的隐藏相册，使用callback方式返回结果
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | 是   | 隐藏文件显示模式  |
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied.         |
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+// 获取系统预置的隐藏相册
+async function getSysHiddenAlbum() {
+  console.info('getSysHiddenAlbumDemo');
+  phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE, async (err, fetchResult) => {
+    if (fetchResult == undefined) {
+      console.error('getSysHiddenAlbumCallback fetchResult is undefined');
+      return;
+    }
+    let hiddenAlbum: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    console.info('getSysHiddenAlbumCallback successfully, albumUri: ' + hiddenAlbum.albumUri);
+    fetchResult.close();
+  });
+}
+
+// 获取隐藏相册-相册视图，即系统中包含隐藏文件的相册（不包含系统预置的隐藏相册本身和回收站相册）
+async function getHiddenAlbumsView() {
+  console.info('getHiddenAlbumsViewDemo');
+  phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE, async (err, fetchResult) => {
+    if (fetchResult == undefined) {
+      console.error('getHiddenAlbumsViewCallback fetchResult is undefined');
+      return;
+    }
+    let albums: Array<photoAccessHelper.Album> = await fetchResult.getAllObjects();
+    console.info('getHiddenAlbumsViewCallback successfully, albums size: ' + albums.length);
+
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    for (let i = 0; i < albums.length; i++) {
+      // 获取相册中的隐藏文件
+      albums[i].getAssets(fetchOption, (err, assetFetchResult) => {
+        console.info('album get hidden assets successfully, getCount: ' + assetFetchResult.getCount());
+      });
+    }
+    fetchResult.close();
+  });
+}
+```
+
+### getHiddenAlbums<sup>11+</sup>
+
+getHiddenAlbums(mode: HiddenPhotosDisplayMode, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
+
+根据隐藏文件显示模式和检索选项获取系统中的隐藏相册，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | 是   | 隐藏文件显示模式  |
+| options  | [FetchOptions](#fetchoptions)         | 否   |  检索选项，不填时默认根据隐藏文件显示模式检索。      |
+
+**返回值：**
+
+| 类型                        | 说明           |
+| --------------------------- | -------------- |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise对象，返回获取相册的结果集。
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+// 获取系统预置的隐藏相册
+async function getSysHiddenAlbum() {
+  console.info('getSysHiddenAlbumDemo');
+  phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE)
+    .then( async (fetchResult) => {
+      if (fetchResult == undefined) {
+        console.error('getSysHiddenAlbumPromise fetchResult is undefined');
+        return;
+      }
+      let hiddenAlbum: photoAccessHelper.Album = await fetchResult.getFirstObject();
+      console.info('getAlbumsPromise successfully, albumUri: ' + hiddenAlbum.albumUri);
+      fetchResult.close();
+    }).catch((err: BusinessError) => {
+      console.error('getSysHiddenAlbumPromise failed with err: ' + err);
+    });
+}
+
+// 获取隐藏相册-相册视图，即系统中包含隐藏文件的相册（不包含系统预置的隐藏相册本身和回收站相册）
+async function getHiddenAlbumsView() {
+  console.info('getHiddenAlbumsViewDemo');
+  phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE).then( async (fetchResult) => {
+    if (fetchResult == undefined) {
+      console.error('getHiddenAlbumsViewPromise fetchResult is undefined');
+      return;
+    }
+    let albums: Array<photoAccessHelper.Album> = await fetchResult.getAllObjects();
+    console.info('getHiddenAlbumsViewPromise successfully, albums size: ' + albums.length);
+
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    for (let i = 0; i < albums.length; i++) {
+      // 获取相册中的隐藏文件
+      albums[i].getAssets(fetchOption).then((assetFetchResult) => {
+        console.info('album get hidden assets successfully, getCount: ' + assetFetchResult.getCount());
+      }).catch((err: BusinessError) => {
+        console.error('album get hidden assets failed with error: ' + err);
+      });
+    }
+    fetchResult.close();
+  }).catch((err: BusinessError) => {
+    console.error('getHiddenAlbumsViewPromise failed with err: ' + err);
+  });
+}
+```
+
 ### deleteAssets
 
 deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
@@ -3250,9 +3463,9 @@ async function example() {
 
 ### requestSource<sup>11+</sup>
 
-requestSource(): Promise&lt;string&gt;
+requestSource(): Promise&lt;number&gt;
 
-打开源文件并返回fd，该方法使用callback形式来返回结果。
+打开源文件并返回fd，该方法使用promise形式来返回结果。
 
 **系统接口**：此接口为系统接口。
 
@@ -3303,7 +3516,7 @@ async function example() {
 
 ### commitEditedAsset<sup>11+</sup>
 
-commitEditedAsset(editData: string, uri: string, callback: AsyncCallback&lt;number&gt;): void
+commitEditedAsset(editData: string, uri: string, callback: AsyncCallback&lt;void&gt;)
 
 提交编辑数据以及编辑后的图片或视频，该方法使用callback形式来返回结果。
 
@@ -3322,7 +3535,7 @@ commitEditedAsset(editData: string, uri: string, callback: AsyncCallback&lt;numb
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
 | editData | string | 是    | 提交的编辑数据。 |
-| uri | string; | 是    | 提交的编辑后的图片或视频，在应用沙箱下的uri。 |
+| uri | string | 是    | 提交的编辑后的图片或视频，在应用沙箱下的uri。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | Callback对象，返回void。 |
 
 **错误码：**
@@ -3368,7 +3581,7 @@ async function example() {
 
 ### commitEditedAsset<sup>11+</sup>
 
-commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt;
+commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt
 
 提交编辑数据以及编辑后的图片或视频，该方法使用promise形式来返回结果。
 
@@ -3434,7 +3647,7 @@ async function example() {
 
 ### revertToOriginal<sup>11+</sup>
 
-revertToOriginal(callback: AsyncCallback&lt;void&gt;): void
+revertToOriginal(callback: AsyncCallback&lt;void&gt;)
 
 回退到编辑前的状态，该方法使用callback形式来返回结果。
 
@@ -3594,7 +3807,7 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 async function example01() {
-  try {  
+  try {
     let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
     PhotoSelectOptions.maxSelectNumber = 5;
@@ -5238,6 +5451,7 @@ async function example() {
 | TRASH |  1028 |  回收站。**系统接口**：此接口为系统接口。 |
 | SCREENSHOT |  1029 |  截屏和录屏相册。**系统接口**：此接口为系统接口。 |
 | CAMERA |  1030 |  相机拍摄的照片和视频相册。**系统接口**：此接口为系统接口。 |
+| IMAGE<sup>11+</sup> |  1031 | 所有图片相册。**系统接口**：此接口为系统接口。 |
 | ANY |  2147483647 |  任意相册。 |
 
 ## PhotoKeys
@@ -5281,6 +5495,19 @@ async function example() {
 | ------------- | ------------------- | ---------------------------------------------------------- |
 | URI           | 'uri'                 | 相册uri。                                                   |
 | ALBUM_NAME    | 'album_name'          | 相册名字。                                                   |
+
+## HiddenPhotosDisplayMode<sup>11+</sup>
+
+枚举，系统中隐藏文件显示模式。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称          | 值              | 说明                                                       |
+| ------------- | ------------------- | ---------------------------------------------------------- |
+| ASSETS_MODE   | 0       | 按系统预置的隐藏相册显示隐藏文件，即显示系统中所有的隐藏文件。    |
+| ALBUMS_MODE    | 1    | 按相册显示隐藏文件（即显示系统中所有包含隐藏文件的相册，除系统预置的隐藏相册本身和回收站相册以外。）  |
 
 ## PhotoCreateOptions
 
@@ -5352,6 +5579,7 @@ async function example() {
 | ----------------- | ----------------------- | ------------------------------------------------------------ |
 | DEFAULT_PHOTO_URI | 'file://media/Photo'      | 默认PhotoAsset的Uri，与forSubUri{true}一起使用，将接收所有PhotoAsset的更改通知。 |
 | DEFAULT_ALBUM_URI | 'file://media/PhotoAlbum' | 默认相册的Uri，与forSubUri{true}一起使用，将接收所有相册的更改通知。 |
+| DEFAULT_HIDDEN_ALBUM_URI<sup>11+</sup>  | 'file://media/HiddenAlbum' | 隐藏相册-相册视图中相册的Uri，即系统中包含隐藏文件的相册（不包含系统预置隐藏相册和回收站相册）的Uri，仅用于隐藏相册-相册视图场景的通知。**系统接口**：此接口为系统接口。 |
 
 ## PhotoViewMIMETypes
 
@@ -5375,6 +5603,8 @@ async function example() {
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型。 |
 | maxSelectNumber       | number | 否   | 选择媒体文件数量的最大值(默认值为50，最大值为500)。      |
+| isPhotoTakingSupported<sup>11+</sup> | boolean  | 否   | 支持拍照。 |
+| isEditSupported<sup>11+</sup>       | boolean | 否   | 支持编辑照片。      |
 
 ## PhotoSelectResult
 
