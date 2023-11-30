@@ -308,7 +308,7 @@ async function persistPermissionExample() {
       console.info("persistPermission successfully");
     }).catch((err: BusinessError) => {
       console.info("persistPermission failed with error message: " + err.message + ", error code: " + err.code);
-      if(err.code == 13900001){
+      if (err.code == 13900001) {
         console.log("error code : " + JSON.stringify(err.data[0].code));
         console.log("error uri : " + JSON.stringify(err.data[0].uri));
         console.log("error reason : " + JSON.stringify(err.data[0].message));
@@ -346,7 +346,7 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-如果存在URI授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
+如果存在URI取消授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -377,7 +377,7 @@ async function revokePermissionExample() {
       console.info("revokePermission successfully");
     }).catch((err: BusinessError) => {
       console.info("revokePermission failed with error message: " + err.message + ", error code: " + err.code);
-      if(err.code == 13900001){
+      if (err.code == 13900001) {
         console.log("error code : " + JSON.stringify(err.data[0].code));
         console.log("error uri : " + JSON.stringify(err.data[0].uri));
         console.log("error reason : " + JSON.stringify(err.data[0].message));
@@ -415,7 +415,7 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-如果存在URI授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
+如果存在URI使能权限失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -444,10 +444,10 @@ async function activatePermissionExample() {
       console.info("activatePermission successfully");
     }).catch((err: BusinessError) => {
       console.info("activatePermission failed with error message: " + err.message + ", error code: " + err.code);
-      if(err.code == 13900001){
-      console.log("error code : " + JSON.stringify(err.data[0].code));
-      console.log("error uri : " + JSON.stringify(err.data[0].uri));
-      console.log("error reason : " + JSON.stringify(err.data[0].message));
+      if (err.code == 13900001) {
+        console.log("error code : " + JSON.stringify(err.data[0].code));
+        console.log("error uri : " + JSON.stringify(err.data[0].uri));
+        console.log("error reason : " + JSON.stringify(err.data[0].message));
       }
     });
   } catch (error) {
@@ -482,7 +482,7 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-如果存在URI授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
+如果存在URI取消使能权限失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -510,7 +510,7 @@ async function deactivatePermissionExample() {
       console.info("deactivatePermission successfully");
     }).catch((err: BusinessError) => {
       console.info("deactivatePermission failed with error message: " + err.message + ", error code: " + err.code);
-      if(err.code == 13900001){
+      if (err.code == 13900001) {
         console.log("error code : " + JSON.stringify(err.data[0].code));
         console.log("error uri : " + JSON.stringify(err.data[0].uri));
         console.log("error reason : " + JSON.stringify(err.data[0].message));
