@@ -271,3 +271,33 @@ The system memory is insufficient.
 **Solution**
 
 Try again later or restart the device.
+
+
+## 19100019 DLP File Has Expired
+
+**Error Message**
+
+The DLP file has expired.
+
+**Description**
+
+The DLP file has expired.
+
+**Solution**
+
+Contact the file owner to authorize the file.
+
+
+## 19100020 Network Disconnected
+
+**Error Message**
+
+No network connection.
+
+**Description**
+
+The device is not connected to Wi-Fi.
+
+**Solution**
+
+Connect the device to Wi-Fi.
