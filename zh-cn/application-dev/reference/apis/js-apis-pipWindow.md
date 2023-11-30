@@ -53,30 +53,32 @@ create(config: PiPConfiguration, callback: AsyncCallback&lt;PiPController&gt;): 
 ```ts
 import { BusinessError } from '@ohos.base';
 let pipController: pipWindow.PiPController | undefined = undefined;
+let mXComponentController: XComponentController = new XComponentController();
+let navId: string = "page_1";
+let contentWidth: number = 800;
+let contentHeight: number = 600;
 
-if (!pipWindow.isPiPEnabled()) {
-  return;
-}
 let config: pipWindow.PiPConfiguration = {
   context: getContext(this),
-  componentController: xComponentController,
-  navigationId: 'navigationId',
+  componentController: mXComponentController,
+  navigationId: navId,
   templateType: pipWindow.PiPTemplateType.VIDEO_PLAY,
-  contentWidth: 800,
-  contentHeight: 600,
+  contentWidth: contentWidth,
+  contentHeight: contentHeight,
 };
+
 try {
   pipWindow.create(config, (err: BusinessError, data) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error(`Failed to create pip controller. Cause: ${errCode}, message:${err.message}`);
+      console.error(`Failed to create pip controller. Cause:${errCode}, message:${err.message}`);
       return;
     }
     pipController = data;
-    console.info(`Succeeded in creating pip controller. Data: ${data}`);
+    console.info(`Succeeded in creating pip controller. Data:${data}`);
   });
 } catch (exception) {
-  console.error(`Failed to create pip controller. Cause: ${exception}`);
+  console.error(`Failed to create pip controller. Cause:${exception}`);
 }
 ```
 
@@ -106,24 +108,25 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 import { BusinessError } from '@ohos.base';
 
 let pipController: pipWindow.PiPController | undefined = undefined;
-if (!pipWindow.isPiPEnabled()) {
-  return;
-}
+let mXComponentController: XComponentController = new XComponentController();
+let navId: string = "page_1";
+let contentWidth: number = 800;
+let contentHeight: number = 600;
 let config: pipWindow.PiPConfiguration = {
   context: getContext(this),
-  componentController: xComponentController,
-  navigationId: 'navigationId',
+  componentController: mXComponentController,
+  navigationId: navId,
   templateType: pipWindow.PiPTemplateType.VIDEO_PLAY,
-  contentWidth: 800,
-  contentHeight: 600,
+  contentWidth: contentWidth,
+  contentHeight: contentHeight,
 };
 
 let promise = pipWindow.create(config);
 promise.then((data) => {
   pipController = data;
-  console.info(`Succeeded in creating pip controller. Data: ${data}`);
+  console.info(`Succeeded in creating pip controller. Data:${data}`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to create pip controller. Cause: ${err.code}, message:${err.message}`);
+  console.error(`Failed to create pip controller. Cause:${err.code}, message:${err.message}`);
 });
 ```
 
@@ -247,14 +250,18 @@ startPiP(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-let promise = pipController.startPiP((err: BusinessError) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Succeeded in starting pip. Cause: ${errCode}, message:${err.message}`);
-    return;
-  }
-  console.info('Failed to start pip.');
-});
+try {
+  pipController.startPiP((err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Succeeded in starting pip. Cause:${errCode}, message:${err.message}`);
+      return;
+    }
+    console.info('Failed to start pip.');
+  });
+} catch (exception) {
+  console.error(`Failed to stop pip:${exception}`);
+}
 ```
 
 ### startPiP
@@ -287,9 +294,9 @@ startPiP(): Promise&lt;void&gt;
 ```ts
 let promise = pipController.startPiP();
 promise.then((data) => {
-  console.info(`Succeeded in starting pip. Data: ${data}`);
+  console.info(`Succeeded in starting pip. Data:${data}`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to start pip. Cause: ${err.code}, message:${err.message}`);
+  console.error(`Failed to start pip. Cause:${err.code}, message:${err.message}`);
 });
 ```
 
@@ -321,16 +328,16 @@ stopPiP(callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 try {
-  let promise = pipController.stopPiP((err: BusinessError) => {
+  pipController.stopPiP((err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error(`Succeeded in stopping pip. Cause: ${errCode}, message:${err.message}`);
+      console.error(`Succeeded in stopping pip. Cause:${errCode}, message:${err.message}`);
       return;
     }
     console.info('Failed to stop pip.');
   });
 } catch (exception) {
-  console.error(`Failed to stop pip: ${exception}`);
+  console.error(`Failed to stop pip:${exception}`);
 }
 ```
 
@@ -363,9 +370,9 @@ stopPiP(): Promise&lt;void&gt;
 ```ts
 let promise = pipController.stopPiP();
 promise.then((data) => {
-  console.info(`Succeeded in stopping pip. Data: ${data}`);
+  console.info(`Succeeded in stopping pip. Data:${data}`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to stop pip. Cause: ${err.code}, message:${err.message}`);
+  console.error(`Failed to stop pip. Cause:${err.code}, message:${err.message}`);
 });
 ```
 
