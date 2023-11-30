@@ -26,6 +26,8 @@ import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
 
 资源信息标志，指示需要获取的资源信息的内容。
 
+**系统接口：** 此接口为系统接口。
+
  **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Resource。
 
 | 名称                                      | 值         | 说明                                                         |
@@ -149,7 +151,7 @@ getAllBundleResourceInfo(resourceFlags: [number](#resourceflag), callback: Async
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST and ohos.permission.GET_BUNDLE_RESOURCES
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST 和 ohos.permission.GET_BUNDLE_RESOURCES
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
 
@@ -189,7 +191,7 @@ getAllBundleResourceInfo(resourceFlags: [number](#resourceflag)): Promise<Array<
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST and ohos.permission.GET_BUNDLE_RESOURCES
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST 和 ohos.permission.GET_BUNDLE_RESOURCES
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
 
@@ -232,7 +234,7 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag), callba
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST and ohos.permission.GET_BUNDLE_RESOURCES
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST 和 ohos.permission.GET_BUNDLE_RESOURCES
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
 
@@ -240,7 +242,7 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag), callba
 
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
-| resourceFlags | [number](#resourceflag) | 否   | 指定返回的LauncherAbilityResourceInfo所包含的信息。 |
+| resourceFlags | [number](#resourceflag) | 是   | 指定返回的LauncherAbilityResourceInfo所包含的信息。 |
 | callback | AsyncCallback\<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的LauncherAbilityResourceInfo数值；否则为错误对象。 |
 
 
@@ -273,7 +275,7 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)) : Prom
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST and ohos.permission.GET_BUNDLE_RESOURCES
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST 和 ohos.permission.GET_BUNDLE_RESOURCES
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
 
@@ -281,7 +283,7 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)) : Prom
 
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
-| resourceFlags | [number](#resourceflag) | 否   | 指定返回的LauncherAbilityResourceInfo所包含的信息。 |
+| resourceFlags | [number](#resourceflag) | 是   | 指定返回的LauncherAbilityResourceInfo所包含的信息。 |
 
 **返回值：**
 
