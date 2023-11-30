@@ -53,10 +53,10 @@ create(config: PiPConfiguration, callback: AsyncCallback&lt;PiPController&gt;): 
 ```ts
 import { BusinessError } from '@ohos.base';
 let pipController: pipWindow.PiPController | undefined = undefined;
-let mXComponentController: XComponentController = new XComponentController(); // init XComponent with this controller: XComponent( {id: 'video', type: 'surface', controller: mXComponentController} )
-let navId: string = "page_1"; // assuming current navigation page name is page_1;
-let contentWidth: number = 800; // assuming content width is 800;
-let contentHeight: number = 600; // assuming content height is 600;
+let mXComponentController: XComponentController = new XComponentController(); // 开发者应使用该mXComponentController初始化XComponent: XComponent( {id: 'video', type: 'surface', controller: mXComponentController} )，保证XComponent的内容可以被迁移到画中画窗口。
+let navId: string = "page_1"; // 假设当前页面的导航id为page_1，详见PiPConfiguration定义，具体导航名称由开发者自行定义;
+let contentWidth: number = 800; // 假设当前内容宽度800px，开发者可通过媒体相关接口获取;
+let contentHeight: number = 600; // 假设当前内容宽度600px，开发者可通过媒体相关接口获取;
 
 let config: pipWindow.PiPConfiguration = {
   context: getContext(this),
@@ -395,8 +395,8 @@ updateContentSize(width: number, height: number): void
 | height | number | 是   | 表示媒体内容高度，单位为px。用于更新画中画窗口比例。   |
 
 ```ts
-let width: number = 540; // assuming content width change to 540;
-let height: number = 960; // assuming content height change to 960;
+let width: number = 540; // 假设当前内容宽度变为540px，开发者可通过媒体相关接口或回调获取;
+let height: number = 960; // 假设当前内容高度变为960px，开发者可通过媒体相关接口或回调获取;
 pipController.updateContentSize(width, height);
 ```
 
