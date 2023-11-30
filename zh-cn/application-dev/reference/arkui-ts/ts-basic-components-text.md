@@ -54,7 +54,7 @@ Text(content?: string | Resource)
 >
 >  不支持Text内同时存在文本内容和Span或ImageSpan子组件。如果同时存在，只显示Span或ImageSpan内的内容。
 >
->  通用属性中形状裁剪[clip](ts-universal-attributes-sharp-clipping.md#clip)属性，在Text默认值为true。
+>  通用属性中形状裁剪[clip](ts-universal-attributes-sharp-clipping.md#clip)属性，不支持在Text组件中使用。
 
 ## 事件
 
