@@ -156,7 +156,7 @@ struct CustomDialogUser {
     cornerRadius: 10,
   })
 
-  // Set dialogController to null when the custom component is about to be destructed.
+  // Set dialogController to null when the custom component is about to be destroyed.
   aboutToDisappear() {
     this.dialogController = null // Set dialogController to null.
   }
