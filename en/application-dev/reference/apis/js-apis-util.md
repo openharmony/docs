@@ -34,11 +34,73 @@ Formats the specified values and inserts them into the string by replacing the w
 | ------ | ---------------------------- |
 | string | String containing the formatted values.|
 
+
+**Format Specifiers**
+
+| Specifier| Description                         |
+| ------ | -------------------------------- |
+| %s     | Converts a parameter into a string for all values except **Object**, **BigInt**, and **-0**.|
+| %d     | Converts a parameter into a decimal integer for all values except **Symbol** and **BigInt**.|
+| %i     | Converts a string into a decimal integer for all values except **Symbol** and **BigInt**.|
+| %f     | Converts a string into a floating point number for all values except **Symbol** and **BigInt**.|
+| %j     | Converts a JavaScript object into a JSON string.|
+| %o     | Converts a JavaScript object into a string, without containing the prototype chain information of the object.|
+| %O     | Converts a JavaScript object into a string.|
+| %c     | Valid only in the browser. It is ignored in other environments.|
+| %%     | Placeholder for escaping the percent sign.|
+
 **Example**
 
 ```ts
-let res = util.format("This is : %s", "hello world!");
-console.log(res);
+let name = 'John';
+let age = 20;
+let formattedString = util.format('My name is %s and I am %s years old', name, age);
+console.log(formattedString);
+// Output: My name is John and I am 20 years old
+let num = 10.5;
+formattedString = util.format('The number is %d', num);
+console.log(formattedString);
+// Output: The number is 10.5.
+num = 100.5;
+formattedString = util.format('The number is %i', num);
+console.log(formattedString);
+// Output: The number is 100.
+const pi = 3.141592653;
+formattedString = util.format('The value of pi is %f', pi);
+console.log(formattedString);
+// Output: The value of pi is 3.141592653
+const obj = { name: 'John', age: 20 };
+formattedString = util.format('The object is %j', obj);
+console.log(formattedString);
+// Output: The object is {"name":"John","age":20}.
+const person = {
+  name: 'John',
+  age: 20,
+  address: {
+    city: 'New York',
+    country: 'USA'
+  }
+};
+console.log(util.format('Formatted object using %%O: %O', person));
+console.log(util.format('Formatted object using %%o: %o', person));
+/*
+Output:
+Formatted object using %O: { name: 'John',
+  age: 20,
+  address:
+  { city: 'New York',
+    country: 'USA' } }
+Formatted object using %o: { name: 'John',
+  age: 20,
+  address:
+  { city: 'New York',
+    country: 'USA' } }
+*/
+const percentage = 80;
+let arg = 'homework';
+formattedString = util.format('John finished %d%% of the %s', percentage, arg);
+console.log(formattedString);
+// Output: John finished 80% of the homework
 ```
 
 ## util.errnoToString<sup>9+</sup>
@@ -139,21 +201,16 @@ Processes an asynchronous function and returns a promise.
 **Example**
 
 ```ts
-function fun(num, callback) {
-  if (typeof num === 'number') {
-      callback(null, num + 3);
-  } else {
-      callback("type err");
-  }
+async function fn() {
+  return 'hello world';
 }
-
-const addCall = util.promisify(fun);
+const addCall = util.promisify(util.callbackWrapper(fn));
 (async () => {
   try {
-      let res = await addCall(2);
-      console.log(res);
+    let res: string = await addCall();
+    console.log(res);
   } catch (err) {
-      console.log(err);
+    console.log(err);
   }
 })();
 ```
@@ -357,6 +414,12 @@ A constructor used to create a **TextDecoder** object.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Example**
+
+```ts
+let result = new util.TextDecoder();
+let retStr = result.encoding;
+```
 ### create<sup>9+</sup>
 
 create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder
@@ -1203,10 +1266,9 @@ Changes the **LruCache** capacity. If the new capacity is less than or equal to 
 **Example**
 
 ```ts
-let pro : util.LRUCache<number,number>= new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.updateCapacity(100);
 ```
-
 
 ### toString<sup>9+</sup>
 
@@ -1225,13 +1287,14 @@ Obtains the string representation of this **LruCache** object.
 **Example**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 pro.get(2);
-pro.remove(20);
-let result = pro.toString();
+pro.get(3);
+console.log(pro.toString());
+// Output: LRUCache[ maxSize = 64, hits = 1, misses = 1, hitRate = 50% ]
+// maxSize: maximum size of the buffer. hits: number of matched queries. misses: number of mismatched queries. hitRate: matching rate.
 ```
-
 
 ### getCapacity<sup>9+</sup>
 
@@ -1250,7 +1313,7 @@ Obtains the capacity of this cache.
 **Example**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 let result = pro.getCapacity();
 ```
 
@@ -1265,7 +1328,7 @@ Clears key-value pairs from this cache. The **afterRemoval()** method will be ca
 **Example**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result = pro.length;
 pro.clear();
@@ -1275,22 +1338,34 @@ pro.clear();
 
 getCreateCount(): number
 
-Obtains the number of return values for **createDefault()**.
+Obtains the number of times that an object is created.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type  | Description                             |
-| ------ | --------------------------------- |
-| number | Number of return values for **createDefault()**.|
+| Type  | Description               |
+| ------ | -------------------|
+| number | Number of times that objects are created.|
 
 **Example**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
-pro.put(1,8);
-let result = pro.getCreateCount();
+// Create the ChildLruBuffer class that inherits LruCache, and override createDefault() to return a non-undefined value.
+class ChildLruBuffer extends util.LRUCache<number, number> {
+  constructor() {
+    super();
+  }
+
+  createDefault(key: number): number {
+    return key;
+  }
+}
+let lru = new ChildLruBuffer();
+lru.put(2,10);
+lru.get(3);
+lru.get(5);
+let res = lru.getCreateCount();
 ```
 
 ### getMissCount<sup>9+</sup>
@@ -1310,7 +1385,7 @@ Obtains the number of times that the queried values are mismatched.
 **Example**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 pro.get(2);
 let result = pro.getMissCount();
@@ -1320,7 +1395,7 @@ let result = pro.getMissCount();
 
 getRemovalCount(): number
 
-Obtains the number of removals from this cache.
+Obtains the number of times that key-value pairs in the cache are recycled.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1328,12 +1403,12 @@ Obtains the number of removals from this cache.
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| number | Number of removals from the cache.|
+| number | Number of times that key-value pairs in the cache are recycled.|
 
 **Example**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 pro.updateCapacity(2);
 pro.put(50,22);
@@ -1357,7 +1432,7 @@ Obtains the number of times that the queried values are matched.
 **Example**
 
   ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  let pro: util.LRUCache<number, number> = new util.LRUCache();
   pro.put(2,10);
   pro.get(2);
   let result = pro.getMatchCount();
@@ -1380,7 +1455,7 @@ Obtains the number of additions to this cache.
 **Example**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result = pro.getPutCount();
 ```
@@ -1402,7 +1477,7 @@ Checks whether this cache is empty.
 **Example**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result = pro.isEmpty();
 ```
@@ -1430,7 +1505,7 @@ Obtains the value of the specified key.
 **Example**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result  = pro.get(2);
 ```
@@ -1459,7 +1534,7 @@ Adds a key-value pair to this cache.
 **Example**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 let result = pro.put(2,10);
 ```
 
@@ -1480,7 +1555,7 @@ Obtains all values in this cache, listed from the most to the least recently acc
 **Example**
 
 ```ts
-let pro : util.LRUCache<number|string,number|string> = new util.LRUCache();
+let pro: util.LRUCache<number|string,number|string> = new util.LRUCache();
 pro.put(2,10);
 pro.put(2,"anhu");
 pro.put("afaf","grfb");
@@ -1504,7 +1579,7 @@ Obtains all keys in this cache, listed from the most to the least recently acces
 **Example**
 
 ```ts
-let pro : util.LRUCache<number,number>= new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result = pro.keys();
 ```
@@ -1532,7 +1607,7 @@ Removes the specified key and its value from this cache.
 **Example**
 
 ```ts
-let pro : util.LRUCache<number,number>= new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result = pro.remove(20);
 ```
@@ -1629,7 +1704,7 @@ Creates a value if the value of the specified key is not available.
 **Example**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 let result = pro.createDefault(50);
 ```
 
@@ -1650,9 +1725,14 @@ Obtains a new iterator object that contains all key-value pairs in this object.
 **Example**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
-let result = pro.entries();
+pro.put(3,15);
+let pair:Iterable<Object[]> = pro.entries();
+let arrayValue = Array.from(pair);
+for (let value of arrayValue) {
+  console.log(value[0]+ ', '+ value[1]);
+}
 ```
 
 ### [Symbol.iterator]<sup>9+</sup>
@@ -1660,6 +1740,10 @@ let result = pro.entries();
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
 Obtains a two-dimensional array in key-value pairs.
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1672,9 +1756,14 @@ Obtains a two-dimensional array in key-value pairs.
 **Example**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
-let result = pro[Symbol.iterator]();
+pro.put(3,15);
+let pair:Iterable<Object[]> = pro[Symbol.iterator]();
+let arrayValue = Array.from(pair);
+for (let value of arrayValue) {
+  console.log(value[0]+ ', '+ value[1]);
+}
 ```
 
 ## ScopeComparable<sup>8+</sup>
