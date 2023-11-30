@@ -12,7 +12,7 @@
 import fileShare from '@ohos.fileshare';
 ```
 
-## fileShare.OperationMode
+## OperationMode<sup>11+</sup>
 
 枚举，授予或使能权限的URI访问模式。
 
@@ -23,7 +23,7 @@ import fileShare from '@ohos.fileshare';
 | READ_MODE  | 0b1 | 读权限 |
 | WRITE_MODE  | 0b10 | 写权限 |
 
-## fileShare.PolicyFlag
+## PolicyFlag<sup>11+</sup>
 
 枚举，授予或使能权限的URI策略。
 
@@ -34,7 +34,7 @@ import fileShare from '@ohos.fileshare';
 | ALLOW_PERSISTENCE  | 0b1 | 允许应用持久化 |
 | FORBID_PERSISTENCE  | 0b10 | 禁止应用持久化 |
 
-## fileShare.PolicyErrorCode
+## PolicyErrorCode<sup>11+</sup>
 
 枚举，授予或使能权限策略失败的URI对应的错误码。
 
@@ -46,11 +46,11 @@ import fileShare from '@ohos.fileshare';
 | INVALID_MODE  | 2   | 无效的模式     |
 | INVALID_PATH  | 3   | 无效的路径     |
 
-## fileShare.PolicyErrorResult
-
-**系统能力**：SystemCapability.FileManagement.AppFileService
+## fileShare.PolicyErrorResult<sup>11+</sup>
 
 授予或使能权限失败的URI策略结果，支持persistPermission、revokePermission、activatePermission、deactivatePermission接口抛出错误时使用。
+
+**系统能力**：SystemCapability.FileManagement.AppFileService
 
 | 名称      | 类型                                  | 说明                |
 |---------|-------------------------------------|-------------------|
@@ -58,11 +58,11 @@ import fileShare from '@ohos.fileshare';
 | code    | [PolicyErrorCode](#policyerrorcode) | 授权策略失败的URI对应的错误码。 |
 | message | string                              | 授权策略失败的URI对应的原因。  |
 
-## fileShare.PolicyInfo
-
-**系统能力**：SystemCapability.FileManagement.AppFileService
+## PolicyInfo<sup>11+</sup>
 
 需要授予或使能权限URI的策略信息。
+
+**系统能力**：SystemCapability.FileManagement.AppFileService
 
 | 名称            | 类型       | 必填  | 说明                                                                                                                                              |
 |---------------| ---------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------|
