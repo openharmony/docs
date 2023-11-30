@@ -3500,4 +3500,16 @@
 
 **ACL使能**: TRUE
 
+**起始版本**：11
+
+## ohos.permission.START_ABILITY_WITH_ANIMATION
+
+允许应用取消Ability启动动效。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 **起始版本**: 11
