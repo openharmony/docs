@@ -7,7 +7,7 @@ The **native_buffer.h** file declares the functions for obtaining and using **Na
 
 **Library**: libnative_buffer.so
 
-**System capability**: SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Since**: 9
 

@@ -5,7 +5,7 @@
 
 提供NativeBuffer功能，通过提供的接口，可以实现共享内存的申请、使用、属性查询、释放等操作
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **起始版本：** 9
 
@@ -197,7 +197,7 @@ OH_NativeBuffer* OH_NativeBuffer_Alloc (const OH_NativeBuffer_Config * config)
 
 通过OH_NativeBuffer_Config创建OH_NativeBuffer实例，每次调用都会产生一个新的OH_NativeBuffer实例
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **起始版本：** 9
 
@@ -222,7 +222,7 @@ void OH_NativeBuffer_GetConfig (OH_NativeBuffer * buffer, OH_NativeBuffer_Config
 
 用于获取OH_NativeBuffer的属性
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **起始版本：** 9
 
@@ -244,7 +244,7 @@ uint32_t OH_NativeBuffer_GetSeqNum (OH_NativeBuffer * buffer)
 
 获取OH_NativeBuffer的序列号
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **起始版本：** 9
 
@@ -269,7 +269,7 @@ int32_t OH_NativeBuffer_Map (OH_NativeBuffer * buffer, void ** virAddr )
 
 将OH_NativeBuffer对应的ION内存映射到进程空间
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **起始版本：** 9
 
@@ -295,7 +295,7 @@ int32_t OH_NativeBuffer_Reference (OH_NativeBuffer * buffer)
 
 将OH_NativeBuffer对象的引用计数加1
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **起始版本：** 9
 
@@ -346,7 +346,7 @@ int32_t OH_NativeBuffer_Unmap (OH_NativeBuffer * buffer)
 
 将OH_NativeBuffer对应的ION内存从进程空间移除
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **起始版本：** 9
 
@@ -371,7 +371,7 @@ int32_t OH_NativeBuffer_Unreference (OH_NativeBuffer * buffer)
 
 将OH_NativeBuffer对象的引用计数减1，当引用计数为0的时候，该NativeBuffer对象会被析构掉
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **起始版本：** 9
 
