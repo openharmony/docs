@@ -12,8 +12,8 @@
 
 | 名称                               | 参数类型                                     | 默认值    | 描述                                       |
 | -------------------------------- | ---------------------------------------- | ------ | ---------------------------------------- |
-| blur                             | number                                   | -      | 为当前组件添加内容模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| backdropBlur                     | number                                   | -      | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| blur                             | number | [BlurOptions](ts-appendix-enums.md#bluroptions11)<sup>11+<sup>                                        | -      | 为当前组件添加内容模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| backdropBlur                    | number | [BlurOptions](ts-appendix-enums.md#bluroptions11)<sup>11+<sup>                       | -      | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | shadow                           | [ShadowOptions](#shadowoptions对象说明) \| [ShadowStyle](#shadowstyle10枚举说明)<sup>10+</sup> | -      | 为当前组件添加阴影效果。<br/>入参类型为ShadowOptions时，可以指定模糊半径、阴影的颜色、X轴和Y轴的偏移量。<br/>入参类型为ShadowStyle时，可指定不同阴影样式。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用，ArkTS卡片上不支持参数为 [ShadowStyle](#shadowstyle10枚举说明)类型。 |
 | grayscale                        | number                                   | 0.0    | 为当前组件添加灰度效果。值定义为灰度转换的比例，入参1.0则完全转为灰度图像，入参则0.0图像无变化，入参在0.0和1.0之间时，效果呈线性变化。（百分比)<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置小于0的值时，按值为0处理，设置大于1的值时，按值为1处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | brightness                       | number                                   | 1.0    | 为当前组件添加高光效果，入参为高光比例，值为1时没有效果，小于1时亮度变暗，0为全黑，大于1时亮度增加，数值越大亮度越大。<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
