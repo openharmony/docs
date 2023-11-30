@@ -171,6 +171,10 @@ getCaretOffset(): CaretOffset
 | ----------------------- | ---------------- |
 | [CaretOffset](ts-basic-components-textinput.md#caretoffset11对象说明) | 光标相对输入框的位置。 |
 
+> **说明：**
+>
+> - 在当前帧更新光标位置同时调用该接口，该接口不生效。
+
 ## 示例
 
 ### 示例1
@@ -208,6 +212,11 @@ struct TextAreaExample {
         .onClick(() => {
           // 设置光标位置到第一个字符后
           this.controller.caretPosition(1)
+        })
+      Button('Get CaretOffset')
+        .backgroundColor('#007DFF')
+        .margin(15)
+        .onClick(() => {
           this.positionInfo = this.controller.getCaretOffset()
         })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
