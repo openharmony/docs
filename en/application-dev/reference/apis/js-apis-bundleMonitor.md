@@ -24,7 +24,7 @@ For details, see [Permission Levels](../../security/accesstoken-overview.md).
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-**System API**: This is a system API.
+**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name      | Template  | Readable| Writable| Description                      |
 | ---------- | ------ | ---- | ---- | -------------------------- |
@@ -53,7 +53,7 @@ Subscribes to bundle installation, uninstall, and update events.
 
 **Required permissions**: ohos.permission.LISTEN_BUNDLE_CHANGE
 
-**System API**: This is a system API.
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -61,7 +61,7 @@ Subscribes to bundle installation, uninstall, and update events.
 
 | Name                      | Type    | Mandatory| Description              |
 | ---------------------------- | -------- | ---- | ------------------ |
-| type| [BundleChangedEvent](js-apis-bundleMonitor.md#bundlechangedevent)| Yes  | Type of the event to subscribe to.|
+| type| [BundleChangedEvent](js-apis-bundleMonitor.md#BundleChangedEvent)| Yes  | Type of the event to subscribe to.|
 | callback | callback\<BundleChangedInfo>| Yes  | Callback used for the subscription.|
 
 **Example**
@@ -86,7 +86,7 @@ Unsubscribes from bundle installation, uninstall, and update events.
 
 **Required permissions**: ohos.permission.LISTEN_BUNDLE_CHANGE
 
-**System API**: This is a system API.
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -94,8 +94,8 @@ Unsubscribes from bundle installation, uninstall, and update events.
 
 | Name                      | Type    | Mandatory| Description                                                      |
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
-| type| [BundleChangedEvent](js-apis-bundleMonitor.md#bundlechangedevent)| Yes  | Type of the event to unsubscribe from.                                        |
-| callback | callback\<BundleChangedInfo>| No  | Callback used for the unsubscription. By default, no value is passed, and all callbacks of the current event are unsubscribed from.|
+| type| [BundleChangedEvent](js-apis-bundleMonitor.md#BundleChangedEvent)| Yes  | Type of the event to unsubscribe from.                                        |
+| callback | callback\<BundleChangedInfo>| No  | Callback used for the unsubscription. If this parameter is left empty, all callbacks of the current event are unsubscribed from.|
 
 **Example**
 

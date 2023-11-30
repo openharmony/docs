@@ -218,7 +218,7 @@ Replace the **srcEntrance** tag with **srcEntry** in the configuration file.
 The **apiVersion** tag under [distroFilter](../../../application-dev/quick-start/module-configuration-file.md) is deleted from the **module.json** file.
 
 **Change Impact**<br>
-If this tag is used, an error is reported during compilation on DevEco Studio.
+This change is a compatible change. If the **distroFilter** tag is used, no error is reported during compilation on DevEco Studio, but a wavy line is displayed in the editor.
 
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
