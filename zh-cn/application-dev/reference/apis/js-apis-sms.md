@@ -765,7 +765,7 @@ promise.then((data: string[]) => {
 
 addSimMessage\(options: SimMessageOptions, callback: AsyncCallback\<void\>\): void
 
-添加SIM卡消息。使用callback异步回调。
+添加SIM卡消息，sim卡消息满，添加报错。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -816,7 +816,7 @@ sms.addSimMessage(simMessageOptions, (err: BusinessError) => {
 
 addSimMessage\(options: SimMessageOptions\): Promise\<void\>
 
-添加SIM卡消息。使用Promise异步回调。
+添加SIM卡消息，sim卡消息满，添加报错。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -873,7 +873,7 @@ sms.addSimMessage(simMessageOptions).then(() => {
 
 delSimMessage\(slotId: number, msgIndex: number, callback: AsyncCallback\<void\>\): void
 
-删除SIM卡消息。使用callback异步回调。
+删除SIM卡消息，msgIndex无效时，删除报错。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -921,7 +921,7 @@ sms.delSimMessage(slotId, msgIndex, (err: BusinessError) => {
 
 delSimMessage\(slotId: number, msgIndex: number\): Promise\<void\>
 
-删除SIM卡信息。使用Promise异步回调。
+删除SIM卡消息，msgIndex无效时，删除报错。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
