@@ -12,7 +12,7 @@
 import fileShare from '@ohos.fileshare';
 ```
 
-## fileShare.OperationMode<sup>11+</sup>
+## fileShare.OperationMode
 
 枚举，授予或使能权限的URI访问模式。
 
@@ -23,7 +23,7 @@ import fileShare from '@ohos.fileshare';
 | READ_MODE  | 0b1 | 读权限 |
 | WRITE_MODE  | 0b10 | 写权限 |
 
-## fileShare.PolicyFlag<sup>11+</sup>
+## fileShare.PolicyFlag
 
 枚举，授予或使能权限的URI策略。
 
@@ -34,7 +34,7 @@ import fileShare from '@ohos.fileshare';
 | ALLOW_PERSISTENCE  | 0b1 | 允许应用持久化 |
 | FORBID_PERSISTENCE  | 0b10 | 禁止应用持久化 |
 
-## fileShare.PolicyErrorCode<sup>11+</sup>
+## fileShare.PolicyErrorCode
 
 枚举，授予或使能权限策略失败的URI对应的错误码。
 
@@ -46,7 +46,7 @@ import fileShare from '@ohos.fileshare';
 | INVALID_MODE  | 2   | 无效的模式     |
 | INVALID_PATH  | 3   | 无效的路径     |
 
-## fileShare.PolicyErrorResult<sup>11+</sup>
+## fileShare.PolicyErrorResult
 
 **系统能力**：SystemCapability.FileManagement.AppFileService
 
@@ -58,16 +58,16 @@ import fileShare from '@ohos.fileshare';
 | code    | [PolicyErrorCode](#policyerrorcode) | 授权策略失败的URI对应的错误码。 |
 | message | string                              | 授权策略失败的URI对应的原因。  |
 
-## fileShare.PolicyInfo<sup>11+</sup>
+## fileShare.PolicyInfo
 
 **系统能力**：SystemCapability.FileManagement.AppFileService
 
 需要授予或使能权限URI的策略信息。
 
-| 名称        | 类型       | 必填  | 说明             |
-| ----------- | ---------|-----|----------------|
-| uri | string     | 是   | 需要授予或使能权限的URI。 |
-| operationMode    | number  | 是   | 授予或使能权限的URI访问模式。 |
+| 名称            | 类型       | 必填  | 说明                                                                                                                                              |
+|---------------| ---------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| uri           | string     | 是   | 需要授予或使能权限的URI。                                                                                                                                  |
+| operationMode | number  | 是   | 授予或使能权限的URI访问模式，参考[OperationMode](#operationmode)，例如：<br/>  fileShare.OperationMode.READ_MODE ：允许读授权 <br/>  fileShare.OperationMode.READ_MODE  \| fileShare.OperationMode.WRITE_MODE ：允许读写授权 |
 
 
 ## fileShare.grantUriPermission
@@ -195,11 +195,11 @@ grantPermission(tokenId: number, policies: Array&lt;PolicyInfo>, policyFlag: num
 
 **参数：**
 
-| 参数名     | 类型                                  | 必填 | 说明                      |
-|---------|-------------------------------------| -------- |-------------------------|
-| tokenId | number                              | 是 | 拉起filePicker应用的tokenId。 |
-| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
-| policyFlag    | number                              | 是 | 授权的URI策略。                |
+| 参数名     | 类型                                  | 必填 | 说明                                                                                           |
+|---------|-------------------------------------| -------- |----------------------------------------------------------------------------------------------|
+| tokenId | number                              | 是 | 拉起filePicker应用的tokenId。                                                                      |
+| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。                                                                                |
+| policyFlag    | number                              | 是 | 授权的URI策略，参考[PolicyFlag](#policyflag)，例如：<br/>  fileShare.PolicyFlag.ALLOW_PERSISTENCE ：允许持久化 |
 
 **返回值：**
 
