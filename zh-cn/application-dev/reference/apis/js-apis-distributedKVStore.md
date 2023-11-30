@@ -982,7 +982,6 @@ try {
     resultSet = result;
     do {
       moved = resultSet.moveToNext();
-      const entry = resultSet.getEntry();
       console.info("moveToNext succeed: " + moved);
     } while (moved)
   }).catch((err: BusinessError) => {
