@@ -46,7 +46,7 @@ import fileShare from '@ohos.fileshare';
 | INVALID_MODE  | 2   | 无效的模式     |
 | INVALID_PATH  | 3   | 无效的路径     |
 
-## fileShare.PolicyErrorResult<sup>11+</sup>
+## PolicyErrorResult<sup>11+</sup>
 
 授予或使能权限失败的URI策略结果，支持persistPermission、revokePermission、activatePermission、deactivatePermission接口抛出错误时使用。
 
