@@ -652,14 +652,14 @@ promise.then((data: http.HttpResponse) => {
 });
 ```
 
-### on('headerReceive')<sup>(deprecated)</sup>
+### on("headerReceive")<sup>(deprecated)</sup>
 
-on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
+on(type: "headerReceive", callback: AsyncCallback\<Object\>): void
 
 订阅HTTP Response Header 事件。
 
 > **说明：**
-> 此接口已废弃，建议使用[on('headersReceive')<sup>8+</sup>](#onheadersreceive8)替代。
+> 此接口已废弃，建议使用[on("headersReceive")<sup>8+</sup>](#onheadersreceive8)替代。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -677,20 +677,20 @@ import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
 let httpRequest = http.createHttp();
-httpRequest.on('headerReceive', (data: BusinessError) => {
-  console.info('error:' + JSON.stringify(data));
+httpRequest.on("headerReceive", (data: BusinessError) => {
+  console.info("error:" + JSON.stringify(data));
 });
 ```
 
-### off('headerReceive')<sup>(deprecated)</sup>
+### off("headerReceive")<sup>(deprecated)</sup>
 
-off(type: 'headerReceive', callback?: AsyncCallback\<Object\>): void
+off(type: "headerReceive", callback?: AsyncCallback\<Object\>): void
 
 取消订阅HTTP Response Header 事件。
 
 > **说明：**
 >
->1. 此接口已废弃，建议使用[off('headersReceive')<sup>8+</sup>](#offheadersreceive8)替代。
+>1. 此接口已废弃，建议使用[off("headersReceive")<sup>8+</sup>](#offheadersreceive8)替代。
 >
 >2. 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
@@ -709,12 +709,12 @@ off(type: 'headerReceive', callback?: AsyncCallback\<Object\>): void
 import http from '@ohos.net.http';
 
 let httpRequest = http.createHttp();
-httpRequest.off('headerReceive');
+httpRequest.off("headerReceive");
 ```
 
-### on('headersReceive')<sup>8+</sup>
+### on("headersReceive")<sup>8+</sup>
 
-on(type: 'headersReceive', callback: Callback\<Object\>): void
+on(type: "headersReceive", callback: Callback\<Object\>): void
 
 订阅HTTP Response Header 事件。
 
@@ -733,15 +733,15 @@ on(type: 'headersReceive', callback: Callback\<Object\>): void
 import http from '@ohos.net.http';
 
 let httpRequest = http.createHttp();
-httpRequest.on('headersReceive', (header: Object) => {
-  console.info('header: ' + JSON.stringify(header));
+httpRequest.on("headersReceive", (header: Object) => {
+  console.info("header: " + JSON.stringify(header));
 });
-httpRequest.off('headersReceive');
+httpRequest.off("headersReceive");
 ```
 
-### off('headersReceive')<sup>8+</sup>
+### off("headersReceive")<sup>8+</sup>
 
-off(type: 'headersReceive', callback?: Callback\<Object\>): void
+off(type: "headersReceive", callback?: Callback\<Object\>): void
 
 取消订阅HTTP Response Header 事件。
 
@@ -760,12 +760,12 @@ off(type: 'headersReceive', callback?: Callback\<Object\>): void
 **示例：**
 
 ```ts
-示例代码请见on('headersReceive')<sup>8+</sup>
+示例代码请见on("headersReceive")<sup>8+</sup>
 ```
 
-### once('headersReceive')<sup>8+</sup>
+### once("headersReceive")<sup>8+</sup>
 
-once(type: 'headersReceive', callback: Callback\<Object\>): void
+once(type: "headersReceive", callback: Callback\<Object\>): void
 
 订阅HTTP Response Header 事件，但是只触发一次。一旦触发之后，订阅器就会被移除。使用callback方式作为异步方法。
 
@@ -784,14 +784,14 @@ once(type: 'headersReceive', callback: Callback\<Object\>): void
 import http from '@ohos.net.http';
 
 let httpRequest = http.createHttp();
-httpRequest.once('headersReceive', (header: Object) => {
-  console.info('header: ' + JSON.stringify(header));
+httpRequest.once("headersReceive", (header: Object) => {
+  console.info("header: " + JSON.stringify(header));
 });
 ```
 
-### on('dataReceive')<sup>10+</sup>
+### on("dataReceive")<sup>10+</sup>
 
-on(type: 'dataReceive', callback: Callback\<ArrayBuffer\>): void
+on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 
 订阅HTTP流式响应数据接收事件。
 
@@ -813,15 +813,15 @@ on(type: 'dataReceive', callback: Callback\<ArrayBuffer\>): void
 import http from '@ohos.net.http';
 
 let httpRequest = http.createHttp();
-httpRequest.on('dataReceive', (data: ArrayBuffer) => {
-  console.info('dataReceive length: ' + JSON.stringify(data.byteLength));
+httpRequest.on("dataReceive", (data: ArrayBuffer) => {
+  console.info("dataReceive length: " + JSON.stringify(data.byteLength));
 });
-httpRequest.off('dataReceive');
+httpRequest.off("dataReceive");
 ```
 
-### off('dataReceive')<sup>10+</sup>
+### off("dataReceive")<sup>10+</sup>
 
-off(type: 'dataReceive', callback?: Callback\<ArrayBuffer\>): void
+off(type: "dataReceive", callback?: Callback\<ArrayBuffer\>): void
 
 取消订阅HTTP流式响应数据接收事件。
 
@@ -840,12 +840,12 @@ off(type: 'dataReceive', callback?: Callback\<ArrayBuffer\>): void
 **示例：**
 
 ```ts
-示例代码请见on('dataReceive')<sup>10+</sup>
+示例代码请见on("dataReceive")<sup>10+</sup>
 ```
 
-### on('dataEnd')<sup>10+</sup>
+### on("dataEnd")<sup>10+</sup>
 
-on(type: 'dataEnd', callback: Callback\<void\>): void
+on(type: "dataEnd", callback: Callback\<void\>): void
 
 订阅HTTP流式响应数据接收完毕事件。
 
@@ -867,15 +867,15 @@ on(type: 'dataEnd', callback: Callback\<void\>): void
 import http from '@ohos.net.http';
 
 let httpRequest = http.createHttp();
-httpRequest.on('dataEnd', () => {
-  console.info('Receive dataEnd !');
+httpRequest.on("dataEnd", () => {
+  console.info("Receive dataEnd !");
 });
-httpRequest.off('dataEnd');
+httpRequest.off("dataEnd");
 ```
 
-### off('dataEnd')<sup>10+</sup>
+### off("dataEnd")<sup>10+</sup>
 
-off(type: 'dataEnd', callback?: Callback\<void\>): void
+off(type: "dataEnd", callback?: Callback\<void\>): void
 
 取消订阅HTTP流式响应数据接收完毕事件。
 
@@ -894,12 +894,12 @@ off(type: 'dataEnd', callback?: Callback\<void\>): void
 **示例：**
 
 ```ts
-示例代码请见on('dataEnd')<sup>10+</sup>
+示例代码请见on("dataEnd")<sup>10+</sup>
 ```
 
-### on('dataReceiveProgress')<sup>10+</sup>
+### on("dataReceiveProgress")<sup>10+</sup>
 
-on(type: 'dataReceiveProgress', callback: Callback\<{ receiveSize: number; totalSize: number }\>): void
+on(type: "dataReceiveProgress", callback: Callback\<{ receiveSize: number; totalSize: number }\>): void
 
 订阅HTTP流式响应数据接收进度事件。
 
@@ -926,15 +926,15 @@ class RequestData{
 }
 
 let httpRequest = http.createHttp();
-httpRequest.on('dataReceiveProgress', (data: RequestData) => {
-  console.info('dataReceiveProgress:' + JSON.stringify(data));
+httpRequest.on("dataReceiveProgress", (data: RequestData) => {
+  console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
-httpRequest.off('dataReceiveProgress');
+httpRequest.off("dataReceiveProgress");
 ```
 
-### off('dataReceiveProgress')<sup>10+</sup>
+### off("dataReceiveProgress")<sup>10+</sup>
 
-off(type: 'dataReceiveProgress', callback?: Callback\<{ receiveSize: number, totalSize: number }\>): void
+off(type: "dataReceiveProgress", callback?: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
 取消订阅HTTP流式响应数据接收进度事件。
 
@@ -953,7 +953,7 @@ off(type: 'dataReceiveProgress', callback?: Callback\<{ receiveSize: number, tot
 **示例：**
 
 ```ts
-示例代码请见on('dataReceiveProgress')<sup>10+</sup>
+示例代码请见on("dataReceiveProgress")<sup>10+</sup>
 ```
 
 ## HttpRequestOptions
