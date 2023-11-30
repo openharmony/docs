@@ -161,7 +161,7 @@ getUserDownloadDir(): string
 
 **需要权限**：ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
 
-**系统能力**：SystemCapability.FileManagement.AppFileService
+**系统能力**：SystemCapability.FileManagement.File.Environment
 
 **返回值：**
 
@@ -199,7 +199,7 @@ getUserDesktopDir(): string
 
 **需要权限**：ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
 
-**系统能力**：SystemCapability.FileManagement.AppFileService
+**系统能力**：SystemCapability.FileManagement.File.Environment
 
 **返回值：**
 
@@ -237,7 +237,7 @@ getUserDocumentDir(): string
 
 **需要权限**：ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
 
-**系统能力**：SystemCapability.FileManagement.AppFileService
+**系统能力**：SystemCapability.FileManagement.File.Environment
 
 **返回值：**
 
@@ -273,7 +273,7 @@ getExternalStorageDir(): string
 
 获取外卡根目录的沙箱路径，该接口仅对特定设备开放。
 
-**系统能力**：SystemCapability.FileManagement.AppFileService
+**系统能力**：SystemCapability.FileManagement.File.Environment
 
 **系统接口**：此接口为系统接口。
 
@@ -311,7 +311,7 @@ getUserHomeDir(): string
 
 获取当前用户根目录的沙箱路径，该接口仅对特定设备开放。
 
-**系统能力**：SystemCapability.FileManagement.AppFileService
+**系统能力**：SystemCapability.FileManagement.File.Environment
 
 **系统接口**：此接口为系统接口。
 

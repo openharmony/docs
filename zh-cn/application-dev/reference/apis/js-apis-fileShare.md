@@ -12,7 +12,7 @@
 import fileShare from '@ohos.fileshare';
 ```
 
-## fileShare.OperateMode<sup>11+</sup>
+## fileShare.OperationMode<sup>11+</sup>
 
 枚举，授予或使能权限的URI访问模式。
 
@@ -42,7 +42,7 @@ import fileShare from '@ohos.fileshare';
 
 | 名称  | 值   | 说明        |
 | ----- |-----|-----------|
-| FORBIDDEN_TO_BE_PERSISTED  | 1   | URI禁止被持久化 |
+| ALLOW_PERSISTENCE  | 1   | URI禁止被持久化 |
 | INVALID_MODE  | 2   | 无效的模式     |
 | INVALID_PATH  | 3   | 无效的路径     |
 
@@ -67,7 +67,7 @@ import fileShare from '@ohos.fileshare';
 | 名称        | 类型       | 必填  | 说明             |
 | ----------- | ---------|-----|----------------|
 | uri | string     | 是   | 需要授予或使能权限的URI。 |
-| operateMode    | number  | 是   | 授予或使能权限的URI访问模式。 |
+| operationMode    | number  | 是   | 授予或使能权限的URI访问模式。 |
 
 
 ## fileShare.grantUriPermission
@@ -237,7 +237,7 @@ async function grantPermissionExample() {
     let tokenId = applicationInfo.accessTokenId;
     let policyInfo: fileShare.PolicyInfo = {
       uri: uri, 
-      operateMode: fileShare.OperateMode.READ_MODE,
+      operationMode: fileShare.OperationMode.READ_MODE,
     };
     let policies: Array<fileShare.PolicyInfo> = [policyInfo];
     fileShare.grantPermission(tokenId, policies, fileShare.PolicyFlag.ALLOW_PERSISTENCE).then(() => {
@@ -301,7 +301,7 @@ async function persistPermissionExample() {
     let uris = await documentPicker.select(DocumentSelectOptions);
     let policyInfo: fileShare.PolicyInfo = {
       uri: uris[0], 
-      operateMode: fileShare.OperateMode.READ_MODE,
+      operationMode: fileShare.OperationMode.READ_MODE,
     };
     let policies: Array<fileShare.PolicyInfo> = [policyInfo];
     fileShare.persistPermission(policies).then(() => {
@@ -370,7 +370,7 @@ async function revokePermissionExample() {
     let uris = await documentPicker.select(DocumentSelectOptions);
     let policyInfo: fileShare.PolicyInfo = {
       uri: uris[0], 
-      operateMode: fileShare.OperateMode.READ_MODE,
+      operationMode: fileShare.OperationMode.READ_MODE,
     };
     let policies: Array<fileShare.PolicyInfo> = [policyInfo];
     fileShare.revokePermission(policies).then(() => {
@@ -435,7 +435,7 @@ async function activatePermissionExample() {
     let uri = "file://docs/storage/Users/username/tmp.txt";
     let policyInfo: fileShare.PolicyInfo = {
       uri: uri,
-      operateMode: fileShare.OperateMode.READ_MODE,
+      operationMode: fileShare.OperationMode.READ_MODE,
     };
     let policies: Array<fileShare.PolicyInfo> = [policyInfo];
     fileShare.activatePermission(policies).then(() => {
@@ -499,7 +499,7 @@ async function deactivatePermissionExample() {
     let uri = "file://docs/storage/Users/username/tmp.txt";
     let policyInfo: fileShare.PolicyInfo = {
       uri: uri,
-      operateMode: fileShare.OperateMode.READ_MODE,
+      operationMode: fileShare.OperationMode.READ_MODE,
     };
     let policies: Array<fileShare.PolicyInfo> = [policyInfo];
     fileShare.deactivatePermission(policies).then(() => {
