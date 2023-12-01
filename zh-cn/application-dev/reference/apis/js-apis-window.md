@@ -6391,7 +6391,7 @@ getWindowLimits(): WindowLimits
 
 | 类型                          | **说明**           |
 | ----------------------------- | ------------------ |
-| [WindowLimits](#WindowLimits) | 当前窗口尺寸限制。 |
+| [WindowLimits](#windowlimits) | 当前窗口尺寸限制。 |
 
 **错误码：**
 
@@ -6423,13 +6423,13 @@ setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
 | 参数名       | 类型                          | 必填 | 说明                           |
 | :----------- | :---------------------------- | :--- | :----------------------------- |
-| windowLimits | [WindowLimits](#WindowLimits) | 是   | 目标窗口的尺寸限制，单位为px。 |
+| windowLimits | [WindowLimits](#wndowlimits) | 是   | 目标窗口的尺寸限制，单位为px。 |
 
 **返回值：**
 
 | 类型                                         | 说明                                |
 | :------------------------------------------- | :---------------------------------- |
-| Promise&lt;[WindowLimits](#WindowLimits)&gt; | Promise对象。返回设置后的尺寸限制。 |
+| Promise&lt;[WindowLimits](#windowlimits)&gt; | Promise对象。返回设置后的尺寸限制。 |
 
 **错误码：**
 
