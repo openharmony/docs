@@ -213,10 +213,10 @@ grantPermission(tokenId: number, policies: Array&lt;PolicyInfo>, policyFlag: num
 
 | 错误码ID    | 错误信息                                   |
 |----------|----------------------------------------|
-| 201      | Permission denied.|
-| 202      | The caller is not a system application |
-| 401      | The input parameter is invalid         |
-| 801      | Capability not supported               |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | Parameter error.         |
+| 801      | Capability not supported.               |
 | 13900001 | Operation not permitted.            |
 | 13900042 | Unknown error                          |
 
@@ -281,9 +281,9 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
-| 201      | Permission denied.|
-| 401      | The input parameter is invalid |
-| 801      | Capability not supported |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 401      | Parameter error. |
+| 801      | Capability not supported. |
 | 13900001 | Operation not permitted.            |
 | 13900042 | Unknown error                          |
 
@@ -350,9 +350,9 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
-| 201      | Permission denied.|
-| 401      | The input parameter is invalid |
-| 801      | Capability not supported |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 401      | Parameter error. |
+| 801      | Capability not supported. |
 | 13900001 | Operation not permitted.            |
 | 13900042 | Unknown error                          |
 
@@ -419,9 +419,9 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
-| 201      | Permission denied.|
-| 401      | The input parameter is invalid |
-| 801      | Capability not supported |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 401      | Parameter error. |
+| 801      | Capability not supported. |
 | 13900001 | Operation not permitted.            |
 | 13900042 | Unknown error                          |
 
@@ -486,9 +486,9 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
-| 201      | Permission denied.|
-| 401      | The input parameter is invalid |
-| 801      | Capability not supported |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 401      | Parameter error. |
+| 801      | Capability not supported. |
 | 13900001 | Operation not permitted.            |
 | 13900042 | Unknown error                          |
 

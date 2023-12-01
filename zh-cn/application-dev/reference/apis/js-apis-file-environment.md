@@ -182,19 +182,21 @@ getUserDownloadDir(): string
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
-| 201      | Permission denied. |
-| 801      | Capability not supported |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 801      | Capability not supported. |
 | 13900042 | Unknown error |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base';
-try {
-  let path = environment.getUserDownloadDir();
-  console.log(`success to getUserDownloadDir: ${JSON.stringify(path)}`);
-} catch (error) {
-  console.error(`failed to getUserDownloadDir because: ${JSON.stringify(error)}`);
+function getUserDownloadDirExample() {
+  try {
+    let path = environment.getUserDownloadDir();
+    console.log(`success to getUserDownloadDir: ${JSON.stringify(path)}`);
+  } catch (error) {
+    console.error(`failed to getUserDownloadDir because: ${JSON.stringify(error)}`);
+  }
 }
 ```
 
@@ -220,19 +222,21 @@ getUserDesktopDir(): string
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
-| 201      | Permission denied. |
-| 801      | Capability not supported |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 801      | Capability not supported. |
 | 13900042 | Unknown error |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base';
-try {
-  let path = environment.getUserDesktopDir();
-  console.log(`success to getUserDesktopDir: ${JSON.stringify(path)}`);
-} catch (error) {
-  console.error(`failed to getUserDesktopDir because: ${JSON.stringify(error)}`);
+function getUserDesktopDirExample() {
+  try {
+    let path = environment.getUserDesktopDir();
+    console.log(`success to getUserDesktopDir: ${JSON.stringify(path)}`);
+  } catch (error) {
+    console.error(`failed to getUserDesktopDir because: ${JSON.stringify(error)}`);
+  }
 }
 ```
 
@@ -258,19 +262,21 @@ getUserDocumentDir(): string
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
-| 201      | Permission denied. |
-| 801      | Capability not supported |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 801      | Capability not supported. |
 | 13900042 | Unknown error |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base';
-try {
-  let path = environment.getUserDocumentDir();
-  console.log(`success to getUserDocumentDir: ${JSON.stringify(path)}`);
-} catch (error) {
-  console.error(`failed to getUserDocumentDir because: ${JSON.stringify(error)}`);
+function getUserDocumentDirExample() {
+  try {
+    let path = environment.getUserDocumentDir();
+    console.log(`success to getUserDocumentDir: ${JSON.stringify(path)}`);
+  } catch (error) {
+    console.error(`failed to getUserDocumentDir because: ${JSON.stringify(error)}`);
+  }
 }
 ```
 
@@ -298,20 +304,22 @@ getExternalStorageDir(): string
 
 | 错误码ID                     | 错误信息       |
 | ---------------------------- | --------- |
-| 201      | Permission denied. |
-| 202 | The caller is not a system application |
-| 801 | Capability not supported |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 801 | Capability not supported. |
 | 13900042 | Unknown error |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base';
-try {
-  let path = environment.getExternalStorageDir();
-  console.log(`success to getExternalStorageDir: ${JSON.stringify(path)}`);
-} catch (error) {
-  console.error(`failed to getExternalStorageDir because: ${JSON.stringify(error)}`);
+function getExternalStorageDirExample() {
+  try {
+    let path = environment.getExternalStorageDir();
+    console.log(`success to getExternalStorageDir: ${JSON.stringify(path)}`);
+  } catch (error) {
+    console.error(`failed to getExternalStorageDir because: ${JSON.stringify(error)}`);
+  }
 }
 ```
 
@@ -331,7 +339,7 @@ getUserHomeDir(): string
 
 | 类型                  | 说明              |
 | --------------------- |-----------------|
-| string | 返回当前用户根目录的沙箱路径。 |
+| string | 返回当前用户下应用沙箱路径的内卡目录。 |
 
 **错误码：**
 
@@ -339,19 +347,21 @@ getUserHomeDir(): string
 
 | 错误码ID                     | 错误信息       |
 | ---------------------------- | --------- |
-| 201      | Permission denied. |
-| 202 | The caller is not a system application |
-| 801 | Capability not supported |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 801 | Capability not supported. |
 | 13900042 | Unknown error |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base';
-try {
-  let path = environment.getUserHomeDir();
-  console.log(`success to getUserHomeDir: ${JSON.stringify(path)}`);
-} catch (error) {
-  console.error(`failed to getUserHomeDir because: ${JSON.stringify(error)}`);
+function getUserHomeDirExample() {
+  try {
+    let path = environment.getUserHomeDir();
+    console.log(`success to getUserHomeDir: ${JSON.stringify(path)}`);
+  } catch (error) {
+    console.error(`failed to getUserHomeDir because: ${JSON.stringify(error)}`);
+  }
 }
 ```
