@@ -51,3 +51,33 @@ TextInput组件的selectedBackgroundColor接口。
 
 **适配指导**
 默认行为变更，不涉及适配。
+
+## cl.ArkUI.3 Tabs组件animationDuration属性默认行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+Tabs组件animationDuration属性的默认行为未保持一致。
+不设置animationDuration属性值时，点击TabBar页签切换TabContent无动画；设置为小于0的异常值时，点击TabBar页签切换TabContent有动画，按默认值300ms显示。
+
+**变更影响**
+
+该变更为非兼容性变更。
+API version 10及以前，Tabs组件不设置animationDuration属性值时，点击TabBar页签切换TabContent无动画。
+API version 11及以后，Tabs组件不设置animationDuration属性值时，点击TabBar页签切换TabContent有动画，动画时长为默认值300ms。
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.3.3 开始。
+
+**变更的接口/组件**
+
+Tabs组件的animationDuration属性。
+
+**适配指导**
+
+变更前，若希望点击TabBar页签切换TabContent无动画，可以不设置animationDuration属性值或设置animationDuration属性值为0。
+变更后，若希望点击TabBar页签切换TabContent无动画，API version 11及以后，需设置animationDuration属性值为0，API version 10及以前维持变更前规则，不会产生影响。
