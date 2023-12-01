@@ -11,6 +11,10 @@
 
 CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number, maskColor?: ResourceColor, maskRect?: Rectangle, openAnimation?: AnimateParam, closeAnimation?: AnimateParam, showInSubWindow?: boolean, backgroundColor?:ResourceColor, cornerRadius?:Dimension&nbsp;\|&nbsp;BorderRadiuses})
 
+> **说明：**
+>
+> 自定义弹窗的所有参数，不支持动态刷新。
+
 **参数:**
 
 | 参数名                           | 参数类型                                     | 必填   | 参数描述                                     |
