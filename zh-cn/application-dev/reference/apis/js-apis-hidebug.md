@@ -90,7 +90,7 @@ getPss(): bigint
   let pss: bigint = hidebug.getPss();
   ```
 
-## hidebug.getVss
+## hidebug.getVss<sup>11+<sup>
 
 getVss(): bigint
 
