@@ -8255,7 +8255,7 @@ WindowStage生命周期。
 | 名称      | 类型  | 可读 | 可写 | 说明         |
 | ---------- | ---- | ---- | ---- | ----------- |
 | title    | string | 否 | 是 | 子窗口标题       |
-| decorEnable | boolean | 否 | 是 | 子窗口是否显示装饰       |
+| decorEnabled | boolean | 否 | 是 | 子窗口是否显示装饰       |
 
 
 ## WindowStage<sup>9+</sup>
@@ -8577,7 +8577,7 @@ export default class EntryAbility extends UIAbility {
     try {
       let options : window.SubWindowOptions = {
         title: 'title',
-        decorEnable: true
+        decorEnabled: true
       };
       let promise = windowStage.createSubWindowWithOptions('mySubWindow', options);
       promise.then((data) => {
