@@ -32,6 +32,7 @@
 - [转场动画](transition-animation.md)
 - [如何为组件的不同触摸区域添加不同交互动作](different-touch-target-event.md)
 - [组件布局中相对定位的分类和使用](relative-position.md)
+- [导航栏的使用编辑](Editing-with-the-navigation-bar.md)
 
 ### 装饰器
 - [控制页面刷新范围](overall-and-part-refresh.md)
