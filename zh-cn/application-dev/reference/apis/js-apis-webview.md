@@ -1047,7 +1047,7 @@ onActive(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1092,7 +1092,7 @@ onInactive(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1136,7 +1136,7 @@ refresh(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1193,7 +1193,7 @@ accessStep(step: number): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1240,7 +1240,7 @@ clearHistory(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1291,7 +1291,7 @@ getHitTest(): WebHitTestType
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1345,7 +1345,7 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1464,7 +1464,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1554,7 +1554,7 @@ runJavaScript(script: string): Promise\<string>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1633,7 +1633,7 @@ runJavaScriptExt(script: string, callback : AsyncCallback\<JsMessageExt>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1759,7 +1759,7 @@ runJavaScriptExt(script: string): Promise\<JsMessageExt>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1870,7 +1870,7 @@ deleteJavaScriptRegister(name: string): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100008 | Cannot delete JavaScriptProxy.                               |
 
 **示例：**
@@ -1975,7 +1975,7 @@ zoom(factor: number): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100004 | Function not enable.                                         |
 
 **示例：**
@@ -2029,7 +2029,7 @@ searchAllAsync(searchString: string): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2092,7 +2092,7 @@ clearMatches(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2145,7 +2145,7 @@ searchNext(forward: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2192,7 +2192,7 @@ clearSslCache(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2237,7 +2237,7 @@ clearClientAuthenticationCache(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -3624,7 +3624,7 @@ hasImage(callback: AsyncCallback\<boolean>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -3681,7 +3681,7 @@ hasImage(): Promise\<boolean>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -4320,7 +4320,7 @@ getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -8167,7 +8167,7 @@ struct WebComponent {
 
 ### getLastErrorCode<sup>11+</sup>
 
-getLastErrorCode(): number
+getLastErrorCode(): WebDownloadErrorCode
 
 获取下载的错误码。
 
@@ -8717,9 +8717,9 @@ static deserialize(serializedData: Uint8Array): WebDownloadItem
 
 **参数：**
 
-| 类型   | 说明                      |
-| ------ | ------------------------- |
-| Uint8Array | 序列化后的下载。 |
+| 参数名              | 类型    | 必填   |  说明 |
+| ------------------ | ------- | ---- | ------------- |
+| serializedData | Uint8Array | 是   | 序列化后的下载。|
 
 **返回值：**
 
@@ -8802,9 +8802,9 @@ start(downloadPath: string): void
 
 **参数：**
 
-| 类型   | 说明                      |
-| ------ | ------------------------- |
-| string | 下载文件的路径(包含文件名)。 |
+| 参数名 | 类型                   | 必填 | 说明                             |
+| ------ | ---------------------- | ---- | ------------------------------|
+| downloadPath   | string     | 是  | 下载文件的路径(包含文件名)。|
 
 **示例：**
 
@@ -9172,7 +9172,7 @@ struct WebComponent {
 
 ### onBeforeDownload<sup>11+</sup>
 
-onBeforeDownload(): void
+onBeforeDownload(callback: Callback\<WebDownloadItem>): void
 
 下载开始前通知给用户，用户需要在此接口中调用WebDownloadItem.start("xxx")并提供下载路径，否则下载会一直处于PENDING状态。
 
@@ -9274,7 +9274,7 @@ struct WebComponent {
 
 ### onDownloadUpdated<sup>11+</sup>
 
-onDownloadUpdated(): void
+onDownloadUpdated(callback: Callback\<WebDownloadItem>): void
 
 下载过程中的回调，通过该回调的参数可以了解下载进度等信息。
 
@@ -9376,7 +9376,7 @@ struct WebComponent {
 
 ### onDownloadFinish<sup>11+</sup>
 
-onDownloadFinish(): void
+onDownloadFinish(callback: Callback\<WebDownloadItem>): void
 
 下载完成的通知。
 
@@ -9478,7 +9478,7 @@ struct WebComponent {
 
 ### onDownloadFailed<sup>11+</sup>
 
-onDownloadFailed(): void
+onDownloadFailed(callback: Callback\<WebDownloadItem>): void
 
 下载失败的通知。
 
