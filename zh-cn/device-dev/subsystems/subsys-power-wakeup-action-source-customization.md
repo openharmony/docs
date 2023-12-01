@@ -118,42 +118,22 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
 1. 以新的唤醒源配置文件为例，更改之后：
     ```json
     {
-        "powerkey": {
-            "enable": true
-        },
-        "keyborad": {
-            "enable": true
-        },
-        "mouse": {
-            "enable": true
-        },
-        "touchscreen": {
-            "enable": false,
-            "click": 2
-        },
-        "touchpad": {
-            "enable": false
-        },
-        "pen": {
-            "enable": false
-        },
-        "lid": {
-            "enable": false
-        },
-        "switch": {
-            "enable": false
+        "53": {
+            "scene": "LowCapacity",
+            "action": 2,
+            "description": "(such as)53 is a uniquely wakeup reason by reading node through HDI interface(GetWakeupReason)"
         }
     }
     ```
 
-2. 开机后，点击电源键使设备进入休眠状态，再次点击电源键。
+2. 修改powermgr.gni，使能power_manager_feature_wakeup_action特性。
 
-    设备屏幕点亮，设备被唤醒。
+    power_manager_feature_wakeup_action = true
 
-3. 点击电源键使设备进入休眠状态，按下键盘。
+3. 修改batterymgr.battery_manager_feature_set_low_capacity_threshold特性。
 
-    设备屏幕点亮，设备被唤醒。
+    battery_manager_feature_set_low_capacity_threshold = true
 
-4. 点击电源键使设备进入休眠状态，滑动鼠标。
+4. 使系统进入睡眠且系统电量低于下发的阈值。
 
-    设备屏幕点亮，设备被唤醒。
+    设备关机。
