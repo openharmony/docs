@@ -5,7 +5,6 @@
 > **说明：**
 >
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 本模块接口为系统接口，三方应用不支持调用。
 
 ## 导入模块
 
@@ -20,6 +19,8 @@ getStorageDataDir():Promise&lt;string&gt;
 异步方法获取内存存储根目录，以promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment
+
+**系统接口**：此接口为系统接口。
 
 **返回值：**
 
@@ -54,6 +55,8 @@ getStorageDataDir(callback:AsyncCallback&lt;string&gt;):void
 异步方法获取内存存储根目录，以callback形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment
+
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -91,6 +94,8 @@ getUserDataDir():Promise&lt;string&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.Environment
 
+**系统接口**：此接口为系统接口。
+
 **返回值：**
 
 | 类型                  | 说明               |
@@ -124,6 +129,8 @@ getUserDataDir(callback:AsyncCallback&lt;string&gt;): void
 异步方法获取公共文件根目录，以callback形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment
+
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
