@@ -479,7 +479,7 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/using-av
 
 | 名称                                                | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>9+</sup>                                    | string                                                       | 是   | 是   | 媒体URL，只允许在**idle**状态下设置，静态属性。<br/>支持的视频格式(mp4、mpeg-ts、webm、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**支持路径示例**：<br>1. fd类型播放：fd://xx。<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx。<br/>3. https网络播放: https://xx。<br/>4. hls网络播放路径：http://xx或者https://xx。 |
+| url<sup>9+</sup>                                    | string                                                       | 是   | 是   | 媒体URL，只允许在**idle**状态下设置，静态属性。<br/>支持的视频格式(mp4、mpeg-ts、webm、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**支持路径示例**：<br>1. fd类型播放：fd://xx。<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx。<br/>3. https网络播放: https\://xx。<br/>4. hls网络播放路径：http\://xx或者https\://xx。 |
 | fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，只允许在**idle**状态下设置，静态属性。<br/>使用场景：应用中的媒体资源被连续存储在同一个文件中。<br/>支持的视频格式(mp4、mpeg-ts、webm、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**使用示例**：<br/>假设一个连续存储的媒体文件: <br/>视频1(地址偏移:0，字节长度:100)；<br/>视频2(地址偏移:101，字节长度:50)；<br/>视频3(地址偏移:151，字节长度:150)；<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }。<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }。<br/>假设是一个独立的媒体文件: 请使用src=fd://xx。 |
 | dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 是   | 是   | 流式媒体资源描述，只允许在**idle**状态下设置，静态属性。<br/>使用场景：应用播放从远端下载到本地的文件，在应用未下载完整音视频资源时，提前播放已获取的资源文件。<br/>支持的视频格式(mp4、mpeg-ts、webm、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**使用示例**：<br/>假设用户正在从远端服务器获取音视频媒体文件，希望下载到本地的同时播放已经下载好的部分: <br/>1.用户需要获取媒体文件的总大小size（单位为字节），获取不到时设置为-1。<br/>2.用户需要实现回调函数func用于填写数据，如果size = -1，则func形式为：func(buffer: ArrayBuffer, length: number)，此时播放器只会按照顺序获取数据；否则func形式为：func(buffer: ArrayBuffer, length: number, pos: number)，播放器会按需跳转并获取数据。<br/>3.用户设置AVDataSrcDescriptor {fileSize = size, callback = func}。<br/>**注意事项**：<br/>如果播放的是mp4/m4a格式用户需要保证moov字段（媒体信息字段）在mdat字段（媒体数据字段）之前，或者moov之前的字段小于10M，否则会导致解析失败无法播放。 |
 | surfaceId<sup>9+</sup>                              | string                                                       | 是   | 是   | 视频窗口ID，默认无窗口，只允许在**initialized**状态下设置，静态属性。<br/>使用场景：视频播放的窗口渲染，纯音频播放不用设置。<br/>**使用示例**：<br/>[通过Xcomponent创建surfaceId](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。 |
@@ -549,7 +549,7 @@ avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason
       console.info('state error called');
       break;
     default:
-      console.info('unkown state :' + state);
+      console.info('unknown state :' + state);
       break;
   }
 })
@@ -1062,7 +1062,7 @@ avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDe
   if ((arrList) != null) {
     console.info('getTrackDescription success');
   } else {
-    console.log(`video getTrackDescription fail, error:${error}`);
+    console.error(`video getTrackDescription fail, error:${error}`);
   }
 });
 ```
@@ -1095,7 +1095,7 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
   console.info('getTrackDescription success');
 }).catch((error: BusinessError) => {
-  console.info(`video catchCallback, error:${error}`);
+  console.error(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1731,7 +1731,7 @@ avPlayer.off('audioInterrupt')
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| fd     | number | 是   | 资源句柄，通过[resourceManager.getRawFileDescriptor](js-apis-resource-manager.md#getrawfiledescriptordeprecated)获取。     |
+| fd     | number | 是   | 资源句柄，通过[resourceManager.getRawFd](js-apis-resource-manager.md#getrawfd9)获取。     |
 | offset | number | 是   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 | length | number | 是   | 资源长度，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 
@@ -1813,7 +1813,7 @@ avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDe
       printfItemDescription(arrList[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值
     }
   } else {
-    console.log(`audio getTrackDescription fail, error:${error}`);
+    console.error(`audio getTrackDescription fail, error:${error}`);
   }
 });
 ```
@@ -3626,7 +3626,7 @@ let audioRecorder: media.AudioRecorder = media.createAudioRecorder();
 媒体服务错误类型枚举。
 
 > **说明：**
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[媒体错误码](../errorcodes/errorcode-media.md)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[媒体错误码](#averrorcode9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -3656,7 +3656,7 @@ let audioRecorder: media.AudioRecorder = media.createAudioRecorder();
 
 | 名称                            | 类型                                                   | 可读 | 可写 | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| src                             | string                                                 | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(m4a、aac、mp3、ogg、wav)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx <br/>**需要权限：** ohos.permission.READ_MEDIA 或 ohos.permission.INTERNET。 |
+| src                             | string                                                 | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(m4a、aac、mp3、ogg、wav)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx<br/>3. https网络播放: https\://xx<br/>4. hls网络播放路径：http\://xx或者https\://xx <br/>**需要权限：** ohos.permission.READ_MEDIA 或 ohos.permission.INTERNET。 |
 | fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | 是   | 是   | 音频媒体文件描述，使用场景：应用中的音频资源被连续存储在同一个文件中。<br/>**使用示例**：<br/>假设一个连续存储的音乐文件: <br/>音乐1(地址偏移:0，字节长度:100)<br/>音乐2(地址偏移:101，字节长度:50)<br/>音乐3(地址偏移:151，字节长度:150)<br/>1. 播放音乐1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }<br/>2. 播放音乐2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }<br/>3. 播放音乐3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }<br/>假设是一个独立的音乐文件: 请使用src=fd://xx <br/> |
 | loop                            | boolean                                                | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。                 |
 | audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | 是   | 是   | 音频焦点模型。                                               |
@@ -4066,7 +4066,7 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 | 名称                            | 类型                                                   | 可读 | 可写 | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>                | string                                                 | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx<br/> |
+| url<sup>8+</sup>                | string                                                 | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx<br/>3. https网络播放: https\://xx<br/>4. hls网络播放路径：http\://xx或者https\://xx<br/> |
 | fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | 是   | 是   | 视频媒体文件描述，使用场景：应用中的视频资源被连续存储在同一个文件中。<br/>**使用示例**：<br/>假设一个连续存储的音乐文件: <br/>视频1(地址偏移:0，字节长度:100)<br/>视频2(地址偏移:101，字节长度:50)<br/>视频3(地址偏移:151，字节长度:150)<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }<br/>假设是一个独立的视频文件: 请使用src=fd://xx <br/> |
 | loop<sup>8+</sup>               | boolean                                                | 是   | 是   | 视频循环播放属性，设置为'true'表示循环播放。                 |
 | videoScaleType<sup>9+</sup>     | [VideoScaleType](#videoscaletype9)                     | 是   | 是   | 视频缩放模式。                                               |
