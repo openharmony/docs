@@ -1,10 +1,6 @@
 # User File URI
 
-The uniform resource identifier (URI) is a unique identifier of a user file. It is usually used when a user file is accessed or modified. 
-
-> **NOTE**
->
-> Do not use the URI segments for service code development.
+A uniform resource identifier (URI) is a unique identifier of a user file. It is usually used when a user file is accessed or modified. Avoid using the URI segments for service code development.
 
 ## URI Types
 
@@ -61,8 +57,10 @@ import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
 import fileAccess from '@ohos.file.fileAccess';
+// context is passed by EntryAbility.
+let context = getContext(this) as common.UIAbilityContext;
 
-async example() {
+async function example() {
     let fileAccessHelper: fileAccess.FileAccessHelper;
     // Obtain wantInfos by using getFileAccessAbilityInfo().
     let wantInfos: Array<Want> = [
@@ -72,8 +70,6 @@ async example() {
       },
     ]
     try {
-      // context is passed by EntryAbility.
-      let context = getContext(this) as common.UIAbilityContext;
       fileAccessHelper = fileAccess.createFileAccessHelper(context, wantInfos);
       if (!fileAccessHelper) {
         console.error("createFileAccessHelper interface returns an undefined object");
@@ -148,7 +144,7 @@ The media file URI contains the following fields:
 
 ### Using a Media File URI
 
-Applications of the normal level can call APIs of the [photoAccessHelper](../reference/apis/js-apis-photoAccessHelper.md) module to use the media file URI. For details about the sample code, see [Obtaining an Image or Video by URI](./photoAccessHelper-resource-guidelines.md#obtaining-an-image-or-video-by-uri). To call the API, the application must have the **permission'ohos.permission.READ_IMAGEVIDEO** permission.
+Applications of the normal level can call APIs of the [photoAccessHelper](../reference/apis/js-apis-photoAccessHelper.md) module to use the media file URI. For details about the sample code, see [Obtaining an Image or Video by URI](./photoAccessHelper-resource-guidelines.md#obtaining-an-image-or-video-by-uri). To call the API, the application must have the **ohos.permission.READ_IMAGEVIDEO** permission.
 
 Applications of the system_basic or system_core level can call APIs of the **photoAccessHelper** and [userFileManager](../reference/apis/js-apis-userFileManager.md) modules to use the media file URI. For more details, see the API reference of these modules.
 
@@ -185,7 +181,7 @@ const context = getContext(this);
 
 // Call PhotoViewPicker.select to select an image.
 async function photoPickerGetUri() {
-  try {
+  try {  
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
     PhotoSelectOptions.maxSelectNumber = 1;
