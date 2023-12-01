@@ -6445,6 +6445,12 @@ setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
 ```ts
 try {
+    let winowLimits: window.WindowLimits = {
+        maxWidth: 1500,
+        maxHeight: 1000,
+        minWidth: 500,
+        minHeight: 400
+    };
     let promise = windowClass.setWindowLimits(windowLimits);
     promise.then((data) => {
         console.info('Succeeded in changing the window limits. Cause:' + JSON.stringify(data));
