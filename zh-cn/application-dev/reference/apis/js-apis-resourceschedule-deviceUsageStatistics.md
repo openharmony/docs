@@ -159,7 +159,7 @@ queryAppGroup(): Promise&lt;number&gt;
 
 | 类型              | 说明                          |
 | --------------- | --------------------------- |
-| Promise&lt;number&gt; | Promise对象。返回当前应用优先级分组结果。 |
+| Promise&lt;number&gt; | Promise对象。返回当前应用优先级分组结果，值越小，优先级越高。 |
 
 **错误码**：
 
@@ -201,7 +201,7 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名      | 类型                    | 必填   | 说明                         |
 | -------- | --------------------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，返回当前应用优先级分组结果。 |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，返回当前应用优先级分组结果，值越小，优先级越高。 |
 
 **错误码**：
 
@@ -233,7 +233,7 @@ usageStatistics.queryAppGroup((err: BusinessError, res: number) => {
 
 ## usageStatistics.queryAppGroupSync<sup>10+<sup>
 
-queryAppGroupSync(): number;
+queryAppGroupSync(): number
 
 查询当前应用的优先级分组，使用同步方式返回。
 
@@ -245,7 +245,7 @@ queryAppGroupSync(): number;
 
 | 类型              | 说明                          |
 | --------------- | --------------------------- |
-| number | 返回当前应用优先级分组结果。 |
+| number | 返回当前应用优先级分组结果，值越小，优先级越高。 |
 
 **错误码**：
 
@@ -289,7 +289,7 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
 
 | 类型              | 说明                          |
 | --------------- | --------------------------- |
-| Promise&lt;number&gt; | Promise对象。返回指定应用的优先级分组结果。 |
+| Promise&lt;number&gt; | Promise对象。返回指定应用的优先级分组结果，值越小，优先级越高。 |
 
 **错误码**：
 
@@ -336,7 +336,7 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 | 参数名        | 类型                    | 必填   | 说明                                       |
 | ---------- | --------------------- | ---- | ---------------------------------------- |
 | bundleName | string                | 是    | 应用的bundleName。 |
-| callback   | AsyncCallback&lt;number&gt; | 是    | 回调函数，返回指定应用的优先级分组结果。|
+| callback   | AsyncCallback&lt;number&gt; | 是    | 回调函数，返回指定应用的优先级分组结果，值越小，优先级越高。|
 
 **错误码**：
 
@@ -389,7 +389,7 @@ queryAppGroupSync(bundleName: string): number
 
 | 类型              | 说明                          |
 | --------------- | --------------------------- |
-| number | 返回应用的优先级分组结果。 |
+| number | 返回应用的优先级分组结果，值越小，优先级越高。 |
 
 **错误码**：
 
@@ -415,7 +415,7 @@ let priorityGroup: number = usageStatistics.queryAppGroupSync("com.ohos.camera")
 
 setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 
-将指定bundleName应用的分组设置为newGroup，使用Promise异步回调。
+将指定bundleName应用的分组设置为newGroup，仅支持当前应用为其他应用设置，使用Promise异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -468,7 +468,7 @@ usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
 
 setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;void&gt;): void
 
-将指定bundleName应用的分组设置为newGroup，使用CallBack异步回调。
+将指定bundleName应用的分组设置为newGroup，仅支持当前应用为其他应用设置，使用CallBack异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -518,7 +518,7 @@ usageStatistics.setAppGroup(bundleName, newGroup, (err: BusinessError) => {
 
 queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;BundleStatsMap&gt;): void
 
-通过指定起始和结束时间查询应用使用时长的具体信息，统计的最小颗粒度是天，使用Callback异步回调。
+通过指定起始和结束时间，查询应用使用时长的具体信息，统计的最小颗粒度是天，使用Callback异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -566,7 +566,7 @@ usageStatistics.queryBundleStatsInfos(0, 20000000000000, (err: BusinessError, re
 
 queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 
-通过指定起始和结束时间查询应用使用时长的具体信息，统计的最小颗粒度是天，使用Promise异步回调。
+通过指定起始和结束时间，查询应用使用时长的具体信息，统计的最小颗粒度是天，使用Promise异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -617,7 +617,7 @@ usageStatistics.queryBundleStatsInfos(0, 20000000000000).then((res:usageStatisti
 
 queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStatsInfo&gt;&gt;): void
 
-通过指定时间段间隔（天、周、月、年）查询应用使用时长的统计信息，使用Callback异步回调。
+通过指定时间段间隔（天、周、月、年），查询应用使用时长的统计信息，使用Callback异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -669,11 +669,11 @@ usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000, (err: Busin
 
 queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: number): Promise&lt;Array&lt;BundleStatsInfo&gt;&gt;
 
-通过指定时间段间隔（天、周、月、年）查询应用使用时长的统计信息，使用Promise异步回调。
+通过指定时间段间隔（天、周、月、年），查询应用使用时长的统计信息，使用Promise异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App 
 
 **系统API**：此接口为系统接口。
 
@@ -724,7 +724,7 @@ usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000).then((res: 
 
 queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleEvents&gt;&gt;): void
 
-通过指定起始和结束时间查询所有应用的事件集合，使用Callback异步回调。
+通过指定起始和结束时间，查询所有应用的事件集合，使用Callback异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -775,7 +775,7 @@ usageStatistics.queryBundleEvents(0, 20000000000000, (err: BusinessError, res: A
 
 queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&gt;&gt;
 
-通过指定起始和结束时间查询所有应用的事件集合，使用Promise异步回调。
+通过指定起始和结束时间，查询所有应用的事件集合，使用Promise异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -930,7 +930,7 @@ usageStatistics.queryCurrentBundleEvents(0, 20000000000000).then((res: Array<usa
 
 queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEventStats&gt;&gt;
 
-通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）的统计信息，使用Promise异步回调。
+通过指定起始和结束时间，查询系统事件（休眠、唤醒、解锁、锁屏）的统计信息，使用Promise异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -981,7 +981,7 @@ usageStatistics.queryDeviceEventStats(0, 20000000000000).then((res: Array<usageS
 
 queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void
 
-通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）的统计信息，使用Callback异步回调。
+通过指定起始和结束时间，查询系统事件（休眠、唤醒、解锁、锁屏）的统计信息，使用Callback异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1029,7 +1029,7 @@ usageStatistics.queryDeviceEventStats(0, 20000000000000, (err: BusinessError, re
 
 queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEventStats&gt;&gt;
 
-通过指定起始和结束时间查询所有应用的通知次数，使用Promise异步回调。
+通过指定起始和结束时间，查询所有应用的通知次数，使用Promise异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1080,7 +1080,7 @@ usageStatistics.queryNotificationEventStats(0, 20000000000000).then((res: Array<
 
 queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void
 
-通过指定起始和结束时间查询所有应用的通知次数，使用Callback异步回调。
+通过指定起始和结束时间，查询所有应用的通知次数，使用Callback异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1128,6 +1128,8 @@ usageStatistics.queryNotificationEventStats(0, 20000000000000, (err: BusinessErr
 
 queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
+查询FA模型下各应用不用Hap包的使用记录（不超过1000条）。若Hap包中存在FA卡片，使用信息中也包含卡片信息。使用Promise异步回调。
+
 使用Promise形式返回不超过1000条FA使用记录，FA使用记录由近及远排序。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
@@ -1140,7 +1142,7 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
 | 类型                                       | 说明                                 |
 | ---------------------------------------- | ---------------------------------- |
-| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 指定的Promise回调方法。返回不超过1000条FA使用记录。 |
+| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise对象。返回FA模型下各应用不用Hap包的使用记录（不超过1000条）。 |
 
 **错误码**：
 
@@ -1176,7 +1178,7 @@ usageStatistics.queryModuleUsageRecords().then((res: Array<usageStatistics.HapMo
 
 queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt;): void
 
-查询FA使用记录。使用CallBack形式返回数量不超过1000条FA使用记录（FA记录按时间由近及远排序）。
+查询FA模型下各应用不用Hap包的使用记录（不超过1000条）。若Hap包中存在FA卡片，使用信息中也包含卡片信息。使用CallBack异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1188,7 +1190,7 @@ queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt
 
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。 |
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 回调函数，返回FA模型下各应用不用Hap包的使用记录（不超过1000条）。 |
 
 **错误码**：
 
@@ -1225,7 +1227,7 @@ usageStatistics.queryModuleUsageRecords((err: BusinessError, res: Array<usageSta
 
 queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
-据maxNum，查询FA使用记录，使用Promise形式返回不超过maxNum条FA使用记录，FA使用记录由近及远排序，maxNum最大为1000。
+根据设置的maxNum，查询FA模型下各应用不用Hap包的使用记录。若Hap包中存在FA卡片，使用信息中也包含卡片信息。使用Promise异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1237,13 +1239,13 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 
 | 参数名    | 类型     | 必填   | 说明                                 |
 | ------ | ------ | ---- | ---------------------------------- |
-| maxNum | number | 是    | 返回条目的最大数量，最多支持1000条。 |
+| maxNum | number | 是    | 使用记录的条数，取值范围为[1，1000]。 |
 
 **返回值**：
 
 | 类型                                       | 说明                                 |
 | ---------------------------------------- | ---------------------------------- |
-| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 指定的Promise回调方法。返回不超过maxNum条FA使用记录。 |
+| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise对象，返回不超过maxNum条，FA模型下各应用不用Hap包的使用记录。 |
 
 **错误码**：
 
@@ -1278,7 +1280,7 @@ usageStatistics.queryModuleUsageRecords(1000).then((res: Array<usageStatistics.H
 
 queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt;): void
 
-查询FA使用记录。使用CallBack形式返回数量最大不超过maxNum设置的值，FA使用记录由近及远排序，maxNum最大为1000。
+根据设置的maxNum，查询FA模型下各应用不用Hap包的使用记录。若Hap包中存在FA卡片，使用信息中也包含卡片信息。使用Callback异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1290,8 +1292,8 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| maxNum   | number                                   | 是    | 返回FA记录的最大数量，maxNum最大为1000。|
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。 |
+| maxNum   | number                                   | 是    |  使用记录的条数，取值范围为[1，1000]。 |
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 回调方法，Promise对象，返回不超过maxNum条，FA模型下各应用不用Hap包的使用记录。 |
 
 **错误码**：
 
@@ -1328,7 +1330,7 @@ usageStatistics.queryModuleUsageRecords(1000, (err: BusinessError, res: Array<us
 
 registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): Promise&lt;void&gt;
 
-应用注册分组变化监听，即用户名下的某个应用分组发生变化时，向所有已注册分组变化监听的应用返回[AppGroupCallbackInfo](#appgroupcallbackinfo)信息。使用Promise异步回调。
+注册应用分组变化监听，即用户名下的某个应用分组发生变化时，向所有已注册分组变化监听的应用返回[AppGroupCallbackInfo](#appgroupcallbackinfo)信息。使用Promise异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1521,11 +1523,9 @@ usageStatistics.unregisterAppGroupCallBack((err: BusinessError) => {
 });
 ```
 
-
-
 ## HapModuleInfo
 
-FA的使用信息的属性集合。
+FA模型的使用信息属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -1533,8 +1533,8 @@ FA的使用信息的属性集合。
 
 | 名称                  | 类型                                       | 必填   | 说明                            |
 | -------------------- | ---------------------------------------- | ---- | ----------------------------- |
-| deviceId             | string                                   | 否    | FA所属deviceId。                 |
-| bundleName           | string                                   | 是    | FA所属应用Bundle名称。             |
+| deviceId             | string                                   | 否    | 设备Id。                 |
+| bundleName           | string                                   | 是    | 应用名称。             |
 | moduleName           | string                                   | 是    | FA所属module名。                  |
 | abilityName          | string                                   | 否    | FA的MainAbility名。              |
 | appLabelId           | number                                   | 否    | FA的应用labelId。                 |
@@ -1549,7 +1549,7 @@ FA的使用信息的属性集合。
 
 ## HapFormInfo
 
-FA卡片的使用信息的属性集合。
+FA卡片的使用信息属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -1573,11 +1573,11 @@ FA卡片的使用信息的属性集合。
 
 | 名称           | 类型   | 必填 | 说明             |
 | ---------------- | ------ | ---- | ---------------- |
-| appOldGroup | number | 是   | 变化前的应用分组 |
-| appNewGroup | number | 是   | 变化后的应用分组 |
-| userId           | number | 是   | 用户id           |
-| changeReason     | number | 是   | 分组变化原因     |
-| bundleName       | string | 是   | 应用名称         |
+| appOldGroup | number | 是   | 变化前的应用分组。 |
+| appNewGroup | number | 是   | 变化后的应用分组。|
+| userId           | number | 是   | 用户id。           |
+| changeReason     | number | 是   | 分组变化原因。<br>- 256:使用记录初创建时，默认匹配的原因。<br>- 512:计算优先级分组时异常。<br>- 768:使用时长变化。  <br>- 1024:有其他应用为当前应用强制设置优先级分组。|
+| bundleName       | string | 是   | 应用名称。         |
 
 ## BundleStatsInfo
 
