@@ -41,7 +41,7 @@ boolean返回值的含义：True表示开启，False表示关闭。
 
 enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): Promise&lt;void&gt;;
 
-权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 启用辅助扩展，使用Promise异步回调。
 
@@ -90,7 +90,7 @@ config.enableAbility(name, capability).then(() => {
 
 enableAbility(name: string, capability: Array&lt;[accessibility.Capability](js-apis-accessibility.md#capability)&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
-权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 启用辅助扩展，使用callback异步回调。
 
@@ -136,7 +136,7 @@ config.enableAbility(name, capability, (err: BusinessError) => {
 
 disableAbility(name: string): Promise&lt;void&gt;;
 
-权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 关闭辅助扩展，使用Promise异步回调。
 
@@ -182,7 +182,7 @@ config.disableAbility(name).then(() => {
 
 disableAbility(name: string, callback: AsyncCallback&lt;void&gt;): void;
 
-权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 关闭辅助扩展，使用callback异步回调。
 
@@ -225,7 +225,7 @@ config.disableAbility(name, (err: BusinessError) => {
 
 on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&gt;): void;
 
-权限配置：ohos.permission.READ_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 添加启用的辅助扩展的列表变化监听，使用callback异步回调。
 
@@ -252,7 +252,7 @@ config.on('enabledAccessibilityExtensionListChange', () => {
 
 off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void&gt;): void;
 
-权限配置：ohos.permission.READ_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 取消启用的辅助扩展的列表变化监听，使用callback异步回调。
 
@@ -283,7 +283,7 @@ config.off('enabledAccessibilityExtensionListChange', () => {
 
 set(value: T): Promise&lt;void&gt;;
 
-权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 设置属性，使用Promise异步回调。
 
@@ -320,7 +320,7 @@ config.highContrastText.set(value).then(() => {
 
 set(value: T, callback: AsyncCallback&lt;void&gt;): void;
 
-权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 设置属性，使用callback异步回调。
 
@@ -410,7 +410,7 @@ config.highContrastText.get((err: BusinessError, data: boolean) => {
 
 on(callback: Callback&lt;T&gt;): void;
 
-权限配置：ohos.permission.READ_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 添加属性变化监听，使用callback异步回调。
 
@@ -436,7 +436,7 @@ config.highContrastText.on((data: boolean) => {
 
 off(callback?: Callback&lt;T&gt;): void;
 
-权限配置：ohos.permission.READ_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 取消属性变化监听，使用callback异步回调。
 
