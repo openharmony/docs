@@ -3684,7 +3684,7 @@
 
 ## ohos.permission.MANAGE_USB_CONFIG
 
-允许对USB设备功能和端口进行管理。
+允许应用管理USB设备功能和端口。
 
 **权限级别**：system_basic
 
