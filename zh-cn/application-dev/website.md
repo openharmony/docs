@@ -201,7 +201,7 @@
           - [启动DataAbility](application-models/start-dataability.md)
           - [访问DataAbility](application-models/access-dataability.md)
           - [DataAbility权限控制](application-models/dataability-permission-control.md)
-        - [服务卡片开发指导](application-models/widget-development-fa.md)
+        - [服务卡片开发指导（FA模型）](application-models/widget-development-fa.md)
         - [FA模型的Context](application-models/application-context-fa.md)
         - [信息传递载体Want](application-models/want-fa.md)
         - [组件启动规则（FA模型）](application-models/component-startup-rules-fa.md)
