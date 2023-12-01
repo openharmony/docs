@@ -1166,7 +1166,7 @@ try {
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('getResultSet succeed.');
         resultSet = result;
-        const isbeforefirst = resultSet.isBeforeFirst();
+        let isbeforefirst = resultSet.isBeforeFirst();
         console.info("Check isBeforeFirst succeed: " + isbeforefirst);
     }).catch((err) => {
         console.error('getResultSet failed: ' + err);
@@ -1199,7 +1199,7 @@ try {
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('getResultSet succeed.');
         resultSet = result;
-        const isafterlast = resultSet.isAfterLast();
+        let isafterlast = resultSet.isAfterLast();
         console.info("Check isAfterLast succeed:" + isafterlast);
     }).catch((err) => {
         console.error('getResultSet failed: ' + err);
@@ -1232,7 +1232,7 @@ try {
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('getResultSet succeed.');
         resultSet = result;
-        const entry  = resultSet.getEntry();
+        let entry  = resultSet.getEntry();
         console.info("getEntry succeed:" + JSON.stringify(entry));
     }).catch((err) => {
         console.error('getResultSet failed: ' + err);
