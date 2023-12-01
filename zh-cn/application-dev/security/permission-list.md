@@ -3681,3 +3681,15 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.MANAGE_USB_CONFIG
+
+允许对USB设备功能和端口进行管理。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
