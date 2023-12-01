@@ -2318,7 +2318,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 配置键盘避让时页面的避让模式。
 
-| 名称   | 描述       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 说明       |
 | ------ | ---------- |
 | OFFSET | 上抬模式。 |
 | RESIZE | 压缩模式。 |
