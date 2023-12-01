@@ -68,7 +68,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
     console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`Get RdbStore successfully.`);
+  console.info('Get RdbStore successfully.');
 })
 ```
 
@@ -91,7 +91,7 @@ class EntryAbility extends UIAbility {
         console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
-      console.info(`Get RdbStore successfully.`);
+      console.info('Get RdbStore successfully.');
     })
   }
 }
@@ -148,7 +148,7 @@ const STORE_CONFIG = {
 let promise = relationalStore.getRdbStore(context, STORE_CONFIG);
 promise.then(async (rdbStore) => {
   store = rdbStore;
-  console.info(`Get RdbStore successfully.`);
+  console.info('Get RdbStore successfully.');
 }).catch((err) => {
   console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -170,7 +170,7 @@ class EntryAbility extends UIAbility {
     let promise = relationalStore.getRdbStore(this.context, STORE_CONFIG);
     promise.then(async (rdbStore) => {
       store = rdbStore;
-      console.info(`Get RdbStore successfully.`)
+      console.info('Get RdbStore successfully.')
     }).catch((err) => {
       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
@@ -218,7 +218,7 @@ relationalStore.deleteRdbStore(context, "RdbTest.db", function (err) {
     console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 })
 ```
 
@@ -234,7 +234,7 @@ class EntryAbility extends UIAbility {
         console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     })
   }
 }
@@ -282,7 +282,7 @@ let context = featureAbility.getContext();
 
 let promise = relationalStore.deleteRdbStore(context, "RdbTest.db");
 promise.then(()=>{
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 }).catch((err) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -297,7 +297,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
     let promise = relationalStore.deleteRdbStore(this.context, "RdbTest.db");
     promise.then(()=>{
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     }).catch((err) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
@@ -2217,7 +2217,7 @@ store.executeSql(SQL_DELETE_TABLE, ['zhangsan'], function(err) {
     console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`Delete table done.`);
+  console.info('Delete table done.');
 })
 ```
 
@@ -2256,7 +2256,7 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
 let promise = store.executeSql(SQL_DELETE_TABLE);
 promise.then(() => {
-    console.info(`Delete table done.`);
+    console.info('Delete table done.');
 }).catch((err) => {
     console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
 })
@@ -2409,7 +2409,7 @@ store.backup("dbBackup.db", function(err) {
     console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`Backup success.`);
+  console.info('Backup success.');
 })
 ```
 
@@ -2446,7 +2446,7 @@ backup(destName:string): Promise&lt;void&gt;
 ```js
 let promiseBackup = store.backup("dbBackup.db");
 promiseBackup.then(()=>{
-  console.info(`Backup success.`);
+  console.info('Backup success.');
 }).catch((err)=>{
   console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
 })
@@ -2483,7 +2483,7 @@ store.restore("dbBackup.db", function(err) {
     console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`Restore success.`);
+  console.info('Restore success.');
 })
 ```
 
@@ -2520,7 +2520,7 @@ restore(srcName:string): Promise&lt;void&gt;
 ```js
 let promiseRestore = store.restore("dbBackup.db");
 promiseRestore.then(()=>{
-  console.info(`Restore success.`);
+  console.info('Restore success.');
 }).catch((err)=>{
   console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -2559,7 +2559,7 @@ store.setDistributedTables(["EMPLOYEE"], function (err) {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`SetDistributedTables successfully.`);
+  console.info('SetDistributedTables successfully.');
 })
 ```
 
@@ -2598,7 +2598,7 @@ store.setDistributedTables(["EMPLOYEE"], function (err) {
 ```js
 let promise = store.setDistributedTables(["EMPLOYEE"]);
 promise.then(() => {
-  console.info(`SetDistributedTables successfully.`);
+  console.info('SetDistributedTables successfully.');
 }).catch((err) => {
   console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
 })
@@ -2772,7 +2772,7 @@ store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, r
     console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`Sync done.`);
+  console.info('Sync done.');
   for (let i = 0; i < result.length; i++) {
     console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
   }
@@ -2833,7 +2833,7 @@ let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
 let promise = store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates);
 promise.then((result) =>{
-  console.info(`Sync done.`);
+  console.info('Sync done.');
   for (let i = 0; i < result.length; i++) {
     console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
   }
