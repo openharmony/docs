@@ -97,9 +97,9 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    int fd = open("/data/test.jpg", O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
    if (fd >= 0) {
       // 开始对输入source进行编码过程，返回result为 IMAGE_RESULT_SUCCESS则编码成功
-      int32_t result = OH_ImagePacker_PackToFile(nativePacker, source, &opts, fd);
- 	   // 关闭输出文件
- 	   close(fd);
+      int32_t result = OH_ImagePacker_PackToFile(nativePacker, source, &opts, fd);  
+      // 关闭输出文件  
+      close(fd);
    }
    ```
 5. 销毁编码器实例，释放资源。
