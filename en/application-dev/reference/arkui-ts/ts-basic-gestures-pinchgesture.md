@@ -1,6 +1,6 @@
 # PinchGesture
 
-**PinchGesture** is used to trigger a pinch gesture, which requires two to five fingers with a minimum 3 vp distance between the fingers.
+**PinchGesture** is used to trigger a pinch gesture, which requires two to five fingers with a minimum 5 vp distance between the fingers.
 
 >  **NOTE**
 >
@@ -15,8 +15,8 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| fingers | number | No| Minimum number of fingers to trigger a pinch. The value ranges from 2 to 5.<br>Default value: **2**|
-| distance | number | No| Minimum recognition distance, in vp.<br>Default value: **3**<br>**NOTE**<br>If the value is less than or equal to 0, it will be converted to the default value. |
+| fingers | number | No| Minimum number of fingers to trigger a pinch. The value ranges from 2 to 5.<br>Default value: **2**<br>While more fingers than the minimum number can be pressed to trigger the gesture, only the first fingers of the minimum number participate in gesture calculation.|
+| distance | number | No| Minimum recognition distance, in vp.<br>Default value: **5**<br>**NOTE**<br>If the value is less than or equal to 0, it will be converted to the default value.|
 
 
 ## Events
@@ -24,10 +24,15 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 | Name| Description|
 | -------- | -------- |
 | onActionStart(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when a pinch gesture is recognized.|
-| onActionUpdate(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the user moves the finger in a pinch gesture on the screen.|
-| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the finger used for a pinch gesture is lift.|
-| onActionCancel(event: () =&gt; void) | Triggered when a tap cancellation event is received after a pinch gesture is recognized.|
+| onActionUpdate(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the user moves the finger in the pinch gesture on the screen.|
+| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the finger used for the pinch gesture is lift.|
+| onActionCancel(event: () =&gt; void) | Triggered when a tap cancellation event is received after the pinch gesture is recognized.|
 
+## Attributes
+
+| Name| Type   |Description                                       |
+| ----  | ------  | ---------------------------------------- |
+| tag<sup>11+</sup>   | string  | Tag for the pinch gesture. It is used to distinguish the gesture during custom gesture recognition.|
 
 ## Example
 
