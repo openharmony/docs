@@ -1,15 +1,31 @@
-# 包管理子系统ChangeLog
-## cl.bundlemanager.1 打包工具默认以不压缩方式打包libs库
+# 包管理子系统变更说明
 
-打包工具打包libs库时，默认方式由压缩打包变更为不压缩打包。若用户需要打包时对libs库进行压缩存储，可以设置compressNativeLibs参数为true，若不设置此参数，默认为false。
+## cl.bundlemanager.1 打包工具打包libs库是否压缩默认值变更
 
-**变更影响**<br>
-变更前，打包工具默认以压缩方式打包libs库。
+**访问级别**
 
-变更后，打包工具默认以不压缩方式打包libs库。
+其他
 
-**关键的接口/组件变更**<br>
-无关联接口/组件
+**变更原因**
 
-**适配指导**<br>
-升级SDK即可。升级后，如果开发者需要以压缩方式打包libs库，可以设置[module.json5配置文件](../../../application-dev/quick-start/module-configuration-file.md)中的compressNativeLibs参数为true。
+打包工具默认以压缩方式打包libs库，虽然可以使打出的安装包更小，但却会增加打包耗时。开发者在开发调试阶段往往对包大小不敏感，对打包耗时要求较高。此次变更后，打包工具默认以不压缩方式打包libs库，在开发调试阶段为开发者带来时间收益。
+
+**变更影响**
+
+该变更为兼容性变更。对开发者打包时libs库是否默认压缩会有影响。
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.3.5版本开始。
+
+**变更的接口/组件**
+
+修改前，打包工具默认以压缩方式打包libs库。
+
+修改后，打包工具默认以不压缩方式打包libs库。
+
+**适配指导**
+
+变更前，打包工具默认以压缩方式打包libs库，如果开发者需要以不压缩方式打包libs库，可以设置[module.json5配置文件](../../../application-dev/quick-start/module-configuration-file.md)中的compressNativeLibs参数为false。
+
+变更后，打包工具默认以不压缩方式打包libs库，如果开发者需要以压缩方式打包libs库，可以设置[module.json5配置文件](../../../application-dev/quick-start/module-configuration-file.md)中的compressNativeLibs参数为true。
