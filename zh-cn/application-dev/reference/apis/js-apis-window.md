@@ -6441,7 +6441,6 @@ setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 | 1300003  | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                |
 
-
 **示例：**
 
 ```ts
