@@ -2896,7 +2896,7 @@ fetchMetadata(callback: AsyncCallback\<AVMetadata>): void
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Returned by callback. |
+| 5400102  | Operation not allowed. Return by callback. |
 | 5400106  | Unsupported format. Returned by callback.  |
 
 **示例：**
@@ -3018,7 +3018,7 @@ avMetadataExtractor.fetchAlbumCover().then((pixelMap: image.PixelMap) => {
 
 ### release<sup>11+</sup>
 
-release(callback: AsyncCallback<void>): void
+release(callback: AsyncCallback\<void>): void
 
 异步方式释放资源。通过注册回调函数获取返回值。
 
@@ -3053,7 +3053,7 @@ avMetadataExtractor.release((error) => {
 
 ### release<sup>11+</sup>
 
-release(): Promise<void>
+release(): Promise\<void>
 
 异步方式释放资源。通过Promise获取返回值。
 
@@ -3236,7 +3236,7 @@ avImageGenerator.fetchFrameByTime(timeUs, queryOption, param).then((pixelMap: im
 
 ### release<sup>11+</sup>
 
-release(callback: AsyncCallback<void>): void
+release(callback: AsyncCallback\<void>): void
 
 异步方式释放资源。通过注册回调函数获取返回值。
 
@@ -3273,7 +3273,7 @@ avImageGenerator.release((error) => {
 
 ### release<sup>11+</sup>
 
-release(): Promise<void>
+release(): Promise\<void>
 
 异步方式释放资源。通过Promise获取返回值。
 
