@@ -6423,7 +6423,7 @@ setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
 | 参数名       | 类型                          | 必填 | 说明                           |
 | :----------- | :---------------------------- | :--- | :----------------------------- |
-| windowLimits | [WindowLimits](#wndowlimits) | 是   | 目标窗口的尺寸限制，单位为px。 |
+| windowLimits | [WindowLimits](#windowlimits) | 是   | 目标窗口的尺寸限制，单位为px。 |
 
 **返回值：**
 
