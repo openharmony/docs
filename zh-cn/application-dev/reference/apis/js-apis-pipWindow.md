@@ -54,9 +54,9 @@ create(config: PiPConfiguration, callback: AsyncCallback&lt;PiPController&gt;): 
 import { BusinessError } from '@ohos.base';
 let pipController: pipWindow.PiPController | undefined = undefined;
 let mXComponentController: XComponentController = new XComponentController(); // 开发者应使用该mXComponentController初始化XComponent: XComponent( {id: 'video', type: 'surface', controller: mXComponentController} )，保证XComponent的内容可以被迁移到画中画窗口。
-let navId: string = "page_1"; // 假设当前页面的导航id为page_1，详见PiPConfiguration定义，具体导航名称由开发者自行定义;
-let contentWidth: number = 800; // 假设当前内容宽度800px，开发者可通过媒体相关接口获取;
-let contentHeight: number = 600; // 假设当前内容宽度600px，开发者可通过媒体相关接口获取;
+let navId: string = "page_1"; // 假设当前页面的导航id为page_1，详见PiPConfiguration定义，具体导航名称由开发者自行定义。
+let contentWidth: number = 800; // 假设当前内容宽度800px。
+let contentHeight: number = 600; // 假设当前内容宽度600px。
 
 let config: pipWindow.PiPConfiguration = {
   context: getContext(this),
@@ -67,19 +67,14 @@ let config: pipWindow.PiPConfiguration = {
   contentHeight: contentHeight,
 };
 
-try {
-  pipWindow.create(config, (err: BusinessError, data) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to create pip controller. Cause:${errCode}, message:${err.message}`);
-      return;
-    }
-    pipController = data;
-    console.info(`Succeeded in creating pip controller. Data:${data}`);
-  });
-} catch (exception) {
-  console.error(`Failed to create pip controller. Cause:${exception}`);
-}
+pipWindow.create(config, (err: BusinessError, data : pipWindow.PiPController) => {
+  if (err.code) {
+    console.error(`Failed to create pip controller. Cause:${err.code}, message:${err.message}`);
+    return;
+  }
+  pipController = data;
+  console.info(`Succeeded in creating pip controller. Data:${data}`);
+});
 ```
 
 ## pipWindow.create
@@ -105,8 +100,23 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 **示例：**
 
 ```ts
-let promise = pipWindow.create(config);
-promise.then((data) => {
+import { BusinessError } from '@ohos.base';
+let pipController: pipWindow.PiPController | undefined = undefined;
+let mXComponentController: XComponentController = new XComponentController(); // 开发者应使用该mXComponentController初始化XComponent: XComponent( {id: 'video', type: 'surface', controller: mXComponentController} )，保证XComponent的内容可以被迁移到画中画窗口。
+let navId: string = "page_1"; // 假设当前页面的导航id为page_1，详见PiPConfiguration定义，具体导航名称由开发者自行定义。
+let contentWidth: number = 800; // 假设当前内容宽度800px。
+let contentHeight: number = 600; // 假设当前内容宽度600px。
+let config: pipWindow.PiPConfiguration = {
+  context: getContext(this),
+  componentController: mXComponentController,
+  navigationId: navId,
+  templateType: pipWindow.PiPTemplateType.VIDEO_PLAY,
+  contentWidth: contentWidth,
+  contentHeight: contentHeight,
+};
+
+let promise : Promise<pipWindow.PiPController> = pipWindow.create(config);
+promise.then((data : pipWindow.PiPController) => {
   pipController = data;
   console.info(`Succeeded in creating pip controller. Data:${data}`);
 }).catch((err: BusinessError) => {
@@ -120,14 +130,14 @@ promise.then((data) => {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称                  | 类型                                                                    | 必填  | 说明                                                                                                                                                                           |
-|---------------------|-----------------------------------------------------------------------|-----|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| context             | [BaseContext](js-apis-inner-application-baseContext.md)               | 是   | 表示上下文环境。                                                                                                                                                                     |
-| componentController | [XComponentController](../arkui-ts/ts-basic-components-xcomponent.md) | 是   | 表示原始XComponent控制器。                                                                                                                                                           |
-| navigationId        | string                                                                | 否   | 当前page导航ID。如果当前页面是通过[NavRouter](../arkui-ts/ts-basic-components-navrouter.md)跳转而来，取其参数[RouteInfo](../arkui-ts/ts-basic-components-navrouter.md#routeinfo10对象说明)的name值；否则取空值。 |
-| templateType        | [PiPTemplateType](#piptemplatetype)                                   | 否   | 模板类型，用以区分视频播放、视频通话或视频会议。                                                                                                                                                     |
-| contentWidth        | number                                                                | 否   | 原始内容宽度，单位为px。用于确定画中画窗口比例。                                                                                                                                                    |
-| contentHeight       | number                                                                | 否   | 原始内容高度，单位为px。用于确定画中画窗口比例。                                                                                                                                                    |
+| 名称                  | 类型                                                                    | 必填  | 说明                                                                                                                                                                        |
+|---------------------|-----------------------------------------------------------------------|-----|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| context             | [BaseContext](js-apis-inner-application-baseContext.md)               | 是   | 表示上下文环境。                                                                                                                                                                  |
+| componentController | [XComponentController](../arkui-ts/ts-basic-components-xcomponent.md) | 是   | 表示原始XComponent控制器。                                                                                                                                                        |
+| navigationId        | string                                                                | 否   | 当前page导航ID。如果当前页面是通过[NavRouter](../arkui-ts/ts-basic-components-navrouter.md)跳转而来，取[RouteInfo](../arkui-ts/ts-basic-components-navrouter.md#routeinfo10对象说明)的name值；否则取空值。 |
+| templateType        | [PiPTemplateType](#piptemplatetype)                                   | 否   | 模板类型，用以区分视频播放、视频通话或视频会议。                                                                                                                                                  |
+| contentWidth        | number                                                                | 否   | 原始内容宽度，单位为px。用于确定画中画窗口比例。                                                                                                                                                 |
+| contentHeight       | number                                                                | 否   | 原始内容高度，单位为px。用于确定画中画窗口比例。                                                                                                                                                 |
 
 ## PiPTemplateType
 
@@ -234,18 +244,13 @@ startPiP(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-try {
-  pipController.startPiP((err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Succeeded in starting pip. Cause:${errCode}, message:${err.message}`);
-      return;
-    }
-    console.info('Failed to start pip.');
-  });
-} catch (exception) {
-  console.error(`Failed to stop pip:${exception}`);
-}
+pipController.startPiP((err: BusinessError) => {
+  if (err.code) {
+    console.error(`Failed to start pip. Cause:${err.code}, message:${err.message}`);
+    return;
+  }
+  console.info('Succeeded in starting pip.');
+});
 ```
 
 ### startPiP
@@ -276,9 +281,9 @@ startPiP(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-let promise = pipController.startPiP();
-promise.then((data) => {
-  console.info(`Succeeded in starting pip. Data:${data}`);
+let promise : Promise<void> = pipController.startPiP();
+promise.then(() => {
+  console.info(`Succeeded in starting pip.`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to start pip. Cause:${err.code}, message:${err.message}`);
 });
@@ -311,18 +316,13 @@ stopPiP(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-try {
-  pipController.stopPiP((err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Succeeded in stopping pip. Cause:${errCode}, message:${err.message}`);
-      return;
-    }
-    console.info('Failed to stop pip.');
-  });
-} catch (exception) {
-  console.error(`Failed to stop pip:${exception}`);
-}
+pipController.stopPiP((err: BusinessError) => {
+  if (err.code) {
+    console.error(`Failed to stop pip. Cause:${err.code}, message:${err.message}`);
+    return;
+  }
+  console.info('Succeeded in stopping pip.');
+});
 ```
 
 ### stopPiP
@@ -352,9 +352,9 @@ stopPiP(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-let promise = pipController.stopPiP();
-promise.then((data) => {
-  console.info(`Succeeded in stopping pip. Data:${data}`);
+let promise : Promise<void> = pipController.stopPiP();
+promise.then(() => {
+  console.info(`Succeeded in stopping pip.`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to stop pip. Cause:${err.code}, message:${err.message}`);
 });
@@ -395,8 +395,8 @@ updateContentSize(width: number, height: number): void
 | height | number | 是   | 表示媒体内容高度，单位为px。用于更新画中画窗口比例。   |
 
 ```ts
-let width: number = 540; // 假设当前内容宽度变为540px，开发者可通过媒体相关接口或回调获取;
-let height: number = 960; // 假设当前内容高度变为960px，开发者可通过媒体相关接口或回调获取;
+let width: number = 540; // 假设当前内容宽度变为540px。
+let height: number = 960; // 假设当前内容高度变为960px。
 pipController.updateContentSize(width, height);
 ```
 
@@ -474,22 +474,22 @@ on(type: 'controlPanelActionEvent', callback: (event: PiPActionEventType) => voi
 
 **参数：**
 
-| 参数名      | 类型         | 必填    | 说明                                                                                                                            |
-|----------|------------|-------|-------------------------------------------------------------------------------------------------------------------------------|
-| type     | string     | 是     | 监听事件，固定为'controlPanelActionEvent'，即画中画控制事件。                                                                                   |
-| callback | function   | 是     | 回调画中画控制事件:<br/>event: [PiPActionEventType](#pipactioneventtype)，表示控制事件类型。应用依据控制事件做相应处理，如收到'playbackStateChanged'时，需要开始/停止媒体流。 |
+| 参数名      | 类型         | 必填    | 说明                                                                                                                             |
+|----------|------------|-------|--------------------------------------------------------------------------------------------------------------------------------|
+| type     | string     | 是     | 监听事件，固定为'controlPanelActionEvent'，即画中画控制事件。                                                                                    |
+| callback | function   | 是     | 回调画中画控制事件:<br/>event: [PiPActionEventType](#pipactioneventtype)，表示控制事件类型。应用依据控制事件做相应处理，如触发'playbackStateChanged'事件时，需要开始或停止视频。 |
 
 ```ts
 pipController.on('controlPanelActionEvent', (event: pipWindow.PiPActionEventType) => {
   switch (event) {
     case 'playbackStateChanged':
-      // start or stop video
+      // 开始或停止视频
       break;
     case 'nextVideo':
-      // next video, change video source here
+      // 切换到下一个视频
       break;
     case 'previousVideo':
-      // previousVideo, change video source here
+      // 切换到上一个视频
       break;
     default:
       break;
