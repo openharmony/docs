@@ -422,6 +422,12 @@ isMicrophoneDisabled(admin: Want): boolean
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
+**返回值：**
+
+| 类型   | 说明                                  |
+| ----- | ----------------------------------- |
+| boolean | boolean方式返回麦克风是否被禁用，true表示麦克风被禁用，false表示麦克风未被禁用。 |
+
 **错误码**：
 
 以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
