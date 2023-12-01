@@ -56,6 +56,7 @@
     - [特效绘制合并](ts-universal-attributes-use-effect.md)
     - [组件内容填充方式](ts-universal-attributes-renderfit.md)
     - [事件独占控制](ts-universal-attributes-monopolize-events.md)
+    - [鼠标光标控制](ts-universal-attributes-cursor.md)
   - 手势处理
     - [绑定手势方法](ts-gesture-settings.md)
     - 基础手势
