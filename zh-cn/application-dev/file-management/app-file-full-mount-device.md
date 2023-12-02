@@ -35,8 +35,6 @@
 
 ## 开发示例
 
-在对应用文件开始访问前，开发者需要[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。以从UIAbilityContext获取HAP级别的文件路径为例进行说明，UIAbilityContext的获取方式请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
 下面介绍几种常用操作示例。
 
 ### 通过预授权的方式申请下载目录权限和获取对应路径
