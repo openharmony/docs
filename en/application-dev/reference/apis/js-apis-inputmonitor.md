@@ -79,7 +79,7 @@ try {
 }
 ```
 
-## inputMonitor.on('mouse'， display.Rect[])<sup>11+</sup>
+## inputMonitor.on('mouse')<sup>11+</sup>
 
 on(type: 'mouse', rect: display.Rect[], receiver: Callback&lt;MouseEvent&gt;): void
 
@@ -95,7 +95,7 @@ Enables listening for mouse events and trigger a callback task when the mouse mo
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | Yes    | Event type. This field has a fixed value of **mouse**. |
 | rect     | display.Rect[]             | Yes    | The rectangular area that can trigger the callback task, the number of rectangles can be 1 or 2. |
-| receiver | Callback&lt;MouseEvent&gt; | Yes    | Callback used to return the mouse event   |
+| receiver | Callback&lt;[MouseEvent](./js-apis-mouseevent.md)&gt; | Yes    | Callback used to return the mouse event   |
 
   **Example**
 
