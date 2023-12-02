@@ -79,7 +79,7 @@ try {
 }
 ```
 
-## inputMonitor.on('mouse'， display.Rect[])<sup>11+</sup>
+## inputMonitor.on('mouse')<sup>11+</sup>
 
 on(type: 'mouse', rect: display.Rect[], receiver: Callback&lt;MouseEvent&gt;): void
 
@@ -95,7 +95,7 @@ on(type: 'mouse', rect: display.Rect[], receiver: Callback&lt;MouseEvent&gt;): v
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | 是    | 输入设备事件类型，取值'mouse'。 |
 | rect     | display.Rect[]             | 是    | 可以触发回调任务的矩形区域，可传入1至2个。 |
-| receiver | Callback&lt;MouseEvent&gt; | 是    | 回调函数，异步上报鼠标输入事件。  |
+| receiver | Callback&lt;[MouseEvent](./js-apis-mouseevent.md)&gt; | 是    | 回调函数，异步上报鼠标输入事件。  |
 
   **示例：**
 
