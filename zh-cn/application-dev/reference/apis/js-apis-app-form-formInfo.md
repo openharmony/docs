@@ -179,6 +179,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | formName<sup>10+</sup>        | string               | 是    | 否     | 卡片名称。                                 |
 | dimension | number               | 是    | 否     | 卡片规格。   |
 | formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | 是    | 否     | 卡片当前使用状态枚举。   |
+| formDescription<sup>11+</sup> | string         | 是    | 否     | 提供方卡片配置文件中的描述信息。   |
 
 ## formProviderFilter<sup>10+</sup>
 

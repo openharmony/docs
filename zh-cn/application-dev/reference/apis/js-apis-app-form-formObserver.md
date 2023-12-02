@@ -921,3 +921,351 @@ try {
   console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
+
+## on('router')
+
+ on(type: 'router', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+订阅卡片点击事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                      |
+| ---------------- | ---------------------------------------- | ---- | ----------------------------------------- |
+| type             | string                                   | 是   | 填写'router'，表示卡片点击事件。          |
+| observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 是   | 回调函数。返回新增卡片的RunningFormInfo。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 201      | Permissions denied.                            |
+| 202      | The application is not a system application.   |
+| 401      | If the input parameter is not valid parameter. |
+| 16501000 | An internal functional error occurred.         |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+formObserver.on('router', (data: formInfo.RunningFormInfo) => {
+  console.log('Router event listening in registered form.' + JSON.stringify(data));
+});
+```
+
+## on('router')
+
+ on(type: 'router', hostBundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+订阅卡片新增事件。使用callback异步回调，返回指定卡片使用方应用新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                                         |
+| ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | string                                   | 是   | 填写'router'，表示卡片新增事件。                             |
+| hostBundleName   | string                                   | 是   | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片新增事件。 |
+| observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 是   | 回调函数。返回新增卡片的RunningFormInfo。                    |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 201      | Permissions denied.                            |
+| 202      | The application is not a system application.   |
+| 401      | If the input parameter is not valid parameter. |
+| 16501000 | An internal functional error occurred.         |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+let bundleName: string = 'ohos.samples.FormApplication';
+
+formObserver.on('router', bundleName, (data: formInfo.RunningFormInfo) => {
+  console.log('Router event listening in registered form.' + JSON.stringify(data));
+});
+```
+
+## off('router')
+
+ off(type: "router", hostBundleName?: string, observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+取消订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                                         |
+| ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | string                                   | 是   | 填写'router'，表示卡片新增事件。                             |
+| hostBundleName   | string                                   | 否   | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
+| observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 否   | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('formAdd')的callback一致。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 201      | Permissions denied.                            |
+| 202      | The application is not a system application.   |
+| 401      | If the input parameter is not valid parameter. |
+| 16500100 | The requested bundle name does not exist.      |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+let bundleName: string = 'ohos.samples.FormApplication';
+formObserver.off('router', bundleName, (data: formInfo.RunningFormInfo) => {
+  console.log('Unregister form router event Listening.' + JSON.stringify(data));
+});
+```
+
+## on('message')
+
+ on(type: 'message', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+订阅卡片点击事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                      |
+| ---------------- | ---------------------------------------- | ---- | ----------------------------------------- |
+| type             | string                                   | 是   | 填写'message'，表示卡片点击事件。         |
+| observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 是   | 回调函数。返回新增卡片的RunningFormInfo。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 201      | Permissions denied.                            |
+| 202      | The application is not a system application.   |
+| 401      | If the input parameter is not valid parameter. |
+| 16501000 | An internal functional error occurred.         |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+formObserver.on('message', (data: formInfo.RunningFormInfo) => {
+  console.log('Message event listening in registered form.' + JSON.stringify(data));
+});
+```
+
+## on('message')
+
+ on(type: 'message', hostBundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+订阅卡片新增事件。使用callback异步回调，返回指定卡片使用方应用新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                                         |
+| ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | string                                   | 是   | 填写'message'，表示卡片新增事件。                            |
+| hostBundleName   | string                                   | 是   | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片新增事件。 |
+| observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 是   | 回调函数。返回新增卡片的RunningFormInfo。                    |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 201      | Permissions denied.                            |
+| 202      | The application is not a system application.   |
+| 401      | If the input parameter is not valid parameter. |
+| 16501000 | An internal functional error occurred.         |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+let bundleName: string = 'ohos.samples.FormApplication';
+
+formObserver.on('message', bundleName, (data: formInfo.RunningFormInfo) => {
+  console.log('Message event listening in registered form.' + JSON.stringify(data));
+});
+```
+
+## off('message')
+
+ off(type: "message", hostBundleName?: string, observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+取消订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                                         |
+| ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | string                                   | 是   | 填写'message'，表示卡片新增事件。                            |
+| hostBundleName   | string                                   | 否   | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
+| observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 否   | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('formAdd')的callback一致。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 201      | Permissions denied.                            |
+| 202      | The application is not a system application.   |
+| 401      | If the input parameter is not valid parameter. |
+| 16500100 | The requested bundle name does not exist.      |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+let bundleName: string = 'ohos.samples.FormApplication';
+formObserver.off('message', bundleName, (data: formInfo.RunningFormInfo) => {
+  console.log('Unregister form Message event Listening.' + JSON.stringify(data));
+});
+```
+
+## on('call')
+
+ on(type: 'call', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+订阅卡片点击事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                      |
+| ---------------- | ---------------------------------------- | ---- | ----------------------------------------- |
+| type             | string                                   | 是   | 填写'call'，表示卡片点击事件。            |
+| observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 是   | 回调函数。返回新增卡片的RunningFormInfo。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 201      | Permissions denied.                            |
+| 202      | The application is not a system application.   |
+| 401      | If the input parameter is not valid parameter. |
+| 16501000 | An internal functional error occurred.         |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+formObserver.on('call', (data: formInfo.RunningFormInfo) => {
+  console.log('Call event listening in registered form.' + JSON.stringify(data));
+});
+```
+
+## on('call')
+
+ on(type: 'call', hostBundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+订阅卡片新增事件。使用callback异步回调，返回指定卡片使用方应用新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                                         |
+| ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | string                                   | 是   | 填写'call'，表示卡片新增事件。                               |
+| hostBundleName   | string                                   | 是   | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片新增事件。 |
+| observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 是   | 回调函数。返回新增卡片的RunningFormInfo。                    |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 201      | Permissions denied.                            |
+| 202      | The application is not a system application.   |
+| 401      | If the input parameter is not valid parameter. |
+| 16501000 | An internal functional error occurred.         |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+let bundleName: string = 'ohos.samples.FormApplication';
+
+formObserver.on('call', bundleName, (data: formInfo.RunningFormInfo) => {
+  console.log('Call event listening in registered form.' + JSON.stringify(data));
+});
+```
+
+## off('call')
+
+ off(type: "call", hostBundleName?: string, observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+取消订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                                         |
+| ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | string                                   | 是   | 填写'call'，表示卡片新增事件。                               |
+| hostBundleName   | string                                   | 否   | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
+| observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 否   | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('formAdd')的callback一致。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 201      | Permissions denied.                            |
+| 202      | The application is not a system application.   |
+| 401      | If the input parameter is not valid parameter. |
+| 16500100 | The requested bundle name does not exist.      |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+let bundleName: string = 'ohos.samples.FormApplication';
+formObserver.off('call', bundleName, (data: formInfo.RunningFormInfo) => {
+  console.log('Unregister form Call event Listening.' + JSON.stringify(data));
+});
+```
