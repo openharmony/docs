@@ -73,7 +73,7 @@ import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
 import fileshare from '@ohos.fileshare';
 
-async function persistPermissionExample(): void {
+async function persistPermissionExample() {
     try {
         let DocumentSelectOptions = new picker.DocumentSelectOptions();
         let documentPicker = new picker.DocumentViewPicker();
@@ -173,7 +173,7 @@ async function grantPermissionExample01() {
 import { BusinessError } from '@ohos.base';
 import fileuri from '@ohos.file.fileuri';
 
-async function getFullDirectoryUriExample01() {
+function getFullDirectoryUriExample01() {
     try {
         let uri = "file://docs/storage/Users/100/tmp/1.txt";
         let fileObject = new fileuri.FileUri(uri);
@@ -192,16 +192,21 @@ async function getFullDirectoryUriExample01() {
 import { BusinessError } from '@ohos.base';
 import environment from '@ohos.file.environment';
 
-async function getDirectoryExample01() {
-    //获取公共下载目录
-    let downloadPath = environment.getUserDownloadDir();
-    //获取公共桌面目录
-    let desktopPath = environment.getUserDesktopDir();
-    //获取公共文档目录
-    let doucmentPath = environment.getUserDoucmentDir();
-    //获取外卡根目录
-    let externalStoragePath = environment.getExternalStorageDir();
-    //获取当前用户下应用沙箱路径的内卡目录
-    let userHomePath = environment.getUserHomeDir();
+function getDirectoryExample01() {
+    try {
+        //获取公共下载目录
+        let downloadPath = environment.getUserDownloadDir();
+        //获取公共桌面目录
+        let desktopPath = environment.getUserDesktopDir();
+        //获取公共文档目录
+        let doucmentPath = environment.getUserDoucmentDir();
+        //获取外卡根目录
+        let externalStoragePath = environment.getExternalStorageDir();
+        //获取当前用户下应用沙箱路径的内卡目录
+        let userHomePath = environment.getUserHomeDir();
+    } catch (error) {
+        let err: BusinessError = error as BusinessError;
+        console.error('getDirectory failed with err: ' + JSON.stringify(err));
+    }
 }
 ```
