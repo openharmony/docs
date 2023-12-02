@@ -166,3 +166,44 @@ async function grantPermissionExample01() {
     }
 }
 ```
+
+### 文件管理器通过接口获取文件父目录
+
+如果当前FileUri指向文件，将返回文件所在路径URI,如果当前FileUri指向目录，将返回当前路径URI。
+以下示例代码演示了文件管理器通过接口获取文件父目录：
+```ts
+import { BusinessError } from '@ohos.base';
+import fileuri from '@ohos.file.fileuri';
+
+async function getFullDirectoryUriExample01() {
+    try {
+        let uri = "file://docs/storage/Users/100/tmp/1.txt";
+        let fileObject = new fileuri.FileUri(uri);
+        let directoryUri = fileObject.getFullDirectoryUri();
+    } catch (error) {
+        let err: BusinessError = error as BusinessError;
+        console.error('getFullDirectoryUri failed with err: ' + JSON.stringify(err));
+    }
+}
+```
+
+### 文件管理器通过接口获取公共目录、外卡目录
+
+以下示例代码演示了文件管理器通过接口获取公共目录、外卡目录：
+```ts
+import { BusinessError } from '@ohos.base';
+import environment from '@ohos.file.environment';
+
+async function getDirectoryExample01() {
+    //获取公共下载目录
+    let downloadPath = environment.getUserDownloadDir();
+    //获取公共桌面目录
+    let desktopPath = environment.getUserDesktopDir();
+    //获取公共文档目录
+    let doucmentPath = environment.getUserDoucmentDir();
+    //获取外卡根目录
+    let externalStoragePath = environment.getExternalStorageDir();
+    //获取当前用户下应用沙箱路径的内卡目录
+    let userHomePath = environment.getUserHomeDir();
+}
+```
