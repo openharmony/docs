@@ -361,9 +361,9 @@ IP配置信息。
 | PHASE2_AKA | 6 | AKA类型。 |
 | PHASE2_AKA_PRIME | 7 | AKA Prime类型。 |
 
-## wifiManager.isWifiDisallowed
+## wifiManager.isWifiDisabled
 
-isWifiDisallowed(admin: Want): boolean
+isWifiDisabled(admin: Want): boolean
 
 指定设备管理应用查询wifi是否被禁用。
 
@@ -403,17 +403,17 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-
-wifiManager.isWifiDisallowed(wantTemp).then((result) => {
-  console.info(`Succeeded in query the wifi is disallowed or not, result : ${result}`);
-}).catch((err: BusinessError) => {
-  console.error(`Failed to query the wifi is disallowed or not. Code: ${err.code}, message: ${err.message}`);
+try {
+  boolean result = wifiManager.isWifiDisabled(wantTemp);
+  console.info(`Succeeded in query the wifi is disabled or not, result : ${result}`);
+} catch((err: BusinessError) {
+  console.error(`Failed to query the wifi is disabled or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
-## wifiManager.disallowWifi
+## wifiManager.disableWifi
 
-disallowWifi(admin: Want, isDisabled: boolean): void
+disableWifi(admin: Want, isDisabled: boolean): void
 
 指定设备管理应用设置禁用wifi策略。
 
@@ -450,9 +450,9 @@ let wantTemp: Want = {
 };
 
 try {
-  wifiManager.disallowWifi(wantTemp, true);
-  console.info('Succeeded in set the wifi disallowed');
+  wifiManager.disableWifi(wantTemp, true);
+  console.info('Succeeded in set the wifi disabled');
 } catch((err: BusinessError) {
-  console.error(`Failed to set the wifi disallowed. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to set the wifi disabled. Code: ${err.code}, message: ${err.message}`);
 });
 ```
