@@ -22,7 +22,7 @@
 
 | 名称              | 类型                                       | 必填   | 描述              |
 | --------------- | ---------------------------------------- | ---- | --------------- |
-| height          | [SheetSize](#sheetsize)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否    | 半模态高度，默认是LARGE。<br/>**说明：**<br/>底部弹窗竖屏时，当设置sheetDetents时，该属性设置无效。<br/>底部弹窗横屏时，该属性设置无效。<br/>居中弹窗和跟手弹窗设置类型为SheetSize无效，显示默认高度。 |
+| height          | [SheetSize](#sheetsize)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否    | 半模态高度，默认是LARGE。<br/>**说明：**<br/>底部弹窗竖屏时，当设置sheetDetents时，该属性设置无效。<br/>底部弹窗横屏时，该属性设置无效。<br/>居中弹窗和跟手弹窗设置类型为SheetSize.LARGE和SheetSize.MUDIUM无效，显示默认高度。 |
 | detents<sup>11+</sup> | [([SheetSize.LARGE](#sheetsize) \|[SheetSize.MEDIUM](#sheetsize) \| [Length](ts-types.md#length)), ([SheetSize.LARGE](#sheetsize)\| [SheetSize.MEDIUM](#sheetsize)\| [Length](ts-types.md#length)), ([SheetSize.LARGE](#sheetsize) \| [SheetSize.MEDIUM](#sheetsize)\| [Length](ts-types.md#length))?] | 否 | 半模态页面的切换高度档位。<br/>**说明：**<br/>底部弹窗竖屏生效，元组中第一个高度为初始高度。 |
 | type<sup>11+</sup> | [SheetType.CENTER](#sheettype11)\| [SheetType.POPUP](#sheettype11) | 否 | 半模态页面的样式。 |
 | showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | 否 | 是否显示关闭图标，默认显示。<br/>**说明：**<br/>Resource需要为boolean类型。 |
