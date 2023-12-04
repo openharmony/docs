@@ -5718,6 +5718,7 @@ isSpatializationSupported(): boolean
 **示例：**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 try {
   let isSpatializationSupported: boolean = audioSpatializationManager.isSpatializationSupported();
@@ -5763,20 +5764,21 @@ isSpatializationSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boo
 **示例：**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 let deviceDescriptor: audio.AudioDeviceDescriptor = {
-  address: "123",
-  deviceRole: 2,
-  deviceType: 1,
-  id: 123,
-  name: "123",
-  sampleRates: [18],
-  channelCounts: [2,6],
-  channelMasks: [2,6],
-  networkId:"123",
-  interruptGroupId: 12,
-  volumeGroupId:12,
-  displayName:"123"
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+  id : 1,
+  name : "",
+  address : "123",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : ""
 }
 try {
   let isSpatializationSupportedForDevice: boolean = audioSpatializationManager.isSpatializationSupportedForDevice(deviceDescriptor);
@@ -5814,6 +5816,7 @@ isHeadTrackingSupported(): boolean
 **示例：**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 try {
   let isHeadTrackingSupported: boolean = audioSpatializationManager.isHeadTrackingSupported();
@@ -5859,20 +5862,21 @@ isHeadTrackingSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boole
 **示例：**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 let deviceDescriptor: audio.AudioDeviceDescriptor = {
-  address: "123",
-  deviceRole: 2,
-  deviceType: 1,
-  id: 123,
-  name: "123",
-  sampleRates: [18],
-  channelCounts: [2,6],
-  channelMasks: [2,6],
-  networkId:"123",
-  interruptGroupId: 12,
-  volumeGroupId:12,
-  displayName:"123"
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+  id : 1,
+  name : "",
+  address : "123",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : ""
 }
 try {
   let isHeadTrackingSupportedForDevice: boolean = audioSpatializationManager.isHeadTrackingSupportedForDevice(deviceDescriptor);
@@ -5997,6 +6001,7 @@ isSpatializationEnabled(): boolean
 **示例：**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 try {
   let isSpatializationEnabled: boolean = audioSpatializationManager.isSpatializationEnabled();
@@ -6074,6 +6079,7 @@ off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 **示例：**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
 audioSpatializationManager.off('spatializationEnabledChange');
 ```
 
@@ -6191,6 +6197,7 @@ isHeadTrackingEnabled(): boolean
 **示例：**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 try {
   let isHeadTrackingEnabled: boolean = audioSpatializationManager.isHeadTrackingEnabled();
@@ -6268,6 +6275,7 @@ off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 **示例：**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
 audioSpatializationManager.off('headTrackingEnabledChange');
 ```
 
@@ -6300,6 +6308,7 @@ updateSpatialDeviceState(spatialDeviceState: AudioSpatialDeviceState): void
 **示例：**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 let spatialDeviceState: audio.AudioSpatialDeviceState = {
   address: "123",
