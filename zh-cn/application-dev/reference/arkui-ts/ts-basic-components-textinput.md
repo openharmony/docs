@@ -209,6 +209,10 @@ getCaretOffset(): CaretOffset
 | ----------------------- | ---------------- |
 | [CaretOffset](#caretoffset11对象说明) | 光标相对输入框的位置。 |
 
+> **说明：**
+>
+> - 在当前帧更新光标位置同时调用该接口，该接口不生效。
+
 ## CaretOffset<sup>11+</sup>对象说明
 | 参数名   | 类型   | 描述              |
 | ----- | ------ | ----------------- |
@@ -241,7 +245,7 @@ struct TextInputExample {
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 14, weight: 400 })
         .caretColor(Color.Blue)
-        .width(400)
+        .width(300)
         .height(40)
         .margin(20)
         .fontSize(14)
@@ -258,11 +262,15 @@ struct TextInputExample {
         .onClick(() => {
           // 将光标移动至第一个字符后
           this.controller.caretPosition(1)
+        })
+      Button('Get CaretOffset')
+        .margin(15)
+        .onClick(() => {
           this.positionInfo = this.controller.getCaretOffset()
         })
       // 密码输入框
       TextInput({ placeholder: 'input your password...' })
-        .width(400)
+        .width(300)
         .height(40)
         .margin(20)
         .type(InputType.Password)
@@ -270,7 +278,7 @@ struct TextInputExample {
         .showPasswordIcon(true)
       // 内联风格输入框
       TextInput({ text: 'inline style' })
-        .width(400)
+        .width(300)
         .height(50)
         .margin(20)
         .borderRadius(0)

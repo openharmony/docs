@@ -183,6 +183,7 @@ getCaretOffset(): CaretOffset
 > - 返回的位置信息是相对Search组件中搜索图标的偏移值。
 > - 不输入文本时，返回值中有相对Search组件的位置信息。
 > - 返回值中的位置信息是光标相对于可编辑组件的位置。
+> - 在当前帧更新光标位置同时调用该接口，该接口不生效。
 
 ##  示例
 
@@ -199,7 +200,7 @@ struct SearchExample {
   controller: SearchController = new SearchController()
 
   build() {
-    Column() {
+    Column({space: 10}) {
       Text('onSubmit:' + this.submitValue).fontSize(18).margin(15)
       Text('onChange:' + this.changeValue).fontSize(18).margin(15)
       Search({ value: this.changeValue, placeholder: 'Type to search...', controller: this.controller })
@@ -221,6 +222,9 @@ struct SearchExample {
         .onClick(() => {
           // 设置光标位置到输入的第一个字符后
           this.controller.caretPosition(1)
+        })
+      Button('Get CaretOffset')
+        .onClick(() => {
           this.positionInfo = this.controller.getCaretOffset()
         })
     }.width('100%')
