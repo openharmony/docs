@@ -6,6 +6,8 @@
 
 图片编码相关API的详细介绍请参见：[图片编码接口说明](../reference/apis/js-apis-image.md#imagepacker)。
 
+### 图片编码进文件流
+
 1. 创建图像编码ImagePacker对象。
    
    ```ts
@@ -59,6 +61,7 @@
    import {BusinessError} from '@ohos.base'
    import fs from '@ohos.file.fs'
    import featureAbility from '@ohos.ability.featureAbility'
+   const context : _Context = featureAbility.getContext();
    const path : string = context.getCacheDir() + "pixel_map.jpg";
    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(pixelMap, file.fd, packOpts).then(() => {
