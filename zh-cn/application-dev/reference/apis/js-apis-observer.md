@@ -28,7 +28,7 @@ on\(type: \'networkStateChange\', callback: Callback\<NetworkState\>\): void
 | 参数名   | 类型                                                      | 必填 | 说明                                                              |
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------------------- |
 | type     | string                                                    | 是   | 网络状态变化事件，参数固定为'networkStateChange'。                 |
-| callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 是   | 以callback形式异步返回结果。参考radio的[NetworkState](js-apis-radio.md#networkstate)|
+| callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 是   | 以callback形式异步返回结果，参考radio的[NetworkState](js-apis-radio.md#networkstate)|
 
 **错误码：**
 
@@ -67,8 +67,8 @@ on\(type: \'networkStateChange\', options: ObserverOptions, callback: Callback\<
 |  参数名  |                              类型                         | 必填 |                            说明                                   |
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------------------- |
 | type     | string                                                    | 是   | 网络状态变化事件，参数固定为'networkStateChange'。                 |
-| options  | [ObserverOptions](#observeroptions11)                     | 是   | 监听的选项。slotId:卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2           |
-| callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 是   | 以callback形式异步返回结果。参考radio的[NetworkState](js-apis-radio.md#networkstate) |
+| options  | [ObserverOptions](#observeroptions11)                     | 是   | 监听的选项。                                                      |
+| callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 是   | 以callback形式异步返回结果，参考radio的[NetworkState](js-apis-radio.md#networkstate) |
 
 **错误码：**
 
@@ -112,7 +112,7 @@ off\(type: \'networkStateChange\', callback?: Callback\<NetworkState\>\): void
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                    | 是   | 网络状态变化事件，参数固定为'networkStateChange'。                 |
-| callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 否   | 以callback形式异步返回结果。参考radio的[NetworkState](js-apis-radio.md#networkstate) |
+| callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 否   | 以callback形式异步返回结果，参考radio的[NetworkState](js-apis-radio.md#networkstate) |
 
 **错误码：**
 
@@ -151,7 +151,7 @@ on\(type: \'signalInfoChange\', callback: Callback\<Array\<SignalInformation\>\>
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 信号状态变化事件，参数固定为'signalInfoChange'。              |
-| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 以callback形式异步返回结果。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
+| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 以callback形式异步返回结果，参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
 
 **错误码：**
 
@@ -189,8 +189,8 @@ on\(type: \'signalInfoChange\', options: ObserverOptions, callback: Callback\<Ar
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 信号状态变化事件，参数固定为'signalInfoChange'。              |
-| options  | [ObserverOptions](#observeroptions11)                        | 是   | 监听的选项。slotId:卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2     |
-| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 以callback形式异步返回结果。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
+| options  | [ObserverOptions](#observeroptions11)                        | 是   | 监听的选项。                                                 |
+| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 以callback形式异步返回结果，参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
 
 **错误码：**
 
@@ -235,7 +235,7 @@ off\(type: \'signalInfoChange\', callback?: Callback\<Array\<SignalInformation\>
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 信号状态变化事件，参数固定为'signalInfoChange'。              |
-| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 否   | 以callback形式异步返回结果。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
+| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 否   | 以callback形式异步返回结果，参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
 
 **错误码：**
 
@@ -324,7 +324,7 @@ on\(type: \'cellInfoChange\', options: ObserverOptions, callback: Callback\<Arra
 | 参数名 | 类型                                               | 必填 | 说明                                      |
 | ------ |--------------------------------------------------| ---- |--------------------------------------------|
 | type     | string                                           | 是   | 小区信息变化事件，固定为'cellInfoChange'。 |
-| options  | [ObserverOptions](#observeroptions11)            | 是   | 监听的选项。slotId:卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2      |
+| options  | [ObserverOptions](#observeroptions11)            | 是   | 监听的选项。                              |
 | callback | Callback\<Array\<[CellInformation](js-apis-radio.md#cellinformation8)\>\> | 是   | 以callback形式异步返回结果。       |
 
 **错误码：**
@@ -416,7 +416,7 @@ on(type: 'callStateChange', callback: Callback\<CallStateInfo\>): void
 | 参数名   | 类型                                           | 必填 | 说明                                                        |
 | -------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | type     | string                                        | 是   | 通话状态变化事件，参数固定为'callStateChange'。                |
-| callback | Callback\<[CallStateInfo](#callstateinfo11)\> | 是   | 以callback形式异步返回结果。参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码 |
+| callback | Callback\<[CallStateInfo](#callstateinfo11)\> | 是   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码 |
 
 **错误码：**
 
@@ -454,8 +454,8 @@ on(type: 'callStateChange', options: ObserverOptions, callback: Callback<CallSta
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 通话状态变化事件，参数固定为'callStateChange'。               |
-| options  | [ObserverOptions](#observeroptions11)                        | 是   | 监听的选项。slotId:卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2     |
-| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | 是   | 以callback形式异步返回结果。参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码 |
+| options  | [ObserverOptions](#observeroptions11)                        | 是   | 监听的选项。                                                |
+| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | 是   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码 |
 
 **错误码：**
 
@@ -500,7 +500,7 @@ off(type: 'callStateChange', callback?: Callback<CallStateInfo>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 通话状态变化事件，参数固定为'callStateChange'。               |
-| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | 是   | 以callback形式异步返回结果。参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码 |
+| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | 是   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码 |
 
 **错误码：**
 
@@ -542,7 +542,7 @@ on\(type: 'cellularDataConnectionStateChange', callback: Callback\<DataConnectSt
 | 参数名   | 类型                               | 必填 | 说明                                                                 |
 | -------- | --------------------------------- | ---- | -------------------------------------------------------------------- |
 | type     | string                            | 是   | 蜂窝数据链路连接状态事件，参数固定为'cellularDataConnectionStateChange'。|
-| callback | Callback\<[DataConnectStateInfo](#dataconnectstateinfo11)\>  | 是   | 以callback形式异步返回结果。参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
+| callback | Callback\<[DataConnectStateInfo](#dataconnectstateinfo11)\>  | 是   | 以callback形式异步返回结果，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
 
 **错误码：**
 
@@ -581,8 +581,8 @@ on\(type: 'cellularDataConnectionStateChange', options: ObserverOptions, callbac
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 蜂窝数据链路连接状态事件，参数固定为'cellularDataConnectionStateChange'。|
-| options  | [ObserverOptions](#observeroptions11)                        | 是   | 监听的选项。slotId:卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2               |
-| callback | Callback\<[DataConnectStateInfo](#dataconnectstateinfo11)\> | 是   | 以callback形式异步返回结果。参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
+| options  | [ObserverOptions](#observeroptions11)                        | 是   | 监听的选项。             |
+| callback | Callback\<[DataConnectStateInfo](#dataconnectstateinfo11)\> | 是   | 以callback形式异步返回结果，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
 
 **错误码：**
 
@@ -628,7 +628,7 @@ off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<DataConnec
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 蜂窝数据链路连接状态事件，参数固定为'cellularDataConnectionStateChange'。|
-| callback | Callback\<[DataConnectStateInfo](#dataconnectstateinfo11)\> | 否   | 以callback形式异步返回结果。参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
+| callback | Callback\<[DataConnectStateInfo](#dataconnectstateinfo11)\> | 否   | 以callback形式异步返回结果，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
 
 **错误码：**
 
@@ -709,7 +709,7 @@ on\(type: 'cellularDataFlowChange', options: ObserverOptions,  callback: Callbac
 | 参数名   | 类型                                                       | 必填 | 说明                                                         |
 | -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                     | 是   | 蜂窝数据业务的上下行数据流状态状态事件，参数固定为'cellularDataFlowChange'。         |
-| options   | [ObserverOptions](#observeroptions11)                     | 是   | 监听的选项。slotId:卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2       |
+| options   | [ObserverOptions](#observeroptions11)                     | 是   | 监听的选项。                                                   |
 | callback | Callback\<[DataFlowType](js-apis-telephony-data.md#dataflowtype)\> | 是   | 以callback形式异步返回结果，参考data的[DataFlowType](js-apis-telephony-data.md#dataflowtype)。 |
 
 **错误码：**
@@ -833,7 +833,7 @@ on\(type: 'simStateChange', options: ObserverOptions, callback: Callback\<SimSta
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | sim状态更改事件，参数固定为'simStateChange'。                 |
-| options   | [ObserverOptions](#observeroptions11)                       | 是   | 监听的选项。slotId:卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2      |
+| options   | [ObserverOptions](#observeroptions11)                       | 是   | 监听的选项。                                                 |
 | callback | Callback\<[SimStateData](#simstatedata7)\> | 是   |  以callback形式异步返回结果。 |
 
 **错误码：**
