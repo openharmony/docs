@@ -422,7 +422,7 @@ getSelection(): RichEditorSelection
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | pixelMap | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 是 | 图片内容。 |
-| size | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\] | 是 | 图片大小。 |
+| size | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\] | 是 | 图片大小，不支持设置百分比。 |
 
 ## RichEditorParagraphResult<sup>11+</sup>
 
