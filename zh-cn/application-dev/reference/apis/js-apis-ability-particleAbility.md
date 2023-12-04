@@ -59,7 +59,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): 
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -138,7 +138,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<void>
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -190,7 +190,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 
 **示例：**
@@ -232,7 +232,7 @@ terminateSelf(): Promise\<void>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 
 **示例：**
@@ -371,7 +371,8 @@ startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;voi
 
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-向系统申请长时任务，使用promise形式返回结果，建议使用新接口[backgroundTaskManager.startBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning8-1)。
+> **说明：**
+> 向系统申请长时任务，使用promise形式返回结果，建议使用新接口[backgroundTaskManager.startBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning8-1)。
 
 **参数：**
 
@@ -570,7 +571,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例**：
 
@@ -628,7 +629,7 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例**：
 
@@ -684,7 +685,7 @@ disconnectAbility(connection: number): Promise\<void>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例**：
 
