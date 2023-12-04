@@ -7,25 +7,37 @@
 
 **变更原因**
 
-该变更为非兼容性变更。根据安全隐私要求，位置权限申请使用时，申请精确/后台位置权限，要同时申请模糊权限。
+该变更为非兼容性变更。根据安全隐私要求，地理位置支持使用期间允许的管控能力。位置权限申请使用时，无法通过弹窗形式授予后台位置权限。
 
 **变更影响**
 
-变更前，通过调用[requestPermissionsFromUser](../../../application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口申请位置权限，如下两种申请情况都可以顺利拉起弹窗：
+地理位置支持使用期间允许的管控能力。位置权限申请使用时，无法通过弹窗形式授予后台位置权限。具体受影响的弹窗场景见下文：
 
-1、在未申请模糊权限[ohos.permission.APPROXIMATELY_LOCATION](../../../application-dev/security/permission-list.md#ohospermissionapproximately_location)的情况下，请求后台位置权限[ohos.permission.LOCATION_IN_BACKGROUND](../../../application-dev/security/permission-list.md#ohospermissionlocation_in_background)
+a) 应用仅申请后台权限（前台权限未弹窗授予）
 
-2、在未申请模糊权限[ohos.permission.APPROXIMATELY_LOCATION](../../../application-dev/security/permission-list.md#ohospermissionapproximately_location)的情况下，同时请求后台位置权限[ohos.permission.LOCATION_IN_BACKGROUND](../../../application-dev/security/permission-list.md#ohospermissionlocation_in_background)及精准权限[ohos.permission.LOCATION](../../../application-dev/security/permission-list.md#ohospermissionlocation)；
+变更前：弹出弹窗，点击允许可授予后台权限
 
-变更后，上述两种情况将无法拉起弹窗授予权限。应用在申请精准权限或后台权限时，必须同时申请模糊权限。
+变更后：不弹窗，不授予后台权限
+
+b) 应用仅申请后台权限（前台权限已弹窗授予）
+
+变更前：不弹窗，后台权限在第一次授予前台权限时同时授予
+
+变更后：不弹窗，不授予后台权限
+
+c) 应用同时申请前台和后台权限
+
+变更前：弹窗展示允许和拒绝选项，选择允许则授予前台+后台权限
+
+变更后：弹窗展示使用期间允许和拒绝选项，选择使用期间允许，仅授予前台权限
 
 **变更发生版本**
 
-从OpenHarmony SDK 4.1.1.5开始。
+从OpenHarmony SDK 4.1.5.3开始。
 
 **变更的接口/组件**
 
-@ohos.abilityAccessCtrl.d.ts中requestPermissionsFromUser接口，使用该接口申请位置权限的应用，在申请精准权限或后台权限时，必须同时申请模糊权限。
+@ohos.abilityAccessCtrl.d.ts中requestPermissionsFromUser接口，应用使用该接口申请位置权限时，无法通过弹窗形式授予后台位置权限。
 
 **可能影响接口**
 
@@ -110,13 +122,4 @@
 
 **适配指导**
 
-修改EntryAbility.ets和导入GlobalThis等步骤参考[requestPermissionsFromUser](../../../application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)
-
-```ts
-    let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
-    atManager.requestPermissionsFromUser(context, ['ohos.permission.APPROXIMATELY_LOCATION', 'ohos.permission.LOCATION', 'ohos.permission.LOCATION_IN_BACKGROUND']).then((data) => {
-        console.info('data:' + JSON.stringify(data));
-    }).catch((err: BusinessError) => {
-        console.info('data:' + JSON.stringify(err));
-    })
-```
+接口使用的示例代码可参考[requestPermissionsFromUser接口指导](../../../application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)
