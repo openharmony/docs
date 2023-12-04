@@ -3693,3 +3693,15 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.WRITE_PRIVACY_PUSH_DATA
+
+允许应用往另一个应用中写入隐私Push数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
