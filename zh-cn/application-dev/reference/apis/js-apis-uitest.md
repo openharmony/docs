@@ -1614,7 +1614,7 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 | 类型                              | 说明                              |
 | --------------------------------- | --------------------------------- |
-| Promise\<[Component](#component)> | 以Promise形式返回找到的控件对象。 |
+| Promise\<[Component](#component9)> | 以Promise形式返回找到的控件对象。 |
 
 **错误码：**
 
