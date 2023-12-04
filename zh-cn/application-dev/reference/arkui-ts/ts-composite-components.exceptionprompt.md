@@ -62,6 +62,13 @@ TypeEnum定义Type的类型。
 |        CUSTOM_TIPS         |    自定义提示内容状态    |
 ## HardwareStatus
 
+HardwareStatusType定义HardwareStatus的类型
+
+| 类型 |    说明    |
+| :--: | :--------: |
+|  on  | 网络硬件开 |
+| off  | 网络硬件关 |
+
 
 
 ## 示例1
@@ -83,7 +90,7 @@ import {
   optionType,
   TypeEnum,
   HardwareStatusType
-} from '../../../../../ExceptionPrompt/src/main/ets/components/mainpage/ExceptionPrompt'
+} from '@ohos.arkui.advanced.ExceptionPrompt'
 
 @Entry
 @Component
