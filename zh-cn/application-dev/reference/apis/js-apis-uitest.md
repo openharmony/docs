@@ -1115,7 +1115,7 @@ isSelected(): Promise\<boolean>
 
 | 类型              | 说明                                                |
 | ----------------- | --------------------------------------------------- |
-| Promise\<boolean> | 控件对象被选中状态，true：被选中，false：未被选中。 |
+| Promise\<boolean> | 以Promise形式返回控件对象被选中状态，true：被选中，false：未被选中。 |
 
 **错误码：**
 
@@ -1184,6 +1184,7 @@ clearText(): Promise\<void>
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2353,7 +2354,7 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 | 类型              | 说明                                   |
 | ----------------- | -------------------------------------- |
-| Promise\<boolean> | 截图操作是否成功完成。成功完成为true。 |
+| Promise\<boolean> | 以Promise形式返回截图操作是否成功完成。成功完成为true。 |
 
 **错误码：**
 
@@ -2486,9 +2487,9 @@ createUIEventObserver(): UIEventObserver;
 
 **返回值：**
 
-| 类型                                            | 说明                                  |
-| ----------------------------------------------- | ------------------------------------- |
-| Promise\<[UIEventObserver](#uieventobserver10)> | 以Promise形式返回找到的目标窗口对象。 |
+| 类型                                   | 说明                                  |
+| ------------------------------------ | ------------------------------------- |
+|[UIEventObserver](#uieventobserver10) | 返回找到的目标窗口对象。 |
 
 **错误码：**
 
@@ -3245,7 +3246,7 @@ UI事件监听器。
 
 ### once('toastShow')
 
-once(type: 'toastShow', callback: Callback\<UIElementInfo>):void;
+once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 
 开始监听toast控件出现的事件，使用callback的形式返回结果。
 
@@ -3964,7 +3965,7 @@ isSelected(): Promise\<boolean>
 
 | 类型              | 说明                                                  |
 | ----------------- | ----------------------------------------------------- |
-| Promise\<boolean> | 控件对象被选中的状态，true：被选中，false：未被选中。 |
+| Promise\<boolean> | 以Promise形式返回控件对象被选中的状态，true：被选中，false：未被选中。 |
 
 **示例：**
 
