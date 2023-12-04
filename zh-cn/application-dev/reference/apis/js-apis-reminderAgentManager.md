@@ -579,7 +579,7 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | uri | string | 是 | 数据使用的URI，是跨应用数据访问的唯一标识。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
-| equalTo | [key: string]: number \| string \| boolean | 是 | 指示筛选条件，当前仅支持通过等于筛选。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
+| equalTo | Record<string, number \| string \| boolean> | 是 | 指示筛选条件，当前仅支持通过等于筛选。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
 | value | [ValueBucket](js-apis-data-valuesBucket.md#valuesbucket) | 是 | 指示要更新的数据。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
 
 
