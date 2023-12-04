@@ -28,7 +28,8 @@ FormComponent(value: {
     ability: string;
     module: string;
     dimension?: FormDimension;
-    temporary?: boolean
+    temporary?: boolean;
+    renderingMode?: FormRenderingMode;
   })
 
 创建卡片组件，用于显示提供的卡片。
@@ -44,6 +45,7 @@ FormComponent(value: {
 | module    | string                          | 是   | 卡片模块名称。                                                          |
 | dimension | [FormDimension](#formdimension) | 否   | 卡片尺寸，支持2 * 2，4 * 4，4 * 2类型卡片。<br/>默认值：Dimension_2_2。 |
 | temporary | boolean                         | 否   | 卡片是否为临时卡片。                                                    |
+| renderingMode<sup>11+</sup> | [FormRenderingMode](#formrenderingmode) | 否   | 卡片渲染模式。取值如下，默认值为 FULL_COLOR。<br>- FULL_COLOR：代表全色模式，卡片框架不会对卡片效果做出修改，保持和卡片开发者设置的效果不变。<br>- SINGLE_COLOR：代表单色模式，卡片框架会把卡片背景设为透明，开发者需按最佳实践设置卡片风格。<br>**说明：**<br/>如果系统不支持统一渲染模式，卡片框架在单色模式下也不会把卡片背景设为透明。 |
 
 ## FormDimension
 
@@ -54,6 +56,13 @@ FormComponent(value: {
 | Dimension_2_4              | 2*4 卡片 |
 | Dimension_4_4              | 4*4 卡片 |
 | Dimension_2_1<sup>9+</sup> | 2*1 卡片 |
+| Dimension_1_1<sup>11+</sup> | 1*1 卡片 |
+
+## FormRenderingMode<sup>11+</sup>
+| 名称                       | 描述     |
+| -------------------------- | -------- |
+| FULL_COLOR                 | 全色模式。|
+| SINGLE_COLOR               | 单色模式。|
 
 ## 属性
 | 名称        | 参数类型                                                                                              | 必填 | 描述                                                                    |

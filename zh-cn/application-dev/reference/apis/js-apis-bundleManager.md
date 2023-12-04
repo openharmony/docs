@@ -4501,3 +4501,225 @@ try {
     hilog.error(0x0000, 'testTag', 'getJsonProfile failed.');
 }
 ```
+
+### bundleManager.getRecoverableApplicationInfo<sup>11+</sup>
+
+getRecoverableApplicationInfo(callback: AsyncCallback\<Array\<RecoverableApplicationInfo\>\>): void;
+
+以异步的方法获取所有可恢复的预置应用信息，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo.md)\>\> | 是   | 回调函数，当获取成功时，err为null，data为获所有可恢复的预置应用信息。 |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+
+try {
+    bundleManager.getRecoverableApplicationInfo((err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'getRecoverableApplicationInfo failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'getRecoverableApplicationInfo successfully: %{public}s', JSON.stringify(data));
+        }
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getRecoverableApplicationInfo failed: %{public}s', message);
+}
+```
+
+### bundleManager.getRecoverableApplicationInfo<sup>11+</sup>
+
+getRecoverableApplicationInfo(): Promise\<Array\<RecoverableApplicationInfo\>\>;
+
+以异步的方法获取所有可恢复的预置应用信息，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**返回值：**
+
+| 类型                                                         | 说明                                |
+| ------------------------------------------------------------ | ----------------------------------- |
+| Promise\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo.md)\>\> | Promise对象，返回所有可恢复的预置应用信息。 |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+
+try {
+    bundleManager.getRecoverableApplicationInfo().then((data) => {
+        hilog.info(0x0000, 'testTag', 'getRecoverableApplicationInfo successfully: %{public}s', JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getRecoverableApplicationInfo failed: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getRecoverableApplicationInfo failed: %{public}s', message);
+}
+```
+
+### bundleManager.setAdditionalInfo<sup>11+</sup>
+
+setAdditionalInfo(bundleName: string, additionalInfo: string): void
+
+设置指定应用的额外信息。此接口仅供应用市场调用。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名                | 类型                             | 必填 | 说明                                               |
+| --------------------- | ------------------------------- | ---- | -------------------------------------------------- |
+| bundleName            | string                          | 是   | 指定应用的包名。                                    |
+| additionalInfo        | string                          | 是   | 需要设置的应用的额外信息。                           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                    |
+| -------- | ---------------------------------------------------------- |
+| 17700001 | The specified bundleName is not found.                     |
+| 17700053 | Not app gallery call.                                      |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+
+let bundleName = "com.example.myapplication";
+let additionalInfo = "xxxxxxxxx,formUpdateLevel:4";
+
+try {
+    bundleManager.setAdditionalInfo(bundleName, additionalInfo);
+    hilog.info(0x0000, 'testTag', 'setAdditionalInfo successfully.');
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'setAdditionalInfo failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.verifyAbc
+
+verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: AsyncCallback\<void>): void
+
+根据给定的abcPaths和deleteOriginalFiles校验.abc文件。使用callback异步回调。
+
+**需要权限：** ohos.permission.RUN_DYN_CODE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| abcPaths  | Array\<string> | 是   | .abc文件路径。 |
+| deleteOriginalFiles | boolean | 是   | 是否删除.abc文件，true删除，false不删除。|
+| callback | AsyncCallback\<void> | 是 | 回调函数，当获取成功时，err为null；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17700201 | verifyAbc failed. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let abcPaths : Array<string> = ['/data/storage/el2/base/a.abc'];
+
+try {
+    bundleManager.verifyAbc(abcPaths, true, (err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
+        }
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', message);
+}
+```
+
+### bundleManager.verifyAbc
+
+verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void>
+
+根据给定的abcPaths和deleteOriginalFiles校验.abc文件。使用Promise异步回调。
+
+**需要权限：** ohos.permission.RUN_DYN_CODE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| abcPaths  | Array\<string> | 是   | .abc文件路径。 |
+| deleteOriginalFiles | boolean | 是   | 是否删除.abc文件，true删除，false不删除。       |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 17700201 | verifyAbc failed. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let abcPaths : Array<string> = ['/data/storage/el2/base/a.abc'];
+
+try {
+    bundleManager.verifyAbc(abcPaths, true).then((data) => {
+        hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', message);
+}
+```

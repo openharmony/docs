@@ -107,6 +107,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | 指示指定要获取的捆绑Bundle名称的键。 |
 | LAUNCH_REASON_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_launch_reason'   | 卡片创建原因。   |
 | PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | 自定义数据。   |
+| FORM_RENDERING_MODE_KEY<sup>11+</sup>    | 'ohos.extra.param.key.form_rendering_mode'   | 卡片渲染模式。  |
 
 ##  FormDimension
 
@@ -121,6 +122,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | Dimension_2_4      | 3   | 2 x 4 form。   |
 | Dimension_4_4      | 4   | 4 x 4 form。   |
 | Dimension_2_1      | 5   | 2 x 1 form。   |
+| Dimension_1_1      | 6   | 1 x 1 form。   |
 
 
 ## FormInfoFilter

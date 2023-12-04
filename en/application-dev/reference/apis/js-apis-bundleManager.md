@@ -43,7 +43,7 @@ Enumerates the bundle flags, which indicate the type of bundle information to ob
 | GET_BUNDLE_INFO_WITH_METADATA             | 0x00000020 | Used to obtain the metadata contained in the application, HAP module, ability, or ExtensionAbility information. It must be used together with **GET_BUNDLE_INFO_WITH_APPLICATION**, **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.|
 | GET_BUNDLE_INFO_WITH_DISABLE              | 0x00000040 | Used to obtain the information about disabled bundles and abilities of a bundle. The obtained information does not contain information about the signature, application, HAP module, ability, ExtensionAbility, or permission.|
 | GET_BUNDLE_INFO_WITH_SIGNATURE_INFO       | 0x00000080 | Used to obtain the bundle information with signature information. The obtained information does not contain information about the application, HAP module, ability, ExtensionAbility, or permission.|
-| GET_BUNDLE_INFO_WITH_MENU                 | 0x00000100 | Used to obtain the bundle information with the file context menu. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**. If this flag is passed in to **GetBundleInfo** or **GetBundleInfoForSelf**, the HAP module information returned contains only the module information for which the file context menu is configured. If this flag is passed in to **GetAllBundleInfo**, the bundle information returned contains only the bundle information of applications for which the file context menu is configured.|
+| GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>   | 0x00000100 | Used to obtain the bundle information with the file context menu. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**. If this flag is passed in to **GetBundleInfo** or **GetBundleInfoForSelf**, the HAP module information returned contains only the module information for which the file context menu is configured. If this flag is passed in to **GetAllBundleInfo**, the bundle information returned contains only the bundle information of applications for which the file context menu is configured.|
 
 ### ApplicationFlag
 
@@ -100,12 +100,12 @@ Enumerates the types of ExtensionAbilities.
 
 | Name| Value| Description|
 |:----------------:|:---:|-----|
-| FORM             | 0   | [FormExtensionAbility](../../application-models/service-widget-overview.md): provides APIs for widget development.|
-| WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../../task-management/work-scheduler.md): enables applications to execute non-real-time tasks when the system is idle.|
+| FORM             | 0   | [FormExtensionAbility](js-apis-app-form-formExtensionAbility.md): provides APIs for widget development.|
+| WORK_SCHEDULER   | 1   | provides APIs for widget development.: enables applications to execute non-real-time tasks when the system is idle.|
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](js-apis-inputmethod-extension-ability.md): provides APIs for developing input method applications.|
-| SERVICE          | 3   | [ServiceExtensionAbility](../../application-models/serviceextensionability.md): enables applications to run in the background and provide services.|
+| SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility.md): enables applications to run in the background and provide services.|
 | ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](js-apis-application-accessibilityExtensionAbility.md): provides accessibility for access to and operations on the UI.|
-| DATA_SHARE       | 5   | [DataShareExtensionAbility](../../database/share-data-by-datashareextensionability.md): enables applications to read and write data.|
+| DATA_SHARE       | 5   | [DataShareExtensionAbility](js-apis-application-dataShareExtensionAbility.md): enables applications to read and write data.|
 | FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved.|
 | STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](js-apis-application-staticSubscriberExtensionAbility.md): provides APIs for processing static events, such as the startup event.|
 | WALLPAPER        | 8   | WallpaperExtensionAbility: provides APIs to implement the home screen wallpaper. This ability is reserved.|
@@ -117,8 +117,9 @@ Enumerates the types of ExtensionAbilities.
 | PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. Printing documents is not supported yet.|
 | SHARE<sup>10+</sup> | 16 | [ShareExtensionAbility](js-apis-app-ability-shareExtensionAbility.md): provides sharing service templates based on UIExtensionAbilities.|
 | PUSH<sup>10+</sup> | 17 | PushExtensionAbility: provides APIs for pushing scenario-specific messages. This ability is reserved.|
-| DRIVER<sup>10+</sup> | 18 | DriverExtensionAbility: provides APIs for the peripheral driver. This type of ability is not supported yet.|
+| DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](js-apis-app-ability-driverExtensionAbility.md): provides APIs for the peripheral driver. This type of ability is not supported yet.|
 | ACTION<sup>10+</sup> | 19 | [ActionExtensionAbility](js-apis-app-ability-actionExtensionAbility.md): provides custom action service templates based on UIExtensionAbilities.|
+| ADS_SERVICE<sup>11+</sup> | 20 | AdsServiceExtensionAbility: provides background customized ad services for external systems. This type of ability is not supported yet.|
 | UNSPECIFIED      | 255 | No type is specified. It is used together with **queryExtensionAbilityInfo** to query all types of ExtensionAbilities.|
 
 
@@ -236,7 +237,17 @@ Enumerates the types of profiles (also called application files).
 
 | Name          | Value  | Description           |
 | -------------- | ---- | --------------- |
-| INTENT_PROFILE  | 1    | Profile of the intent framework.   |
+| INTENT_PROFILE  | 1    | Profile of the InsightIntent framework.   |
+
+### ApplicationReservedFlag<sup>11+</sup>
+
+Enumerates the reserved flags of the application.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Name          | Value  | Description           |
+| -------------- | ---- | --------------- |
+| ENCRYPTED_APPLICATION  | 0x00000001    | Whether the application is encrypted.   |
 
 ## APIs
 
@@ -3840,7 +3851,7 @@ Obtains the shared bundle information based on the given bundle name. This API u
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName | string                                                       | Yes  | Bundle name.                                  |
 | moduleName | string                                                       | Yes  | Module name.                                  |
-| callback   | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)\>\> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the shared bundle information obtained.|
+| callback   | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)\>\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the shared bundle information obtained.|
 
 **Error codes**
 
@@ -3945,7 +3956,7 @@ Obtains the information about all shared bundles. This API uses an asynchronous 
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)\>\> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is an array of the shared bundle information obtained.|
+| callback | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)\>\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is an array of the shared bundle information obtained.|
 
 **Example**
 
@@ -4022,7 +4033,7 @@ Obtains the provision profile based on the given bundle name. This API uses an a
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName | string | Yes  | Bundle name.|
-| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the provision profile obtained.|
+| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the provision profile obtained.|
 
 **Error codes**
 
@@ -4072,7 +4083,7 @@ Obtains the provision profile based on the given bundle name and user ID. This A
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName | string | Yes  | Bundle name.|
 | userId | number | Yes| User ID, which can be obtained by calling [getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9).|
-| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the provision profile obtained.|
+| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the provision profile obtained.|
 
 
 **Error codes**
@@ -4501,5 +4512,81 @@ try {
     hilog.info(0x0000, 'testTag', 'getJsonProfile successfully. Data: %{public}s', data);
 } catch (err) {
     hilog.error(0x0000, 'testTag', 'getJsonProfile failed.');
+}
+```
+
+### bundleManager.getRecoverableApplicationInfo<sup>11+</sup>
+
+getRecoverableApplicationInfo(callback: AsyncCallback\<Array\<RecoverableApplicationInfo\>\>): void;
+
+Obtains information about all preinstalled applications that can be restored. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo.md)\>\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is an array of the recoverable application information obtained.|
+
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+
+try {
+    bundleManager.getRecoverableApplicationInfo((err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'getRecoverableApplicationInfo failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'getRecoverableApplicationInfo successfully: %{public}s', JSON.stringify(data));
+        }
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getRecoverableApplicationInfo failed: %{public}s', message);
+}
+```
+
+### bundleManager.getRecoverableApplicationInfo<sup>11+</sup>
+
+getRecoverableApplicationInfo(): Promise\<Array\<RecoverableApplicationInfo\>\>;
+
+Obtains information about all preinstalled applications that can be restored. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Return value**
+
+| Type                                                        | Description                               |
+| ------------------------------------------------------------ | ----------------------------------- |
+| Promise\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo.md)\>\> | Promise used to return the information about all recoverable applications.|
+
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+
+try {
+    bundleManager.getRecoverableApplicationInfo().then((data) => {
+        hilog.info(0x0000, 'testTag', 'getRecoverableApplicationInfo successfully: %{public}s', JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getRecoverableApplicationInfo failed: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getRecoverableApplicationInfo failed: %{public}s', message);
 }
 ```

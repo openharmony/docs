@@ -69,7 +69,7 @@ import sim from '@ohos.telephony.sim';
 sim.isSimActive(0).then((data: boolean) => {
     console.log(`isSimActive success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`isSimActive failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`isSimActive failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -152,7 +152,7 @@ import sim from '@ohos.telephony.sim';
 sim.getDefaultVoiceSlotId().then((data: number) => {
     console.log(`getDefaultVoiceSlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -235,7 +235,7 @@ import sim from '@ohos.telephony.sim';
 sim.hasOperatorPrivileges(0).then((data: boolean) => {
     console.log(`hasOperatorPrivileges success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`hasOperatorPrivileges failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`hasOperatorPrivileges failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -321,7 +321,7 @@ import sim from '@ohos.telephony.sim';
 sim.getISOCountryCodeForSim(0).then((data: string) => {
     console.log(`getISOCountryCodeForSim success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getISOCountryCodeForSim failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getISOCountryCodeForSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -439,7 +439,7 @@ import sim from '@ohos.telephony.sim';
 sim.getSimOperatorNumeric(0).then((data: string) => {
     console.log(`getSimOperatorNumeric success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getSimOperatorNumeric failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSimOperatorNumeric failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -557,7 +557,7 @@ import sim from '@ohos.telephony.sim';
 sim.getSimSpn(0).then((data: string) => {
     console.log(`getSimSpn success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getSimSpn failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSimSpn failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -673,7 +673,7 @@ import sim from '@ohos.telephony.sim';
 sim.getSimState(0).then((data: sim.SimState) => {
     console.log(`getSimState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getSimState failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSimState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -790,7 +790,7 @@ import sim from '@ohos.telephony.sim';
 sim.getCardType(0).then((data: sim.CardType) => {
     console.log(`getCardType success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getCardType failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getCardType failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -906,7 +906,7 @@ import sim from '@ohos.telephony.sim';
 sim.hasSimCard(0).then((data: boolean) => {
     console.log(`hasSimCard success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`hasSimCard failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`hasSimCard failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1036,7 +1036,7 @@ import sim from '@ohos.telephony.sim';
 sim.getSimAccountInfo(0).then((data: sim.IccAccountInfo) => {
     console.log(`getSimAccountInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getSimAccountInfo failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSimAccountInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1066,6 +1066,7 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1086,7 +1087,7 @@ sim.getActiveSimAccountInfoList((err: BusinessError, data: Array<sim.IccAccountI
 
 ## sim.getActiveSimAccountInfoList<sup>10+</sup>
 
-getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
+getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>
 
 Obtains the list of activated SIM card accounts. This API uses a promise to return the result.
 
@@ -1124,7 +1125,7 @@ import sim from '@ohos.telephony.sim';
 sim.getActiveSimAccountInfoList().then((data: Array<sim.IccAccountInfo>) => {
     console.log(`getActiveSimAccountInfoList success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getActiveSimAccountInfoList failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getActiveSimAccountInfoList failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1224,7 +1225,7 @@ import sim from '@ohos.telephony.sim';
 sim.setDefaultVoiceSlotId(0).then(() => {
     console.log(`setDefaultVoiceSlotId success.`);
 }).catch((err: BusinessError) => {
-    console.log(`setDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1325,7 +1326,7 @@ let name: string = "ShowName";
 sim.setShowName(0, name).then(() => {
     console.log(`setShowName success.`);
 }).catch((err: BusinessError) => {
-    console.log(`setShowName failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setShowName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1423,7 +1424,7 @@ import sim from '@ohos.telephony.sim';
 sim.getShowName(0).then((data: string) => {
     console.log(`getShowName success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getShowName failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getShowName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1525,7 +1526,7 @@ let number: string = '+861xxxxxxxxxx';
 sim.setShowNumber(0, number).then(() => {
     console.log(`setShowNumber success.`);
 }).catch((err: BusinessError) => {
-    console.log(`setShowNumber failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setShowNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1623,7 +1624,7 @@ import sim from '@ohos.telephony.sim';
 sim.getShowNumber(0).then((data: string) => {
     console.log(`getShowNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getShowNumber failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getShowNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1631,7 +1632,7 @@ sim.getShowNumber(0).then((data: string) => {
 
 activateSim\(slotId: number, callback: AsyncCallback\<void\>\): void
 
-Activates a SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Activates the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1721,7 +1722,7 @@ import sim from '@ohos.telephony.sim';
 sim.activateSim(0).then(() => {
     console.log(`activateSim success.`);
 }).catch((err: BusinessError) => {
-    console.log(`activateSim failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`activateSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1819,7 +1820,7 @@ import sim from '@ohos.telephony.sim';
 sim.deactivateSim(0).then(() => {
     console.log(`deactivateSim success.`);
 }).catch((err: BusinessError) => {
-    console.log(`deactivateSim failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`deactivateSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1931,7 +1932,7 @@ let lockInfo: sim.LockInfo = {
 sim.setLockState(0, lockInfo).then((data: sim.LockStatusResponse) => {
     console.log(`setLockState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`setLockState failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setLockState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2033,7 +2034,7 @@ import sim from '@ohos.telephony.sim';
 sim.getLockState(0, 1).then((data: sim.LockState) => {
     console.log(`getLockState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getLockState failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getLockState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2088,7 +2089,7 @@ sim.alterPin(0, "1234", "0000", (err: BusinessError, data: sim.LockStatusRespons
 
 ## sim.alterPin<sup>7+</sup>
 
-alterPin\(slotId: number, newPin: string, oldPin: string\): Promise\<LockStatusResponse\>;
+alterPin\(slotId: number, newPin: string, oldPin: string\): Promise\<LockStatusResponse\>
 
 Changes the PIN of the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -2137,7 +2138,7 @@ import sim from '@ohos.telephony.sim';
 sim.alterPin(0, "1234", "0000").then((data: sim.LockStatusResponse) => {
     console.log(`alterPin success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`alterPin failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`alterPin failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2241,7 +2242,7 @@ import sim from '@ohos.telephony.sim';
 sim.alterPin2(0, "1234", "0000").then((data: sim.LockStatusResponse) => {
     console.log(`alterPin2 success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`alterPin2 failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`alterPin2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2345,7 +2346,7 @@ let pin: string = '1234';
 sim.unlockPin(0, pin).then((data: sim.LockStatusResponse) => {
     console.log(`unlockPin success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`unlockPin failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`unlockPin failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2453,7 +2454,7 @@ let newPin: string = '1235';
 sim.unlockPuk(0, newPin, puk).then((data: sim.LockStatusResponse) => {
     console.log(`unlockPuk success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`unlockPuk failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`unlockPuk failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2557,7 +2558,7 @@ let pin2: string = '1234';
 sim.unlockPin2(0, pin2).then((data: sim.LockStatusResponse) => {
     console.log(`unlockPin2 success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`unlockPin2 failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`unlockPin2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2665,7 +2666,7 @@ let newPin2: string = '1235';
 sim.unlockPuk2(0, newPin2, puk2).then((data: sim.LockStatusResponse) => {
     console.log(`unlockPuk2 success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`unlockPuk2 failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`unlockPuk2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2785,7 +2786,7 @@ import sim from '@ohos.telephony.sim';
 sim.getSimIccId(0).then((data:string) => {
     console.log(`getSimIccId success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getSimIccId failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSimIccId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2883,7 +2884,7 @@ import sim from '@ohos.telephony.sim';
 sim.getVoiceMailIdentifier(0).then((data: string) => {
     console.log(`getVoiceMailIdentifier success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getVoiceMailIdentifier failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getVoiceMailIdentifier failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2981,7 +2982,7 @@ import sim from '@ohos.telephony.sim';
 sim.getVoiceMailNumber(0).then((data: string) => {
     console.log(`getVoiceMailNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getVoiceMailNumber failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getVoiceMailNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3086,7 +3087,7 @@ import sim from '@ohos.telephony.sim';
 sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com").then(() => {
     console.log(`setVoiceMailInfo success.`);
 }).catch((err: BusinessError) => {
-    console.log(`setVoiceMailInfo failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setVoiceMailInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3184,7 +3185,7 @@ import sim from '@ohos.telephony.sim';
 sim.getSimTelephoneNumber(0).then((data: string) => {
     console.log(`getSimTelephoneNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getSimTelephoneNumber failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSimTelephoneNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3282,7 +3283,7 @@ import sim from '@ohos.telephony.sim';
 sim.getSimGid1(0).then((data: string) => {
     console.log(`getSimGid1 success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getSimGid1 failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSimGid1 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3380,7 +3381,7 @@ import sim from '@ohos.telephony.sim';
 sim.getIMSI(0).then((data: string) => {
     console.log(`getIMSI success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getIMSI failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getIMSI failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3476,7 +3477,7 @@ import sim from '@ohos.telephony.sim';
 sim.getOperatorConfigs(0).then((data: Array<sim.OperatorConfig>) => {
     console.log(`getOperatorConfigs success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getOperatorConfigs failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getOperatorConfigs failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3485,6 +3486,11 @@ sim.getOperatorConfigs(0).then((data: Array<sim.OperatorConfig>) => {
 queryIccDiallingNumbers\(slotId: number, type: ContactType, callback: AsyncCallback\<Array\<DiallingNumbersInfo\>\>\): void
 
 Queries contact numbers of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+>**NOTE**
+>
+>A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
+>
 
 **System API**: This is a system API.
 
@@ -3534,6 +3540,11 @@ queryIccDiallingNumbers\(slotId: number, type: ContactType\): Promise\<Array\<Di
 
 Queries contact numbers of the SIM card in the specified slot. This API uses a promise to return the result.
 
+>**NOTE**
+>
+>A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
+>
+
 **System API**: This is a system API.
 
 **Permission required**: ohos.permission.READ_CONTACTS
@@ -3578,7 +3589,7 @@ import sim from '@ohos.telephony.sim';
 sim.queryIccDiallingNumbers(0, 1).then((data:  Array<sim.DiallingNumbersInfo>) => {
     console.log(`queryIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`queryIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`queryIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3587,6 +3598,11 @@ sim.queryIccDiallingNumbers(0, 1).then((data:  Array<sim.DiallingNumbersInfo>) =
 addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback\<void\>\): void
 
 Adds contact numbers to the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+>**NOTE**
+>
+>A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
+>
 
 **System API**: This is a system API.
 
@@ -3642,6 +3658,11 @@ addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 
 Adds contact numbers to the SIM card in the specified slot. This API uses a promise to return the result.
 
+>**NOTE**
+>
+>A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
+>
+
 **System API**: This is a system API.
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
@@ -3691,7 +3712,7 @@ let diallingNumbersInof: sim.DiallingNumbersInfo = {
 sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof).then(() => {
     console.log(`addIccDiallingNumbers success.`);
 }).catch((err: BusinessError) => {
-    console.log(`addIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`addIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3700,6 +3721,11 @@ sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersIno
 delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback\<void\>\): void
 
 Deletes contact numbers from the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+>**NOTE**
+>
+>A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
+>
 
 **System API**: This is a system API.
 
@@ -3756,6 +3782,11 @@ delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 
 Deletes contact numbers from the SIM card in the specified slot. This API uses a promise to return the result.
 
+>**NOTE**
+>
+>A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
+>
+
 **System API**: This is a system API.
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
@@ -3805,7 +3836,7 @@ let diallingNumbersInof: sim.DiallingNumbersInfo = {
 sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof).then(() => {
     console.log(`delIccDiallingNumbers success.`);
 }).catch((err: BusinessError) => {
-    console.log(`delIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`delIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3814,6 +3845,11 @@ sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersIno
 updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback\<void\>\): void 
 
 Updates contact numbers for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+>**NOTE**
+>
+>A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
+>
 
 **System API**: This is a system API.
 
@@ -3870,6 +3906,11 @@ updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Di
 
 Updates contact numbers for the SIM card in the specified slot. This API uses a promise to return the result.
 
+>**NOTE**
+>
+>A cache mechanism is available for SIM card contacts. When a contact is added, deleted, or modified, a SIM card contact cache is maintained based on the corresponding card slot ID and contact type. Therefore, when calling **sim.queryIccDiallingNumbers** to query contact numbers, you must pass the card slot ID and contact type to generate a a SIM card contact cache. If no cache is generated, the attempt to call the **sim.addIccDiallingNumbers**, **sim.delIccDiallingNumbers**, or **sim.updateIccDiallingNumbers** API will fail.
+>
+
 **System API**: This is a system API.
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
@@ -3920,7 +3961,7 @@ let diallingNumbersInof: sim.DiallingNumbersInfo = {
 sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof).then(() => {
     console.log(`updateIccDiallingNumbers success.`);
 }).catch((err: BusinessError) => {
-    console.log(`updateIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`updateIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -4020,7 +4061,7 @@ import sim from '@ohos.telephony.sim';
 sim.sendEnvelopeCmd(0, "ls").then(() => {
     console.log(`sendEnvelopeCmd success.`);
 }).catch((err: BusinessError) => {
-    console.log(`sendEnvelopeCmd failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`sendEnvelopeCmd failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -4120,7 +4161,7 @@ import sim from '@ohos.telephony.sim';
 sim.sendTerminalResponseCmd(0, "ls").then(() => {
     console.log(`sendTerminalResponseCmd success.`);
 }).catch((err: BusinessError) => {
-    console.log(`sendTerminalResponseCmd failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`sendTerminalResponseCmd failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -4231,7 +4272,7 @@ let persoLockInfo: sim.PersoLockInfo = {
 sim.unlockSimLock(0, persoLockInfo).then((data: sim.LockStatusResponse) => {
     console.log(`unlockSimLock success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`unlockSimLock failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`unlockSimLock failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -4272,13 +4313,13 @@ import sim from '@ohos.telephony.sim';
 try {
     sim.getOpKey(0, (err: BusinessError, data: string) => {
     if (err) {
-      console.log("getOpKey failed, err: " + JSON.stringify(err));
+      console.error("getOpKey failed, err: " + JSON.stringify(err));
     } else {
       console.log('getOpKey successfully, data: ' + JSON.stringify(data));
     }
   });
 } catch (err) {
-  console.log("getOpKey err: " + JSON.stringify(err));
+  console.error("getOpKey err: " + JSON.stringify(err));
 }
 ```
 
@@ -4326,7 +4367,7 @@ try {
     let data: Promise<string> = sim.getOpKey(0);
     console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
 } catch (error) {
-    console.log(`getOpKey failed, promise: err->${JSON.stringify(error)}`);
+    console.error(`getOpKey failed, promise: err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -4397,13 +4438,13 @@ import sim from '@ohos.telephony.sim';
 try {
     sim.getOpName(0, (err: BusinessError, data: string) => {
     if (err) {
-      console.log("getOpName failed, err: " + JSON.stringify(err));
+      console.error("getOpName failed, err: " + JSON.stringify(err));
     } else {
       console.log('getOpName successfully, data: ' + JSON.stringify(data));
     }
   });
 } catch (err) {
-  console.log("getOpName err: " + JSON.stringify(err));
+  console.error("getOpName err: " + JSON.stringify(err));
 }
 ```
 
@@ -4451,7 +4492,7 @@ try {
     let data: Promise<string> = sim.getOpName(0);
     console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
 } catch (error) {
-    console.log(`getOpName failed, promise: err->${JSON.stringify(error)}`);
+    console.error(`getOpName failed, promise: err->${JSON.stringify(error)}`);
 }
 ```
 
@@ -4561,7 +4602,98 @@ let promise = sim.getDefaultVoiceSimId();
 promise.then((data: number) => {
     console.log(`getDefaultVoiceSimId success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getDefaultVoiceSimId failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getDefaultVoiceSimId failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getDsdsMode<sup>11+</sup>
+
+getDsdsMode\(callback: AsyncCallback\<DsdsMode\>\): void
+
+Obtains the Dual Sim Dual Standby (DSDS) mode supported by the device. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description      |
+| -------- | --------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;DsdsMode&gt; | Yes  | Callback used to return the result, which can be:<br>- **0**: DSDS_MODE_V2<br>- **1**: DSDS_MODE_V3<br>- **2**: DSDS_MODE_V5_TDM<br>- **3**: DSDS_MODE_V5_DSDA|
+
+**Error codes**
+
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getDsdsMode((err: BusinessError, data: sim.DsdsMode) => {
+    if (err) {
+        console.error(`getDsdsMode failed, callback: err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`getDsdsMode success, callback: data->${JSON.stringify(data)}`);
+    }
+});
+```
+
+## sim.getDsdsMode<sup>11+</sup>
+
+getDsdsMode\(\): Promise\<DsdsMode\>
+
+Obtains the Dual Sim Dual Standby (DSDS) mode supported by the device. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Return value**
+
+| Type             | Description                                   |
+| ----------------- | --------------------------------------- |
+| Promise\<DsdsMode\> | Promise used to return the result.<br>- **0**: DSDS_MODE_V2<br>- **1**: DSDS_MODE_V3<br>- **2**: DSDS_MODE_V5_TDM<br>- **3**: DSDS_MODE_V5_DSDA|
+
+**Error codes**
+
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let promise = sim.getDsdsMode();
+promise.then((data: sim.DsdsMode) => {
+    console.log(`getDsdsMode success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`getDsdsMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -4657,7 +4789,7 @@ Defines the personalized lock information.
 | Name           | Type  | Mandatory| Description                 |
 | --------------- | ------ | ---- | --------------------- |
 | result          | number |  Yes | Operation result.     |
-| remain?: number | number |  No | Remaining attempts (can be null).|
+| remain          | number |  No | Remaining attempts (can be null).|
 
 ## LockInfo<sup>8+</sup>
 
@@ -4727,8 +4859,8 @@ Defines the contact number information.
 | ------------ | ------ | ---- | ---------- |
 | alphaTag     | string |  Yes | Tag.    |
 | number       | string |  Yes | Call transfer number.    |
-| recordNumber | number |  Yes | Record number.|
-| pin2         | string |  Yes | PIN 2.|
+| recordNumber | number |  No | Record number.|
+| pin2         | string |  No | PIN 2.|
 
 ## ContactType<sup>8+</sup>
 
@@ -4773,3 +4905,18 @@ Enumerates carrier configuration keys.
 | KEY_PNN_CUST_STRING_ARRAY                               | "pnn_cust_string_array"                                | PLMN name          |
 | KEY_OPL_CUST_STRING_ARRAY                               | "opl_cust_string_array"                                | PLMN information of the carrier.    |
 | KEY_EMERGENCY_CALL_STRING_ARRAY                         | "emergency_call_string_array"                          | Emergency call list.      |
+
+## DsdsMode<sup>11+</sup>
+
+Enumerates DSDS modes supported by the device.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name              | Value  | Description                       |
+| -------------------| ---- | -------------------------- |
+| DSDS_MODE_V2       | 0    | DSDS 2.0 mode.     |
+| DSDS_MODE_V3       | 1    | DSDS 3.0 mode.     |
+| DSDS_MODE_V5_TDM   | 2    | DSDS 5.0 TDM mode. |
+| DSDS_MODE_V5_DSDA  | 3    | DSDS 5.0 DSDA mode.|

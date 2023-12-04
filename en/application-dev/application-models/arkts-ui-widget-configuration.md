@@ -45,13 +45,12 @@ Widget-related configuration includes **FormExtensionAbility** configuration and
    | window | Window-related configurations.| Object| Yes (initial value: see Table 2)|
    | isDefault | Whether the widget is a default one. Each UIAbility has only one default widget.<br>- **true**: The widget is the default one.<br>- **false**: The widget is not the default one.| Boolean| No|
    | colorMode | Color mode of the widget.<br>- **auto**: following the system color mode<br>- **dark**: dark color mode<br>- **light**: light color mode| String| Yes (initial value: **auto**)|
-   | supportDimensions | Grid styles supported by the widget.<br>- **1 * 2**: indicates a grid with one row and two columns.<br>- **2 * 2**: indicates a grid with two rows and two columns.<br>- **2 * 4**: indicates a grid with two rows and four columns.<br>- **4 * 4**: indicates a grid with four rows and four columns.| String array| No|
+   | supportDimensions | Grid styles supported by the widget.<br>- **1 * 2**: indicates a grid with one row and two columns.<br>- **2 * 2**: indicates a grid with two rows and two columns.<br>- **2 * 4**: indicates a grid with two rows and four columns.<br>- **4 * 4**: indicates a grid with four rows and four columns.<br>- **1 * 1**: indicates a round widget with one row and one column.| String array| No|
    | defaultDimension | Default grid style of the widget. The value must be available in the **supportDimensions** array of the widget.| String| No|
    | updateEnabled | Whether the widget can be updated periodically.<br>- **true**: The widget can be updated at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.<br>- **false**: The widget cannot be updated periodically.| Boolean| No|
    | scheduledUpdateTime | Scheduled time to update the widget. The value is in 24-hour format and accurate to minute.<br>**NOTE**<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| String| Yes (initial value: The widget is not updated at the scheduled time.)|
    | updateDuration | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this field does not take effect.<br>If the value is a positive integer *N*, the interval is calculated by multiplying *N* and 30 minutes.<br>**NOTE**<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| Number| Yes (initial value: **0**)|
    | formConfigAbility | Link to a specific page of the application. The value is a URI.| String| Yes (initial value: left empty)|
-   | formVisibleNotify | Whether the widget is allowed to use the widget visibility notification.| String| Yes (initial value: left empty)|
    | metadata | Metadata of the widget. For details, see [Metadata](../reference/apis/js-apis-bundleManager-metadata.md).| Object| Yes (initial value: left empty)|
    | dataProxyEnabled | Whether the widget supports the [update-through-proxy](./arkts-ui-widget-update-by-proxy.md) feature.<br>- **true**: The widget supports the update-through-proxy feature.<br>- **false**: The widget does not support the update-through-proxy feature.<br>If this tag is set to **true**, [the settings for the scheduled update time will still take effect, but the settings for the update interval and next update time will not](./arkts-ui-widget-update-by-time.md).| Boolean| Yes (initial value: **false**)|
    | isDynamic | Whether the widget is a dynamic widget. This tag applies only to ArkTS widgets.<br>- **true**: The widget is a dynamic widget.<br>- **false**: The widget is a static widget.| Boolean| Yes (initial value: **true**)|
@@ -89,7 +88,6 @@ Widget-related configuration includes **FormExtensionAbility** configuration and
            "2*2"
          ],
          "formConfigAbility": "",
-         "formVisibleNotify": "",
          "dataProxyEnabled": false,
          "isDynamic": true,
          "transparencyEnabled": false,

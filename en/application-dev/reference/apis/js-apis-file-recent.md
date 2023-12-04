@@ -93,7 +93,7 @@ Lists the files that are accessed recently.
 
   | Type| Description|
   | --- | -- |
-  | [Array\<FileInfo>](#fileinfo) | List of the files obtained.|
+  |  Array [\<FileInfo>](#fileinfo) | List of the files obtained.|
 
 **Error codes**
 

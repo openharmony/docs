@@ -36,6 +36,8 @@ The **ApplicationInfo** module defines the application information. A system app
 | systemApp          | boolean                                                       | Yes  | No  | Whether the application is a system application.          |
 | bundleType                |[BundleType](js-apis-bundleManager.md#bundletype)             | Yes  | No  | Bundle type, which can be **APP** (common application) or **ATOMIC_SERVICE** (atomic service).                               |
 | debug<sup>10+</sup>       | boolean                                | Yes  | No  | Whether the application is in debugging mode. The default value is **false**.       |
+| dataUnclearable<sup>11+</sup>       | boolean                      | Yes  | No  | Whether the application data is unclearable. The value **true** means that the application data is unclearable, and **false** means the opposite. The default value is **false**.       |
+| applicationReservedFlag<sup>11+</sup>       | number                      | Yes  | No  | Reserved flag of the application. The information about the application is stored by bit. The information can be obtained through [ApplicationReservedFlag](js-apis-bundleManager.md#applicationreservedflag11).       |
 
 ## ModuleMetadata<sup>10+</sup>
 

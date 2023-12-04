@@ -1,6 +1,6 @@
 # Navigation
 
-Navigation组件一般作为Page页面的根容器，通过属性设置来展示页面的标题栏、工具栏、导航栏等。
+Navigation组件是路由导航的根视图容器，一般作为Page页面的根容器使用，其内部默认包含了标题栏、内容区和工具栏，其中内容区默认首页显示导航内容（Navigation的子组件）或非首页显示（[NavDestination](ts-basic-components-navdestination.md)的子组件），首页和非首页通过路由进行切换。
 
 > **说明：**
 >
@@ -9,7 +9,11 @@ Navigation组件一般作为Page页面的根容器，通过属性设置来展示
 
 ## 子组件
 
-可以包含子组件。从API Version 9开始，推荐与[NavRouter](ts-basic-components-navrouter.md)组件搭配使用。
+可以包含子组件。
+
+从API Version 9开始，推荐与[NavRouter](ts-basic-components-navrouter.md)组件搭配使用。
+
+从API Version 10开始，推荐使用[NavPathStack](#navpathstack10)配合navDestination属性进行页面路由。
 
 ## 接口
 
@@ -89,6 +93,31 @@ pushPathByName(name: string, param: unknown): void
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 是    | NavDestination页面详细参数。 |
+
+### replacePath<sup>11+</sup>
+
+replacePath(info: NavPathInfo): void
+
+将当前页面栈栈顶退出，将info指定的NavDestination页面信息入栈。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息 |
+
+### replacePathByName <sup>11+</sup>
+
+replacePathByName(name: string, param: Object): void
+
+将当前页面栈栈顶退出，将name指定的页面入栈。
+
+**参数：**
+
+| 名称    | 类型      | 必填   | 描述                    |
+| ----- | ------- | ---- | --------------------- |
+| name  | string  | 是    | NavDestination页面名称。   |
+| param | Object | 是    | NavDestination页面详细参数。 |
 
 ### pop<sup>10+</sup>
 

@@ -9,6 +9,7 @@ Asynchronous concurrency provided by Promise and async/await is applicable to th
     ```ts
     import fs from '@ohos.file.fs';
     import { BusinessError } from '@ohos.base';
+
     async function write(data: string, filePath: string): Promise<void> {
       let file: fs.File = await fs.open(filePath, fs.OpenMode.READ_WRITE);
       fs.write(file.fd, data).then((writeLen: number) => {

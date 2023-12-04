@@ -61,6 +61,31 @@ setReceiveDataCallback(callback: (data: { [key: string]: Object }) => void): voi
 
 错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
+## UIExtensionContentSession.setReceiveDataForResultCallback<sup>11+</sup>
+
+setReceiveDataForResultCallback(callback: (data: { [key: string]: Object }) => { [key: string]: Object }): void
+
+设置从UIExtensionComponent控件接收数据带返回值的回调方法。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明             |
+| -------- | -------- | -------- |----------------|
+| callback | (data: { [key: string]: Object }) => { [key: string]: Object } | 是 | 接收数据带返回值的回调方法。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 ## UIExtensionContentSession.loadContent
 
 loadContent(path: string, storage?: LocalStorage): void;
@@ -400,7 +425,7 @@ terminateSelf(): Promise&lt;void&gt;;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 停止UIExtensionContentSession对应的窗口界面对象的回调函数。 |
+| Promise&lt;void&gt; | promise形式返回停止UIExtensionContentSession对应的窗口界面对象。 |
 
 ## UIExtensionContentSession.terminateSelfWithResult
 
@@ -561,6 +586,130 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
 | 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
+
+startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
+
+初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionABility。当ExtensionABility通过该接口拉起另外一个Ability，被拉起的Abiltiy可以从onCreate生命周期获取到初始Abiltiy的caller信息。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
+
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000012 | The application is controlled. |
+| 16000013 | The application is controlled by EDM. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
+
+startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
+
+初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionABility。当ExtensionABility通过该接口拉起另外一个Ability，被拉起的Abiltiy可以从onCreate生命周期获取到初始Abiltiy的caller信息。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
+
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist. |
+| 16000012 | The application is controlled. |
+| 16000013 | The application is controlled by EDM. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
+
+startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
+
+初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionABility。当ExtensionABility通过该接口拉起另外一个Ability，被拉起的Abiltiy可以从onCreate生命周期获取到初始Abiltiy的caller信息。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000012 | The application is controlled. |
+| 16000013 | The application is controlled by EDM. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
 错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。

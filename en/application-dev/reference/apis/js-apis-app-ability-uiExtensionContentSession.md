@@ -41,7 +41,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 setReceiveDataCallback(callback: (data: { [key: string]: Object }) => void): void
 
-Sets the callback used to receive data from the UIExtensionComponent.
+Sets a callback to receive data from the UIExtensionComponent.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -52,6 +52,31 @@ Sets the callback used to receive data from the UIExtensionComponent.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callback | (data: { [key: string]: Object }) => void | Yes| Callback used to receive data.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+## UIExtensionContentSession.setReceiveDataForResultCallback<sup>11+</sup>
+
+setReceiveDataForResultCallback(callback: (data: { [key: string]: Object }) => { [key: string]: Object }): void
+
+Sets a callback with a return value to receive data from the UIExtensionComponent.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+
+**Parameters**
+
+| Name| Type| Mandatory| Description            |
+| -------- | -------- | -------- |----------------|
+| callback | (data: { [key: string]: Object }) => { [key: string]: Object } | Yes| Callback with a return value used to receive data.|
 
 **Error codes**
 

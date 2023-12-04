@@ -1,7 +1,7 @@
-# Page Routing (router)
+# Page Routing (@ohos.router)
 
 
-Page routing refers to the redirection and data transfer between different pages in an application. In OpenHarmony, page routing can be implemented through APIs of the **Router** module. Through different URLs, you can easily navigate users through pages. This document describes the functions provided by the **Router** module from the following aspects: [Page Redirection](#page-redirection), [Page Return](#page-return), [Adding a Confirmation Dialog Box Before Page Return](#adding-a-confirmation-dialog-box-before-page-return), and [Named Route](#named-route).
+Page routing refers to the redirection and data transfer between different pages in an application. It can be implemented through APIs of the **Router** module. Through different URLs, you can easily navigate users through pages. This document describes the functions provided by the **Router** module from the following aspects: [Page Redirection](#page-redirection), [Page Return](#page-return), [Adding a Confirmation Dialog Box Before Page Return](#adding-a-confirmation-dialog-box-before-page-return), and [Named Route](#named-route).
 
 The **Router** module is applicable to page redirection between modules and within a module. It uses page URLs to decouple modules. Regarding page redirection within a module, prefer [Navigation](./arkts-navigation-navigation.md) over this module to create better transition effects.
 
@@ -15,7 +15,7 @@ Page redirection is an important part of the development process. When using an 
 
 The **Router** module provides two redirection modes: [router.pushUrl()](../reference/apis/js-apis-router.md#routerpushurl9) and [router.replaceUrl()](../reference/apis/js-apis-router.md#routerreplaceurl9). Whether the target page will replace the current page depends on the mode used.
 
-- **router.pushUrl()**: The target page is pushed into the [page stack](../application-models/page-mission-stack.md) and does not replace the current page. In this mode, the state of the current page is retained, and users can return to the current page by pressing the back button or calling the [router.back()](../reference/apis/js-apis-router.md#routerback) API.
+- **router.pushUrl()**: The target page is pushed into the page stack and does not replace the current page. In this mode, the state of the current page is retained, and users can return to the current page by pressing the back button or calling the [router.back()](../reference/apis/js-apis-router.md#routerback) API.
 
 - **router.replaceUrl()**: The target page replaces and destroys the current page. In this mode, the resources of the current page can be released, and users cannot return to the current page.
 
@@ -217,7 +217,7 @@ You can use any of the following methods to return to a page:
   });
   ```
 
-  This method allows uesrs to return to a page with the specified path. For this method to work, the target page must exist in the page stack.
+  This method allows users to return to a page with the specified path. For this method to work, the target page must exist in the page stack.
 
 - Method 3: Return to the specified page and transfer custom parameter information.
 
@@ -234,7 +234,7 @@ You can use any of the following methods to return to a page:
 
   This method not only allows you to return to the specified page, but also pass in custom parameter information during the return process. The parameter information can be obtained and parsed by invoking the **router.getParams()** API on the target page.
 
-On the target page, call the **router.getParams()** API at the position where parameters need to be obtained, for example, in the **onPageShow()** lifecycle callback:
+On the target page, call the **router.getParams()** API at the position where parameters need to be obtained, for example, in the [onPageShow()](../quick-start/arkts-page-custom-components-lifecycle.md) lifecycle callback:
 
 
 ```ts
@@ -377,7 +377,7 @@ In the target page in the [shared package](../quick-start/shared-guide.md), name
 // library is the custom name of the new shared package.
 @Entry({ routeName : 'myPage' })
 @Component
-struct MyComponent {
+export struct MyComponent {
 }
 ```
 

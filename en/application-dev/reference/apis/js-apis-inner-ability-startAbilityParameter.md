@@ -19,7 +19,7 @@ import ability from '@ohos.ability.ability';
 
 | Name              |   Type  | Mandatory  | Description                                   |
 | ------------------- | -------- | ---- | -------------------------------------- |
-| want                | [Want](js-apis-application-want.md)|   Yes  | Want information about the target ability.                    |
+| want                | [Want](js-apis-app-ability-want.md)|   Yes  | Want information about the target ability.                    |
 | abilityStartSetting | {[key: string]: any} | No   | Special attribute of the target ability. This attribute can be passed in the call.|
 
 **Example**

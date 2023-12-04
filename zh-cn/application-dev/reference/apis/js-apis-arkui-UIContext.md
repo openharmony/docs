@@ -141,8 +141,6 @@ animateTo(value: AnimateParam, event: () => void): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **参数：**
 
 | 参数名   | 类型                                       | 必填   | 说明                                    |
@@ -671,7 +669,7 @@ font.registerFont({
   familySrc: '/font/medium.ttf'
 });
 ```
-### getStstemFontList
+### getSystemFontList
 
 getSystemFontList(): Array\<string> 
 
@@ -2005,7 +2003,7 @@ try {
 
 ### showActionMenu
 
-showActionMenu(options: promptAction.ActionMenuOptions, callback:promptAction.ActionMenuSuccessResponse):void
+showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt;):void
 
 创建并显示操作菜单，菜单响应结果异步返回。
 
@@ -2016,7 +2014,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback:promptAction.Ac
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
 | options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是    | 操作菜单选项。   |
-| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | 是    | 菜单响应结果回调。 |
+| callback | AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | 是    | 菜单响应结果回调。 |
 
 **错误码：**
 
@@ -2029,40 +2027,31 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback:promptAction.Ac
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { PromptAction } from '@ohos.arkui.UIContext';
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@ohos.base';
-class buttonsMoabl {
-  text: string = ""
-  color: string = ""
-}
-class dataR{
-  err:Error = new Error;
-  data:promptAction.ActionMenuSuccessResponse | undefined = undefined;
-}
-let dataAMSR:dataR = new dataR()
+
 let promptActionF: PromptAction = uiContext.getPromptAction();
 try {
-  if(dataAMSR.data){
-    promptActionF.showActionMenu({
-      title: 'Title Info',
-      buttons: [
-        {
-          text: 'item1',
-          color: '#666666'
-        } as buttonsMoabl,
-        {
-          text: 'item2',
-          color: '#000000'
-        } as buttonsMoabl
-      ]
-    }, (dataAMSR.data))
-    if (dataAMSR.err) {
-      console.info('showActionMenu err: ' + dataAMSR.err);
-    }else{
-      console.info('showActionMenu success callback, click button: ' + dataAMSR.data.index);
+  promptActionF.showActionMenu({
+    title: 'Title Info',
+    buttons: [
+      {
+        text: 'item1',
+        color: '#666666'
+      },
+      {
+        text: 'item2',
+        color: '#000000'
+      }
+    ]
+  }, (err:BusinessError, data:promptAction.ActionMenuSuccessResponse) => {
+    if (err) {
+      console.info('showDialog err: ' + err);
+      return;
     }
-  }
+    console.info('showDialog success callback, click button: ' + data.index);
+  });
 } catch (error) {
   let message = (error as BusinessError).message;
   let code = (error as BusinessError).code;
@@ -2320,7 +2309,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 配置键盘避让时页面的避让模式。
 
-| 名称   | 描述       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 说明       |
 | ------ | ---------- |
 | OFFSET | 上抬模式。 |
 | RESIZE | 压缩模式。 |

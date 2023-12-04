@@ -49,8 +49,6 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 16000001 | The specified ability does not exist.                        |
@@ -66,6 +64,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16000055 | Installation-free timed out.                                 |
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not self application.              |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -135,8 +135,6 @@ startAbility(want: Want): Promise&lt;void&gt;;
 
 **错误码：**
 
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 16000001 | The specified ability does not exist.                        |
@@ -152,6 +150,8 @@ startAbility(want: Want): Promise&lt;void&gt;;
 | 16000055 | Installation-free timed out.                                 |
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not self application.              |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 

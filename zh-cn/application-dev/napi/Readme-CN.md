@@ -11,6 +11,8 @@
   - [Vulkan开发指导](vulkan-guidelines.md)
 - 资源管理
   - [Rawfile开发指导](rawfile-guidelines.md)
+- 资源调度
+  - [FFRT开发指导](ffrt-guidelines.md)
 - AI
   - [使用MindSpore Lite引擎进行模型推理](mindspore-lite-guidelines.md)
   - [使用MindSpore Lite进行离线模型的转换及推理](mindspore-lite-offline-model-guidelines.md)
@@ -22,6 +24,9 @@
 
 - 数据管理
   - [RelationalStore开发指导](native-relational-store-guidelines.md)
+
+- 包管理
+  - [NativeBundle开发指导](native-bundle-guidelines.md)
 
 - 硬件兼容性
   - [硬件兼容性简介](hw-guide.md)

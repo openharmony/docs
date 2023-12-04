@@ -6,6 +6,8 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 
 Worker的上下文对象和主线程的上下文对象是不同的，Worker线程不支持UI操作。
 
+Worker使用过程中的相关注意点请见[Worker注意事项](../../arkts-utils/taskpool-vs-worker.md#worker注意事项)
+
 > **说明：**<br/>
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -2143,6 +2145,10 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 workerInstance.onexit = () => {
     console.log("main thread terminate");
 }
+
+workerInstance.onerror = (err: ErrorEvent) => {
+    console.log("main error message " + err.message);
+}
 ```
 ```ts
 // worker.ts
@@ -2199,6 +2205,10 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 // 在调用terminate后，执行onexit
 workerInstance.onexit = () => {
     console.log("main thread terminate");
+}
+
+workerInstance.onerror = (err: ErrorEvent) => {
+    console.log("main error message " + err.message);
 }
 ```
 ```ts

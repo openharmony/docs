@@ -1,4 +1,6 @@
-# 拍照实现方案(Native)
+# 拍照实现方案(C/C++)
+
+当前示例提供完整的拍照流程及其接口调用顺序的介绍。对于单个流程（如设备输入、会话管理、拍照）的介绍请参考[相机开发指导(Native)](camera-preparation.md)的具体章节。
 
 ## 开发流程
 
@@ -365,7 +367,7 @@ int main()
 
   Camera_PhotoCaptureSetting* photoSetting = nullptr;
   photoSetting->quality = QUALITY_LEVEL_HIGH; // 设置图片质量高
-  photoSetting->rotation = IAMGE_ROTATION_0; // 设置图片旋转角度0
+  photoSetting->rotation = IMAGE_ROTATION_0; // 设置图片旋转角度0
 
   // 使用当前拍照设置进行拍照
   ret = OH_PhotoOutput_Capture_WithCaptureSetting(photoOutput, photoSetting);
@@ -438,3 +440,7 @@ int main()
 }
 ```
 
+## 相关实例
+
+针对拍照实现方案，有以下相关实例可供参考：
+- [拍照实现方案(Native)](https://gitee.com/openharmony/multimedia_camera_framework/tree/master/frameworks/native/camera/test/ndktest/camera_ndk_demo)

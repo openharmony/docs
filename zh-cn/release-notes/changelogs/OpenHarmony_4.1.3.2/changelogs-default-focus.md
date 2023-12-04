@@ -74,7 +74,17 @@ API version 11之前：Checkbox组件的形状默认为圆角方形。
 
 ## rawfile文件资源校验等级变更
 
-针对$rawfile()引用不存在的资源，报错等级由WARN变更成ERROR。
+**访问级别**
+
+所有$rawfile()的使用校验。
+
+**变更影响**
+
+$rawfile()引用不存在的资源，报错等级由WARN变更成ERROR。
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.3.2 开始。
 
 **示例：**
 
@@ -91,11 +101,7 @@ struct Index {
 }
 ```
 
-**变更影响**
-
-$rawfile()引用不存在的资源，报错等级由WARN变更成ERROR。 
-
-**关键的接口/组件变更**
+**变更的接口/组件**
 
 不涉及。
 

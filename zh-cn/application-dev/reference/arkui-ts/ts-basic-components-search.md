@@ -34,15 +34,16 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 | placeholderFont         | [Font](ts-types.md#font)                         | 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                         |
 | textFont                | [Font](ts-types.md#font)                         | 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                           |
 | textAlign               | [TextAlign](ts-appendix-enums.md#textalign)      | 设置文本在搜索框中的对齐方式。目前支持的对齐方式有：Start、Center、End。<br/>默认值：TextAlign.Start    |
-| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。<br />默认值：CopyOptions.LocalDevice，支持设备内复制。<br/>设置CopyOptions.None时，当前Search中的文字无法被复制或剪切，仅支持粘贴。 |
+| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。<br />默认值：CopyOptions.LocalDevice，支持设备内复制。<br/>设置CopyOptions.None时，当前Search中的文字无法被复制或剪切，仅支持粘贴。<br> |
 | searchIcon<sup>10+</sup>   | [IconOptions](#iconoptions10对象说明)                                                  | 设置左侧搜索图标样式。                                       |
 | cancelButton<sup>10+</sup> | {<br/>style? : [CancelButtonStyle](#cancelbuttonstyle10枚举说明)<br/>icon?: [IconOptions](#iconoptions10对象说明) <br/>} | 设置右侧清除按钮样式。<br />默认值：<br />{<br />style：CancelButtonStyle.INPUT<br />} |
 | fontColor<sup>10+</sup>    | [ResourceColor](ts-types.md#resourcecolor)                   | 设置输入文本的字体颜色。<br />默认值：'#FF182431'。<br />**说明：**<br />[文本通用属性](ts-universal-attributes-text-style.md)fontSize、fontStyle、fontWeight和fontFamily在textFont属性中设置。 |
 | caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10对象说明)                                                  | 设置光标样式。<br />默认值：<br />{<br />width: '1.5vp',<br />color: '#007DFF'<br />} |
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | Search获焦时，是否绑定输入法<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
 | selectionMenuHidden<sup>10+</sup> | boolean | 设置长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
-| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[stopEditing](#stopediting10)方法控制键盘关闭。 | 
+| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[stopEditing](#stopediting10)方法控制键盘关闭。 |
 | type<sup>11+</sup>                     | [SearchType](#searchtype11枚举说明)     | 设置输入框类型。<br/>默认值：SearchType.Normal        |
+| maxLength<sup>11+</sup>   | number                                                       | 设置文本的最大输入字符数。<br/>默认不设置最大输入字符数限制。<br/>到达文本最大字符限制，将无法继续输入字符。 |
 
 ## IconOptions<sup>10+</sup>对象说明
 
@@ -165,6 +166,24 @@ getTextContentLineCount(): number
 | ----- | -------- |
 | number| 已编辑文本内容行数。 |
 
+### getCaretOffset<sup>11+</sup>
+
+getCaretOffset(): CaretOffset
+
+返回当前光标所在位置信息。
+
+**返回值：**
+
+| 类型                      | 说明               |
+| ----------------------- | ---------------- |
+| [CaretOffset](ts-basic-components-textinput.md#caretoffset11对象说明) | 光标相对输入框的位置。 |
+
+> **说明：**
+>
+> - 返回的位置信息是相对Search组件中搜索图标的偏移值。
+> - 不输入文本时，返回值中有相对Search组件的位置信息。
+> - 返回值中的位置信息是光标相对于可编辑组件的位置。
+
 ##  示例
 
 ### 示例1
@@ -176,6 +195,7 @@ getTextContentLineCount(): number
 struct SearchExample {
   @State changeValue: string = ''
   @State submitValue: string = ''
+  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
   controller: SearchController = new SearchController()
 
   build() {
@@ -201,6 +221,7 @@ struct SearchExample {
         .onClick(() => {
           // 设置光标位置到输入的第一个字符后
           this.controller.caretPosition(1)
+          this.positionInfo = this.controller.getCaretOffset()
         })
     }.width('100%')
   }
@@ -234,6 +255,7 @@ struct SearchButtoonExample {
         })
         .width('90%')
         .height(40)
+        .maxLength(20)
         .backgroundColor('#F5F5F5')
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 14, weight: 400 })

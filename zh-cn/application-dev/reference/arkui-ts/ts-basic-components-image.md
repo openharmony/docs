@@ -42,7 +42,7 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 | alt                              | string \| [Resource](ts-types.md#resource类型)          | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg和gif类型），不支持网络图片。<br>默认值：null<br>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | objectFit                        | [ImageFit](ts-appendix-enums.md#imagefit)               | 设置图片的填充效果。<br/>默认值：ImageFit.Cover<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | objectRepeat                     | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | 设置图片的重复样式。从中心点向两边重复，剩余空间不足放下一张图片时会截断。<br/>默认值：ImageRepeat.NoRepeat<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。 |
-| interpolation                    | [ImageInterpolation](#imageinterpolation)               | 设置图片的插值效果，即缓解图片在缩放时的锯齿问题。<br/>默认值：ImageInterpolation.None<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>图片缩小显示时，High级别的interpolation算法不适用，建议使用Medium / Low。<br/>svg类型图源不支持该属性。|
+| interpolation                    | [ImageInterpolation](#imageinterpolation)               | 设置图片的插值效果，即缓解图片在缩放时的锯齿问题。<br/>默认值：ImageInterpolation.None<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。|
 | renderMode                       | [ImageRenderMode](#imagerendermode)                     | 设置图片的渲染模式为原色或黑白。<br/>默认值：ImageRenderMode.Original<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>svg类型图源不支持该属性。 |
 | sourceSize                       | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | 设置图片解码尺寸，降低图片的分辨率，常用于需要让图片显示尺寸比组件尺寸更小的场景。和ImageFit.None配合使用时可在组件内显示小图。<br/>单位：px<br>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>仅在目标尺寸小于图源尺寸时生效。<br>svg类型图源不支持该属性。<br>PixelMap资源不支持该属性。 |
 | matchTextDirection               | boolean                                                 | 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
@@ -52,7 +52,7 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 | syncLoad<sup>8+</sup>            | boolean                                                 | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：**<br>建议加载尺寸较小的本地图片时将syncLoad设为true，因为耗时较短，在主线程上执行即可。 |
 | copyOption<sup>9+</sup>          | [CopyOptions](ts-appendix-enums.md#copyoptions9)        | 设置图片是否可复制。<br>当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。<br>默认值：CopyOptions.None<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：**<br>svg图片不支持复制。 |
 | colorFilter<sup>9+</sup>         | [ColorFilter](ts-types.md#colorfilter9)                 | 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br>RGBA值分别是0和1之间的浮点数字，当矩阵对角线值为1时，保持图片原有色彩。<br> **计算规则：**<br>如果输入的滤镜矩阵为：<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>像素点为[R, G, B, A]<br>则过滤后的颜色为 [R’, G’, B’, A’]<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| draggable| boolean                                                 | 设置组件默认拖拽效果，设置为true时，组件可拖拽。<br>不能和[onDragStart](ts-universal-events-drag-drop.md)事件同时使用。<br/>默认值：false<br>**说明：**<br />从 API version 9 开始支持。 |
+| draggable<sup>9+</sup> | boolean                                                 | 设置组件默认拖拽效果，设置为true时，组件可拖拽。<br>不能和[onDragStart](ts-universal-events-drag-drop.md)事件同时使用。<br/>默认值：false<br>**说明：**<br />API version 9的默认值为false，API version 10的默认值为true。 |
 
 >  **说明：**
 >

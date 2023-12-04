@@ -121,6 +121,7 @@ Enumerates the widget dimensions.
 | Dimension_2_4      | 3   | 2 x 4.  |
 | Dimension_4_4      | 4   | 4 x 4.  |
 | Dimension_2_1      | 5   | 2 x 1.  |
+| Dimension_1_1      | 6   | 1 x 1.  |
 
 
 ## FormInfoFilter

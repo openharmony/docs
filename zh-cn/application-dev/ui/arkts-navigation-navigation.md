@@ -4,7 +4,7 @@
 
 Navigation组件的页面包含主页和内容页。主页由标题栏、内容区和工具栏组成，可在内容区中使用[NavRouter](../reference/arkui-ts/ts-basic-components-navrouter.md)子组件实现导航栏功能。内容页主要显示[NavDestination](../reference/arkui-ts/ts-basic-components-navdestination.md)子组件中的内容。
 
-NavRouter是和Navigation搭配使用的特殊子组件，默认提供点击响应处理，不需要开发者自定义点击事件逻辑。NavRouter有且仅有两个根节点，第二个根节点是NavDestination。NavDestination是和NavRouter搭配使用的特殊子组件，用于显示Navigation组件的内容页。当开发者点击NavRouter组件时，会跳转到对应的NavDestination内容区。
+NavRouter是配合Navigation使用的特殊子组件，默认提供点击响应处理，不需要开发者自定义点击事件逻辑。NavRouter有且仅有两个子组件，其中第二个子组件必须是NavDestination。NavDestination是配合NavRouter使用的特殊子组件，用于显示Navigation组件的内容页。当开发者点击NavRouter组件时，会跳转到对应的NavDestination内容区。
 
 
 ## 设置页面显示模式

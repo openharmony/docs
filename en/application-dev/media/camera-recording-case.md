@@ -1,4 +1,4 @@
-# Camera Recording Sample
+# Camera Recording Sample (ArkTS)
 
 ## Development Process
 

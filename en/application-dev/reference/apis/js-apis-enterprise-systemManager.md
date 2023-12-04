@@ -112,3 +112,16 @@ try {
   console.error(`Failed to set usb policy. Code is ${err.code}, message is ${err.message}`);
 }
 ```
+## SystemUpdateInfo<sup>11+</sup>
+
+Represents information about the system version to update.
+
+ **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+ **System API**: This is a system API.
+
+| Name               | Type    | Mandatory | Description           |
+| ----------------- | ------ | --- | ------------- |
+| versionName       | string | Yes  | System version to update.  |
+| firstReceivedTime | number | Yes  | Time when the system update package is received for the first time.|
+| packageType       | string | Yes  | Type of the system update package to update. |

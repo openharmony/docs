@@ -25,8 +25,8 @@ Obtains information about all volumes of this external storage device. This API 
 
 **Return value**
 
-  | Type                              | Description                      |
-  | ---------------------------------- | -------------------------- |
+| Type                              | Description                      |
+| ---------------------------------- | -------------------------- |
   | Promise&lt;[Volume](#volume)[]&gt; | Promise used to return information about all available volumes.|
 
 **Error codes**
@@ -45,8 +45,8 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  volumemanager.getAllVolumes().then((volumes: volumemanager.Volume) => {
-    // Do something.
+  volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    // Do something with the volume array.
   }).catch((error: BusinessError) => {
     console.info("getAllVolumes failed");
   });
@@ -64,9 +64,9 @@ Obtains information about all volumes of this external storage device. This API 
 
 **Parameters**
 
-  | Name  | Type                                             | Mandatory| Description                                |
-  | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | AsyncCallback&lt;[Volume](#volume)[]&gt; | Yes  | Callback invoked to return information about all available volumes.|
+| Name  | Type                                             | Mandatory| Description                                |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback&lt;[Volume](#volume)[]&gt; | Yes  | Callback invoked to return information about all available volumes.|
 
 **Error codes**
 
@@ -84,7 +84,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  volumemanager.getAllVolumes((error: BusinessError, volumes: volumemanager.Volume) => {
+  volumemanager.getAllVolumes((error: BusinessError, volumes: Array<volumemanager.Volume>) => {
     // Do something.
   });
   ```
@@ -101,15 +101,15 @@ Asynchronously mounts a volume. This API uses a promise to return the result. Cu
 
 **Parameters**
 
-  | Name  | Type  | Mandatory| Description|
-  | -------- | ------ | ---- | ---- |
-  | volumeId | string | Yes  | Volume ID.|
+| Name  | Type  | Mandatory| Description|
+| -------- | ------ | ---- | ---- |
+| volumeId | string | Yes  | Volume ID.|
 
 **Return value**
 
-  | Type                  | Description      |
-  | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                  | Description      |
+| ---------------------- | ---------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -151,10 +151,10 @@ Asynchronously mounts a volume. This API uses an asynchronous callback to return
 
 **Parameters**
 
-  | Name  | Type                                 | Mandatory| Description                |
-  | -------- | ------------------------------------- | ---- | -------------------- |
-  | volumeId | string                                | Yes  | Volume ID.                |
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+| Name  | Type                                 | Mandatory| Description                |
+| -------- | ------------------------------------- | ---- | -------------------- |
+| volumeId | string                                | Yes  | Volume ID.                |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Error codes**
 
@@ -194,15 +194,15 @@ Asynchronously unmounts a volume. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name  | Type  | Mandatory| Description|
-  | -------- | ------ | ---- | ---- |
-  | volumeId | string | Yes  | Volume ID.|
+| Name  | Type  | Mandatory| Description|
+| -------- | ------ | ---- | ---- |
+| volumeId | string | Yes  | Volume ID.|
 
 **Return value**
 
-  | Type                  | Description      |
-  | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                  | Description      |
+| ---------------------- | ---------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -244,10 +244,10 @@ Asynchronously unmounts a volume. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-  | Name  | Type                                 | Mandatory| Description                |
-  | -------- | ------------------------------------- | ---- | -------------------- |
-  | volumeId | string                                | Yes  | Volume ID.                |
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+| Name  | Type                                 | Mandatory| Description                |
+| -------- | ------------------------------------- | ---- | -------------------- |
+| volumeId | string                                | Yes  | Volume ID.                |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Error codes**
 
@@ -287,14 +287,14 @@ Obtains information about a volume based on the universally unique identifier (U
 
 **Parameters**
 
-  | Name  | Type  | Mandatory| Description|
-  | -------- | ------ | ---- | ---- |
-  | uuid | string | Yes  | UUID of the volume.|
+| Name  | Type  | Mandatory| Description|
+| -------- | ------ | ---- | ---- |
+| uuid | string | Yes  | UUID of the volume.|
 
 **Return value**
 
-  | Type                              | Description                      |
-  | ---------------------------------- | -------------------------- |
+| Type                              | Description                      |
+| ---------------------------------- | -------------------------- |
   | Promise&lt;[Volume](#volume)&gt; | Promise used to return the volume information obtained.|
 
 **Error codes**
@@ -334,10 +334,10 @@ Obtains information about a volume based on the UUID. This API uses an asynchron
 
 **Parameters**
 
-  | Name   | Type                                                | Mandatory| Description                |
-  | -------- | ------------------------------------------------ | ---- | -------------------- |
-  | uuid | string                                                 | Yes  | UUID of the volume.                |
-  | callback | AsyncCallback&lt;[Volume](#volume)&gt;  | Yes  | Callback invoked to return the volume information obtained.|
+| Name   | Type                                                | Mandatory| Description                |
+| -------- | ------------------------------------------------ | ---- | -------------------- |
+| uuid | string                                                 | Yes  | UUID of the volume.                |
+| callback | AsyncCallback&lt;[Volume](#volume)&gt;  | Yes  | Callback invoked to return the volume information obtained.|
 
 **Error codes**
 
@@ -374,14 +374,14 @@ Obtains information about a volume based on the volume ID. This API uses a promi
 
 **Parameters**
 
-  | Name   | Type   | Mandatory | Description|
-  | -------- | ------ | ---- | ---- |
-  | volumeId | string | Yes  | Volume ID.|
+| Name   | Type   | Mandatory | Description|
+| -------- | ------ | ---- | ---- |
+| volumeId | string | Yes  | Volume ID.|
 
 **Return value**
 
-  | Type                              | Description                      |
-  | ---------------------------------- | -------------------------- |
+| Type                              | Description                      |
+| ---------------------------------- | -------------------------- |
   | Promise&lt;[Volume](#volume)&gt; | Promise used to return the volume information obtained.|
 
 **Error codes**
@@ -421,10 +421,10 @@ Obtains information about a volume based on the volume ID. This API uses an asyn
 
 **Parameters**
 
-  | Name  | Type                     | Mandatory| Description                         |
-  | -------- | ------------------------- | ---- | ----------------------------- |
-  | volumeId | string                    | Yes  | Volume ID.               |
-  | callback | AsyncCallback&lt;[Volume](#volume)&gt; | Yes  | Callback invoked to return the volume information obtained. |
+| Name  | Type                     | Mandatory| Description                         |
+| -------- | ------------------------- | ---- | ----------------------------- |
+| volumeId | string                    | Yes  | Volume ID.               |
+| callback | AsyncCallback&lt;[Volume](#volume)&gt; | Yes  | Callback invoked to return the volume information obtained. |
 
 **Error codes**
 
@@ -461,16 +461,16 @@ Sets volume description. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name    | Type  | Mandatory| Description|
-  | --------- | ------ | ---- | ---- |
-  | uuid      | string | Yes  | UUID of the volume.|
-  | description | string | Yes  | Volume description to set.|
+| Name    | Type  | Mandatory| Description|
+| --------- | ------ | ---- | ---- |
+| uuid      | string | Yes  | UUID of the volume.|
+| description | string | Yes  | Volume description to set.|
 
 **Return value**
 
-  | Type                   | Description                      |
-  | ---------------------- | -------------------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.                 |
+| Type                   | Description                      |
+| ---------------------- | -------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.                 |
 
 **Error codes**
 
@@ -512,11 +512,11 @@ Sets volume description. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-  | Name     | Type                                    | Mandatory| Description             |
-  | ---------- | --------------------------------------- | ---- | ---------------- |
-  | uuid       | string                                  | Yes  | UUID of the volume.           |
-  | description | string                                 | Yes  | Volume description to set.           |
-  | callback   | AsyncCallback&lt;void&gt;   | Yes  | Callback that returns no value.|
+| Name     | Type                                    | Mandatory| Description             |
+| ---------- | --------------------------------------- | ---- | ---------------- |
+| uuid       | string                                  | Yes  | UUID of the volume.           |
+| description | string                                 | Yes  | Volume description to set.           |
+| callback   | AsyncCallback&lt;void&gt;   | Yes  | Callback that returns no value.|
 
 **Error codes**
 
@@ -556,16 +556,16 @@ Formats a volume. This API uses a promise to return the result. Currently, only 
 
 **Parameters**
 
-  | Name      | Type  | Mandatory| Description|
-  | ----------- | ------ | ---- | ---- |
-  | volumeId    | string | Yes  | Volume ID.|
-  | fsType    | string | Yes  | File system type, which can be VFAT or exFAT.|
+| Name      | Type  | Mandatory| Description|
+| ----------- | ------ | ---- | ---- |
+| volumeId    | string | Yes  | Volume ID.|
+| fsType    | string | Yes  | File system type, which can be VFAT or exFAT.|
 
 **Return value**
 
-  | Type                  | Description      |
-  | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                  | Description      |
+| ---------------------- | ---------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -607,11 +607,11 @@ Formats a volume. This API uses an asynchronous callback to return the result. C
 
 **Parameters**
 
-  | Name  | Type                     | Mandatory| Description                         |
-  | -------- | ------------------------- | ---- | ----------------------------- |
-  | volumeId | string                    | Yes  | Volume ID.               |
-  | fsType    | string | Yes  | File system type, which can be VFAT or exFAT.|
-  | callback | AsyncCallback&lt;void&gt;  | Yes  | Callback that returns no value. |
+| Name  | Type                     | Mandatory| Description                         |
+| -------- | ------------------------- | ---- | ----------------------------- |
+| volumeId | string                    | Yes  | Volume ID.               |
+| fsType    | string | Yes  | File system type, which can be VFAT or exFAT.|
+| callback | AsyncCallback&lt;void&gt;  | Yes  | Callback that returns no value. |
 
 **Error codes**
 
@@ -651,16 +651,16 @@ Partitions a disk. This API uses a promise to return the result. The system supp
 
 **Parameters**
 
-  | Name      | Type  | Mandatory| Description|
-  | ----------- | ------ | ---- | ---- |
-  | diskId    | string | Yes  | ID of the disk to partition.|
-  | type      | number | Yes  | Partition type.   |
+| Name      | Type  | Mandatory| Description|
+| ----------- | ------ | ---- | ---- |
+| diskId    | string | Yes  | ID of the disk to partition.|
+| type      | number | Yes  | Partition type.   |
 
 **Return value**
 
-  | Type                     | Description                      |
-   | --------------------- | ----------------------- |
-  | Promise&lt;void&gt;   | Promise that returns no value.             |
+| Type                     | Description                      |
+| --------------------- | ----------------------- |
+| Promise&lt;void&gt;   | Promise that returns no value.             |
 
 **Error codes**
 
@@ -700,11 +700,11 @@ Asynchronously partitions a disk. This API uses a callback to return the result.
 
 **Parameters**
 
-  | Name     | Type                                  | Mandatory| Description             |
-  | -------- | --------------------------------------- | ---- | ---------------- |
-  | diskId   | string                                  | Yes  | ID of the disk to partition.     |
-  | type     | number                                  | Yes  | Partition type.          |
-  | callback | AsyncCallback&lt;void&gt;   | Yes  | Callback that returns no value.     |
+| Name     | Type                                  | Mandatory| Description             |
+| -------- | --------------------------------------- | ---- | ---------------- |
+| diskId   | string                                  | Yes  | ID of the disk to partition.     |
+| type     | number                                  | Yes  | Partition type.          |
+| callback | AsyncCallback&lt;void&gt;   | Yes  | Callback that returns no value.     |
 
 **Error codes**
 
@@ -743,5 +743,5 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | diskId      | string  | Yes| No| ID of the disk to which the volume belongs. A disk can have one or more volumes. The disk ID is in the disk-{Primary device ID}-{Secondary device ID} format, which is similar to the volume ID.       |
 | description | string  | Yes| No| Description of the volume.          |
 | removable   | boolean | Yes| No| Whether the volume can be removed. Currently, only removable storage devices are supported.|
-| state       | number  | Yes| No| Volume status.<br>**0**: The volume is unmounted.<br> **1**: The volume is being checked.<br> **2**: The volume is mounted.<br> **3**: The volume is being ejected.         |
+| state       | number  | Yes| No| Volume status.<br>**0**: The volume is unmounted.<br>**1**: The volume is being checked.<br>**2**: The volume is mounted.<br>**3**: The volume is being ejected.         |
 | path        | string  | Yes| No| Path of the volume mounted. Generally, the path is **/mnt/data/external/{uuid}**.        |

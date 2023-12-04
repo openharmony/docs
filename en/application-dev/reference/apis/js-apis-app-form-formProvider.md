@@ -24,7 +24,7 @@ Sets the next refresh time for a widget. This API uses an asynchronous callback 
 | Name| Type   | Mandatory| Description                                  |
 | ------ | ------ | ---- | ------------------------------------- |
 | formId | string | Yes  | Widget ID.                              |
-| minute | number | Yes  | Refresh interval, in minutes. The value must be greater than or equal to 5.    |
+| minute | number | Yes  | Time for the next refresh. The value must be greater than or equal to 5, in minutes.    |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -74,7 +74,7 @@ Sets the next refresh time for a widget. This API uses a promise to return the r
 | Name| Type   | Mandatory| Description                                  |
 | ------ | ------ | ---- | ------------------------------------- |
 | formId | string | Yes  | Widget ID.                              |
-| minute | number | Yes  | Refresh interval, in minutes. The value must be greater than or equal to 5.    |
+| minute | number | Yes  | Time for the next refresh. The value must be greater than or equal to 5, in minutes.    |
 
 **Return value**
 

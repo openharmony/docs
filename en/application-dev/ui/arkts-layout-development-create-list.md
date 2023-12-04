@@ -5,7 +5,7 @@
 
 A list is a container that displays a collection of items. If the list items go beyond the screen, the list can scroll to reveal the content off the screen. A list is applicable for presenting similar data types or data type sets, such as images and text. For example, it can be used to present a collection of contacts, songs, and items to shop.
 
-Use lists to easily and efficiently display structured, scrollable information. You can provide a single view of rows or columns by arranging the [\<ListItemGroup>](../reference/arkui-ts/ts-container-listitemgroup.md) or [\<ListItem>](../reference/arkui-ts/ts-container-listitem.md) child components linearly in a vertical or horizontal direction in the [\<List>](../reference/arkui-ts/ts-container-list.md) component, or use [ForEach](../quick-start/arkts-rendering-control-foreach.md) to iterate over a group of rows or columns, or mix any number of single views and **ForEach** structures to build a list. The **\<List>** component supports the generation of child components in various [rendering](../quick-start/arkts-rendering-control-overview.md) modes, including conditional rendering, rendering of repeated content, and lazy data loading.
+Use lists to easily and efficiently display structured, scrollable information. You can provide a single view of rows or columns by arranging the [\<ListItemGroup>](../reference/arkui-ts/ts-container-listitemgroup.md) or [\<ListItem>](../reference/arkui-ts/ts-container-listitem.md) child components linearly in a vertical or horizontal direction in the [\<List>](../reference/arkui-ts/ts-container-list.md) component, or use [ForEach](../quick-start/arkts-rendering-control-foreach.md) to iterate over a group of rows or columns, or mix any number of single views and **ForEach** structures to build a list. The **\<List>** component supports the generation of child components in various [rendering](../quick-start/arkts-rendering-control-ifelse.md) modes, including conditional rendering, rendering of repeated content, and lazy data loading.
 
 
 ## Layout and Constraints
@@ -122,10 +122,6 @@ For example, if the **lanes** attribute is set to **{ minLength: 200, maxLength:
 
 - When the list width changes to 400 vp, which is twice that of the **minLength** value, the list is automatically adapted to two-column.
 
->**NOTE**
->
->When the **lanes** attribute is set to a value of the LengthConstrain type, the value is used only to calculate the number of rows or columns in the list and does not affect the size of the list items.
-
 With regard to a vertical list, when the **alignListItem** attribute is set to **ListItemAlign.Center**, list items are center-aligned horizontally; when the **alignListItem** attribute is at its default value **ListItemAlign.Start**, list items are aligned toward the start edge of the cross axis in the list.
 
 
@@ -215,6 +211,8 @@ Compared with a static list, a dynamic list is more common in applications. You 
 
 
 ```ts
+
+
 import util from '@ohos.util';
 
 class Contact {
@@ -621,40 +619,123 @@ To implement the swipe feature, you can use the **swipeAction** attribute of **\
 
 In the example of the message list, the **end** parameter is set to a custom delete button. In initialization of the **end** attribute, the index of the sliding list item is passed to the delete button. When the user touches the delete button, the data corresponding to the list item is deleted based on the index.
 
+1. Define the list item style.
 
-```ts
-@Entry
-@Component
-struct MessageList {
-  @State messages: object[] = [
-    // Initialize the message list data.
-  ];
-
-  @Builder itemEnd(index: number) {
-    // Set the component that appears from the end edge when the list item slides left.
-    Button({ type: ButtonType.Circle }) {
-      Image($r('app.media.ic_public_delete_filled'))
-        .width(20)
-        .height(20)
-    }
-    .onClick(() => {
-      this.messages.splice(index, 1);
-    })
-  }
-
-  build() {
-      List() {
-        ForEach(this.messages, (item:MessageList, index:number|undefined) => {
-          if(index){
-            ListItem() {
-            }
-            .swipeAction({ end: ()=>{this.itemEnd(index)} }) // Set the swipe action.
-          }
-        }, (item:MessageList) => item.id.toString())
+   ```ts
+   @Component
+   export struct ChatItemStyle{
+    WeChatImage: string;
+    WeChatName: string;
+    ChatInfo: string;
+    time: string;
+    
+    build() {
+      Column() {
+        Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {...}
+        .height(80)
+        .width('100%')
       }
-  }
-}
-```
+    }
+   }
+   ```
+2. Define the list item data structure.
+
+   ```ts
+   let personId = 0;
+
+   export class Person = {
+    id: string;
+    WeChatImage: string;
+    WeChatName: string;
+    ChatInfo: string;
+    time: string;
+
+    construct(WeChatImage: string, WeChatName: string, ChatInfo: string, time: string){
+      this.id = `${personId++}`
+      this.WeChatImage = WeChatImage;
+      this.WeChatName = WeChatName;
+      this.ChatInfo = ChatInfo;
+      this.time = time;
+    }
+   }
+    
+   ```
+3. Initialize the message list data.
+
+   ```ts
+   export const ContactInfo: any[] = [
+    {
+      "WeChatImage":"iconB.png",
+      "WeChatName":"Ann",
+      "ChatInfo":"Ready for lunch?",
+      "time":"10:30"
+    },
+    {
+      "WeChatImage":"iconC.png",
+      "WeChatName":"Angela",
+      "ChatInfo":"Hahaha",
+      "time":"10:28"
+    },
+    {
+      "WeChatImage":"iconD.png",
+      "WeChatName":"Bryan",
+      "ChatInfo":"Thank you."
+      "time":"10:27"
+    }
+   ]
+
+   export function getContactInfo(): Array<Person> {
+    let contactList: Array<Person> = []
+
+    ContactInfo.forEach((item:Person) => {
+      contactList.push(new Person(item.WeChatImage,item.WeChatName,item.ChatInfo,item.time))
+    })
+   }
+
+   export const WeChatColor:string = "#cccccc"
+   ```
+
+4. Build the list layout and list items.
+
+   ```ts
+   @Entry
+   @Component
+   struct MessageList {
+     @State messages: Person[] = getContactInfo()
+     @State markedIndex: number = 0
+
+     @Builder itemEnd(index: number) {
+       // Set the component that appears from the end edge when the list item slides left.
+       Button({ type: ButtonType.Circle }) {
+         Image($r('app.media.ic_public_delete_filled'))
+           .width(20)
+           .height(20)
+       }
+       .onClick(() => {
+         this.messages.splice(index, 1);
+       })
+     }
+
+     build() {
+         List() {
+           ForEach(this.messages, (item:Person, index:number|undefined) => {
+             if(index){
+               ListItem() {
+                 ChatItemStyle({
+                   this.WeChatImage = WeChatImage,
+                   this.WeChatName = WeChatName,
+                   this.ChatInfo = ChatInfo,
+                   this.time = time,
+                   markedIndex: (index === 1 ? 1 : 0)
+                 })
+               }
+               .swipeAction({end: this.itemRnd.bind(this, index)}) // Set the swipe action.
+             }
+           }, (item:Person) => item.id.toString())
+         }
+     }
+   }
+   ```
 
 
 ## Adding a Mark to a List Item
@@ -715,14 +796,14 @@ As shown below, when a user touches **Add**, a page is displayed for the user to
 
 The process of implementing the addition feature is as follows:
 
-1. Define the list item data structure and initialize the list data to build the overall list layout and list items.
-   In this example, first define the to-do data structure.
+1. Define the list item data structure. In this example, a to-do data structure is defined.
 
    ```ts
+   //ToDo.ets
    import util from '@ohos.util';
 
    export class ToDo {
-     key: string = util.generateRandomUUID(true);
+     key: string = util.generateRandomUUID(true)
      name: string;
 
      constructor(name: string) {
@@ -731,50 +812,97 @@ The process of implementing the addition feature is as follows:
    }
    ```
 
-    Then, initialize the to-do list data and options:
-
-  ```ts
-  @State toDoData: ToDo[] = [];
-  export let availableThings: string[] = ['Reading', 'Fitness', 'Travel','Music','Movie', 'Singing'];
-  ```
-
-   Finally, build the list layout and list items:
-
-  ```ts
-  export class ToDo {
-    key: string = util.generateRandomUUID(true);
-    name: string;
-    toDoData:ToDo[] = [];
-
-    constructor(name: string) {
-      this.name = name;
-    }
-  }
-  let todo:ToDo = new ToDo()
-  List({ space: 10 }) {
-    ForEach(todo.toDoData, (toDoItem:ToDo) => {
-      ListItem() {
-      }
-    }, (toDoItem:ToDo) => toDoItem.key.toString())
-  }
-  ```
-
-2. Provide the entry for adding a list item, that is, add a click event to the add button.
-
-3. Respond to the user's confirmation of adding and update the list data.
-   The code snippet for steps 2 and 3 is as follows:
+2. Build the overall list layout and list items.
 
    ```ts
-   Text('+')
-     .onClick(() => {
-       TextPickerDialog.show({
-         range: availableThings,
-         onAccept: (value: TextPickerResult) => {
-            todo.toDoData.push(new ToDo(availableThings[value.index])); // Add a list item data.
-         },
-       })
-     })
+   //ToDoListItem.ets
+   @Component
+   export class ToDoListItem {
+     @Link isEditMode: boolean
+     @Link selectedItems: ToDo[]
+     private toDoItem: ToDo;
+
+     hasBeenSelected(): boolean{
+      return this.selectedItems.IndexOf(this.toDoItem) != -1
+     }
+
+     build() {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }){...}
+      .width('100%')
+      .height(80)
+      padding({...})
+      .borderRadius(24)
+      .linearGradient({...})
+      .gesture(
+        GestureGroup(GestureMode.Exclusive,
+        LongPressGesture()
+          .onAction(() => {...})
+        )
+      )
+     }
+   }
    ```
+
+3. Initialize the to-do list data and options. Then, build the list layout and list items.
+
+   ```ts
+   //ToDoList.ets
+   @Entry
+   @Component
+   struct ToDoList {
+     @State toDoData: ToDo[] = []
+     @Watch('onEditModeChange') @State isEditMode: boolean = false
+     @State selectedItems: ToDo[] = []
+     private availableThings: string[] = ['Reading', 'Fitness', 'Travel','Music','Movie', 'Singing']
+
+     onEditModeChange() {
+       if(!this.isEditMode) {
+         this.selectedItems = []
+       }
+     }
+
+     build() {
+       Column() {
+         Row() {
+           if (this.isEditMode) {
+             Text('X')
+               .fontSize(20)
+               .onClick(() => {
+                 this.isEditMode = false;
+               })
+               .margin({ left: 20, right: 20})
+           } else {
+             Text('To-Do')
+               .fontSize(36)
+               .margin({ left: 40 })
+           Blank()
+           Text('+') // Provide an entry for adding a list item, that is, add a click event for the add button.
+               .onClick(() => {
+                 TextPickerDialog.show({
+                   range: this.availableThings,
+                   onAccept: (value: TextPickerResult) => {
+                   this.toDoData.push(new ToDo(this.availableThings[value.index])); // Add list item data (toDoData).
+                 },
+               })
+             })
+           }
+         }
+       }
+     }
+     List({ space: 10 }) {
+       ForEach(this.toDoData, (toDoItem:ToDo) => {
+         ListItem() {
+           // Place each item of toDoData into the list item in the form of model.
+           isEditMode: $isEditMode,
+           toDoItem: toDoItem,
+           selectedItems: $selectedItems
+         }
+       }, (toDoItem:ToDo) => toDoItem.key.toString())
+     }
+   }
+   ```
+
+
 
 
 ### Deleting a List Item
@@ -814,7 +942,7 @@ The process of implementing the deletion feature is as follows:
       })
     )
   )
-   ```
+  ```
 
 2. Respond to the selection by the user and record the list items to be deleted.
    In this example of the to-do list, respond to the selection by correctly displaying the check mark and record all the selected list items.
@@ -852,7 +980,7 @@ The process of implementing the deletion feature is as follows:
         }
       })
   }
-   ```
+  ```
 
 3. Respond to the user's clicking the delete button and delete the corresponding items from the list.
 
@@ -924,4 +1052,3 @@ The following uses a vertical list as an example:
 >1. A greater **cachedCount** value may result in higher CPU and memory overhead of the UI. Adjust the value by taking into account both the comprehensive performance and user experience.
 >
 >2. When a list uses data lazy loading, all list items except the list items in the display area and the cached list items are destroyed.
-

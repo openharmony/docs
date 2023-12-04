@@ -213,7 +213,8 @@ Sets the value for a data item. This API uses an asynchronous callback to return
 import settings from '@ohos.settings';
 
 // Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValue API will update its value.)
-settings.setValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
+const context: Context =  getContext(this);
+settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
   console.log('Callback return whether value is set.');
 });
 ```
@@ -250,7 +251,8 @@ Sets the value for a data item. This API uses a promise to return the result.
 import settings from '@ohos.settings';
 
 // Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValue API will update its value.)
-settings.setValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
+const context: Context =  getContext(this);
+settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
   console.log('Callback return whether value is set.');
 });
 ```
@@ -277,8 +279,8 @@ Obtains the value of a data item in the database. This API uses an asynchronous 
 
 ```js
 import settings from '@ohos.settings';
-
-settings.getValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
+const context: Context =  getContext(this);
+settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
   if (err) {
     console.error(`Failed to get the setting. ${err.message} `);
     return;
@@ -314,8 +316,8 @@ Obtains the value of a data item in the database. This API uses a promise to ret
 
 ```js
 import settings from '@ohos.settings';
-
-settings.getValue(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
+const context: Context =  getContext(this);
+settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
   console.log(`promise:value -> ${JSON.stringify(value)}`)
 });
 ```
@@ -350,7 +352,8 @@ Obtains the value of a data item. Unlike **getValue**, this API returns the resu
 import settings from '@ohos.settings';
 
 // Obtain the value of SCREEN_BRIGHTNESS_STATUS (this data item already exists in the database).
-let value = settings.getValueSync(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
+const context: Context =  getContext(this);
+let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
 ```
 
 ## settings.setValueSync<sup>10+</sup>
@@ -387,7 +390,8 @@ If the specified data item exists in the database, the **setValueSync** method u
 import settings from '@ohos.settings';
 
 // Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValueSync API will update the value of the data item.)
-let ret = settings.setValueSync(this.context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
+const context: Context =  getContext(this);
+let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
 ```
 
 ## settings.enableAirplaneMode
@@ -470,8 +474,12 @@ Checks whether the application can be displayed in a floating window. This API u
 **Example**
 
 ```js
-settings.canShowFloating((status:boolean) => {
-    console.log('Checks whether a specified application can show as float window.');
+settings.canShowFloating((err:Error, status: boolean) => {
+  if (err) {
+    console.error(`Failed to Checks whether a specified application can show as float window ${err.message} `);
+    return;
+  }
+  console.log('Checks whether a specified application can show as float window.');
 });
 ```
 

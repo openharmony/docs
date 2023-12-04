@@ -36,9 +36,8 @@ RichEditor(value: RichEditorOptions)
 | 名称                      | 参数类型                                                     | 描述                                                         |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘。 | 
-| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType:TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}|
+| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp;\| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType:TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}|
 | copyOptions | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice <br/>**说明：** <br/>设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按组件内容，会弹出文本默认选择菜单，可选中内容并进行复制、全选操作。<br/>设置copyOptions为CopyOptions.None，复制、剪切功能不生效。  |
-
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -51,7 +50,7 @@ RichEditor(value: RichEditorOptions)
 | onIMEInputComplete(callback:&nbsp;(value:&nbsp;[RichEditorTextSpanResult](#richeditortextspanresult))&nbsp;=&gt;&nbsp;void) | 输入法输完成输入后，触发回调。<br />- value：输入法完成输入后的文本Span信息。 |
 | aboutToDelete(callback:&nbsp;(value:&nbsp;[RichEditorDeleteValue](#richeditordeletevalue))&nbsp;=&gt;&nbsp;boolean) | 输入法删除内容前，触发回调。 <br />- value：准备删除的内容所在的文本Span信息。|
 | onDeleteComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 输入法完成删除后，触发回调。 |
-| onPaste<sup>11+</sup>(callback: (event?: [PasteEvent](#pasteevent)) => void) | 完成粘贴前，触发回调。 |
+| onPaste<sup>11+</sup>(callback: (event?: [PasteEvent](#pasteevent)) => void) | 完成粘贴前，触发回调。 <br/>**说明：** <br/>系统的默认粘贴和拖拽行为，只支持纯文本的粘贴。<br/>开发者可以通过该方法，覆盖系统默认行为，实现图文的粘贴。|
 
 ## RichEditorInsertValue
 
@@ -305,7 +304,7 @@ deleteSpans(value?: RichEditorRange): void
 
 ### getParagraphs<sup>11+</sup>
 
-getParagraphs(value?: RichEditorRange): Array<RichEditorParagraphResult>;
+getParagraphs(value?: RichEditorRange): Array\<RichEditorParagraphResult>
 
 获得指定返回的段落。
 
@@ -319,13 +318,52 @@ getParagraphs(value?: RichEditorRange): Array<RichEditorParagraphResult>;
 
 | 类型                      | 说明               |
 | ----------------------- | ---------------- |
-| Array<[RichEditorParagraphResult](#richeditorparagraphresult11) | 选中段落的信息。 |
+| Array\<[RichEditorParagraphResult](#richeditorparagraphresult11) | 选中段落的信息。 |
 
 ### closeSelectionMenu
 
 closeSelectionMenu(): void
 
 关闭自定义选择菜单或系统默认选择菜单。
+
+### setSelection<sup>11+</sup>
+
+setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number)
+
+支持设置文本选中，选中部分背板高亮。
+
+selectionStart和selectionEnd均为-1时表示全选。
+
+接口调用前有带手柄菜单弹出时则调用后不主动关闭菜单，且调整菜单位置。
+
+接口调用前有不带手柄菜单弹出时则调用后不主动关闭菜单，且保持菜单原来位置。
+
+接口调用前无菜单弹出，则调用后也无菜单弹出。
+
+未获焦时调用该接口不产生选中效果。
+
+使用[示例](ts-composite-components-selectionmenu.md#示例)。
+
+**参数：**
+
+| 参数名 | 参数类型                            | 必填 | 参数描述         |
+| ------ | ----------------------------------- | ---- | ---------------- |
+| selectionStart  | number | 是   | 选中开始位置。 |
+| selectionEnd  | number | 是   | 选中结束位置。 |
+
+### getSelection<sup>11+</sup>
+
+getSelection(): RichEditorSelection
+
+获取选中文本内容。
+
+使用[示例](ts-composite-components-selectionmenu.md#示例)。
+
+**返回值：**
+
+| 类型                      | 说明               |
+| ----------------------- | ---------------- |
+| [RichEditorSelection](#richeditorselection) | 选中内容信息。 |
 
 ## RichEditorSelection
 
@@ -375,7 +413,7 @@ closeSelectionMenu(): void
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | textAlign | [TextAlign](ts-appendix-enums.md#textalign) | 否 | 设置文本段落在水平方向的对齐方式。 |
-| leadingMargin | [Dimension]((ts-types.md#dimension10)) \| [LeadingMarginPlaceholderr](#leadingmarginplaceholder11) | 否 | 设置缩进。 |
+| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否 | 设置文本段落缩进。 |
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
@@ -384,7 +422,7 @@ closeSelectionMenu(): void
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | pixelMap | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 是 | 图片内容。 |
-| size | \[[Dimension]((ts-types.md#dimension10)), [Dimension]((ts-types.md#dimension10))\] | 是 | 图片大小。 |
+| size | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\] | 是 | 图片大小。 |
 
 ## RichEditorParagraphResult<sup>11+</sup>
 
@@ -439,7 +477,7 @@ closeSelectionMenu(): void
 | size  | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)]  | 否 | 图片宽度和高度。 |
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 图片垂直对齐方式。<br/>默认值:ImageSpanAlignment.BASELINE |
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | 否 | 图片缩放类型。<br/> 默认值:ImageFit.Cover。 |
-
+| layoutStyle<sup>11+</sup>  |{<br/>margin&nbsp;?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[Margin](ts-types.md#margin),<br/> borderRadius&nbsp;?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9)<br/>}| 否 | 图片布局风格。<br/>|
 ## RichEditorRange
 
 范围信息。
@@ -704,11 +742,53 @@ struct RichEditorExample {
 // xxx.ets
 import pasteboard from '@ohos.pasteboard'
 import { BusinessError } from '@ohos.base';
-class info{
-  imageSrc: Resource=$r('sys.media.ohos_ic_public_cut')
-  id: string=''
-  label: string=''
+
+export interface SelectionMenuTheme {
+  imageSize: number;
+  buttonSize: number;
+  menuSpacing: number;
+  editorOptionMargin: number;
+  expandedOptionPadding: number;
+  defaultMenuWidth: number;
+  imageFillColor: Resource;
+  backGroundColor: Resource;
+  iconBorderRadius: Resource;
+  containerBorderRadius: Resource;
+  cutIcon: Resource;
+  copyIcon: Resource;
+  pasteIcon: Resource;
+  selectAllIcon: Resource;
+  shareIcon: Resource;
+  translateIcon: Resource;
+  searchIcon: Resource;
+  arrowDownIcon: Resource;
+  iconPanelShadowStyle: ShadowStyle;
+  iconFocusBorderColor: Resource;
 }
+
+export const defaultTheme: SelectionMenuTheme = {
+  imageSize: 24,
+  buttonSize: 48,
+  menuSpacing: 8,
+  editorOptionMargin: 1,
+  expandedOptionPadding: 3,
+  defaultMenuWidth: 256,
+  imageFillColor: $r('sys.color.ohos_id_color_primary'),
+  backGroundColor: $r('sys.color.ohos_id_color_dialog_bg'),
+  iconBorderRadius: $r('sys.float.ohos_id_corner_radius_default_m'),
+  containerBorderRadius: $r('sys.float.ohos_id_corner_radius_card'),
+  cutIcon: $r("sys.media.ohos_ic_public_cut"),
+  copyIcon: $r("sys.media.ohos_ic_public_copy"),
+  pasteIcon: $r("sys.media.ohos_ic_public_paste"),
+  selectAllIcon: $r("sys.media.ohos_ic_public_select_all"),
+  shareIcon: $r("sys.media.ohos_ic_public_share"),
+  translateIcon: $r("sys.media.ohos_ic_public_translate_c2e"),
+  searchIcon: $r("sys.media.ohos_ic_public_search_filled"),
+  arrowDownIcon: $r("sys.media.ohos_ic_public_arrow_down"),
+  iconPanelShadowStyle: ShadowStyle.OUTER_DEFAULT_MD,
+  iconFocusBorderColor: $r('sys.color.ohos_id_color_focused_outline'),
+}
+
 @Entry
 @Component
 struct SelectionMenu {
@@ -722,21 +802,34 @@ struct SelectionMenu {
   options: RichEditorOptions = { controller: this.controller }
   private iconArr: Array<Resource> =
     [$r('app.media.icon'), $r("app.media.icon"), $r('app.media.icon'),
-      $r("app.media.icon"), $r('app.media.icon')]
-  private listArr: Array<Object> =
-    [{ imageSrc: $r('sys.media.ohos_ic_public_cut'), id: '剪切', label: "Ctrl+X" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_copy'), id: '复制', label: "Ctrl+C" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_paste'), id: '粘贴', label: "Ctrl+V" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_select_all'), id: '全选', label: "Ctrl+A" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_share'), id: '分享', label: "" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_translate_c2e'), id: '翻译', label: "" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_search_filled'), id: '搜索', label: "" } as info]
+    $r("app.media.icon"), $r('app.media.icon')]
   @State iconBgColor: ResourceColor[] = new Array(this.iconArr.length).fill(this.colorTransparent)
-  @State listBgColor: ResourceColor[] = new Array(this.listArr.length).fill(this.colorTransparent)
   @State iconIsFocus: boolean[] = new Array(this.iconArr.length).fill(false)
-  @State listIsFocus: boolean[] = new Array(this.iconArr.length).fill(false)
   @State clickWeightNum: number = 0
   @State clickNum: number[] = [0, 0, 0]
+  @State pasteEnable: boolean = false
+  @State visibilityValue: Visibility = Visibility.Visible
+  private fontWeightTable: string[] = ["100", "200", "300", "400", "500", "600", "700", "800", "900", "bold", "normal", "bolder", "lighter", "medium", "regular"]
+  private theme: SelectionMenuTheme = defaultTheme;
+
+  aboutToAppear() {
+    if (this.controller) {
+      let richEditorSelection = this.controller.getSelection()
+      let start = richEditorSelection.selection[0]
+      let end = richEditorSelection.selection[1]
+      if (start === 0 && this.controller.getSpans({ start: end + 1, end: end + 1 }).length === 0) {
+        this.visibilityValue = Visibility.None
+      } else {
+        this.visibilityValue = Visibility.Visible
+      }
+    }
+    let sysBoard = pasteboard.getSystemPasteboard()
+    if (sysBoard && sysBoard.hasDataSync()) {
+      this.pasteEnable = true
+    } else {
+      this.pasteEnable = false
+    }
+  }
 
   build() {
     Column() {
@@ -752,7 +845,10 @@ struct SelectionMenu {
             this.start = value.selection[0]
             this.end = value.selection[1]
           })
-          .bindSelectionMenu(RichEditorSpanType.TEXT, this.panel(), ResponseType.LongPress, { onDisappear: () => {
+          .bindSelectionMenu(RichEditorSpanType.TEXT, this.panel, ResponseType.LongPress, { onDisappear: () => {
+            this.sliderShow = false
+          }})
+          .bindSelectionMenu(RichEditorSpanType.TEXT, this.panel, ResponseType.RightClick, { onDisappear: () => {
             this.sliderShow = false
           }})
           .borderWidth(1)
@@ -763,12 +859,119 @@ struct SelectionMenu {
     }.height('100%')
   }
 
+  PushDataToPasteboard(richEditorSelection: RichEditorSelection) {
+    let sysBoard = pasteboard.getSystemPasteboard()
+    let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, '')
+    if (richEditorSelection.spans && richEditorSelection.spans.length > 0) {
+      let count = richEditorSelection.spans.length
+      for (let i = count - 1; i >= 0; i--) {
+        let item = richEditorSelection.spans[i]
+        if ((item as RichEditorTextSpanResult)?.textStyle) {
+          let span = item as RichEditorTextSpanResult
+          let style = span.textStyle
+          let data = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_PLAIN, span.value.substring(span.offsetInSpan[0], span.offsetInSpan[1]))
+          let prop = pasteData.getProperty()
+          let temp: Record<string, Object> = {
+            'color': style.fontColor,
+            'size': style.fontSize,
+            'style': style.fontStyle,
+            'weight': this.fontWeightTable[style.fontWeight],
+            'fontFamily': style.fontFamily,
+            'decorationType': style.decoration.type,
+            'decorationColor': style.decoration.color
+          }
+          prop.additions[i] = temp;
+          pasteData.addRecord(data)
+          pasteData.setProperty(prop)
+        }
+      }
+    }
+    sysBoard.clearData()
+    sysBoard.setData(pasteData).then(() => {
+      console.info('SelectionMenu copy option, Succeeded in setting PasteData.');
+      this.pasteEnable = true;
+    }).catch((err: BusinessError) => {
+      console.error('SelectionMenu copy option, Failed to set PasteData. Cause:' + err.message);
+    })
+  }
+
+  PopDataFromPasteboard(richEditorSelection: RichEditorSelection) {
+    let start = richEditorSelection.selection[0]
+    let end = richEditorSelection.selection[1]
+    if (start == end && this.controller) {
+      start = this.controller.getCaretOffset()
+      end = this.controller.getCaretOffset()
+    }
+    let moveOffset = 0
+    let sysBoard = pasteboard.getSystemPasteboard()
+    sysBoard.getData((err, data) => {
+      if (err) {
+        return
+      }
+      let count = data.getRecordCount()
+      for (let i = 0; i < count; i++) {
+        const element = data.getRecord(i);
+        let tex: RichEditorTextStyle = {
+          fontSize: 16,
+          fontColor: Color.Black,
+          fontWeight: FontWeight.Normal,
+          fontFamily: "HarmonyOS Sans",
+          fontStyle: FontStyle.Normal,
+          decoration: { type: TextDecorationType.None, color: "#FF000000" }
+        }
+        if (data.getProperty() && data.getProperty().additions[i]) {
+          const tmp = data.getProperty().additions[i] as Record<string, Object | undefined>;
+          if (tmp.color) {
+            tex.fontColor = tmp.color as ResourceColor;
+          }
+          if (tmp.size) {
+            tex.fontSize = tmp.size as Length | number;
+          }
+          if (tmp.style) {
+            tex.fontStyle = tmp.style as FontStyle;
+          }
+          if (tmp.weight) {
+            tex.fontWeight = tmp.weight as number | FontWeight | string;
+          }
+          if (tmp.fontFamily) {
+            tex.fontFamily = tmp.fontFamily as ResourceStr;
+          }
+          if (tmp.decorationType && tex.decoration) {
+            tex.decoration.type = tmp.decorationType as TextDecorationType;
+          }
+          if (tmp.decorationColor && tex.decoration) {
+            tex.decoration.color = tmp.decorationColor as ResourceColor;
+          }
+          if (tex.decoration) {
+            tex.decoration = { type: tex.decoration.type, color: tex.decoration.color }
+          }
+        }
+        if (element && element.plainText && element.mimeType === pasteboard.MIMETYPE_TEXT_PLAIN && this.controller) {
+          this.controller.addTextSpan(element.plainText,
+            {
+              style: tex,
+              offset: start + moveOffset
+            }
+          )
+          moveOffset += element.plainText.length
+        }
+      }
+      if (this.controller) {
+        this.controller.setCaretOffset(start + moveOffset)
+        this.controller.closeSelectionMenu()
+      }
+      if (start != end && this.controller) {
+        this.controller.deleteSpans({ start: start + moveOffset, end: end + moveOffset })
+      }
+    })
+  }
+
   @Builder
   panel() {
     Column() {
       this.iconPanel()
       if (!this.sliderShow) {
-        this.listPanel()
+        this.SystemMenu()
       } else {
         this.sliderPanel()
       }
@@ -780,12 +983,12 @@ struct SelectionMenu {
       Row({ space: 2 }) {
         ForEach(this.iconArr, (item:Resource, index ?: number) => {
           Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-            Image(item).fillColor($r('sys.color.ohos_id_color_primary')).width(24).height(24).focusable(true)
+            Image(item).fillColor(this.theme.imageFillColor).width(24).height(24).focusable(true)
           }
-          .border({ width: this.iconIsFocus[index as number] ? 2 : 0, color: $r('sys.color.ohos_id_color_focused_outline') })
-          .borderRadius($r('sys.float.ohos_id_corner_radius_default_m'))
-          .width(48)
-          .height(48)
+          .border({ width: this.iconIsFocus[index as number] ? 2 : 0, color: this.theme.iconFocusBorderColor })
+          .borderRadius(this.theme.iconBorderRadius)
+          .width(this.theme.buttonSize)
+          .height(this.theme.buttonSize)
           .focusable(true)
           .focusOnTouch(true)
           .onClick(() => {
@@ -830,8 +1033,6 @@ struct SelectionMenu {
             })
             if(isHover != undefined) {
               this.iconBgColor[index as number] = $r('sys.color.ohos_id_color_hover')
-            }else{
-              this.listBgColor[index as number] = this.colorTransparent
             }
           })
           .onFocus(() => {
@@ -844,141 +1045,87 @@ struct SelectionMenu {
         })
       }
     }
-    .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
-    .width(248)
-    .height(48)
-    .margin({ bottom: 8 })
-    .shadow(ShadowStyle.OUTER_DEFAULT_MD)
+    .clip(true)
+    .width(this.theme.defaultMenuWidth)
+    .padding(this.theme.expandedOptionPadding)
+    .borderRadius(this.theme.containerBorderRadius)
+    .margin({ bottom: this.theme.menuSpacing })
+    .backgroundColor(this.theme.backGroundColor)
+    .shadow(this.theme.iconPanelShadowStyle)
   }
 
-  @Builder listPanel() {
+  @Builder
+  SystemMenu() {
     Column() {
-      List({ space: 0, initialIndex: 0 }) {
-        ForEach(this.listArr, (item:info, index:number | undefined) => {
-          ListItem() {
-            listChild({
-              item,
-              index,
-              listBgColor: $listBgColor,
-              colorTransparent: $colorTransparent
-            })
+      Menu() {
+        if (this.controller) {
+          MenuItemGroup() {
+            MenuItem({ startIcon: this.theme.cutIcon, content: "剪切", labelInfo: "Ctrl+X" })
               .onClick(() => {
-                let sysBoard = pasteboard.getSystemPasteboard()
-                let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, '')
-                this.controller.getSpans({ start: this.start, end: this.end })
-                  .forEach((item, i) => {
-                    if(typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined'){
-                      let style = (item as RichEditorImageSpanResult).imageStyle
-                      if((item as RichEditorImageSpanResult).valuePixelMap != undefined) {
-                        let data = pasteboard.createRecord(pasteboard.MIMETYPE_PIXELMAP, ((item as RichEditorImageSpanResult).valuePixelMap as PixelMap));
-                        let prop = pasteData.getProperty()
-                        let temp:Record<string, Object> = { 'width': style.size[0], 'height': style.size[1], 'fit': style.objectFit }
-                        prop.additions[i] = temp;
-                        pasteData.addRecord(data)
-                        pasteData.setProperty(prop)
-                      }
-                    } else {
-                      let style = (item as RichEditorTextSpanResult).textStyle
-                      let data = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_PLAIN, (item as RichEditorTextSpanResult).value)
-                      let prop = pasteData.getProperty()
-                      let temp:Record<string, Object> = { 'color': style.fontColor, 'size': style.fontSize, 'style': style.fontStyle,
-                        'weight': style.fontWeight }
-                      prop.additions[i] = temp;
-                      pasteData.addRecord(data)
-                      pasteData.setProperty(prop)
-                    }
-                  })
-                if(index == undefined){ return }
-                switch (index) {
-                  case 0:
-                    this.controller.deleteSpans({ start: this.start, end: this.end })
-                  case 1:
-                    sysBoard.clearData()
-                    sysBoard.setData(pasteData).then(() => {
-                      console.info('Succeeded in setting PasteData.');
-                    }).catch((err: BusinessError) => {
-                      console.error('Failed to set PasteData. Cause: ' + err.message);
-                    })
-                    break
-                  case 2:
-                    sysBoard.getData((err, data) => {
-                      if (err) {
-                        return
-                      }
-                      let count = data.getRecordCount()
-                      for (let m = 0; m < count; m++) {
-                        const element = data.getRecord(m);
-                        let tex: RichEditorTextStyle = {
-                          fontSize: 30,
-                          fontColor: Color.Orange,
-                          fontWeight: FontWeight.Normal
-                        }
-                        let im: RichEditorImageSpanStyle = { objectFit: ImageFit.Contain, size: [50, 50] }
-                        if(im.size == undefined){ break }
-                        if (data.getProperty().additions[m]) {
-                          const tmp = data.getProperty().additions[m] as Record<string, Object | undefined>;
-                          if (tmp['width'] != undefined) {
-                            im.size[0] = tmp['width'] as Dimension;
-                          }
-                          if (tmp['height'] != undefined){
-                            im.size[1] = tmp['height'] as Dimension;
-                          }
-                          if (tmp['fit'] != undefined){
-                            im.objectFit = tmp['fit'] as ImageFit;
-                          }
-                          if (tmp['color'] != undefined){
-                            tex.fontColor = tmp['color'] as ResourceColor;
-                          }
-                          if (tmp['size'] != undefined){
-                            tex.fontSize = tmp['size'] as number;
-                          }
-                          if (tmp['style'] != undefined){
-                            tex.fontStyle = tmp['style'] as FontStyle;
-                          }
-                          if (tmp['weight'] != undefined){
-                            tex.fontWeight = tmp['weight'] as number;
-                          }
-                        }
-
-                        if (element.mimeType == pasteboard.MIMETYPE_TEXT_PLAIN) {
-                          this.controller.addTextSpan(element.plainText,
-                            {
-                              style: tex,
-                              offset: this.controller.getCaretOffset()
-                            })
-                        }
-                        if (element.mimeType == pasteboard.MIMETYPE_PIXELMAP) {
-                          this.controller.addImageSpan(element.pixelMap,
-                            {
-                              imageStyle: im,
-                              offset: this.controller.getCaretOffset()
-                            })
-                        }
-                      }
-                    })
-                    break
+                if (!this.controller) {
+                  return
                 }
+                let richEditorSelection = this.controller.getSelection()
+                this.PushDataToPasteboard(richEditorSelection);
+                this.controller.deleteSpans({
+                  start: richEditorSelection.selection[0],
+                  end: richEditorSelection.selection[1]
+                })
               })
+            MenuItem({ startIcon: this.theme.copyIcon, content: "复制", labelInfo: "Ctrl+C" })
+              .onClick(() => {
+                if (!this.controller) {
+                  return
+                }
+                let richEditorSelection = this.controller.getSelection()
+                this.PushDataToPasteboard(richEditorSelection);
+                this.controller.closeSelectionMenu()
+              })
+            MenuItem({ startIcon: this.theme.pasteIcon, content: "粘贴", labelInfo: "Ctrl+V" })
+              .enabled(this.pasteEnable)
+              .onClick(() => {
+                if (!this.controller) {
+                  return
+                }
+                let richEditorSelection = this.controller.getSelection()
+                this.PopDataFromPasteboard(richEditorSelection)
+              })
+            MenuItem({ startIcon: this.theme.selectAllIcon, content: "全选", labelInfo: "Ctrl+A" })
+              .visibility(this.visibilityValue)
+              .onClick(() => {
+                if (!this.controller) {
+                  return
+                }
+                this.controller.setSelection(-1, -1)
+                this.visibilityValue = Visibility.None
+              })
+            MenuItem({ startIcon: this.theme.shareIcon, content: "分享", labelInfo: "" })
+              .enabled(false)
+            MenuItem({ startIcon: this.theme.translateIcon, content: "翻译", labelInfo: "" })
+              .enabled(false)
+            MenuItem({ startIcon: this.theme.searchIcon, content: "搜索", labelInfo: "" })
+              .enabled(false)
           }
-          .height(48)
-          .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
-          .focusable(true)
-          .focusOnTouch(true)
-          .border({ width: this.listIsFocus[index as number] ? 2 : 0, color: $r('sys.color.ohos_id_color_focused_outline') })
-          .onFocus(() => {
-            this.listIsFocus[index as number] = true
-          })
-          .onBlur(() => {
-            this.listIsFocus[index as number] = false
-          })
-        }, (item:number) => item.toString())
+        }
       }
+      .onVisibleAreaChange([0.0, 1.0], () => {
+        if (!this.controller) {
+          return
+        }
+        let richEditorSelection = this.controller.getSelection()
+        let start = richEditorSelection.selection[0]
+        let end = richEditorSelection.selection[1]
+        if (start === 0 && this.controller.getSpans({ start: end + 1, end: end + 1 }).length === 0) {
+          this.visibilityValue = Visibility.None
+        } else {
+          this.visibilityValue = Visibility.Visible
+        }
+      })
+      .radius(this.theme.containerBorderRadius)
+      .clip(true)
+      .width('100%')
     }
-    .focusable(true)
-    .width(248)
-    .backgroundColor(this.colorTransparent)
-    .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
-    .shadow(ShadowStyle.OUTER_DEFAULT_MD)
+    .width(this.theme.defaultMenuWidth)
   }
 
   @Builder sliderPanel() {
@@ -993,65 +1140,13 @@ struct SelectionMenu {
             })
           })
         Text('A').fontSize(20).fontWeight(FontWeight.Medium)
-      }.borderRadius($r('sys.float.ohos_id_corner_radius_card'))
+      }.borderRadius(this.theme.containerBorderRadius)
     }
     .backgroundColor(this.colorTransparent)
-    .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
+    .borderRadius(this.theme.containerBorderRadius)
     .padding(15)
     .width(248)
     .height(48)
-  }
-}
-
-@Component
-struct listChild {
-  item:info = new info()
-  index: number = 0
-  @Link listBgColor: (Resource | Color)[]
-  @Link colorTransparent: Resource
-
-  build() {
-    Column() {
-      Flex({
-        direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center
-      }) {
-        Row() {
-          Image(this.item.imageSrc)
-            .width(20)
-            .height(20)
-            .margin({ right: 8 })
-            .fillColor($r('sys.color.ohos_id_color_primary'))
-            .focusable(true)
-          Text('' + this.item.id)
-            .textAlign(TextAlign.Center)
-            .borderRadius(10)
-            .focusable(true)
-            .fontColor($r('sys.color.ohos_id_color_primary'))
-            .fontSize($r('sys.float.ohos_id_text_size_body1'))
-        }
-
-        Row() {
-          Text('' + this.item.label)
-            .fontColor($r('sys.color.ohos_id_color_text_secondary')).fontSize($r('sys.float.ohos_id_text_size_body1'))
-        }
-      }
-      .onTouch((event?: TouchEvent) => {
-        if (event != undefined && event.type === TouchType.Down) {
-          this.listBgColor[this.index] = $r('sys.color.ohos_id_color_click_effect')
-        }
-        if (event != undefined && event.type === TouchType.Up) {
-          this.listBgColor[this.index] = this.colorTransparent
-        }
-      })
-      .onHover((isHover?: boolean) => {
-        this.listBgColor[this.index] = isHover ? $r('sys.color.ohos_id_color_hover') : this.colorTransparent
-      })
-      .backgroundColor(this.listBgColor[this.index])
-      .padding({ right: 12, left: 12 })
-      .height('48')
-      .focusable(true)
-      .borderRadius($r('sys.float.ohos_id_corner_radius_default_m'))
-    }
   }
 }
 ```
@@ -1060,3 +1155,621 @@ struct listChild {
 > 系统暂未预置加粗、斜体等图标，示例代码使用系统默认图标，开发者使用时需自行替换iconArr中的资源。
 
 ![selectionMenu](figures/richEditorSelectionMenu.png)
+
+### 示例4
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  private start: number = -1;
+  private end: number = -1;
+  @State message: string = "[-1, -1]"
+  @State content: string = ""
+  @State paddingVal: number = 5
+  @State borderRad: number = 4
+
+  build() {
+    Column() {
+      Column() {
+        Text("selection range:").width("100%")
+        Text() {
+          Span(this.message)
+        }.width("100%")
+        Text("selection content:").width("100%")
+        Text() {
+          Span(this.content)
+        }.width("100%")
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("20%")
+
+      Row() {
+        Button("updateSpanStyle1")
+          .fontSize(12)
+          .onClick(() => {
+            this.controller.updateSpanStyle({
+              start: this.start,
+              textStyle:
+              {
+                fontWeight: FontWeight.Bolder
+              },
+              imageStyle: {
+                size: ["80px", "80px"],
+                layoutStyle: {
+                  borderRadius: undefined,
+                  margin: undefined
+                }
+              }
+            })
+          })
+
+        Button("updateSpanStyle2")
+          .fontSize(12)
+          .onClick(() => {
+            this.controller.updateSpanStyle({
+              start: this.start,
+              textStyle:
+              {
+                fontWeight: FontWeight.Bolder
+              },
+              imageStyle: {
+                size: ["70px", "70px"],
+                layoutStyle: {
+                  borderRadius: { topLeft: '100px', topRight: '20px', bottomLeft: '100px', bottomRight: '20px' },
+                  margin: { left: '30px', top: '20px', right: '20px', bottom: '20px' }
+                }
+              }
+            })
+          })
+
+        Button("updateSpanStyle3")
+          .fontSize(12)
+          .onClick(() => {
+            this.controller.updateSpanStyle({
+              start: this.start,
+              textStyle:
+              {
+                fontWeight: FontWeight.Bolder
+              },
+              imageStyle: {
+                size: ["60px", "60px"],
+                layoutStyle: {
+                  borderRadius: '-10px',
+                  margin: '-10px'
+                }
+              }
+            })
+          })
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("10%")
+
+      Row() {
+        Button('addImageSpan1')
+          .fontSize(12)
+          .onClick(() => {
+            this.controller.addImageSpan($r('app.media.app_icon'), {
+              imageStyle: {
+                size: ["80px", "80px"],
+                layoutStyle: {
+                  borderRadius: '50px',
+                  margin: '40px'
+                }
+              }
+            })
+          })
+
+        Button('addImageSpan2')
+          .fontSize(12)
+          .onClick(() => {
+            this.controller.addImageSpan($r('app.media.app_icon'), {
+              imageStyle: {
+                size: ["100px", "100px"],
+                verticalAlign: ImageSpanAlignment.BOTTOM,
+                layoutStyle: {
+                  borderRadius: undefined,
+                  margin: undefined
+                }
+              }
+            })
+          })
+
+        Button('addImageSpan3')
+          .fontSize(12)
+          .onClick(() => {
+            this.controller.addImageSpan($r('app.media.app_icon'), {
+              imageStyle: {
+                size: ["60px", "60px"],
+                verticalAlign: ImageSpanAlignment.BOTTOM,
+                layoutStyle: {
+                  borderRadius: { topLeft: '10px', topRight: '20px', bottomLeft: '30px', bottomRight: '40px' },
+                  margin: { left: '10px', top: '20px', right: '30px', bottom: '40px' }
+                }
+              }
+            })
+          })
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("10%")
+
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan("0123456789",
+              {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 30
+                }
+              })
+
+            this.controller.addImageSpan($r("app.media.app_icon"),
+              {
+                imageStyle:
+                {
+                  size: ["60px", "60px"],
+                  verticalAlign: ImageSpanAlignment.BOTTOM,
+                  layoutStyle: {
+                    borderRadius: { topLeft: '10px', topRight: '20px', bottomLeft: '30px', bottomRight: '40px' },
+                    margin: { left: '10px', top: '20px', right: '30px', bottom: '40px' }
+                  }
+                }
+              })
+
+            this.controller.addTextSpan("0123456789",
+              {
+                style:
+                {
+                  fontColor: Color.Black,
+                  fontSize: 30
+                }
+              })
+          })
+          .onSelect((value: RichEditorSelection) => {
+            this.start = value.selection[0];
+            this.end = value.selection[1];
+            this.message = "[" + this.start + ", " + this.end + "]"
+          })
+          .aboutToIMEInput((value: RichEditorInsertValue) => {
+            console.log("---------------------- aboutToIMEInput ----------------------")
+            console.log("insertOffset:" + value.insertOffset)
+            console.log("insertValue:" + value.insertValue)
+            return true;
+          })
+          .onIMEInputComplete((value: RichEditorTextSpanResult) => {
+            console.log("---------------------- onIMEInputComplete ---------------------")
+            console.log("spanIndex:" + value.spanPosition.spanIndex)
+            console.log("spanRange:[" + value.spanPosition.spanRange[0] + "," + value.spanPosition.spanRange[1] + "]")
+            console.log("offsetInSpan:[" + value.offsetInSpan[0] + "," + value.offsetInSpan[1] + "]")
+            console.log("value:" + value.value)
+          })
+          .aboutToDelete((value: RichEditorDeleteValue) => {
+            console.log("---------------------- aboutToDelete --------------------------")
+            console.log("offset:" + value.offset)
+            console.log("direction:" + value.direction)
+            console.log("length:" + value.length)
+            value.richEditorDeleteSpans.forEach(item => {
+              console.log("---------------------- item --------------------------")
+              console.log("spanIndex:" + item.spanPosition.spanIndex)
+              console.log("spanRange:[" + item.spanPosition.spanRange[0] + "," + item.spanPosition.spanRange[1] + "]")
+              console.log("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]")
+              if (typeof (item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
+                console.log("image:" + (item as RichEditorImageSpanResult).valueResourceStr)
+              } else {
+                console.log("text:" + (item as RichEditorTextSpanResult).value)
+              }
+            })
+            return true;
+          })
+          .onDeleteComplete(() => {
+            console.log("---------------------- onDeleteComplete ------------------------")
+          })
+          .borderWidth(1)
+          .borderColor(Color.Green)
+          .width("100%")
+          .height('80.00%')
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("70%")
+    }
+  }
+}
+```
+![ImageSpanStyle](figures/richEditorImageSpanStyle.gif)
+
+### 示例5
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  controller: RichEditorController = new RichEditorController()
+  options: RichEditorOptions = { controller: this.controller };
+  @State textFlag: string = "TextFlag";
+
+  build() {
+    Column() {
+      Column() {
+        Text(this.textFlag)
+          .copyOption(CopyOptions.InApp)
+          .fontSize(50)
+      }
+      Divider()
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan('Area1\n', {
+              style:
+              {
+                fontColor: Color.Orange,
+                fontSize: 50
+              },
+              gesture:
+              {
+                onClick: () => {
+                  this.textFlag = "Area1 is onClick."
+                },
+                onLongPress: () => {
+                  this.textFlag = "Area1 is onLongPress."
+                }
+              }
+            })
+
+            this.controller.addTextSpan('Area2\n', {
+              style:
+              {
+                fontColor: Color.Blue,
+                fontSize: 50
+              },
+              gesture:
+              {
+                onClick: () => {
+                  this.textFlag = "Area2 is onClick."
+                },
+                onLongPress: () => {
+                  this.textFlag = "Area2 is onLongPress."
+                }
+              }
+            })
+
+            this.controller.addImageSpan($r("app.media.icon"),
+              {
+                imageStyle:
+                {
+                  size: ["100px", "100px"],
+                  layoutStyle: {
+                    margin: 5,
+                    borderRadius: 15
+                  }
+                },
+                gesture:
+                {
+                  onClick: () => {
+                    this.textFlag = "ImageSpan is onClick."
+                  },
+                  onLongPress: () => {
+                    this.textFlag = "ImageSpan is onLongPress."
+                  }
+                }
+              })
+          })
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("70%")
+    }
+  }
+}
+```
+![OnClickAndLongPress](figures/richEditorOnClickAndLongPress.gif)
+
+### 示例6
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  controller: RichEditorController = new RichEditorController();
+  private spanParagraphs: RichEditorParagraphResult[] = [];
+
+  build() {
+    Column() {
+      RichEditor({ controller: this.controller })
+        .onReady(() => {
+          this.controller.addTextSpan("0123456789\n", {
+            style: {
+              fontColor: Color.Pink,
+              fontSize: "32",
+            },
+            paragraphStyle: {
+              textAlign: TextAlign.Start,
+              leadingMargin: 16
+            }
+          })
+          this.controller.addTextSpan("0123456789")
+        })
+        .width("80%")
+        .height("30%")
+        .border({ width: 1, radius: 5 })
+        .draggable(false)
+
+      Column({ space: 5 }) {
+        Button("段落左对齐").onClick(() => {
+          this.controller.updateParagraphStyle({ start: -1, end: -1,
+            style: {
+              textAlign: TextAlign.Start,
+            }
+          })
+        })
+
+        Button("段落右对齐").onClick(() => {
+          this.controller.updateParagraphStyle({ start: -1, end: -1,
+            style: {
+              textAlign: TextAlign.End,
+            }
+          })
+        })
+
+        Button("段落居中").onClick(() => {
+          this.controller.updateParagraphStyle({ start: -1, end: -1,
+            style: {
+              textAlign: TextAlign.Center,
+            }
+          })
+        })
+        Divider()
+        Button("getParagraphs").onClick(() => {
+          this.spanParagraphs = this.controller.getParagraphs({ start: -1, end: -1 })
+          console.log("RichEditor getParagraphs:" + JSON.stringify(this.spanParagraphs))
+        })
+
+        Button("UpdateSpanStyle1").onClick(() => {
+          this.controller.updateSpanStyle({ start: -1, end: -1,
+            textStyle: {
+              fontColor: Color.Brown,
+              fontSize: 20
+            }
+          })
+        })
+
+        Button("UpdateSpanStyle2").onClick(() => {
+          this.controller.updateSpanStyle({ start: -1, end: -1,
+            textStyle: {
+              fontColor: Color.Green,
+              fontSize: 30
+            }
+          })
+        })
+      }
+    }
+  }
+}
+```
+![TextAlignAndGetParagraphInfo](figures/richEditorTextAlignAndGetParagraphInfo.gif)
+
+### 示例7
+
+```ts
+// xxx.ets
+import font from '@ohos.font'
+const canvasWidth = 1000
+const canvasHeight = 100
+const Indentation = 10
+class LeadingMarginCreator {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(canvasWidth, canvasHeight);
+  private offContext: OffscreenCanvasRenderingContext2D = this.offscreenCanvas.getContext("2d", this.settings);
+  public static instance: LeadingMarginCreator = new LeadingMarginCreator();
+
+  public genStrMark(fontSize: number, str: string): PixelMap {
+    this.offContext = this.offscreenCanvas.getContext("2d", this.settings);
+    this.clearCanvas();
+    this.offContext.font = fontSize + 'vp sans-serif';
+    this.offContext.fillText(str + '.', 0, fontSize * 0.9);
+    return this.offContext.getPixelMap(0, 0, fontSize * (str.length + 1) / 1.75, fontSize);
+  }
+
+  public genSquareMark(fontSize: number): PixelMap {
+    this.offContext = this.offscreenCanvas.getContext("2d", this.settings);
+    this.clearCanvas();
+    const coordinate = fontSize * (1 - 1 / 1.5) / 2;
+    const sideLength = fontSize / 1.5;
+    this.offContext.fillRect(coordinate, coordinate, sideLength, sideLength);
+    return this.offContext.getPixelMap(0, 0, fontSize, fontSize);
+  }
+
+  public genCircleMark(fontSize: number): PixelMap {
+    this.offContext = this.offscreenCanvas.getContext("2d", this.settings);
+    this.clearCanvas();
+    const centerCoordinate = fontSize / 2;
+    const radius = fontSize / 3;
+    this.offContext.ellipse(centerCoordinate, centerCoordinate, radius, radius, 0, 0, 2 * Math.PI);
+    this.offContext.fillStyle = Color.Black;
+    this.offContext.fill();
+    return this.offContext.getPixelMap(0, 0, fontSize, fontSize);
+  }
+
+  private clearCanvas() {
+    this.offContext.clearRect(0, 0, canvasWidth, canvasHeight);
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  private leadingMarkCreatorInstance = LeadingMarginCreator.instance;
+  private fontNameRawFile: string = 'MiSans-Bold'
+  @State fs: number = 30
+  @State cl: number = Color.Black
+  private leftMargin: Dimension = 0;
+  private richEditorTextStyle: RichEditorTextStyle = {};
+
+  aboutToAppear() {
+    font.registerFont({
+      familyName: 'MiSans-Bold',
+      familySrc: '/font/MiSans-Bold.ttf'
+    })
+  }
+
+  build() {
+    Scroll() {
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan("0123456789\n",
+              {
+                style:
+                {
+                  fontWeight: 'medium',
+                  fontFamily: this.fontNameRawFile,
+                  fontColor: Color.Red,
+                  fontSize: 50,
+                  fontStyle: FontStyle.Italic,
+                  decoration: { type: TextDecorationType.Underline, color: Color.Green }
+                }
+              })
+
+            this.controller.addTextSpan("abcdefg",
+              {
+                style:
+                {
+                  fontWeight: FontWeight.Lighter,
+                  fontFamily: 'HarmonyOS Sans',
+                  fontColor: 'rgba(0,128,0,0.5)',
+                  fontSize: 30,
+                  fontStyle: FontStyle.Normal,
+                  decoration: { type: TextDecorationType.Overline, color: 'rgba(169, 26, 246, 0.50)' }
+                }
+              })
+          })
+          .borderWidth(1)
+          .borderColor(Color.Green)
+          .width("100%")
+          .height("50%")
+
+        Row({ space: 5 }) {
+          Button('setTypingStyle1')
+            .fontSize(10)
+            .onClick(() => {
+              this.controller.setTypingStyle(
+                {
+                  fontWeight: 'medium',
+                  fontFamily: this.fontNameRawFile,
+                  fontColor: Color.Blue,
+                  fontSize: 50,
+                  fontStyle: FontStyle.Italic,
+                  decoration: { type: TextDecorationType.Underline, color: Color.Green }
+                })
+            })
+
+          Button('setTypingStyle2')
+            .fontSize(10)
+            .onClick(() => {
+              this.controller.setTypingStyle(
+                {
+                  fontWeight: FontWeight.Lighter,
+                  fontFamily: 'HarmonyOS Sans',
+                  fontColor: Color.Green,
+                  fontSize: '30',
+                  fontStyle: FontStyle.Normal,
+                  decoration: { type: TextDecorationType.Overline, color: 'rgba(169, 26, 246, 0.50)' }
+                })
+            })
+        }
+        Divider()
+        Button("getTypingStyle").onClick(() => {
+          this.richEditorTextStyle = this.controller.getTypingStyle()
+          console.log("RichEditor getTypingStyle:" + JSON.stringify(this.richEditorTextStyle))
+        })
+        Divider()
+        Row({ space: 5 }) {
+          Button("向右列表缩进").onClick(() => {
+            let margin = Number(this.leftMargin)
+            if (margin < 200) {
+              margin += Indentation;
+              this.leftMargin = margin;
+            }
+            this.controller.updateParagraphStyle({
+              start: -10,
+              end: -10,
+              style: {
+                leadingMargin : {
+                  pixelMap : this.leadingMarkCreatorInstance.genCircleMark(16), size: [margin, 30]
+                }
+              }
+            })
+          })
+
+          Button("向左列表缩进").onClick(() => {
+            let margin = Number(this.leftMargin)
+            if (margin > 0) {
+              margin -= Indentation;
+              this.leftMargin = margin;
+            }
+            this.controller.updateParagraphStyle({
+              start: -10,
+              end: -10,
+              style: {
+                leadingMargin : {
+                  pixelMap : this.leadingMarkCreatorInstance.genCircleMark(16), size: [margin, 30]
+                }
+              }
+            })
+          })
+        }
+        Divider()
+        Row({ space: 5 }) {
+          Button("向右空白缩进").onClick(() => {
+            let margin = Number(this.leftMargin)
+            if (margin < 200) {
+              margin += Indentation;
+              this.leftMargin = margin;
+            }
+            this.controller.updateParagraphStyle({
+              start: -10,
+              end: -10,
+              style: {
+                leadingMargin: margin
+              }
+            })
+          })
+
+          Button("向左空白缩进").onClick(() => {
+            let margin = Number(this.leftMargin)
+            if (margin > 0) {
+              margin -= Indentation;
+              this.leftMargin = margin;
+            }
+            this.controller.updateParagraphStyle({
+              start: -10,
+              end: -10,
+              style: {
+                leadingMargin: margin
+              }
+            })
+          })
+        }
+      }.borderWidth(1).borderColor(Color.Red)
+    }
+  }
+}
+```
+![UpdateParagraphAndTypingStyle](figures/richEditorUpdateParagraphAndTypingStyle.gif)

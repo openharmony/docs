@@ -2933,8 +2933,8 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 
 | 参数名   | 类型              | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| baseName | string                | 是   | 文件存储路径，该值不能为空。                                 |
-| autoName | boolean               | 是   | 决定是否自动生成文件名。 如果为false，则将baseName作为文件存储路径。 如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。 |
+| baseName | string                | 是   | 生成的离线网页存储位置，该值不能为空。                                 |
+| autoName | boolean               | 是   | 决定是否自动生成文件名。如果为false，则按baseName的文件名存储；如果为true，则根据当前Url自动生成文件名，并按baseName的文件目录存储。 |
 | callback | AsyncCallback\<string> | 是   | 返回文件存储路径，保存网页失败会返回null。                   |
 
 **错误码：**
@@ -2995,8 +2995,8 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 
 | 参数名   | 类型 | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| baseName | string   | 是   | 文件存储路径，该值不能为空。                                 |
-| autoName | boolean  | 是   | 决定是否自动生成文件名。 如果为false，则将baseName作为文件存储路径。 如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。 |
+| baseName | string   | 是   | 生成的离线网页存储位置，该值不能为空。                                 |
+| autoName | boolean  | 是   | 决定是否自动生成文件名。如果为false，则按baseName的文件名存储；如果为true，则根据当前Url自动生成文件名，并按baseName的文件目录存储。 |
 
 **返回值：**
 
@@ -4879,6 +4879,77 @@ struct WebComponent {
 }
 ```
 
+### postUrl<sup>11+</sup>
+
+static postUrl(url: string, postData: ArrayBuffer): void
+
+使用"POST"方法加载带有postData的url。如果url不是网络url，则会使用[loadUrl](#loadurl)方法加载url，忽略postData参数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型             | 必填 | 说明                  |
+| ------- | ---------------- | ---- | :-------------------- |
+| url     | string \| Resource | 是   | 需要加载的 URL。      |
+| postData | ArrayBuffer | 否   | 使用"POST"方法传递数据。 该请求必须采用"application/x-www-form-urlencoded"编码。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100002 | Invalid url.                                                 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+class testObj {
+  constructor() {
+  }
+
+  test(str: string): ArrayBuffer {
+    let buf = new ArrayBuffer(str.length);
+    let buff = new Uint8Array(buf);
+
+    for (let i = 0; i < str.length; i++) {
+      buff[i] = str.charCodeAt(i);
+    }
+    return buf;
+  }
+}
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State testObjtest: testObj = new testObj();
+
+  build() {
+    Column() {
+      Button('postUrl')
+        .onClick(() => {
+          try {
+            // 数据转化为ArrayBuffer类型。
+            let postData = this.testObjtest.test("Name=test&Password=test");
+            this.controller.postUrl('www.example.com', postData);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: '', controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
@@ -5321,7 +5392,7 @@ static configCookie(url: string, value: string): Promise\<void>
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| Promise\<string> | Promise实例，用于获取指定url设置单个cookie值是否成功。 |
+| Promise\<void> | Promise实例，用于获取指定url设置单个cookie值是否成功。 |
 
 **错误码：**
 

@@ -969,6 +969,12 @@ Obtains the widget information provided by all applications on the device. This 
 
 **System capability**: SystemCapability.Ability.Form
 
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
+
 **Error codes**
 
 | Error Code ID| Error Message|
@@ -982,11 +988,6 @@ Obtains the widget information provided by all applications on the device. This 
 
 For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
-**Parameters**
-
-| Name| Type   | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
 
 **Example**
 
@@ -1017,6 +1018,12 @@ Obtains the widget information provided by all applications on the device. This 
 
 **System capability**: SystemCapability.Ability.Form
 
+**Return value**
+
+| Type                                                        | Description                               |
+| :----------------------------------------------------------- | :---------------------------------- |
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
+
 **Error codes**
 
 | Error Code ID| Error Message|
@@ -1028,12 +1035,6 @@ Obtains the widget information provided by all applications on the device. This 
 | 16501000 | An internal functional error occurred. |
 
 For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
-
-**Return value**
-
-| Type                                                        | Description                               |
-| :----------------------------------------------------------- | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
 
 **Example**
 
@@ -1460,8 +1461,6 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import Base from '@ohos.base';
-
 formHost.on('formUninstall', (formId: string) => {
   console.log(`formHost on formUninstall, formId: ${formId}`);
 });
@@ -1494,8 +1493,6 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import Base from '@ohos.base';
-
 formHost.off('formUninstall', (formId: string) => {
   console.log(`formHost on formUninstall, formId: ${formId}`);
 });

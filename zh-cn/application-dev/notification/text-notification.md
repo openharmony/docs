@@ -1,6 +1,5 @@
 # 发布基础类型通知
 
-
 基础类型通知主要应用于发送短信息、提示信息、广告推送等，支持普通文本类型、长文本类型、多行文本类型、图片类型和实况窗类型。
 
 **表1** 基础类型通知中的内容分类
@@ -15,6 +14,9 @@
 
 
 目前，系统仅支持通知栏订阅通知，将通知显示在通知栏中。基本类型通知的效果示意如下图所示。
+> **说明：**
+> 
+> 根据设计样式的不同，通知的实际显示效果可能有所差异。本文中所涉及的通知效果图仅供参考，请以实际运行结果为准。
 
 **图1** 基础类型通知呈现效果示意图  
 ![zh-cn_image_0000001466462305](figures/zh-cn_image_0000001466462305.png)
@@ -49,7 +51,7 @@
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // 普通文本类型通知
+          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // 普通文本类型通知
           normal: {
             title: 'test_title',
             text: 'test_text',
@@ -75,7 +77,7 @@
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // 长文本类型通知
+          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // 长文本类型通知
           longText: {
             title: 'test_title',
             text: 'test_text',
@@ -105,7 +107,7 @@
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // 多行文本类型通知
+          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // 多行文本类型通知
           multiLine: {
             title: 'test_title',
             text: 'test_text',
@@ -150,7 +152,7 @@
         let notificationRequest: notificationManager.NotificationRequest = {
           id: 1,
           content: {
-            contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
+            notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
             picture: {
               title: 'test_title',
               text: 'test_text',
@@ -196,7 +198,7 @@
         slotType: LIVE_VIEW, // 实况窗类型
         id: 0, // 通知id，默认为0
         content: {
-          contentType = notificationManager.ContentType.NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW,
+          notificationContentType : notificationManager.ContentType.NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW,
           systemLiveView: {
             title: "test_title",
             text:"test_text",

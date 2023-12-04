@@ -1,6 +1,6 @@
 # Efficient Concurrent Programming
 
-Concurrency refers to the capability of processing multiple tasks in the same period. To improve the response speed and frame rate of applications and prevent time-consuming tasks from blocking the main thread, OpenHarmony provides two policies: asynchronous concurrency and multithread concurrency.
+Concurrency refers to the capability of processing multiple tasks in the same period. To improve the response speed and frame rate of applications and prevent time-consuming tasks from blocking the main thread, the system provides two policies: asynchronous concurrency and multithread concurrency.
 
 Asynchronous concurrency means that an action in asynchronous code is suspended and will continue later. Only one segment of code is being executed at a time.
 

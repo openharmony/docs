@@ -12,7 +12,7 @@
 import pointer from '@ohos.multimodalInput.pointer';
 ```
 
-## pointer.setPointerVisible<sup>9+</sup>
+## pointer.setPointerVisible
 
 setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -43,7 +43,7 @@ try {
 }
 ```
 
-## pointer.setPointerVisible<sup>9+</sup>
+## pointer.setPointerVisible
 
 setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
@@ -100,7 +100,7 @@ try {
 }
 ```
 
-## pointer.isPointerVisible<sup>9+</sup>
+## pointer.isPointerVisible
 
 isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -130,7 +130,7 @@ try {
 }
 ```
 
-## pointer.isPointerVisible<sup>9+</sup>
+## pointer.isPointerVisible
 
 isPointerVisible(): Promise&lt;boolean&gt;
 
@@ -181,7 +181,7 @@ try {
 }
 ```
 
-## pointer.setPointerSpeed<sup>9+</sup>
+## pointer.setPointerSpeed
 
 setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -214,7 +214,7 @@ try {
 }
 ```
 
-## pointer.setPointerSpeed<sup>9+</sup>
+## pointer.setPointerSpeed
 
 setPointerSpeed(speed: number): Promise&lt;void&gt;
 
@@ -275,7 +275,7 @@ try {
 }
 ```
 
-## pointer.getPointerSpeed<sup>9+</sup>
+## pointer.getPointerSpeed
 
 getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 
@@ -307,7 +307,7 @@ try {
 }
 ```
 
-## pointer.getPointerSpeed<sup>9+</sup>
+## pointer.getPointerSpeed
 
 getPointerSpeed(): Promise&lt;number&gt;
 
@@ -742,7 +742,7 @@ try {
 }
 ```
 
-## pointer.getPointerStyle<sup>9+</sup>
+## pointer.getPointerStyle
 
 getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): void
 
@@ -755,7 +755,7 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 | 参数名       | 类型                                       | 必填   | 说明             |
 | -------- | ---------------------------------------- | ---- | -------------- |
 | windowId | number                                   | 是    | 窗口id。    |
-| callback | AsyncCallback&lt;[PointerStyle](#pointerstyle9)&gt; | 是    | 回调函数，异步返回鼠标样式类型。 |
+| callback | AsyncCallback&lt;[PointerStyle](#pointerstyle)&gt; | 是    | 回调函数，异步返回鼠标样式类型。 |
 
 **示例**：
 
@@ -784,7 +784,7 @@ window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
 });
 ```
 
-## pointer.getPointerStyle<sup>9+</sup>
+## pointer.getPointerStyle
 
 getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 
@@ -802,7 +802,7 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 
 | 参数                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[PointerStyle](#pointerstyle9)&gt; | Promise实例，异步返回鼠标样式类型。 |
+| Promise&lt;[PointerStyle](#pointerstyle)&gt; | Promise实例，异步返回鼠标样式类型。 |
 
 **示例**：
 
@@ -849,7 +849,7 @@ getPointerStyleSync(windowId: number): PointerStyle
 
 | 参数                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| [PointerStyle](#pointerstyle9) | 返回鼠标样式类型。 |
+| [PointerStyle](#pointerstyle) | 返回鼠标样式类型。 |
 
 **示例**：
 
@@ -862,7 +862,7 @@ try {
 }
 ```
 
-## pointer.setPointerStyle<sup>9+</sup>
+## pointer.setPointerStyle
 
 setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback&lt;void&gt;): void
 
@@ -875,7 +875,7 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCal
 | 参数名           | 类型                             | 必填   | 说明                                  |
 | ------------ | ------------------------------ | ---- | ----------------------------------- |
 | windowId     | number                         | 是    | 窗口id。                          |
-| pointerStyle | [PointerStyle](#pointerstyle9) | 是    | 鼠标样式id。                             |
+| pointerStyle | [PointerStyle](#pointerstyle) | 是    | 鼠标样式。                             |
 | callback     | AsyncCallback&lt;void&gt;      | 是    | 回调函数。 |
 
 **示例**：
@@ -903,7 +903,7 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
   }
 });
 ```
-## pointer.setPointerStyle<sup>9+</sup>
+## pointer.setPointerStyle
 
 setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&gt;
 
@@ -916,7 +916,7 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&g
 | 参数名                  | 类型                             | 必填   | 说明               |
 | ------------------- | ------------------------------ | ---- | ---------------- |
 | windowId            | number                         | 是    | 窗口id。       |
-| pointerStyle        | [PointerStyle](#pointerstyle9) | 是    | 鼠标样式id。          |
+| pointerStyle        | [PointerStyle](#pointerstyle) | 是    | 鼠标样式。          |
 | Promise&lt;void&gt; | void                           | 是    | Promise对象。 |
 
 **示例**：
@@ -958,7 +958,7 @@ setPointerStyleSync(windowId: number, pointerStyle: PointerStyle): void
 | 参数名                  | 类型                             | 必填   | 说明               |
 | ------------------- | ------------------------------ | ---- | ---------------- |
 | windowId            | number                         | 是    | 窗口id。       |
-| pointerStyle        | [PointerStyle](#pointerstyle9) | 是    | 鼠标样式id。          |
+| pointerStyle        | [PointerStyle](#pointerstyle) | 是    | 鼠标样式。          |
 
 **示例**：
 ```js
@@ -984,7 +984,7 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
 });
 ```
 
-## PointerStyle<sup>9+</sup>
+## PointerStyle
 
 鼠标样式类型。
 
@@ -1207,7 +1207,7 @@ setTouchpadScrollDirection(state: boolean): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean| 是    |  state为触控板滚轴的方向。true与手指滑动的方向一致，false与手指滑动的方向相反，默认为true。     |
+| state | boolean| 是    |  state为触控板滚轴的方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true|
 
 **返回值**：
 
@@ -1801,7 +1801,7 @@ setTouchpadRightClickType(type: RightClickType, callback: AsyncCallback\<void>):
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| type| RightClickType| 是    |type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。  |
+| type| [RightClickType](#rightclicktype10)| 是    |type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。  |
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
 **示例**：
@@ -1834,7 +1834,7 @@ setTouchpadRightClickType(type: RightClickType): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| type| RightClickType| 是    | type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。 |
+| type| [RightClickType](#rightclicktype10)| 是    | type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。 |
 
 **返回值**：
 
@@ -1868,7 +1868,7 @@ getTouchpadRightClickType(callback: AsyncCallback\<RightClickType>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<RightClickType> | 是    | 回调函数，异步返回触控板右键菜单类型。 |
+| callback | AsyncCallback\<[RightClickType](#rightclicktype10)> | 是    | 回调函数，异步返回触控板右键菜单类型。 |
 
 **示例**：
 
@@ -1896,7 +1896,7 @@ getTouchpadRightClickType(): Promise\<RightClickType>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise\<RightClickType > | Promise实例，异步返回触控板右键菜单类型。 |
+| Promise\<[RightClickType](#rightclicktype10) > | Promise实例，异步返回触控板右键菜单类型。 |
 
 **示例**：
 
@@ -2093,6 +2093,10 @@ setPointerColor(color: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置鼠标光标颜色，使用AsyncCallback异步方式返回结果。
 
+**说明**
+>
+> 设置和调试时，需连接外部设备，如鼠标、蓝牙等。
+
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
 **系统API**: 此接口为系统接口。
@@ -2125,6 +2129,10 @@ try {
 setPointerColor(color: number): Promise&lt;void&gt;
 
 设置鼠标光标颜色，使用Promise异步方式返回结果。
+
+**说明**
+>
+> 设置和调试时，需连接外部设备，如鼠标、蓝牙等。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -2159,6 +2167,10 @@ try {
 setPointerColorSync(color: number): void;
 
 设置鼠标光标颜色，使用同步方式进行设置。
+
+**说明**
+>
+> 设置和调试时，需连接外部设备，如鼠标、蓝牙等。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 

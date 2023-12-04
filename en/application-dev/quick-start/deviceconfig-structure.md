@@ -16,7 +16,7 @@ The **deviceConfig** tag contains device-specific configuration of the applicati
 | wearable | Application configuration specific to wearables.| Object| Yes (initial value: left empty)|
 
 
-Table 2 describes the internal structure of the **deviceConfig** attributes.
+For details about the **deviceConfig** tag, see [Internal Structure of the deviceConfig Attributes](#internal-structure-of-the-deviceconfig-attributes).
 
 ## Internal Structure of the deviceConfig Attributes
 
@@ -36,7 +36,7 @@ Table 2 describes the internal structure of the **deviceConfig** attributes.
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| cleartextTraffic | Whether to allow the application to use plaintext traffic, for example, plaintext HTTP traffic.<br>**true**: The application is allowed to use plaintext traffic. **false**: The application is not allowed to use plaintext traffic.| Boolean| Yes (initial value: **false**)|
+| cleartextTraffic | Whether to allow the application to use plaintext traffic, for example, plaintext HTTP traffic.<br>- **true**: The application is allowed to use plaintext traffic.<br>- **false**: The application is not allowed to use plaintext traffic.| Boolean| Yes (initial value: **false**)|
 | securityConfig | Network security configuration of the application.| Object| Yes (initial value: left empty)|
 
 ## Internal Structure of the securityConfig Attribute
@@ -53,8 +53,8 @@ Table 2 describes the internal structure of the **deviceConfig** attributes.
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| cleartextPermitted | Whether plaintext traffic can be transmitted in the custom network domain. If both **cleartextTraffic** and **security** are declared, whether plaintext traffic can be transmitted in the custom network domain is determined by the **cleartextPermitted** attribute. **true**: Plaintext traffic can be transmitted. **false**: Plaintext traffic cannot be transmitted.| Boolean| Yes (initial value: left empty)|
-| domains | Domain name. This attribute consists of two sub-attributes: **subdomains** and **name**. **subdomains** (boolean): specifies whether the domain name contains subdomains. If this sub-attribute is set to **true**, the domain naming convention applies to all related domains and subdomains (including the lower-level domains of the subdomains). Otherwise, the convention applies only to exact matches. **name** (string): indicates the domain name.| Object array| Yes (initial value: left empty)|
+| cleartextPermitted | Whether plaintext traffic can be transmitted in the custom network domain. If both **cleartextTraffic** and **security** are declared, whether plaintext traffic can be transmitted in the custom network domain is determined by the **cleartextPermitted** attribute.<br>- **true**: Plaintext traffic can be transmitted.<br>- **false**: Plaintext traffic cannot be transmitted.| Boolean| Yes (initial value: left empty)|
+| domains | Domain name. This attribute consists of two sub-attributes: **subdomains** and **name**.<br>- **subdomains** (boolean): specifies whether the domain name contains subdomains. If this sub-attribute is set to **true**, the domain naming convention applies to all related domains and subdomains (including the lower-level domains of the subdomains). Otherwise, the convention applies only to exact matches.<br>- **name** (string): indicates the domain name.| Object array| Yes (initial value: left empty)|
 
 Example of the **deviceConfig** tag:
 

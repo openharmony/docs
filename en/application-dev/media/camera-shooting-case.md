@@ -1,4 +1,4 @@
-# Camera Photographing Sample
+# Camera Photographing Sample (ArkTS)
 
 ## Development Process
 

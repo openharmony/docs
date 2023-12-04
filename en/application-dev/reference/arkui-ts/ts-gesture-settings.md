@@ -2,7 +2,7 @@
 
 Bind different types of gesture events to components and set response methods for them.
 
-> **NOTE**
+>  **NOTE**
 >
 > The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -50,13 +50,13 @@ The component binds gesture objects of different **GestureType**s through gestur
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | repeat | boolean | Whether the event is triggered repeatedly. This attribute is used for the **LongPressGesture** event.|
-| offsetX | number | Offset of the gesture event on the x-axis, in vp. This attribute is used for the **PanGesture** event. A positive value means to pan from left to right, and a negative value means the opposite.|
-| offsetY | number | Offset of the gesture event on the y-axis, in vp. This attribute is used for the **PanGesture** event. A positive value means to pan from top to bottom, and a negative value means the opposite.|
+| offsetX | number | Offset of the gesture event on the x-axis relative to the original area of the current component, in vp. This attribute is used for the **PanGesture** event. A positive value means to pan from left to right, and a negative value means the opposite.|
+| offsetY | number | Offset of the gesture event on the y-axis relative to the original area of the current component, in vp. This attribute is used for the **PanGesture** event. A positive value means to pan from top to bottom, and a negative value means the opposite.|
 | angle | number | Rotation angle for the **RotationGesture** event;<br>angle of the swipe gesture for the **SwipeGesture** event, that is, the change in the included angle between the line segment created by the two fingers and the horizontal direction.<br>**NOTE**<br>Angle calculation method: After a swipe gesture is recognized, a line connecting the two fingers is identified as the initial line. As the fingers swipe, the line between the fingers rotates. Based on the coordinates of the initial line's and current line's end points, an arc tangent function is used to calculate the respective included angle of the points relative to the horizontal direction by using the following formula: Rotation angle = arctan2(cy2-cy1,cx2-cx1) - arctan2(y2-y1,x2-x1) The initial line is used as the coordinate system. The clockwise rotation is 0 to 180 degrees, and the counter-clockwise rotation is –180 to 0 degrees.|
 | scale | number | Scale ratio. This attribute is used for the **PinchGesture** event.|
-| pinchCenterX | number | X coordinate of the center of the pinch gesture, in vp, relative to the upper left corner of the current component. This attribute is used for the **PinchGesture** event.|
-| pinchCenterY | number | Y coordinate of the center of the pinch gesture, in vp, relative to the upper left corner of the current component. This attribute is used for the **PinchGesture** event.|
-| speed<sup>8+</sup> | number | Swipe gesture speed, that is, the average swipe speed of all fingers. The unit is vp/s. This attribute is used for the **SwipeGesture** event.|
+| pinchCenterX | number | X coordinate of the center of the pinch gesture, in vp, relative to the original area of the current component. This attribute is used for the **PinchGesture** event.|
+| pinchCenterY | number | Y coordinate of the center of the pinch gesture, in vp, relative to the original area of the current component. This attribute is used for the **PinchGesture** event.|
+| speed<sup>8+</sup> | number | Swipe gesture speed, that is, the average swipe speed of all fingers relative to the original area of the current component. The unit is vp/s. This attribute is used for the **SwipeGesture** event.|
 | fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo)[] | Information about all fingers that trigger the event. This attribute is used for the **LongPressGesture** and **TapGesture** events.|
 | timestamp<sup>8+</sup> | number | Timestamp of the event.|
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the element that triggers the gesture event.|
@@ -80,10 +80,10 @@ The component binds gesture objects of different **GestureType**s through gestur
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | id | number | Index of a finger.|
-| globalX | number | X coordinate relative to the upper left corner of the application window.|
-| globalY | number | Y coordinate relative to the upper left corner of the application window.|
-| localX | number | X coordinate relative to the upper left corner of the current component.|
-| localY | number | Y coordinate relative to the upper left corner of the current component.|
+| globalX | number | X-coordinate relative to the upper left corner of the application window.|
+| globalY | number | Y-coordinate relative to the upper left corner of the application window.|
+| localX | number | X coordinate relative to the upper left corner of the current component's original area.|
+| localY | number | Y coordinate relative to the upper left corner of the current component's original area.|
 
 ## SourceTool
 | Name| Description|

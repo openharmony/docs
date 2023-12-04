@@ -36,7 +36,7 @@ Subscribes to a notification with the subscription information specified. This A
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID| Error Message                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |

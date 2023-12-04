@@ -182,7 +182,7 @@ Creates a spring animation curve. If multiple spring animations are applied to t
 
 | Type                          | Description            |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve)| Curve.<br>**NOTE**<br>The spring animation curve is physics-based. Its duration depends on the **springMotion** parameters and the previous velocity, rather than the **duration** parameter in [animation](../arkui-ts/ts-animatorproperty.md) or [animateTo](../arkui-ts/ts-explicit-animation.md). The time cannot be normalized. Therefore, the interpolation cannot be obtained using the [interpolate](#interpolate9) function of the curve.|
+|  [ICurve](#icurve)| Curve.<br>**NOTE**<br>The spring animation curve is physics-based. Its duration depends on the **springMotion** parameters and the previous velocity, rather than the **duration** parameter in [animation](../arkui-ts/ts-animatorproperty.md), [animateTo](../arkui-ts/ts-explicit-animation.md), or [pageTransition](../arkui-ts/ts-page-transition-animation.md). The time cannot be normalized. Therefore, the interpolation cannot be obtained using the [interpolate](#interpolate9) function of the curve.|
 
 **Example**
 
@@ -317,7 +317,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 ```ts
 import Curves from '@ohos.curves'
 let curveValue = Curves.initCurve(Curve.EaseIn) // Create an ease-in curve.
-let value: number = curve.interpolate(0.5) // Calculate the interpolation for half of the time.
+let value: number = curveValue.interpolate(0.5) // Calculate the interpolation for half of the time.
 ```
 
 

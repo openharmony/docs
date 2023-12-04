@@ -4,9 +4,9 @@ The **workScheduler** module provides the APIs for registering, canceling, and q
 
 >  **NOTE**
 >
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>  The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs of this module can be used only in the stage model.
+>  The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
 
@@ -178,7 +178,7 @@ Obtains the information a deferred task. This API uses a promise to return the r
 
 | Type                             | Description                                      |
 | ------------------------------- | ---------------------------------------- |
-| Promise\<[WorkInfo](#workinfo)> | Promise used to return the result. If **workId** is valid, the task information obtained from WorkSchedulerService is returned.|
+| Promise\<[WorkInfo](#workinfo)> | Promise used to return the result. If **workId** is valid, the task information obtained from WorkSchedulerService is returned. Otherwise, an exception is thrown.|
 
 **Error codes**
 

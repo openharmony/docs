@@ -2,7 +2,7 @@
 
 # **Background**
 
-Inter-process communication (IPC) is a common mechanism that allows processes to communicate with each other. In OpenHarmony, IPC uses the Binder driver to implement cross-process communication between applications and system services.
+Inter-process communication (IPC) is a common mechanism that allows processes to communicate with each other. In the current system, IPC uses the Binder driver to implement cross-process communication between applications and system services.
 
 While IPC facilitates interaction and communication between processes, improper use of IPC can undermine application performance.
 

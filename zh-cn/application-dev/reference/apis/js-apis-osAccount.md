@@ -937,7 +937,7 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
 
 setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
-设置指定系统帐号的帐号名。使用Promise异步调用。 
+设置指定系统帐号的帐号名。使用Promise异步调用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1721,7 +1721,7 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 
 createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInfo&gt;
 
-创建一个系统帐号。使用Promise异步回调。 
+创建一个系统帐号。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1795,6 +1795,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or domainInfo. |
+| 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
 | 12300007 | The number of accounts reaches the upper limit. |
@@ -1821,7 +1822,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 
 createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Promise&lt;OsAccountInfo&gt;
 
-根据传入的域帐号信息，创建与其关联的系统帐号。使用Promise异步回调。 
+根据传入的域帐号信息，创建与其关联的系统帐号。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1848,6 +1849,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or domainInfo. |
+| 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
 | 12300007 | The number of accounts reaches the upper limit. |
@@ -2933,7 +2935,7 @@ isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断是否支持多系统帐号。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkMultiOsAccountEnabled](#checkmultiosaccountenabled9)。
 
@@ -2965,7 +2967,7 @@ isMultiOsAccountEnable(): Promise&lt;boolean&gt;
 
 判断是否支持多系统帐号。使用Promise异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkMultiOsAccountEnabled](#checkmultiosaccountenabled9-1)。
 
@@ -2996,7 +2998,7 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 
 判断指定系统帐号是否处于激活状态。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持从API version 9开始废弃, 建议使用[checkOsAccountActivated](#checkosaccountactivated9)。
 
@@ -3032,7 +3034,7 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 
 判断指定系统帐号是否处于激活状态。使用Promise异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持从API version 9开始废弃, 建议使用[checkOsAccountActivated](#checkosaccountactivated9-1)。
 
@@ -3071,7 +3073,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 
 判断指定系统帐号是否具有指定约束。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountConstraintEnabled](#checkosaccountconstraintenabled9)。
 
@@ -3109,7 +3111,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
 
 判断指定系统帐号是否具有指定约束。使用Promise异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountConstraintEnabled](#checkosaccountconstraintenabled9-1)。
 
@@ -3150,7 +3152,7 @@ isTestOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 
 检查当前系统帐号是否为测试帐号。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountTestable](#checkosaccounttestable9)。
 
@@ -3182,7 +3184,7 @@ isTestOsAccount(): Promise&lt;boolean&gt;
 
 检查当前系统帐号是否为测试帐号。使用Promise异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountTestable](#checkosaccounttestable9-1)。
 
@@ -3212,7 +3214,7 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 检查当前系统帐号是否已验证。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9)。
 
@@ -3246,7 +3248,7 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 
 检查指定系统帐号是否已验证。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9-1)。
 
@@ -3282,7 +3284,7 @@ isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
 检查指定系统帐号是否已验证。使用Promise异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9-2)。
 
@@ -3320,7 +3322,7 @@ getCreatedOsAccountsCount(callback: AsyncCallback&lt;number&gt;): void
 
 获取已创建的系统帐号数量。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountCount](#getosaccountcount9)。
 
@@ -3354,7 +3356,7 @@ getCreatedOsAccountsCount(): Promise&lt;number&gt;
 
 获取已创建的系统帐号数量，使用Promise异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountCount](#getosaccountcount9-1)。
 
@@ -3386,7 +3388,7 @@ getOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
 
 获取当前进程所属的系统帐号ID，使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalId](#getosaccountlocalid9)。
 
@@ -3448,7 +3450,7 @@ getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): 
 
 根据uid查询对应的系统帐号ID。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForUid](#getosaccountlocalidforuid9)。
 
@@ -3482,7 +3484,7 @@ getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 
 根据uid查询对应的系统帐号ID，使用Promise异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForUid](#getosaccountlocalidforuid9-1)。
 
@@ -3519,7 +3521,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
 
 根据域帐号信息，获取与其关联的系统帐号的帐号ID。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9)。
 
@@ -3555,7 +3557,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&
 
 根据域帐号信息，获取与其关联的系统帐号的帐号ID。使用Promise异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9-1)。
 
@@ -3594,7 +3596,7 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 
 获取指定系统帐号的全部约束。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountConstraints](#getosaccountconstraints9)。
 
@@ -3625,7 +3627,7 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 
 getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountConstraints](#getosaccountconstraints9-1)。
 
@@ -3666,7 +3668,7 @@ queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): 
 
 查询当前处于激活状态的系统帐号的ID列表。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 8开始支持，从API version 9开始废弃。建议使用[getActivatedOsAccountLocalIds](#getactivatedosaccountlocalids9)。
 
@@ -3696,7 +3698,7 @@ queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): 
 
 queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 8开始支持，从API version 9开始废弃。建议使用[getActivatedOsAccountLocalIds](#getactivatedosaccountlocalids9-1)。
 
@@ -3728,7 +3730,7 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 查询当前进程所属的系统帐号的信息。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getCurrentOsAccount](#getcurrentosaccount9)。
 
@@ -3759,7 +3761,7 @@ queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 查询当前进程所属的系统帐号的信息。使用Promise异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getCurrentOsAccount](#getcurrentosaccount9-1)。
 
@@ -3791,7 +3793,7 @@ getOsAccountTypeFromProcess(callback: AsyncCallback&lt;OsAccountType&gt;): void
 
 查询当前进程所属的系统帐号的帐号类型。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountType](#getosaccounttype9)。
 
@@ -3850,7 +3852,7 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 获取分布式虚拟设备ID。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9)。
 
@@ -3881,7 +3883,7 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 获取分布式虚拟设备ID。使用Promise异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9-1)。
 
@@ -3913,7 +3915,7 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&
 
 通过SN码查询与其关联的系统帐号的帐号ID。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForSerialNumber](#getosaccountlocalidforserialnumber9)。
 
@@ -3944,7 +3946,7 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 通过SN码查询与其关联的系统帐号的帐号ID。使用Promise异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForSerialNumber](#getosaccountlocalidforserialnumber9-1)。
 
@@ -3981,7 +3983,7 @@ getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;nu
 
 通过系统帐号ID获取与该系统帐号关联的SN码。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 8开始支持，从API version 9开始废弃。建议使用[getSerialNumberForOsAccountLocalId](#getserialnumberforosaccountlocalid9)。
 
@@ -4012,7 +4014,7 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 通过系统帐号ID获取与该系统帐号关联的SN码。使用Promise异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 从 API version 8开始支持，从API version 9开始废弃。建议使用[getSerialNumberForOsAccountLocalId](#getserialnumberforosaccountlocalid9-1)。
 
@@ -4059,7 +4061,7 @@ constructor()
 
 **系统能力**：SystemCapability.Account.OsAccount
 
-**示例：**  
+**示例：**
   ```ts
   let userAuth = new account_osAccount.UserAuth();
   ```
@@ -4080,7 +4082,7 @@ getVersion(): number;
 | :----- | :----------- |
 | number | 返回版本信息。|
 
-**示例：**  
+**示例：**
   ```ts
   let userAuth = new account_osAccount.UserAuth();
   let version: number = userAuth.getVersion();
@@ -4119,7 +4121,7 @@ getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
 | 12300001 | System service exception. |
 | 12300002 | Invalid authType or authTrustLevel. |
 
-**示例：**  
+**示例：**
   ```ts
   let userAuth = new account_osAccount.UserAuth();
   let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
@@ -4217,7 +4219,7 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
   import { BusinessError } from '@ohos.base';
   let userAuth = new account_osAccount.UserAuth();
   let keys: Array<account_osAccount.GetPropertyType> = [
-    account_osAccount.GetPropertyType.AUTH_SUB_TYPE, 
+    account_osAccount.GetPropertyType.AUTH_SUB_TYPE,
     account_osAccount.GetPropertyType.REMAIN_TIMES,
     account_osAccount.GetPropertyType.FREEZING_TIME
   ];
@@ -4516,7 +4518,7 @@ constructor()
 
 **系统能力**：SystemCapability.Account.OsAccount
 
-**示例：**  
+**示例：**
   ```ts
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
   ```
@@ -5288,7 +5290,9 @@ authWithPopup(callback: IUserAuthCallback): void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL<sup>10+</sup>；
+
+从API version 11开始无需申请权限，建议升级SDK版本。
 
 **参数：**
 
@@ -5335,7 +5339,9 @@ authWithPopup(localId: number, callback: IUserAuthCallback): void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL<sup>10+</sup>；
+
+从API version 11开始无需申请权限，建议升级SDK版本。
 
 **参数：**
 
@@ -5794,7 +5800,7 @@ constructor()
 
 **系统能力**：SystemCapability.Account.OsAccount
 
-**示例：**  
+**示例：**
   ```ts
   let userIDM = new account_osAccount.UserIdentityManager();
   ```

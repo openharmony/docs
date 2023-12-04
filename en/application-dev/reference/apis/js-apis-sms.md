@@ -47,8 +47,8 @@ import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
 const specification: string = '3gpp';
-// Display PDUs using numbers in an array, for example, [0x08, 0x91, ...].
-const pdu: Array<number> = [0x08, 0x91];
+// Display PDUs in array format. The type is number.
+const pdu: Array<number> = [0x01, 0x00, 0x05, 0x81, 0x01, 0x80, 0xF6, 0x00, 0x00, 0x05, 0xE8, 0x32, 0x9B, 0xFD, 0x06];
 sms.createMessage(pdu, specification, (err: BusinessError, data: sms.ShortMessage) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -112,7 +112,7 @@ Sends an SMS message.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 10. You are advised to use [sendShortMessage](#smssendshortmessage10).
+> This API is supported since API version 6 and deprecated since API version 10. You are advised to use [sendShortMessage](#smssendshortmessage10).
 
 **Required permissions**: ohos.permission.SEND_MESSAGES
 
@@ -146,10 +146,10 @@ import { BusinessError } from '@ohos.base';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
-}
+};
 let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
-}
+};
 let options: sms.SendMessageOptions = {
     slotId: 0,
     content: 'SMS message content';
@@ -167,6 +167,8 @@ sms.sendMessage(options);
 sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&gt;\): void
 
 Sends an SMS message. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.SEND_MESSAGES
 
@@ -201,10 +203,10 @@ import { BusinessError } from '@ohos.base';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-}
+};
 let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-}
+};
 let options: sms.SendMessageOptions = {
     slotId: 0,
     content: 'SMS message content';
@@ -224,6 +226,8 @@ sms.sendShortMessage(options, (err: BusinessError) => {
 sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
 
 Sends an SMS message. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.SEND_MESSAGES
 
@@ -263,10 +267,10 @@ import { BusinessError } from '@ohos.base';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-}
+};
 let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-}
+};
 let options: sms.SendMessageOptions = {
     slotId: 0,
     content: 'SMS message content';
@@ -350,8 +354,8 @@ let mmsPars: sms.MmsParam = {
 // Call the sendMms API.
 sms.sendMms(context, mmsPars, async(err: BusinessError) =>{
   if (err) {
-    console.log(`sendMms fail, err : ${String(err)}`);
-    return;
+      console.error(`sendMms fail, err : ${JSON.stringify(err)}`);
+      return;
   }
   console.log(`sendMms Success`);
 })
@@ -361,6 +365,8 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
 
 // Configure the path for storing the PDU of the MMS message.
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -374,7 +380,7 @@ let mmsConf = {
 
 // Options for sending MMS messages (The MMSC is for reference only.)
 let mmsPars = {
-  slotId : DEFAULT_SLOTID,
+  slotId : 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
   mmsConfig: mmsConf
@@ -382,9 +388,9 @@ let mmsPars = {
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-    sms.sendMms(this.context, mmsPars, async(err) =>{
+    sms.sendMms(this.context, mmsPars, async(err: BusinessError) =>{
         if (err) {
-            console.log(`sendMms fail, err : ${String(err)}`);
+            console.error(`sendMms fail, err : ${JSON.stringify(err)}`);
             return;
         }
         console.log(`sendMms Success`);
@@ -472,6 +478,8 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
 
 // Configure the path for storing the PDU of the MMS message.
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -485,7 +493,7 @@ let mmsConf = {
 
 // Options for sending MMS messages (The MMSC is for reference only.)
 let mmsPars = {
-  slotId : DEFAULT_SLOTID,
+  slotId : 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
   mmsConfig: mmsConf
@@ -496,7 +504,7 @@ class EntryAbility extends UIAbility {
     let promise = sms.sendMms(this.context, mmsPars);
     promise.then(() => {
         console.log(`sendMms success`);
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         console.error(`sendMms failed, promise: err->${JSON.stringify(err)}`);
     });
     }
@@ -570,8 +578,8 @@ let mmsPars: sms.MmsParam = {
 // Call the downloadMms API.
 mms.downloadMms(context, mmsPars, async(err: BusinessError) =>{
   if (err) {
-    console.log(`downloadMms fail, err : ${toString(err)}`);
-    return;
+      console.error(`downloadMms fail, err : ${toString(err)}`);
+      return;
   }
   console.log(`downloadMms Success`);
 }
@@ -581,6 +589,8 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import mms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
 
 // Configure the path for storing the PDU of the MMS message.
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -597,7 +607,7 @@ let mmsConf = {
 
 // Configure the parameters (including the callback) for downloading MMS messages.
 let mmsPars = {
-  slotId : DEFAULT_SLOTID,
+  slotId : 0,
   mmsc: wapPushUrl,
   data: filePath,
   mmsConfig: mmsConf
@@ -605,13 +615,13 @@ let mmsPars = {
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-    mms.downloadMms(this.context, mmsPars, async(err) =>{
+    mms.downloadMms(this.context, mmsPars, async(err: BusinessError) =>{
         if (err) {
-            console.log(`downloadMms fail, err : ${toString(err)}`);
+            console.error(`downloadMms fail, err : ${JSON.stringify(err)}`);
             return;
         }
         console.log(`downloadMms Success`);
-        }
+        });
     }
 }
 ```
@@ -698,6 +708,8 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import sms from '@ohos.telephony.sms';
+import { BusinessError } from '@ohos.base';
 
 // Configure the path for storing the PDU of the MMS message.
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -714,7 +726,7 @@ let mmsConf = {
 
 // Configure the parameters (including the callback) for downloading MMS messages.
 let mmsPars = {
-  slotId : DEFAULT_SLOTID,
+  slotId : 0,
   mmsc: wapPushUrl,
   data: filePath,
   mmsConfig: mmsConf
@@ -725,7 +737,7 @@ class EntryAbility extends UIAbility {
     let promise = sms.downloadMms(this.context, mmsPars);
     promise.then(() => {
         console.log(`downloadMms success`);
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         console.error(`downloadMms failed, promise: err->${JSON.stringify(err)}`);
     });
     }
@@ -1122,7 +1134,7 @@ Splits an SMS message into multiple segments. This API uses an asynchronous call
 | Name  | Type                         | Mandatory| Description                         |
 | -------- | ----------------------------- | ---- | ----------------------------- |
 | content  | string                        | Yes  | SMS message content. The value cannot be null.|
-| callback | AsyncCallback<Array<string\>> | Yes  | Callback used to return the result.                   |
+| callback | AsyncCallback<Array<string\>> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1221,7 +1233,7 @@ Adds a SIM message. This API uses an asynchronous callback to return the result.
 | Name  | Type                                    | Mandatory| Description           |
 | -------- | ---------------------------------------- | ---- | --------------- |
 | options  | [SimMessageOptions](#simmessageoptions7) | Yes  | SIM message options.|
-| callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result.     |
+| callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1330,7 +1342,7 @@ Deletes a SIM message. This API uses an asynchronous callback to return the resu
 | -------- | ------------------------- | ---- | ----------------------------------------- |
 | slotId   | number                    | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | msgIndex | number                    | Yes  | Message index.                                 |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                               |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. |
 
 **Error codes**
 
@@ -1432,7 +1444,7 @@ Updates a SIM message. This API uses an asynchronous callback to return the resu
 | Name  | Type                                                | Mandatory| Description               |
 | -------- | ---------------------------------------------------- | ---- | ------------------- |
 | options  | [UpdateSimMessageOptions](#updatesimmessageoptions7) | Yes  | SIM message updating options.|
-| callback | AsyncCallback&lt;void&gt;                            | Yes  | Callback used to return the result.         |
+| callback | AsyncCallback&lt;void&gt;                            | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1543,7 +1555,7 @@ Obtains all SIM card messages. This API uses an asynchronous callback to return 
 | Name  | Type                                                       | Mandatory| Description                                     |
 | -------- | ----------------------------------------------------------- | ---- | ----------------------------------------- |
 | slotId   | number                                                      | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback<Array<[SimShortMessage](#simshortmessage7)\>> | Yes  | Callback used to return the result.                               |
+| callback | AsyncCallback<Array<[SimShortMessage](#simshortmessage7)\>> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
@@ -1594,7 +1606,7 @@ Obtains all SIM card messages. This API uses a promise to return the result.
 
 | Type                                                   | Description                              |
 | ------------------------------------------------------- | ---------------------------------- |
-| PromiseArray<[SimShortMessage](#simshortmessage7)\>&gt; | Promise used to return the result.|
+| Promise<Array<[SimShortMessage](#simshortmessage7)\>&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -1618,7 +1630,7 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 let promise = sms.getAllSimMessages(slotId);
-promise.then((data: sms.SimShortMessage) => {
+promise.then((data: sms.SimShortMessage[]) => {
     console.log(`getAllSimMessages success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getAllSimMessages failed, promise: err->${JSON.stringify(err)}`);
@@ -1642,7 +1654,7 @@ Sets the cell broadcast configuration. This API uses an asynchronous callback to
 | Name  | Type                                | Mandatory| Description        |
 | -------- | ------------------------------------ | ---- | ------------ |
 | options  | [CBConfigOptions](#cbconfigoptions7) | Yes  | Cell broadcast configuration options.|
-| callback | AsyncCallback&lt;void&gt;            | Yes  | Callback used to return the result.  |
+| callback | AsyncCallback&lt;void&gt;            | Yes  | Callback used to return the result. |
 
 **Error codes**
 
@@ -1753,7 +1765,7 @@ Obtains SMS message segment information. This API uses an asynchronous callback 
 | slotId    | number                                                       | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | message   | string                                                       | Yes  | SMS message.                                     |
 | force7bit | boolean                                                      | Yes  | Whether to use 7-bit coding.                         |
-| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | Yes  | Callback used to return the result.                                 |
+| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | Yes  | Callback used to return the result. |
 
 **Error codes**
 
@@ -1930,7 +1942,7 @@ promise.then((data: boolean) => {
 
 getImsShortMessageFormat\(callback: AsyncCallback\<string\>\): void
 
-Obtains the SMS format supported by the IMS. This API uses an asynchronous callback to return the result.
+Obtains the SMS format supported by the IMS, for example, **3gpp**, **3gpp2**, or **unknown**. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2377,7 +2389,7 @@ Provides the callback for the SMS message sending result. It consists of three p
 
 |   Name    | Type                           | Mandatory|                                               Description                                        |
 | ---------- | ------------------------------- | ---- | ----------------------------------------------------------------------------------------- |
-| isLastPart | boolean                         | No  | Whether this SMS message is the last part of a long SMS message. The value **true** indicates that this SMS message is the last part of a long SMS message, and value **false** indicates the opposite. The default value is **false**.|
+| isLastPart | boolean                         | Yes  | Whether this SMS message is the last part of a long SMS message. The value **true** indicates that this SMS message is the last part of a long SMS message, and value **false** indicates the opposite. The default value is **false**.|
 | result     | [SendSmsResult](#sendsmsresult) | Yes  | SMS message sending result.                                                                            |
 | url        | string                          | Yes  | URI for storing the sent SMS message.                                                                       |
 

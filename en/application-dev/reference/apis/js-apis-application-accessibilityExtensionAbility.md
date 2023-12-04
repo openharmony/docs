@@ -12,7 +12,7 @@ The **AccessibilityExtensionAbility** module provides accessibility extension ca
 import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
 ```
 
-## Attributes
+### Attributes
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -34,30 +34,138 @@ Defines an accessibility event.
 | target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | Yes  | No  | Target component where the event occurs.                                        |
 | timeStamp | number                                                       | Yes  | No  | Timestamp of the event.                                                |
 
+
+## AccessibilityElement<sup>10+</sup>
+
+Level-2 module of [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9).
+
+**Example**
+
+```ts
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+
+let AccessibilityElement: AccessibilityElement;
+```
+
+## ElementAttributeValues<sup>10+</sup>
+
+Level-2 module of [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues).
+
+**Example**
+
+```ts
+import { ElementAttributeValues } from '@ohos.application.AccessibilityExtensionAbility';
+
+let ElementAttributeValues: ElementAttributeValues;
+```
+
+## FocusDirection<sup>10+</sup>
+
+Enumerates the focus directions. It is a level-2 module of [FocusDirection](js-apis-inner-application-accessibilityExtensionContext.md#focusdirection).
+
+**Example**
+
+```ts
+import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
+
+let FocusDirection: FocusDirection;
+```
+
+## ElementAttributeKeys<sup>10+</sup>
+
+ElementAttributeKeys keyof [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)
+
+**Example**
+
+```ts
+import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
+
+let ElementAttributeKeys: ElementAttributeKeys;
+```
+
+## FocusType<sup>10+</sup>
+
+Enumerates the focus types. It is a level-2 module of [FocusType](js-apis-inner-application-accessibilityExtensionContext.md#focustype).
+
+**Example**
+
+```ts
+import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
+
+let FocusType: FocusType;
+```
+
+## WindowType <sup>10+</sup>
+
+Enumerates the window types. It is a level-2 module of [WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype).
+
+**Example**
+
+```ts
+import { WindowType } from '@ohos.application.AccessibilityExtensionAbility';
+
+let WindowType: WindowType;
+```
+
+## Rect<sup>10+</sup>
+
+Defines a rectangle. It is a level-2 module of [Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect).
+
+**Example**
+
+```ts
+import { Rect } from '@ohos.application.AccessibilityExtensionAbility';
+
+let Rect: Rect;
+```
+
 ## GestureType
 
 Enumerates gesture types.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name           | Description                 |
-| ------------- | ------------------- |
-| left          | Left gesture. String type.    |
-| leftThenRight | Left-then-right gesture. String type.|
-| leftThenUp    | Left-then-up gesture. String type.|
-| leftThenDown  | Left-then-down gesture. String type.|
-| right         | Right gesture. String type.    |
-| rightThenLeft | Right-then-left gesture. String type.|
-| rightThenUp   | Right-then-up gesture. String type.|
-| rightThenDown | Right-then-down gesture. String type.|
-| up            | Up gesture. String type.    |
-| upThenLeft    | Up-then-left gesture. String type.|
-| upThenRight   | Up-then-right gesture. String type.|
-| upThenDown    | Up-then-down gesture. String type.|
-| down          | Down gesture. String type.    |
-| downThenLeft  | Down-then-left gesture. String type.|
-| downThenRight | Down-then-right gesture. String type.|
-| downThenUp    | Down-then-up gesture. String type.|
+| Name           | Type           | Description                 |
+| ------------- | ------------- | ------------------- |
+| left          | string          | Left gesture.    |
+| leftThenRight | string          | Left-then-right gesture.|
+| leftThenUp    | string          | Left-then-up gesture.|
+| leftThenDown  | string          | Left-then-down gesture.|
+| right         | string          | Right gesture.    |
+| rightThenLeft | string          | Right-then-left gesture.|
+| rightThenUp   | string          | Right-then-up gesture.|
+| rightThenDown | string          | Right-then-down gesture.|
+| up            | string          | Up gesture.    |
+| upThenLeft    | string          | Up-then-left gesture.|
+| upThenRight   | string          | Up-then-right gesture.|
+| upThenDown    | string          | Up-then-down gesture.|
+| down          | string          | Down gesture.    |
+| downThenLeft  | string          | Down-then-left gesture.|
+| downThenRight | string          | Down-then-right gesture.|
+| downThenUp    | string          | Down-then-up gesture.|
+| twoFingerSingleTap<sup>11+</sup>    | string          | Two-finger tap gesture.|
+| twoFingerDoubleTap<sup>11+</sup>    | string          | Two-finger double-tap gesture.|
+| twoFingerDoubleTapAndHold<sup>11+</sup>    | string          | Two-finger double-tap and press-and-hold gesture.|
+| twoFingerTripleTap<sup>11+</sup>    | string          | Two-finger triple-tap gesture.|
+| twoFingerTripleTapAndHold<sup>11+</sup>    | string          | Two-finger triple-tap and press-and-hold gesture.|
+| threeFingerSingleTap<sup>11+</sup>    | string          | Three-finger tap gesture.|
+| threeFingerDoubleTap<sup>11+</sup>    | string          | Three-finger double-tap gesture.|
+| threeFingerDoubleTapAndHold<sup>11+</sup>    | string          | Three-finger double-tap and press-and-hold gesture.|
+| threeFingerTripleTap<sup>11+</sup>    | string          | Three-finger triple-tap gesture.|
+| threeFingerTripleTapAndHold<sup>11+</sup>    | string          | Three-finger triple-tap and press-and-hold gesture.|
+| fourFingerSingleTap<sup>11+</sup>    | string          | Four-finger tap gesture.|
+| fourFingerDoubleTap<sup>11+</sup>    | string          | Four-finger double-tap gesture.|
+| fourFingerDoubleTapAndHold<sup>11+</sup>    | string          | Four-finger double-tap and press-and-hold gesture.|
+| fourFingerTripleTap<sup>11+</sup>    | string          | Four-finger triple-tap gesture.|
+| fourFingerTripleTapAndHold<sup>11+</sup>    | string          | Four-finger triple-tap and press-and-hold gesture.|
+| threeFingerSwiperUp<sup>11+</sup>    | string          | Three-finger swipe-up gesture.|
+| threeFingerSwiperDown<sup>11+</sup>    | string          | Three-finger swipe-down gesture.|
+| threeFingerSwiperLeft<sup>11+</sup>    | string          | Three-finger swipe-left gesture.|
+| threeFingerSwiperRight<sup>11+</sup>    | string          | Three-finger swipe-right gesture.|
+| fourFingerSwiperUp<sup>11+</sup>    | string          | Four-finger swipe-up gesture.|
+| fourFingerSwiperDown<sup>11+</sup>    | string          | Four-finger swipe-down gesture.|
+| fourFingerSwiperLeft<sup>11+</sup>    | string          | Four-finger swipe-left gesture.|
+| fourFingerSwiperRight<sup>11+</sup>    | string          | Four-finger swipe-right gesture.|
 
 ## PageUpdateType
 
@@ -65,10 +173,10 @@ Enumerates the page update types. This API is not supported currently.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name               | Description              |
-| ----------------- | ---------------- |
-| pageContentUpdate | Update of the page content. String type.|
-| pageStateUpdate   | Update of the page status. String type.|
+| Name               | Type               | Description              |
+| ----------------- | ----------------- | ---------------- |
+| pageContentUpdate | string | Update of the page content.|
+| pageStateUpdate   | string | Update of the page status.|
 
 ## TouchGuideType
 
@@ -76,10 +184,10 @@ Enumerates the touch guide event types.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name        | Description                 |
-| ---------- | ------------------- |
-| touchBegin | Start of touch in touch guide mode. String type.|
-| touchEnd   | End of touch in touch guide mode. String type.|
+| Name        | Type               | Description                 |
+| ---------- | ---------- | ------------------- |
+| touchBegin | string | Start of touch in touch guide mode.|
+| touchEnd   | string | End of touch in touch guide mode.|
 
 ## AccessibilityExtensionAbility.onConnect
 
@@ -95,9 +203,9 @@ Called when the **AccessibilityExtensionAbility** is enabled and connected to th
 import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
 
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
-    onConnect(): void {
-        console.log('AxExtensionAbility onConnect');
-    }
+  onConnect(): void {
+    console.log('AxExtensionAbility onConnect');
+  }
 }
 ```
 
@@ -115,9 +223,9 @@ Called when the **AccessibilityExtensionAbility** is disabled and disconnected f
 import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
 
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
-    onDisconnect(): void {
-        console.log('AxExtensionAbility onDisconnect');
-    }
+  onDisconnect(): void {
+    console.log('AxExtensionAbility onDisconnect');
+  }
 }
 ```
 
@@ -141,12 +249,12 @@ Called when an event that matches the specified bundle and event type occurs. In
 import AccessibilityExtensionAbility , { AccessibilityEvent } from '@ohos.application.AccessibilityExtensionAbility';
 
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
-    onAccessibilityEvent(event: AccessibilityEvent): void {
-        console.log('AxExtensionAbility onAccessibilityEvent');
-        if (event.eventType === 'click') {
-            console.log('AxExtensionAbility onAccessibilityEvent: click');
-        }
+  onAccessibilityEvent(event: AccessibilityEvent): void {
+    console.log('AxExtensionAbility onAccessibilityEvent');
+    if (event.eventType === 'click') {
+      console.log('AxExtensionAbility onAccessibilityEvent: click');
     }
+  }
 }
 ```
 
@@ -162,7 +270,7 @@ Called when a physical key is pressed. In this API, you can determine whether to
 
 | Name     | Type                                      | Mandatory  | Description                     |
 | -------- | ---------------------------------------- | ---- | ----------------------- |
-| keyEvent | [KeyEvent](js-apis-keyevent.md#KeyEvent) | Yes   | Key event. If **true** is returned, the key is intercepted.|
+| keyEvent | [KeyEvent](js-apis-keyevent.md#keyevent) | Yes   | Key event. If **true** is returned, the key is intercepted.|
 
 **Example**
 
@@ -171,13 +279,13 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 import { KeyEvent } from '@ohos.multimodalInput.keyEvent';
 
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
-    onKeyEvent(keyEvent: KeyEvent): boolean {
-        console.log('AxExtensionAbility onKeyEvent');
-        if (keyEvent.key.code === 16) {
-            console.log('AxExtensionAbility onKeyEvent: intercept 16');
-            return true;
-        }
-        return false;
+  onKeyEvent(keyEvent: KeyEvent): boolean {
+    console.log('AxExtensionAbility onKeyEvent');
+    if (keyEvent.key.code === 16) {
+      console.log('AxExtensionAbility onKeyEvent: intercept 16');
+      return true;
     }
+    return false;
+  }
 }
 ```
