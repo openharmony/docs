@@ -45,6 +45,8 @@ Text(content?: string | Resource)
 >  **说明：**
 >
 >  不支持Text内同时存在文本内容和Span子组件。如果同时存在，只显示Span内的内容。
+>
+>  通用属性中形状裁剪[clip](ts-universal-attributes-sharp-clipping.md#clip)属性，在Text组件中，默认值为true，即文本内容大于组件内容时，文本会截断。如果需要显示超出的部分，可以设置clip为false。
 
 ## 事件
 
