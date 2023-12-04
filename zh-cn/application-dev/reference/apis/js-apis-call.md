@@ -6183,7 +6183,7 @@ call.cancelCallUpgrade(1).then(() => {
 
 controlCamera\(callId: number, cameraId: string\): Promise\<void\>
 
-设置使用的相机进行视频通话，cameraId为空表示关闭相机。使用Promise异步回调。
+设置使用指定的相机进行视频通话，cameraId为空表示关闭相机。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -6336,7 +6336,7 @@ call.setDisplayWindow(1, "surfaceId1").then(() => {
 
 setDeviceDirection\(callId: number, deviceDirection: DeviceDirection\): Promise\<void\>
 
-设置画面方向。使用Promise异步回调。
+设置视频通话画面显示方向为设备方向。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -6349,13 +6349,13 @@ setDeviceDirection\(callId: number, deviceDirection: DeviceDirection\): Promise\
 | 参数名 | 类型                                             | 必填 | 说明           |
 | ------ | ----------------------------------------------- | ---- | -------------- |
 | callId | number                                          | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。|
-| deviceDirection  | [DeviceDirection](#devicedirection11) | 是   | 画面方向。     |
+| deviceDirection  | [DeviceDirection](#devicedirection11) | 是   | 画面方向。该参数根据设备方向获取     |
 
 **返回值：**
 
 | 类型                | 说明                        |
 | ------------------- | --------------------------- |
-| Promise&lt;void&gt; | 以Promise形式异步返回设置画面方向结果。 |
+| Promise&lt;void&gt; | 以Promise形式异步返回设置视频通话画面方向结果。 |
 
 **错误码：**
 
@@ -6387,7 +6387,7 @@ call.setDeviceDirection(1, 0).then(() => {
 
 setPausePicture\(callId: number\): Promise\<void\>
 
-设置画面暂停图片。使用Promise异步回调。
+设置视频通话过程中画面暂停时的图片。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -6832,9 +6832,9 @@ call.off('cameraCapabilitiesChange', (data: call.CameraCapabilities) => {
 | 名称    |                    类型                             | 必填 | 说明           |
 | ------- | -------------------------------------------------- | ---- | ------------- |
 | callId  | number                                             | 是   | 呼叫Id。         |
-| requestResult  | [VideoRequestResultType](#videorequestresulttype11)| 否   | 通话结束提示信息。|
 | isRequestInfo| boolean                                       | 是   | 该信息是否为请求信息。|
 | imsCallMode  | [ImsCallMode](#imscallmode8)                  | 是   | 视频通话模式。    |
+| requestResult  | [VideoRequestResultType](#videorequestresulttype11)| 否   | 通话结束提示信息。|
 
 ## CallSessionEvent<sup>11+</sup>
 
