@@ -2335,7 +2335,7 @@ audioVolumeManager.getVolumeGroupInfos(audio.LOCAL_NETWORK_ID, (err: BusinessErr
 
 getVolumeGroupInfos(networkId: string\): Promise<VolumeGroupInfos\>
 
-获取音量组信息列表，使用promise方式异步返回结果。
+获取音量组信息列表，使用Promise方式异步返回结果。
 
 **系统接口：** 该接口为系统接口
 
@@ -2440,7 +2440,7 @@ audioVolumeManager.getVolumeGroupManager(groupId, (err: BusinessError, value: au
 
 getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 
-获取音频组管理器，使用promise方式异步返回结果。
+获取音频组管理器，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -5090,7 +5090,7 @@ async function getPreferOutputDevice() {
 ### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
 getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&lt;AudioDeviceDescriptors&gt;
 
-根据音频信息，返回优先级最高的输出设备，使用promise方式异步返回结果。
+根据音频信息，返回优先级最高的输出设备，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -5294,7 +5294,7 @@ audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo, (err: B
 
 getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo): Promise&lt;AudioDeviceDescriptors&gt;
 
-根据音频信息，返回优先级最高的输入设备，使用promise方式异步返回结果。
+根据音频信息，返回优先级最高的输入设备，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
