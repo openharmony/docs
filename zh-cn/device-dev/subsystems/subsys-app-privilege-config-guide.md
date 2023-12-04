@@ -138,11 +138,26 @@ result:
 生效时间: Tue Feb 02 20:19:31 CST 2021, 失效时间: Fri Dec 31 20:19:31 CST 2049
 证书指纹:
          SHA1: E3:E8:7C:65:B8:1D:02:52:24:6A:06:A4:3C:4A:02:39:19:92:D1:F5
-         SHA256: 8E:93:86:3F:C3:2E:E2:38:06:0B:F6:9A:9B:37:E2:60:8F:FF:B2:1F:93:C8:62:DD:51:1C:BA:C9:F3:00:24:B5 // 证书指纹，去掉冒号，最终结果为8E93863FC32EE238060BF69A9B37E2608FFFB21F93C862DD511CBAC9F30024B5
+         SHA256: 8E:93:86:3F:C3:2E:E2:38:06:0B:F6:9A:9B:37:E2:60:8F:FF:B2:1F:93:C8:62:DD:51:1C:BA:C9:F3:00:24:B5
+         // 证书指纹，去掉冒号，最终结果为8E93863FC32EE238060BF69A9B37E2608FFFB21F93C862DD511CBAC9F30024B5
 ...
 ```
 
+**步骤四、将运行结果中的SHA256证书指纹去掉冒号后填入install_list_capability.json中的app_signature字段。**
 
+示例
+
+```json
+{
+    "install_list": [
+        {
+            ...
+            "app_signature": ["8E93863FC32EE238060BF69A9B37E2608FFFB21F93C862DD511CBAC9F30024B5"],
+            ...
+        }
+    ]
+}
+   ```
 
 #### install_list.json中配置
 
