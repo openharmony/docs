@@ -99,6 +99,9 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 | ---------------------------------------- | ---------------------------------------- |
 | onChange(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void) | Tab页签切换后触发的事件。<br>-&nbsp;index：当前显示的index索引，索引从0开始计算。<br/>触发该事件的条件：<br/>1、TabContent支持滑动时，组件触发滑动时触发。<br/>2、通过[控制器](#tabscontroller)API接口调用。<br/>3、通过[状态变量](../../quick-start/arkts-state.md)构造的属性值进行修改。<br/>4、通过页签处点击触发。 |
 | onTabBarClick(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>10+</sup> | Tab页签点击后触发的事件。<br>-&nbsp;index：被点击的index索引，索引从0开始计算。<br/>触发该事件的条件：<br/>通过页签处点击触发。 |
+| onAnimationStart<sup>11+</sup>(handler: (index: number, targetIndex: number, event: [TabsAnimationEvent](ts-types.md#TabsAnimationEvent)) => void) | 切换动画开始时触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;targetIndex:切换动画目标元素的索引。<br/>-&nbsp;event:动画相关信息，包括主轴方向上当前显示元素和目标元素相对Tabs起始位置的位移，以及离手速度。<br/>**说明：** <br/>参数为动画开始前的index值（不是最终结束动画的index值）。 |
+| onAnimationEnd<sup>11+</sup>(handler: (index: number, event: [TabsAnimationEvent](ts-types.md#TabsAnimationEvent)) => void) | 切换动画结束时触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;event:动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。<br/>**说明：** <br/>当Tabs切换动效结束时触发，包括动画过程中手势中断。参数为动画结束后的index值。 |
+| onGestureSwipe<sup>11+</sup>(handler: (index: number, event: [TabsAnimationEvent](ts-types.md#TabsAnimationEvent)) => void) | 在页面跟手滑动过程中，逐帧触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;event:动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
 
 ## TabsController
 

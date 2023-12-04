@@ -332,6 +332,17 @@ Swiper组件动画相关信息集合。
 | currentOffset | number | Swiper当前显示元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0.|
 | targetOffset | number | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0.|
 | velocity | number | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0.|
+
+## TabsAnimationEvent<sup>11+</sup>
+
+Tabs组件动画相关信息集合。
+
+| 名称            | 类型定义                   | 描述                                       |
+| ------------- | ---------------------- | ---------------------------------------- |
+| currentOffset | number | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0.|
+| targetOffset | number | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0.|
+| velocity | number | Tabs离手动画开始时的离手速度。单位VP/S，默认值为0.|
+
 ## SafeAreaType<sup>10+</sup>
 
 扩展安全区域的枚举类型。
