@@ -306,7 +306,7 @@ async function persistPermissionExample() {
     let policies: Array<fileShare.PolicyInfo> = [policyInfo];
     fileShare.persistPermission(policies).then(() => {
       console.info("persistPermission successfully");
-    }).catch((err: BusinessError) => {
+    }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
       console.info("persistPermission failed with error message: " + err.message + ", error code: " + err.code);
       if (err.code == 13900001) {
         console.log("error code : " + JSON.stringify(err.data[0].code));
@@ -375,7 +375,7 @@ async function revokePermissionExample() {
     let policies: Array<fileShare.PolicyInfo> = [policyInfo];
     fileShare.revokePermission(policies).then(() => {
       console.info("revokePermission successfully");
-    }).catch((err: BusinessError) => {
+    }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
       console.info("revokePermission failed with error message: " + err.message + ", error code: " + err.code);
       if (err.code == 13900001) {
         console.log("error code : " + JSON.stringify(err.data[0].code));
@@ -442,7 +442,7 @@ async function activatePermissionExample() {
     let policies: Array<fileShare.PolicyInfo> = [policyInfo];
     fileShare.activatePermission(policies).then(() => {
       console.info("activatePermission successfully");
-    }).catch((err: BusinessError) => {
+    }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
       console.info("activatePermission failed with error message: " + err.message + ", error code: " + err.code);
       if (err.code == 13900001) {
         console.log("error code : " + JSON.stringify(err.data[0].code));
@@ -508,7 +508,7 @@ async function deactivatePermissionExample() {
     let policies: Array<fileShare.PolicyInfo> = [policyInfo];
     fileShare.deactivatePermission(policies).then(() => {
       console.info("deactivatePermission successfully");
-    }).catch((err: BusinessError) => {
+    }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
       console.info("deactivatePermission failed with error message: " + err.message + ", error code: " + err.code);
       if (err.code == 13900001) {
         console.log("error code : " + JSON.stringify(err.data[0].code));
