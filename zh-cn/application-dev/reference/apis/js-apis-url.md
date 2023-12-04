@@ -156,7 +156,7 @@ forEach(callbackFn: (value: string, key: string, searchParams: this) => void, th
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| searchParams | Object | 是 | 当前调用forEach方法的实例对象。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值是本对象。 |
 
 **表1** callbackFn的参数说明
 
@@ -164,7 +164,7 @@ forEach(callbackFn: (value: string, key: string, searchParams: this) => void, th
 | -------- | -------- | -------- | -------- |
 | value | string | 是 | 当前遍历到的键值。 |
 | key | string | 是 | 当前遍历到的键名。 |
-| searchParams | [URLSearchParams](#urlsearchparamsdeprecated) | 是 | 当前调用forEach方法的实例对象。 |
+| searchParams | Object | 是 | 当前调用forEach方法的实例对象。 |
 
 **示例：**
 
