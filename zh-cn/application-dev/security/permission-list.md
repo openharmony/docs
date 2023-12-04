@@ -3262,6 +3262,18 @@
 
 **起始版本**：11
 
+## ohos.permission.INTERCEPT_INPUT_EVENT
+
+允许系统应用拦截输入事件。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.MANAGE_TRUSTED_RING
 
 允许使用关键资产信任环服务提供的能力。
