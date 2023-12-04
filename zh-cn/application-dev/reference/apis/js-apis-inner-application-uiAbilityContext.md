@@ -34,9 +34,9 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 启动Ability（callback形式）。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
  - 跨任务链启动时，如果需要跨任务链进行返回，需要参考[Want](js-apis-app-ability-want.md)中的parameter参数用法。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -112,9 +112,9 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 启动Ability（callback形式）。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -195,9 +195,9 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 启动Ability（promise形式）。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -285,9 +285,9 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
  - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -367,9 +367,9 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
  - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -455,9 +455,9 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
  - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -544,9 +544,9 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 启动一个Ability并在该Ability销毁时返回执行结果（callback形式）。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 > **说明：**
 > 
@@ -635,9 +635,9 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 启动一个Ability并在该Ability销毁时返回执行结果（callback形式）。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 > **说明：**
 > 
@@ -730,9 +730,9 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 启动一个Ability并在该Ability销毁时返回执行结果（promise形式）。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 > **说明：**
 > 
@@ -1969,9 +1969,9 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **需要权限：** ohos.permission.ABILITY_BACKGROUND_COMMUNICATION
 
@@ -2101,9 +2101,9 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 根据want和accountId启动Ability（callback形式）。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 > **说明：**
 > 
@@ -2190,9 +2190,9 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 根据want、accountId及startOptions启动Ability（callback形式）。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 > **说明：**
 > 
@@ -2284,9 +2284,9 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 根据want、accountId和startOptions启动Ability（Promise形式）。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 > **说明：**
 > 
@@ -2903,9 +2903,9 @@ startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2982,9 +2982,9 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt
 当开发者需要携带启动参数时可以选择此API。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -3067,9 +3067,9 @@ startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 当开发者期望启动结果以Promise形式返回时可以选择此API。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -3150,10 +3150,10 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 根据accountId对指定的Ability进行call调用，并且可以使用返回的Caller通信接口与被调用方进行通信。
 
 使用规则：
- - 跨用户场景下，Call调用目标Ability时，调用方应用需同时申请`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`与`ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS`权限
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 跨用户场景下，Call调用目标Ability时，调用方应用需同时申请`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`与`ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS`权限。
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **需要权限**: ohos.permission.ABILITY_BACKGROUND_COMMUNICATION, ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -3245,9 +3245,9 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -3317,9 +3317,9 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -3393,9 +3393,9 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用Promise异步回调。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -3543,7 +3543,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
 | wantParam | {[key: string]: any} | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
-| callback | AsyncCallback<void> | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
 
@@ -3600,7 +3600,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
