@@ -158,7 +158,7 @@ scrollBy(dx: Length, dy: Length): void
 
 >  **说明：**
 >
->  仅支持Scroll、ScrollBar、Grid、List组件。
+>   支持Scroll、List、Grid、WaterFlow组件。
 
 **参数：**
 
