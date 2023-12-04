@@ -521,7 +521,8 @@
         - [图像变换(Native)](media/image-transformation-native.md)
         - [PixelMap数据处理(Native)](media/image-pixelmap-operation-native.md)
         - [位图操作](media/image-pixelmap-operation.md)
-      - [图片编码](media/image-encoding.md)
+      - [图片编码(ArkTS)](media/image-encoding.md)
+      - [图片编码(Native)](media/image-encoding-native.md)
       - [图片工具](media/image-tool.md)
   - 安全
     - 访问控制
