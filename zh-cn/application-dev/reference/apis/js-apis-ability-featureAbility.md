@@ -94,6 +94,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 | ---------------------------------------- | ------- |
 | Promise\<number> | Promise形式返回启动Ability结果。 |
 
+
 **示例：**
 
 ```ts

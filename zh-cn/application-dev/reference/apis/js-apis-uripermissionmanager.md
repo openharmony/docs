@@ -47,7 +47,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 | 16000059 | Invalid URI type. |
 | 16000060 | Sandbox application can not grant URI permission. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
@@ -109,7 +109,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   | 16000059 | Invalid URI type. |
   | 16000060 | Sandbox application can not grant URI permission. |
 
-  以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+  以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
@@ -166,7 +166,7 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
   | 16000050 | Internal error. |
   | 16000059 | Invalid URI type. |
 
-  以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+  以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
@@ -216,7 +216,7 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
   | 16000050 | Internal error. |
   | 16000059 | Invalid URI type. |
 
-  以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+  以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
