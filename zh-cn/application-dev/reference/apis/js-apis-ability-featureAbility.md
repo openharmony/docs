@@ -35,7 +35,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是    | 表示被启动的Ability。 |
-| callback  | AsyncCallback\<number>                   | 是    | 以callback的形式返回启动Ability的结果。      |
+| callback  | AsyncCallback\<number>                   | 是    | 回调函数。当启动Ability成功，err为undefined，data为0表示启动成功，data为其他表示启动失败；否则为错误对象。      |
 
 **示例：**
 
@@ -88,7 +88,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<number> | Promise形式返回启动Ability结果。 |
+| Promise\<number> | Promise对象。返回0表示启动成功，返回其他表示启动失败。 |
 
 **示例：**
 
@@ -165,7 +165,7 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是    | 表示被启动的Ability。 |
-| callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | 是    | 以callback的形式返回启动Ability结果。      |
+| callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | 是    | 回调函数。当启动Ability成功，err为undefined，data为ability的启动结果；否则为错误对象。      |
 
 **示例：**
 
@@ -219,7 +219,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Promise形式返回启动Ability结果。 |
+| Promise\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Promise对象，返回启动Ability的结果。 |
 
 **示例：**
 
@@ -270,7 +270,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 | 参数名        | 类型                              | 必填   | 说明             |
 | --------- | ------------------------------- | ---- | -------------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是    | 表示停止Ability之后返回的结果。 |
-| callback  | AsyncCallback\<void>            | 是    | 以callback的形式返回停止Ability结果。      |
+| callback  | AsyncCallback\<void>            | 是    | 回调函数。当停止当前Ability成功，err为undefined，否则为错误对象。      |
 
 **示例：**
 
@@ -327,7 +327,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 | 类型             | 说明              |
 | -------------- | --------------- |
-| Promise\<void> | 以Promise形式返回停止当前Ability结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -518,7 +518,7 @@ terminateSelf(): Promise\<void>
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<void> | 以Promise的形式返回停止当前Ability结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -643,7 +643,7 @@ disconnectAbility(connection: number): Promise\<void>
 
 | 类型             | 说明              |
 | -------------- | --------------- |
-| Promise\<void> | 以Promise形式返回断开连接结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 

@@ -1,6 +1,6 @@
 # AbilityMonitor
 
-AbilityMonitor模块提供匹配满足指定条件的受监视能力对象的方法的能力，最近匹配的ability对象将保存在AbilityMonitor对象中。
+AbilityMonitor模块提供匹配满足指定条件的受监视能力对象的方法的能力，最近匹配的ability对象将保存在[AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)对象中。
 
 > **说明：**
 > 
