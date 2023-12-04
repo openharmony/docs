@@ -541,7 +541,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
 | wantParam | {[key: string]: any} | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
-| callback | AsyncCallback<void> | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
 
@@ -576,7 +576,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
