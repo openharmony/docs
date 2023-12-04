@@ -36,7 +36,7 @@ onConnect(want: Want): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 当前ability的Want类型信息，包括ability名称、bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 当前ability的Want类型信息，包括ability名称、bundle名称等。 |
 
 **示例：**
 
@@ -63,7 +63,7 @@ onDisconnect(want: Want): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 |
 
 
 **示例：**

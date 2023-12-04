@@ -86,7 +86,7 @@ Unlocks the screen. This API uses an asynchronous callback to return the result.
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | --------------------- | ---- | ------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the screen is unlocked successfully, and **false** means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the screen is unlocked successfully, and **false** means that screen unlocked is canceled.|
 
 **Error codes**
 
@@ -95,6 +95,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 13200002  | the screenlock management service is abnormal.         |
+| 13200003  | illegal use.         |
 
 **Example**
 
@@ -110,6 +111,10 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
   });
   ```
 
+> **NOTE**
+>
+> The error code **13200003 illegal use** is added since API version 11.
+
 ## screenLock.unlock<sup>9+</sup>
 
 unlock(): Promise&lt;boolean&gt;
@@ -124,7 +129,7 @@ Unlocks the screen. This API uses a promise to return the result.
 
 | Type               | Description                                                        |
 | ------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the screen is unlocked successfully, and **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the screen is unlocked successfully, and **false** means that screen unlocked is canceled.|
 
 **Error codes**
 
@@ -133,6 +138,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 13200002  | the screenlock management service is abnormal.         |
+| 13200003  | illegal use.         |
 
 **Example**
 
@@ -145,6 +151,10 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
     console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
   });
   ```
+
+> **NOTE**
+>
+> The error code **13200003 illegal use** is added since API version 11.
 
 ## screenLock.lock<sup>9+</sup>
 

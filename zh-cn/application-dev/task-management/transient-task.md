@@ -42,49 +42,53 @@
 
 1. 导入模块。
    
-  ```ts
-  import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-  import { BusinessError } from '@ohos.base';
-  ```
+   ```ts
+   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+   import { BusinessError } from '@ohos.base';
+   ```
 
 2. 申请短时任务并实现回调。
    
-  ```ts
-  let id: number;         // 申请短时任务ID
-  let delayTime: number;  // 本次申请短时任务的剩余时间
+   ```ts
+   let id: number;         // 申请短时任务ID
+   let delayTime: number;  // 本次申请短时任务的剩余时间
 
-  // 申请短时任务
-  function requestSuspendDelay() {
-    let myReason = 'test requestSuspendDelay';   // 申请原因
-    let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-      // 回调函数。应用申请的短时任务即将超时，通过此函数回调应用，执行一些清理和标注工作，并取消短时任务
-      console.info('Succeeded in requesting suspend delay.');
-      backgroundTaskManager.cancelSuspendDelay(id);
-    })
-    id = delayInfo.requestId;
-    delayTime = delayInfo.actualDelayTime;
-  }
-  ```
+   // 申请短时任务
+   function requestSuspendDelay() {
+     let myReason = 'test requestSuspendDelay';   // 申请原因
+     let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+       // 回调函数。应用申请的短时任务即将超时，通过此函数回调应用，执行一些清理和标注工作，并取消短时任务
+       console.info('suspend delay task will timeout');
+       backgroundTaskManager.cancelSuspendDelay(id);
+     })
+     id = delayInfo.requestId;
+     delayTime = delayInfo.actualDelayTime;
+   }
+   ```
 
 3. 获取短时任务剩余时间。查询本次短时任务的剩余时间，用以判断是否继续运行其他业务，例如应用有两个小任务，在执行完第一个小任务后，可以判断本次短时任务是否还有剩余时间来决定是否执行第二个小任务。
    
-  ```ts
-  async function getRemainingDelayTime() {
-    backgroundTaskManager.getRemainingDelayTime(id).then((res: number) => {
-      console.info('Succeeded in getting remaining delay time.');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to get remaining delay time. Code: ${err.code}, message: ${err.message}`);
-    })
-  }
-  ```
+   ```ts
+   let id: number; // 申请短时任务ID
+
+   async function getRemainingDelayTime() {
+     backgroundTaskManager.getRemainingDelayTime(id).then((res: number) => {
+       console.info('Succeeded in getting remaining delay time.');
+     }).catch((err: BusinessError) => {
+       console.error(`Failed to get remaining delay time. Code: ${err.code}, message: ${err.message}`);
+     })
+   }
+   ```
 
 4. 取消短时任务。
    
-  ```ts
-  function cancelSuspendDelay() {
-    backgroundTaskManager.cancelSuspendDelay(id);
-  }
-  ```
+   ```ts
+   let id: number; // 申请短时任务ID
+  
+   function cancelSuspendDelay() {
+     backgroundTaskManager.cancelSuspendDelay(id);
+   }
+   ```
 
 ## 相关实例
 

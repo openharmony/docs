@@ -5,6 +5,8 @@
 
 扩展外设主要是指通过物理接口连入主设备的配件设备，如手写板、打印机和扫描仪等。应用通过扩展外设管理能力可以查询绑定扩展外设，从而使用扩展外设驱动提供的定制能力来使用扩展外设，如打印机的配套软件。
 
+支持PC, Tablet等可接入扩展外设的设备，暂不支持手机。
+
 
 ## 接口说明
 
@@ -36,8 +38,8 @@
 
   let matchDevice : deviceManager.USBDevice | null = null;
   try {
-    let devices : Array<Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
-    for (let item : Device of devices : Array<Device>) {
+    let devices : Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
+    for (let item of devices) {
       let device : deviceManager.USBDevice = item as deviceManager.USBDevice;
       // 通过productId和vendorId来匹配要使用的USB设备
       if (device.productId == 1234 && device.vendorId === 2345) {
@@ -52,7 +54,6 @@
   }
   if (!matchDevice) {
     console.error('No match device');
-    return;
   }
   ```
 
@@ -61,40 +62,50 @@
   ```ts
   import deviceManager from '@ohos.driver.deviceManager';
   import { BusinessError } from '@ohos.base';
+  import rpc from '@ohos.rpc'
 
-  let remoteObject : IRemoteObject;
+  let remoteObject : rpc.IRemoteObject;
   try {
-    deviceManager.bindDevice(matchDevice.deviceId, (error : BusinessError, data : MessageSequence) => {
+    // 12345678为示例deviceId，应用开发时可以通过queryDevices查询到相应设备的deviceId作为入参
+    deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
       console.error('Device is disconnected');
-    }, (error : BusinessError, data : MessageSequence) => {
-      if (error : BusinessError) {
+    }, (error : BusinessError, data : {
+        deviceId : number;
+        remote : rpc.IRemoteObject;
+    }) => {
+      if (error) {
         console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
         return;
       }
-      console.info('bindDevice success');
-      remoteObject = data.remote;
+    console.info('bindDevice success');
+    remoteObject = data.remote;
     });
   } catch (error) {
     let errCode = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`bindDevice fail. Code is ${errCode}, message is ${message}`);
   }
+  if (!remoteObject) {
+    console.error('Bind device failed');
+  }
    ```
 
 3. 绑定成功后使用设备驱动能力。
 
   ```ts
-  import deviceManager from '@ohos.driver.deviceManager';
   import { BusinessError } from '@ohos.base';
+  import rpc from '@ohos.rpc'
 
-  let option : MessageOption = new rpc.MessageOption();
-  let data : MessageSequence = rpc.MessageSequence.create();
-  let reply : MessageSequence = rpc.MessageSequence.create();
+  let option : rpc.MessageOption = new rpc.MessageOption();
+  let data : rpc.MessageSequence = rpc.MessageSequence.create();
+  let reply : rpc.MessageSequence = rpc.MessageSequence.create();
   data.writeString('hello');
   let code = 1;
+  // remoteObject应用可以通过绑定设备获取到
+  let remoteObject : rpc.IRemoteObject;
   // code和data内容取决于驱动提供的接口
-  remoteObject.sendMessageRequest(code, data, reply, option)
-    .then((result : number) => {
+  remoteObject.sendMessageRequest(code : number, data : rpc.MessageSequence, reply : rpc.MessageSequence, option : rpc.MessageOption)
+    .then(() => {
       console.info('sendMessageRequest finish.');
     }).catch((error : BusinessError) => {
       let errCode = (error as BusinessError).code;
@@ -109,18 +120,19 @@
   import { BusinessError } from '@ohos.base';
 
   try {
-    deviceManager.unbindDevice(matchDevice.deviceId, (error : BusinessError, data : MessageSequence) => {
-      if (error : BusinessError) {
+    // 12345678为示例deviceId，应用开发时可以通过queryDevices查询到相应设备的deviceId作为入参
+    deviceManager.unbindDevice(12345678, (error : BusinessError, data : number) => {
+      if (error) {
         let errCode = (error as BusinessError).code;
         let message = (error as BusinessError).message;
         console.error(`unbindDevice async fail. Code is ${errCode}, message is ${message}`);
         return;
       }
-      console.info('unbindDevice success');
-    });
+      console.info(`unbindDevice success`);
+  });
   } catch (error) {
     let errCode = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.error('unbindDevice fail. Code is ${errCode}, message is ${message}');
+    console.error(`unbindDevice fail. Code is ${errCode}, message is ${message}`);
   }
   ```

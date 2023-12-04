@@ -26,7 +26,7 @@ getRequestInfo(want: Want): RequestInfo
 
 | 参数名 | 类型   | 必填 | 说明                        |
 | ---- | ------ | ---- | --------------------------- |
-| want  | [Want](js-apis-application-want.md) | 是   | 表示发起方请求弹框时传入的want信息。 |
+| want  | [Want](js-apis-app-ability-want.md) | 是   | 表示发起方请求弹框时传入的want信息。 |
 
 **返回值：**
 
@@ -86,7 +86,7 @@ getRequestInfo(want: Want): RequestInfo
         try {
           let requestInfo = dialogRequest.getRequestInfo(want);
         } catch (err) {
-          console.error('getRequestInfo err= ${JSON.stringify(err)}');
+          console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
         }
       }
 
@@ -117,7 +117,7 @@ getRequestCallback(want: Want): RequestCallback
 
 | 参数名 | 类型   | 必填 | 说明                        |
 | ---- | ------ | ---- | --------------------------- |
-| want  | [Want](js-apis-application-want.md) | 是   | 表示发起方请求弹框时传入的want信息。 |
+| want  | [Want](js-apis-app-ability-want.md) | 是   | 表示发起方请求弹框时传入的want信息。 |
 
 **返回值：**
 
@@ -177,7 +177,7 @@ getRequestCallback(want: Want): RequestCallback
        try {
             let requestCallback = dialogRequest.getRequestCallback(want);
         } catch(err) {
-            console.error('getRequestInfo err= ${JSON.stringify(err)}');
+            console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
         }
      }
 
@@ -288,14 +288,14 @@ getRequestCallback(want: Want): RequestCallback
                 console.info('Dialog Window Need Destroy.');
               }, (err: BusinessError) => {
                   if (err.code) {
-                      console.error('Failed to bind dialog target. Cause: ${JSON.stringify(err)}');
+                      console.error(`Failed to bind dialog target. Cause: ${JSON.stringify(err)}`);
                       return;
                   }
                   console.info('Succeeded in binding dialog target.');
               });
             });
         } catch(err) {
-            console.error('getRequestInfo err= ${JSON.stringify(err)}');
+            console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
         }
      }
 
@@ -337,7 +337,7 @@ getRequestCallback(want: Want): RequestCallback
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | result | [ResultCode](#resultcode) | 是 | 是 | 表示结果码。 |
-| want<sup>10+</sup> | [ResultWant](js-apis-application-want.md)  | 是 | 是 | 表示Want类型信息，如ability名称，包名等。 |
+| want<sup>10+</sup> | [ResultWant](js-apis-app-ability-want.md)  | 是 | 是 | 表示Want类型信息，如ability名称，包名等。 |
 
 ## RequestCallback
 
@@ -425,7 +425,7 @@ setRequestResult(result: RequestResult): void;
             };
             requestCallback.setRequestResult(myResult);
         } catch(err) {
-            console.error('getRequestInfo err= ${JSON.stringify(err)}');
+            console.error(`getRequestInfo err= ${JSON.stringify(err)}`);
         }
      }
 

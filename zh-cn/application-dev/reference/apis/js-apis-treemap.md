@@ -1,4 +1,4 @@
-# @ohos.util.TreeMap (非线性容器TreeMap) 
+# @ohos.util.TreeMap (非线性容器TreeMap)
 
 TreeMap可用于存储具有关联关系的key-value键值对集合，存储元素中key值唯一，每个key对应一个value。
 
@@ -22,7 +22,7 @@ TreeMap和[HashMap](js-apis-hashmap.md)相比，HashMap依据键的hashCode存�
 ## 导入模块
 
 ```ts
-import TreeMap from '@ohos.util.TreeMap';  
+import TreeMap from '@ohos.util.TreeMap';
 ```
 
 ## TreeMap
@@ -683,6 +683,10 @@ while(!t.done) {
 
 返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
 
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -701,7 +705,7 @@ while(!t.done) {
 **示例：**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 
@@ -711,6 +715,7 @@ let t: IteratorResult<Object[]> = it.next();
 while(!t.done) {
   console.log("TreeMap" + t.value);
   t = it.next()
+}
 
 // 使用方法二：
 let iter = treeMap[Symbol.iterator]();

@@ -78,7 +78,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```ts
   let path = pathDir + '/test';
-  let uri = fileuri.getUriFromPath(filePath);  // file://<packageName>/data/storage/el2/base/haps/entry/files/test
+  let uri = fileuri.getUriFromPath(path);  // file://<packageName>/data/storage/el2/base/haps/entry/files/test
   let fileUriObject = new fileuri.FileUri(uri);
   console.info("The name of FileUri is " + fileUriObject.name);
   ```
@@ -135,6 +135,6 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 **Example**
 
   ```ts
-  let filePath = pathDir + "test.txt";
+  let filePath = pathDir + "/test";
   let uri = fileuri.getUriFromPath(filePath);
   ```

@@ -60,7 +60,7 @@ enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| restart | [RestartFlag](#apprecoveryrestartflag) | 否 | 枚举类型，发生对应故障时是否重启，默认为不重启。 |
+| restart | [RestartFlag](#apprecoveryrestartflag) | 否 | 枚举类型，发生对应故障时是否重启，默认为重启。 |
 | saveOccasion | [SaveOccasionFlag](#apprecoverysaveoccasionflag) | 否 | 枚举类型，状态保存时机，默认为故障时保存。 |
 | saveMode | [SaveModeFlag](#apprecoverysavemodeflag) | 否 | 枚举类型，状态保存方式， 默认为文件缓存。 |
 
@@ -115,7 +115,7 @@ let observer: errorManager.ErrorObserver = {
 try {
     errorManager.on('error', observer);
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
 }
 ```
 
@@ -151,7 +151,7 @@ let observer: errorManager.ErrorObserver = {
 try {
     errorManager.on('error', observer);
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
 }
 ```
 
@@ -169,7 +169,7 @@ saveAppState(context?: UIAbilityContext): boolean;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)| 否 | UIAbility上下文环境。 |
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)| 否 | 需要保存状态的UIAbility所对应的context。 |
 
 **返回值：**
 
@@ -193,7 +193,7 @@ let observer: errorManager.ErrorObserver = {
 try {
     errorManager.on('error', observer);
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
 }
 ```
 
@@ -211,7 +211,7 @@ setRestartWant(want: Want): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)| 是 | 通过设置Want中"bundleName"和"abilityName"字段来指定恢复重启的Ability。 |
+| want | [Want](js-apis-app-ability-want.md)| 是 | 通过设置Want中"bundleName"和"abilityName"字段来指定恢复重启的Ability。 |
 
 **示例：**
 

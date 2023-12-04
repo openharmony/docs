@@ -1,6 +1,6 @@
 # 快速修复命令行调试开发指导
 
-当前阶段，OpenHarmony为开发者提供了命令行的调试开发工具可供使用。比如，包名为com.ohos.quickfix的示例应用，版本号为1000000。该应用的当前版本运行中有某问题需要修复，此时，开发者可参考如下指导使用快速修复能力解决应用问题。
+系统为开发者提供了命令行的调试开发工具可供使用。比如，包名为com.ohos.quickfix的示例应用，版本号为1000000。该应用的当前版本运行中有某问题需要修复，此时，开发者可参考如下指导使用快速修复能力解决应用问题。
 
 ## 编写配置文件patch.json
 
@@ -21,7 +21,7 @@
             "default",
             "tablet"
         ],
-        "originalModuleHash" : "11223344556677889900" // 待修复hap包的sha256值
+        "originalModuleHash" : "11223344556677889900" // 待修复HAP包的SHA256值，可采用SHA256生成器自行生成
     }
 }
 ```
@@ -59,7 +59,7 @@ $ java -jar app_packing_tool.jar --mode hqf --json-path patch.json --lib-path li
 
 ## 快速修复包的签名
 
-签名与hap签名相同，将上述生成的entry-default-unsigned.hqf包，通过[签名工具](../security/hapsigntool-guidelines.md)进行签名。可以使用本地OpenHarmony SDK路径的`toolchains`文件夹下的`hap-sign-tool.jar`，命令如下：
+签名与HAP签名相同，将上述生成的entry-default-unsigned.hqf包，通过[签名工具](../security/hapsigntool-guidelines.md)进行签名。可以使用本地OpenHarmony SDK路径的`toolchains`文件夹下的`hap-sign-tool.jar`，命令如下：
 
 ```shell
 $ java -jar hap-sign-tool.jar sign-app -keyAlias "OpenHarmony Application Release" -signAlg "SHA256withECDSA" -mode "localSign" -appCertFile "OpenHarmonyApplication.pem" -profileFile "ohos_provision_release.p7b" -inFile "entry-default-unsigned.hqf" -keystoreFile "OpenHarmony.p12" -outFile "entry-signed-release.hqf" -keyPwd "123456" -keystorePwd "123456"

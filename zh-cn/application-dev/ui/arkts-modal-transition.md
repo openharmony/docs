@@ -4,16 +4,15 @@
 模态转场是新的界面覆盖在旧的界面上，旧的界面不消失的一种转场方式。
 
 
-  **表1** 模态转场接口
-
-| 接口 | 说明 | 使用场景 |
-| -------- | -------- | -------- |
-| [bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md) | 弹出全屏的模态组件。 | 用于自定义全屏的模态展示界面，结合转场动画和共享元素动画可实现复杂转场动画效果，如缩略图片点击后查看大图。 |
-| [bindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md) | 弹出半模态组件。 | 用于半模态展示界面，如分享框。 |
-| [bindMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) | 弹出菜单，点击组件后弹出。 | 需要Menu菜单的场景，如一般应用的“+”号键。 |
-| [bindContextMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) | 弹出菜单，长按或者右键点击后弹出。 | 长按浮起效果，一般结合拖拽框架使用，如桌面图标长按浮起。 |
-| [bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md) | 弹出Popup弹框。 | Popup弹框场景，如点击后对某个组件进行临时说明。 |
-| if | 通过if新增或删除组件。 | 用来在某个状态下临时显示一个界面，这种方式的返回导航需要由开发者监听接口实现。 |
+**表1** 模态转场接口
+| 接口                                       | 说明                | 使用场景                                     |
+| ---------------------------------------- | ----------------- | ---------------------------------------- |
+| [bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md) | 弹出全屏的模态组件。        | 用于自定义全屏的模态展示界面，结合转场动画和共享元素动画可实现复杂转场动画效果，如缩略图片点击后查看大图。 |
+| [bindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md) | 弹出半模态组件。          | 用于半模态展示界面，如分享框。                          |
+| [bindMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) | 弹出菜单，点击组件后弹出。     | 需要Menu菜单的场景，如一般应用的“+”号键。                 |
+| [bindContextMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) | 弹出菜单，长按或者右键点击后弹出。 | 长按浮起效果，一般结合拖拽框架使用，如桌面图标长按浮起。             |
+| [bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md) | 弹出Popup弹框。        | Popup弹框场景，如点击后对某个组件进行临时说明。               |
+| if                                       | 通过if新增或删除组件。      | 用来在某个状态下临时显示一个界面，这种方式的返回导航需要由开发者监听接口实现。  |
 
 
 ## 使用bindContentCover构建全屏模态转场效果
@@ -23,7 +22,7 @@
 1. 定义全屏模态转场效果[bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md)。
 
 2. 定义模态展示界面。
-  
+
    ```ts
    // 通过@Builder构建模态展示界面
    @Builder MyBuilder() {
@@ -36,22 +35,22 @@
    ```
 
 3. 通过模态接口调起模态展示界面，通过转场动画或者共享元素动画去实现对应的动画效果。
-  
+
    ```ts
-   class PresentTmp{
-     isPresent: boolean = false;
-     set(){
-       this.isPresent = !this.isPresent;
-     }
-   }
+    class PresentTmp{
+      isPresent: boolean = false;
+      set(){
+        this.isPresent = !this.isPresent;
+      }
+    }
    // 模态转场控制变量
    @State isPresent: boolean = false;
-   
+
    Button('Click to present model view')
      // 通过选定的模态接口，绑定模态展示界面，ModalTransition是内置的ContentCover转场动画类型，这里选择None代表系统不加默认动画
-     .bindContentCover(this.isPresent, this.MyBuilder, ModalTransition.None)
+     .bindContentCover(this.isPresent, this.MyBuilder, ModalTransition.NONE)
      .onClick(() => {
-       // 改变状态变量，让模态界面显示
+       // 改变状态变量，显示模态界面
        let setPre:PresentTmp = new PresentTmp()
        setPre.set()
      })
@@ -117,10 +116,10 @@ struct BindContentCoverDemo {
       }
       // 第三步：通过模态接口调起模态展示界面，通过转场动画或者共享元素动画去实现对应的动画效果
       .onClick(() => {
-        // 改变状态变量，让模态界面显示
+        // 改变状态变量，显示模态界面
         this.isPresent = !this.isPresent;
       })
-      // 通过选定的模态接口，绑定模态展示界面，ModalTransition是内置的ContentCover转场动画类型，这里选择None代表系统不加默认动画
+      // 通过选定的模态接口，绑定模态展示界面，ModalTransition是内置的ContentCover转场动画类型，这里选择DEFAULT代表设置上下切换动画效果。
       .bindContentCover(this.isPresent, this.MyBuilder(), ModalTransition.DEFAULT)
       .justifyContent(FlexAlign.Center)
       .backgroundColor(0XF56C6C)
@@ -172,7 +171,7 @@ struct BindSheetDemo {
         .margin(10)
         .fontSize(20)
         .onClick(() => {
-          this.sheetHeight = null;
+          this.sheetHeight = -1;
         })
 
       Button("close dragbar")
@@ -395,7 +394,7 @@ struct BindPopupDemo {
 
 ## 使用if实现模态转场
 
-上述模态转场接口需要绑定到其他组件上，通过监听状态变量改变调起模态界面。实际上，也可以通过if范式，通过新增/删除组件，实现模态转场效果。
+上述模态转场接口需要绑定到其他组件上，通过监听状态变量改变调起模态界面。同时，也可以通过if范式，通过新增/删除组件实现模态转场效果。
 
 完整示例和代码如下。
 

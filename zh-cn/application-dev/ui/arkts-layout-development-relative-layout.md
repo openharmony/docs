@@ -32,7 +32,7 @@
 >
 >在使用锚点时要注意子元素的相对位置关系，避免出现错位或遮挡的情况。
 
-- RelativeContainer父组件为锚点，__container__代表父容器的id。
+- RelativeContainer父组件为锚点，__container__代表父容器的ID。
 
   ```ts
   let AlignRus:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
@@ -90,7 +90,7 @@
 
 ## 场景实例
 
-相对布局内的子元素相对灵活，只要在RelativeContainer容器内，均可以通过alignRules进行相应相应的位置移动。
+相对布局内的子元素相对灵活，只要在RelativeContainer容器内，均可以通过alignRules进行相应的位置移动。
 
 
 ```ts

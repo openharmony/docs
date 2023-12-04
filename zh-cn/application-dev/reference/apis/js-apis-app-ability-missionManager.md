@@ -18,7 +18,7 @@ ohos.permission.MANAGE_MISSIONS
 
 ## missionManager.on
 
-on(type:'mission', listener: MissionListener): number;
+on(type:'mission', listener: MissionListener): number
 
 注册系统任务状态监听器。
 
@@ -32,6 +32,7 @@ on(type:'mission', listener: MissionListener): number;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
+  | type     | string   | 是       | 监听的任务名称。 |
   | listener | [MissionListener](js-apis-inner-application-missionListener.md) | 是 | 系统任务监听器。 |
 
 **返回值：**
@@ -100,10 +101,10 @@ export default class EntryAbility extends UIAbility {
 
         windowStage.loadContent('pages/index', (err, data) => {
             if (err.code) {
-                console.error('Failed to load the content. Cause: ${JSON.stringify(err)}');
+                console.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`);
                 return;
             }
-            console.info('Succeeded in loading the content. Data: ${JSON.stringify(data)}');
+            console.info(`Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
         });
     }
 };
@@ -112,7 +113,7 @@ export default class EntryAbility extends UIAbility {
 
 ## missionManager.off
 
-off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): void;
+off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): void
 
 解注册任务状态监听器。
 
@@ -126,6 +127,7 @@ off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): v
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
+  | type     | string   | 是       | 取消监听的任务名称。 |
   | listenerId | number | 是 | 系统任务状态监器法的index值，和监听器一一对应，由on方法返回。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
@@ -197,10 +199,10 @@ export default class EntryAbility extends UIAbility {
 
         windowStage.loadContent('pages/index', (err: BusinessError, data) => {
             if (err.code) {
-                console.error('Failed to load the content. Cause: ${JSON.stringify(err)}');
+                console.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`);
                 return;
             }
-            console.info('Succeeded in loading the content. Data: ${JSON.stringify(data)}');
+            console.info(`Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
         });
     }
 };
@@ -209,7 +211,7 @@ export default class EntryAbility extends UIAbility {
 
 ## missionManager.off
 
-off(type: 'mission', listenerId: number): Promise&lt;void&gt;;
+off(type: 'mission', listenerId: number): Promise&lt;void&gt;
 
 解注册任务状态监听，以promise方式返回执行结果。
 
@@ -223,6 +225,7 @@ off(type: 'mission', listenerId: number): Promise&lt;void&gt;;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
+  | type     | string   | 是       | 取消监听的任务名称。 |
   | listenerId | number | 是 | 系统任务状态监听器的index值，和监听器一一对应，由on方法返回。 |
 
 **返回值：**
@@ -299,10 +302,10 @@ export default class EntryAbility extends UIAbility {
 
         windowStage.loadContent('pages/index', (err: BusinessError, data) => {
             if (err.code) {
-                console.error('Failed to load the content. Cause: ${JSON.stringify(err)}');
+                console.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`);
                 return;
             }
-            console.info('Succeeded in loading the content. Data: ${JSON.stringify(data)}');
+            console.info(`Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
         });
     }
 };
@@ -310,7 +313,7 @@ export default class EntryAbility extends UIAbility {
 
 ## missionManager.getMissionInfo
 
-getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void;
+getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void
 
 获取任务信息，以异步回调的方式返回任务信息。
 
@@ -366,7 +369,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 
 ## missionManager.getMissionInfo
 
-getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
+getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;
 
 获取任务信息，以promise方式返回任务信息。
 
@@ -398,18 +401,18 @@ import { BusinessError } from '@ohos.base';
 let testMissionId = 1;
 try {
     missionManager.getMissionInfo('', testMissionId).then((data) => {
-        console.info('getMissionInfo successfully. Data: ${JSON.stringify(data)}');
+        console.info(`getMissionInfo successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error('getMissionInfo failed. Cause: ${error.message}');
+        console.error(`getMissionInfo failed. Cause: ${error.message}`);
     });
 } catch (error) {
-    console.error('getMissionInfo failed. Cause: ${error.message}');
+    console.error(`getMissionInfo failed. Cause: ${error.message}`);
 }
 ```
 
 ## missionManager.getMissionInfos
 
-getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Array&lt;MissionInfo&gt;&gt;): void;
+getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Array&lt;MissionInfo&gt;&gt;): void
 
 获取所有任务信息，以回调函数的方式返回任务信息数组。
 
@@ -436,10 +439,10 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error) {
-          console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
       } else {
-        console.log('size = ${missions.length}');
-        console.log('missions = ${JSON.stringify(missions)}');
+        console.log(`size = ${missions.length}`);
+        console.log(`missions = ${JSON.stringify(missions)}`);
       }
     });
   } catch (paramError) {
@@ -452,7 +455,7 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
 
 ## missionManager.getMissionInfos
 
-getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionInfo&gt;&gt;;
+getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionInfo&gt;&gt;
 
 获取所有任务信息，以promise的方式返回任务信息数组。
 
@@ -494,7 +497,7 @@ try {
 
 ## missionManager.getMissionSnapShot
 
-getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionSnapshot&gt;): void;
+getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionSnapshot&gt;): void
 
 获取任务快照，以回调函数的方式返回快照内容。
 
@@ -520,19 +523,19 @@ let testMissionId = 2;
 try {
     missionManager.getMissionSnapShot('', testMissionId, (err, data) => {
         if (err) {
-            console.error('getMissionSnapShot failed: ${err.message}');
+            console.error(`getMissionSnapShot failed: ${err.message}`);
         } else {
-            console.info('getMissionSnapShot successfully: ${JSON.stringify(data)}');
+            console.info(`getMissionSnapShot successfully: ${JSON.stringify(data)}`);
         }
     });
 } catch (err) {
-    console.error('getMissionSnapShot failed: ${err.message}');
+    console.error(`getMissionSnapShot failed: ${err.message}`);
 }
 ```
 
 ## missionManager.getMissionSnapShot
 
-getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnapshot&gt;;
+getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnapshot&gt;
 
 获取任务快照，以promise的方式返回快照内容。
 
@@ -563,18 +566,18 @@ import { BusinessError } from '@ohos.base';
 let testMissionId = 2;
 try {
     missionManager.getMissionSnapShot('', testMissionId).then((data) => {
-        console.info('getMissionSnapShot successfully. Data: ${JSON.stringify(data)}');
+        console.info(`getMissionSnapShot successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error('getMissionSnapShot failed. Cause: ${error.message}');
+        console.error(`getMissionSnapShot failed. Cause: ${error.message}`);
     });
 } catch (error) {
-    console.error('getMissionSnapShot failed. Cause: ${error.message}');
+    console.error(`getMissionSnapShot failed. Cause: ${error.message}`);
 }
 ```
 
 ## missionManager.getLowResolutionMissionSnapShot
 
-getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback\<MissionSnapshot>): void;
+getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback\<MissionSnapshot>): void
 
 获取任务低分辨率快照。
 
@@ -600,19 +603,19 @@ let testMissionId = 2;
 try {
     missionManager.getLowResolutionMissionSnapShot('', testMissionId, (err, data) => {
         if (err) {
-            console.error('getLowResolutionMissionSnapShot failed: ${err.message}');
+            console.error(`getLowResolutionMissionSnapShot failed: ${err.message}`);
         } else {
-            console.info('getLowResolutionMissionSnapShot successfully: ${JSON.stringify(data)}');
+            console.info(`getLowResolutionMissionSnapShot successfully: ${JSON.stringify(data)}`);
         }
     });
 } catch (err) {
-    console.error('getLowResolutionMissionSnapShot failed: ${err.message}');
+    console.error(`getLowResolutionMissionSnapShot failed: ${err.message}`);
 }
 ```
 
 ## missionManager.getLowResolutionMissionSnapShot
 
-getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<MissionSnapshot>;
+getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<MissionSnapshot>
 
 获取任务低分辨率快照。
 
@@ -644,19 +647,19 @@ import { BusinessError } from '@ohos.base';
 let testMissionId = 2;
 try {
     missionManager.getLowResolutionMissionSnapShot('', testMissionId).then((data) => {
-        console.info('getLowResolutionMissionSnapShot successfully. Data: ${JSON.stringify(data)}');
+        console.info(`getLowResolutionMissionSnapShot successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error('getLowResolutionMissionSnapShot failed. Cause: ${error.message}');
+        console.error(`getLowResolutionMissionSnapShot failed. Cause: ${error.message}`);
     });
 } catch (error) {
-    console.error('getLowResolutionMissionSnapShot failed. Cause: ${error.message}');
+    console.error(`getLowResolutionMissionSnapShot failed. Cause: ${error.message}`);
 }
 ```
 
 
 ## missionManager.lockMission
 
-lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 锁定指定任务id的任务，以回调函数的方式返回。
 
@@ -690,19 +693,19 @@ let testMissionId = 2;
 try {
     missionManager.lockMission(testMissionId, (err, data) => {
         if (err) {
-            console.error('lockMission failed: ${err.message}');
+            console.error(`lockMission failed: ${err.message}`);
         } else {
-            console.info('lockMission successfully: ${JSON.stringify(data)}');
+            console.info(`lockMission successfully: ${JSON.stringify(data)}`);
         }
     });
 } catch (err) {
-    console.error('lockMission failed: ${err.message}');
+    console.error(`lockMission failed: ${err.message}`);
 }
 ```
 
 ## missionManager.lockMission
 
-lockMission(missionId: number): Promise&lt;void&gt;;
+lockMission(missionId: number): Promise&lt;void&gt;
 
 锁定指定任务id的任务，以promise方式返回。
 
@@ -740,18 +743,18 @@ import { BusinessError } from '@ohos.base';
 let testMissionId = 2;
 try {
     missionManager.lockMission(testMissionId).then((data) => {
-        console.info('lockMission successfully. Data: ${JSON.stringify(data)}');
+        console.info(`lockMission successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error('lockMission failed. Cause: ${error.message}');
+        console.error(`lockMission failed. Cause: ${error.message}`);
     });
 } catch (error) {
-    console.error('lockMission failed. Cause: ${error.message}');
+    console.error(`lockMission failed. Cause: ${error.message}`);
 }
 ```
 
 ## missionManager.unlockMission
 
-unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 解锁指定任务id的任务，以回调函数的方式返回。
 
@@ -784,19 +787,19 @@ let testMissionId = 2;
 try {
     missionManager.unlockMission(testMissionId, (err, data) => {
         if (err) {
-            console.error('unlockMission failed: ${err.message}');
+            console.error(`unlockMission failed: ${err.message}`);
         } else {
-            console.info('unlockMission successfully: ${JSON.stringify(data)}');
+            console.info(`unlockMission successfully: ${JSON.stringify(data)}`);
         }
     });
 } catch (err) {
-    console.error('unlockMission failed: ${err.message}');
+    console.error(`unlockMission failed: ${err.message}`);
 }
 ```
 
 ## missionManager.unlockMission
 
-unlockMission(missionId: number): Promise&lt;void&gt;;
+unlockMission(missionId: number): Promise&lt;void&gt;
 
 解锁指定任务id的任务，以promise的方式返回。
 
@@ -835,18 +838,18 @@ import { BusinessError } from '@ohos.base';
 let testMissionId = 2;
 try {
     missionManager.unlockMission(testMissionId).then((data) => {
-        console.info('unlockMission successfully. Data: ${JSON.stringify(data)}');
+        console.info(`unlockMission successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error('unlockMission failed. Cause: ${error.message}');
+        console.error(`unlockMission failed. Cause: ${error.message}`);
     });
 } catch (error) {
-    console.error('unlockMission failed. Cause: ${error.message}');
+    console.error(`unlockMission failed. Cause: ${error.message}`);
 }
 ```
 
 ## missionManager.clearMission
 
-clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 清理指定任务id的任务，无论该任务是否被锁定，以回调函数的方式返回。
 
@@ -872,20 +875,20 @@ let testMissionId = 2;
 try {
     missionManager.clearMission(testMissionId, (err, data) => {
         if (err) {
-            console.error('clearMission failed: ${err.message}');
+            console.error(`clearMission failed: ${err.message}`);
         } else {
-            console.info('clearMission successfully: ${JSON.stringify(data)}');
+            console.info(`clearMission successfully: ${JSON.stringify(data)}`);
         }
     });
 } catch (err) {
-    console.error('clearMission failed: ${err.message}');
+    console.error(`clearMission failed: ${err.message}`);
 }
 ```
 
 
 ## missionManager.clearMission
 
-clearMission(missionId: number): Promise&lt;void&gt;;
+clearMission(missionId: number): Promise&lt;void&gt;
 
 清理指定任务id的任务，无论该任务是否被锁定，以promise的方式返回。
 
@@ -916,18 +919,18 @@ import { BusinessError } from '@ohos.base';
 let testMissionId = 2;
 try {
     missionManager.clearMission(testMissionId).then((data) => {
-        console.info('clearMission successfully. Data: ${JSON.stringify(data)}');
+        console.info(`clearMission successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error('clearMission failed. Cause: ${error.message}');
+        console.error(`clearMission failed. Cause: ${error.message}`);
     });
 } catch (error) {
-    console.error('clearMission failed. Cause: ${error.message}');
+    console.error(`clearMission failed. Cause: ${error.message}`);
 }
 ```
 
 ## missionManager.clearAllMissions
 
-clearAllMissions(callback: AsyncCallback&lt;void&gt;): void;
+clearAllMissions(callback: AsyncCallback&lt;void&gt;): void
 
 清理所有未锁定的任务，以回调函数的方式返回。
 
@@ -936,6 +939,12 @@ clearAllMissions(callback: AsyncCallback&lt;void&gt;): void;
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **示例：**
 
@@ -957,7 +966,7 @@ try {
 
 ## missionManager.clearAllMissions
 
-clearAllMissions(): Promise&lt;void&gt;;
+clearAllMissions(): Promise&lt;void&gt;
 
 清理所有未锁定的任务，以promise的方式返回。
 
@@ -981,18 +990,18 @@ import { BusinessError } from '@ohos.base';
 
 try {
     missionManager.clearAllMissions().then((data) => {
-        console.info('clearAllMissions successfully. Data: ${JSON.stringify(data)}');
+        console.info(`clearAllMissions successfully. Data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
-        console.error('clearAllMissions failed: ${err.message}');
+        console.error(`clearAllMissions failed: ${err.message}`);
     });
 } catch (err) {
-    console.error('clearAllMissions failed: ${err.message}');
+    console.error(`clearAllMissions failed: ${err.message}`);
 }
 ```
 
 ## missionManager.moveMissionToFront
 
-moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 把指定任务id的任务切到前台，以回调函数的方式返回。
 
@@ -1026,19 +1035,19 @@ let testMissionId = 2;
 try {
     missionManager.moveMissionToFront(testMissionId, (err, data) => {
         if (err) {
-            console.error('moveMissionToFront failed: ${err.message}');
+            console.error(`moveMissionToFront failed: ${err.message}`);
         } else {
-            console.info('moveMissionToFront successfully: ${JSON.stringify(data)}');
+            console.info(`moveMissionToFront successfully: ${JSON.stringify(data)}`);
         }
     });
 } catch (err) {
-    console.error('moveMissionToFront failed: ${err.message}');
+    console.error(`moveMissionToFront failed: ${err.message}`);
 }
 ```
 
 ## missionManager.moveMissionToFront
 
-moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 把指定任务id的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等，以回调函数的方式返回。
 
@@ -1073,19 +1082,19 @@ let testMissionId = 2;
 try {
     missionManager.moveMissionToFront(testMissionId, {windowMode : 101}, (err, data) => {
         if (err) {
-            console.error('moveMissionToFront failed: ${err.message}');
+            console.error(`moveMissionToFront failed: ${err.message}`);
         } else {
-            console.info('moveMissionToFront successfully: ${JSON.stringify(data)}');
+            console.info(`moveMissionToFront successfully: ${JSON.stringify(data)}`);
         }
     });
 } catch (err) {
-    console.error('moveMissionToFront failed: ${err.message}');
+    console.error(`moveMissionToFront failed: ${err.message}`);
 }
 ```
 
 ## missionManager.moveMissionToFront
 
-moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&gt;;
+moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&gt;
 
 把指定任务id的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等，以promise的方式返回。
 
@@ -1125,18 +1134,18 @@ import { BusinessError } from '@ohos.base';
 let testMissionId = 2;
 try {
     missionManager.moveMissionToFront(testMissionId).then((data) => {
-        console.info('moveMissionToFront successfully. Data: ${JSON.stringify(data)}');
+        console.info(`moveMissionToFront successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error('moveMissionToFront failed. Cause: ${error.message}');
+        console.error(`moveMissionToFront failed. Cause: ${error.message}`);
     });
 } catch (error) {
-    console.error('moveMissionToFront failed. Cause: ${error.message}');
+    console.error(`moveMissionToFront failed. Cause: ${error.message}`);
 }
 ```
 
 ## missionManager.moveMissionsToForeground<sup>10+</sup>
 
-moveMissionsToForeground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionsToForeground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 将指定任务批量切到前台，以回调函数的方式返回。
 
@@ -1186,9 +1195,9 @@ try {
         }
         missionManager.moveMissionsToForeground(toShows, (err, data) => {
             if (err) {
-                console.error('moveMissionsToForeground failed: ${err.message}');
+                console.error(`moveMissionsToForeground failed: ${err.message}`);
             } else {
-                console.info('moveMissionsToForeground successfully: ${JSON.stringify(data)}');
+                console.info(`moveMissionsToForeground successfully: ${JSON.stringify(data)}`);
             }
         });
     });
@@ -1202,7 +1211,7 @@ try {
 
 ## missionManager.moveMissionsToForeground<sup>10+</sup>
 
-moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission: number, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission: number, callback: AsyncCallback&lt;void&gt;): void
 
 将指定任务批量切换到前台，并将任务ID等于topMission的任务移动到最顶层，以回调函数的方式返回。
 
@@ -1253,9 +1262,9 @@ try {
         }
         missionManager.moveMissionsToForeground(toShows, toShows[0], (err, data) => {
             if (err) {
-                console.error('moveMissionsToForeground failed: ${err.message}');
+                console.error(`moveMissionsToForeground failed: ${err.message}`);
             } else {
-                console.info('moveMissionsToForeground successfully: ${JSON.stringify(data)}');
+                console.info(`moveMissionsToForeground successfully: ${JSON.stringify(data)}`);
             }
         });
     });
@@ -1269,7 +1278,7 @@ try {
 
 ## missionManager.moveMissionsToForeground<sup>10+</sup>
 
-moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): Promise&lt;void&gt;；
+moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): Promise&lt;void&gt;
 
 将指定任务批量切到前台，并将任务ID等于topMission的任务移动到最顶层，以promise的方式返回。
 
@@ -1337,7 +1346,7 @@ try {
 
 ## missionManager.moveMissionsToBackground<sup>10+</sup>
 
-moveMissionsToBackground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void;
+moveMissionsToBackground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 将指定任务批量切到后台，以回调函数的方式返回, 返回的结果任务ID按被隐藏时的任务层级排序。
 
@@ -1384,9 +1393,9 @@ try {
         }
         missionManager.moveMissionsToBackground(toHides, (err, data) => {
             if (err) {
-                console.error('moveMissionsToBackground failed: ${err.message}');
+                console.error(`moveMissionsToBackground failed: ${err.message}`);
             } else {
-                console.info('moveMissionsToBackground successfully: ${JSON.stringify(data)}');
+                console.info(`moveMissionsToBackground successfully: ${JSON.stringify(data)}`);
             }
         });
     });
@@ -1399,7 +1408,7 @@ try {
 
 ## missionManager.moveMissionsToBackground<sup>10+</sup>
 
-moveMissionsToBackground(missionIds : Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;;
+moveMissionsToBackground(missionIds : Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 将指定任务批量切到后台，以promise的方式返回, 返回的结果按被隐藏时的任务层级排序。
 

@@ -190,31 +190,33 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
          ├── -outFil       # 验证结果文件（包含验证结果和profile内容），json格式，可选项；如果不填，则直接输出到控制台
      ```
 
-11. hap应用包签名。
+11. hap应用包和调试工具签名。
 
       ```
-      sign-app : hap应用包签名 
+      sign-app : hap应用包和调试工具签名 
           ├── -mode          # 签名模式，必填项，包括localSign，remoteSign，remoteResign
           ├── -keyAlias      # 密钥别名，必填项
           ├──-keyPwd         # 密钥口令，可选项
           ├── -appCertFile   # 应用签名证书文件（证书链，顺序为最终实体证书-中间CA证书-根证书），必填项
           ├── -profileFile   # 签名后的profile文件名，p7b格式，必填项
           ├── -profileSigned # 指示profile文件是否带有签名，1表示有签名，0表示没有签名，默认为1。可选项
-          ├── -inForm        # 输入的原始文件的格式，zip格式或bin格式，默认zip格式，可选项
+          ├── -inForm        # 输入的原始文件的格式，zip格式、elf格式或bin格式，默认zip格式，可选项
           ├── -inFile        # 输入的原始APP包文件，hap格式或bin格式，必填项
           ├── -signAlg       # 签名算法，必填项，包括SHA256withECDSA / SHA384withECDSA
           ├── -keystoreFile  # 密钥库文件，localSign模式时为必填项，JKS或P12格式
           ├── -keystorePwd   # 密钥库口令，可选项
           ├── -outFile       # 输出签名后的包文件，必填项
+          ├── -signcode      # 是否启用代码签名，1表示开启代码签名，0表示关闭代码签名，默认为1。可选项
       ```
 
-12. hap应用包文件验签。
+12. hap应用包和调试工具文件验签。
 
       ```
-      verify-app : hap应用包文件验签
+      verify-app : hap应用包和调试工具文件验签
           ├── -inFile          # 已签名的应用包文件，hap格式或bin格式，必填项
           ├── -outCertchain    # 签名的证书链文件，必填项
           ├── -outProfile      # 应用包中的profile文件，必填项
+          ├── -inForm          # 输入的原始文件的格式，zip格式、elf格式或bin格式，默认zip格式，可选项
       ```
 
 ### 签名步骤

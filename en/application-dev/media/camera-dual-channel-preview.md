@@ -90,7 +90,7 @@ The figure below shows the recommended API calling process of the dual-channel p
      let camerasDevices: Array<camera.CameraDevice> = cameraManager.getSupportedCameras(); // Obtain the supported camera devices.
    
      // Obtain the profile object.
-     let profiles: camera.CameraOutputCapability = await cameraManager.getSupportedOutputCapability(camerasDevices[0]); // Obtain the profiles of the camera.
+     let profiles: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(camerasDevices[0]); // Obtain the profiles of the camera.
      let previewProfiles: Array<camera.Profile> = profiles.previewProfiles;
    
      // Preview stream 1.

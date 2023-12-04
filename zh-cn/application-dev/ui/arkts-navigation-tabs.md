@@ -27,7 +27,7 @@ Tabs使用花括号包裹TabContent，如图2，其中TabContent显示相应的�
 ![tabs-tabscontent](figures/tabs-tabscontent.png)
 
 
-每一个TabContent对应的内容需要有一个页签，可以通过TabContent的tabBar属性进行配置。在如下TabContent组件上设置属性tabBar，可以设置其对应页签中的内容，tabBar作为内容的页签。
+每一个TabContent对应的内容需要有一个页签，可以通过TabContent的tabBar属性进行配置。在如下TabContent组件上设置tabBar属性，可以设置其对应页签中的内容，tabBar作为内容的页签。
 
 
 
@@ -78,7 +78,7 @@ Tabs() {
 ![底部导航](figures/底部导航.gif)
 
 
-导航栏位置使用Tabs的参数barPosition进行设置，默认情况下，导航栏位于顶部，参数默认值为Start。设置为底部导航需要在Tabs传递参数，设置barPosition为End。
+导航栏位置使用Tabs的barPosition参数进行设置。默认情况下，导航栏位于顶部，此时，barPosition为BarPosition.Start。设置为底部导航时，需要将barPosition设置为BarPosition.End。
 
 
 ```ts
@@ -96,8 +96,6 @@ Tabs({ barPosition: BarPosition.End }) {
   **图4** 顶部导航栏  
 
 ![顶部导航](figures/顶部导航.gif)
-
-Tabs组件默认的barPosition参数为Start，即顶部导航模式。
 
 
 ```ts
@@ -118,7 +116,7 @@ Tabs({ barPosition: BarPosition.Start }) {
 ![侧边导航](figures/侧边导航.png)
 
 
-实现侧边导航栏需要设置Tabs的属性vertical为true。在底部导航和顶部导航实现中，其默认值为false，表明内容页和导航栏垂直方向排列。
+实现侧边导航栏需要将Tabs的vertical属性设置为true，vertical默认值为false，表明内容页和导航栏垂直方向排列。
 
 
 
@@ -183,7 +181,7 @@ Tabs({ barPosition: BarPosition.End }) {
 ![固定导航](figures/固定导航.gif)
 
 
-Tabs的属性barMode是控制导航栏是否可以滚动，默认值为Fixed。
+Tabs的barMode属性用于控制导航栏是否可以滚动，默认值为BarMode.Fixed。
 
 
 
@@ -206,7 +204,7 @@ Tabs({ barPosition: BarPosition.End }) {
 ![滚动导航](figures/滚动导航.gif)
 
 
-滚动导航栏需要设置Tabs组件的barMode属性，默认情况下其值为Fixed，表示为固定导航栏，设置为Scrollable即可设置为可滚动导航栏。
+滚动导航栏需要设置Tabs组件的barMode属性，默认值为BarMode.Fixed表示为固定导航栏，BarMode.Scrollable表示可滚动导航栏。
 
 
 
@@ -224,7 +222,7 @@ Tabs({ barPosition: BarPosition.Start }) {
 对于底部导航栏，一般作为应用主页面功能区分，为了更好的用户体验，会组合文字以及对应语义图标表示页签内容，这种情况下，需要自定义导航页签的样式。
 
 
-  **图9** 自定义导航栏图  
+  **图9** 自定义导航栏  
 
 ![custom-navigation-bar](figures/custom-navigation-bar.png)
 
@@ -339,7 +337,7 @@ Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
 
 ## 滑动切换导航栏
 
-在不使用自定义导航栏的情况下，Tabs默认会实现tabBar与TabContent的切换联动。但在使用了自定义导航栏后，使用TabsController可以实现点击页签与页面内容的联动，但不能实现滑动页面时，页面内容对应页签的联动。即用户在使用滑动屏幕切换页面内容时，页签栏需要同步切换至内容对应的页签。
+在不使用自定义导航栏的情况下，Tabs默认会实现tabBar与TabContent的切换联动。但在使用了自定义导航栏后，使用TabsController可以实现点击页签与页面内容的联动，但不能实现滑动页面时，页面内容对应页签的联动。即用户在滑动屏幕切换页面内容时，页签栏需要同步切换至内容对应的页签。
 
 
   **图11** 滑动切换时页签内容不联动  
@@ -347,7 +345,7 @@ Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
 ![最终效果11](figures/最终效果11.gif)
 
 
-此时需要使用Tabs提供的onChange事件方法，监听索引index的变化，并将其当前活跃的index值传递给currentIndex，实现页签内容的切换。
+此时需要使用Tabs提供的onChange事件方法，监听索引index的变化，并将当前活跃的index值传递给currentIndex，实现页签内容的切换。
 
 
 

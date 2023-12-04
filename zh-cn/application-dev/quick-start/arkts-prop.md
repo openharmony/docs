@@ -18,13 +18,22 @@
 - 当数据源更改时，\@Prop装饰的变量都会更新，并且会覆盖本地所有更改。因此，数值的同步是父组件到子组件（所属组件)，子组件数值的变化不会同步到父组件。
 
 
+
+## 限制条件
+
+- \@Prop修饰复杂类型时是深拷贝，在拷贝的过程中除了基本类型、Map、Set、Date、Array外，都会丢失类型。
+
+- \@Prop装饰器不能在\@Entry装饰的自定义组件中使用。
+
+
 ## 装饰器使用规则说明
 
 | \@Prop变量装饰器 | 说明                                       |
 | ----------- | ---------------------------------------- |
 | 装饰器参数       | 无                                        |
 | 同步类型        | 单向同步：对父组件状态变量值的修改，将同步给子组件\@Prop装饰的变量，子组件\@Prop变量的修改不会同步到父组件的状态变量上。嵌套类型的场景请参考[观察变化](#观察变化)。 |
-| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>必须指定类型。<br/>**说明** ：<br/>不支持Length、ResourceStr、ResourceColor类型，Length，ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。<br/>在父组件中，传递给\@Prop装饰的值不能为undefined或者null，反例如下所示。<br/>CompA&nbsp;({&nbsp;aProp:&nbsp;undefined&nbsp;})<br/>CompA&nbsp;({&nbsp;aProp:&nbsp;null&nbsp;})<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)；<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 |
+| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，支持undefined和null。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Prop支持联合类型实例](#prop支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Prop a : string \| undefined = undefiend`是推荐的，不推荐`@Prop a: string = undefined`。 |
+|<br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。 <br/>必须指定类型。<br/>**说明** ：<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)；<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 ||
 | 嵌套传递层数        | 在组件复用场景，建议@Prop深度嵌套数据不要超过5层，嵌套太多会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题，此时更建议使用[\@ObjectLink](arkts-observed-and-objectlink.md)。如果子组件的数据不想同步回父组件，建议采用@Reusable中的aboutToReuse，实现父组件向子组件传递数据，具体用例请参考[组件复用场景](arkts-state-management-best-practices.md)。 |
 | 被装饰变量的初始值   | 允许本地初始化。                                 |
 
@@ -89,7 +98,7 @@ this.title.value = 'Hi'
 this.title.a.value = 'ArkUi' 
 ```
 
-对于嵌套场景，如果class是被\@Observed装饰的，可以观察到class属性的变化，示例请参考[@Prop嵌套场景](#@Prop嵌套场景)。
+对于嵌套场景，如果class是被\@Observed装饰的，可以观察到class属性的变化，示例请参考[@Prop嵌套场景](#prop嵌套场景)。
 
 当装饰的类型是数组的时候，可以观察到数组本身的赋值、添加、删除和更新。
 
@@ -288,7 +297,7 @@ struct Index {
         Divider().height(5)
 
         ForEach(this.arr, 
-          (item: void) => {
+          (item: number) => {
             Child({value: item})
           }, 
           (item: string) => item.toString()
@@ -309,7 +318,7 @@ struct Index {
 初始渲染创建6个子组件实例，每个\@Prop装饰的变量初始化都在本地拷贝了一份数组项。子组件onclick事件处理程序会更改局部变量值。
 
 
-假设我们点击了多次，所有变量的本地取值都是“7”。
+如果点击界面上的“1”、“2”、“3”，将所有变量的本地取值都变为“7”。
 
 
 
@@ -346,7 +355,7 @@ struct Index {
 - 因为this.arr[0]已更改，Child({value: this.arr[0]})组件将this.arr[0]更新同步到实例\@Prop装饰的变量。Child({value: this.arr[1]})和Child({value: this.arr[2]})的情况也类似。
 
 
-- this.arr的更改触发ForEach更新，this.arr更新的前后都有数值为3的数组项：[3, 4, 5] 和[1, 2, 3]。根据diff机制，数组项“3”将被保留，删除“1”和“2”的数组项，添加为“4”和“5”的数组项。这就意味着，数组项“3”的组件不会重新生成，而是将其移动到第一位。所以“3”对应的组件不会更新，此时“3”对应的组件数值为“7”，ForEach最终的渲染结果是“7”，“4”，“5”。
+- this.arr的更改触发ForEach更新，this.arr更新的前后都有数值为3的数组项：[3, 4, 5] 和[1, 2, 3]。根据diff算法，数组项“3”将被保留，删除“1”和“2”的数组项，添加为“4”和“5”的数组项。这就意味着，数组项“3”的组件不会重新生成，而是将其移动到第一位。所以“3”对应的组件不会更新，此时“3”对应的组件数值为“7”，ForEach最终的渲染结果是“7”，“4”，“5”。
 
 
 ### 从父组件中的\@State类对象属性到\@Prop简单类型的同步
@@ -423,9 +432,9 @@ struct ReaderComp {
 
   build() {
     Row() {
-      Text(this.book.title)
-      Text(`...has${this.book.pages} pages!`)
-      Text(`...${this.book.readIt ? "I have read" : 'I have not read it'}`)
+      Text(this.book.title).fontColor('#e6000000')
+      Text(` has ${this.book.pages} pages!`).fontColor('#e6000000')
+      Text(` ${this.book.readIt ? "I have read" : 'I have not read it'}`).fontColor('#e6000000')
         .onClick(() => this.book.readIt = true)
     }
   }
@@ -434,27 +443,65 @@ struct ReaderComp {
 @Entry
 @Component
 struct Library {
-  @State allBooks: Book[] = [new Book("100 secrets of C++", 765), new Book("Effective C++", 651), new Book("The C++ programming language", 1765)];
+  @State allBooks: Book[] = [new Book("C#", 765), new Book("JS", 652), new Book("TS", 765)];
 
   build() {
     Column() {
       Text('library`s all time favorite')
+        .width(312)
+        .height(40)
+        .backgroundColor('#0d000000')
+        .borderRadius(20)
+        .margin(12)
+        .padding({ left: 20 })
+        .fontColor('#e6000000')
       ReaderComp({ book: this.allBooks[2] })
+        .backgroundColor('#0d000000')
+        .width(312)
+        .height(40)
+        .padding({ left: 20, top: 10 })
+        .borderRadius(20)
+        .colorBlend('#e6000000')
       Divider()
       Text('Books on loaan to a reader')
+        .width(312)
+        .height(40)
+        .backgroundColor('#0d000000')
+        .borderRadius(20)
+        .margin(12)
+        .padding({ left: 20 })
+        .fontColor('#e6000000')
       ForEach(this.allBooks, (book: Book) => {
         ReaderComp({ book: book })
+          .margin(12)
+          .width(312)
+          .height(40)
+          .padding({ left: 20, top: 10 })
+          .backgroundColor('#0d000000')
+          .borderRadius(20)
       },
         (book: Book) => book.id.toString())
       Button('Add new')
+        .width(312)
+        .height(40)
+        .margin(12)
+        .fontColor('#FFFFFF 90%')
         .onClick(() => {
-          this.allBooks.push(new Book("The C++ Standard Library", 512));
+          this.allBooks.push(new Book("JA", 512));
         })
       Button('Remove first book')
+        .width(312)
+        .height(40)
+        .margin(12)
+        .fontColor('#FFFFFF 90%')
         .onClick(() => {
           this.allBooks.shift();
         })
       Button("Mark read for everyone")
+        .width(312)
+        .height(40)
+        .margin(12)
+        .fontColor('#FFFFFF 90%')
         .onClick(() => {
           this.allBooks.forEach((book) => book.readIt = true)
         })
@@ -483,6 +530,8 @@ class Book {
 
 \@Observed装饰的类的实例会被不透明的代理对象包装，此代理可以检测到包装对象内的所有属性更改。如果发生这种情况，此时，代理通知\@Prop，\@Prop对象值被更新。
 
+![Video-prop-UsageScenario-one](figures/Video-prop-UsageScenario-one.gif)
+
 ### \@Prop本地初始化不和父组件同步
 
 为了支持\@Component装饰的组件复用场景，\@Prop支持本地初始化，这样可以让\@Prop是否与父组件建立同步关系变得可选。当且仅当\@Prop有本地初始化时，从父组件向子组件传递\@Prop的数据源才是可选的。
@@ -497,24 +546,28 @@ class Book {
 ```ts
 @Component
 struct MyComponent {
-  @Prop customCounter: number = 0;
+  @Prop customCounter: number;
   @Prop customCounter2: number = 5;
 
   build() {
     Column() {
       Row() {
-        Text(`From Main: ${this.customCounter}`).width(90).height(40).fontColor('#FF0010')
+        Text(`From Main: ${this.customCounter}`).fontColor('#ff6b6565').margin({ left: -110, top: 12 })
       }
 
       Row() {
-        Button('Click to change locally !').width(180).height(60).margin({ top: 10 })
+        Button('Click to change locally !')
+          .width(288)
+          .height(40)
+          .margin({ left: 30, top: 12 })
+          .fontColor('#FFFFFF，90%')
           .onClick(() => {
             this.customCounter2++
           })
-      }.height(100).width(180)
+      }
 
       Row() {
-        Text(`Custom Local: ${this.customCounter2}`).width(90).height(40).fontColor('#FF0010')
+        Text(`Custom Local: ${this.customCounter2}`).fontColor('#ff6b6565').margin({ left: -110, top: 12 })
       }
     }
   }
@@ -529,25 +582,31 @@ struct MainProgram {
     Column() {
       Row() {
         Column() {
-          Button('Click to change number').width(480).height(60).margin({ top: 10, bottom: 10 })
-            .onClick(() => {
-              this.mainCounter++
-            })
-        }
-      }
-
-      Row() {
-        Column() {
           // customCounter必须从父组件初始化，因为MyComponent的customCounter成员变量缺少本地初始化；此处，customCounter2可以不做初始化。
           MyComponent({ customCounter: this.mainCounter })
           // customCounter2也可以从父组件初始化，父组件初始化的值会覆盖子组件customCounter2的本地初始化的值
           MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
         }
       }
+
+      Row() {
+        Column() {
+          Button('Click to change number')
+            .width(288)
+            .height(40)
+            .margin({ left: 30, top: 12 })
+            .fontColor('#FFFFFF，90%')
+            .onClick(() => {
+              this.mainCounter++
+            })
+        }
+      }
     }
   }
 }
 ```
+
+![Video-prop-UsageScenario-two](figures/Video-prop-UsageScenario-two.gif)
 
 ### \@Prop嵌套场景
 
@@ -586,12 +645,26 @@ struct Parent {
 
   build() {
     Column() {
-      Button('change')
-        .onClick(() => {
-          this.votes.name = "aaaaa"
-          this.votes.a.title = "wwwww"
-        })
-      Child({ vote: this.votes })
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+        Button('change ClassB name')
+          .width(312)
+          .height(40)
+          .margin(12)
+          .fontColor('#FFFFFF，90%')
+          .onClick(() => {
+            this.votes.name = "aaaaa"
+          })
+        Button('change ClassA title')
+          .width(312)
+          .height(40)
+          .margin(12)
+          .fontColor('#FFFFFF，90%')
+          .onClick(() => {
+            this.votes.a.title = "wwwww"
+          })
+        Child({ vote: this.votes })
+      }
+
     }
 
   }
@@ -600,18 +673,34 @@ struct Parent {
 @Component
 struct Child {
   @Prop vote: ClassB = new ClassB('', new ClassA(''));
+
   build() {
     Column() {
 
-      Text(this.vote.name).fontSize(36).fontColor(Color.Red).margin(50)
+      Text(this.vote.name)
+        .fontSize(16)
+        .margin(12)
+        .width(312)
+        .height(40)
+        .backgroundColor('#ededed')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
+        .fontColor('#e6000000')
         .onClick(() => {
           this.vote.name = 'Bye'
         })
-      Text(this.vote.a.title).fontSize(36).fontColor(Color.Blue)
+      Text(this.vote.a.title)
+        .fontSize(16)
+        .margin(12)
+        .width(312)
+        .height(40)
+        .backgroundColor('#ededed')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
         .onClick(() => {
           this.vote.a.title = "openHarmony"
         })
-      Child1({vote1:this.vote.a})
+      Child1({ vote1: this.vote.a })
 
     }
   }
@@ -620,12 +709,197 @@ struct Child {
 @Component
 struct Child1 {
   @Prop vote1: ClassA = new ClassA('');
+
   build() {
     Column() {
-      Text(this.vote1.title).fontSize(36).fontColor(Color.Red).margin(50)
+      Text(this.vote1.title)
+        .fontSize(16)
+        .margin(12)
+        .width(312)
+        .height(40)
+        .backgroundColor('#ededed')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
         .onClick(() => {
           this.vote1.title = 'Bye Bye'
         })
+    }
+  }
+}
+```
+
+![Video-prop-UsageScenario-three](figures/Video-prop-UsageScenario-three.gif)
+
+## Prop支持联合类型实例
+
+@Prop支持联合类型和undefined和null，在下面的示例中，count类型为ClassA | undefined，点击父组件Library中的Button改变count的属性或者类型，Child中也会对应刷新。
+
+```ts
+class Animals {
+  public name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+@Component
+struct Child {
+  @Prop animal: Animals | undefined;
+
+  build() {
+    Column() {
+      Text(`Child's animal is  ${this.animal instanceof Animals ? this.animal.name : 'undefined'}`).fontSize(30)
+
+      Button('Child change animals into tigers')
+        .onClick(() => {
+          // 赋值为Animals的实例
+          this.animal = new Animals("Tiger")
+        })
+
+      Button('Child change animal to undefined')
+        .onClick(() => {
+          // 赋值为undefined
+          this.animal = undefined
+        })
+
+    }.width('100%')
+  }
+}
+
+@Entry
+@Component
+struct Library {
+  @State animal: Animals | undefined = new Animals("lion");
+
+  build() {
+    Column() {
+      Text(`Parents' animals are  ${this.animal instanceof Animals ? this.animal.name : 'undefined'}`).fontSize(30)
+
+      Child({animal: this.animal})
+
+      Button('Parents change animals into dogs')
+        .onClick(() => {
+          // 判断animal的类型，做属性的更新
+          if (this.animal instanceof Animals) {
+            this.animal.name = "Dog"
+          } else {
+            console.info('num is undefined, cannot change property')
+          }
+        })
+
+      Button('Parents change animal to undefined')
+        .onClick(() => {
+          // 赋值为undefined
+          this.animal = undefined
+        })
+    }
+  }
+}
+```
+
+
+## 常见问题
+
+### \@Prop装饰状态变量未初始化错误
+
+\@Prop需要被初始化，如果没有进行本地初始化的，则必须通过父组件进行初始化。如果进行了本地初始化，那么是可以不通过父组件进行初始化的。
+
+【反例】
+
+```ts
+@Observed
+class ClassA {
+  public c: number = 0;
+
+  constructor(c: number) {
+    this.c = c;
+  }
+}
+
+@Component
+struct PropChild {
+  @Prop testNum: ClassA; // 未进行本地初始化
+
+  build() {
+    Text(`PropChild testNum ${this.testNum.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State testNum: ClassA[] = [new ClassA(1)];
+
+  build() {
+    Column() {
+      Text(`Parent testNum ${this.testNum[0].c}`)
+        .onClick(() => {
+          this.testNum[0].c += 1;
+        })
+        
+      // @Prop本地没有初始化，也没有从父组件初始化
+      PropChild1()
+    }
+  }
+}
+```
+
+【正例】
+
+```ts
+@Observed
+class ClassA {
+  public c: number = 0;
+
+  constructor(c: number) {
+    this.c = c;
+  }
+}
+
+@Component
+struct PropChild1 {
+  @Prop testNum: ClassA; // 未进行本地初始化
+
+  build() {
+    Text(`PropChild1 testNum ${this.testNum.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
+  }
+}
+@Component
+struct PropChild2 {
+  @Prop testNum: ClassA = new ClassA(1); // 进行本地初始化
+
+  build() {
+    Text(`PropChild2 testNum ${this.testNum.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State testNum: ClassA[] = [new ClassA(1)];
+
+  build() {
+    Column() {
+      Text(`Parent testNum ${this.testNum[0].c}`)
+        .onClick(() => {
+          this.testNum[0].c += 1;
+        })
+        
+      // @PropChild1本地没有初始化，必须从父组件初始化
+      PropChild1({ testNum: this.testNum[0] })
+      // @PropChild2本地进行了初始化，可以不从父组件初始化，也可以从父组件初始化
+      PropChild2()
+      PropChild2({ testNum: this.testNum[0] })
     }
   }
 }

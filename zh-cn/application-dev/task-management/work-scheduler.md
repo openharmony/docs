@@ -11,7 +11,7 @@
 **图1** 延迟任务实现原理  
 ![WorkScheduler](figures/WorkScheduler.png)
 
-应用调用延迟任务接口注册、删除、查询延迟任务，延迟任务管理模块会根据任务设置的条件（通过WorkInfo参数设置，包括网络类型、充电类型、存储状态等）和系统状态（包括内存、功耗、设备温度、用户使用习惯等）统一决策调度时机。
+应用调用延迟任务接口添加、删除、查询延迟任务，延迟任务管理模块会根据任务设置的条件（通过WorkInfo参数设置，包括网络类型、充电类型、存储状态等）和系统状态（包括内存、功耗、设备温度、用户使用习惯等）统一决策调度时机。
 
 当满足调度条件或调度结束时，系统会回调应用[WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md)中 onWorkStart() 或 onWorkStop() 的方法，同时会为应用单独创建一个Extension扩展进程用以承载[WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md)，并给[WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md)一定的活动周期，开发者可以在对应回调方法中实现自己的任务逻辑。
 
@@ -61,34 +61,37 @@
 | stopWork(work: WorkInfo, needCancel?: boolean): void; | 取消延迟任务 |
 | getWorkStatus(workId: number, callback: AsyncCallback&lt;WorkInfo&gt;): void; | 获取延迟任务状态（Callback形式） |
 | getWorkStatus(workId: number): Promise&lt;WorkInfo&gt;; | 获取延迟任务状态（Promise形式） |
-| obtainAllWorks(callback: AsyncCallback&lt;void&gt;): Array&lt;WorkInfo&gt;; | 获取所有延迟任务（Callback形式） |
+| obtainAllWorks(callback: AsyncCallback\<Array\<WorkInfo>>): void; | 获取所有延迟任务（Callback形式） |
 | obtainAllWorks(): Promise&lt;Array&lt;WorkInfo&gt;&gt;; | 获取所有延迟任务（Promise形式） |
 | stopAndClearWorks(): void; | 停止并清除任务 |
-| isLastWorkTimeOut(workId: number, callback: AsyncCallback&lt;void&gt;): boolean; | 获取上次任务是否超时（针对RepeatWork，Callback形式） |
+| isLastWorkTimeOut(workId: number, callback: AsyncCallback\<boolean>): void; | 获取上次任务是否超时（针对RepeatWork，Callback形式） |
 | isLastWorkTimeOut(workId: number): Promise&lt;boolean&gt;; | 获取上次任务是否超时（针对RepeatWork，Promise形式） |
 
 **表3** WorkInfo参数
-| 参数名 | 类型 | 描述 |
-| -------- | -------- | -------- |
-| workId | number | 延迟任务Id（必填） |
-| bundleName | string | 延迟任务包名（必填） |
-| abilityName | string | 延迟任务回调通知的组件名（必填） |
-| networkType | [NetworkType](../reference/apis/js-apis-resourceschedule-workScheduler.md#networktype) | 网络类型 |
-| isCharging | boolean | 是否充电 |
-| chargerType | [ChargingType](../reference/apis/js-apis-resourceschedule-workScheduler.md#chargingtype) | 充电类型 |
-| batteryLevel | number | 电量 |
-| batteryStatus | [BatteryStatus](../reference/apis/js-apis-resourceschedule-workScheduler.md#batterystatus) | 电池状态 |
-| storageRequest | [StorageRequest](../reference/apis/js-apis-resourceschedule-workScheduler.md#storagerequest) | 存储状态 |
-| isRepeat | boolean | 是否循环任务 |
-| repeatCycleTime | number | 循环间隔 |
-| repeatCount | number | 循环次数 |
-| parameters | [key: string]: number | 携带参数信息 |
+| 名称             | 类型                                | 必填   | 说明               |
+| --------------- | --------------------------------- | ---- | ---------------- |
+| workId          | number                            | 是    | 延迟任务ID。          |
+| bundleName      | string                            | 是    | 延迟任务包名。           |
+| abilityName     | string                            | 是    | 延迟任务回调通知的组件名。 |
+| networkType     | [NetworkType](../reference/apis/js-apis-resourceschedule-workScheduler.md#networktype)       | 否    | 网络类型。             |
+| isCharging      | boolean                           | 否    | 是否充电。<br>- true表示充电触发延迟回调，false表示不充电触发延迟回调。|
+| chargerType     | [ChargingType](../reference/apis/js-apis-resourceschedule-workScheduler.md#chargingtype)     | 否    | 充电类型。             |
+| batteryLevel    | number                            | 否    | 电量。              |
+| batteryStatus   | [BatteryStatus](../reference/apis/js-apis-resourceschedule-workScheduler.md#batterystatus)   | 否    | 电池状态。             |
+| storageRequest  | [StorageRequest](../reference/apis/js-apis-resourceschedule-workScheduler.md#storagerequest) | 否    | 存储状态。             |
+| isRepeat        | boolean                           | 否    | 是否循环任务。<br>- true表示循环任务，false表示非循环任务。 |
+| repeatCycleTime | number                            | 否    | 循环间隔，单位为毫秒。             |
+| repeatCount     | number                            | 否    | 循环次数。             |
+| isPersisted     | boolean                           | 否    | 是否持久化保存工作。<br>- true表示持久化保存工作。false表示非持久化保存工作。|
+| isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态。<br>- true表示需要，false表示不需要。   |
+| idleWaitTime    | number                            | 否    | 空闲等待时间，单位为毫秒。           |
+| parameters      | [key: string]: number \| string \| boolean  | 否    | 携带参数信息。 |
 
 WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 
 - workId、bundleName、abilityName为必填项，bundleName需为本应用包名。
 
-- 携带参数信息仅支持number、string、bool三种类型。
+- 携带参数信息仅支持number、string、boolean三种类型。
 
 - 至少设置一个满足的条件，包括网络类型、充电类型、存储状态、电池状态、定时状态等。
 
@@ -99,8 +102,8 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 以下是延迟任务回调开发使用的相关接口，更多接口及使用方式请见[延迟任务回调](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md)文档。
 | 接口名 | 接口描述 |
 | -------- | -------- |
-| onWorkStart(work: WorkInfo): void | 延迟调度任务开始的回调 |
-| onWorkStop(work: WorkInfo): void | 延迟调度任务结束的回调 |
+| onWorkStart(work: workScheduler.WorkInfo): void | 延迟调度任务开始的回调 |
+| onWorkStop(work: workScheduler.WorkInfo): void | 延迟调度任务结束的回调 |
 
 
 ## 开发步骤
@@ -175,7 +178,8 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 2. 申请延迟任务。
    
    ```ts
-   private workInfo: workScheduler.WorkInfo = {
+   // 创建workinfo
+   const workInfo: workScheduler.WorkInfo = {
      workId: 1,
      networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,
      bundleName: 'com.example.application',
@@ -183,7 +187,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    }
    
    try {
-     workScheduler.startWork(this.workInfo);
+     workScheduler.startWork(workInfo);
      console.info(`startWork success`);
    } catch (error) {
      console.error(`startWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
@@ -193,7 +197,8 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 3. 取消延迟任务。
    
    ```ts
-   private workInfo: workScheduler.workInfo = {
+   // 创建workinfo
+   const workInfo: workScheduler.WorkInfo = {
      workId: 1,
      networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI,
      bundleName: 'com.example.application', 
@@ -201,7 +206,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    }
    
    try {
-     workScheduler.stopWork(this.workInfo);
+     workScheduler.stopWork(workInfo);
      console.info(`stopWork success`);
    } catch (error) {
      console.error(`stopWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);

@@ -25,9 +25,9 @@ abilityDelegator.waitAbilityStageMonitor({
     srcEntrance: './ets/Application/MyAbilityStage.ts',
 }, (error, data) => {
     if (error) {
-        console.error('waitAbilityStageMonitor fail, error: ${JSON.stringify(error)}');
+        console.error(`waitAbilityStageMonitor fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('waitAbilityStageMonitor success, data: ${JSON.stringify(data)}');
+        console.log(`waitAbilityStageMonitor success, data: ${JSON.stringify(data)}`);
     }
 });
 ```

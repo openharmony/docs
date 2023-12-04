@@ -920,6 +920,7 @@ FA模型示例：
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 try {
     data_preferences.removePreferencesFromCacheSync(context, 'myStore');
@@ -934,6 +935,8 @@ Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base'
+import window from '@ohos.window';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -1210,7 +1213,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 | 参数名   | 类型                                         | 必填 | 说明                                                         |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                                       | 是   | 要获取的存储Key名称，不能为空。                              |
-| defValue | [ValueType](#valuetype)                      | 是   | 默认返回值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型。 |
+| defValue | [ValueType](#valuetype)                      | 是   | 默认返回值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array类型。 |
 | callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | 是   | 回调函数。当获取成功时，err为undefined，data为键对应的值；否则err为错误对象。 |
 
 **示例：**
@@ -1245,7 +1248,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 | 参数名   | 类型                    | 必填 | 说明                                                         |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | 是   | 要获取的存储Key名称，不能为空。                              |
-| defValue | [ValueType](#valuetype) | 是   | 默认返回值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型。 |
+| defValue | [ValueType](#valuetype) | 是   | 默认返回值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array类型。 |
 
 **返回值：**
 
@@ -1283,7 +1286,7 @@ getSync(key: string, defValue: ValueType): ValueType
 | 参数名   | 类型                    | 必填 | 说明                                                         |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | 是   | 要获取的存储Key名称，不能为空。                              |
-| defValue | [ValueType](#valuetype) | 是   | 默认返回值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型。 |
+| defValue | [ValueType](#valuetype) | 是   | 默认返回值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array类型。 |
 
 **返回值：**
 
@@ -1390,7 +1393,7 @@ try {
 
 getAllSync(): Object
 
-从缓存的Preferences实例中获取所有键值数据。，此为同步接口。
+从缓存的Preferences实例中获取所有键值数据，此为同步接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1435,8 +1438,8 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                    | 是   | 要修改的存储的Key，不能为空。                                |
-| value    | [ValueType](#valuetype)   | 是   | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当数据写入成功，err为undefined；否则为错误对象。     |
+| value    | [ValueType](#valuetype)   | 是   | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array类型。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当数据写入成功，err为undefined；否则为错误对象。   |
 
 **示例：**
 
@@ -1470,7 +1473,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 | 参数名 | 类型                    | 必填 | 说明                                                         |
 | ------ | ----------------------- | ---- | ------------------------------------------------------------ |
 | key    | string                  | 是   | 要修改的存储的Key，不能为空。                                |
-| value  | [ValueType](#valuetype) | 是   | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型。 |
+| value  | [ValueType](#valuetype) | 是   | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array类型。 |
 
 **返回值：**
 
@@ -1509,7 +1512,7 @@ putSync(key: string, value: ValueType): void
 | 参数名 | 类型                    | 必填 | 说明                                                         |
 | ------ | ----------------------- | ---- | ------------------------------------------------------------ |
 | key    | string                  | 是   | 要修改的存储的Key，不能为空。                                |
-| value  | [ValueType](#valuetype) | 是   | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型。 |
+| value  | [ValueType](#valuetype) | 是   | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array类型。 |
 
 **示例：**
 
@@ -1894,7 +1897,7 @@ try {
 
 ### on('change')
 
-on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
+on(type: 'change', callback: ( key : string ) => void): void
 
 订阅数据变更，订阅的Key的值发生变更后，在执行[flush](#flush)方法后，触发callback回调。
 
@@ -1902,24 +1905,21 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                             | 必填 | 说明                                     |
-| -------- | -------------------------------- | ---- | ---------------------------------------- |
-| type     | string                           | 是   | 事件类型，固定值'change'，表示数据变更。 |
-| callback | Callback&lt;{ key : string }&gt; | 是   | 回调对象实例。                           |
+| 参数名   | 类型     | 必填 | 说明                                     |
+| -------- | -------- | ---- | ---------------------------------------- |
+| type     | string   | 是   | 事件类型，固定值'change'，表示数据变更。 |
+| callback | Function | 是   | 回调函数。<br />key: 发生变化的Key。     |
 
 **示例：**
 
 ```ts
-interface observer {
-  key: string
-}
 try {
     data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: data_preferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('change', (key: observer) => {
+        preferences.on('change', (key: string) => {
             console.info("The key " + key + " changed.");
         });
         preferences.put('startup', 'manual', (err: BusinessError) => {
@@ -1947,7 +1947,7 @@ try {
 
 ### on('multiProcessChange')<sup>10+</sup>
 
-on(type: 'multiProcessChange', callback: Callback&lt;{ key : string }&gt;): void
+on(type: 'multiProcessChange', callback: ( key : string ) => void): void
 
 订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程发生变更后，执行[flush](#flush)方法后，触发callback回调。
 
@@ -1957,10 +1957,10 @@ on(type: 'multiProcessChange', callback: Callback&lt;{ key : string }&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                             | 必填 | 说明                                                           |
-| -------- | -------------------------------- | ---- | -------------------------------------------------------------- |
-| type     | string                           | 是   | 事件类型，固定值'multiProcessChange'，表示多进程间的数据变更。 |
-| callback | Callback&lt;{ key : string }&gt; | 是   | 回调对象实例。                                                 |
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 事件类型，固定值'multiProcessChange'，表示多进程间的数据变更。 |
+| callback | Function | 是   | 回调函数。<br />key: 发生变化的Key。                         |
 
 **错误码：**
 
@@ -1973,9 +1973,6 @@ on(type: 'multiProcessChange', callback: Callback&lt;{ key : string }&gt;): void
 **示例1：**
 
 ```ts
-interface observer {
-  key: string
-}
 try {
     let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
     data_preferences.getPreferences(this.context, options, (err: BusinessError, preferences: data_preferences.Preferences) => {
@@ -1983,7 +1980,7 @@ try {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('multiProcessChange', (key: observer) => {
+        preferences.on('multiProcessChange', (key: string) => {
             console.info("The key " + key + " changed.");
         });
         preferences.put('startup', 'manual', (err: BusinessError) => {
@@ -2011,9 +2008,6 @@ try {
 **示例2：**
 
 ```ts
-interface observer {
-  key: string
-}
 try {
     let options: data_preferences.Options = { name: 'myStore' };
     data_preferences.getPreferences(this.context, options, (err: BusinessError, val: data_preferences.Preferences) => {
@@ -2022,7 +2016,7 @@ try {
             return;
         }
         preferences = val;
-        preferences.on('multiProcessChange', (key: observer) => {
+        preferences.on('multiProcessChange', (key: string) => {
             console.info("The key " + key + " changed.");
             try {
                 data_preferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
@@ -2061,13 +2055,15 @@ try {
             }
             console.info("Succeeded in putting the value of 'startup'.");
 
-            preferences.flush((err: BusinessError) => {
-                if (err) {
-                    console.error("Failed to flush. Cause: " + err);
-                    return;
-                }
-                console.info("Succeeded in flushing.");
-            })
+            if (preferences != null) {
+                preferences.flush((err: BusinessError) => {
+                    if (err) {
+                        console.error("Failed to flush. Cause: " + err);
+                        return;
+                    }
+                    console.info("Succeeded in flushing.");
+                })
+            }
         })
     })
 } catch (err) {
@@ -2079,7 +2075,7 @@ try {
 
 ### off('change')
 
-off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void
+off(type: 'change', callback?: ( key : string ) => void): void
 
 取消订阅数据变更。
 
@@ -2087,24 +2083,22 @@ off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                             | 必填 | 说明                                       |
-| -------- | -------------------------------- | ---- | ------------------------------------------ |
-| type     | string                           | 是   | 事件类型，固定值'change'，表示数据变更。   |
-| callback | Callback&lt;{ key : string }&gt; | 否   | 需要取消的回调对象实例，不填写则全部取消。 |
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 事件类型，固定值'change'，表示数据变更。                     |
+| callback | Function | 否   | 需要取消的回调函数，不填写则全部取消。<br />key: 发生变化的Key。 |
 
 **示例：**
 
 ```ts
-interface observer {
-  key: string
-}
+
 try {
-    data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, val: data_preferences.Preferences) => {
+    data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: data_preferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('change', (key: observer) => {
+        preferences.on('change', (key: string) => {
             console.info("The key " + key + " changed.");
         });
         preferences.put('startup', 'auto', (err: BusinessError) => {
@@ -2121,7 +2115,7 @@ try {
                 }
                 console.info("Succeeded in flushing.");
             })
-            preferences.off('change', (key: observer) => {
+            preferences.off('change', (key: string) => {
                 console.info("The key " + key + " changed.");
             });
         })
@@ -2135,7 +2129,7 @@ try {
 
 ### off('multiProcessChange')<sup>10+</sup>
 
-off(type: 'multiProcessChange', callback?: Callback&lt;{ key : string }&gt;): void
+off(type: 'multiProcessChange', callback?: ( key : string ) => void): void
 
 取消订阅进程间数据变更。
 
@@ -2143,17 +2137,14 @@ off(type: 'multiProcessChange', callback?: Callback&lt;{ key : string }&gt;): vo
 
 **参数：**
 
-| 参数名   | 类型                             | 必填 | 说明                                                           |
-| -------- | -------------------------------- | ---- | -------------------------------------------------------------- |
-| type     | string                           | 是   | 事件类型，固定值'multiProcessChange'，表示多进程间的数据变更。 |
-| callback | Callback&lt;{ key : string }&gt; | 否   | 需要取消的回调对象实例，不填写则全部取消。                     |
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 事件类型，固定值'multiProcessChange'，表示多进程间的数据变更。 |
+| callback | Function | 否   | 需要取消的回调函数，不填写则全部取消。<br />key: 发生变化的Key。 |
 
 **示例：**
 
 ```ts
-interface observer {
-  key: string
-}
 try {
     let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
     data_preferences.getPreferences(this.context, options, (err: BusinessError, preferences: data_preferences.Preferences) => {
@@ -2161,7 +2152,7 @@ try {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('multiProcessChange', (key: observer) => {
+        preferences.on('multiProcessChange', (key: string) => {
             console.info("The key " + key + " changed.");
         });
         preferences.put('startup', 'auto', (err: BusinessError) => {
@@ -2178,7 +2169,7 @@ try {
                 }
                 console.info("Succeeded in flushing.");
             })
-            preferences.off('multiProcessChange', (key: observer) => {
+            preferences.off('multiProcessChange', (key: string) => {
                 console.info("The key " + key + " changed.");
             });
         })
@@ -2195,11 +2186,12 @@ try {
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
-| 类型            | 说明                           |
-| --------------- | ------------------------------ |
-| number          | 表示值类型为数字。             |
-| string          | 表示值类型为字符串。           |
-| boolean         | 表示值类型为布尔值。           |
-| Array\<number>  | 表示值类型为数字类型的数组。   |
-| Array\<boolean> | 表示值类型为布尔类型的数组。   |
-| Array\<string>  | 表示值类型为字符串类型的数组。 |
+| 类型            | 说明                              |
+| --------------- | --------------------------------- |
+| number          | 表示值类型为数字。                |
+| string          | 表示值类型为字符串。              |
+| boolean         | 表示值类型为布尔值。              |
+| Array\<number>  | 表示值类型为数字类型的数组。      |
+| Array\<boolean> | 表示值类型为布尔类型的数组。      |
+| Array\<string>  | 表示值类型为字符串类型的数组。    |
+| Uint8Array<sup>11+</sup>      | 表示值类型为8位无符号整型的数组。 |

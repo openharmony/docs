@@ -1,6 +1,6 @@
 # 快速修复概述
 
-快速修复是OpenHarmony系统提供给开发者的一种技术手段，支持开发者以远快于应用升级的方式对应用程序包进行缺陷修复。和全量应用升级软件版本相比，快速修复的主要优势在小、快和用户体验好。在较短的时间内不中断正在运行的应用的情况下（即不需要重启应用），修复应用的缺陷。
+快速修复是系统提供给开发者的一种技术手段，支持开发者以远快于应用升级的方式对应用程序包进行缺陷修复。和全量应用升级软件版本相比，快速修复的主要优势在小、快和用户体验好。在较短的时间内不中断正在运行的应用的情况下（即不需要重启应用），修复应用的缺陷。
 
 ## 快速修复的使用规则
 
@@ -15,11 +15,11 @@
 ## 快速修复包结构
 
 ![快速修复包结构](figures/quick_fix_bundle_struct.png)
-<br>上图是OpenHarmony应用程序发布的快速修复的包格式
+<br>上图是应用程序发布的快速修复的包格式
 * 从图中可以看出包含两种包格式：
     * appqf（Application Quick Fix）
     <br> appqf与应用的app pack包是一一对应关系，具体可参考[应用程序包结构](application-package-structure-stage.md)的介绍。
-        * appqf包是OpenHarmony应用用于发布到应用市场的单元，不能够直接安装到设备上。
+        * appqf包是应用用于发布到应用市场的单元，不能够直接安装到设备上。
         * 它是由一个或多个hqf（Harmony Ability Package Quick Fix）组成，这些hqf包在应用市场会从appqf包中拆分出来，再被分发到具体的设备上。
         * appqf包上架到应用市场前要有开发者的签名信息。签名方式可可参考[Hap包签名工具](../security/hapsigntool-overview.md)的介绍。
     * hqf（Harmony Ability Package Quick Fix）
@@ -51,15 +51,15 @@
             具体字段说明：
             | 字段 |类型  |说明  |备注 |
             | --- | --- | --- | --- |
-            |bundleName | string | 对应应用的包名    | 不可缺省 |
-            |versionCode | int |对应应用版本号          | 不可缺省  |
-            |versionName |string |对应应用的版本名称 | patch类型不可缺省 |
-            |patchVersionCode |int |补丁包的版本号   | 不可缺省 |
-            |patchVersionName |string |补丁包的版本名称 | patch类型不可缺省 |
-            |name |string |对应应用的moduleName，用来修复该module的 | 不可缺省 |
-            |type | string|对应补丁包的类型，当前可选择为patch | 不可缺省 |
-            |deviceTypes |array<string> |补丁包支持的设备类型 | 不可缺省 |
-            |originalModuleHash| string |原始module Name对应包的哈希值 | 不可缺省 |
+            |bundleName | string | 对应应用的包名。    | 不可缺省 |
+            |versionCode | int |对应应用版本号。        | 不可缺省  |
+            |versionName |string |对应应用的版本名称。 | patch类型不可缺省 |
+            |patchVersionCode |int |补丁包的版本号。   | 不可缺省 |
+            |patchVersionName |string |补丁包的版本名称。 | patch类型不可缺省 |
+            |name |string |对应应用的moduleName，用来修复该module的。 | 不可缺省 |
+            |type | string|对应补丁包的类型，当前可选择为patch。 | 不可缺省 |
+            |deviceTypes |array<string> |补丁包支持的设备类型。 | 不可缺省 |
+            |originalModuleHash| string |原始module Name对应包的哈希值，可采用SHA256生成器自行生成。 | 不可缺省 |
 
 ## 快速修复TS编译后的文件
 
@@ -99,7 +99,7 @@
 
 ![快速修复包的调试](figures/quick-fix-debug.png)
 
-* DevEco Studio中暂时还没有集成快速修复的能力。当前阶段，OpenHarmony为开发者提供了命令行的调试开发工具可供使用，具体的调试开发流程如下：
+* DevEco Studio中暂时还没有集成快速修复的能力。当前阶段，系统为开发者提供了命令行的调试开发工具可供使用，具体的调试开发流程如下：
 1. 基于原应用的源码和修复后的源码，通过命令行工具可以编译生成快速修复包，并通过命令行签名工具完成对快速修复的包的签名。通过命令行调试开发，要对.hqf包签名，并通过命令行工具将.hqf包安装到设备上，.appqf包不能直接安装到设备上。
 2. 通过快速修复的命令行工具，将.hqf包安装部署到设备上。
 3. .hqf包安装部署完成后，回调通知快速修复引擎触发应用使用快速修复包，进而保证用户使用到问题修复后的功能。

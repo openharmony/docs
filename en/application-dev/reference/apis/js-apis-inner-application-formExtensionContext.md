@@ -33,7 +33,6 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
-| 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 
 For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
@@ -42,7 +41,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 | Name|                Type              | Mandatory|              Description              |
 | ------| --------------------------------- | ---- | -------------------------------------- |
-| want| [Want](js-apis-application-want.md) | Yes | Information about the ability to start, such as the bundle name, ability name, and custom parameters.|
+| want| [Want](js-apis-app-ability-want.md) | Yes | Information about the ability to start, such as the bundle name, ability name, and custom parameters.|
 | callback| AsyncCallback&lt;void&gt;       | Yes | Callback used to return the result. If the ability is started, **err** is undefined; otherwise, **err** is an error object.|
 
 **Example**
@@ -89,7 +88,7 @@ Starts an ability. This API uses a promise to return the result.
 
 | Name|                Type              | Mandatory|              Description              |
 | ------| --------------------------------- | ---- | -------------------------------------- |
-| want| [Want](js-apis-application-want.md) | Yes | Information about the ability to start, such as the bundle name, ability name, and custom parameters.|
+| want| [Want](js-apis-app-ability-want.md) | Yes | Information about the ability to start, such as the bundle name, ability name, and custom parameters.|
 
 **Return value**
 
@@ -105,7 +104,6 @@ Starts an ability. This API uses a promise to return the result.
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
-| 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 
 For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
@@ -140,7 +138,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## FormExtensionContext.connectServiceExtensionAbility<sup>10+</sup>
 
-connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
+connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 Connects this ability to a ServiceExtensionAbility.
 
@@ -152,7 +150,7 @@ Connects this ability to a ServiceExtensionAbility.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes| Callback used to return the information indicating that the connection is successful, interrupted, or failed.|
 
 **Return value**
@@ -184,6 +182,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import rpc from '@ohos.rpc';
+import Base from '@ohos.base';
 
 let commRemote: rpc.IRemoteObject | null = null;
 export default class MyFormExtensionAbility extends FormExtensionAbility {
@@ -220,7 +219,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## FormExtensionContext.disconnectServiceExtensionAbility<sup>10+</sup>
 
-disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
+disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback&lt;void&gt;): void
 
 Disconnects this ability from a ServiceExtensionAbility and after the successful disconnection, sets the remote object returned upon the connection to void. This API uses an asynchronous callback to return the result. 
 
@@ -281,7 +280,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## FormExtensionContext.disconnectServiceExtensionAbility<sup>10+</sup>
 
-disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
+disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 Disconnects this ability from a ServiceExtensionAbility and after the successful disconnection, sets the remote object returned upon the connection to void. This API uses a promise to return the result. 
 

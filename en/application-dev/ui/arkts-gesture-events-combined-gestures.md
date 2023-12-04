@@ -1,7 +1,7 @@
 # Combined Gestures
 
 
-A combined gesture consists of multiple single gestures. Different GestureModes are used in GestureGroup to declare the type of the combined gesture. [Continuous recognition](#continuous-recognition), [parallel recognition](#parallel-recognition), and [exclusive recognition](#exclusive-recognition) are supported for a group of gestures.
+A combined gesture is a combination of multiple single gestures. Its recognition mode is subject to **GestureMode** passed in **GestureGroup**. Three recognition modes are supported: [sequential recognition](#sequential-recognition), [parallel recognition](#parallel-recognition), and [exclusive recognition](#exclusive-recognition).
 
 
 
@@ -10,14 +10,14 @@ GestureGroup(mode:GestureMode, gesture:GestureType[])
 ```
 
 
-- **mode**: recognition mode of combined gestures. This parameter is mandatory and belongs to the **GestureMode** enumeration class.
+- **mode**: recognition mode of combined gestures. The value belongs to the **GestureMode** enumeration class.
 
-- **gesture**: array consisting of multiple gestures. This parameter is mandatory.  .
+- **gesture**: array of multiple gestures.
 
 
-## Continuous Recognition
+## Sequential Recognition
 
-For continuous recognition, the value of **GestureMode** is **Sequence**. In this gesture mode, gestures registered in the combined gestures will be recognized according to the registration sequence until they are all recognized successfully. If any of the registered gestures fails to be recognized, all gestures fail to be recognized.
+For sequential recognition, the value of **GestureMode** is **Sequence**. In this gesture recognition mode, gestures are recognized in the order in which they were registered until they are all recognized successfully. If any of the registered gestures fails to be recognized, all gestures fail to be recognized. Only the last gesture recognized responds to the **onActionEnd** event.
 
 In the following example, the combined gestures for continuous recognition are the long press gesture and pan gesture.
 
@@ -95,12 +95,12 @@ struct Index {
 
 >**NOTE**
 >
->The drag event is a typical use case of continuous recognition with the long press gesture and pan gesture combined. It is triggered only when the user performs the pan gesture within the preset time frame after a long press gesture is recognized. If the long press gesture is not recognized or the pan gesture is not performed within the preset time frame, the drag event will not be triggered.
+>The drag event is a typical use case of sequential recognition on the long press gesture and pan gesture. It is triggered only when the user performs a pan gesture within the preset time frame after a long press gesture is recognized. If the long press gesture is not recognized or the pan gesture is not performed within the preset time frame, the drag event will not be triggered.
 
 
 ## Parallel Recognition
 
-For parallel recognition, the value of **GestureMode** is **Parallel**. In this gesture mode, gestures registered in the combined gestures will be recognized at the same time until they are all recognized successfully. The gestures are recognized in parallel without affecting each other.
+For parallel recognition, the value of **GestureMode** is **Parallel**. In this gesture recognition mode, gestures registered in the combined gestures will be recognized at the same time until they are all recognized successfully. The gestures are recognized in parallel without affecting each other.
 
 For example, if the tap gesture and the double-tap gesture are bound to the \**<Column>** component in parallel recognition mode, they can be recognized at the same time, and the recognition of these two gestures does not interfere with each other. 
 
@@ -155,9 +155,9 @@ struct Index {
 
 ## Exclusive Recognition
 
-For exclusive recognition, the value of **GestureMode** is **Exclusive**. In this gesture mode, gestures registered in the combined gesture are recognized at the same time. If one gesture is recognized successfully, the gesture recognition ends, and all other gestures fail to be recognized.
+For exclusive recognition, the value of **GestureMode** is **Exclusive**. In this gesture recognition mode, all registered gestures are recognized at once. One any of the gestures is recognized successfully, the gesture recognition ends, and all other gestures fail to be recognized.
 
-For example, if the tap gesture and the double-tap gesture are bound to the \**<Column>** component in exclusive recognition mode, only a tap gesture event can be triggered. This is because a tap gesture requires a single tap to be triggered, and a double-tap gesture event requires two taps to be triggered; each tap event is consumed by the tap gesture and cannot be accumulated into a double-tap gesture.
+For example, if the tap gesture and the double-tap gesture are bound to the **\<Column>** component in exclusive recognition mode, only a tap gesture event can be triggered. This is because a tap gesture requires a single tap to be triggered, and a double-tap gesture event requires two taps; each tap event is consumed by the tap gesture and cannot be accumulated into a double-tap gesture.
 
 
 

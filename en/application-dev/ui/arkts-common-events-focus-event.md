@@ -380,7 +380,7 @@ The preceding example includes two parts: default focus and active navigation.
 **Active navigation:**
 
 
-Pressing **F** on the keyboard triggers **onKeyEvent**, which sets **focusable** to **false** and makes the **\<Text>** component unfocusable. In this case, the focus automatically shifts. According to the description in passive focus, the system automatically searches for the immediate focusable component above the **\<Text>** component, which is an unfocusable **\<Text>** component. Therefore, the system searches for the next focusable component, finds and moves the focus to the **\<Row>** container, and calculates the positions of **Button1** and **Button2** based on the [rule for focusing on a container component](#rules-of-focus-navigation). Because **Button2** is larger than **Button1**, the focus automatically moves to **Button2**.
+Pressing **F** on the keyboard triggers **onKeyEvent**, which sets **focusable** to **false** and makes the **\<Text>** component **unfocusable**. In this case, the focus automatically shifts. According to the description in passive focus, the system automatically searches for the immediate focusable component above the **\<Text>** component. Because the component immediately above is an unfocusable **\<Text>** component, the system searches for the next focusable component, which is the **\<Row>** container in this example. The system calculates the positions of **Button1** and **Button2** based on the [rule for focusing on a container component](#rules-of-focus-navigation). Because **Button2** is larger than Button1, the focus automatically moves to **Button2**.
 
 
 ## Setting Default Focus
@@ -401,6 +401,7 @@ The following is the sample code for implementing the application layout, and **
 
 ```ts
 // xxx.ets
+// xxx.ets
 import promptAction from '@ohos.promptAction';
 
 class MyDataSource implements IDataSource {
@@ -415,7 +416,7 @@ class MyDataSource implements IDataSource {
     return this.list.length;
   }
 
-  getData(index: number): object {
+  getData(index: number): number {
     return this.list[index];
   }
 
@@ -427,6 +428,18 @@ class MyDataSource implements IDataSource {
   }
 }
 
+class swcf{
+  swiperController:SwiperController|undefined
+  fun(index:number){
+    if(this.swiperController){
+      if(index==0){
+        this.swiperController.showPrevious();
+      }else{
+        this.swiperController.showNext();
+      }
+    }
+  }
+}
 class TmpM{
   left:number = 20
   bottom:number = 20
@@ -436,8 +449,9 @@ let MarginTmp:TmpM = new TmpM()
 @Entry
 @Component
 struct SwiperExample {
-  private swiperController: object = new SwiperController()
-  private data: object = new MyDataSource([])
+  private swiperController: SwiperController = new SwiperController()
+  @State tmp:promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
+  private data: MyDataSource = new MyDataSource([])
 
   aboutToAppear(): void {
     let list:number[] = []
@@ -517,7 +531,7 @@ struct SwiperExample {
           .borderWidth(2)
           .borderColor(Color.Gray)
           .backgroundColor(Color.White)
-        }, ((item:string):string => item))
+        }, (item:string):string => item)
       }
       .cachedCount(2)
       .index(0)
@@ -531,19 +545,6 @@ struct SwiperExample {
         console.info(index.toString());
       })
       .margin({ left: 20, top: 20, right: 20 })
-
-      class swcf{
-        swiperController:SwiperController|undefined
-        fun(index:number){
-          if(this.swiperController){
-            if(index==0){
-              this.swiperController.showPrevious();
-            }else{
-              this.swiperController.showNext();
-            }
-          }
-        }
-      }
       Row({ space: 40 }) {
         Button('←')
           .fontSize(40)
@@ -579,8 +580,7 @@ struct SwiperExample {
           .width(140)
           .height(50)
           .backgroundColor('#dadbd9')
-        
-        let tmp:Record<string,string> = {'message':'Button OK on clicked'}
+
         Button('OK')
           .fontSize(30)
           .fontColor('#787878')
@@ -589,7 +589,7 @@ struct SwiperExample {
           .height(50)
           .backgroundColor('#dadbd9')
           .onClick(() => {
-            promptAction.showToast(tmp);
+            promptAction.showToast(this.tmp);
           })
       }
       .width(480)
@@ -618,16 +618,25 @@ Assume that you want to perform the **onClick** callback of the **OK** button wi
 
 ```ts
 import promptAction from '@ohos.promptAction';
-let Tmp:Record<string,string> = {'message':'Button OK on clicked'}
-Button('OK')
-  .defaultFocus(true)    // Bind defaultFocus to the OK button.
-  .fontSize(30)
-  .fontColor('#787878')
-  .type(ButtonType.Normal)
-  .width(140).height(50).backgroundColor('#dadbd9')
-  .onClick(() => {
-    promptAction.showToast(Tmp);
-  })
+@Entry
+@Component
+struct MouseExample {
+  @State Tmp: promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
+  build() {
+    Column() {
+      Button('OK')
+        .defaultFocus(true)    // Bind defaultFocus to the OK button.
+        .fontSize(30)
+        .fontColor('#787878')
+        .type(ButtonType.Normal)
+        .width(140).height(50).backgroundColor('#dadbd9')
+        .onClick(() => {
+          promptAction.showToast(this.Tmp);
+        })
+    }
+  }
+}
+
 ```
 
 
@@ -664,10 +673,18 @@ For example, take the white area, the yellow area, and the green area each as a 
 
 
 ```ts
-  Button('1').width(200).height(200)
-    .fontSize(40)
-    .backgroundColor('#dadbd9')
-    .tabIndex(1)    // Set Button1 as the first tabIndex node.
+@Entry
+@Component
+struct MouseExample {
+  build() {
+    Column() {
+      Button('1').width(200).height(200)
+        .fontSize(40)
+        .backgroundColor('#dadbd9')
+        .tabIndex(1)    // Set Button1 as the first tabIndex node.
+    }
+  }
+}
 ```
 
 
@@ -681,32 +698,48 @@ class swcf{
     }
   }
 }
-  Button('←')
-    .fontSize(40)
-    .fontWeight(FontWeight.Bold)
-    .fontColor(Color.Black)
-    .backgroundColor(Color.Transparent)
-    .onClick(() => {
-      let swf = new swcf()
-      swf.fun()
-    })
-    .tabIndex(2)    // Set Button-left arrow as the second tabIndex node.
+@Entry
+@Component
+struct MouseExample {
+  build() {
+    Column() {
+      Button('←')
+        .fontSize(40)
+        .fontWeight(FontWeight.Bold)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Transparent)
+        .onClick(() => {
+          let swf = new swcf()
+          swf.fun()
+        })
+        .tabIndex(2)    // Set Button-left arrow as the second tabIndex node.
+    }
+  }
+}
 ```
 
 
 
 ```ts
 import promptAction from '@ohos.promptAction';
-let Tmp:Record<string,string> = {'message':'Button OK on clicked'}
-Button('OK')
-  .fontSize(30)
-  .fontColor('#787878')
-  .type(ButtonType.Normal)
-  .width(140).height(50).backgroundColor('#dadbd9')
-  .onClick(() => {
-    promptAction.showToast(Tmp);
-  })
-  .tabIndex(3)    // Set Button-OK as the third tabIndex node.
+@Entry
+@Component
+struct MouseExample {
+  @State Tmp:promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
+  build() {
+    Column() {
+    Button('OK')
+      .fontSize(30)
+      .fontColor('#787878')
+      .type(ButtonType.Normal)
+      .width(140).height(50).backgroundColor('#dadbd9')
+      .onClick(() => {
+        promptAction.showToast(this.Tmp);
+      })
+      .tabIndex(3)    // Set Button-OK as the third tabIndex node.
+    }
+  }
+}
 ```
 
 
@@ -755,7 +788,7 @@ class MyDataSource implements IDataSource {
     return this.list.length;
   }
 
-  getData(index: number): number[] {
+  getData(index: number): number {
     return this.list[index];
   }
 
@@ -772,6 +805,7 @@ class MyDataSource implements IDataSource {
 struct SwiperExample {
   private swiperController: SwiperController = new SwiperController()
   private data: MyDataSource = new MyDataSource([])
+  @State tmp:promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
 
   aboutToAppear(): void {
     let list: number[] = []
@@ -853,7 +887,7 @@ struct SwiperExample {
           .borderColor(Color.Gray)
           .backgroundColor(Color.White)
           .tabIndex(1)
-        }, ((item:string):string => item))
+        }, (item:string):string => item)
       }
       .cachedCount(2)
       .index(0)
@@ -904,7 +938,6 @@ struct SwiperExample {
           .height(50)
           .backgroundColor('#dadbd9')
 
-        let tmp:Record<string,string> = {'message':'Button OK on clicked'}
         Button('OK')
           .fontSize(30)
           .fontColor('#787878')
@@ -914,7 +947,7 @@ struct SwiperExample {
           .backgroundColor('#dadbd9')
           .defaultFocus(true)
           .onClick(() => {
-            promptAction.showToast(tmp);
+            promptAction.showToast(this.tmp);
           })
           .groupDefaultFocus(true)    // Set Button-OK as the default focus of the third tabIndex node.
       }
@@ -997,7 +1030,7 @@ No related attributes are set for Button-B, and therefore it cannot be focused o
 
 >**NOTE**
 >
->Due to the feature of the focused state, the focused state is cleared immediately after the screen receives a touch event. Therefore, each time a component is clicked, you need to press the Tab key again to display the focused state again. In this way, you can know the component where the focus is located.
+>The focused state is cleared immediately after the screen receives a touch event. Therefore, each time a component is touched, the **Tab** key needs to be pressed again to show the focused state again and find the component that has the focus.
 
 
 ### focusControl.requestFocus
@@ -1069,8 +1102,8 @@ struct RequestFocusExample {
         }
       }
       let res = focusControl.requestFocus(this.idList[this.requestId]);
-      let tmps:Record<string,string> = {'message':'Request success'}
-      let tmpf:Record<string,string> = {'message':'Request failed'}
+      let tmps:promptAction.ShowToastOptions = {'message':'Request success'}
+      let tmpf:promptAction.ShowToastOptions = {'message':'Request failed'}
       if (res) {
         promptAction.showToast(tmps);
       } else {

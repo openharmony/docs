@@ -24,7 +24,7 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 | 参数名 | 类型    | 必填 | 说明                                   |
 | ------ | ------ | ---- | ------------------------------------- |
 | formId | string | 是   | 卡片标识。                               |
-| minute | number | 是   | 指定多久之后更新，单位分钟，大于等于5。     |
+| minute | number | 是   | 指定多久之后更新。单位分钟，大于等于5。     |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **错误码：**
@@ -46,6 +46,7 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 
 ```ts
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let formId: string = '12400633174999288';
 try {
@@ -74,7 +75,7 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 | 参数名 | 类型    | 必填 | 说明                                   |
 | ------ | ------ | ---- | ------------------------------------- |
 | formId | string | 是   | 卡片标识。                               |
-| minute | number | 是   | 指定多久之后更新，单位分钟，大于等于5。     |
+| minute | number | 是   | 指定多久之后更新。单位分钟，大于等于5。     |
 
 **返回值：**
 
@@ -101,6 +102,7 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
 ```ts
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let formId: string = '12400633174999288';
 try {
@@ -149,6 +151,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let formId: string = '12400633174999288';
 try {
@@ -209,6 +212,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let formId: string = '12400633174999288';
 let param: Record<string, string> = {
@@ -256,6 +260,7 @@ getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): voi
 
 ```ts
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 try {
   formProvider.getFormsInfo((error, data) => {
@@ -300,6 +305,7 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 ```ts
 import Base from '@ohos.base';
 import formInfo from '@ohos.app.form.formInfo';
+import formProvider from '@ohos.application.formProvider';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -354,6 +360,7 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 ```ts
 import formInfo from '@ohos.app.form.formInfo';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -374,7 +381,7 @@ try {
 
 requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<string>): void
 
-请求发布一张卡片到使用方。使用方通常为桌面。
+请求发布一张卡片到使用方。使用方通常为桌面，使用callback异步回调。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -384,7 +391,7 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 
 | 参数名 | 类型                                                                    | 必填 | 说明             |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-| want | [Want](js-apis-application-want.md)                           | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
+| want | [Want](js-apis-app-ability-want.md)                           | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 是   | 创建卡片的数据。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。返回卡片标识。 |
 
@@ -406,6 +413,7 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 import formBindingData from '@ohos.app.form.formBindingData';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -437,7 +445,7 @@ try {
 
 requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
-请求发布一张卡片到使用方。使用方通常为桌面。
+请求发布一张卡片到使用方。使用方通常为桌面，使用callback异步回调。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -447,7 +455,7 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名   | 类型                                | 必填 | 说明                                                         |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| want     | [Want](js-apis-application-want.md) | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
+| want     | [Want](js-apis-app-ability-want.md) | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | callback | AsyncCallback&lt;string&gt;         | 是   |  回调函数。返回卡片标识。 |
 
 **错误码：**
@@ -467,6 +475,7 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 ```ts
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -493,7 +502,7 @@ try {
 
 requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData): Promise&lt;string&gt;
 
-请求发布一张卡片到使用方。使用方通常为桌面。
+请求发布一张卡片到使用方。使用方通常为桌面，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -503,7 +512,7 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 
 | 参数名          | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want            | [Want](js-apis-application-want.md)                          | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
+| want            | [Want](js-apis-app-ability-want.md)                          | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 否   | 创建卡片的数据，默认为空，不提供创建卡片数据。                                      |
 
 **返回值：**
@@ -529,6 +538,7 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 ```ts
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -553,7 +563,7 @@ try {
 
 isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 
-查询是否支持发布一张卡片到使用方。
+查询是否支持发布一张卡片到使用方，使用callback异步回调。
 
 **系统接口**: 此接口为系统接口。
 
@@ -581,6 +591,7 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 ```ts
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 try {
   formProvider.isRequestPublishFormSupported((error: Base.BusinessError, isSupported: boolean) => {
@@ -619,7 +630,7 @@ try {
 
 isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 
-查询是否支持发布一张卡片到使用方。
+查询是否支持发布一张卡片到使用方，使用Promise异步回调。
 
 **系统接口**: 此接口为系统接口。
 
@@ -646,6 +657,7 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 ```ts
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
+import formProvider from '@ohos.application.formProvider';
 
 try {
   formProvider.isRequestPublishFormSupported().then((isSupported: boolean) => {

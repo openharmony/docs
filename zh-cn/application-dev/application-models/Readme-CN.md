@@ -16,11 +16,11 @@
       - [UIAbility组件间交互（设备内）](uiability-intra-device-interaction.md)
     - ExtensionAbility组件
       - [ExtensionAbility组件概述](extensionability-overview.md)
-      - [ServiceExtensionAbility](serviceextensionability.md)
-      - [AccessibilityExtensionAbility](accessibilityextensionability.md)
-      - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
+      - [AccessibilityExtensionAbility](accessibilityextensionability.md)
+      - [ServiceExtensionAbility](serviceextensionability.md)
       - [WindowExtensionAbility（仅对系统应用开放）](windowextensionability.md)
+      - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [DriverExtensionAbility](driverextensionability.md)
     - 服务卡片开发指导（Stage模型）
       - [服务卡片概述](service-widget-overview.md)
@@ -78,8 +78,7 @@
     - [后台服务](background-services.md)
   - 了解线程模型
     - [线程模型概述](thread-model-stage.md)
-    - [使用Emitter进行线程间通信](itc-with-emitter.md)
-    - [使用Worker进行线程间通信](itc-with-worker.md)
+    - [使用EventHub进行线程内通信](itc-with-eventHub.md)
   - 任务（Mission）管理
     - [任务（Mission）管理场景介绍](mission-management-overview.md)
     - [任务（Mission）与启动模式](mission-management-launch-type.md)
@@ -128,7 +127,7 @@
     - [后台服务](rpc.md)
   - 了解线程模型
     - [线程模型概述](thread-model-fa.md)
-    - [线程间通信](itc-fa-overview.md)
+    - [使用Emitter进行线程间通信](itc-with-emitter.md)
   - [任务管理](mission-management-fa.md)
   - [FA模型应用配置文件](config-file-fa.md)
 - FA模型与Stage模型应用组件互通指导

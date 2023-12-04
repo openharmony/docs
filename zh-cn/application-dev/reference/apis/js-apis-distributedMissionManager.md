@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import distributedMissionManager from '@ohos.distributedMissionManager'
+import distributedMissionManager from '@ohos.distributedMissionManager';
 ```
 
 ## distributedMissionManager.registerMissionListener
@@ -35,8 +35,10 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+  
+  // 实现回调函数
   function NotifyMissionsChanged(deviceId: string): void {
     console.log('NotifyMissionsChanged deviceId ' + JSON.stringify(deviceId));
   }
@@ -49,6 +51,7 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
     console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
   }
   try {
+    // 调用registerMissionListener接口
     distributedMissionManager.registerMissionListener(
       { deviceId: "" },
       {
@@ -57,13 +60,14 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
         notifyNetDisconnect: NotifyNetDisconnect
       },
       (error: BusinessError) => {
-        if (error.code != 0) {
-          console.error('registerMissionListener failed, cause: ' + JSON.stringify(error))
+        if (error) {
+          console.error('registerMissionListener failed, cause: ' + JSON.stringify(error));
+          return;
         }
-        console.info('registerMissionListener finished')
+        console.info('registerMissionListener finished');
       });
   } catch (error) {
-    console.error('registerMissionListener failed, cause: ' + JSON.stringify(error))
+    console.error('registerMissionListener failed, cause: ' + JSON.stringify(error));
   }
   ```
 ## distributedMissionManager.registerMissionListener
@@ -92,8 +96,10 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
+  // 实现回调函数
   function NotifyMissionsChanged(deviceId: string): void {
     console.log('NotifyMissionsChanged deviceId ' + JSON.stringify(deviceId));
   }
@@ -106,19 +112,20 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
     console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
   }
   try {
+      // 调用registerMissionListener接口
       distributedMissionManager.registerMissionListener(
         { deviceId: "" },
         {
           notifyMissionsChanged: NotifyMissionsChanged,
           notifySnapshot: NotifySnapshot,
           notifyNetDisconnect: NotifyNetDisconnect
-        }).then((data: void) => {
-          console.info('registerMissionListener finished, ' + JSON.stringify(data));
+        }).then(() => {
+          console.info('registerMissionListener finished. ');
       }).catch((error: BusinessError) => {
           console.error('registerMissionListener failed, cause: ' + JSON.stringify(error));
       })
   } catch (error) {
-      console.error('registerMissionListener failed, cause: ' + JSON.stringify(error))
+      console.error('registerMissionListener failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -142,19 +149,21 @@ unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.unRegisterMissionListener(
       { deviceId: "" },
       (error: BusinessError) => {
-        if (error.code != 0) {
-            console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error))
+        if (error) {
+            console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error));
+            return;
         }
-        console.info('unRegisterMissionListener finished')
+        console.info('unRegisterMissionListener finished');
     })
   } catch (error) {
-      console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error))
+      console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -183,8 +192,9 @@ unRegisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.unRegisterMissionListener({deviceId: ""}).then(() => {
       console.info('unRegisterMissionListener finished successfully');
@@ -192,7 +202,7 @@ unRegisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
         console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error));
     })
   } catch (error) {
-      console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error))
+      console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -216,8 +226,9 @@ startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.startSyncRemoteMissions(
       {
@@ -226,13 +237,14 @@ startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;
         tag: 0
       },
       (error: BusinessError) => {
-        if (error.code != 0) {
-          console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+        if (error) {
+          console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
+          return;
         }
-        console.info('startSyncRemoteMissions finished')}
+        console.info('startSyncRemoteMissions finished');}
     )
   } catch (error) {
-    console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+    console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -261,8 +273,9 @@ startSyncRemoteMissions(parameter: MissionParameter): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.startSyncRemoteMissions(
       {
@@ -276,7 +289,7 @@ startSyncRemoteMissions(parameter: MissionParameter): Promise&lt;void&gt;
       console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
     })
   } catch (error) {
-    console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+    console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -300,21 +313,23 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.stopSyncRemoteMissions(
       {
         deviceId: ""
       },
       (error: BusinessError) => {
-        if (error.code != 0) {
-          console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+        if (error) {
+          console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
+          return;
         }
-        console.info('stopSyncRemoteMissions finished')}
+        console.info('stopSyncRemoteMissions finished');}
     )
   } catch (error) {
-    console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+    console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -343,19 +358,20 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.stopSyncRemoteMissions(
       {
         deviceId: ""
-      }).then((data: void) => {
+      }).then(() => {
         console.info('stopSyncRemoteMissions finished successfully');
       }).catch((error: BusinessError) => {
       console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
     })
   } catch (error) {
-    console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+    console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -393,12 +409,15 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
+  // 实现回调函数
   function onContinueDone(resultCode: number): void {
     console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   try {
+    // 调用continueMission接口
     distributedMissionManager.continueMission(
       {
         srcDeviceId: "",
@@ -408,13 +427,14 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
       },
       { onContinueDone: onContinueDone },
       (error: BusinessError) => {
-        if (error.code != 0) {
-          console.error('continueMission failed, cause: ' + JSON.stringify(error))
+        if (error) {
+          console.error('continueMission failed, cause: ' + JSON.stringify(error));
+          return;
         }
-        console.info('continueMission finished')
+        console.info('continueMission finished');
     })
   } catch (error) {
-    console.error('continueMission failed, cause: ' + JSON.stringify(error))
+    console.error('continueMission failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -457,12 +477,15 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
+  // 实现回调函数
   function onContinueDone(resultCode: number): void {
     console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   try {
+    // 调用continueMission接口
     distributedMissionManager.continueMission(
       {
         srcDeviceId: "",
@@ -476,7 +499,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
       console.error('continueMission failed, cause: ' + JSON.stringify(error));
     })
   } catch (error) {
-    console.error('continueMission failed, cause: ' + JSON.stringify(error))
+    console.error('continueMission failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -513,8 +536,9 @@ continueMission(parameter: ContinueMissionInfo, callback: AsyncCallback&lt;void&
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.continueMission(
       {
@@ -524,13 +548,14 @@ continueMission(parameter: ContinueMissionInfo, callback: AsyncCallback&lt;void&
         wantParam: {"key": "value"}
       },
       (error: BusinessError) => {
-        if (error.code != 0) {
-          console.error('continueMission failed, cause: ' + JSON.stringify(error))
+        if (error) {
+          console.error('continueMission failed, cause: ' + JSON.stringify(error));
+          return;
         }
-        console.info('continueMission finished')
+        console.info('continueMission finished');
     })
   } catch (error) {
-    console.error('continueMission failed, cause: ' + JSON.stringify(error))
+    console.error('continueMission failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -572,8 +597,9 @@ continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
   try {
       distributedMissionManager.continueMission(
         {
@@ -588,7 +614,7 @@ continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
           console.error('continueMission failed, cause: ' + JSON.stringify(error));
       })
   } catch (error) {
-      console.error('continueMission failed, cause: ' + JSON.stringify(error))
+      console.error('continueMission failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -612,7 +638,8 @@ on(type: 'continueStateChange',  callback: Callback&lt;{ state: ContinueState, i
 **示例：**
 
 ```js
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
+
   try {
     distributedMissionManager.on('continueStateChange', (data) => {
       console.info("continueStateChange on:" + JSON.stringify(data));
@@ -637,18 +664,19 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
 | type | string  | 是    | 当前任务流转状态，取值为'continueStateChange'。    |
-| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | 否    | 回调函数，返回当前任务的流转状态和流转信息。<br>参数不填写，取消type对应的所有回调监听。    |
+| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | 否    | 需要取消的回调函数。<br>参数不填写，取消type对应的所有回调监听。    |
 
 **示例：**
 
 ```js
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
+
   try {
     distributedMissionManager.off('continueStateChange', (data) => {
       console.info("continueStateChange off:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("continueStateChange err: " + JSON.stringify(error));
+    console.error("continueStateChange err: " + JSON.stringify(err));
   }
   ```
 
@@ -676,7 +704,7 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 
 | 名称          | 类型    | 可读   | 可写   | 说明          |
 | ----------- | ------- | ---- | ---- | ----------- |
-| deviceId    | string  | 是    | 是    | 表示设备ID。     |
+| deviceId    | string  | 是    | 是    | 表示设备ID。详细介绍请参见[getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)     |
 | fixConflict | boolean | 是    | 是    | 表示是否存在版本冲突。 |
 | tag         | number  | 是    | 是    | 表示特定的标签。    |
 
@@ -690,7 +718,7 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 
 | 名称       | 类型   | 可读   | 可写   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
-| deviceId | string | 是    | 是    | 表示设备ID。 |
+| deviceId | string | 是    | 是    | 表示设备ID。详细介绍请参见[getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync) |
 
 ## ContinueState<sup>10+</sup>
 

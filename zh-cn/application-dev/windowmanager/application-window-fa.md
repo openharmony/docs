@@ -20,21 +20,21 @@
 
 上述场景涉及的常用接口如下表所示。更多API说明请参见[API参考](../reference/apis/js-apis-window.md)。
 
-| 实例名 | 接口名 | 描述 |
-| -------- | -------- | -------- |
-| window静态方法 | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | 创建子窗口。<br/>-`config`：创建窗口时的参数。 |
-| window静态方法 | findWindow(name: string): Window | 查找`name`所对应的窗口。 |
-| Window | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前窗口加载具体页面内容。 |
-| Window | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口。 |
-| Window | setWindowBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | 设置窗口的背景色。 |
-| Window | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。 |
-| Window | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | 改变当前窗口大小。 |
-| Window | setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口布局是否为全屏布局。 |
-| Window | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | 设置导航栏、状态栏是否显示。 |
-| Window | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | 设置窗口内导航栏、状态栏属性。<br/>`systemBarProperties`：导航栏、状态栏的属性集合。 |
-| Window | showWindow(callback: AsyncCallback\<void>): void | 显示当前窗口。 |
-| Window | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | 开启本窗口区域外的点击事件的监听。 |
-| Window | destroyWindow(callback: AsyncCallback&lt;void&gt;): void | 销毁当前窗口。 |
+| 实例名         | 接口名                                                       | 描述                                                         |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| window静态方法 | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | 创建子窗口。<br/>-`config`：创建窗口时的参数。               |
+| window静态方法 | findWindow(name: string): Window                             | 查找`name`所对应的窗口。                                     |
+| Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 根据当前工程中某个页面的路径为窗口加载具体的页面内容。                                 |
+| Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口。                                               |
+| Window         | setWindowBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | 设置窗口的背景色。                                           |
+| Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。                                             |
+| Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | 改变当前窗口大小。                                           |
+| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口布局是否为全屏布局。                                 |
+| Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | 设置导航栏、状态栏是否显示。                                 |
+| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | 设置窗口内导航栏、状态栏属性。<br/>`systemBarProperties`：导航栏、状态栏的属性集合。 |
+| Window         | showWindow(callback: AsyncCallback\<void>): void             | 显示当前窗口。                                               |
+| Window         | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | 开启本窗口区域外的点击事件的监听。                           |
+| Window         | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | 销毁当前窗口。                                               |
 
 
 ## 设置应用子窗口
@@ -48,37 +48,38 @@
 
    - 可以通过`window.createWindow`接口创建子窗口。
    - 也可以通过`window.findWindow`接口来查找已经创建的窗口从而得到子窗口。
-   
+
    ```ts
-      import window from '@ohos.window';
-      import { BusinessError } from '@ohos.base';
+   import window from '@ohos.window';
+   import { BusinessError } from '@ohos.base';
    
-      let windowClass: window.Window | null = null;
-      // 方式一：创建子窗口。
-      let config: window.Configuration = {name: "subWindow", windowType: window.WindowType.TYPE_APP};
-      window.createWindow(config, (err: BusinessError, data) => {
-          let errCode: number = err.code;
-          if (errCode) {
-              console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
-              return;
-          }
-          console.info('Succeeded in creating subWindow. Data: ' + JSON.stringify(data));
-          windowClass = data;
-      });
-      // 方式二：查找得到子窗口。
-      try {
-          windowClass = window.findWindow('subWindow');
-      } catch (exception) {
-          console.error('Failed to find the Window. Cause: ' + JSON.stringify(exception));
-      }
+   let windowClass: window.Window | null = null;
+   // 方式一：创建子窗口。
+   let config: window.Configuration = { name: "subWindow", windowType: window.WindowType.TYPE_APP };
+   window.createWindow(config, (err: BusinessError, data) => {
+     let errCode: number = err.code;
+     if (errCode) {
+       console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
+       return;
+     }
+     console.info('Succeeded in creating subWindow. Data: ' + JSON.stringify(data));
+     windowClass = data;
+   });
+   // 方式二：查找得到子窗口。
+   try {
+     windowClass = window.findWindow('subWindow');
+   } catch (exception) {
+     console.error('Failed to find the Window. Cause: ' + JSON.stringify(exception));
+   }
    ```
 
 2. 设置子窗口属性。
 
    子窗口创建成功后，可以改变其大小、位置等，还可以根据应用需要设置窗口背景色、亮度等属性。
-   
+
    ```ts
    // 移动子窗口位置。
+   let windowClass: window.Window = window.findWindow("test");
    windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -101,44 +102,45 @@
 3. 加载显示子窗口的具体内容。
 
    使用`setUIContent`和`showWindow`接口加载显示子窗口的具体内容。
-   
+
    ```ts
    // 为子窗口加载对应的目标页面。
+   let windowClass: window.Window = window.findWindow("test");
    windowClass.setUIContent("pages/page2", (err: BusinessError) => {
+     let errCode: number = err.code;
+     if (errCode) {
+       console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
+       return;
+     }
+     console.info('Succeeded in loading the content.');
+     // 显示子窗口。
+     windowClass.showWindow((err: BusinessError) => {
        let errCode: number = err.code;
        if (errCode) {
-           console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
-           return;
+         console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+         return;
        }
-       console.info('Succeeded in loading the content.');
-       // 显示子窗口。
-       windowClass.showWindow((err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
-               console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
-               return;
-           }
-           console.info('Succeeded in showing the window.');
-       });
+       console.info('Succeeded in showing the window.');
+     });
    });
    ```
-   
+
 4. 销毁子窗口。
 
    当不再需要某些子窗口时，可根据场景的具体实现逻辑，使用`destroyWindow`接口销毁子窗口。
-   
+
    ```ts
    // 销毁子窗口。当不再需要某些子窗口时，可根据场景的具体实现逻辑，使用destroy接口销毁子窗口。
+   let windowClass: window.Window = window.findWindow("test");
    windowClass.destroyWindow((err: BusinessError) => {
-       let errCode: number = err.code;
-       if (errCode) {
-           console.error('Failed to destroy the subwindow. Cause:' + JSON.stringify(err));
-           return;
-       }
-       console.info('Succeeded in destroying the subwindow.');
+     let errCode: number = err.code;
+     if (errCode) {
+       console.error('Failed to destroy the subwindow. Cause:' + JSON.stringify(err));
+       return;
+     }
+     console.info('Succeeded in destroying the subwindow.');
    });
    ```
-
 
 ## 体验窗口沉浸式能力
 
@@ -154,14 +156,20 @@
    > 沉浸式能力需要在成功获取应用主窗口对象的前提下进行。
    >
    > 确保应用内最后显示的窗口为主窗口，然后再使用`window.getLastWindow`接口来获取得到主窗口。
-   
+
    ```ts
    import window from '@ohos.window';
    import { BusinessError } from '@ohos.base';
-
+   
    let mainWindowClass: window.Window | null = null;
+   
    // 获取主窗口。
-   window.getLastWindow(this.context,(err: BusinessError, data) => {
+   class BaseContext {
+     stageMode: boolean = false;
+   }
+   
+   let context: BaseContext = { stageMode: false };
+   window.getLastWindow(context, (err: BusinessError, data) => {
      let errCode: number = err.code;
      if (errCode) {
        console.error('Failed to get the subWindow. Cause: ' + JSON.stringify(err));
@@ -178,9 +186,9 @@
    - 方式二：调用`setWindowLayoutFullScreen`接口，设置应用主窗口为全屏布局；然后调用`setWindowSystemBarProperties`接口，设置导航栏、状态栏的透明度、背景/文字颜色以及高亮图标等属性，使之保持与主窗口显示协调一致，从而达到沉浸式效果。
 
    ```ts
-   
    // 实现沉浸式效果。方式一：设置导航栏、状态栏不显示。
    let names: Array<'status' | 'navigation'> = [];
+   let mainWindowClass: window.Window = window.findWindow("test");
    mainWindowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
      let errCode: number = err.code;
      if (errCode) {
@@ -220,24 +228,25 @@
 3. 加载显示沉浸式窗口的具体内容。
 
    使用`setUIContent`和`showWindow`接口加载显示沉浸式窗口的具体内容。
-   
+
    ```ts
    // 为沉浸式窗口加载对应的目标页面。
+   let mainWindowClass: window.Window = window.findWindow("test");
    mainWindowClass.setUIContent("pages/page3", (err: BusinessError) => {
+     let errCode: number = err.code;
+     if (errCode) {
+       console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
+       return;
+     }
+     console.info('Succeeded in loading the content.');
+     // 显示沉浸式窗口。
+     mainWindowClass.showWindow((err: BusinessError) => {
        let errCode: number = err.code;
        if (errCode) {
-           console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
-           return;
+         console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+         return;
        }
-       console.info('Succeeded in loading the content.');
-       // 显示沉浸式窗口。
-       mainWindowClass.showWindow((err: BusinessError) => {
-           let errCode: number = err.code;
-           if (errCode) {
-               console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
-               return;
-           }
-           console.info('Succeeded in showing the window.');
-       });
+       console.info('Succeeded in showing the window.');
+     });
    });
    ```

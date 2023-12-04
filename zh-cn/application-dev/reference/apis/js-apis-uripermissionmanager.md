@@ -1,10 +1,11 @@
 # @ohos.application.uriPermissionManager(URI权限管理)
-> **说明：**
-> 
-> 本模块首批接口从API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 
 URI权限管理模块。用于应用A授权/撤销授权URI给应用B
+
+> **说明：**
+> 
+> 本模块首批接口从API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块接口均为系统接口，三方应用不支持调用。
 
 
 ## 导入模块
@@ -17,7 +18,7 @@ import uriPermissionManager from '@ohos.application.uriPermissionManager';
 
 ## uriPermissionManager.grantUriPermission
 
-grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void;
+grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void
 
 授权URI给指定应用，通过callback返回结果。
 
@@ -139,7 +140,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   ```
 ## uriPermissionManager.revokeUriPermission
 
-revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void;
+revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void
 
 撤销授权指定应用的URI，通过callback返回结果。
 

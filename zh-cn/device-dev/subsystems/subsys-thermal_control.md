@@ -48,14 +48,15 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     | name="gpu" | GPU管控动作（控制GPU频率） | 无 | 无 | 无 | 无 |
     | name="lcd" | LCD管控动作（控制屏幕亮度） | 无 | 无 | 无 | 无 |
     | name="volume" | 声音管控动作（控制音量大小） | uid | 用户id | int | 根据产品定义 | 
-    | name="current" | 充电电流管控动作（控制快充和慢充时的充电电流大小） | protocol | 支持的充电协议，快充（sc）和慢充（buck） | string | sc，buck |
-    | name="current" | 充电电流管控动作 | event | 为1时发送事件，为0时不发送事件 | int | 0，1 |
-    | name="voltage" | 充电电压管控动作（控制快充和慢充时的充电电压大小） | protocol | 支持的充电协议，快充（sc）和慢充（buck） | string | sc，buck |
-    | name="voltage" | 充电电压管控动作 | event | 为1时发送事件，为0时不发送事件 | int | 0，1 |
+    | name="current_xxx" | 充电电流管控动作（控制快充和慢充时的充电电流大小） | protocol<br>param | protocol填写current，param填写支持的充电协议，快充（sc）和慢充（buck） | string |protocol="current" param="sc" |
+    | name="current_xxx" | 充电电流管控动作 | event | 为1时发送事件，为0时不发送事件 | int | 0，1 |
+    | name="voltage_xxx" | 充电电压管控动作（控制快充和慢充时的充电电压大小） | protocol<br>param | protocol填写voltage，param填写支持的充电协议，快充（sc）和慢充（buck） | string | protocol="voltage" param="buck" |
+    | name="voltage_xxx" | 充电电压管控动作 | event | 为1时发送事件，为0时不发送事件 | int | 0，1 |
     | name="process_ctrl" | 进程管控动作（控制前台和后台进程存活状态） | event | 为1时发送事件，为0时不发送事件，为空时默认值为0 | int | 0，1 |
     | name="shut_down" | 关机管控动作（控制是否关机） | event | 为1时发送事件，为0时不发送事件 | int | 0，1 |
     | name="thermallevel" | 热等级管控动作（控制热等级上报） | event | 为1时发送事件，为0时不发送事件 | int | 0，1 |
     | name="popup" | 弹窗管控动作（控制是否弹窗） | 无 | 无 | 无 | 无 |
+    | name="xxx" | 节点定制温控动作 | protocol<br>param | protocol填入node<br>param填入节点路径及回退值，用逗号隔开 | string | 无 |
 
     ```shell
     <action>
@@ -65,12 +66,13 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
         <item name="gpu"/>
         <item name="lcd"/>
         <item name="volume" uid="2001,2002"/>
-        <item name="current" protocol="sc,buck" event="1"/>
-        <item name="voltage" protocol="sc,buck" event="1"/>
+        <item name="current_sc" protocol="current" param="sc" event="1"/>
+        <item name="voltage_buck" protocol="voltage" param="buck" event="1"/>
         <item name="process_ctrl" event=""/>
         <item name="shut_down" event="0"/>
         <item name="thermallevel" event="0"/>
         <item name="popup"/>
+        <item name="(action_name)" protocol="node" param="/sys/class/thermal/xxx"/>
     </action>
     ```
 

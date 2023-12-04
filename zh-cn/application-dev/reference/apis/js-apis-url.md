@@ -1,5 +1,7 @@
 # @ohos.url (URL字符串解析)
 
+URL代表着是统一资源定位符，本模块提供了常用的工具函数，实现了处理URL字符串[URLParams](#urlparams9)和构造[URL](#url)对象等功能。
+
 > **说明：**
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -7,9 +9,11 @@
 ## 导入模块
 
 ```
-import Url from '@ohos.url' 
+import Url from '@ohos.url'
 ```
 ## URLParams<sup>9+</sup>
+
+URLParams接口定义了一些处理URL查询字符串的实用方法。
 
 ### constructor<sup>9+</sup>
 
@@ -141,7 +145,7 @@ for (let pair of arrayValue) { // Show keyName/valueName pairs
 
 ### forEach<sup>9+</sup>
 
-forEach(callbackFn: (value: string, key: string, searchParams: this) => void, thisArg?: Object): void
+forEach(callbackFn: (value: string, key: string, searchParams: URLParams) => void, thisArg?: Object): void
 
 通过回调函数来遍历URLSearchParams实例对象上的键值对。
 
@@ -160,7 +164,7 @@ forEach(callbackFn: (value: string, key: string, searchParams: this) => void, th
 | -------- | -------- | -------- | -------- |
 | value | string | 是 | 当前遍历到的键值。 |
 | key | string | 是 | 当前遍历到的键名。 |
-| searchParams | Object | 是 | 当前调用forEach方法的实例对象。 |
+| searchParams | [URLParams](#urlparams9) | 是 | 当前调用forEach方法的实例对象。 |
 
 **示例：**
 
@@ -373,6 +377,8 @@ console.log(params.toString());
 
 ## URL
 
+用于解析、构造、编码对应的URL字符串。
+
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -511,6 +517,8 @@ let result = url.toJSON();
 ```
 
 ## URLSearchParams<sup>(deprecated)</sup>
+
+URLSearchParams接口定义了一些处理URL查询字符串的实用方法，从API version 9开始废弃，建议使用[URLParams](#urlparams9)。
 
 ### constructor<sup>(deprecated)</sup>
 

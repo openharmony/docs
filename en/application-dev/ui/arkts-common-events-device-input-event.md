@@ -197,29 +197,38 @@ class butf{
     this.buttonText = val
   }
 }
-Button(this.isHovered ? 'Hovered!' : 'Not Hover')
-  .width(200)
-  .height(100)
-  .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
-  .onHover((isHover?: boolean) => {
-    if(isHover){
-      let ishset = new ish()
-      ishset.set(isHover)
+@Entry
+@Component
+struct MouseExample {
+  @State isHovered:ish = new ish()
+  build(){
+    Column(){
+      Button(this.isHovered ? 'Hovered!' : 'Not Hover')
+        .width(200)
+        .height(100)
+        .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
+        .onHover((isHover?: boolean) => {
+          if(isHover) {
+            let ishset = new ish()
+            ishset.set(isHover)
+          }
+        })
+        .onMouse((event?: MouseEvent) => {
+          if (event) {
+            if (event.stopPropagation) {
+              event.stopPropagation(); // Prevent the onMouse event from bubbling.
+            }
+            let butset = new butf()
+            butset.set('Button onMouse:\n' + '' +
+              'button = ' + event.button + '\n' +
+              'action = ' + event.action + '\n' +
+              'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
+              'windowXY=(' + event.windowX + ',' + event.windowY + ')');
+          }
+        })
     }
-  })
-  .onMouse((event?: MouseEvent) => {
-    if(event){
-      if(event.stopPropagation){
-        event.stopPropagation(); // Prevent the onMouse event from bubbling.
-      }
-      let butset = new butf()
-      butset.set('Button onMouse:\n' + '' +
-        'button = ' + event.button + '\n' +
-        'action = ' + event.action + '\n' +
-        'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
-        'windowXY=(' + event.windowX + ',' + event.windowY + ')');
-    }
-  })
+  }
+}
 ```
 
 
@@ -385,37 +394,60 @@ To prevent the key event of the **\<Button>** component from bubbling up to its 
 
 
 ```ts
-class butypef{
-  buttonType:string = ''
-  set(val:string){
-    this.buttonType = val
-  }
-  get(){
-    return this.buttonType
+// xxx.ets
+@Entry
+@Component
+struct KeyEventExample {
+  @State buttonText: string = '';
+  @State buttonType: string = '';
+  @State columnText: string = '';
+  @State columnType: string = '';
+
+  build() {
+    Column() {
+      Button('onKeyEvent')
+        .width(140).height(70)
+        .onKeyEvent((event?: KeyEvent) => {
+          // Use stopPropagation to prevent the key event from bubbling up.
+          if(event){
+            if(event.stopPropagation){
+              event.stopPropagation();
+            }
+            if (event.type === KeyType.Down) {
+              this.buttonType = 'Down';
+            }
+            if (event.type === KeyType.Up) {
+              this.buttonType = 'Up';
+            }
+            this.buttonText = 'Button: \n' +
+              'KeyType:' + this.buttonType + '\n' +
+              'KeyCode:' + event.keyCode + '\n' +
+              'KeyText:' + event.keyText;
+          }
+        })
+
+      Divider()
+      Text(this.buttonText).fontColor(Color.Green)
+
+      Divider()
+      Text(this.columnText).fontColor(Color.Red)
+    }.width('100%').height('100%').justifyContent(FlexAlign.Center)
+    .onKeyEvent((event?: KeyEvent) => { //  Set the onKeyEvent event for the parent container <Column>.
+      if(event){
+        if (event.type === KeyType.Down) {
+          this.columnType = 'Down';
+        }
+        if (event.type === KeyType.Up) {
+          this.columnType = 'Up';
+        }
+        this.columnText = 'Column: \n' +
+          'KeyType:' + this.buttonType + '\n' +
+          'KeyCode:' + event.keyCode + '\n' +
+          'KeyText:' + event.keyText;
+      }
+    })
   }
 }
-Button('onKeyEvent')
-  .width(140).height(70)
-  .onKeyEvent((event?: KeyEvent|object) => {
-    // Use stopPropagation to prevent the key event from bubbling up.
-    if(event){
-      event.stopPropagation();
-      if (event.type === KeyType.Down) {
-        let butset = new butypef()
-        butset.set('Down')
-      }
-      if (event.type === KeyType.Up) {
-        let butset = new butypef()
-        butset.set('Up')
-      }
-      let butfset = new butf()
-      let butset = new butypef()
-      butfset.set('Button: \n' +
-        'KeyType:' + butset.get() + '\n' +
-        'KeyCode:' + event.keyCode + '\n' +
-        'KeyText:' + event.keyText)
-    }
-})
 ```
 
 

@@ -445,7 +445,7 @@ Since API version 9, the attributes in **NumberOptions** are optional.
 | ------------------------ | ------- | ---- | ---- | ---------------------------------------- |
 | locale                   | string  | Yes   | No   | Locale, for example, **zh-Hans-CN**. The default value is the system locale.              |
 | currency                 | string  | Yes   | Yes   | Currency unit, for example, **EUR**, **CNY**, or **USD**.        |
-| currencySign             | string  | Yes   | Yes   | Currency unit symbol. The value can be **symbol**, **narrowSymbol**, **code**, or **name**. The default value is **symbol**.|
+| currencySign             | string  | Yes   | Yes   | Currency unit symbol. The options are "standard" and "accounting". The default value is **standard**.|
 | currencyDisplay          | string  | Yes   | Yes   | Currency display mode. The value can be **symbol**, **narrowSymbol**, **code**, or **name**. The default value is **symbol**.|
 | unit                     | string  | Yes   | Yes   | Unit name, for example, **meter**, **inch**, or **hectare**.       |
 | unitDisplay              | string  | Yes   | Yes   | Unit display format. The value can be **long**, **short**, or **narrow**. The default value is **short**.|

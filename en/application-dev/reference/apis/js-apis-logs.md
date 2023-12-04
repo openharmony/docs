@@ -254,7 +254,18 @@ Prints content of the specified object.
 **Example**
 
 ```js
-let a = { foo: { bar: { baz: true } }};
+class bar {
+  baz: boolean = true;
+}
+let b: bar = {baz: true}
+class foo{
+  bar: bar = b;
+}
+let c: foo = {bar: b}
+class  c1{
+  foo: foo = c;
+}
+let a: c1 = {foo: c}
 console.dir(a);
 // Object: {"foo":{"bar":{"baz":true}}}
 

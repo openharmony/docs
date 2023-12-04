@@ -34,7 +34,7 @@ getDeviceList(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 ```js
 try {
-  inputDevice.getDeviceList((error: Error, ids: Array<number>) => {
+  inputDevice.getDeviceList((error: Error, ids: Array<Number>) => {
     if (error) {
       console.log(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -64,7 +64,7 @@ getDeviceList(): Promise&lt;Array&lt;number&gt;&gt;
 
 ```js
 try {
-  inputDevice.getDeviceList().then((ids: Array<number>) => {
+  inputDevice.getDeviceList().then((ids: Array<Number>) => {
     console.log(`Device id list: ${JSON.stringify(ids)}`);
   });
 } catch (error) {
@@ -92,7 +92,7 @@ getDeviceInfo(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;):
 ```js
 // 获取输入设备id为1的设备信息。
 try {
-  inputDevice.getDeviceInfo(1, (error, deviceData) => {
+  inputDevice.getDeviceInfo(1, (error: Error, deviceData: inputDevice.InputDeviceData) => {
     if (error) {
       console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -162,7 +162,7 @@ getDeviceInfoSync(deviceId: number): InputDeviceData
 ```js
 // 获取输入设备id为1的设备信息。
 try {
-  let deviceData: InputDeviceData = inputDevice.getDeviceInfoSync(1)
+  let deviceData: inputDevice.InputDeviceData = inputDevice.getDeviceInfoSync(1)
   console.log(`Device info: ${JSON.stringify(deviceData)}`)
 } catch (error) {
   console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`)
@@ -257,7 +257,7 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 获取所有输入设备的id列表，使用AsyncCallback异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[inputDevice.getDeviceList](#inputdevicegetdevicelist9)代替。
+> 从API version 9 开始不再维护，建议使用[inputDevice.getDeviceList](#inputdevicegetdevicelist9)代替。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -270,7 +270,7 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 **示例**：
 
 ```js
-inputDevice.getDeviceIds((error: Error, ids: Array<number>) => {
+inputDevice.getDeviceIds((error: Error, ids: Array<Number>) => {
   if (error) {
     console.log(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
     return;
@@ -285,7 +285,7 @@ getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 获取所有输入设备的id列表，使用Promise异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[inputDevice.getDeviceList](#inputdevicegetdevicelist9)代替。
+> 从API version 9 开始不再维护，建议使用[inputDevice.getDeviceList](#inputdevicegetdevicelist9)代替。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -298,7 +298,7 @@ getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 **示例**：
 
 ```js
-inputDevice.getDeviceIds().then((ids: Array<number>) => {
+inputDevice.getDeviceIds().then((ids: Array<Number>) => {
   console.log(`Device id list: ${JSON.stringify(ids)}`);
 });
 ```
@@ -309,7 +309,7 @@ getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): voi
 
 获取指定输入设备的信息，使用AsyncCallback异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9)代替。
+> 从API version 9 开始不再维护，建议使用[inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9)代替。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -339,7 +339,7 @@ getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 获取指定输入设备的信息，使用Promise异步方式返回结果。
 
-从API version 9 开始不再维护，建议使用[inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9)代替。
+> 从API version 9 开始不再维护，建议使用[inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9)代替。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -377,7 +377,7 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: AsyncCallbac
 | 参数名     | 类型                                      | 必填 | 说明                                                   |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number                                    | 是   | 输入设备id，同一个物理设备反复插拔，设备id会发生变化。 |
-| keys     | Array&lt;KeyCode&gt;                      | 是   | 需要查询的键码值，最多支持5个按键查询。                |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode)  | 是   | 需要查询的键码值，最多支持5个按键查询。                |
 | callback | AsyncCallback&lt;Array&lt;boolean&gt;&gt; | 是   | 回调函数，异步返回查询结果。                           |
 
 **示例**：
@@ -385,7 +385,7 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: AsyncCallbac
 ```js
 // 查询id为1的输入设备对于17、22和2055按键的支持情况。
 try {
-  inputDevice.supportKeys(1, [17, 22, 2055], (error: Error, supportResult: Array<boolean>) => {
+  inputDevice.supportKeys(1, [17, 22, 2055], (error: Error, supportResult: Array<Boolean>) => {
     console.log(`Query result: ${JSON.stringify(supportResult)}`);
   });
 } catch (error) {
@@ -406,7 +406,7 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;b
 | 参数名     | 类型                 | 必填 | 说明                                                   |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number               | 是   | 输入设备id，同一个物理设备反复插拔，设备id会发生变化。 |
-| keys     | Array&lt;KeyCode&gt; | 是   | 需要查询的键码值，最多支持5个按键查询。                |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode) | 是   | 需要查询的键码值，最多支持5个按键查询。                |
 
 **返回值**：
 
@@ -419,7 +419,7 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;b
 ```js
 // 查询id为1的输入设备对于17、22和2055按键的支持情况。
 try {
-  inputDevice.supportKeys(1, [17, 22, 2055]).then((supportResult: Array<boolean>) => {
+  inputDevice.supportKeys(1, [17, 22, 2055]).then((supportResult: Array<Boolean>) => {
     console.log(`Query result: ${JSON.stringify(supportResult)}`);
   });
 } catch (error) {
@@ -440,7 +440,7 @@ supportKeysSync(deviceId: number, keys: Array&lt;KeyCode&gt;): Array&lt;boolean&
 | 参数名     | 类型                 | 必填 | 说明                                                   |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number               | 是   | 输入设备id，同一个物理设备反复插拔，设备id会发生变化。 |
-| keys     | Array&lt;KeyCode&gt; | 是   | 需要查询的键码值，最多支持5个按键查询。                |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode) | 是   | 需要查询的键码值，最多支持5个按键查询。                |
 
 **返回值**：
 
@@ -453,7 +453,7 @@ supportKeysSync(deviceId: number, keys: Array&lt;KeyCode&gt;): Array&lt;boolean&
 ```js
 // 查询id为1的输入设备对于17、22和2055按键的支持情况。
 try {
-  let supportResult: Array<boolean> = inputDevice.supportKeysSync(1, [17, 22, 2055])
+  let supportResult: Array<Boolean> = inputDevice.supportKeysSync(1, [17, 22, 2055])
   console.log(`Query result: ${JSON.stringify(supportResult)}`)
 } catch (error) {
   console.log(`Query failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
@@ -480,7 +480,7 @@ getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): 
 ```js
 // 查询id为1的输入设备的键盘类型。
 try {
-  inputDevice.getKeyboardType(1, (error: Error, type: number) => {
+  inputDevice.getKeyboardType(1, (error: Error, type: Number) => {
     if (error) {
       console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -496,7 +496,7 @@ try {
 
 getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 
-获取输入设备的键盘类型，使用AsyncCallback异步方式返回结果。
+获取输入设备的键盘类型，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -517,7 +517,7 @@ getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 ```js
 // 示例查询设备id为1的设备键盘类型。
 try {
-  inputDevice.getKeyboardType(1).then((type: number) => {
+  inputDevice.getKeyboardType(1).then((type: Number) => {
     console.log(`Keyboard type: ${JSON.stringify(type)}`);
   });
 } catch (error) {
@@ -644,7 +644,7 @@ getKeyboardRepeatDelay(callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 try {
-  inputDevice.getKeyboardRepeatDelay((error: Error, delay: number) => {
+  inputDevice.getKeyboardRepeatDelay((error: Error, delay: Number) => {
     if (error) {
       console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -676,7 +676,7 @@ getKeyboardRepeatDelay(): Promise&lt;number&gt;
 
 ```js
 try {
-  inputDevice.getKeyboardRepeatDelay().then((delay: number) => {
+  inputDevice.getKeyboardRepeatDelay().then((delay: Number) => {
     console.log(`Get keyboard repeat delay success`);
   });
 } catch (error) {
@@ -771,7 +771,7 @@ getKeyboardRepeatRate(callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 try {
-  inputDevice.getKeyboardRepeatRate((error: Error, rate: number) => {
+  inputDevice.getKeyboardRepeatRate((error: Error, rate: Number) => {
     if (error) {
       console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -803,7 +803,7 @@ getKeyboardRepeatRate(): Promise&lt;number&gt;
 
 ```js
 try {
-  inputDevice.getKeyboardRepeatRate().then((rate: number) => {
+  inputDevice.getKeyboardRepeatRate().then((rate: Number) => {
     console.log(`Get keyboard repeat rate success`);
   });
 } catch (error) {

@@ -1,5 +1,7 @@
 # @ohos.uri (URI String Parsing)
 
+The **uri** module provides APIs related to URI string parsing.
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -8,10 +10,12 @@
 ## Modules to Import
 
 ```ts
-import uri from '@ohos.uri'  
+import uri from '@ohos.uri'
 ```
 
 ## URI
+
+Implements a URI, which provides APIs for determining whether objects are equal as well as standard paths.
 
 ### Attributes
 

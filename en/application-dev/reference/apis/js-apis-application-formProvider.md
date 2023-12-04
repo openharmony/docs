@@ -25,18 +25,19 @@ Sets the next refresh time for a widget. This API uses an asynchronous callback 
   | Name| Type   | Mandatory| Description                                  |
   | ------ | ------ | ---- | ------------------------------------- |
   | formId | string | Yes  | Widget ID.                              |
-  | minute | number | Yes  | Refresh interval, in minutes. The value must be greater than or equal to 5.    |
+  | minute | number | Yes  | Time for the next refresh. The value must be greater than or equal to 5, in minutes.    |
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
   ```ts
   import Base from '@ohos.base';
+  import formProvider from '@ohos.application.formProvider';
 
   let formId: string = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5, (error: Base.BusinessError) => {
     if (error.code) {
-      console.error('formProvider setFormNextRefreshTime, error: ${JSON.stringify(error)}');
+      console.error(`formProvider setFormNextRefreshTime, error: ${JSON.stringify(error)}`);
     }
   });
   ```
@@ -54,7 +55,7 @@ Sets the next refresh time for a widget. This API uses a promise to return the r
   | Name| Type   | Mandatory| Description                                  |
   | ------ | ------ | ---- | ------------------------------------- |
   | formId | string | Yes  | Widget ID.                              |
-  | minute | number | Yes  | Refresh interval, in minutes. The value must be greater than or equal to 5.    |
+  | minute | number | Yes  | Time for the next refresh. The value must be greater than or equal to 5, in minutes.    |
 
 **Return value**
 
@@ -66,6 +67,7 @@ Sets the next refresh time for a widget. This API uses a promise to return the r
 
   ```ts
   import Base from '@ohos.base';
+  import formProvider from '@ohos.application.formProvider';
 
   let formId: string = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
@@ -96,6 +98,7 @@ Updates a widget. This API uses an asynchronous callback to return the result.
   ```ts
   import Base from '@ohos.base';
   import formBindingData from '@ohos.application.formBindingData';
+  import formProvider from '@ohos.application.formProvider';
 
   let formId: string = '12400633174999288';
   let param: Record<string, string> = {
@@ -136,6 +139,7 @@ Updates a widget. This API uses a promise to return the result.
   ```ts
   import Base from '@ohos.base';
   import formBindingData from '@ohos.application.formBindingData';
+  import formProvider from '@ohos.application.formProvider';
 
   let formId: string = '12400633174999288';
   let param: Record<string, string> = {

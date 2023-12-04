@@ -119,6 +119,17 @@
 | dx   | [Length](#length) | 是    | 水平方向偏移量。 |
 | dy   | [Length](#length) | 是    | 竖直方向偏移量。 |
 
+## RectResult<sup>10+</sup>
+
+位置和尺寸类型，用于描述组件的位置和宽高。
+
+| 参数      | 类型     | 描述 |
+| ------- | ------ | ----------------------- |
+| x     | number | 水平方向横坐标。|
+| y     | number | 竖直方向纵坐标。|
+| width | number | 内容宽度大小。|
+| height | number | 内容高度大小。|
+
 ## ResourceColor
 
 颜色类型，用于描述资源颜色类型。
@@ -130,13 +141,15 @@
 | string                              | rgb或者argb格式颜色。示例：'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'。 |
 | [Resource](#resource)               | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。              |
 
-## ColoringStrategy
+## ColoringStrategy<sup>10+</sup>
 
 智能取色枚举类型，用于设置前景色。
 
 | 名称     | 描述              |
 | ------ | --------------- |
 | INVERT | 设置前景色为控件背景色的反色。 |
+| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。 |
+| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。 |
 
 ## LengthConstrain
 
@@ -319,6 +332,17 @@ Swiper组件动画相关信息集合。
 | currentOffset | number | Swiper当前显示元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0.|
 | targetOffset | number | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0.|
 | velocity | number | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0.|
+
+## TabsAnimationEvent<sup>11+</sup>
+
+Tabs组件动画相关信息集合。
+
+| 名称            | 类型定义                   | 描述                                       |
+| ------------- | ---------------------- | ---------------------------------------- |
+| currentOffset | number | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0.|
+| targetOffset | number | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0.|
+| velocity | number | Tabs离手动画开始时的离手速度。单位VP/S，默认值为0.|
+
 ## SafeAreaType<sup>10+</sup>
 
 扩展安全区域的枚举类型。
@@ -339,3 +363,12 @@ Swiper组件动画相关信息集合。
 | BOTTOM | 下方区域。 |
 | START  | 前部区域。 |
 | END    | 尾部区域。 |
+
+## KeyboardAvoidMode<sup>11+</sup>
+
+配置键盘避让时页面的避让模式。
+
+| 名称   | 描述       |
+| ------ | ---------- |
+| OFFSET | 上抬模式。 |
+| RESIZE | 压缩模式。 |

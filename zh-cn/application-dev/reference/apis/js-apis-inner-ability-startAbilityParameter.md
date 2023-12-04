@@ -19,7 +19,7 @@ import ability from '@ohos.ability.ability';
 
 | 名称               |   类型   | 必填   | 说明                                    |
 | ------------------- | -------- | ---- | -------------------------------------- |
-| want                | [Want](js-apis-application-want.md)|   是   | 启动Ability的want信息。                     |
+| want                | [Want](js-apis-app-ability-want.md)|   是   | 启动Ability的want信息。                     |
 | abilityStartSetting | {[key: string]: any} | 否    | 启动Ability的特殊属性，当开发者启动Ability时，该属性可以作为调用中的输入参数传递。 |
 
 **示例：**
@@ -46,12 +46,12 @@ let startAbilityParameter: ability.StartAbilityParameter = {
 try {
     featureAbility.startAbility(startAbilityParameter, (error, data) => {
         if (error && error.code !== 0) {
-            console.error('startAbility fail, error: ${JSON.stringify(error)}');
+            console.error(`startAbility fail, error: ${JSON.stringify(error)}`);
         } else {
-            console.log('startAbility success, data: ${JSON.stringify(data)}');
+            console.log(`startAbility success, data: ${JSON.stringify(data)}`);
         }
     });
 } catch(error) {
-    console.error('startAbility error: ${JSON.stringify(error)}');
+    console.error(`startAbility error: ${JSON.stringify(error)}`);
 }
 ```

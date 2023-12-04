@@ -2,11 +2,11 @@
 
 The **\<QRCode>** component is used to display a QR code.
 
-> **NOTE**
+>  **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 > 
-> The number of pixels of the **\<QRCode>** component is subject to the content. If the component size is not large enough, the content may fail to be displayed. In this case, you need to resize the component.
+> The pixel count of the **\<QRCode>** component is subject to the content. If the component size is not large enough, the content may fail to be displayed. In this case, you need to resize the component.
 
 
 ## Child Components
@@ -24,7 +24,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | string | Yes| Content of the QR code. A maximum of 256 characters are supported. If the number of characters exceeds 256, the first 256 characters are used.<br>**NOTE**<br>The string cannot be **null**, **undefined**, or empty.|
+| value | string | Yes| Content of the QR code. A maximum of 256 characters are supported. If this limit is exceeded, the first 256 characters are used.<br>**NOTE**<br>The string cannot be **null**, **undefined**, or empty.|
 
 ## Attributes
 
@@ -32,8 +32,9 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | Color of the QR code.<br>Default value: **Color.Black**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the QR code.<br>Default value: **Color.White**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The settings of the universal attribute [backgroundColor](./ts-universal-attributes-background.md) applies to the QR code content area instead of the entire **\<QRCode>** component.|
+| color | [ResourceColor](ts-types.md#resourcecolor) | Color of the QR code.<br>Default value: **Color.Black**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 11, the default value is changed to **'#ff182431'**.|
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the QR code.<br>Default value: **Color.White**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 11, the default value is changed to **'#ffffffff'**.|
+| contentOpacity<sup>11+<sup> | [number](ts-types.md#number) \| [Resource](ts-types.md#resource) | Opacity of the QR code content. The minimum value is 0, and the maximum value is 1.<br>Default value: **1**|
 
 
 ## Events
@@ -52,15 +53,19 @@ struct QRCodeExample {
   build() {
     Column({ space: 5 }) {
       Text('normal').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)
-      QRCode(this.value).width(200).height(200)
+      QRCode(this.value).width(140).height(140)
 
       // Set the color for the QR code.
       Text('color').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)
-      QRCode(this.value).color(0xF7CE00).width(200).height(200)
+      QRCode(this.value).color(0xF7CE00).width(140).height(140)
 
       // Set the background color for the QR code.
       Text('backgroundColor').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)
-      QRCode(this.value).width(200).height(200).backgroundColor(Color.Orange)
+      QRCode(this.value).width(140).height(140).backgroundColor(Color.Orange)
+
+      // Set the opacity of QR code content.
+      Text('contentOpacity').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)
+      QRCode(this.value).width(140).height(140).color(Color.Black).contentOpacity(0.1)
     }.width('100%').margin({ top: 5 })
   }
 }

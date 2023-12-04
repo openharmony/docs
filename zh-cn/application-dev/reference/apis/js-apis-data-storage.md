@@ -361,6 +361,8 @@ context.getFilesDir().then((filePath) => {
 
 提供获取和修改存储数据的接口。
 
+下列接口都需先使用[data_storage.getStorage](#data_storagegetstorage)或[data_storage.getStorageSync](#data_storagegetstoragesync)获取到Storage实例，再通过此实例调用对应接口。
+
 ### getSync
 
 getSync(key: string, defValue: ValueType): ValueType

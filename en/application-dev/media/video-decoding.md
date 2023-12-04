@@ -8,7 +8,6 @@ Currently, the following decoding capabilities are supported:
 | -------- | --------------------- | ---------------- |
 | mp4      | AVC (H.264), HEVC (H.265)|AVC (H.264) |
 
-
 Video software decoding and hardware decoding are different. When a decoder is created based on the MIME type, only H.264 (video/avc) is supported for software decoding, and H.264 (video/avc) and H.265 (video/hevc) are supported for hardware decoding.
 
 ## How to Develop
@@ -19,7 +18,26 @@ The figure below shows the call relationship of video decoding.
 
 ![Call relationship of video decoding](figures/video-decode.png)
 
-1. Create a decoder instance.
+### Linking the Dynamic Library in the CMake Script
+
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
+target_link_libraries(sample PUBLIC libnative_media_core.so)
+target_link_libraries(sample PUBLIC libnative_media_vdec.so)
+```
+
+### How to Develop
+
+1. Add the header files.
+
+   ``` c++
+   #include <multimedia/player_framework/native_avcodec_videodecoder.h>
+   #include <multimedia/player_framework/native_avcapability.h>
+   #include <multimedia/player_framework/native_avcodec_base.h>
+   #include <multimedia/player_framework/native_avformat.h>
+   ```
+
+2. Create a decoder instance.
 
    You can create a decoder by name or MIME type.
 
@@ -29,6 +47,7 @@ The figure below shows the call relationship of video decoding.
     const char *name = OH_AVCapability_GetName(capability);
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByName(name);
    ```
+
    ```c++
     // Create a decoder by MIME type.
     // Create an H.264 decoder for software/hardware decoding. The system creates the most appropriate decoder if multiple decoders are available.
@@ -36,6 +55,7 @@ The figure below shows the call relationship of video decoding.
     // Create an H.265 decoder for hardware decoding.
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_HEVC);
    ```
+
    ``` c++
    // Initialize the queues.
    class VDecSignal {
@@ -53,7 +73,7 @@ The figure below shows the call relationship of video decoding.
    VDecSignal *signal_;
    ```
 
-2. Call **OH_VideoDecoder_SetCallback()** to set callback functions.
+3. Call **OH_VideoDecoder_SetCallback()** to set callback functions.
 
    Register the **OH_AVCodecAsyncCallback** struct that defines the following callback function pointers:
 
@@ -86,7 +106,7 @@ The figure below shows the call relationship of video decoding.
     {
         (void)codec;
         VDecSignal *signal_ = static_cast<VDecSignal *>(userData);
-        unique_lock<mutex> lock(signal_->inMutex_);
+        std::unique_lock<std::mutex> lock(signal_->inMutex_);
         // The ID of the input frame is sent to inQueue_.
         signal_->inQueue_.push(index);
         // The input frame data is sent to inBufferQueue_.
@@ -100,7 +120,7 @@ The figure below shows the call relationship of video decoding.
     {
         (void)codec;
         VDecSignal *signal_ = static_cast<VDecSignal *>(userData);
-        unique_lock<mutex> lock(signal_->outMutex_);
+        std::unique_lock<std::mutex> lock(signal_->outMutex_);
         // The index of the output buffer is sent to outQueue_.
         signal_->outQueue_.push(index);
         // The decoded data (specified by data) is sent to outBufferQueue_. (Note: data is empty in surface output mode.)
@@ -113,7 +133,7 @@ The figure below shows the call relationship of video decoding.
     int32_t ret = OH_VideoDecoder_SetCallback(videoDec, cb, signal_);
    ```
 
-3. Call **OH_VideoDecoder_Configure()** to configure the decoder.
+4. Call **OH_VideoDecoder_Configure()** to configure the decoder.
 
    The following options are mandatory: video frame width, video frame height, and video color format.
 
@@ -132,27 +152,20 @@ The figure below shows the call relationship of video decoding.
     OH_AVFormat_Destroy(format);
    ```
 
-4. (Optional) Set the surface.
+5. (Optional) Set the surface.
 
-   This step is required only when the surface is used to send the data for display.
+   This step is required only when the surface is used to send the data for display. The application obtains the native window from the XComponent. For details about the process, see [XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md).
 
    ``` c++
     // Set the parameters of the display window.
-    sptr<Rosen::Window> window = nullptr;
-    sptr<Rosen::WindowOption> option = new Rosen::WindowOption();
-    option->SetWindowRect({0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT});
-    option->SetWindowType(Rosen::WindowType::WINDOW_TYPE_APP_LAUNCHING);
-    option->SetWindowMode(Rosen::WindowMode::WINDOW_MODE_FLOATING);
-    window = Rosen::Window::Create("video-decoding", option);
-    window->Show();
-    sptr<Surface> ps = window->GetSurfaceNode()->GetSurface();
-    OHNativeWindow *nativeWindow = CreateNativeWindowFromSurface(&ps);
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);
+    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window); // Obtain the window from the XComponent.
     bool isSurfaceMode = true;
-   ```  
+   ```
 
-5. (Optional) Configure the surface parameters of the decoder. This step is required only when the surface is used.
-   
+6. (Optional) Configure the surface parameters of the decoder.
+
+   This step is required only when the surface is used.
+
    ``` c++
     OH_AVFormat *format = OH_AVFormat_Create();
     // Configure the display rotation angle.
@@ -161,9 +174,9 @@ The figure below shows the call relationship of video decoding.
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_SCALING_MODE, SCALING_MODE_SCALE_CROP);
     int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
     OH_AVFormat_Destroy(format);
-   ``` 
+   ```
 
-6. Call **OH_VideoDecoder_Start()** to start the decoder.
+7. Call **OH_VideoDecoder_Start()** to start the decoder.
 
    ``` c++
     string_view outputFilePath = "/*yourpath*.yuv";
@@ -180,7 +193,7 @@ The figure below shows the call relationship of video decoding.
     int32_t ret = OH_VideoDecoder_Start(videoDec);
    ```
 
-7. Call **OH_VideoDecoder_PushInputData()** to push the stream to the input queue for decoding.
+8. Call **OH_VideoDecoder_PushInputData()** to push the stream to the input queue for decoding.
 
    ``` c++
     // Configure the buffer information.
@@ -196,14 +209,14 @@ The figure below shows the call relationship of video decoding.
     int32_t ret = OH_VideoDecoder_PushInputData(videoDec, index, info);
    ```
 
-8. Call **OH_VideoDecoder_FreeOutputData()** to output the decoded frames.
+9. In surface display mode, call **OH_VideoDecoder_RenderOutputData()** to display and release the decoded frames. In the surface no display mode or buffer mode, call **OH_VideoDecoder_FreeOutputData()** to the release decoded frames.
 
    ``` c++
     int32_t ret;
     // Write the decoded data (specified by data) to the output file.
     outFile->write(reinterpret_cast<char *>(OH_AVMemory_GetAddr(data)), data.size);
     // Free the buffer that stores the output data. The index is the subscript of the surface/buffer queue.
-    if (isSurfaceMode) {
+    if (isSurfaceMode && isRender) {
         ret = OH_VideoDecoder_RenderOutputData(videoDec, index);
     } else {
         ret = OH_VideoDecoder_FreeOutputData(videoDec, index);
@@ -213,25 +226,25 @@ The figure below shows the call relationship of video decoding.
     }
    ```
 
-9. (Optional) Call **OH_VideoDecoder_Flush()** to refresh the decoder.
+10. (Optional) Call **OH_VideoDecoder_Flush()** to refresh the decoder.
    
-   After **OH_VideoDecoder_Flush()** is called, the decoder remains in the running state, but the current queue is cleared and the buffer storing the decoded data is freed.
+    After **OH_VideoDecoder_Flush()** is called, the decoder remains in the running state, but the current queue is cleared and the buffer storing the decoded data is freed.
+   
+    To continue decoding, you must call **OH_VideoDecoder_Start()** again.
     
-   To continue decoding, you must call **OH_VideoDecoder_Start()** again.
-
-   ``` c++
-    int32_t ret;
-    // Refresh the decoder.
-    ret = OH_VideoDecoder_Flush(videoDec);
-    if (ret != AV_ERR_OK) {
-        // Exception handling.
-    }
-    // Start decoding again.
-    ret = OH_VideoDecoder_Start(videoDec);
-   ```
-
-10. (Optional) Call **OH_VideoDecoder_Reset()** to reset the decoder.
+    ``` c++
+     int32_t ret;
+     // Refresh the decoder.
+     ret = OH_VideoDecoder_Flush(videoDec);
+     if (ret != AV_ERR_OK) {
+         // Exception handling.
+     }
+     // Start decoding again.
+     ret = OH_VideoDecoder_Start(videoDec);
+    ```
     
+11. (Optional) Call **OH_VideoDecoder_Reset()** to reset the decoder.
+
     After **OH_VideoDecoder_Reset()** is called, the decoder returns to the initialized state. To continue decoding, you must call **OH_VideoDecoder_Configure()** and then **OH_VideoDecoder_Start()**.
 
     ``` c++
@@ -245,8 +258,8 @@ The figure below shows the call relationship of video decoding.
      ret = OH_VideoDecoder_Configure(videoDec, format);
     ```
 
-11. Call **OH_VideoDecoder_Stop()** to stop the decoder.
-    
+12. Call **OH_VideoDecoder_Stop()** to stop the decoder.
+
     ``` c++
      int32_t ret;
      // Stop the decoder.
@@ -254,10 +267,9 @@ The figure below shows the call relationship of video decoding.
      if (ret != AV_ERR_OK) {
          // Exception handling.
      }
-     return AV_ERR_OK;
     ```
 
-12. Call **OH_VideoDecoder_Destroy()** to destroy the decoder instance and release resources.
+13. Call **OH_VideoDecoder_Destroy()** to destroy the decoder instance and release resources.
 
     ``` c++
      int32_t ret;
@@ -266,5 +278,4 @@ The figure below shows the call relationship of video decoding.
      if (ret != AV_ERR_OK) {
          // Exception handling.
      }
-     return AV_ERR_OK;
     ```

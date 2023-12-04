@@ -38,7 +38,7 @@ class MyAbilityStage extends AbilityStage {
 
 ## AbilityStage.onAcceptWant
 
-onAcceptWant(want: Want): string;
+onAcceptWant(want: Want): string
 
 启动一个specified ability时触发的事件。
 
@@ -54,7 +54,7 @@ onAcceptWant(want: Want): string;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | string | 用户返回一个ability标识，如果之前启动过标识的ability，不创建新的实例并拉回栈顶，否则创建新的实例并启动。 | 
+  | string | 返回一个ability标识，如果之前启动过标识的ability，不创建新的实例并拉回栈顶，否则创建新的实例并启动。 | 
 
 **示例：**
     
@@ -70,10 +70,44 @@ class MyAbilityStage extends AbilityStage {
 }
 ```
 
+## AbilityStage.onNewProcessRequest<sup>11+</sup>
+
+onNewProcessRequest(want: Want): string
+
+在指定进程中启动UIAbility时回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+
+**返回值：**
+
+| 类型 | 说明 | 
+| -------- | -------- |
+| string | 返回一个进程字符串ID，如果之前此ID的进程已被创建，就让ability在此进程中运行，否则创建新的进程。 | 
+
+**示例：**
+    
+```ts
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+import Want from '@ohos.app.ability.Want';
+
+class MyAbilityStage extends AbilityStage {
+    onNewProcessRequest(want: Want) {
+        console.log('MyAbilityStage.onNewProcessRequest called');
+        return 'com.example.test';
+    }
+}
+```
+
 
 ## AbilityStage.onConfigurationUpdate
 
-onConfigurationUpdate(newConfig: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void
 
 环境变化通知接口，发生全局配置变更时回调。
 
@@ -100,7 +134,7 @@ class MyAbilityStage extends AbilityStage {
 
 ## AbilityStage.onMemoryLevel
 
-onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
+onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 当系统已决定调整内存时调用。例如，当该功能在后台运行时，没有足够的内存来运行尽可能多的后台进程时可以使用。
 
@@ -120,14 +154,14 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbilityStage extends AbilityStage {
     onMemoryLevel(level: AbilityConstant.MemoryLevel) {
-        console.log('onMemoryLevel, level: ${JSON.stringify(level)}');
+        console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
     } 
 }
 ```
 
 ## AbilityStage.context
 
-context: AbilityStageContext;
+context: AbilityStageContext
 
 指示AbilityStage的上下文。
 

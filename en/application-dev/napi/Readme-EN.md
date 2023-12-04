@@ -3,8 +3,7 @@
 - [Using Native APIs in Application Projects](napi-guidelines.md)
 - Graphics
   - [XComponent Development](xcomponent-guidelines.md)
-  - [Drawing Development](drawing-guidelines.md)
-  - [Drawing and Display Sample](drawing-sample.md)
+  - [Using Drawing to Draw and Display Graphics](drawing-guidelines.md)
   - [NativeBuffer Development](native-buffer-guidelines.md)
   - [NativeImage Development](native-image-guidelines.md)
   - [NativeVsync Development](native-vsync-guidelines.md)
@@ -20,6 +19,12 @@
   - [Purgeable Memory Development](purgeable-memory-guidelines.md)
 - Device Management
   - [USB DDK Development](usb-ddk-guidelines.md)
+
 - Data Management
   - [RelationalStore Development](native-relational-store-guidelines.md)
 
+- Hardware Compatibility
+  - [Introduction to Hardware Compatibility](hw-guide.md)
+  - [OpenHarmony ABIs](ohos-abi.md)
+  - [CPU Features](cpu-features.md)
+  - [Using Neon Instructions](neon-guide.md)

@@ -137,8 +137,8 @@ Starts HCE, including setting the application to be foreground preferred and dyn
 
 | Name | Type    | Mandatory| Description                   |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | ElementName | Yes  | Element name of a service capability.|
-| aidList | string[] | Yes  | AID list to register.|
+| elementName | ElementName | Yes  | Element name of the service capability.|
+| aidList | string[] | Yes  | List of AIDs. This parameter can be left empty.|
 
 **Error codes**
 

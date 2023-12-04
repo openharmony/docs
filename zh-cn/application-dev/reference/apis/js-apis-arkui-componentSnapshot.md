@@ -32,7 +32,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 | 参数名      | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | id       | string                              | 是    | 目标组件的[组件标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
-| callback | AsyncCallback&lt;image.PixelMap&gt; | 是    | 截图返回结果的回调。                               |
+| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.PixelMap&gt; | 是    | 截图返回结果的回调。                               |
 
 **错误码：** 
 
@@ -61,9 +61,13 @@ struct SnapshotExample {
       Button("click to generate UI snapshot")
         .onClick(() => {
           componentSnapshot.get("root", (error: Error, pixmap: image.PixelMap) => {
-                 this.pixmap = pixmap
-                 // save pixmap to file
-                 // ....
+                if(error){
+                  console.log("error: " + JSON.stringify(error))
+                  return;
+                }
+                this.pixmap = pixmap
+                // save pixmap to file
+                // ....
              })
         })
     }
@@ -131,7 +135,9 @@ struct SnapshotExample {
               this.pixmap = pixmap
               // save pixmap to file
               // ....
-            })
+            }).catch(err:Error){
+              console.log("error: " + err)
+            }
         })
     }
     .width('80%')
@@ -147,7 +153,7 @@ struct SnapshotExample {
 
 createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>): void
 
-在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过回调返回结果。
+在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过回调返回结果并支持在回调中获取离屏组件绘制区域坐标和大小。
 
 > **说明：** 
 >
@@ -163,7 +169,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | 参数名      | 类型                                       | 必填   | 说明         |
 | -------- | ---------------------------------------- | ---- | ---------- |
 | builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。 |
-| callback | AsyncCallback&lt;image.PixelMap&gt;      | 是    | 截图返回结果的回调。 |
+| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.PixelMap&gt;      | 是    | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
 
 **错误码：** 
 
@@ -176,6 +182,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 ```ts
 import componentSnapshot from '@ohos.arkui.componentSnapshot'
 import image from '@ohos.multimedia.image'
+import componentUtils from '@ohos.arkui.componentUtils'
 
 @Entry
 @Component
@@ -196,7 +203,9 @@ struct OffscreenSnapshotExample {
         .width(100)
         .height(50)
         .textAlign(TextAlign.Center)
-    }.width(100)
+    }
+    .width(100)
+    .id("builder")
   }
 
   build() {
@@ -205,9 +214,16 @@ struct OffscreenSnapshotExample {
         .onClick(() => {
           componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()},
             (error: Error, pixmap: image.PixelMap) => {
+              if(error){
+                  console.log("error: " + JSON.stringify(error))
+                  return;
+              }
               this.pixmap = pixmap
               // save pixmap to file
               // ....
+              // get component size and location
+              let info = componentUtils.getRectangleById("builder")
+              console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             })
         })
     }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
@@ -220,7 +236,7 @@ struct OffscreenSnapshotExample {
 
 createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 
-在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过Promise返回结果。
+在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过Promise返回结果并支持获取离屏组件绘制区域坐标和大小。
 
 > **说明：** 
 >
@@ -253,6 +269,7 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 ```ts
 import componentSnapshot from '@ohos.arkui.componentSnapshot'
 import image from '@ohos.multimedia.image'
+import componentUtils from '@ohos.arkui.componentUtils'
 
 @Entry
 @Component
@@ -273,7 +290,9 @@ struct OffscreenSnapshotExample {
         .width(100)
         .height(50)
         .textAlign(TextAlign.Center)
-    }.width(100)
+    }
+    .width(100)
+    .id("builder")
   }
 
   build() {
@@ -285,7 +304,12 @@ struct OffscreenSnapshotExample {
               this.pixmap = pixmap
               // save pixmap to file
               // ....
-            })
+              // get component size and location
+              let info = componentUtils.getRectangleById("builder")
+              console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
+            }).catch(err:Error){
+              console.log("error: " + err)
+            }
         })
     }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
     .border({ color: '#880606', width: 2 })

@@ -14,14 +14,20 @@
 \@Link装饰的变量与其父组件中的数据源共享相同的值。
 
 
+## 限制条件
+
+- \@Link装饰器不能在\@Entry装饰的自定义组件中使用。
+
+
 ## 装饰器使用规则说明
 
-| \@Link变量装饰器 | 说明                                       |
-| ----------- | ---------------------------------------- |
-| 装饰器参数       | 无                                        |
-| 同步类型        | 双向同步。<br/>父组件中\@State,&nbsp;\@StorageLink和\@Link&nbsp;和子组件\@Link可以建立双向数据同步，反之亦然。 |
-| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。支持类型的场景请参考[观察变化](#观察变化)。<br/>类型必须被指定，且和双向绑定状态变量的类型相同。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>**说明：**<br/>不支持Length、ResourceStr、ResourceColor类型，Length、ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。 |
-| 被装饰变量的初始值   | 无，禁止本地初始化。                               |
+| \@Link变量装饰器                                             | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 装饰器参数                                                   | 无                                                           |
+| 同步类型                                                     | 双向同步。<br/>父组件中\@State,&nbsp;\@StorageLink和\@Link&nbsp;和子组件\@Link可以建立双向数据同步，反之亦然。 |
+| 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Link a : string \| undefined`。 |
+| <br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>类型必须被指定，且和双向绑定状态变量的类型相同。<br/>不支持any。 |                                                              |
+| 被装饰变量的初始值                                           | 无，禁止本地初始化。                                         |
 
 
 ## 变量的传递/访问规则说明
@@ -106,7 +112,7 @@ struct ParentComponent {
 
 ### 框架行为
 
-\@Link装饰的变量和其所述的自定义组件共享生命周期。
+\@Link装饰的变量和其所属的自定义组件共享生命周期。
 
 为了了解\@Link变量初始化和更新机制，有必要先了解父组件和拥有\@Link变量的子组件的关系，初始渲染和双向更新的流程（以父组件为\@State为例）。
 
@@ -134,69 +140,89 @@ struct ParentComponent {
 ```ts
 class GreenButtonState {
   width: number = 0;
+
   constructor(width: number) {
     this.width = width;
   }
 }
+
 @Component
 struct GreenButton {
   @Link greenButtonState: GreenButtonState;
+
   build() {
     Button('Green Button')
       .width(this.greenButtonState.width)
-      .height(150.0)
-      .backgroundColor('#00ff00')
+      .height(40)
+      .backgroundColor('#64bb5c')
+      .fontColor('#FFFFFF，90%')
       .onClick(() => {
         if (this.greenButtonState.width < 700) {
           // 更新class的属性，变化可以被观察到同步回父组件
-          this.greenButtonState.width += 125;
+          this.greenButtonState.width += 60;
         } else {
           // 更新class，变化可以被观察到同步回父组件
-          this.greenButtonState = new GreenButtonState(100);
+          this.greenButtonState = new GreenButtonState(180);
         }
       })
   }
 }
+
 @Component
 struct YellowButton {
   @Link yellowButtonState: number;
+
   build() {
     Button('Yellow Button')
       .width(this.yellowButtonState)
-      .height(150.0)
-      .backgroundColor('#ffff00')
+      .height(40)
+      .backgroundColor('#f7ce00')
+      .fontColor('#FFFFFF，90%')
       .onClick(() => {
         // 子组件的简单类型可以同步回父组件
-        this.yellowButtonState += 50.0;
+        this.yellowButtonState += 40.0;
       })
   }
 }
+
 @Entry
 @Component
 struct ShufflingContainer {
-  @State greenButtonState: GreenButtonState = new GreenButtonState(300);
-  @State yellowButtonProp: number = 100;
+  @State greenButtonState: GreenButtonState = new GreenButtonState(180);
+  @State yellowButtonProp: number = 180;
+
   build() {
     Column() {
-      // 简单类型从父组件@State向子组件@Link数据同步
-      Button('Parent View: Set yellowButton')
-        .onClick(() => {
-          this.yellowButtonProp = (this.yellowButtonProp < 700) ? this.yellowButtonProp + 100 : 100;
-        })
-      // class类型从父组件@State向子组件@Link数据同步
-      Button('Parent View: Set GreenButton')
-        .onClick(() => {
-          this.greenButtonState.width = (this.greenButtonState.width < 700) ? this.greenButtonState.width + 100 : 100;
-        })
-      // class类型初始化@Link
-      GreenButton({ greenButtonState: $greenButtonState })
-      // 简单类型初始化@Link
-      YellowButton({ yellowButtonState: $yellowButtonProp })
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+        // 简单类型从父组件@State向子组件@Link数据同步
+        Button('Parent View: Set yellowButton')
+          .width(312)
+          .height(40)
+          .margin(12)
+          .fontColor('#FFFFFF，90%')
+          .onClick(() => {
+            this.yellowButtonProp = (this.yellowButtonProp < 700) ? this.yellowButtonProp + 40 : 100;
+          })
+        // class类型从父组件@State向子组件@Link数据同步
+        Button('Parent View: Set GreenButton')
+          .width(312)
+          .height(40)
+          .margin(12)
+          .fontColor('#FFFFFF，90%')
+          .onClick(() => {
+            this.greenButtonState.width = (this.greenButtonState.width < 700) ? this.greenButtonState.width + 100 : 100;
+          })
+        // class类型初始化@Link
+        GreenButton({ greenButtonState: $greenButtonState }).margin(12)
+        // 简单类型初始化@Link
+        YellowButton({ yellowButtonState: $yellowButtonProp }).margin(12)
+      }
     }
   }
 }
 ```
 
+![Video-link-UsageScenario-one](figures/Video-link-UsageScenario-one.gif)
 
 ### 数组类型的\@Link
 
@@ -208,12 +234,22 @@ struct Child {
 
   build() {
     Column() {
-      Button(`Button1: push`).onClick(() => {
-        this.items.push(this.items.length + 1);
-      })
-      Button(`Button2: replace whole item`).onClick(() => {
-        this.items = [100, 200, 300];
-      })
+      Button(`Button1: push`)
+        .margin(12)
+        .width(312)
+        .height(40)
+        .fontColor('#FFFFFF，90%')
+        .onClick(() => {
+          this.items.push(this.items.length + 1);
+        })
+      Button(`Button2: replace whole item`)
+        .margin(12)
+        .width(312)
+        .height(40)
+        .fontColor('#FFFFFF，90%')
+        .onClick(() => {
+          this.items = [100, 200, 300];
+        })
     }
   }
 }
@@ -226,9 +262,15 @@ struct Parent {
   build() {
     Column() {
       Child({ items: $arr })
+        .margin(12)
       ForEach(this.arr,
         (item: void) => {
-          Text(`${item}`)
+          Button(`${item}`)
+            .margin(12)
+            .width(312)
+            .height(40)
+            .backgroundColor('#11a2a2a2')
+            .fontColor('#e6000000')
         },
         (item: ForEachInterface) => item.toString()
       )
@@ -237,7 +279,146 @@ struct Parent {
 }
 ```
 
+![Video-link-UsageScenario-two](figures/Video-link-UsageScenario-two.gif)
 
 上文所述，ArkUI框架可以观察到数组元素的添加，删除和替换。在该示例中\@State和\@Link的类型是相同的number[]，不允许将\@Link定义成number类型（\@Link item : number），并在父组件中用\@State数组中每个数据项创建子组件。如果要使用这个场景，可以参考[\@Prop](arkts-prop.md)和\@Observed。
+
+## Link支持联合类型实例
+
+@Link支持联合类型和undefined和null，在下面的示例中，name类型为string | undefined，点击父组件Index中的Button改变name的属性或者类型，Child中也会对应刷新。
+
+```ts
+
+@Component
+struct Child {
+  @Link name: string | undefined
+
+  build() {
+    Column() {
+
+      Button('Child change name to Bob')
+        .onClick(() => {
+          this.name = "Bob"
+        })
+
+      Button('Child change animal to undefined')
+        .onClick(() => {
+          this.name = undefined
+        })
+
+    }.width('100%')
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State name: string | undefined  = "mary"
+
+  build() {
+    Column() {
+      Text(`The name is  ${this.name}`).fontSize(30)
+
+      Child({name: this.name})
+
+      Button('Parents change name to Peter')
+        .onClick(() => {
+          this.name = "Peter"
+        })
+
+      Button('Parents change name to undefined')
+        .onClick(() => {
+          this.name = undefined
+        })
+    }
+  }
+}
+```
+
+## 常见问题
+
+### \@Link装饰状态变量类型错误
+
+在子组件中使用\@Link装饰状态变量需要保证该变量与数据源类型完全相同，且该数据源需为被诸如\@State等装饰器装饰的状态变量。
+
+【反例】
+
+```ts
+@Observed
+class ClassA {
+  public c: number = 0;
+
+  constructor(c: number) {
+    this.c = c;
+  }
+}
+
+@Component
+struct LinkChild {
+  @Link testNum: number;
+
+  build() {
+    Text(`LinkChild testNum ${this.testNum}`)
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State testNum: ClassA[] = [new ClassA(1)];
+
+  build() {
+    Column() {
+      Text(`Parent testNum ${this.testNum[0].c}`)
+        .onClick(() => {
+          this.testNum[0].c += 1;
+        })
+      // @Link装饰的变量需要和数据源@State类型一致
+      LinkChild({ testNum: this.testNum[0].c })
+    }
+  }
+}
+```
+
+\@Link testNum: number从父组件的LinkChild({testNum:this.testNum.c})初始化。\@Link的数据源必须是装饰器装饰的状态变量，简而言之，\@Link装饰的数据必须和数据源类型相同，比如\@Link: T和\@State : T。所以，这里应该改为\@Link testNum: ClassA，从父组件初始化的方式为LinkChild({testNum: $testNum})
+
+【正例】
+
+```ts
+@Observed
+class ClassA {
+  public c: number = 0;
+
+  constructor(c: number) {
+    this.c = c;
+  }
+}
+
+@Component
+struct LinkChild {
+  @Link testNum: ClassA[];
+
+  build() {
+    Text(`LinkChild testNum ${this.testNum[0]?.c}`)
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State testNum: ClassA[] = [new ClassA(1)];
+
+  build() {
+    Column() {
+      Text(`Parent testNum ${this.testNum[0].c}`)
+        .onClick(() => {
+          this.testNum[0].c += 1;
+        })
+      // @Link装饰的变量需要和数据源@State类型一致
+      LinkChild({ testNum: $testNum })
+    }
+  }
+}
+```
 
 <!--no_check-->

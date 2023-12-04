@@ -102,13 +102,12 @@ async function selectOutputDevice() {
 ```ts
 import audio from '@ohos.multimedia.audio';
 let rendererInfo: audio.AudioRendererInfo = {
-    content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0,
 }
 
-async function getPreferredOutputDeviceForRendererInfo() {
-  audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
+async function getPreferOutputDeviceForRendererInfo() {
+  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
     console.info(`device descriptor: ${desc}`);
   }).catch((err: BusinessError) => {
     console.error(`Result ERROR: ${err}`);
@@ -121,17 +120,16 @@ async function getPreferredOutputDeviceForRendererInfo() {
 ```ts
 import audio from '@ohos.multimedia.audio';
 let rendererInfo: audio.AudioRendererInfo = {
-    content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0,
 }
 
 // 监听最高优先级输出设备变化
-audioRoutingManager.on('preferredOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
+audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
     console.info(`device change descriptor : ${desc[0].deviceRole}`);  // 设备角色
     console.info(`device change descriptor : ${desc[0].deviceType}`);  // 设备类型
 });
 
 // 取消监听最高优先级输出设备变化
-audioRoutingManager.off('preferredOutputDeviceChangeForRendererInfo');
+audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
 ```

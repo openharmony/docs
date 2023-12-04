@@ -16,11 +16,11 @@
       - [Interaction Between Intra-Device UIAbility Components](uiability-intra-device-interaction.md)
     - ExtensionAbility Component
       - [ExtensionAbility Overview](extensionability-overview.md)
-      - [ServiceExtensionAbility](serviceextensionability.md)
-      - [AccessibilityExtensionAbility](accessibilityextensionability.md)
-      - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
+      - [AccessibilityExtensionAbility](accessibilityextensionability.md)
+      - [ServiceExtensionAbility](serviceextensionability.md)      
       - [WindowExtensionAbility (for System Applications Only)](windowextensionability.md)
+      - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)    
       - [DriverExtensionAbility](driverextensionability.md)
     - Service Widget Development in Stage Model
       - [Service Widget Overview](service-widget-overview.md)

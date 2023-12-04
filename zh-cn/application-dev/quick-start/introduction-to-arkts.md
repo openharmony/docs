@@ -10,7 +10,7 @@ ArkTS的一大特性是它专注于低运行时开销。ArkTS对TypeScript的动
 
 与JavaScript的互通性是ArkTS语言设计中的关键考虑因素。鉴于许多移动应用开发者希望重用其TypeScript和JavaScript代码和库，ArkTS提供了与JavaScript的无缝互通，使开发者可以很容易地将JavaScript代码集成到他们的应用中。这意味着开发者可以利用现有的代码和库进行ArkTS开发。
 
-为了确保OpenHarmony UI应用开发的最佳体验，ArkTS提供对方舟开发框架ArkUI的声明式语法和其他特性的支持。由于此部分特性不在既有TypeScript的范围内，因此我们在《ArkUI支持》一章中提供了详细的ArkUI示例。
+为了确保应用开发的最佳体验，ArkTS提供对方舟开发框架ArkUI的声明式语法和其他特性的支持。由于此部分特性不在既有TypeScript的范围内，因此我们在《ArkUI支持》一章中提供了详细的ArkUI示例。
 
 本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。
 
@@ -25,8 +25,8 @@ ArkTS通过声明引入变量、常量、函数和类型。
 以关键字`let`开头的声明引入变量，该变量在程序执行期间可以具有不同的值。
 
 ```typescript
-let hi: string = "hello"
-hi = "hello, world"
+let hi: string = 'hello'
+hi = 'hello, world'
 ```
 
 #### 常量声明
@@ -34,7 +34,7 @@ hi = "hello, world"
 以关键字`const`开头的声明引入只读常量，该常量只能被赋值一次。
 
 ```typescript
-const hello: string = "hello"
+const hello: string = 'hello'
 ```
 
 对常量重新赋值会造成编译时错误。
@@ -48,8 +48,8 @@ const hello: string = "hello"
 以下示例中，两条声明语句都是有效的，两个变量都是`string`类型：
 
 ```typescript
-let hi1: string = "hello"
-let hi2 = "hello, world"
+let hi1: string = 'hello'
+let hi2 = 'hello, world'
 ```
 
 ### 类型
@@ -82,11 +82,11 @@ let n2 = 3.141592
 let n3 = .5
 let n4 = 1e10
 
-function factorial(n: number) : number {
-    if (n <= 1) {
-        return 1
-    }
-    return n * factorial(n - 1)
+function factorial(n: number): number {
+  if (n <= 1) {
+    return 1
+  }
+  return n * factorial(n - 1)
 }
 ```
 
@@ -102,7 +102,7 @@ let isDone: boolean = false
 // ...
 
 if (isDone) {
-    console.log ("Done!")
+  console.log ('Done!')
 }
 ```
 
@@ -110,10 +110,10 @@ if (isDone) {
 
 `string`代表字符序列；可以使用转义字符来表示字符。
 
-字符串字面量由单引号（'）或双引号（"）之间括起来的零个或多个字符组成。字符串字面量还有一特殊形式，是用反向单引号（\`）括起来的模板字面量。
+字符串字面量由单引号（'）或双引号（'）之间括起来的零个或多个字符组成。字符串字面量还有一特殊形式，是用反向单引号（\`）括起来的模板字面量。
 
 ```typescript
-let s1 = "Hello, world!\n"
+let s1 = 'Hello, world!\n'
 let s2 = 'this is a string'
 let a = 'Success'
 let s3 = `The result is ${a}`
@@ -126,7 +126,7 @@ let s3 = `The result is ${a}`
 
 ```typescript
 class Class<T> {
-    //...
+  //...
 }
 let instance: Class <void>
 ```
@@ -143,7 +143,7 @@ let instance: Class <void>
 以下示例将创建包含三个元素的数组：
 
 ```typescript
-let names: string[] = ["Alice", "Bob", "Carol"]
+let names: string[] = ['Alice', 'Bob', 'Carol']
 ```
 
 #### `Enum`类型
@@ -198,10 +198,10 @@ type Animal = Cat | Dog | Frog | number
 
 let animal: Animal = new Cat()
 if (animal instanceof Frog) {
-    let frog: Frog = animal // animal在这里是Frog类型
-    animal.leap()
-    frog.leap()
-    // 结果：青蛙跳了两次
+  let frog: Frog = animal as Frog// animal在这里是Frog类型
+  animal.leap()
+  frog.leap()
+  // 结果：青蛙跳了两次
 }
 
 animal.sleep () // 任何动物都可以睡觉
@@ -269,11 +269,11 @@ type NullableObject = Object | null
 
 | 运算符  | 说明|
 | ---------- | ----------- |
-| `a && b`   | 逻辑与|
+| `a && b`   | 逻辑与 |
 | `a \|\| b` | 逻辑或 |
-| `! a`      | 逻辑非|
+| `! a`      | 逻辑非 |
 
-### 控制流
+### 语句
 
 #### `If`语句
 
@@ -284,25 +284,25 @@ type NullableObject = Object | null
 
 ```typescript
 if (condition1) {
-    // 语句1
+  // 语句1
 } else if (condition2) {
-    // 语句2
+  // 语句2
 } else {
-    // else语句
+  // else语句
 }
 ```
 
 条件表达式可以是任何类型。但是对于`boolean`以外的类型，会进行隐式类型转换：
 
 ```typescript
-let s1 = "Hello"
+let s1 = 'Hello'
 if (s1) {
-    console.log(s1) // 打印“Hello”
+  console.log(s1) // 打印“Hello”
 }
 
-let s2 = "World"
+let s2 = 'World'
 if (s2.length != 0) {
-    console.log(s2) // 打印“World”
+  console.log(s2) // 打印“World”
 }
 ```
 
@@ -314,18 +314,18 @@ if (s2.length != 0) {
 
 ```typescript
 switch (expression) {
-case label1: // 如果label1匹配，则执行
+  case label1: // 如果label1匹配，则执行
     // ...
     // 语句1
     // ...
     break; // 可省略
-case label2:
-case label3: // 如果label2或label3匹配，则执行
+  case label2:
+  case label3: // 如果label2或label3匹配，则执行
     // ...
     // 语句23
     // ...
     break; // 可省略
-default:
+  default:
     // 默认语句
 }
 ```
@@ -344,7 +344,7 @@ label必须是常量表达式或枚举常量值。
 
 #### 条件表达式
 
-条件表达式`?:`由第一个表达式的布尔值来决定返回其它两个表达式中的哪一个。
+条件表达式由第一个表达式的布尔值来决定返回其它两个表达式中的哪一个。
 
 示例如下：
 
@@ -369,7 +369,7 @@ let message = isValid ? 'Valid' : 'Failed'
 
 ```typescript
 for ([init]; [condition]; [update]) {
-    statements
+  statements
 }
 ```
 
@@ -386,7 +386,7 @@ for ([init]; [condition]; [update]) {
 ```typescript
 let sum = 0
 for (let i = 0; i < 10; i += 2) {
-    sum += i
+  sum += i
 }
 ```
 
@@ -396,14 +396,16 @@ for (let i = 0; i < 10; i += 2) {
 
 ```typescript
 for (forVar of expression) {
-    statements
+  statements
 }
 ```
 
 示例：
 
 ```typescript
-for (let ch of "a string object") { /* process ch */ }
+for (let ch of 'a string object') {
+  /* process ch */
+}
 ```
 
 #### `While`语句
@@ -412,7 +414,7 @@ for (let ch of "a string object") { /* process ch */ }
 
 ```typescript
 while (condition) {
-    statements
+  statements
 }
 ```
 
@@ -424,8 +426,8 @@ while (condition) {
 let n = 0
 let x = 0
 while (n < 3) {
-    n++
-    x += n
+  n++
+  x += n
 }
 ```
 
@@ -435,7 +437,7 @@ while (n < 3) {
 
 ```typescript
 do {
-    statements
+  statements
 } while (condition)
 ```
 
@@ -446,7 +448,7 @@ do {
 ```typescript
 let i = 0
 do {
-    i += 1
+  i += 1
 } while (i < 10)
 ```
 
@@ -459,10 +461,10 @@ do {
 ```typescript
 let x = 0
 while (true) {
-    x++;
-    if (x > 5) {
-        break;
-    }
+  x++;
+  if (x > 5) {
+    break;
+  }
 }
 ```
 
@@ -473,11 +475,11 @@ while (true) {
 ```typescript
 let x = 1
 label: while (true) {
-    switch (x) {
+  switch (x) {
     case 1:
-        // statements
-        break label // 中断while语句
-    }
+      // statements
+      break label // 中断while语句
+  }
 }
 ```
 
@@ -490,10 +492,10 @@ label: while (true) {
 ```typescript
 let sum = 0
 for (let x = 0; x < 100; x++) {
-    if (x % 2 == 0) {
-        continue
-    }
-    sum += x
+  if (x % 2 == 0) {
+    continue
+  }
+  sum += x
 }
 ```
 
@@ -502,16 +504,16 @@ for (let x = 0; x < 100; x++) {
 `throw`语句用于抛出异常或错误：
 
 ```typescript
-throw new Error("this error")
+throw new Error('this error')
 ```
 
 `try`语句用于捕获和处理异常或错误：
 
 ```typescript
 try {
-    // 可能发生异常的语句块
+  // 可能发生异常的语句块
 } catch (e) {
-    // 异常处理
+  // 异常处理
 }
 ```
 
@@ -521,17 +523,17 @@ try {
 class ZeroDivisor extends Error {}
 
 function divide (a: number, b: number): number{
-    if (b == 0) throw new ZeroDivisor()
-    return a / b
+  if (b == 0) throw new ZeroDivisor()
+  return a / b
 }
 
 function process (a: number, b: number) {
-    try {
-        let res = divide(a, b)
-        console.log(res)
-    } catch (x) {
-        console.log("some error")
-    }
+  try {
+    let res = divide(a, b)
+    console.log(res)
+  } catch (x) {
+    console.log('some error')
+  }
 }
 ```
 
@@ -539,23 +541,23 @@ function process (a: number, b: number) {
 
 ```typescript
 function processData(s: string) {
-    let error : Error | null = null
+  let error: Error | null = null
 
-    try {
-        console.log("Data processed: ", s)
-        // ...
-        // 可能发生异常的语句
-        // ...
-    } catch (e) {
-        error = e as Error
-        // ...
-        // 异常处理
-        // ...
-    } finally {
-        if (error != null) {
-            console.log(`Error caught: input='${s}', message='${error.message}'`)
-        }
+  try {
+    console.log('Data processed: ', s)
+    // ...
+    // 可能发生异常的语句
+    // ...
+  } catch (e) {
+    error = e as Error
+    // ...
+    // 异常处理
+    // ...
+  } finally {
+    if (error != null) {
+      console.log(`Error caught: input='${s}', message='${error.message}'`)
     }
+  }
 }
 ```
 
@@ -569,8 +571,8 @@ function processData(s: string) {
 
 ```typescript
 function add(x: string, y: string): string {
-    let z : string = `${x} ${y}`
-    return z
+  let z: string = `${x} ${y}`
+  return z
 }
 ```
 
@@ -582,11 +584,11 @@ function add(x: string, y: string): string {
 
 ```typescript
 function hello(name?: string) {
-    if (name == undefined) {
-        console.log("Hello, ${name}!")
-    } else {
-        console.log("Hello!")
-    }
+  if (name == undefined) {
+    console.log('Hello!')
+  } else {
+    console.log('Hello, ${name}!')
+  }
 }
 ```
 
@@ -594,9 +596,9 @@ function hello(name?: string) {
 
 ```typescript
 function multiply(n: number, coeff: number = 2): number {
-    return n * coeff
+  return n * coeff
 }
-multiply(2)    // 返回2*2
+multiply(2)  // 返回2*2
 multiply(2, 3) // 返回2*3
 ```
 
@@ -606,10 +608,10 @@ multiply(2, 3) // 返回2*3
 
 ```typescript
 function sum(...numbers: number[]): number {
-    let res = 0
-    for (let n of numbers)
-        res += n
-    return res
+  let res = 0
+  for (let n of numbers)
+    res += n
+  return res
 }
 
 sum() // 返回0
@@ -622,10 +624,10 @@ sum(1, 2, 3) // 返回6
 
 ```typescript
 // 显式指定返回类型
-function foo(): string { return "foo" }
+function foo(): string { return 'foo' }
 
 // 推断返回类型为string
-function goo() { return "goo" }
+function goo() { return 'goo' }
 ```
 
 不需要返回值的函数的返回类型可以显式指定为`void`或省略标注。这类函数不需要返回语句。
@@ -633,8 +635,8 @@ function goo() { return "goo" }
 以下示例中两种函数声明方式都是有效的：
 
 ```typescript
-function hi1() { console.log("hi") }
-function hi2(): void { console.log("hi") }
+function hi1() { console.log('hi') }
+function hi2(): void { console.log('hi') }
 ```
 
 ### 函数的作用域
@@ -650,16 +652,16 @@ function hi2(): void { console.log("hi") }
 如果函数定义如下：
 
 ```typescript
-function join(x :string, y :string) :string {
-    let z: string = `${x} ${y}`
-    return z
+function join(x: string, y: string): string {
+  let z: string = `${x} ${y}`
+  return z
 }
 ```
 
 则此函数的调用需要包含两个`string`类型的参数：
 
 ```typescript
-let x = join("hello", "world")
+let x = join('hello', 'world')
 console.log(x)
 ```
 
@@ -671,7 +673,7 @@ console.log(x)
 type trigFunc = (x: number) => number // 这是一个函数类型
 
 function do_action(f: trigFunc) {
-     f(3.141592653589) // 调用函数
+   f(3.141592653589) // 调用函数
 }
 
 do_action(Math.sin) // 将函数作为参数传入
@@ -683,7 +685,7 @@ do_action(Math.sin) // 将函数作为参数传入
 
 ```typescript
 let sum = (x: number, y: number): number => {
-    return x + y
+  return x + y
 }
 ```
 
@@ -704,8 +706,8 @@ let sum2 = (x: number, y: number) => x + y
 
 ```typescript
 function f(): () => number {
-    let count = 0
-    return (): number => { count++; return count }
+  let count = 0
+  return (): number => { count++; return count }
 }
 
 let z = f()
@@ -723,11 +725,11 @@ console.log(z()) // 输出：2
 function foo(): void;            /* 第一个函数定义 */
 function foo(x: string): void;   /* 第二个函数定义 */
 function foo(x?: string): void { /* 函数实现 */
-    console.log(x)
+  console.log(x)
 }
 
 foo()     //  OK，使用第一个定义
-foo("aa") // OK，使用第二个定义
+foo('aa') // OK，使用第二个定义
 ```
 
 不允许重载函数有相同的名字以及参数列表，否则将会编译报错。
@@ -740,22 +742,22 @@ foo("aa") // OK，使用第二个定义
 
 ```typescript
 class Person {
-    name: string = ""
-    surname: string = ""
-    constructor (n: string, sn: string) {
-        this.name = n
-        this.surname = sn
-    }
-    fullName(): string {
-        return this.name + " " + this.surname
-    }
+  name: string = ''
+  surname: string = ''
+  constructor (n: string, sn: string) {
+    this.name = n
+    this.surname = sn
+  }
+  fullName(): string {
+    return this.name + ' ' + this.surname
+  }
 }
 ```
 
 定义类后，可以使用关键字`new`创建实例：
 
 ```typescript
-let p = new Person("John", "Smith")
+let p = new Person('John', 'Smith')
 console.log(p.fullName())
 ```
 
@@ -763,8 +765,8 @@ console.log(p.fullName())
 
 ```typescript
 class Point {
-    x: number = 0
-    y: number = 0
+  x: number = 0
+  y: number = 0
 }
 let p: Point = {x: 42, y: 42}
 ```
@@ -779,25 +781,26 @@ let p: Point = {x: 42, y: 42}
 
 实例字段存在于类的每个实例上。每个实例都有自己的实例字段集合。
 
+要访问实例字段，需要使用类的实例。
+
 ```typescript
 class Person {
-    name: string = ""
-    age: number = 0
-    constructor(n: string, a: number) {
-        this.name = n
-        this.age = a
-    }
+  name: string = ''
+  age: number = 0
+  constructor(n: string, a: number) {
+    this.name = n
+    this.age = a
+  }
+
+  GetName(): string {
+    return this.name
+  }
 }
 
-let p1 = new Person("Alice", 25)
-let p2 = new Person("Bob", 28)
-```
-
-要访问实例字段，需要使用类的实例：
-
-```typescript
-p1.name
-this.name
+let p1 = new Person('Alice', 25)
+console.log(p1.name)
+let p2 = new Person('Bob', 28)
+console.log(p2.GetName())
 ```
 
 #### 静态字段
@@ -808,15 +811,92 @@ this.name
 
 ```typescript
 class Person {
-    static numberOfPersons = 0
-    constructor() {
-       // ...
-       Person.numberOfPersons++
-       // ...
-    }
+  static numberOfPersons = 0
+  constructor() {
+     // ...
+     Person.numberOfPersons++
+     // ...
+  }
 }
 
 console.log(Person.numberOfPersons)
+```
+
+#### 字段初始化
+
+为了减少运行时的错误和获得更好的执行性能，
+ArkTS要求所有字段在声明时或者构造函数中显式初始化。这和标准TS中的`strictPropertyInitialization`模式一样。
+
+以下代码是在ArkTS中不合法的代码。
+
+```typescript
+class Person {
+  name: string // undefined
+  
+  setName(n:string): void {
+  this.name = n
+  }
+  
+  getName(): string {
+  // 开发者使用"string"作为返回类型，这隐藏了name可能为"undefined"的事实。
+  // 更合适的做法是将返回类型标注为"string | undefined"，以告诉开发者这个API所有可能的返回值。
+  return this.name
+  }
+}
+
+let jack = new Person()
+// 假设代码中没有对name赋值，例如调用"jack.setName('Jack')"
+console.log(jack.getName().length); // 运行时异常：name is undefined
+```
+
+在ArkTS中，应该这样写代码。
+
+```typescript
+class Person {
+  name: string = ''
+  
+  setName(n:string): void {
+    this.name = n
+  }
+  
+  // 类型为'string'，不可能为"null"或者"undefined"
+  getName(): string {
+    return this.name
+  }
+  
+
+let jack = new Person()
+// 假设代码中没有对name赋值，例如调用"jack.setName('Jack')"
+console.log(jack.getName().length); // 0, 没有运行时异常
+```
+
+接下来的代码展示了如果`name`的值可以是`undefined`，那么应该如何写代码。
+
+```typescript
+class Person {
+  name ?: string // 可能为`undefined`
+
+  setName(n:string): void {
+    this.name = n
+  }
+
+  // 编译时错误：name可以是"undefined"，所以将这个API的返回值类型标记为string
+  getNameWrong(): string {
+    return this.name
+  }
+
+  getName(): string | undefined { // 返回类型匹配name的类型
+    return this.name
+  }
+}
+
+let jack = new Person()
+// 假设代码中没有对name赋值，例如调用"jack.setName('Jack')"
+
+// 编译时错误：编译器认为下一行代码有可能会访问undefined的属性，报错
+console.log(jack.getName().length);  // 编译失败
+
+console.log(jack.getName()?.length); // 编译成功，没有运行时错误
 ```
 
 #### getter和setter
@@ -827,15 +907,15 @@ setter和getter可用于提供对对象属性的受控访问。
 
 ```typescript
 class Person {
-    name: string = ""
-    private _age: number = 0
-    get age(): number { return this._age }
-    set age(x: number) {
-        if (x < 0) {
-            throw Error("Invalid age argument")
-        }
-        this._age = x
+  name: string = ''
+  private _age: number = 0
+  get age(): number { return this._age }
+  set age(x: number) {
+    if (x < 0) {
+      throw Error('Invalid age argument')
     }
+    this._age = x
+  }
 }
 
 let p = new Person()
@@ -857,14 +937,14 @@ p.age = -42 // 设置无效age值会抛出错误
 
 ```typescript
 class Rectangle {
-    private height: number = 0
-    private width: number = 0
-    constructor(height: number, width: number) {
-        // ...
-    }
-    calculateArea(): number {
-        return this.height * this.width;
-    }
+  private height: number = 0
+  private width: number = 0
+  constructor(height: number, width: number) {
+    // ...
+  }
+  calculateArea(): number {
+    return this.height * this.width;
+  }
 }
 ```
 
@@ -887,9 +967,9 @@ console.log(square.calculateArea()) // 输出：100
 
 ```typescript
 class Cl {
-    static staticMethod(): string {
-        return "this is a static method."
-    }
+  static staticMethod(): string {
+    return 'this is a static method.'
+  }
 }
 console.log(Cl.staticMethod())
 ```
@@ -900,7 +980,7 @@ console.log(Cl.staticMethod())
 
 ```typescript
 class [extends BaseClassName] [implements listOfInterfaces] {
-    // ...
+  // ...
 }
 ```
 
@@ -912,17 +992,17 @@ class [extends BaseClassName] [implements listOfInterfaces] {
 
 ```typescript
 class Person {
-    name: string = ""
-    private _age = 0
-    get age(): number {
-      return this._age
-    }
+  name: string = ''
+  private _age = 0
+  get age(): number {
+    return this._age
+  }
 }
 class Employee extends Person {
-    salary: number = 0
-    calculateTaxes(): number {
-      return this.salary * 0.42
-    }
+  salary: number = 0
+  calculateTaxes(): number {
+    return this.salary * 0.42
+  }
 }
 ```
 
@@ -930,13 +1010,13 @@ class Employee extends Person {
 
 ```typescript
 interface DateInterface {
-    now(): string;
+  now(): string;
 }
 class MyDate implements DateInterface {
-    now(): string {
-        // 在此实现
-        return "now is now"
-    }
+  now(): string {
+    // 在此实现
+    return 'now is now'
+  }
 }
 ```
 
@@ -946,30 +1026,30 @@ class MyDate implements DateInterface {
 
 ```typescript
 class Rectangle {
-    protected height: number = 0
-    protected width: number = 0
+  protected height: number = 0
+  protected width: number = 0
 
-    constructor (h: number, w: number) {
-        this.height = h
-        this.width = w
-    }
+  constructor (h: number, w: number) {
+    this.height = h
+    this.width = w
+  }
 
-    draw() {
-        /* 绘制边界 */
-    }
+  draw() {
+    /* 绘制边界 */
+  }
 }
 class FilledRectangle extends Rectangle {
-    color = ""
-    constructor (h: number, w: number, c: string) {
-        super(h, w) // 父类构造函数的调用
-        this.color = c
-    }
+  color = ''
+  constructor (h: number, w: number, c: string) {
+    super(h, w) // 父类构造函数的调用
+    this.color = c
+  }
 
-    override draw() {
-        super.draw() // 父类方法的调用
-        // super.height -可在此处使用
-        /* 填充矩形 */
-    }
+  override draw() {
+    super.draw() // 父类方法的调用
+    // super.height -可在此处使用
+    /* 填充矩形 */
+  }
 }
 ```
 
@@ -979,17 +1059,17 @@ class FilledRectangle extends Rectangle {
 
 ```typescript
 class Rectangle {
-    // ...
-    area(): number {
-        // 实现
-        return 0
-    }
+  // ...
+  area(): number {
+    // 实现
+    return 0
+  }
 }
 class Square extends Rectangle {
-    private side: number = 0
-    override area(): number {
-        return this.side * this.side
-    }
+  private side: number = 0
+  override area(): number {
+    return this.side * this.side
+  }
 }
 ```
 
@@ -999,15 +1079,15 @@ class Square extends Rectangle {
 
 ```typescript
 class C {
-    foo(): void;            /* 第一个签名 */
-    foo(x: string): void;   /* 第二个签名 */
-    foo(x?: string): void { /* 实现签名 */
-        console.log(x)
-    }
+  foo(): void;            /* 第一个签名 */
+  foo(x: string): void;   /* 第二个签名 */
+  foo(x?: string): void { /* 实现签名 */
+    console.log(x)
+  }
 }
 let c = new C()
 c.foo()     // OK，使用第一个签名
-c.foo("aa") // OK，使用第二个签名
+c.foo('aa') // OK，使用第二个签名
 ```
 
 如果两个重载签名的名称和参数列表均相同，则为错误。
@@ -1020,7 +1100,7 @@ c.foo("aa") // OK，使用第二个签名
 
 ```typescript
 constructor ([parameters]) {
-    // ...
+  // ...
 }
 ```
 
@@ -1028,8 +1108,8 @@ constructor ([parameters]) {
 
 ```typescript
 class Point {
-    x: number = 0
-    y: number = 0
+  x: number = 0
+  y: number = 0
 }
 let p = new Point()
 ```
@@ -1042,14 +1122,14 @@ let p = new Point()
 
 ```typescript
 class Rectangle {
-    constructor(width: number, height: number) {
-        // ...
-    }
+  constructor(width: number, height: number) {
+    // ...
+  }
 }
 class Square extends Rectangle {
-    constructor(side: number) {
-        super(side, side)
-    }
+  constructor(side: number) {
+    super(side, side)
+  }
 }
 ```
 
@@ -1061,14 +1141,14 @@ class Square extends Rectangle {
 
 ```typescript
 class C {
-    constructor()             /* 第一个签名 */
-    constructor(x: string)    /* 第二个签名 */
-    constructor(x?: string) { /* 实现签名 */
-        console.log(x)
-    }
+  constructor()             /* 第一个签名 */
+  constructor(x: string)    /* 第二个签名 */
+  constructor(x?: string) { /* 实现签名 */
+    console.log(x)
+  }
 }
 let c1 = new C()      // OK，使用第一个签名
-let c2 = new C("abc") // OK，使用第二个签名
+let c2 = new C('abc') // OK，使用第二个签名
 ```
 
 如果两个重载签名的名称和参数列表均相同，则为错误。
@@ -1077,7 +1157,7 @@ let c2 = new C("abc") // OK，使用第二个签名
 
 类的方法和属性都可以使用可见性修饰符。
 
-可见性修饰符包括：`private`、`protected`、`public`和`internal`。默认可见性为`public`。`internal`意味着只在当前包中可见。
+可见性修饰符包括：`private`、`protected`和`public`。默认可见性为`public`。
 
 #### Public（公有）
 
@@ -1089,15 +1169,15 @@ let c2 = new C("abc") // OK，使用第二个签名
 
 ```typescript
 class C {
-    public x: string = ""
-    private y: string = ""
-    set_y (new_y: string) {
-        this.y = new_y // OK，因为y在类本身中可以访问
-    }
+  public x: string = ''
+  private y: string = ''
+  set_y (new_y: string) {
+    this.y = new_y // OK，因为y在类本身中可以访问
+  }
 }
 let c = new C()
-c.x = "a" // OK，该字段是公有的
-c.y = "b" // 编译时错误：'y'不可见
+c.x = 'a' // OK，该字段是公有的
+c.y = 'b' // 编译时错误：'y'不可见
 ```
 
 #### Protected（受保护）
@@ -1106,14 +1186,14 @@ c.y = "b" // 编译时错误：'y'不可见
 
 ```typescript
 class Base {
-    protected x: string = ""
-    private y: string = ""
+  protected x: string = ''
+  private y: string = ''
 }
 class Derived extends Base {
-    foo() {
-        this.x = "a" // OK，访问受保护成员
-        this.y = "b" // 编译时错误，'y'不可见，因为它是私有的
-    }
+  foo() {
+    this.x = 'a' // OK，访问受保护成员
+    this.y = 'b' // 编译时错误，'y'不可见，因为它是私有的
+  }
 }
 ```
 
@@ -1121,34 +1201,34 @@ class Derived extends Base {
 
 对象字面量是一个表达式，可用于创建类实例并提供一些初始值。它在某些情况下更方便，可以用来代替`new`表达式。
 
-对象字面量的表示方式是：封闭在花括号对({})中的"属性名：值"的列表。
+对象字面量的表示方式是：封闭在花括号对({})中的'属性名：值'的列表。
 
 ```typescript
 class C {
-    n: number = 0
-    s: string = ""
+  n: number = 0
+  s: string = ''
 }
 
-let c: C = {n: 42, s: "foo"}
+let c: C = {n: 42, s: 'foo'}
 ```
 
 ArkTS是静态类型语言，如上述示例所示，对象字面量只能在可以推导出该字面量类型的上下文中使用。其他正确的例子：
 
 ```typescript
 class C {
-    n: number = 0
-    s: string = ""
+  n: number = 0
+  s: string = ''
 }
 
 function foo(c: C) {}
 
 let c: C
 
-c = {n: 42, s: "foo"}  // 使用变量的类型
-foo({n: 42, s: "foo"}) // 使用参数的类型
+c = {n: 42, s: 'foo'}  // 使用变量的类型
+foo({n: 42, s: 'foo'}) // 使用参数的类型
 
 function bar(): C {
-    return {n: 42, s: "foo"} // 使用返回类型
+  return {n: 42, s: 'foo'} // 使用返回类型
 }
 ```
 
@@ -1156,10 +1236,10 @@ function bar(): C {
 
 ```typescript
 class C {
-    n: number = 0
-    s: string = ""
+  n: number = 0
+  s: string = ''
 }
-let cc: C[] = [{n: 1, s: "a"}, {n: 2, s: "b"}]
+let cc: C[] = [{n: 1, s: 'a'}, {n: 2, s: 'b'}]
 ```
 
 #### `Record`类型的对象字面量
@@ -1168,23 +1248,23 @@ let cc: C[] = [{n: 1, s: "a"}, {n: 2, s: "b"}]
 
 ```typescript
 let map: Record<string, number> = {
-    "John": 25,
-    "Mary": 21,
+  'John': 25,
+  'Mary': 21,
 }
 
-console.log(map["John"]) // prints 25
+console.log(map['John']) // prints 25
 ```
 
 类型`K`可以是字符串类型或数值类型，而`V`可以是任何类型。
 
 ```typescript
 interface PersonInfo {
-    age: number
-    salary: number
+  age: number
+  salary: number
 }
 let map: Record<string, PersonInfo> = {
-    "John": { age: 25, salary: 10},
-    "Mary": { age: 21, salary: 20}
+  'John': { age: 25, salary: 10},
+  'Mary': { age: 21, salary: 20}
 }
 ```
 
@@ -1200,11 +1280,11 @@ let map: Record<string, PersonInfo> = {
 
 ```typescript
 interface Style {
-    color: string // 属性
+  color: string // 属性
 }
 interface Area {
-    calculateArea(): number // 方法的声明
-    someMethod() : void;    // 方法的声明
+  calculateArea(): number // 方法的声明
+  someMethod(): void;     // 方法的声明
 }
 ```
 
@@ -1213,21 +1293,21 @@ interface Area {
 ```typescript
 // 接口：
 interface Area {
-    calculateArea(): number // 方法的声明
-    someMethod() : void;    // 方法的声明
+  calculateArea(): number // 方法的声明
+  someMethod(): void;     // 方法的声明
 }
 
 // 实现：
 class Rectangle implements Area {
-    private width: number = 0
-    private height: number = 0
-    someMethod() : void {
-        console.log("someMethod called")
-    }
-    calculateArea(): number {
-        this.someMethod() // 调用另一个方法并返回结果
-        return this.width * this.height
-    }
+  private width: number = 0
+  private height: number = 0
+  someMethod(): void {
+    console.log('someMethod called')
+  }
+  calculateArea(): number {
+    this.someMethod() // 调用另一个方法并返回结果
+    return this.width * this.height
+  }
 }
 ```
 
@@ -1239,38 +1319,38 @@ class Rectangle implements Area {
 
 ```typescript
 interface Style {
-    color: string
-}
-
-interface Style {
-    get color(): string
-    set color(x: string)
+  color: string
 }
 ```
 
-实现接口的类也可以使用短表示法或长表示法：
-
 ```typescript
 interface Style {
-    color: string
-}
-
-class StyledRectangle implements Style {
-    color: string = ""
+  get color(): string
+  set color(x: string)
 }
 ```
 
-短表示法隐式定义了私有字段以及getter和setter：
+实现接口的类也可以使用以下两种方式：
 
 ```typescript
 interface Style {
-    color: string
+  color: string
 }
 
 class StyledRectangle implements Style {
-    private _color: string = ""
-    get color(): string { return this._color }
-    set color(x: string) { this._color = x }
+  color: string = ''
+}
+```
+
+```typescript
+interface Style {
+  color: string
+}
+
+class StyledRectangle implements Style {
+  private _color: string = ''
+  get color(): string { return this._color }
+  set color(x: string) { this._color = x }
 }
 ```
 
@@ -1280,21 +1360,15 @@ class StyledRectangle implements Style {
 
 ```typescript
 interface Style {
-    color: string
+  color: string
 }
 
 interface ExtendedStyle extends Style {
-    width: number
+  width: number
 }
 ```
 
 继承接口包含被继承接口的所有属性和方法，还可以添加自己的属性和方法。
-
-### 接口可见性修饰符
-
-属性和方法是公共（`public`）的。
-
-只有具有默认实现的方法才能定义为私有（`private`）。
 
 ## 泛型类型和函数
 
@@ -1306,12 +1380,12 @@ interface ExtendedStyle extends Style {
 
 ```typescript
 class Stack<Element> {
-    public pop(): Element {
-        // ...
-    }
-    public push(e: Element):void {
-        // ...
-    }
+  public pop(): Element {
+    // ...
+  }
+  public push(e: Element):void {
+    // ...
+  }
 }
 ```
 
@@ -1319,7 +1393,7 @@ class Stack<Element> {
 
 ```typescript
 let s = new Stack<string>
-s.push("hello")
+s.push('hello')
 ```
 
 编译器在使用泛型类型和函数时会确保类型安全。参见以下示例：
@@ -1335,13 +1409,13 @@ s.push(55) // 将会产生编译时错误
 
 ```typescript
 interface Hashable {
-    hash(): number
+  hash(): number
 }
 class HasMap<Key extends Hashable, Value> {
-    public set(k: Key, v: Value) {
-        let h = k.hash()
-        // ...其他代码...
-    }
+  public set(k: Key, v: Value) {
+    let h = k.hash()
+    // ...其他代码...
+  }
 }
 ```
 
@@ -1353,7 +1427,7 @@ class HasMap<Key extends Hashable, Value> {
 
 ```typescript
 function last(x: number[]): number {
-    return x[x.length -1]
+  return x[x.length - 1]
 }
 console.log(last([1, 2, 3])) // 输出：3
 ```
@@ -1362,7 +1436,7 @@ console.log(last([1, 2, 3])) // 输出：3
 
 ```typescript
 function last<T>(x: T[]): T {
-    return x[x.length - 1]
+  return x[x.length - 1]
 }
 ```
 
@@ -1372,7 +1446,7 @@ function last<T>(x: T[]): T {
 
 ```typescript
 // 显式设置的类型实参
-console.log(last<string>(["aa", "bb"]))
+console.log(last<string>(['aa', 'bb']))
 console.log(last<number>([1, 2, 3]))
 
 // 隐式设置的类型实参
@@ -1393,7 +1467,7 @@ class Derived1 extends Base implements Interface { }
 class Derived2 extends Base<SomeType> implements Interface<SomeType> { }
 
 function foo<T = number>(): T {
-    // ...
+  // ...
 }
 foo()
 // 此函数在语义上等价于下面的调用
@@ -1408,8 +1482,8 @@ foo<number>()
 
 ```typescript
 let x: number = null    // 编译时错误
-let y: string = null    // 同上
-let z: number[] = null  // 同上
+let y: string = null    // 编译时错误
+let z: number[] = null  // 编译时错误
 ```
 
 可以为空值的变量定义为联合类型`T | null`。
@@ -1444,11 +1518,11 @@ y = x! + 1 // ok
 
 ```typescript
 class Person {
-    // ...
-    nick: string | null = null
-    getNick(): string {
-        return this.nick ?? ""
-    }
+  // ...
+  nick: string | null = null
+  getNick(): string {
+    return this.nick ?? ''
+  }
 }
 ```
 
@@ -1458,21 +1532,21 @@ class Person {
 
 ```typescript
 class Person {
-    nick    : string | null = null
-    spouse ?: Person
+  nick: string | null = null
+  spouse?: Person
 
-    setSpouse(spouse: Person) : void {
-        this.spouse = spouse
-    }
+  setSpouse(spouse: Person): void {
+    this.spouse = spouse
+  }
 
-    getSpouseNick(): string | null | undefined {
-        return this.spouse?.nick
-    }
+  getSpouseNick(): string | null | undefined {
+    return this.spouse?.nick
+  }
 
-    constructor(nick: string) {
-        this.nick = nick
-        this.spouse = undefined
-    }
+  constructor(nick: string) {
+    this.nick = nick
+    this.spouse = undefined
+  }
 }
 ```
 
@@ -1484,16 +1558,16 @@ class Person {
 
 ```typescript
 class Person {
-    nick    : string | null = null
-    spouse ?: Person
+  nick: string | null = null
+  spouse ?: Person
 
-    constructor(nick: string) {
-        this.nick = nick
-        this.spouse = undefined
-    }
+  constructor(nick: string) {
+    this.nick = nick
+    this.spouse = undefined
+  }
 }
 
-let p: Person = new Person("Alice")
+let p: Person = new Person('Alice')
 console.log(p.spouse?.nick) // 打印undefined
 ```
 
@@ -1511,18 +1585,20 @@ console.log(p.spouse?.nick) // 打印undefined
 
 未导出的声明名称被视为私有名称，只能在声明该名称的模块中使用。
 
+**注意**：通过export方式导出，在导入时要加{}。
+
 ```typescript
 export class Point {
-    x: number = 0
-    y: number = 0
-    constructor(x: number, y: number) {
-      this.x = x
-      this.y = y
-    }
+  x: number = 0
+  y: number = 0
+  constructor(x: number, y: number) {
+    this.x = x
+    this.y = y
+  }
 }
 export let Origin = new Point(0, 0)
 export function Distance(p1: Point, p2: Point): number {
-    return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y))
+  return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y))
 }
 ```
 
@@ -1540,7 +1616,7 @@ export function Distance(p1: Point, p2: Point): number {
 导入绑定`* as A`表示绑定名称“A”，通过`A.name`可访问从导入路径指定的模块导出的所有实体：
 
 ```typescript
-import * as Utils from "./utils"
+import * as Utils from './utils'
 Utils.X // 表示来自Utils的X
 Utils.Y // 表示来自Utils的Y
 ```
@@ -1548,7 +1624,7 @@ Utils.Y // 表示来自Utils的Y
 导入绑定`{ ident1, ..., identN }`表示将导出的实体与指定名称绑定，该名称可以用作简单名称：
 
 ```typescript
-import { X, Y } from "./utils"
+import { X, Y } from './utils'
 X // 表示来自utils的X
 Y // 表示来自utils的Y
 ```
@@ -1556,7 +1632,7 @@ Y // 表示来自utils的Y
 如果标识符列表定义了`ident as alias`，则实体`ident`将绑定在名称`alias`下：
 
 ```typescript
-import { X as Z, Y } from "./utils"
+import { X as Z, Y } from './utils'
 Z // 表示来自Utils的X
 Y // 表示来自Utils的Y
 X // 编译时错误：'X'不可见
@@ -1574,7 +1650,7 @@ X // 编译时错误：'X'不可见
 
 ```typescript
 function main() {
-    console.log("this is the program entry")
+  console.log('this is the program entry')
 }
 ```
 
@@ -1585,306 +1661,6 @@ function main() {
 
 ### ArkUI示例
 
-以下示例提供了一个完整的基于ArkUI的应用程序，以展示其GUI编程功能。有关ArkUI功能的更多详细信息，请参见ArkUI[指导手册](arkts-get-started.md)。
+[MVVM应用示例](arkts-mvvm.md#mvvm应用示例)提供了一个完整的基于ArkUI的应用程序，以展示其GUI编程功能。
 
-```typescript
-// ViewModel classes ---------------------------
-
-let nextId: number = 0
-
-@Observed class ObservedArray<T> extends Array<T> {
-    constructor(arr: T[]) {
-        super(arr)
-    }
-}
-
-@Observed class Address {
-    street : string
-    zip    : number
-    city   : string
-
-    constructor(street: string, zip: number, city: string) {
-        this.street = street
-        this.zip = zip
-        this.city = city
-    }
-}
-
-@Observed class Person {
-    id_     : string
-    name    : string
-    address : Address
-    phones  : ObservedArray<string>
-
-    constructor(
-        name   : string,
-        street : string,
-        zip    : number,
-        city   : string,
-        phones : string[]
-    ) {
-        this.id_ = nextId.toString()
-        nextId++
-
-        this.name = name
-        this.address = new Address(street, zip, city)
-        this.phones = new ObservedArray<string>(phones)
-    }
-}
-
-class AddressBook {
-    me       : Person
-    contacts : ObservedArray<Person>
-
-    constructor(me: Person, contacts: Person[]) {
-        this.me = me
-        this.contacts = new ObservedArray<Person>(contacts)
-    }
-}
-
-// @Components -----------------------
-// 渲染Person对象的名称和电话本中的第一个号码
-// ObservedArray<string>
-// 要更新电话号码，我们需要@ObjectLink各修饰person和phones，不能使用this.person.phones
-// 内部数组的更改不会被观察到。
-// onClick会更新AddressBookView、PersonEditView中的selectedPerson
-@Component
-struct PersonView {
-
-    @ObjectLink person   : Person
-    @ObjectLink phones   : ObservedArray<string>
-    @Link selectedPerson : Person
-
-    build() {
-        Flex({
-          direction: FlexDirection.Row,
-          justifyContent: FlexAlign.SpaceBetween
-        }) {
-            Text(this.person.name)
-            Select(this.phones.length != 0, Text(this.phones[0]), null)
-        }
-        .height(55)
-        .backgroundColor(
-            this.selectedPerson.name == this.person.name ?
-               "#ffa0a0" : "#ffffff"
-        )
-        .onClick(() => {
-            this.selectedPerson = this.person
-        })
-    }
-}
-
-// 渲染所有细节
-// @Prop从父组件AddressBookView初始化
-// TextInput组件onChange在点击Save Changes后修改本地副本，将所有数据从@Prop同步到@ObjectLink，
-// 并进一步同步到其他@Components组件中的selectedPerson对象。
-@Component
-struct PersonEditView {
-
-    @Consume addrBook: AddressBook
-
-    /* 父组件拥有的Person对象和子对象 */
-    @Link selectedPerson: Person
-
-    /* 在点击保存前，所有编辑只存在于本地副本 */
-    @Prop name    : string
-    @Prop address : Address
-    @Prop phones  : ObservedArray<string>
-
-    selectedPersonIndex() : number {
-        return this.addrBook.contacts.findIndex(
-            (person) => person.id_ == this.selectedPerson.id_
-        )
-    }
-
-    build() {
-        Column() {
-            TextInput({text: this.name})
-                .onChange((value) => {
-                    this.name = value
-                })
-
-            TextInput({text: this.address.street})
-                .onChange((value) => {
-                    this.address.street = value
-                })
-
-            TextInput({text: this.address.city})
-                .onChange((value) => {
-                    this.address.city = value
-                })
-
-            TextInput({text: this.address.zip.toString()})
-                .onChange((value) => {
-                    const result = Number.parseInt(value)
-                    this.address.zip = Number.isNaN(result) ? 0 : result
-                })
-
-            Select(this.phones.length > 0,
-                ForEach(this.phones, (phone, index) => {
-                    TextInput({text: phone})
-                        .width(150)
-                        .onChange((value) => {
-                            console.log(
-                              `${index}.${value} value has changed`
-                            )
-                            this.phones[index] = value
-                        })
-                }, (phone, index) => `${index}-${phone}`),
-                null)
-
-            Flex({
-                direction: FlexDirection.Row,
-                justifyContent: FlexAlign.SpaceBetween
-            }) {
-                Text("Save Changes")
-                    .onClick(() => {
-                        // 将值从本地副本复制到提供的引用处，再到父组件拥有的Person对象
-                        // 避免创建新对象。修改已有对象的属性：
-                        this.selectedPerson.name           = this.name
-                        this.selectedPerson.address.street =
-                                                   this.address.street
-                        this.selectedPerson.address.city   =
-                                                     this.address.city
-                        this.selectedPerson.address.zip    =
-                                                      this.address.zip
-                        this.phones.forEach(
-                            (phone : string, index : number) => {
-                            this.selectedPerson.phones[index] = phone
-                        })
-                    })
-                Select(this.selectedPersonIndex() != -1,
-                    Text("Delete Contact")
-                        .onClick(() => {
-                            let index = this.selectedPersonIndex()
-                            console.log(`delete contact at index ${index}`)
-
-                            // 删除找到的联系人
-                            this.addrBook.contacts.splice(index, 1)
-
-                            // 确定新的selectedPerson对象
-                            index = (index < this.addrBook.contacts.length)
-                                ? index
-                                : index - 1
-
-                            // 如果没有联系人，将我设置为selectedPerson对象
-                            this.selectedPerson = (index >= 0)
-                                ? this.addrBook.contacts[index]
-                                : this.addrBook.me
-                        }),
-                    null)
-            }
-        }
-    }
-}
-
-@Component
-struct AddressBookView {
-
-    @ObjectLink me        : Person
-    @ObjectLink contacts  : ObservedArray<Person>
-    @State selectedPerson : Person = null
-
-    aboutToAppear() {
-        this.selectedPerson = this.me
-    }
-
-    build() {
-        Flex({
-          direction: FlexDirection.Column,
-          justifyContent: FlexAlign.Start
-        }) {
-            Text("Me:")
-            PersonView({
-                person: this.me,
-                phones: this.me.phones,
-                selectedPerson: this.$selectedPerson})
-
-            Divider().height(8)
-
-            Flex({
-                direction: FlexDirection.Row,
-                justifyContent: FlexAlign.SpaceBetween
-            }) {
-                Text("Contacts:")
-                Text("Add")
-                    .onClick(() => {
-                        this.selectedPerson = new Person (
-                          "", "", 0, "", ["+86"]
-                        )
-                        this.contacts.push(this.selectedPerson)
-                    })
-            }.height(50)
-
-            ForEach(this.contacts,
-                contact => {
-                    PersonView({
-                        person: contact,
-                        phones: contact.phones,
-                        selectedPerson: this.$selectedPerson
-                    })
-                },
-                contact => contact.id_
-            )
-
-            Divider().height(8)
-
-            Text("Edit:")
-            PersonEditView({
-                selectedPerson: this.$selectedPerson,
-                name: this.selectedPerson.name,
-                address: this.selectedPerson.address,
-                phones: this.selectedPerson.phones
-            })
-        }
-            .borderStyle(BorderStyle.Solid)
-            .borderWidth(5)
-            .borderColor(0xAFEEEE)
-            .borderRadius(5)
-    }
-}
-
-@Entry
-@Component
-struct PageEntry {
-    @Provide addrBook : AddressBook = new AddressBook(
-        new Person(
-            "Mighty Panda",
-            "Wonder str., 8",
-            888,
-            "Shanghai",
-            ["+8611122223333", "+8677788889999", "+8655566667777"]
-        ),
-        [
-            new Person(
-                "Curious Squirrel",
-                "Wonder str., 8",
-                888,
-                "Hangzhou",
-                ["+8611122223332", "+8677788889998", "+8655566667776"]
-            ),
-            new Person(
-                "Wise Tiger",
-                "Wonder str., 8",
-                888,
-                "Nanjing",
-                ["+8610101010101", "+8620202020202", "+8630303030303"]
-            ),
-            new Person(
-                "Mysterious Dragon",
-                "Wonder str., 8",
-                888,
-                "Suzhou",
-                [ "+8610000000000", "+8680000000000"]
-            ),
-        ]);
-
-    build() {
-        AddressBookView({
-            me: this.addrBook.me,
-            contacts: this.addrBook.contacts,
-            selectedPerson: this.addrBook.me
-        })
-    }
-}
-```
+有关ArkUI功能的更多详细信息，请参见ArkUI[指导手册](arkts-get-started.md)。

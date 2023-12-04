@@ -4,7 +4,7 @@
 
 为了引导OpenHarmony生态健康、有序发展和演进，本章程对OpenHarmony API的新增、变更、废弃、删除等生命周期与治理流程进行约束，同时定义了基本的API设计要求。
 
-本章程由[API SIG](https://www.openharmony.cn/SIG/api/)制定，经[PMC](https://www.openharmony.cn/community/pmc/)批准发布；对本章程的修订必须经由API SIG评审后，由PMC批准发布。
+本章程由[API SIG](https://www.openharmony.cn/SIG/api/)制定，经[PMC](https://www.openharmony.cn/pmc)批准发布；对本章程的修订必须经由API SIG评审后，由PMC批准发布。
 
 ## 概述
 

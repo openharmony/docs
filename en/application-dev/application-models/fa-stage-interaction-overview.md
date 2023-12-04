@@ -13,7 +13,6 @@ You cannot use both models for the development of an application (see the figure
 
 The following table lists the possible interaction scenarios and the concerns of each scenario.
 
-
 **Table 1** Application component interaction scenarios
 
 | Interaction Scenario| Concerns|

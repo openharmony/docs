@@ -30,10 +30,11 @@ canIUse(syscap: string): boolean
 
   ```js
 import geoLocationManager from '@ohos.geoLocationManager'
+import { BusinessError } from '@ohos.base';
 
 const isLocationAvailable = canIUse('SystemCapability.Location.Location.Core');
 if (isLocationAvailable) {
-    geoLocationManager.getCurrentLocation((err, location) => {
+    geoLocationManager.getCurrentLocation((err: BusinessError, location: geoLocationManager.Location) => {
         if (err) {
             console.log('err=' + JSON.stringify(err));
         }

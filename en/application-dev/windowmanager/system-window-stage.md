@@ -2,17 +2,17 @@
 
 ## Overview
 
-In the stage model, system applications are allowed to create and manage system windows, including the volume bar, wallpaper, notification panel, status bar, and navigation bar. For details about the supported system window types, see [WindowType in Window](../reference/apis/js-apis-window.md#windowtype7).
+In the stage model, system applications are allowed to create and manage system windows, including the volume bar, wallpaper, notification panel, status bar, and navigation bar. For details about the supported system window types, see [WindowType](../reference/apis/js-apis-window.md#windowtype7).
 
 When a window is displayed, hidden, or switched, an animation is usually used to smooth the interaction process.
 
-In OpenHarmony, the animation is the default behavior for application windows. You do not need to set or modify the code.
+The animation is the default behavior for application windows. You do not need to set or modify the code.
 
 However, you can customize an animation to be played during the display or hiding of a system window.
 
 > **NOTE**
 >
-> This document involves the use of system APIs. Use the full SDK for development. For details, see [Guide to Switching to Full SDK](../faqs/full-sdk-switch-guide.md).
+> This document involves the use of system APIs. You must use the full SDK for development. For details, see [Guide to Switching to Full SDK](../faqs/full-sdk-switch-guide.md).
 
 
 ## Available APIs
@@ -21,12 +21,12 @@ For details, see [Window](../reference/apis/js-apis-window.md).
 
 | Instance           | API                                                      | Description                                                        |
 | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Window static method   | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow or system window.<br>**config** specifies the parameters used for creating the window.    |
+| Window static method   | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow or system window.<br>**config**: parameters used for creating the window.    |
 | Window            | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.                                          |
 | Window            | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.                                          |
-| Window            | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the page content to this window.                                    |
+| Window            | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window. |
 | Window            | showWindow(callback: AsyncCallback\<void>): void             | Shows this window.                                              |
-| Window            | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Enables listening for click events outside this window.                          |
+| Window            | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Subscribes to touch events outside this window.                          |
 | Window            | hide (callback: AsyncCallback\<void>): void                  | Hides this window. This is a system API.                            |
 | Window            | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | Destroys this window.                                              |
 | Window            | getTransitionController(): TransitionController              | Obtains the transition animation controller. This is a system API.                  |
@@ -43,15 +43,15 @@ This section uses the volume bar as an example to describe how to develop a syst
 
 1. Create a system window.
 
-   In the case of [ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md), call **window.createWindow** to create a system window of the volume bar type.
+   In [ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md), call **window.createWindow** to create a system window of the volume bar type.
 
 2. Set the properties of the system window.
 
    After the volume bar window is created, you can change its size and position, and set its properties such as the background color and brightness.
 
-3. Load content for the system window and show it.
+3. Load content to and show the system window.
 
-   You can call **setUIContent** and **showWindow** to load and display the content in the volume bar window.
+   You can call **setUIContent** to load content to the volume bar window and **showWindow** to show the window.
 
 4. Hide or destroy the system window.
 
@@ -95,7 +95,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
         }
         console.info('Succeeded in changing the window size.');
       });
-      // 3. Load the page content to the volume bar window.
+      // 3.1 Load content to the volume bar window.
       windowClass.setUIContent("pages/page_volume", (err: BusinessError) => {
         let errCode: number = err.code;
         if (errCode) {
@@ -103,7 +103,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
           return;
         }
         console.info('Succeeded in loading the content.');
-        // 3. Show the volume bar window.
+        // 3.2 Show the volume bar window.
         (windowClass as window.Window).showWindow((err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
@@ -114,7 +114,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
         });
       });
       // 4. Hide or destroy the volume bar window.
-      // Hide the volume bar window when a click event outside the window is detected.
+      // Hide the volume bar window when a touch event outside the window is detected.
       windowClass.on('touchOutside', () => {
         console.info('touch outside');
         (windowClass as window.Window).hide((err: BusinessError) => {
@@ -123,7 +123,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
             console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
             return;
           }
-          console.info('Succeeded in hidinging the window.');
+          console.info('Succeeded in hiding the window.');
         });
       });
     });
@@ -133,7 +133,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
 
 ## Customizing an Animation to Be Played During the Display or Hiding of a System Window
 
-You can determine whether to play an animation when a system window is showing or hiding.
+You can determine whether to play an animation when a system window is showing or hiding.  
 
 ### How to Develop
 
@@ -178,7 +178,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
       // 1. Obtain the transition animation controller.
       let controller: window.TransitionController = windowClass.getTransitionController();
       // 2. Configure the animation to be played.
-      controller.animationForShown = (context: window.TransitionContext) => {
+      (context: window.TransitionContext) => {
         let toWindow: window.Window = context.toWindow
         // Set the animation attributes.
         animateTo({
@@ -202,6 +202,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
           console.info('toWindow translate end');
         })
         console.info('complete transition end');
+        controller.animationForHidden(context);
       }
 
       windowClass.loadContent("pages/page_volume", (err: BusinessError) => {
@@ -235,7 +236,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
     // 1. Obtain the transition animation controller.
     let controller: window.TransitionController = (windowClass as window.Window).getTransitionController();
     // 2. Configure the animation to be played.
-    controller.animationForHidden = (context: window.TransitionContext) => {
+    (context: window.TransitionContext) => {
       let toWindow: window.Window = context.toWindow
       // Set the animation attributes.
       animateTo({
@@ -262,6 +263,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
         console.info('toWindow opacity end');
       })
       console.info('complete transition end');
+      controller.animationForHidden(context);
     }
       // 4. Hide the window and play the animation during the process.
     (windowClass as window.Window).hideWithAnimation((err: BusinessError) => {

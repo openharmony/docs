@@ -1,4 +1,4 @@
-# NeuralNeworkRuntime
+# NeuralNetworkRuntime
 
 
 ## Overview
@@ -20,16 +20,16 @@ Provides APIs for accelerating the Neural Network Runtime model inference.
 
 | Name | Description | 
 | -------- | -------- |
-| [neural_network_runtime.h](neural__network__runtime_8h.md) | Defines the Neural Network Runtime APIs. The AI inference framework uses the Native APIs provided by Neural Network Runtime to construct and compile models and perform inference and computing on acceleration hardware. Note: Currently, the APIs of Neural Network Runtime do not support multi-thread calling. <br>File to Include: <neural_network_runtime/neural_network_runtime.h> | 
-| [neural_network_runtime_type.h](neural__network__runtime__type_8h.md) | Defines the structure and enumeration for Neural Network Runtime. <br>File to Include: <neural_network_runtime/neural_network_runtime_type.h>  | 
+| [neural_network_runtime.h](neural__network__runtime_8h.md) | Defines the Neural Network Runtime APIs. The AI inference framework uses the Native APIs provided by Neural Network Runtime to construct and compile models and perform inference and computing on acceleration hardware. Note: Currently, the APIs of Neural Network Runtime do not support multi-thread calling. <br>File to Include: <neural_network_runtime/neural_network_runtime.h> <br/>Library: libneural_network_runtime.so| 
+| [neural_network_runtime_type.h](neural__network__runtime__type_8h.md) | Defines the structure and enumeration for Neural Network Runtime. <br>File to Include: <neural_network_runtime/neural_network_runtime_type.h> <br/>Library: libneural_network_runtime.so| 
 
 
 ### Structs
 
 | Name | Description | 
 | -------- | -------- |
-| [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) | This structure is used to store a 32-bit unsigned integer array.  | 
-| [OH_NN_QuantParam](_o_h___n_n___quant_param.md) | Quantization information.  | 
+| [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) | Defines a 32-bit unsigned integer array.  | 
+| [OH_NN_QuantParam](_o_h___n_n___quant_param.md) | Defines quantization information.  | 
 | [OH_NN_Tensor](_o_h___n_n___tensor.md) | Defines the tensor structure.  | 
 | [OH_NN_Memory](_o_h___n_n___memory.md) | Defines the memory structure.  | 
 
@@ -41,8 +41,8 @@ Provides APIs for accelerating the Neural Network Runtime model inference.
 | [OH_NNModel](#oh_nnmodel) | Defines the handles of models for Neural Network Runtime.  | 
 | [OH_NNCompilation](#oh_nncompilation) | Defines the compiler handle for Neural Network Runtime.  | 
 | [OH_NNExecutor](#oh_nnexecutor) | Defines the executor handle for Neural Network Runtime.  | 
-| [OH_NN_UInt32Array](#oh_nn_uint32array) | This structure is used to store a 32-bit unsigned integer array.  | 
-| [OH_NN_QuantParam](#oh_nn_quantparam) | Quantization information.  | 
+| [OH_NN_UInt32Array](#oh_nn_uint32array) | Defines a 32-bit unsigned integer array.  | 
+| [OH_NN_QuantParam](#oh_nn_quantparam) | Defines quantization information.  | 
 | [OH_NN_Tensor](#oh_nn_tensor) | Defines the tensor structure.  | 
 | [OH_NN_Memory](#oh_nn_memory) | Defines the memory structure.  | 
 
@@ -119,7 +119,7 @@ Defines the memory structure.
 typedef struct OH_NN_QuantParamOH_NN_QuantParam
 ```
 **Description**<br>
-Quantization information.
+Defines the quantization information.
 
 In quantization scenarios, the 32-bit floating-point data type is quantized into the fixed-point data type according to the following formula:
 
@@ -147,7 +147,7 @@ It is usually used to construct data nodes and operator parameters in a model gr
 typedef struct OH_NN_UInt32ArrayOH_NN_UInt32Array
 ```
 **Description**<br>
-This structure is used to store a 32-bit unsigned integer array.
+Defines a 32-bit unsigned integer array.
 
 
 ### OH_NNCompilation

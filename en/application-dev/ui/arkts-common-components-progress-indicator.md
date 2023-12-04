@@ -1,7 +1,7 @@
 # Progress Indicator (Progress)
 
 
-The **\<Progress>** component is used to provide a progress indicator that displays the progress of an operation. For details, see [Progress](../reference/arkui-ts/ts-basic-components-progress.md).
+The **\<Progress>** component is used to provide an indicator that shows the progress of an operation. For details, see [Progress](../reference/arkui-ts/ts-basic-components-progress.md).
 
 
 ## Creating a Progress Indicator
@@ -15,7 +15,7 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 ```
 
 
-Creates a progress bar indicator. In this API, **value** indicates the initial progress, **total** indicates the total progress, and **type** indicates the style of the progress indicator.
+In this API, **value** indicates the initial progress, **total** indicates the total progress, and **type** indicates the style of the progress indicator.
 
 
 
@@ -33,9 +33,10 @@ Progress indicators come in five styles. When creating a progress indicator, you
 
 
 - Linear style (default style)
+
   >**NOTE**
   >
-  > Since API version 9, the progress indicator adaptively switches to the vertical layout if the height is greater than the width and remains the horizontal layout if the height is equal to the width.
+  > Since API version 9, the progress indicator adaptively switches to the vertical layout if its height is greater than the width and remains the horizontal layout if the height is equal to the width.
 
 
   ```ts

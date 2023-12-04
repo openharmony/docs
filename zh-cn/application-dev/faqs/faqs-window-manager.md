@@ -1,8 +1,7 @@
 # 窗口管理开发常见问题
 
-## 如何获取状态栏和导航栏高度
 
-适用于OpenHarmony 3.2 Beta5  API 9
+## 如何获取状态栏和导航栏高度(API 9)
 
 **解决措施**
 
@@ -19,7 +18,7 @@ import window from '@ohos.window';
  * @param mainWindow 主窗口对象
  */
 async function enterImmersion(mainWindow: window.Window) { 
-  mainWindow.on("systemBarTintChange", (data) => {
+  window.on("systemBarTintChange", (data) => {
     let avoidAreaRect = data.regionTint[0].region; //data.regionTint是个数组，包含状态栏、导航栏的矩形区域坐标。
   })
   await mainWindow.setFullScreen(true)
@@ -42,9 +41,8 @@ export default class MainAbility extends Ability {
 }
 ```
 
-## 应用如何设置隐藏顶部的状态栏
 
-适用于OpenHarmony 3.2 Beta5  API 9
+## 应用如何设置隐藏顶部的状态栏(API 9)
 
 **解决措施**
 
@@ -63,9 +61,9 @@ onWindowStageCreate(windowStage){
 
 [窗口基础能力文档](../reference/apis/js-apis-window.md)
 
-## 如何锁定设备竖屏，使得窗口不随屏幕旋转
+## 如何锁定设备竖屏，使得窗口不随屏幕旋转(API 9)
 
-适用于：OpenHarmony SDK 3.2 Beta5 API 9 Stage模型  
+适用于Stage模型。
 
 **解决措施**
 
@@ -88,7 +86,7 @@ try {
     });} catch (exception) {
     console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
 }
-//2.窗口实例使用setPreferredOrientation方法，设置窗口的显示方向，PROTRAIT为固定竖屏，其他方向可参照参考链接
+//2.窗口实例使用setPreferredOrientation方法，设置窗口的显示方向，PORTRAIT为固定竖屏，其他方向可参照参考链接
 let orientation = window.Orientation.PORTRAIT;
 if (windowClass) {
     windowClass.setPreferredOrientation(orientation, (err) => {
@@ -104,9 +102,9 @@ if (windowClass) {
 
 [window.Orientation](../reference/apis/js-apis-window.md#orientation9)
 
-## 调用Window实例的setWindowSystemBarProperties接口设置窗口状态栏和导航栏的高亮属性时不生效
+## 调用Window实例的setWindowSystemBarProperties接口设置窗口状态栏和导航栏的高亮属性时不生效(API 9)
 
-适用于：OpenHarmony SDK 3.2 Beta5 API9 Stage模型
+适用于Stage模型。
 
 **解决措施**
 
@@ -116,9 +114,8 @@ if (windowClass) {
 
 [window.SystemBarProperties](../reference/apis/js-apis-window.md#systembarproperties)
 
-## 如何保持屏幕常亮
 
-适用于：OpenHarmony 3.2 Beta5 API9  
+## 如何保持屏幕常亮(API 9)
 
 **解决措施**
 
@@ -141,13 +138,12 @@ try {
 }
 ```
 
-## 如何监听窗口大小的变化
 
-适用于：OpenHarmony 3.2 Beta5 API9
+## 如何监听窗口大小的变化(API 9)
 
 **解决措施**
 
-获取窗口实例对象后，可以通过窗口的on\('windowSizeChange'\)方法实现对窗口尺寸大小变化的监听
+获取窗口实例对象后，可以通过窗口的on('windowSizeChange')方法实现对窗口尺寸大小变化的监听
 
 ```
 try {

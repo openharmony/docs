@@ -40,12 +40,12 @@ Enumerates the initial ability launch reasons. You can use it together with [onC
 | CONTINUATION           | 3    | The ability is started by means of cross-device migration.|
 | APP_RECOVERY           | 4    | The ability is automatically started when the application is restored from a fault.|
 | SHARE<sup>10+</sup>           | 5    | The ability is started by means of atomic service sharing.|
+| AUTO_STARTUP<sup>11+</sup>           | 8    | The ability is automatically started upon system boot.|
 
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 
 class MyAbility extends UIAbility {
@@ -79,12 +79,11 @@ Enumerates the reasons for the last exit. You can use it together with [onCreate
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 
 class MyAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        if (launchParam.lastExitReason === AbilityConstant.LastExitReason.ABILITY_NOT_RESPONDING) {
+        if (launchParam.lastExitReason === AbilityConstant.LastExitReason.APP_FREEZE) {
             console.log('The ability has exit last because the ability was not responding.');
         }
     }
@@ -100,14 +99,13 @@ Enumerates the ability continuation results. You can use it together with [onCon
 | Name                         | Value  | Description                                                        |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | AGREE           | 0    | The ability continuation is accepted.|
-| REJECT           | 1    | The ability continuation is rejected. If the application is abnormal in **onContinue**, which results in abnormal display during data restoration, this error code is returned. |
-| MISMATCH  | 2    | The version does not match. The application on the initiator can obtain the version of the target application from **onContinue**. If the ability continuation cannot be performed due to version mismatch, this error code is returned. |
+| REJECT           | 1    | The ability continuation is rejected. If the application is abnormal in [onContinue](js-apis-app-ability-uiAbility.md#uiabilityoncontinue), which results in abnormal display during data restoration, this error code is returned.|
+| MISMATCH  | 2    | The version does not match. The application on the initiator can obtain the version of the target application from [onContinue](js-apis-app-ability-uiAbility.md#uiabilityoncontinue). If the ability continuation cannot be performed due to version mismatch, this error code is returned.|
 
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onContinue(wantParam: Record<string, Object>) {
@@ -135,24 +133,29 @@ Enumerates the window modes in which an ability can be displayed at startup. It 
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 let want: Want = {
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility'
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
 };
 let option: StartOptions = {
-    windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FULLSCREEN
+  windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FULLSCREEN
 };
 
 // Ensure that the context is obtained.
-this.context.startAbility(want, option).then(()=>{
-    console.log('Succeed to start ability.');
-}).catch((error: BusinessError)=>{
-    console.error('Failed to start ability with error: ${JSON.stringify(error)}');
-});
+class MyAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    this.context.startAbility(want, option).then(()=>{
+      console.log('Succeed to start ability.');
+    }).catch((error: BusinessError)=>{
+      console.error('Failed to start ability with error: ${JSON.stringify(error)}');
+    });
+  }
+}
 ```
 
 ## AbilityConstant.MemoryLevel
@@ -171,7 +174,6 @@ Enumerates the memory levels. You can use it in [onMemoryLevel(level)](js-apis-a
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onMemoryLevel(level: AbilityConstant.MemoryLevel) {
@@ -201,7 +203,6 @@ Enumerates the result types for the operation of saving application data. You ca
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
@@ -225,7 +226,6 @@ Enumerates the scenarios for saving application data. You can use it in [onSaveS
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
     onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
@@ -251,10 +251,16 @@ Enumerates the mission continuation states of the application. It is used in the
 **Example**
 
 ```ts
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import { BusinessError } from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
-    console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
-  });
+class MyAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
+        console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
+        });
+    }
+}
 ```

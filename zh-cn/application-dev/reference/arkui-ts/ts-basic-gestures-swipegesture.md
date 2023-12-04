@@ -17,7 +17,7 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 | -------- | -------- | -------- | -------- |
 | fingers | number | 否 | 触发滑动的最少手指数，默认为1，最小为1指，最大为10指。<br/>默认值：1 |
 | direction | [SwipeDirection](#swipedirection枚举说明) | 否 | 触发滑动手势的滑动方向。<br/>默认值：SwipeDirection.All |
-| speed | number | 否 | 识别滑动的最小速度（默认为100VP/秒）。<br/>默认值：100 |
+| speed | number | 否 | 识别滑动的最小速度（默认为100VP/秒）。<br/>默认值：100 <br/>**说明：** <br/>当滑动速度的值小于等于0时，会被转化为默认值。 |
 
 ## SwipeDirection枚举说明
 
@@ -33,7 +33,13 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onAction(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | 滑动手势识别成功回调。 |
+| onAction(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Swipe手势识别成功回调。 |
+
+## 属性
+
+| 名称 | 类型    |描述                                        |
+| ----  | ------  | ---------------------------------------- |
+| tag<sup>11+</sup>   | string  | 设置Swipe手势标志，用于自定义手势判定时区分绑定的手势。|
 
 ## 示例
 

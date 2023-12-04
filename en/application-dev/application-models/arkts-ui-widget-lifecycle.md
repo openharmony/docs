@@ -22,7 +22,6 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
    import formProvider from '@ohos.app.form.formProvider';
    import { Configuration } from '@ohos.app.ability.Configuration';
    import Want from '@ohos.app.ability.Want';
-   import formInfo from '@ohos.app.form.formInfo';
    import Base from '@ohos.base';
    
    export default class EntryFormAbility extends FormExtensionAbility {
@@ -77,7 +76,7 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
 
     onConfigurationUpdate(config: Configuration) {
       // Called when the system configuration is updated.
-      console.info('[EntryFormAbility] configurationUpdate:' + JSON.stringify(config));
+      console.info('[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
     }
 
     onAcquireFormState(want: Want) {

@@ -46,6 +46,9 @@ export default class EntryAbility extends UIAbility {
                 let screenDensity = config.screenDensity;
                 let displayId = config.displayId;
                 let hasPointerDevice = config.hasPointerDevice;
+            },
+            onMemoryLevel(level){
+                console.log('onMemoryLevel level: ${level}');
             }
         };
         try {
@@ -53,7 +56,7 @@ export default class EntryAbility extends UIAbility {
             let callbackId = applicationContext.on('environment', envCallback);
             console.log('callbackId: ${callbackId}');
         } catch (paramError) {
-            console.error('error: ${paramError.code}, ${paramError.message}');
+            console.error(`error: ${paramError.code}, ${paramError.message}`);
         }
     }
 }

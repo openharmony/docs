@@ -21,17 +21,17 @@ import webSocket from '@ohos.net.webSocket';
 
 ```js
 import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
 
 let defaultIpAddress = "ws://";
-let ws: webSocket = webSocket.createWebSocket();
-ws.on('open', (err:string, value:string) => {
+let ws = webSocket.createWebSocket();
+ws.on('open', (err:BusinessError, value: Object) => {
   if (err != undefined) {
     console.log(JSON.stringify(err))
     return
   }
-  console.log("on open, status:" + value['status'] + ", message:" + value['message']);
   // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
-  ws.send("Hello, server!", (err:string, value:string) => {
+  ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("send success");
     } else {
@@ -39,11 +39,11 @@ ws.on('open', (err:string, value:string) => {
     }
   });
 });
-ws.on('message', (err:string, value:string) => {
+ws.on('message', (err: BusinessError, value: string) => {
   console.log("on message, message:" + value);
   // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接
   if (value === 'bye') {
-    ws.close((err:string, value:string) => {
+    ws.close((err: BusinessError, value: boolean) => {
       if (!err) {
         console.log("close success");
       } else {
@@ -52,13 +52,13 @@ ws.on('message', (err:string, value:string) => {
     });
   }
 });
-ws.on('close', (err:string, value:Object) => {
+ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
   console.log("on close, code is " + value.code + ", reason is " + value.reason);
 });
-ws.on('error', (err:string) => {
+ws.on('error', (err: BusinessError) => {
   console.log("on error, error:" + JSON.stringify(err));
 });
-ws.connect(defaultIpAddress, (err:string, value:string) => {
+ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
   if (!err) {
     console.log("connect success");
   } else {
@@ -121,9 +121,12 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
 let url = "ws://"
-ws.connect(url, (err:string, value:string) => {
+ws.connect(url, (err: BusinessError, value: boolean) => {
   if (!err) {
     console.log("connect success");
   } else {
@@ -163,12 +166,15 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 **示例：**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-let header = new Map<string, string>()
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
+let header: Map<string, string>
 header.set("key", "value")
 header.set("key2", "value2")
 let url = "ws://"
-ws.connect(url, header, (err:string, value:string) => {
+ws.connect(url, header as webSocket.WebSocketRequestOptions, (err: BusinessError, value: Object) => {
   if (!err) {
     console.log("connect success");
   } else {
@@ -213,10 +219,12 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 **示例：**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
+import webSocket from '@ohos.net.webSocket';
+
+let ws = webSocket.createWebSocket();
 let url = "ws://"
-let promise: webSocket = ws.connect(url);
-promise.then((value:string) => {
+let promise = ws.connect(url);
+promise.then((value: boolean) => {
   console.log("connect success")
 }).catch((err:string) => {
   console.log("connect fail, error:" + JSON.stringify(err))
@@ -250,10 +258,13 @@ send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
 let url = "ws://"
-ws.connect(url, (err:string, value:string) => {
-  ws.send("Hello, server!", (err:string, value:string) => {
+ws.connect(url, (err: BusinessError, value: boolean) => {
+  ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("send success");
     } else {
@@ -295,11 +306,14 @@ send(data: string | ArrayBuffer): Promise\<boolean\>
 **示例：**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
 let url = "ws://"
-ws.connect(url, (err:string, value:string) => {
-  let promise: webSocket = ws.send("Hello, server!");
-  promise.then((value:string) => {
+ws.connect(url, (err: BusinessError, value: boolean) => {
+  let promise = ws.send("Hello, server!");
+  promise.then((value: boolean) => {
     console.log("send success")
   }).catch((err:string) => {
     console.log("send fail, error:" + JSON.stringify(err))
@@ -333,8 +347,11 @@ close(callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-ws.close((err:string, value:string) => {
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
+ws.close((err: BusinessError) => {
   if (!err) {
     console.log("close success")
   } else {
@@ -370,13 +387,15 @@ close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-class Options {
-  code: number = 0
-  reason: string = ""
-}
-let options: Options = {code: 1000, reason: "your reason"}
-ws.close(options, (err:string, value:string) => {
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
+
+let options: webSocket.WebSocketCloseOptions
+options.code = 1000
+options.reason = "your reason"
+ws.close(options, (err: BusinessError) => {
   if (!err) {
     console.log("close success")
   } else {
@@ -417,14 +436,14 @@ close(options?: WebSocketCloseOptions): Promise\<boolean\>
 **示例：**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-class Options {
-  code: number = 0
-  reason: string = ""
-}
-let options: Options = {code: 1000, reason: "your reason"}
-let promise: webSocket = ws.close(x);
-promise.then((value:string) => {
+import webSocket from '@ohos.net.webSocket';
+
+let ws = webSocket.createWebSocket();
+let options: webSocket.WebSocketCloseOptions
+options.code = 1000
+options.reason = "your reason"
+let promise = ws.close();
+promise.then((value: boolean) => {
   console.log("close success")
 }).catch((err:string) => {
   console.log("close fail, err is " + JSON.stringify(err))
@@ -449,9 +468,16 @@ on(type: 'open', callback: AsyncCallback\<Object\>): void
 **示例：**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-ws.on('open', (err:string, value:string) => {
-  console.log("on open, status:" + value['status'] + ", message:" + value['message']);
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError, Callback } from '@ohos.base';
+
+let ws= webSocket.createWebSocket();
+class OutValue {
+  status: number = 0
+  message: string = ""
+}
+ws.on('open', (err: BusinessError, value: OutValue) => {
+  console.log("on open, status:" + value.status + ", message:" + value.message);
 });
 ```
 
@@ -476,9 +502,16 @@ off(type: 'open', callback?: AsyncCallback\<Object\>): void
 **示例：**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-let callback1 = (err:string, value:string) => {
-  console.log("on open, status:" + value['status'] + ", message:" + value['message']);
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
+class OutValue {
+  status: number = 0
+  message: string = ""
+}
+let callback1 = (err: BusinessError, value: OutValue) => {
+  console.log("on open, status:" + value.status + ", message:" + value.message);
 }
 ws.on('open', callback1);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅
@@ -506,8 +539,11 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 **示例：**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-ws.on('message', (err:string, value:string) => {
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
+ws.on('message', (err: BusinessError, value: string) => {
   console.log("on message, message:" + value);
 });
 ```
@@ -534,7 +570,9 @@ off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 **示例：**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
+import webSocket from '@ohos.net.webSocket';
+
+let ws = webSocket.createWebSocket();
 ws.off('message');
 ```
 
@@ -556,8 +594,11 @@ on(type: 'close', callback: AsyncCallback\<CloseResult\>): void
 **示例：**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-ws.on('close', (err:string, value:Object) => {
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
+ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
   console.log("on close, code is " + value.code + ", reason is " + value.reason);
 });
 ```
@@ -583,7 +624,9 @@ off(type: 'close', callback?: AsyncCallback\<CloseResult\>): void
 **示例：**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
+import webSocket from '@ohos.net.webSocket';
+
+let ws = webSocket.createWebSocket();
 ws.off('close');
 ```
 
@@ -605,8 +648,11 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
-ws.on('error', (err:string) => {
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
+ws.on('error', (err: BusinessError) => {
   console.log("on error, error:" + JSON.stringify(err))
 });
 ```
@@ -632,8 +678,62 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```js
-let ws: webSocket = webSocket.createWebSocket();
+import webSocket from '@ohos.net.webSocket';
+let ws = webSocket.createWebSocket();
 ws.off('error');
+```
+
+### on('dataEnd')<sup>11+</sup>
+
+on(type: 'dataEnd', callback: Callback\<void\>): void
+
+订阅WebSocket的数据接收结束事件，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   |       类型        | 必填 |                  说明                   |
+| -------- | ---------------- | ---- | --------------------------------------- |
+| type     | string           | 是   | 'dataEnd'：WebSocket的数据接收结束事件。 |
+| callback | Callback\<void\> | 是   | 回调函数。                              |
+
+**示例：**
+
+```js
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
+ws.on('dataEnd', (err: BusinessError) => {
+  console.log("on dataEnd, error:" + JSON.stringify(err))
+});
+```
+
+### off('dataEnd')<sup>11+</sup>
+
+off(type: 'dataEnd', callback?: Callback\<void\>): void
+
+取消订阅WebSocket的数据接收结束事件，使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   |        类型       | 必填 |                说明                    |
+| -------- | ---------------- | ---- | -------------------------------------- |
+| type     | string           | 是   | 'dataEnd'：WebSocket的数据接收结束事件。|
+| callback | Callback\<void\> | 否   | 回调函数。                             |
+
+**示例：**
+
+```js
+import webSocket from '@ohos.net.webSocket';
+let ws = webSocket.createWebSocket();
+ws.off('dataEnd');
 ```
 
 ## WebSocketRequestOptions

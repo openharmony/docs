@@ -17,23 +17,23 @@ import common from '@ohos.app.ability.common';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称          | 类型     | 可读   | 可写   | 说明      |
+| 名称          | 类型     | 只读   | 必填   | 说明      |
 | ----------- | ------ | ---- | ---- | ------- |
-| resourceManager     | resmgr.[ResourceManager](js-apis-resource-manager.md) | 是    | 否    | 资源管理对象。   |
-| applicationInfo | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md) | 是    | 否    | 当前应用程序的信息。 |
-| cacheDir | string | 是    | 否    | 缓存目录。 |
-| tempDir | string | 是    | 否    | 临时目录。 |
-| filesDir | string | 是    | 否    | 文件目录。 |
-| databaseDir | string | 是    | 否    | 数据库目录。 |
-| preferencesDir | string | 是    | 否    | preferences目录。 |
-| bundleCodeDir | string | 是    | 否    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](js-apis-resource-manager.md)访问资源。 |
-| distributedFilesDir | string | 是    | 否    | 分布式文件目录。 |
-| eventHub | [EventHub](js-apis-inner-application-eventHub.md) | 是    | 否    | 事件中心，提供订阅、取消订阅、触发事件对象。 |
-| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 是    | 否    | 文件分区信息。 |
+| resourceManager     | resmgr.[ResourceManager](js-apis-resource-manager.md#resourcemanager) | 否    | 是    | 资源管理对象。   |
+| applicationInfo | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 否    | 是    | 当前应用程序的信息。 |
+| cacheDir | string | 否    | 是    | 缓存目录。 |
+| tempDir | string | 否    | 是    | 临时目录。 |
+| filesDir | string | 否    | 是    | 文件目录。 |
+| databaseDir | string | 否    | 是    | 数据库目录。 |
+| preferencesDir | string | 否    | 是    | preferences目录。 |
+| bundleCodeDir | string | 否    | 是    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](js-apis-resource-manager.md)访问资源。 |
+| distributedFilesDir | string | 是    | 是    | 分布式文件目录。 |
+| eventHub | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 是    | 事件中心，提供订阅、取消订阅、触发事件对象。 |
+| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 是    | 文件分区信息。 |
 
 ## Context.createBundleContext
 
-createBundleContext(bundleName: string): Context;
+createBundleContext(bundleName: string): Context
 
 根据Bundle名称创建安装包的上下文。
 
@@ -58,19 +58,25 @@ createBundleContext(bundleName: string): Context;
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 
-let bundleContext: common.Context;
-try {
-    bundleContext = this.context.createBundleContext('com.example.test');
-} catch (error) {
-    console.error('createBundleContext failed, error.code: ${error.code}, error.message: ${error.message}');
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let bundleContext: common.Context;
+    try {
+      bundleContext = this.context.createBundleContext('com.example.test');
+    } catch (error) {
+      console.error(`createBundleContext failed, error.code: ${error.code}, error.message: ${error.message}`);
+    }
+  }
 }
 ```
 
 ## Context.createModuleContext
 
-createModuleContext(moduleName: string): Context;
+createModuleContext(moduleName: string): Context
 
 根据模块名创建上下文。
 
@@ -91,13 +97,19 @@ createModuleContext(moduleName: string): Context;
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 
-let moduleContext: common.Context;
-try {
-    moduleContext = this.context.createModuleContext('entry');
-} catch (error) {
-    console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let moduleContext: common.Context;
+    try {
+      moduleContext = this.context.createModuleContext('entry');
+    } catch (error) {
+      console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
+    }
+  }
 }
 ```
 
@@ -105,7 +117,7 @@ try {
 
 ## Context.createModuleContext
 
-createModuleContext(bundleName: string, moduleName: string): Context;
+createModuleContext(bundleName: string, moduleName: string): Context
 
 根据Bundle名称和模块名称创建上下文。
 
@@ -129,19 +141,25 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 
-let moduleContext: common.Context;
-try {
-    moduleContext = this.context.createModuleContext('com.example.test', 'entry');
-} catch (error) {
-    console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let moduleContext: common.Context;
+    try {
+      moduleContext = this.context.createModuleContext('com.example.test', 'entry');
+    } catch (error) {
+      console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
+    }
+  }
 }
 ```
 
 ## Context.getApplicationContext
 
-getApplicationContext(): ApplicationContext;
+getApplicationContext(): ApplicationContext
 
 获取本应用的应用上下文。
 
@@ -156,19 +174,25 @@ getApplicationContext(): ApplicationContext;
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 
-let applicationContext: common.Context;
-try {
-    applicationContext = this.context.getApplicationContext();
-} catch (error) {
-    console.error('getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}');
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let applicationContext: common.Context;
+    try {
+      applicationContext = this.context.getApplicationContext();
+    } catch (error) {
+      console.error('getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}');
+    }
+  }
 }
 ```
 
 ## Context.getGroupDir<sup>10+</sup>
 
-getGroupDir(dataGroupID: string): Promise\<string>;
+getGroupDir(dataGroupID: string): Promise\<string>
 
 通过使用元服务应用中的Group ID获取对应的共享目录，使用Promise异步回调。
 
@@ -188,31 +212,36 @@ getGroupDir(dataGroupID: string): Promise\<string>;
 
 **错误码**：
 
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000011 | The context does not exist. |
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 
-let groupId = "1";
-let getGroupDirContext: common.Context = this.context;
-try {
-  getGroupDirContext.getGroupDir(groupId).then(data => {
-    console.log("getGroupDir result:" + data);
-  })
-} catch (error) {
-  console.error('getGroupDirContext failed, error.code: ${error.code}, error.message: ${error.message}');
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let groupId = "1";
+    let getGroupDirContext: common.Context = this.context;
+    try {
+      getGroupDirContext.getGroupDir(groupId).then(data => {
+        console.log("getGroupDir result:" + data);
+      })
+    } catch (error) {
+      console.error('getGroupDirContext failed, error.code: ${error.code}, error.message: ${error.message}');
+    }
+  }
 }
 ```
 
 ## Context.getGroupDir<sup>10+</sup>
 
-getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void;
+getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 
 通过使用元服务应用中的Group ID获取对应的共享目录，使用callback异步回调。
 
@@ -227,25 +256,31 @@ getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void;
 
 **错误码**：
 
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000011 | The context does not exist. |
 
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 
-let getGroupDirContext: common.Context = this.context;
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let getGroupDirContext: common.Context = this.context;
 
-getGroupDirContext.getGroupDir("1", (err, data) => {
-  if (err) {
-    console.error('getGroupDir faile, err: ${JSON.stringify(err)}');
-  } else {
-    console.log('getGroupDir result is: ${JSON.stringify(data)}');
+    getGroupDirContext.getGroupDir("1", (err, data) => {
+      if (err) {
+        console.error(`getGroupDir faile, err: ${JSON.stringify(err)}`);
+      } else {
+        console.log(`getGroupDir result is: ${JSON.stringify(data)}`);
+      }
+    });
   }
-});
+}
 ```
 

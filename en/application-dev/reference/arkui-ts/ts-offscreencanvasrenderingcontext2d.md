@@ -1761,7 +1761,7 @@ Since API version 9, this API is supported in ArkTS widgets.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             let offContext = this.offCanvas.getContext("2d", this.settings)
-            offContext.fillStyle = '#ffffff'
+            offContext.fillStyle = '#000000'
             offContext.rect(20, 20, 100, 100) // Create a 100*100 rectangle at (20, 20)
             offContext.fill()
             let image = this.offCanvas.transferToImageBitmap()

@@ -33,7 +33,7 @@ Called to notify the widget provider that a **Form** instance (widget) is being 
 
 | Name| Type                                  | Mandatory| Description                                                        |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](js-apis-application-want.md) | Yes  | Want information related to the FormExtensionAbility, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
+| want   | [Want](js-apis-app-ability-want.md) | Yes  | Want information related to the FormExtensionAbility, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
 
 **Return value**
 
@@ -233,7 +233,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onConfigurationUpdate
 
-onConfigurationUpdate(newConfig: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void
 
 Called when the configuration of the environment where the FormExtensionAbility is running is updated.
 
@@ -260,7 +260,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onAcquireFormState
 
-onAcquireFormState?(want: Want): formInfo.FormState;
+onAcquireFormState?(want: Want): formInfo.FormState
 
 Called to notify the widget provider that the widget host is requesting the widget state. By default, the initial state is returned.
 
@@ -270,7 +270,7 @@ Called to notify the widget provider that the widget host is requesting the widg
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension.|
 
 **Example**
 
@@ -307,7 +307,7 @@ Called to notify the widget provider that the widget host is sharing the widget 
 
 | Type                                                        | Description                                                       |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| {[key: string]: any} | Data to be shared by the widget, in the form of key-value pairs.|
+| {[key: string]: Object} | Data to be shared by the widget, in the form of key-value pairs.|
 
 **Example**
 
@@ -346,7 +346,7 @@ Called to notify the widget provider that the widget host is requesting the cust
 
 | Type                                                        | Description                                                       |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| {[key: string]: any} | Custom data of the widget, in the form of key-value pairs.|
+| {[key: string]: Object} | Custom data of the widget, in the form of key-value pairs.|
 
 **Example**
 

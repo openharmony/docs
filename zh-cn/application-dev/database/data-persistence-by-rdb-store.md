@@ -32,6 +32,9 @@
 
 - 当应用被卸载完成后，设备上的相关数据库文件及临时文件会被自动清除。
 
+- ArkTS侧支持的基本数据类型：number、string、二进制类型数据、boolean。
+
+- 为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
 
 ## 接口说明
 
@@ -50,23 +53,28 @@
 
 ## 开发步骤
 
-1. 使用关系型数据库实现数据持久化，需要获取一个RdbStore。示例代码如下所示：
+1. 使用关系型数据库实现数据持久化，需要获取一个RdbStore，其中包括建库、建表、升降级等操作。示例代码如下所示：
 
    Stage模型示例：
      
-   ```js
+   ```ts
    import relationalStore from '@ohos.data.relationalStore'; // 导入模块 
    import UIAbility from '@ohos.app.ability.UIAbility';
    import { BusinessError } from '@ohos.base';
    import window from '@ohos.window';
 
+   // 此处示例在Ability中实现，使用者也可以在其他合理场景中使用
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        const STORE_CONFIG :relationalStore.StoreConfig= {
          name: 'RdbTest.db', // 数据库文件名
-         securityLevel: relationalStore.SecurityLevel.S1 // 数据库安全级别
+         securityLevel: relationalStore.SecurityLevel.S1, // 数据库安全级别
+         encrypt: false, // 可选参数，指定数据库是否加密，默认不加密
+         dataGroupId: 'dataGroupID', // 可选参数，仅可在Stage模型下使用，表示为应用组ID，需要向应用市场获取。指定在此Id对应的沙箱路径下创建实例，当此参数不填时，默认在本应用沙箱目录下创建。
+         customDir: 'customDir/subCustomDir' // 可选参数，数据库自定义路径。数据库将在如下的目录结构中被创建：context.databaseDir + '/rdb/' + customDir，其中context.databaseDir是应用沙箱对应的路径，'/rdb/'表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。
        };
 
+       // 判断数据库版本，如果不匹配则需进行升降级操作
        // 假设当前数据库版本为3，表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
        const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // 建表Sql语句
 
@@ -75,7 +83,7 @@
            console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
            return;
          }
-         console.info(`Succeeded in getting RdbStore.`);
+         console.info('Succeeded in getting RdbStore.');
 
          // 当数据库创建时，数据库默认版本为0
          if (store.version == 0) {
@@ -89,7 +97,7 @@
          if (store.version != 3 && store.version == 1) {
            // version = 1：表结构：EMPLOYEE (NAME, SALARY, CODES, ADDRESS) => version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS)
            if (store != undefined) {
-             (store as relationalStore.RdbStore).executeSql("ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER", );
+             (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER');
              store.version = 2;
            }
          }
@@ -98,7 +106,7 @@
          if (store.version != 3 && store.version == 2) {
            // version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) => version = 3：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
            if (store != undefined) {
-             (store as relationalStore.RdbStore).executeSql("ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT", );
+             (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
              store.version = 3;
            }
          }
@@ -117,7 +125,7 @@
    import relationalStore from '@ohos.data.relationalStore'; // 导入模块
    import featureAbility from '@ohos.ability.featureAbility';
    
-   let context = getContext(this);
+   let context = featureAbility.getContext()
 
    const STORE_CONFIG :relationalStore.StoreConfig = {
      name: 'RdbTest.db', // 数据库文件名
@@ -132,7 +140,7 @@
        console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
        return;
      }
-     console.info(`Succeeded in getting RdbStore.`);
+     console.info('Succeeded in getting RdbStore.');
 
      // 当数据库创建时，数据库默认版本为0
      if (store.version == 0) {
@@ -145,14 +153,14 @@
      // 当数据库存在并假定版本为1时，例应用从某一版本升级到当前版本，数据库需要从1版本升级到2版本
      if (store.version != 3 && store.version == 1) {
        // version = 1：表结构：EMPLOYEE (NAME, SALARY, CODES, ADDRESS) => version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS)
-       store.executeSql("ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER", );
+       store.executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER');
        store.version = 2;
      }
 
      // 当数据库存在并假定版本为2时，例应用从某一版本升级到当前版本，数据库需要从2版本升级到3版本
      if (store.version != 3 && store.version == 2) {
        // version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) => version = 3：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
-       store.executeSql("ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT", );
+       store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
        store.version = 3;
      }
 
@@ -172,25 +180,33 @@
    ```ts
    import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-   let key1 = "NAME";
-   let key2 = "AGE";
-   let key3 = "SALARY";
-   let key4 = "CODES";
-   let value1 = "Lisa";
+
+   let value1 = 'Lisa';
    let value2 = 18;
    let value3 = 100.5;
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-   const valueBucket: ValuesBucket = {
-     key1: value1,
-     key2: value2,
-     key3: value3,
-     key4: value4,
+   // 以下三种方式可用
+   const valueBucket1: ValuesBucket = {
+     'NAME':    value1,
+     'AGE':     value2,
+     'SALARY':  value3,
+     'CODES':   value4,
+   };
+   const valueBucket2: ValuesBucket = {
+     NAME:      value1,
+     AGE:       value2,
+     SALARY:    value3,
+     CODES:     value4,
+   };
+   const valueBucket3: ValuesBucket = {
+     "NAME":    value1,
+     "AGE":     value2,
+     "SALARY":  value3,
+     "CODES":   value4,
    };
 
-   let store: relationalStore.RdbStore | undefined = undefined;
-
    if (store != undefined) {
-     (store as relationalStore.RdbStore).insert('EMPLOYEE', valueBucket, (err: BusinessError, rowId: number) => {
+     (store as relationalStore.RdbStore).insert('EMPLOYEE', valueBucket1, (err: BusinessError, rowId: number) => {
        if (err) {
          console.error(`Failed to insert data. Code:${err.code}, message:${err.message}`);
          return;
@@ -210,26 +226,36 @@
      
    ```ts
    // 修改数据
-   let key1 = "NAME";
-   let key2 = "AGE";
-   let key3 = "SALARY";
-   let key4 = "CODES";
-   let value1 = "Lisa";
+
+   let value1 = 'Rose';
    let value2 = 22;
    let value3 = 200.5;
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-   const valueBucket: ValuesBucket = {
-     key1: value1,
-     key2: value2,
-     key3: value3,
-     key4: value4,
+   // 以下三种方式可用
+   const valueBucket1: ValuesBucket = {
+     'NAME':    value1,
+     'AGE':     value2,
+     'SALARY':  value3,
+     'CODES':   value4,
+   };
+   const valueBucket2: ValuesBucket = {
+     NAME:      value1,
+     AGE:       value2,
+     SALARY:    value3,
+     CODES:     value4,
+   };
+   const valueBucket3: ValuesBucket = {
+     "NAME":    value1,
+     "AGE":     value2,
+     "SALARY":  value3,
+     "CODES":   value4,
    };
    
    // 修改数据
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE'); // 创建表'EMPLOYEE'的predicates
    predicates.equalTo('NAME', 'Lisa'); // 匹配表'EMPLOYEE'中'NAME'为'Lisa'的字段
    if (store != undefined) {
-     (store as relationalStore.RdbStore).update(valueBucket, predicates, (err: BusinessError, rows: number) => {
+     (store as relationalStore.RdbStore).update(valueBucket1, predicates, (err: BusinessError, rows: number) => {
        if (err) {
          console.error(`Failed to update data. Code:${err.code}, message:${err.message}`);
         return;
@@ -239,7 +265,7 @@
    }
 
    // 删除数据
-   let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+   predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Lisa');
    if (store != undefined) {
      (store as relationalStore.RdbStore).delete(predicates, (err: BusinessError, rows: number) => {
@@ -268,10 +294,10 @@
        console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
        // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
        while (resultSet.goToNextRow()) {
-         const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-         const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-         const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-         const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+         const id = resultSet.getLong(resultSet.getColumnIndex('ID'));
+         const name = resultSet.getString(resultSet.getColumnIndex('NAME'));
+         const age = resultSet.getLong(resultSet.getColumnIndex('AGE'));
+         const salary = resultSet.getDouble(resultSet.getColumnIndex('SALARY'));
          console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
        }
        // 释放数据集的内存
@@ -287,10 +313,6 @@
 5. 删除数据库。
 
    调用deleteRdbStore()方法，删除数据库及数据库相关文件。示例代码如下：
-
-   > **说明：**
-   >
-   > 删除成功后，建议将数据库对象置为null。
    
    Stage模型示例：
 
@@ -305,7 +327,6 @@
            console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
            return;
          }
-         store = undefined;
          console.info('Succeeded in deleting RdbStore.');
        });
      }
@@ -318,14 +339,13 @@
    ```ts
    import featureAbility from '@ohos.ability.featureAbility';
    
-   let context = featureAbility.getContext();
+   let context = getContext(this);
 
    relationalStore.deleteRdbStore(context, 'RdbTest.db', (err: BusinessError) => {
      if (err) {
        console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
        return;
      }
-     store = undefined;
      console.info('Succeeded in deleting RdbStore.');
    });
    ```

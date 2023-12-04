@@ -34,7 +34,7 @@ Obtains the IDs of all input devices. This API uses an asynchronous callback to 
 
 ```js
 try {
-  inputDevice.getDeviceList((error: Error, ids: Array<number>) => {
+  inputDevice.getDeviceList((error: Error, ids: Array<Number>) => {
     if (error) {
       console.log(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -64,7 +64,7 @@ Obtains the IDs of all input devices. This API uses a promise to return the resu
 
 ```js
 try {
-  inputDevice.getDeviceList().then((ids: Array<number>) => {
+  inputDevice.getDeviceList().then((ids: Array<Number>) => {
     console.log(`Device id list: ${JSON.stringify(ids)}`);
   });
 } catch (error) {
@@ -92,7 +92,7 @@ Obtains information about an input device. This API uses an asynchronous callbac
 ```js
 // Obtain the name of the device whose ID is 1.
 try {
-  inputDevice.getDeviceInfo(1, (error, deviceData) => {
+  inputDevice.getDeviceInfo(1, (error: Error, deviceData: inputDevice.InputDeviceData) => {
     if (error) {
       console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -134,6 +134,38 @@ try {
   });
 } catch (error) {
   console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.getDeviceInfoSync<sup>10+</sup>
+
+getDeviceInfoSync(deviceId: number): InputDeviceData
+
+Obtains information about the specified input device.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                  |
+| -------- | ------ | ---- | ---------------------- |
+| deviceId | number | Yes  | ID of the input device.|
+
+**Return value**
+
+| Parameters                                              | Description                           |
+| -------------------------------------------------- | ------------------------------- |
+| [InputDeviceData](#inputdevicedata) | Information about the input device.|
+
+**Example**
+
+```js
+// Obtain the name of the device whose ID is 1.
+try {
+  let deviceData: inputDevice.InputDeviceData = inputDevice.getDeviceInfoSync(1)
+  console.log(`Device info: ${JSON.stringify(deviceData)}`)
+} catch (error) {
+  console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`)
 }
 ```
 
@@ -238,7 +270,7 @@ This API is deprecated since API version 9. You are advised to use [inputDevice.
 **Example**
 
 ```js
-inputDevice.getDeviceIds((error: Error, ids: Array<number>) => {
+inputDevice.getDeviceIds((error: Error, ids: Array<Number>) => {
   if (error) {
     console.log(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
     return;
@@ -266,7 +298,7 @@ This API is deprecated since API version 9. You are advised to use [inputDevice.
 **Example**
 
 ```js
-inputDevice.getDeviceIds().then((ids: Array<number>) => {
+inputDevice.getDeviceIds().then((ids: Array<Number>) => {
   console.log(`Device id list: ${JSON.stringify(ids)}`);
 });
 ```
@@ -336,7 +368,7 @@ inputDevice.getDevice(1).then((deviceData: inputDevice.InputDeviceData) => {
 
 supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: AsyncCallback &lt;Array&lt;boolean&gt;&gt;): void
 
-Obtains the key codes supported by the input device. This API uses an asynchronous callback to return the result.
+Obtains the keycodes supported by the input device. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -345,15 +377,15 @@ Obtains the key codes supported by the input device. This API uses an asynchrono
 | Name    | Type                                     | Mandatory| Description                                                  |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number                                    | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| keys     | Array&lt;KeyCode&gt;                      | Yes  | Key codes to be queried. A maximum of five key codes can be specified.               |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode)  | Yes  | Keycodes to be queried. A maximum of five keycodes can be specified.               |
 | callback | AsyncCallback&lt;Array&lt;boolean&gt;&gt; | Yes  | Callback used to return the result.                          |
 
 **Example**
 
 ```js
-// Check whether the input device whose ID is 1 supports key codes 17, 22, and 2055.
+// Check whether the input device whose ID is 1 supports keycodes 17, 22, and 2055.
 try {
-  inputDevice.supportKeys(1, [17, 22, 2055], (error: Error, supportResult: Array<boolean>) => {
+  inputDevice.supportKeys(1, [17, 22, 2055], (error: Error, supportResult: Array<Boolean>) => {
     console.log(`Query result: ${JSON.stringify(supportResult)}`);
   });
 } catch (error) {
@@ -365,7 +397,7 @@ try {
 
 supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;boolean&gt;&gt;
 
-Obtains the key codes supported by the input device. This API uses a promise to return the result.
+Obtains the keycodes supported by the input device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -374,7 +406,7 @@ Obtains the key codes supported by the input device. This API uses a promise to 
 | Name    | Type                | Mandatory| Description                                                  |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number               | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| keys     | Array&lt;KeyCode&gt; | Yes  | Key codes to be queried. A maximum of five key codes can be specified.               |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode) | Yes  | Keycodes to be queried. A maximum of five keycodes can be specified.               |
 
 **Return value**
 
@@ -385,13 +417,46 @@ Obtains the key codes supported by the input device. This API uses a promise to 
 **Example**
 
 ```js
-// Check whether the input device whose ID is 1 supports key codes 17, 22, and 2055.
+// Check whether the input device whose ID is 1 supports keycodes 17, 22, and 2055.
 try {
-  inputDevice.supportKeys(1, [17, 22, 2055]).then((supportResult: Array<boolean>) => {
+  inputDevice.supportKeys(1, [17, 22, 2055]).then((supportResult: Array<Boolean>) => {
     console.log(`Query result: ${JSON.stringify(supportResult)}`);
   });
 } catch (error) {
   console.log(`Query failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.supportKeysSync<sup>10+</sup>
+
+supportKeysSync(deviceId: number, keys: Array&lt;KeyCode&gt;): Array&lt;boolean&gt;
+
+Checks whether the input device supports the specified keycode value.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**Parameters**
+
+| Name    | Type                | Mandatory| Description                                                  |
+| -------- | -------------------- | ---- | ------------------------------------------------------ |
+| deviceId | number               | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode) | Yes  | Keycodes to be queried. A maximum of five keycodes can be specified.               |
+
+**Return value**
+
+| Parameters                               | Description                           |
+| ----------------------------------- | ------------------------------- |
+| Array&lt;boolean&gt; | Result indicating whether the input device supports the keycode value. The value **true** indicates yes, and the value **false** indicates no.|
+
+**Example**
+
+```js
+// Check whether the input device whose ID is 1 supports keycodes 17, 22, and 2055.
+try {
+  let supportResult: Array<Boolean> = inputDevice.supportKeysSync(1, [17, 22, 2055])
+  console.log(`Query result: ${JSON.stringify(supportResult)}`)
+} catch (error) {
+  console.log(`Query failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
 }
 ```
 
@@ -415,7 +480,7 @@ Obtains the keyboard type of an input device. This API uses an asynchronous call
 ```js
 // Query the keyboard type of the input device whose ID is 1.
 try {
-  inputDevice.getKeyboardType(1, (error: Error, type: number) => {
+  inputDevice.getKeyboardType(1, (error: Error, type: Number) => {
     if (error) {
       console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -431,7 +496,7 @@ try {
 
 getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 
-Obtains the keyboard type of an input device. This API uses an asynchronous callback to return the result.
+Obtains the keyboard type of an input device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -452,11 +517,43 @@ Obtains the keyboard type of an input device. This API uses an asynchronous call
 ```js
 // Query the keyboard type of the input device whose ID is 1.
 try {
-  inputDevice.getKeyboardType(1).then((type: number) => {
+  inputDevice.getKeyboardType(1).then((type: Number) => {
     console.log(`Keyboard type: ${JSON.stringify(type)}`);
   });
 } catch (error) {
   console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.getKeyboardTypeSync<sup>10+</sup>
+
+getKeyboardTypeSync(deviceId: number): KeyboardType
+
+Obtains the keyboard type of the input device.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| deviceId | number | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
+
+**Return value**
+
+| Parameters                                         | Description                           |
+| --------------------------------------------- | ------------------------------- |
+| [KeyboardType](#keyboardtype9) | Keyboard type.|
+
+**Example**
+
+```js
+// Query the keyboard type of the input device whose ID is 1.
+try {
+  let type: number = inputDevice.getKeyboardTypeSync(1)
+  console.log(`Keyboard type: ${JSON.stringify(type)}`)
+} catch (error) {
+  console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`)
 }
 ```
 
@@ -547,7 +644,7 @@ Obtains the keyboard repeat delay. This API uses an asynchronous callback to ret
 
 ```js
 try {
-  inputDevice.getKeyboardRepeatDelay((error: Error, delay: number) => {
+  inputDevice.getKeyboardRepeatDelay((error: Error, delay: Number) => {
     if (error) {
       console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -579,7 +676,7 @@ Obtains the keyboard repeat delay. This API uses a promise to return the result.
 
 ```js
 try {
-  inputDevice.getKeyboardRepeatDelay().then((delay: number) => {
+  inputDevice.getKeyboardRepeatDelay().then((delay: Number) => {
     console.log(`Get keyboard repeat delay success`);
   });
 } catch (error) {
@@ -674,7 +771,7 @@ Obtains the keyboard repeat rate. This API uses an asynchronous callback to retu
 
 ```js
 try {
-  inputDevice.getKeyboardRepeatRate((error: Error, rate: number) => {
+  inputDevice.getKeyboardRepeatRate((error: Error, rate: Number) => {
     if (error) {
       console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -706,7 +803,7 @@ Obtains the keyboard repeat rate. This API uses a promise to return the result.
 
 ```js
 try {
-  inputDevice.getKeyboardRepeatRate().then((rate: number) => {
+  inputDevice.getKeyboardRepeatRate().then((rate: Number) => {
     console.log(`Get keyboard repeat rate success`);
   });
 } catch (error) {

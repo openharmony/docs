@@ -52,13 +52,15 @@ enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion
 
 Enables application recovery. After this API is called, the first ability that is displayed when the application is started from the initiator can be restored.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| restart | [RestartFlag](#apprecoveryrestartflag) | No| Whether the application is restarted upon a fault. By default, the application is not restarted.|
+| restart | [RestartFlag](#apprecoveryrestartflag) | No| Whether the application is restarted upon a fault. By default, the application is restarted.|
 | saveOccasion | [SaveOccasionFlag](#apprecoverysaveoccasionflag) | No| Scenario for saving the application state. By default, the state is saved when a fault occurs.|
 | saveMode | [SaveModeFlag](#apprecoverysavemodeflag) | No| Application state saving mode. By default, the application state is written to the local file cache.|
 
@@ -92,6 +94,8 @@ In API version 10, the ability specified by [setRestartWant](#apprecoverysetrest
 
 This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md).
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 
@@ -111,7 +115,7 @@ let observer: errorManager.ErrorObserver = {
 try {
     errorManager.on('error', observer);
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
 }
 ```
 
@@ -120,6 +124,8 @@ try {
 saveAppState(): boolean;
 
 Saves the application state. This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md).
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -145,7 +151,7 @@ let observer: errorManager.ErrorObserver = {
 try {
     errorManager.on('error', observer);
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
 }
 ```
 
@@ -155,13 +161,15 @@ saveAppState(context?: UIAbilityContext): boolean;
 
 Saves the ability state, which will be used for recovery. This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md).
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)| No| UIAbility context.|
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)| No| Context of the target ability.|
 
 **Return value**
 
@@ -185,7 +193,7 @@ let observer: errorManager.ErrorObserver = {
 try {
     errorManager.on('error', observer);
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
 }
 ```
 
@@ -195,13 +203,15 @@ setRestartWant(want: Want): void;
 
 Sets an ability that will be recovered. The ability must be a UIAbility in the current bundle.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)| Yes| Want of the target ability. You can set the **bundleName** and **abilityName** fields in **Want** to specify the ability.|
+| want | [Want](js-apis-app-ability-want.md)| Yes| Want of the target ability. You can set the **bundleName** and **abilityName** fields in **Want** to specify the ability.|
 
 **Example**
 

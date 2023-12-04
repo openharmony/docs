@@ -32,20 +32,26 @@ import Want from '@ohos.application.Want';
 
 - 基础用法(在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象)
 
-  ```ts
+    ```ts
     import Want from '@ohos.application.Want';
     import { BusinessError } from '@ohos.base';
+    import UIAbility from '@ohos.app.ability.UIAbility';
+    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
     let want: Want = {
-        'deviceId': '', // deviceId为空表示本设备
-        'bundleName': 'com.example.myapplication',
-        'abilityName': 'EntryAbility',
+    'deviceId': '', // deviceId为空表示本设备
+    'bundleName': 'com.example.myapplication',
+    'abilityName': 'EntryAbility',
     };
-    this.context.startAbility(want, (error: BusinessError) => {
+    class MyAbility extends UIAbility{
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam){
+        this.context.startAbility(want, (error: BusinessError) => {
         // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
         console.error('error.code = ${error.code}');
-    });
-  ```
+        });
+    }
+    }
+    ```
 
 - 通过自定字段传递数据, 以下为当前支持类型。(在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象)
 
@@ -120,28 +126,36 @@ import Want from '@ohos.application.Want';
         ```
     * 文件描述符（FD）
         ```ts
-            import fs from '@ohos.file.fs';
-            import Want from '@ohos.application.Want';
-            import { BusinessError } from '@ohos.base';
+        import fs from '@ohos.file.fs';
+        import Want from '@ohos.application.Want';
+        import { BusinessError } from '@ohos.base';
+        import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+        import UIAbility from '@ohos.app.ability.UIAbility';
 
-            let fd: number = 0;
-            try {
-                fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
-            } catch(e) {
-                console.error('openSync fail: ${JSON.stringify(e)}');
-            }
-            let want: Want = {
-                deviceId: '', // deviceId为空表示本设备
-                bundleName: 'com.example.myapplication',
-                abilityName: 'EntryAbility',
-                parameters: {
-                    'keyFd':{'type':'FD', 'value':fd}
-                }
-            };
+
+        let fd: number = 0;
+        try {
+        fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
+        } catch(e) {
+        console.error(`openSync fail: ${JSON.stringify(e)}`);
+        }
+        let want: Want = {
+        deviceId: '', // deviceId为空表示本设备
+        bundleName: 'com.example.myapplication',
+        abilityName: 'EntryAbility',
+        parameters: {
+            'keyFd':{'type':'FD', 'value':fd}
+        }
+        };
+
+        class MyAbility extends UIAbility{
+        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam){
             this.context.startAbility(want, (error: BusinessError) => {
-                // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-                console.error('error.code = ${error.code}');
+            // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
+            console.error('error.code = ${error.code}');
             });
+        }
+        }
         ```
 
 - 更多详细说明和示例请参见： [应用模型](../../application-models/application-model-composition.md)的信息传递载体Want

@@ -5192,6 +5192,8 @@ getRemoteObject(): rpc.RemoteObject;
 **示例：**
 
   ```ts
+  import rpc from '@ohos.rpc';
+  
   class MyAuthenticator extends account_appAccount.Authenticator {
     addAccountImplicitly(authType: string, callerBundleName: string,
       options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
@@ -5244,7 +5246,7 @@ getRemoteObject(): rpc.RemoteObject;
   }
 
   export default {
-    onConnect(want): rpc.RemoteObject { // serviceAbility 生命周期函数
+    onConnect(want: Want): rpc.RemoteObject { // serviceAbility 生命周期函数
       let authenticator = new MyAuthenticator();
       return authenticator.getRemoteObject();
     }

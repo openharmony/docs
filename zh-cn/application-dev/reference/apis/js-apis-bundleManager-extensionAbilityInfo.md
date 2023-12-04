@@ -6,7 +6,6 @@
 ExtensionAbility信息，系统应用可以通过[bundleManager.getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo)获取自身或其他应用的ExtensionAbility信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身的ExtensionAbility信息，其中入参[bundleFlags](js-apis-bundleManager.md#bundleflag)需要使用 GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY。
 
 ## ExtensionAbilityInfo
-
 **系统能力**: SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                 | 类型                                                         | 可读 | 可写 | 说明                                                 |
@@ -25,3 +24,4 @@ ExtensionAbility信息，系统应用可以通过[bundleManager.getBundleInfo](j
 | enabled              | boolean                                                      | 是   | 否   | ExtensionAbility是否可用。                           |
 | readPermission       | string                                                       | 是   | 否   | 读取ExtensionAbility数据所需的权限。                 |
 | writePermission      | string                                                       | 是   | 否   | 向ExtensionAbility写数据所需的权限。                 |
+| extensionAbilityType<sup>11</sup>      | string                                                       | 是   | 否   | ExtensionAbility的类型名称。                 |

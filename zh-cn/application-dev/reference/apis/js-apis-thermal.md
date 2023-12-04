@@ -134,7 +134,7 @@ subscribeThermalLevel(callback: AsyncCallback&lt;ThermalLevel&gt;): void
 **示例：**
 
 ```js
-thermal.subscribeThermalLevel((err: BusinessError<void>, level: thermal.ThermalLevel) => {
+thermal.subscribeThermalLevel((err: Error, level: thermal.ThermalLevel) => {
     console.info('thermal level is: ' + level);
 });
 ```
@@ -194,10 +194,11 @@ console.info('thermal level is: ' + level);
 
 | 名称       | 值   | 说明                                                         |
 | ---------- | ---- | ------------------------------------------------------------ |
-| COOL       | 0    | 表明设备处于低温的状态，业务执行不受热控的限制。             |
-| NORMAL     | 1    | 表明设备处于正常工作状态，但温度不低，需要注意是否临近发热状态 |
-| WARM       | 2    | 表明设备已经进入温热状态，部分无感知业务需要考虑停止或延迟执行。 |
-| HOT        | 3    | 表明设备已经明显发热，无感知业务应全面停止，其他业务应考虑降规格及负载。 |
-| OVERHEATED | 4    | 表明设备已经发热严重，无感知业务应全面停止，主要业务需降低规格及负载。 |
-| WARNING    | 5    | 表明设备已经发热严重并且即将进入紧急状态，无感知业务应全面停止，主要业务应降低至最低规格。 |
-| EMERGENCY  | 6    | 表明设备已经进入紧急状态，所有业务应当全面停止工作，可保留部分紧急求助功能。 |
+| COOL       | 0    | 表明设备处于清凉状态，业务执行不受热控的限制。             |
+| NORMAL     | 1    | 表明设备温度正常，但邻近温热状态，无感知业务应降低规格和负载。 |
+| WARM       | 2    | 表明设备进入温热状态，无感知业务应暂停或延迟运行。 |
+| HOT        | 3    | 表明设备发热明显，无感知业务应停止，非关键业务应降低规格及负载。 |
+| OVERHEATED | 4    | 表明设备发热严重，无感知业务与非关键业务应停止，前台关键业务应降低规格及负载。 |
+| WARNING    | 5    | 表明设备过热即将进入紧急状态，整机资源供给大幅降低，停止所有非关键业务，前台关键业务应降低至最低规格。 |
+| EMERGENCY  | 6    | 表明设备已经进入过热紧急状态，整机资源供给降至最低，设备功能受限，仅保留基础功能可用。 |
+| ESCAPE     | 7    | 表明设备即将进入热逃生状态，所有业务将被强制停止，业务需做好逃生措施，例如保存重要数据等。 |

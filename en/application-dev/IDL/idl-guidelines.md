@@ -1,4 +1,4 @@
-# IDL Specifications and User Guide
+# IDL Specifications and User Guide (for System Applications Only)
 
 ## IDL Overview
 To ensure successful communications between the client and server, interfaces recognized by both parties must be defined. The OpenHarmony Interface Definition Language (IDL) is a tool for defining such interfaces. OpenHarmony IDL decomposes objects to be transferred into primitives that can be understood by the operating system and encapsulates cross-boundary objects based on developers' requirements.
@@ -66,7 +66,7 @@ The preceding statement is parsed into the following code in the C++ header file
 using C::D;
 ```
 
-In TS, the declaration is placed in the file header in the format of **sequenceable namespace.typename;**. It can be in the following form:
+In TS, the declaration is placed in the file header in the format of **sequenceable namespace.typename;**. An example is provided below, where **idl** is the namespace and **MySequenceable** is the type name:
 
 ```ts
 sequenceable idl.MySequenceable
@@ -151,7 +151,9 @@ The value of <*formal_param_attr*> can be **in**, **out**, or **inout**, indicat
 
 ### Obtaining IDL
 On DevEco Studio, choose **Tools > SDK Manager** to view the local installation path of the OpenHarmony SDK. The following figure uses DevEco Studio 3.0.0.993 as an example.
+
 ![SDKpath](./figures/SDKpath.png)
+
 ![SDKpath](./figures/SDKpath2.png)
 
 Go to the local installation path, choose **toolchains > 3.x.x.x** (the folder named after the version number), and check whether the executable file of IDL exists.
@@ -412,7 +414,7 @@ function connectAbility(): void {
 
 #### Transferring a sequenceable Object During IPC
 
-You can send a class from one process to another through IPC interfaces. However, you must ensure that the peer can use the code of this class and this class supports the **marshalling** and **unmarshalling** methods. OpenHarmony uses **marshalling** and **unmarshalling** to serialize and deserialize objects into objects that can be identified by each process.
+You can send a class from one process to another through IPC interfaces. However, you must ensure that the peer can use the code of this class and this class supports the **marshalling** and **unmarshalling** methods. The system uses **marshalling** and **unmarshalling** to serialize and deserialize objects into objects that can be identified by each process.
 
 **To create a class that supports the sequenceable type, perform the following operations:**
 
@@ -423,7 +425,7 @@ The following is an example of the **MySequenceable** class code:
 
 ```ts
 import rpc from '@ohos.rpc';
-export default class MySequenceable {
+export default class MySequenceable implements rpc.Sequenceable {
     constructor(num: number, str: string) {
         this.num = num;
         this.str = str;
@@ -434,12 +436,12 @@ export default class MySequenceable {
     getString() : string {
         return this.str;
     }
-    marshalling(messageParcel: rpc.MessageSequence) {
+    marshalling(messageParcel: rpc.MessageParcel) {
         messageParcel.writeInt(this.num);
         messageParcel.writeString(this.str);
         return true;
     }
-    unmarshalling(messageParcel: rpc.MessageSequence) {
+    unmarshalling(messageParcel: rpc.MessageParcel) {
         this.num = messageParcel.readInt();
         this.str = messageParcel.readString();
         return true;

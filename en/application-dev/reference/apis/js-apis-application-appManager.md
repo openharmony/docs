@@ -4,7 +4,7 @@ The **appManager** module implements application management. You can use the API
 
 > **NOTE**
 > 
-> The APIs of this module are supported since API version 7 and deprecated since API version 9. You are advised to use [@ohos.app.ability.appManager](js-apis-app-ability-appManager.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module are supported since API version 8 and deprecated since API version 9. You are advised to use [@ohos.app.ability.appManager](js-apis-app-ability-appManager.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -33,9 +33,9 @@ Checks whether this application is undergoing a stability test. This API uses an
 
   appManager.isRunningInStabilityTest((error, flag) => {
     if (error && error.code !== 0) {
-        console.error('isRunningInStabilityTest fail, error: ${JSON.stringify(error)}');
+        console.error(`isRunningInStabilityTest fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('isRunningInStabilityTest success, the result is: ${JSON.stringify(flag)}');
+        console.log(`isRunningInStabilityTest success, the result is: ${JSON.stringify(flag)}`);
     }
   });
   ```
@@ -62,16 +62,16 @@ Checks whether this application is undergoing a stability test. This API uses a 
   import { BusinessError } from '@ohos.base';
 
   appManager.isRunningInStabilityTest().then((flag) => {
-      console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
+      console.log(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
   }).catch((error: BusinessError) => {
-      console.error('error: ${JSON.stringify(error)}');
+      console.error(`error: ${JSON.stringify(error)}`);
   });
   ```
 
 
 ## appManager.isRamConstrainedDevice
 
-isRamConstrainedDevice(): Promise\<boolean>;
+isRamConstrainedDevice(): Promise\<boolean>
 
 Checks whether this application is running on a RAM constrained device. This API uses a promise to return the result.
 
@@ -90,15 +90,15 @@ Checks whether this application is running on a RAM constrained device. This API
   import { BusinessError } from '@ohos.base';
 
   appManager.isRamConstrainedDevice().then((data) => {
-      console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
+      console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
-      console.error('error: ${JSON.stringify(error)}');
+      console.error(`error: ${JSON.stringify(error)}`);
   });
   ```
 
 ## appManager.isRamConstrainedDevice
 
-isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
+isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
 Checks whether this application is running on a RAM constrained device. This API uses an asynchronous callback to return the result.
 
@@ -117,16 +117,16 @@ Checks whether this application is running on a RAM constrained device. This API
 
   appManager.isRamConstrainedDevice((error, data) => {
       if (error && error.code !== 0) {
-          console.error('isRamConstrainedDevice fail, error: ${JSON.stringify(error)}');
+          console.error(`isRamConstrainedDevice fail, error: ${JSON.stringify(error)}`);
       } else {
-          console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
+          console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
       }
   });
   ```
 
 ## appManager.getAppMemorySize
 
-getAppMemorySize(): Promise\<number>;
+getAppMemorySize(): Promise\<number>
 
 Obtains the memory size of this application. This API uses a promise to return the result.
 
@@ -145,15 +145,15 @@ Obtains the memory size of this application. This API uses a promise to return t
   import { BusinessError } from '@ohos.base';
 
   appManager.getAppMemorySize().then((data) => {
-      console.log('The size of app memory is: ${JSON.stringify(data)}');
+      console.log(`The size of app memory is: ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
-      console.error('error: ${JSON.stringify(error)}');
+      console.error(`error: ${JSON.stringify(error)}`);
   });
   ```
 
 ## appManager.getAppMemorySize
 
-getAppMemorySize(callback: AsyncCallback\<number>): void;
+getAppMemorySize(callback: AsyncCallback\<number>): void
 
 Obtains the memory size of this application. This API uses an asynchronous callback to return the result.
 
@@ -172,15 +172,15 @@ Obtains the memory size of this application. This API uses an asynchronous callb
 
   appManager.getAppMemorySize((error, data) => {
       if (error && error.code !== 0) {
-          console.error('getAppMemorySize fail, error: ${JSON.stringify(error)}');
+          console.error(`getAppMemorySize fail, error: ${JSON.stringify(error)}`);
       } else {
-          console.log('The size of app memory is: ${JSON.stringify(data)}');
+          console.log(`The size of app memory is: ${JSON.stringify(data)}`);
       }
   });
   ```
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
 
-getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
+getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>
 
 Obtains information about the running processes. This API uses a promise to return the result.
 
@@ -203,15 +203,15 @@ Obtains information about the running processes. This API uses a promise to retu
   import { BusinessError } from '@ohos.base';
 
   appManager.getProcessRunningInfos().then((data) => {
-      console.log('The process running infos is: ${JSON.stringify(data)}');
+      console.log(`The process running infos is: ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
-      console.error('error: ${JSON.stringify(error)}');
+      console.error(`error: ${JSON.stringify(error)}`);
   });
   ```
 
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
 
-getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void;
+getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void
 
 Obtains information about the running processes. This API uses an asynchronous callback to return the result.
 
@@ -234,16 +234,16 @@ Obtains information about the running processes. This API uses an asynchronous c
 
   appManager.getProcessRunningInfos((error, data) => {
       if (error && error.code !== 0) {
-          console.error('getProcessRunningInfos fail, error: ${JSON.stringify(error)}');
+          console.error(`getProcessRunningInfos fail, error: ${JSON.stringify(error)}`);
       } else {
-          console.log('getProcessRunningInfos success, data: ${JSON.stringify(data)}');
+          console.log(`getProcessRunningInfos success, data: ${JSON.stringify(data)}`);
       }
   });
   ```
 
 ## appManager.registerApplicationStateObserver<sup>8+</sup>
 
-registerApplicationStateObserver(observer: ApplicationStateObserver): number;
+registerApplicationStateObserver(observer: ApplicationStateObserver): number
 
 Registers an observer to listen for the state changes of all applications.
 
@@ -286,7 +286,7 @@ Registers an observer to listen for the state changes of all applications.
 
 ## appManager.unregisterApplicationStateObserver<sup>8+</sup>
 
-unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\<void>): void;
+unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\<void>): void
 
 Deregisters the application state observer. This API uses an asynchronous callback to return the result.
 
@@ -321,7 +321,7 @@ Deregisters the application state observer. This API uses an asynchronous callba
 
 ## appManager.unregisterApplicationStateObserver<sup>8+</sup>
 
-unregisterApplicationStateObserver(observerId: number): Promise\<void>;
+unregisterApplicationStateObserver(observerId: number): Promise\<void>
 
 Deregisters the application state observer. This API uses a promise to return the result.
 
@@ -362,7 +362,7 @@ Deregisters the application state observer. This API uses a promise to return th
 
 ## appManager.getForegroundApplications<sup>8+</sup>
 
-getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
+getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
 Obtains information about the applications that are running in the foreground. This API uses an asynchronous callback to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData.md).
 
@@ -394,7 +394,7 @@ Obtains information about the applications that are running in the foreground. T
 
 ## appManager.getForegroundApplications<sup>8+</sup>
 
-getForegroundApplications(): Promise\<Array\<AppStateData>>;
+getForegroundApplications(): Promise\<Array\<AppStateData>>
 
 Obtains information about the applications that are running in the foreground. This API uses a promise to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData.md).
 
@@ -510,7 +510,7 @@ appManager.killProcessWithAccount(bundleName, accountId, killProcessWithAccountC
 
 ## appManager.killProcessesByBundleName<sup>8+</sup>
 
-killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
+killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>)
 
 Kills a process by bundle name. This API uses an asynchronous callback to return the result.
 
@@ -546,7 +546,7 @@ import { BusinessError } from '@ohos.base';
 
 ## appManager.killProcessesByBundleName<sup>8+</sup>
 
-killProcessesByBundleName(bundleName: string): Promise\<void>;
+killProcessesByBundleName(bundleName: string): Promise\<void>
 
 Kills a process by bundle name. This API uses a promise to return the result.
 
@@ -586,7 +586,7 @@ Kills a process by bundle name. This API uses a promise to return the result.
 
 ## appManager.clearUpApplicationData<sup>8+</sup>
 
-clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
+clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>)
 
 Clears application data by bundle name. This API uses an asynchronous callback to return the result.
 
@@ -622,7 +622,7 @@ Clears application data by bundle name. This API uses an asynchronous callback t
 
 ## appManager.clearUpApplicationData<sup>8+</sup>
 
-clearUpApplicationData(bundleName: string): Promise\<void>;
+clearUpApplicationData(bundleName: string): Promise\<void>
 
 Clears application data by bundle name. This API uses a promise to return the result.
 

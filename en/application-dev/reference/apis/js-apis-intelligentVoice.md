@@ -15,7 +15,7 @@ Its functions are implemented by:
 > - The APIs provided by this module are system APIs.
 
 ## Modules to Import
-```js
+```ts
 import intelligentVoice from '@ohos.ai.intelligentVoice';
 ```
 
@@ -45,12 +45,15 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-var intelligentVoiceManager = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let intelligentVoiceManager: intelligentVoice.IntelligentVoiceManager | null = null;
 try {
-    intelligentVoiceManager = intelligentVoice.getIntelligentVoiceManager();
+  intelligentVoiceManager = intelligentVoice.getIntelligentVoiceManager();
 } catch (err) {
-    console.error('Get IntelligentVoiceManager failed. Code:${err.code}, message:${err.message}');
+  let error = err as BusinessError;
+  console.error(`Get IntelligentVoiceManager failed. Code:${error.code}, message:${error.message}`);
 }
 ```
 
@@ -82,16 +85,18 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-let engineDescriptor = {
-  wakeupPhrase:'Xiaohua Xiaohua',
+```ts
+import { BusinessError } from '@ohos.base';
+
+let engineDescriptor: intelligentVoice.EnrollIntelligentVoiceEngineDescriptor = {
+  wakeupPhrase: 'Xiaohua Xiaohua',
 }
-var enrollIntelligentVoiceEngine = null;
-intelligentVoice.createEnrollIntelligentVoiceEngine(engineDescriptor, (err, data) => {
+let enrollIntelligentVoiceEngine: intelligentVoice.EnrollIntelligentVoiceEngine | null = null;
+intelligentVoice.createEnrollIntelligentVoiceEngine(engineDescriptor, (err: BusinessError, data: intelligentVoice.EnrollIntelligentVoiceEngine) => {
   if (err) {
     console.error(`Failed to create enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}`);
   } else {
-    console.info('Succeeded in creating enrollIntelligentVoice engine.');
+    console.info(`Succeeded in creating enrollIntelligentVoice engine.`);
     enrollIntelligentVoiceEngine = data;
   }
 });
@@ -131,15 +136,17 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-var enrollIntelligentVoiceEngine = null;
-let engineDescriptor = {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let engineDescriptor: intelligentVoice.EnrollIntelligentVoiceEngineDescriptor = {
   wakeupPhrase:'Xiaohua Xiaohua',
 }
-intelligentVoice.createEnrollIntelligentVoiceEngine(engineDescriptor).then((data) => {
+let enrollIntelligentVoiceEngine: intelligentVoice.EnrollIntelligentVoiceEngine | null = null;
+intelligentVoice.createEnrollIntelligentVoiceEngine(engineDescriptor).then((data: intelligentVoice.EnrollIntelligentVoiceEngine) => {
   enrollIntelligentVoiceEngine = data;
-  console.info('Succeeded in creating enrollIntelligentVoice engine.');
-}).catch((err) => {
+  console.info(`Succeeded in creating enrollIntelligentVoice engine.`);
+}).catch((err: BusinessError) => {
   console.error(`Failed to create enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}`);
 });
 ```
@@ -173,17 +180,19 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-let engineDescriptor = {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let wakeupEngineDescriptor: intelligentVoice.WakeupIntelligentVoiceEngineDescriptor = {
   needReconfirm: true,
-  wakeupPhrase:'Xiaohua Xiaohua',
+  wakeupPhrase: 'Xiaohua Xiaohua',
 }
-var wakeupIntelligentVoiceEngine = null;
-intelligentVoice.createWakeupIntelligentVoiceEngine(engineDescriptor, (err, data) => {
+let wakeupIntelligentVoiceEngine: intelligentVoice.WakeupIntelligentVoiceEngine | null = null;
+intelligentVoice.createWakeupIntelligentVoiceEngine(wakeupEngineDescriptor, (err: BusinessError, data: intelligentVoice.WakeupIntelligentVoiceEngine) => {
   if (err) {
     console.error(`Failed to create wakeupIntelligentVoice engine, Code:${err.code}, message:${err.message}`);
   } else {
-    console.info('Succeeded in creating wakeupIntelligentVoice engine.');
+    console.info(`Succeeded in creating wakeupIntelligentVoice engine.`);
     wakeupIntelligentVoiceEngine = data;
   }
 });
@@ -222,17 +231,19 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-let engineDescriptor = {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let wakeupEngineDescriptor: intelligentVoice.WakeupIntelligentVoiceEngineDescriptor = {
   needReconfirm: true,
-  wakeupPhrase:'Xiaohua Xiaohua',
+  wakeupPhrase: 'Xiaohua Xiaohua',
 }
-var wakeupIntelligentVoiceEngine = null;
-intelligentVoice.createWakeupIntelligentVoiceEngine(engineDescriptor).then((data) => {
+let wakeupIntelligentVoiceEngine: intelligentVoice.WakeupIntelligentVoiceEngine | null = null;
+intelligentVoice.createWakeupIntelligentVoiceEngine(wakeupEngineDescriptor).then((data: intelligentVoice.WakeupIntelligentVoiceEngine) => {
   wakeupIntelligentVoiceEngine = data;
-  console.info('Succeeded in creating wakeupIntelligentVoice engine.');
-}).catch((err) => {
-  console.error('Failed to create wakeupIntelligentVoice engine, Code:${err.code}, message:${err.message});
+  console.info(`Succeeded in creating wakeupIntelligentVoice engine.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create wakeupIntelligentVoice engine, Code:${err.code}, message:${err.message}`);
 });
 ```
 
@@ -258,8 +269,10 @@ Obtains the list of supported intelligent voice engine types.
 
 **Example**
 
-```js
-let info = intelligentVoiceManager.getCapabilityInfo();
+```ts
+if (intelligentVoiceManager != null) {
+  let info = intelligentVoiceManager.getCapabilityInfo();
+}
 ```
 
 ### on('serviceChange')
@@ -281,8 +294,10 @@ Subscribes to service change events. A callback is invoked when the status of th
 
 **Example**
 
-```js
-intelligentVoiceManager.on('serviceChange', (serviceChangeType) => {});
+```ts
+if (intelligentVoiceManager != null) {
+  intelligentVoiceManager.on('serviceChange', (serviceChangeType: intelligentVoice.ServiceChangeType) => {});
+}
 ```
 
 ### off('serviceChange')
@@ -304,8 +319,10 @@ Unsubscribes from service change events.
 
 **Example**
 
-```js
-intelligentVoiceManager.off('serviceChange');
+```ts
+if (intelligentVoiceManager != null) {
+  intelligentVoiceManager.off('serviceChange');
+}
 ```
 
 ## ServiceChangeType
@@ -472,16 +489,20 @@ Obtains the list of supported countries/regions. This API uses an asynchronous c
 
 **Example**
 
-```js
-let regions = null;
-enrollIntelligentVoiceEngine.getSupportedRegions((err, data) => {
-  if (err) {
-    console.error(`Failed to get supported regions, Code:${err.code}, message:${err.message}`);
-  } else {
-    regions = data;
-    console.info('Succeeded in getting supported regions, regions:${regions}.');
-  }
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+let regions: Array<string> | null = null;
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).getSupportedRegions((err: BusinessError, data: Array<string>) => {
+    if (err) {
+      console.error(`Failed to get supported regions, Code:${err.code}, message:${err.message}`);
+    } else {
+      regions = data;
+      console.info(`Succeeded in getting supported regions, regions:${regions}.`);
+    }
+  });
+}
 ```
 
 ### getSupportedRegions
@@ -502,14 +523,18 @@ Obtains the list of supported countries/regions. This API uses a promise to retu
 
 **Example**
 
-```js
-let regions = null;
-enrollIntelligentVoiceEngine.getSupportedRegions().then((data) => {
-  regions = data;
-  console.info('Succeeded in getting supported regions, regions:${regions}.');
-}).catch((err) => {
-  console.error(`Failed to get supported regions, Code:${err.code}, message:${err.message}`);
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+let regions: Array<string> | null = null;
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).getSupportedRegions().then((data: Array<string>) => {
+    regions = data;
+    console.info('Succeeded in getting supported regions, regions:${regions}.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get supported regions, Code:${err.code}, message:${err.message}`);
+  });
+}
 ```
 
 ### init
@@ -540,18 +565,22 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-let config = {
-  language: "zh",
-  area: "CN",
+```ts
+import { BusinessError } from '@ohos.base';
+
+let config: intelligentVoice.EnrollEngineConfig = {
+  language: 'zh',
+  region: 'CN',
 }
-enrollIntelligentVoiceEngine.init(config, (err) => {
-  if (err) {
-    console.error(`Failed to initialize enrollIntelligentVoice engine. Code:${err.code}, message:${err.message}`);
-  } else {
-    console.info('Succeeded in initialzing enrollIntelligentVoice engine.');
-  }
-});
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).init(config, (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to initialize enrollIntelligentVoice engine. Code:${err.code}, message:${err.message}`);
+    } else {
+      console.info(`Succeeded in initialzing enrollIntelligentVoice engine.`);
+    }
+  });
+}
 ```
 
 ### init
@@ -587,16 +616,21 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-let config = {
-  language: "zh",
-  area: "CN",
+```ts
+import { BusinessError } from '@ohos.base';
+
+let config: intelligentVoice.EnrollEngineConfig = {
+  language: 'zh',
+  region: 'CN',
 }
-enrollIntelligentVoiceEngine.init(config).then(() => {
-  console.info('Succeeded in initializing enrollIntelligentVoice engine.');
-}).catch((err) => {
-  console.error(`Failed to initialize enrollIntelligentVoice engine. Code:${err.code}, message:${err.message}`);
-});
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).init(config).then(() => {
+    console.info(`Succeeded in initializing enrollIntelligentVoice engine.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to initialize enrollIntelligentVoice engine. Code:${err.code}, message:${err.message}`);
+  });
+}
+
 ```
 
 ### enrollForResult
@@ -618,17 +652,20 @@ Obtains the enrollment result. This API uses an asynchronous callback to return 
 
 **Example**
 
-```js
-let isLast = true;
-let callbackInfo = null;
-enrollIntelligentVoiceEngine.enrollForResult(isLast, (err, data) => {
-  if (err) {
-    console.error(`Failed to enroll for result, Code:${err.code}, message:${err.message}`);
-  } else {
-    callbackInfo = data;
-    console.info('Succeeded in enrolling for result, info:${callbackInfo}.');
-  }
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+let callbackInfo: intelligentVoice.EnrollCallbackInfo | null = null;
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).enrollForResult(true, (err: BusinessError, data: intelligentVoice.EnrollCallbackInfo) => {
+    if (err) {
+      console.error(`Failed to enroll for result, Code:${err.code}, message:${err.message}`);
+    } else {
+      callbackInfo = data;
+      console.info(`Succeeded in enrolling for result, info:${callbackInfo}.`);
+    }
+  });
+}
 ```
 
 ### enrollForResult
@@ -655,15 +692,18 @@ Obtains the enrollment result. This API uses a promise to return the result.
 
 **Example**
 
-```js
-let isLast = true;
-let callbackInfo = null;
-enrollIntelligentVoiceEngine.enrollForResult(isLast).then((data) => {
-  callbackInfo = data;
-  console.info('Succeeded in enrolling for result, info:${callbackInfo}.');
-}).catch((err) => {
-  console.error(`Failed to enroll for result, Code:${err.code}, message:${err.message}`);
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+let callbackInfo: intelligentVoice.EnrollCallbackInfo | null = null;
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).enrollForResult(true).then((data: intelligentVoice.EnrollCallbackInfo) => {
+    callbackInfo = data;
+    console.info(`Succeeded in enrolling for result, info:${callbackInfo}.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to enroll for result, Code:${err.code}, message:${err.message}`);
+  });
+}
 ```
 
 ### stop
@@ -682,14 +722,18 @@ Stops the enrollment. This API uses an asynchronous callback to return the resul
 
 **Example**
 
-```js
-enrollIntelligentVoiceEngine.stop((err) => {
-  if (err) {
-    console.error(`Failed to stop enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}`);
-  } else {
-    console.info('Succeeded in stopping enrollIntelligentVoice engine.');
-  }
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).stop((err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to stop enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}`);
+    } else {
+      console.info(`Succeeded in stopping enrollIntelligentVoice engine.`);
+    }
+  });
+}
 ```
 
 ### stop
@@ -710,12 +754,16 @@ Stops the enrollment. This API uses a promise to return the result.
 
 **Example**
 
-```js
-enrollIntelligentVoiceEngine.stop().then(() => {
-  console.info('Succeeded in stopping enrollIntelligentVoice engine.');
-}).catch((err) => {
-  console.error(`Failed to stop enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}`);
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).stop().then(() => {
+    console.info(`Succeeded in stopping enrollIntelligentVoice engine.`);
+  }).catch((err:BusinessError) => {
+    console.error(`Failed to stop enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}`);
+  });
+}
 ```
 
 ### commit
@@ -744,14 +792,18 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-enrollIntelligentVoiceEngine.commit((err) => {
-  if (err) {
-    console.error(`Failed to commit enroll, Code:${err.code}, message:${err.message}`);
-  } else {
-    console.info('Succeeded in committing enroll.');
-  }
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).commit((err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to commit enroll, Code:${err.code}, message:${err.message}`);
+    } else {
+      console.info(`Succeeded in committing enroll.`);
+    }
+  });
+}
 ```
 
 ### commit
@@ -780,12 +832,16 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-enrollIntelligentVoiceEngine.commit().then(() => {
-  console.info('Succeeded in committing enroll.');
-}).catch((err) => {
-  console.error(`Failed to commit enroll, Code:${err.code}, message:${err.message}`);
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).commit().then(() => {
+    console.info(`Succeeded in committing enroll.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to commit enroll, Code:${err.code}, message:${err.message}`);
+  });
+}
 ```
 
 ### setWakeupHapInfo
@@ -815,18 +871,22 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-let info = {
-  bundleName: "com.wakeup",
-  abilityName: "WakeUpExtAbility",
+```ts
+import { BusinessError } from '@ohos.base';
+
+let info: intelligentVoice.WakeupHapInfo = {
+  bundleName: 'com.wakeup',
+  abilityName: 'WakeUpExtAbility',
 }
-enrollIntelligentVoiceEngine.setWakeupHapInfo(info, (err) => {
-  if (err) {
-    console.error('Failed to set wakeup hap info, Code:${err.code}, message:${err.message}');
-  } else {
-    console.info('Succeeded in setting wakeup hap info.');
-  }
-});
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setWakeupHapInfo(info, (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to set wakeup hap info, Code:${err.code}, message:${err.message}`);
+    } else {
+      console.info(`Succeeded in setting wakeup hap info.`);
+    }
+  });
+}
 ```
 
 ### setWakeupHapInfo
@@ -855,16 +915,20 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-let info = {
-  bundleName: "com.wakeup",
-  abilityName: "WakeUpExtAbility",
+```ts
+import { BusinessError } from '@ohos.base';
+
+let info: intelligentVoice.WakeupHapInfo = {
+  bundleName: 'com.wakeup',
+  abilityName: 'WakeUpExtAbility',
 }
-enrollIntelligentVoiceEngine.setWakeupHapInfo(info).then(() => {
-  console.info('Succeeded in setting wakeup hap info.');
-}).catch((err) => {
-  console.error('Failed to set wakeup hap info, Code:${err.code},
-});
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setWakeupHapInfo(info).then(() => {
+    console.info(`Succeeded in setting wakeup hap info.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set wakeup hap info, Code:${err.code}, message:${err.message}`);
+  });
+}
 ```
 
 ### setSensibility
@@ -894,14 +958,18 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-enrollIntelligentVoiceEngine.setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY, (err) => {
-  if (err) {
-    console.error(`Failed to set sensibility, Code:${err.code}, message:${err.message}`);
-  } else {
-    console.info('Succeeded in setting sensibility.');
-  }
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY, (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to set sensibility, Code:${err.code}, message:${err.message}`);
+    } else {
+      console.info(`Succeeded in setting sensibility.`);
+    }
+  });
+}
 ```
 
 ### setSensibility
@@ -936,12 +1004,16 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-enrollIntelligentVoiceEngine.setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY).then(() => {
-  console.info('Succeeded in setting sensibility.');
-}).catch((err) => {
-  console.error(`Failed to set sensibility, Code:${err.code}, message:${err.message}`);
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY).then(() => {
+    console.info(`Succeeded in setting sensibility.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set sensibility, Code:${err.code}, message:${err.message}`);
+  });
+}
 ```
 
 ### setParameter
@@ -972,14 +1044,18 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-enrollIntelligentVoiceEngine.setParameter('scene', '0', (err) => {
-  if (err) {
-    console.error(`Failed to set parameter, Code:${err.code}, message:${err.message}`);
-  } else {
-    console.info('Succeeded in setting parameter');
-  }
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setParameter('scene', '0', (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to set parameter, Code:${err.code}, message:${err.message}`);
+    } else {
+      console.info(`Succeeded in setting parameter`);
+    }
+  });
+}
 ```
 
 ### setParameter
@@ -1015,12 +1091,16 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-enrollIntelligentVoiceEngine.setParameter('scene', '0').then(() => {
-  console.info('Succeeded in setting parameter');
-}).catch((err) => {
-  console.error(`Failed to set parameter, Code:${err.code}, message:${err.message}`);
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setParameter('scene', '0').then(() => {
+    console.info(`Succeeded in setting parameter`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set parameter, Code:${err.code}, message:${err.message}`);
+  });
+}
 ```
 
 ### getParameter
@@ -1050,15 +1130,19 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-enrollIntelligentVoiceEngine.getParameter('key', (err,data) => {
-  if (err) {
-    console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
-  } else {
-    let param = data;
-    console.info('Succeeded in getting parameter, param:${param}');
-  }
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).getParameter('key', (err: BusinessError, data: string) => {
+    if (err) {
+      console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
+    } else {
+      let param: string = data;
+      console.info(`Succeeded in getting parameter, param:${param}`);
+    }
+  });
+}
 ```
 
 ### getParameter
@@ -1093,14 +1177,17 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-let param = null;
-enrollIntelligentVoiceEngine.getParameter('key').then((data) => {
-  param = data;
-  console.info('Succeeded in getting parameter, param:${param}');
-}).catch((err) => {
-  console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).getParameter('key').then((data: string) => {
+    let param: string = data;
+    console.info(`Succeeded in getting parameter, param:${param}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
+  });
+}
 ```
 
 ### release
@@ -1121,14 +1208,18 @@ Releases the intelligent voice enrollment engine. This API uses an asynchronous 
 
 **Example**
 
-```js
-enrollIntelligentVoiceEngine.release((err) => {
-  if (err) {
-    console.error('Failed to release enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}');
-  } else {
-    console.info('Succeeded in releasing enrollIntelligentVoice engine.');
-  }
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).release((err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to release enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}`);
+    } else {
+      console.info(`Succeeded in releasing enrollIntelligentVoice engine.`);
+    }
+  });
+}
 ```
 
 ### release
@@ -1149,12 +1240,16 @@ Releases the intelligent voice enrollment engine. This API uses a promise to ret
 
 **Example**
 
-```js
-enrollIntelligentVoiceEngine.release().then(() => {
-  console.info('Succeeded in releasing enrollIntelligentVoice engine.');
-}).catch((err) => {
-  console.error('Failed to release enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}');
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).release().then(() => {
+    console.info(`Succeeded in releasing enrollIntelligentVoice engine.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to release enrollIntelligentVoice engine, Code:${err.code}, message:${err.message}`);
+  });
+}
 ```
 
 ## WakeupIntelligentVoiceEngine
@@ -1177,16 +1272,19 @@ Obtains the list of supported countries/regions. This API uses an asynchronous c
 
 **Example**
 
-```js
-let regions = null;
-wakeupIntelligentVoiceEngine.getSupportedRegions((err, data) => {
-  if (err) {
-    console.error(`Failed to get supported regions, Code:${err.code}, message:${err.message}`);
-  } else {
-    regions = data;
-    console.info('Succeeded in getting supported regions, regions:${regions}.');
-  }
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getSupportedRegions((err: BusinessError, data: Array<string>) => {
+    if (err) {
+      console.error(`Failed to get supported regions, Code:${err.code}, message:${err.message}`);
+    } else {
+      let regions: Array<string> = data;
+      console.info(`Succeeded in getting supported regions, regions:${regions}.`);
+    }
+  });
+}
 ```
 
 ### getSupportedRegions
@@ -1207,14 +1305,17 @@ Obtains the list of supported countries/regions. This API uses a promise to retu
 
 **Example**
 
-```js
-let regions = null;
-wakeupIntelligentVoiceEngine.getSupportedRegions().then((data) => {
-  regions = data;
-  console.info('Succeeded in getting supported regions, regions:${regions}.');
-}).catch((err) => {
-  console.error(`Failed to get supported regions, Code:${err.code}, message:${err.message}`);
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getSupportedRegions().then((data: Array<string>) => {
+    let regions: Array<string> = data;
+    console.info(`Succeeded in getting supported regions, regions:${regions}.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get supported regions, Code:${err.code}, message:${err.message}`);
+  });
+}
 ```
 
 ### setWakeupHapInfo
@@ -1244,18 +1345,23 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-let info = {
-  bundleName: "com.wakeup",
-  abilityName: "WakeUpExtAbility",
+```ts
+import { BusinessError } from '@ohos.base';
+
+let hapInfo: intelligentVoice.WakeupHapInfo = {
+  bundleName: 'com.wakeup',
+  abilityName: 'WakeUpExtAbility',
 }
-wakeupIntelligentVoiceEngine.setWakeupHapInfo(info, (err) => {
-  if (err) {
-    console.error('Failed to set wakeup hap info, Code:${err.code}, message:${err.message}');
-  } else {
-    console.info('Succeeded in setting wakeup hap info.');
-  }
-});
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setWakeupHapInfo(hapInfo, (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to set wakeup hap info, Code:${err.code}, message:${err.message}`);
+    } else {
+      console.info(`Succeeded in setting wakeup hap info.`);
+    }
+  });
+}
 ```
 
 ### setWakeupHapInfo
@@ -1290,16 +1396,20 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-let info = {
-  bundleName: "com.wakeup",
-  abilityName: "WakeUpExtAbility",
+```ts
+import { BusinessError } from '@ohos.base';
+
+let hapInfo: intelligentVoice.WakeupHapInfo = {
+  bundleName: 'com.wakeup',
+  abilityName: 'WakeUpExtAbility',
 }
-wakeupIntelligentVoiceEngine.setWakeupHapInfo(info).then(() => {
-  console.info('Succeeded in setting wakeup hap info.');
-}).catch((err) => {
-  console.error('Failed to set wakeup hap info, Code:${err.code}, message:${err.message}');
-});
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setWakeupHapInfo(hapInfo).then(() => {
+    console.info(`Succeeded in setting wakeup hap info.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set wakeup hap info, Code:${err.code}, message:${err.message}`);
+  });
+}
 ```
 
 ### setSensibility
@@ -1329,14 +1439,18 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-wakeupIntelligentVoiceEngine.setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY, (err) => {
-  if (err) {
-    console.error(`Failed to set sensibility, Code:${err.code}, message:${err.message}`);
-  } else {
-    console.info('Succeeded in setting sensibility.');
-  }
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY, (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to set sensibility, Code:${err.code}, message:${err.message}`);
+    } else {
+      console.info(`Succeeded in setting sensibility.`);
+    }
+  });
+}
 ```
 
 ### setSensibility
@@ -1371,12 +1485,16 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-wakeupIntelligentVoiceEngine.setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY).then(() => {
-  console.info('Succeeded in setting sensibility.');
-}).catch((err) => {
-  console.error(`Failed to set sensibility, Code:${err.code}, message:${err.message}`);
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY).then(() => {
+    console.info(`Succeeded in setting sensibility.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set sensibility, Code:${err.code}, message:${err.message}`);
+  });
+}
 ```
 
 ### setParameter
@@ -1407,14 +1525,18 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-wakeupIntelligentVoiceEngine.setParameter('scene', '0', (err) => {
-  if (err) {
-    console.error(`Failed to set parameter, Code:${err.code}, message:${err.message}`);
-  } else {
-    console.info('Succeeded in setting parameter');
-  }
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setParameter('scene', '0', (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to set parameter, Code:${err.code}, message:${err.message}`);
+    } else {
+      console.info(`Succeeded in setting parameter`);
+    }
+  });
+}
 ```
 
 ### setParameter
@@ -1450,12 +1572,16 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-wakeupIntelligentVoiceEngine.setParameter('scene', '0').then(() => {
-  console.info('Succeeded in setting parameter');
-}).catch((err) => {
-  console.error(`Failed to set parameter, Code:${err.code}, message:${err.message}`);
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setParameter('scene', '0').then(() => {
+    console.info(`Succeeded in setting parameter`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set parameter, Code:${err.code}, message:${err.message}`);
+  });
+}
 ```
 
 ### getParameter
@@ -1485,15 +1611,19 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-wakeupIntelligentVoiceEngine.getParameter('key', (err, data) => {
-  if (err) {
-    console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
-  } else {
-    let param = data;
-    console.info('Succeeded in getting parameter, param:${param}');
-  }
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getParameter('key', (err: BusinessError, data: string) => {
+    if (err) {
+      console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
+    } else {
+      let param: string = data;
+      console.info(`Succeeded in getting parameter, param:${param}`);
+    }
+  });
+}
 ```
 
 ### getParameter
@@ -1528,14 +1658,17 @@ For details about the error codes, see [Intelligent Voice Error Codes](../errorc
 
 **Example**
 
-```js
-let param;
-wakeupIntelligentVoiceEngine.getParameter('key').then((data) => {
-  param = data;
-  console.info('Succeeded in getting parameter, param:${param}');
-}).catch((err) => {
-  console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getParameter('key').then((data: string) => {
+    let param: string = data;
+    console.info(`Succeeded in getting parameter, param:${param}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
+  });
+}
 ```
 
 ### release
@@ -1556,14 +1689,18 @@ Releases the intelligent voice wakeup engine. This API uses an asynchronous call
 
 **Example**
 
-```js
-wakeupIntelligentVoiceEngine.release((err) => {
-  if (err) {
-    console.error('Failed to release wakeupIntelligentVoice engine, Code:${err.code}, message:${err.message}');
-  } else {
-    console.info('Succeeded in releasing wakeupIntelligentVoice engine.');
-  }
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).release((err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to release wakeupIntelligentVoice engine, Code:${err.code}, message:${err.message}`);
+    } else {
+      console.info(`Succeeded in releasing wakeupIntelligentVoice engine.`);
+    }
+  });
+}
 ```
 
 ### release
@@ -1584,12 +1721,16 @@ Releases the intelligent voice wakeup engine. This API uses a promise to return 
 
 **Example**
 
-```js
-wakeupIntelligentVoiceEngine.release().then(() => {
-  console.info('Succeeded in releasing wakeupIntelligentVoice engine.');
-}).catch((err) => {
-  console.error('Failed to release wakeupIntelligentVoice engine, Code:${err.code}, message:${err.message}');
-});
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).release().then(() => {
+    console.info(`Succeeded in releasing wakeupIntelligentVoice engine.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to release wakeupIntelligentVoice engine, Code:${err.code}, message:${err.message}`);
+  });
+}
 ```
 
 ### on
@@ -1611,13 +1752,14 @@ Subscribes to wakeup events.
 
 **Example**
 
-```js
-wakeupIntelligentVoiceEngine.on('wakeupIntelligentVoiceEvent', (callback) => {
-  console.info(`wakeup intelligentvoice event`);
-  for (let prop in callback) {
-    console.info(`intelligentvoice prop: ${prop}`);
-  }
-});
+```ts
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).on('wakeupIntelligentVoiceEvent',
+    (info: intelligentVoice.WakeupIntelligentVoiceEngineCallbackInfo) => {
+    let callbackInfo: intelligentVoice.WakeupIntelligentVoiceEngineCallbackInfo = info;
+    console.info(`wakeup intelligentvoice event, info:${callbackInfo}`);
+  });
+}
 ```
 
 ### off
@@ -1639,6 +1781,8 @@ Unsubscribes from wakeup events.
 
 **Example**
 
-```js
-wakeupIntelligentVoiceEngine.off('wakeupIntelligentVoiceEvent');
+```ts
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).off('wakeupIntelligentVoiceEvent');
+}
 ```

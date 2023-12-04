@@ -6,8 +6,9 @@ The **DataShare** module allows an application to manage its own data and share 
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs provided by this module are system APIs and can be used only in the stage model.
+> - The APIs provided by this module are system APIs.
 >
+> - The APIs of this module can be used only in the stage model.
 
 
 ## Modules to Import
@@ -49,11 +50,13 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 
 ```ts
 import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+let context = getContext(UIAbility);
 try {
-  dataShare.createDataShareHelper(this.context, uri, (err, data) => {
+  dataShare.createDataShareHelper(context, uri, (err, data) => {
     if (err !== undefined) {
       console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
       return;
@@ -69,7 +72,7 @@ try {
 ```
 
 ## dataShare.createDataShareHelper<sup>10+</sup>
-createDataShareHelper(context: Context, uri: string, options: DataShareHelperOptions, callback: AsyncCallback&lt;DataShareHelper&gt;): void
+createDataShareHelper(context: Context, uri: string, options: DataShareHelperOptions, callback: AsyncCallback&lt;DataShareHelper&gt;): void 
 
 Creates a **DataShareHelper** instance. This API uses an asynchronous callback to return the result.
 
@@ -100,11 +103,13 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 
 ```ts
 import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+let context = getContext(UIAbility);
 try {
-  dataShare.createDataShareHelper(this.context, uri, {isProxy : true}, (err, data) => {
+  dataShare.createDataShareHelper(context, uri, {isProxy : true}, (err, data) => {
     if (err !== undefined) {
       console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
       return;
@@ -157,11 +162,13 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 
 ```ts
 import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+let context = getContext(UIAbility);
 try {
-  dataShare.createDataShareHelper(this.context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
+  dataShare.createDataShareHelper(context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
     console.info("createDataShareHelper succeed, data : " + data);
     dataShareHelper = data;
   }). catch((err: BusinessError) => {
@@ -561,7 +568,7 @@ let offCallback: (err: BusinessError, node: dataShare.PublishedDataChangeNode) =
 let uris:Array<string> = ["city", "datashareproxy://com.acts.ohos.data.datasharetest/appInfo", "key2"];
 let subscriberId = '11';
 if (dataShareHelper != undefined) {
-  let result: Array<dataShare.OperationResult> = dataShareHelper.off("publishedDataChange", uris, subscriberId, offCallback);
+  let result: Array<dataShare.OperationResult> = (dataShareHelper as dataShare.DataShareHelper).off("publishedDataChange", uris, subscriberId, offCallback);
 }
 ```
 
@@ -666,7 +673,7 @@ Publishes data to the database.
 | -------- | ----------------------------- | ---- | ------------------------------ |
 | data      | Array&lt;[PublishedItem](#publisheditem10)&gt;    | Yes  | Data to publish.|
 | bundleName | string                      | Yes  | Application of the data to publish. This parameter is valid only for the private data published. Only the application can read the data. |
-| version | number                         | No  | Version of the data to publish. A larger value indicates a later data version. If the version of the data published is earlier than that of the data in the database, the data in the database will not be updated.<br> If the data version is not checked, leave this parameter unspecified.|
+| version | number                         | No  | Version of the data to publish. A larger value indicates a later data version. If the version of the data published is earlier than that of the data in the database, the data in the database will not be updated.<br>If the data version is not checked, leave this parameter unspecified.|
 
 **Return value**
 
@@ -1065,7 +1072,7 @@ Updates data in the database. This API uses an asynchronous callback to return t
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to update.                                    |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates.|
-| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | New data.                                          |
+| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | New data, which can be null.                                 |
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of updated data records. Otherwise, **err** is an error object.<br>The number of updated data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
 **Example**
@@ -1120,7 +1127,7 @@ Updates data in the database. This API uses a promise to return the result.
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to update.                                    |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates.|
-| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | New data.                                          |
+| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | New data, which can be null.                                  |
 
 **Return value**
 

@@ -5,7 +5,7 @@
 
 列表是一种复杂的容器，当列表项达到一定数量，内容超过屏幕大小时，可以自动提供滚动功能。它适合用于呈现同类数据类型或数据类型集，例如图片和文本。在列表中显示数据集合是许多应用程序中的常见要求（如通讯录、音乐列表、购物清单等）。
 
-使用列表可以轻松高效地显示结构化、可滚动的信息。通过在[List](../reference/arkui-ts/ts-container-list.md)组件中按垂直或者水平方向线性排列子组件[ListItemGroup](../reference/arkui-ts/ts-container-listitemgroup.md)或[ListItem](../reference/arkui-ts/ts-container-listitem.md)，为列表中的行或列提供单个视图，或使用[循环渲染](../quick-start/arkts-rendering-control-foreach.md)迭代一组行或列，或混合任意数量的单个视图和ForEach结构，构建一个列表。List组件支持使用条件渲染、循环渲染、懒加载等[渲染控制](../quick-start/arkts-rendering-control-overview.md)方式生成子组件。
+使用列表可以轻松高效地显示结构化、可滚动的信息。通过在[List](../reference/arkui-ts/ts-container-list.md)组件中按垂直或者水平方向线性排列子组件[ListItemGroup](../reference/arkui-ts/ts-container-listitemgroup.md)或[ListItem](../reference/arkui-ts/ts-container-listitem.md)，为列表中的行或列提供单个视图，或使用[循环渲染](../quick-start/arkts-rendering-control-foreach.md)迭代一组行或列，或混合任意数量的单个视图和ForEach结构，构建一个列表。List组件支持使用条件渲染、循环渲染、懒加载等[渲染控制](../quick-start/arkts-rendering-control-ifelse.md)方式生成子组件。
 
 
 ## 布局与约束
@@ -99,26 +99,17 @@ List组件的lanes属性通常用于在不同尺寸的设备自适应构建不�
 
 
 ```ts
-class Tmp{
-  minLength:number = 200
-  maxLength:number = 300
-}
-let Mn:Tmp = new Tmp()
 List() {
   ...
 }
-.lanes(Mn)
+.lanes(2)
 ```
 
 当其取值为LengthConstrain类型时，表示会根据LengthConstrain与List组件的尺寸自适应决定行或列数。
 
 
 ```ts
-class Tmp{
-  minLength:number = 200
-  maxLength:number = 300
-}
-let mn:Tmp = new Tmp()
+let mn:LengthConstrain = { 'minLength': 200,'maxLength': 300}
 List() {
   ...
 }
@@ -130,10 +121,6 @@ List() {
 - 当List组件宽度为300vp时，由于minLength为200vp，此时列表为一列。
 
 - 当List组件宽度变化至400vp时，符合两倍的minLength，则此时列表自适应为两列。
-
->**说明：**
->
->当lanes为LengthConstrain类型时，仅用于计算当前列表的行或列数，不影响列表项本身的尺寸。
 
 同样以垂直列表为例，当alignListItem属性设置为ListItemAlign.Center表示列表项在水平方向上居中对齐。alignListItem的默认值是ListItemAlign.Start，即列表项在列表交叉轴方向上默认按首部对齐。
 
@@ -155,6 +142,7 @@ List() {
 ![zh-cn_image_0000001563060761](figures/zh-cn_image_0000001563060761.png)
 
 ```ts
+@Entry
 @Component
 struct CityList {
   build() {
@@ -217,12 +205,14 @@ List() {
 
 ## 迭代列表内容
 
-通常更常见的是，应用通过数据集合动态地创建列表。使用[循环渲染](../quick-start/arkts-rendering-control-foreach.md)可从数据源中迭代获取数据，并在每次迭代过程中创建相应的组件，降低代码复杂度。
+通常，应用通过数据集合动态地创建列表。使用[循环渲染](../quick-start/arkts-rendering-control-foreach.md)可从数据源中迭代获取数据，并在每次迭代过程中创建相应的组件，降低代码复杂度。
 
 ArkTS通过[ForEach](../quick-start/arkts-rendering-control-foreach.md)提供了组件的循环渲染能力。以简单形式的联系人列表为例，将联系人名称和头像数据以Contact类结构存储到contacts数组，使用ForEach中嵌套ListItem的形式来代替多个平铺的、内容相似的ListItem，从而减少重复代码。
 
 
 ```ts
+
+
 import util from '@ohos.util';
 
 class Contact {
@@ -297,12 +287,20 @@ startMargin和endMargin属性分别用于设置分隔线距离列表侧边起始
 
 
 ```ts
-let opt = {
-  'strokeWidth': 1,
-  'startMargin': 60,
-  'endMargin': 10,
-  'color': '#ffe9f0f0'
-} as Record<string,number|string>
+class dividerTmp{
+  strokeWidth: Length = 1
+  startMargin: Length = 60
+  endMargin: Length = 10
+  color: ResourceColor ='#ffe9f0f0'
+
+  constructor(strokeWidth: Length,startMargin: Length,endMargin: Length,color: ResourceColor) {
+    this.strokeWidth = strokeWidth
+    this.startMargin = startMargin
+    this.endMargin = endMargin
+    this.color = color
+  }
+}
+let opt:dividerTmp = new dividerTmp(1,60,10,'#ffe9f0f0')
 List() {
   ...
 }
@@ -353,6 +351,7 @@ List() {
 
 
 ```ts
+@Entry
 @Component
 struct ContactsList {
   
@@ -620,40 +619,123 @@ ListItem的swipeAction属性可用于实现列表项的左右滑动功能。swip
 
 在消息列表中，end参数表示设置ListItem左滑时尾端划出自定义组件，即删除按钮。在初始化end方法时，将滑动列表项的索引传入删除按钮组件，当用户点击删除按钮时，可以根据索引值来删除列表项对应的数据，从而实现侧滑删除功能。
 
+1. 定义item的风格。
 
-```ts
-@Entry
-@Component
-struct MessageList {
-  @State messages: object[] = [
-    // 初始化消息列表数据
-  ];
-
-  @Builder itemEnd(index: number) {
-    // 侧滑后尾端出现的组件
-    Button({ type: ButtonType.Circle }) {
-      Image($r('app.media.ic_public_delete_filled'))
-        .width(20)
-        .height(20)
-    }
-    .onClick(() => {
-      this.messages.splice(index, 1);
-    })
-  }
-
-  build() {
-      List() {
-        ForEach(this.messages, (item:MessageList, index:number|undefined) => {
-          if(index){
-            ListItem() {
-            }
-            .swipeAction({ end: ()=>{this.itemEnd(index)} }) // 设置侧滑属性.
-          }
-        }, (item:MessageList) => item.id.toString())
+   ```ts
+   @Component
+   export struct ChatItemStyle{
+    WeChatImage: string;
+    WeChatName: string;
+    ChatInfo: string;
+    time: string;
+    
+    build() {
+      Column() {
+        Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {...}
+        .height(80)
+        .width('100%')
       }
-  }
-}
-```
+    }
+   }
+   ```
+2. 定义列表项数据结构。
+
+   ```ts
+   let personId = 0;
+
+   export class Person = {
+    id: string;
+    WeChatImage: string;
+    WeChatName: string;
+    ChatInfo: string;
+    time: string;
+
+    construct(WeChatImage: string, WeChatName: string, ChatInfo: string, time: string){
+      this.id = `${personId++}`
+      this.WeChatImage = WeChatImage;
+      this.WeChatName = WeChatName;
+      this.ChatInfo = ChatInfo;
+      this.time = time;
+    }
+   }
+    
+   ```
+3. 初始化消息列表数据。
+
+   ```ts
+   export const ContactInfo: any[] = [
+    {
+      "WeChatImage":"iconB.png",
+      "WeChatName":"安安",
+      "ChatInfo":"吃饭了吗",
+      "time":"10:30"
+    },
+    {
+      "WeChatImage":"iconC.png",
+      "WeChatName":"Angela",
+      "ChatInfo":"哈哈哈",
+      "time":"10:28"
+    },
+    {
+      "WeChatImage":"iconD.png",
+      "WeChatName":"大明",
+      "ChatInfo":"谢谢",
+      "time":"10:27"
+    }
+   ]
+
+   export function getContactInfo(): Array<Person> {
+    let contactList: Array<Person> = []
+
+    ContactInfo.forEach((item:Person) => {
+      contactList.push(new Person(item.WeChatImage,item.WeChatName,item.ChatInfo,item.time))
+    })
+   }
+
+   export const WeChatColor:string = "#cccccc"
+   ```
+
+4. 构建列表布局和列表项。
+
+   ```ts
+   @Entry
+   @Component
+   struct MessageList {
+     @State messages: Person[] = getContactInfo()
+     @State markedIndex: number = 0
+
+     @Builder itemEnd(index: number) {
+       // 侧滑后尾端出现的组件
+       Button({ type: ButtonType.Circle }) {
+         Image($r('app.media.ic_public_delete_filled'))
+           .width(20)
+           .height(20)
+       }
+       .onClick(() => {
+         this.messages.splice(index, 1);
+       })
+     }
+
+     build() {
+         List() {
+           ForEach(this.messages, (item:Person, index:number|undefined) => {
+             if(index){
+               ListItem() {
+                 ChatItemStyle({
+                   this.WeChatImage = WeChatImage,
+                   this.WeChatName = WeChatName,
+                   this.ChatInfo = ChatInfo,
+                   this.time = time,
+                   markedIndex: (index === 1 ? 1 : 0)
+                 })
+               }
+               .swipeAction({ end: this.itemRnd.bind(this, index) }) // 设置侧滑属性.
+             }
+           }, (item:Person) => item.id.toString())
+         }
+     }
+   }
+   ```
 
 
 ## 给列表项添加标记
@@ -696,6 +778,8 @@ Badge({
 
 3. 监听手指抬起事件，若此时移动达到最大值，则触发数据加载并显示刷新视图，加载完成后将此视图隐藏。
 
+下拉刷新与上拉加载的具体实现可参考[相关实例](#相关实例)中新闻数据加载。若开发者希望快速实现此功能，也可使用三方组件[PullToRefresh](https://gitee.com/openharmony-sig/PullToRefresh)。
+
 
 ## 编辑列表
 
@@ -714,14 +798,14 @@ Badge({
 
 添加列表项功能实现主要流程如下：
 
-1. 定义列表项数据结构和初始化列表数据，构建列表整体布局和列表项。
-   以待办事项管理为例，首先定义待办数据结构：
+1. 定义列表项数据结构，以待办事项管理为例，首先定义待办数据结构。
 
    ```ts
+   //ToDo.ets
    import util from '@ohos.util';
 
    export class ToDo {
-     key: string = util.generateRandomUUID(true);
+     key: string = util.generateRandomUUID(true)
      name: string;
 
      constructor(name: string) {
@@ -730,50 +814,97 @@ Badge({
    }
    ```
 
-    然后，初始化待办列表数据和可选事项：
+2. 构建列表整体布局和列表项。
 
    ```ts
-   @State toDoData: ToDo[] = [];
-   export let availableThings: string[] = ['读书', '运动', '旅游', '听音乐', '看电影', '唱歌'];
+   //ToDoListItem.ets
+   @Component
+   export class ToDoListItem {
+     @Link isEditMode: boolean
+     @Link selectedItems: ToDo[]
+     private toDoItem: ToDo;
+
+     hasBeenSelected(): boolean{
+      return this.selectedItems.IndexOf(this.toDoItem) != -1
+     }
+
+     build() {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }){...}
+      .width('100%')
+      .height(80)
+      padding({...})
+      .borderRadius(24)
+      .linearGradient({...})
+      .gesture(
+        GestureGroup(GestureMode.Exclusive,
+        LongPressGesture()
+          .onAction(() => {...})
+        )
+      )
+     }
+   }
    ```
 
-   最后，构建列表布局和列表项：
-
-  ```ts
-  export class ToDo {
-    key: string = util.generateRandomUUID(true);
-    name: string;
-    toDoData:ToDo[] = [];
-
-    constructor(name: string) {
-      this.name = name;
-    }
-  }
-  let todo:ToDo = new ToDo()
-  List({ space: 10 }) {
-    ForEach(todo.toDoData, (toDoItem:ToDo) => {
-      ListItem() {
-      }
-    }, (toDoItem:ToDo) => toDoItem.key.toString())
-  }
-  ```
-
-2. 提供新增列表项入口，即给新增按钮添加点击事件。
-
-3. 响应用户确定新增事件，更新列表数据。
-   待办事项管理示例的步骤2和步骤3功能实现如下：
+3. 初始化待办列表数据和可选事项,最后，构建列表布局和列表项。
 
    ```ts
-   Text('+')
-     .onClick(() => {
-       TextPickerDialog.show({
-         range: availableThings,
-         onAccept: (value: TextPickerResult) => {
-            todo.toDoData.push(new ToDo(availableThings[value.index])); // 新增列表项数据toDoData
-         },
-       })
-     })
+   //ToDoList.ets
+   @Entry
+   @Component
+   struct ToDoList {
+     @State toDoData: ToDo[] = []
+     @Watch('onEditModeChange') @State isEditMode: boolean = false
+     @State selectedItems: ToDo[] = []
+     private availableThings: string[] = ['读书', '运动', '旅游', '听音乐', '看电影', '唱歌']
+
+     onEditModeChange() {
+       if(!this.isEditMode) {
+         this.selectedItems = []
+       }
+     }
+
+     build() {
+       Column() {
+         Row() {
+           if (this.isEditMode) {
+             Text('X')
+               .fontSize(20)
+               .onClick(() => {
+                 this.isEditMode = false;
+               })
+               .margin({ left: 20, right: 20})
+           } else {
+             Text('待办')
+               .fontSize(36)
+               .margin({ left: 40 })
+           Blank()
+           Text('+')   //提供新增列表项入口，即给新增按钮添加点击事件
+               .onClick(() => {
+                 TextPickerDialog.show({
+                   range: this.availableThings,
+                   onAccept: (value: TextPickerResult) => {
+                   this.toDoData.push(new ToDo(this.availableThings[value.index])); // 新增列表项数据toDoData(可选事项)
+                 },
+               })
+             })
+           }
+         }
+       }
+     }
+     List({ space: 10 }) {
+       ForEach(this.toDoData, (toDoItem:ToDo) => {
+         ListItem() {
+           // 将toDoData的每个数据放入到以model的形式放进ListItem里
+           isEditMode: $isEditMode,
+           toDoItem: toDoItem,
+           selectedItems: $selectedItems
+         }
+       }, (toDoItem:ToDo) => toDoItem.key.toString())
+     }
+   }
    ```
+
+
 
 
 ### 删除列表项
@@ -927,8 +1058,6 @@ List() {
 ## 相关实例
 
 如需详细了解ArkUI中列表的创建与使用，请参考以下示例：
-
-- [List组件的使用之商品列表](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/List)
 
 - [新闻数据加载](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/NewsDataArkTS)
 

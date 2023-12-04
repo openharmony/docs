@@ -1,6 +1,6 @@
 # UIAbilityContext
 
-**UIAbilityContext**, inherited from [Context](js-apis-inner-application-context.md), provides the context environment for [UIAbility](js-apis-app-ability-uiAbility.md). **UIAbilityContext** provides UIAbility-related configuration and APIs for operating UIAbilities and ServiceExtensionAbilities. For example, you can use the APIs to start a UIAbility, terminate a UIAbility to which the UIAbilityContext belongs, and start, terminate, connect to, or disconnect from a ServiceExtensionAbility.
+**UIAbilityContext**, inherited from [Context](js-apis-inner-application-context.md), provides the context environment for [UIAbility](js-apis-app-ability-uiAbility.md) that needs to store its status. **UIAbilityContext** provides UIAbility-related configuration and APIs for operating UIAbilities and ServiceExtensionAbilities. For example, you can use the APIs to start a UIAbility, terminate a UIAbility to which the UIAbilityContext belongs, and start, terminate, connect to, or disconnect from a ServiceExtensionAbility.
 
 > **NOTE**
 >
@@ -29,7 +29,7 @@ import common from '@ohos.app.ability.common';
 
 ## UIAbilityContext.startAbility
 
-startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 Starts an ability. This API uses an asynchronous callback to return the result.
 
@@ -72,36 +72,42 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
+export default class EntryAbility extends UIAbility {
+  
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
 
-try {
-  this.context.startAbility(want, (err: BusinessError) => {
-    if (err.code) {
-      // Process service logic errors.
-      console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-      return;
+    try {
+      this.context.startAbility(want, (err: BusinessError) => {
+        if (err.code) {
+          // Process service logic errors.
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // Carry out normal service processing.
+        console.info('startAbility succeed');
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbility failed, code is ${code}, message is ${message}`);
     }
-    // Carry out normal service processing.
-    console.info('startAbility succeed');
-  });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbility failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startAbility
 
-startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 Starts an ability with the start options specified. This API uses an asynchronous callback to return the result.
 
@@ -116,7 +122,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
@@ -144,41 +150,47 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let options: StartOptions = {
-  windowMode: 0
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbility(want, options, (err: BusinessError) => {
-    if (err.code) {
-      // Process service logic errors.
-      console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 0
+    };
+
+    try {
+      this.context.startAbility(want, options, (err: BusinessError) => {
+        if (err.code) {
+          // Process service logic errors.
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // Carry out normal service processing.
+        console.info('startAbility succeed');
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbility failed, code is ${code}, message is ${message}`);
     }
-    // Carry out normal service processing.
-    console.info('startAbility succeed');
-  });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbility failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startAbility
 
-startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
+startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 Starts an ability. This API uses a promise to return the result.
 
@@ -193,7 +205,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
@@ -226,40 +238,46 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let options: StartOptions = {
-  windowMode: 0,
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbility(want, options)
-    .then(() => {
-      // Carry out normal service processing.
-      console.info('startAbility succeed');
-    })
-    .catch((err: BusinessError) => {
-      // Process service logic errors.
-      console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbility failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 0,
+    };
+
+    try {
+      this.context.startAbility(want, options)
+        .then(() => {
+          // Carry out normal service processing.
+          console.info('startAbility succeed');
+        })
+        .catch((err: BusinessError) => {
+          // Process service logic errors.
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startAbilityForResult
 
-startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
+startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 Starts an ability. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
@@ -277,7 +295,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want |[Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -304,39 +322,44 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityForResult(want, (err: BusinessError, result: common.AbilityResult) => {
-    if (err.code) {
-      // Process service logic errors.
-      console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
-      return;
-    // Carry out normal service processing.
-    console.info('startAbilityForResult succeed');
-  });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+
+    try {
+      this.context.startAbilityForResult(want, (err: BusinessError, result: common.AbilityResult) => {
+        if (err.code) { 
+          // Process service logic errors.
+          console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        } 
+        // Carry out normal service processing.
+        console.info('startAbilityForResult succeed');
+      });
+    } catch (err) { 
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startAbilityForResult
 
-startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
+startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 Starts an ability with the start options specified. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
@@ -354,7 +377,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want |[Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
 
@@ -382,45 +405,49 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let options: StartOptions = {
-  windowMode: 0,
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityForResult(want, options, (err: BusinessError, result: common.AbilityResult) => {
-    if (err.code) {
-      // Process service logic errors.
-      console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);  
-      return;
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 0,
+    };
+
+    try {
+      this.context.startAbilityForResult(want, options, (err: BusinessError, result: common.AbilityResult) => {
+        if (err.code) {
+          // Process service logic errors.
+          console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // Carry out normal service processing.
+        console.info('startAbilityForResult succeed');
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
     }
-    // Carry out normal service processing.
-    console.info('startAbilityForResult succeed');
-  });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 
 ## UIAbilityContext.startAbilityForResult
 
-startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
+startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
 Starts an ability. This API uses a promise to return the result when the ability is terminated. The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
@@ -438,7 +465,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 
@@ -472,43 +499,47 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let options: StartOptions = {
-  windowMode: 0,
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityForResult(want, options)
-    .then((result: common.AbilityResult) => {
-      // Carry out normal service processing.
-      console.info('startAbilityForResult succeed');
-    })
-    .catch((err: BusinessError) => {
-      // Process service logic errors.
-      console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 0,
+    };
+
+    try {
+      this.context.startAbilityForResult(want, options)
+        .then((result: common.AbilityResult) => {
+          // Carry out normal service processing.
+          console.info('startAbilityForResult succeed');
+        })
+        .catch((err: BusinessError) => {
+          // Process service logic errors.
+          console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startAbilityForResultWithAccount
 
-startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void;
+startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void
 
 Starts an ability with the account ID specified. This API uses an asynchronous callback to return the result when the ability is terminated.
 
@@ -531,8 +562,8 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -559,42 +590,47 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let accountId = 100;
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityForResultWithAccount(want, accountId, (err: BusinessError, result: common.AbilityResult) => {
-    if (err.code) {
-      // Process service logic errors.
-      console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
+
+    try {
+      this.context.startAbilityForResultWithAccount(want, accountId, (err: BusinessError, result: common.AbilityResult) => {
+        if (err.code) {
+          // Process service logic errors.
+          console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // Carry out normal service processing.
+        console.info('startAbilityForResultWithAccount succeed');
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityForResultWithAccount failed, code is ${code}, message is ${message}`);
     }
-    // Carry out normal service processing.
-    console.info('startAbilityForResultWithAccount succeed');
-  });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityForResultWithAccount failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 
 ## UIAbilityContext.startAbilityForResultWithAccount
 
-startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
+startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
 Starts an ability with the start options and account ID specified. This API uses an asynchronous callback to return the result when the ability is terminated.
 
@@ -617,8 +653,8 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback invoked when the ability is terminated.|
 
@@ -646,43 +682,50 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let accountId = 100;
-let options: StartOptions = {
-  windowMode: 0
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityForResultWithAccount(want, accountId, options, (err: BusinessError) => {
-    if (err.code) {
-      // Process service logic errors.
-      console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
+    let options: StartOptions = {
+      windowMode: 0
+    };
+
+    try {
+      this.context.startAbilityForResultWithAccount(want, accountId, options, (err: BusinessError) => {
+        if (err.code) {
+          // Process service logic errors.
+          console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // Carry out normal service processing.
+        console.info('startAbilityForResultWithAccount succeed');
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityForResultWithAccount failed, code is ${code}, message is ${message}`);
     }
-    // Carry out normal service processing.
-    console.info('startAbilityForResultWithAccount succeed');
-  });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityForResultWithAccount failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 
 ## UIAbilityContext.startAbilityForResultWithAccount
 
-startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>;
+startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>
 
 Starts an ability with the account ID specified. This API uses a promise to return the result when the ability is terminated.
 
@@ -705,8 +748,8 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
@@ -739,44 +782,48 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let accountId = 100;
-let options: StartOptions = {
-  windowMode: 0
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityForResultWithAccount(want, accountId, options)
-    .then((result: common.AbilityResult) => {
-      // Carry out normal service processing.
-      console.info('startAbilityForResultWithAccount succeed');
-    })
-    .catch((err: BusinessError) => {
-      // Process service logic errors.
-      console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityForResultWithAccount failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
+    let options: StartOptions = {
+      windowMode: 0
+    };
+
+    try {
+      this.context.startAbilityForResultWithAccount(want, accountId, options)
+        .then((result: common.AbilityResult) => {
+          // Carry out normal service processing.
+          console.info('startAbilityForResultWithAccount succeed');
+        })
+        .catch((err: BusinessError) => {
+          // Process service logic errors.
+          console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityForResultWithAccount failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 ## UIAbilityContext.startServiceExtensionAbility
 
-startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
+startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
 Starts a ServiceExtensionAbility. This API uses an asynchronous callback to return the result.
 
@@ -788,7 +835,7 @@ Starts a ServiceExtensionAbility. This API uses an asynchronous callback to retu
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -811,37 +858,43 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startServiceExtensionAbility(want)
-    .then(() => {
-      // Carry out normal service processing.
-      console.info('startServiceExtensionAbility succeed');
-    })
-    .catch((err: BusinessError) => {
-      // Process service logic errors.
-      console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+
+    try {
+      this.context.startServiceExtensionAbility(want)
+        .then(() => {
+          // Carry out normal service processing.
+          console.info('startServiceExtensionAbility succeed');
+        })
+        .catch((err: BusinessError) => {
+          // Process service logic errors.
+          console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startServiceExtensionAbility
 
-startServiceExtensionAbility(want: Want): Promise\<void>;
+startServiceExtensionAbility(want: Want): Promise\<void>
 
 Starts a ServiceExtensionAbility. This API uses a promise to return the result.
 
@@ -853,7 +906,7 @@ Starts a ServiceExtensionAbility. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
 
 **Error codes**
 
@@ -875,37 +928,43 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startServiceExtensionAbility(want)
-    .then(() => {
-      // Carry out normal service processing.
-      console.info('startServiceExtensionAbility succeed');
-    })
-    .catch((err: BusinessError) => {
-      // Process service logic errors.
-      console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+
+    try {
+      this.context.startServiceExtensionAbility(want)
+        .then(() => {
+          // Carry out normal service processing.
+          console.info('startServiceExtensionAbility succeed');
+        })
+        .catch((err: BusinessError) => {
+          // Process service logic errors.
+          console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startServiceExtensionAbilityWithAccount
 
-startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
 Starts a ServiceExtensionAbility with the account ID specified. This API uses an asynchronous callback to return the result.
 
@@ -923,8 +982,8 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses an
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -947,38 +1006,44 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
-let accountId = 100;
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startServiceExtensionAbilityWithAccount(want, accountId, (err: BusinessError) => {
-    if (err.code) {
-      // Process service logic errors.
-      console.error(`startServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+    let accountId = 100;
+
+    try {
+      this.context.startServiceExtensionAbilityWithAccount(want, accountId, (err: BusinessError) => {
+        if (err.code) {
+          // Process service logic errors.
+          console.error(`startServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // Carry out normal service processing.
+        console.info('startServiceExtensionAbilityWithAccount succeed');
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
     }
-    // Carry out normal service processing.
-    console.info('startServiceExtensionAbilityWithAccount succeed');
-  });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startServiceExtensionAbilityWithAccount
 
-startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
+startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
 Starts a ServiceExtensionAbility with the account ID specified. This API uses a promise to return the result.
 
@@ -996,8 +1061,8 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses a 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 
 **Error codes**
 
@@ -1019,37 +1084,43 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
-let accountId = 100;
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startServiceExtensionAbilityWithAccount(want, accountId)
-    .then(() => {
-      // Carry out normal service processing.
-      console.info('startServiceExtensionAbilityWithAccount succeed');
-    })
-    .catch((err: BusinessError) => {
-      // Process service logic errors.
-      console.error(`startServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+    let accountId = 100;
+
+    try {
+      this.context.startServiceExtensionAbilityWithAccount(want, accountId)
+        .then(() => {
+          // Carry out normal service processing.
+          console.info('startServiceExtensionAbilityWithAccount succeed');
+        })
+        .catch((err: BusinessError) => {
+          // Process service logic errors.
+          console.error(`startServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 ## UIAbilityContext.stopServiceExtensionAbility
 
-stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
+stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
 Stops a ServiceExtensionAbility in the same application. This API uses an asynchronous callback to return the result.
 
@@ -1061,7 +1132,7 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1084,36 +1155,42 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.stopServiceExtensionAbility(want, (err: BusinessError) => {
-    if (err.code) {
-      // Process service logic errors.
-      console.error(`stopServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+
+    try {
+      this.context.stopServiceExtensionAbility(want, (err: BusinessError) => {
+        if (err.code) {
+          // Process service logic errors.
+          console.error(`stopServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // Carry out normal service processing.
+        console.info('stopServiceExtensionAbility succeed');
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`stopServiceExtensionAbility failed, code is ${code}, message is ${message}`);
     }
-    // Carry out normal service processing.
-    console.info('stopServiceExtensionAbility succeed');
-  });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`stopServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+  }
 }
   ```
 
 ## UIAbilityContext.stopServiceExtensionAbility
 
-stopServiceExtensionAbility(want: Want): Promise\<void>;
+stopServiceExtensionAbility(want: Want): Promise\<void>
 
 Stops a ServiceExtensionAbility in the same application. This API uses a promise to return the result.
 
@@ -1125,7 +1202,7 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
 
 **Error codes**
 
@@ -1145,36 +1222,42 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.stopServiceExtensionAbility(want)
-    .then(() => {
-      // Carry out normal service processing.
-      console.info('stopServiceExtensionAbility succeed');
-    })
-    .catch((err: BusinessError) => {
-      // Process service logic errors.
-      console.error(`stopServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`stopServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+
+    try {
+      this.context.stopServiceExtensionAbility(want)
+        .then(() => {
+          // Carry out normal service processing.
+          console.info('stopServiceExtensionAbility succeed');
+        })
+        .catch((err: BusinessError) => {
+          // Process service logic errors.
+          console.error(`stopServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`stopServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
   ```
 
 ## UIAbilityContext.stopServiceExtensionAbilityWithAccount
 
-stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
 Stops a ServiceExtensionAbility with the account ID specified in the same application. This API uses an asynchronous callback to return the result.
 
@@ -1192,8 +1275,8 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1213,38 +1296,44 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
-let accountId = 100;
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (err: BusinessError) => {
-    if (err.code) {
-      // Process service logic errors.
-      console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+    let accountId = 100;
+
+    try {
+      this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (err: BusinessError) => {
+        if (err.code) {
+          // Process service logic errors.
+          console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // Carry out normal service processing.
+        console.info('stopServiceExtensionAbilityWithAccount succeed');
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
     }
-    // Carry out normal service processing.
-    console.info('stopServiceExtensionAbilityWithAccount succeed');
-  });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.stopServiceExtensionAbilityWithAccount
 
-stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
+stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
 Stops a ServiceExtensionAbility with the account ID specified in the same application. This API uses a promise to return the result.
 
@@ -1262,8 +1351,8 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 
 **Error codes**
 
@@ -1282,38 +1371,44 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
-let accountId = 100;
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
-    .then(() => {
-      // Carry out normal service processing.
-      console.info('stopServiceExtensionAbilityWithAccount succeed');
-    })
-    .catch((err: BusinessError) => {
-      // Process service logic errors.
-      console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+    let accountId = 100;
+
+    try {
+      this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
+        .then(() => {
+          // Carry out normal service processing.
+          console.info('stopServiceExtensionAbilityWithAccount succeed');
+        })
+        .catch((err: BusinessError) => {
+          // Process service logic errors.
+          console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.terminateSelf
 
-terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
+terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 Terminates this ability. This API uses an asynchronous callback to return the result.
 
@@ -1340,31 +1435,37 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
-  import { BusinessError } from '@ohos.base';
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-  try {
-    this.context.terminateSelf((err: BusinessError) => {
-      if (err.code) {
-        // Process service logic errors.
-        console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
-        return;
-      }
-      // Carry out normal service processing.
-      console.info('terminateSelf succeed');
-    });
-  } catch (err) {
-    // Capture the synchronization parameter error.
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+export default class EntryAbility extends UIAbility {
+
+  onForeground() {
+    try {
+      this.context.terminateSelf((err: BusinessError) => {
+        if (err.code) {
+          // Process service logic errors.
+          console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // Carry out normal service processing.
+        console.info('terminateSelf succeed');
+      });
+    } catch (err) {
+      // Capture the synchronization parameter error.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+    }
   }
-  ```
+}
+```
 
 
 ## UIAbilityContext.terminateSelf
 
-terminateSelf(): Promise&lt;void&gt;;
+terminateSelf(): Promise&lt;void&gt;
 
 Terminates this ability. This API uses a promise to return the result.
 
@@ -1391,31 +1492,37 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
-  import { BusinessError } from '@ohos.base';
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-  try {
-    this.context.terminateSelf()
-      .then(() => {
-        // Carry out normal service processing.
-        console.info('terminateSelf succeed');
-      })
-      .catch((err: BusinessError) => {
-        // Process service logic errors.
-        console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
-      });
-  } catch (err) {
-    // Capture the synchronization parameter error.
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+export default class EntryAbility extends UIAbility {
+
+  onForeground() {
+    try {
+      this.context.terminateSelf()
+        .then(() => {
+          // Carry out normal service processing.
+          console.info('terminateSelf succeed');
+        })
+        .catch((err: BusinessError) => {
+          // Process service logic errors.
+          console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // Capture the synchronization parameter error.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+    }
   }
-  ```
+}
+```
 
 
 ## UIAbilityContext.terminateSelfWithResult
 
-terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void;
+terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
 Terminates this ability. If the ability is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the caller in the form of an asynchronous callback when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
 
@@ -1443,45 +1550,50 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common'; 
+import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let resultCode = 100;
-// AbilityResult information returned to the caller.
-let abilityResult: common.AbilityResult = {
-  want,
-  resultCode
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.terminateSelfWithResult(abilityResult, (err: BusinessError) => {
-    if (err.code) {
-      // Process service logic errors.
-      console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let resultCode = 100;
+    // AbilityResult information returned to the caller.
+    let abilityResult: common.AbilityResult = {
+      want,
+      resultCode
+    };
+
+    try {
+      this.context.terminateSelfWithResult(abilityResult, (err: BusinessError) => {
+        if (err.code) {
+          // Process service logic errors.
+          console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // Carry out normal service processing.
+        console.info('terminateSelfWithResult succeed');
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`terminateSelfWithResult failed, code is ${code}, message is ${message}`);
     }
-    // Carry out normal service processing.
-    console.info('terminateSelfWithResult succeed');
-  });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`terminateSelfWithResult failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 
 ## UIAbilityContext.terminateSelfWithResult
 
-terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
+terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
 Terminates this ability. If the ability is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the caller in the form of a promise when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
 
@@ -1514,44 +1626,49 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let resultCode = 100;
-// AbilityResult information returned to the caller.
-let abilityResult: common.AbilityResult = {
-  want,
-  resultCode
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.terminateSelfWithResult(abilityResult)
-    .then(() => {
-      // Carry out normal service processing.
-      console.info('terminateSelfWithResult succeed');
-    })
-    .catch((err: BusinessError) => {
-      // Process service logic errors.
-      console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`terminateSelfWithResult failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let resultCode = 100;
+    // AbilityResult information returned to the caller.
+    let abilityResult: : common.AbilityResult = {
+      want,
+      resultCode
+    };
+
+    try {
+      this.context.terminateSelfWithResult(abilityResult)
+        .then(() => {
+          // Carry out normal service processing.
+          console.info('terminateSelfWithResult succeed');
+        })
+        .catch((err: BusinessError) => {
+          // Process service logic errors.
+          console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`terminateSelfWithResult failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.connectServiceExtensionAbility
 
-connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
+connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERVICE** template.
 
@@ -1561,7 +1678,7 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information for connecting to the ServiceExtensionAbility.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information for connecting to the ServiceExtensionAbility.|
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes| Instance of the callback function after the connection to the ServiceExtensionAbility is set up.|
 
 **Return value**
@@ -1589,46 +1706,51 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
-let commRemote: rpc.IRemoteObject;
-let options: common.ConnectOptions = {
-  onConnect(elementName, remote) {
-    commRemote = remote;
-    console.info('onConnect...')
-  },
-  onDisconnect(elementName) {
-    console.info('onDisconnect...')
-  },
-  onFailed(code) {
-    console.info('onFailed...')
+export default class EntryAbility extends UIAbility {
+
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+    let commRemote: rpc.IRemoteObject;
+    let options: common.ConnectOptions = {
+      onConnect(elementName, remote) {
+        commRemote = remote;
+        console.info('onConnect...')
+      },
+      onDisconnect(elementName) {
+        console.info('onDisconnect...')
+      },
+      onFailed(code) {
+        console.info('onFailed...')
+      }
+    };
+    let connection: number;
+    try {
+      connection = this.context.connectServiceExtensionAbility(want, options);
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`connectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+    }
   }
-};
-let connection: number;
-try {
-  connection = this.context.connectServiceExtensionAbility(want, options);
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`connectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
 }
-  ```
+```
 
 
 ## UIAbilityContext.connectServiceExtensionAbilityWithAccount
 
-connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
+connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number
 
 Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERVICE** template, with the account ID specified.
 
@@ -1646,8 +1768,8 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes| Instance of the callback function after the connection to the ServiceExtensionAbility is set up.|
 
 **Return value**
@@ -1675,46 +1797,51 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'ServiceExtensionAbility'
-};
-let accountId = 100;
-let commRemote: rpc.IRemoteObject;
-let options: common.ConnectOptions = {
-  onConnect(elementName, remote) {
-    commRemote = remote;
-    console.info('onConnect...')
-  },
-  onDisconnect(elementName) {
-    console.info('onDisconnect...')
-  },
-  onFailed(code) {
-    console.info('onFailed...')
+export default class EntryAbility extends UIAbility {
+
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+    let accountId = 100;
+    let commRemote: rpc.IRemoteObject;
+    let options: common.ConnectOptions = {
+      onConnect(elementName, remote) {
+        commRemote = remote;
+        console.info('onConnect...')
+      },
+      onDisconnect(elementName) {
+        console.info('onDisconnect...')
+      },
+      onFailed(code) {
+        console.info('onFailed...')
+      }
+    };
+    let connection: number;
+    try {
+      connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`connectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+    }
   }
-};
-let connection: number;
-try {
-  connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`connectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
 }
-  ```
+```
 
 ## UIAbilityContext.disconnectServiceExtensionAbility
 
-disconnectServiceExtensionAbility(connection: number): Promise\<void>;
+disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
 Disconnects this ability from a ServiceExtensionAbility and after the successful disconnection, sets the remote object returned upon the connection to void. This API uses a promise to return the result.
 
@@ -1743,34 +1870,41 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
+import rpc from '@ohos.rpc';
 
-// connection is the return value of connectServiceExtensionAbility.
-let connection = 1;
-let commRemote: rpc.IRemoteObject | null;
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.disconnectServiceExtensionAbility(connection).then(() => {
-    commRemote = null;
-    // Carry out normal service processing.
-    console.info('disconnectServiceExtensionAbility succeed');
-  }).catch((err: BusinessError) => {
-    // Process service logic errors.
-    console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-  })
-} catch (err) {
-  commRemote = null;
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`disconnectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    // connection is the return value of connectServiceExtensionAbility.
+    let connection = 1;
+    let commRemote: rpc.IRemoteObject | null;
+
+    try {
+      this.context.disconnectServiceExtensionAbility(connection).then(() => {
+        commRemote = null;
+        // Carry out normal service processing.
+        console.info('disconnectServiceExtensionAbility succeed');
+      }).catch((err: BusinessError) => {
+        // Process service logic errors.
+        console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+      })
+    } catch (err) {
+      commRemote = null;
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`disconnectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.disconnectServiceExtensionAbility
 
-disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<void>): void;
+disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<void>): void
 
 Disconnects this ability from a ServiceExtensionAbility and after the successful disconnection, sets the remote object returned upon the connection to void. This API uses an asynchronous callback to return the result.
 
@@ -1794,36 +1928,43 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
+import rpc from '@ohos.rpc';
 
-// connection is the return value of connectServiceExtensionAbility.
-let connection = 1;
-let commRemote: rpc.IRemoteObject | null;
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.disconnectServiceExtensionAbility(connection, (err: BusinessError) => {
-    commRemote = null;
-    if (err.code) {
-      // Process service logic errors.
-      console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    // connection is the return value of connectServiceExtensionAbility.
+    let connection = 1;
+    let commRemote: rpc.IRemoteObject | null;
+
+    try {
+      this.context.disconnectServiceExtensionAbility(connection, (err: BusinessError) => {
+        commRemote = null;
+        if (err.code) {
+          // Process service logic errors.
+          console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // Carry out normal service processing.
+        console.info('disconnectServiceExtensionAbility succeed');
+      });
+    } catch (err) {
+      commRemote = null;
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`disconnectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
     }
-    // Carry out normal service processing.
-    console.info('disconnectServiceExtensionAbility succeed');
-  });
-} catch (err) {
-  commRemote = null;
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`disconnectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startAbilityByCall
 
-startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
+startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 Starts an ability in the foreground or background and obtains the caller object for communicating with the ability.
 
@@ -1840,7 +1981,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
 
 **Return value**
 
@@ -1868,82 +2009,94 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  Start an ability in the background.
+Start an ability in the background.
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import { Caller } from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let caller: Caller;
+export default class EntryAbility extends UIAbility {
 
-// Start an ability in the background by not passing parameters.
-let wantBackground: Want = {
-  bundleName: 'com.example.myapplication',
-  moduleName: 'entry',
-  abilityName: 'EntryAbility',
-  deviceId: ''
-};
+  onForeground() {
+    let caller: Caller;
 
-try {
-  this.context.startAbilityByCall(wantBackground)
-    .then((obj: Caller) => {
-      // Carry out normal service processing.
-      caller = obj;
-      console.info('startAbilityByCall succeed');
-    }).catch((err: BusinessError) => {
-    // Process service logic errors.
-    console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
-  });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityByCall failed, code is ${code}, message is ${message}`);
+    // Start an ability in the background by not passing parameters.
+    let wantBackground: Want = {
+      bundleName: 'com.example.myapplication',
+      moduleName: 'entry',
+      abilityName: 'EntryAbility',
+      deviceId: ''
+    };
+
+    try {
+      this.context.startAbilityByCall(wantBackground)
+        .then((obj: Caller) => {
+          // Carry out normal service processing.
+          caller = obj;
+          console.info('startAbilityByCall succeed');
+        }).catch((err: BusinessError) => {
+        // Process service logic errors.
+        console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityByCall failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 Start an ability in the foreground.
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import { Caller } from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let caller: Caller;
+export default class EntryAbility extends UIAbility {
 
-// Start an ability in the foreground with 'ohos.aafwk.param.callAbilityToForeground' in parameters set to true.
-let wantForeground: Want = {
-  bundleName: 'com.example.myapplication',
-  moduleName: 'entry',
-  abilityName: 'EntryAbility',
-  deviceId: '',
-  parameters: {
-    'ohos.aafwk.param.callAbilityToForeground': true
+  onForeground() {
+    let caller: Caller;
+
+    // Start an ability in the foreground with 'ohos.aafwk.param.callAbilityToForeground' in parameters set to true.
+    let wantForeground: Want = {
+      bundleName: 'com.example.myapplication',
+      moduleName: 'entry',
+      abilityName: 'EntryAbility',
+      deviceId: '',
+      parameters: {
+        'ohos.aafwk.param.callAbilityToForeground': true
+      }
+    };
+
+    try {
+      this.context.startAbilityByCall(wantForeground)
+        .then((obj: Caller) => {
+          // Carry out normal service processing.
+          caller = obj;
+          console.info('startAbilityByCall succeed');
+        }).catch((err: BusinessError) => {
+        // Process service logic errors.
+        console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityByCall failed, code is ${code}, message is ${message}`);
+    }
   }
-};
-
-try {
-  this.context.startAbilityByCall(wantForeground)
-    .then((obj: Caller) => {
-      // Carry out normal service processing.
-      caller = obj;
-      console.info('startAbilityByCall succeed');
-    }).catch((err: BusinessError) => {
-    // Process service logic errors.
-    console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
-  });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityByCall failed, code is ${code}, message is ${message}`);
 }
-  ```
+```
 
 ## UIAbilityContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void\>): void;
+startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void\>): void
 
 Starts an ability with the account ID specified. This API uses an asynchronous callback to return the result.
 
@@ -1966,8 +2119,8 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1994,39 +2147,45 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let accountId = 100;
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityWithAccount(want, accountId, (err: BusinessError) => {
-    if (err.code) {
-      // Process service logic errors.
-      console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
+
+    try {
+      this.context.startAbilityWithAccount(want, accountId, (err: BusinessError) => {
+        if (err.code) {
+          // Process service logic errors.
+          console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // Carry out normal service processing.
+        console.info('startAbilityWithAccount succeed');
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityWithAccount failed, code is ${code}, message is ${message}`);
     }
-    // Carry out normal service processing.
-    console.info('startAbilityWithAccount succeed');
-  });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityWithAccount failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 
 ## UIAbilityContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
+startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
 Starts an ability with the account ID and start options specified. This API uses an asynchronous callback to return the result.
 
@@ -2049,8 +2208,8 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
@@ -2078,43 +2237,49 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let accountId = 100;
-let options: StartOptions = {
-  windowMode: 0
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityWithAccount(want, accountId, options, (err: BusinessError) => {
-    if (err.code) {
-      // Process service logic errors.
-      console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
+    let options: StartOptions = {
+      windowMode: 0
+    };
+
+    try {
+      this.context.startAbilityWithAccount(want, accountId, options, (err: BusinessError) => {
+        if (err.code) {
+          // Process service logic errors.
+          console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // Carry out normal service processing.
+        console.info('startAbilityWithAccount succeed');
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityWithAccount failed, code is ${code}, message is ${message}`);
     }
-    // Carry out normal service processing.
-    console.info('startAbilityWithAccount succeed');
-  });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityWithAccount failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
 
 ## UIAbilityContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void\>;
+startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void\>
 
 Starts an ability with the account ID specified. This API uses a promise to return the result.
 
@@ -2137,8 +2302,8 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getCreatedOsAccountsCount).|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Error codes**
@@ -2165,42 +2330,48 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let accountId = 100;
-let options: StartOptions = {
-  windowMode: 0
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startAbilityWithAccount(want, accountId, options)
-    .then(() => {
-      // Carry out normal service processing.
-      console.info('startAbilityWithAccount succeed');
-    })
-    .catch((err: BusinessError) => {
-      // Process service logic errors.
-      console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startAbilityWithAccount failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let accountId = 100;
+    let options: StartOptions = {
+      windowMode: 0
+    };
+
+    try {
+      this.context.startAbilityWithAccount(want, accountId, options)
+        .then(() => {
+          // Carry out normal service processing.
+          console.info('startAbilityWithAccount succeed');
+        })
+        .catch((err: BusinessError) => {
+          // Process service logic errors.
+          console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityWithAccount failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.setMissionLabel
 
-setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
+setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets a label for this UIAbility in the mission. This API uses an asynchronous callback to return the result.
 
@@ -2224,17 +2395,23 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
-  import { BusinessError } from '@ohos.base';
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-  this.context.setMissionLabel('test', (result: BusinessError) => {
-    console.info(`setMissionLabel: ${JSON.stringify(result)}`);
-  });
-  ```
+export default class EntryAbility extends UIAbility {
+
+  onCreate(want, launchParam) {
+    this.context.setMissionLabel('test', (result: BusinessError) => {
+      console.info(`setMissionLabel: ${JSON.stringify(result)}`);
+    });
+  }
+}
+```
 
 ## UIAbilityContext.setMissionLabel
 
-setMissionLabel(label: string): Promise&lt;void&gt;;
+setMissionLabel(label: string): Promise&lt;void&gt;
 
 Sets a label for this UIAbility in the mission. This API uses a promise to return the result.
 
@@ -2264,19 +2441,25 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-  this.context.setMissionLabel('test').then(() => {
-    console.info('success');
-  }).catch((err: BusinessError) => {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error(`setMissionLabel failed, code is ${code}, message is ${message}`);
-  });
+export default class EntryAbility extends UIAbility {
+
+  onCreate(want, launchParam) {
+    this.context.setMissionLabel('test').then(() => {
+      console.info('success');
+    }).catch((err: BusinessError) => {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`setMissionLabel failed, code is ${code}, message is ${message}`);
+    });
+  }
+}
   ```
 ## UIAbilityContext.setMissionIcon
 
-setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
+setMissionIcon(icon: image.PixelMap, callback: AsyncCallback\<void>): void
 
 Sets an icon for this ability in the mission. This API uses an asynchronous callback to return the result. The maximum size of the icon is 600 MB.
 
@@ -2302,37 +2485,37 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import image from '@ohos.multimedia.image';
-  
-  export default class EntryAbility extends UIAbility {
-    onForeground() {
-      let imagePixelMap: image.PixelMap;
-      let color = new ArrayBuffer(0);
-      image.createPixelMap(color, {
-        size: {
-          height: 100,
-          width: 100
-        }
-      }).then((data) => {
-        imagePixelMap = data;
-        this.context.setMissionIcon(imagePixelMap, (err: BusinessError) => {
-          console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
-        })
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
+
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let imagePixelMap: image.PixelMap;
+    let color = new ArrayBuffer(0);
+    image.createPixelMap(color, {
+      size: {
+        height: 100,
+        width: 100
+      }
+    }).then((data) => {
+      imagePixelMap = data;
+      this.context.setMissionIcon(imagePixelMap, (err: BusinessError) => {
+        console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
       })
-        .catch((err: BusinessError) => {
-          console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
-        });
-    }
+    })
+      .catch((err: BusinessError) => {
+        console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
+      });
   }
-  ```
+}
+```
 
 
 ## UIAbilityContext.setMissionIcon
 
-setMissionIcon(icon: image.PixelMap): Promise\<void>;
+setMissionIcon(icon: image.PixelMap): Promise\<void>
 
 Sets an icon for this ability in the mission. This API uses a promise to return the result. The maximum size of the icon is 600 MB.
 
@@ -2396,7 +2579,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## UIAbilityContext.setMissionContinueState<sup>10+</sup>
 
-setMissionContinueState(state: AbilityConstant.ContinueState, callback:AsyncCallback&lt;void&gt;): void;
+setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the mission continuation state of this UIAbility. This API uses an asynchronous callback to return the result.
 
@@ -2420,18 +2603,23 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import { BusinessError } from '@ohos.base';
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
 
-  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
-    console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
-  });
-  ```
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
+      console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
+    });
+  }
+}
+```
 
 ## UIAbilityContext.setMissionContinueState<sup>10+</sup>
 
-setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&gt;;
+setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&gt;
 
 Sets the mission continuation state of this UIAbility. This API uses a promise to return the result.
 
@@ -2460,20 +2648,25 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import { BusinessError } from '@ohos.base';
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
 
-  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE).then(() => {
-    console.info('success');
-  }).catch((err: BusinessError) => {
-    console.error(`setMissionContinueState failed, code is ${err.code}, message is ${err.message}`);
-  });
-  ```
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE).then(() => {
+      console.info('success');
+    }).catch((err: BusinessError) => {
+      console.error(`setMissionContinueState failed, code is ${err.code}, message is ${err.message}`);
+    });
+  }
+}
+```
 
 ## UIAbilityContext.restoreWindowStage
 
-restoreWindowStage(localStorage: LocalStorage) : void;
+restoreWindowStage(localStorage: LocalStorage): void
 
 Restores the WindowStage data in the UIAbility.
 
@@ -2496,14 +2689,20 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
-  let storage = new LocalStorage();
-  this.context.restoreWindowStage(storage);
-  ```
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let storage = new LocalStorage();
+    this.context.restoreWindowStage(storage);
+  }
+}
+```
 
 ## UIAbilityContext.isTerminating
 
-isTerminating(): boolean;
+isTerminating(): boolean
 
 Checks whether this UIAbility is in the terminating state.
 
@@ -2525,14 +2724,20 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
-  let isTerminating: boolean = this.context.isTerminating();
-  console.info(`ability state is ${isTerminating}`);
-  ```
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let isTerminating: boolean = this.context.isTerminating();
+    console.info(`ability state is ${isTerminating}`);
+  }
+}
+```
 
 ## UIAbilityContext.requestDialogService
 
-requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestResult&gt;): void;
+requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestResult&gt;): void
 
 Starts a ServiceExtensionAbility that supports modal dialog boxes. After the ServiceExtensionAbility is started, the application displays a modal dialog box. You can call [setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult) to obtain the result.
 
@@ -2547,8 +2752,8 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md)&gt; | Yes| Callback used to return the result.|
+| want |[Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+| result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md#requestresult)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -2574,38 +2779,43 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'AuthAccountServiceExtension'
-};
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'AuthAccountServiceExtension'
+    };
 
-try {
-  this.context.requestDialogService(want, (err: BusinessError, result: dialogRequest.RequestResult) => {
-    if (err.code) {
-      // Process service logic errors.
-      console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
-      return;
+    try {
+      this.context.requestDialogService(want, (err: BusinessError, result: dialogRequest.RequestResult) => {
+        if (err.code) {
+          // Process service logic errors.
+          console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // Carry out normal service processing.
+        console.info(`requestDialogService succeed, result = ${JSON.stringify(result)}`);
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`requestDialogService failed, code is ${code}, message is ${message}`);
     }
-    // Carry out normal service processing.
-    console.info('requestDialogService succeed, result = ${JSON.stringify(result)}');
-  });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`requestDialogService failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 
   ## UIAbilityContext.requestDialogService
 
-requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;;
+requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 
 Starts a ServiceExtensionAbility that supports modal dialog boxes. After the ServiceExtensionAbility is started, the application displays a modal dialog box. You can call [setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult) to obtain the result, which is returned to the caller in promise mode.
 
@@ -2620,7 +2830,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
 
 
 **Return value**
@@ -2653,36 +2863,42 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'AuthAccountServiceExtension'
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.requestDialogService(want)
-    .then((result: dialogRequest.RequestResult) => {
-      // Carry out normal service processing.
-      console.info('requestDialogService succeed, result = ${JSON.stringify(result)}');
-    })
-    .catch((err: BusinessError) => {
-      // Process service logic errors.
-      console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`requestDialogService failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'AuthAccountServiceExtension'
+    };
+
+    try {
+      this.context.requestDialogService(want)
+        .then((result: dialogRequest.RequestResult) => {
+          // Carry out normal service processing.
+          console.info(`requestDialogService succeed, result = ${JSON.stringify(result)}`);
+        })
+        .catch((err: BusinessError) => {
+          // Process service logic errors.
+          console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`requestDialogService failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
   ## UIAbilityContext.startRecentAbility
 
-startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
+startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 Starts an ability. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result.
 
@@ -2699,7 +2915,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -2726,35 +2942,41 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startRecentAbility(want, (err: BusinessError) => {
-    if (err.code) {
-      // Process service logic errors.
-      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+
+    try {
+      this.context.startRecentAbility(want, (err: BusinessError) => {
+        if (err.code) {
+          // Process service logic errors.
+          console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // Carry out normal service processing.
+        console.info('startRecentAbility succeed');
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
     }
-    // Carry out normal service processing.
-    console.info('startRecentAbility succeed');
-  });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 ## UIAbilityContext.startRecentAbility
 
-startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
+startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 Starts an ability with the start options specified. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result.
 You can use this API to carry start options.
@@ -2772,7 +2994,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
@@ -2800,40 +3022,46 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  deviceId: '',
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let options: StartOptions = {
-  windowMode: 0
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startRecentAbility(want, options, (err: BusinessError) => {
-    if (err.code) {
-      // Process service logic errors.
-      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
-      return;
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 0
+    };
+
+    try {
+      this.context.startRecentAbility(want, options, (err: BusinessError) => {
+        if (err.code) {
+          // Process service logic errors.
+          console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // Carry out normal service processing.
+        console.info('startRecentAbility succeed');
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
     }
-    // Carry out normal service processing.
-    console.info('startRecentAbility succeed');
-  });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
+  }
 }
-  ```
+```
 ## UIAbilityContext.startRecentAbility
 
-startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
+startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 Starts an ability. If the ability has multiple instances, the latest instance is started.
 This API uses a promise to return the result.
@@ -2851,7 +3079,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Error codes**
@@ -2878,40 +3106,46 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-let options: StartOptions = {
-  windowMode: 0,
-};
+export default class EntryAbility extends UIAbility {
 
-try {
-  this.context.startRecentAbility(want, options)
-    .then(() => {
-      // Carry out normal service processing.
-      console.info('startRecentAbility succeed');
-    })
-    .catch((err: BusinessError) => {
-      // Process service logic errors.
-      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
-    });
-} catch (err) {
-  // Process input parameter errors.
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      windowMode: 0,
+    };
+
+    try {
+      this.context.startRecentAbility(want, options)
+        .then(() => {
+          // Carry out normal service processing.
+          console.info('startRecentAbility succeed');
+        })
+        .catch((err: BusinessError) => {
+          // Process service logic errors.
+          console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
 }
-  ```
+```
 
 ## UIAbilityContext.startAbilityByCallWithAccount<sup>10+</sup>
 
-startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;;
+startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;
 
 Starts an ability with the account ID specified and obtains the caller object for communicating with the ability.
 
@@ -2931,7 +3165,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
 | accountId | number | Yes| ID of a system account. The value **-1** indicates the current user. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 
 **Return value**
@@ -2960,18 +3194,22 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-  ```ts
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { Caller } from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let caller: Caller;
+export default class EntryAbility extends UIAbility {
 
-  // ID of a system account. The value -1 indicates the current user.
-  let accountId = -1;
+  onForeground() {
+    let caller: Caller;
 
-  // Specify the ability to start.
-  let want: Want = {
+    // ID of a system account. The value -1 indicates the current user.
+    let accountId = -1;
+
+    // Specify the ability to start.
+    let want: Want = {
       bundleName: 'com.acts.actscalleeabilityrely',
       moduleName: 'entry',
       abilityName: 'EntryAbility',
@@ -2980,27 +3218,29 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
         // If the value of 'ohos.aafwk.param.callAbilityToForeground' is true, the ability is started in the foreground. If the value is false or not set, the ability is started in the background.
         'ohos.aafwk.param.callAbilityToForeground': true
       }
-  };
+    };
 
-  try {
-    this.context.startAbilityByCallWithAccount(want, accountId)
-      .then((obj: Caller) => {
-        // Carry out normal service processing.
-        caller = obj;
-        console.log('startAbilityByCallWithAccount succeed');
-      }).catch((error: BusinessError) => {
+    try {
+      this.context.startAbilityByCallWithAccount(want, accountId)
+        .then((obj: Caller) => {
+          // Carry out normal service processing.
+          caller = obj;
+          console.log('startAbilityByCallWithAccount succeed');
+        }).catch((error: BusinessError) => {
         // Process service logic errors.
         console.error('startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
       });
-  } catch (paramError) {
-    // Process input parameter errors.
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    } catch (paramError) {
+      // Process input parameter errors.
+      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    }
   }
-  ```
+}
+```
 
 ## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
+startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
 Starts an ability with the caller information specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses an asynchronous callback to return the result.
 
@@ -3017,7 +3257,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -3072,7 +3312,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
+startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
 Starts an ability with the caller information and start options specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses an asynchronous callback to return the result.
 
@@ -3089,7 +3329,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object.|
 
@@ -3148,7 +3388,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
+startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
 Starts an ability with the caller information specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses a promise to return the result.
 
@@ -3165,7 +3405,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability.|
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
@@ -3232,7 +3472,7 @@ export default class EntryAbility extends UIAbility {
 
 ## UIAbilityContext.reportDrawnCompleted<sup>10+</sup>
 
-reportDrawnCompleted(callback: AsyncCallback\<void>): void;
+reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 Reports an event indicating that page loading is complete (**loadContent()** is successfully called). This API uses an asynchronous callback to return the result.
  **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -3285,4 +3525,111 @@ export default class EntryAbility extends UIAbility {
     console.log("MainAbility onWindowStageCreate")
   }
 };
+  ```
+
+## UIAbilityContext.startAbilityByType<sup>11+</sup>
+
+startAbilityByType(type: string, wantParam: Record<string, Object>,
+    abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>) : void
+
+Implicitly starts a given type of UIExtensionAbility. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the UIExtensionAbility to start.|
+| wantParam | {[key: string]: any} | Yes| Extended parameter.|
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback to be invoked when the startup fails.|
+| callback | AsyncCallback<void> | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+  ```ts
+  import common from '@ohos.app.ability.common';
+  let context = getContext(this) as common.UIAbilityContext;
+  let wantParam: Record<string, Object> = {
+    'time':'2023-10-23 20:45',
+  };
+  let abilityStartCallback: common.AbilityStartCallback = {
+    onError: (code, name, message) => {
+      console.log(`code:` + code + `name:` + name + `message:` + message);
+    }
+  }
+  context.startAbilityByType("photoEditor", wantParam, abilityStartCallback, (err) => {
+    if (err) {
+      console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+    } else {
+      console.log(`success`);
+    }
+  });
+  ```
+
+## UIAbilityContext.startAbilityByType<sup>11+</sup>
+
+startAbilityByType(type: string, wantParam: Record<string, Object>,
+    abilityStartCallback: AbilityStartCallback) : Promise\<void>
+
+Implicitly starts a given type of UIExtensionAbility. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the UIExtensionAbility to start.|
+| wantParam | {[key: string]: Object} | Yes| Extended parameter.|
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback to be invoked when the startup fails.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise<void> | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+  ```ts
+  import common from '@ohos.app.ability.common';
+  let context = getContext(this) as common.UIAbilityContext;
+  let wantParam: Record<string, Object> = {
+    'time':'2023-10-23 20:45',
+  };
+  let abilityStartCallback: common.AbilityStartCallback = {
+    onError: (code, name, message) => {
+      console.log(`code:` + code + `name:` + name + `message:` + message);
+    }
+  }
+  context.startAbilityByType("photoEditor", wantParam, abilityStartCallback).then(() => {
+    console.log(`startAbilityByType success`);
+  }).catch((err) => {
+    console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+  })
   ```

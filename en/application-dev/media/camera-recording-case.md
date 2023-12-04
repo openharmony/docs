@@ -1,4 +1,4 @@
-# Camera Recording Sample
+# Camera Recording Sample (ArkTS)
 
 ## Development Process
 
@@ -8,16 +8,16 @@ After obtaining the output stream capabilities supported by the camera, create a
 
 
 ## Sample Code
-There are multiple [methods for obtaining the context](../application-models/application-context-stage.md).
+For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
 ```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
 import media from '@ohos.multimedia.media';
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-async function videoRecording(context: featureAbility.Context, surfaceId: string): Promise<void> {
+async function videoRecording(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
   // Create a CameraManager instance.
-  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+  let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   if (!cameraManager) {
     console.error("camera.getCameraManager error");
     return;

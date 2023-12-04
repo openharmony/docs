@@ -152,7 +152,7 @@ struct MyComponent {
           Row() {  
             Text() {  
               //Content Abbreviations for Latest News  
-              Span('Hello World'.replace(/[\r\n]/g, " "))  
+              Span('Hello World'.replace(new RegExp("/[\r\n]/g"), " "))  
                 .fontSize("14fp")  
                 .fontColor('# 66182431')  
             }  
@@ -250,7 +250,7 @@ struct MyComponent {
           .id("time")  
         Text() {  
           //Content Abbreviations for Latest News  
-          Span('Hello World'.replace(/[\r\n]/g, " "))  
+          Span('Hello World'.replace(new RegExp("/[\r\n]/g"), " "))  
             .fontSize('14fp')  
             .fontColor('# 66182431')  
         }  
@@ -288,15 +288,15 @@ struct MyComponent {
 
 ![输入图片说明](figures/layout-relative-introduce.png)
 
-使用扁平化布局推荐使用[RelativeContainer](../reference/arkui-ts/ts-container-relativecontainer.md)、[绝对定位](../reference/arkui-ts/ts-universal-attributes-location.md)、[自定义布局](h../reference/arkui-ts/ts-custom-component-lifecycle.md)、[Grid组件](../reference/arkui-ts/ts-container-grid.md)等
+使用扁平化布局推荐使用[RelativeContainer](../reference/arkui-ts/ts-container-relativecontainer.md)、[绝对定位](../reference/arkui-ts/ts-universal-attributes-location.md)、[自定义布局](../reference/arkui-ts/ts-custom-component-lifecycle.md)、[Grid组件](../reference/arkui-ts/ts-container-grid.md)等
 
 ### 使用高性能布局组件
 
 **使用Column/Row替换Flex容器**
 
-如果使用Flex布局容器，只是为了实现横向或者纵向的布局。那直接使用Row、Column容器反而能够提升渲染性能。关于Flex带来的性能影响可以参考《[改善布局性能](../ui/arkts-layout-development-performance-boost.md)》。
+如果使用Flex布局容器，只是为了实现横向或者纵向的布局。那直接使用Row、Column容器反而能够提升渲染性能。关于Flex带来的性能影响可以参考《[Flex布局性能提升使用指导](flex-development-performance-boost.md)》。
 
-使用Column、Row替换Flex容器组件避免二次渲染的案例见：《[性能提升的推荐方法](../ui/arkts-performance-improvement-recommendation.md)》
+使用Column、Row替换Flex容器组件避免二次渲染的案例见：《[性能提升的其他方法](arkts-performance-improvement-recommendation.md)》
 
 **适当减少使用if/else条件渲染**
 

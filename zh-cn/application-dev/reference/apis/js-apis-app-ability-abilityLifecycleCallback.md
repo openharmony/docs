@@ -3,8 +3,8 @@
 AbilityLifecycleCallback模块提供应用上下文[ApplicationContext](js-apis-inner-application-applicationContext.md)的生命周期发生变化时触发相应回调的能力，包括[onAbilityCreate](#abilitylifecyclecallbackonabilitycreate)、[onWindowStageCreate](#abilitylifecyclecallbackonwindowstagecreate)、[onWindowStageActive](#abilitylifecyclecallbackonwindowstageactive)、[onWindowStageInactive](#abilitylifecyclecallbackonwindowstageinactive)、[onWindowStageDestroy](#abilitylifecyclecallbackonwindowstagedestroy)、[onAbilityDestroy](#abilitylifecyclecallbackonabilitydestroy)、[onAbilityForeground](#abilitylifecyclecallbackonabilityforeground)、[onAbilityBackground](#abilitylifecyclecallbackonabilitybackground)、[onAbilityContinue](#abilitylifecyclecallbackonabilitycontinue)方法。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+>
+> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
@@ -23,9 +23,9 @@ onAbilityCreate(ability: UIAbility): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 | 
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
 
 **示例：**
 ```ts
@@ -33,8 +33,9 @@ import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback
 
 let abilityLifecycleCallback: AbilityLifecycleCallback =  {
     onAbilityCreate(ability){
-        console.log('AbilityLifecycleCallback onAbilityCreate.');  
+        console.log('AbilityLifecycleCallback onAbilityCreate.');
     }
+    ...
 };
 ```
 
@@ -48,10 +49,10 @@ onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |  
-  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |
 
 **示例：**
 ```ts
@@ -74,10 +75,10 @@ onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |  
-  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |
 
 **示例：**
 ```ts
@@ -100,10 +101,10 @@ onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |  
-  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |
 
 **示例：**
 ```ts
@@ -126,10 +127,10 @@ onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |  
-  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+  | windowStage | [window.WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |
 
 **示例：**
 ```ts
@@ -152,9 +153,9 @@ onAbilityDestroy(ability: UIAbility): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 | 
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
 
 **示例：**
 ```ts
@@ -177,9 +178,9 @@ onAbilityForeground(ability: UIAbility): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 | 
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
 
 **示例：**
 ```ts
@@ -202,9 +203,9 @@ onAbilityBackground(ability: UIAbility): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 | 
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
 
 **示例：**
 ```ts
@@ -227,9 +228,9 @@ onAbilityContinue(ability: UIAbility): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 | 
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
 
 **示例：**
 ```ts
@@ -246,6 +247,7 @@ let abilityLifecycleCallback: AbilityLifecycleCallback =  {
 
 **示例：**
 GlobalContext.ts
+全局Context
 ```ts
 // 构造单例对象
 export class GlobalContext {
@@ -271,16 +273,19 @@ export class GlobalContext {
 ```
 
 MyFirstAbility.ts
+应用的第一个Ability
 ```ts
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 import AbilityStage from '@ohos.app.ability.AbilityStage';
 import UIAbility from '@ohos.app.ability.UIAbility';
+
+// 导入GlobalContext，以开发者自己声明的路径为准
 import { GlobalContext } from '../GlobalContext'
 
 // 声明ability生命周期回调，需配置所有回调后才可以在applicationContext注册
 let abilityLifecycleCallback: AbilityLifecycleCallback = {
     onAbilityCreate(ability){
-        console.log('AbilityLifecycleCallback onAbilityCreate.');  
+        console.log('AbilityLifecycleCallback onAbilityCreate.');
     },
     onWindowStageCreate(ability, windowStage){
         console.log('AbilityLifecycleCallback onWindowStageCreate.');
@@ -317,17 +322,20 @@ export default class MyFirstAbility extends UIAbility {
         try {
             let lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
             GlobalContext.getContext().setObject("lifecycleId", lifecycleId);
-            console.log('registerAbilityLifecycleCallback lifecycleId: ${globalThis.lifecycleId}');
+            console.log(`registerAbilityLifecycleCallback lifecycleId: ${globalThis.lifecycleId}`);
         } catch (paramError) {
-            console.error('error: ${paramError.code}, ${paramError.message}');
+            console.error(`error: ${paramError.code}, ${paramError.message}`);
         }
     }
 }
 ```
 
 MySecondAbility.ts
+应用的第二个Ability
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+
+// 导入GlobalContext，以开发者自己声明的路径为准
 import { GlobalContext } from '../GlobalContext'
 
 export default class MySecondAbility extends UIAbility {
@@ -337,7 +345,7 @@ export default class MySecondAbility extends UIAbility {
         // 3.通过applicationContext注销监听应用内生命周期
         applicationContext.off('abilityLifecycle', lifecycleId, (error) => {
             if (error && error.code !== 0) {
-                console.error('unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}');
+                console.error(`unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}`);
             } else {
                 console.log('unregisterAbilityLifecycleCallback success.');
             }

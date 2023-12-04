@@ -38,17 +38,17 @@ import abilitymanager from '@ohos.app.ability.abilityManager';
 
 abilitymanager.getAbilityRunningInfos((error, data) => { 
     if (error) {
-        console.error('getAbilityRunningInfos fail, error: ${JSON.stringify(error)}');
+        console.error(`getAbilityRunningInfos fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('getAbilityRunningInfos success, data: ${JSON.stringify(data)}');
+        console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
         for (let i = 0; i < data.length; i++) {
             let abilityinfo = data[i];
-            console.log('abilityinfo.ability: ${JSON.stringify(abilityinfo.ability)}');
-            console.log('abilityinfo.pid: ${JSON.stringify(abilityinfo.pid)}');
-            console.log('abilityinfo.uid: ${JSON.stringify(abilityinfo.uid)}');
-            console.log('abilityinfo.processName: ${JSON.stringify(abilityinfo.processName)}');
-            console.log('abilityinfo.startTime: ${JSON.stringify(abilityinfo.startTime)}');
-            console.log('abilityinfo.abilityState: ${JSON.stringify(abilityinfo.abilityState)}');
+            console.log(`abilityinfo.ability: ${JSON.stringify(abilityinfo.ability)}`);
+            console.log(`abilityinfo.pid: ${JSON.stringify(abilityinfo.pid)}`);
+            console.log(`abilityinfo.uid: ${JSON.stringify(abilityinfo.uid)}`);
+            console.log(`abilityinfo.processName: ${JSON.stringify(abilityinfo.processName)}`);
+            console.log(`abilityinfo.startTime: ${JSON.stringify(abilityinfo.startTime)}`);
+            console.log(`abilityinfo.abilityState: ${JSON.stringify(abilityinfo.abilityState)}`);
         }
     }
 });

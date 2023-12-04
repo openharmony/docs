@@ -555,6 +555,10 @@ while(!t.done) {
 
 返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
 
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -574,7 +578,6 @@ while(!t.done) {
 **示例：**
 
 ```ts
-
 let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");

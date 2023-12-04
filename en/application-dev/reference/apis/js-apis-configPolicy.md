@@ -18,93 +18,114 @@ import configPolicy from '@ohos.configPolicy';
 
 getOneCfgFile(relPath: string, callback: AsyncCallback&lt;string&gt;)
 
-Obtains the path of a configuration file with the specified name and highest priority. This API uses an asynchronous callback to return the result.
-For example, if the **config.xml** file is stored in **/system/etc/config.xml** and **/sys_pod/etc/config.xml** (in ascending order of priority), then **/sys_pod/etc/config.xml** is returned.
+Obtains the path of the configuration file with the highest priority based on the specified file name. This API uses an asynchronous callback to return the result.
+For example, if there are two **config.xml** files (in ascending order of priority): **/system/etc/config.xml** and **/sys_pod/etc/config.xml**, then **/sys_pod/etc/config.xml** is returned.
 
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
 **Parameters**
 
-| Name     | Type                         | Mandatory  | Description                   |
-| -------- | --------------------------- | ---- | --------------------- |
-| relPath  | string                      | Yes   | Name of the configuration file.                |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the path of the configuration file.|
+| Name  | Type                       | Mandatory| Description                                      |
+| -------- | --------------------------- | ---- | ------------------------------------------ |
+| relPath  | string                      | Yes  | Name of the configuration file.                                |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the path of the configuration file.|
+
 
 **Example**
+
   ```ts
   import { BusinessError } from '@ohos.base';
 
-  configPolicy.getOneCfgFile('etc/config.xml', (error: BusinessError, value: string) => {
+  try {
+    let relpath: string = 'etc/config.xml';
+    configPolicy.getOneCfgFile(relpath, (error: BusinessError, value: string) => {
       if (error == null) {
-          console.log("value is " + value);
+        console.log('value is ' + value);
       } else {
-          console.log("error occurs "+ error);
+        console.log('error occurs ' + error);
       }
-  });
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.log('error:' + code + ',' + message);
+  }
   ```
-
 
 ## getOneCfgFile
 
 getOneCfgFile(relPath: string): Promise&lt;string&gt;
 
-Obtains the path of a configuration file with the specified name and highest priority. This API uses a promise to return the result.
+Obtains the path of the configuration file with the highest priority based on the specified file name. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
 **Parameters**
 
-| Name    | Type    | Mandatory  | Description   |
-| ------- | ------ | ---- | ----- |
-| relPath | string | Yes   | Name of the configuration file.|
+| Name | Type  | Mandatory| Description      |
+| ------- | ------ | ---- | ---------- |
+| relPath | string | Yes  | Name of the configuration file.|
 
 **Return value**
 
-| Type                   | Description          |
-| --------------------- | ------------ |
-| Promise&lt;string&gt; | Promise used to return the path of the configuration file.|
+| Type                  | Description                    |
+| ---------------------- | ------------------------ |
+| Promise&lt;string&gt;  | Promise used to return the path of the configuration file.|
 
 **Example**
+
   ```ts
   import { BusinessError } from '@ohos.base';
 
-  configPolicy.getOneCfgFile('etc/config.xml').then((value: string) => {
-      console.log("value is " + value);
-  }).catch((error: BusinessError) => {
-      console.log("getOneCfgFile promise " + error);
-  });
+  try {
+    let relpath: string = 'etc/config.xml';
+    configPolicy.getOneCfgFile(relpath).then((value: string) => {
+      console.log('value is ' + value);
+    }).catch((error: BusinessError) => {
+      console.log('getOneCfgFile promise ' + error);
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.log('error:' + code + ',' + message);
+  }
   ```
-
 
 ## getCfgFiles
 
 getCfgFiles(relPath: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 
 Obtains a list of configuration files with the specified name, sorted in ascending order of priority. This API uses an asynchronous callback to return the result.
-For example, if the **config.xml** file is stored in **/system/etc/config.xml** and **/sys_pod/etc/config.xml** (in ascending order of priority), then **/system/etc/config.xml, /sys_pod/etc/config.xml** is returned.
+For example, if there are two **config.xml** files (in ascending order of priority): **/system/etc/config.xml** and **/sys_pod/etc/config.xml**, then **/system/etc/config.xml, /sys_pod/etc/config.xml** is returned.
 
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description           |
-| -------- | ---------------------------------------- | ---- | ------------- |
-| relPath  | string                                   | Yes   | Name of the configuration file.        |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the file list.|
+| Name  | Type                                    | Mandatory| Description                      |
+| -------- | ---------------------------------------- | ---- | -------------------------- |
+| relPath  | string                                   | Yes  | Name of the configuration file.                |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback used to return the file list.|
 
 **Example**
+
   ```ts
   import { BusinessError } from '@ohos.base';
 
-  configPolicy.getCfgFiles('etc/config.xml', (error: BusinessError, value: Array<string>) => {
+  try {
+    configPolicy.getCfgFiles('etc/config.xml', (error: BusinessError, value: Array<string>) => {
       if (error == null) {
-          console.log("value is " + value);
+        console.log('value is ' + value);
       } else {
-          console.log("error occurs "+ error);
+        console.log('error occurs ' + error);
       }
-  });
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.log('error:' + code + ',' + message);
+  }
   ```
-
 
 ## getCfgFiles
 
@@ -116,27 +137,34 @@ Obtains a list of configuration files with the specified name, sorted in ascendi
 
 **Parameters**
 
-| Name    | Type    | Mandatory  | Description   |
-| ------- | ------ | ---- | ----- |
-| relPath | string | Yes   | Name of the configuration file.|
+| Name | Type  | Mandatory| Description      |
+| ------- | ------ | ---- | ---------- |
+| relPath | string | Yes  | Name of the configuration file.|
 
 **Return value**
 
-| Type                                | Description  |
-| ---------------------------------- | ---- |
+| Type                              | Description    |
+| ---------------------------------- | -------- |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the file list.|
 
 **Example**
+
   ```ts
   import { BusinessError } from '@ohos.base';
 
-  configPolicy.getCfgFiles('etc/config.xml').then((value: Array<string>) => {
-      console.log("value is " + value);
-  }).catch((error: BusinessError) => {
-      console.log("getCfgFiles promise " + error);
-  });
+  try {
+    let relpath: string = 'etc/config.xml';
+    configPolicy.getCfgFiles(relpath).then((value: Array<string>) => {
+      console.log('value is ' + value);
+    }).catch((error: BusinessError) => {
+      console.log('getCfgFiles promise ' + error);
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.log('error:' + code + ',' + message);
+  }
   ```
-
 
 ## getCfgDirList
 
@@ -148,23 +176,29 @@ Obtains the list of configuration level directories. This API uses an asynchrono
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description               |
-| -------- | ---------------------------------------- | ---- | ----------------- |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the configuration level directory list.|
+| Name  | Type                                    | Mandatory| Description                              |
+| -------- | ---------------------------------------- | ---- | ---------------------------------- |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback used to return the configuration level directory list.|
 
 **Example**
+
   ```ts
   import { BusinessError } from '@ohos.base';
 
-  configPolicy.getCfgDirList((error: BusinessError, value: Array<string>) => {
+  try {
+    configPolicy.getCfgDirList((error: BusinessError, value: Array<string>) => {
       if (error == null) {
-          console.log("value is " + value);
+        console.log('value is ' + value);
       } else {
-          console.log("error occurs "+ error);
+        console.log('error occurs ' + error);
       }
-  });
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.log('error:' + code + ',' + message);
+  }
   ```
-
 
 ## getCfgDirList
 
@@ -176,17 +210,396 @@ Obtains the list of configuration level directories. This API uses a promise to 
 
 **Return value**
 
-| Type                                | Description      |
-| ---------------------------------- | -------- |
+| Type                              | Description            |
+| ---------------------------------- | ---------------- |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the configuration level directory list.|
 
 **Example**
+
   ```ts
   import { BusinessError } from '@ohos.base';
 
-  configPolicy.getCfgDirList().then((value: Array<string>) => {
-      console.log("value is " + value);
-  }).catch((error: BusinessError) => {
-      console.log("getCfgDirList promise " + error);
-  });
+  try {
+    configPolicy.getCfgDirList().then((value: Array<string>) => {
+      console.log('value is ' + value);
+    }).catch((error: BusinessError) => {
+      console.log('getCfgDirList promise ' + error);
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.log('error:' + code + ',' + message);
+  }
   ```
+
+## getOneCfgFile<sup>11+</sup>
+
+getOneCfgFile(relPath: string, followMode: FollowXMode, callback: AsyncCallback&lt;string&gt;)
+
+Obtains the path of the configuration file with the highest priority based on the specified file name and follow mode. This API uses an asynchronous callback to return the result.
+
+For example, there are three **config.xml** files (in ascending order of priority): **/system/etc/config.xml**, **/sys_pod/etc/config.xml**, and **/sys_pod/etc/carrier/46060/etc/config.xml**. If the opkey of the default card is **46060** and the follow mode is **SIM_DEFAULT**, then **/sys_pod/etc/carrier/46060/etc/config.xml** is returned.
+
+**System capability**: SystemCapability.Customization.ConfigPolicy
+
+**Parameters**
+
+| Name    | Type                         | Mandatory| Description                                      |
+| ---------- | ----------------------------- | ---- | ------------------------------------------ |
+| relPath    | string                        | Yes  | Name of the configuration file.                                |
+| followMode | [FollowXMode](#followxmode11) | Yes  | Follow mode.                                  |
+| callback   | AsyncCallback&lt;string&gt;   | Yes  | Callback used to return the path of the configuration file.|
+
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    let relpath: string = 'etc/config.xml';
+    configPolicy.getOneCfgFile(relpath, configPolicy.FollowXMode.SIM_DEFAULT,
+      (error: BusinessError, value: string) => {
+      if (error == null) {
+        console.log('value is ' + value);
+      } else {
+        console.log('error occurs ' + error);
+      }
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.log('error:' + code + ',' + message);
+  }
+  ```
+
+## getOneCfgFile<sup>11+</sup>
+
+getOneCfgFile(relPath: string, followMode: FollowXMode, extra: string, callback: AsyncCallback&lt;string&gt;)
+
+Obtains the path of the configuration file with the highest priority based on the specified file name and custom follow rule. This API uses an asynchronous callback to return the result.
+
+For example, there are three **config.xml** files (in ascending order of priority): **/system/etc/config.xml**, **/sys_pod/etc/config.xml**, and **/sys_pod/etc/carrier/46060/etc/config.xml**. If the opkey of card 1 is **46060**, the follow mode is **USER_DEFINED**, and the custom follow rule is **etc/carrier/${telephony.sim.opkey0}**, then **/sys_pod/etc/carrier/46060/etc/config.xml** is returned.
+
+**System capability**: SystemCapability.Customization.ConfigPolicy
+
+**Parameters**
+
+| Name    | Type                         | Mandatory| Description                                                  |
+| ---------- | ----------------------------- | ---- | ------------------------------------------------------ |
+| relPath    | string                        | Yes  | Name of the configuration file.                                            |
+| followMode | [FollowXMode](#followxmode11) | Yes  | Follow mode.                                              |
+| extra      | string                        | Yes  | Custom follow rule. This parameter is valid only when **followMode** is set to **USER_DEFINED**.|
+| callback   | AsyncCallback&lt;string&gt;   | Yes  | Callback used to return the path of the configuration file.            |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    let relpath: string = 'etc/config.xml';
+    let extra: string = 'etc/carrier/${telephony.sim.opkey0}';
+    configPolicy.getOneCfgFile(relpath, configPolicy.FollowXMode.USER_DEFINED, extra,
+      (error: BusinessError, value: string) => {
+      if (error == null) {
+        console.log('value is ' + value);
+      } else {
+        console.log('error occurs ' + error);
+      }
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.log('error:' + code + ',' + message);
+  }
+  ```
+
+## getOneCfgFile<sup>11+</sup>
+
+getOneCfgFile(relPath: string, followMode: FollowXMode, extra?: string): Promise&lt;string&gt;
+
+Obtains the path of the configuration file with the highest priority based on the specified file name and follow mode. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Customization.ConfigPolicy
+
+**Parameters**
+
+| Name    | Type                         | Mandatory| Description                                                  |
+| ---------- | ----------------------------- | ---- | ------------------------------------------------------ |
+| relPath    | string                        | Yes  | Name of the configuration file.                                            |
+| followMode | [FollowXMode](#followxmode11) | Yes  | Follow mode.                                              |
+| extra      | string                        | No  | Custom follow rule. This parameter is valid only when **followMode** is set to **USER_DEFINED**.|
+
+**Return value**
+
+| Type                  | Description                    |
+| ---------------------- | ------------------------ |
+| Promise&lt;string&gt;  | Promise used to return the path of the configuration file.|
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    let relpath: string = 'etc/config.xml';
+    let extra: string = 'etc/carrier/${telephony.sim.opkey0}';
+    configPolicy.getOneCfgFile(relpath, configPolicy.FollowXMode.SIM_DEFAULT, extra).then((value: string) => {
+      console.log('value is ' + value);
+    }).catch((error: BusinessError) => {
+      console.log('getOneCfgFile promise ' + error);
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.log('error:' + code + ',' + message);
+  }
+  ```
+
+## getOneCfgFileSync<sup>11+</sup>
+
+getOneCfgFileSync(relPath: string, followMode?: FollowXMode, extra?: string): string
+
+Obtains the path of the configuration file with the highest priority based on the specified file name and follow mode. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Customization.ConfigPolicy
+
+**Parameters**
+
+| Name    | Type                         | Mandatory| Description                                                  |
+| ---------- | ----------------------------- | ---- | ------------------------------------------------------ |
+| relPath    | string                        | Yes  | Name of the configuration file.                                            |
+| followMode | [FollowXMode](#followxmode11) | No  | Follow mode. The default value is **DEFAULT**.                                              |
+| extra      | string                        | No  | Custom follow rule. This parameter is valid only when **followMode** is set to **USER_DEFINED**.|
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| string | Promise used to return the path of the configuration file.|
+
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    let relpath: string = 'etc/config.xml';
+    let extra: string = 'etc/carrier/${telephony.sim.opkey0}';
+    let result: string = configPolicy.getOneCfgFileSync(relpath, configPolicy.FollowXMode.USER_DEFINED, extra);
+    console.log('result is ' + result);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.log('error:' + code + ',' + message);
+  }
+  ```
+
+## getCfgFiles<sup>11+</sup>
+
+getCfgFiles(relPath: string, followMode: FollowXMode, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
+
+Obtains a list of configuration files based on the specified file name and follow mode, sorted in ascending order of priority. This API uses an asynchronous callback to return the result.
+
+For example, there are three **config.xml** files (in ascending order of priority): **/system/etc/config.xml**, **/sys_pod/etc/config.xml**, and **/sys_pod/etc/carrier/46060/etc/config.xml**. If the opkey of the default card is **46060**, and the follow mode is **SIM_DEFAULT**, then **/system/etc/config.xml, /sys_pod/etc/config.xml, /sys_pod/etc/carrier/46060/etc/config.xml** is returned.
+
+**System capability**: SystemCapability.Customization.ConfigPolicy
+
+**Parameters**
+
+| Name    | Type                                    | Mandatory| Description                      |
+| ---------- | ---------------------------------------- | ---- | -------------------------- |
+| relPath    | string                                   | Yes  | Name of the configuration file.                |
+| followMode | [FollowXMode](#followxmode11)            | Yes  | Follow mode.                  |
+| callback   | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback used to return the file list.|
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    let relpath: string = 'etc/config.xml';
+    configPolicy.getCfgFiles(relpath, configPolicy.FollowXMode.SIM_DEFAULT,
+      (error: BusinessError, value: Array<string>) => {
+      if (error == null) {
+        console.log('value is ' + value);
+      } else {
+        console.log('error occurs ' + error);
+      }
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.log('error:' + code + ',' + message);
+  }
+  ```
+
+## getCfgFiles<sup>11+</sup>
+
+getCfgFiles(relPath: string, followMode: FollowXMode, extra: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
+
+Obtains a list of configuration files based on the specified file name and custom follow rule, sorted in ascending order of priority. This API uses an asynchronous callback to return the result.
+
+For example, there are three **config.xml** files (in ascending order of priority): **/system/etc/config.xml**, **/sys_pod/etc/config.xml**, and **/sys_pod/etc/carrier/46060/etc/config.xml**. The opkey of card 1 is **46060**, the follow mode is **USER_DEFINED**, and the custom follow rule is **etc/carrier/${telephony.sim.opkey0}**, then **/system/etc/config.xml, /sys_pod/etc/config.xml, /sys_pod/etc/carrier/46060/etc/config.xml** is returned.
+
+**System capability**: SystemCapability.Customization.ConfigPolicy
+
+**Parameters**
+
+| Name    | Type                                    | Mandatory| Description                                                  |
+| ---------- | ---------------------------------------- | ---- | ------------------------------------------------------ |
+| relPath    | string                                   | Yes  | Name of the configuration file.                                            |
+| followMode | [FollowXMode](#followxmode11)            | Yes  | Follow mode.                                              |
+| extra      | string                                   | Yes  | Custom follow rule. This parameter is valid only when **followMode** is set to **USER_DEFINED**.|
+| callback   | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback used to return the file list.                            |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    let relpath: string = 'etc/config.xml';
+    let extra: string = 'etc/carrier/${telephony.sim.opkey0}';
+    configPolicy.getCfgFiles(relpath, configPolicy.FollowXMode.SIM_DEFAULT, extra,
+      (error: BusinessError, value: Array<string>) => {
+      if (error == null) {
+        console.log('value is ' + value);
+      } else {
+        console.log('error occurs ' + error);
+      }
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.log('error:' + code + ',' + message);
+  }
+  ```
+
+## getCfgFiles<sup>11+</sup>
+
+getCfgFiles(relPath: string, followMode: FollowXMode, extra?: string): Promise&lt;Array&lt;string&gt;&gt;
+
+Obtains a list of configuration files based on the specified file name and follow mode, sorted in ascending order of priority. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Customization.ConfigPolicy
+
+**Parameters**
+
+| Name    | Type                         | Mandatory| Description                                                  |
+| ---------- | ----------------------------- | ---- | ------------------------------------------------------ |
+| relPath    | string                        | Yes  | Name of the configuration file.                                            |
+| followMode | [FollowXMode](#followxmode11) | Yes  | Follow mode.                                              |
+| extra      | string                        | No  | Custom follow rule. This parameter is valid only when **followMode** is set to **USER_DEFINED**.|
+
+**Return value**
+
+| Type                              | Description    |
+| ---------------------------------- | -------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the file list.|
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    let relpath: string = 'etc/config.xml';
+    let extra: string = 'etc/carrier/${telephony.sim.opkey0}';
+    configPolicy.getCfgFiles(relpath, configPolicy.FollowXMode.SIM_DEFAULT, extra).then((value: Array<string>) => {
+      console.log('value is ' + value);
+    }).catch((error: BusinessError) => {
+      console.log('getCfgFiles promise ' + error);
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.log('error:' + code + ',' + message);
+  }
+  ```
+
+## getCfgFilesSync<sup>11+</sup>
+
+getCfgFilesSync(relPath: string, followMode?: FollowXMode, extra?: string): Array&lt;string&gt;
+
+Obtains a list of configuration files based on the specified file name and follow mode, sorted in ascending order of priority. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Customization.ConfigPolicy
+
+**Parameters**
+
+| Name    | Type                         | Mandatory| Description                                                  |
+| ---------- | ----------------------------- | ---- | ------------------------------------------------------ |
+| relPath    | string                        | Yes  | Name of the configuration file.                                            |
+| followMode | [FollowXMode](#followxmode11) | No  | Follow mode. The default value is **DEFAULT**.                   |
+| extra      | string                        | No  | Custom follow rule. This parameter is valid only when **followMode** is set to **USER_DEFINED**.|
+
+**Return value**
+
+| Type               | Description    |
+| ------------------- | -------- |
+| Array&lt;string&gt; | Promise used to return the file list.|
+
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    let relpath: string = 'etc/config.xml';
+    let extra: string = 'etc/carrier/${telephony.sim.opkey0}';
+    let result: Array<string> = configPolicy.getCfgFilesSync(relpath, configPolicy.FollowXMode.USER_DEFINED, extra);
+    console.log('result is ' + result);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.log('error:' + code + ',' + message);
+  }
+  ```
+
+## getCfgDirListSync<sup>11+</sup>
+
+getCfgDirListSync(): Array&lt;string&gt;
+
+Obtains the list of configuration level directories. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Customization.ConfigPolicy
+
+**Return value**
+
+| Type               | Description            |
+| ------------------- | ---------------- |
+| Array&lt;string&gt; | Promise used to return the configuration level directory list.|
+
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    let result: Array<string> = configPolicy.getCfgDirListSync();
+    console.log('result is ' + result);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.log('error:' + code + ',' + message);
+  }
+  ```
+
+## FollowXMode<sup>11+</sup>
+
+**System capability**: SystemCapability.Customization.ConfigPolicy
+
+| Name            | Value | Description                                                                                                                      |
+| ---------------- | --- | -------------------------------------------------------------------------------------------------------------------------- |
+| DEFAULT          | 0   | Files are searched based on the follow rules configured in the **followx_file_list.cfg** file at each configuration level.                               |
+| NO_RULE_FOLLOWED | 1   | No follow rule is used, even if the **followx_file_list.cfg** file exists.                                             |
+| SIM_DEFAULT      | 10  | Files are searched in **etc/carrier/${opkey}** file at each configuration level based on the opkey of the default card.                               |
+| SIM_1            | 11  | Files are searched in **etc/carrier/${opkey}** at each configuration level based on the opkey of card 1.                                     |
+| SIM_2            | 12  | Files are searched in **etc/carrier/${opkey}** at each configuration level based on the opkey of card 2.                                     |
+| USER_DEFINED     | 100 | Files are searched based on the follow rule passed in **extra**, rather than the **followx_file_list.cfg** file at each configuration level.|

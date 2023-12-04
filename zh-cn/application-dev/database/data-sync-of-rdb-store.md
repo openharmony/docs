@@ -145,7 +145,8 @@
    // 当前不需要订阅数据变化时，可以将其取消。
    try {
      if(store != undefined) {
-       (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, observer);
+       (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver)=>{
+       }
      }
    } catch (err) {
      console.error('Failed to register observer. Code:${err.code},message:${err.message}');

@@ -62,13 +62,39 @@ Closes the custom dialog box. If the dialog box is closed, this API does not tak
 ```ts
 // xxx.ets
 @CustomDialog
+struct CustomDialogExampleTwo {
+  controllerTwo?: CustomDialogController
+
+  build() {
+    Column() {
+      Text('I'm the second dialog box.')
+        .fontSize(30)
+        .height(100)
+      Button ('Close Second Dialog Box')
+        .onClick(() => {
+          if (this.controllerTwo != undefined) {
+            this.controllerTwo.close()
+          }
+        })
+        .margin(20)
+    }
+  }
+}
+
+@CustomDialog
 struct CustomDialogExample {
   @Link textValue: string
   @Link inputValue: string
+  dialogControllerTwo: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExampleTwo(),
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -25 } })
   controller?: CustomDialogController
-  // You can pass in multiple other controllers in the CustomDialog to open one or more other CustomDialogs in the CustomDialog. In this case, you must place the controller pointing to the self at the end.
-  cancel: () => void = () => {}
-  confirm: () => void = () => {}
+  // You can pass in multiple other controllers in the CustomDialog to open one or more other CustomDialogs in the CustomDialog. In this case, you must place the controller pointing to the self behind all controllers.
+  cancel: () => void = () => {
+  }
+  confirm: () => void = () => {
+  }
 
   build() {
     Column() {
@@ -77,16 +103,16 @@ struct CustomDialogExample {
         .onChange((value: string) => {
           this.textValue = value
         })
-      Text('Whether to change a text?').fontSize(16).margin({ bottom: 10 })
+      Text('Are you sure you want to change text?').fontSize(16).margin({ bottom: 10 })
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        Button('cancel')
+        Button('No')
           .onClick(() => {
             if (this.controller != undefined) {
               this.controller.close()
               this.cancel()
             }
           }).backgroundColor(0xffffff).fontColor(Color.Black)
-        Button('confirm')
+        Button('Yes')
           .onClick(() => {
             if (this.controller != undefined) {
               this.inputValue = this.textValue
@@ -95,6 +121,14 @@ struct CustomDialogExample {
             }
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
+
+      Button ('Open Second Dialog Box')
+        .onClick(() => {
+          if (this.dialogControllerTwo != null) {
+            this.dialogControllerTwo.open()
+          }
+        })
+        .margin(20)
     }.borderRadius(10)
     // When using the border or cornerRadius attribute, use it together with the borderRadius attribute.
   }
@@ -122,7 +156,7 @@ struct CustomDialogUser {
     cornerRadius: 10,
   })
 
-  // Set dialogController to null when the custom component is about to be destructed.
+  // Set dialogController to null when the custom component is about to be destroyed.
   aboutToDisappear() {
     this.dialogController = null // Set dialogController to null.
   }

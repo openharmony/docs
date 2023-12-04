@@ -4,19 +4,19 @@
 在开始之前，我们先明确自定义组件和页面的关系：
 
 
-- 自定义组件：\@Component装饰的UI单元，可以组合多个系统组件实现UI的复用。
+- 自定义组件：\@Component装饰的UI单元，可以组合多个系统组件实现UI的复用，可以调用组件的生命周期。
 
-- 页面：即应用的UI页面。可以由一个或者多个自定义组件组成，\@Entry装饰的自定义组件为页面的入口组件，即页面的根节点，一个页面有且仅能有一个\@Entry。只有被\@Entry装饰的组件才可以调用页面的生命周期。
+- 页面：即应用的UI页面。可以由一个或者多个自定义组件组成，[@Entry](arkts-create-custom-components.md#自定义组件的基本结构)装饰的自定义组件为页面的入口组件，即页面的根节点，一个页面有且仅能有一个\@Entry。只有被\@Entry装饰的组件才可以调用页面的生命周期。
 
 
 页面生命周期，即被\@Entry装饰的组件生命周期，提供以下生命周期接口：
 
 
-- [onPageShow](../reference/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)：页面每次显示时触发。
+- [onPageShow](../reference/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)：页面每次显示时触发一次，包括路由过程、应用进入前台等场景，仅@Entry装饰的自定义组件生效。
 
-- [onPageHide](../reference/arkui-ts/ts-custom-component-lifecycle.md#onpagehide)：页面每次隐藏时触发一次。
+- [onPageHide](../reference/arkui-ts/ts-custom-component-lifecycle.md#onpagehide)：页面每次隐藏时触发一次，包括路由过程、应用进入前后台等场景，仅@Entry装饰的自定义组件生效。
 
-- [onBackPress](../reference/arkui-ts/ts-custom-component-lifecycle.md#onbackpress)：当用户点击返回按钮时触发。
+- [onBackPress](../reference/arkui-ts/ts-custom-component-lifecycle.md#onbackpress)：当用户点击返回按钮时触发，仅@Entry装饰的自定义组件生效。
 
 
 组件生命周期，即一般用\@Component装饰的自定义组件的生命周期，提供以下生命周期接口：
@@ -24,7 +24,7 @@
 
 - [aboutToAppear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)：组件即将出现时回调该接口，具体时机为在创建自定义组件的新实例后，在执行其build()函数之前执行。
 
-- [aboutToDisappear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)：在自定义组件即将析构销毁时执行。
+- [aboutToDisappear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)：aboutToDisappear函数在自定义组件析构销毁之前执行。不允许在aboutToDisappear函数中改变状态变量，特别是@Link变量的修改可能会导致应用程序行为不稳定。
 
 
 生命周期流程如下图所示，下图展示的是被\@Entry装饰的组件（首页）生命周期。
@@ -44,7 +44,7 @@
 
 3. 如果开发者定义了aboutToAppear，则执行aboutToAppear方法。
 
-4. 在首次渲染的时候，执行build方法渲染系统组件，如果有自定义子组件，则创建自定义组件的实例。在执行build()函数的过程中，框架会观察每个状态变量的读取状态，将保存两个map：
+4. 在首次渲染的时候，执行build方法渲染系统组件，如果子组件为自定义组件，则创建自定义组件的实例。在执行build()函数的过程中，框架会观察每个状态变量的读取状态，将保存两个map：
    1. 状态变量 -&gt; UI组件（包括ForEach和if）。
    2. UI组件 -&gt; 此组件的更新函数，即一个lambda方法，作为build()函数的子集，创建对应的UI组件并执行其属性方法，示意如下。
 
@@ -102,6 +102,7 @@ import router from '@ohos.router';
 @Component
 struct MyComponent {
   @State showChild: boolean = true;
+  @State btnColor:string = "#FF007DFF"
 
   // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onPageShow() {
@@ -115,6 +116,8 @@ struct MyComponent {
   // 只有被@Entry装饰的组件才可以调用页面的生命周期
   onBackPress() {
     console.info('Index onBackPress');
+    this.btnColor ="#FFEE0606"
+    return true // 返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理
   }
 
   // 组件生命周期
@@ -134,13 +137,16 @@ struct MyComponent {
         Child()
       }
       // this.showChild为false，删除Child子组件，执行Child aboutToDisappear
-      Button('delete Child').onClick(() => {
+      Button('delete Child')
+      .margin(20)
+      .backgroundColor(this.btnColor)
+      .onClick(() => {
         this.showChild = false;
       })
-      // push到Page2页面，执行onPageHide
+      // push到page页面，执行onPageHide
       Button('push to next page')
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Page2' });
+          router.pushUrl({ url: 'pages/page' });
         })
     }
 
@@ -160,15 +166,54 @@ struct Child {
   }
 
   build() {
-    Text(this.title).fontSize(50).onClick(() => {
+    Text(this.title).fontSize(50).margin(20).onClick(() => {
       this.title = 'Hello ArkUI';
     })
   }
 }
 ```
+```ts
+// page.ets
+@Entry
+@Component
+struct page {
+  @State textColor: Color = Color.Black;
+  @State num: number = 0
 
+  onPageShow() {
+    this.num = 5
+  }
 
-以上示例中，Index页面包含两个自定义组件，一个是被\@Entry装饰的MyComponent，也是页面的入口组件，即页面的根节点；一个是Child，是MyComponent的子组件。只有\@Entry装饰的节点才可以生效页面的生命周期方法，所以MyComponent中声明了当前Index页面的页面生命周期函数。MyComponent和其子组件Child也同时声明了组件的生命周期函数。
+  onPageHide() {
+    console.log("page onPageHide");
+  }
+
+  onBackPress() { // 不设置返回值按照false处理
+    this.textColor = Color.Grey
+    this.num = 0
+  }
+
+  aboutToAppear() {
+    this.textColor = Color.Blue
+  }
+
+  build() {
+    Column() {
+      Text(`num 的值为：${this.num}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .fontColor(this.textColor)
+        .margin(20)
+        .onClick(() => {
+          this.num += 5
+        })
+    }
+    .width('100%')
+  }
+}
+```
+
+以上示例中，Index页面包含两个自定义组件，一个是被\@Entry装饰的MyComponent，也是页面的入口组件，即页面的根节点；一个是Child，是MyComponent的子组件。只有\@Entry装饰的节点才可以使页面级别的生命周期方法生效，所以MyComponent中声明了当前Index页面的页面生命周期函数。MyComponent和其子组件Child也同时声明了组件的生命周期函数。
 
 
 - 应用冷启动的初始化流程为：MyComponent aboutToAppear --&gt; MyComponent build --&gt; Child aboutToAppear --&gt; Child build --&gt; Child build执行完毕 --&gt; MyComponent build执行完毕 --&gt; Index onPageShow。

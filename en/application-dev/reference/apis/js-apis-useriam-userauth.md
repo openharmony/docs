@@ -9,7 +9,7 @@ The **userIAM.userAuth** module provides user authentication capabilities in ide
 
 ## Modules to Import
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 ```
 
@@ -47,7 +47,7 @@ Represents the information presented on the user authentication page.
 | Name                | Type                               | Mandatory| Description                                                        |
 | -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | title                | string                              | Yes  | Title of the user authentication page. It cannot exceed 500 characters.                     |
-| navigationButtonText | string                              | No  | Text on the navigation button. It cannot exceed 60 characters.                      |
+| navigationButtonText | string                              | No  | Text on the navigation button. It cannot exceed 60 characters. This parameter is valid only in fingerprint or facial authentication only.|
 | windowMode           | [WindowModeType](#windowmodetype10) | No  | Display format of the user authentication page. The default value is **WindowModeType.DIALOG_BOX**.<br>**System API**: This is a system API.|
 
 ## UserAuthResult<sup>10+</sup>
@@ -83,7 +83,7 @@ Called to return the authentication result.
 
 **Example**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const authParam : userAuth.AuthParam = {
@@ -93,7 +93,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title:'Enter password',
-  navigationButtonText: 'Back',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -140,7 +139,7 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 
 **Example**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const authParam : userAuth.AuthParam = {
@@ -150,7 +149,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title:'Enter password',
-  navigationButtonText: 'Back',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -196,7 +194,7 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 
 **Example**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const authParam : userAuth.AuthParam = {
@@ -206,7 +204,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title:'Enter password',
-  navigationButtonText: 'Back',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -253,7 +250,7 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 
 **Example**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const authParam : userAuth.AuthParam = {
@@ -263,7 +260,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title:'Enter password',
-  navigationButtonText: 'Back',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -297,7 +293,7 @@ Cancels this authentication.
 
 **Example**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const authParam : userAuth.AuthParam = {
@@ -307,7 +303,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title:'Enter password',
-  navigationButtonText: 'Back',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -357,7 +352,7 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 
 **Example**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const authParam : userAuth.AuthParam = {
@@ -367,7 +362,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title:'Enter password',
-  navigationButtonText: 'Back',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -421,7 +415,7 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 
 **Example**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 interface  EventData {
@@ -483,7 +477,7 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 
 **Example**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const userAuthWidgetMgrVersion = 1;
@@ -529,7 +523,7 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 
 **Example**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const userAuthWidgetMgrVersion = 1;
@@ -587,7 +581,7 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 
 **Example**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 let userAuthWidgetMgrVersion = 1;
@@ -621,7 +615,7 @@ Called to return the command sent from the user authentication framework to the 
 
 **Example**
 
-```js
+```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
 const userAuthWidgetMgrVersion = 1;
@@ -705,7 +699,7 @@ Called to return the authentication result or authentication tip information.
 
 **Example**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
@@ -790,7 +784,7 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 
 **Example**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
@@ -856,7 +850,7 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 
 **Example**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
@@ -917,7 +911,7 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 
 **Example**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
@@ -960,7 +954,7 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 
 **Example**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
@@ -994,7 +988,7 @@ Obtains an **AuthInstance** instance for user authentication.
 | Name        | Type                                    | Mandatory| Description                    |
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
 | challenge      | Uint8Array                               | Yes  | Challenge value. It cannot exceed 32 bytes and can be passed in Uint8Array([]) format.|
-| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Only **FACE** is supported.|
+| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Currently, **FACE** and **FINGERPRINT** are supported.|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | Yes  | Authentication trust level.              |
 
 **Return value**
@@ -1016,7 +1010,7 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 
 **Example**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
@@ -1045,7 +1039,7 @@ Checks whether the specified authentication capability is supported.
 
 | Name        | Type                              | Mandatory| Description                      |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
-| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type.|
+| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type. PIN is supported since API version 11.|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level.      |
 
 **Error codes**
@@ -1063,7 +1057,7 @@ For details about the error codes, see [User Authentication Error Codes](../erro
 
 **Example**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 try {
@@ -1117,7 +1111,7 @@ A constructor used to create a **UserAuth** instance.
 
 **Example**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let auth = new userIAM_userAuth.UserAuth();
@@ -1144,7 +1138,7 @@ Obtains the version of this authenticator.
 
 **Example**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let auth = new userIAM_userAuth.UserAuth();
@@ -1169,7 +1163,7 @@ Checks whether the specified authentication capability is supported.
 
 | Name        | Type                              | Mandatory| Description                      |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
-| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type. Only **FACE** is supported.|
+| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type. Currently, **FACE** and **FINGERPRINT** are supported.|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level.      |
 
 **Return value**
@@ -1180,7 +1174,7 @@ Checks whether the specified authentication capability is supported.
 
 **Example**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let auth = new userIAM_userAuth.UserAuth();
@@ -1210,7 +1204,7 @@ Performs user authentication. This API uses a callback to return the result.
 | Name        | Type                                    | Mandatory| Description                    |
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
 | challenge      | Uint8Array                               | Yes  | Challenge value, which can be passed in Uint8Array([]) format.|
-| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Only **FACE** is supported.|
+| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Currently, **FACE** and **FINGERPRINT** are supported.|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | Yes  | Authentication trust level.            |
 | callback       | [IUserAuthCallback](#iuserauthcallbackdeprecated) | Yes  | Callback used to return the result.       |
 
@@ -1222,7 +1216,7 @@ Performs user authentication. This API uses a callback to return the result.
 
 **Example**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let auth = new userIAM_userAuth.UserAuth();
@@ -1271,7 +1265,7 @@ Cancels an authentication based on the context ID.
 
 **Example**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 // contextId can be obtained by auth(). In this example, it is defined here.
@@ -1312,7 +1306,7 @@ Called to return the authentication result.
 
 **Example**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let auth = new userIAM_userAuth.UserAuth();
@@ -1355,7 +1349,7 @@ Called to acquire authentication tip information. This API is optional.
 
 **Example**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let auth = new userIAM_userAuth.UserAuth();
@@ -1504,7 +1498,7 @@ Obtains an **Authenticator** instance for user authentication.
 | [Authenticator](#authenticatordeprecated) | **Authenticator** instance obtained.|
 
 **Example**
-  ```js
+  ```ts
   import userIAM_userAuth from '@ohos.userIAM.userAuth';
   
   let authenticator = userIAM_userAuth.getAuthenticator();
@@ -1546,7 +1540,7 @@ Parameters returned in callback
 
 **Example**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let authenticator = userIAM_userAuth.getAuthenticator();
@@ -1588,7 +1582,7 @@ Performs user authentication. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 try {

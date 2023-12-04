@@ -43,8 +43,8 @@ The following table lists the APIs used to configure information such as the sys
 
 2. Obtain and set the system language.
    
-   Call **setSystemLanguage** to set the system language. (This is a system API and can be called only by system applications with the **UPDATE_CONFIGURATION** permission.)
-   Call the **getSystemLanguage** API to obtain the system language.
+   Call [setSystemLanguage](../reference/apis/js-apis-i18n.md#setsystemlanguage9) to set the system language. (This is a system API and can be called only by system applications with the **UPDATE_CONFIGURATION** permission.)
+   Call [getSystemLanguage](../reference/apis/js-apis-i18n.md#getsystemlanguages9) to obtain the system language.
    
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -60,8 +60,8 @@ The following table lists the APIs used to configure information such as the sys
 
 3. Obtain and set the system locale.
    
-   Call **setSystemRegion** to set the system country or region. (This is a system API and can be called only by system applications with the **UPDATE_CONFIGURATION** permission.)
-   Call **getSystemRegion** to obtain the system country or region.
+   Call [setSystemRegion](../reference/apis/js-apis-i18n.md#getsystemregion9) to set the system country or region. (This is a system API and can be called only by system applications with the **UPDATE_CONFIGURATION** permission.)
+   Call [getSystemRegion](../reference/apis/js-apis-i18n.md#setsystemregion9) to obtain the system country or region.
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -77,8 +77,8 @@ The following table lists the APIs used to configure information such as the sys
 
 4. Obtain and set the system locale.
 
-   Call **setSystemLocale** to set the system locale. (This is a system API and can be called only by system applications with the **UPDATE_CONFIGURATION** permission.) For details about how to set a locale, see [Setting Locale Information](../internationalization/intl-guidelines.md#setting-locale-information).
-   Call **getSystemLocale** to obtain the system locale.
+   Call [setSystemLocale](../reference/apis/js-apis-i18n.md#setsystemlocale9) to set the system locale. (This is a system API and can be called only by system applications with the **UPDATE_CONFIGURATION** permission.) For details about how to set a locale, see [Setting Locale Information](../internationalization/intl-guidelines.md#setting-locale-information).
+   Call [getSystemLocale](../reference/apis/js-apis-i18n.md#getsystemlocale9) to obtain the system locale.
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -94,7 +94,7 @@ The following table lists the APIs used to configure information such as the sys
 
 5. Check whether the locale uses a right-to-left (RTL) language.
 
-   Call **isRTL** to check whether the locale uses an RTL language.
+   Call [isRTL](../reference/apis/js-apis-i18n.md#i18nisrtl7) interface to check whether the locale uses an RTL language.
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -110,8 +110,8 @@ The following table lists the APIs used to configure information such as the sys
 
 6. Obtain and set the 24-hour clock.
 
-   Call **set24HourClock** to enable the 24-hour clock.
-   Call **is24HourClock** to check whether the 24-hour clock is enabled.
+   Call [set24HourClock](../reference/apis/js-apis-i18n.md#set24hourclock9) to enable the 24-hour clock. (This is a system API and can be called only by system applications with the **UPDATE_CONFIGURATION** permission.)
+   Call [is24HourClock](../reference/apis/js-apis-i18n.md#is24hourclock9) to check whether the 24-hour clock is enabled.
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -127,7 +127,7 @@ The following table lists the APIs used to configure information such as the sys
 
 7. Obtain the localized representation of a language.
 
-   Call **getDisplayLanguage** to obtain the localized representation of a language. **language** indicates the language to be localized, **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
+   Call [getDisplayLanguage](../reference/apis/js-apis-i18n.md#getdisplaylanguage9) to obtain the localized representation of a language. **language** indicates the language to be localized, **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -145,7 +145,7 @@ The following table lists the APIs used to configure information such as the sys
 
 8. Obtain the localized representation of a country.
 
-   Call **getDisplayCountry** to obtain the localized representation of a country. **country** indicates the country to be localized, **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
+   Call [getDisplayCountry](../reference/apis/js-apis-i18n.md#getdisplaycountry9) to obtain the localized representation of a country. **country** indicates the country to be localized, **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -163,8 +163,8 @@ The following table lists the APIs used to configure information such as the sys
 
 9. Obtain the list of system languages and the list of countries supported by a system language.
 
-   Call **getSystemLanguages** to obtain the list of system languages.
-   Call **getSystemCountries** to obtain the list of countries and regions supported by a system language.
+   Call [getSystemLanguages](../reference/apis/js-apis-i18n.md#getsystemlanguages9) to obtain the list of system languages.
+   Call [getSystemCountries](../reference/apis/js-apis-i18n.md#getsystemcountries9) to obtain the list of countries and regions supported by a system language.
    ```ts
    import { BusinessError } from '@ohos.base';
    
@@ -179,7 +179,7 @@ The following table lists the APIs used to configure information such as the sys
 
 10. Check whether the language matches a country or region.
 
-   Call **isSuggested** to check whether the language matches a country or region.
+   Call [isSuggested](../reference/apis/js-apis-i18n.md#issuggested9) to check whether the language matches a country or region.
    
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -194,11 +194,11 @@ The following table lists the APIs used to configure information such as the sys
 
 11. Obtain and set the preferred language.
 
-   Call **addPreferredLanguage** to add a preferred language to the preferred language list.
-   Call **removePreferredLanguage** to remove a preferred language from the preferred language list. (**addPreferredLanguage** and **removePreferredLanguage** are system APIs and can be called only by system applications with the **UPDATE_CONFIGURATION** permission.)
-   Call **getPreferredLanguageList** to obtain the preferred language list.
-   Call **getFirstPreferredLanguage** to obtain the first preferred language in the preferred language list.
-   Call **getAppPreferredLanguageList** to obtain the preferred language of the application. It is the first language that matches the application resource in the preferred language list.
+   Call [addPreferredLanguage](../reference/apis/js-apis-i18n.md#addpreferredlanguage9) to add a preferred language to the preferred language list.
+   Call [removePreferredLanguage](../reference/apis/js-apis-i18n.md#removepreferredlanguage9) to remove a preferred language from the preferred language list. (**addPreferredLanguage** and **removePreferredLanguage** are system APIs and can be called only by system applications with the **UPDATE_CONFIGURATION** permission.)
+   Call [getPreferredLanguageList](../reference/apis/js-apis-i18n.md#getpreferredlanguagelist9) to obtain the preferred language list.
+   Call [getFirstPreferredLanguage](../reference/apis/js-apis-i18n.md#getfirstpreferredlanguage9) to obtain the first preferred language in the preferred language list.
+   Call [getAppPreferredLanguage](../reference/apis/js-apis-i18n.md#getapppreferredlanguage9) to obtain the preferred language of the application. It is the first language that matches the application resource in the preferred language list.
    
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -217,8 +217,8 @@ The following table lists the APIs used to configure information such as the sys
 
 12. Obtain and set the local digit switch.
 
-   Call **setUsingLocalDigit** to enable the local digit switch. (This is a system API and can be called only by system applications with the UPDATE_CONFIGURATION permission.)
-   Call **getUsingLocalDigit** to check whether the local digit switch is enabled.
+   Call [setUsingLocalDigit](../reference/apis/js-apis-i18n.md#setusinglocaldigit9) to enable the local digit switch. (This is a system API and can be called only by system applications with the UPDATE_CONFIGURATION permission.)
+   Call [getUsingLocalDigit](../reference/apis/js-apis-i18n.md#getusinglocaldigit9) to check whether the local digit switch is enabled.
    Currently, use of local digits is supported only for the following languages: **ar**, **as**, **bn**, **fa**, **mr**, **my**, **ne**, **ur**.
 
 ```ts
@@ -264,7 +264,7 @@ try {
 
 2. Instantiate a **Calendar** object.
 
-   Call **getCalendar** to obtain the time zone object of a specific locale and type (**i18n** is the name of the imported module). **type** indicates the valid calendar type, for example, **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic_civil**, **islamic_tbla**, **islamic_umalqura**, **japanese**, and **persian**. If **type** is left unspecified, the default calendar type of the locale is used.
+   Call [getCalendar](../reference/apis/js-apis-i18n.md#i18ngetcalendar8) to obtain the time zone object of a specific locale and type (**i18n** is the name of the imported module). **type** indicates the valid calendar type, for example, **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic_civil**, **islamic_tbla**, **islamic_umalqura**, **japanese**, and **persian**. If **type** is left unspecified, the default calendar type of the locale is used.
 
    ```ts
    let calendar = I18n.getCalendar("zh-CN", "chinese"); // Create the Calendar object for the Chinese lunar calendar.
@@ -272,7 +272,7 @@ try {
 
 3. Set the time for the **Calendar** object.
 
-     Call **setTime** to set the time of the **Calendar** object. Two types of parameters are supported. One is a **Date** object, and the other is a value indicating the number of milliseconds elapsed since January 1, 1970, 00:00:00 GMT.
+     Call [setTime](../reference/apis/js-apis-i18n.md#settime8) to set the time of the **Calendar** object. Two types of parameters are supported. One is a **Date** object, and the other is a value indicating the number of milliseconds elapsed since January 1, 1970, 00:00:00 GMT.
 
    ```ts
    let date1 = new Date();
@@ -283,7 +283,7 @@ try {
 
 4. Set the year, month, day, hour, minute, and second for this **Calendar** object.
 
-     Call **set** to set the year, month, day, hour, minute, and second for the **Calendar** object.
+     Call [set](../reference/apis/js-apis-i18n.md#set8) to set the year, month, day, hour, minute, and second for the **Calendar** object.
 
    ```ts
    calendar.set(2021, 12, 21, 6, 0, 0);
@@ -291,7 +291,7 @@ try {
 
 5. Set and obtain the time zone for the **Calendar** object.
 
-   Call **setTimeZone** and **getTimeZone** to set and obtain the time zone of the **Calendar** object. Note that **setTimeZone** requires an input string to indicate the time zone to be set.
+   Call [setTimeZone](../reference/apis/js-apis-i18n.md#settimezone8) and [getTimeZone](../reference/apis/js-apis-i18n.md#gettimezone8) respectively to set and obtain the time zone of the **Calendar** object. Note that **setTimeZone** requires an input string to indicate the time zone to be set.
 
    ```ts
    calendar.setTimeZone("Asia/Shanghai");
@@ -300,7 +300,7 @@ try {
 
 6. Set and obtain the first day of a week for the **Calendar** object.
 
-   Call **setFirstDayOfWeek** and **getFirstDayOfWeek** to set and obtain the start day of a week for the **Calendar** object. **setFirstDayOfWeek** must be set to a value indicating the first day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.
+   Call [setFirstDayOfWeek](../reference/apis/js-apis-i18n.md#setfirstdayofweek8) and [getFirstDayOfWeek](../reference/apis/js-apis-i18n.md#getfirstdayofweek8) respectively to set and obtain the start day of a week for the **Calendar** object. **setFirstDayOfWeek** must be set to a value indicating the first day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.
 
    ```ts
    calendar.setFirstDayOfWeek(1);
@@ -308,7 +308,8 @@ try {
    ```
 
 7. Set and obtain the minimum count of days in the first week for the **Calendar** object.
-     Call **setMinimalDaysInFirstWeek** and **getMinimalDaysInFirstWeek** to set and obtain the minimum number of days in the first week for the **Calendar** object.
+
+   Call [setMinimalDaysInFirstWeek](../reference/apis/js-apis-i18n.md#setminimaldaysinfirstweek8) and [getMinimalDaysInFirstWeek](../reference/apis/js-apis-i18n.md#getminimaldaysinfirstweek8) to set and obtain the minimum number of days in the first week for the **Calendar** object.
 
    ```ts
    calendar.setMinimalDaysInFirstWeek(3);
@@ -316,7 +317,8 @@ try {
    ```
 
 8. Obtain the localized representation of the **Calendar** object.
-   Call **getDisplayName** to obtain the localized representation of the **Calendar** object.
+
+   Call [getDisplayName](../reference/apis/js-apis-i18n.md#getdisplayname8) to obtain the localized display of the calendar object.
 
    ```ts
    let localizedName = calendar.getDisplayName("zh-CN"); // localizedName = " Lunar Calendar"
@@ -324,7 +326,7 @@ try {
 
 9. Check whether a date is a weekend.
 
-   Call **isWeekend** to determine whether the input date is a weekend.
+   Call [isWeekend](../reference/apis/js-apis-i18n.md#isweekend8) to check whether the input date is a weekend.
 
    ```ts
    let date = new Date(2022, 12, 12, 12, 12, 12);
@@ -333,7 +335,7 @@ try {
 
 ## Formatting a Phone Number
 
-[PhoneNumberFormat](../reference/apis/js-apis-i18n.md#phonenumberformat8) provides APIs to format phone numbers of different countries or regions and check whether the phone number format is correct.
+   [PhoneNumberFormat](../reference/apis/js-apis-i18n.md#phonenumberformat8) provides APIs to format phone numbers of different countries or regions and check whether the phone number format is correct.
 
 ### Available APIs
 
@@ -354,7 +356,7 @@ try {
 
 2. Instantiate a **PhoneNumberFormat** object.
 
-   Call the **PhoneNumberFormat** constructor to instantiate a **PhoneNumberFormat** object. The country code and formatting options of the phone number need to be passed into this constructor. The formatting options are optional, including a style option. Values of this option include: **E164**, **INTERNATIONAL**, **NATIONAL**, and **RFC3966**.
+   Call the constructor used to instantiate a [PhoneNumberFormat](../reference/apis/js-apis-i18n.md#phonenumberformat8) object. You need to pass the country code and formatting options of the phone number into this constructor. The formatting options are optional, including a style option. Values of this option include: **E164**, **INTERNATIONAL**, **NATIONAL**, and **RFC3966**.
 
    ```ts
    let phoneNumberFormat = new I18n.PhoneNumberFormat("CN", {type: "E164"});
@@ -362,18 +364,18 @@ try {
 
 3. Check whether the phone number format is correct.
 
-     Call **isValidNumber** to check whether the format of the input phone number is correct.
+   Call [isValidNumber](../reference/apis/js-apis-i18n.md#isvalidnumber8) to check whether the format of the input phone number is correct.
 
    ```ts
-   let validNumber = phoneNumberFormat.isValidNumber("15812341234"); // validNumber = true
+   let validNumber = phoneNumberFormat.isValidNumber("123****8911"); // validNumber = true
    ```
 
 4. Format a phone number.
 
-     Call **format** to format the input phone number.
+   Call [format](../reference/apis/js-apis-i18n.md#format8) to format the input phone number.
 
    ```ts
-   let formattedNumber = phoneNumberFormat.format("15812341234"); // formattedNumber = "+8615812341234"
+   let formattedNumber = phoneNumberFormat.format("123****8911"); // formattedNumber = "+86123****8911"
    ```
 
 ## Measurement Conversion
@@ -430,8 +432,7 @@ try {
 
 2. Instantiates an **IndexUtil** object.
 
-   Call **getInstance** to instantiate an **IndexUtil** object for a specific locale. When the **locale** parameter is empty, instantiate an **IndexUtil** object of the default locale.
-
+   Call [getInstance](../reference/apis/js-apis-i18n.md#getinstance8) to instantiate an **IndexUtil** object for a specific locale. When the **locale** parameter is empty, instantiate an **IndexUtil** object of the default locale.
 
    ```ts
    let indexUtil = I18n.getInstance("zh-CN");
@@ -439,7 +440,7 @@ try {
 
 3. Obtain the index list.
 
-     Call **getIndexList** to obtain the alphabet index list of the current locale.
+     Call [getIndexList](../reference/apis/js-apis-i18n.md#getindexlist8) to obtain the alphabet index list of the current locale.
 
    ```ts
    let indexList = indexUtil.getIndexList(); // indexList = ["...", "A", "B", "C", ..., "X", "Y", "Z", "..."]
@@ -447,7 +448,7 @@ try {
 
 4. Add an index.
 
-     Call **addLocale** to add the alphabet index of a new locale to the current index list.
+     Call [addLocale](../reference/apis/js-apis-i18n.md#addlocale8) to add the alphabet index of a new locale to the current index list.
 
    ```ts
    indexUtil.addLocale("ar");
@@ -455,7 +456,7 @@ try {
 
 5. Obtain the index of a string.
 
-     Call **getIndex** to obtain the alphabet index of a string.
+     Call [getIndex](../reference/apis/js-apis-i18n.md#getindex8) to obtain the alphabet index of a string.
 
    ```ts
    let text = "access index";
@@ -491,7 +492,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 
 2. Instantiate a **BreakIterator** object.
 
-   Call **getLineInstance** to instantiate a **BreakIterator** object.
+   Call [getLineInstance](../reference/apis/js-apis-i18n.md#i18ngetlineinstance8) to instantiate a **BreakIterator** object.
 
    ```ts
    let locale = "en-US";
@@ -500,7 +501,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 
 3. Set and access the text that requires line breaking.
 
-   Call **setLineBreakText** and **getLineBreakText** to set and access the text that requires line breaking.
+   Call [setLineBreakText](../reference/apis/js-apis-i18n.md#setlinebreaktext8) and [getLineBreakText](../reference/apis/js-apis-i18n.md#getlinebreaktext8) respectively to set and access the text that requires line breaking.
 
    ```ts
    let text = "Apple is my favorite fruit";
@@ -510,7 +511,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 
 4. Obtain the current position of the **BreakIterator** object.
 
-   Call **current** to obtain the current position of the **BreakIterator** object in the text being processed.
+   Call [current](../reference/apis/js-apis-i18n.md#current8) to obtain the current position of the **BreakIterator** object in the text being processed.
 
    ```ts
    let pos = breakIterator.current(); // pos = 0
@@ -518,7 +519,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 
 5. Set the position of a **BreakIterator** object.
 
-   The following APIs are provided to adjust the **first**, **last**, **next**, **previous**, or **following** position of the **BreakIterator** object in the text to be processed.
+   Call [first](../reference/apis/js-apis-i18n.md#first8), [last](../reference/apis/js-apis-i18n.md#last8), [next](../reference/apis/js-apis-i18n.md#next8), [previous](../reference/apis/js-apis-i18n.md#previous8), or [following](../reference/apis/js-apis-i18n.md#following8) as needed to adjust the the position of the **BreakIterator** object in the text.
 
    ```ts
    let firstPos = breakIterator.first(); // Set a BreakIterator object to the first break point, that is, the start position of the text (firstPos = 0).
@@ -534,7 +535,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 
 6. Determine whether a position is a break point.
 
-   Call **isBoundary** to determine whether a position is a break point. If yes, **true** is returned and the **BreakIterator** object is moved to this position. If no, **false** is returned and the **BreakIterator** object is moved to a break point after this position.
+   Call [isBoundary](../reference/apis/js-apis-i18n.md#isboundary8) to check whether a position is a break point. If yes, **true** is returned and the **BreakIterator** object is moved to this position. If no, **false** is returned and the **BreakIterator** object is moved to a break point after this position.
 
    ```ts
    let isboundary = breakIterator.isBoundary(5); // isboundary = false
@@ -568,7 +569,7 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 
 2. Instantiate the **TimeZone** object, and obtain the time zone information.
 
-   Call **getTimeZone** to obtain the **TimeZone** object.
+   Call [getTimeZone](../reference/apis/js-apis-i18n.md#i18ngettimezone7) to obtain the **TimeZone** object.
 
    ```ts
    let timezone = I18n.getTimeZone(); // If you use the default settings, you'll obtain the TimeZone object corresponding to the system time zone.
@@ -585,8 +586,8 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 
 3. Obtain the list of time zone IDs supported by the system.
 
-   Call **getAvailableIDs** to obtain the list of time zone IDs supported by the system.
-   You can use the time zone ID in the time zone ID list as an input parameter of the **getTimeZone** API to create a **TimeZone** object.
+   Call [getAvailableIDs](../reference/apis/js-apis-i18n.md#getavailableids9) to obtain the list of time zone IDs supported by the system.
+   You can use an ID in the ID list of **TimeZone** objects as an input parameter of **getTimeZone** to create a **TimeZone** object.
 
    ```ts
    let timezoneIDs = I18n.TimeZone.getAvailableIDs(); // timezoneIDs = ["America/Adak", ...], which contains 24 time zone IDs in total
@@ -596,9 +597,9 @@ When a text is displayed in more than one line, use [BreakIterator8](../referenc
 
 4. Obtain the list of time zone city IDs supported by the system.
 
-   Call **getAvailableZoneCityIDs** to obtain the list of time zone city IDs supported by the system.
-   Call **getCityDisplayName** to obtain the localized representation of the time zone city ID.
-   Call **getTimezoneFromCity** to create a **TimeZone** object based on the time zone city ID.
+   Call [getAvailableZoneCityIDs](../reference/apis/js-apis-i18n.md#getavailablezonecityids9) to obtain the list of time zone city IDs supported by the system.
+   Call [getCityDisplayName](../reference/apis/js-apis-i18n.md#getcitydisplayname9) to obtain the localized representation of the time zone city ID.
+   Call [getTimezoneFromCity](../reference/apis/js-apis-i18n.md#gettimezonefromcity9) to create a **TimeZone** object based on the time zone city ID.
 
    ```ts
    let zoneCityIDs = I18n.TimeZone.getAvailableZoneCityIDs(); // ["Auckland", "Magadan", ...]
@@ -615,7 +616,7 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
 
 | Class       | API                                    | Description                            |
 | --------- | ---------------------------------------- | ------------------------------ |
-| Transliterator | getAvailableIDs():Array<string><sup>9+</sup> | Obtains the transliterator ID list.                      |
+| Transliterator | getAvailableIDs():Array<string><sup>9+</sup> | Obtains the ID list of **Transliterator** objects.                      |
 | Transliterator | getInstance(): Transliterator<sup>9+</sup> | Creates a **Transliterator** object.                     |
 | Transliterator | transform(text: string): string<sup>9+</sup>   | Obtains a transliterated string.                     |
 
@@ -627,10 +628,10 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
    import I18n from '@ohos.i18n';
    ```
 
-2. Obtains the transliterator ID list.
+2. Obtain the ID list of **Transliterator** objects.
 
-   Call **getAvailableIDs** to obtain the transliterator ID list.
-   An ID is in the **source-destination** format. For example, **ASCII-Latin** means to convert the transliterator ID from ASCII to Latin.
+   Call [getAvailableIDs](../reference/apis/js-apis-i18n.md#getavailableids9-1) to obtain the ID list of **Transliterator** objects.
+   An ID is in the **source-destination** format. For example, **ASCII-Latin** means to convert the ID from ASCII to Latin.
 
    ```ts
    let ids = I18n.Transliterator.getAvailableIDs(); // ids = ["ASCII-Latin", "Accents-Any", ... ], 671 languages in total
@@ -638,8 +639,8 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
 
 3. Create a **Transliterator** object, and obtain the transliterated string.
 
-   You can use the ID in the transliterator ID list as an input parameter of the **getInstance** API to create a **Transliterator** object.
-   Call **transform** to obtain the transliterated string.
+   You can use an ID in the ID list of **Transliterator** objects as an input parameter of [getInstance](../reference/apis/js-apis-i18n.md#getinstance9) to create a **Transliterator** object.
+   Call [transform](../reference/apis/js-apis-i18n.md#transform9) to obtain the transliterated string.
 
    ```ts
    let transliterator = I18n.Transliterator.getInstance("Any-Latin"); // Any-Latin means to convert any text to Latin text.
@@ -676,21 +677,21 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
 
 2. Check the input character has a certain attribute.
 
-   Check whether the input character is a digit.
+   Checks whether the input character is a digit.
 
    ```ts
    let isDigit = I18n.Unicode.isDigit("1"); // isDigit = true
    isDigit = I18n.Unicode.isDigit("a"); // isDigit = false
    ```
 
-   Check whether the input character is a space.
+   Checks whether the input character is a space.
 
    ```ts
    let isSpaceChar = I18n.Unicode.isSpaceChar(" "); // isSpaceChar = true
    isSpaceChar = I18n.Unicode.isSpaceChar("\n"); // isSpaceChar = false
    ```
 
-   Check whether the input character is a white space.
+   Checks whether the input character is a white space.
 
    ```ts
    let isWhitespace = I18n.Unicode.isWhitespace(" "); // isWhitespace = true
@@ -704,28 +705,28 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
    isRTL = I18n.Unicode.isRTL("a"); // isRTL = false
    ```
 
-   Check whether the input character is an ideographic character.
+   Checks whether the input character is an ideographic character.
 
    ```ts
    let isIdeograph = I18n.Unicode.isIdeograph("Hello"); // isIdeograph = true
    isIdeograph = I18n.Unicode.isIdeograph("a"); // isIdeograph = false
    ```
 
-   Check whether the input character is a letter.
+   Checks whether the input character is a letter.
 
    ```ts
    let isLetter = I18n.Unicode.isLetter("a"); // isLetter = true
    isLetter = I18n.Unicode.isLetter("."); // isLetter = false
    ```
 
-   Check whether the input character is a lowercase letter.
+   Checks whether the input character is a lowercase letter.
 
    ```ts
    let isLowerCase = I18n.Unicode.isLowerCase("a"); // isLetter = true
    isLowerCase = I18n.Unicode.isLowerCase("A"); // isLetter = false
    ```
 
-   Check whether the input character is an uppercase letter.
+   Checks whether the input character is an uppercase letter.
 
    ```ts
    let isUpperCase = I18n.Unicode.isUpperCase("a"); // isUpperCase = false
@@ -734,7 +735,7 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
 
 3. Obtain the character type.
 
-   Call **getType** to obtain the character type.
+   Call [getType](../reference/apis/js-apis-i18n.md#gettype9) to obtain the character type.
 
    ```ts
    let type = I18n.Unicode.getType("a"); // type = U_LOWER_CASE_LETTER
@@ -758,10 +759,9 @@ Call [Transliterator](../reference/apis/js-apis-i18n.md#transliterator9) APIs to
 
 2. Check the sequence of year, month, and day in a date.
 
-   Call **getDateOrder** to obtain the sequence of year, month, and day in the date of the specified locale.
+   Call [getDateOrder](../reference/apis/js-apis-i18n.md#getdateorder9) to obtain the sequence of year, month, and day in the date of the specified locale.
    The API returns a string consisting of three parts, **y**, **L**, and **d**, which indicate the year, month, and day, respectively. The three parts are separated by using a hyphen (-), for example, **y-L-d**.
 
    ```ts
    let order = I18n.I18NUtil.getDateOrder("zh-CN"); // order = "y-L-d" indicates that the sequence of year, month, and day in Chinese is year-month-day.
    ```
-

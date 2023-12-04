@@ -1,5 +1,7 @@
 # @ohos.uri (URI字符串解析)
 
+本模块提供URI字符串解析的相关功能。
+
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -8,10 +10,12 @@
 ## 导入模块
 
 ```ts
-import uri from '@ohos.uri'  
+import uri from '@ohos.uri'
 ```
 
 ## URI
+
+构造URI对象，提供判断对象相等、规范路径等方法。
 
 ### 属性
 
@@ -60,8 +64,8 @@ console.log(result1.query) // null
 const result2 = new uri.URI("gopher://spinaltap.micro.umn.edu/00/Weather/California/Los%20Angeles#fragment");
 console.log(result2.host) // spinaltap.micro.umn.edu
 console.log(result2.fragment) // fragment
-console.log(result2.path) // /dddd/eee.txt
-console.log(result2.scheme) // ftp
+console.log(result2.path) // /00/Weather/California/Los Angeles
+console.log(result2.scheme) // gopher
 console.log(result2.userInfo) // null
 console.log(result2.port) //-1
 console.log(result2.query) // null

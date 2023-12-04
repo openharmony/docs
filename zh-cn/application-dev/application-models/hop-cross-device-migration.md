@@ -38,7 +38,6 @@
 
 - 跨端迁移要求在同一`UIAbility`之间进行，也就是需要相同的`bundleName`、`abilityName`和签名信息。
 - 为了获得最佳体验，使用`wantParam`传输的数据需要控制在100KB以下。
-- 当前部分ArkUI组件支持迁移后，将特定状态恢复到对端设备。详情请见[分布式迁移标识](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-restoreId.md)
 
 ## 开发步骤
 
@@ -313,9 +312,146 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+## 跨端迁移中的数据迁移
+当前支持四种不同的数据迁移方式，开发者可以根据实际使用需要进行选择。
+
+### 使用ArkUI组件迁移数据
+
+部分ArkUI组件支持通过配置`restoreId`的方式，在迁移后将特定状态恢复到对端设备。详情请见[分布式迁移标识](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-restoreId.md)。
+
+### 使用wantParam迁移数据
+
+在需要迁移的数据较少（100KB以下）时，开发者可以选择在`wantParam`中增加字段进行数据迁移。示例如下：
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+
+export default class EntryAbility extends UIAbility {
+  // 源端保存
+  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
+    // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
+    const continueInput = '迁移的数据';
+    wantParam['data'] = continueInput;
+    return AbilityConstant.OnContinueResult.AGREE;
+  }
+
+  // 对端恢复
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+      let continueInput = '';
+      if (want.parameters != undefined) {
+        continueInput = JSON.stringify(want.parameters.data);
+      }
+    }
+  }
+
+  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+      let continueInput = '';
+      if (want.parameters != undefined) {
+        continueInput = JSON.stringify(want.parameters.data);
+      }
+    }
+  }
+}
+```
+### 使用分布式对象迁移数据
+
+当需要迁移的数据较大（100KB以上）时，可以选择[分布式对象](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#ohosdatadistributeddataobject-%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1)进行数据迁移。
+
+首先，在应用初始化时，创建一个分布式数据对象[`DataObject`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#dataobject)：
+
+```ts
+// 导入依赖
+import distributedObject from '@ohos.data.distributedDataObject';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+  // 定义分布式数据对象
+  g_object: distributedObject.DataObject|null = null;
+
+  // 示例中，在onCreate阶段初始化分布式数据对象
+  onCreate() {
+    let source: SourceObject = new SourceObject('');
+    this.g_object = distributedObject.create(this.context, source);
+  }
+}
+```
+
+源端在`onContinue()`接口中，调用[`genSessionId()`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#distributedobjectgensessionid)接口随机生成一个`sessionId`，使用该值调用[`setSessionId()`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#setsessionid9)接口设置当前对象的`sessionId`，并将其通过`want`传递到对端。当可信组网中有多个设备时，多个设备间的对象如果设置为同一个`sessionId`，就能自动同步。随后，向分布式数据对象中写入需要传输的数据，并调用[`save()`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#save9)接口保存。
+
+```ts
+import distributedObject from '@ohos.data.distributedDataObject';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  
+  // 源端保存
+  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
+    // 生成sessionId
+    let sessionId: string = distributedObject.genSessionId();
+
+    // 使用该sessionId开启数据同步
+    this.g_object.setSessionId(sessionId, ()=>{
+        console.info("join session");
+    });
+    // 将sessionId传递到对端
+    wantParam['session'] = sessionId;
+
+    // 向分布式数据对象中写入数据，并保存
+    this.g_object['notesTitle'] = 'This is a sample title';
+    this.g_object.save(wantParam.targetDevice as string, (err: BusinessError, result:distributedObject.SaveSuccessResponse) => {
+      if (err) {
+        console.info("save failed, error code = " + err.code);
+        console.info("save failed, error message: " + err.message);
+        return;
+      }
+      console.info("save callback");
+      console.info("save sessionId: " + result.sessionId);
+      console.info("save version: " + result.version);
+      console.info("save deviceId:  " + result.deviceId);
+    });
+  }
+}
+```
+
+对端在`onCreate()/onNewWant()`中进行数据恢复时，调用[`setSessionId()`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#setsessionid9)接口设置与源端相同的`sessionId`，随后即可从分布式对象中恢复数据。
+
+```ts
+import distributedObject from '@ohos.data.distributedDataObject';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  // 例如，在onCreate()中恢复数据
+  onCreate() {
+    // 获取源端传入的sessionId
+    let sessionId: string = want?.parameters?.session as string;
+
+    // 加入数据传输session
+    this.g_object.setSessionId(sessionId, ()=>{
+      console.info("join session");
+    });
+
+    // 获取分布式数据
+    let newTitle: string = this.g_object['notesTitle'];
+  }
+}
+```
+
+### 使用分布式文件迁移数据
+当需要迁移的数据较大（100KB以上）时，也可以选择分布式文件进行数据迁移。相比于分布式对象，分布式文件更适用于需要传输的数据为文件的场景。在源端将数据写入分布式文件路径后，对端迁移后拉起的应用能够在同个分布式文件路径下访问到该文件。
+
+使用参考详见[跨设备文件访问](https://gitee.com/eileen-dxy/docs/blob/master/zh-cn/application-dev/file-management/file-access-across-devices.md)。
+
 ## 验证指导
 
-为方便开发者验证已开发的可迁移应用，当前OpenHarmony提供了一个全局任务中心demo作为迁移的入口。下面介绍通过安装全局任务中心来验证迁移的方式。
+为方便开发者验证已开发的可迁移应用，系统提供了一个全局任务中心demo作为迁移的入口。下面介绍通过安装全局任务中心来验证迁移的方式。
 
 ### 1. 编译安装全局任务中心
 
@@ -331,7 +467,7 @@ public-SDK不支持开发者使用所有的系统API，例如：全局任务中�
 
 #### **编译工程文件**
 
-​	a.新建OpenHarmony 空的工程，找到对应的文件夹替换下载文件  
+​	a.新建一个工程，找到对应的文件夹替换下载文件  
 ![hop-cross-device-migration](figures/hop-cross-device-migration1.png)
 
 ​	b.自动签名，编译安装。

@@ -33,7 +33,7 @@ onAddForm(want: Want): formBindingData.FormBindingData
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](js-apis-application-want.md) | 是   | 当前卡片相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
+| want   | [Want](js-apis-app-ability-want.md) | 是   | 当前卡片相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
 
 **返回值：**
 
@@ -130,7 +130,8 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onChangeFormVisibility(newStatus: { [key: string]: number }): void
 
-卡片提供方接收修改可见性的通知接口。
+卡片提供方接收修改可见性的通知接口。  
+该接口仅对系统应用生效，且需要将formVisibleNotify配置为true。
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -182,7 +183,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onFormEvent(formId: string, message: string): void
 
-卡片提供方接收处理卡片事件的通知接口。
+卡片提供方接收处理卡片事件的通知接口（此方法仅可在JS卡片中使用）。
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -233,9 +234,10 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onConfigurationUpdate
 
-onConfigurationUpdate(newConfig: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void
 
-当系统配置更新时调用。
+当系统配置更新时调用。  
+仅当前formExtensionAbility存活时更新配置才会触发此生命周期。需要注意：formExtensionAbility创建后5秒内无操作将会被清理。
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -252,7 +254,9 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import { Configuration } from '@ohos.app.ability.Configuration';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onConfigurationUpdate(config: Configuration) {
+  onConfigurationUpdate(newConfig: Configuration) {
+    // 仅当前formExtensionAbility存活时更新配置才会触发此生命周期。
+    // 需要注意：formExtensionAbility创建后5秒内无操作将会被清理。
     console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
   }
 };
@@ -260,9 +264,9 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onAcquireFormState
 
-onAcquireFormState?(want: Want): formInfo.FormState;
+onAcquireFormState?(want: Want): formInfo.FormState
 
-卡片提供方接收查询卡片状态通知接口。默认返回卡片初始状态。
+卡片提供方接收查询卡片状态通知接口，默认返回卡片初始状态(该方法可以选择性重写)。
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -270,7 +274,7 @@ onAcquireFormState?(want: Want): formInfo.FormState;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | want表示获取卡片状态的描述。描述包括Bundle名称、能力名称、模块名称、卡片名和卡片维度。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | want表示获取卡片状态的描述。描述包括Bundle名称、能力名称、模块名称、卡片名和卡片维度。 |
 
 **示例：**
 
@@ -307,7 +311,7 @@ onShareForm?(formId: string): { [key: string]: Object }
 
 | 类型                                                         | 说明                                                        |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| {[key: string]: any} | 卡片要分享的数据，由开发者自行决定传入的键值对。 |
+| {[key: string]: Object} | 卡片要分享的数据，由开发者自行决定传入的键值对。 |
 
 **示例：**
 
@@ -346,7 +350,7 @@ onAcquireFormData?(formId: string): { [key: string]: Object }
 
 | 类型                                                         | 说明                                                        |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| {[key: string]: any} | 卡片的自定义数据，由开发者自行决定传入的键值对。 |
+| {[key: string]: Object} | 卡片的自定义数据，由开发者自行决定传入的键值对。 |
 
 **示例：**
 

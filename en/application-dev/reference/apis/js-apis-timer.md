@@ -55,10 +55,10 @@ Cancels the repeating timer set via **setTimeout()**.
 
 **Example**
 
-  ```js    
+  ```js
   let timeoutID = setTimeout(() => {
-    console.log('do after 1s delay.');        
-  }, 1000);        
+    console.log('do after 1s delay.');
+  }, 1000);
   clearTimeout(timeoutID);
   ```
 
@@ -68,7 +68,6 @@ Cancels the repeating timer set via **setTimeout()**.
 setInterval(handler: Function | string, delay: number, ...arguments: any[]): number
 
 Sets a repeating timer for the system to repeatedly call a function at a fixed interval.
-
 The timer can only be manually deleted by calling the **clearInterval** API.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -91,7 +90,7 @@ The timer can only be manually deleted by calling the **clearInterval** API.
 
   ```js
   setInterval(() => {
-    console.log('do every 1s.');        
+    console.log('do every 1s.');
   }, 1000);
   ```
 
@@ -112,7 +111,7 @@ Cancels the repeating timer set via **setInterval()**.
 
 **Example**
 
-  ```js      
+  ```js
   let intervalID = setInterval(() => {
     console.log('do every 1s.');
   }, 1000);

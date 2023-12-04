@@ -545,7 +545,7 @@ class SocketInfo {
 let messageView = '';
 udp.on('message', (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -585,7 +585,7 @@ let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let messageView = '';
 let callback = (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -1648,7 +1648,7 @@ class SocketInfo {
 let messageView = '';
 tcp.on('message', (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -1688,7 +1688,7 @@ class SocketInfo {
 let messageView = '';
 let callback = (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -2703,7 +2703,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('message', (value: SocketInfo) => {
     let messageView = '';
     for (let i: number = 0; i < value.message.byteLength; i++) {
-      let messages: number = value.message.i
+      let messages: number = value.message[i]
       let message = String.fromCharCode(messages);
       messageView += message;
     }
@@ -2750,7 +2750,7 @@ class SocketInfo {
 let callback = (value: SocketInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -3281,7 +3281,7 @@ class SocketInfo {
 let messageView = '';
 tls.on('message', (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -3321,7 +3321,7 @@ class SocketInfo {
 let messageView = '';
 let callback = (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -3801,7 +3801,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCertificate().then((data: socket.X509CertRawData) => {
   console.log(data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -3871,7 +3871,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate().then((data: socket.X509CertRawData) => {
   console.log(data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -3943,7 +3943,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getProtocol().then((data: string) => {
   console.log(data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4017,7 +4017,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCipherSuite().then((data: Array<string>) => {
   console.log('getCipherSuite success:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4087,7 +4087,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getSignatureAlgorithms().then((data: Array<string>) => {
   console.log("getSignatureAlgorithms success" + data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4172,7 +4172,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.send("xxxx").then(() => {
   console.log("send success");
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4248,7 +4248,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.close().then(() => {
   console.log("close success");
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4848,7 +4848,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 tlsServer.getCertificate().then((data: socket.x509certrawdata9) => {
   console.log(data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -4971,7 +4971,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 tlsServer.getProtocol().then((data: string) => {
   console.log(data);
 }).catch((err: BusinessError) => {
-  console.error(err);
+  console.error("failed" + err);
 });
 ```
 
@@ -5603,7 +5603,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteAddress().then((data: socket.NetAddress) => {
     console.log('getRemoteAddress success:' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error(err);
+    console.error("failed" + err);
   });
 });
 ```
@@ -5722,7 +5722,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteCertificate().then((data: socket.X509CertRawData) => {
     console.log('getRemoteCertificate success:' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error(err);
+    console.error("failed" + err);
   });
 });
 ```
@@ -5780,7 +5780,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
-  client.getCipherSuite((err: string, data: Array<string>) => {
+  client.getCipherSuite((err: BusinessError, data: Array<string>) => {
     if (err) {
       console.log("getCipherSuite callback error = " + err);
     } else {
@@ -5845,7 +5845,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getCipherSuite().then((data: Array<string>) => {
     console.log('getCipherSuite success:' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error(err);
+    console.error("failed" + err);
   });
 });
 ```
@@ -5964,7 +5964,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getSignatureAlgorithms().then((data: Array<string>) => {
     console.log("getSignatureAlgorithms success" + data);
   }).catch((err: BusinessError) => {
-    console.error(err);
+    console.error("failed" + err);
   });
 });
 ```
@@ -6027,7 +6027,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('message', (value: SocketInfo) => {
     let messageView = '';
     for (let i: number = 0; i < value.message.byteLength; i++) {
-      let messages: number = value.message.i
+      let messages: number = value.message[i]
       let message = String.fromCharCode(messages);
       messageView += message;
     }
@@ -6097,7 +6097,7 @@ class SocketInfo {
 let callback = (value: SocketInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message.i
+    let messages: number = value.message[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }

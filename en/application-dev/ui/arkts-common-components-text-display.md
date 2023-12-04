@@ -20,6 +20,7 @@ You can create text in either of the following ways:
 
 
 - Referencing Resource objects
+
   You can use **$r** to create a **Resource** object to reference resources in **/resources/base/element/string.json**.
 
 
@@ -37,9 +38,10 @@ You can create text in either of the following ways:
 
 ## Adding Child Components
 
-The **\<Text>** component accepts \<[Span](../reference/arkui-ts/ts-basic-components-span.md)> as its child component. You can add one or more **\<Span>** child components to a **\<Text>** component to display a piece of information, such as the product description and statement of commitment.
+The [\<Span>](../reference/arkui-ts/ts-basic-components-span.md) component can only act as a child of the [\<Text>](../reference/arkui-ts/ts-basic-components-text.md) and [\<RichEditor>](../reference/arkui-ts/ts-basic-components-richeditor.md) components. You can add one or more **\<Span>** child components to a **\<Text>** component to display a piece of information, such as the product description and statement of commitment.
 
 - Creating a \<Span> Component
+
   The **\<Span>** component works only when included in a **\<Text>** component. If both the **\<Span>** and **\<Text>** components have text configured, the text of the **\<Span>** overwrites that of the **\<Text>** component.
 
 
@@ -54,6 +56,7 @@ The **\<Text>** component accepts \<[Span](../reference/arkui-ts/ts-basic-compon
   ![en-us_image_0000001562700441](figures/en-us_image_0000001562700441.png)
 
 - Set the text decorative line.
+
   Use the **decoration** attribute to set the style and color of the text decorative line.
 
 
@@ -87,7 +90,8 @@ The **\<Text>** component accepts \<[Span](../reference/arkui-ts/ts-basic-compon
   ![en-us_image_0000001562940525](figures/en-us_image_0000001562940525.png)
 
 - Adding Events
-  The **\<Span>** component does not have size information. Therefore, only the **onClick** event is supported.
+
+  The **\<Span>** component does not have size information. Therefore, only an **onClick** event can be added for this component.
 
 
   ```ts
@@ -95,7 +99,7 @@ The **\<Text>** component accepts \<[Span](../reference/arkui-ts/ts-basic-compon
     Span('I am Upper-span').fontSize(12)
       .textCase(TextCase.UpperCase)
       .onClick(()=>{
-        console.info (' I'm Span - onClick')
+        console.info ('I'm Span - onClick')
       })
   }
   ```
@@ -140,11 +144,15 @@ The **\<Text>** component accepts \<[Span](../reference/arkui-ts/ts-basic-compon
     .maxLines(1)
     .fontSize(12)
     .border({ width: 1 }).padding(10)
+  Text ('When the text overflows the container, it scrolls.')      
+    .width(250)
+    .textOverflow({ overflow: TextOverflow.MARQUEE })                 
+    .maxLines(1)       
+    .fontSize(12)
+    .border({ width: 1 }).padding(10)                       
   ```
 
-  ![en-us_image_0000001563060693](figures/en-us_image_0000001563060693.png)
-
-  ![en-us_image_0000001563060701](figures/en-us_image_0000001563060701.png)
+  ![en-us_image_0000001563060701](figures/en-us_image_0000001563060701.gif)
 
 - Use the **lineHeight** attribute to set the text line height.
 

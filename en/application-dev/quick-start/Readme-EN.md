@@ -12,11 +12,11 @@
     - Multi-HAP Mechanism
       - [Multi-HAP Design Objectives](multi-hap-objective.md)
       - [Multi-HAP Build View](multi-hap-build-view.md)
-      - [Multi-HAP Development, Debugging, Release, and Deployment Process](multi-hap-release-deployment.md)
+      - [Multi-HAP Development, Debugging, Release, and Deployment](multi-hap-release-deployment.md)
       - [Multi-HAP Usage Rules](multi-hap-rules.md)
       - [Multi-HAP Operation Mechanism and Data Communication Modes](multi-hap-principles.md)
-    - [Application Installation and Uninstallation Process](application-package-install-uninstall.md)
-    - [Application Package Update Process](application-package-update.md)
+    - [Application Installation and Uninstall](application-package-install-uninstall.md)
+    - [Application Package Update](application-package-update.md)
     - Shared Package
       - [Shared Package Overview](shared-guide.md)
       - [HAR](har-package.md)
@@ -26,11 +26,11 @@
       - [Quick Fix Overview](quickfix-principles.md)
       - [CLI-based Quick Fix Development](quickfix-debug.md)
   - Application Configuration Files in Stage Model
-    - [Application Configuration File Overview (Stage Model)](application-configuration-file-overview-stage.md)
+    - [Application Configuration Files (Stage Model)](application-configuration-file-overview-stage.md)
     - [app.json5 Configuration File](app-configuration-file.md)
     - [module.json5 Configuration File](module-configuration-file.md)
   - Application Configuration Files in FA Model
-    - [Application Configuration File Overview (FA Model)](application-configuration-file-overview-fa.md)
+    - [Application Configuration Files (FA Model)](application-configuration-file-overview-fa.md)
     - [Internal Structure of the app Tag](app-structure.md)
     - [Internal Structure of the deviceConfig Tag](deviceconfig-structure.md)
     - [Internal Structure of the module Tag](module-structure.md)
@@ -38,7 +38,9 @@
 - Learning ArkTS
   - [Getting Started with ArkTS](arkts-get-started.md)
   - [Introduction to ArkTS](introduction-to-arkts.md)
-  - [TypeScript to ArkTS Migration Guide](typescript-to-arkts-migration-guide.md)
+  - TypeScript to ArkTS Migration Guide
+    - [ArkTS Migration Background](arkts-migration-background.md)
+    - [TypeScript to ArkTS Cookbook](typescript-to-arkts-migration-guide.md)
   - UI paradigms
     - Basic Syntax
       - [Basic Syntax Overview](arkts-basic-syntax-overview.md)
@@ -77,4 +79,3 @@
       - [if/else: Conditional Rendering](arkts-rendering-control-ifelse.md)
       - [ForEach: Rendering of Repeated Content](arkts-rendering-control-foreach.md)
       - [LazyForEach: Lazy Data Loading](arkts-rendering-control-lazyforeach.md)
-      - [Best Practices for Rendering Control](arkts-rendering-control-best-practices.md)

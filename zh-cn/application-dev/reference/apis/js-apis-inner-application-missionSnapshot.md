@@ -20,7 +20,7 @@ import missionManager from '@ohos.app.ability.missionManager';
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | ability | ElementName | 是 | 是 | 表示该任务的组件信息。 |
-| snapshot | [image.PixelMap](js-apis-image.md) | 是 | 是 | 表示任务快照。 |
+| snapshot | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 是 | 表示任务快照。 |
 
 ## 使用说明
 
@@ -35,24 +35,24 @@ import missionManager from '@ohos.app.ability.missionManager';
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error) {
-          console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error(`getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
           return;
       }
-      console.log('size = ${missions.length}');
-      console.log('missions = ${JSON.stringify(missions)}');
+      console.log(`size = ${missions.length}`);
+      console.log(`missions = ${JSON.stringify(missions)}`);
       let id = missions[0].missionId;
 
       missionManager.getMissionSnapShot('', id, (err, snapshot) => {
         if (err) {
-          console.error('getMissionInfos failed, err.code: ${JSON.stringify(err.code)}, err.message: ${JSON.stringify(err.message)}');
+          console.error(`getMissionInfos failed, err.code: ${JSON.stringify(err.code)}, err.message: ${JSON.stringify(err.message)}`);
           return;
         }
 
         // 执行正常业务
-        console.log('bundleName = ${snapshot.ability.bundleName}');
+        console.log(`bundleName = ${snapshot.ability.bundleName}`);
       });
     });
   } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
   }
 ```

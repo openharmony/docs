@@ -33,7 +33,6 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
-| 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
@@ -42,7 +41,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 |                类型               | 必填 |              说明               |
 | ------| --------------------------------- | ---- | -------------------------------------- |
-| want| [Want](js-apis-application-want.md) | 是  | 包含bundleName，abilityName以及用户自定参数用于拉起Ability。 |
+| want| [Want](js-apis-app-ability-want.md) | 是  | 包含bundleName，abilityName以及用户自定参数用于拉起Ability。 |
 | callback| AsyncCallback&lt;void&gt;       | 是  | 回调函数。当拉起一个卡片所属应用的Ability成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -89,7 +88,7 @@ startAbility(want: Want): Promise&lt;void&gt;
 
 | 参数名 |                类型               | 必填 |              说明               |
 | ------| --------------------------------- | ---- | -------------------------------------- |
-| want| [Want](js-apis-application-want.md) | 是  | 包含bundleName，abilityName以及用户自定参数用于拉起Ability。 |
+| want| [Want](js-apis-app-ability-want.md) | 是  | 包含bundleName，abilityName以及用户自定参数用于拉起Ability。 |
 
 **返回值：**
 
@@ -105,7 +104,6 @@ startAbility(want: Want): Promise&lt;void&gt;
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
-| 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
@@ -140,7 +138,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## FormExtensionContext.connectServiceExtensionAbility<sup>10+</sup>
 
-connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
+connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 将一个Ability与服务类型的Ability绑定。
 
@@ -152,7 +150,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | ConnectOptions类型的回调函数，返回服务连接成功、断开或连接失败后的信息。 |
 
 **返回值：**
@@ -184,6 +182,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import rpc from '@ohos.rpc';
+import Base from '@ohos.base';
 
 let commRemote: rpc.IRemoteObject | null = null;
 export default class MyFormExtensionAbility extends FormExtensionAbility {
@@ -220,7 +219,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## FormExtensionContext.disconnectServiceExtensionAbility<sup>10+</sup>
 
-disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
+disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback&lt;void&gt;): void
 
 将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空。
 
@@ -281,7 +280,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## FormExtensionContext.disconnectServiceExtensionAbility<sup>10+</sup>
 
-disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
+disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空(Promise形式返回结果)。
 

@@ -34,7 +34,7 @@ FA Model
 
   ```js
   import featureAbility from '@ohos.ability.featureAbility';
-  
+
   let context = featureAbility.getContext();
   context.getFilesDir().then((data) => {
     let pathDir = data;
@@ -76,6 +76,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 **Example**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   Hash.hash(filePath, "sha256").then((str: string) => {
     console.info("calculate file hash succeed:" + str);
@@ -112,6 +113,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 **Example**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   Hash.hash(filePath, "sha256", (err: BusinessError, str: string) => {
     if (err) {

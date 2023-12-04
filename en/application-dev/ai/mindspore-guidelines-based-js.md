@@ -8,7 +8,7 @@ You can use the JavaScript APIs provided by MindSpore Lite to directly integrate
 
 Before getting started, you need to understand the following basic concepts:
 
-**Tensor**: a special data structure that is similar to arrays and matrices. It is basic data structure used in MindSpore Lite network operations.
+**Tensor**: a special data structure that is similar to an array or matrix. It is the basic data structure used in MindSpore Lite network operations.
 
 **Float16 inference mode**: a mode that uses half-precision inference. Float16 uses 16 bits to represent a number and therefore it is also called half-precision.
 
@@ -21,74 +21,92 @@ APIs involved in MindSpore Lite model inference are categorized into context API
 |getInputs(): MSTensor[]|Obtains the model input.|
 |predict(inputs: MSTensor[]): Promise&lt;MSTensor&gt;|Performs model inference.|
 | getData(): ArrayBuffer                 | Obtains tensor data.|
-| setData(inputArray: ArrayBuffer): void | Sets the tensor data.|
+| setData(inputArray: ArrayBuffer): void | Sets tensor data.|
 
 ## How to Develop
 
 Assume that you have prepared a model in the **.ms** format. The key steps in model inference are model reading, model building, model inference, and memory release. The development procedure is described as follows:
 
 1. Create a context, and set parameters such as the number of runtime threads and device type.
-2. Load the model. In this example, the model is read from the file.
-3. Load data. Before executing a model, you need to obtain the model input and then fill data in the input tensor.
+2. Load the model. In this example, the model is read from a file.
+3. Load data. Before executing a model, you need to obtain the model input and then fill data in the input tensors.
 4. Perform model inference by calling **predict**, and read the output.  
 
+```ts
+// Construct a singleton object.
+export class GlobalContext {
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
 
-```js
-@State inputName: string = 'mnet_caffemodel_nhwc.bin';
-@State T_model_predict: string = 'Test_MSLiteModel_predict'
-inputBuffer: any = null;
-build() {
-  Row() {
-  Column() {
-    Text(this.T_model_predict)
-      .focusable(true)
-      .fontSize(30)
-      .fontWeight(FontWeight.Bold)
-      .onClick(async () => {
-         let syscontext = globalThis.context;
-         syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
-           this.inputBuffer = buffer;
-           console.log('=========input bin byte length: ' + this.inputBuffer.byteLength)
-         }).catch(error => {
-           console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
-         })
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
 
-         // 1. Create a context.
-         let context: mindSporeLite.Context = {};
-         context.target = ['cpu'];
-         context.cpu = {}
-         context.cpu.threadNum = 1;
-         context.cpu.threadAffinityMode = 0;
-         context.cpu.precisionMode = 'enforce_fp32';
-         
-         // 2. Load the model.
-         let modelFile = '/data/storage/el2/base/haps/entry/files/mnet.caffemodel.ms';
-         let msLiteModel = await mindSporeLite.loadModelFromFile(modelFile, context);
-         
-         // 3. Set the input data.
-         const modelInputs = msLiteModel.getInputs();
-         modelInputs[0].setData(this.inputBuffer.buffer);
-         
-         // 4. Perform inference and print the output.
-         console.log('=========MSLITE predict start=====')
-         msLiteModel.predict(modelInputs).then((modelOutputs) => {
-           let output0 = new Float32Array(modelOutputs[0].getData());
-           for (let i = 0; i < output0.length; i++) {
-               console.log(output0[i].toString());
-           }
-         })
-         console.log('=========MSLITE predict success=====')
-       })
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
   }
-  .width('100%')
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
   }
-  .height('100%')
+
 }
+```
+
+```ts
+import { GlobalContext } from '../GlobalContext';
+import mindSporeLite from '@ohos.ai.mindSporeLite';
+import common from '@ohos.app.ability.common';
+export class Test {
+  value:number = 0;
+  foo(): void {
+    GlobalContext.getContext().setObject("value", this.value);
+  }
+}
+let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+let inputBuffer : ArrayBuffer | null = null;
+let inputName: string = 'mnet_caffemodel_nhwc.bin';
+
+globalContext.resourceManager.getRawFileContent(inputName).then((buffer : Uint8Array) => {
+  inputBuffer = buffer.buffer;
+  console.log('=========input bin byte length: ' + buffer.byteLength)
+})
+// 1. Create a context.
+let context: mindSporeLite.Context = {};
+context.target = ['cpu'];
+context.cpu = {}
+context.cpu.threadNum = 1;
+context.cpu.threadAffinityMode = 0;
+context.cpu.precisionMode = 'enforce_fp32';
+
+// 2. Load the model.
+let modelFile = '/data/storage/el2/base/haps/entry/files/mnet.caffemodel.ms';
+let msLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(modelFile, context);
+
+// 3. Set the input data.
+let modelInputs : mindSporeLite.MSTensor[] = msLiteModel.getInputs();
+if (inputBuffer != null) {
+  modelInputs[0].setData(inputBuffer as ArrayBuffer);
+}
+
+// 4. Perform inference and print the output.
+console.log('=========MSLITE predict start=====')
+msLiteModel.predict(modelInputs).then((modelOutputs : mindSporeLite.MSTensor[]) => {
+  let output0 = new Float32Array(modelOutputs[0].getData());
+  for (let i = 0; i < output0.length; i++) {
+    console.log(output0[i].toString());
+  }
+  })
+console.log('=========MSLITE predict success=====')
 ```
 
 ## Debugging and Verification
 
-1. On DevEco Studio, connect to the device, click **Run entry**, and compile your own HAP. The following information is displayed:
+1. On DevEco Studio, connect to the device, click **Run entry**, and build your own HAP. The following information is displayed:
 
    ```shell
    Launching com.example.myapptfjs
@@ -97,7 +115,7 @@ build() {
    $ hdc shell aa start -a EntryAbility -b com.example.myapptfjs
    ```
 
-2. Use hdc to connect to the device, and push **mnet.caffemodel.ms** to the sandbox directory on the device. **mnet\_caffemodel\_nhwc.bin** is stored in the **rawfile** directory of the local project.
+2. Use hdc to connect to the device, and push **mnet.caffemodel.ms** to the sandbox directory on the device. **mnet\_caffemodel\_nhwc.bin** is stored in the **rawfile** directory of your project.
 
    ```shell
    hdc -t your_device_id file send .\mnet.caffemodel.ms /data/app/el2/100/base/com.example.myapptfjs/haps/entry/files/

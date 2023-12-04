@@ -1,17 +1,15 @@
 # Subscribing to State Changes of a Remote Object
 
-## Overview
-
 IPC/RPC allows you to subscribe to the state changes of a remote stub object. When the remote stub object dies, a death notification will be sent to your local proxy object. Such subscription and unsubscription are controlled by APIs. To be specific, you need to implement the **DeathRecipient** interface and the **onRemoteDied** API to clear resources. This callback is invoked when the process accommodating the remote stub object dies, or the device accommodating the remote stub object leaves the network. It is worth noting that these APIs should be called in the following order: The proxy object must first subscribe to death notifications of the stub object. If the stub object is in the normal state, the proxy object can cancel the subscription as required. If the process of the stub object exits or the device hosting the stub object goes offline, subsequent operations customized by the proxy object will be automatically triggered.
 
-## When to Use
+## Scenarios
 
 This subscription mechanism is applicable when the local proxy object needs to detect death of the process hosting the remote stub object or network detach of the device hosting the remote stub object. When the proxy detects death of the remote stub object, the proxy can clear local resources. Currently, IPC supports death notification for anonymous objects, but RPC does not. That is, you can only subscribe to death notifications of services that have been registered with SAMgr.
 
 
 ## **Development Using Native APIs**
 
-| API| Return Value Type| Feature Description|
+| Name| Return Value Type| Description|
 | -------- | -------- | -------- |
 | AddDeathRecipient(const sptr\<DeathRecipient> &recipient); | bool | Adds a recipient for death notifications of a remote stub object.|
 | RemoveDeathRecipient(const sptr\<DeathRecipient> &recipient); | bool | Removes the recipient for death notifications of a remote stub object.|
@@ -44,7 +42,7 @@ public:
     virtual int TestPingAbility(const std::u16string &dummy) override;
     int TestAnonymousStub();
 private:
-    static inline BrokerDelegator<TestAbilityProxy> delegator_; // Use the iface_cast macro.
+    static inline BrokerDelegator<TestAbilityProxy> delegator_; // For use of the iface_cast macro at a later time
 };
 
 TestServiceProxy::TestServiceProxy(const sptr<IRemoteObject> &impl)
@@ -77,50 +75,54 @@ void TestDeathRecipient::OnRemoteDied(const wptr<IRemoteObject>& remoteObject)
 
 ```c++
 sptr<IPCObjectProxy> object = new IPCObjectProxy(1, to_utf16(DESCRIPTOR));
-sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient());// Construct a death notification recipient.
+sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient()); // Construct a death notification recipient.
 bool result = object->AddDeathRecipient(deathRecipient); // Add a recipient for death notifications.
 result = object->RemoveDeathRecipient(deathRecipient); // Remove the recipient for death notifications.
 ```
 
 ## **Development Using JS APIs**
 
-| API                  | Return Value Type| Feature Description                                                         |
-| ------------------------ | ---------- | ----------------------------------------------------------------- |
-| registerDeathRecipient   | void       | Adds a recipient for death notifications of the remote object, including death notifications of the remote proxy.|
-| unregisterDeathRecipient | void       | Removes the recipient for death notifications of the remote object.                             |
-| onRemoteDied             | void       | Called to perform subsequent operations when a death notification of the remote object is received.   |
+| Name                                                      | Return Value Type| Description                                                    |
+| ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ |
+| [registerDeathRecipient](../reference/apis/js-apis-rpc.md#registerdeathrecipient9-1) | void       | Adds a recipient for death notifications of the remote object, including death notifications of the remote proxy.|
+| [unregisterDeathRecipient](../reference/apis/js-apis-rpc.md#unregisterdeathrecipient9-1) | void       | Removes the recipient for death notifications of the remote object.                        |
+| [onRemoteDied](../reference/apis/js-apis-rpc.md#onremotedied) | void       | Called to perform subsequent operations when a death notification of the remote object is received.|
 
 ### Obtaining the Context
 
 If you use the stage model, you need to obtain the context before connecting to an ability.
 
 ```ts
-import Ability from "@ohos.app.ability.UIAbility";
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import hilog from '@ohos.hilog';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
-export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate");
-        globalThis.context = this.context;
-    }
-    onDestroy() {
-        console.log("[Demo] MainAbility onDestroy");
-    }
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility onWindowStageCreate");
-    }
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("[Demo] MainAbility onWindowStageDestroy");
-    }
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("[Demo] MainAbility onForeground");
-    }
-    onBackground() {
-        // Ability has back to background
-        console.log("[Demo] MainAbility onBackground");
-    }
+export default class MainAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onCreate');
+    let context = this.context;
+  }
+  onDestroy() {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onDestroy');
+  }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+  	hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageCreate');
+  }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+  	hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageDestroy');
+  }
+  onForeground() {
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onForeground');
+  }
+  onBackground() {
+    // Ability has back to background
+    hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onBackground');
+  }
 }
 ```
 
@@ -129,36 +131,49 @@ export default class MainAbility extends Ability {
 ```ts
 // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
 // import FA from "@ohos.ability.featureAbility";
+import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
+import rpc from '@ohos.rpc';
+import hilog from '@ohos.hilog';
 
-let proxy;
-let connect = {
-    onConnect: function(elementName, remoteProxy) {
-        console.log("RpcClient: js onConnect called.");
-        proxy = remoteProxy;
-    },
-    onDisconnect: function(elementName) {
-        console.log("RpcClient: onDisconnect");
-    },
-    onFailed: function() {
-        console.log("RpcClient: onFailed");
-    }
+let proxy: rpc.IRemoteObject | undefined = undefined;
+let connect: common.ConnectOptions = {
+  onConnect: (elementName, remoteProxy) => {
+    hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called.');
+    proxy = remoteProxy;
+  },
+  onDisconnect: (elementName) => {
+    hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+  },
+  onFailed: () => {
+    hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+  }
 };
-let want = {
-    "bundleName": "com.ohos.server",
-    "abilityName": "com.ohos.server.EntryAbility",
+let want: Want = {
+  bundleName: "com.ohos.server",
+  abilityName: "com.ohos.server.EntryAbility",
 };
 // Use this method to connect to the ability in the FA model.
 // FA.connectAbility(want, connect);
 
-globalThis.context.connectServiceExtensionAbility(want, connect);
+this.context.connectServiceExtensionAbility(want, connect);
+```
 
-class MyDeathRecipient {
-    onRemoteDied() {
-        console.log("server died");
-    }
+The **proxy** object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. After that, [unregisterDeathRecipient](../reference/apis/js-apis-rpc.md#unregisterdeathrecipient9-1) of the **proxy** object can be called to unregister the callback for receiving the death notification of the remote object.
+
+```ts
+import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
+import rpc from '@ohos.rpc';
+import hilog from '@ohos.hilog';
+
+class MyDeathRecipient implements rpc.DeathRecipient{
+  onRemoteDied() {
+    hilog.info(0x0000, 'testTag', 'server died');
+  }
 }
 let deathRecipient = new MyDeathRecipient();
-proxy.registerDeathRecippient(deathRecipient, 0);
+proxy.registerDeathRecipient(deathRecipient, 0);
 proxy.unregisterDeathRecipient(deathRecipient, 0);
 ```
 
@@ -166,7 +181,7 @@ proxy.unregisterDeathRecipient(deathRecipient, 0);
 
 Forward dead notification is a mechanism that allows the proxy to detect death notifications of the stub. To achieve reverse dead notification, we can leverage the forward dead notification mechanism to allow the stub to detect death notifications of the proxy. Suppose there are two processes, A (the process hosting the original stub) and B (the process hosting the original proxy). After obtaining the proxy object of process A, process B creates an anonymous stub object (that is, a stub object not registered with SAMgr), which can be called a callback stub. Then, process B calls **SendRequest** to send the callback stub to the original stub of process A. As a result, process A obtains the callback proxy of process B. When process B dies or the device hosting process B detaches from the network, the callback stub dies. The callback proxy detects the death of the callback stub and sends a death notification to the original stub. In this way, reverse death notification is implemented.
 
-Note:
+**NOTE**
 
 > Reverse death notification can only be used for cross-process communication within a device.
 
@@ -175,7 +190,7 @@ Note:
 ### Sample Code
 
 ```c++
-//Proxy
+// Proxy
 int TestAbilityProxy::TestAnonymousStub()
 {
     MessageOption option;
@@ -187,7 +202,7 @@ int TestAbilityProxy::TestAnonymousStub()
     return result;
 }
 
-//Stub
+// Stub
 
 int TestAbilityStub::OnRemoteRequest(uint32_t code, MessageParcel &data, MessageParcel &reply, MessageOption &option)
 {

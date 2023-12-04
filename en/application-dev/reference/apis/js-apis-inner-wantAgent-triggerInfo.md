@@ -19,6 +19,6 @@ import wantAgent from '@ohos.app.ability.wantAgent';
 | Name      | Type                | Mandatory| Description       |
 | ---------- | --- |-------------------- | ----------- |
 | code       | number               | Yes  | Custom result code provided for the target WantAgent.|
-| want       | Want                 | No  | Want.       |
+| want       | Want                 | No  | Carrier for information transfer between objects (application components).   |
 | permission | string               | No  | Permission.   |
 | extraInfo  | {[key: string]: any} | No  | Extra information.   |

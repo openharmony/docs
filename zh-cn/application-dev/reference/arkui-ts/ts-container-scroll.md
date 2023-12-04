@@ -34,7 +34,8 @@ Scroll(scroller?: Scroller)
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Auto<br/>**说明：** <br/>如果容器组件无法滚动，则滚动条不显示。如果容器组件的子组件大小为无穷大，则滚动条不支持拖动和伴随滚动。 |
 | scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color)   | 设置滚动条的颜色。 |
 | scrollBarWidth | string&nbsp;\|&nbsp;number         | 设置滚动条的宽度，不支持百分比设置。<br/>默认值：4<br/>单位：vp<br/>**说明：** <br/>如果滚动条的宽度超过其高度，则滚动条的宽度会变为默认值。 |
-| edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)            | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.None |
+| scrollSnap<sup>10+</sup>     | [ScrollSnapOptions](#scrollsnapoptions10)                     | 设置Scroll组件的限位滚动模式。 |
+| edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect), [EdgeEffectOptions<sup>11+</sup>](#edgeeffectoptions11对象说明)?:        | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.None <br/>edgeEffectOptions用于设置组件内容大小小于组件自身时，是否开启滑动效果<br/>默认值：true |
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true      |
 | nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](#nestedscrolloptions10对象说明)         | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。 |
 | friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | 设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9<br/>**说明：** <br/>设置为小于等于0的值时，按默认值处理 |
@@ -47,6 +48,14 @@ Scroll(scroller?: Scroller)
 | None       | 不可滚动。               |
 | Free<sup>(deprecated) </sup> | 支持竖直或水平方向滚动<br/> 从API version 9开始废弃|
 
+## scrollSnapOptions<sup>10+</sup>
+| 名称       | 参数类型       | 描述       |
+| ---------- | ---------------------------------------- | -------- |
+| snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10枚举说明)   | 设置Scroll组件限位滚动时的对其方式。<br/>**说明：** <br/>1.该属性默认值为ScrollSnapAlign.NONE。<br/>2.该接口仅当snapPagination属性为Dimension时生效，不支持Array\<Dimension\>。 |
+| snapPagination | Dimension&nbsp;\|&nbsp;Array\<Dimension\> | 设置Scroll组件限位滚动时的限位点，限位点即为Scroll组件能滑动停靠的偏移量。<br/>**说明：** <br/>1.当属性为Dimension时，表示每页的大小，系统会安装该大小来自动计算每个限位点的位置：如当Dimension为500时，实际的限位点即为[0,500,1000,1500,...]。<br/>2.当属性为Array\<Dimension\>时，每个Dimension代表限位点的位置。每个Dimension的范围为[0,可滑动距离]，0和可滑动距离的底部自动成为限位点。<br/>3.当该属性不填或者Dimension为小于等于0的输入时，按异常值，无限位滚动处理。当该属性值为Array\<Dimension\>数组时，数组中的数值必须为单调递增。<br/>4.当输入为百分比时，实际的大小为Scroll组件的视口与百分比数值之积。 |
+| enableSnapToStart | boolean   | 在Scroll组件限位滚动模式下，该属性设置为false后，运行Scroll在开头和第一个限位点间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
+| enableSnapToEnd | boolean   | 在Scroll组件限位滚动模式下，该属性设置为false后，运行Scroll在最后一个限位点和末尾间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
+
 ## 事件
 
 | 名称                                                         | 功能描述                                                     |
@@ -57,6 +66,8 @@ Scroll(scroller?: Scroller)
 | onScrollEnd<sup>(deprecated) </sup>(event: () => void)       | 滚动停止事件回调。<br>该事件从API version 9开始废弃，使用onScrollStop事件替代。<br/>触发该事件的条件 ：<br/>1、滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后停止，带过渡动效。 |
 | onScrollStart<sup>9+</sup>(event: () => void)                | 滚动开始时触发。手指拖动Scroll或拖动Scroll的滚动条触发的滚动开始时，会触发该事件。使用[Scroller](#scroller)滚动控制器触发的带动画的滚动，动画开始时会触发该事件。<br/>触发该事件的条件 ：<br/>1、滚动组件开始滚动时触发，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后开始，带过渡动效。 |
 | onScrollStop<sup>9+</sup>(event: () => void)                 | 滚动停止时触发。手拖动Scroll或拖动Scroll的滚动条触发的滚动，手离开屏幕并且滚动停止时会触发该事件。使用[Scroller](#scroller)滚动控制器触发的带动画的滚动，动画停止时会触发该事件。<br/>触发该事件的条件 ：<br/>1、滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后开始，带过渡动效。 |
+| onReachStart<sup>11+</sup>(event: () => void)          | Scroll到达起始位置时触发。<br/>**说明：** <br>Scroll初始化时会触发一次，滚动到起始位置时触发一次。Scroll边缘效果为弹簧效果时，划动经过起始位置时触发一次，回弹回起始位置时再触发一次。 |
+| onReachEnd<sup>11+</sup>(event: () => void)            | Scroll到达末尾位置时触发。<br/>**说明：** <br/>Scroll边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。 |
 
 >  **说明：**
 >
@@ -85,8 +96,8 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 
 | 参数名    | 参数类型                                                     | 必填 | 参数描述                                                     |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| xOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 水平滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不做操作，即该参数不生效。<br/>仅滚动轴为x轴时生效。 |
-| yOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 垂直滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不做操作，即该参数不生效。<br/>仅滚动轴为y轴时生效。 |
+| xOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 水平滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不带动画的滚动，按0处理。带动画的滚动，滚动到起始位置后停止。<br/>仅滚动轴为x轴时生效。 |
+| yOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 垂直滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不带动画的滚动，按0处理。带动画的滚动，滚动到起始位置后停止。<br/>仅滚动轴为y轴时生效。 |
 | animation | {duration?:&nbsp;number, curve?:&nbsp;[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve)<sup>10+ </sup>}&nbsp;\|&nbsp;boolean<sup>10+ </sup> | 否   | 动画配置：<br/>-&nbsp;duration:&nbsp;滚动时长设置。<br/>-&nbsp;curve:&nbsp;滚动曲线设置。<br/>- boolean:&nbsp;使能默认弹簧动效。<br/>默认值： <br/>{<br/>duration:&nbsp;1000,<br/>curve:&nbsp;Curve.Ease<br/>}<br/>boolean:&nbsp;false<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。<br/>当前List、Scroll、Grid、WaterFlow均支持boolean类型和ICurve曲线。 |
 
 
@@ -163,7 +174,7 @@ scrollBy(dx: Length, dy: Length): void
 
 >  **说明：**
 >
->  仅支持Scroll、ScrollBar、Grid、List组件。
+>  支持Scroll、List、Grid、WaterFlow组件。
 
 **参数：**
 
@@ -188,6 +199,33 @@ isAtEnd(): boolean
 | ------- | -------- |
 | boolean | true表示组件已经滚动到底部，false表示组件还没滚动到底部。 |
 
+### getItemRect<sup>11+</sup>
+
+getItemRect(index: number): RectResult
+
+获取子组件的大小位置。
+
+>  **说明：**
+>
+>  支持Scroll、List、Grid、WaterFlow组件。
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 参数描述              |
+| ----- | ------ | ---- | ----------------- |
+| index | number | 是    | 子组件的索引值。 |
+
+> **说明：**
+>
+> - index必须是当前显示区域显示的子组件的索引值，否则视为非法值。
+> - 非法值返回的大小和位置均为0。
+
+**返回值：**
+
+| 类型       | 说明       |
+| -------------------  | -------- |
+| [RectResult](ts-types.md#rectresult10) | 子组件的大小和相对于组件的位置。 |
+
 ## ScrollAlign枚举说明<sup>10+ </sup>
 
 | 名称     | 描述                             |
@@ -208,8 +246,14 @@ isAtEnd(): boolean
 | ------ | ------------------------------ |
 | SELF_ONLY   | 只自身滚动，不与父组件联动。  |
 | SELF_FIRST | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。        |
-| PARENT_FIRST  | 父组件先滚动，父组件滚动到边缘以后自身滚动。自身滚动到边缘后，人工有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 |
+| PARENT_FIRST  | 父组件先滚动，父组件滚动到边缘以后自身滚动。自身滚动到边缘后，如果有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 |
 | PARALLEL  | 自身和父组件同时滚动，自身和父组件都到达边缘以后，如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。|
+
+## EdgeEffectOptions<sup>11+ </sup>对象说明
+| 参数名   | 类型   | 描述              |
+| ----- | ------ | ----------------- |
+| alwaysEnabled | boolean | 组件内容大小小于组件自身时，设置是否开启滑动效果|
+
 
 ## 示例
 ### 示例1
@@ -432,3 +476,34 @@ struct StickyNestedScroll {
 }
 ```
 ![NestedScroll2](figures/NestedScroll2.gif)
+### 示例4
+```ts
+@Entry
+@Component
+struct Index {
+  scroller: Scroller = new Scroller;
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  build() {
+    Scroll(this.scroller) {
+      Column() {
+        ForEach(this.arr, (item: number) => {
+          Text(item.toString())
+            .width('90%')
+            .height(200)
+            .backgroundColor(0xFFFFFF)
+            .borderWidth(1)
+            .borderColor(Color.Black)
+            .borderRadius(15)
+            .fontSize(16)
+            .textAlign(TextAlign.Center)
+        }, (item: string) => item)
+      }.width('100%').backgroundColor(0xDCDCDC)
+    }
+    .backgroundColor(Color.Yellow)
+    .height('100%')
+    .edgeEffect(EdgeEffect.Spring)
+    .scrollSnap({snapAlign:ScrollSnapAlign.START, snapPagination:400, enableSnapToStart:true, enableSnapToEnd:true})
+  }
+}
+```
+![NestedScrollSnap](figures/NestedScrollSnap.gif)

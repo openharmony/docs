@@ -12,7 +12,7 @@ The Short Messaging Service (SMS) module provides basic SMS management functions
 
 - SMSC
 
-  An entity that relays, stores, or forwards SMS messages between base stations and mobile devices. It uses the GMS 03.40 protocol for sending SMS messages to or receiving SMS messages from mobile phones.
+  An entity that relays, stores, or forwards SMS messages between base stations and mobile devices. It uses the GSM 03.40 protocol for sending SMS messages to or receiving SMS messages from mobile phones.
 
 - PDU
 
@@ -31,8 +31,8 @@ The Short Messaging Service (SMS) module provides basic SMS management functions
 
 | Name                                                      | Description                                                   |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
+| sendShortMessage(options: SendMessageOptions, callback: AsyncCallback<void>): void              | Sends text or data SMS messages.                                                     |
 | createMessage(pdu: Array\<number>, specification: string, callback: AsyncCallback\<ShortMessage>): void | Creates an SMS message instance based on the PDU and the specified SMS protocol.|
-| sendMessage(options: SendMessageOptions): void               | Sends text or data SMS messages.                                                     |
 | getDefaultSmsSlotId(callback: AsyncCallback\<number>): void   | Obtains the ID of the default SIM card used to send SMS messages.                                               |
 | setSmscAddr(slotId: number, smscAddr: string, callback: AsyncCallback\<void>): void | Sets the SMSC address based on the specified slot ID.               |
 | getSmscAddr(slotId: number, callback: AsyncCallback\<string>): void | Obtains the SMSC address based on the specified slot ID.                                 |
@@ -48,65 +48,26 @@ The Short Messaging Service (SMS) module provides basic SMS management functions
 
 2. Import the required modules.
 
-3. Create an SMS message instance based on the PDU and the specified SMS protocol.
+3. Send an SMS message.
 
-4. Send an SMS message.
+```ts
+import sms from '@ohos.telephony.sms';
+import { AsyncCallback } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
-   ```js
-    // Import the required modules.
-    import sms from '@ohos.telephony.sms'
-   
-    export default class SmsModel {
-        async createMessage() {
-            const specification = '3gpp'
-            const pdu = [0x08, 0x91] // Display PDUs in array format. The type is number.
-            const shortMessage = await sms.createMessage(pdu, specification)
-            Logger.info(`${TAG}, createMessageCallback: shortMessage = ${JSON.stringify(shortMessage)}`)
-            return shortMessage
-        }
-   
-        sendMessage(slotId, content, destinationHost, serviceCenter, destinationPort, handleSend, handleDelivery) {
-            Logger.info(`${TAG}, sendMessage start ${slotId} ${content} ${destinationHost} ${serviceCenter} ${destinationPort}`)
-            const options =
-            {
-                slotId: slotId,
-                content: content,
-                destinationHost: destinationHost,
-                serviceCenter: serviceCenter,
-                destinationPort: destinationPort,
-                sendCallback(err, data) {
-                    Logger.info(`${TAG}, sendCallback: data = ${JSON.stringify(data)} err = ${JSON.stringify(err)}`)
-                    handleSend(err, data)
-                },
-                deliveryCallback(err, data) {
-                    Logger.info(`${TAG}, deliveryCallback: data = ${JSON.stringify(data)} err = ${JSON.stringify(err)}`)
-                    handleDelivery(err, data)
-                }
-            }
-            // Send an SMS message.
-            sms.sendMessage(options)
-            Logger.info(`${TAG}, sendMessage end`)
-        }
-   
-        // Obtain the ID of the default SIM card used to send SMS messages.
-        async getDefaultSmsSlotId() {
-            const defaultSmsSlotId = await sms.getDefaultSmsSlotId()
-            Logger.info(`${TAG}, getDefaultSmsSlotId: defaultSmsSlotId = ${defaultSmsSlotId}`)
-            return defaultSmsSlotId
-        }
-   
-        // Set the SMSC address based on the specified slot ID.
-        async setSmscAddr(slotId, smscAddr) {
-            const serviceCenter = await sms.setSmscAddr(slotId, smscAddr)
-            Logger.info(`${TAG}, setSmscAddr: serviceCenter = ${JSON.stringify(serviceCenter)}`)
-            return serviceCenter
-        }
-   
-        // Obtain the SMSC address based on the specified slot ID.
-        async getSmscAddr(slotId) {
-            const serviceCenter = await sms.getSmscAddr(slotId)
-            Logger.info(`${TAG}, getSmscAddr: serviceCenter = ${JSON.stringify(serviceCenter)}`)
-            return serviceCenter
-        }
-    }
-   ```
+let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
+    console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
+}
+let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
+    console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
+}
+let slotId: number = 0;
+let content: string = 'Message content';
+let destinationHost: string = '+861xxxxxxxxxx';
+let serviceCenter: string = '+861xxxxxxxxxx';
+let destinationPort: number = 1000;
+let options: sms.SendMessageOptions = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
+sms.sendShortMessage(options, (err: BusinessError) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```

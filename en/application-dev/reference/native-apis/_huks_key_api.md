@@ -49,7 +49,6 @@ Describes the OpenHarmony Universal KeyStore (HUKS) capabilities, including key 
 struct OH_Huks_Result OH_Huks_AbortSession (const struct OH_Huks_Blob * handle, const struct OH_Huks_ParamSet * paramSet )
 ```
 **Description**
-
 Aborts a key session.
 
 **Parameters**
@@ -61,7 +60,7 @@ Aborts a key session.
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is successful; returns an error code otherwise.
+Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 **See**
 
@@ -79,7 +78,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is
 struct OH_Huks_Result OH_Huks_AttestKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_CertChain * certChain )
 ```
 **Description**
-
 Obtains the certificate chain of a key.
 
 **Parameters**
@@ -92,7 +90,7 @@ Obtains the certificate chain of a key.
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is successful; returns an error code otherwise.
+Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 
 ### OH_Huks_DeleteKeyItem()
@@ -102,7 +100,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is
 struct OH_Huks_Result OH_Huks_DeleteKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet )
 ```
 **Description**
-
 Deletes a key.
 
 **Parameters**
@@ -110,11 +107,11 @@ Deletes a key.
 | Name| Description|
 | -------- | -------- |
 | keyAlias | Indicates the pointer to the alias of the key to delete. It must be the same as the alias used for generating the key. |
-| paramSet | Indicates the pointer to the parameters required for deleting the key. By default, this parameter is a null pointer. |
+| paramSet | Indicates the pointer to the properties of the key to delete, for example, delete all keys or a single key. To delete a single key, pass in an empty **properties**. |
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is successful; returns an error code otherwise.
+Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 
 ### OH_Huks_ExportPublicKeyItem()
@@ -124,7 +121,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is
 struct OH_Huks_Result OH_Huks_ExportPublicKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_Blob * key )
 ```
 **Description**
-
 Exports a public key.
 
 **Parameters**
@@ -137,7 +133,7 @@ Exports a public key.
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is successful; returns an error code otherwise.
+Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 
 ### OH_Huks_FinishSession()
@@ -147,7 +143,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is
 struct OH_Huks_Result OH_Huks_FinishSession (const struct OH_Huks_Blob * handle, const struct OH_Huks_ParamSet * paramSet, const struct OH_Huks_Blob * inData, struct OH_Huks_Blob * outData )
 ```
 **Description**
-
 Finishes a key session.
 
 **Parameters**
@@ -161,7 +156,7 @@ Finishes a key session.
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is successful; returns an error code otherwise.
+Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 **See**
 
@@ -179,7 +174,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is
 struct OH_Huks_Result OH_Huks_GenerateKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSetIn, struct OH_Huks_ParamSet * paramSetOut )
 ```
 **Description**
-
 Generates a key.
 
 **Parameters**
@@ -192,7 +186,7 @@ Generates a key.
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is successful; returns an error code otherwise.
+Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 
 ### OH_Huks_GetKeyItemParamSet()
@@ -202,7 +196,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is
 struct OH_Huks_Result OH_Huks_GetKeyItemParamSet (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSetIn, struct OH_Huks_ParamSet * paramSetOut )
 ```
 **Description**
-
 Obtains the properties of a key.
 
 **Parameters**
@@ -215,7 +208,7 @@ Obtains the properties of a key.
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is successful; returns an error code otherwise.
+Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 
 ### OH_Huks_GetSdkVersion()
@@ -225,7 +218,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is
 struct OH_Huks_Result OH_Huks_GetSdkVersion (struct OH_Huks_Blob * sdkVersion)
 ```
 **Description**
-
 Obtains the current HUKS SDK version.
 
 **Parameters**
@@ -236,7 +228,7 @@ Obtains the current HUKS SDK version.
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is successful; returns an error code otherwise.
+Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 
 ### OH_Huks_ImportKeyItem()
@@ -246,7 +238,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is
 struct OH_Huks_Result OH_Huks_ImportKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet, const struct OH_Huks_Blob * key )
 ```
 **Description**
-
 Imports a key in plaintext.
 
 **Parameters**
@@ -259,7 +250,7 @@ Imports a key in plaintext.
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is successful; returns an error code otherwise.
+Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 
 ### OH_Huks_ImportWrappedKeyItem()
@@ -269,7 +260,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is
 struct OH_Huks_Result OH_Huks_ImportWrappedKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_Blob * wrappingKeyAlias, const struct OH_Huks_ParamSet * paramSet, const struct OH_Huks_Blob * wrappedKeyData )
 ```
 **Description**
-
 Imports a wrapped (encrypted) key.
 
 **Parameters**
@@ -283,7 +273,7 @@ Imports a wrapped (encrypted) key.
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is successful; returns an error code otherwise.
+Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 
 ### OH_Huks_InitSession()
@@ -293,7 +283,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is
 struct OH_Huks_Result OH_Huks_InitSession (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_Blob * handle, struct OH_Huks_Blob * token )
 ```
 **Description**
-
 Initializes a key session to obtain a handle (mandatory) and a token (optional).
 
 **Parameters**
@@ -307,7 +296,7 @@ Initializes a key session to obtain a handle (mandatory) and a token (optional).
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is successful; returns an error code otherwise.
+Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 **See**
 
@@ -325,7 +314,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is
 struct OH_Huks_Result OH_Huks_IsKeyItemExist (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet )
 ```
 **Description**
-
 Checks whether a key exists.
 
 **Parameters**
@@ -333,11 +321,11 @@ Checks whether a key exists.
 | Name| Description|
 | -------- | -------- |
 | keyAlias | Indicates the pointer to the alias of the key to check. |
-| paramSet | Indicates the pointer to the parameters required for checking the key. By default, this parameter is a null pointer. |
+| paramSet | Indicates the pointer to the properties of the key to check, for example, check all keys or a single key. To check a single key, pass in an empty **properties**. |
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the key exists.<br>Returns [OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST](_huks_type_api.md) if the key does not exist.<br>Returns any other error code for other cases.
+Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the key exists.<br>Returns [OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST](_huks_type_api.md) if the key does not exist.<br>Returns any other error code for other cases.
 
 
 ### OH_Huks_UpdateSession()
@@ -347,7 +335,6 @@ Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the key exists.<
 struct OH_Huks_Result OH_Huks_UpdateSession (const struct OH_Huks_Blob * handle, const struct OH_Huks_ParamSet * paramSet, const struct OH_Huks_Blob * inData, struct OH_Huks_Blob * outData )
 ```
 **Description**
-
 Adds data by segment for the key operation, performs the related key operation, and outputs the processed data.
 
 **Parameters**
@@ -361,7 +348,7 @@ Adds data by segment for the key operation, performs the related key operation, 
 
 **Returns**
 
-Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md) if the operation is successful; returns an error code otherwise.
+Returns [OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is successful; returns an error code otherwise.
 
 **See**
 

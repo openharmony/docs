@@ -12,7 +12,7 @@ StaticSubscriberExtensionContext模块提供StaticSubscriberExtensionAbility具�
 ## 导入模块
 
 ```ts
-import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext'
+import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext';
 ```
 
 ## 使用说明
@@ -20,12 +20,8 @@ import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriber
 在使用StaticSubscriberExtensionContext的功能前，需要通过StaticSubscriberExtensionAbility获取。
 
 ```ts
-import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility'
-import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext'
-
-export default class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
-    context: StaticSubscriberExtensionContext = this.context;
-};
+import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
+import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext';
 ```
 
 ## StaticSubscriberExtensionContext.startAbility
@@ -48,12 +44,10 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名   | 类型                                | 必填 | 说明                       |
 | -------- | ----------------------------------- | ---- | -------------------------- |
-| want     | [Want](js-apis-application-want.md) | 是   | 启动Ability的want信息。    |
+| want     | [Want](js-apis-app-ability-want.md) | 是   | 启动Ability的want信息。    |
 | callback | AsyncCallback&lt;void&gt;           | 是   | callback形式返回启动结果。 |
 
 **错误码：**
-
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -71,35 +65,44 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not self application.              |
 
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+import CommonEventManager from '@ohos.commonEventManager';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
-  };
+let want: Want = {
+  bundleName: "com.example.myapp",
+  abilityName: "MyAbility"
+};
 
-  try {
-    this.context.startAbility(want, (error: BusinessError) => {
-      if (error) {
-        // 处理业务逻辑错误
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // 执行正常业务
-      console.log('startAbility succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
-    ' error.message: ' + JSON.stringify(message));
+class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
+  onReceiveEvent(event: CommonEventManager.CommonEventData) {
+    console.log(`onReceiveEvent, event: ${JSON.stringify(event)}`);
+
+    try {
+      this.context.startAbility(want, (error: BusinessError) => {
+        if (error) {
+          // 处理业务逻辑错误
+          console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
+            ' error.message: ' + JSON.stringify(error.message));
+          return;
+        }
+        // 执行正常业务
+        console.log('startAbility succeed');
+      });
+    } catch (paramError) {
+      // 处理入参错误异常
+      let code = (paramError as BusinessError).code;
+      let message = (paramError as BusinessError).message;
+      console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
+        ' error.message: ' + JSON.stringify(message));
+    }
   }
+}
   ```
 
 ## StaticSubscriberExtensionContext.startAbility
@@ -122,7 +125,7 @@ startAbility(want: Want): Promise&lt;void&gt;;
 
 | 参数名 | 类型                                | 必填 | 说明                    |
 | ------ | ----------------------------------- | ---- | ----------------------- |
-| want   | [Want](js-apis-application-want.md) | 是   | 启动Ability的want信息。 |
+| want   | [Want](js-apis-app-ability-want.md) | 是   | 启动Ability的want信息。 |
 
 **返回值：**
 
@@ -131,8 +134,6 @@ startAbility(want: Want): Promise&lt;void&gt;;
 | Promise&lt;void&gt; | Promise形式返回启动结果。 |
 
 **错误码：**
-
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -150,33 +151,41 @@ startAbility(want: Want): Promise&lt;void&gt;;
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not self application.              |
 
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+import CommonEventManager from '@ohos.commonEventManager';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
-  };
+let want: Want = {
+  bundleName: "com.example.myapp",
+  abilityName: "MyAbility"
+};
 
-  try {
-    this.context.startAbility(want)
-      .then(() => {
-        // 执行正常业务
-        console.log('startAbility succeed');
-      })
-      .catch((error: BusinessError) => {
-        // 处理业务逻辑错误
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
-    ' error.message: ' + JSON.stringify(message));
+class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
+  onReceiveEvent(event: CommonEventManager.CommonEventData) {
+    console.log(`onReceiveEvent, event: ${JSON.stringify(event)}`);
+    try {
+      this.context.startAbility(want)
+        .then(() => {
+          // 执行正常业务
+          console.log('startAbility succeed');
+        })
+        .catch((error: BusinessError) => {
+          // 处理业务逻辑错误
+          console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
+            ' error.message: ' + JSON.stringify(error.message));
+        });
+    } catch (paramError) {
+      // 处理入参错误异常
+      let code = (paramError as BusinessError).code;
+      let message = (paramError as BusinessError).message;
+      console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
+        ' error.message: ' + JSON.stringify(message));
+    }
   }
+}
   ```

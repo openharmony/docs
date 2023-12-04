@@ -78,13 +78,13 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.error('getWantAgent failed, error: ${JSON.stringify(err)}');
+        console.error(`getWantAgent failed, error: ${JSON.stringify(err)}`);
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed, error: ${JSON.stringify(err)}');
+    console.error(`getWantAgent failed, error: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -234,26 +234,26 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.error('getWantAgent failed ${JSON.stringify(wantAgent)}');
+        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
     }
     //getBundleName回调
     let getBundleNameCallback = (err: BusinessError, data: string) => {
         if(err) {
-            console.error('getBundleName failed! ${err.code} ${err.message}');
+            console.error(`getBundleName failed! ${err.code} ${err.message}`);
         } else {
-            console.info('getBundleName ok! ${JSON.stringify(data)}');
+            console.info(`getBundleName ok! ${JSON.stringify(data)}`);
         }
     }
     try {
         WantAgent.getBundleName(wantAgent, getBundleNameCallback);
     } catch(err) {
-        console.error('getBundleName failed! ${err.code} ${err.message}');
+        console.error(`getBundleName failed! ${err.code} ${err.message}`);
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
+    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
 
@@ -330,22 +330,22 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.error('getWantAgent failed! ${JSON.stringify(wantAgent)}');
+        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
     }
     try {
         WantAgent.getBundleName(wantAgent).then((data)=>{
-            console.info('getBundleName ok! ${JSON.stringify(data)}');
+            console.info(`getBundleName ok! ${JSON.stringify(data)}`);
         }).catch((err: BusinessError)=>{
-            console.error('getBundleName failed! ${err.code} ${err.message}');
+            console.error(`getBundleName failed! ${err.code} ${err.message}`);
         });
     } catch(err){
-        console.error('getBundleName failed! ${err.code} ${err.message}');
+        console.error(`getBundleName failed! ${err.code} ${err.message}`);
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
+    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
 
@@ -417,26 +417,26 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.info('getWantAgent failed ${JSON.stringify(err)}');
+        console.info(`getWantAgent failed ${JSON.stringify(err)}`);
     }
     //getUid回调
     let getUidCallback = (err: BusinessError, data: number) => {
         if(err) {
-            console.error('getUid failed! ${err.code} ${err.message}');
+            console.error(`getUid failed! ${err.code} ${err.message}`);
         } else {
-            console.info('getUid ok! ${JSON.stringify(data)}');
+            console.info(`getUid ok! ${JSON.stringify(data)}`);
         }
     }
     try {
         WantAgent.getUid(wantAgent, getUidCallback);
     } catch(err) {
-        console.error('getUid failed! ${err.code} ${err.message}');
+        console.error(`getUid failed! ${err.code} ${err.message}`);
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
+    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
 
@@ -513,22 +513,22 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.error('getWantAgent failed! ${JSON.stringify(wantAgent)}');
+        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
     }
     try {
         WantAgent.getUid(wantAgent).then((data)=>{
-            console.info('getUid ok! ${JSON.stringify(data)}');
+            console.info(`getUid ok! ${JSON.stringify(data)}`);
         }).catch((err: BusinessError)=>{
-            console.error('getUid failed! ${err.code} ${err.message}');
+            console.error(`getUid failed! ${err.code} ${err.message}`);
         });
     } catch(err){
-        console.error('getUid failed! ${err.code} ${err.message}');
+        console.error(`getUid failed! ${err.code} ${err.message}`);
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
+    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
 
@@ -602,26 +602,26 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.error('getWantAgent failed ${JSON.stringify(wantAgent)}');
+        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
     }
     //getWant回调
     let getWantCallback = (err: BusinessError, data: Want) => {
         if(err) {
-            console.error('getWant failed! ${err.code} ${err.message}');
+            console.error(`getWant failed! ${err.code} ${err.message}`);
         } else {
-            console.info('getWant ok! ${JSON.stringify(data)}');
+            console.info(`getWant ok! ${JSON.stringify(data)}`);
         }
     }
     try {
         WantAgent.getWant(wantAgent, getWantCallback);
     } catch(err) {
-        console.error('getWant failed! ${err.code} ${err.message}');
+        console.error(`getWant failed! ${err.code} ${err.message}`);
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
+    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
 
@@ -701,22 +701,22 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.error('getWantAgent failed! ${JSON.stringify(wantAgent)}');
+        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
     }
     try {
         WantAgent.getUid(wantAgent).then((data)=>{
-            console.info('getUid ok! ${JSON.stringify(data)}');
+            console.info(`getUid ok! ${JSON.stringify(data)}`);
         }).catch((err: BusinessError)=>{
-            console.error('getUid failed! ${err.code} ${err.message}');
+            console.error(`getUid failed! ${err.code} ${err.message}`);
         });
     } catch(err){
-        console.error('getUid failed! ${err.code} ${err.message}');
+        console.error(`getUid failed! ${err.code} ${err.message}`);
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${err.code} ${err.message}}');
+    console.error(`getWantAgent failed! ${err.code} ${err.message}}`);
 }
 ```
 
@@ -788,26 +788,26 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.error('getWantAgent failed ${JSON.stringify(wantAgent)}');
+        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
     }
     //cancel回调
     let cancelCallback = (err: BusinessError, data: void) => {
         if(err) {
-            console.error('cancel failed! ${err.code} ${err.message}');
+            console.error(`cancel failed! ${err.code} ${err.message}`);
         } else {
-            console.info('cancel ok!');
+            console.info(`cancel ok!`);
         }
     }
     try {
         WantAgent.cancel(wantAgent, cancelCallback);
     } catch(err) {
-        console.error('cancel failed! ${err.code} ${err.message}');
+        console.error(`cancel failed! ${err.code} ${err.message}`);
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
+    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
 
@@ -884,22 +884,22 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.error('getWantAgent failed! ${JSON.stringify(wantAgent)}');
+        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
     }
     try {
         WantAgent.cancel(wantAgent).then((data)=>{
             console.info('cancel ok!');
         }).catch((err: BusinessError)=>{
-            console.error('cancel failed! ${err.code} ${err.message}');
+            console.error(`cancel failed! ${err.code} ${err.message}`);
         });
     } catch(err){
-        console.error('cancel failed! ${err.code} ${err.message}');
+        console.error(`cancel failed! ${err.code} ${err.message}`);
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
+    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
 
@@ -965,26 +965,26 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.error('getWantAgent failed ${JSON.stringify(wantAgent)}');
+        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
     }
     //trigger回调
     let triggerCallback = (err: BusinessError, data: WantAgent.CompleteData) => {
         if(err) {
-            console.error('getUid failed! ${err.code} ${err.message}');
+            console.error(`getUid failed! ${err.code} ${err.message}`);
         } else {
-            console.info('getUid ok! ${JSON.stringify(data)}');
+            console.info(`getUid ok! ${JSON.stringify(data)}`);
         }
     }
     try {
         WantAgent.trigger(wantAgent, triggerInfo, triggerCallback);
     } catch(err) {
-        console.error('getUid failed! ${err.code} ${err.message}');
+        console.error(`getUid failed! ${err.code} ${err.message}`);
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
+    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
 
@@ -1050,26 +1050,26 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
         wantAgent1 = data;
         wantAgent2 = data;
     } else {
-        console.error('getWantAgent failed ${JSON.stringify(wantAgent)}');
+        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
     }
     //equal回调
     let equalCallback = (err: BusinessError, data: boolean) => {
         if(err) {
-            console.error('equal failed! ${err.code} ${err.message}');
+            console.error(`equal failed! ${err.code} ${err.message}`);
         } else {
-            console.info('equal ok! ${JSON.stringify(data)}');
+            console.info(`equal ok! ${JSON.stringify(data)}`);
         }
     }
     try {
         WantAgent.equal(wantAgent1,wantAgent2,equalCallback);
     } catch(err) {
-        console.error('equal failed! ${err.code} ${err.message}');
+        console.error(`equal failed! ${err.code} ${err.message}`);
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
+    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
 
@@ -1140,22 +1140,22 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
         wantAgent1 = data;
         wantAgent2 = data;
     } else {
-        console.error('getWantAgent failed! ${JSON.stringify(wantAgent)}');
+        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
     }
     try {
         WantAgent.equal(wantAgent1,wantAgent2).then((data)=>{
-            console.info('equal ok! ${JSON.stringify(data)}');
+            console.info(`equal ok! ${JSON.stringify(data)}`);
         }).catch((err: BusinessError)=>{
-            console.error('equal failed! ${err.code} ${err.message}');
+            console.error(`equal failed! ${err.code} ${err.message}`);
         })
     } catch(err){
-        console.error('equal failed! ${err.code} ${err.message}');
+        console.error(`equal failed! ${err.code} ${err.message}`);
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
+    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
 
@@ -1226,26 +1226,26 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.error('getWantAgent failed ${JSON.stringify(wantAgent)}');
+        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
     }
     //getOperationTypeCallback回调
     let getOperationTypeCallback = (err: BusinessError, data: number) => {
         if(err) {
-            console.error('getOperationType failed! ${err.code} ${err.message}');
+            console.error(`getOperationType failed! ${err.code} ${err.message}`);
         } else {
-            console.info('getOperationType ok! ${JSON.stringify(data)}');
+            console.info(`getOperationType ok! ${JSON.stringify(data)}`);
         }
     }
     try {
         WantAgent.getOperationType(wantAgent, getOperationTypeCallback);
     } catch(err) {
-        console.error('getOperationTypeCallback failed! ${err.code} ${err.message}');
+        console.error(`getOperationTypeCallback failed! ${err.code} ${err.message}`);
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
+    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
 
@@ -1321,22 +1321,22 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
-        console.error('getWantAgent failed! ${JSON.stringify(wantAgent)}');
+        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
     }
     try {
         WantAgent.getOperationType(wantAgent).then((data)=>{
-            console.info('getOperationType ok! ${JSON.stringify(data)}');
+            console.info(`getOperationType ok! ${JSON.stringify(data)}`);
         }).catch((err: BusinessError) => {
-            console.error('getOperationType failed! ${err.code} ${err.message}');
+            console.error(`getOperationType failed! ${err.code} ${err.message}`);
         });
     } catch(err){
-        console.error('getOperationType failed! ${err.code} ${err.message}');
+        console.error(`getOperationType failed! ${err.code} ${err.message}`);
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
+    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
 
@@ -1344,18 +1344,18 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称                | 值             | 说明                                                         |
-| ------------------- | -------------- | ------------------------------------------------------------ |
-| ONE_TIME_FLAG       | 0 | WantAgent仅能使用一次。                                      |
-| NO_BUILD_FLAG       | 1 | 如果描述WantAgent对象不存在，则不创建它，直接返回null。      |
-| CANCEL_PRESENT_FLAG | 2 | 在生成一个新的WantAgent对象前取消已存在的一个WantAgent对象。 |
-| UPDATE_PRESENT_FLAG | 3 | 使用新的WantAgent的额外数据替换已存在的WantAgent中的额外数据。 |
-| CONSTANT_FLAG       | 4 | WantAgent是不可变的。                                        |
-| REPLACE_ELEMENT     | 5 | 当前Want中的element属性可被WantAgent.trigger()中Want的element属性取代 |
-| REPLACE_ACTION      | 6 | 当前Want中的action属性可被WantAgent.trigger()中Want的action属性取代 |
-| REPLACE_URI         | 7 | 当前Want中的uri属性可被WantAgent.trigger()中Want的uri属性取代 |
-| REPLACE_ENTITIES    | 8 | 当前Want中的entities属性可被WantAgent.trigger()中Want的entities属性取代 |
-| REPLACE_BUNDLE      | 9 | 当前Want中的bundleName属性可被WantAgent.trigger()中Want的bundleName属性取代 |
+| 名称                | 值             | 说明                                                                     |
+| ------------------- | -------------- |------------------------------------------------------------------------|
+| ONE_TIME_FLAG       | 0 | WantAgent仅能使用一次。                                                       |
+| NO_BUILD_FLAG       | 1 | 如果描述WantAgent对象不存在，则不创建它，直接返回null。                                     |
+| CANCEL_PRESENT_FLAG | 2 | 在生成一个新的WantAgent对象前取消已存在的一个WantAgent对象。                                |
+| UPDATE_PRESENT_FLAG | 3 | 使用新的WantAgent的额外数据替换已存在的WantAgent中的额外数据。                               |
+| CONSTANT_FLAG       | 4 | WantAgent是不可变的。                                                        |
+| REPLACE_ELEMENT     | 5 | 当前Want中的element属性可被WantAgent.trigger()中Want的element属性取代，当前版本暂不支持。      |
+| REPLACE_ACTION      | 6 | 当前Want中的action属性可被WantAgent.trigger()中Want的action属性取代，当前版本暂不支持。        |
+| REPLACE_URI         | 7 | 当前Want中的uri属性可被WantAgent.trigger()中Want的uri属性取代，当前版本暂不支持。              |
+| REPLACE_ENTITIES    | 8 | 当前Want中的entities属性可被WantAgent.trigger()中Want的entities属性取代，当前版本暂不支持。    |
+| REPLACE_BUNDLE      | 9 | 当前Want中的bundleName属性可被WantAgent.trigger()中Want的bundleName属性取代，当前版本暂不支持。 |
 
 
 

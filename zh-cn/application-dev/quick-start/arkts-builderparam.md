@@ -14,7 +14,7 @@
 
 ### 初始化\@BuilderParam装饰的方法
 
-\@BuildParam装饰的方法只能被自定义构建函数（\@Builder装饰的方法）初始化。
+\@BuilderParam装饰的方法只能被自定义构建函数（\@Builder装饰的方法）初始化。
 
 - 使用所属自定义组件的自定义构建函数或者全局的自定义构建函数，在本地初始化\@BuilderParam。
 
@@ -31,16 +31,13 @@
   }
   ```
 
-- 用父组件自定义构建函数初始化子组件\@BuildParam装饰的方法。
+- 用父组件自定义构建函数初始化子组件\@BuilderParam装饰的方法。
 
   ```ts
   @Component
   struct Child {
-    @Builder componentBuilder() {
-      Text(`Parent builder `)
-    }
-
-    @BuilderParam aBuilder0: () => void = this.componentBuilder;
+    @Builder FunABuilder0() {}
+    @BuilderParam aBuilder0: () => void = this.FunABuilder0;
 
     build() {
       Column() {
@@ -64,10 +61,12 @@
   }
   ```
 
+  ![f1b703f7-2f2d-43af-b11d-fdc9542d8361](figures/f1b703f7-2f2d-43af-b11d-fdc9542d8361.png)
+
 
 - 需注意this指向正确。
 
-  以下示例中，Parent组件在调用this.componentBuilder()时，this.label指向其所属组件，即“Parent”。\@Builder componentBuilder()传给子组件\@BuilderParam aBuilder0，在Child组件中调用this.aBuilder0()时，this.label指向在Child的label，即“Child”。对于\@BuilderParam aBuilder1，在将this.componentBuilder传给aBuilder1时，调用bind绑定了this，因此其this.label指向Parent的label。
+  以下示例中，Parent组件在调用this.componentBuilder()时，this指向其所属组件，即“Parent”。\@Builder componentBuilder()传给子组件\@BuilderParam aBuilder0，在Child组件中调用this.aBuilder0()时，this指向在Child的label，即“Child”。对于\@BuilderParam aBuilder1，在将this.componentBuilder传给aBuilder1时，调用bind绑定了this，因此其this.label指向Parent的label。
 
    >  **说明：**
    >
@@ -76,13 +75,11 @@
   ```ts
   @Component
   struct Child {
-    @Builder componentBuilder() {
-      Text(`Child builder `)
-    }
-
     label: string = `Child`
-    @BuilderParam aBuilder0: () => void = this.componentBuilder;
-    @BuilderParam aBuilder1: () => void = this.componentBuilder;
+    @Builder FunABuilder0() {}
+    @Builder FunABuilder1() {}
+    @BuilderParam aBuilder0: () => void = this.FunABuilder0;
+    @BuilderParam aBuilder1: () => void = this.FunABuilder1;
 
     build() {
       Column() {
@@ -104,11 +101,13 @@
     build() {
       Column() {
         this.componentBuilder()
-        Child({ aBuilder0: this.componentBuilder, aBuilder1: this.componentBuilder })
+        Child({ aBuilder0: this.componentBuilder, aBuilder1: ():void=>{this.componentBuilder()} })
       }
     }
   }
   ```
+
+  ![3f17235e-57e6-4058-8729-a19127a3b007](figures/3f17235e-57e6-4058-8729-a19127a3b007.png)
 
 
 ## 使用场景
@@ -120,11 +119,10 @@
 
 
 ```ts
-class GlobalBuilderParam {
-  label: string = ""
+class Tmp{
+  label:string = ''
 }
-
-@Builder function GlobalBuilder1($$ : GlobalBuilderParam) {
+@Builder function GlobalBuilder1($$ : Tmp) {
   Text($$.label)
     .width(400)
     .height(50)
@@ -133,15 +131,12 @@ class GlobalBuilderParam {
 
 @Component
 struct Child {
-  @Builder componentBuilder() {
-    Text(`Child builder `)
-  }
-
   label: string = 'Child'
+  @Builder FunABuilder0() {}
   // 无参数类，指向的componentBuilder也是无参数类型
-  @BuilderParam aBuilder0: () => void = this.componentBuilder;
+  @BuilderParam aBuilder0: () => void = this.FunABuilder0;
   // 有参数类型，指向的GlobalBuilder1也是有参数类型的方法
-  @BuilderParam aBuilder1: ($$ : GlobalBuilderParam) => void = this.componentBuilder;
+  @BuilderParam aBuilder1: ($$ : Tmp) => void = GlobalBuilder1;
 
   build() {
     Column() {
@@ -169,6 +164,8 @@ struct Parent {
 }
 ```
 
+![3869e265-4d12-44ff-93ef-e84473c68c97](figures/3869e265-4d12-44ff-93ef-e84473c68c97.png)
+
 
 ### 尾随闭包初始化组件
 
@@ -183,17 +180,11 @@ struct Parent {
 
 ```ts
 // xxx.ets
-class CustomContainerParam {
-  header: string = '';
-}
 @Component
 struct CustomContainer {
-  @Builder componentCloser() {
-    Text(`Custom closer `)
-  }
-
   @Prop header: string = '';
-  @BuilderParam closer: () => void = this.componentCloser;
+  @Builder CloserFun(){}
+  @BuilderParam closer: () => void = this.CloserFun
 
   build() {
     Column() {
@@ -217,15 +208,12 @@ struct CustomContainer {
 @Component
 struct CustomContainerUser {
   @State text: string = 'header';
-  param: CustomContainerParam = {
-    header: this.text
-  };
 
   build() {
     Column() {
       // 创建CustomContainer，在创建CustomContainer时，通过其后紧跟一个大括号“{}”形成尾随闭包
       // 作为传递给子组件CustomContainer @BuilderParam closer: () => void的参数
-      CustomContainer(this.param) {
+      CustomContainer({ header: this.text }) {
         Column() {
           specificParam('testA', 'testB')
         }.backgroundColor(Color.Yellow)
@@ -237,3 +225,5 @@ struct CustomContainerUser {
   }
 }
 ```
+
+![7ae8ed5e-fc23-49ea-be3b-08a672a7b817](figures/7ae8ed5e-fc23-49ea-be3b-08a672a7b817.png)

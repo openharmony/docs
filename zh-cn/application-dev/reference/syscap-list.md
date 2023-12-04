@@ -150,7 +150,7 @@ WebGL2.0 标准api
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 是   | 是   | 是   | 是   | 是   | 是            | 是      |
+| 是       | 否   | 是   | 是   | 是   | 是   | 是            | 是      |
 
 ## SystemCapability.Communication.NetManager.Core
 
@@ -222,7 +222,7 @@ WIFI P2P能力
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 是   | 是   | 是   | 是   | 是   | 否            | 否      |
+| 是       | 否   | 是   | 是   | 是   | 是   | 否            | 否      |
 
 ## SystemCapability.Communication.NFC.Core
 
@@ -726,7 +726,7 @@ GNSS硬件相关能力
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 是   | 是   | 是   | 是   | 是   | 是            | 是      |
+| 是       | 否   | 是   | 是   | 是   | 是   | 是            | 是      |
 
 ## SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -830,7 +830,7 @@ TS/JS语言基础库
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 否       | 是   | 否   | 否   | 否   | 否   | 是            | 是      |
+| 否       | 否   | 否   | 否   | 否   | 否   | 是            | 是      |
 
 ## SystemCapability.HiviewDFX.HiTrace
 
@@ -854,7 +854,7 @@ TS/JS语言基础库
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 否       | 是   | 否   | 否   | 否   | 否   | 是            | 是      |
+| 否       | 否   | 否   | 否   | 否   | 否   | 是            | 是      |
 
 ## SystemCapability.HiviewDFX.HiChecker
 
@@ -902,7 +902,7 @@ TS/JS语言基础库
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 否       | 是   | 否   | 否   | 否   | 否   | 否            | 是      |
+| 否       | 否   | 否   | 否   | 否   | 否   | 否            | 是      |
 
 ## SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -918,7 +918,7 @@ TS/JS语言基础库
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 是   | 是   | 是   | 是   | 是   | 是            | 是      |
+| 是       | 否   | 是   | 是   | 是   | 是   | 是            | 是      |
 
 ## SystemCapability.DistributedHardware.DeviceManager
 
@@ -1124,7 +1124,7 @@ TS/JS语言基础库
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 是   | 是   | 是   | 是   | 是   | 是            | 是      |
+| 是       | 是   | 否   | 否   | 否   | 否   | 否            | 否      |
 
 ## SystemCapability.FileManagement.File.Environment
 
@@ -1132,7 +1132,7 @@ TS/JS语言基础库
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 是   | 是   | 是   | 是   | 是   | 是            | 是      |
+| 是       | 否   | 是   | 是   | 是   | 是   | 是            | 是      |
 
 ## SystemCapability.FileManagement.File.DistributedFile
 
@@ -1420,7 +1420,7 @@ AAID管理服务
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 是   | 是   | 是   | 是   | 是   | 是            | 是      |
+| 是       | 否   | 是   | 是   | 是   | 是   | 是            | 是      |
 
 ## SystemCapability.Advertising.OAID
 
@@ -1428,7 +1428,15 @@ OAID管理服务
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 是   | 是   | 是   | 是   | 是   | 是            | 是      |
+| 是       | 否   | 否   | 是   | 否   | 是   | 否            | 否      |
+
+## SystemCapability.Advertising.Ads
+
+广告服务
+
+| Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
+| ------- | --- | --- | --- | --- | --- | ------------ | ------ |
+| 是       | 否   | 否   | 是   | 否   | 是   | 否            | 否      |
 
 ## SystemCapability.Cloud.VAID
 
@@ -1436,7 +1444,7 @@ VAID管理服务
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 是   | 是   | 是   | 是   | 是   | 是            | 是      |
+| 是       | 否   | 是   | 是   | 是   | 是   | 是            | 是      |
 
 ## SystemCapability.Security.CertificateManager
 
@@ -1564,7 +1572,7 @@ VAID管理服务
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 否   | 否   | 是   | 否   | 否   | 否            | 否      |
+| 否       | 否   | 否   | 否   | 否   | 否   | 否            | 否      |
 
 ## SystemCapability.Communication.NFC.Tag
 
@@ -1610,9 +1618,9 @@ NFC卡模拟服务
 
 网络共享
 
-| Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
-| ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 否   | 否   | 是   | 否   | 是   | 否            | 否      |
+| Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏                           | Smart-Vision | Router |
+| ------- | --- | --- | --- | --- | ----------------------------- | ------------ | ------ |
+| 是       | 否   | 否   | 否   | 否   | 否 | 否            | 否      |
 
 ## SystemCapability.Communication.NetManager.MDNS
 
@@ -1620,7 +1628,7 @@ mDNS服务
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 否   | 是   | 是   | 是   | 是   | 否            | 否      |
+| 是       | 否   | 否   | 否   | 否   | 否   | 否            | 否      |
 
 ## SystemCapability.Communication.NetManager.Vpn
 
@@ -1628,7 +1636,7 @@ VPN
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 否   | 否   | 是   | 否   | 是   | 否            | 否      |
+| 是       | 否   | 否   | 是   | 否   | 否   | 否            | 否      |
 
 ## SystemCapability.XTS.DeviceAttest
 
@@ -1644,7 +1652,7 @@ VPN
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 否       | 是   | 否   | 否   | 否   | 否   | 是            | 是      |
+| 是       | 否   | 否   | 否   | 否   | 否   | 否            | 否      |
 
 ## SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1660,7 +1668,7 @@ VPN
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 否   | 是   | 是   | 是   | 是   | 否            | 否      |
+| 否       | 否   | 否   | 否   | 否   | 否   | 否            | 否      |
 
 ## SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -1668,7 +1676,7 @@ VPN
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 否   | 否   | 是   | 是   | 是   | 否            | 否      |
+| 是       | 否   | 否   | 否   | 否   | 否   | 否            | 否      |
 
 ## SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -1676,7 +1684,7 @@ VPN
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 否   | 是   | 是   | 是   | 是   | 否            | 否      |
+| 是       | 否   | 否   | 是   | 否   | 是   | 否            | 否      |
 
 ## SystemCapability.Cloud.Push
 
@@ -1684,7 +1692,7 @@ VPN
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 否   | 是   | 是   | 是   | 是   | 是            | 否      |
+| 否       | 否   | 否   | 否   | 否   | 否   | 否            | 否      |
 
 ## SystemCapability.Multimedia.SystemSound.Core
 
@@ -1724,7 +1732,7 @@ VPN
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 否   | 否   | 是   | 是   | 是   | 否            | 否      |
+| 否       | 否   | 否   | 否   | 否   | 否   | 否            | 否      |
 
 ## SystemCapability.Base
 
@@ -1740,7 +1748,7 @@ VPN
 
 | Default | 运动表 | 智能表 | 平板  | 车机  | 智慧屏 | Smart-Vision | Router |
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
-| 是       | 否   | 否   | 是   | 否   | 否   | 否            | 否      |
+| 否       | 否   | 否   | 否   | 否   | 否   | 否            | 否      |
 
 ## SystemCapability.Multimedia.Audio.Interrupt
 

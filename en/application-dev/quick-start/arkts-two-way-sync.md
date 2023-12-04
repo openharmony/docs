@@ -4,7 +4,7 @@
 The $$ operator provides a TS variable by-reference to a built-in component so that the variable value and the internal state of that component are kept in sync.
 
 
-What the internal state is depends on the component. For example, for the [bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md) attribute method, it is the **show** parameter.
+What the internal state is depends on the component. For example, for the [\<TextInput>](../reference/arkui-ts/ts-basic-components-textinput.md) component, it is the **text** parameter.
 
 
 ## Rules of Use
@@ -27,7 +27,7 @@ What the internal state is depends on the component. For example, for the [bindP
   | [SideBarContainer](../reference/arkui-ts/ts-container-sidebarcontainer.md) | showSideBar     | 10          |
   | [Slider](../reference/arkui-ts/ts-basic-components-slider.md) | value           | 10          |
   | [Stepper](../reference/arkui-ts/ts-basic-components-stepper.md) | index           | 10          |
-  | [Swiper](../reference/arkui-ts/ts-container-swiper.md)       | isOn            | 10          |
+  | [Swiper](../reference/arkui-ts/ts-container-swiper.md)       | index       | 10          |
   | [Tabs](../reference/arkui-ts/ts-container-tabs.md)           | index           | 10          |
   | [TextArea](../reference/arkui-ts/ts-basic-components-textarea.md) | text            | 10          |
   | [TextInput](../reference/arkui-ts/ts-basic-components-textinput.md) | text            | 10          |
@@ -37,7 +37,6 @@ What the internal state is depends on the component. For example, for the [bindP
   | [Select](../reference/arkui-ts/ts-basic-components-select.md) | selected, value| 10          |
   | [BindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 10          |
   | [BindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 10          |
-  | [bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md) | show | 8 |
   | [Refresh](../reference/arkui-ts/ts-container-refresh.md) | refreshing | 8 |
 
 - When the variable bound to $$ changes, the UI is re-rendered synchronously.

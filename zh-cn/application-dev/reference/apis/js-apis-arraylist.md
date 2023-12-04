@@ -457,7 +457,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.forEach((value: number, index?: number) => {
-  console.log("hyq value:" + value, "index:" + index);
+  console.log("value:" + value, "index:" + index);
 });
 ```
 
@@ -770,6 +770,10 @@ arrayList.trimToCurrentLength();
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
 
 **系统能力：** SystemCapability.Utils.Lang
 

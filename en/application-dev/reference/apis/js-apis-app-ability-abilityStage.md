@@ -38,7 +38,7 @@ class MyAbilityStage extends AbilityStage {
 
 ## AbilityStage.onAcceptWant
 
-onAcceptWant(want: Want): string;
+onAcceptWant(want: Want): string
 
 Called when a specified ability is started.
 
@@ -54,7 +54,7 @@ Called when a specified ability is started.
 
   | Type| Description| 
   | -------- | -------- |
-  | string | Returns an ability ID. If this ability has been started, no new instance is created and the ability is placed at the top of the stack. Otherwise, a new instance is created and started.| 
+  | string | Ability ID. If the ability with this ID has been started, no new instance is created and the ability is placed at the top of the stack. Otherwise, a new instance is created and started.| 
 
 **Example**
     
@@ -70,10 +70,44 @@ class MyAbilityStage extends AbilityStage {
 }
 ```
 
+## AbilityStage.onNewProcessRequest<sup>11+</sup>
+
+onNewProcessRequest(want: Want): string
+
+Called when the UIAbility is started in the specified process.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability, such as the ability name and bundle name.|
+
+**Return value**
+
+| Type| Description| 
+| -------- | -------- |
+| string | Process ID. If the process with this ID has been created, the ability runs in the process. Otherwise, a new process is created and the ability runs in it.| 
+
+**Example**
+    
+```ts
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+import Want from '@ohos.app.ability.Want';
+
+class MyAbilityStage extends AbilityStage {
+    onNewProcessRequest(want: Want) {
+        console.log('MyAbilityStage.onNewProcessRequest called');
+        return 'com.example.test';
+    }
+}
+```
+
 
 ## AbilityStage.onConfigurationUpdate
 
-onConfigurationUpdate(newConfig: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void
 
 Called when the global configuration is updated.
 
@@ -100,7 +134,7 @@ class MyAbilityStage extends AbilityStage {
 
 ## AbilityStage.onMemoryLevel
 
-onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
+onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 Called when the system has decided to adjust the memory level. For example, this API can be used when there is not enough memory to run as many background processes as possible.
 
@@ -120,14 +154,14 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbilityStage extends AbilityStage {
     onMemoryLevel(level: AbilityConstant.MemoryLevel) {
-        console.log('onMemoryLevel, level: ${JSON.stringify(level)}');
+        console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
     } 
 }
 ```
 
 ## AbilityStage.context
 
-context: AbilityStageContext;
+context: AbilityStageContext
 
 Defines the context of **AbilityStage**.
 

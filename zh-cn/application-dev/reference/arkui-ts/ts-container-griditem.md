@@ -4,12 +4,13 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  * 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  * 仅支持作为[Grid](ts-container-grid.md)组件的子组件使用。
 
 
 ## 子组件
 
-可以包含子组件。
+可以包含单个子组件。
 
 ## 接口
 
@@ -47,6 +48,8 @@ GridItem()
 >  起始行号、终点行号、起始列号、终点列号生效规则如下：
 >
 >  rowStart/rowEnd合理取值范围为0\~总行数-1，columnStart/columnEnd合理取值范围为0\~总列数-1。
+>
+>  如果设置了rowStart/rowEnd/columnStart/columnEnd，GridItem会占据指定的行数(rowEnd-rowStart+1)或列数(columnEnd-columnStart+1)。
 >
 >  只有在设置columnTemplate和rowTemplate的Grid中，设置合理的rowStart/rowEnd/columnStart/columnEnd四个属性的GridItem才能按照指定的行列号布局。
 >

@@ -54,10 +54,10 @@ clearTimeout(timeoutID?: number): void
 
 **示例：**
 
-  ```js    
+  ```js
   let timeoutID = setTimeout(() => {
-    console.log('do after 1s delay.');        
-  }, 1000);        
+    console.log('do after 1s delay.');
+  }, 1000);
   clearTimeout(timeoutID);
   ```
 
@@ -66,7 +66,7 @@ clearTimeout(timeoutID?: number): void
 
 setInterval(handler: Function | string, delay: number, ...arguments: any[]): number
 
-重复调用一个函数，在每次调用之间具有固定的时间延迟。  
+重复调用一个函数，在每次调用之间具有固定的时间延迟。
 删除该定时器需手动调用clearInterval接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -89,7 +89,7 @@ setInterval(handler: Function | string, delay: number, ...arguments: any[]): num
 
   ```js
   setInterval(() => {
-    console.log('do every 1s.');        
+    console.log('do every 1s.');
   }, 1000);
   ```
 
@@ -110,7 +110,7 @@ clearInterval(intervalID?: number): void
 
 **示例：**
 
-  ```js      
+  ```js
   let intervalID = setInterval(() => {
     console.log('do every 1s.');
   }, 1000);

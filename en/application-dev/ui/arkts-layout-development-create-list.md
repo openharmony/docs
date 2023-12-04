@@ -5,7 +5,7 @@
 
 A list is a container that displays a collection of items. If the list items go beyond the screen, the list can scroll to reveal the content off the screen. A list is applicable for presenting similar data types or data type sets, such as images and text. For example, it can be used to present a collection of contacts, songs, and items to shop.
 
-Use lists to easily and efficiently display structured, scrollable information. You can provide a single view of rows or columns by arranging the [\<ListItemGroup>](../reference/arkui-ts/ts-container-listitemgroup.md) or [\<ListItem>](../reference/arkui-ts/ts-container-listitem.md) child components linearly in a vertical or horizontal direction in the [\<List>](../reference/arkui-ts/ts-container-list.md) component, or use [ForEach](../quick-start/arkts-rendering-control-foreach.md) to iterate over a group of rows or columns, or mix any number of single views and **ForEach** structures to build a list. The **\<List>** component supports the generation of child components in various [rendering](../quick-start/arkts-rendering-control-overview.md) modes, including conditional rendering, rendering of repeated content, and lazy data loading.
+Use lists to easily and efficiently display structured, scrollable information. You can provide a single view of rows or columns by arranging the [\<ListItemGroup>](../reference/arkui-ts/ts-container-listitemgroup.md) or [\<ListItem>](../reference/arkui-ts/ts-container-listitem.md) child components linearly in a vertical or horizontal direction in the [\<List>](../reference/arkui-ts/ts-container-list.md) component, or use [ForEach](../quick-start/arkts-rendering-control-foreach.md) to iterate over a group of rows or columns, or mix any number of single views and **ForEach** structures to build a list. The **\<List>** component supports the generation of child components in various [rendering](../quick-start/arkts-rendering-control-ifelse.md) modes, including conditional rendering, rendering of repeated content, and lazy data loading.
 
 
 ## Layout and Constraints
@@ -99,26 +99,17 @@ The lanes attribute of the **\<List>** component is useful in building a list th
 
 
 ```ts
-class Tmp{
-  minLength:number = 200
-  maxLength:number = 300
-}
-let Mn:Tmp = new Tmp()
 List() {
   ...
 }
-.lanes(Mn)
+.lanes(2)
 ```
 
 If set to a value of the LengthConstrain type, the **lanes** attribute determines the number of rows or columns based on the LengthConstrain settings and the size of the **\<List>** component.
 
 
 ```ts
-class Tmp{
-  minLength:number = 200
-  maxLength:number = 300
-}
-let mn:Tmp = new Tmp()
+let mn:LengthConstrain = { 'minLength': 200,'maxLength': 300}
 List() {
   ...
 }
@@ -130,10 +121,6 @@ For example, if the **lanes** attribute is set to **{ minLength: 200, maxLength:
 - When the list width is 300 vp, the list contains one column, because **minLength** is 200 vp.
 
 - When the list width changes to 400 vp, which is twice that of the **minLength** value, the list is automatically adapted to two-column.
-
->**NOTE**
->
->When the **lanes** attribute is set to a value of the LengthConstrain type, the value is used only to calculate the number of rows or columns in the list and does not affect the size of the list items.
 
 With regard to a vertical list, when the **alignListItem** attribute is set to **ListItemAlign.Center**, list items are center-aligned horizontally; when the **alignListItem** attribute is at its default value **ListItemAlign.Start**, list items are aligned toward the start edge of the cross axis in the list.
 
@@ -155,6 +142,7 @@ The list displays a collection of items horizontally or vertically and can scrol
 ![en-us_image_0000001563060761](figures/en-us_image_0000001563060761.png)
 
 ```ts
+@Entry
 @Component
 struct CityList {
   build() {
@@ -223,6 +211,8 @@ Compared with a static list, a dynamic list is more common in applications. You 
 
 
 ```ts
+
+
 import util from '@ohos.util';
 
 class Contact {
@@ -258,7 +248,7 @@ struct SimpleContacts {
           .width('100%')
           .justifyContent(FlexAlign.Start)
         }
-      }, ((item:Contact):string => item.key))
+      }, (item:Contact) => item.key.toString())
     }
     .width('100%')
   }
@@ -297,12 +287,20 @@ To add dividers between items in a **\<List>** component, you can use its **divi
 
 
 ```ts
-let opt = {
-  'strokeWidth': 1,
-  'startMargin': 60,
-  'endMargin': 10,
-  'color': '#ffe9f0f0'
-} as Record<string,number|string>
+class dividerTmp{
+  strokeWidth: Length = 1
+  startMargin: Length = 60
+  endMargin: Length = 10
+  color: ResourceColor ='#ffe9f0f0'
+
+  constructor(strokeWidth: Length,startMargin: Length,endMargin: Length,color: ResourceColor) {
+    this.strokeWidth = strokeWidth
+    this.startMargin = startMargin
+    this.endMargin = endMargin
+    this.color = color
+  }
+}
+let opt:dividerTmp = new dividerTmp(1,60,10,'#ffe9f0f0')
 List() {
   ...
 }
@@ -353,9 +351,9 @@ A **\<List>** component allows one or more **\<ListItemGroup>** child components
 
 
 ```ts
+@Entry
 @Component
 struct ContactsList {
-  ...
   
   @Builder itemHead(text: string) {
     // Header of the list group, corresponding to the group A and B locations.
@@ -370,15 +368,11 @@ struct ContactsList {
     List() {
       ListItemGroup({ header: this.itemHead('A') }) {
         // Render the repeated list items of group A.
-        ...
       }
-      ...
 
       ListItemGroup({ header: this.itemHead('B') }) {
         // Render the repeated list items of group B.
-        ...
       }
-      ...
     }
   }
 }
@@ -436,7 +430,7 @@ List() {
         ForEach(item.contacts, () => {
           ListItem() {
           }
-        }, ((item: cgtmpf): string => item.key))
+        }, (item: cgtmpf) => item.key.toString())
       }
     }
   })
@@ -460,11 +454,44 @@ Setting the **sticky** attribute to **StickyStyle.Header** implements a sticky h
 
 
 ```ts
+import util from '@ohos.util';
+class cgtmpf{
+  title:string = ''
+  contacts:Array<object>|null = null
+  key:string = ''
+}
+class Contact {
+  key: string = util.generateRandomUUID(true);
+  name: string;
+  icon: Resource;
+
+  constructor(name: string, icon: Resource) {
+    this.name = name;
+    this.icon = icon;
+  }
+}
+export let contactsGroups: object[] = [
+  {
+    title: 'A',
+    contacts: [
+      new Contact('Alice', $r('app.media.iconA')),
+      new Contact ('Ann', $r ('app.media.iconB')),
+      new Contact('Angela', $r('app.media.iconC')),
+    ],
+  } as cgtmpf,
+  {
+    title: 'B',
+    contacts: [
+      new Contact ('Ben', $r ('app.media.iconD')),
+      new Contact ('Bryan', $r ('app.media.iconE')),
+    ],
+  } as cgtmpf,
+]
+@Entry
 @Component
 struct ContactsList {
   // Define the contactsGroups array.
-  ...
- 
+
   @Builder itemHead(text: string) {
     // Header of the list group, corresponding to the group A and B locations.
     Text(text)
@@ -484,7 +511,7 @@ struct ContactsList {
             ForEach(item.contacts, () => {
               ListItem() {
               }
-            }, ((item:cgtmpf):string => item.key))
+            }, (item:cgtmpf) => item.key.toString())
           }
         }
       })
@@ -552,31 +579,24 @@ When the list scrolls, the **selectedIndex** value of the letter to highlight in
 
 
 ```ts
-...
 const alphabets = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
   'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
 @Entry
 @Component
 struct ContactsList {
   @State selectedIndex: number = 0;
   private listScroller: Scroller = new Scroller();
-  ...
 
   build() {
     Stack({ alignContent: Alignment.End }) {
-      List({ scroller: this.listScroller }) {
-        ...
-      }
+      List({ scroller: this.listScroller }) {}
       .onScrollIndex((firstIndex: number) => {
         // Recalculate the value of this.selectedIndex in the alphabetical index bar based on the index of the item to which the list has scrolled.
       })
-      ...
 
       // <AlphabetIndexer> component
       AlphabetIndexer({ arrayValue: alphabets, selected: 0 })
         .selected(this.selectedIndex)
-      ...
     }
   }
 }
@@ -599,54 +619,123 @@ To implement the swipe feature, you can use the **swipeAction** attribute of **\
 
 In the example of the message list, the **end** parameter is set to a custom delete button. In initialization of the **end** attribute, the index of the sliding list item is passed to the delete button. When the user touches the delete button, the data corresponding to the list item is deleted based on the index.
 
+1. Define the list item style.
 
-```ts
-class swtmp{
-  temp:Record<string,object> = {}
-  itemEnd:Function|undefined = undefined
-  get(index:number){
-    if(this.itemEnd){
-      this.temp = {'end':this.itemEnd(this, index)}
-    }
-    return this.temp
-  }
-}
-let swipertmp:swtmp = new swtmp()
-@Entry
-@Component
-struct MessageList {
-  @State messages: object[] = [
-    // Initialize the message list data.
-  ];
-
-  @Builder itemEnd(index: number) {
-    // Set the component that appears from the end edge when the list item slides left.
-    Button({ type: ButtonType.Circle }) {
-      Image($r('app.media.ic_public_delete_filled'))
-        .width(20)
-        .height(20)
-    }
-    .onClick(() => {
-      this.messages.splice(index, 1);
-    })
-    ...
-  }
-
-  build() {
-    ...
-      List() {
-        ForEach(this.messages, (item:MessageList, index:number|undefined) => {
-          if(index){
-            ListItem() {
-            }
-            .swipeAction(swipertmp.get(index)) // Set the swipe action.
-          }
-        }, ((item:MessageList):string => item.id.toString()))
+   ```ts
+   @Component
+   export struct ChatItemStyle{
+    WeChatImage: string;
+    WeChatName: string;
+    ChatInfo: string;
+    time: string;
+    
+    build() {
+      Column() {
+        Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {...}
+        .height(80)
+        .width('100%')
       }
-    ...
-  }
-}
-```
+    }
+   }
+   ```
+2. Define the list item data structure.
+
+   ```ts
+   let personId = 0;
+
+   export class Person = {
+    id: string;
+    WeChatImage: string;
+    WeChatName: string;
+    ChatInfo: string;
+    time: string;
+
+    construct(WeChatImage: string, WeChatName: string, ChatInfo: string, time: string){
+      this.id = `${personId++}`
+      this.WeChatImage = WeChatImage;
+      this.WeChatName = WeChatName;
+      this.ChatInfo = ChatInfo;
+      this.time = time;
+    }
+   }
+    
+   ```
+3. Initialize the message list data.
+
+   ```ts
+   export const ContactInfo: any[] = [
+    {
+      "WeChatImage":"iconB.png",
+      "WeChatName":"Ann",
+      "ChatInfo":"Ready for lunch?",
+      "time":"10:30"
+    },
+    {
+      "WeChatImage":"iconC.png",
+      "WeChatName":"Angela",
+      "ChatInfo":"Hahaha",
+      "time":"10:28"
+    },
+    {
+      "WeChatImage":"iconD.png",
+      "WeChatName":"Bryan",
+      "ChatInfo":"Thank you."
+      "time":"10:27"
+    }
+   ]
+
+   export function getContactInfo(): Array<Person> {
+    let contactList: Array<Person> = []
+
+    ContactInfo.forEach((item:Person) => {
+      contactList.push(new Person(item.WeChatImage,item.WeChatName,item.ChatInfo,item.time))
+    })
+   }
+
+   export const WeChatColor:string = "#cccccc"
+   ```
+
+4. Build the list layout and list items.
+
+   ```ts
+   @Entry
+   @Component
+   struct MessageList {
+     @State messages: Person[] = getContactInfo()
+     @State markedIndex: number = 0
+
+     @Builder itemEnd(index: number) {
+       // Set the component that appears from the end edge when the list item slides left.
+       Button({ type: ButtonType.Circle }) {
+         Image($r('app.media.ic_public_delete_filled'))
+           .width(20)
+           .height(20)
+       }
+       .onClick(() => {
+         this.messages.splice(index, 1);
+       })
+     }
+
+     build() {
+         List() {
+           ForEach(this.messages, (item:Person, index:number|undefined) => {
+             if(index){
+               ListItem() {
+                 ChatItemStyle({
+                   this.WeChatImage = WeChatImage,
+                   this.WeChatName = WeChatName,
+                   this.ChatInfo = ChatInfo,
+                   this.time = time,
+                   markedIndex: (index === 1 ? 1 : 0)
+                 })
+               }
+               .swipeAction({end: this.itemRnd.bind(this, index)}) // Set the swipe action.
+             }
+           }, (item:Person) => item.id.toString())
+         }
+     }
+   }
+   ```
 
 
 ## Adding a Mark to a List Item
@@ -707,14 +796,14 @@ As shown below, when a user touches **Add**, a page is displayed for the user to
 
 The process of implementing the addition feature is as follows:
 
-1. Define the list item data structure and initialize the list data to build the overall list layout and list items.
-   In this example, first define the to-do data structure.
+1. Define the list item data structure. In this example, a to-do data structure is defined.
 
    ```ts
+   //ToDo.ets
    import util from '@ohos.util';
 
    export class ToDo {
-     key: string = util.generateRandomUUID(true);
+     key: string = util.generateRandomUUID(true)
      name: string;
 
      constructor(name: string) {
@@ -723,50 +812,97 @@ The process of implementing the addition feature is as follows:
    }
    ```
 
-    Then, initialize the to-do list data and options:
+2. Build the overall list layout and list items.
 
    ```ts
-   @State toDoData: ToDo[] = [];
-    export let availableThings: string[] = ['Reading', 'Fitness', 'Travel','Music','Movie', 'Singing'];
-   ```
+   //ToDoListItem.ets
+   @Component
+   export class ToDoListItem {
+     @Link isEditMode: boolean
+     @Link selectedItems: ToDo[]
+     private toDoItem: ToDo;
 
-   Finally, build the list layout and list items:
+     hasBeenSelected(): boolean{
+      return this.selectedItems.IndexOf(this.toDoItem) != -1
+     }
 
-   ```ts
-    export class ToDo {
-    key: string = util.generateRandomUUID(true);
-    name: string;
-    toDoData:ToDo[] = [];
-
-    constructor(name: string) {
-      this.name = name;
-    }
-    }
-    let todo:ToDo = new ToDo()
-   List({ space: 10 }) {
-     ForEach(todo.toDoData, (toDoItem:ToDo) => {
-       ListItem() {
-       }
-     }, ((toDoItem:ToDo):string => toDoItem.key))
+     build() {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }){...}
+      .width('100%')
+      .height(80)
+      padding({...})
+      .borderRadius(24)
+      .linearGradient({...})
+      .gesture(
+        GestureGroup(GestureMode.Exclusive,
+        LongPressGesture()
+          .onAction(() => {...})
+        )
+      )
+     }
    }
    ```
 
-2. Provide the entry for adding a list item, that is, add a click event to the add button.
-
-3. Respond to the user's confirmation of adding and update the list data.
-   The code snippet for steps 2 and 3 is as follows:
+3. Initialize the to-do list data and options. Then, build the list layout and list items.
 
    ```ts
-   Text('+')
-     .onClick(() => {
-       TextPickerDialog.show({
-         range: availableThings,
-         onAccept: (value: TextPickerResult) => {
-            todo.toDoData.push(new ToDo(availableThings[value.index])); // Add a list item data.
-         },
-       })
-     })
+   //ToDoList.ets
+   @Entry
+   @Component
+   struct ToDoList {
+     @State toDoData: ToDo[] = []
+     @Watch('onEditModeChange') @State isEditMode: boolean = false
+     @State selectedItems: ToDo[] = []
+     private availableThings: string[] = ['Reading', 'Fitness', 'Travel','Music','Movie', 'Singing']
+
+     onEditModeChange() {
+       if(!this.isEditMode) {
+         this.selectedItems = []
+       }
+     }
+
+     build() {
+       Column() {
+         Row() {
+           if (this.isEditMode) {
+             Text('X')
+               .fontSize(20)
+               .onClick(() => {
+                 this.isEditMode = false;
+               })
+               .margin({ left: 20, right: 20})
+           } else {
+             Text('To-Do')
+               .fontSize(36)
+               .margin({ left: 40 })
+           Blank()
+           Text('+') // Provide an entry for adding a list item, that is, add a click event for the add button.
+               .onClick(() => {
+                 TextPickerDialog.show({
+                   range: this.availableThings,
+                   onAccept: (value: TextPickerResult) => {
+                   this.toDoData.push(new ToDo(this.availableThings[value.index])); // Add list item data (toDoData).
+                 },
+               })
+             })
+           }
+         }
+       }
+     }
+     List({ space: 10 }) {
+       ForEach(this.toDoData, (toDoItem:ToDo) => {
+         ListItem() {
+           // Place each item of toDoData into the list item in the form of model.
+           isEditMode: $isEditMode,
+           toDoItem: toDoItem,
+           selectedItems: $selectedItems
+         }
+       }, (toDoItem:ToDo) => toDoItem.key.toString())
+     }
+   }
    ```
+
+
 
 
 ### Deleting a List Item
@@ -843,7 +979,6 @@ The process of implementing the deletion feature is as follows:
           }
         }
       })
-      ...
   }
   ```
 
@@ -879,7 +1014,6 @@ The process of implementing the deletion feature is as follows:
       todolist.toDoData = leftData;
       todolist.isEditMode = false;
     })
-    ...
   ```
 
 
@@ -918,4 +1052,3 @@ The following uses a vertical list as an example:
 >1. A greater **cachedCount** value may result in higher CPU and memory overhead of the UI. Adjust the value by taking into account both the comprehensive performance and user experience.
 >
 >2. When a list uses data lazy loading, all list items except the list items in the display area and the cached list items are destroyed.
-

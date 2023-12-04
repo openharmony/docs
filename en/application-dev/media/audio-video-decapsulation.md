@@ -11,8 +11,6 @@ The following decapsulation formats are supported:
 | Video    | MP4, MPEG TS                 |
 | Audio     | M4A, AAC, MP3, OGG, FLAC, WAV|
 
-
-
 **Usage Scenario**
 
 - Audio and video playback
@@ -28,6 +26,7 @@ The following decapsulation formats are supported:
   Decapsulate audio and video streams, and encapsulate them into a new file format.
 
 ## How to Develop
+
 Read [AVDemuxer](../reference/native-apis/_a_v_demuxer.md) and [AVSource](../reference/native-apis/_a_v_source.md) for the API reference.
 
 > **NOTE**
@@ -36,7 +35,26 @@ Read [AVDemuxer](../reference/native-apis/_a_v_demuxer.md) and [AVSource](../ref
 > - To call the decapsulation APIs to parse a local file, request the **ohos.permission.READ_MEDIA** permission by following the instructions provided in [Applying for Permissions](../security/accesstoken-guidelines.md).
 > - You can also use **ResourceManager.getRawFd** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../reference/apis/js-apis-resource-manager.md#getrawfd9).
 
-1. Create a demuxer instance.
+### Linking the Dynamic Library in the CMake Script
+
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_avdemuxer.so)
+target_link_libraries(sample PUBLIC libnative_media_avsource.so)
+```
+
+### How to Develop
+
+1. Add the header files.
+
+   ```c++
+   #include <multimedia/player_framework/native_avdemuxer.h>
+   #include <multimedia/player_framework/native_avsource.h>
+   #include <multimedia/player_framework/native_avcapability.h>
+   #include <multimedia/player_framework/native_avcodec_base.h>
+   #include <multimedia/player_framework/native_avformat.h>
+   ```
+
+2. Create a demuxer instance.
 
    ``` c++
    // Create the FD. You must have the read permission on the file handle when opening the file.
@@ -59,6 +77,7 @@ Read [AVDemuxer](../reference/native-apis/_a_v_demuxer.md) and [AVSource](../ref
    // (Optional) Create a source resource object for the URI resource file.
    // OH_AVSource *source = OH_AVSource_CreateWithURI(uri);
    ```
+
    ```c++
    // Create a demuxer for the resource object.
    OH_AVDemuxer *demuxer = OH_AVDemuxer_CreateWithSource(source);
@@ -68,9 +87,7 @@ Read [AVDemuxer](../reference/native-apis/_a_v_demuxer.md) and [AVSource](../ref
    }
    ```
 
-
-
-2. (Optional) Obtain the number of tracks. If you know the track information, skip this step.
+3. (Optional) Obtain the number of tracks. If you know the track information, skip this step.
 
    ``` c++
    // Obtain the number of tracks from the file source information.
@@ -84,9 +101,7 @@ Read [AVDemuxer](../reference/native-apis/_a_v_demuxer.md) and [AVSource](../ref
    OH_AVFormat_Destroy(sourceFormat);
    ```
 
-   
-
-3. (Optional) Obtain the track index and format. If you know the track information, skip this step.
+4. (Optional) Obtain the track index and format. If you know the track information, skip this step.
 
    ``` c++
    uint32_t audioTrackIndex = 0;
@@ -112,9 +127,7 @@ Read [AVDemuxer](../reference/native-apis/_a_v_demuxer.md) and [AVSource](../ref
    }
    ```
 
-   
-
-4. Select a track, from which the demuxer reads data.
+5. Select a track, from which the demuxer reads data.
 
    ``` c++
    if(OH_AVDemuxer_SelectTrackByID(demuxer, audioTrackIndex) != AV_ERR_OK){
@@ -129,9 +142,7 @@ Read [AVDemuxer](../reference/native-apis/_a_v_demuxer.md) and [AVSource](../ref
    // OH_AVDemuxer_UnselectTrackByID(demuxer, audioTrackIndex);
    ```
 
-
-
-5. (Optional) Seek to the specified time for the selected track.
+6. (Optional) Seek to the specified time for the selected track.
 
    ``` c++
    // Decapsulation is performed from this time.
@@ -141,7 +152,7 @@ Read [AVDemuxer](../reference/native-apis/_a_v_demuxer.md) and [AVSource](../ref
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
-6. Start decapsulation and cyclically obtain frame data. The code snippet below uses a file that contains audio and video tracks as an example.
+7. Start decapsulation and cyclically obtain frame data. The code snippet below uses a file that contains audio and video tracks as an example.
 
    ``` c++
    // Create a buffer to store the data obtained after decapsulation.
@@ -181,9 +192,7 @@ Read [AVDemuxer](../reference/native-apis/_a_v_demuxer.md) and [AVSource](../ref
    OH_AVMemory_Destroy(buffer);
    ```
 
-   
-
-7. Destroy the demuxer instance.
+8. Destroy the demuxer instance.
 
    ``` c++
    // Manually set the instance to NULL after OH_AVSource_Destroy is called. Do not call this API repeatedly for the same instance; otherwise, a program error occurs.

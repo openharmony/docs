@@ -41,7 +41,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 
 **错误码：**
 
-以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -59,7 +59,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0).then(() => {
+    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0).then(() => {
         console.log('addPermissionUsedRecord success');
     }).catch((err: BusinessError) => {
         console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
@@ -85,14 +85,14 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。              |
-| permissionName | Permissions | 是   | 应用权限名称。 |
+| permissionName | Permissions | 是   | 应用权限名称，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。 |
 | successCount | number | 是   | 访问成功的次数。 |
 | failCount | number | 是   | 访问失败的次数。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当添加使用记录成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -110,7 +110,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0, (err: BusinessError, data: void) => {
+    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, (err: BusinessError, data: void) => {
         if (err) {
             console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
         } else {
@@ -146,7 +146,7 @@ getPermissionUsedRecord(request: PermissionUsedRequest): Promise&lt;PermissionUs
 
 **错误码：**
 
-以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -202,7 +202,7 @@ getPermissionUsedRecord(request: PermissionUsedRequest, callback: AsyncCallback&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -256,7 +256,7 @@ startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;v
 | 参数名          | 类型   | 必填 | 说明                                  |
 | -------------- | ------ | ---- | ------------------------------------ |
 | tokenID        | number | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。 |
-| permissionName | Permissions | 是   | 需要使用的权限名。                     |
+| permissionName | Permissions | 是   | 需要使用的权限名，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。|
 
 **返回值：**
 
@@ -266,7 +266,7 @@ startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -285,7 +285,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
+    privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
         console.log('startUsingPermission success');
     }).catch((err: BusinessError) => {
         console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
@@ -310,12 +310,12 @@ startUsingPermission(tokenID: number, permissionName: Permissions, callback: Asy
 | 参数名          | 类型                  | 必填 | 说明                                  |
 | -------------- | --------------------- | ---- | ------------------------------------ |
 | tokenID        | number                | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。 |
-| permissionName | Permissions                | 是   | 需要使用的权限名。                     |
+| permissionName | Permissions                | 是   | 需要使用的权限名，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。|
 | callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。当开始使用权限成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -334,7 +334,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err: BusinessError, data: void) => {
+    privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
         if (err) {
             console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -361,7 +361,7 @@ stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;vo
 | 参数名          | 类型   | 必填 | 说明                                  |
 | -------------- | ------ | ---- | ------------------------------------ |
 | tokenID        | number | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。 |
-| permissionName | Permissions | 是   | 需要使用的权限名。                     |
+| permissionName | Permissions | 是   | 需要使用的权限名，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。|
 
 **返回值：**
 
@@ -371,7 +371,7 @@ stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -390,7 +390,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
+    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
         console.log('stopUsingPermission success');
     }).catch((err: BusinessError) => {
         console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
@@ -415,12 +415,12 @@ stopUsingPermission(tokenID: number, permissionName: Permissions, callback: Asyn
 | 参数名          | 类型                  | 必填 | 说明                                  |
 | -------------- | --------------------- | ---- | ------------------------------------ |
 | tokenID        | number                | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。 |
-| permissionName | Permissions                | 是   | 需要使用的权限名。                      |
+| permissionName | Permissions                | 是   | 需要使用的权限名，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。|
 | callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止使用权限成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -439,7 +439,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err: BusinessError, data: void) => {
+    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
         if (err) {
             console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -470,12 +470,12 @@ on(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | 是   | 订阅事件类型，固定为'activeStateChange'，权限使用状态变更事件。   |
-| permissionList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限使用状态变化。           |
+| permissionList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限使用状态变化，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。|
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | 是 | 订阅指定权限使用状态变更事件的回调。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -503,7 +503,7 @@ try {
 
 ## privacyManager.off
 
-off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void;
+off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void
 
 取消订阅指定权限列表的权限使用状态变更事件。
 
@@ -517,13 +517,13 @@ off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callbac
 
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
-| type               | string                | 是   | 订阅事件类型，固定为'activeStateChange'，权限使用状态变更事件。   |
-| permissionList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，必须与on的输入一致。 |
+| type               | string                | 是   | 取消订阅事件类型，固定为'activeStateChange'，权限使用状态变更事件。   |
+| permissionList | Array&lt;Permissions&gt;   | 是   | 取消订阅的权限名列表，为空时表示订阅所有的权限状态变化，必须与on的输入一致，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。|
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | 否 | 取消订阅指定tokenId与指定权限名状态变更事件的回调。|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -579,11 +579,11 @@ try {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称       | 类型             | 必填   | 说明                                       |
-| -------- | -------------- | ---- | ---------------------------------------- |
-| beginTime | number         | 是    | 查询记录的起始时间，单位：ms。 |
-| endTime | number         | 是    | 查询记录的终止时间，单位：ms。 |
-| bundleRecords  | Array&lt;[BundleUsedRecord](#bundleusedrecord)&gt;         | 是    | 应用的权限使用记录集合。                                 |
+| 名称       | 类型             | 可读 | 可写 | 说明                                       |
+| --------- | -------------- | ---- | ---- | ---------------------------------------- |
+| beginTime | number         | 是    | 否    | 查询记录的起始时间，单位：ms。 |
+| endTime   | number         | 是    | 否    | 查询记录的终止时间，单位：ms。 |
+| bundleRecords  | Array&lt;[BundleUsedRecord](#bundleusedrecord)&gt;         | 是    | 否    | 应用的权限使用记录集合。                                 |
 
 ## BundleUsedRecord
 
@@ -591,13 +591,13 @@ try {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称       | 类型             | 必填   | 说明                                       |
-| -------- | -------------- | ---- | ---------------------------------------- |
-| tokenId  | number         | 是    | 目标应用的身份标识。                                 |
-| isRemote | boolean         | 是    | 默认值false。 |
-| deviceId  | string         | 是    | 目标应用所在设备的ID。                                 |
-| bundleName | string         | 是    | 目标应用的包名。 |
-| permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | 是    | 每个应用的权限使用记录集合。                                 |
+| 名称       | 类型             | 可读 | 可写 | 说明                                       |
+| -------- | -------------- | ---- | ---- | ---------------------------------------- |
+| tokenId  | number         | 是    | 否    | 目标应用的身份标识。                                 |
+| isRemote | boolean         | 是    | 否    | 默认值false。 |
+| deviceId  | string         | 是    | 否    | 目标应用所在设备的ID。                                 |
+| bundleName | string         | 是    | 否    | 目标应用的包名。 |
+| permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | 是    | 否    | 每个应用的权限使用记录集合。                                 |
 
 ## PermissionUsedRecord
 
@@ -605,16 +605,16 @@ try {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称       | 类型             | 必填   | 说明                                       |
-| -------- | -------------- | ---- | ---------------------------------------- |
-| permissionName  | Permissions         | 是    | 权限名。                                 |
-| accessCount | number         | 是    | 该权限访问总次数。 |
-| rejectCount | number         | 是    | 该权限拒绝总次数。 |
-| lastAccessTime | number         | 是    | 最后一次访问时间，单位：ms。 |
-| lastRejectTime | number         | 是    | 最后一次拒绝时间，单位：ms。 |
-| lastAccessDuration | number         | 是    | 最后一次访问时长，单位：ms。 |
-| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 是    | 访问记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条。                                 |
-| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 是    | 拒绝记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条。                                 |
+| 名称       | 类型             | 可读 | 可写 | 说明                                       |
+| -------- | -------------- | ---- | ---- | ---------------------------------------- |
+| permissionName  | Permissions         | 是    | 否    | 权限名。                                 |
+| accessCount | number         | 是    | 否    | 该权限访问总次数。 |
+| rejectCount | number         | 是    | 否    | 该权限拒绝总次数。 |
+| lastAccessTime | number         | 是    | 否    | 最后一次访问时间，单位：ms。 |
+| lastRejectTime | number         | 是    | 否    | 最后一次拒绝时间，单位：ms。 |
+| lastAccessDuration | number         | 是    | 否    | 最后一次访问时长，单位：ms。 |
+| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 是    | 否    | 访问记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条。                                 |
+| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 是    | 否    | 拒绝记录集合，当flag为FLAG_PERMISSION_USAGE_DETAIL时生效，默认查询10条。                                 |
 
 ## UsedRecordDetail
 
@@ -622,11 +622,13 @@ try {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称       | 类型             | 必填   | 说明                                       |
-| -------- | -------------- | ---- | ---------------------------------------- |
-| status  | number         | 是    | 访问状态。                                 |
-| timestamp | number         | 是    | 访问时的时间戳，单位：ms。 |
-| accessDuration  | number         | 是    | 访问时长，单位：ms。                                 |
+| 名称       | 类型             | 可读 | 可写 | 说明                                       |
+| -------- | -------------- | ---- | ---- | ---------------------------------------- |
+| status  | number         | 是    | 否    | 访问状态。                                 |
+| lockScreenStatus<sup>11+</sup>  | number         | 是    | 否    | 访问时的锁屏状态。<br> - 1，表示非锁屏场景使用权限。<br> - 2，表示锁屏场景使用权限。                                 |
+| timestamp | number         | 是    | 否    | 访问时的时间戳，单位：ms。 |
+| accessDuration  | number         | 是    | 否    | 访问时长，单位：ms。                                 |
+| count<sup>11+</sup> | number | 是 | 否    | 成功或失败次数。
 
 ## PermissionActiveStatus
 
@@ -649,6 +651,6 @@ try {
 | 名称           | 类型                    | 可读 | 可写 | 说明                   |
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
 | tokenId        | number                 | 是   | 否   | 被订阅的应用身份标识    |
-| permissionName | Permissions                 | 是   | 否   | 权限使用状态发生变化的权限名 |
+| permissionName | Permissions            | 是   | 否   | 权限使用状态发生变化的权限名 |
 | deviceId       | string                 | 是   | 否   | 设备号                 |
 | activeStatus   | [PermissionActiveStatus](#permissionactivestatus) | 是   | 否   | 权限使用状态变化类型        |

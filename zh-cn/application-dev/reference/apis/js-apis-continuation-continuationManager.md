@@ -2,8 +2,6 @@
 
 continuationManager模块提供了流转/协同入口管理服务能力，包括连接/取消流转管理服务，注册/解注册设备连接变化监听，拉起设备选择模块，更新连接状态。
 
-本模块接口用于拉起系统中的设备选择模块，由于该模块功能暂不完备，因此流转能力整体暂不支持用于应用开发。
-
 > **说明：**
 > 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -16,10 +14,12 @@ import continuationManager from '@ohos.continuation.continuationManager'
 
 ## continuationManager.register<sup>(deprecated)</sup>
 
-register(callback: AsyncCallback\<number>): void;
+register(callback: AsyncCallback\<number>): void
 
 注册流转管理服务，并获取对应的注册token，无过滤条件，使用AsyncCallback方式作为异步方法。
 
+> **说明：**
+> 
 > 从API version 9开始不再维护，建议使用[registerContinuation](#continuationmanagerregistercontinuation9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -34,6 +34,7 @@ register(callback: AsyncCallback\<number>): void;
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager'
+
   let token: number = -1;
   continuationManager.register((err, data) => {
     if (err.code != 0) {
@@ -47,11 +48,13 @@ register(callback: AsyncCallback\<number>): void;
 
 ## continuationManager.register<sup>(deprecated)</sup>
 
-register(options: ContinuationExtraParams, callback: AsyncCallback\<number>): void;
+register(options: ContinuationExtraParams, callback: AsyncCallback\<number>): void
 
 连接流转管理服务，并获取对应的注册token，使用AsyncCallback方式作为异步方法。
 
-> 从API version 9开始不再维护，建议使用[registerContinuation](#continuationmanagerregistercontinuation9)替代。
+> **说明：**
+> 
+> 从API version 9开始不再维护，建议使用[registerContinuation](#continuationmanagerregistercontinuation9-1)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -66,6 +69,7 @@ register(options: ContinuationExtraParams, callback: AsyncCallback\<number>): vo
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager'
+
   let token: number = -1;
   continuationManager.register(
     {
@@ -83,11 +87,13 @@ register(options: ContinuationExtraParams, callback: AsyncCallback\<number>): vo
 
 ## continuationManager.register<sup>(deprecated)</sup>
 
-register(options?: ContinuationExtraParams): Promise\<number>;
+register(options?: ContinuationExtraParams): Promise\<number>
 
 连接流转管理服务，并获取对应的注册token，使用Promise方式作为异步方法。
 
-> 从API version 9开始不再维护，建议使用[registerContinuation](#continuationmanagerregistercontinuation9)替代。
+> **说明：**
+> 
+> 从API version 9开始不再维护，建议使用[registerContinuation](#continuationmanagerregistercontinuation9-2)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -108,6 +114,7 @@ register(options?: ContinuationExtraParams): Promise\<number>;
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager'
   import { BusinessError } from '@ohos.base';
+  
   let token: number = -1;
   continuationManager.register(
     { deviceType: ["00E"] }).then((data) => {
@@ -120,7 +127,7 @@ register(options?: ContinuationExtraParams): Promise\<number>;
 
 ## continuationManager.registerContinuation<sup>9+</sup>
 
-registerContinuation(callback: AsyncCallback\<number>): void;
+registerContinuation(callback: AsyncCallback\<number>): void
 
 注册流转管理服务，并获取对应的注册token，无过滤条件，使用AsyncCallback方式作为异步方法。
 
@@ -147,6 +154,7 @@ registerContinuation(callback: AsyncCallback\<number>): void;
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager'
+  
   let token: number = -1;
   try {
     continuationManager.registerContinuation((err, data) => {
@@ -164,7 +172,7 @@ registerContinuation(callback: AsyncCallback\<number>): void;
 
 ## continuationManager.registerContinuation<sup>9+</sup>
 
-registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<number>): void;
+registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<number>): void
 
 连接流转管理服务，并获取对应的注册token，使用AsyncCallback方式作为异步方法。
 
@@ -192,6 +200,7 @@ registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
+
   let token: number = -1;
   try {
     continuationManager.registerContinuation(
@@ -213,7 +222,7 @@ registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<
 
 ## continuationManager.registerContinuation<sup>9+</sup>
 
-registerContinuation(options?: ContinuationExtraParams): Promise\<number>;
+registerContinuation(options?: ContinuationExtraParams): Promise\<number>
 
 连接流转管理服务，并获取对应的注册token，使用Promise方式作为异步方法。
 
@@ -247,9 +256,10 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>;
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
   import { BusinessError } from '@ohos.base';
+
   let token: number = -1;
   try {
-    continuationManager.register(
+    continuationManager.registerContinuation(
       {
         deviceType: ["00E"]
       }).then((data) => {
@@ -266,10 +276,12 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>;
 
 ## continuationManager.on("deviceConnect")<sup>(deprecated)</sup>
 
-on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void;
+on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void
 
 异步方法，监听设备连接状态，使用Callback形式返回连接的设备信息。
 
+> **说明：**
+> 
 > 从API version 9开始不再维护，建议使用[on](#continuationmanagerondeviceselected9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -285,6 +297,7 @@ on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void;
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
+
   continuationManager.on("deviceConnect", (data) => {
     console.info('onDeviceConnect deviceId: ' + JSON.stringify(data.id));
     console.info('onDeviceConnect deviceType: ' + JSON.stringify(data.type));
@@ -294,10 +307,12 @@ on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void;
 
 ## continuationManager.on("deviceDisconnect")<sup>(deprecated)</sup>
 
-on(type: "deviceDisconnect", callback: Callback\<string>): void;
+on(type: "deviceDisconnect", callback: Callback\<string>): void
 
 异步方法，监听设备断开状态，使用Callback形式返回断开的设备信息。
 
+> **说明：**
+> 
 > 从API version 9开始不再维护，建议使用[on](#continuationmanagerondeviceunselected9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -313,6 +328,7 @@ on(type: "deviceDisconnect", callback: Callback\<string>): void;
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
+
   continuationManager.on("deviceDisconnect", (data) => {
     console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data));
   });
@@ -320,10 +336,12 @@ on(type: "deviceDisconnect", callback: Callback\<string>): void;
 
 ## continuationManager.off("deviceConnect")<sup>(deprecated)</sup>
 
-off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void;
+off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void
 
 异步方法，取消监听设备连接状态，使用Callback形式返回连接的设备信息。
 
+> **说明：**
+> 
 > 从API version 9开始不再维护，建议使用[off](#continuationmanageroffdeviceselected9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -339,6 +357,7 @@ off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void;
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
+
   continuationManager.off("deviceConnect", (data) => {
     console.info('onDeviceConnect deviceId: ' + JSON.stringify(data.id));
     console.info('onDeviceConnect deviceType: ' + JSON.stringify(data.type));
@@ -348,10 +367,12 @@ off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void;
 
 ## continuationManager.off("deviceDisconnect")<sup>(deprecated)</sup>
 
-off(type: "deviceDisconnect", callback?: Callback\<string>): void;
+off(type: "deviceDisconnect", callback?: Callback\<string>): void
 
 异步方法，取消监听设备断开状态，使用Callback形式返回连接的设备信息。
 
+> **说明：**
+> 
 > 从API version 9开始不再维护，建议使用[off](#continuationmanageroffdeviceunselected9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -367,6 +388,7 @@ off(type: "deviceDisconnect", callback?: Callback\<string>): void;
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
+
   continuationManager.off("deviceDisconnect", (data) => {
     console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data));
   });
@@ -374,7 +396,7 @@ off(type: "deviceDisconnect", callback?: Callback\<string>): void;
 
 ## continuationManager.on("deviceSelected")<sup>9+</sup>
 
-on(type: "deviceSelected", token: number, callback: Callback\<Array\<ContinuationResult>>): void;
+on(type: "deviceSelected", token: number, callback: Callback\<Array\<ContinuationResult>>): void
 
 异步方法，监听设备连接状态，使用Callback形式返回连接的设备信息。
 
@@ -404,6 +426,7 @@ on(type: "deviceSelected", token: number, callback: Callback\<Array\<Continuatio
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
+
   let token: number = 1;
   try {
     continuationManager.on("deviceSelected", token, (data) => {
@@ -421,7 +444,7 @@ on(type: "deviceSelected", token: number, callback: Callback\<Array\<Continuatio
 
 ## continuationManager.on("deviceUnselected")<sup>9+</sup>
 
-on(type: "deviceUnselected", token: number, callback: Callback\<Array\<ContinuationResult>>): void;
+on(type: "deviceUnselected", token: number, callback: Callback\<Array\<ContinuationResult>>): void
 
 异步方法，监听设备断开状态，使用Callback形式返回断开的设备信息。
 
@@ -451,6 +474,7 @@ on(type: "deviceUnselected", token: number, callback: Callback\<Array\<Continuat
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
+
   let token: number = 1;
   try {
     continuationManager.on("deviceUnselected", token, (data) => {
@@ -469,7 +493,7 @@ on(type: "deviceUnselected", token: number, callback: Callback\<Array\<Continuat
 
 ## continuationManager.off("deviceSelected")<sup>9+</sup>
 
-off(type: "deviceSelected", token: number): void;
+off(type: "deviceSelected", token: number): void
 
 取消监听设备连接状态。
 
@@ -498,6 +522,7 @@ off(type: "deviceSelected", token: number): void;
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
+
   let token: number = 1;
   try {
     continuationManager.off("deviceSelected", token);
@@ -508,7 +533,7 @@ off(type: "deviceSelected", token: number): void;
 
 ## continuationManager.off("deviceUnselected")<sup>9+</sup>
 
-off(type: "deviceUnselected", token: number): void;
+off(type: "deviceUnselected", token: number): void
 
 取消监听设备断开状态。
 
@@ -537,6 +562,7 @@ off(type: "deviceUnselected", token: number): void;
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
+
   let token: number = 1;
   try {
     continuationManager.off("deviceUnselected", token);
@@ -547,10 +573,12 @@ off(type: "deviceUnselected", token: number): void;
 
 ## continuationManager.startDeviceManager<sup>(deprecated)</sup>
 
-startDeviceManager(token: number, callback: AsyncCallback\<void>): void;
+startDeviceManager(token: number, callback: AsyncCallback\<void>): void
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，无过滤条件，使用AsyncCallback方式作为异步方法。
 
+> **说明：**
+> 
 > 从API version 9开始不再维护，建议使用[startContinuationDeviceManager](#continuationmanagerstartcontinuationdevicemanager9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -566,6 +594,7 @@ startDeviceManager(token: number, callback: AsyncCallback\<void>): void;
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
+
   let token: number = 1;
   continuationManager.startDeviceManager(token, (err, data) => {
     if (err.code != 0) {
@@ -578,11 +607,13 @@ startDeviceManager(token: number, callback: AsyncCallback\<void>): void;
 
 ## continuationManager.startDeviceManager<sup>(deprecated)</sup>
 
-startDeviceManager(token: number, options: ContinuationExtraParams, callback: AsyncCallback\<void>): void;
+startDeviceManager(token: number, options: ContinuationExtraParams, callback: AsyncCallback\<void>): void
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，使用AsyncCallback方式作为异步方法。
 
-> 从API version 9开始不再维护，建议使用[startContinuationDeviceManager](#continuationmanagerstartcontinuationdevicemanager9)替代。
+> **说明：**
+> 
+> 从API version 9开始不再维护，建议使用[startContinuationDeviceManager](#continuationmanagerstartcontinuationdevicemanager9-1)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -598,6 +629,7 @@ startDeviceManager(token: number, options: ContinuationExtraParams, callback: As
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
+
   let token: number = 1;
   continuationManager.startDeviceManager(
     token,
@@ -615,11 +647,13 @@ startDeviceManager(token: number, options: ContinuationExtraParams, callback: As
 
 ## continuationManager.startDeviceManager<sup>(deprecated)</sup>
 
-startDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<void>;
+startDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<void>
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，使用Promise方式作为异步方法。
 
-> 从API version 9开始不再维护，建议使用[startContinuationDeviceManager](#continuationmanagerstartcontinuationdevicemanager9)替代。
+> **说明：**
+> 
+> 从API version 9开始不再维护，建议使用[startContinuationDeviceManager](#continuationmanagerstartcontinuationdevicemanager9-2)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -641,6 +675,7 @@ startDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<v
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
   import { BusinessError } from '@ohos.base';
+
   let token: number = -1;
   continuationManager.startDeviceManager(
     token,
@@ -655,7 +690,7 @@ startDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<v
 
 ## continuationManager.startContinuationDeviceManager<sup>9+</sup>
 
-startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): void;
+startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): void
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，无过滤条件，使用AsyncCallback方式作为异步方法。
 
@@ -683,6 +718,7 @@ startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): v
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
+
   let token: number = -1;
   try {
     continuationManager.startContinuationDeviceManager(token, (err, data) => {
@@ -699,7 +735,7 @@ startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): v
 
 ## continuationManager.startContinuationDeviceManager<sup>9+</sup>
 
-startContinuationDeviceManager(token: number, options: ContinuationExtraParams, callback: AsyncCallback\<void>): void;
+startContinuationDeviceManager(token: number, options: ContinuationExtraParams, callback: AsyncCallback\<void>): void
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，使用AsyncCallback方式作为异步方法。
 
@@ -728,6 +764,7 @@ startContinuationDeviceManager(token: number, options: ContinuationExtraParams, 
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
+
   let token: number = -1;
   try {
     continuationManager.startContinuationDeviceManager(
@@ -749,7 +786,7 @@ startContinuationDeviceManager(token: number, options: ContinuationExtraParams, 
 
 ## continuationManager.startContinuationDeviceManager<sup>9+</sup>
 
-startContinuationDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<void>;
+startContinuationDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<void>
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，使用Promise方式作为异步方法。
 
@@ -784,6 +821,7 @@ startContinuationDeviceManager(token: number, options?: ContinuationExtraParams)
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
   import { BusinessError } from '@ohos.base';
+
   let token: number = -1;
   try {
     continuationManager.startContinuationDeviceManager(
@@ -802,10 +840,12 @@ startContinuationDeviceManager(token: number, options?: ContinuationExtraParams)
 
 ## continuationManager.updateConnectStatus<sup>(deprecated)</sup>
 
-updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState, callback: AsyncCallback\<void>): void;
+updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState, callback: AsyncCallback\<void>): void
 
 通知设备选择模块，更新当前的连接状态，使用AsyncCallback方式作为异步方法。
 
+> **说明：**
+> 
 > 从API version 9开始不再维护，建议使用[updateContinuationState](#continuationmanagerupdatecontinuationstate9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -823,6 +863,7 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState,
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
+
   let token: number = -1;
   let deviceId: string = "test deviceId";
   continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED, (err, data) => {
@@ -836,11 +877,13 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState,
 
 ## continuationManager.updateConnectStatus<sup>(deprecated)</sup>
 
-updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState): Promise\<void>;
+updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState): Promise\<void>
 
 通知设备选择模块，更新当前的连接状态，使用Promise方式作为异步方法。
 
-> 从API version 9开始不再维护，建议使用[updateContinuationState](#continuationmanagerupdatecontinuationstate9)替代。
+> **说明：**
+> 
+> 从API version 9开始不再维护，建议使用[updateContinuationState](#continuationmanagerupdatecontinuationstate9-1)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -863,6 +906,7 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState)
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
   import { BusinessError } from '@ohos.base';
+
   let token: number = 1;
   let deviceId: string = "test deviceId";
   continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED)
@@ -876,7 +920,7 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState)
 
 ## continuationManager.updateContinuationState<sup>9+</sup>
 
-updateContinuationState(token: number, deviceId: string, status: DeviceConnectState, callback: AsyncCallback\<void>): void;
+updateContinuationState(token: number, deviceId: string, status: DeviceConnectState, callback: AsyncCallback\<void>): void
 
 通知设备选择模块，更新当前的连接状态，使用AsyncCallback方式作为异步方法。
 
@@ -906,6 +950,7 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
+
   let token: number = 1;
   let deviceId: string = "test deviceId";
   try {
@@ -923,7 +968,7 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 ## continuationManager.updateContinuationState<sup>9+</sup>
 
-updateContinuationState(token: number, deviceId: string, status: DeviceConnectState): Promise\<void>;
+updateContinuationState(token: number, deviceId: string, status: DeviceConnectState): Promise\<void>
 
 通知设备选择模块，更新当前的连接状态，使用Promise方式作为异步方法。
 
@@ -959,6 +1004,7 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
   import { BusinessError } from '@ohos.base';
+
   let token: number = 1;
   let deviceId: string = "test deviceId";
   try {
@@ -977,10 +1023,12 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 ## continuationManager.unregister<sup>(deprecated)</sup>
 
-unregister(token: number, callback: AsyncCallback\<void>): void;
+unregister(token: number, callback: AsyncCallback\<void>): void
 
 解注册流转管理服务，传入注册时获取的token进行解注册，使用AsyncCallback方式作为异步方法。
 
+> **说明：**
+> 
 > 从API version 9开始不再维护，建议使用[unregisterContinuation](#continuationmanagerunregistercontinuation9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -996,6 +1044,7 @@ unregister(token: number, callback: AsyncCallback\<void>): void;
 
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
+
   let token: number = 1;
   continuationManager.unregister(token, (err, data) => {
     if (err.code != 0) {
@@ -1008,11 +1057,13 @@ unregister(token: number, callback: AsyncCallback\<void>): void;
 
 ## continuationManager.unregister<sup>(deprecated)</sup>
 
-unregister(token: number): Promise\<void>;
+unregister(token: number): Promise\<void>
 
 解注册流转管理服务，传入注册时获取的token进行解注册，使用Promise方式作为异步方法。
 
-> 从API version 9开始不再维护，建议使用[unregisterContinuation](#continuationmanagerunregistercontinuation9)替代。
+> **说明：**
+> 
+> 从API version 9开始不再维护，建议使用[unregisterContinuation](#continuationmanagerunregistercontinuation9-1)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -1033,6 +1084,7 @@ unregister(token: number): Promise\<void>;
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
   import { BusinessError } from '@ohos.base';
+
   let token: number = 1;
   continuationManager.unregister(token)
     .then((data) => {
@@ -1044,7 +1096,7 @@ unregister(token: number): Promise\<void>;
 
 ## continuationManager.unregisterContinuation<sup>9+</sup>
 
-unregisterContinuation(token: number, callback: AsyncCallback\<void>): void;
+unregisterContinuation(token: number, callback: AsyncCallback\<void>): void
 
 解注册流转管理服务，传入注册时获取的token进行解注册，使用AsyncCallback方式作为异步方法。
 
@@ -1073,6 +1125,7 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void;
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
   import { BusinessError } from '@ohos.base';
+
   let token: number = 1;
   try {
     continuationManager.unregisterContinuation(token, (err, data) => {
@@ -1080,7 +1133,7 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void;
         console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
         return;
       }
-      console.info('unregisterContinuation finished, ' + JSON.stringify(data));
+      console.info('unregisterContinuation finished. ');
     });
   } catch (err) {
     console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
@@ -1089,7 +1142,7 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void;
 
 ## continuationManager.unregisterContinuation<sup>9+</sup>
 
-unregisterContinuation(token: number): Promise\<void>;
+unregisterContinuation(token: number): Promise\<void>
 
 解注册流转管理服务，传入注册时获取的token进行解注册，使用Promise方式作为异步方法。
 
@@ -1123,10 +1176,11 @@ unregisterContinuation(token: number): Promise\<void>;
   ```ts
   import continuationManager from '@ohos.continuation.continuationManager';
   import { BusinessError } from '@ohos.base';
+  
   let token: number = -1;
   try {
-    continuationManager.unregisterContinuation(token).then((data) => {
-        console.info('unregisterContinuation finished, ' + JSON.stringify(data));
+    continuationManager.unregisterContinuation(token).then(() => {
+        console.info('unregisterContinuation finished. ');
       }).catch((err: BusinessError) => {
         console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
     });

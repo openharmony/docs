@@ -7,7 +7,7 @@ UIAbility is a type of application component that provides the UI for user inter
 
 The following design philosophy is behind UIAbility:
 
-1. Native support for [cross-device migration](hop-cross-device-migration.md) and [multi-device collaboration](hop-multi-device-collaboration.md) at the application component level
+1. Native support for cross-device migration and multi-device collaboration at the application component level
 
 2. Support for multiple device types and window modes
 
@@ -37,7 +37,7 @@ To enable an application to properly use a UIAbility component, declare the UIAb
     "abilities": [
       {
         "name": "EntryAbility", // Name of the UIAbility component.
-        "srcEntry": "./ets/entryability/EntryAbility.ts", // Code path of the UIAbility component.
+        "srcEntry": "./ets/entryability/EntryAbility.ets", // Code path of the UIAbility component.
         "description": "$string:EntryAbility_desc", // Description of the UIAbility component.
         "icon": "$media:icon", // Icon of the UIAbility component.
         "label": "$string:EntryAbility_label", // Label of the UIAbility component.

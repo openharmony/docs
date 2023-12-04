@@ -75,7 +75,7 @@ NavRouter(value: RouteInfo)
 struct NavRouterExample {
   private arr: number[] = [0, 1, 2, 3]
   @State isActive: boolean = false
-  @State dex: number = 0
+  @State dex: number = -1
 
   build() {
     Column() {
@@ -107,7 +107,9 @@ struct NavRouterExample {
                 }.backgroundColor('#ccc')
                 .title(`NavDestination${item + 1}`)
               }.onStateChange((isActivated: boolean) => {
-                this.dex = index
+                if(isActivated) {
+                  this.dex = index;
+                }
               })
             }
           }, (item:number) => item.toString())

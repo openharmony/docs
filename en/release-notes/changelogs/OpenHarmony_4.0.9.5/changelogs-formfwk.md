@@ -33,7 +33,7 @@ Adapt your application code accordingly. To use these APIs in OpenHarmony 4.0.9.
 **Example**
 
 ```js
-import formObserver from @ohos.app.form.formObserver.d.ts;
+import formObserver from '@ohos.app.form.formObserver';
 
 try {
   formObserver.getRunningFormInfos((error, data) => {
@@ -134,7 +134,7 @@ Adapt your application code accordingly. In OpenHarmony 4.0.9.5 and later versio
 **Example**
 
 ```js
-import formObserver from @ohos.app.form.formObserver.d.ts;
+import formObserver from '@ohos.app.form.formObserver';
 
 let bundleName = 'ohos.samples.FormApplication';
 let callback = function(data) {

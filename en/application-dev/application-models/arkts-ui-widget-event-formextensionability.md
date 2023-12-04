@@ -28,9 +28,9 @@ On the widget page, the **postCardAction** API can be used to trigger a message 
           .margin(15).width('90%')
           .onClick(() => {
             postCardAction(this, {
-              'action': 'message',
-              'params': {
-                'msgTest': 'messageEvent'
+              action: 'message',
+              params: {
+                msgTest: 'messageEvent'
               }
             });
           })
@@ -45,20 +45,21 @@ On the widget page, the **postCardAction** API can be used to trigger a message 
   import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
   import formProvider from '@ohos.app.form.formProvider';
-  
+
   export default class EntryFormAbility extends FormExtensionAbility {
     onFormEvent(formId: string, message: string) {
       // Called when a specified message event defined by the form provider is triggered.
-      console.info(`FormAbility onEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
-      let formData = new Map<Object, string>();
-      formData.set('title', 'Title Update.'); // It matches the widget layout.
-      formData.set('detail', 'Description update success.'); // It matches the widget layout.
+      console.info(`FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
+      class FormDataClass{
+        title: string ='Title Update.' // It matches the widget layout.
+        detail: string ='Description update success.' // It matches the widget layout.
+      }
+      let formData = new FormDataClass();
       let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
       formProvider.updateForm(formId, formInfo).then(() => {
         console.info('FormAbility updateForm success.');
       });
     }
-
     ...
   }
   ```

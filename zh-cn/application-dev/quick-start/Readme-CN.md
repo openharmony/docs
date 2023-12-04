@@ -20,8 +20,7 @@
     - 共享包
       - [共享包概述](shared-guide.md)
       - [HAR](har-package.md)
-      - HSP
-        - [应用内HSP开发指导](in-app-hsp.md)
+      - [HSP](in-app-hsp.md)
     - 应用程序包快速修复
       - [快速修复概述](quickfix-principles.md)
       - [快速修复命令行调试开发指导](quickfix-debug.md)
@@ -38,7 +37,10 @@
 - 学习ArkTS语言
   - [初识ArkTS语言](arkts-get-started.md)
   - [ArkTS语言介绍](introduction-to-arkts.md)
-  - [从TypeScript到ArkTS的迁移指导](typescript-to-arkts-migration-guide.md)
+  - 从TypeScript到ArkTS的适配指导
+    - [ArkTS语法适配背景](arkts-migration-background.md)
+    - [从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)
+    - [适配指导案例](arkts-more-cases.md)
   - UI范式
     - 基本语法
       - [基本语法概述](arkts-basic-syntax-overview.md)
@@ -72,10 +74,9 @@
         - [$$语法：内置组件双向同步](arkts-two-way-sync.md)
       - [MVVM模式](arkts-mvvm.md)
       - [状态管理优秀实践](arkts-state-management-best-practices.md)
-      - [精准控制组件的更新范围](precisely-control-render-scope.md)
+      - [状态管理合理使用开发指导](properly-use-state-management-to-develope.md)
     - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
       - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
       - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
-      - [渲染控制优秀实践](arkts-rendering-control-best-practices.md)

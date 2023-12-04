@@ -4,9 +4,9 @@ The **workScheduler** module provides the APIs for registering, canceling, and q
 
 >  **NOTE**
 >
->  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>  The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
->  - The APIs of this module can be used only in the stage model.
+>  The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
 
@@ -43,6 +43,8 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 **Example**
 
 ```ts
+  import { BusinessError } from '@ohos.base';
+  
   let workInfo: workScheduler.WorkInfo = {
       workId: 1,
       batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
@@ -94,6 +96,8 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 **Example**
 
 ```ts
+  import { BusinessError } from '@ohos.base';
+
   let workInfo: workScheduler.WorkInfo = {
       workId: 1,
       batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
@@ -145,6 +149,8 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 **Example**
 
 ```ts
+  import { BusinessError } from '@ohos.base';
+
   workScheduler.getWorkStatus(50, (error: BusinessError, res: workScheduler.WorkInfo) => {
     if (error) {
       console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
@@ -172,7 +178,7 @@ Obtains the information a deferred task. This API uses a promise to return the r
 
 | Type                             | Description                                      |
 | ------------------------------- | ---------------------------------------- |
-| Promise\<[WorkInfo](#workinfo)> | Promise used to return the result. If **workId** is valid, the task information obtained from WorkSchedulerService is returned.|
+| Promise\<[WorkInfo](#workinfo)> | Promise used to return the result. If **workId** is valid, the task information obtained from WorkSchedulerService is returned. Otherwise, an exception is thrown.|
 
 **Error codes**
 
@@ -188,6 +194,8 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 **Example**
 
 ```ts
+  import { BusinessError } from '@ohos.base';
+
   workScheduler.getWorkStatus(50).then((res: workScheduler.WorkInfo) => {
     console.info(`workschedulerLog getWorkStatus success, ${JSON.stringify(res)}`);
   }).catch((error: BusinessError) => {
@@ -195,9 +203,10 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
   })
 ```
 
-## workScheduler.obtainAllWorks
+## workScheduler.obtainAllWorks<sup>deprecated<sup>
 
-obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
+obtainAllWorks(callback : AsyncCallback\<void>) : Array\<WorkInfo>
+> This API is deprecated since API version 10. You are advised to use [workScheduler.obtainAllWorks<sup>10+<sup>](#workschedulerobtainallworks10) instead.
 
 Obtains all the deferred tasks. This API uses an asynchronous callback to return the result.
 
@@ -207,13 +216,31 @@ Obtains all the deferred tasks. This API uses an asynchronous callback to return
 
 | Name     | Type                  | Mandatory  | Description                             |
 | -------- | -------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If all the deferred tasks are obtained, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback |  AsyncCallback\<void> | Yes   | Callback used to return the result. If all the deferred tasks are obtained, **err** is **undefined**. Otherwise, **err** is an error object.|
 
-**Return value**
+**Error codes**
 
-| Type                           | Description             |
-| ----------------------------- | --------------- |
-| Array\<[WorkInfo](#workinfo)> | All the deferred tasks.|
+For details about the error codes, see [workScheduler Error Codes](../errorcodes/errorcode-workScheduler.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 9700001 | Memory operation failed. |
+| 9700002 | Parcel operation failed. |
+| 9700003 | System service operation failed. |
+
+## workScheduler.obtainAllWorks<sup>10+<sup>
+
+obtainAllWorks(callback : AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt;): void
+
+Obtains all the deferred tasks. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
+
+**Parameters**
+
+| Name     | Type                  | Mandatory  | Description                             |
+| -------- | -------------------- | ---- | ------------------------------- |
+| callback |  AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt; | Yes   | Callback used to return the result. If all the deferred tasks are obtained, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -228,6 +255,8 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 **Example**
 
 ```ts
+  import { BusinessError } from '@ohos.base';
+
   workScheduler.obtainAllWorks((error: BusinessError, res: Array<workScheduler.WorkInfo>) =>{
     if (error) {
       console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
@@ -264,6 +293,8 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 **Example**
 
 ```ts
+  import { BusinessError } from '@ohos.base';
+
   workScheduler.obtainAllWorks().then((res: Array<workScheduler.WorkInfo>) => {
     console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
   }).catch((error: BusinessError) => {
@@ -292,6 +323,8 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 **Example**
 
 ```ts
+  import { BusinessError } from '@ohos.base';
+
   try{
     workScheduler.stopAndClearWorks();
     console.info(`workschedulerLog stopAndClearWorks success`);
@@ -300,9 +333,11 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
   }
 ```
 
-## workScheduler.isLastWorkTimeOut
+## workScheduler.isLastWorkTimeOut<sup>deprecated<sup>
 
 isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
+
+> This API is deprecated since API version 10. You are advised to use [workScheduler.isLastWorkTimeOut<sup>10+<sup>](#workschedulerislastworktimeout10) instead.
 
 Checks whether the last execution of a task timed out. This API uses an asynchronous callback to return the result.
 
@@ -315,11 +350,31 @@ Checks whether the last execution of a task timed out. This API uses an asynchro
 | workId   | number               | Yes   | ID of the deferred task.                                |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
-**Return value**
+**Error codes**
 
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
-| boolean | The value **true** means that the last execution of the specified task times out, and **false** means the opposite.|
+For details about the error codes, see [workScheduler Error Codes](../errorcodes/errorcode-workScheduler.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 9700001 | Memory operation failed. |
+| 9700002 | Parcel operation failed. |
+| 9700003 | System service operation failed. |
+| 9700004 | Check workInfo failed. |
+
+## workScheduler.isLastWorkTimeOut<sup>10+<sup>
+
+isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): void
+
+Checks whether the last execution of a task timed out. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
+
+**Parameters**
+
+| Name     | Type                  | Mandatory  | Description                                      |
+| -------- | -------------------- | ---- | ---------------------------------------- |
+| workId   | number               | Yes   | ID of the deferred task.                                |
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.|
 
 **Error codes**
 
@@ -335,6 +390,8 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 **Example**
 
 ```ts
+  import { BusinessError } from '@ohos.base';
+
   workScheduler.isLastWorkTimeOut(500, (error: BusinessError, res: boolean) =>{
     if (error) {
       console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
@@ -378,6 +435,8 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 **Example**
 
 ```ts
+  import { BusinessError } from '@ohos.base';
+
   workScheduler.isLastWorkTimeOut(500)
     .then((res: boolean) => {
       console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);

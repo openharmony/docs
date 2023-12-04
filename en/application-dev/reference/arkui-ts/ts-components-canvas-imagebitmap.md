@@ -16,7 +16,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Mandatory| Default Value| Description                                                    |
 | ------ | -------- | ---- | ------ | ------------------------------------------------------------ |
-| src    | string   | Yes  | -      | Image source. Local images are supported.<br>1. The string format is used to load local images, for example, ImageBitmap("common/images/example.jpg"). The start point of the image loading path is the ets folder.<br>2. Supported image formats: bmp, jpg, png, svg, and webp.<br>**NOTE**<br>ArkTS widgets do not support the strings with the **http://**, **datashare://**, or **file://data/storage**.|
+| src    | string   | Yes  | -      | Image source. Local images are supported.<br>1. The string format is used to load local images, for example, ImageBitmap("common/images/example.jpg"). The start point of the image loading path is the **ets** folder.<br>2. Supported image formats: bmp, jpg, png, svg, and webp.<br>**NOTE**<br>ArkTS widgets do not support the strings with the **http://**, **datashare://**, or **file://data/storage**.|
 
 
 

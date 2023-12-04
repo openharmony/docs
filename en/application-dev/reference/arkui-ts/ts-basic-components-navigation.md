@@ -50,7 +50,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | navBarPosition<sup>9+</sup>        | [NavBarPosition](#navbarposition)    | Position of the navigation bar.<br>Default value: **NavBarPosition.Start**<br>**NOTE**<br>This attribute is valid only when the **\<Navigation>** component is split.|
 | mode<sup>9+</sup>                  | [NavigationMode](#navigationmode)    | Display mode of the navigation bar.<br>Default value: **NavigationMode.Auto**<br>At the default settings, the component adapts to a single column or two columns based on the component width.<br>**NOTE**<br>Available options are **Stack**, **Split**, and **Auto**.|
 | backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Back button icon on the navigation bar. The back button in the title bar of the **\<NavDestination>** component cannot be hidden.|
-| hideNavBar<sup>9+</sup>            | boolean                                  | Whether to hide the navigation bar.|
+| hideNavBar<sup>9+</sup>            | boolean                                  | Whether to hide the navigation bar.<br>Default value: **false**|
 | navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | Creates a **\<NavDestination>** component.<br>**NOTE**<br>The **builder** function is used, with the **name** and **param** parameters passed in. In the builder, a layer of custom components can be included outside the **\<NavDestination>** component. However, no attributes or events can be set for the custom components. Otherwise, only blank components are displayed.|
 | navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | Minimum and maximum widths of the navigation bar (valid in dual-column mode).<br>Default value: **240** for the minimum value; 40% of the component width (not greater than 432) for the maximum value<br>Unit: vp<br>Priority rules:<br>Custom value > Default value<br>Minimum value > Maximum value<br>navBar > content<br>If values conflict, the global value takes precedence, and the local minimum value depends on the container size.|
 | minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | Minimum width of the navigation bar content area (valid in dual-column mode).<br>Default value: **360**<br>Unit: vp<br>Priority rules:<br>Custom value > Default value<br>Minimum value > Maximum value<br>navBar > content<br>If values conflict, the global value takes precedence, and the local minimum value depends on the container size.<br>Breakpoint calculation in Auto mode: default 600 vp = minNavBarWidth (240 vp) + minContentWidth (360 vp)|
@@ -61,6 +61,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | ---------------------------------------- | ---------------------------------------- |
 | onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void) | Called when **titleMode** is set to **NavigationTitleMode.Free** and the title bar mode changes as content scrolls.|
 | onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) | Called when the navigation bar visibility status changes. The value **true** means that the navigation bar is displayed, and **false** means the opposite.|
+| onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void) <sup>11+</sup>| Called when the **\<Navigation>** component is displayed for the first time or its display mode switches beween single-column and dual-column.<br>**NavigationMode.Split**: The component is displayed in two columns.<br>**NavigationMode.Stack**: The component is displayed in a single column.|
 
 ## NavPathStack<sup>10+</sup>
 
@@ -89,7 +90,32 @@ Pushes the navigation destination page specified by **name** to the navigation s
 | Name   | Type     | Mandatory  | Description                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | Yes   | Name of the navigation destination page.  |
-| param | unknown | Yes   | Parameter information of the navigation destination page.|
+| param | unknown | Yes   | Detailed parameters of the navigation destination page.|
+
+### replacePath<sup>11+</sup>
+
+replacePath(info: NavPathInfo): void
+
+Replaces the top of the navigation stack with the page specified by **info**.
+
+**Parameters**
+
+| Name  | Type                           | Mandatory  | Description                  |
+| ---- | ----------------------------- | ---- | -------------------- |
+| info | [NavPathInfo](#navpathinfo10) | Yes   | Parameters of the page to replace the top of the navigation stack.|
+
+### replacePathByName <sup>11+</sup>
+
+replacePathByName(name: string, param: Object): void
+
+Replaces the top of the navigation stack with the page specified by **name**.
+
+**Parameters**
+
+| Name   | Type     | Mandatory  | Description                   |
+| ----- | ------- | ---- | --------------------- |
+| name  | string  | Yes   | Name of the navigation destination page.  |
+| param | Object | Yes   | Detailed parameters of the navigation destination page.|
 
 ### pop<sup>10+</sup>
 
@@ -126,7 +152,7 @@ Returns the navigation stack to the first navigation destination page that match
 
 popToIndex(index: number): void
 
-Returns the navigation stack to the navigation destination page that matches the value of **index**.
+Returns the navigation stack to the page specified by **index**.
 
 **Parameters**
 
@@ -262,15 +288,15 @@ constructor(name: string, param: unknown)
 | Name   | Type     | Mandatory  | Description                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | Yes   | Name of the navigation destination page.  |
-| param | unknown | No   | Parameter information of the navigation destination page.|
+| param | unknown | No   | Detailed parameters of the navigation destination page.|
 
 ## NavigationMenuItem
 
 | Name    | Type           | Mandatory  | Description             |
 | ------ | ------------- | ---- | --------------- |
-| value  | string        | Yes   | Text of a menu item.  |
-| icon   | string        | No   | Icon path of a menu item.|
-| action | () =&gt; void | No   | Callback invoked when a menu item is selected.  |
+| value  | string        | Yes   | Text of the menu item. Its visibility varies by the API version.<br>API version 9: visible.<br>API version 10: invisible. |
+| icon   | string        | No   | Icon path of the menu item.|
+| action | () =&gt; void | No   | Callback invoked when the menu item is selected.  |
 
 ## object
 
@@ -355,28 +381,15 @@ constructor(name: string, param: unknown)
 ```ts
 // xxx.ets
 class A {
-text:string=''
-num:number=0
+  text: string = ''
+  num: number = 0
 }
+
 @Entry
 @Component
 struct NavigationExample {
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   @State currentIndex: number = 0
-  @State Build: Array<Object> = [
-    {
-      text: 'add',
-      num: 0
-    } as A,
-    {
-      text: 'app',
-      num: 1
-    } as A,
-    {
-      text: 'collect',
-      num: 2
-    } as A
-  ]
 
   @Builder NavigationTitle() {
     Column() {
@@ -396,39 +409,18 @@ struct NavigationExample {
 
   @Builder NavigationMenus() {
     Row() {
-      Image('common/navigation_icon1.svg')
+      Image('common/ic_public_add.svg')
         .width(24)
         .height(24)
-      Image('common/navigation_icon1.svg')
+      Image('common/ic_public_add.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
-      Image('common/navigation_icon2.svg')
+      Image('common/ic_public_more.svg')
         .width(24)
         .height(24)
         .margin({ left: 24 })
     }
-  }
-
-  @Builder NavigationToolbar() {
-    Row() {
-      ForEach(this.Build, (item:A) => {
-        Column() {
-          Image(this.currentIndex == item.num ? 'common/public_icon_selected.svg' : 'common/public_icon.svg')
-            .width(24)
-            .height(24)
-          Text(item.text)
-            .fontColor(this.currentIndex == item.num ? '#007DFF' : '#182431')
-            .fontSize(10)
-            .lineHeight(14)
-            .fontWeight(500)
-            .margin({ top: 3 })
-        }.width(104).height(56)
-        .onClick(() => {
-          this.currentIndex = item.num
-        })
-      })
-    }.margin({ left: 24 })
   }
 
   build() {
@@ -441,7 +433,7 @@ struct NavigationExample {
           .margin({ top: 8 })
 
         List({ space: 12, initialIndex: 0 }) {
-          ForEach(this.arr, (item:number) => {
+          ForEach(this.arr, (item: number) => {
             ListItem() {
               Text('' + item)
                 .width('90%')
@@ -452,7 +444,7 @@ struct NavigationExample {
                 .fontWeight(500)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-        }, (item:number) => item.toString())
+          }, (item: number) => item.toString())
         }
         .height(324)
         .width('100%')
@@ -461,7 +453,20 @@ struct NavigationExample {
       .title(this.NavigationTitle)
       .menus(this.NavigationMenus)
       .titleMode(NavigationTitleMode.Full)
-      .toolBar(this.NavigationToolbar)
+      .toolbarConfiguration([
+        {
+          value: $r("app.string.navigation_toolbar_add"),
+          icon: $r("app.media.ic_public_highlightsed")
+        },
+        {
+          value: $r("app.string.navigation_toolbar_app"),
+          icon: $r("app.media.ic_public_highlights")
+        },
+        {
+          value: $r("app.string.navigation_toolbar_collect"),
+          icon: $r("app.media.ic_public_highlights")
+        }
+      ])
       .hideTitleBar(false)
       .hideToolBar(false)
       .onTitleModeChange((titleModel: NavigationTitleMode) => {
@@ -472,7 +477,7 @@ struct NavigationExample {
 }
 ```
 
-![en-us_image_0000001192655288](figures/en-us_image_0000001192655288.gif)
+![en-us_image_navigation](figures/en-us_image_navigation.png)
 
 
 

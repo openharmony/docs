@@ -145,14 +145,14 @@ AppStorage是单例，它的所有API都是静态的，使用方法类似于中L
 AppStorage.setOrCreate('PropA', 47);
 
 let storage: LocalStorage = new LocalStorage();
-storage['PropA'] = 17;
+storage.setOrCreate('PropA',17);
 let propA: number | undefined = AppStorage.get('PropA') // propA in AppStorage == 47, propA in LocalStorage == 17
 let link1: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link1.get() == 47
 let link2: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link2.get() == 47
-let prop: SubscribedAbstractProperty<number> = AppStorage.prop('PropA'); // prop.get() = 47
+let prop: SubscribedAbstractProperty<number> = AppStorage.prop('PropA'); // prop.get() == 47
 
 link1.set(48); // two-way sync: link1.get() == link2.get() == prop.get() == 48
-prop.set(1); // one-way sync: prop.get()=1; but link1.get() == link2.get() == 48
+prop.set(1); // one-way sync: prop.get() == 1; but link1.get() == link2.get() == 48
 link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 storage.get<number>('PropA') // == 17
@@ -174,7 +174,7 @@ prop.get() // == 49
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 let storage = new LocalStorage();
-storage['PropA'] = 48;
+storage.setOrCreate('PropA',48);
 
 @Entry(storage)
 @Component
@@ -198,7 +198,7 @@ struct CompA {
 
 不建议开发者使用@StorageLink和AppStorage的双向同步的机制来实现事件通知，AppStorage是和UI相关的数据存储，改变会带来UI的刷新，相对于一般的事件通知，UI刷新的成本较大。
 
-TapImage中的点击事件，会触发AppStorage中tapIndex对应属性的改变。因为@StorageLink是双向同步，修改会同步会AppStorage中，所以，所有绑定AppStorage的tapIndex自定义组件都会被通知UI刷新。UI刷新带来的成本是巨大的，因此不建议开发者使用此方式来实现基本的事件通知功能。
+TapImage中的点击事件，会触发AppStorage中tapIndex对应属性的改变。因为@StorageLink是双向同步，修改会同步回AppStorage中，所以，所有绑定AppStorage的tapIndex自定义组件都会被通知UI刷新。UI刷新带来的成本是巨大的，因此不建议开发者使用此方式来实现基本的事件通知功能。
 
 
 ```ts
@@ -464,5 +464,5 @@ AppStorage与[PersistentStorage](arkts-persiststorage.md)以及[Environment](ark
 
 - 如果在AppStorage中已经创建属性后，再调用Environment.envProp()创建同名的属性，会调用失败。因为AppStorage已经有同名属性，Environment环境变量不会再写入AppStorage中，所以建议AppStorage中属性不要使用Environment预置环境变量名。
 
-- 状态装饰器装饰的变量，改变会引起UI的渲染更新，如果改变的变量不是用于UI更新，只是用于消息传递，推荐使用 emitter方式。例子可见[以持久化方式订阅某个事件并接收事件回调](#以持久化方式订阅某个事件并接收事件回调)。
+- 状态装饰器装饰的变量，改变会引起UI的渲染更新，如果改变的变量不是用于UI更新，只是用于消息传递，推荐使用 emitter方式。例子可见[不建议借助@StorageLink的双向同步机制实现事件通知](#不建议借助storagelink的双向同步机制实现事件通知)。
 <!--no_check-->

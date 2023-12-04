@@ -50,13 +50,13 @@ The **VideoEncoder** module provides the functions for video encoding.
 | [OH_VideoEncoder_Stop](#oh_videoencoder_stop) (OH_AVCodec \*codec) | Stops a video encoder.| 
 | [OH_VideoEncoder_Flush](#oh_videoencoder_flush) (OH_AVCodec \*codec) | Clears the input and output data in the internal buffer of a video encoder.| 
 | [OH_VideoEncoder_Reset](#oh_videoencoder_reset) (OH_AVCodec \*codec) | Resets a video encoder.| 
-| \*[OH_VideoEncoder_GetOutputDescription](#oh_videoencoder_getoutputdescription) (OH_AVCodec \*codec) | Obtains the description information about the output data of a video encoder. For details, see **OH_AVFormat**.| 
+| \*[OH_VideoEncoder_GetOutputDescription](#oh_videoencoder_getoutputdescription) (OH_AVCodec \*codec) | Obtains the description information about the output data of a video encoder. For details, see [OH_AVFormat](_core.md) .| 
 | [OH_VideoEncoder_SetParameter](#oh_videoencoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format) | Sets dynamic parameters for a video encoder.| 
 | [OH_VideoEncoder_GetSurface](#oh_videoencoder_getsurface) (OH_AVCodec \*codec, OHNativeWindow \*\*window) | Sets an input surface for a video encoder. This function must be called prior to **Prepare**.| 
 | [OH_VideoEncoder_FreeOutputData](#oh_videoencoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index) | Frees an output buffer of a video encoder.| 
 | [OH_VideoEncoder_NotifyEndOfStream](#oh_videoencoder_notifyendofstream) (OH_AVCodec \*codec) | Notifies a video encoder that input streams end. You are advised to use this function for notification.| 
 | [OH_VideoEncoder_PushInputData](#oh_videoencoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, OH_AVCodecBufferAttr attr) | Pushes the input buffer filled with data to a video encoder.| 
-| \*[OH_VideoEncoder_GetInputDescription](#oh_videoencoder_getinputdescription) (OH_AVCodec \*codec) | Obtains the description information received by the video encoder. This function must be called after **Configure**. For details, see **OH_AVFormat**.| 
+| \*[OH_VideoEncoder_GetInputDescription](#oh_videoencoder_getinputdescription) (OH_AVCodec \*codec) | Obtains the description information received by the video encoder. This function must be called after **Configure**. For details, see [OH_AVFormat](_core.md).| 
 | [OH_VideoEncoder_IsValid](#oh_videoencoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | Checks whether a video encoder instance is valid.| 
 
 
@@ -88,7 +88,7 @@ Defines the bit rate mode of a video encoder.
 
   
 ```
-enum OH_VideoEncode BitrateMode
+enum OH_VideoEncodeBitrateMode
 ```
 
 **Description**
@@ -159,7 +159,7 @@ Creates a video encoder instance based on a MIME type. This function is recommen
 
 | Name| Description| 
 | -------- | -------- |
-| mime | Pointer to a string that describes the MIME type. For details, see **AVCODEC_MIME_TYPE**.| 
+| mime | Pointer to a string that describes the MIME type. For details, see [AVCODEC_MIMETYPE](_codec_base.md#variables).| 
 
 **Returns**
 
@@ -355,6 +355,7 @@ OH_AVErrCode OH_VideoEncoder_GetSurface (OH_AVCodec *codec, OHNativeWindow **win
 **Description**
 
 Sets an input surface for a video encoder. This function must be called prior to **Prepare**.
+The application manages the lifecycle of the window and calls **OH_NativeWindow_DestroyNativeWindow()** to release the window when the lifecycle ends.
 
 \@syscap SystemCapability.Multimedia.Media.VideoEncoder
 
@@ -539,7 +540,7 @@ This function must be called prior to **Prepare**.
 | Name| Description| 
 | -------- | -------- |
 | codec | Pointer to an **OH_AVCodec** instance.| 
-| callback | Callback function to set. For details, see **OH_AVCodecAsyncCallback**.| 
+| callback | Callback function to set. For details, see [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md).| 
 | userData | User-specific data.| 
 
 **Returns**

@@ -1,7 +1,7 @@
 # Data Synchronization Between UIAbility and UI Page
 
 
-Based on the OpenHarmony application model, you can use any of the following ways to implement data synchronization between UIAbility components and UI pages:
+Based on the application model, you can use any of the following ways to implement data synchronization between UIAbility components and UI pages:
 
 - [Using EventHub for Data Synchronization](#using-eventhub-for-data-synchronization): The **EventHub** object is provided by the base class **Context**. It allows events to be transferred using the publish/subscribe (pub/sub) pattern. Specifically, after subscribing to an event, your application will receive the event and process it accordingly when the event is published.
 - [Using AppStorage or LocalStorage for Data Synchronization](#using-appstorage-or-localstorage-for-data-synchronization): ArkUI provides two application-level state management solutions: AppStorage and LocalStorage, which implement application- and UIAbility-level data synchronization, respectively.
@@ -63,7 +63,14 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 
      // UI page display.
      build() {
-       ...
+       Button ('Button')
+         .onClick(() => {
+           this.eventHubFunc();
+         })
+       Button ('Close')
+         .onClick(() => {
+           this.context.eventHub.off('event1');
+         })
      }
    }
    ```
@@ -71,11 +78,12 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 3. Obtain the event trigger result from the subscription callback of the UIAbility. The run log result is as follows:
 
    ```json
-   []
-
-   [1]
-
-   [2,'test']
+   [Example].[Entry].[EntryAbility] 1. []
+   [Example].[Entry].[EntryAbility] 2. []
+   [Example].[Entry].[EntryAbility] 1. [1]
+   [Example].[Entry].[EntryAbility] 2. [1]
+   [Example].[Entry].[EntryAbility] 1. [2,"test"]
+   [Example].[Entry].[EntryAbility] 2. [2,"test"]
    ```
 
 4. When **event1** is not needed, call [eventHub.off()](../reference/apis/js-apis-inner-application-eventHub.md#eventhuboff) to unsubscribe from the event.

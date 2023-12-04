@@ -1,19 +1,19 @@
-# Custom Attribute Animation
+# Custom Property Animation
 
 
-The attribute animation is an illusion of movement created on the UI when the value of an animatable attribute changes over time. It is implemented by setting continuous value changes of an attribute to the attribute API that can cause the UI re-render.
+The property animation is an illusion of movement created on the UI when the value of an animatable property changes over time. It is implemented by setting continuous value changes of a property to the property API that can cause the UI re-render.
 
 
-ArkUI provides the [@AnimatableExtend](../quick-start/arkts-animatable-extend.md) decorator for customizing animatable attribute APIs, which accepts only parameters of the number type or a custom type that implements [AnimtableArithmetic<T>](../quick-start/arkts-animatable-extend.md) to deliver continuous value changes. During execution of **animateTo** or **animation** with a custom animatable attribute API and the animatable data type, the frame-by-frame callback is used to change the value of a non-animatable attribute so that an animation effect can be applied to the attribute.
+ArkUI provides the [@AnimatableExtend](../quick-start/arkts-animatable-extend.md) decorator for customizing animatable property APIs, which accepts only parameters of the number type or a custom type that implements [AnimtableArithmetic\<T>](../quick-start/arkts-animatable-extend.md) to deliver continuous value changes. During execution of **animateTo** or **animation** with a custom animatable property API and the animatable data type, the frame-by-frame callback is used to change the value of a non-animatable property so that an animation effect can be applied to the property.
 
 
 ## Animating Font Size Changes with Number Data Type and \@AnimatableExtend Decorator
 
 
 ```ts
-// Step 1: Use the @AnimatableExtend decorator to customize an animatable attribute API.
+// Step 1: Use the @AnimatableExtend decorator to customize an animatable property API.
 @AnimatableExtend(Text) function animatableFontSize(size: number) {
-  .fontSize(size) // Invoke the system attribute API.
+  .fontSize(size) // Invoke the system property API.
 }
 
 @Entry
@@ -24,11 +24,11 @@ struct AnimatablePropertyExample {
   build() {
     Column() {
       Text("AnimatableProperty")
-        .animatableFontSize(this.fontSize) // Step 2: Set the custom animatable attribute API on the component.
-        .animation({ duration: 1000, curve: "ease" }) // Step 3: Bind an animation to the custom animatable attribute API.
+        .animatableFontSize(this.fontSize) // Step 2: Set the custom animatable property API on the component.
+        .animation({ duration: 1000, curve: "ease" }) // Step 3: Bind an animation to the custom animatable property API.
       Button("Play")
         .onClick(() => {
-          this.fontSize = this.fontSize == 20 ? 36 : 20; // Step 4: Change the value of the custom animatable attribute to generate an animation.
+          this.fontSize = this.fontSize == 20 ? 36 : 20; // Step 4: Change the value of the custom animatable property to generate an animation.
         })
     }.width("100%")
     .padding(10)
@@ -45,9 +45,9 @@ struct AnimatablePropertyExample {
 
 
 ```ts
-declare type Point = Object[];
+declare type Point = number[];
 
-// Define the parameter type of the animatable attribute API and implement the addition, subtraction, multiplication, and equivalence judgment functions in the AnimtableArithmetic<T> API.
+// Define the parameter type of the animatable property API and implement the addition, subtraction, multiplication, and equivalence judgment functions in the AnimtableArithmetic<T> API.
 class PointClass extends Array<number> {
   constructor(value: Point) {
     super(value[0], value[1])
@@ -78,13 +78,13 @@ class PointClass extends Array<number> {
   }
 }
 
-// Define the parameter type of the animatable attribute API and implement the addition, subtraction, multiplication, and equivalence judgment functions in the AnimtableArithmetic<T> API.
+// Define the parameter type of the animatable property API and implement the addition, subtraction, multiplication, and equivalence judgment functions in the AnimtableArithmetic<T> API.
 // Template T supports nested implementation of the AnimtableArithmetic<T> type.
 class PointVector extends Array<PointClass> implements AnimatableArithmetic<Array<Point>> {
   constructor(initialValue: Array<Point>) {
     super();
     if (initialValue.length) {
-      initialValue.forEach((p:object) => this.push(new PointClass(p)))
+      initialValue.forEach((p:Point) => this.push(new PointClass(p)))
     }
   }
 
@@ -132,12 +132,12 @@ function randomInt(min:number, max:number) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-// Define a custom animatable attribute API.
+// Define a custom animatable property API.
 @AnimatableExtend(Polyline) function animatablePoints(points: PointVector) {
   .points(points)
 }
 
-// Define a custom animatable attribute API.
+// Define a custom animatable property API.
 @AnimatableExtend(Text) function animatableFontSize(size: number) {
   .fontSize(size)
 }
@@ -211,6 +211,7 @@ struct AnimatedShape {
         Button("Polyline1 default")
           .width(100).height(60)
           .margin({ left: 5, right: 5 })
+          .padding(10)
           .onClick(() => {
 
             if (this.polyline1Vec.equals(this.pointVec1)) {

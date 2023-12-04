@@ -19,7 +19,7 @@ import matrix4 from '@ohos.matrix4'
 init(options: [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]): Matrix4Transit
 
 
-Matrix constructor, which is used to create a 4 x 4 matrix by using the input parameter. Column-major order is used.
+Matrix constructor, which is used to create a 4 x 4 matrix with the input parameters. Column-major order is used.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -33,7 +33,7 @@ Matrix constructor, which is used to create a 4 x 4 matrix by using the input pa
 
 | Type                             | Description                        |
 | --------------------------------- | ---------------------------- |
-| [Matrix4Transit](#matrix4transit) | 4 x 4 matrix object created based on the input parameter.|
+| [Matrix4Transit](#matrix4transit) | 4 x 4 matrix object created based on the input parameters.|
 
 **4 x 4 matrix description**
 
@@ -207,7 +207,7 @@ This API is deprecated since API version 10.
 
 | Type                             | Description                  |
 | --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
+| [Matrix4Transit](#matrix4transit) | Matrix object after combination.|
 
 ## matrix4.translate<sup>(deprecated)</sup>
 
@@ -229,7 +229,7 @@ This API is deprecated since API version 10.
 
 | Type                             | Description                  |
 | --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
+| [Matrix4Transit](#matrix4transit) | Matrix object after translation.|
 
 ## matrix4.scale<sup>(deprecated)</sup>
 
@@ -251,7 +251,7 @@ This API is deprecated since API version 10.
 
 | Type                             | Description                  |
 | --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
+| [Matrix4Transit](#matrix4transit) | Matrix object after scaling.|
 
 ## matrix4.rotate<sup>(deprecated)</sup>
 
@@ -273,7 +273,7 @@ This API is deprecated since API version 10.
 
 | Type                             | Description                  |
 | --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
+| [Matrix4Transit](#matrix4transit) | Matrix object after rotation.|
 
 ## matrix4.transformPoint<sup>(deprecated)</sup>
 

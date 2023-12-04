@@ -34,7 +34,7 @@ An \@Provide decorated state variable exists in the ancestor component and is sa
 ```
 
 
-When \@Provide and \@Consume are bound through the same variable name or variable alias, the variables decorated by \@Provide and \@Consume are in a one-to-many relationship. A custom component, including its child components, cannot contain multiple \@Provide decorated variables under the same name or alias. Otherwise, a runtime error will occur.
+When \@Provide and \@Consume are bound through the same variable name or variable alias, the variables decorated by \@Provide and \@Consume are in a one-to-many relationship. A custom component, including its child components, should not contain multiple \@Provide decorated variables under the same name or alias. Otherwise, a runtime error will occur.
 
 
 ## Decorator Description
@@ -45,14 +45,14 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the variable is provided under the alias name only. If the alias is not specified, the variable is provided under the variable name.|
 | Synchronization type          | Two-way:<br>from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported. A combination of simple and complex types is not supported. The **undefined** and **null** values are not allowed.<br>The type must be specified. The type of the provided and the consumed variables must be the same.<br>**NOTE**<br>The Length, ResourceStr, and ResourceColor types are a combination of simple and complex types and therefore not supported.|
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @Provide and @Consume](#union-type-provide-and-consume).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, **@Provide a: string \| undefined = undefined** is recommended; **@Provide a: string = undefined** is not recommended.<br>The union types Length, ResourceStr, and ResourceColor defined by the AkrUI framework are supported.<br>**any** is not supported.<br>The type must be specified. The type of the provided and the consumed variables must be the same. |
 | Initial value for the decorated variable     | Mandatory.                                   |
 
 | \@Consume Decorator| Description                                      |
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the alias name is used for matching with the \@Provide decorated variable. Otherwise, the variable name is used.|
 | Synchronization type          | from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported. The **undefined** and **null** values are not allowed.<br>The type must be specified. The type of the provided and the consumed variables must be the same.<br>**NOTE**<br>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor node.|
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @Provide and @Consume](#union-type-provide-and-consume).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, @Consume a: string \| undefined.<br>The union types Length, ResourceStr, and ResourceColor defined by the AkrUI framework are supported.<br>**any** is not supported.<br>The type must be specified. The type of the provided and the consumed variables must be the same.<br>**NOTE**<br>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor component.|
 | Initial value for the decorated variable     | Forbidden.                              |
 
 
@@ -63,7 +63,7 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 | -------------- | ---------------------------------------- |
 | Initialization and update from the parent component    | Optional. An @Provide decorated variable can be initialized from a regular variable (whose change does not trigger UI refresh) or an @State, @Link, @Prop, @Provide, @Consume, @ObjectLink, @StorageLink, @StorageProp, @LocalStorageLink, or @LocalStorageProp decorated variable in its parent component.|
 | Subnode initialization      | Supported; can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
-| Synchronization with the parent component        | None.                                      |
+| Synchronization with the parent component        | Not supported.                                      |
 | Synchronization with descendant components       | Two-way with @Consume decorated variables in descendant components.                         |
 | Access     | Private, accessible only within the component.                         |
 
@@ -226,3 +226,49 @@ struct CompA {
   }
 }
 ```
+
+## Union Type @Provide and @Consume
+
+@Provide and @Consume support **undefined**, **null**, and union types. In the following example, the type of **count** is string | undefined. If the attribute or type of **count** is changed when the button in the **Parent** component is clicked, the change will be synced to the child component.
+
+```ts
+@Component
+struct Child {
+  // The @Consume decorated variable is bound to the @Provide decorated variable in its ancestor component Ancestors under the same attribute name.
+  @Consume count: string | undefined;
+
+  build() {
+    Column() {
+      Text(`count(${this.count})`)
+      Button(`count(${this.count}), Child`)
+        .onClick(() => this.count = 'Ancestors')
+    }
+    .width('50%')
+  }
+}
+
+@Component
+struct Parent {
+  build() {
+    Row({ space: 5 }) {
+      Child()
+    }
+  }
+}
+
+@Entry
+@Component
+struct Ancestors {
+  // The @Provide decorated variable count of the union type is provided by the entry component Ancestors for its descendant components.
+  @Provide count: string | undefined = 'Child';
+
+  build() {
+    Column() {
+      Button(`count(${this.count}), Child`)
+        .onClick(() => this.count = undefined)
+      Parent()
+    }
+  }
+}
+```
+<!--no_check-->

@@ -25,7 +25,7 @@ getNativeHeapSize(): bigint
 
 | 类型   | 说明                        |
 | ------ | --------------------------- |
-| bigint | 返回本应用堆内存总大小，单位为kB。 |
+| bigint | 返回本应用堆内存总大小，单位为Byte。 |
 
 **示例：**
   ```ts
@@ -44,7 +44,7 @@ getNativeHeapAllocatedSize(): bigint
 
 | 类型   | 说明                              |
 | ------ | --------------------------------- |
-| bigint | 返回本应用堆内存的已分配内存，单位为kB。 |
+| bigint | 返回本应用堆内存的已分配内存，单位为Byte。 |
 
 
 **示例：**
@@ -64,7 +64,7 @@ getNativeHeapFreeSize(): bigint
 
 | 类型   | 说明                            |
 | ------ | ------------------------------- |
-| bigint | 返回本应用堆内存的空闲内存，单位为kB。 |
+| bigint | 返回本应用堆内存的空闲内存，单位为Byte。 |
 
 **示例：**
   ```ts
@@ -88,6 +88,26 @@ getPss(): bigint
 **示例：**
   ```ts
   let pss: bigint = hidebug.getPss();
+  ```
+
+## hidebug.getVss<sup>11+<sup>
+
+getVss(): bigint
+
+获取应用进程虚拟耗用内存大小。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型   | 说明                                     |
+| ------ | ---------------------------------------- |
+| bigint | 返回应用进程虚拟耗用内存大小，单位为kB。 |
+
+**示例：**
+
+  ```ts
+let vss: bigint = hidebug.getVss();
   ```
 
 ## hidebug.getSharedDirty
@@ -181,35 +201,39 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
 import fs from '@ohos.file.fs'
 import hidebug from '@ohos.hidebug'
 import common from '@ohos.app.ability.common'
 import { BusinessError } from '@ohos.base'
 
-let applicationContext: common.Context | null = null;
-try {
-  applicationContext = this.context.getApplicationContext();
-} catch (error) {
-  console.info((error as BusinessError).code);
-  console.info((error as BusinessError).message);
+export default class HidebugTest extends UIAbility {
+  public testfunc() {
+    let applicationContext: common.Context | null = null;
+    try {
+      applicationContext = this.context.getApplicationContext();
+    } catch (error) {
+      console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+    }
+
+    let filesDir: string = applicationContext!.filesDir;
+    let path: string = filesDir + "/serviceInfo.txt";
+    console.info("output path: " + path);
+    let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    let serviceId: number = 10;
+    let args: Array<string> = new Array("allInfo");
+
+    try {
+      hidebug.getServiceDump(serviceId, file.fd, args);
+    } catch (error) {
+      console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+    }
+    fs.closeSync(file);
+  }
 }
 
-if (applicationContext) {
-  let filesDir: string = applicationContext.filesDir;
-}
-let path: string = filesDir + "/serviceInfo.txt";
-console.info("output path: " + path);
-let file: file.fs = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-let serviceId: number = 10;
-let args: Array = new Array("allInfo");
-
-try {
-  hidebug.getServiceDump(serviceId, file.fd, args);
-} catch (error) {
-  console.info((error as BusinessError).code);
-  console.info((error as BusinessError).message);
-}
-fs.closeSync(file);
+let t = new HidebugTest();
+t.testfunc();
 ```
 
 ## hidebug.startJsCpuProfiling<sup>9+</sup>
@@ -245,8 +269,7 @@ try {
   // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
-  console.info((error as BusinessError).code)
-  console.info((error as BusinessError).message)
+  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -275,8 +298,7 @@ try {
   // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
-  console.info((error as BusinessError).code)
-  console.info((error as BusinessError).message)
+  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -311,8 +333,7 @@ import { BusinessError } from '@ohos.base'
 try {
   hidebug.dumpJsHeapData("heapData");
 } catch (error) {
-  console.info((error as BusinessError).code)
-  console.info((error as BusinessError).message)
+  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 

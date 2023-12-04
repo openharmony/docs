@@ -28,9 +28,9 @@
           .margin(15).width('90%')
           .onClick(() => {
             postCardAction(this, {
-              'action': 'message',
-              'params': {
-                'msgTest': 'messageEvent'
+              action: 'message',
+              params: {
+                msgTest: 'messageEvent'
               }
             });
           })
@@ -45,20 +45,21 @@
   import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
   import formProvider from '@ohos.app.form.formProvider';
-  
+
   export default class EntryFormAbility extends FormExtensionAbility {
     onFormEvent(formId: string, message: string) {
       // Called when a specified message event defined by the form provider is triggered.
-      console.info(`FormAbility onEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
-      let formData = new Map<Object, string>();
-      formData.set('title', 'Title Update.'); // 和卡片布局中对应
-      formData.set('detail', 'Description update success.'); // 和卡片布局中对应
+      console.info(`FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
+      class FormDataClass{
+        title: string = 'Title Update.' // 和卡片布局中对应
+        detail: string = 'Description update success.' // 和卡片布局中对应
+      }
+      let formData = new FormDataClass();
       let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
       formProvider.updateForm(formId, formInfo).then(() => {
         console.info('FormAbility updateForm success.');
       });
     }
-
     ...
   }
   ```

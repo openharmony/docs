@@ -7,7 +7,7 @@ Cookie是网络访问过程中，由服务端发送给客户端的一小段数�
 
 Web组件提供了WebCookieManager类，用于管理Web组件的Cookie信息。Cookie信息保存在应用沙箱路径下/proc/{pid}/root/data/storage/el2/base/cache/web/Cookiesd的文件中。
 
-下面以[setCookie()](../reference/apis/js-apis-webview.md#setcookie)接口举例，为“www.example.com”设置单个Cookie的值“value=test”。其他Cookie的相关功能及使用，请参考[WebCookieManager()](../reference/apis/js-apis-webview.md#webcookiemanager)接口文档。
+下面以[setCookie()](../reference/apis/js-apis-webview.md#setcookie)接口举例，为“www\.example.com”设置单个Cookie的值“value=test”。其他Cookie的相关功能及使用，请参考[WebCookieManager()](../reference/apis/js-apis-webview.md#webcookiemanager)接口文档。
 
 
 ```ts
@@ -40,7 +40,7 @@ struct WebComponent {
 
 ## 缓存与存储管理
 
-在访问网站时，网络资源请求是相对比较耗时的。开发者可以通过Cache、Dom Storage等手段将资源保持至本地，以提升访问同一网站的速度。
+在访问网站时，网络资源请求是相对比较耗时的。开发者可以通过Cache、Dom Storage等手段将资源保存到本地，以提升访问同一网站的速度。
 
 
 ### Cache

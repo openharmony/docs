@@ -44,7 +44,7 @@ Based on the preceding figure, let's look into the initial creation, re-renderin
 
 3. If defined, the component's **aboutToAppear** callback is invoked.
 
-4. On initial render, the **build** function of a component is executed for rendering. The rendering creates instances of further child components. While executing the **build** function, the framework observes read access on each state variable and then constructs two mapping tables:
+4. On initial render, the **build** function of the built-in component is executed for rendering. If the child component is a custom component, the rendering creates an instance of the child component. While executing the **build** function, the framework observes read access on each state variable and then constructs two mapping tables:
    1. State variable -> UI component (including **ForEach** and **if**)
    2. UI component -> Update function for this component, which is a lambda. As a subset of the **build** function, the lambda creates one UI component and executes its attribute methods.
 
@@ -168,7 +168,7 @@ struct Child {
 ```
 
 
-In the preceding example, the **Index** page contains two custom components. One is **MyComponent** decorated with \@Entry, which is also the entry component (root node) of the page. The other is **Child**, which is a child component of **MyComponent**. Only components decorated by \@Entry can call the lifecycle callbacks of a page.Therefore, the page lifecycle callbacks of the **Index** page are declared in **MyComponent**. **MyComponent** and its child components also declare the lifecycle callbacks of the respective component.
+In the preceding example, the **Index** page contains two custom components. One is **MyComponent** decorated with \@Entry, which is also the entry component (root node) of the page. The other is **Child**, which is a child component of **MyComponent**. Only components decorated by \@Entry can call the page lifecycle callbacks. Therefore, the lifecycle callbacks of the **Index** page are declared in **MyComponent**. **MyComponent** and its child components also declare the lifecycle callbacks of the respective component.
 
 
 - The initialization process of application cold start is as follows: MyComponent aboutToAppear -> MyComponent build -> Child aboutToAppear -> Child build -> Child build execution completed -> MyComponent build execution completed -> Index onPageShow.

@@ -26,8 +26,8 @@ Video(value: {src?: string | Resource, currentProgressRate?: number | string | P
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | src                 | string \| [Resource](ts-types.md)                            | No  | Path of the video source, which can be a local path or a URL.<br>The video resources can be stored in the **video** or **rawfile** folder under **resources**.<br>The path can include a **dataability://** prefix, which indicates that the path is provided by a Data ability. For details about the path, see [Data Ability Development](../../application-models/dataability-overview.md).<br>- Strings with the **file:///data/storage** prefix are supported, which are used to read resources in the application sandbox. Ensure that the application has the read permission to the files in the specified path.<br>**NOTE**<br>The supported video formats are MP4, MKV, WebM, and TS.|
 | currentProgressRate | number \| string \| PlaybackSpeed<sup>8+</sup> | No  | Video playback speed.<br>**NOTE**<br>The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**.<br>Default value: 1.0 \| PlaybackSpeed.Speed_Forward_1_00_X |
-| previewUri          | string \|PixelMap \| [Resource](ts-types.md)  | No  | Path of the preview image.                                |
-| controller          | [VideoController](#videocontroller)                          | No  | Video controller.                                            |
+| previewUri          | string \|PixelMap \| [Resource](ts-types.md)  | No  | Path of the preview image displayed before the video playback starts. By default, no preview image is displayed.                |
+| controller          | [VideoController](#videocontroller)                          | No  | Video controller to control the video playback status.                    |
 
 ## PlaybackSpeed<sup>8+</sup>
 
@@ -61,16 +61,16 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | onPause(event:() =&gt; void)                       | Triggered when the video playback is paused.                                          |
 | onFinish(event:() =&gt; void)                      | Triggered when the video playback is finished.                                      |
 | onError(event:() =&gt; void)                       | Triggered when the video playback fails.                                      |
-| onPrepared(callback:(event?: { duration: number }) =&gt; void) | Triggered when video preparation is complete. The video duration (in seconds) is obtained from **duration**.|
-| onSeeking(callback:(event?: { time: number }) =&gt; void) | Triggered to report the time (in seconds) when the progress bar is being dragged.                     |
-| onSeeked(callback:(event?: { time: number }) =&gt; void) | Triggered to report the playback time (in seconds) when the user finishes dragging the progress bar.               |
-| onUpdate(callback:(event?: { time: number }) =&gt; void) | Triggered when the playback progress changes. The unit of the playback time is second.                         |
-| onFullscreenChange(callback:(event?: { fullscreen: boolean }) =&gt; void) | Triggered when the playback mode is switched between full-screen mode and non-full-screen mode. The value **true** means that the playback is in full-screen mode, and **false** means that the playback is non-full-screen mode.|
+| onPrepared(callback:(event?: { duration: number }) =&gt; void) | Triggered when video preparation is complete.<br>**duration**: duration of the current video, in seconds.|
+| onSeeking(callback:(event?: { time: number }) =&gt; void) | Triggered to report the time when the progress bar is being dragged.<br>**time**: current video playback progress, in seconds.|
+| onSeeked(callback:(event?: { time: number }) =&gt; void) | Triggered to report the playback time when the user finishes dragging the progress bar.<br>**time**: current video playback progress, in seconds.|
+| onUpdate(callback:(event?: { time: number }) =&gt; void) | Triggered when the playback progress changes.<br>**time**: current video playback progress, in seconds.|
+| onFullscreenChange(callback:(event?: { fullscreen: boolean }) =&gt; void) | Triggered when the playback is switched between full-screen mode and non-full-screen mode.<br>**fullscreen**: The value **true** means that the playback is in full-screen mode, and **false** means the opposite.|
 
 
 ## VideoController
 
-Defines a **VideoController** object to control one or more videos.
+Defines a **VideoController** object to control one or more videos. For details about available video playback examples, see [@ohos.multimedia.media](../apis/js-apis-media.md#mediacreateavplayer9).
 
 
 ### Objects to Import
@@ -118,9 +118,9 @@ Requests full-screen mode.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                                          |
-| ------ | -------- | ---- | -------------------------------------------------- |
-| value  | boolean  | Yes  | Whether to play the video in full screen mode within the application window.<br>Default value: **false**|
+| Name| Type| Mandatory| Description                        |
+| ------ | -------- | ---- | -------------------------------- |
+| value  | boolean  | Yes  | Whether to play the video in full screen mode within the application window.|
 
 ### exitFullscreen
 

@@ -1,6 +1,6 @@
 # @ohos.rpc (RPC)
 
-The **RPC** module implements communication between processes, including inter-process communication (IPC) on a single device and remote procedure call (RPC) between processes on difference devices. IPC is implemented based on the Binder driver, and RPC is based on the DSoftBus driver.
+The **RPC** module implements communication between processes, including inter-process communication (IPC) on a single device and remote procedure call (RPC) between processes on difference devices. IPC is implemented based on the binder driver, and RPC is based on the DSoftBus driver.
 
 > **NOTE**
 >
@@ -40,8 +40,7 @@ The APIs of this module return exceptions since API version 9. The following tab
 
 ## MessageSequence<sup>9+</sup>
 
-Provides APIs for reading and writing data in specific format. 
-During RPC or IPC, the sender can use the **write()** method provided by **MessageSequence** to write data in specific format to a **MessageSequence** object. The receiver can use the **read()** method provided by **MessageSequence** to read data in specific format from a **MessageSequence** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
+  Provides APIs for reading and writing data in specific format. During RPC or IPC, the sender can use the **write()** method provided by **MessageSequence** to write data in specific format to a **MessageSequence** object. The receiver can use the **read()** method provided by **MessageSequence** to read data in specific format from a **MessageSequence** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
 
 ### create
 
@@ -55,13 +54,15 @@ During RPC or IPC, the sender can use the **write()** method provided by **Messa
 
 | Type           | Description                           |
 | --------------- | ------------------------------- |
-| MessageSequence | **MessageSequence** object created.|
+| [MessageSequence](#messagesequence9) | **MessageSequence** object created.|
 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageSequence.create();
-  console.log("RpcClient: data is " + data);
+  hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
   ```
 
 ### reclaim
@@ -81,7 +82,7 @@ Reclaims the **MessageSequence** object that is no longer used.
 
 ### writeRemoteObject
 
-writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
+writeRemoteObject(object: IRemoteObject): void
 
 Serializes a remote object and writes it to this **MessageSequence** object.
 
@@ -105,21 +106,22 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
   }
   let data = rpc.MessageSequence.create();
   let testRemoteObject = new TestRemoteObject("testObject");
   try {
-      data.writeRemoteObject(testRemoteObject);
+    data.writeRemoteObject(testRemoteObject);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("Rpc write remote object fail, errorCode " + e.code);
-      console.info("Rpc write remote object fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'Rpc write remote object fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc write remote object fail, errorMessage ' + e.message);
   }
   ```
 
@@ -149,22 +151,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
   }
   let data = rpc.MessageSequence.create();
   let testRemoteObject = new TestRemoteObject("testObject");
   try {
-      data.writeRemoteObject(testRemoteObject);
-      let proxy = data.readRemoteObject();
+    data.writeRemoteObject(testRemoteObject);
+    let proxy = data.readRemoteObject();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readRemoteObject is ' + proxy);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("Rpc write remote object fail, errorCode " + e.code);
-      console.info("Rpc write remote object fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'Rpc write remote object fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc write remote object fail, errorMessage ' + e.message);
   }
   ```
 
@@ -193,15 +197,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeInterfaceToken("aaa");
+    data.writeInterfaceToken("aaa");
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write interface fail, errorCode " + e.code);
-      console.info("rpc write interface fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write interface fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write interface fail, errorMessage ' + e.message);
   }
   ```
 
@@ -230,20 +235,21 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
 ```ts
+import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
 
 class Stub extends rpc.RemoteObject {
-    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
-        try {
-            let interfaceToken = data.readInterfaceToken();
-            console.log("RpcServer: interfaceToken is " + interfaceToken);
-        } catch(error) {
-            let e: BusinessError = error as BusinessError;
-            console.info("RpcServer: read interfaceToken failed, errorCode " + e.code);
-            console.info("RpcServer: read interfaceToken failed, errorMessage " + e.message);
-        }
-        return true;
+  onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+    try {
+      let interfaceToken = data.readInterfaceToken();
+      hilog.info(0x0000, 'testTag', 'RpcServer: interfaceToken is ' + interfaceToken);
+    } catch(error) {
+      let e: BusinessError = error as BusinessError;
+      hilog.error(0x0000, 'testTag', 'RpcServer: read interfaceToken failed, errorCode ' + e.code);
+      hilog.error(0x0000, 'testTag', 'RpcServer: read interfaceToken failed, errorMessage ' + e.message);
     }
+    return true;
+  }
 }
 ```
 
@@ -264,9 +270,11 @@ Obtains the data size of this **MessageSequence** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageSequence.create();
   let size = data.getSize();
-  console.log("RpcClient: size is " + size);
+  hilog.info(0x0000, 'testTag', 'RpcClient: size is ' + size);
   ```
 
 ### getCapacity
@@ -281,14 +289,16 @@ Obtains the capacity of this **MessageSequence** object.
 
 | Type  | Description |
 | ------ | ----- |
-| number | **MessageSequence** capacity obtained, in bytes.|
+| number | Capacity of the obtained **MessageSequence** object, in bytes.|
 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageSequence.create();
   let result = data.getCapacity();
-  console.log("RpcClient: capacity is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: capacity is ' + result);
   ```
 
 ### setSize
@@ -308,16 +318,16 @@ Sets the size of the data contained in this **MessageSequence** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.setSize(16);
-      console.log("RpcClient: setSize is " + data.getSize());
+    data.setSize(16);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc set size of MessageSequence fail, errorCode " + e.code);
-      console.info("rpc set size of MessageSequence fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc set size of MessageSequence fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc set size of MessageSequence fail, errorMessage ' + e.message);
   }
   ```
 
@@ -346,16 +356,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.setCapacity(100);
-      console.log("RpcClient: setCapacity is " + data.getCapacity());
+    data.setCapacity(100);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc memory alloc fail, errorCode " + e.code);
-      console.info("rpc memory alloc fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc memory alloc fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc memory alloc fail, errorMessage ' + e.message);
   }
   ```
 
@@ -376,12 +386,14 @@ Obtains the writable capacity (in bytes) of this **MessageSequence** object.
 **Example**
 
 ```ts
+import hilog from '@ohos.hilog';
+
 class Stub extends rpc.RemoteObject {
-    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
-        let getWritableBytes = data.getWritableBytes();
-        console.log("RpcServer: getWritableBytes is " + getWritableBytes);
-        return true;
-    }
+  onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+    let getWritableBytes = data.getWritableBytes();
+    hilog.info(0x0000, 'testTag', 'RpcServer: getWritableBytes is ' + getWritableBytes);
+    return true;
+  }
 }
 ```
 
@@ -401,15 +413,17 @@ Obtains the readable capacity of this **MessageSequence** object.
 
 **Example**
 
-  ```ts
+```ts
+import hilog from '@ohos.hilog';
+
 class Stub extends rpc.RemoteObject {
-    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
-        let result = data.getReadableBytes();
-        console.log("RpcServer: getReadableBytes is " + result);
-        return true;
-    }
+  onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+    let result = data.getReadableBytes();
+    hilog.info(0x0000, 'testTag', 'RpcServer: getReadableBytes is ' + result);
+    return true;
+  }
 }
-  ```
+```
 
 ### getReadPosition
 
@@ -428,9 +442,11 @@ Obtains the read position of this **MessageSequence** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageSequence.create();
   let readPos = data.getReadPosition();
-  console.log("RpcClient: readPos is " + readPos);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readPos is ' + readPos);
   ```
 
 ### getWritePosition
@@ -450,10 +466,12 @@ Obtains the write position of this **MessageSequence** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageSequence.create();
   data.writeInt(10);
   let bwPos = data.getWritePosition();
-  console.log("RpcClient: bwPos is " + bwPos);
+  hilog.info(0x0000, 'testTag', 'RpcClient: bwPos is ' + bwPos);
   ```
 
 ### rewindRead
@@ -473,22 +491,23 @@ Moves the read pointer to the specified position.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   data.writeInt(12);
   data.writeString("sequence");
   let number = data.readInt();
-  console.log("RpcClient: number is " + number);
+  hilog.info(0x0000, 'testTag', 'RpcClient: number is ' + number);
   try {
-      data.rewindRead(0);
+    data.rewindRead(0);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc rewind read data fail, errorCode " + e.code);
-      console.info("rpc rewind read data fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc rewind read data fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc rewind read data fail, errorMessage ' + e.message);
   }
   let number2 = data.readInt();
-  console.log("RpcClient: rewindRead is " + number2);
+  hilog.info(0x0000, 'testTag', 'RpcClient: rewindRead is ' + number2);
   ```
 
 ### rewindWrite
@@ -508,20 +527,21 @@ Moves the write pointer to the specified position.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   data.writeInt(4);
   try {
-      data.rewindWrite(0);
+    data.rewindWrite(0);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc rewind read data fail, errorCode " + e.code);
-      console.info("rpc rewind read data fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc rewindWrite fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc rewindWrite fail, errorMessage ' + e.message);
   }
   data.writeInt(5);
   let number = data.readInt();
-  console.log("RpcClient: rewindWrite is: " + number);
+  hilog.info(0x0000, 'testTag', 'RpcClient: rewindWrite is: ' + number);
   ```
 
 ### writeByte
@@ -549,15 +569,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeByte(2);
+    data.writeByte(2);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    console.info("rpc write byte fail, errorCode " + e.code);
-    console.info("rpc write byte fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write byte fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write byte fail, errorMessage ' + e.message);
   }
   ```
 
@@ -586,23 +607,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeByte(2);
+    data.writeByte(2);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    console.info("rpc write byte fail, errorCode " + e.code);
-    console.info("rpc write byte fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write byte fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write byte fail, errorMessage ' + e.message);
   }
   try {
-      let ret = data.readByte();
-      console.log("RpcClient: readByte is: " + ret);
+    let ret = data.readByte();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readByte is: ' +  ret);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
-    console.info("rpc write byte fail, errorCode " + e.code);
-    console.info("rpc write byte fail, errorMessage" + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc read byte fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read byte fail, errorMessage ' + e.message);
   }
   ```
 
@@ -631,15 +653,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeShort(8);
+    data.writeShort(8);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write short fail, errorCode " + e.code);
-      console.info("rpc write short fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write short fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write short fail, errorMessage ' + e.message);
   }
   ```
 
@@ -668,23 +691,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeShort(8);
+    data.writeShort(8);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write short fail, errorCode " + e.code);
-      console.info("rpc write short fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write short fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write short fail, errorMessage ' + e.message);
   }
   try {
-      let ret = data.readShort();
-      console.log("RpcClient: readByte is: " + ret);
+    let ret = data.readShort();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readByte is ' + ret);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read short fail, errorCode " + e.code);
-      console.info("rpc read short fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read short fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read short fail, errorMessage ' + e.message);
   }
   ```
 
@@ -713,15 +737,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeInt(10);
+    data.writeInt(10);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write int fail, errorCode " + e.code);
-      console.info("rpc write int fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write int fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write int fail, errorMessage ' + e.message);
   }
   ```
 
@@ -750,23 +775,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeInt(10);
+    data.writeInt(10);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write int fail, errorCode " + e.code);
-      console.info("rpc write int fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write int fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write int fail, errorMessage ' + e.message);
   }
   try {
-      let ret = data.readInt();
-      console.log("RpcClient: readInt is " + ret);
+    let ret = data.readInt();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + ret);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read int fail, errorCode " + e.code);
-      console.info("rpc read int fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read int fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read int fail, errorMessage ' + e.message);
   }
   ```
 
@@ -795,15 +821,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeLong(10000);
+    data.writeLong(10000);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write long fail, errorCode " + e.code);
-      console.info("rpc write long fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write long fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write long fail, errorMessage ' + e.message);
   }
   ```
 
@@ -832,23 +859,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeLong(10000);
+    data.writeLong(10000);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write long fail, errorCode " + e.code);
-      console.info("rpc write long fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write long fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write long fail, errorMessage ' + e.message);
   }
   try {
-      let ret = data.readLong();
-      console.log("RpcClient: readLong is " + ret);
+    let ret = data.readLong();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readLong is ' + ret);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read long fail, errorCode " + e.code);
-      console.info("rpc read long fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read long fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read long fail, errorMessage ' + e.message);
   }
   ```
 
@@ -877,15 +905,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeFloat(1.2);
+    data.writeFloat(1.2);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write float fail, errorCode " + e.code);
-      console.info("rpc write float fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write float fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write float fail, errorMessage ' + e.message);
   }
   ```
 
@@ -914,23 +943,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeFloat(1.2);
+    data.writeFloat(1.2);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write float fail, errorCode " + e.code);
-      console.info("rpc write float fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write float fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write float fail, errorMessage ' + e.message);
   }
   try {
-      let ret = data.readFloat();
-      console.log("RpcClient: readFloat is " + ret);
+    let ret = data.readFloat();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readFloat is ' + ret);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read float fail, errorCode " + e.code);
-      console.info("rpc read float fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read float fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read float fail, errorMessage ' + e.message);
   }
   ```
 
@@ -959,15 +989,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeDouble(10.2);
+    data.writeDouble(10.2);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read float fail, errorCode " + e.code);
-      console.info("rpc read float fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write double fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write double fail, errorMessage ' + e.message);
   }
   ```
 
@@ -996,23 +1027,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeDouble(10.2);
+    data.writeDouble(10.2);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write double fail, errorCode " + e.code);
-      console.info("rpc write double fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write double fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write double fail, errorMessage ' + e.message);
   }
   try {
-      let ret = data.readDouble();
-      console.log("RpcClient: readDouble is " + ret);
+    let ret = data.readDouble();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readDouble is ' +  ret);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read double fail, errorCode " + e.code);
-      console.info("rpc read double fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read double fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read double fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1041,15 +1073,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeBoolean(false);
+    data.writeBoolean(false);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write boolean fail, errorCode " + e.code);
-      console.info("rpc write boolean fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write boolean fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write boolean fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1078,23 +1111,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeBoolean(false);
+    data.writeBoolean(false);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write boolean fail, errorCode " + e.code);
-      console.info("rpc write boolean fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write boolean fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write boolean fail, errorMessage ' + e.message);
   }
   try {
-      let ret = data.readBoolean();
-      console.log("RpcClient: readBoolean is " + ret);
+    let ret = data.readBoolean();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readBoolean is ' + ret);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read boolean fail, errorCode " + e.code);
-      console.info("rpc read boolean fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read boolean fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read boolean fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1123,15 +1157,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeChar(97);
+    data.writeChar(97);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write char fail, errorCode " + e.code);
-      console.info("rpc write char fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write char fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write char fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1160,23 +1195,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeChar(97);
+    data.writeChar(97);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write char fail, errorCode " + e.code);
-      console.info("rpc write char fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write char fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write char fail, errorMessage ' + e.message);
   }
   try {
-      let ret = data.readChar();
-      console.log("RpcClient: readChar is " + ret);
+    let ret = data.readChar();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readChar is ' + ret);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read char fail, errorCode " + e.code);
-      console.info("rpc read char fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read char fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read char fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1205,15 +1241,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeString('abc');
+    data.writeString('abc');
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write string fail, errorCode " + e.code);
-      console.info("rpc write string fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write string fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write string fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1242,23 +1279,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeString('abc');
+    data.writeString('abc');
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write string fail, errorCode " + e.code);
-      console.info("rpc write string fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write string fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write string fail, errorMessage ' + e.message);
   }
   try {
-      let ret = data.readString();
-      console.log("RpcClient: readString is " + ret);
+    let ret = data.readString();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readString is ' + ret);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read string fail, errorCode " + e.code);
-      console.info("rpc read string fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read string fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read string fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1274,7 +1312,7 @@ Writes a **Parcelable** object to this **MessageSequence** object.
 
 | Name| Type| Mandatory| Description|
 | ------ | --------- | ---- | ------ |
-| val    | Parcelable | Yes  | **Parcelable** object to write.|
+| val    | [Parcelable](#parcelable9) | Yes  | **Parcelable** object to write.|
 
 **Error codes**
 
@@ -1287,34 +1325,35 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class MyParcelable implements rpc.Parcelable {
-      num: number = 0;
-      str: string = '';
-      constructor( num: number, str: string) {
-          this.num = num;
-          this.str = str;
-      }
-      marshalling(messageSequence: rpc.MessageSequence): boolean {
-          messageSequence.writeInt(this.num);
-          messageSequence.writeString(this.str);
-          return true;
-      }
-      unmarshalling(messageSequence: rpc.MessageSequence): boolean {
-          this.num = messageSequence.readInt();
-          this.str = messageSequence.readString();
-          return true;
-      }
+    num: number = 0;
+    str: string = '';
+    constructor( num: number, str: string) {
+      this.num = num;
+      this.str = str;
+    }
+    marshalling(messageSequence: rpc.MessageSequence): boolean {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
+      return true;
+    }
+    unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
+      return true;
+    }
   }
   let parcelable = new MyParcelable(1, "aaa");
   let data = rpc.MessageSequence.create();
   try {
-      data.writeParcelable(parcelable);
+    data.writeParcelable(parcelable);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write parcelable fail, errorCode " + e.code);
-      console.info("rpc write parcelable fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write parcelable fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write parcelable fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1328,9 +1367,9 @@ Reads a **Parcelable** object from this **MessageSequence** object to the specif
 
 **Parameters**
 
-| Name| Type                     | Mandatory| Description                                     |
-| ------ | ------------------------- | ---- | ----------------------------------------- |
-| dataIn | Parcelable                | Yes  | **Parcelable** object to read.|
+| Name| Type                      | Mandatory| Description                                     |
+| ------ | -------------------------- | ---- | ----------------------------------------- |
+| dataIn | [Parcelable](#parcelable9) | Yes  | **Parcelable** object to read.|
 
 **Error codes**
 
@@ -1344,36 +1383,37 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class MyParcelable implements rpc.Parcelable {
-      num: number = 0;
-      str: string = '';
-      constructor(num: number, str: string) {
-          this.num = num;
-          this.str = str;
-      }
-      marshalling(messageSequence: rpc.MessageSequence): boolean {
-          messageSequence.writeInt(this.num);
-          messageSequence.writeString(this.str);
-          return true;
-      }
-      unmarshalling(messageSequence: rpc.MessageSequence): boolean {
-          this.num = messageSequence.readInt();
-          this.str = messageSequence.readString();
-          return true;
-      }
+    num: number = 0;
+    str: string = '';
+    constructor(num: number, str: string) {
+      this.num = num;
+      this.str = str;
+    }
+    marshalling(messageSequence: rpc.MessageSequence): boolean {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
+      return true;
+    }
+    unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
+      return true;
+    }
   }
   let parcelable = new MyParcelable(1, "aaa");
   let data = rpc.MessageSequence.create();
   data.writeParcelable(parcelable);
   let ret = new MyParcelable(0, "");
   try {
-      data.readParcelable(ret);
+    data.readParcelable(ret);
   }catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read parcelable fail, errorCode " + e.code);
-      console.info("rpc read parcelable fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read parcelable fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read parcelable fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1402,16 +1442,17 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   try {
-      data.writeByteArray(ByteArrayVar);
+    data.writeByteArray(ByteArrayVar);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write byteArray fail, errorCode " + e.code);
-      console.info("rpc write byteArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1440,24 +1481,25 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   try {
-      data.writeByteArray(ByteArrayVar);
+    data.writeByteArray(ByteArrayVar);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write byteArray fail, errorCode " + e.code);
-      console.info("rpc write byteArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorMessage ' + e.message);
   }
   try {
-      let array: Array<number> = new Array(5);
-      data.readByteArray(array);
+    let array: Array<number> = new Array(5);
+    data.readByteArray(array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write byteArray fail, errorCode " + e.code);
-      console.info("rpc write byteArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read byteArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read byteArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1486,24 +1528,25 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   let byteArrayVar = [1, 2, 3, 4, 5];
   try {
-      data.writeByteArray(byteArrayVar);
+    data.writeByteArray(byteArrayVar);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write byteArray fail, errorCode " + e.code);
-      console.info("rpc write byteArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write byteArray fail, errorMessage ' + e.message);
   }
   try {
-      let array = data.readByteArray();
-      console.log("RpcClient: readByteArray is " + array);
+    let array = data.readByteArray();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readByteArray is ' +  array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read byteArray fail, errorCode " + e.code);
-      console.info("rpc read byteArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read byteArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read byteArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1532,15 +1575,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeShortArray([11, 12, 13]);
+    data.writeShortArray([11, 12, 13]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read byteArray fail, errorCode " + e.code);
-      console.info("rpc read byteArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1569,23 +1613,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeShortArray([11, 12, 13]);
+    data.writeShortArray([11, 12, 13]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write shortArray fail, errorCode " + e.code);
-      console.info("rpc write shortArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorMessage ' + e.message);
   }
   try {
-      let array: Array<number> = new Array(3);
-      data.readShortArray(array);
+    let array: Array<number> = new Array(3);
+    data.readShortArray(array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read shortArray fail, errorCode " + e.code);
-      console.info("rpc read shortArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read shortArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read shortArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1614,23 +1659,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeShortArray([11, 12, 13]);
+    data.writeShortArray([11, 12, 13]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write shortArray fail, errorCode " + e.code);
-      console.info("rpc write shortArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write shortArray fail, errorMessage ' + e.message);
   }
   try {
-      let array = data.readShortArray();
-      console.log("RpcClient: readShortArray is " + array);
+    let array = data.readShortArray();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readShortArray is ' + array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read shortArray fail, errorCode " + e.code);
-      console.info("rpc read shortArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read shortArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read shortArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1659,15 +1705,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeIntArray([100, 111, 112]);
+    data.writeIntArray([100, 111, 112]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write intArray fail, errorCode " + e.code);
-      console.info("rpc write intArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1696,23 +1743,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeIntArray([100, 111, 112]);
+    data.writeIntArray([100, 111, 112]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write intArray fail, errorCode " + e.code);
-      console.info("rpc write intArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorMessage ' + e.message);
   }
   let array: Array<number> = new Array(3);
   try {
-      data.readIntArray(array);
+    data.readIntArray(array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read intArray fail, errorCode " + e.code);
-      console.info("rpc read intArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read intArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read intArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1741,23 +1789,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeIntArray([100, 111, 112]);
+    data.writeIntArray([100, 111, 112]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write intArray fail, errorCode " + e.code);
-      console.info("rpc write intArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write intArray fail, errorMessage ' + e.message);
   }
   try {
     let array = data.readIntArray();
-    console.log("RpcClient: readIntArray is " + array);
+    hilog.info(0x0000, 'testTag', 'RpcClient: readIntArray is ' + array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read intArray fail, errorCode " + e.code);
-      console.info("rpc read intArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read intArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read intArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1786,15 +1835,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeLongArray([1111, 1112, 1113]);
+    data.writeLongArray([1111, 1112, 1113]);
   }catch(error){
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write longArray fail, errorCode " + e.code);
-      console.info("rpc write longArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1823,23 +1873,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeLongArray([1111, 1112, 1113]);
+    data.writeLongArray([1111, 1112, 1113]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write longArray fail, errorCode " + e.code);
-      console.info("rpc write longArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorMessage ' + e.message);
   }
   let array: Array<number> = new Array(3);
   try {
-      data.readLongArray(array);
+    data.readLongArray(array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read longArray fail, errorCode " + e.code);
-      console.info("rpc read longArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read longArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read longArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1868,23 +1919,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeLongArray([1111, 1112, 1113]);
+    data.writeLongArray([1111, 1112, 1113]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write longArray fail, errorCode " + e.code);
-      console.info("rpc write longArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write longArray fail, errorMessage ' + e.message);
   }
   try {
-      let array = data.readLongArray();
-      console.log("RpcClient: readLongArray is " + array);
+    let array = data.readLongArray();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readLongArray is ' + array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read longArray fail, errorCode " + e.code);
-      console.info("rpc read longArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read longArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read longArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1913,15 +1965,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeFloatArray([1.2, 1.3, 1.4]);
+    data.writeFloatArray([1.2, 1.3, 1.4]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write floatArray fail, errorCode " + e.code);
-      console.info("rpc write floatArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1950,23 +2003,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeFloatArray([1.2, 1.3, 1.4]);
+    data.writeFloatArray([1.2, 1.3, 1.4]);
   }catch(error){
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write floatArray fail, errorCode " + e.code);
-      console.info("rpc write floatArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorMessage ' + e.message);
   }
   let array: Array<number> = new Array(3);
   try {
-      data.readFloatArray(array);
+    data.readFloatArray(array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read floatArray fail, errorCode " + e.code);
-      console.info("rpc read floatArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read floatArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read floatArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -1995,23 +2049,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeFloatArray([1.2, 1.3, 1.4]);
+    data.writeFloatArray([1.2, 1.3, 1.4]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write floatArray fail, errorCode " + e.code);
-      console.info("rpc write floatArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write floatArray fail, errorMessage ' + e.message);
   }
   try {
-      let array = data.readFloatArray();
-      console.log("RpcClient: readFloatArray is " + array);
+    let array = data.readFloatArray();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readFloatArray is ' + array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read floatArray fail, errorCode " + e.code);
-      console.info("rpc read floatArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read floatArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read floatArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2040,15 +2095,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeDoubleArray([11.1, 12.2, 13.3]);
+    data.writeDoubleArray([11.1, 12.2, 13.3]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write doubleArray fail, errorCode " + e.code);
-      console.info("rpc write doubleArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2077,23 +2133,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeDoubleArray([11.1, 12.2, 13.3]);
+    data.writeDoubleArray([11.1, 12.2, 13.3]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write doubleArray fail, errorCode " + e.code);
-      console.info("rpc write doubleArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorMessage ' + e.message);
   }
   let array: Array<number> = new Array(3);
   try {
-      data.readDoubleArray(array);
+    data.readDoubleArray(array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read doubleArray fail, errorCode " + e.code);
-      console.info("rpc read doubleArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read doubleArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read doubleArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2122,23 +2179,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeDoubleArray([11.1, 12.2, 13.3]);
+    data.writeDoubleArray([11.1, 12.2, 13.3]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write doubleArray fail, errorCode " + e.code);
-      console.info("rpc write doubleArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write doubleArray fail, errorMessage ' + e.message);
   }
   try {
-      let array = data.readDoubleArray();
-      console.log("RpcClient: readDoubleArray is " + array);
+    let array = data.readDoubleArray();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readDoubleArray is ' + array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read doubleArray fail, errorCode " + e.code);
-      console.info("rpc read doubleArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read doubleArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read doubleArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2167,15 +2225,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeBooleanArray([false, true, false]);
+    data.writeBooleanArray([false, true, false]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write booleanArray fail, errorCode " + e.code);
-      console.info("rpc write booleanArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2204,23 +2263,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeBooleanArray([false, true, false]);
+    data.writeBooleanArray([false, true, false]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write booleanArray fail, errorCode " + e.code);
-      console.info("rpc write booleanArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorMessage ' + e.message);
   }
   let array: Array<boolean> = new Array(3);
   try {
-      data.readBooleanArray(array);
+    data.readBooleanArray(array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read booleanArray fail, errorCode " + e.code);
-      console.info("rpc read booleanArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read booleanArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read booleanArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2249,23 +2309,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeBooleanArray([false, true, false]);
+    data.writeBooleanArray([false, true, false]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write booleanArray fail, errorCode " + e.code);
-      console.info("rpc write booleanArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write booleanArray fail, errorMessage ' + e.message);
   }
   try {
-      let array = data.readBooleanArray();
-      console.log("RpcClient: readBooleanArray is " + array);
+    let array = data.readBooleanArray();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readBooleanArray is ' + array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read booleanArray fail, errorCode " + e.code);
-      console.info("rpc read booleanArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read booleanArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read booleanArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2294,15 +2355,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeCharArray([97, 98, 88]);
+    data.writeCharArray([97, 98, 88]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write charArray fail, errorCode " + e.code);
-      console.info("rpc write charArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2331,23 +2393,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeCharArray([97, 98, 88]);
+    data.writeCharArray([97, 98, 88]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write charArray fail, errorCode " + e.code);
-      console.info("rpc write charArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorMessage ' + e.message);
   }
   let array: Array<number> = new Array(3);
   try {
-      data.readCharArray(array);
+    data.readCharArray(array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read charArray fail, errorCode " + e.code);
-      console.info("rpc read charArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read charArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read charArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2376,24 +2439,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeCharArray([97, 98, 88]);
+    data.writeCharArray([97, 98, 88]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write charArray fail, errorCode " + e.code);
-      console.info("rpc write charArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write charArray fail, errorMessage ' + e.message);
   }
-  let array: Array<number> = new Array(3);
   try {
-      let array = data.readCharArray();
-      console.log("RpcClient: readCharArray is " + array);
+    let array = data.readCharArray();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readCharArray is ' + array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read charArray fail, errorCode " + e.code);
-      console.info("rpc read charArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read charArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read charArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2422,15 +2485,16 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeStringArray(["abc", "def"]);
+    data.writeStringArray(["abc", "def"]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write stringArray fail, errorCode " + e.code);
-      console.info("rpc write stringArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2459,23 +2523,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeStringArray(["abc", "def"]);
+    data.writeStringArray(["abc", "def"]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write stringArray fail, errorCode " + e.code);
-      console.info("rpc write stringArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorMessage ' + e.message);
   }
   let array: Array<string> = new Array(2);
   try {
-      data.readStringArray(array);
+    data.readStringArray(array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read stringArray fail, errorCode " + e.code);
-      console.info("rpc read stringArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read stringArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read stringArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2504,23 +2569,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
   try {
-      data.writeStringArray(["abc", "def"]);
+    data.writeStringArray(["abc", "def"]);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write stringArray fail, errorCode " + e.code);
-      console.info("rpc write stringArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write stringArray fail, errorMessage ' + e.message);
   }
   try {
-      let array = data.readStringArray();
-      console.log("RpcClient: readStringArray is " + array);
+    let array = data.readStringArray();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readStringArray is ' + array);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read stringArray fail, errorCode " + e.code);
-      console.info("rpc read stringArray fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read stringArray fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read stringArray fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2543,29 +2609,29 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      if (code === 1) {
+        hilog.info(0x0000, 'testTag', 'RpcServer: onRemoteMessageRequest called');
+        try {
+          reply.writeNoException();
+        } catch(error) {
+          let e: BusinessError = error as BusinessError;
+          hilog.error(0x0000, 'testTag', 'rpc write no exception fail, errorCode ' + e.code);
+          hilog.error(0x0000, 'testTag', 'rpc write no exception fail, errorMessage ' + e.message);
+        }
+        return true;
+      } else {
+        hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
+        return false;
       }
-
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
-          if (code === 1) {
-              console.log("RpcServer: onRemoteRequest called");
-              try {
-                  reply.writeNoException();
-              } catch(error) {
-                  let e: BusinessError = error as BusinessError;
-                  console.info("rpc write no exception fail, errorCode " + e.code);
-                  console.info("rpc write no exception fail, errorMessage" + e.message);
-              }
-              return true;
-          } else {
-              console.log("RpcServer: unknown code: " + code);
-              return false;
-          }
-      }
+    }
   }
   ```
 
@@ -2594,24 +2660,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
-  import { BusinessError } from '@ohos.base';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: () => {
-          console.log("RpcClient: onFailed");
-      }
+    onConnect: (elementName, remoteProxy) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      proxy = remoteProxy;
+    },
+    onDisconnect: (elementName) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+    },
+    onFailed: () => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+    }
   };
   let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
+    bundleName: "com.ohos.server",
+    abilityName: "com.ohos.server.EntryAbility",
   };
 
   // Use this method to connect to the ability for the FA model.
@@ -2623,34 +2689,37 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
+  import { BusinessError } from '@ohos.base';
+  import hilog from '@ohos.hilog';
+
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
   let reply = rpc.MessageSequence.create();
   data.writeInt(1);
   data.writeString("hello");
   proxy.sendMessageRequest(1, data, reply, option)
-      .then((errCode: number) => {
-          if (errCode === 0) {
-              console.log("sendMessageRequest got result");
-              try {
-                  reply.readException();
-              } catch(error) {
-                  let e: BusinessError = error as BusinessError;
-                  console.info("rpc read exception fail, errorCode " + e.code);
-                  console.info("rpc read no exception fail, errorMessage" + e.message);
-              }
-              let msg = reply.readString();
-              console.log("RPCTest: reply msg: " + msg);
-          } else {
-              console.log("RPCTest: sendMessageRequest failed, errCode: " + errCode);
-          }
-      }).catch((e: Error) => {
-          console.log("RPCTest: sendMessageRequest got exception: " + e.message);
-      }).finally (() => {
-          console.log("RPCTest: sendMessageRequest ends, reclaim parcel");
-          data.reclaim();
-          reply.reclaim();
-      });
+    .then((result: rpc.RequestResult) => {
+      if (result.errCode === 0) {
+        hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
+        try {
+          result.reply.readException();
+        } catch(error) {
+          let e: BusinessError = error as BusinessError;
+          hilog.error(0x0000, 'testTag', 'rpc read exception fail, errorCode ' + e.code);
+          hilog.error(0x0000, 'testTag', 'rpc read exception fail, errorMessage ' + e.message);
+        }
+        let msg = result.reply.readString();
+        hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
+      } else {
+        hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
+      }
+    }).catch((e: Error) => {
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest got exception: ' + e.message);
+    }).finally (() => {
+      hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
+      data.reclaim();
+      reply.reclaim();
+    });
   ```
 
 ### writeParcelableArray
@@ -2665,7 +2734,7 @@ Writes a **Parcelable** array to this **MessageSequence** object.
 
 | Name         | Type        | Mandatory| Description                      |
 | --------------- | ------------ | ---- | -------------------------- |
-| parcelableArray | Parcelable[] | Yes  | **Parcelable** array to write.|
+| parcelableArray | [Parcelable](#parcelable9)[] | Yes  | **Parcelable** array to write.|
 
 **Error codes**
 
@@ -2678,25 +2747,26 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class MyParcelable implements rpc.Parcelable {
-      num: number = 0;
-      str: string = '';
-      constructor(num: number, str: string) {
-          this.num = num;
-          this.str = str;
-      }
-      marshalling(messageSequence: rpc.MessageSequence): boolean {
-          messageSequence.writeInt(this.num);
-          messageSequence.writeString(this.str);
-          return true;
-      }
-      unmarshalling(messageSequence: rpc.MessageSequence): boolean {
-          this.num = messageSequence.readInt();
-          this.str = messageSequence.readString();
-          return true;
-      }
+    num: number = 0;
+    str: string = '';
+    constructor(num: number, str: string) {
+      this.num = num;
+      this.str = str;
+    }
+    marshalling(messageSequence: rpc.MessageSequence): boolean {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
+      return true;
+    }
+    unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
+      return true;
+    }
   }
   let parcelable = new MyParcelable(1, "aaa");
   let parcelable2 = new MyParcelable(2, "bbb");
@@ -2704,11 +2774,11 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   let a = [parcelable, parcelable2, parcelable3];
   let data = rpc.MessageSequence.create();
   try {
-      data.writeParcelableArray(a);
+    data.writeParcelableArray(a);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write parcelable array fail, errorCode " + e.code);
-      console.info("rpc write parcelable array fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write parcelable array fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write parcelable array fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2724,7 +2794,7 @@ Reads a **Parcelable** array from this **MessageSequence** object.
 
 | Name         | Type        | Mandatory| Description                      |
 | --------------- | ------------ | ---- | -------------------------- |
-| parcelableArray | Parcelable[] | Yes  | **Parcelable** array to read.|
+| parcelableArray | [Parcelable](#parcelable9)[] | Yes  | **Parcelable** array to read.|
 
 **Error codes**
 
@@ -2738,42 +2808,41 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
-   class MyParcelable implements rpc.Parcelable {
-      num: number = 0;
-      str: string = '';
-      constructor(num: number, str: string) {
-          this.num = num;
-          this.str = str;
-      }
-      marshalling(messageSequence: rpc.MessageSequence): boolean {
-          messageSequence.writeInt(this.num);
-          messageSequence.writeString(this.str);
-          return true;
-      }
-      unmarshalling(messageSequence: rpc.MessageSequence): boolean {
-          this.num = messageSequence.readInt();
-          this.str = messageSequence.readString();
-          return true;
-      }
+  class MyParcelable implements rpc.Parcelable {
+    num: number = 0;
+    str: string = '';
+    constructor(num: number, str: string) {
+      this.num = num;
+      this.str = str;
+    }
+    marshalling(messageSequence: rpc.MessageSequence): boolean {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
+      return true;
+    }
+    unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
+      return true;
+    }
   }
   let parcelable = new MyParcelable(1, "aaa");
   let parcelable2 = new MyParcelable(2, "bbb");
   let parcelable3 = new MyParcelable(3, "ccc");
   let a = [parcelable, parcelable2, parcelable3];
   let data = rpc.MessageSequence.create();
-  let result = data.writeParcelableArray(a);
-  console.log("RpcClient: writeParcelableArray is " + result);
+  data.writeParcelableArray(a);
   let b = [new MyParcelable(0, ""), new MyParcelable(0, ""), new MyParcelable(0, "")];
   try {
-      data.readParcelableArray(b);
+    data.readParcelableArray(b);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read parcelable array fail, errorCode " + e.code);
-      console.info("rpc read parcelable array fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read parcelable array fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read parcelable array fail, errorMessage ' + e.message);
   }
-  data.readParcelableArray(b);
   ```
 
 ### writeRemoteObjectArray
@@ -2788,7 +2857,7 @@ Writes an array of **IRemoteObject** objects to this **MessageSequence** object.
 
 | Name     | Type           | Mandatory| Description                                          |
 | ----------- | --------------- | ---- | ---------------------------------------------- |
-| objectArray | IRemoteObject[] | Yes  | Array of **IRemoteObject** objects to write.|
+| objectArray | [IRemoteObject](#iremoteobject)[] | Yes  | Array of **IRemoteObject** objects to write.|
 
 **Error codes**
 
@@ -2801,29 +2870,28 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-          this.modifyLocalInterface(this, descriptor);
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+      this.modifyLocalInterface(this, descriptor);
+    }
 
-      asObject(): rpc.IRemoteObject {
-          return this;
-      }
+    asObject(): rpc.IRemoteObject {
+      return this;
+    }
   }
   let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
   let data = rpc.MessageSequence.create();
-  let result = data.writeRemoteObjectArray(a);
   try {
-      data.writeRemoteObjectArray(a);
+    data.writeRemoteObjectArray(a);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write remote object array fail, errorCode " + e.code);
-      console.info("rpc write remote object array fail, errorMessage" + e.message);
+     let e: BusinessError = error as BusinessError;
+     hilog.error(0x0000, 'testTag', 'rpc write remote object array fail, errorCode ' + e.code);
+     hilog.error(0x0000, 'testTag', 'rpc write remote object array fail, errorMessage ' + e.message);
   }
-  console.log("RpcClient: writeRemoteObjectArray is " + result);
   ```
 
 ### readRemoteObjectArray
@@ -2838,7 +2906,7 @@ Reads an array of **IRemoteObject** objects from this **MessageSequence** object
 
 | Name | Type           | Mandatory| Description                                          |
 | ------- | --------------- | ---- | ---------------------------------------------- |
-| objects | IRemoteObject[] | Yes  | **IRemoteObject** array to read.|
+| objects | [IRemoteObject](#iremoteobject)[] | Yes  | **IRemoteObject** array to read.|
 
 **Error codes**
 
@@ -2851,35 +2919,30 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
-  class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-          this.modifyLocalInterface(this, descriptor);
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+      this.modifyLocalInterface(this, descriptor);
+    }
 
-      asObject(): rpc.IRemoteObject {
-          return this;
-      }
+    asObject(): rpc.IRemoteObject {
+      return this;
+    }
   }
   let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
   let data = rpc.MessageSequence.create();
   data.writeRemoteObjectArray(a);
   let b: Array<rpc.IRemoteObject> = new Array(3);
   try {
-      data.readRemoteObjectArray(b);
+    data.readRemoteObjectArray(b);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read remote object array fail, errorCode " + e.code);
-      console.info("rpc read remote object array fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read remote object array fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read remote object array fail, errorMessage ' + e.message);
   }
-  data.readRemoteObjectArray(b);
   ```
 
 ### readRemoteObjectArray
@@ -2894,7 +2957,7 @@ Reads the **IRemoteObject** object array from this **MessageSequence** object.
 
 | Type           | Description                       |
 | --------------- | --------------------------- |
-| IRemoteObject[] | **IRemoteObject** object array read.|
+| [IRemoteObject](#iremoteobject)[] | **IRemoteObject** object array read.|
 
 **Error codes**
 
@@ -2907,32 +2970,33 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-          this.modifyLocalInterface(this, descriptor);
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+      this.modifyLocalInterface(this, descriptor);
+    }
 
-      asObject(): rpc.IRemoteObject {
-          return this;
-      }
+    asObject(): rpc.IRemoteObject {
+      return this;
+    }
   }
   let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
   let data = rpc.MessageSequence.create();
   data.writeRemoteObjectArray(a);
   try {
-      let b = data.readRemoteObjectArray();
-      console.log("RpcClient: readRemoteObjectArray is " + b);
+    let b = data.readRemoteObjectArray();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readRemoteObjectArray is ' + b);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read remote object array fail, errorCode " + e.code);
-      console.info("rpc read remote object array fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read remote object array fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read remote object array fail, errorMessage ' + e.message);
   }
   ```
 
-### closeFileDescriptor<sup>9+</sup>
+### closeFileDescriptor
 
 static closeFileDescriptor(fd: number): void
 
@@ -2950,16 +3014,17 @@ Closes a file descriptor. This API is a static method.
 
   ```ts
   import fs from '@ohos.file.fs';
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      rpc.MessageSequence.closeFileDescriptor(file.fd);
+    rpc.MessageSequence.closeFileDescriptor(file.fd);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc close file descriptor fail, errorCode " + e.code);
-      console.info("rpc close file descriptor fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc close file descriptor fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc close file descriptor fail, errorMessage ' + e.message);
   }
   ```
 
@@ -2995,16 +3060,17 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
   ```ts
   import fs from '@ohos.file.fs';
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      let newFd = rpc.MessageSequence.dupFileDescriptor(file.fd);
+    rpc.MessageSequence.dupFileDescriptor(file.fd);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc dup file descriptor fail, errorCode " + e.code);
-      console.info("rpc dup file descriptor fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc dup file descriptor fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc dup file descriptor fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3026,26 +3092,26 @@ Checks whether this **MessageSequence** object contains file descriptors.
 
   ```ts
   import fs from '@ohos.file.fs';
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
-  let r1 = sequence.containFileDescriptors();
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      sequence.writeFileDescriptor(file.fd);
+    sequence.writeFileDescriptor(file.fd);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write file descriptor fail, errorCode " + e.code);
-      console.info("rpc write file descriptor fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorMessage ' + e.message);
   }
   try {
-      let containFD = sequence.containFileDescriptors();
-      console.log("RpcTest: sequence after write fd containFd result is : " + containFD);
+    let containFD = sequence.containFileDescriptors();
+    hilog.info(0x0000, 'testTag', 'RpcTest: sequence after write fd containFd result is ' + containFD);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc contain file descriptor fail, errorCode " + e.code);
-      console.info("rpc contain file descriptor fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc contain file descriptor fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc contain file descriptor fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3075,17 +3141,18 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
   ```ts
   import fs from '@ohos.file.fs';
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      sequence.writeFileDescriptor(file.fd);
+    sequence.writeFileDescriptor(file.fd);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write file descriptor fail, errorCode " + e.code);
-      console.info("rpc write file descriptor fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3115,24 +3182,26 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
   ```ts
   import fs from '@ohos.file.fs';
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      sequence.writeFileDescriptor(file.fd);
+    sequence.writeFileDescriptor(file.fd);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write file descriptor fail, errorCode " + e.code);
-      console.info("rpc write file descriptor fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write file descriptor fail, errorMessage ' + e.message);
   }
   try {
-      let readFD = sequence.readFileDescriptor();
+    let readFD = sequence.readFileDescriptor();
+    hilog.info(0x0000, 'testTag', 'RpcClient: readFileDescriptor is ' + readFD);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read file descriptor fail, errorCode " + e.code);
-      console.info("rpc read file descriptor fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read file descriptor fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read file descriptor fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3148,7 +3217,7 @@ Writes an anonymous shared object to this **MessageSequence** object.
 
 | Name| Type  | Mandatory| Description                                 |
 | ------ | ------ | ---- | ------------------------------------- |
-| ashmem | Ashmem | Yes  | Anonymous shared object to write.|
+| ashmem | [Ashmem](#ashmem8) | Yes  | Anonymous shared object to write.|
 
 **Error codes**
 
@@ -3161,23 +3230,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
-  let ashmem: rpc.Ashmem;
+  let ashmem: rpc.Ashmem | undefined = undefined;
   try {
-      ashmem = rpc.Ashmem.create("ashmem", 1024);
-      try {
-          sequence.writeAshmem(ashmem);
-      } catch(error) {
-          let e: BusinessError = error as BusinessError;
-          console.info("rpc write ashmem fail, errorCode " + e.code);
-          console.info("rpc write ashmem fail, errorMessage" + e.message);
-      }
-  } catch(error) {
+    ashmem = rpc.Ashmem.create("ashmem", 1024);
+    try {
+      sequence.writeAshmem(ashmem);
+    } catch(error) {
       let e: BusinessError = error as BusinessError;
-      console.info("rpc create ashmem fail, errorCode " + e.code);
-      console.info("rpc creat ashmem fail, errorMessage" + e.message);
+      hilog.error(0x0000, 'testTag', 'rpc write ashmem fail, errorCode ' + e.code);
+      hilog.error(0x0000, 'testTag', 'rpc write ashmem fail, errorMessage ' + e.message);
+    }
+  } catch(error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc create ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc create ashmem fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3193,7 +3263,7 @@ Reads the anonymous shared object from this **MessageSequence** object.
 
 | Type  | Description              |
 | ------ | ------------------ |
-| Ashmem | Anonymous share object obtained.|
+| [Ashmem](#ashmem8) | Anonymous share object obtained.|
 
 **Error codes**
 
@@ -3206,32 +3276,31 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
-  let ashmem: rpc.Ashmem;
+  let ashmem: rpc.Ashmem | undefined = undefined;
   try {
-      ashmem = rpc.Ashmem.create("ashmem", 1024);
-      try {
-          sequence.writeAshmem(ashmem);
-      } catch(error) {
-          let e: BusinessError = error as BusinessError;
-          console.info("rpc write ashmem fail, errorCode " + e.code);
-          console.info("rpc write ashmem fail, errorMessage" + e.message);
-      }
-  } catch(error) {
+    ashmem = rpc.Ashmem.create("ashmem", 1024);
+    try {
+      sequence.writeAshmem(ashmem);
+    } catch(error) {
       let e: BusinessError = error as BusinessError;
-      console.info("rpc create ashmem fail, errorCode " + e.code);
-      console.info("rpc creat ashmem fail, errorMessage" + e.message);
+      hilog.error(0x0000, 'testTag', 'rpc write ashmem fail, errorCode ' + e.code);
+      hilog.error(0x0000, 'testTag', 'rpc write ashmem fail, errorMessage ' + e.message);
+    }
+  } catch(error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc create ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc create ashmem fail, errorMessage ' + e.message);
   }
-
   try {
-      let readAshmem = sequence.readAshmem();
-      console.log("RpcTest: read ashmem to result is : " + readAshmem);
+    sequence.readAshmem();
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read ashmem fail, errorCode " + e.code);
-      console.info("rpc read ashmem fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read ashmem fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3252,9 +3321,11 @@ Obtains the maximum amount of raw data that can be held by this **MessageSequenc
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let sequence = new rpc.MessageSequence();
   let result = sequence.getRawDataCapacity();
-  console.log("RpcTest: sequence get RawDataCapacity result is : " + result);
+  hilog.info(0x0000, 'testTag', 'RpcTest: sequence get RawDataCapacity result is ' + result);
   ```
 
 ### writeRawData
@@ -3283,16 +3354,17 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
   let arr = [1, 2, 3, 4, 5];
   try {
-      sequence.writeRawData(arr, arr.length);
+    sequence.writeRawData(arr, arr.length);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write rawdata fail, errorCode " + e.code);
-      console.info("rpc write rawdata fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3327,24 +3399,25 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let sequence = new rpc.MessageSequence();
   let arr = [1, 2, 3, 4, 5];
   try {
-      sequence.writeRawData(arr, arr.length);
+    sequence.writeRawData(arr, arr.length);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc write rawdata fail, errorCode " + e.code);
-      console.info("rpc write rawdata fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorMessage ' + e.message);
   }
   try {
-      let result = sequence.readRawData(5);
-      console.log("RpcTest: sequence read raw data result is : " + result);
+    let result = sequence.readRawData(5);
+    hilog.info(0x0000, 'testTag', 'RpcTest: sequence read raw data result is ' + result);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc read rawdata fail, errorCode " + e.code);
-      console.info("rpc read rawdata fail, errorMessage" + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3352,8 +3425,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 >This class is no longer maintained since API version 9. You are advised to use [MessageSequence](#messagesequence9).
 
-Provides APIs for reading and writing data in specific format. 
-During RPC, the sender can use the **write()** method provided by **MessageParcel** to write data in specific format to a **MessageParcel** object. The receiver can use the **read()** method provided by **MessageParcel** to read data in specific format from a **MessageParcel** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
+Provides APIs for reading and writing data in specific format. During RPC, the sender can use the **write()** method provided by **MessageParcel** to write data in specific format to a **MessageParcel** object. The receiver can use the **read()** method provided by **MessageParcel** to read data in specific format from a **MessageParcel** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
 
 ### create
 
@@ -3367,13 +3439,15 @@ Creates a **MessageParcel** object. This method is a static method.
 
 | Type         | Description                         |
 | ------------- | ----------------------------- |
-| MessageParcel | **MessageParcel** object created.|
+| [MessageParcel](#messageparceldeprecated) | **MessageParcel** object created.|
 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
-  console.log("RpcClient: data is " + data);
+  hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
   ```
 
 ### reclaim
@@ -3393,7 +3467,7 @@ Reclaims the **MessageParcel** object that is no longer used.
 
 ### writeRemoteObject
 
-writeRemoteObject(object: [IRemoteObject](#iremoteobject)): boolean
+writeRemoteObject(object: IRemoteObject): boolean
 
 Serializes a remote object and writes it to this **MessageParcel** object.
 
@@ -3414,24 +3488,26 @@ Serializes a remote object and writes it to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      isObjectDead(): boolean {
-          return false;
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
   }
   let data = rpc.MessageParcel.create();
   let testRemoteObject = new TestRemoteObject("testObject");
@@ -3455,29 +3531,32 @@ Reads the remote object from this **MessageParcel** object. You can use this met
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      isObjectDead(): boolean {
-          return false;
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
   }
   let data = rpc.MessageParcel.create();
   let testRemoteObject = new TestRemoteObject("testObject");
   data.writeRemoteObject(testRemoteObject);
   let proxy = data.readRemoteObject();
+  hilog.info(0x0000, 'testTag', 'readRemoteObject is ' + proxy);
   ```
 
 ### writeInterfaceToken
@@ -3503,9 +3582,11 @@ Writes an interface token to this **MessageParcel** object. The remote object ca
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeInterfaceToken("aaa");
-  console.log("RpcServer: writeInterfaceToken is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcServer: writeInterfaceToken is ' + result);
   ```
 
 ### readInterfaceToken
@@ -3525,12 +3606,14 @@ Reads the interface token from this **MessageParcel** object. The interface toke
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
-      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-          let interfaceToken = data.readInterfaceToken();
-          console.log("RpcServer: interfaceToken is " + interfaceToken);
-          return true;
-      }
+    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+      let interfaceToken = data.readInterfaceToken();
+      hilog.info(0x0000, 'testTag', 'RpcServer: interfaceToken is ' + interfaceToken);
+      return true;
+    }
   }
   ```
 
@@ -3551,9 +3634,11 @@ Obtains the data size of this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let size = data.getSize();
-  console.log("RpcClient: size is " + size);
+  hilog.info(0x0000, 'testTag', 'RpcClient: size is ' + size);
   ```
 
 ### getCapacity
@@ -3573,9 +3658,11 @@ Obtains the capacity of this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.getCapacity();
-  console.log("RpcClient: capacity is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: capacity is ' + result);
   ```
 
 ### setSize
@@ -3601,9 +3688,11 @@ Sets the size of data contained in this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let setSize = data.setSize(16);
-  console.log("RpcClient: setSize is " + setSize);
+  hilog.info(0x0000, 'testTag', 'RpcClient: setSize is ' + setSize);
   ```
 
 ### setCapacity
@@ -3629,9 +3718,11 @@ Sets the storage capacity of this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.setCapacity(100);
-  console.log("RpcClient: setCapacity is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: setCapacity is ' + result);
   ```
 
 ### getWritableBytes
@@ -3651,12 +3742,14 @@ Obtains the writable capacity of this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
-      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-          let getWritableBytes = data.getWritableBytes();
-          console.log("RpcServer: getWritableBytes is " + getWritableBytes);
-          return true;
-      }
+    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+      let getWritableBytes = data.getWritableBytes();
+      hilog.info(0x0000, 'testTag', 'RpcServer: getWritableBytes is ' + getWritableBytes);
+      return true;
+    }
   }
   ```
 
@@ -3677,12 +3770,14 @@ Obtains the readable capacity of this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
-          let result = data.getReadableBytes();
-          console.log("RpcServer: getReadableBytes is " + result);
-          return true;
-      }
+    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+      let result = data.getReadableBytes();
+      hilog.info(0x0000, 'testTag', 'RpcServer: getReadableBytes is ' + result);
+      return true;
+    }
   }
   ```
 
@@ -3703,9 +3798,11 @@ Obtains the read position of this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let readPos = data.getReadPosition();
-  console.log("RpcClient: readPos is " + readPos);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readPos is ' + readPos);
   ```
 
 ### getWritePosition
@@ -3725,10 +3822,12 @@ Obtains the write position of this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   data.writeInt(10);
   let bwPos = data.getWritePosition();
-  console.log("RpcClient: bwPos is " + bwPos);
+  hilog.info(0x0000, 'testTag', 'RpcClient: bwPos is ' + bwPos);
   ```
 
 ### rewindRead
@@ -3754,14 +3853,16 @@ Moves the read pointer to the specified position.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   data.writeInt(12);
   data.writeString("parcel");
   let number = data.readInt();
-  console.log("RpcClient: number is " + number);
+  hilog.info(0x0000, 'testTag', 'RpcClient: number is ' + number);
   data.rewindRead(0);
   let number2 = data.readInt();
-  console.log("RpcClient: rewindRead is " + number2);
+  hilog.info(0x0000, 'testTag', 'RpcClient: rewindRead is ' + number2);
   ```
 
 ### rewindWrite
@@ -3787,12 +3888,14 @@ Moves the write pointer to the specified position.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   data.writeInt(4);
   data.rewindWrite(0);
   data.writeInt(5);
   let number = data.readInt();
-  console.log("RpcClient: rewindWrite is: " + number);
+  hilog.info(0x0000, 'testTag', 'RpcClient: rewindWrite is ' + number);
   ```
 
 ### writeByte
@@ -3818,9 +3921,11 @@ Writes a Byte value to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeByte(2);
-  console.log("RpcClient: writeByte is: " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeByte is ' + result);
   ```
 
 ### readByte
@@ -3840,11 +3945,13 @@ Reads the Byte value from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeByte(2);
-  console.log("RpcClient: writeByte is: " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeByte is ' + result);
   let ret = data.readByte();
-  console.log("RpcClient: readByte is: " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readByte is ' + ret);
   ```
 
 ### writeShort
@@ -3870,9 +3977,11 @@ Writes a Short int value to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeShort(8);
-  console.log("RpcClient: writeShort is: " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeShort is ' + result);
   ```
 
 ### readShort
@@ -3892,11 +4001,13 @@ Reads the Short int value from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeShort(8);
-  console.log("RpcClient: writeShort is: " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeShort is ' + result);
   let ret = data.readShort();
-  console.log("RpcClient: readShort is: " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readShort is ' + ret);
   ```
 
 ### writeInt
@@ -3922,9 +4033,11 @@ Writes an Int value to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeInt(10);
-  console.log("RpcClient: writeInt is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeInt is ' + result);
   ```
 
 ### readInt
@@ -3944,11 +4057,13 @@ Reads the Int value from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeInt(10);
-  console.log("RpcClient: writeInt is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeInt is ' + result);
   let ret = data.readInt();
-  console.log("RpcClient: readInt is " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + ret);
   ```
 
 ### writeLong
@@ -3974,9 +4089,11 @@ Writes a Long int value to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeLong(10000);
-  console.log("RpcClient: writeLong is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeLong is ' + result);
   ```
 
 ### readLong
@@ -3996,11 +4113,13 @@ Reads the Long int value from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeLong(10000);
-  console.log("RpcClient: writeLong is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeLong is ' + result);
   let ret = data.readLong();
-  console.log("RpcClient: readLong is " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readLong is ' + ret);
   ```
 
 ### writeFloat
@@ -4026,9 +4145,11 @@ Writes a Float value to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeFloat(1.2);
-  console.log("RpcClient: writeFloat is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeFloat is ' + result);
   ```
 
 ### readFloat
@@ -4048,11 +4169,13 @@ Reads the Float value from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeFloat(1.2);
-  console.log("RpcClient: writeFloat is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeFloat is ' + result);
   let ret = data.readFloat();
-  console.log("RpcClient: readFloat is " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readFloat is ' + ret);
   ```
 
 ### writeDouble
@@ -4078,9 +4201,11 @@ Writes a Double value to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeDouble(10.2);
-  console.log("RpcClient: writeDouble is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeDouble is ' + result);
   ```
 
 ### readDouble
@@ -4100,11 +4225,13 @@ Reads the Double value from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeDouble(10.2);
-  console.log("RpcClient: writeDouble is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeDouble is ' + result);
   let ret = data.readDouble();
-  console.log("RpcClient: readDouble is " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readDouble is ' + ret);
   ```
 
 ### writeBoolean
@@ -4130,9 +4257,11 @@ Writes a Boolean value to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeBoolean(false);
-  console.log("RpcClient: writeBoolean is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeBoolean is ' + result);
   ```
 
 ### readBoolean
@@ -4152,11 +4281,13 @@ Reads the Boolean value from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeBoolean(false);
-  console.log("RpcClient: writeBoolean is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeBoolean is ' + result);
   let ret = data.readBoolean();
-  console.log("RpcClient: readBoolean is " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readBoolean is ' + ret);
   ```
 
 ### writeChar
@@ -4182,9 +4313,11 @@ Writes a Char value to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeChar(97);
-  console.log("RpcClient: writeChar is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeChar is ' + result);
   ```
 
 ### readChar
@@ -4204,11 +4337,13 @@ Reads the Char value from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeChar(97);
-  console.log("RpcClient: writeChar is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeChar is ' + result);
   let ret = data.readChar();
-  console.log("RpcClient: readChar is " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readChar is ' + ret);
   ```
 
 ### writeString
@@ -4234,9 +4369,11 @@ Writes a string to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeString('abc');
-  console.log("RpcClient: writeString  is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeString is ' + result);
   ```
 
 ### readString
@@ -4256,11 +4393,13 @@ Reads the string from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeString('abc');
-  console.log("RpcClient: writeString  is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeString is ' + result);
   let ret = data.readString();
-  console.log("RpcClient: readString is " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readString is ' + ret);
   ```
 
 ### writeSequenceable
@@ -4275,7 +4414,7 @@ Writes a sequenceable object to this **MessageParcel** object.
 
 | Name| Type                         | Mandatory| Description                |
 | ------ | ----------------------------- | ---- | -------------------- |
-| val    | [Sequenceable](#sequenceable) | Yes  | Sequenceable object to write.|
+| val    | [Sequenceable](#sequenceabledeprecated) | Yes  | Sequenceable object to write.|
 
 **Return value**
 
@@ -4286,28 +4425,30 @@ Writes a sequenceable object to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MySequenceable implements rpc.Sequenceable {
-      num: number = 0;
-      str: string = '';
-      constructor(num: number, str: string) {
-          this.num = num;
-          this.str = str;
-      }
-      marshalling(messageParcel: rpc.MessageParcel): boolean {
-          messageParcel.writeInt(this.num);
-          messageParcel.writeString(this.str);
-          return true;
-      }
-      unmarshalling(messageParcel: rpc.MessageParcel): boolean {
-          this.num = messageParcel.readInt();
-          this.str = messageParcel.readString();
-          return true;
-      }
+    num: number = 0;
+    str: string = '';
+    constructor(num: number, str: string) {
+      this.num = num;
+      this.str = str;
+    }
+    marshalling(messageParcel: rpc.MessageParcel): boolean {
+      messageParcel.writeInt(this.num);
+      messageParcel.writeString(this.str);
+      return true;
+    }
+    unmarshalling(messageParcel: rpc.MessageParcel): boolean {
+      this.num = messageParcel.readInt();
+      this.str = messageParcel.readString();
+      return true;
+    }
   }
   let sequenceable = new MySequenceable(1, "aaa");
   let data = rpc.MessageParcel.create();
   let result = data.writeSequenceable(sequenceable);
-  console.log("RpcClient: writeSequenceable is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceable is ' + result);
   ```
 
 ### readSequenceable
@@ -4333,31 +4474,33 @@ Reads member variables from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MySequenceable implements rpc.Sequenceable {
-      num: number = 0;
-      str: string = '';
-      constructor(num: number, str: string) {
-          this.num = num;
-          this.str = str;
-      }
-      marshalling(messageParcel: rpc.MessageParcel): boolean {
-          messageParcel.writeInt(this.num);
-          messageParcel.writeString(this.str);
-          return true;
-      }
-      unmarshalling(messageParcel: rpc.MessageParcel): boolean {
-          this.num = messageParcel.readInt();
-          this.str = messageParcel.readString();
-          return true;
-      }
+    num: number = 0;
+    str: string = '';
+    constructor(num: number, str: string) {
+      this.num = num;
+      this.str = str;
+    }
+    marshalling(messageParcel: rpc.MessageParcel): boolean {
+      messageParcel.writeInt(this.num);
+      messageParcel.writeString(this.str);
+      return true;
+    }
+    unmarshalling(messageParcel: rpc.MessageParcel): boolean {
+      this.num = messageParcel.readInt();
+      this.str = messageParcel.readString();
+      return true;
+    }
   }
   let sequenceable = new MySequenceable(1, "aaa");
   let data = rpc.MessageParcel.create();
   let result = data.writeSequenceable(sequenceable);
-  console.log("RpcClient: writeSequenceable is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceable is ' + result);
   let ret = new MySequenceable(0, "");
   let result2 = data.readSequenceable(ret);
-  console.log("RpcClient: writeSequenceable is " + result2);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readSequenceable is ' + result2);
   ```
 
 ### writeByteArray
@@ -4383,10 +4526,12 @@ Writes a byte array to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
-  console.log("RpcClient: writeByteArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeByteArray is ' + result);
   ```
 
 ### readByteArray
@@ -4406,10 +4551,12 @@ Reads a byte array from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
-  console.log("RpcClient: writeByteArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeByteArray is ' + result);
   let array: Array<number> = new Array(5);
   data.readByteArray(array);
   ```
@@ -4431,12 +4578,14 @@ Reads the byte array from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
-  console.log("RpcClient: writeByteArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeByteArray is ' + result);
   let array = data.readByteArray();
-  console.log("RpcClient: readByteArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readByteArray is ' + array);
   ```
 
 ### writeShortArray
@@ -4462,9 +4611,11 @@ Writes a short array to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
-  console.log("RpcClient: writeShortArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeShortArray is ' + result);
   ```
 
 ### readShortArray
@@ -4484,9 +4635,11 @@ Reads a short array from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
-  console.log("RpcClient: writeShortArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeShortArray is ' + result);
   let array: Array<number> = new Array(3);
   data.readShortArray(array);
   ```
@@ -4508,11 +4661,13 @@ Reads the short array from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
-  console.log("RpcClient: writeShortArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeShortArray is ' + result);
   let array = data.readShortArray();
- console.log("RpcClient: readShortArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readShortArray is ' + array);
   ```
 
 ### writeIntArray
@@ -4538,9 +4693,11 @@ Writes an integer array to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
-  console.log("RpcClient: writeIntArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeIntArray is ' + result);
   ```
 
 ### readIntArray
@@ -4560,9 +4717,11 @@ Reads an integer array from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
-  console.log("RpcClient: writeIntArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeIntArray is ' + result);
   let array: Array<number> = new Array(3);
   data.readIntArray(array);
   ```
@@ -4584,11 +4743,13 @@ Reads the integer array from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
-  console.log("RpcClient: writeIntArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeIntArray is ' + result);
   let array = data.readIntArray();
-  console.log("RpcClient: readIntArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readIntArray is ' + array);
   ```
 
 ### writeLongArray
@@ -4614,9 +4775,11 @@ Writes a long array to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
-  console.log("RpcClient: writeLongArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeLongArray is ' + result);
   ```
 
 ### readLongArray
@@ -4636,9 +4799,11 @@ Reads a long array from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
-  console.log("RpcClient: writeLongArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeLongArray is ' + result);
   let array: Array<number> = new Array(3);
   data.readLongArray(array);
   ```
@@ -4660,11 +4825,13 @@ Reads the long array from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
-  console.log("RpcClient: writeLongArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeLongArray is ' + result);
   let array = data.readLongArray();
-  console.log("RpcClient: readLongArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readLongArray is ' + array);
   ```
 
 ### writeFloatArray
@@ -4690,9 +4857,11 @@ Writes a FloatArray to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
-  console.log("RpcClient: writeFloatArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeFloatArray is ' + result);
   ```
 
 ### readFloatArray
@@ -4712,9 +4881,11 @@ Reads a FloatArray from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
-  console.log("RpcClient: writeFloatArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeFloatArray is ' + result);
   let array: Array<number> = new Array(3);
   data.readFloatArray(array);
   ```
@@ -4736,11 +4907,13 @@ Reads the FloatArray from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
-  console.log("RpcClient: writeFloatArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeFloatArray is ' + result);
   let array = data.readFloatArray();
-  console.log("RpcClient: readFloatArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readFloatArray is ' + array);
   ```
 
 ### writeDoubleArray
@@ -4766,9 +4939,11 @@ Writes a DoubleArray to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
-  console.log("RpcClient: writeDoubleArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeDoubleArray is ' + result);
   ```
 
 ### readDoubleArray
@@ -4788,9 +4963,11 @@ Reads a DoubleArray from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
-  console.log("RpcClient: writeDoubleArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeDoubleArray is ' + result);
   let array: Array<number> = new Array(3);
   data.readDoubleArray(array);
   ```
@@ -4812,11 +4989,13 @@ Reads the DoubleArray from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
-  console.log("RpcClient: writeDoubleArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeDoubleArray is ' + result);
   let array = data.readDoubleArray();
-  console.log("RpcClient: readDoubleArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readDoubleArray is ' + array);
   ```
 
 ### writeBooleanArray
@@ -4842,9 +5021,11 @@ Writes a Boolean array to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
-  console.log("RpcClient: writeBooleanArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeBooleanArray is ' + result);
   ```
 
 ### readBooleanArray
@@ -4864,9 +5045,11 @@ Reads a Boolean array from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
-  console.log("RpcClient: writeBooleanArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeBooleanArray is ' + result);
   let array: Array<boolean> = new Array(3);
   data.readBooleanArray(array);
   ```
@@ -4888,11 +5071,13 @@ Reads the Boolean array from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
-  console.log("RpcClient: writeBooleanArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeBooleanArray is ' + result);
   let array = data.readBooleanArray();
-  console.log("RpcClient: readBooleanArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readBooleanArray is ' + array);
   ```
 
 ### writeCharArray
@@ -4918,9 +5103,11 @@ Writes a character array to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 88]);
-  console.log("RpcClient: writeCharArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeCharArray is ' + result);
   ```
 
 ### readCharArray
@@ -4940,9 +5127,11 @@ Reads a character array from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 99]);
-  console.log("RpcClient: writeCharArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeCharArray is ' + result);
   let array: Array<number> = new Array(3);
   data.readCharArray(array);
   ```
@@ -4964,11 +5153,13 @@ Reads the character array from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 99]);
-  console.log("RpcClient: writeCharArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeCharArray is ' + result);
   let array = data.readCharArray();
-  console.log("RpcClient: readCharArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readCharArray is ' + array);
   ```
 
 ### writeStringArray
@@ -4994,9 +5185,11 @@ Writes a string array to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
-  console.log("RpcClient: writeStringArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeStringArray is ' + result);
   ```
 
 ### readStringArray
@@ -5016,9 +5209,11 @@ Reads a string array from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
-  console.log("RpcClient: writeStringArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeStringArray is ' + result);
   let array: Array<string> = new Array(2);
   data.readStringArray(array);
   ```
@@ -5040,11 +5235,13 @@ Reads the string array from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
-  console.log("RpcClient: writeStringArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeStringArray is ' + result);
   let array = data.readStringArray();
-  console.log("RpcClient: readStringArray is " + array);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readStringArray is ' + array);
   ```
 
 ### writeNoException<sup>8+</sup>
@@ -5058,34 +5255,36 @@ Writes information to this **MessageParcel** object indicating that no exception
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
+    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+      if (code === 1) {
+        hilog.info(0x0000, 'testTag', 'RpcServer: onRemoteRequest called');
+        reply.writeNoException();
+        return true;
+      } else {
+        hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
+        return false;
       }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      isObjectDead(): boolean {
-          return false;
-      }
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
-          if (code === 1) {
-              console.log("RpcServer: onRemoteRequest called");
-              reply.writeNoException();
-              return true;
-          } else {
-              console.log("RpcServer: unknown code: " + code);
-              return false;
-          }
-      }
+    }
   }
   ```
 
@@ -5106,23 +5305,24 @@ Reads the exception information from this **MessageParcel** object.
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: () => {
-          console.log("RpcClient: onFailed");
-      }
+    onConnect: (elementName, remoteProxy) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      proxy = remoteProxy;
+    },
+    onDisconnect: (elementName) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+    },
+    onFailed: () => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+    }
   };
   let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
+    bundleName: "com.ohos.server",
+    abilityName: "com.ohos.server.EntryAbility",
   };
 
   // Use this method to connect to the ability for the FA model.
@@ -5134,25 +5334,27 @@ Reads the exception information from this **MessageParcel** object.
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
   data.writeInt(1);
   data.writeString("hello");
-  proxy.sendMessageRequest(1, data, reply, option)
-      .then((errCode: number) => {
-          if (errCode === 0) {
-              console.log("sendMessageRequest got result");
-              reply.readException();
-              let msg = reply.readString();
-              console.log("RPCTest: reply msg: " + msg);
+  proxy.sendRequest(1, data, reply, option)
+      .then((result: rpc.SendRequestResult) => {
+          if (result.errCode === 0) {
+              hilog.info(0x0000, 'testTag', 'sendRequest got result');
+              result.reply.readException();
+              let msg = result.reply.readString();
+              hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
           } else {
-              console.log("RPCTest: sendMessageRequest failed, errCode: " + errCode);
+              hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
           }
-      }).catch((error: Error) => {
-          console.log("RPCTest: sendMessageRequest got exception: " + error.message);
+      }).catch((e: Error) => {
+          hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest got exception: ' + e.message);
       }).finally (() => {
-          console.log("RPCTest: sendMessageRequest ends, reclaim parcel");
+          hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
           data.reclaim();
           reply.reclaim();
       });
@@ -5168,9 +5370,9 @@ Writes a sequenceable array to this **MessageParcel** object.
 
 **Parameters**
 
-| Name           | Type          | Mandatory| Description                      |
-| ----------------- | -------------- | ---- | -------------------------- |
-| sequenceableArray | Sequenceable[] | Yes  | Sequenceable array to write.|
+| Name           | Type                                     | Mandatory| Description                      |
+| ----------------- | ----------------------------------------- | ---- | -------------------------- |
+| sequenceableArray | [Sequenceable](#sequenceabledeprecated)[] | Yes  | Sequenceable array to write.|
 
 **Return value**
 
@@ -5181,23 +5383,25 @@ Writes a sequenceable array to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MySequenceable implements rpc.Sequenceable {
-      num: number = 0;
-      str: string = '';
-      constructor(num: number, str: string) {
-          this.num = num;
-          this.str = str;
-      }
-      marshalling(messageParcel: rpc.MessageParcel): boolean {
-          messageParcel.writeInt(this.num);
-          messageParcel.writeString(this.str);
-          return true;
-      }
-      unmarshalling(messageParcel: rpc.MessageParcel): boolean {
-          this.num = messageParcel.readInt();
-          this.str = messageParcel.readString();
-          return true;
-      }
+    num: number = 0;
+    str: string = '';
+    constructor(num: number, str: string) {
+      this.num = num;
+      this.str = str;
+    }
+    marshalling(messageParcel: rpc.MessageParcel): boolean {
+      messageParcel.writeInt(this.num);
+      messageParcel.writeString(this.str);
+      return true;
+    }
+    unmarshalling(messageParcel: rpc.MessageParcel): boolean {
+      this.num = messageParcel.readInt();
+      this.str = messageParcel.readString();
+      return true;
+    }
   }
   let sequenceable = new MySequenceable(1, "aaa");
   let sequenceable2 = new MySequenceable(2, "bbb");
@@ -5205,7 +5409,7 @@ Writes a sequenceable array to this **MessageParcel** object.
   let a = [sequenceable, sequenceable2, sequenceable3];
   let data = rpc.MessageParcel.create();
   let result = data.writeSequenceableArray(a);
-  console.log("RpcClient: writeSequenceableArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceableArray is ' + result);
   ```
 
 ### readSequenceableArray<sup>8+</sup>
@@ -5218,30 +5422,32 @@ Reads a sequenceable array from this **MessageParcel** object.
 
 **Parameters**
 
-| Name           | Type          | Mandatory| Description                      |
-| ----------------- | -------------- | ---- | -------------------------- |
-| sequenceableArray | Sequenceable[] | Yes  | Sequenceable array to read.|
+| Name           | Type                                     | Mandatory| Description                      |
+| ----------------- | ----------------------------------------- | ---- | -------------------------- |
+| sequenceableArray | [Sequenceable](#sequenceabledeprecated)[] | Yes  | Sequenceable array to read.|
 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MySequenceable implements rpc.Sequenceable {
-      num: number = 0;
-      str: string = '';
-      constructor(num: number, str: string) {
-          this.num = num;
-          this.str = str;
-      }
-      marshalling(messageParcel: rpc.MessageParcel): boolean {
-          messageParcel.writeInt(this.num);
-          messageParcel.writeString(this.str);
-          return true;
-      }
-      unmarshalling(messageParcel: rpc.MessageParcel): boolean {
-          this.num = messageParcel.readInt();
-          this.str = messageParcel.readString();
-          return true;
-      }
+    num: number = 0;
+    str: string = '';
+    constructor(num: number, str: string) {
+      this.num = num;
+      this.str = str;
+    }
+    marshalling(messageParcel: rpc.MessageParcel): boolean {
+      messageParcel.writeInt(this.num);
+      messageParcel.writeString(this.str);
+      return true;
+    }
+    unmarshalling(messageParcel: rpc.MessageParcel): boolean {
+      this.num = messageParcel.readInt();
+      this.str = messageParcel.readString();
+      return true;
+    }
   }
   let sequenceable = new MySequenceable(1, "aaa");
   let sequenceable2 = new MySequenceable(2, "bbb");
@@ -5249,7 +5455,7 @@ Reads a sequenceable array from this **MessageParcel** object.
   let a = [sequenceable, sequenceable2, sequenceable3];
   let data = rpc.MessageParcel.create();
   let result = data.writeSequenceableArray(a);
-  console.log("RpcClient: writeSequenceableArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceableArray is ' + result);
   let b = [new MySequenceable(0, ""), new MySequenceable(0, ""), new MySequenceable(0, "")];
   data.readSequenceableArray(b);
   ```
@@ -5266,7 +5472,7 @@ Writes an array of **IRemoteObject** objects to this **MessageParcel** object.
 
 | Name     | Type           | Mandatory| Description |
 | ----------- | --------------- | ---- | ----- |
-| objectArray | IRemoteObject[] | Yes  | Array of **IRemoteObject** objects to write.|
+| objectArray | [IRemoteObject](#iremoteobject)[] | Yes  | Array of **IRemoteObject** objects to write.|
 
 **Return value**
 
@@ -5277,33 +5483,35 @@ Writes an array of **IRemoteObject** objects to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-          this.attachLocalInterface(this, descriptor);
-      }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      isObjectDead(): boolean {
-          return false;
-      }
-      asObject(): rpc.IRemoteObject {
-          return this;
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+      this.attachLocalInterface(this, descriptor);
+    }
+    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
+    asObject(): rpc.IRemoteObject {
+      return this;
+    }
   }
   let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
   let data = rpc.MessageParcel.create();
   let result = data.writeRemoteObjectArray(a);
-  console.log("RpcClient: writeRemoteObjectArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeRemoteObjectArray is ' + result);
   ```
 
 ### readRemoteObjectArray<sup>8+</sup>
@@ -5318,37 +5526,39 @@ Reads an **IRemoteObject** array from this **MessageParcel** object.
 
 | Name | Type           | Mandatory| Description     |
 | ------- | --------------- | ---- | --------- |
-| objects | IRemoteObject[] | Yes  | **IRemoteObject** array to read.|
+| objects | [IRemoteObject](#iremoteobject)[] | Yes  | **IRemoteObject** array to read.|
 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-          this.attachLocalInterface(this, descriptor);
-      }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      isObjectDead(): boolean {
-         return false;
-      }
-      asObject(): rpc.IRemoteObject {
-          return this;
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+      this.attachLocalInterface(this, descriptor);
+    }
+    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
+    asObject(): rpc.IRemoteObject {
+      return this;
+    }
   }
   let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
   let data = rpc.MessageParcel.create();
-  let result = data.writeRemoteObjectArray(a);
+  data.writeRemoteObjectArray(a);
   let b: Array<rpc.IRemoteObject> = new Array(3);
   data.readRemoteObjectArray(b);
   ```
@@ -5365,40 +5575,42 @@ Reads the **IRemoteObject** array from this **MessageParcel** object.
 
 | Type           | Description                       |
 | --------------- | --------------------------- |
-| IRemoteObject[] | **IRemoteObject** object array obtained.|
+| [IRemoteObject](#iremoteobject)[] | **IRemoteObject** object array obtained.|
 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-          this.attachLocalInterface(this, descriptor);
-      }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      isObjectDead(): boolean {
-          return false;
-      }
-      asObject(): rpc.IRemoteObject {
-          return this;
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+      this.attachLocalInterface(this, descriptor);
+    }
+    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
+    asObject(): rpc.IRemoteObject {
+      return this;
+    }
   }
   let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
   let data = rpc.MessageParcel.create();
   let result = data.writeRemoteObjectArray(a);
-  console.log("RpcClient: readRemoteObjectArray is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readRemoteObjectArray is ' + result);
   let b = data.readRemoteObjectArray();
-  console.log("RpcClient: readRemoteObjectArray is " + b);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readRemoteObjectArray is ' + b);
   ```
 
 ### closeFileDescriptor<sup>8+</sup>
@@ -5422,7 +5634,8 @@ Closes a file descriptor. This API is a static method.
 
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  rpc.MessageParcel.closeFileDescriptor(file.fd);
+  let parcel = new rpc.MessageParcel();   
+  parcel.closeFileDescriptor(file.fd);
   ```
 
 ### dupFileDescriptor<sup>8+</sup>
@@ -5452,7 +5665,8 @@ Duplicates a file descriptor. This API is a static method.
 
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  let newFd = rpc.MessageParcel.dupFileDescriptor(file.fd);
+  let parcel = new rpc.MessageParcel();
+  parcel.dupFileDescriptor(file.fd);
   ```
 
 ### containFileDescriptors<sup>8+</sup>
@@ -5473,15 +5687,15 @@ Checks whether this **MessageParcel** object contains file descriptors.
 
   ```ts
   import fs from '@ohos.file.fs';
+  import hilog from '@ohos.hilog';
 
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
-  let r1 = parcel.containFileDescriptors();
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let writeResult = parcel.writeFileDescriptor(file.fd);
-  console.log("RpcTest: parcel writeFd result is : " + writeResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest: parcel writeFd result is ' + writeResult);
   let containFD = parcel.containFileDescriptors();
-  console.log("RpcTest: parcel after write fd containFd result is : " + containFD);
+  hilog.info(0x0000, 'testTag', 'RpcTest: parcel after write fd containFd result is ' + containFD);
   ```
 
 ### writeFileDescriptor<sup>8+</sup>
@@ -5508,12 +5722,13 @@ Writes a file descriptor to this **MessageParcel** object.
 
   ```ts
   import fs from '@ohos.file.fs';
+  import hilog from '@ohos.hilog';
 
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let writeResult = parcel.writeFileDescriptor(file.fd);
-  console.log("RpcTest: parcel writeFd result is : " + writeResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest: parcel writeFd result is ' + writeResult);
   ```
 
 ### readFileDescriptor<sup>8+</sup>
@@ -5534,13 +5749,14 @@ Reads the file descriptor from this **MessageParcel** object.
 
   ```ts
   import fs from '@ohos.file.fs';
+  import hilog from '@ohos.hilog';
 
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  let writeResult = parcel.writeFileDescriptor(file.fd);
+  parcel.writeFileDescriptor(file.fd);
   let readFD = parcel.readFileDescriptor();
-  console.log("RpcTest: parcel read fd is : " + readFD);
+  hilog.info(0x0000, 'testTag', 'RpcTest: parcel read fd is ' + readFD);
   ```
 
 ### writeAshmem<sup>8+</sup>
@@ -5555,7 +5771,7 @@ Writes an anonymous shared object to this **MessageParcel** object.
 
 | Name| Type  | Mandatory| Description                               |
 | ------ | ------ | ---- | ----------------------------------- |
-| ashmem | Ashmem | Yes  | Anonymous shared object to write.|
+| ashmem | [Ashmem](#ashmem8) | Yes  | Anonymous shared object to write.|
 
 **Return value**
 
@@ -5566,10 +5782,12 @@ Writes an anonymous shared object to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let parcel = new rpc.MessageParcel();
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
   let isWriteSuccess = parcel.writeAshmem(ashmem);
-  console.log("RpcTest: write ashmem to result is : " + isWriteSuccess);
+  hilog.info(0x0000, 'testTag', 'RpcTest: write ashmem to result is ' + isWriteSuccess);
   ```
 
 ### readAshmem<sup>8+</sup>
@@ -5584,17 +5802,19 @@ Reads the anonymous shared object from this **MessageParcel** object.
 
 | Type  | Description              |
 | ------ | ------------------ |
-| Ashmem | Anonymous share object obtained.|
+| [Ashmem](#ashmem8) | Anonymous share object obtained.|
 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let parcel = new rpc.MessageParcel();
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
   let isWriteSuccess = parcel.writeAshmem(ashmem);
-  console.log("RpcTest: write ashmem to result is : " + isWriteSuccess);
+  hilog.info(0x0000, 'testTag', 'RpcTest: write ashmem to result is ' + isWriteSuccess);
   let readAshmem = parcel.readAshmem();
-  console.log("RpcTest: read ashmem to result is : " + readAshmem);
+  hilog.info(0x0000, 'testTag', 'RpcTest: read ashmem to result is ' + readAshmem);
   ```
 
 ### getRawDataCapacity<sup>8+</sup>
@@ -5614,9 +5834,11 @@ Obtains the maximum amount of raw data that can be held by this **MessageParcel*
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let parcel = new rpc.MessageParcel();
   let result = parcel.getRawDataCapacity();
-  console.log("RpcTest: parcel get RawDataCapacity result is : " + result);
+  hilog.info(0x0000, 'testTag', 'RpcTest: parcel get RawDataCapacity result is ' + result);
   ```
 
 ### writeRawData<sup>8+</sup>
@@ -5643,10 +5865,12 @@ Writes raw data to this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let parcel = new rpc.MessageParcel();
   let arr = [1, 2, 3, 4, 5];
   let isWriteSuccess = parcel.writeRawData(arr, arr.length);
-  console.log("RpcTest: parcel write raw data result is : " + isWriteSuccess);
+  hilog.info(0x0000, 'testTag', 'RpcTest: parcel write raw data result is ' + isWriteSuccess);
   ```
 
 ### readRawData<sup>8+</sup>
@@ -5672,12 +5896,14 @@ Reads raw data from this **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let parcel = new rpc.MessageParcel();
   let arr = [1, 2, 3, 4, 5];
   let isWriteSuccess = parcel.writeRawData(arr, arr.length);
-  console.log("RpcTest: parcel write raw data result is : " + isWriteSuccess);
+  hilog.info(0x0000, 'testTag', 'RpcTest: parcel write raw data result is ' + isWriteSuccess);
   let result = parcel.readRawData(5);
-  console.log("RpcTest: parcel read raw data result is : " + result);
+  hilog.info(0x0000, 'testTag', 'RpcTest: parcel read raw data result is ' + result);
   ```
 
 ## Parcelable<sup>9+</sup>
@@ -5696,7 +5922,7 @@ Marshals this **Parcelable** object into a **MessageSequence** object.
 
 | Name | Type           | Mandatory| Description                                       |
 | ------- | --------------- | ---- | ------------------------------------------- |
-| dataOut | MessageSequence | Yes  | **MessageSequence** object to which the **Parcelable** object is to be marshaled.|
+| dataOut |[MessageSequence](#messagesequence9)| Yes  | **MessageSequence** object to which the **Parcelable** object is to be marshaled.|
 
 **Return value**
 
@@ -5707,31 +5933,33 @@ Marshals this **Parcelable** object into a **MessageSequence** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyParcelable implements rpc.Parcelable {
-      num: number = 0;
-      str: string = '';
-      constructor(num: number, str: string) {
-          this.num = num;
-          this.str = str;
-      }
-      marshalling(messageSequence: rpc.MessageSequence): boolean {
-          messageSequence.writeInt(this.num);
-          messageSequence.writeString(this.str);
-          return true;
-      }
-      unmarshalling(messageSequence: rpc.MessageSequence): boolean {
-          this.num = messageSequence.readInt();
-          this.str = messageSequence.readString();
-          return true;
-      }
+    num: number = 0;
+    str: string = '';
+    constructor(num: number, str: string) {
+      this.num = num;
+      this.str = str;
+    }
+    marshalling(messageSequence: rpc.MessageSequence): boolean {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
+      return true;
+    }
+    unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
+      return true;
+    }
   }
   let parcelable = new MyParcelable(1, "aaa");
   let data = rpc.MessageSequence.create();
   let result = data.writeParcelable(parcelable);
-  console.log("RpcClient: writeParcelable is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeParcelable is ' + result);
   let ret = new MyParcelable(0, "");
   let result2 = data.readParcelable(ret);
-  console.log("RpcClient: readParcelable is " + result2);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readParcelable is ' + result2);
   ```
 
 ### unmarshalling
@@ -5746,7 +5974,7 @@ Unmarshals this **Parcelable** object from a **MessageSequence** object.
 
 | Name| Type           | Mandatory| Description                                           |
 | ------ | --------------- | ---- | ----------------------------------------------- |
-| dataIn | MessageSequence | Yes  | **MessageSequence** object from which the **Parcelable** object is to be unmarshaled.|
+| dataIn | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object from which the **Parcelable** object is to be unmarshaled.|
 
 **Return value**
 
@@ -5757,31 +5985,33 @@ Unmarshals this **Parcelable** object from a **MessageSequence** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyParcelable implements rpc.Parcelable {
-      num: number = 0;
-      str: string = '';
-      constructor(num: number, str: string) {
-          this.num = num;
-          this.str = str;
-      }
-      marshalling(messageSequence: rpc.MessageSequence): boolean {
-          messageSequence.writeInt(this.num);
-          messageSequence.writeString(this.str);
-          return true;
-      }
-      unmarshalling(messageSequence: rpc.MessageSequence): boolean {
-          this.num = messageSequence.readInt();
-          this.str = messageSequence.readString();
-          return true;
-      }
+    num: number = 0;
+    str: string = '';
+    constructor(num: number, str: string) {
+      this.num = num;
+      this.str = str;
+    }
+    marshalling(messageSequence: rpc.MessageSequence): boolean {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
+      return true;
+    }
+    unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
+      return true;
+    }
   }
   let parcelable = new MyParcelable(1, "aaa");
   let data = rpc.MessageSequence.create();
   let result = data.writeParcelable(parcelable);
-  console.log("RpcClient: writeParcelable is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeParcelable is ' + result);
   let ret = new MyParcelable(0, "");
   let result2 = data.readParcelable(ret);
-  console.log("RpcClient: readParcelable is " + result2);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readParcelable is ' + result2);
   ```
 
 ## Sequenceable<sup>(deprecated)</sup>
@@ -5813,31 +6043,33 @@ Marshals the sequenceable object into a **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MySequenceable implements rpc.Sequenceable {
-      num: number = 0;
-      str: string = '';
-      constructor(num: number, str: string) {
-          this.num = num;
-          this.str = str;
-      }
-      marshalling(messageParcel: rpc.MessageParcel): boolean {
-          messageParcel.writeInt(this.num);
-          messageParcel.writeString(this.str);
-          return true;
-      }
-      unmarshalling(messageParcel: rpc.MessageParcel): boolean {
-          this.num = messageParcel.readInt();
-          this.str = messageParcel.readString();
-          return true;
-      }
+    num: number = 0;
+    str: string = '';
+    constructor(num: number, str: string) {
+      this.num = num;
+      this.str = str;
+    }
+    marshalling(messageParcel: rpc.MessageParcel): boolean {
+      messageParcel.writeInt(this.num);
+      messageParcel.writeString(this.str);
+      return true;
+    }
+    unmarshalling(messageParcel: rpc.MessageParcel): boolean {
+      this.num = messageParcel.readInt();
+      this.str = messageParcel.readString();
+      return true;
+    }
   }
   let sequenceable = new MySequenceable(1, "aaa");
   let data = rpc.MessageParcel.create();
   let result = data.writeSequenceable(sequenceable);
-  console.log("RpcClient: writeSequenceable is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceable is ' + result);
   let ret = new MySequenceable(0, "");
   let result2 = data.readSequenceable(ret);
-  console.log("RpcClient: readSequenceable is " + result2);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readSequenceable is ' + result2);
   ```
 
 ### unmarshalling
@@ -5863,31 +6095,33 @@ Unmarshals this sequenceable object from a **MessageParcel** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MySequenceable implements rpc.Sequenceable {
-      num: number = 0;
-      str: string = '';
-      constructor(num: number, str: string) {
-          this.num = num;
-          this.str = str;
-      }
-      marshalling(messageParcel: rpc.MessageParcel): boolean {
-          messageParcel.writeInt(this.num);
-          messageParcel.writeString(this.str);
-          return true;
-      }
-      unmarshalling(messageParcel: rpc.MessageParcel): boolean {
-          this.num = messageParcel.readInt();
-          this.str = messageParcel.readString();
-          return true;
-      }
+    num: number = 0;
+    str: string = '';
+    constructor(num: number, str: string) {
+      this.num = num;
+      this.str = str;
+    }
+    marshalling(messageParcel: rpc.MessageParcel): boolean {
+      messageParcel.writeInt(this.num);
+      messageParcel.writeString(this.str);
+      return true;
+    }
+    unmarshalling(messageParcel: rpc.MessageParcel): boolean {
+      this.num = messageParcel.readInt();
+      this.str = messageParcel.readString();
+      return true;
+    }
   }
   let sequenceable = new MySequenceable(1, "aaa");
   let data = rpc.MessageParcel.create();
   let result = data.writeSequenceable(sequenceable);
-  console.log("RpcClient: writeSequenceable is " + result);
+  hilog.info(0x0000, 'testTag', 'RpcClient: writeSequenceable is ' + result);
   let ret = new MySequenceable(0, "");
   let result2 = data.readSequenceable(ret);
-  console.log("RpcClient: readSequenceable is " + result2);
+  hilog.info(0x0000, 'testTag', 'RpcClient: readSequenceable is ' + result2);
   ```
 
 ## IRemoteBroker
@@ -5912,9 +6146,9 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
 
   ```ts
   class TestAbility extends rpc.RemoteObject {
-      asObject() {
-          return this;
-      }
+    asObject() {
+      return this;
+    }
   }
   let remoteObject = new TestAbility("testObject").asObject();
   ```
@@ -5929,23 +6163,24 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
 
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: () => {
-          console.log("RpcClient: onFailed");
-      }
+    onConnect: (elementName, remoteProxy) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      proxy = remoteProxy;
+    },
+    onDisconnect: (elementName) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+    },
+    onFailed: () => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+    }
   };
   let want: Want  = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
+    bundleName: "com.ohos.server",
+    abilityName: "com.ohos.server.EntryAbility",
   };
 
   // Use this method to connect to the ability for the FA model.
@@ -5958,13 +6193,13 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
 
   ```ts
   class TestProxy {
-      remote: rpc.RemoteObject;
-      constructor(remote: rpc.RemoteObject) {
-          this.remote = remote;
-      }
-      asObject() {
-          return this.remote;
-      }
+    remote: rpc.RemoteObject;
+    constructor(remote: rpc.RemoteObject) {
+      this.remote = remote;
+    }
+    asObject() {
+      return this.remote;
+    }
   }
   let iRemoteObject = new TestProxy(proxy).asObject();
   ```
@@ -5984,10 +6219,12 @@ Called to perform subsequent operations when a death notification of the remote 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   ```
 
@@ -6001,8 +6238,8 @@ Defines the response to the request.
 | ------- | --------------- | ---- | ---- |-------------------------------------- |
 | errCode | number          | Yes  | No  | Error code.                             |
 | code    | number          | Yes  | No  | Message code.                           |
-| data    | MessageSequence | Yes  | No  | **MessageSequence** object sent to the remote process.|
-| reply   | MessageSequence | Yes  | No  | **MessageSequence** object returned by the remote process.  |
+| data    | [MessageSequence](#messagesequence9) | Yes  | No  | **MessageSequence** object sent to the remote process.|
+| reply   | [MessageSequence](#messagesequence9) | Yes  | No  | **MessageSequence** object returned by the remote process.  |
 
 ## SendRequestResult<sup>8+(deprecated)</sup>
 
@@ -6016,8 +6253,8 @@ Defines the response to the request.
 | ------- | ------------- | ---- | ---- | ----------------------------------- |
 | errCode | number        | Yes  | No  | Error code.                           |
 | code    | number        | Yes  | No  | Message code.                         |
-| data    | MessageParcel | Yes  | No  | **MessageParcel** object sent to the remote process.|
-| reply   | MessageParcel | Yes  | No  | **MessageParcel** object returned by the remote process.  |
+| data    | [MessageParcel](#messageparceldeprecated) | Yes  | No  | **MessageParcel** object sent to the remote process.|
+| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | No  | **MessageParcel** object returned by the remote process.  |
 
 ## IRemoteObject
 
@@ -6027,7 +6264,7 @@ Provides methods to query of obtain interface descriptors, add or delete death n
 
 getLocalInterface(descriptor: string): IRemoteBroker
 
-Obtains the interface descriptor.
+Obtains the string of the interface descriptor.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6041,7 +6278,7 @@ Obtains the interface descriptor.
 
 | Type         | Description                                         |
 | ------------- | --------------------------------------------- |
-| IRemoteBroker | **IRemoteBroker** object bound to the specified interface token.|
+| [IRemoteBroker](#iremotebroker) | **IRemoteBroker** object bound to the specified interface token.|
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
@@ -6049,7 +6286,7 @@ Obtains the interface descriptor.
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
-Queries the interface descriptor.
+Queries the string of the interface descriptor.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6063,11 +6300,11 @@ Queries the interface descriptor.
 
 | Type         | Description                                         |
 | ------------- | --------------------------------------------- |
-| IRemoteBroker | **IRemoteBroker** object bound to the specified interface token.|
+| [IRemoteBroker](#iremotebroker) | **IRemoteBroker** object bound to the specified interface token.|
 
 ### sendRequest<sup>(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
+>This API is no longer maintained since API version 8. You are advised to use [sendRequest](#sendrequest8deprecated).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -6090,31 +6327,6 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 | ------- | -------------------------------- |
 | boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
 
-### sendRequest<sup>8+(deprecated)</sup>
-
->This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
-
-sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
-
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
-
-**System capability**: SystemCapability.Communication.IPC.Core
-
-**Parameters**
-
-| Name | Type                                     | Mandatory| Description                                                                                  |
-| ------- | ----------------------------------------  | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-
-**Return value**
-
-| Type                            | Description                                         |
-| -------------------------------- | --------------------------------------------- |
-| Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
-
 ### sendMessageRequest<sup>9+</sup>
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
@@ -6136,7 +6348,32 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 | Type                        | Description                                     |
 | ---------------------------- | ----------------------------------------- |
-| Promise&lt;RequestResult&gt; | Promise used to return the **requestResult** object.|
+| Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return the **requestResult** object.|
+
+### sendRequest<sup>8+(deprecated)</sup>
+
+>This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
+
+sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
+
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+
+**System capability**: SystemCapability.Communication.IPC.Core
+
+**Parameters**
+
+| Name | Type                                     | Mandatory| Description                                                                                  |
+| ------- | ----------------------------------------  | ---- | -------------------------------------------------------------------------------------- |
+| code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+| options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+
+**Return value**
+
+| Type                                                        | Description                                         |
+| ------------------------------------------------------------ | --------------------------------------------- |
+| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Promise used to return the **sendRequestResult** object.|
 
 ### sendMessageRequest<sup>9+</sup>
 
@@ -6154,11 +6391,11 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 | data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
 | reply    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
 | options  | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-| callback | AsyncCallback&lt;RequestResult&gt;   | Yes  | Callback for receiving the sending result.                                                                  |
+| callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | Yes  | Callback for receiving the sending result.                                                                  |
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
+>This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9-1).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
@@ -6168,13 +6405,13 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                                                                                  |
-| -------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code     | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data     | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options  | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-| callback | AsyncCallback&lt;SendRequestResult&gt;    | Yes  | Callback for receiving the sending result.                                                                  |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| code     | number                                                       | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+| data     | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object holding the data to send.                   |
+| reply    | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object that receives the response.                           |
+| options  | [MessageOption](#messageoption)                              | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                        |
+| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Yes  | Callback for receiving the sending result.                                        |
 
 ### registerDeathRecipient<sup>9+</sup>
 
@@ -6336,7 +6573,7 @@ Provides APIs to implement **IRemoteObject**.
 
 ### sendRequest<sup>(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
+>This API is no longer maintained since API version 8. You are advised to use [sendRequest](#sendrequest8deprecated-2).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -6369,23 +6606,24 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: () => {
-          console.log("RpcClient: onFailed");
-      }
+     onConnect: (elementName, remoteProxy) => {
+        hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+        proxy = remoteProxy;
+     },
+     onDisconnect: (elementName) => {
+        hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+     },
+     onFailed: () => {
+        hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+     }
   };
   let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
+    bundleName: "com.ohos.server",
+    abilityName: "com.ohos.server.EntryAbility",
   };
 
   // Use this method to connect to the ability for the FA model.
@@ -6397,6 +6635,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
@@ -6404,13 +6644,13 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   data.writeString("hello");
   let ret: boolean = proxy.sendRequest(1, data, reply, option);
   if (ret) {
-      console.log("sendRequest got result");
-      let msg = reply.readString();
-      console.log("RPCTest: reply msg: " + msg);
+    hilog.info(0x0000, 'testTag', 'sendRequest got result');
+    let msg = reply.readString();
+    hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
   } else {
-      console.log("RPCTest: sendRequest failed");
+    hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed');
   }
-  console.log("RPCTest: sendRequest ends, reclaim parcel");
+  hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
   data.reclaim();
   reply.reclaim();
   ```
@@ -6436,7 +6676,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 | Type                        | Description                                     |
 | ---------------------------- | ----------------------------------------- |
-| Promise&lt;RequestResult&gt; | Promise used to return the **requestResult** object.|
+| Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return the **requestResult** object.|
 
 **Example**
 
@@ -6447,23 +6687,24 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: () => {
-          console.log("RpcClient: onFailed");
-      }
+    onConnect: (elementName, remoteProxy) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      proxy = remoteProxy;
+    },
+    onDisconnect: (elementName) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+    },
+    onFailed: () => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+    }
   };
   let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
+    bundleName: "com.ohos.server",
+    abilityName: "com.ohos.server.EntryAbility",
   };
 
   // Use this method to connect to the ability for the FA model.
@@ -6475,33 +6716,35 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
   let reply = rpc.MessageSequence.create();
   data.writeInt(1);
   data.writeString("hello");
   proxy.sendMessageRequest(1, data, reply, option)
-      .then((result: rpc.RequestResult) => {
-          if (result.errCode === 0) {
-              console.log("sendMessageRequest got result");
-              result.reply.readException();
-              let msg = result.reply.readString();
-              console.log("RPCTest: reply msg: " + msg);
-          } else {
-              console.log("RPCTest: sendMessageRequest failed, errCode: " + result.errCode);
-          }
-      }).catch((e: Error) => {
-          console.log("RPCTest: sendMessageRequest got exception: " + e.message);
-      }).finally (() => {
-          console.log("RPCTest: sendMessageRequest ends, reclaim parcel");
-          data.reclaim();
-          reply.reclaim();
-      });
+    .then((result: rpc.RequestResult) => {
+      if (result.errCode === 0) {
+        hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
+        result.reply.readException();
+        let msg = result.reply.readString();
+        hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
+      } else {
+        hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
+      }
+    }).catch((e: Error) => {
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest got exception: ' + e.message);
+    }).finally (() => {
+      hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
+      data.reclaim();
+      reply.reclaim();
+    });
   ```
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
+>This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9-2).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -6520,9 +6763,9 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Return value**
 
-| Type                            | Description                                         |
-| -------------------------------- | --------------------------------------------- |
-| Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
+| Type                                                        | Description                                         |
+| ------------------------------------------------------------ | --------------------------------------------- |
+| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Promise used to return the **sendRequestResult** object.|
 
 **Example**
 
@@ -6533,23 +6776,24 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: () => {
-          console.log("RpcClient: onFailed");
-      }
+    onConnect: (elementName, remoteProxy) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      proxy = remoteProxy;
+    },
+    onDisconnect: (elementName) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+    },
+    onFailed: () => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+    }
   };
   let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
+    bundleName: "com.ohos.server",
+    abilityName: "com.ohos.server.EntryAbility",
   };
 
   // Use this method to connect to the ability for the FA model.
@@ -6561,28 +6805,30 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
   data.writeInt(1);
   data.writeString("hello");
   proxy.sendRequest(1, data, reply, option)
-      .then((result: rpc.SendRequestResult) => {
-          if (result.errCode === 0) {
-              console.log("sendRequest got result");
-              result.reply.readException();
-              let msg = result.reply.readString();
-              console.log("RPCTest: reply msg: " + msg);
-          } else {
-              console.log("RPCTest: sendRequest failed, errCode: " + result.errCode);
-          }
-      }).catch((e: Error) => {
-          console.log("RPCTest: sendRequest got exception: " + e.message);
-      }).finally (() => {
-          console.log("RPCTest: sendRequest ends, reclaim parcel");
-          data.reclaim();
-          reply.reclaim();
-      });
+    .then((result: rpc.SendRequestResult) => {
+      if (result.errCode === 0) {
+        hilog.info(0x0000, 'testTag', 'sendRequest got result');
+        result.reply.readException();
+        let msg = result.reply.readString();
+        hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
+      } else {
+        hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
+      }
+    }).catch((e: Error) => {
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest got exception: ' + e.message);
+    }).finally (() => {
+      hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
+      data.reclaim();
+      reply.reclaim();
+    });
   ```
 
 ### sendMessageRequest<sup>9+</sup>
@@ -6601,7 +6847,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 | data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
 | reply    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
 | options  | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-| callback | AsyncCallback&lt;RequestResult&gt;   | Yes  | Callback for receiving the sending result.                                                                  |
+| callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | Yes  | Callback for receiving the sending result.                                                                  |
 
 **Example**
 
@@ -6612,35 +6858,36 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
-  import { BusinessError } from '@ohos.base';
+  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@ohos.base'; 
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: () => {
-          console.log("RpcClient: onFailed");
-      }
+    onConnect: (elementName, remoteProxy) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      proxy = remoteProxy;
+    },
+    onDisconnect: (elementName) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+    },
+    onFailed: () => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+    }
   };
   let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
+    bundleName: "com.ohos.server",
+    abilityName: "com.ohos.server.EntryAbility",
   };
-  function sendRequestCallback(result: rpc.RequestResult) {
+  function sendMessageRequestCallback(err: BusinessError, result: rpc.RequestResult) {
     if (result.errCode === 0) {
-        console.log("sendRequest got result");
-        result.reply.readException();
-        let msg = result.reply.readString();
-        console.log("RPCTest: reply msg: " + msg);
+      hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
+      result.reply.readException();
+      let msg = result.reply.readString();
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
     } else {
-        console.log("RPCTest: sendRequest failed, errCode: " + result.errCode);
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
     }
-    console.log("RPCTest: sendRequest ends, reclaim parcel");
+    hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
     result.data.reclaim();
     result.reply.reclaim();
 }
@@ -6654,23 +6901,26 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
+  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@ohos.base';
+
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
   let reply = rpc.MessageSequence.create();
   data.writeInt(1);
   data.writeString("hello");
   try {
-      proxy.sendMessageRequest(1, data, reply, option, sendRequestCallback);
+    proxy.sendMessageRequest(1, data, reply, option, sendMessageRequestCallback);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc send sequence request fail, errorCode " + e.code);
-      console.info("rpc send sequence request fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc sendMessageRequest fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc sendMessageRequest fail, errorMessage ' + e.message);
   }
   ```
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
+>This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9-3).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
@@ -6680,13 +6930,13 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                                                                                  |
-| -------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code     | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data     | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options  | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-| callback | AsyncCallback&lt;SendRequestResult&gt;    | Yes  | Callback for receiving the sending result.                                                                  |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| code     | number                                                       | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+| data     | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object holding the data to send.                   |
+| reply    | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object that receives the response.                           |
+| options  | [MessageOption](#messageoption)                              | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                        |
+| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Yes  | Callback for receiving the sending result.                                        |
 
 **Example**
 
@@ -6697,34 +6947,36 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@ohos.base';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: () => {
-          console.log("RpcClient: onFailed");
-      }
+    onConnect: (elementName, remoteProxy) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      proxy = remoteProxy;
+    },
+    onDisconnect: (elementName) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+    },
+    onFailed: () => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+    }
   };
   let want: Want = {
       bundleName: "com.ohos.server",
       abilityName: "com.ohos.server.EntryAbility",
   };
-  function sendRequestCallback(result: rpc.SendRequestResult) {
+  function sendRequestCallback(err: BusinessError, result: rpc.SendRequestResult) {
     if (result.errCode === 0) {
-        console.log("sendRequest got result");
-        result.reply.readException();
-        let msg = result.reply.readString();
-        console.log("RPCTest: reply msg: " + msg);
+      hilog.info(0x0000, 'testTag', 'sendRequest got result');
+      result.reply.readException();
+      let msg = result.reply.readString();
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
     } else {
-        console.log("RPCTest: sendRequest failed, errCode: " + result.errCode);
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
     }
-    console.log("RPCTest: sendRequest ends, reclaim parcel");
+    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
     result.data.reclaim();
     result.reply.reclaim();
 }
@@ -6762,9 +7014,9 @@ Obtains the **LocalInterface** object of an interface token.
 
 **Return value**
 
-| Type         | Description                                      |
-| ------------- | ------------------------------------------ |
-| IRemoteBroker | Returns **Null** by default, which indicates a proxy interface.|
+| Type                           | Description                                      |
+| ------------------------------- | ------------------------------------------ |
+| [IRemoteBroker](#iremotebroker) | Returns **Null** by default, which indicates a proxy interface.|
 
 **Error codes**
 
@@ -6783,24 +7035,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
-  import { BusinessError } from '@ohos.base';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: () => {
-          console.log("RpcClient: onFailed");
-      }
+    onConnect: (elementName, remoteProxy) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      proxy = remoteProxy;
+    },
+    onDisconnect: (elementName) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+    },
+    onFailed: () => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+    }
   };
   let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
+    bundleName: "com.ohos.server",
+    abilityName: "com.ohos.server.EntryAbility",
   };
 
   // Use this method to connect to the ability for the FA model.
@@ -6812,19 +7064,22 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getLocalInterface()** of the proxy object is called to obtain the interface descriptor.
 
   ```ts
+  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@ohos.base';
+
   try {
-      let broker: rpc.IRemoteBroker = proxy.getLocalInterface("testObject");
-      console.log("RpcClient: getLocalInterface is " + broker);
+    let broker: rpc.IRemoteBroker = proxy.getLocalInterface("testObject");
+    hilog.info(0x0000, 'testTag', 'RpcClient: getLocalInterface is ' + broker);
   } catch(error) {
-       let e: BusinessError = error as BusinessError;
-      console.info("rpc get local interface fail, errorCode " + e.code);
-      console.info("rpc get local interface fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorMessage ' + e.message);
   }
   ```
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [getLocalInterface](#getlocalinterface9).
+>This API is no longer maintained since API version 9. You are advised to use [getLocalInterface](#getlocalinterface9-1).
 
 queryLocalInterface(interface: string): IRemoteBroker
 
@@ -6840,9 +7095,9 @@ Obtains the **LocalInterface** object of an interface token.
 
 **Return value**
 
-| Type         | Description                                      |
-| ------------- | ------------------------------------------ |
-| IRemoteBroker | Returns **Null** by default, which indicates a proxy interface.|
+| Type                           | Description                                      |
+| ------------------------------- | ------------------------------------------ |
+| [IRemoteBroker](#iremotebroker) | Returns **Null** by default, which indicates a proxy interface.|
 
 **Example**
 
@@ -6853,23 +7108,24 @@ Obtains the **LocalInterface** object of an interface token.
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: () => {
-          console.log("RpcClient: onFailed");
-      }
+    onConnect: (elementName, remoteProxy) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      proxy = remoteProxy;
+    },
+    onDisconnect: (elementName) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+    },
+    onFailed: () => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+    }
   };
   let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
+    bundleName: "com.ohos.server",
+    abilityName: "com.ohos.server.EntryAbility",
   };
 
   // Use this method to connect to the ability for the FA model.
@@ -6881,8 +7137,10 @@ Obtains the **LocalInterface** object of an interface token.
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **queryLocalInterface()** of the proxy object is called to obtain the interface descriptor.
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let broker: rpc.IRemoteBroker  = proxy.queryLocalInterface("testObject");
-  console.log("RpcClient: queryLocalInterface is " + broker);
+  hilog.info(0x0000, 'testTag', 'RpcClient: queryLocalInterface is ' + broker);
   ```
 
 ### registerDeathRecipient<sup>9+</sup>
@@ -6917,24 +7175,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
-  import { BusinessError } from '@ohos.base';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: () => {
-          console.log("RpcClient: onFailed");
-      }
+    onConnect: (elementName, remoteProxy) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      proxy = remoteProxy;
+    },
+    onDisconnect: (elementName) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+    },
+    onFailed: () => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+    }
   };
   let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
+    bundleName: "com.ohos.server",
+    abilityName: "com.ohos.server.EntryAbility",
   };
 
   // Use this method to connect to the ability for the FA model.
@@ -6946,24 +7204,27 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **registerDeathRecipient()** of the proxy object is called to register a callback for receiving the death notification of the remote object.
 
   ```ts
+  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@ohos.base';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   let deathRecipient = new MyDeathRecipient();
   try {
-      proxy.registerDeathRecipient(deathRecipient, 0);
+    proxy.registerDeathRecipient(deathRecipient, 0);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("proxy register deathRecipient fail, errorCode " + e.code);
-      console.info("proxy register deathRecipient fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'proxy register deathRecipient fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'proxy register deathRecipient fail, errorMessage ' + e.message);
   }
   ```
 
 ### addDeathRecipient<sup>(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [registerDeathRecipient](#registerdeathrecipient9).
+>This API is no longer maintained since API version 9. You are advised to use [registerDeathRecipient](#registerdeathrecipient9-1).
 
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -6993,23 +7254,24 @@ Adds a callback for receiving the death notifications of the remote object, incl
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: () => {
-          console.log("RpcClient: onFailed");
-      }
+    onConnect: (elementName, remoteProxy) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      proxy = remoteProxy;
+    },
+    onDisconnect: (elementName) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+    },
+    onFailed: () => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+    }
   };
   let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
+    bundleName: "com.ohos.server",
+    abilityName: "com.ohos.server.EntryAbility",
   };
 
   // Use this method to connect to the ability for the FA model.
@@ -7021,10 +7283,12 @@ Adds a callback for receiving the death notifications of the remote object, incl
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **addDeathRecipient()** of the proxy object is called to add a callback for receiving the death notification of the remove object.
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   let deathRecipient = new MyDeathRecipient();
   proxy.addDeathRecipient(deathRecipient, 0);
@@ -7062,24 +7326,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
-  import { BusinessError } from '@ohos.base';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: () => {
-          console.log("RpcClient: onFailed");
-      }
+    onConnect: (elementName, remoteProxy) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      proxy = remoteProxy;
+    },
+    onDisconnect: (elementName) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+    },
+    onFailed: () => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+    }
   };
   let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
+    bundleName: "com.ohos.server",
+    abilityName: "com.ohos.server.EntryAbility",
   };
 
   // Use this method to connect to the ability for the FA model.
@@ -7091,25 +7355,28 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **unregisterDeathRecipient()** of the proxy object is called to unregister the callback for receiving the death notification of the remote object.
 
   ```ts
+  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@ohos.base';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   let deathRecipient = new MyDeathRecipient();
   try {
-      proxy.registerDeathRecipient(deathRecipient, 0);
-      proxy.unregisterDeathRecipient(deathRecipient, 0);
+    proxy.registerDeathRecipient(deathRecipient, 0);
+    proxy.unregisterDeathRecipient(deathRecipient, 0);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("proxy register deathRecipient fail, errorCode " + e.code);
-      console.info("proxy register deathRecipient fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'proxy unregister deathRecipient fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'proxy unregister deathRecipient fail, errorMessage ' + e.message);
   }
   ```
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [unregisterDeathRecipient](#unregisterdeathrecipient9).
+>This API is no longer maintained since API version 9. You are advised to use [unregisterDeathRecipient](#unregisterdeathrecipient9-1).
 
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -7139,23 +7406,24 @@ Removes the callback used to receive death notifications of the remote object.
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: () => {
-          console.log("RpcClient: onFailed");
-      }
+    onConnect: (elementName, remoteProxy) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      proxy = remoteProxy;
+    },
+    onDisconnect: (elementName) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+    },
+    onFailed: () => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+    }
   };
   let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
+    bundleName: "com.ohos.server",
+    abilityName: "com.ohos.server.EntryAbility",
   };
 
   // Use this method to connect to the ability for the FA model.
@@ -7167,10 +7435,12 @@ Removes the callback used to receive death notifications of the remote object.
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **removeDeathRecipient()** of the proxy object is called to remove the callback used to receive the death notification of the remote object.
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   let deathRecipient = new MyDeathRecipient();
   proxy.addDeathRecipient(deathRecipient, 0);
@@ -7181,7 +7451,7 @@ Removes the callback used to receive death notifications of the remote object.
 
 getDescriptor(): string
 
-Obtains the interface descriptor (which is a string) of this proxy object.
+Obtains the interface descriptor (which is a string) of this object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7209,24 +7479,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
-  import { BusinessError } from '@ohos.base';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: () => {
-          console.log("RpcClient: onFailed");
-      }
+    onConnect: (elementName, remoteProxy) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      proxy = remoteProxy;
+    },
+    onDisconnect: (elementName) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+    },
+    onFailed: () => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+    }
   };
   let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
+    bundleName: "com.ohos.server",
+    abilityName: "com.ohos.server.EntryAbility",
   };
 
   // Use this method to connect to the ability for the FA model.
@@ -7237,19 +7507,22 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getDescriptor()** of the proxy object is called to obtain the interface descriptor of the object.
 
   ```ts
+  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@ohos.base';
+
   try {
-      let descriptor: string = proxy.getDescriptor();
-      console.log("RpcClient: descriptor is " + descriptor);
+    let descriptor: string = proxy.getDescriptor();
+    hilog.info(0x0000, 'testTag', 'RpcClient: descriptor is ' + descriptor);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc get interface descriptor fail, errorCode " + e.code);
-      console.info("rpc get interface descriptor fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc get interface descriptor fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc get interface descriptor fail, errorMessage ' + e.message);
   }
   ```
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [getDescriptor](#getdescriptor9).
+>This API is no longer maintained since API version 9. You are advised to use [getDescriptor](#getdescriptor9-1).
 
 getInterfaceDescriptor(): string
 
@@ -7272,23 +7545,24 @@ Obtains the interface descriptor of this proxy object.
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: () => {
-          console.log("RpcClient: onFailed");
-      }
+    onConnect: (elementName, remoteProxy) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      proxy = remoteProxy;
+    },
+    onDisconnect: (elementName) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+    },
+    onFailed: () => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+    }
   };
   let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
+    bundleName: "com.ohos.server",
+    abilityName: "com.ohos.server.EntryAbility",
   };
 
   // Use this method to connect to the ability for the FA model.
@@ -7300,8 +7574,10 @@ Obtains the interface descriptor of this proxy object.
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getInterfaceDescriptor()** of the proxy object is called to obtain the interface descriptor of the current proxy object.
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let descriptor: string = proxy.getInterfaceDescriptor();
-  console.log("RpcClient: descriptor is " + descriptor);
+  hilog.info(0x0000, 'testTag', 'RpcClient: descriptor is ' + descriptor);
   ```
 
 ### isObjectDead
@@ -7327,23 +7603,24 @@ Checks whether the **RemoteObject** is dead.
   // import FA from "@ohos.ability.featureAbility";
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
 
   let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
-      onConnect: (elementName, remoteProxy) => {
-          console.log("RpcClient: js onConnect called.");
-          proxy = remoteProxy;
-      },
-      onDisconnect: (elementName) => {
-          console.log("RpcClient: onDisconnect");
-      },
-      onFailed: () => {
-          console.log("RpcClient: onFailed");
-      }
+    onConnect: (elementName, remoteProxy) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+      proxy = remoteProxy;
+    },
+    onDisconnect: (elementName) => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+    },
+    onFailed: () => {
+      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+    }
   };
   let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
+    bundleName: "com.ohos.server",
+    abilityName: "com.ohos.server.EntryAbility",
   };
 
   // Use this method to connect to the ability for the FA model.
@@ -7355,8 +7632,10 @@ Checks whether the **RemoteObject** is dead.
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **isObjectDead()** of the proxy object is called to check whether this object is dead.
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let isDead: boolean = proxy.isObjectDead();
-  console.log("RpcClient: isObjectDead is " + isDead);
+  hilog.info(0x0000, 'testTag', 'RpcClient: isObjectDead is ' + isDead);
   ```
 
 ## MessageOption
@@ -7374,7 +7653,7 @@ Provides common message options (flag and wait time). Use the specified flag to 
 
 ### constructor<sup>9+</sup>
 
-constructor(async?: boolean);
+constructor(async?: boolean)
 
 A constructor used to create a **MessageOption** object.
 
@@ -7382,16 +7661,16 @@ A constructor used to create a **MessageOption** object.
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description                                  |
-| ------ | ------- | ---- | -------------------------------------- |
-| async  | boolean | No  | Call flag, which can be synchronous or asynchronous. The default value is **synchronous**.|
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| async  | boolean | No  | Calling mode. The value **true** indicates asynchronous calling; the value **false** (default) indicates synchronous calling.|
 
 **Example**
 
   ```ts
   class TestRemoteObject extends rpc.MessageOption {
     constructor(async: boolean) {
-        super(async);
+      super(async);
     }
   }
   ```
@@ -7416,13 +7695,13 @@ A constructor used to create a **MessageOption** object.
   ```ts
   class TestRemoteObject extends rpc.MessageOption {
     constructor(syncFlags?: number,waitTime?: number) {
-        super(syncFlags,waitTime);
+      super(syncFlags,waitTime);
     }
   }
   ```
 ### isAsync<sup>9+</sup>
 
-isAsync(): boolean;
+isAsync(): boolean
 
 Checks whether **SendMessageRequest** is called synchronously or asynchronously.
 
@@ -7438,23 +7717,31 @@ Checks whether **SendMessageRequest** is called synchronously or asynchronously.
 
   ```ts
   let option = new rpc.MessageOption();
-  let isAsync = option.isAsync();
+  option.isAsync();
   ```
 
 ### setAsync<sup>9+</sup>
 
-setAsync(async: boolean): void;
+setAsync(async: boolean): void
 
-Sets whether **SendMessageRequest** is called synchronously or asynchronously.
+Sets the calling flag in **SendMessageRequest**.
 
 **System capability**: SystemCapability.Communication.IPC.Core
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                             |
+| ------ | ------- | ---- | ------------------------------------------------- |
+| async  | boolean | Yes  | Calling mode to set. The value **true** indicates asynchronous calling; the value **false** indicates synchronous calling.|
 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let option = new rpc.MessageOption();
-  let setAsync = option.setAsync(true);
-  console.log("Set synchronization flag");
+  option.setAsync(true);
+  hilog.info(0x0000, 'testTag', 'Set asynchronization flag');
   ```
 
 ### getFlags
@@ -7474,17 +7761,19 @@ Obtains the call flag, which can be synchronous or asynchronous.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   try {
-      let option = new rpc.MessageOption();
-      console.info("create object successfully.");
-      let flog = option.getFlags();
-      console.info("run getFlags success, flog is " + flog);
-      option.setFlags(1)
-      console.info("run setFlags success");
-      let flog2 = option.getFlags();
-      console.info("run getFlags success, flog2 is " + flog2);
+    let option = new rpc.MessageOption();
+    hilog.info(0x0000, 'testTag', 'create object successfully');
+    let flog = option.getFlags();
+    hilog.info(0x0000, 'testTag', 'run getFlags success, flog is ' + flog);
+    option.setFlags(1)
+    hilog.info(0x0000, 'testTag', 'run setFlags success');
+    let flog2 = option.getFlags();
+    hilog.info(0x0000, 'testTag', 'run getFlags success, flog2 is ' + flog2);
   } catch (error) {
-      console.info("error " + error);
+    hilog.error(0x0000, 'testTag', 'error ' + error);
   }
   ```
 
@@ -7505,14 +7794,16 @@ Sets the call flag, which can be synchronous or asynchronous.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   try {
-      let option = new rpc.MessageOption();
-      option.setFlags(1)
-      console.info("run setFlags success");
-      let flog = option.getFlags();
-      console.info("run getFlags success, flog is " + flog);
+    let option = new rpc.MessageOption();
+    option.setFlags(1)
+    hilog.info(0x0000, 'testTag', 'run setFlags success');
+    let flog = option.getFlags();
+    hilog.info(0x0000, 'testTag', 'run getFlags success, flog is ' + flog);
   } catch (error) {
-      console.info("error " + error);
+    hilog.error(0x0000, 'testTag', 'error ' + error);
   }
   ```
 
@@ -7533,15 +7824,17 @@ Obtains the maximum wait time for this RPC call.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   try {
-      let option = new rpc.MessageOption();
-      let time = option.getWaitTime();
-      console.info("run getWaitTime success");
-      option.setWaitTime(16);
-      let time2 = option.getWaitTime();
-      console.info("run getWaitTime success, time is " + time);
+    let option = new rpc.MessageOption();
+    let time = option.getWaitTime();
+    hilog.info(0x0000, 'testTag', 'run getWaitTime success, time is ' + time);
+    option.setWaitTime(16);
+    let time2 = option.getWaitTime();
+    hilog.info(0x0000, 'testTag', 'run getWaitTime success, time is ' + time2);
   } catch (error) {
-      console.info("error " + error);
+    hilog.error(0x0000, 'testTag', 'error ' + error);
   }
   ```
 
@@ -7562,13 +7855,15 @@ Sets the maximum wait time for this RPC call.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   try {
-      let option = new rpc.MessageOption();
-      option.setWaitTime(16);
-      let time = option.getWaitTime();
-      console.info("run getWaitTime success, time is " + time);
+    let option = new rpc.MessageOption();
+    option.setWaitTime(16);
+    let time = option.getWaitTime();
+    hilog.info(0x0000, 'testTag', 'run getWaitTime success, time is ' + time);
   } catch (error) {
-      console.info("error " + error);
+    hilog.error(0x0000, 'testTag', 'error ' + error);
   }
   ```
 
@@ -7593,8 +7888,10 @@ Obtains the system capability manager. This API is a static method.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let samgr = rpc.IPCSkeleton.getContextObject();
-  console.log("RpcServer: getContextObject result: " + samgr);
+  hilog.info(0x0000, 'testTag', 'RpcServer: getContextObject result: ' + samgr);
   ```
 
 ### getCallingPid
@@ -7614,12 +7911,14 @@ Obtains the PID of the caller. This API is a static method, which is invoked by 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
-      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-          let callerPid = rpc.IPCSkeleton.getCallingPid();
-          console.log("RpcServer: getCallingPid result: " + callerPid);
-          return true;
-      }
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      let callerPid = rpc.IPCSkeleton.getCallingPid();
+      hilog.info(0x0000, 'testTag', 'RpcServer: getCallingPid result: ' + callerPid);
+      return true;
+    }
  }
   ```
 
@@ -7640,18 +7939,20 @@ Obtains the UID of the caller. This API is a static method, which is invoked by 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
-      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-          let callerUid = rpc.IPCSkeleton.getCallingUid();
-          console.log("RpcServer: getCallingUid result: " + callerUid);
-          return true;
-      }
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      let callerUid = rpc.IPCSkeleton.getCallingUid();
+      hilog.info(0x0000, 'testTag', 'RpcServer: getCallingUid result: ' + callerUid);
+      return true;
+    }
   }
   ```
 
 ### getCallingTokenId<sup>8+</sup>
 
-static getCallingTokenId(): number;
+static getCallingTokenId(): number
 
 Obtains the caller's token ID, which is used to verify the caller identity.
 
@@ -7666,12 +7967,14 @@ Obtains the caller's token ID, which is used to verify the caller identity.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
-      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-          let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
-          console.log("RpcServer: getCallingTokenId result: " + callerTokenId);
-          return true;
-      }
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
+      hilog.info(0x0000, 'testTag', 'RpcServer: getCallingTokenId result: ' + callerTokenId);
+      return true;
+    }
   }
   ```
 
@@ -7692,12 +7995,14 @@ Obtains the ID of the device hosting the caller's process. This API is a static 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
-      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-          let callerDeviceID = rpc.IPCSkeleton.getCallingDeviceID();
-          console.log("RpcServer: callerDeviceID is: " + callerDeviceID);
-          return true;
-      }
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      let callerDeviceID = rpc.IPCSkeleton.getCallingDeviceID();
+      hilog.info(0x0000, 'testTag', 'RpcServer: callerDeviceID is ' + callerDeviceID);
+      return true;
+    }
   }
   ```
 
@@ -7718,12 +8023,14 @@ Obtains the local device ID. This API is a static method.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
-      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-          let localDeviceID = rpc.IPCSkeleton.getLocalDeviceID();
-          console.log("RpcServer: localDeviceID is: " + localDeviceID);
-          return true;
-      }
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      let localDeviceID = rpc.IPCSkeleton.getLocalDeviceID();
+      hilog.info(0x0000, 'testTag', 'RpcServer: localDeviceID is ' + localDeviceID);
+      return true;
+    }
   }
   ```
 
@@ -7744,12 +8051,14 @@ Checks whether the remote process is a process of the local device. This API is 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
-      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-          let isLocalCalling = rpc.IPCSkeleton.isLocalCalling();
-          console.log("RpcServer: isLocalCalling is: " + isLocalCalling);
-          return true;
-      }
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      let isLocalCalling = rpc.IPCSkeleton.isLocalCalling();
+      hilog.info(0x0000, 'testTag', 'RpcServer: isLocalCalling is ' + isLocalCalling);
+      return true;
+    }
   }
   ```
 
@@ -7757,7 +8066,7 @@ Checks whether the remote process is a process of the local device. This API is 
 
 static flushCmdBuffer(object: IRemoteObject): void
 
-Flushes all suspended commands from the specified **RemoteProxy** to the corresponding **RemoteObject**. This API is a static method. It is recommended that this method be called before any time-sensitive operation is performed.
+Flushes all suspended commands from the specified **RemoteProxy** to the corresponding **RemoteObject**. This API is a static method. You are advised to call this API before performing any sensitive operation.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7770,30 +8079,31 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
   }
   let remoteObject = new TestRemoteObject("aaa");
   try {
-      rpc.IPCSkeleton.flushCmdBuffer(remoteObject);
+    rpc.IPCSkeleton.flushCmdBuffer(remoteObject);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("proxy set calling identity fail, errorCode " + e.code);
-      console.info("proxy set calling identity fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'proxy flushCmdBuffer fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'proxy flushCmdBuffer fail, errorMessage ' + e.message);
   }
   ```
 
 ### flushCommands<sup>(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [flushCmdBuffer](#flushcmdbuffer9).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [flushCmdBuffer](#flushcmdbuffer9).
 
 static flushCommands(object: IRemoteObject): number
 
-Flushes all suspended commands from the specified **RemoteProxy** to the corresponding **RemoteObject**. This API is a static method. It is recommended that this method be called before any time-sensitive operation is performed.
+Flushes all suspended commands from the specified **RemoteProxy** to the corresponding **RemoteObject**. This API is a static method. You are advised to call this API before performing any sensitive operation.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7812,28 +8122,30 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      isObjectDead(): boolean {
-          return false;
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
   }
   let remoteObject = new TestRemoteObject("aaa");
   let ret = rpc.IPCSkeleton.flushCommands(remoteObject);
-  console.log("RpcServer: flushCommands result: " + ret);
+  hilog.info(0x0000, 'testTag', 'RpcServer: flushCommands result: ' + ret);
   ```
 
 ### resetCallingIdentity
@@ -7853,12 +8165,14 @@ Changes the UID and PID of the remote user to the UID and PID of the local user.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
-      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-          let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
-          console.log("RpcServer: callingIdentity is: " + callingIdentity);
-          return true;
-      }
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
+      hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
+      return true;
+    }
   }
   ```
 
@@ -7866,7 +8180,7 @@ Changes the UID and PID of the remote user to the UID and PID of the local user.
 
 static restoreCallingIdentity(identity: string): void
 
-Changes the UID and PID of the remote user to the UID and PID of the local user. This API is a static method. You can use it in scenarios such as identity authentication.
+Restores the UID and PID of the remote user. This API is a static method. It is called after **resetCallingIdentity**, which returns the UID and PID of the remote user.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7879,27 +8193,29 @@ Changes the UID and PID of the remote user to the UID and PID of the local user.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
-      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-          let callingIdentity: rpc.IPCSkeleton;
-          try {
-              callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
-              console.log("RpcServer: callingIdentity is: " + callingIdentity);
-          } finally {
-              rpc.IPCSkeleton.restoreCallingIdentity("callingIdentity ");
-          }
-          return true;
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      let callingIdentity: rpc.IPCSkeleton | undefined = undefined;
+      try {
+        callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
+        hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
+      } finally {
+        rpc.IPCSkeleton.restoreCallingIdentity(callingIdentity);
       }
+      return true;
+    }
   }
   ```
 
 ### setCallingIdentity<sup>(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [restoreCallingIdentity](#restorecallingidentity9).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [restoreCallingIdentity](#restorecallingidentity9).
 
 static setCallingIdentity(identity: string): boolean
 
-Sets the UID and PID of the remote user. This API is a static method. It is usually called when the UID and PID of the remote user are required. The UID and PID of the remote user are returned by **resetCallingIdentity**.
+Sets the UID and PID to that of the remote user. This API is a static method. It is called after **resetCallingIdentity**, which returns the UID and PID of the remote user.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7907,7 +8223,7 @@ Sets the UID and PID of the remote user. This API is a static method. It is usua
 
 | Name  | Type  | Mandatory| Description                                                              |
 | -------- | ------ | ---- | ------------------------------------------------------------------ |
-| identity | string | Yes  | String containing the remote user UID and PID, which are returned by **resetCallingIdentity**.|
+| identity | string | Yes  | String containing the remote user's UID and PID, which are returned by **resetCallingIdentity**. |
 
 **Return value**
 
@@ -7918,18 +8234,20 @@ Sets the UID and PID of the remote user. This API is a static method. It is usua
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class Stub extends rpc.RemoteObject {
-      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-          let callingIdentity: rpc.IPCSkeleton;
-          try {
-              callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
-              console.log("RpcServer: callingIdentity is: " + callingIdentity);
-          } finally {
-              let ret = rpc.IPCSkeleton.setCallingIdentity("callingIdentity ");
-              console.log("RpcServer: setCallingIdentity is: " + ret);
-          }
-          return true;
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      let callingIdentity: rpc.IPCSkeleton | undefined = undefined;
+      try {
+        callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
+        hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
+      } finally {
+        let ret = rpc.IPCSkeleton.setCallingIdentity("callingIdentity ");
+        hilog.info(0x0000, 'testTag', 'RpcServer: setCallingIdentity is ' + ret);
       }
+      return true;
+    }
   }
   ```
 
@@ -7953,7 +8271,7 @@ A constructor used to create a **RemoteObject** object.
 
 ### sendRequest<sup>(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
+>**NOTE**<br>This API is no longer maintained since API version 8. You are advised to use [sendRequest](#sendrequest8deprecated-4).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -7979,24 +8297,26 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      isObjectDead(): boolean {
-          return false;
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
   let option = new rpc.MessageOption();
@@ -8006,87 +8326,15 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   data.writeString("hello");
   let ret: boolean = testRemoteObject.sendRequest(1, data, reply, option);
   if (ret) {
-      console.log("sendRequest got result");
-      let msg = reply.readString();
-      console.log("RPCTest: reply msg: " + msg);
+    hilog.info(0x0000, 'testTag', 'sendRequest got result');
+    let msg = reply.readString();
+    hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
   } else {
-      console.log("RPCTest: sendRequest failed");
+    hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed');
   }
-  console.log("RPCTest: sendRequest ends, reclaim parcel");
+  hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
   data.reclaim();
   reply.reclaim();
-  ```
-
-### sendRequest<sup>8+(deprecated)</sup>
-
->This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
-
-sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
-
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
-
-**System capability**: SystemCapability.Communication.IPC.Core
-
-**Parameters**
-
-| Name | Type                                     | Mandatory| Description                                                                                  |
-| ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-
-**Return value**
-
-| Type                            | Description                                         |
-| -------------------------------- | --------------------------------------------- |
-| Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
-
-**Example**
-
-  ```ts
-  class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
-  }
-  class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      isObjectDead(): boolean {
-          return false;
-      }
-  }
-  let testRemoteObject = new TestRemoteObject("testObject");
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageParcel.create();
-  let reply = rpc.MessageParcel.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  testRemoteObject.sendRequest(1, data, reply, option)
-      .then((result: rpc.SendRequestResult) => {
-          if (result.errCode === 0) {
-              console.log("sendRequest got result");
-              result.reply.readException();
-              let msg = result.reply.readString();
-              console.log("RPCTest: reply msg: " + msg);
-          } else {
-              console.log("RPCTest: sendRequest failed, errCode: " + result.errCode);
-          }
-      }).catch((e: Error) => {
-          console.log("RPCTest: sendRequest got exception: " + e.message);
-      }).finally (() => {
-          console.log("RPCTest: sendRequest ends, reclaim parcel");
-          data.reclaim();
-          reply.reclaim();
-      });
   ```
 
 ### sendMessageRequest<sup>9+</sup>
@@ -8108,17 +8356,19 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Return value**
 
-| Type                        | Description                                         |
-| ---------------------------- | --------------------------------------------- |
-| Promise&lt;RequestResult&gt; | Promise used to return the **RequestResult** instance.    |
+| Type                                           | Description                                     |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise&lt;[RequestResult](#requestresult9)&gt; | Promise used to return a **RequestResult** instance.|
 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
   let option = new rpc.MessageOption();
@@ -8127,22 +8377,97 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   data.writeInt(1);
   data.writeString("hello");
   testRemoteObject.sendMessageRequest(1, data, reply, option)
-      .then((result: rpc.RequestResult) => {
-          if (result.errCode === 0) {
-              console.log("sendMessageRequest got result");
-              result.reply.readException();
-              let msg = result.reply.readString();
-              console.log("RPCTest: reply msg: " + msg);
-          } else {
-              console.log("RPCTest: sendMessageRequest failed, errCode: " + result.errCode);
-          }
-      }).catch((e: Error) => {
-          console.log("RPCTest: sendMessageRequest got exception: " + e.message);
-      }).finally (() => {
-          console.log("RPCTest: sendMessageRequest ends, reclaim parcel");
-          data.reclaim();
-          reply.reclaim();
-      });
+    .then((result: rpc.RequestResult) => {
+      if (result.errCode === 0) {
+        hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
+        result.reply.readException();
+        let msg = result.reply.readString();
+        hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
+      } else {
+        hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
+      }
+    }).catch((e: Error) => {
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest got exception: ' + e.message);
+    }).finally (() => {
+      hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
+      data.reclaim();
+      reply.reclaim();
+    });
+  ```
+
+### sendRequest<sup>8+(deprecated)</sup>
+
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9-4).
+
+sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
+
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+
+**System capability**: SystemCapability.Communication.IPC.Core
+
+**Parameters**
+
+| Name | Type                                     | Mandatory| Description                                                                                  |
+| ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+| code    | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+| data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+| reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+| options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+
+**Return value**
+
+| Type                                                        | Description                                         |
+| ------------------------------------------------------------ | --------------------------------------------- |
+| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Promise used to return the **sendRequestResult** object.|
+
+**Example**
+
+  ```ts
+  import hilog from '@ohos.hilog';
+
+  class MyDeathRecipient implements rpc.DeathRecipient {
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
+  }
+  let testRemoteObject = new TestRemoteObject("testObject");
+  let option = new rpc.MessageOption();
+  let data = rpc.MessageParcel.create();
+  let reply = rpc.MessageParcel.create();
+  data.writeInt(1);
+  data.writeString("hello");
+  let a = testRemoteObject.sendRequest(1, data, reply, option) as Object;
+  let b = a as Promise<rpc.SendRequestResult>;
+  b.then((result: rpc.SendRequestResult) => {
+    if (result.errCode === 0) {
+      hilog.info(0x0000, 'testTag', 'sendRequest got result');
+      result.reply.readException();
+      let msg = result.reply.readString();
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
+    } else {
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
+    }
+  }).catch((e: Error) => {
+    hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest got exception: ' + e.message);
+  }).finally (() => {
+    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
+    data.reclaim();
+    reply.reclaim();
+  });
   ```
 
 ### sendMessageRequest<sup>9+</sup>
@@ -8155,34 +8480,37 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-| Name       | Type                                | Mandatory| Description                                                                                  |
-| ------------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
-| code          | number                               | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data          | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-| reply         | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-| options       | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-| AsyncCallback | AsyncCallback&lt;RequestResult&gt;   | Yes  | Callback for receiving the sending result.                                                                  |
+| Name       | Type                                                 | Mandatory| Description                                                        |
+| ------------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| code          | number                                                | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+| data          | [MessageSequence](#messagesequence9)                  | Yes  | **MessageSequence** object holding the data to send.                 |
+| reply         | [MessageSequence](#messagesequence9)                  | Yes  | **MessageSequence** object that receives the response.                         |
+| options       | [MessageOption](#messageoption)                       | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                        |
+| AsyncCallback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt; | Yes  | Callback for receiving the sending result.                                        |
 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@ohos.base';
+
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
   }
-  function sendRequestCallback(result: rpc.RequestResult) {
-      if (result.errCode === 0) {
-          console.log("sendRequest got result");
-          result.reply.readException();
-          let msg = result.reply.readString();
-          console.log("RPCTest: reply msg: " + msg);
-      } else {
-          console.log("RPCTest: sendRequest failed, errCode: " + result.errCode);
-      }
-      console.log("RPCTest: sendRequest ends, reclaim parcel");
-      result.data.reclaim();
-      result.reply.reclaim();
+  function sendRequestCallback(err: BusinessError, result: rpc.RequestResult) {
+    if (result.errCode === 0) {
+      hilog.info(0x0000, 'testTag', 'sendRequest got result');
+      result.reply.readException();
+      let msg = result.reply.readString();
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
+    } else {
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
+    }
+    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
+    result.data.reclaim();
+    result.reply.reclaim();
   }
   let testRemoteObject = new TestRemoteObject("testObject");
   let option = new rpc.MessageOption();
@@ -8195,7 +8523,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [sendMessageRequest](#sendmessagerequest9-5).
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
@@ -8205,48 +8533,51 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-| Name       | Type                                     | Mandatory| Description                                                                                  |
-| ------------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| code          | number                                    | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-| data          | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
-| reply         | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-| options       | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-| AsyncCallback | AsyncCallback&lt;SendRequestResult&gt;    | Yes  | Callback for receiving the sending result.                                                                  |
+| Name       | Type                                                        | Mandatory| Description                                                        |
+| ------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| code          | number                                                       | Yes  | Message code (1-16777215) called by the request, which is determined by the communication parties. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+| data          | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object holding the data to send.                   |
+| reply         | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object that receives the response.                           |
+| options       | [MessageOption](#messageoption)                              | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                        |
+| AsyncCallback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | Yes  | Callback for receiving the sending result.                                        |
 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@ohos.base';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      isObjectDead(): boolean {
-          return false;
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
   }
-  function sendRequestCallback(result: rpc.SendRequestResult) {
-      if (result.errCode === 0) {
-          console.log("sendRequest got result");
-          result.reply.readException();
-          let msg = result.reply.readString();
-          console.log("RPCTest: reply msg: " + msg);
-      } else {
-          console.log("RPCTest: sendRequest failed, errCode: " + result.errCode);
-      }
-      console.log("RPCTest: sendRequest ends, reclaim parcel");
-      result.data.reclaim();
-      result.reply.reclaim();
+  function sendRequestCallback(err: BusinessError, result: rpc.SendRequestResult) {
+    if (result.errCode === 0) {
+      hilog.info(0x0000, 'testTag', 'sendRequest got result');
+      result.reply.readException();
+      let msg = result.reply.readString();
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
+    } else {
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
+    }
+    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
+    result.data.reclaim();
+    result.reply.reclaim();
   }
   let testRemoteObject = new TestRemoteObject("testObject");
   let option = new rpc.MessageOption();
@@ -8257,74 +8588,16 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   testRemoteObject.sendRequest(1, data, reply, option, sendRequestCallback);
   ```
 
-### onRemoteRequest<sup>8+(deprecated)</sup>
-
->This API is no longer maintained since API version 9. You are advised to use [onRemoteMessageRequest](#onremotemessagerequest9).
-
-onRemoteRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
-
-Provides a response to **sendMessageRequest()**. The server processes the request and returns a response in this API.
-
-**System capability**: SystemCapability.Communication.IPC.Core
-
-**Parameters**
-
-| Name| Type                                     | Mandatory| Description                                   |
-| ------ | ----------------------------------------- | ---- | --------------------------------------- |
-| code   | number                                    | Yes  | Service request code sent by the remote end.                 |
-| data   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that holds the parameters called by the client.|
-| reply  | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object carrying the result.          |
-| option | [MessageOption](#messageoption)           | Yes  | Whether the operation is synchronous or asynchronous.               |
-
-**Return value**
-
-| Type   | Description                            |
-| ------- | -------------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
-**Example**
-
-  ```ts
-  class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
-  }
-  class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      isObjectDead(): boolean {
-          return false;
-      }
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
-          if (code === 1) {
-              console.log("RpcServer: onRemoteRequest called");
-              return true;
-          } else {
-              console.log("RpcServer: unknown code: " + code);
-              return false;
-          }
-      }
-  }
-  ```
-
 ### onRemoteMessageRequest<sup>9+</sup>
 
 onRemoteMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): boolean | Promise\<boolean>
 
-> **NOTE**<br/>
+> **NOTE**
 >
 >* You are advised to overload **onRemoteMessageRequest** preferentially, which implements synchronous and asynchronous message processing.
->* If both onRemoteRequest() and onRemoteMessageRequest() are overloaded, only the onRemoteMessageRequest() takes effect.
+>* If both **onRemoteRequest()** and **onRemoteMessageRequest()** are overloaded, only the onRemoteMessageRequest() takes effect.
 
-Provides a response to **sendMessageRequest()**. The server processes the request synchronously or asynchronously and returns the result in this API.
+Called to return a response to **sendMessageRequest()**. The server processes the request synchronously or asynchronously and returns the result in this API.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8347,107 +8620,173 @@ Provides a response to **sendMessageRequest()**. The server processes the reques
 **Example**: Overload **onRemoteMessageRequest** to process requests synchronously.
 
   ```ts
-  class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
+  import hilog from '@ohos.hilog';
 
-      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-          if (code === 1) {
-              console.log("RpcServer: sync onRemoteMessageRequest is called");
-              return true;
-          } else {
-              console.log("RpcServer: unknown code: " + code);
-              return false;
-          }
+  class TestRemoteObject extends rpc.RemoteObject {
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      if (code === 1) {
+        hilog.info(0x0000, 'testTag', 'RpcServer: sync onRemoteMessageRequest is called');
+        return true;
+      } else {
+        hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
+        return false;
       }
+    }
   }
   ```
 
   **Example**: Overload **onRemoteMessageRequest** to process requests asynchronously.
 
   ```ts
-  class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
+  import hilog from '@ohos.hilog';
 
-      async onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): Promise<boolean> {
-          if (code === 1) {
-              console.log("RpcServer: async onRemoteMessageRequest is called");
-          } else {
-              console.log("RpcServer: unknown code: " + code);
-              return false;
-          }
-          await new Promise((resolve: (data: rpc.RequestResult) => void) => {
-            setTimeout(resolve, 100);
-          })
-          return true;
+  class TestRemoteObject extends rpc.RemoteObject {
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+
+    async onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): Promise<boolean> {
+      if (code === 1) {
+        hilog.info(0x0000, 'testTag', 'RpcServer: async onRemoteMessageRequest is called');
+      } else {
+        hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
+        return false;
       }
+      await new Promise((resolve: (data: rpc.RequestResult) => void) => {
+        setTimeout(resolve, 100);
+      })
+      return true;
+    }
   }
   ```
 
 **Example**: Overload **onRemoteMessageRequest** and **onRemoteRequest** to process requests synchronously.
 
   ```ts
-  class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
+  import hilog from '@ohos.hilog';
 
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
-          if (code === 1) {
-              console.log("RpcServer: sync onRemoteMessageRequest is called");
-              return true;
-          } else {
-              console.log("RpcServer: unknown code: " + code);
-              return false;
-          }
-      }
-      // Only onRemoteMessageRequest is executed.
-      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-          if (code === 1) {
-              console.log("RpcServer: async onRemoteMessageRequest is called");
-          } else {
-              console.log("RpcServer: unknown code: " + code);
-              return false;
-          }
-         
+  class TestRemoteObject extends rpc.RemoteObject {
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+
+    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+       if (code === 1) {
+          hilog.info(0x0000, 'testTag', 'RpcServer: sync onRemoteMessageRequest is called');
           return true;
+       } else {
+          hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
+          return false;
+       }
+    }
+      // Only onRemoteMessageRequest is executed.
+    onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+      if (code === 1) {
+        hilog.info(0x0000, 'testTag', 'RpcServer: async onRemoteMessageRequest is called');
+      } else {
+        hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
+        return false;
       }
+      return true;
+    }
   }
   ```
 
   **Example**: Overload **onRemoteMessageRequest** and **onRemoteRequest** to process requests asynchronously.
 
   ```ts
+  import hilog from '@ohos.hilog';
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
 
-      onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
-          if (code === 1) {
-              console.log("RpcServer: sync onRemoteRequest is called");
-              return true;
-          } else {
-              console.log("RpcServer: unknown code: " + code);
-              return false;
-          }
+    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+      if (code === 1) {
+        hilog.info(0x0000, 'testTag', 'RpcServer: sync onRemoteRequest is called');
+        return true;
+      } else {
+        hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
+        return false;
       }
-      // Only onRemoteMessageRequest is executed.
-      async onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): Promise<boolean> {
-          if (code === 1) {
-              console.log("RpcServer: async onRemoteMessageRequest is called");
-          } else {
-              console.log("RpcServer: unknown code: " + code);
-              return false;
-          }
-         await new Promise((resolve: (data: rpc.RequestResult) => void) => {
-            setTimeout(resolve, 100);
-          })
-          return true;
+    }
+    // Only onRemoteMessageRequest is executed.
+    async onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): Promise<boolean> {
+      if (code === 1) {
+        hilog.info(0x0000, 'testTag', 'RpcServer: async onRemoteMessageRequest is called');
+      } else {
+        hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
+        return false;
       }
+      await new Promise((resolve: (data: rpc.RequestResult) => void) => {
+        setTimeout(resolve, 100);
+      })
+      return true;
+    }
+  }
+  ```
+
+### onRemoteRequest<sup>(deprecated)</sup>
+
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [onRemoteMessageRequest](#onremotemessagerequest9).
+
+onRemoteRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
+
+Called to return a response to **sendRequest()**. The server processes the request and returns a response in this function.
+
+**System capability**: SystemCapability.Communication.IPC.Core
+
+**Parameters**
+
+| Name| Type                                     | Mandatory| Description                                   |
+| ------ | ----------------------------------------- | ---- | --------------------------------------- |
+| code   | number                                    | Yes  | Service request code sent by the remote end.                 |
+| data   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that holds the parameters called by the client.|
+| reply  | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object carrying the result.          |
+| option | [MessageOption](#messageoption)           | Yes  | Whether the operation is synchronous or asynchronous.               |
+
+**Return value**
+
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+
+**Example**
+
+  ```ts
+  import hilog from '@ohos.hilog';
+
+  class MyDeathRecipient implements rpc.DeathRecipient {
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
+    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+      if (code === 1) {
+        hilog.info(0x0000, 'testTag', 'RpcServer: onRemoteRequest called');
+        return true;
+      } else {
+        hilog.error(0x0000, 'testTag', 'RpcServer: unknown code: ' + code);
+        return false;
+      }
+    }
   }
   ```
 
@@ -8467,13 +8806,15 @@ Obtains the UID of the remote process.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
-  console.log("RpcServer: getCallingUid: " + testRemoteObject.getCallingUid());
+  hilog.info(0x0000, 'testTag', 'RpcServer: getCallingUid: ' + testRemoteObject.getCallingUid());
   ```
 
 ### getCallingPid
@@ -8493,13 +8834,15 @@ Obtains the PID of the remote process.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
-  console.log("RpcServer: getCallingPid: " + testRemoteObject.getCallingPid());
+  hilog.info(0x0000, 'testTag', 'RpcServer: getCallingPid: ' + testRemoteObject.getCallingPid());
   ```
 
 ### getLocalInterface<sup>9+</sup>
@@ -8525,40 +8868,45 @@ Obtains the interface descriptor.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
-          // Implement the method logic based on service requirements.
-      }
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
-          // Implement the method logic based on service requirements.
-      }
-      isObjectDead(): boolean {
-          return false;
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+      this.modifyLocalInterface(this, descriptor);
+    }
+    registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+      // Implement the method logic based on service requirements.
+    }
+    unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+      // Implement the method logic based on service requirements.
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
+    asObject(): rpc.IRemoteObject {
+      return this;
+    }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
   try {
-      let broker = testRemoteObject.getLocalInterface("testObject");
+    testRemoteObject.getLocalInterface("testObject");
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc get local interface fail, errorCode " + e.code);
-      console.info("rpc get local interface fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorMessage ' + e.message);
   }
   ```
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [getLocalInterface](#getlocalinterface9).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [getLocalInterface](#getlocalinterface9-2).
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
@@ -8581,27 +8929,33 @@ Checks whether the remote object corresponding to the specified interface token 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      isObjectDead(): boolean {
-          return false;
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+      this.attachLocalInterface(this, descriptor);
+    }
+    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
+    asObject(): rpc.IRemoteObject {
+      return this;
+    }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
-  let broker = testRemoteObject.queryLocalInterface("testObject");
+  testRemoteObject.queryLocalInterface("testObject");
   ```
 
 ### getDescriptor<sup>9+</sup>
@@ -8629,41 +8983,42 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
-          // Implement the method logic based on service requirements.
-      }
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
-          // Implement the method logic based on service requirements.
-      }
-      isObjectDead(): boolean {
-          return false;
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+    registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+      // Implement the method logic based on service requirements.
+    }
+    unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+      // Implement the method logic based on service requirements.
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
-  console.log("RpcServer: descriptor is: " + descriptor);
   try {
-      let descriptor = testRemoteObject.getDescriptor();
+    let descriptor = testRemoteObject.getDescriptor();
+    hilog.info(0x0000, 'testTag', 'RpcServer: descriptor is ' + descriptor);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("rpc get local interface fail, errorCode " + e.code);
-      console.info("rpc get local interface fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorMessage ' + e.message);
   }
   ```
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [getDescriptor](#getdescriptor9).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [getDescriptor](#getdescriptor9-2).
 
 getInterfaceDescriptor(): string
 
@@ -8680,28 +9035,30 @@ Obtains the interface descriptor.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-      }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      isObjectDead(): boolean {
-          return false;
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
   let descriptor = testRemoteObject.getInterfaceDescriptor();
-  console.log("RpcServer: descriptor is: " + descriptor);
+  hilog.info(0x0000, 'testTag', 'RpcServer: descriptor is: ' + descriptor);
   ```
 
 ### modifyLocalInterface<sup>9+</sup>
@@ -8714,51 +9071,52 @@ Binds an interface descriptor to an **IRemoteBroker** object.
 
 **Parameters**
 
-| Name        | Type         | Mandatory| Description                                 |
-| -------------- | ------------- | ---- | ------------------------------------- |
-| localInterface | IRemoteBroker | Yes  | **IRemoteBroker** object.  |
-| descriptor     | string        | Yes  | Interface descriptor.|
+| Name        | Type                           | Mandatory| Description                                 |
+| -------------- | ------------------------------- | ---- | ------------------------------------- |
+| localInterface | [IRemoteBroker](#iremotebroker) | Yes  | **IRemoteBroker** object.  |
+| descriptor     | string                          | Yes  | Interface descriptor.|
 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-          try {
-              this.modifyLocalInterface(this, descriptor);
-          } catch(error) {
-              let e: BusinessError = error as BusinessError;
-              console.info(" rpc attach local interface fail, errorCode " + e.code);
-              console.info(" rpc attach local interface fail, errorMessage " + e.message);
-          }
+    constructor(descriptor: string) {
+      super(descriptor);
+      try {
+        this.modifyLocalInterface(this, descriptor);
+      } catch(error) {
+        let e: BusinessError = error as BusinessError;
+        hilog.error(0x0000, 'testTag', ' rpc attach local interface fail, errorCode ' + e.code);
+        hilog.error(0x0000, 'testTag', ' rpc attach local interface fail, errorMessage ' + e.message);
       }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
-          // Implement the method logic based on service requirements.
-      }
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
-          // Implement the method logic based on service requirements.
-      }
-      isObjectDead(): boolean {
-          return false;
-      }
-      asObject(): rpc.IRemoteObject {
-          return this;
-      }
+    }
+    registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+      // Implement the method logic based on service requirements.
+    }
+    unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+      // Implement the method logic based on service requirements.
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
+    asObject(): rpc.IRemoteObject {
+      return this;
+    }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
   ```
 
 ### attachLocalInterface<sup>(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [modifyLocalInterface](#modifylocalinterface9).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [modifyLocalInterface](#modifylocalinterface9).
 
 attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
@@ -8768,40 +9126,41 @@ Binds an interface descriptor to an **IRemoteBroker** object.
 
 **Parameters**
 
-| Name        | Type         | Mandatory| Description                                 |
-| -------------- | ------------- | ---- | ------------------------------------- |
-| localInterface | IRemoteBroker | Yes  | **IRemoteBroker** object.  |
-| descriptor     | string        | Yes  | Interface descriptor.|
+| Name        | Type                           | Mandatory| Description                                 |
+| -------------- | ------------------------------- | ---- | ------------------------------------- |
+| localInterface | [IRemoteBroker](#iremotebroker) | Yes  | **IRemoteBroker** object.  |
+| descriptor     | string                          | Yes  | Interface descriptor.|
 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   class MyDeathRecipient implements rpc.DeathRecipient {
-      onRemoteDied() {
-          console.log("server died");
-      }
+    onRemoteDied() {
+      hilog.info(0x0000, 'testTag', 'server died');
+    }
   }
   class TestRemoteObject extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-          super(descriptor);
-          this.attachLocalInterface(this, descriptor);
-      }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
-      isObjectDead(): boolean {
-          return false;
-      }
-      asObject(): rpc.IRemoteObject {
-          return this;
-      }
+    constructor(descriptor: string) {
+      super(descriptor);
+      this.attachLocalInterface(this, descriptor);
+    }
+    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+      return true;
+    }
+    isObjectDead(): boolean {
+      return false;
+    }
+    asObject(): rpc.IRemoteObject {
+      return this;
+    }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
   ```
-
 ## Ashmem<sup>8+</sup>
 
 Provides methods related to anonymous shared memory objects, including creating, closing, mapping, and unmapping an **Ashmem** object, reading data from and writing data to an **Ashmem** object, obtaining the **Ashmem** size, and setting **Ashmem** protection.
@@ -8834,30 +9193,31 @@ Creates an **Ashmem** object with the specified name and size. This API is a sta
 
 **Return value**
 
-| Type  | Description                                          |
-| ------ | ---------------------------------------------- |
-| Ashmem | Returns the **Ashmem** object if it is created successfully; returns null otherwise.|
+| Type              | Description                                          |
+| ------------------ | ---------------------------------------------- |
+| [Ashmem](#ashmem8) | Returns the **Ashmem** object if it is created successfully; returns null otherwise.|
 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
-  let ashmem: rpc.Ashmem;
+  let ashmem: rpc.Ashmem | undefined = undefined;
   try {
-      ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-      let size = ashmem.getAshmemSize();
-      console.log("RpcTest: get ashemm by create : " + ashmem + " size is : " + size);
+    ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    let size = ashmem.getAshmemSize();
+    hilog.info(0x0000, 'testTag', 'RpcTest: get ashemm by create: ' + ashmem + ' size is ' + size);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("Rpc creat ashmem fail, errorCode " + e.code);
-      console.info("Rpc creat ashmem  fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'Rpc creat ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc creat ashmem  fail, errorMessage ' + e.message);
   }
   ```
 
 ### createAshmem<sup>8+(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [create](#create9).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [create](#create9).
 
 static createAshmem(name: string, size: number): Ashmem
 
@@ -8874,16 +9234,18 @@ Creates an **Ashmem** object with the specified name and size. This API is a sta
 
 **Return value**
 
-| Type  | Description                                          |
-| ------ | ---------------------------------------------- |
-| Ashmem | Returns the **Ashmem** object if it is created successfully; returns null otherwise.|
+| Type              | Description                                          |
+| ------------------ | ---------------------------------------------- |
+| [Ashmem](#ashmem8) | Returns the **Ashmem** object if it is created successfully; returns null otherwise.|
 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let size = ashmem.getAshmemSize();
-  console.log("RpcTest: get ashemm by createAshmem : " + ashmem + " size is : " + size);
+  hilog.info(0x0000, 'testTag', 'RpcTest: get ashemm by createAshmem: ' + ashmem + ' size is ' + size);
   ```
 
 ### create<sup>9+</sup>
@@ -8896,36 +9258,37 @@ Creates an **Ashmem** object by copying the file descriptor of an existing **Ash
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| ashmem | Ashmem | Yes  | Existing **Ashmem** object.|
+| Name| Type              | Mandatory| Description                |
+| ------ | ------------------ | ---- | -------------------- |
+| ashmem | [Ashmem](#ashmem8) | Yes  | Existing **Ashmem** object.|
 
 **Return value**
 
-| Type  | Description                  |
-| ------ | ---------------------- |
-| Ashmem | **Ashmem** object created.|
+| Type              | Description                  |
+| ------------------ | ---------------------- |
+| [Ashmem](#ashmem8) | **Ashmem** object created.|
 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
-  let ashmem2: rpc.Ashmem;
+
   try {
-      let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-      let ashmem2 = rpc.Ashmem.create(ashmem);
-      let size = ashmem2.getAshmemSize();
-      console.log("RpcTest: get ashemm by create : " + ashmem2 + " size is : " + size);
+    let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+    let ashmem2 = rpc.Ashmem.create(ashmem);
+    let size = ashmem2.getAshmemSize();
+    hilog.info(0x0000, 'testTag', 'RpcTest: get ashemm by create: ' + ashmem2 + ' size is ' + size);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("Rpc creat ashmem from existing fail, errorCode " + e.code);
-      console.info("Rpc creat ashmem from existing  fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'Rpc creat ashmem from existing fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc creat ashmem from existing fail, errorMessage ' + e.message);
   }
   ```
 
 ### createAshmemFromExisting<sup>8+(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [create](#create9).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [create](#create9-1).
 
 static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
@@ -8935,23 +9298,25 @@ Creates an **Ashmem** object by copying the file descriptor of an existing **Ash
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| ashmem | Ashmem | Yes  | Existing **Ashmem** object.|
+| Name| Type              | Mandatory| Description                |
+| ------ | ------------------ | ---- | -------------------- |
+| ashmem | [Ashmem](#ashmem8) | Yes  | Existing **Ashmem** object.|
 
 **Return value**
 
-| Type  | Description                  |
-| ------ | ---------------------- |
-| Ashmem | **Ashmem** object created.|
+| Type              | Description                  |
+| ------------------ | ---------------------- |
+| [Ashmem](#ashmem8) | **Ashmem** object created.|
 
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let ashmem2 = rpc.Ashmem.createAshmemFromExisting(ashmem);
   let size = ashmem2.getAshmemSize();
-  console.log("RpcTest: get ashemm by createAshmemFromExisting : " + ashmem2 + " size is : " + size);
+  hilog.info(0x0000, 'testTag', 'RpcTest: get ashemm by createAshmemFromExisting: ' + ashmem2 + ' size is ' + size);
   ```
 
 ### closeAshmem<sup>8+</sup>
@@ -9001,9 +9366,11 @@ Obtains the memory size of this **Ashmem** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let size = ashmem.getAshmemSize();
-  console.log("RpcTest: get ashmem is " + ashmem + " size is : " + size);
+  hilog.info(0x0000, 'testTag', 'RpcTest: get ashmem is ' + ashmem + ' size is ' + size);
   ```
 
 ### mapTypedAshmem<sup>9+</sup>
@@ -9031,21 +9398,22 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
-      ashmem.mapTypedAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
+    ashmem.mapTypedAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("Rpc map ashmem fail, errorCode " + e.code);
-      console.info("Rpc map ashmem fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'Rpc map ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc map ashmem fail, errorMessage ' + e.message);
   }
   ```
 
 ### mapAshmem<sup>8+(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [mapTypedAshmem](#maptypedashmem9).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [mapTypedAshmem](#maptypedashmem9).
 
 mapAshmem(mapType: number): boolean
 
@@ -9068,9 +9436,11 @@ Creates the shared file mapping on the virtual address space of this process. Th
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapReadAndWrite = ashmem.mapAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
-  console.log("RpcTest: map ashmem result is  : " + mapReadAndWrite);
+  hilog.info(0x0000, 'testTag', 'RpcTest: map ashmem result is ' + mapReadAndWrite);
   ```
 
 ### mapReadWriteAshmem<sup>9+</sup>
@@ -9092,21 +9462,22 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
-      ashmem.mapReadWriteAshmem();
+    ashmem.mapReadWriteAshmem();
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("Rpc map read and write ashmem fail, errorCode " + e.code);
-      console.info("Rpc map read and write ashmem fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'Rpc map read and write ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc map read and write ashmem fail, errorMessage ' + e.message);
   }
   ```
 
 ### mapReadAndWriteAshmem<sup>8+(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [mapReadWriteAshmem](#mapreadwriteashmem9).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [mapReadWriteAshmem](#mapreadwriteashmem9).
 
 mapReadAndWriteAshmem(): boolean
 
@@ -9123,9 +9494,11 @@ Maps the shared file to the readable and writable virtual address space of the p
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
-  console.log("RpcTest: map ashmem result is  : " + mapResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest: map ashmem result is ' + mapResult);
   ```
 
 ### mapReadonlyAshmem<sup>9+</sup>
@@ -9147,21 +9520,22 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
-      ashmem.mapReadonlyAshmem();
+    ashmem.mapReadonlyAshmem();
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("Rpc map read and write ashmem fail, errorCode " + e.code);
-      console.info("Rpc map read and write ashmem fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'Rpc map read and write ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc map read and write ashmem fail, errorMessage ' + e.message);
   }
   ```
 
 ### mapReadOnlyAshmem<sup>8+(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [mapReadonlyAshmem](#mapreadonlyashmem9).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [mapReadonlyAshmem](#mapreadonlyashmem9).
 
 mapReadOnlyAshmem(): boolean
 
@@ -9178,9 +9552,11 @@ Maps the shared file to the read-only virtual address space of the process.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadOnlyAshmem();
-  console.log("RpcTest: Ashmem mapReadOnlyAshmem result is : " + mapResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest: Ashmem mapReadOnlyAshmem result is ' + mapResult);
   ```
 
 ### setProtectionType<sup>9+</sup>
@@ -9208,21 +9584,22 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
-      ashmem.setProtection(ashmem.PROT_READ);
+    ashmem.setProtection(ashmem.PROT_READ);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("Rpc set protection type fail, errorCode " + e.code);
-      console.info("Rpc set protection type fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'Rpc set protection type fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc set protection type fail, errorMessage ' + e.message);
   }
   ```
 
 ### setProtection<sup>8+(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [setProtectionType](#setprotectiontype9).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [setProtectionType](#setprotectiontype9).
 
 setProtection(protectionType: number): boolean
 
@@ -9245,9 +9622,11 @@ Sets the protection level of the memory region to which the shared file is mappe
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let result = ashmem.setProtection(ashmem.PROT_READ);
-  console.log("RpcTest: Ashmem setProtection result is : " + result);
+  hilog.info(0x0000, 'testTag', 'RpcTest: Ashmem setProtection result is ' + result);
   ```
 
 ### writeAshmem<sup>9+</sup>
@@ -9277,23 +9656,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.mapReadWriteAshmem();
   let ByteArrayVar = [1, 2, 3, 4, 5];
   try {
-      ashmem.writeAshmem(ByteArrayVar, 5, 0);
+    ashmem.writeAshmem(ByteArrayVar, 5, 0);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("Rpc write to ashmem fail, errorCode " + e.code);
-      console.info("Rpc write to ashmem fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorMessage ' + e.message);
   }
   ```
 
 ### writeToAshmem<sup>8+(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [writeAshmem](#writeashmem9).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [writeAshmem](#writeashmem9).
 
 writeToAshmem(buf: number[], size: number, offset: number): boolean
 
@@ -9318,12 +9698,14 @@ Writes data to the shared file associated with this **Ashmem** object.
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
-  console.info("RpcTest map ashmem result is " + mapResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest map ashmem result is ' + mapResult);
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let writeResult = ashmem.writeToAshmem(ByteArrayVar, 5, 0);
-  console.log("RpcTest: write to Ashmem result is  : " + writeResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest: write to Ashmem result is ' + writeResult);
   ```
 
 ### readAshmem<sup>9+</sup>
@@ -9358,6 +9740,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 **Example**
 
   ```ts
+  import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
@@ -9365,18 +9748,18 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   let ByteArrayVar = [1, 2, 3, 4, 5];
   ashmem.writeAshmem(ByteArrayVar, 5, 0);
   try {
-      let readResult = ashmem.readAshmem(5, 0);
-      console.log("RpcTest: read from Ashmem result is  : " + readResult);
+    let readResult = ashmem.readAshmem(5, 0);
+    hilog.info(0x0000, 'testTag', 'RpcTest: read from Ashmem result is ' + readResult);
   } catch(error) {
-      let e: BusinessError = error as BusinessError;
-      console.info("Rpc read from ashmem fail, errorCode " + e.code);
-      console.info("Rpc read from ashmem fail, errorMessage " + e.message);
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'Rpc read from ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc read from ashmem fail, errorMessage ' + e.message);
   }
   ```
 
 ### readFromAshmem<sup>8+(deprecated)</sup>
 
->This API is no longer maintained since API version 9. You are advised to use [readAshmem](#readashmem9).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [readAshmem](#readashmem9).
 
 readFromAshmem(size: number, offset: number): number[]
 
@@ -9400,14 +9783,16 @@ Reads data from the shared file associated with this **Ashmem** object.
 **Example**
 
  ``` ts
+  import hilog from '@ohos.hilog';
+
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
-  console.info("RpcTest map ashmem result is " + mapResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest map ashmem result is ' + mapResult);
   let ByteArrayVar = [1, 2, 3, 4, 5];
   let writeResult = ashmem.writeToAshmem(ByteArrayVar, 5, 0);
-  console.log("RpcTest: write to Ashmem result is  : " + writeResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest: write to Ashmem result is ' + writeResult);
   let readResult = ashmem.readFromAshmem(5, 0);
-  console.log("RpcTest: read to Ashmem result is  : " + readResult);
+  hilog.info(0x0000, 'testTag', 'RpcTest: read to Ashmem result is ' + readResult);
  ```
 
 ## Obtaining the Context
@@ -9415,34 +9800,35 @@ Reads data from the shared file associated with this **Ashmem** object.
 **Example**
 This example describes only one method of obtaining the context. For details about more methods, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
  ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import Want from '@ohos.app.ability.Want';
+  import hilog from '@ohos.hilog';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   import window from '@ohos.window';
-
-  export default class MainAbility extends Ability {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-          console.log("[Demo] MainAbility onCreate");
-          let context = this.context;
-      }
-      onDestroy() {
-          console.log("[Demo] MainAbility onDestroy");
-      }
-      onWindowStageCreate(windowStage: window.WindowStage) {
-          // Main window is created, set main page for this ability
-          console.log("[Demo] MainAbility onWindowStageCreate");
-      }
-      onWindowStageDestroy() {
-          // Main window is destroyed, release UI related resources
-          console.log("[Demo] MainAbility onWindowStageDestroy");
-      }
-      onForeground() {
-          // Ability has brought to foreground
-          console.log("[Demo] MainAbility onForeground");
-      }
-      onBackground() {
-          // Ability has back to background
-          console.log("[Demo] MainAbility onBackground");
-      }  
-  };
+  
+  export default class MainAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onCreate');
+      let context = this.context;
+    }
+    onDestroy() {
+      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onDestroy');
+    }
+    onWindowStageCreate(windowStage: window.WindowStage) {
+      // Main window is created, set main page for this ability
+  	  hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageCreate');
+    }
+    onWindowStageDestroy() {
+      // Main window is destroyed, release UI related resources
+  	  hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageDestroy');
+    }
+    onForeground() {
+      // Ability has brought to foreground
+      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onForeground');
+    }
+    onBackground() {
+      // Ability has back to background
+      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onBackground');
+    }
+  }
  ```

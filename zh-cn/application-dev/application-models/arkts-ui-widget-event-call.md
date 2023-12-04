@@ -19,34 +19,33 @@
     build() {
       Column() {
         Button('功能A')
-          .margin('20%')
           .onClick(() => {
             console.info('call EntryAbility funA');
             postCardAction(this, {
-              'action': 'call',
-              'abilityName': 'EntryAbility', // 只能跳转到当前应用下的UIAbility
-              'params': {
-                'method': 'funA' // 在EntryAbility中调用的方法名
+              action: 'call',
+              abilityName: 'EntryAbility', // 只能跳转到当前应用下的UIAbility
+              params: {
+                method: 'funA' // 在EntryAbility中调用的方法名
               }
             });
           })
   
         Button('功能B')
-          .margin('20%')
           .onClick(() => {
             console.info('call EntryAbility funB');
             postCardAction(this, {
-              'action': 'call',
-              'abilityName': 'EntryAbility', // 只能跳转到当前应用下的UIAbility
-              'params': {
-                'method': 'funB', // 在EntryAbility中调用的方法名
-                'num': 1 // 需要传递的其他参数
+              action: 'call',
+              abilityName: 'EntryAbility', // 只能跳转到当前应用下的UIAbility
+              params: {
+                method: 'funB', // 在EntryAbility中调用的方法名
+                num: 1 // 需要传递的其他参数
               }
             });
           })
       }
       .width('100%')
       .height('100%')
+      .justifyContent(FlexAlign.SpaceAround)
     }
   }
   ```
@@ -92,7 +91,7 @@
         });
         this.callee.on('funB', (data: rpc.MessageSequence) => {
           // 获取call事件中传递的所有参数
-          console.info('FunACall param:' + JSON.stringify(data.readString()));
+          console.info('FunBCall param:' + JSON.stringify(data.readString()));
           return new MyParcelable(2, 'bbb');
         });
       } catch (err) {

@@ -22,11 +22,11 @@
 
 - 布局子元素：布局容器内部的元素。
 
-- 主轴：线性布局容器在布局方向上的轴线，子元素默认沿主轴排列。Row容器主轴为横向，Column容器主轴为纵向。
+- 主轴：线性布局容器在布局方向上的轴线，子元素默认沿主轴排列。Row容器主轴为水平方向，Column容器主轴为垂直方向。
 
-- 交叉轴：垂直于主轴方向的轴线。Row容器交叉轴为纵向，Column容器交叉轴为横向。
+- 交叉轴：垂直于主轴方向的轴线。Row容器交叉轴为垂直方向，Column容器交叉轴为水平方向。
 
-- 间距：布局子元素的纵向间距。
+- 间距：布局子元素的间距。
 
 
 ## 布局子元素在排列方向上的间距
@@ -450,10 +450,10 @@ struct BlankExample {
 
 ## 自适应缩放
 
-自适应缩放是指子组件随容器尺寸的变化而按照预设的比例自动调整尺寸，适应各种不同大小的设备。在线性布局中，可以使用以下两种方法实现自适应缩放。
+自适应缩放是指子元素随容器尺寸的变化而按照预设的比例自动调整尺寸，适应各种不同大小的设备。在线性布局中，可以使用以下两种方法实现自适应缩放。
 
 
-- 父容器尺寸确定时，使用layoutWeight属性设置子组件和兄弟元素在主轴上的权重，忽略元素本身尺寸设置，使它们在任意尺寸的设备下自适应占满剩余空间。
+- 父容器尺寸确定时，使用layoutWeight属性设置子元素和兄弟元素在主轴上的权重，忽略元素本身尺寸设置，使它们在任意尺寸的设备下自适应占满剩余空间。
 
   ```ts
   @Entry
@@ -474,9 +474,9 @@ struct BlankExample {
           }.layoutWeight(2).backgroundColor(0xD2B48C).height('100%')
 
           Column() {
-            Text('layoutWeight(6)')
+            Text('layoutWeight(3)')
               .textAlign(TextAlign.Center)
-          }.layoutWeight(6).backgroundColor(0xF5DEB3).height('100%')
+          }.layoutWeight(3).backgroundColor(0xF5DEB3).height('100%')
 
         }.backgroundColor(0xffd306).height('30%')
 
@@ -510,7 +510,7 @@ struct BlankExample {
 
   ![zh-cn_image_0000001511580968](figures/zh-cn_image_0000001511580968.png)
 
-- 父容器尺寸确定时，使用百分比设置子组件和兄弟元素的宽度，使他们在任意尺寸的设备下保持固定的自适应占比。
+- 父容器尺寸确定时，使用百分比设置子元素和兄弟元素的宽度，使他们在任意尺寸的设备下保持固定的自适应占比。
 
   ```ts
   @Entry
@@ -554,8 +554,8 @@ struct BlankExample {
 
 - [在List中添加滚动条](arkts-layout-development-create-list.md#添加滚动条)：当List子项过多一屏放不下时，可以将每一项子元素放置在不同的组件中，通过滚动条进行拖动展示。可以通过scrollBar属性设置滚动条的常驻状态，edgeEffect属性设置拖动到内容最末端的回弹效果。
 
-- 使用Scroll组件：在线性布局中，开发者可以进行竖向或者横向的布局。当一屏无法完全显示时，可以在Column或Row组件的外层包裹一个可滚动的容器组件Scroll来实现可滑动的线性布局。
-    竖向布局中使用Scroll组件：
+- 使用Scroll组件：在线性布局中，开发者可以进行垂直方向或者水平方向的布局。当一屏无法完全显示时，可以在Column或Row组件的外层包裹一个可滚动的容器组件Scroll来实现可滑动的线性布局。
+    垂直方向布局中使用Scroll组件：
 
   ```ts
   @Entry
@@ -582,7 +582,7 @@ struct BlankExample {
         }.width('100%')
       }
       .backgroundColor(0xDCDCDC)
-      .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+      .scrollable(ScrollDirection.Vertical) // 滚动方向为垂直方向
       .scrollBar(BarState.On) // 滚动条常驻显示
       .scrollBarColor(Color.Gray) // 滚动条颜色
       .scrollBarWidth(10) // 滚动条宽度
@@ -593,7 +593,7 @@ struct BlankExample {
 
   ![zh-cn_image_0000001511900524](figures/zh-cn_image_0000001511900524.gif)
 
-  横向布局中使用Scroll组件：
+  水平方向布局中使用Scroll组件：
 
 
   ```ts
@@ -621,7 +621,7 @@ struct BlankExample {
         }.height('100%')
       }
       .backgroundColor(0xDCDCDC)
-      .scrollable(ScrollDirection.Horizontal) // 滚动方向横向
+      .scrollable(ScrollDirection.Horizontal) // 滚动方向为水平方向
       .scrollBar(BarState.On) // 滚动条常驻显示
       .scrollBarColor(Color.Gray) // 滚动条颜色
       .scrollBarWidth(10) // 滚动条宽度

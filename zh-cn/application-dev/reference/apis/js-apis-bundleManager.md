@@ -42,6 +42,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | GET_BUNDLE_INFO_WITH_METADATA             | 0x00000020 | 用于获取applicationInfo、moduleInfo和abilityInfo中包含的metadata。它不能单独使用，它需要与GET_BUNDLE_INFO_WITH_APPLICATION、GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。 |
 | GET_BUNDLE_INFO_WITH_DISABLE              | 0x00000040 | 用于获取application被禁用的BundleInfo和被禁用的Ability信息。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息。 |
 | GET_BUNDLE_INFO_WITH_SIGNATURE_INFO       | 0x00000080 | 用于获取包含signatureInfo的bundleInfo。获取的bundleInfo不包含applicationInfo、hapModuleInfo、extensionAbility、ability和permission的信息。 |
+| GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>   | 0x00000100 | 用于获取包含fileContextMenu的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。当调用GetBundleInfo或GetBundleInfoForSelf方法时传入此flag，返回的hapModulesInfo中将仅包含配置了fileContextMenu的Module信息。当调用GetAllBundleInfo方法时传入此flag，返回的bundleInfo列表中将仅包含配置了fileContextMenu的应用的bundleInfo。 |
 
 ### ApplicationFlag
 
@@ -98,12 +99,12 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|-----|
-| FORM             | 0   | [FormExtensionAbility](../../application-models/service-widget-overview.md)：卡片扩展能力，提供卡片开发能力。 |
-| WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../../task-management/work-scheduler.md)：延时任务扩展能力，允许应用在系统闲时执行实时性不高的任务。 |
+| FORM             | 0   | [FormExtensionAbility](js-apis-app-form-formExtensionAbility.md)：卡片扩展能力，提供卡片开发能力。 |
+| WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](js-apis-WorkSchedulerExtensionAbility.md)：延时任务扩展能力，允许应用在系统闲时执行实时性不高的任务。 |
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](js-apis-inputmethod-extension-ability.md)：输入法扩展能力，用于开发输入法应用。 |
-| SERVICE          | 3   | [ServiceExtensionAbility](../../application-models/serviceextensionability.md)：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
+| SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility.md)：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
 | ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](js-apis-application-accessibilityExtensionAbility.md)：无障碍服务扩展能力，支持访问与操作前台界面。 |
-| DATA_SHARE       | 5   | [DataShareExtensionAbility](../../database/share-data-by-datashareextensionability.md)：数据共享扩展能力，用于对外提供数据读写服务。 |
+| DATA_SHARE       | 5   | [DataShareExtensionAbility](js-apis-application-dataShareExtensionAbility.md)：数据共享扩展能力，用于对外提供数据读写服务。 |
 | FILE_SHARE       | 6   | FileShareExtensionAbility：文件共享扩展能力，用于应用间的文件分享。预留能力，当前暂未支持。 |
 | STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](js-apis-application-staticSubscriberExtensionAbility.md)：静态广播扩展能力，用于处理静态事件，比如开机事件。 |
 | WALLPAPER        | 8   | WallpaperExtensionAbility：壁纸扩展能力，用于实现桌面壁纸。预留能力，当前暂未支持。 |
@@ -115,11 +116,9 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | PRINT<sup>10+</sup> | 15 | PrintExtensionAbility：文件打印扩展能力，提供应用打印照片、文档等办公场景。当前支持图片打印，文档类型暂未支持。 |
 | SHARE<sup>10+</sup> | 16 | [ShareExtensionAbility](js-apis-app-ability-shareExtensionAbility.md)：提供分享业务能力，为开发者提供基于UIExtension的分享业务模板。 |
 | PUSH<sup>10+</sup> | 17 | PushExtensionAbility：推送扩展能力，提供推送场景化消息能力。预留能力，当前暂未支持。 |
-| DRIVER<sup>10+</sup> | 18 | DriverExtensionAbility：驱动扩展能力，提供外设驱动扩展能力，当前暂未支持。 |
+| DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](js-apis-app-ability-driverExtensionAbility.md)：驱动扩展能力，提供外设驱动扩展能力，当前暂未支持。 |
 | ACTION<sup>10+</sup> | 19 | [ActionExtensionAbility](js-apis-app-ability-actionExtensionAbility.md)：自定义服务扩展能力，为开发者提供基于UIExtension的自定义操作业务模板。 |
-| REMOTE_NOTIFICATION<sup>11+</sup> | 20 | RemoteNotificationExtensionAbility：远程通知扩展能力，提供远程通知能力。预留能力，当前暂未支持。 |
-| REMOTE_LOCATION<sup>11+</sup> | 21 | RemoteLocationExtensionAbility：远程定位扩展能力，提供远程定位能力。预留能力，当前暂未支持。 |
-| VOIP<sup>11+</sup> | 22 | VoIPExtensionAbility：网络音视频通话扩展能力，提供网络音视频通话能力。预留能力，当前暂未支持。 |
+| ADS_SERVICE<sup>11+</sup> | 20 | AdsServiceExtensionAbility：广告服务扩展能力，对外提供后台自定义广告业务服务，当前暂未支持。 |
 | UNSPECIFIED      | 255 | 不指定类型，配合queryExtensionAbilityInfo接口可以查询所有类型的ExtensionAbility。 |
 
 
@@ -226,6 +225,28 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | -------------- | ---- | --------------- |
 | APP            | 0    | 该Bundle是普通应用程序。    |
 | ATOMIC_SERVICE | 1    | 该Bundle是原子化服务。 |
+
+### ProfileType<sup>11+</sup>
+
+标识配置文件类型。
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称           | 值   | 说明            |
+| -------------- | ---- | --------------- |
+| INTENT_PROFILE  | 1    | 意图框架配置文件。    |
+
+### ApplicationReservedFlag<sup>11+</sup>
+
+应用保留信息标志，指示需要获取的applicationReservedFlag中的信息内容。
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+
+| 名称           | 值   | 说明            |
+| -------------- | ---- | --------------- |
+| ENCRYPTED_APPLICATION  | 0x00000001    | 用于获取应用是否为加密应用。    |
 
 ## 接口
 
@@ -1243,7 +1264,7 @@ let want: Want = {
 };
 
 try {
-    
+
     let infos = bundleManager.queryAbilityInfoSync(want, abilityFlags, userId);
     hilog.info(0x0000, 'testTag', 'queryAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(infos));
 } catch (err) {
@@ -2886,6 +2907,8 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 以异步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，使用callback形式返回结果。
 
+>如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -2938,6 +2961,8 @@ try {
 getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>;
 
 以异步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，使用Promise形式返回结果。
+
+>如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3013,6 +3038,8 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 
 以同步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，返回对象为string数组。
 
+>如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -3081,6 +3108,8 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 以异步方法根据给定的moduleName、extensionAbilityName和metadataName获取相应配置文件的json格式字符串，使用callback形式返回结果。
 
+>如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -3132,6 +3161,8 @@ try {
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string\>\>;
 
 以异步方法根据给定的moduleName、extensionAbilityName和metadataName获取相应配置文件的json格式字符串，使用Promise形式返回结果。
+
+>如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3198,6 +3229,8 @@ try {
 getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: string, metadataName?: string): Array\<string\>;
 
 以同步方法根据给定的moduleName、extensionAbilityName和metadataName获取相应配置文件的json格式字符串，返回对象为string数组。
+
+>如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3392,7 +3425,7 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let permissionName = "ohos.permission.GET_BUNDLE_INFO";
 try {
-    let PermissionDef = bundleManager.getPermissionDefSync(permission);
+    let PermissionDef = bundleManager.getPermissionDefSync(permissionName);
     hilog.info(0x0000, 'testTag', 'getPermissionDefSync successfully. Data: %{public}s', JSON.stringify(PermissionDef));
 } catch (err) {
     let message = (err as BusinessError).message;
@@ -4328,5 +4361,365 @@ try {
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'getBundleInfoForSelfSync failed: %{public}s', message);
+}
+```
+
+### bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>
+
+queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>;
+
+根据给定的want、extensionAbilityType、extensionAbilityFlags和userId获取ExtensionAbilityInfo，使用同步方式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名                | 类型                            | 必填 | 说明                                                      |
+| --------------------- | ------------------------------- | ---- | --------------------------------------------------------- |
+| want                  | Want                            | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
+| extensionAbilityType  | string                          | 是   | 表示自定义extensionAbility的类型。                        |
+| extensionAbilityFlags | [number](#extensionabilityflag) | 是   | 表示返回的ExtensionInfo对象中需要包含的信息标志。 |
+| userId                | number                          | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                   |
+| ------------------------------------------------------------ | -------------------------------------- |
+| Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | 同步返回Array\<ExtensionAbilityInfo>。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 17700001 | The specified bundleName is not found.       |
+| 17700003 | The specified extensionAbility is not found. |
+| 17700004 | The specified userId is invalid.             |
+| 17700026 | The specified bundle is disabled.            |
+
+**示例：**
+
+```ts
+// 示例接口带userId参数查询
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+
+let extensionAbilityType = "form";
+let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
+let userId = 100;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "EntryAbility"
+};
+
+try {
+    var data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityType, extensionFlags, userId)
+    hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed.');
+}
+```
+
+```ts
+// 示例接口不带userId参数查询
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+
+let extensionAbilityType = "form";
+let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
+let want = {
+    bundleName : "com.example.myapplication",
+    abilityName : "EntryAbility"
+};
+
+try {
+    let data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityType, extensionFlags);
+    hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed.');
+}
+```
+
+### bundleManager.getJsonProfile<sup>11+</sup>
+
+getJsonProfile(profileType: [ProfileType](#profiletype11), bundleName: string, moduleName?: string): string;
+
+以同步的方法根据给定的profileType、bundleName和moduleName查询相应配置文件的JSON字符串。
+
+获取调用方自己的配置文件时不需要权限。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名                | 类型                            | 必填 | 说明                                                      |
+| --------------------- | ------------------------------- | ---- | --------------------------------------------------------- |
+| profileType           | [ProfileType](#profiletype11)     | 是   | 表示要查询的配置文件类型。                                   |
+| bundleName            | string                          | 是   | 表示要查询应用程序的bundleName。                                  |
+| moduleName            | string                          | 否   | 表示要查询应用程序的moduleName，缺省时在入口模块中查找。            |
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------ |
+| string | 返回配置文件的JSON字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 17700001 | The specified bundleName is not found.       |
+| 17700002 | The specified moduleName is not found.       |
+| 17700024 | Failed to get the profile because the specified profile is not found in the HAP. |
+| 17700026 | The specified bundle is disabled.            |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+
+let bundleName = 'com.example.myapplication';
+let moduleName = 'entry';
+let profileType = bundleManager.ProfileType.INTENT_PROFILE;
+
+try {
+    let data = bundleManager.getJsonProfile(profileType, bundleName, moduleName)
+    hilog.info(0x0000, 'testTag', 'getJsonProfile successfully. Data: %{public}s', data);
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getJsonProfile failed.');
+}
+```
+
+### bundleManager.getRecoverableApplicationInfo<sup>11+</sup>
+
+getRecoverableApplicationInfo(callback: AsyncCallback\<Array\<RecoverableApplicationInfo\>\>): void;
+
+以异步的方法获取所有可恢复的预置应用信息，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo.md)\>\> | 是   | 回调函数，当获取成功时，err为null，data为获所有可恢复的预置应用信息。 |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+
+try {
+    bundleManager.getRecoverableApplicationInfo((err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'getRecoverableApplicationInfo failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'getRecoverableApplicationInfo successfully: %{public}s', JSON.stringify(data));
+        }
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getRecoverableApplicationInfo failed: %{public}s', message);
+}
+```
+
+### bundleManager.getRecoverableApplicationInfo<sup>11+</sup>
+
+getRecoverableApplicationInfo(): Promise\<Array\<RecoverableApplicationInfo\>\>;
+
+以异步的方法获取所有可恢复的预置应用信息，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**返回值：**
+
+| 类型                                                         | 说明                                |
+| ------------------------------------------------------------ | ----------------------------------- |
+| Promise\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo.md)\>\> | Promise对象，返回所有可恢复的预置应用信息。 |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+
+try {
+    bundleManager.getRecoverableApplicationInfo().then((data) => {
+        hilog.info(0x0000, 'testTag', 'getRecoverableApplicationInfo successfully: %{public}s', JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getRecoverableApplicationInfo failed: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getRecoverableApplicationInfo failed: %{public}s', message);
+}
+```
+
+### bundleManager.setAdditionalInfo<sup>11+</sup>
+
+setAdditionalInfo(bundleName: string, additionalInfo: string): void
+
+设置指定应用的额外信息。此接口仅供应用市场调用。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名                | 类型                             | 必填 | 说明                                               |
+| --------------------- | ------------------------------- | ---- | -------------------------------------------------- |
+| bundleName            | string                          | 是   | 指定应用的包名。                                    |
+| additionalInfo        | string                          | 是   | 需要设置的应用的额外信息。                           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                    |
+| -------- | ---------------------------------------------------------- |
+| 17700001 | The specified bundleName is not found.                     |
+| 17700053 | Not app gallery call.                                      |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+
+let bundleName = "com.example.myapplication";
+let additionalInfo = "xxxxxxxxx,formUpdateLevel:4";
+
+try {
+    bundleManager.setAdditionalInfo(bundleName, additionalInfo);
+    hilog.info(0x0000, 'testTag', 'setAdditionalInfo successfully.');
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'setAdditionalInfo failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.verifyAbc
+
+verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: AsyncCallback\<void>): void
+
+根据给定的abcPaths和deleteOriginalFiles校验.abc文件。使用callback异步回调。
+
+**需要权限：** ohos.permission.RUN_DYN_CODE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| abcPaths  | Array\<string> | 是   | .abc文件路径。 |
+| deleteOriginalFiles | boolean | 是   | 是否删除.abc文件，true删除，false不删除。|
+| callback | AsyncCallback\<void> | 是 | 回调函数，当获取成功时，err为null；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17700201 | verifyAbc failed. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let abcPaths : Array<string> = ['/data/storage/el2/base/a.abc'];
+
+try {
+    bundleManager.verifyAbc(abcPaths, true, (err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
+        }
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', message);
+}
+```
+
+### bundleManager.verifyAbc
+
+verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void>
+
+根据给定的abcPaths和deleteOriginalFiles校验.abc文件。使用Promise异步回调。
+
+**需要权限：** ohos.permission.RUN_DYN_CODE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| abcPaths  | Array\<string> | 是   | .abc文件路径。 |
+| deleteOriginalFiles | boolean | 是   | 是否删除.abc文件，true删除，false不删除。       |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 17700201 | verifyAbc failed. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let abcPaths : Array<string> = ['/data/storage/el2/base/a.abc'];
+
+try {
+    bundleManager.verifyAbc(abcPaths, true).then((data) => {
+        hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', message);
 }
 ```

@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Incorrect Ability name. The specified Ability name does not exist.
+The specified ability does not exist.
 
 **错误描述**
 
@@ -20,8 +20,15 @@ Incorrect Ability name. The specified Ability name does not exist.
 
 **处理步骤**
 
-1. 检查Bundle名称是否正确。
-2. 检查Bundle名称对应的Ability是否正确。
+1. 检查want中的bundleName、moduleName和abilityName是否正确。
+2. 检查传入want中bundleName对应的应用是否安装。可使用如下命令查询已安装的应用列表，若bundleName不在查询结果中，说明应用未安装成功。
+    ```
+    hdc shell bm dump -a
+    ```
+3. 多hap应用需确认ability所属的hap是否已被安装。可使用如下命令查询应用的包信息，若安装的应用中没有对应的hap和ability，说明ability所属的hap未被安装。
+    ```
+    hdc shell bm dump -n 包名
+    ```
 
 ## 16000002 接口调用Ability类型错误
 
@@ -39,14 +46,14 @@ Incorrect Ability type.
 
 **处理步骤**
 
-1. 检查包名对应的Ability是否正确。
-2. 根据Ability类型调用不同接口。
+1. 检查want中的bundleName、moduleName和abilityName是否正确。
+2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用[startServiceExtensionAbility](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartserviceextensionability)方法启动或[connectServiceExtensionAbility()](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接。
 
 ## 16000003 指定的ID不存在
 
 **错误信息**
 
-Input error. The specified ID does not exist.
+Id does not exist.
 
 **错误描述**
 
@@ -64,7 +71,7 @@ Input error. The specified ID does not exist.
 
 **错误信息**
 
-Visibility verification failed.
+Can not start invisible component.
 
 **错误描述**
 
@@ -76,7 +83,8 @@ Visibility verification failed.
 
 **处理步骤**
 
-拉起应用时抛出16000004异常，表示被拉应用调用失败，需要检查被拉应用module.json5的Ability字段的exported配置是否为true。该配置字段为true，表示可以被其他应用调用；该配置字段为false，表示不可以被其他应用调用。
+1. Stage模型下，拉起应用时抛出16000004异常，表示被拉应用调用失败，需要检查被拉应用module.json5的Ability字段的[exported](../../quick-start/module-configuration-file.md#abilities标签)配置是否为true。该配置字段为true，表示可以被其他应用调用；该配置字段为false，表示不可以被其他应用调用。
+2. 若应用需要拉起exported为false的ability，请申请[ohos.permission.START_INVISIBLE_ABILITY](../../security/permission-list.md#ohospermissionstart_invisible_ability)权限。
 
 ## 16000006 不允许跨用户操作
 
@@ -100,7 +108,7 @@ Cross-user operations are not allowed.
 
 **错误信息**
 
-Service busy, please wait and try again.
+Service busy, there are concurrent tasks, waiting for retry.
 
 **错误描述**
 
@@ -118,7 +126,7 @@ Service busy, please wait and try again.
 
 **错误信息**
 
-Crowdtest App Expired.
+The crowdtesting application expires.
 
 **错误描述**
 
@@ -130,13 +138,13 @@ Crowdtest App Expired.
 
 **处理步骤**
 
-请检查应用是否众测到期。
+请检查应用是否众测到期，已过有效期的众测应用无法启动。
 
 ## 16000009 wukong模式，不允许启动/停止ability
 
 **错误信息**
 
-Ability cannot be started or sotpped in Wukong mode.
+An ability cannot be started or stopped in Wukong mode.
 
 **错误描述**
 
@@ -148,7 +156,7 @@ wukong模式，不允许启动/停止ability。
 
 **处理步骤**
 
-请勿在wukong模型下启动/停止Ability。
+退出wukong模式后，再尝试启动/停止ability。请勿在wukong模式下启动/停止Ability。
 
 ## 16000010 不允许带迁移flag
 
@@ -186,6 +194,60 @@ The context does not exist.
 
 请检查上下文对象是否可用。
 
+## 16000012 应用被管控
+
+**错误信息**
+
+The application is controlled.
+
+**错误描述**
+
+当应用受到应用市场管控时，方法将返回该错误码。
+
+**可能原因**
+
+应用疑似存在恶意行为，受到应用市场管控不允许启动。
+
+**处理步骤**
+
+建议卸载该应用。
+
+## 16000013 应用被EDM管控
+
+**错误信息**
+
+The application is controlled by EDM.
+
+**错误描述**
+
+当应用受到企业设备管理[Enterprise Device Manager](../apis/enterpriseDeviceManagement-overview.md)管控时，方法将返回该错误码。
+
+**可能原因**
+
+应用受企业设备管理管控。
+
+**处理步骤**
+
+请联系企业设备管理相关人员。
+
+## 16000015 服务超时
+
+**错误信息**
+
+Service timeout.
+
+**错误描述**
+
+当服务超时时，方法将返回该错误码。
+
+**可能原因**
+
+服务超时。
+
+**处理步骤**
+
+服务超时，请稍后重试。
+
 ## 16000017 上一个Ability未启动完成，先缓存在队列中等待后续启动。
 
 **错误信息**
@@ -216,11 +278,13 @@ Internal error.
 
 **可能原因**
 
-内存申请、多线程处理等内核通用错误。
+内存申请、多线程处理等内核通用错误。具体原因可能包括：内部对象为空、处理超时、包管理获取应用信息失败、系统服务获取失败、启动的ability实例已达到上限等等。
 
 **处理步骤**
 
-确认系统内存是否足够。
+1. 确认系统内存是否足够，设备使用的系统版本是否存在异常。
+2. 检查是否启动了过多的ability。
+3. 尝试重启设备。
 
 ## 16000051 网络异常
 
@@ -262,7 +326,7 @@ Installation-free is not supported.
 
 **错误信息**
 
-The ability is not on the top of UI.
+The ability is not on the top of the UI.
 
 **错误描述**
 
@@ -270,11 +334,11 @@ The ability is not on the top of UI.
 
 **可能原因**
 
-应用未显示在界面顶层。
+用户执行免安装启动时需要确保应用在前台，但应用未显示在界面顶层。
 
 **处理步骤**
 
-请检查应用是否显示在界面顶层。
+请检查当前应用是否显示在界面顶层。
 
 ## 16000054 免安装服务繁忙
 
@@ -298,7 +362,7 @@ Installation-free service is busy, please wait and try again later.
 
 **错误信息**
 
-Installation-free time out.
+Installation-free timed out.
 
 **错误描述**
 
@@ -401,6 +465,42 @@ Sandbox application can not grant URI permission.
 **处理步骤**
 
 确认为非沙箱应用。
+
+## 16000061 不支持的操作
+
+**错误信息**
+
+Operation not supported.
+
+**错误描述**
+
+当操作在当前系统上不支持时，返回该错误码。
+
+**可能原因**
+
+操作在当前系统上不支持。
+
+**处理步骤**
+
+确认操作在当前系统上是否支持。
+
+## 16000062 子进程数量超出上限
+
+**错误信息**
+
+The number of child process exceeds upper bound.
+
+**错误描述**
+
+当申请创建子进程时，创建的子进程数量已经达到上限，返回该错误码。
+
+**可能原因**
+
+创建的子进程数量已经达到上限。
+
+**处理步骤**
+
+确认创建的子进程数量是否已经达到上限。子进程数量上限为128个。
 
 ## 16000101 执行shell命令失败
 
@@ -527,13 +627,15 @@ The caller has been released.
 
 **处理步骤**
 
-请重新注册有效通用组件客户端调用接口。
+1. 请重新注册有效通用组件客户端调用接口。
+2. 检查调用context.startAbility时，context对应的ability是否还在运行。若该ability已被析构，会抛出该错误码。
+3. 若存在连续调用startAbility和terminateSelf的情况，请确认收到startAbility成功或失败的回调后，再调用terminateSelf。
 
 ## 16200002 通用组件服务端(Callee)无效
 
 **错误信息**
 
-The callee does not exist.
+Callee invalid. The callee does not exist.
 
 **错误描述**
 
@@ -569,7 +671,7 @@ Release error. The caller does not call any callee.
 
 **错误信息**
 
-The method has registered.
+Method registered. The method has registered.
 
 **错误描述**
 
@@ -587,7 +689,7 @@ The method has registered.
 
 **错误信息**
 
-The method is not registered.
+Method not registered. The method has not registered.
 
 **错误描述**
 
@@ -605,7 +707,7 @@ The method is not registered.
 
 **错误信息**
 
-The specified mission id does not exist.
+Mission not found.
 
 **错误描述**
 
@@ -623,7 +725,7 @@ The specified mission id does not exist.
 
 **错误信息**
 
-The specified mission listener does not exist.
+Input error. The specified mission listener does not exist.
 
 **错误描述**
 
@@ -659,7 +761,7 @@ The target application is not self application.
 
 **错误信息**
 
-Invalid bundle name.
+The bundle is not exist or no patch has applied.
 
 **错误描述**
 

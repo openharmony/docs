@@ -28,7 +28,7 @@ Obtains the RAT used in the CS and PS domains for the SIM card in the specified 
 | Name  | Type                                                        | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech:[RadioTechnology](#radiotechnology)}\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech:[RadioTechnology](#radiotechnology)}\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -54,7 +54,11 @@ class Tech {
     csRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
 }
 radio.getRadioTech(slotId, (err: BusinessError, data: Tech) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getRadioTech failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getRadioTech success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -105,9 +109,9 @@ class Tech {
     csRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
 }
 radio.getRadioTech(slotId).then((data: Tech) => {
-    console.log(`getRadioTech success, data->${JSON.stringify(data)}`);
+    console.log(`getRadioTech success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getRadioTech failed, err->${JSON.stringify(err)}`);
+    console.error(`getRadioTech failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -126,7 +130,7 @@ Obtains the network status. This API uses an asynchronous callback to return the
 
 | Name  | Type                                          | Mandatory| Description      |
 | -------- | ---------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[NetworkState](#networkstate)\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[NetworkState](#networkstate)\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -147,7 +151,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 
 radio.getNetworkState((err: BusinessError, data: radio.NetworkState) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getNetworkState failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getNetworkState success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -156,7 +164,7 @@ radio.getNetworkState((err: BusinessError, data: radio.NetworkState) => {
 
 getNetworkState\(slotId: number, callback: AsyncCallback\<NetworkState\>\): void
 
-Obtains the network status. This API uses an asynchronous callback to return the result.
+Obtains the network status of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -167,7 +175,7 @@ Obtains the network status. This API uses an asynchronous callback to return the
 | Name  | Type                                          | Mandatory| Description                                  |
 | -------- | ---------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                         | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[NetworkState](#networkstate)\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<[NetworkState](#networkstate)\> | Yes  | Callback used to return the result.                              |
 
 **Error codes**
 
@@ -189,7 +197,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getNetworkState(slotId, (err: BusinessError, data: radio.NetworkState) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getNetworkState failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getNetworkState success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -198,7 +210,7 @@ radio.getNetworkState(slotId, (err: BusinessError, data: radio.NetworkState) => 
 
 getNetworkState\(slotId?: number\): Promise\<NetworkState\>
 
-Obtains the network status. This API uses a promise to return the result.
+Obtains the network status of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -238,7 +250,7 @@ let slotId: number = 0;
 radio.getNetworkState(slotId).then((data: radio.NetworkState) => {
     console.log(`getNetworkState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getNetworkState failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getNetworkState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -247,7 +259,7 @@ radio.getNetworkState(slotId).then((data: radio.NetworkState) => {
 
 getNetworkSelectionMode\(slotId: number, callback: AsyncCallback\<NetworkSelectionMode\>\): void
 
-Obtains the network selection mode for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the network selection mode of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -256,7 +268,7 @@ Obtains the network selection mode for the SIM card in the specified slot. This 
 | Name  | Type                                                        | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[NetworkSelectionMode](#networkselectionmode)\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<[NetworkSelectionMode](#networkselectionmode)\> | Yes  | Callback used to return the result.                              |
 
 **Error codes**
 
@@ -277,7 +289,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getNetworkSelectionMode(slotId, (err: BusinessError, data: radio.NetworkSelectionMode) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getNetworkSelectionMode failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getNetworkSelectionMode success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -286,7 +302,7 @@ radio.getNetworkSelectionMode(slotId, (err: BusinessError, data: radio.NetworkSe
 
 getNetworkSelectionMode\(slotId: number\): Promise\<NetworkSelectionMode\>
 
-Obtains the network selection mode for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the network selection mode of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -323,7 +339,7 @@ let slotId: number = 0;
 radio.getNetworkSelectionMode(slotId).then((data: radio.NetworkSelectionMode) => {
     console.log(`getNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -362,7 +378,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getISOCountryCodeForNetwork(slotId, (err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getISOCountryCodeForNetwork failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getISOCountryCodeForNetwork success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -408,7 +428,7 @@ let slotId: number = 0;
 radio.getISOCountryCodeForNetwork(slotId).then((data: string) => {
     console.log(`getISOCountryCodeForNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getISOCountryCodeForNetwork failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getISOCountryCodeForNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -456,7 +476,7 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -464,6 +484,7 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -475,7 +496,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 
 radio.getPrimarySlotId((err: BusinessError, data: number) => {
-   console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getPrimarySlotId failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getPrimarySlotId success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -509,7 +534,7 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 ```ts
 import { BusinessError } from '@ohos.base';
 
-radio.getPrimarySlotId().then((data: string) => {
+radio.getPrimarySlotId().then((data: number) => {
     console.log(`getPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
@@ -551,7 +576,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getSignalInformation(slotId, (err: BusinessError, data: Array<radio.SignalInformation>) => {
-   console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getSignalInformation failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getSignalInformation success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -629,14 +658,14 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 let signalInfo: Array<radio.SignalInformation> = radio.getSignalInformationSync(slotId);
-console.log(`signal information size is:` + signalInfo.size());
+console.log(`signal information size is:` + signalInfo.length);
 ```
 
 ## radio.isNrSupported<sup>(deprecated)</sup>
 
 isNrSupported\(\): boolean
 
-Checks whether the current device supports 5G \(NR\).
+Checks whether the current SIM card supports 5G \(NR\).
 
 > **NOTE**
 >
@@ -661,7 +690,7 @@ console.log("Result: "+ result);
 
 isNrSupported\(slotId: number\): boolean
 
-Checks whether the current device supports 5G \(NR\).
+Checks whether the SIM card in the specified slot supports 5G \(NR\).
 
 > **NOTE**
 >
@@ -694,7 +723,7 @@ console.log("Result: "+ result);
 
 isNRSupported\(\): boolean
 
-Checks whether the current device supports 5G \(NR\).
+Checks whether the current SIM card supports 5G \(NR\).
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -716,7 +745,7 @@ console.log("Result: "+ result);
 
 isNRSupported\(slotId: number\): boolean
 
-Checks whether the current device supports 5G \(NR\).
+Checks whether the SIM card in the specified slot supports 5G \(NR\).
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -755,7 +784,7 @@ Checks whether the radio service is enabled on the primary SIM card. This API us
 
 | Name  | Type                    | Mandatory| Description                                                   |
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>- **true**: The radio service is enabled.<br>- **false**: The radio service is disabled.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.  <br>- **true**: The radio service is enabled.<br>- **false**: The radio service is disabled.|
 
 **Error codes**
 
@@ -776,7 +805,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 
 radio.isRadioOn((err: BusinessError, data: boolean) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`isRadioOn failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`isRadioOn success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -796,7 +829,7 @@ Checks whether the radio service is enabled on the SIM card in the specified slo
 | Name  | Type                    | Mandatory| Description                                                   |
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
 | slotId   | number                   | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                 |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>- **true**: The radio service is enabled.<br>- **false**: The radio service is disabled.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.  <br>- **true**: The radio service is enabled.<br>- **false**: The radio service is disabled.|
 
 **Error codes**
 
@@ -818,7 +851,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.isRadioOn(slotId, (err: BusinessError, data: boolean) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`isRadioOn failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`isRadioOn success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -876,7 +913,7 @@ radio.isRadioOn(slotId).then((data: boolean) => {
 
 getOperatorName\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the carrier name for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the carrier name of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -906,7 +943,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getOperatorName(slotId, (err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getOperatorName failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getOperatorName success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -915,7 +956,7 @@ radio.getOperatorName(slotId, (err: BusinessError, data: string) => {
 
 getOperatorName\(slotId: number\): Promise\<string\>
 
-Obtains the carrier name for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the carrier name of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -952,7 +993,7 @@ let slotId: number = 0;
 radio.getOperatorName(slotId).then((data: string) => {
     console.log(`getOperatorName success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getOperatorName failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getOperatorName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -960,7 +1001,7 @@ radio.getOperatorName(slotId).then((data: string) => {
 
 getOperatorNameSync\(slotId: number\): string
 
-Obtains the carrier name for the SIM card in the specified slot.
+Obtains the carrier name of the SIM card in the specified slot.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1004,7 +1045,7 @@ Sets the ID of the slot in which the primary card is located. This API uses an a
 | Name  | Type                 | Mandatory| Description                                  |
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.         |
 
 **Error codes**
 
@@ -1028,7 +1069,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.setPrimarySlotId(slotId, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`setPrimarySlotId failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`setPrimarySlotId success.`);
 });
 ```
 
@@ -1081,7 +1126,7 @@ let slotId: number = 0;
 radio.setPrimarySlotId(slotId).then(() => {
     console.log(`setPrimarySlotId success.`);
 }).catch((err: BusinessError) => {
-    console.log(`setPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1089,7 +1134,7 @@ radio.setPrimarySlotId(slotId).then(() => {
 
 getIMEI\(callback: AsyncCallback\<string\>\): void
 
-Obtains the IMEI for the SIM card in a card slot. This API uses an asynchronous callback to return the result.
+Obtains the IMEI of the primary SIM card of the device. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1101,7 +1146,7 @@ Obtains the IMEI for the SIM card in a card slot. This API uses an asynchronous 
 
 | Name  | Type                   | Mandatory| Description                                      |
 | -------- | ----------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. If the IMEI does not exist, an empty string is returned.|
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.  If the IMEI does not exist, an empty string is returned.|
 
 **Error codes**
 
@@ -1123,7 +1168,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 
 radio.getIMEI((err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getIMEI failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getIMEI success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1132,7 +1181,7 @@ radio.getIMEI((err: BusinessError, data: string) => {
 
 getIMEI\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the IMEI for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the IMEI of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1145,7 +1194,7 @@ Obtains the IMEI for the SIM card in the specified slot. This API uses an asynch
 | Name  | Type                   | Mandatory| Description                                      |
 | -------- | ----------------------- | ---- | ------------------------------------------ |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2    |
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. If the IMEI does not exist, an empty string is returned.|
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.  If the IMEI does not exist, an empty string is returned.|
 
 **Error codes**
 
@@ -1168,7 +1217,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getIMEI(slotId, (err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getIMEI failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getIMEI success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1177,7 +1230,7 @@ radio.getIMEI(slotId, (err: BusinessError, data: string) => {
 
 getIMEI\(slotId?: number\): Promise\<string\>
 
-Obtains the IMEI for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the IMEI of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1228,7 +1281,7 @@ radio.getIMEI(slotId).then((data: string) => {
 
 getMEID\(callback: AsyncCallback\<string\>\): void
 
-Obtains the MEID for the SIM card in a card slot. This API uses an asynchronous callback to return the result.
+Obtains the MEID of the SIM card. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1240,7 +1293,7 @@ Obtains the MEID for the SIM card in a card slot. This API uses an asynchronous 
 
 | Name  | Type                   | Mandatory| Description      |
 | -------- | ----------------------- | ---- | ---------- |
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -1262,7 +1315,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 
 radio.getMEID((err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getMEID failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getMEID success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1271,7 +1328,7 @@ radio.getMEID((err: BusinessError, data: string) => {
 
 getMEID\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the MEID for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the MEID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1284,7 +1341,7 @@ Obtains the MEID for the SIM card in the specified slot. This API uses an asynch
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.       |
 
 **Error codes**
 
@@ -1307,7 +1364,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getMEID(slotId, (err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getMEID failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getMEID success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1316,7 +1377,7 @@ radio.getMEID(slotId, (err: BusinessError, data: string) => {
 
 getMEID\(slotId?: number\): Promise\<string\>
 
-Obtains the MEID for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the MEID of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1367,7 +1428,7 @@ radio.getMEID(slotId).then((data: string) => {
 
 getUniqueDeviceId\(callback: AsyncCallback\<string\>\): void
 
-Obtains the unique device ID for the SIM card in a card slot. This API uses an asynchronous callback to return the result.
+Obtains the unique device ID of the primary SIM card of the device. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1379,7 +1440,7 @@ Obtains the unique device ID for the SIM card in a card slot. This API uses an a
 
 | Name  | Type                   | Mandatory| Description      |
 | -------- | ----------------------- | ---- | ---------- |
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -1401,7 +1462,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 
 radio.getUniqueDeviceId((err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getUniqueDeviceId failed, callback: err->${JSON.stringify(err)}}`);
+        return;
+    }
+    console.log(`getUniqueDeviceId success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1410,7 +1475,7 @@ radio.getUniqueDeviceId((err: BusinessError, data: string) => {
 
 getUniqueDeviceId\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the unique device ID for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the unique device ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1423,7 +1488,7 @@ Obtains the unique device ID for the SIM card in the specified slot. This API us
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.       |
 
 **Error codes**
 
@@ -1446,7 +1511,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getUniqueDeviceId(slotId, (err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getUniqueDeviceId failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getUniqueDeviceId success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1455,7 +1524,7 @@ radio.getUniqueDeviceId(slotId, (err: BusinessError, data: string) => {
 
 getUniqueDeviceId\(slotId?: number\): Promise\<string\>
 
-Obtains the unique device ID for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the unique device ID of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1518,7 +1587,7 @@ Sends a cell location update request. This API uses an asynchronous callback to 
 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | --------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -1540,7 +1609,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 
 radio.sendUpdateCellLocationRequest((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`sendUpdateCellLocationRequest failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`sendUpdateCellLocationRequest success.`);
 });
 ```
 
@@ -1561,7 +1634,7 @@ Sends a cell location update request for the SIM card in the specified slot. Thi
 | Name  | Type                 | Mandatory| Description      |
 | -------- | --------------------- | ---- | ---------- |
 | slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -1584,7 +1657,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.sendUpdateCellLocationRequest(slotId, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`sendUpdateCellLocationRequest failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`sendUpdateCellLocationRequest success.`);
 });
 ```
 
@@ -1635,7 +1712,7 @@ let slotId: number = 0;
 radio.sendUpdateCellLocationRequest(slotId).then(() => {
     console.log(`sendUpdateCellLocationRequest success.`);
 }).catch((err: BusinessError) => {
-    console.log(`sendUpdateCellLocationRequest failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`sendUpdateCellLocationRequest failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1655,7 +1732,7 @@ Obtains cell information. This API uses an asynchronous callback to return the r
 
 | Name  | Type                                                        | Mandatory| Description                    |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -1677,7 +1754,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 
 radio.getCellInformation((err: BusinessError, data: Array<radio.CellInformation>) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getCellInformation failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getCellInformation success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1686,7 +1767,7 @@ radio.getCellInformation((err: BusinessError, data: Array<radio.CellInformation>
 
 getCellInformation\(slotId: number, callback: AsyncCallback\<Array\<CellInformation\>\>\): void
 
-Obtains cell information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains cell information of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1699,7 +1780,7 @@ Obtains cell information for the SIM card in the specified slot. This API uses a
 | Name  | Type                                                        | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | Yes  | Callback used to return the result.              |
+| callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -1722,7 +1803,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getCellInformation(slotId, (err: BusinessError, data: Array<radio.CellInformation>) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getCellInformation failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getCellInformation success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1731,7 +1816,7 @@ radio.getCellInformation(slotId, (err: BusinessError, data: Array<radio.CellInfo
 
 getCellInformation\(slotId?: number\): Promise\<Array\<CellInformation\>\>
 
-Obtains cell information for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains cell information of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1795,7 +1880,7 @@ Sets the network selection mode. This API uses an asynchronous callback to retur
 | Name  | Type                                                       | Mandatory| Description              |
 | -------- | ----------------------------------------------------------- | ---- | ------------------ |
 | options  | [NetworkSelectionModeOptions](#networkselectionmodeoptions) | Yes  | Network selection mode.|
-| callback | AsyncCallback\<void\>                                       | Yes  | Callback used to return the result.        |
+| callback | AsyncCallback\<void\>                                       | Yes  | Callback used to return the result.      |
 
 **Error codes**
 
@@ -1829,7 +1914,11 @@ let networkSelectionModeOptions: radio.NetworkSelectionModeOptions = {
     resumeSelection: true
 }
 radio.setNetworkSelectionMode(networkSelectionModeOptions, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`setNetworkSelectionMode failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`setNetworkSelectionMode success.`);
 });
 ```
 
@@ -1891,7 +1980,7 @@ let networkSelectionModeOptions: radio.NetworkSelectionModeOptions = {
 radio.setNetworkSelectionMode(networkSelectionModeOptions).then(() => {
     console.log(`setNetworkSelectionMode success.`);
 }).catch((err: BusinessError) => {
-    console.log(`setNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1899,7 +1988,7 @@ radio.setNetworkSelectionMode(networkSelectionModeOptions).then(() => {
 
 getNetworkSearchInformation\(slotId: number, callback: AsyncCallback\<NetworkSearchResult\>\): void
 
-Obtains network search information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains network search information of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1912,7 +2001,7 @@ Obtains network search information for the SIM card in the specified slot. This 
 | Name  | Type                                                        | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | Yes  | Callback used to return the result.          |
+| callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -1934,7 +2023,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 
 radio.getNetworkSearchInformation(0, (err: BusinessError, data: radio.NetworkSearchResult) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getNetworkSearchInformation failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getNetworkSearchInformation success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1942,7 +2035,7 @@ radio.getNetworkSearchInformation(0, (err: BusinessError, data: radio.NetworkSea
 
 getNetworkSearchInformation\(slotId: number\): Promise\<NetworkSearchResult\>
 
-Obtains network search information for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains network search information of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1984,7 +2077,7 @@ import { BusinessError } from '@ohos.base';
 radio.getNetworkSearchInformation(0).then((data: radio.NetworkSearchResult) => {
     console.log(`getNetworkSearchInformation success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getNetworkSearchInformation failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getNetworkSearchInformation failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1992,7 +2085,7 @@ radio.getNetworkSearchInformation(0).then((data: radio.NetworkSearchResult) => {
 
 getNrOptionMode\(callback: AsyncCallback\<NrOptionMode\>\): void
 
-Obtains the NR option mode. This API uses an asynchronous callback to return the result.
+Obtains the NR option mode of the SIM card. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2006,7 +2099,7 @@ Obtains the NR option mode. This API uses an asynchronous callback to return the
 
 | Name  | Type                                           | Mandatory| Description      |
 | -------- | ----------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[NrOptionMode](#nroptionmodedeprecated)\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[NrOptionMode](#nroptionmodedeprecated)\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -2027,7 +2120,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 
 radio.getNrOptionMode((err: BusinessError, data: radio.NrOptionMode) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getNrOptionMode failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getNrOptionMode success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2036,7 +2133,7 @@ radio.getNrOptionMode((err: BusinessError, data: radio.NrOptionMode) => {
 
 getNrOptionMode\(slotId: number, callback: AsyncCallback\<NrOptionMode\>\): void
 
-Obtains the NR option mode for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the NR option mode of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2051,7 +2148,7 @@ Obtains the NR option mode for the SIM card in the specified slot. This API uses
 | Name  | Type                                           | Mandatory| Description                                  |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------- |
 | slotId   | number                                          | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[NrOptionMode](#nroptionmodedeprecated)\> | Yes  | Callback used to return the result.                   |
+| callback | AsyncCallback\<[NrOptionMode](#nroptionmodedeprecated)\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -2073,7 +2170,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getNrOptionMode(slotId, (err: BusinessError, data: radio.NrOptionMode) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getNrOptionModecallback failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getNrOptionModecallback success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2082,11 +2183,11 @@ radio.getNrOptionMode(slotId, (err: BusinessError, data: radio.NrOptionMode) => 
 
 getNrOptionMode\(slotId?: number\): Promise\<NrOptionMode\>
 
-Obtains the NR option mode for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the NR option mode of the SIM card in the specified slot. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 10. You are advised to use [getNROptionMode](#radiogetnroptionmode10).
+> This API is supported since API version 8 and deprecated since API version 10. You are advised to use [getNROptionMode](#radiogetnroptionmode10-1).
 
 **System API**: This is a system API.
 
@@ -2146,7 +2247,7 @@ Turns on the radio function. This API uses an asynchronous callback to return th
 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | --------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -2168,7 +2269,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 
 radio.turnOnRadio((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`turnOnRadio failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`turnOnRadio success.`);
 });
 ```
 
@@ -2177,7 +2282,7 @@ radio.turnOnRadio((err: BusinessError) => {
 
 turnOnRadio\(slotId: number, callback: AsyncCallback\<void\>\): void
 
-Turns on the radio function for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Enables the radio service for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2190,7 +2295,7 @@ Turns on the radio function for the SIM card in the specified slot. This API use
 | Name  | Type                 | Mandatory| Description                                  |
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.       |
 
 **Error codes**
 
@@ -2213,7 +2318,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.turnOnRadio(slotId, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`turnOnRadio failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`turnOnRadio success.`);
 });
 ```
 
@@ -2285,7 +2394,7 @@ Turns off the radio function. This API uses an asynchronous callback to return t
 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | --------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -2307,7 +2416,11 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 
 radio.turnOffRadio((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`turnOffRadio failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`turnOffRadio success.`);
 });
 ```
 
@@ -2316,7 +2429,7 @@ radio.turnOffRadio((err: BusinessError) => {
 
 turnOffRadio\(slotId: number, callback: AsyncCallback\<void\>\): void
 
-Turns off the radio function for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Disables the radio service for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2329,7 +2442,7 @@ Turns off the radio function for the SIM card in the specified slot. This API us
 | Name  | Type                 | Mandatory| Description                                  |
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -2352,7 +2465,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.turnOffRadio(slotId, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`turnOffRadio failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`turnOffRadio success.`);
 });
 ```
 
@@ -2412,7 +2529,7 @@ radio.turnOffRadio(slotId).then(() => {
 
 setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback: AsyncCallback\<void\>\): void
 
-Sets the preferred network for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Sets the preferred network of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2426,7 +2543,7 @@ Sets the preferred network for the SIM card in the specified slot. This API uses
 | ----------- | ---------------------------------------------- | ---- | -------------------------------------- |
 | slotId      | number                                         | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | Yes  | Preferred network mode.                      |
-| callback    | AsyncCallback\<void\>                          | Yes  | Callback used to return the result.                            |
+| callback    | AsyncCallback\<void\>                          | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -2450,7 +2567,11 @@ import { BusinessError } from '@ohos.base';
 let slotId: number = 0;
 let mode: radio.PreferredNetworkMode = radio.PreferredNetworkMode.PREFERRED_NETWORK_MODE_GSM;
 radio.setPreferredNetwork(slotId, mode, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`setPreferredNetwork failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`setPreferredNetwork success.`);
 });
 ```
 
@@ -2458,7 +2579,7 @@ radio.setPreferredNetwork(slotId, mode, (err: BusinessError) => {
 
 setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode\): Promise\<void\>
 
-Sets the preferred network for the SIM card in the specified slot. This API uses a promise to return the result.
+Sets the preferred network of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2471,7 +2592,7 @@ Sets the preferred network for the SIM card in the specified slot. This API uses
 | Name     | Type                                          | Mandatory| Description                                  |
 | ----------- | ---------------------------------------------- | ---- | -------------------------------------- |
 | slotId      | number                                         | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | Yes  | Preferred network mode.                      |
+| networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | Yes  | Preferred network mode.|
 
 **Return value**
 
@@ -2503,7 +2624,7 @@ let mode: radio.PreferredNetworkMode = radio.PreferredNetworkMode.PREFERRED_NETW
 radio.setPreferredNetwork(slotId, mode).then(() => {
     console.log(`setPreferredNetwork success.`);
 }).catch((err: BusinessError) => {
-    console.log(`setPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2511,7 +2632,7 @@ radio.setPreferredNetwork(slotId, mode).then(() => {
 
 getPreferredNetwork\(slotId: number, callback: AsyncCallback\<PreferredNetworkMode\>\): void
 
-Obtains the preferred network for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the preferred network of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2524,7 +2645,7 @@ Obtains the preferred network for the SIM card in the specified slot. This API u
 | Name  |                              Type                              | Mandatory| Description                                  |
 | -------- | --------------------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                                          | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[PreferredNetworkMode](#preferrednetworkmode8)\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<[PreferredNetworkMode](#preferrednetworkmode8)\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -2547,7 +2668,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getPreferredNetwork(slotId, (err: BusinessError, data: radio.PreferredNetworkMode) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getPreferredNetwork failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getPreferredNetwork success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2555,7 +2680,7 @@ radio.getPreferredNetwork(slotId, (err: BusinessError, data: radio.PreferredNetw
 
 getPreferredNetwork\(slotId: number\): Promise\<PreferredNetworkMode\>
 
-Obtains the preferred network for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the preferred network of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2598,7 +2723,7 @@ let slotId: number = 0;
 radio.getPreferredNetwork(slotId).then((data: radio.PreferredNetworkMode) => {
     console.log(`getPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2620,7 +2745,7 @@ Obtains the IMS registration status of the specified IMS service type for the SI
 | -------- | ------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                     | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | imsType  | [ImsServiceType](#imsservicetype9)         | Yes  | IMS service type.                         |
-| callback | AsyncCallback<[ImsRegInfo](#imsreginfo9)\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback<[ImsRegInfo](#imsreginfo9)\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -2644,7 +2769,11 @@ import { BusinessError } from '@ohos.base';
 let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.getImsRegInfo(slotId, mode, (err: BusinessError, data: radio.ImsRegInfo) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getImsRegInfo failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getImsRegInfo success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2697,7 +2826,7 @@ let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.getImsRegInfo(slotId, mode).then((data: radio.ImsRegInfo) => {
     console.log(`getImsRegInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getImsRegInfo failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getImsRegInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2705,7 +2834,7 @@ radio.getImsRegInfo(slotId, mode).then((data: radio.ImsRegInfo) => {
 
 on\(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback: Callback\<ImsRegInfo\>\): void
 
-Enables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
+Enables listening for **imsRegStateChange** events of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2717,10 +2846,10 @@ Enables listening for **imsRegStateChange** events. This API uses an asynchronou
 
 | Name  | Type                                | Mandatory| Description                                  |
 | -------- | ------------------------------------ | ---- | -------------------------------------- |
-| type     | string                               | Yes  | IMS registration status changes.               |
+| type     | string                               | Yes  | IMS registration status change. This field has a fixed value of **imsRegStateChange**.               |
 | slotId   | number                               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | imsType  | [ImsServiceType](#imsservicetype9)   | Yes  | IMS service type.                         |
-| callback | Callback<[ImsRegInfo](#imsreginfo9)> | Yes  | Callback used to return the result.                            |
+| callback | Callback<[ImsRegInfo](#imsreginfo9)> | Yes  | Callback used to return the result.               |
 
 **Error codes**
 
@@ -2744,7 +2873,7 @@ import { BusinessError } from '@ohos.base';
 let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.on('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
-    console.log(`callback: data->${JSON.stringify(data)}`);
+    console.log(`on imsRegStateChange success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2752,7 +2881,7 @@ radio.on('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
 
 off\(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback?: Callback\<ImsRegInfo\>\): void
 
-Disables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
+Disables listening for **imsRegStateChange** events of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2764,10 +2893,10 @@ Disables listening for **imsRegStateChange** events. This API uses an asynchrono
 
 | Name  | Type                                | Mandatory| Description                                  |
 | -------- | ------------------------------------ | ---- | -------------------------------------- |
-| type     | string                               | Yes  | IMS registration status changes.    |
+| type     | string                               | Yes  | IMS registration status change. This field has a fixed value of **imsRegStateChange**.    |
 | slotId   | number                               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | imsType  | [ImsServiceType](#imsservicetype9)   | Yes  | IMS service type.                         |
-| callback | Callback<[ImsRegInfo](#imsreginfo9)> | No  | Callback used to return the result. If this parameter is not set, the API unsubscribes from all callbacks.|
+| callback | Callback<[ImsRegInfo](#imsreginfo9)> | No  | Callback used to return the result.  If it is left unspecified, it indicates the callback for all the events will be unsubscribed. The value must be the same as the value of **callback** in **on('imsRegStateChange')**.  |
 
 **Error codes**
 
@@ -2791,7 +2920,7 @@ import { BusinessError } from '@ohos.base';
 let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.off('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
-    console.log(`callback: data->${JSON.stringify(data)}`);
+    console.log(`off imsRegStateChange success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2800,7 +2929,7 @@ radio.off('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
 
 getBasebandVersion\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the baseband version of the device for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the device baseband version of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2813,7 +2942,7 @@ Obtains the baseband version of the device for the SIM card in the specified slo
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | ------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. Baseband version of the device.           |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.             |
 
 **Error codes**
 
@@ -2836,7 +2965,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getBasebandVersion(slotId, (err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getBasebandVersion failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getBasebandVersion success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2845,7 +2978,7 @@ radio.getBasebandVersion(slotId, (err: BusinessError, data: string) => {
 
 getBasebandVersion\(slotId: number\): Promise\<string\>
 
-Obtains the baseband version of the device for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the device baseband version of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2897,7 +3030,7 @@ radio.getBasebandVersion(slotId).then((data: string) => {
 
 setNROptionMode\(slotId: number, mode: NROptionMode, callback: AsyncCallback\<void\>\): void
 
-Sets the NR mode for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Sets the NR mode of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2911,7 +3044,7 @@ Sets the NR mode for the SIM card in the specified slot. This API uses an asynch
 | -------- | ------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                           | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2 |
 | mode     | [NROptionMode](#nroptionmode10)                  | Yes  | Enumerates NR selection modes.                         |
-| callback | AsyncCallback\<void\>                            | Yes  | Callback used to return the result.                             |
+| callback | AsyncCallback\<void\>                            | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -2935,7 +3068,11 @@ import { BusinessError } from '@ohos.base';
 let slotId: number = 0;
 let mode: radio.NROptionMode = radio.NROptionMode.NR_OPTION_NSA_ONLY;
 radio.setNROptionMode(slotId, mode, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`setNROptionMode failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`setNROptionMode success.`);
 });
 ```
 
@@ -2944,7 +3081,7 @@ radio.setNROptionMode(slotId, mode, (err: BusinessError) => {
 
 setNROptionMode\(slotId: number, mode: NROptionMode\): Promise\<void\>
 
-Sets the NR mode for the SIM card in the specified slot. This API uses a promise to return the result.
+Sets the NR mode of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2957,7 +3094,7 @@ Sets the NR mode for the SIM card in the specified slot. This API uses a promise
 | Name|              Type              | Mandatory| Description                                  |
 | ------ | ------------------------------- | ---- | ------------------------------------- |
 | slotId | number                          | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| mode   | [NROptionMode](#nroptionmode10) | Yes  | Enumerates NR selection modes.                        |
+| mode   | [NROptionMode](#nroptionmode10) | Yes  | NR mode.  |
 
 **Return value**
 
@@ -2993,6 +3130,7 @@ radio.setNROptionMode(slotId, mode).then(() => {
 });
 ```
 
+
 ## radio.getNROptionMode<sup>10+</sup>
 
 getNROptionMode\(slotId: number, callback: AsyncCallback\<NROptionMode\>\): void
@@ -3005,16 +3143,16 @@ Obtains the NR option mode of the SIM card in the specified slot. This API uses 
 
 **Parameters**
 
-| Name   | Type                                              | Mandatory | Description                                   |
+| Name  | Type                                             | Mandatory| Description                                  |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------- |
-| slotId   | number                                           | Yes   | Card slot ID.<br/>- **0**: card slot 1<br/>- **1**: card slot 2  |
-| callback | AsyncCallback\<[NROptionMode](#nroptionmode10)\> | Yes   | Callback used to return the result.                              |
+| slotId   | number                                           | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2 |
+| callback | AsyncCallback\<[NROptionMode](#nroptionmode10)\> | Yes  | Callback used to return the result.            |
 
 **Error codes**
 
 For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
-| ID |                  Error Message                     |
+| ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
@@ -3030,16 +3168,19 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getNROptionMode(slotId, (err: BusinessError, data: radio.NROptionMode) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getNROptionMode failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getNROptionMode success, callback: data->${JSON.stringify(data)}`);
 });
 ```
-
 
 ## radio.getNROptionMode<sup>10+</sup>
 
 getNROptionMode\(slotId: number\): Promise\<NROptionMode\>
 
-Obtains the NR option mode for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the NR option mode of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -3088,7 +3229,7 @@ radio.getNROptionMode(slotId).then((data: radio.NROptionMode) => {
 
 getNetworkCapability\(slotId: number, type: NetworkCapabilityType, callback: AsyncCallback\<NetworkCapabilityState\>\): void
 
-Obtains the network capability for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the network capability of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -3102,7 +3243,7 @@ Obtains the network capability for the SIM card in the specified slot. This API 
 | -------- | -----------------------------------------------------------------------| ---- | ----------------------------------- |
 | slotId   | number                                                                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | type     | [NetworkCapabilityType](#networkcapabilitytype10)                      | Yes  | Network capability type.                       |
-| callback | AsyncCallback\<[NetworkCapabilityState](#networkcapabilitystate10)\>   | Yes  | Callback used to return the result.                           |
+| callback | AsyncCallback\<[NetworkCapabilityState](#networkcapabilitystate10)\>   | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -3126,7 +3267,11 @@ import { BusinessError } from '@ohos.base';
 let slotId: number = 0;
 let type: radio.NetworkCapabilityType = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
 radio.getNetworkCapability(slotId, type, (err: BusinessError, data: radio.NetworkCapabilityState) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getNetworkCapability failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getNetworkCapability success, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3135,7 +3280,7 @@ radio.getNetworkCapability(slotId, type, (err: BusinessError, data: radio.Networ
 
 getNetworkCapability\(slotId: number, type: NetworkCapabilityType\): Promise\<NetworkCapabilityState\>
 
-Obtains the network capability for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the network capability of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -3180,7 +3325,7 @@ let type: radio.NetworkCapabilityType = radio.NetworkCapabilityType.SERVICE_TYPE
 radio.getNetworkCapability(slotId, type).then((data: radio.NetworkCapabilityState) => {
     console.log(`getNetworkCapability success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getNetworkCapability failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getNetworkCapability failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3190,7 +3335,7 @@ radio.getNetworkCapability(slotId, type).then((data: radio.NetworkCapabilityStat
 setNetworkCapability\(slotId: number, type: NetworkCapabilityType, state: NetworkCapabilityState,
       callback: AsyncCallback\<void\>\): void
 
-Sets the network capability for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Sets the network capability of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -3205,7 +3350,7 @@ Sets the network capability for the SIM card in the specified slot. This API use
 | slotId   | number                                                          | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | type     | [NetworkCapabilityType](#networkcapabilitytype10)               | Yes  | Network capability type.                       |
 | state    | [NetworkCapabilityState](#networkcapabilitystate10)             | Yes  | Network capability status.                       |
-| callback | AsyncCallback\<void\>                                           | Yes  | Callback used to return the result.                           |
+| callback | AsyncCallback\<void\>                                           | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -3230,7 +3375,11 @@ let slotId: number = 0;
 let type: radio.NetworkCapabilityType = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
 let state: radio.NetworkCapabilityState = radio.NetworkCapabilityState.SERVICE_CAPABILITY_ON;
 radio.setNetworkCapability(slotId, type, state, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`setNetworkCapability failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`setNetworkCapability success.`);
 });
 ```
 
@@ -3239,7 +3388,7 @@ radio.setNetworkCapability(slotId, type, state, (err: BusinessError) => {
 
 setNetworkCapability\(slotId: number, type: NetworkCapabilityType, state: NetworkCapabilityState\): Promise\<void\>
 
-Sets the network capability for the SIM card in the specified slot. This API uses a promise to return the result.
+Sets the network capability of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -3286,10 +3435,9 @@ let state: radio.NetworkCapabilityState = radio.NetworkCapabilityState.SERVICE_C
 radio.setNetworkCapability(slotId, type, state).then(() => {
     console.log(`setNetworkCapability success`);
 }).catch((err: BusinessError) => {
-    console.log(`setNetworkCapability failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setNetworkCapability failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
-
 
 ## RadioTechnology
 
@@ -3363,7 +3511,7 @@ Defines the network status.
 
 ## RegState
 
-Defines the network status.
+Enumerates the network registration status.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -3445,7 +3593,7 @@ Enumerates preferred network modes.
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_GSM                 | 38   | NR+LTE+TD-SCDMA+GSM network mode.             |
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA               | 39   | NR+LTE+TD-SCDMA+WCDMA network mode.           |
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM           | 40   | NR+LTE+TD-SCDMA+WCDMA+GSM network mode.       |
-| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA | 41   | NR+LTE+TD-SCDMA+WCDMA+GSM network mode.       |
+| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA | 41   | NR+LTE+TD-SCDMA+WCDMA+GSM+EVDO+CDMA network mode.       |
 | PREFERRED_NETWORK_MODE_MAX_VALUE                          | 99   | Maximum value of the preferred network mode.                         |
 
 ## CellInformation<sup>8+</sup>
@@ -3460,7 +3608,7 @@ Defines the cell information.
 | isCamped          | boolean                                 |  Yes | Cell status.<br>**System API**: This is a system API.         |
 | timeStamp         | number                                  |  Yes | Timestamp when cell information is obtained.<br>**System API**: This is a system API.   |
 | signalInformation | [SignalInformation](#signalinformation) |  Yes | Signal information.                                                  |
-| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) |  Yes | CDMA cell information\|GSM cell information\|LTE cell information\|NR cell information\|TD-SCDMA cell information<br>**System API**: This is a system API.|
+| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8)\|[WcdmaCellInformation](#wcdmacellinformation8) |  Yes | CDMA cell information\|GSM cell information\|LTE cell information\|NR cell information\|TD-SCDMA cell information\|WCDMA cell information.<br>**System API**: This is a system API.|
 
 ## CdmaCellInformation<sup>8+</sup>
 
@@ -3473,8 +3621,8 @@ Defines the CDMA cell information.
 | Name     | Type  | Mandatory| Description        |
 | --------- | ------ | ---- | ------------ |
 | baseId    | number |  Yes | Base station ID.    |
-| latitude  | number |  Yes | Longitude.      |
-| longitude | number |  Yes | Latitude.      |
+| latitude  | number |  Yes | Latitude.      |
+| longitude | number |  Yes | Longitude.      |
 | nid       | number |  Yes | Network ID.|
 | sid       | number |  Yes | System ID.|
 
@@ -3715,7 +3863,7 @@ Enumerates IMS service types.
 
 ## NetworkCapabilityType<sup>10+</sup>
 
-Network capability type.
+Enumerates network capability types.
 
 **System API**: This is a system API.
 

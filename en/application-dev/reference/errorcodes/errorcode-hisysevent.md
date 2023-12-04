@@ -16,9 +16,11 @@ This error code is reported if the **write** API is called to perform system eve
 
 **Possible Causes**
 
-1. The event domain name contains more than 16 characters.
-2. The event domain name contains special characters.
-3. The event domain name is empty.
+The specified event domain name does not comply with the following rules:
+
+- The event domain name contains only digits, letters, and underscores (\_).
+- The event domain name starts with a letter.
+- The event domain name is not empty and contains a maximum of 16 characters.
 
 **Solution**
 
@@ -36,9 +38,11 @@ This error code is reported if the **write** API is called to perform system eve
 
 **Possible Causes**
 
-1. The event name contains more than 32 characters.
-2. The event name contains special characters.
-3. The event name is empty.
+The specified event name does not comply with the following rules:
+
+- The event name contains only digits, letters, and underscores (\_).
+- The event name starts with a letter.
+- The event name is not empty and contains a maximum of 32 characters.
 
 **Solution**
 
@@ -93,9 +97,11 @@ This error code is reported if the **write** API is called to perform system eve
 
 **Possible Causes**
 
-1. The event parameter name contains more than 32 characters.
-2. The event parameter name contains special characters.
-3. The event parameter name is empty.
+The specified event parameter name does not comply with the following rules:
+
+- The event parameter name contains only digits, letters, and underscores (\_).
+- The event parameter name starts with a letter.
+- The event parameter name is not empty and contains a maximum of 48 characters.
 
 **Solution**
 
@@ -222,11 +228,11 @@ This error code is reported if the **query** API is called to query system event
 
 **Possible Causes**
 
-The number of query rules exceeds 10.
+The number of query rules exceeds 100.
 
 **Solution**
 
-Check whether the number of query rules exceeds 10.
+Check whether the number of query rules exceeds 100.
 
 
 ## 11200302 Invalid Query Rule
@@ -268,7 +274,7 @@ The number of concurrent queries exceeds 4.
 
 Check whether more than four queries are performed at the same time.
 
-## 11200304  Query Frequency Exceeding the Limit
+## 11200304 Query Frequency Exceeding the Limit
 
 **Error Message**
 
@@ -280,8 +286,8 @@ This error code is reported if the **query** API is called to query system event
 
 **Possible Causes**
 
-More than one query is performed in one second.
+More than 50 queries are performed in one second.
 
 **Solution**
 
-Check whether more than one query is performed in one second.
+Check whether more than 50 queries are performed in one second.

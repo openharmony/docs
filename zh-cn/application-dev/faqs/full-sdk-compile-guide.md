@@ -2,7 +2,7 @@
 
 **full-SDK**是提供OpenHarmony全量接口的SDK，包含了系统应用所需要的高权限API，用于厂商开发应用。
 
-从OpenHarmony3.2Beta5版本开始，不在随版本提供**full-SDK**。如有需要，可通过全量源码自行编译。
+从OpenHarmony3.2Beta5版本开始，不再随版本提供**full-SDK**。如有需要，可通过全量源码自行编译。
 
 ## 编译full-SDK
 

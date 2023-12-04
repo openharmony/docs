@@ -1,4 +1,4 @@
-# @ohos.file.backup (Backup and Restoration)
+# @ohos.file.backup (Backup and Restore)
 
 The **file.backup** module provides APIs for backing up and restoring data for applications.
 
@@ -15,18 +15,18 @@ import backup from '@ohos.file.backup';
 
 ## FileMeta
 
-Defines a file metadata object, which includes the application name and file URI. **FileMeta** is an indispensable object for data backup and restoration.
+Defines a file metadata object, which includes the application name and file URI. **FileMeta** is an indispensable object for data backup and restore.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
 | Name      | Type  | Mandatory| Description                                                                                          |
 | ---------- | ------ | ---- | ---------------------------------------------------------------------------------------------- |
-| bundleName | string | Yes  | Bundle name of the application, which can be obtained by using the method provided by [bundle.BundleInfo](js-apis-bundle-BundleInfo.md).         |
+| bundleName | string | Yes  | Bundle name, which can be obtained by using the method provided in [bundleManager.BundleInfo](js-apis-bundleManager-bundleInfo.md).         |
 | uri        | string | Yes  | URI of the file in the application sandbox.<br>Currently, the URI is not in the standard format. It can consist of digits (0–9), letters (a–z and A–Z), underscores (_), and period (.) only.|
 
 ## FileData
 
-Defines a file data object, which includes the file descriptor (FD) of the file opened. **FileData** is an indispensable object for data backup and restoration.
+Defines a file data object, which includes the file descriptor (FD) of the file opened. **FileData** is an indispensable object for data backup and restore.
 
 > **NOTE**
 >
@@ -51,7 +51,7 @@ inherits from [FileMeta](#filemeta) and [FileData](#filedata).
 
 ## GeneralCallbacks
 
-Provides callbacks to be used in the backup or restoration process. The backup service uses these callbacks to notify the client of the backup/restoration phase of the application.
+Provides callbacks to be used in the backup or restore process. The backup service uses these callbacks to notify the client of the backup/restore phase of the application.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
@@ -85,6 +85,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+  
   onFileReady: (err: BusinessError, file: backup.File) => {
     if (err) {
       console.error('onFileReady failed with err: ' + JSON.stringify(err));
@@ -98,7 +99,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 onBundleBegin : AsyncCallback&lt;string&gt;
 
- Called when the backup or restoration of an application begins. If the backup or restoration begins, **err** is undefined. Otherwise, **err** is an error object.
+Called when the backup or restore of an application begins. If the backup or restore begins, **err** is undefined. Otherwise, **err** is an error object.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
@@ -119,6 +120,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```ts
   import { BusinessError } from '@ohos.base';
+
   onBundleBegin: (err: BusinessError, bundleName: string) => {
     if (err) {
       console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
@@ -131,7 +133,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 onBundleEnd : AsyncCallback&lt;string&gt;
 
-Called when the backup or restoration of an application ends. If the backup or restoration ends successfully, **err** is undefined. Otherwise, **err** is an error object.
+Called when the backup or restore of an application ends. If the backup or restore ends successfully, **err** is undefined. Otherwise, **err** is an error object.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
@@ -152,6 +154,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```ts
   import { BusinessError } from '@ohos.base';
+
   onBundleEnd: (err: BusinessError, bundleName: string) => {
     if (err) {
       console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
@@ -164,7 +167,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 onAllBundlesEnd : AsyncCallback&lt;undefined&gt;
 
-Called when the backup or restoration of all bundles ends. If the backup or restoration of all bundles ends, **err** is **undefined**. Otherwise, **err** is an error object.
+Called when the backup or restore of all bundles ends. If the backup or restore of all bundles ends, **err** is **undefined**. Otherwise, **err** is an error object.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
@@ -185,6 +188,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```ts
   import { BusinessError } from '@ohos.base';
+
   onAllBundlesEnd: (err: BusinessError) => {
     if (err) {
       console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
@@ -223,7 +227,7 @@ Obtains a JSON file that describes local capabilities. This API uses an asynchro
 
 | Name  | Type                                      | Mandatory| Description                                                  |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------ |
-| callback | AsyncCallback&lt;[FileData](#filedata)&gt; | Yes  | Callback invoked to return the result. If the file is obtained, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;[FileData](#filedata)&gt; | Yes  | Callback invoked to return the **FileData** object obtained.|
 
 **Error codes**
 
@@ -242,12 +246,14 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   try {
     backup.getLocalCapabilities((err: BusinessError, fileData: backup.FileData) => {
       if (err) {
         console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
       }
       console.info('getLocalCapabilities success');
+      console.info('fileData info:' + fileData.fd);
       fs.closeSync(fileData.fd);
     });
   } catch (error) {
@@ -256,7 +262,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   }
   ```
 
-The following is an example of the file obtained:
+The capability file can be obtained by using [fs.stat](js-apis-file-fs.md#fsstat-1) of the [@ohos.file.fs](js-apis-file-fs.md) module. The following is an example of the capability file.
 
  ```json
  {
@@ -288,7 +294,7 @@ Obtains a JSON file that describes local capabilities. This API uses a promise t
 
 | Type                                | Description                                               |
 | ------------------------------------ | --------------------------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise used to return the **FileData** of the JSON file obtained.|
+| Promise&lt;[FileData](#filedata)&gt; | Promise used to return the **FileData** object obtained.|
 
 **Error codes**
 
@@ -307,10 +313,12 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   async function getLocalCapabilities() {
     try {
       let fileData = await backup.getLocalCapabilities();
       console.info('getLocalCapabilities success');
+      console.info('fileData info:' + fileData.fd);
       fs.closeSync(fileData.fd);
     } catch (error) {
       let err: BusinessError = error as BusinessError;
@@ -319,7 +327,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   }
   ```
 
-  The following is an example of the file obtained:
+  The capability file can be obtained by using [fs.stat](js-apis-file-fs.md#fsstat) of the [@ohos.file.fs](js-apis-file-fs.md) module. The following is an example of the capability file.
 
  ```json
  {
@@ -362,7 +370,8 @@ A constructor used to create a **SessionBackup** instance.
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
-  let generalCallbacks = ({
+
+  let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
@@ -391,7 +400,7 @@ A constructor used to create a **SessionBackup** instance.
     onBackupServiceDied: () => {
       console.info('service died');
     }
-  });
+  };
   let sessionBackup = new backup.SessionBackup(generalCallbacks);
   ```
 
@@ -409,8 +418,8 @@ Appends the applications whose data needs to be backed up. Currently, the obtain
 
 | Name         | Type                     | Mandatory| Description                                                          |
 | --------------- | ------------------------- | ---- | -------------------------------------------------------------- |
-| bundlesToBackup | string[]                  | Yes  | Array of the application names to append.                                     |
-| callback        | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the applications are appended successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+| bundlesToBackup | string[]                  | Yes  | Array of the application names to append.                                    |
+| callback        | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
 **Error codes**
 
@@ -431,6 +440,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
@@ -519,6 +529,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
@@ -548,7 +559,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
     onBackupServiceDied: () => {
       console.info('service died');
     }
-  }
+  };
   let sessionBackup = new backup.SessionBackup(generalCallbacks);
   async function appendBundles() {
     try {
@@ -566,7 +577,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 ## SessionRestore
 
-Provides an object to support the application recovery process. Before using the APIs of this class, you need to create a **SessionRestore** instance.
+Provides an object to support the application restore process. Before using the APIs of this class, you need to create a **SessionRestore** instance.
 
 ### constructor
 
@@ -582,13 +593,14 @@ A constructor used to create a **SessionRestore** instance.
 
 | Name  | Type                                 | Mandatory| Description                |
 | -------- | ------------------------------------- | ---- | -------------------- |
-| callback | [GeneralCallbacks](#generalcallbacks) | Yes  | Callbacks to be invoked during the data restoration process.|
+| callback | [GeneralCallbacks](#generalcallbacks) | Yes  | Callbacks to be invoked during the data restore process.|
 
 **Example**
 
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
@@ -626,11 +638,11 @@ A constructor used to create a **SessionRestore** instance.
 
 appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
 
-Appends the applications whose data needs to be restored. Currently, the obtained **SessionRestore** instance can be called only once in the entire restoration process. This API uses an asynchronous callback to return the result.
+Appends the applications whose data needs to be restored. Currently, the obtained **SessionRestore** instance can be called only once in the entire restore process. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> - During the data restoration, the capability file needs to be verified.
+> - During the data restore process, the capability file needs to be verified.
 > - Therefore, **remoteCapabilitiesFd** can be obtained by using the [getLocalCapabilities](#backupgetlocalcapabilities) API provided by the backup service. You can modify the parameters based on the actual situation of your application. You can also use the JSON file example provided by **getLocalCapabilities** to generate a capability file.
 
 **Required permissions**: ohos.permission.BACKUP
@@ -643,7 +655,7 @@ Appends the applications whose data needs to be restored. Currently, the obtaine
 | -------------------- | ------------------------- | ---- | -------------------------------------------------------------- |
 | remoteCapabilitiesFd | number                    | Yes  | FD of the file containing the capabilities to be restored.                            |
 | bundlesToBackup      | string[]                  | Yes  | Array of the application names to append.                                    |
-| callback             | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the applications are appended successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback             | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
 **Error codes**
 
@@ -664,6 +676,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
@@ -711,6 +724,8 @@ For details about the error codes, see [File Management Error Codes](../errorcod
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+    } finally {
+      fs.closeSync(fieldData.fd);
     }
   }
   ```
@@ -719,11 +734,11 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[]): Promise&lt;void&gt;
 
-Appends the applications whose data needs to be restored. Currently, the obtained **SessionRestore** instance can be called only once in the entire restoration process. This API uses a promise to return the result.
+Appends the applications whose data needs to be restored. Currently, the obtained **SessionRestore** instance can be called only once in the entire restore process. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> - During the data restoration, the capability file needs to be verified.
+> - During the data restore process, the capability file needs to be verified.
 > - Therefore, **remoteCapabilitiesFd** can be obtained by using the [getLocalCapabilities](#backupgetlocalcapabilities) API provided by the backup service. You can modify the parameters based on the actual situation of your application. You can also use the JSON file example provided by **getLocalCapabilities** to generate a capability file.
 
 **Required permissions**: ohos.permission.BACKUP
@@ -762,6 +777,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
@@ -805,6 +821,8 @@ For details about the error codes, see [File Management Error Codes](../errorcod
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+    } finally {
+      fs.closeSync(fieldData.fd);
     }
   }
   ```
@@ -831,7 +849,7 @@ Obtains the handle of the shared file from the service. This API uses an asynchr
 | Name  | Type                     | Mandatory| Description                                                          |
 | -------- | ------------------------- | ---- | -------------------------------------------------------------- |
 | fileMeta | [FileMeta](#filemeta)     | Yes  | Metadata of the file to restore.                                            |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the file handle is obtained, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
 **Error codes**
 
@@ -849,6 +867,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
@@ -937,6 +956,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
@@ -1004,7 +1024,7 @@ Publishes **FileMeta** to the backup service to indicate that the file content i
 | Name  | Type                     | Mandatory| Description                                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------------------------- |
 | fileMeta | [FileMeta](#filemeta)     | Yes  | Metadata of the file to restore.                                          |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the file is published successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
 **Error codes**
 
@@ -1022,6 +1042,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let g_session: backup.SessionRestore;
   function createSessionRestore() {
     let generalCallbacks: backup.GeneralCallbacks = {
@@ -1114,8 +1135,9 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let g_session: backup.SessionRestore;
-  async function publishFile(file: backup.fileMeta) {
+  async function publishFile(file: backup.FileMeta) {
     let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
       uri: file.uri

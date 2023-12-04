@@ -969,6 +969,12 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 
 **系统能力**：SystemCapability.Ability.Form
 
+**参数：**
+
+| 参数名 | 类型                                                                                           | 必填 | 说明    |
+| ------ |----------------------------------------------------------------------------------------------| ---- | ------- |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | 是 | 回调函数。当获取设备上所有应用提供的卡片信息成功，error为undefined，data为查询到的卡片信息；否则为错误对象。 |
+
 **错误码：**
 
 | 错误码ID | 错误信息 |
@@ -982,11 +988,6 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 
 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。当获取设备上所有应用提供的卡片信息成功，error为undefined，data为查询到的卡片信息；否则为错误对象。 |
 
 **示例：**
 
@@ -1017,6 +1018,12 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 
 **系统能力**：SystemCapability.Ability.Form
 
+**返回值：**
+
+| 类型                                                                                     | 说明                    |
+|:---------------------------------------------------------------------------------------|:----------------------|
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
+
 **错误码：**
 
 | 错误码ID | 错误信息 |
@@ -1028,12 +1035,6 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
-
-**返回值：**
-
-| 类型                                                         | 说明                                |
-| :----------------------------------------------------------- | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
 
 **示例：**
 
@@ -1064,10 +1065,10 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 
 **参数：**
 
-| 参数名 | 类型    | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| bundleName | string | 是 | 要查询的应用Bundle名称。 |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。当获取设备上指定应用程序提供的卡片信息成功，error为undefined，data为查询到的卡片信息；否则为错误对象。 |
+| 参数名 | 类型                                                                                           | 必填 | 说明    |
+| ------ |----------------------------------------------------------------------------------------------| ---- | ------- |
+| bundleName | string                                                                                       | 是 | 要查询的应用Bundle名称。 |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | 是 | 回调函数。当获取设备上指定应用程序提供的卡片信息成功，error为undefined，data为查询到的卡片信息；否则为错误对象。 |
 
 **错误码：**
 
@@ -1114,11 +1115,11 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 
 **参数：**
 
-| 参数名 | 类型    | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| bundleName | string | 是 | 要查询的应用Bundle名称。 |
-| moduleName | string | 是 |  要查询的模块名称。 |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。当获取设备上指定应用程序提供的卡片信息成功，error为undefined，data为查询到的卡片信息；否则为错误对象。 |
+| 参数名 | 类型                                                                                           | 必填 | 说明    |
+| ------ |----------------------------------------------------------------------------------------------| ---- | ------- |
+| bundleName | string                                                                                       | 是 | 要查询的应用Bundle名称。 |
+| moduleName | string                                                                                       | 是 |  要查询的模块名称。 |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | 是 | 回调函数。当获取设备上指定应用程序提供的卡片信息成功，error为undefined，data为查询到的卡片信息；否则为错误对象。 |
 
 **错误码：**
 
@@ -1172,9 +1173,9 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 
 **返回值：**
 
-| 类型                                                         | 说明                                |
-| :----------------------------------------------------------- | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
+| 类型                                                                                     | 说明                                |
+|:---------------------------------------------------------------------------------------| :---------------------------------- |
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md#forminfo)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
 
 **错误码：**
 
@@ -1322,7 +1323,7 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| want | [Want](js-apis-application-want.md) | 是   | 查询卡片状态时携带的want信息。需要包含bundle名、ability名、module名、卡片名、卡片规格等。 |
+| want | [Want](js-apis-app-ability-want.md) | 是   | 查询卡片状态时携带的want信息。需要包含bundle名、ability名、module名、卡片名、卡片规格等。 |
 | callback | AsyncCallback&lt;[formInfo.FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | 是 | 回调函数。当获取卡片状态成功，error为undefined，data为获取到的卡片状态；否则为错误对象。 |
 
 **错误码：**
@@ -1383,7 +1384,7 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| want   | [Want](js-apis-application-want.md) | 是   | 查询卡片状态时携带的want信息。需要包含bundle名、ability名、module名、卡片名、卡片规格等。 |
+| want   | [Want](js-apis-app-ability-want.md) | 是   | 查询卡片状态时携带的want信息。需要包含bundle名、ability名、module名、卡片名、卡片规格等。 |
 
 **返回值：**
 
@@ -1460,8 +1461,6 @@ on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-
 formHost.on('formUninstall', (formId: string) => {
   console.log(`formHost on formUninstall, formId: ${formId}`);
 });
@@ -1494,8 +1493,6 @@ off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-
 formHost.off('formUninstall', (formId: string) => {
   console.log(`formHost on formUninstall, formId: ${formId}`);
 });
@@ -1861,7 +1858,7 @@ try {
 
 ## notifyFormsPrivacyProtected
 
-notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Promise\<void\>;
+notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Promise\<void\>
 
 通知指定卡片隐私保护状态改变。使用Promise异步回调。
 
@@ -1912,7 +1909,7 @@ try {
 
 ## acquireFormData<sup>10+</sup>
 
-acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>): void;
+acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>): void
 
 请求卡片提供方数据。使用callback异步回调。
 
@@ -1927,6 +1924,7 @@ acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formId | string | 是   | 卡片标识。 |
+| callback | AsyncCallback<{[key: string]: Object} | 是   | 以callback方式返回接口运行结果及分享数据。 |
 
 **错误码：**
 
@@ -1962,7 +1960,7 @@ try {
 
 ## acquireFormData<sup>10+</sup>
 
-acquireFormData(formId: string): Promise<{[key: string]: Object}>;
+acquireFormData(formId: string): Promise<{[key: string]: Object}>
 
 请求卡片提供方数据。使用Promise异步回调。
 

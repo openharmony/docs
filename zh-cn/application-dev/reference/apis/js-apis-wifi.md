@@ -217,8 +217,8 @@ WLAN热点信息。
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
-| bssid | string | 是 | 否 | 热点的BSSID。 |
+| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
+| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
 | capabilities | string | 是 | 否 | 热点能力。 |
 | securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | WLAN加密类型。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
@@ -276,8 +276,22 @@ import wifi from '@ohos.wifi';
 try {
 	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
-		preSharedKey : "****",
-		securityType : 0
+		bssid:  "****",
+		preSharedKey: "****",
+		isHiddenSsid: false,
+		securityType: 0,
+		creatorUid: 0,
+		disableReason: 0,
+		netId: 0,
+		randomMacType: 0,
+		randomMacAddr:  "****",
+		ipType: 0,
+		staticIp: {
+			ipAddress: 0,
+			gateway: 0,
+			dnsServers: [],
+			domains: []
+		}
 	}
 	wifi.addDeviceConfig(config).then(result => {
 		console.info("result:" + JSON.stringify(result));
@@ -296,9 +310,9 @@ WLAN配置信息。
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
-| bssid | string | 是 | 否 | 热点的BSSID。 |
-| preSharedKey | string | 是 | 否 | 热点的密钥。 |
+| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
+| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
+| preSharedKey | string | 是 | 否 | 热点的密钥，最大长度为64字节。 |
 | isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。 |
 | securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | 加密类型。 |
 | creatorUid | number | 是 | 否 | 创建用户的ID。 <br /> **系统接口：** 此接口为系统接口。 |
@@ -369,8 +383,22 @@ import wifi from '@ohos.wifi';
 try {
 	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
-		preSharedKey : "****",
-		securityType : 0
+		bssid:  "****",
+		preSharedKey: "****",
+		isHiddenSsid: false,
+		securityType: 0,
+		creatorUid: 0,
+		disableReason: 0,
+		netId: 0,
+		randomMacType: 0,
+		randomMacAddr:  "****",
+		ipType: 0,
+		staticIp: {
+			ipAddress: 0,
+			gateway: 0,
+			dnsServers: [],
+			domains: []
+		}
 	}
 	wifi.addDeviceConfig(config,(error,result) => {
 		console.info("result:" + JSON.stringify(result));
@@ -408,8 +436,22 @@ import wifi from '@ohos.wifi';
 try {
 	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
-		preSharedKey : "****",
-		securityType : 0
+		bssid:  "****",
+		preSharedKey: "****",
+		isHiddenSsid: false,
+		securityType: 0,
+		creatorUid: 0,
+		disableReason: 0,
+		netId: 0,
+		randomMacType: 0,
+		randomMacAddr:  "****",
+		ipType: 0,
+		staticIp: {
+			ipAddress: 0,
+			gateway: 0,
+			dnsServers: [],
+			domains: []
+		}
 	}
 	wifi.addUntrustedConfig(config).then(result => {
 		console.info("result:" + JSON.stringify(result));
@@ -443,8 +485,22 @@ import wifi from '@ohos.wifi';
 try {
 	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
-		preSharedKey : "****",
-		securityType : 0
+		bssid:  "****",
+		preSharedKey: "****",
+		isHiddenSsid: false,
+		securityType: 0,
+		creatorUid: 0,
+		disableReason: 0,
+		netId: 0,
+		randomMacType: 0,
+		randomMacAddr:  "****",
+		ipType: 0,
+		staticIp: {
+			ipAddress: 0,
+			gateway: 0,
+			dnsServers: [],
+			domains: []
+		}
 	}
 	wifi.addUntrustedConfig(config,(error,result) => {
 		console.info("result:" + JSON.stringify(result));
@@ -482,8 +538,26 @@ removeUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
 import wifi from '@ohos.wifi';
 
 try {
-	let networkId = 0;
-	wifi.removeUntrustedConfig(networkId).then(result => {
+	let config:wifi.WifiDeviceConfig = {
+		ssid : "****",
+		bssid:  "****",
+		preSharedKey: "****",
+		isHiddenSsid: false,
+		securityType: 0,
+		creatorUid: 0,
+		disableReason: 0,
+		netId: 0,
+		randomMacType: 0,
+		randomMacAddr:  "****",
+		ipType: 0,
+		staticIp: {
+			ipAddress: 0,
+			gateway: 0,
+			dnsServers: [],
+			domains: []
+		}
+	}
+	wifi.removeUntrustedConfig(config).then(result => {
 		console.info("result:" + JSON.stringify(result));
 	});	
 }catch(error){
@@ -514,8 +588,26 @@ removeUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boole
 import wifi from '@ohos.wifi';
 
 try {
-	let networkId = 0;
-	wifi.removeUntrustedConfig(networkId,(error,result) => {
+	let config:wifi.WifiDeviceConfig = {
+		ssid : "****",
+		bssid:  "****",
+		preSharedKey: "****",
+		isHiddenSsid: false,
+		securityType: 0,
+		creatorUid: 0,
+		disableReason: 0,
+		netId: 0,
+		randomMacType: 0,
+		randomMacAddr:  "****",
+		ipType: 0,
+		staticIp: {
+			ipAddress: 0,
+			gateway: 0,
+			dnsServers: [],
+			domains: []
+		}
+	}
+	wifi.removeUntrustedConfig(config,(error,result) => {
 	console.info("result:" + JSON.stringify(result));
 	});	
 }catch(error){
@@ -592,8 +684,22 @@ import wifi from '@ohos.wifi';
 try {
 	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
-		preSharedKey : "****",
-		securityType : 3
+		bssid:  "****",
+		preSharedKey: "****",
+		isHiddenSsid: false,
+		securityType: 3,
+		creatorUid: 0,
+		disableReason: 0,
+		netId: 0,
+		randomMacType: 0,
+		randomMacAddr:  "****",
+		ipType: 0,
+		staticIp: {
+		ipAddress: 0,
+			gateway: 0,
+			dnsServers: [],
+			domains: []
+		}
 	}
 	wifi.connectToDevice(config);
 			
@@ -731,8 +837,8 @@ wifi.getLinkedInfo().then(data => {
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
-| bssid | string | 是 | 否 | 热点的BSSID。 |
+| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
+| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
 | networkId | number | 是 | 否 | 网络配置ID。 <br /> **系统接口：** 此接口为系统接口。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
 | band | number | 是 | 否 | WLAN接入点的频段。 |
@@ -941,7 +1047,7 @@ try {
 
 IP信息。
 
-**系统能力：** SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
@@ -1101,8 +1207,22 @@ import wifi from '@ohos.wifi';
 try {
 	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
-		preSharedKey : "****",
-		securityType : 3
+		bssid:  "****",
+		preSharedKey: "****",
+		isHiddenSsid: false,
+		securityType: 3,
+		creatorUid: 0,
+		disableReason: 0,
+		netId: 0,
+		randomMacType: 0,
+		randomMacAddr:  "****",
+		ipType: 0,
+		staticIp: {
+			ipAddress: 0,
+			gateway: 0,
+			dnsServers: [],
+			domains: []
+		}
 	}
 	let ret = wifi.updateNetwork(config);
 	console.error("ret:" + ret);		
@@ -1363,7 +1483,6 @@ try {
 		ssid: "****",
 		securityType: 3,
 		band: 0,
-		channel: 0,
 		preSharedKey: "****",
 		maxConn: 0
 	}
@@ -1808,12 +1927,12 @@ let recvP2pConnectionChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
 }
 wifi.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
 
-let recvP2pDeviceChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
+let recvP2pDeviceChangeFunc = (result:wifi.WifiP2pDevice) => {
     console.info("p2p device change receive event: " + JSON.stringify(result));
 }
 wifi.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
 
-let recvP2pPeerDeviceChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
+let recvP2pPeerDeviceChangeFunc = (result:wifi.WifiP2pDevice[]) => {
     console.info("p2p peer device change receive event: " + JSON.stringify(result));
     wifi.getP2pPeerDevices((err, data) => {
         if (err) {
@@ -2441,7 +2560,7 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
   | type | string | 是 | 固定填"hotspotStaLeave"字符串。 |
   | callback | Callback&lt;StationInf]&gt; | 是 | 状态改变回调函数。 |
 
-## wifi.off('hotspotStaLeave')<sup>9+</sup>
+## wifi.off('hotspotStaLeave')<sup>7+</sup>
 
 off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 

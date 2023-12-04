@@ -1,23 +1,115 @@
 # Web Development
 
-## How does the return result of onUrlLoadIntercept affect onInterceptRequest in the \<Web> component?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do HTML5 pages interact with ArkTS? (API version 10)
+
+**Problem**
+
+Currently, **javaScriptProxy** supports only synchronous invoking. This means that no execution results can be obtained for asynchronous invoking.
+
+**Solution**
+
+Encapsulate **javaScriptProxy** and **runJavaScript** to implement the JSBridge communication scheme. This method is applicable to the scenario where HTML5 calls native functions. Use the **\<Web>** component **javaScriptProxy** to inject the native API to the window object of HTML5 pages, use the **runJavaScript** API to execute the JS script on HTML5 pages, and obtain the script execution result from the callback. The following figure shows the invoking process.
+
+![image5](figures/image5.png)
+
+- Use the **javaScriptProxy** attribute of the **\<Web>** component to register the **JSBridgeHandle** object with the HTML5 window as the native channel for HTML5 to call. When the HTML5 page starts to be loaded, the **initJSBridge()** method is called in the **onPageBegin** callback to initialize the JSBridge.
+  ```
+  // javaScriptProxy object
+  public get javaScriptProxy() {
+      return {
+          object: {
+              call: this.call
+          },
+          name: "JSBridgeHandle",
+          methodList: ['call'],
+          controller: this.controller,
+      }
+  }
+  ```
+
+  ```
+  // Use the <Web> component to load the HTML5 page.
+  @Component
+  struct JsProxy {
+    private controller: WebviewController = new WebView.WebviewController()
+    private jsBridge: JSBridge = new JSBridge(this.controller)
+    build() {
+      Column(){
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          .javaScriptProxy(this.jsBridge.javaScriptProxy)
+          .onPageBegin(() => {
+            this.jsBridge.initJSBridge()
+          })
+      }
+    }
+  }
+  ```
+
+- In the **initJSBridge** method, use **webviewControll.runJavaScript()** to inject the JSBridge initialization script into the HTML5 page for execution. When HTML5 is called, the **window.callID** is generated to identify the callback function, and then the callID and request parameters are transferred to the native side using **JSBridgeHandle.call**. Use **JSBridgeCallback** to receive the execution result from the native side, find the callback based on the ID and execute it, and then release the memory.
+  ```
+  // bridgeKey and bridgeMethod dynamically generate the entry for invoking on the HTML5 side.
+  bridgeKey: string = 'JSBridge'
+  bridgeMethod: string = 'call'
+  // Inject the initialization script to the HTML5 side.
+  public initJSBridge() {
+      try {
+          this.controller.runJavaScript(`
+              // Receive the result from the native side and execute callback.
+              function JSBridgeCallback(id, params){
+                  window.JSBridgeMap[id](params)
+              };
+              // Declare the invoking entry.
+              window.${this.bridgeKey} = {
+                  ${this.bridgeMethod}(method, params, callback){
+                      window.JSBridgeMap[id] = callback || (() => {});
+                      JSBridgeHandle.call(method, JSON.stringify(paramsObj));
+                  },
+              }`)
+      }
+  }
+  ```
+
+- **JSBridgeHandle.call()** is the unified entry for HTML5 to call native APIs. In this method, find the matching API to call based on the name of the method called by HTML5. After the call is complete, use the **this.callback()** method to return the result to HTML5. In the callback, use **webviewControll.runJavaScript()** to call **JSBridgeCallback** of HTML5 to return the **callID** and result.
+  ```
+  // The call method calls the native method and receives the result.
+  private call = (fun, params) => {
+      try {
+          const paramsObj = JSON.parse(params)
+          const events = this.exposeManage.methodMap.get(fun)
+          const results = []
+          events.forEach(callFun => {
+              results.push(callFun(paramsObj.data))
+          })
+          Promise.all(results.filter(i => !!i)).then(res => {
+              this.callback(paramsObj.callID, res.length > 1 ? res : res[0])
+          })
+      }
+  }
+  
+  // Use runJavaScript to call JSBridgeCallback to execute the callback.
+  private callback(id, data) {
+      this.controller.runJavaScript(`__JSBridgeCallback__("${id}", ${JSON.stringify(data)})`);
+  }
+  ```
+
+
+## How does the return result of onUrlLoadIntercept affect onInterceptRequest in the \<Web> component? (API version 9)
 
 **Solution**
 
 The operation that follows **onUrlLoadIntercept** is subject to its return result.
 
--   If **true** is returned, the URL request is intercepted.
--   If **false** is returned , the **onInterceptRequest** callback is performed.
+- If **true** is returned, the URL request is intercepted.
+
+- If **false** is returned , the **onInterceptRequest** callback is performed.
 
 **Reference**
 
 [onUrlloadIntercept](../reference/arkui-ts/ts-basic-components-web.md#onurlloadinterceptdeprecated)
 
-## What should I do if the onKeyEvent event of the \<Web> component is not triggered as expected?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## What should I do if the onKeyEvent event of the \<Web> component is not triggered as expected? (API version 9)
 
 **Problem**
 
@@ -31,9 +123,8 @@ Currently, the **\<Web>** component does not support the **onKeyEvent** event. T
 
 [onInterceptKeyEvent](../reference/arkui-ts/ts-basic-components-web.md#oninterceptkeyevent9)
 
-## What should I do if page loading fails when onInterceptRequest is used to intercept URLs and return the custom HTML file?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## What should I do if page loading fails when onInterceptRequest is called? (API version 9)
 
 **Problem**
 
@@ -69,102 +160,97 @@ Web({ src: 'www.example.com', controller: this.controller })
 
 [WebResourceResponse](../reference/arkui-ts/ts-basic-components-web.md#webresourceresponse)
 
-## How do I execute JS functions in HTML in ArkTS code?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I execute JS functions in HTML in ArkTS code? (API version 9)
 
 **Solution**
 
 Use the **runJavaScript** API in **WebviewController** to asynchronously execute JavaScript scripts and obtain the execution result in a callback.
 
->**NOTE**
->
->**runJavaScript** can be invoked only after l**oadUrl** is executed. For example, it can be invoked in **onPageEnd**.
+> **NOTE**
+> **runJavaScript** can be invoked only after l**oadUrl** is executed. For example, it can be invoked in **onPageEnd**.
 
 **Reference**
 
 [runJavaScript](../reference/apis/js-apis-webview.md#runjavascript)
 
-## How do I invoke an ArkTS method on a local web page loaded in the \<Web> component?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I invoke an ArkTS method on a local web page? (API version 9)
 
 **Solution**
 
-1.  Prepare an HTML file. Below is the sample code:
+1. Prepare an HTML file. Below is the sample code:
 
-    ```
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
-        <h1>Title</h1>
-        <h5 id="h5"></h5>
-        <h5 id = "h6"></h5>
-        <button onclick="handleFromH5">Invoke ArkTS method </button>
-        <script type="text/javascript">
-            function handleFromH5(){
-                let result = window.objName.test();
-                document.getElementById('h6').innerHTML = result;
-            }
-        </script>
-    </body>
-    </html>
-    ```
+   ```
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Document</title>
+   </head>
+   <body>
+       <h1>Title</h1>
+       <h5 id="h5"></h5>
+       <h5 id = "h6"></h5>
+       <button onclick="handleFromH5">Invoke ArkTS method </button>
+       <script type="text/javascript">
+           function handleFromH5(){
+               let result = window.objName.test();
+               document.getElementById('h6').innerHTML = result;
+           }
+       </script>
+   </body>
+   </html>
+   ```
 
-2.  Use the **JavaScriptProxy** API in ArkTs to register the object in ArkTS with the window object of H5, and then use the window object to call the method in H5. In the following example, the **testObj** object in ArkTS is registered with the window object of H5 with the alias **objName**. In H5, **window.objName** can then be used to access the object.
+2. Use the **JavaScriptProxy** API in ArkTs to register the object in ArkTS with the window object of HTML5, and then use the window object to call the method in HTML5. In the following example, the **testObj** object in ArkTS is registered with the HTML5 window object under the alias **objName**. In HTML5, **window.objName** can then be used to access the object.
 
-    ```
-    // xxx.ets
-    import web_webview from '@ohos.web.webview'
-    @Entry
-    @Component
-    struct Index {
-      @State message: string = 'Hello World'
-      controller: web_webview.WebviewController = new web_webview.WebviewController()
-      testObj = {
-        test: (data1, data2, data3) => {
-          console.log("data1:" + data1);
-          console.log("data2:" + data2);
-          console.log("data3:" + data3);
-          return "AceString";
-        },
-        toString: () => {
-          console.log('toString' + "interface instead.");
-        }
-      }
-      build() {
-        Row() {
-          Column() {
-            Web({ src:$rawfile('index.html'), controller:this.controller })
-              .javaScriptAccess(true)
-              .javaScriptProxy({
-                object: this.testObj,
-                name: "objName",
-                methodList: ["test", "toString"],
-                controller: this.controller,
-             })
-          }
-          .width('100%')
-        }
-        .height('100%')
-      }
-    }
-    ```
-
+   ```
+   // xxx.ets
+   import web_webview from '@ohos.web.webview'
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'Hello World'
+     controller: web_webview.WebviewController = new web_webview.WebviewController()
+     testObj = {
+       test: (data1, data2, data3) => {
+         console.log("data1:" + data1);
+         console.log("data2:" + data2);
+         console.log("data3:" + data3);
+         return "AceString";
+       },
+       toString: () => {
+         console.log('toString' + "interface instead.");
+       }
+     }
+     build() {
+       Row() {
+         Column() {
+           Web({ src:$rawfile('index.html'), controller:this.controller })
+             .javaScriptAccess(true)
+             .javaScriptProxy({
+               object: this.testObj,
+               name: "objName",
+               methodList: ["test", "toString"],
+               controller: this.controller,
+            })
+         }
+         .width('100%')
+       }
+       .height('100%')
+     }
+   }
+   ```
 
 **Reference**
 
 [javaScriptProxy](../reference/arkui-ts/ts-basic-components-web.md#javascriptproxy)
 
-## How do I set the domStorageAccess attribute of the \<Web> component?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I set the domStorageAccess attribute of the \<Web> component? (API version 9)
 
 **Solution**
 
@@ -174,9 +260,8 @@ The **domStorageAccess** attribute sets whether to enable the DOM Storage API. B
 
 [domStorageAccess](../reference/arkui-ts/ts-basic-components-web.md#domstorageaccess)
 
-## What should I do if the network status fails to be detected on the HTML page loaded by the \<Web> component?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## What should I do if the network status fails to be detected on the loaded HTML page? (API version 9)
 
 **Problem**
 
@@ -184,22 +269,22 @@ When **window.navigator.onLine** is used on the HTML page to obtain the network 
 
 **Solution**
 
-Configure the permission for the application to obtain network information: **ohos.permission.GET\_NETWORK\_INFO**.
+Configure the permission for the application to obtain network information: ohos.permission.GET_NETWORK_INFO
 
 **Reference**
 
 [GET\_NETWORK\_INFO](../security/permission-list.md#ohospermissionget_network_info)
 
-## How do I set the UserAgent parameter through string concatenation?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I set the UserAgent parameter through string concatenation? (API version 9)
 
 **Solution**
 
 By default, the value of **UserAgent** needs to be obtained through the WebviewController. Specifically, it is obtained by calling the **getUserAgent** API in a **WebviewController** object after it is bound to the **\<Web>** component. Therefore, to set **UserAgent** through string concatenation before page loading:
 
-1.  Use @State to define the initial **UserAgent** parameter and bind it to the **\<Web>** component.
-2.  In the **onUrlLoadIntercept** callback of the **\<Web>** component, use **WebviewController.getUserAgent\(\)** to obtain the default **UserAgent** value and update the UserAgent bound to the **\<Web>** component.
+1. Use @State to define the initial **UserAgent** and bind it to the **\<Web>** component.
+
+2. In the **onUrlLoadIntercept** callback of the **\<Web>** component, use **WebviewController.getUserAgent()** to obtain the default **UserAgent** and update the bound **UserAgent**.
 
 **Example**
 
@@ -231,11 +316,10 @@ struct Index {
 
 **Reference**
 
-[userAgent](../reference/arkui-ts/ts-basic-components-web.md#useragent) and [getUserAgent](../reference/apis/js-apis-webview.md#getuseragent)
+[userAgent](../reference/arkui-ts/ts-basic-components-web.md#useragentdeprecated), [getUserAgent](../reference/apis/js-apis-webview.md#getuseragent)
 
-## How do I enable the \<Web> component to return to the previous web page following a swipe gesture?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I enable the \<Web> component to return to the previous web page following a swipe gesture? (API version 9)
 
 **Solution**
 
@@ -270,4 +354,4 @@ struct Index {
 
 **Reference**
 
-[Web](../reference/apis/js-apis-webview.md#accessstep)
+[accessStep](../reference/apis/js-apis-webview.md#accessstep)

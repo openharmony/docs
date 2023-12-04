@@ -1,13 +1,13 @@
 # 应用模型解读
 
 
-## OpenHarmony应用模型概况
+## 应用模型概况
 
-随着系统的演进发展，OpenHarmony先后提供了两种应用模型：
+随着系统的演进发展，先后提供了两种应用模型：
 
-- FA（Feature Ability）模型：OpenHarmony API 7开始支持的模型，已经不再主推。
+- FA（Feature Ability）模型：从API 7开始支持的模型，已经不再主推。
 
-- Stage模型：OpenHarmony API 9开始新增的模型，是目前主推且会长期演进的模型。在该模型中，由于提供了AbilityStage、WindowStage等类作为应用组件和Window窗口的“舞台”，因此称这种应用模型为Stage模型。
+- Stage模型：从API 9开始新增的模型，是目前主推且会长期演进的模型。在该模型中，由于提供了AbilityStage、WindowStage等类作为应用组件和Window窗口的“舞台”，因此称这种应用模型为Stage模型。
 
 Stage模型之所以成为主推模型，源于其设计思想。Stage模型的设计基于如下出发点。
 
@@ -15,7 +15,7 @@ Stage模型之所以成为主推模型，源于其设计思想。Stage模型的�
    - 多个应用组件共享同一个ArkTS引擎（运行ArkTS语言的虚拟机）实例，应用组件之间可以方便的共享对象和状态，同时减少复杂应用运行对内存的占用。
    - 采用面向对象的开发方式，使得复杂应用代码可读性高、易维护性好、可扩展性强。
 
-2. **原生支持应用组件级的[跨端迁移](hop-cross-device-migration.md)和[多端协同](hop-multi-device-collaboration.md)**
+2. **原生支持应用组件级的跨端迁移和多端协同**
 
    Stage模型实现了应用组件与UI解耦：
 

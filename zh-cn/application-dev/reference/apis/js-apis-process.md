@@ -1,5 +1,7 @@
 # @ohos.process (获取进程相关的信息)
 
+获取进程相关的信息，提供进程管理的相关功能。
+
 > **说明：**
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -368,7 +370,7 @@ let pres = process.getEnvironmentVar("PATH")
 ```
 
 
-## ProcessManager<sup>9+</sup>	
+## ProcessManager<sup>9+</sup>
 
 提供用于新增进程的抛异常接口。
 

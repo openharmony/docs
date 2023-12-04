@@ -50,7 +50,7 @@
 
 如此，既在各设备上体现了UX的一致性，也在各设备上体现了UX的差异性，从而既可以保障各设备上应用界面的体验，也可以最大程度复用界面代码。
 
-在[应用UX设计章节](../../../zh-ch/design/ux-design/app-ux-design.md)中，将详细介绍应用的UX设计规则。
+在[应用UX设计章节](../../../design/ux-design/app-ux-design.md)中，将详细介绍应用的UX设计规则。
 
 
 ## 工程管理及调试
@@ -115,7 +115,7 @@
 延伸能力是指容器组件内的子组件，按照其在列表中的先后顺序，随容器组件尺寸变化显示或隐藏。随着可用显示区域的增加，用户可以看到的“每小时天气”信息也不断增加，故“每小时天气”可以通过延伸能力实现，其核心代码如下所示。
 
 
-```
+```ts
 @Component
 export default struct HoursWeather {
   ...
@@ -153,7 +153,7 @@ export default struct HoursWeather {
 > 为提升用户体验，大设备侧边栏隐藏状态下，每日天气与空气质量的相对顺序发生了改变。可以调整通过GridCol栅格子组件的order属性，实现目标效果。
 
 
-```
+```ts
 @Component
 export default struct HomeContent {
   ...
@@ -216,7 +216,7 @@ export default struct HomeContent {
 - 大设备中用户通过点击侧边栏中的城市列表即可高效的切换不同城市，此时需要关闭Swiper组件的导航点。
 
   
-```
+```ts
 @Entry
 @Component
 struct Home {

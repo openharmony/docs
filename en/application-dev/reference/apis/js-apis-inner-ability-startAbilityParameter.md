@@ -19,7 +19,7 @@ import ability from '@ohos.ability.ability';
 
 | Name              |   Type  | Mandatory  | Description                                   |
 | ------------------- | -------- | ---- | -------------------------------------- |
-| want                | [Want](js-apis-application-want.md)|   Yes  | Want information about the target ability.                    |
+| want                | [Want](js-apis-app-ability-want.md)|   Yes  | Want information about the target ability.                    |
 | abilityStartSetting | {[key: string]: any} | No   | Special attribute of the target ability. This attribute can be passed in the call.|
 
 **Example**
@@ -46,12 +46,12 @@ let startAbilityParameter: ability.StartAbilityParameter = {
 try {
     featureAbility.startAbility(startAbilityParameter, (error, data) => {
         if (error && error.code !== 0) {
-            console.error('startAbility fail, error: ${JSON.stringify(error)}');
+            console.error(`startAbility fail, error: ${JSON.stringify(error)}`);
         } else {
-            console.log('startAbility success, data: ${JSON.stringify(data)}');
+            console.log(`startAbility success, data: ${JSON.stringify(data)}`);
         }
     });
 } catch(error) {
-    console.error('startAbility error: ${JSON.stringify(error)}');
+    console.error(`startAbility error: ${JSON.stringify(error)}`);
 }
 ```

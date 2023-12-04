@@ -11,7 +11,7 @@ In API references, the earliest versions of APIs and components are specified in
 
 ## Application Model Description
 
-Along its evolution, OpenHarmony has provided two application models: FA model and stage model. For their differences, see [Interpretation of the Application Model](../../application-models/application-model-description.md).
+Along its evolution, the system has provided two application models: FA model and stage model. For their differences, see [Interpretation of the Application Model](../../application-models/application-model-description.md).
 
 - If all the APIs of a module support only one model, the following description is provided at the beginning of the reference document: "The APIs of this module can be used only in the FA model." or "The APIs of this module can be used only in the stage model."
 - If certain APIs of a module support only one model, the following description is provided individually for these APIs: "This API can be used only in the FA model." or "This API can be used only in the stage model."
@@ -50,6 +50,15 @@ System capability refers to a relatively independent feature in the operating sy
 The following description is provided for each API in the reference document to describe the system capability of the API: "**System capability**: SystemCapability.xxx.xxx"
 
 You can use the [SystemCapability List](../syscap-list.md) to query the devices supported by a specific capability set.
+
+## Deprecated API Description
+
+A deprecated API is an API no longer recommended and is marked with the <sup>deprecated</sup> superscript.
+
+While deprecated APIs can still be implemented in the five API levels immediately following the version when the API is deprecated, this is not recommended.
+
+- Do not use deprecated APIs in new code. If possible, rewrite old code by replacing the deprecated APIs with their substitutes.
+- If no substitute is available, change the implementation mode by referring to the deprecation description and changelog.
 
 ## Sample Code Language Description
 

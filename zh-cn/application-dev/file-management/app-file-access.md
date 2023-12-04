@@ -28,9 +28,9 @@
 | Stream.flush | 刷新文件流 | 方法 | √ | √ | 
 | Stream.write | 将数据写入流文件 | 方法 | √ | √ | 
 | Stream.read | 从流文件读取数据 | 方法 | √ | √ | 
-| File.fd | 获取文件描述符 | 属性 | √ | × | 
-| OpenMode | 设置文件打开标签 | 属性 | √ | × | 
-| Filter | 设置文件过滤配置项 | 类型 | × | × | 
+| File.fd | 获取文件描述符 | 属性 | - | - | 
+| OpenMode | 设置文件打开标签 | 属性 | - | - | 
+| Filter | 设置文件过滤配置项 | 类型 | - | - | 
 
 ## 开发示例
 
@@ -184,7 +184,7 @@ function getListFile(): void {
   }
   let option = new ListFileOption();
   option.filter.suffix = ['.png', '.jpg', '.txt'];          // 匹配文件后缀名为'.png','.jpg','.txt'
-  option.filter.displayName = ['test%'];                    // 匹配文件全名以'test'开头
+  option.filter.displayName = ['test*'];                    // 匹配文件全名以'test'开头
   option.filter.fileSizeOver = 0;                           // 匹配文件大小大于等于0
   option.filter.lastModifiedAfter = new Date(0).getTime();  // 匹配文件最近修改时间在1970年1月1日之后
   let files = fs.listFileSync(filesDir, option);

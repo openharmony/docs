@@ -56,3 +56,27 @@ ArkTS widgets and JS widgets have different implementation principles and featur
 | Logic code execution (excluding the import capability)| Not supported| Supported|
 
 As can be seen above, ArkTS widgets provide more capabilities and use cases than JS widgets. Therefore, ArkTS widgets are always recommended, except for the case where the widget consists of only static pages.
+
+## Dynamic Widgets and Static Widgets
+ArkTS widgets can be further classified as dynamic or static (distinguished by the **isDynamic** field in the [form_config.json](arkts-ui-widget-configuration.md) file). The differences between these two types are as follows:
+- Dynamic widget: With support for universal events and custom animations, this type of widget is applicable to scenarios involving complex service logic and interactions. Compared with its static counterpart, the dynamic widget is more feature rich and memory hogging.
+- Static widget: This type of widget provides UI components and layout capabilities, but does not support universal events or custom animations. It displays content in a static form and only allows for redirection to a specified UIAbility through the [FormLink](../reference/arkui-ts/ts-container-formlink.md) component. It is applicable for information display (where the UI is relatively fixed), consuming significantly less memory than the dynamic widget.
+
+The following table compares the capabilities of static widget and dynamic widgets.
+| Capability| Static Widget| Dynamic Widget|
+| -------- | -------- | -------- |
+| Component capability| Supported| Supported|
+| Layout capability| Supported| Supported|
+| Event capability| Conditionally supported| Supported|
+| Custom animation| Not supported| Supported|
+| Custom drawing| Supported| Supported|
+| Logic code execution (excluding the import capability)| Supported| Supported|
+
+When using static widgets, avoid the following scenarios:
+- Scenarios where the UI is refreshed frequently
+
+- Scenarios where state variables are passed through [FormLink](../reference/arkui-ts/ts-container-formlink.md) during refresh
+
+- Scenarios that involve complex service logic
+
+- Scenarios that involve animations

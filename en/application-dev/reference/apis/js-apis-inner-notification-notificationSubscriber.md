@@ -252,11 +252,15 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onDoNotDisturbDateChange<sup>8+</sup>
+### onDoNotDisturbDateChange<sup>8+</sup>(deprecated)
 
 onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
 
 Called when the DND time settings are changed.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and is deprecated since API version 11. You are advised to use [onDoNotDisturbChanged](js-apis-inner-notification-notificationSubscriber.md#ondonotdisturbchanged11) instead.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -266,12 +270,13 @@ Called when the DND time settings are changed.
 
 | Name| Type| Mandatory| Description|
 | ------------ | ------------------------ | ---- | -------------------------- |
-| mode | notification.[DoNotDisturbDate](js-apis-notificationManager.md#DoNotDisturbDate) | Yes| DND time setting updates.|
+| mode | notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate) | Yes| DND time setting updates.|
 
 **Example**
 
 ```ts
 import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
 
 let subscribeCallback = (err: Base.BusinessError) => {
   if (err) {
@@ -292,10 +297,50 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
+### onDoNotDisturbChanged<sup>11+</sup>
+
+onDoNotDisturbChanged?:(mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
+
+Called when the DND time settings are changed.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------------ | ------------------------ | ---- | -------------------------- |
+| mode | notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate) | Yes| DND time setting updates.|
+
+**Example**
+
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
+};
+
+let onDoNotDisturbChangedCallback = (mode: NotificationManager.DoNotDisturbDate) => {
+  console.info('===> onDoNotDisturbChanged:' + mode);
+}
+
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onDoNotDisturbChanged: onDoNotDisturbChangedCallback
+};
+
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
+```
 
 ### onEnabledNotificationChanged<sup>8+</sup>
 
-onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)) => void
+onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata8)) => void
 
 Listens for the notification enabled status changes.
 
@@ -305,9 +350,9 @@ Listens for the notification enabled status changes.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ------------ | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<[EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)\> | Yes| Callback used to return the result.|
+| Name| Type                                                                                                          | Mandatory| Description|
+| ------------ |--------------------------------------------------------------------------------------------------------------| ---- | -------------------------- |
+| callback | AsyncCallback\<[EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata8)\> | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -381,13 +426,13 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name           | Type                                             | Readable| Writable| Description    |
-| --------------- | ------------------------------------------------- | ---- | --- | -------- |
-| request         | [NotificationRequest](js-apis-inner-notification-notificationRequest#notificationrequest)       | Yes | No | Notification content.|
+| Name           | Type                                                                | Readable| Writable| Description    |
+| --------------- |--------------------------------------------------------------------| ---- | --- | -------- |
+| request         | [NotificationRequest](js-apis-notification.md#notificationrequest) | Yes | No | Notification content.|
 | sortingMap      | [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap.md) | Yes | No | Notification sorting information.|
-| reason          | number                                            | Yes | No | Reason for deletion.|
-| sound           | string                                            | Yes | No | Sound used for notification.|
-| vibrationValues | Array\<number\>                                   | Yes | No | Vibration used for notification.|
+| reason          | number                                                             | Yes | No | Reason for deletion.|
+| sound           | string                                                             | Yes | No | Sound used for notification.|
+| vibrationValues | Array\<number\>                                                    | Yes | No | Vibration used for notification.|
 
 
 ## EnabledNotificationCallbackData<sup>8+</sup>

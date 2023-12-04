@@ -608,7 +608,7 @@ int32_t OHOS::Media::OH_AccessPixels (napi_env env, napi_value value, void ** ad
 
 **参见：**
 
-UnAccessPixels
+[UnAccessPixels](image.md#oh_unaccesspixels)
 
 
 ### OH_GetImageInfo()
@@ -825,9 +825,7 @@ int32_t OH_Image_Receiver_CreateImageReceiver (napi_env env, struct OhosImageRec
 
 如果JNI环境异常则返回 IMAGE_RESULT_JNI_ENV_ABNORMAL ；
 
-如果参数无效则返回 IMAGE_RESULT_INVALID_PARAMETER ；
-
-如果从surface获取参数失败返回 IMAGE_RESULT_INVALID_PARAMETER ；
+如果参数无效或从surface获取参数失败则返回 IMAGE_RESULT_INVALID_PARAMETER ；
 
 如果创建surface失败则返回 IMAGE_RESULT_CREATE_SURFACE_FAILED ；
 
@@ -958,9 +956,7 @@ int32_t OH_Image_Receiver_GetReceivingSurfaceId (const ImageReceiverNative * nat
 
 如果JNI环境异常则返回 IMAGE_RESULT_JNI_ENV_ABNORMAL ；
 
-如果参数无效则返回 IMAGE_RESULT_INVALID_PARAMETER ；
-
-如果从surface获取参数失败返回 IMAGE_RESULT_INVALID_PARAMETER ；
+如果参数无效或从surface获取参数失败则返回 IMAGE_RESULT_INVALID_PARAMETER ；
 
 如果获取surface失败则返回 IMAGE_RESULT_GET_SURFACE_FAILED ；
 
@@ -1074,9 +1070,7 @@ int32_t OH_Image_Receiver_On (const ImageReceiverNative * native, OH_Image_Recei
 
 如果JNI环境异常则返回 IMAGE_RESULT_JNI_ENV_ABNORMAL ；
 
-如果参数无效则返回 IMAGE_RESULT_INVALID_PARAMETER ；
-
-如果从surface获取参数失败返回 IMAGE_RESULT_INVALID_PARAMETER ；
+如果参数无效或从surface获取参数失败则返回 IMAGE_RESULT_INVALID_PARAMETER ；
 
 如果获取surface失败则返回 IMAGE_RESULT_GET_SURFACE_FAILED ；
 
@@ -1120,9 +1114,7 @@ int32_t OH_Image_Receiver_ReadLatestImage (const ImageReceiverNative * native, n
 
 如果JNI环境异常则返回 IMAGE_RESULT_JNI_ENV_ABNORMAL ；
 
-如果参数无效则返回 IMAGE_RESULT_INVALID_PARAMETER ；
-
-如果从surface获取参数失败返回 IMAGE_RESULT_INVALID_PARAMETER ；
+如果参数无效或从surface获取参数失败则返回 IMAGE_RESULT_INVALID_PARAMETER ；
 
 如果创建surface失败则返回 IMAGE_RESULT_CREATE_SURFACE_FAILED ；
 
@@ -1172,9 +1164,7 @@ int32_t OH_Image_Receiver_ReadNextImage (const ImageReceiverNative * native, nap
 
 如果JNI环境异常则返回 IMAGE_RESULT_JNI_ENV_ABNORMAL ；
 
-如果参数无效则返回 IMAGE_RESULT_INVALID_PARAMETER ；
-
-如果从surface获取参数失败返回 IMAGE_RESULT_INVALID_PARAMETER ；
+如果参数无效或从surface获取参数失败则返回 IMAGE_RESULT_INVALID_PARAMETER ；
 
 如果创建surface失败则返回 IMAGE_RESULT_CREATE_SURFACE_FAILED ；
 
@@ -1505,11 +1495,11 @@ int32_t OH_ImageSource_CreatePixelMap (const ImageSourceNative * native, struct 
 
 如果图片解码异常，返回 IMAGE_RESULT_DECODE_ABNORMAL；
 
-如果图像错误，返回 IMAGE_RESULT_MALLOC_ABNORMAL；
+如果图像内存分配异常，返回 IMAGE_RESULT_MALLOC_ABNORMAL；
 
-如果图片初始化错误，返回 IMAGE_RESULT_DATA_UNSUPPORT；
+如果图像类型不支持，返回 IMAGE_RESULT_DATA_UNSUPPORT；
 
-如果图片输入数据错误，返回 IMAGE_RESULT_INIT_ABNORMAL；
+如果图像初始化失败，返回 IMAGE_RESULT_INIT_ABNORMAL；
 
 如果裁剪错误，返回 IMAGE_RESULT_CROP；
 
@@ -1519,7 +1509,7 @@ int32_t OH_ImageSource_CreatePixelMap (const ImageSourceNative * native, struct 
 
 如果创建插件失败。返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED；
 
-如果增加位图失败，返回 IMAGE_RESULT_ENCODE_FAILED；
+如果图像编码失败，返回 IMAGE_RESULT_ENCODE_FAILED；
 
 如果不支持图片硬解码，返回 IMAGE_RESULT_HW_DECODE_UNSUPPORT；
 
@@ -1596,11 +1586,11 @@ int32_t OH_ImageSource_CreatePixelMapList (const ImageSourceNative * native, str
 
 如果图片解码异常，返回 IMAGE_RESULT_DECODE_ABNORMAL；
 
-如果图像错误，返回 IMAGE_RESULT_MALLOC_ABNORMAL；
+如果图像内存分配异常，返回 IMAGE_RESULT_MALLOC_ABNORMAL；
 
-如果图片初始化错误，返回 IMAGE_RESULT_DATA_UNSUPPORT；
+如果图像类型不支持，返回 IMAGE_RESULT_DATA_UNSUPPORT；
 
-如果图片输入数据错误，返回 IMAGE_RESULT_INIT_ABNORMAL；
+如果图像初始化失败，返回 IMAGE_RESULT_INIT_ABNORMAL；
 
 如果裁剪错误，返回 IMAGE_RESULT_CROP；
 
@@ -1610,7 +1600,7 @@ int32_t OH_ImageSource_CreatePixelMapList (const ImageSourceNative * native, str
 
 如果创建插件失败。返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED；
 
-如果增加位图失败，返回 IMAGE_RESULT_ENCODE_FAILED；
+如果图像编码失败，返回 IMAGE_RESULT_ENCODE_FAILED；
 
 如果不支持图片硬解码，返回 IMAGE_RESULT_HW_DECODE_UNSUPPORT；
 
@@ -1682,7 +1672,7 @@ int32_t OH_ImageSource_GetDelayTime (const ImageSourceNative * native, struct Oh
 
 如果图片解码异常， IMAGE_RESULT_DECODE_ABNORMAL；
 
-如果图片初始化错误，返回 IMAGE_RESULT_DATA_UNSUPPORT；
+如果图像类型不支持，返回 IMAGE_RESULT_DATA_UNSUPPORT；
 
 如果图片格式未知，返回 IMAGE_RESULT_UNKNOWN_FORMAT；
 
@@ -1750,7 +1740,7 @@ int32_t OH_ImageSource_GetFrameCount (const ImageSourceNative * native, uint32_t
 
 如果图片解码异常， IMAGE_RESULT_DECODE_ABNORMAL；
 
-如果图片初始化错误，返回 IMAGE_RESULT_DATA_UNSUPPORT；
+如果图像类型不支持，返回 IMAGE_RESULT_DATA_UNSUPPORT；
 
 如果图片格式未知，返回 IMAGE_RESULT_UNKNOWN_FORMAT；
 
@@ -1819,7 +1809,7 @@ int32_t OH_ImageSource_GetImageInfo (const ImageSourceNative * native, int32_t i
 
 如果图片解码异常， IMAGE_RESULT_DECODE_ABNORMAL；
 
-如果图片初始化错误，返回 IMAGE_RESULT_DATA_UNSUPPORT；
+如果图像类型不支持，返回 IMAGE_RESULT_DATA_UNSUPPORT；
 
 如果图片格式未知，返回 IMAGE_RESULT_UNKNOWN_FORMAT；
 
@@ -1888,7 +1878,7 @@ int32_t OH_ImageSource_GetImageProperty (const ImageSourceNative * native, struc
 
 如果图片解码异常， IMAGE_RESULT_DECODE_ABNORMAL；
 
-如果图片初始化错误，返回 IMAGE_RESULT_DATA_UNSUPPORT；
+如果图像类型不支持，返回 IMAGE_RESULT_DATA_UNSUPPORT；
 
 如果图片格式未知，返回 IMAGE_RESULT_UNKNOWN_FORMAT；
 
@@ -2032,7 +2022,7 @@ int32_t OH_ImageSource_ModifyImageProperty (const ImageSourceNative * native, st
 
 如果图片解码异常， IMAGE_RESULT_DECODE_ABNORMAL；
 
-如果图片初始化错误，返回 IMAGE_RESULT_DATA_UNSUPPORT；
+如果图像类型不支持，返回 IMAGE_RESULT_DATA_UNSUPPORT；
 
 如果图片格式未知，返回 IMAGE_RESULT_UNKNOWN_FORMAT；
 
@@ -2151,11 +2141,11 @@ int32_t OH_ImageSource_UpdateData (const ImageSourceNative * native, struct Ohos
 
 如果图片解码异常，返回IMAGE_RESULT_DECODE_ABNORMAL；
 
-如果图像错误，返回 IMAGE_RESULT_MALLOC_ABNORMAL；
+如果图像内存分配异常，返回 IMAGE_RESULT_MALLOC_ABNORMAL；
 
-如果图片初始化错误，返回 IMAGE_RESULT_DATA_UNSUPPORT；
+如果图像类型不支持，返回 IMAGE_RESULT_DATA_UNSUPPORT；
 
-如果图片输入数据错误，返回 IMAGE_RESULT_INIT_ABNORMAL；
+如果图像初始化失败，返回 IMAGE_RESULT_INIT_ABNORMAL；
 
 如果裁剪错误，返回 IMAGE_RESULT_CROP；
 
@@ -2165,7 +2155,7 @@ int32_t OH_ImageSource_UpdateData (const ImageSourceNative * native, struct Ohos
 
 如果创建插件失败。返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED；
 
-如果增加位图失败，返回 IMAGE_RESULT_ENCODE_FAILED；
+如果图像编码失败，返回 IMAGE_RESULT_ENCODE_FAILED；
 
 如果不支持图片硬解码，返回 IMAGE_RESULT_HW_DECODE_UNSUPPORT；
 
@@ -2233,17 +2223,15 @@ int32_t OH_PixelMap_AccessPixels (const NativePixelMap * native, void ** addr )
 
 如果图像分配内存失败则返回 IMAGE_RESULT_MALLOC_ABNORMAL ；
 
-如果图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果属性无效或图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
 
-如果裁剪失败失败则返回 IMAGE_RESULT_CROP ；
+如果裁剪失败则返回 IMAGE_RESULT_CROP ；
 
 如果图像格式未知则返回 IMAGE_RESULT_UNKNOWN_FORMAT ；
 
-如果注册插件失败失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
+如果注册插件失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
 
-如果创建插件失败失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
-
-如果属性无效则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果创建插件失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
 
 如果透明度类型错误则返回 IMAGE_RESULT_ALPHA_TYPE_ERROR ；
 
@@ -2255,7 +2243,7 @@ int32_t OH_PixelMap_AccessPixels (const NativePixelMap * native, void ** addr )
 
 **参见：**
 
-AccessPixels
+[AccessPixels](image.md#oh_pixelmap_accesspixels)
 
 
 ### OH_PixelMap_CreateAlphaPixelMap()
@@ -2312,27 +2300,25 @@ int32_t OH_PixelMap_CreateAlphaPixelMap (napi_env env, napi_value source, napi_v
 
 如果图像分配内存失败则返回 IMAGE_RESULT_MALLOC_ABNORMAL ；
 
-如果图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果属性无效或图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
 
 如果图像初始化失败则返回 IMAGE_RESULT_INIT_ABNORMAL ；
 
-如果裁剪失败失败则返回 IMAGE_RESULT_CROP ；
+如果裁剪失败则返回 IMAGE_RESULT_CROP ；
 
 如果图像格式未知则返回 IMAGE_RESULT_UNKNOWN_FORMAT ；
 
-如果注册插件失败失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
+如果注册插件失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
 
-如果创建插件失败失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
+如果创建插件失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
 
-如果图像添加像素位图失败则返回 IMAGE_RESULT_ENCODE_FAILED ；
+如果图像编码失败则返回 IMAGE_RESULT_ENCODE_FAILED ；
 
 如果图像不支持硬件解码则返回 IMAGE_RESULT_HW_DECODE_UNSUPPORT ；
 
 如果硬件解码失败则返回 IMAGE_RESULT_HW_DECODE_FAILED ；
 
-如果ipc失败则返回 IMAGE_RESULT_INDEX_INVALID ；
-
-如果属性无效则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果参数无效则返回 IMAGE_RESULT_INDEX_INVALID ；
 
 如果透明度类型错误则返回 IMAGE_RESULT_ALPHA_TYPE_ERROR ；
 
@@ -2344,7 +2330,7 @@ int32_t OH_PixelMap_CreateAlphaPixelMap (napi_env env, napi_value source, napi_v
 
 **参见：**
 
-CreateAlphaPixelMap
+[CreateAlphaPixelMap](image.md#oh_pixelmap_createalphapixelmap)
 
 
 ### OH_PixelMap_CreatePixelMap()
@@ -2401,31 +2387,27 @@ Creates a **PixelMap** object.
 
 如果图像解码失败则返回 IMAGE_RESULT_DECODE_ABNORMAL ；
 
-如果解码失败则返回 IMAGE_RESULT_DECODE_FAILED ；
-
 如果图像分配内存失败则返回 IMAGE_RESULT_MALLOC_ABNORMAL ；
 
-如果图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果属性无效或图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
 
 如果图像初始化失败则返回 IMAGE_RESULT_INIT_ABNORMAL ；
 
-如果裁剪失败失败则返回 IMAGE_RESULT_CROP ；
+如果裁剪失败则返回 IMAGE_RESULT_CROP ；
 
 如果图像格式未知则返回 IMAGE_RESULT_UNKNOWN_FORMAT ；
 
-如果注册插件失败失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
+如果注册插件失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
 
-如果创建插件失败失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
+如果创建插件失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
 
-如果图像添加像素位图失败则返回 IMAGE_RESULT_ENCODE_FAILED ；
+如果图像编码失败则返回 IMAGE_RESULT_ENCODE_FAILED ；
 
 如果图像不支持硬件解码则返回 IMAGE_RESULT_HW_DECODE_UNSUPPORT ；
 
 如果硬件解码失败则返回 IMAGE_RESULT_HW_DECODE_FAILED ；
 
-如果ipc失败则返回 IMAGE_RESULT_INDEX_INVALID ；
-
-如果属性无效则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果参数无效则返回 IMAGE_RESULT_INDEX_INVALID ；
 
 如果透明度类型错误则返回 IMAGE_RESULT_ALPHA_TYPE_ERROR ；
 
@@ -2437,7 +2419,7 @@ Creates a **PixelMap** object.
 
 **参见：**
 
-CreatePixelMap
+[CreatePixelMap](image.md#oh_pixelmap_createpixelmap)
 
 
 ### OH_PixelMap_Crop()
@@ -2488,17 +2470,15 @@ int32_t OH_PixelMap_Crop (const NativePixelMap * native, int32_t x, int32_t y, i
 
 如果图像分配内存失败则返回 IMAGE_RESULT_MALLOC_ABNORMAL ；
 
-如果图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果属性无效或图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
 
-如果裁剪失败失败则返回 IMAGE_RESULT_CROP ；
+如果裁剪失败则返回 IMAGE_RESULT_CROP ；
 
 如果图像格式未知则返回 IMAGE_RESULT_UNKNOWN_FORMAT ；
 
-如果注册插件失败失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
+如果注册插件失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
 
-如果创建插件失败失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
-
-如果属性无效则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果创建插件失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
 
 如果透明度类型错误则返回 IMAGE_RESULT_ALPHA_TYPE_ERROR ；
 
@@ -2510,7 +2490,7 @@ int32_t OH_PixelMap_Crop (const NativePixelMap * native, int32_t x, int32_t y, i
 
 **参见：**
 
-Crop
+[Crop](image.md#oh_pixelmap_crop)
 
 
 ### OH_PixelMap_Flip()
@@ -2559,17 +2539,15 @@ int32_t OH_PixelMap_Flip (const NativePixelMap * native, int32_t x, int32_t y )
 
 如果图像分配内存失败则返回 IMAGE_RESULT_MALLOC_ABNORMAL ；
 
-如果图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果属性无效或图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
 
-如果裁剪失败失败则返回 IMAGE_RESULT_CROP ；
+如果裁剪失败则返回 IMAGE_RESULT_CROP ；
 
 如果图像格式未知则返回 IMAGE_RESULT_UNKNOWN_FORMAT ；
 
-如果注册插件失败失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
+如果注册插件失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
 
-如果创建插件失败失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
-
-如果属性无效则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果创建插件失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
 
 如果透明度类型错误则返回 IMAGE_RESULT_ALPHA_TYPE_ERROR ；
 
@@ -2581,7 +2559,7 @@ int32_t OH_PixelMap_Flip (const NativePixelMap * native, int32_t x, int32_t y )
 
 **参见：**
 
-Flip
+[Flip](image.md#oh_pixelmap_flip)
 
 
 ### OH_PixelMap_GetBytesNumberPerRow()
@@ -2615,7 +2593,7 @@ int32_t OH_PixelMap_GetBytesNumberPerRow (const NativePixelMap * native, int32_t
 
 如果图像输入数据失败则返回 IMAGE_RESULT_DATA_ABNORMAL ；
 
-如果属性无效则返回 IMAGE_RESULT_DATA_UNSUPPORT 。
+如果图像类型不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT 。
 
 **起始版本：**
 
@@ -2623,7 +2601,7 @@ int32_t OH_PixelMap_GetBytesNumberPerRow (const NativePixelMap * native, int32_t
 
 **参见：**
 
-GetBytesNumberPerRow
+[GetBytesNumberPerRow](image.md#oh_pixelmap_getbytesnumberperrow)
 
 
 ### OH_PixelMap_GetDensity()
@@ -2657,7 +2635,7 @@ int32_t OH_PixelMap_GetDensity (const NativePixelMap * native, int32_t * density
 
 如果图像输入数据失败则返回 IMAGE_RESULT_DATA_ABNORMAL ；
 
-如果属性无效则返回 IMAGE_RESULT_DATA_UNSUPPORT 。
+如果图像类型不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT 。
 
 **起始版本：**
 
@@ -2665,7 +2643,7 @@ int32_t OH_PixelMap_GetDensity (const NativePixelMap * native, int32_t * density
 
 **参见：**
 
-GetDensity
+[GetDensity](image.md#oh_pixelmap_getdensity)
 
 
 ### OH_PixelMap_GetImageInfo()
@@ -2713,17 +2691,15 @@ int32_t OH_PixelMap_GetImageInfo (const NativePixelMap * native, OhosPixelMapInf
 
 如果图像分配内存失败则返回 IMAGE_RESULT_MALLOC_ABNORMAL ；
 
-如果图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果属性无效或图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
 
-如果裁剪失败失败则返回 IMAGE_RESULT_CROP ；
+如果裁剪失败则返回 IMAGE_RESULT_CROP ；
 
 如果图像格式未知则返回 IMAGE_RESULT_UNKNOWN_FORMAT ；
 
-如果注册插件失败失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
+如果注册插件失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
 
-如果创建插件失败失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
-
-如果属性无效则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果创建插件失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
 
 如果透明度类型错误则返回 IMAGE_RESULT_ALPHA_TYPE_ERROR ；
 
@@ -2769,7 +2745,7 @@ int32_t OH_PixelMap_GetIsEditable (const NativePixelMap * native, int32_t * edit
 
 如果图像输入数据失败则返回 IMAGE_RESULT_DATA_ABNORMAL ；
 
-如果属性无效则返回 IMAGE_RESULT_DATA_UNSUPPORT 。
+如果图像类型不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT 。
 
 **起始版本：**
 
@@ -2777,7 +2753,7 @@ int32_t OH_PixelMap_GetIsEditable (const NativePixelMap * native, int32_t * edit
 
 **参见：**
 
-GetIsEditable
+[GetIsEditable](image.md#oh_pixelmap_getiseditable)
 
 
 ### OH_PixelMap_InitNativePixelMap()
@@ -2807,7 +2783,7 @@ NativePixelMap* OH_PixelMap_InitNativePixelMap (napi_env env, napi_value source 
 
 **参见:**
 
-InitNativePixelMap
+[InitNativePixelMap](image.md#oh_pixelmap_initnativepixelmap)
 
 
 ### OH_PixelMap_IsSupportAlpha()
@@ -2841,7 +2817,7 @@ int32_t OH_PixelMap_IsSupportAlpha (const NativePixelMap * native, int32_t * alp
 
 如果图像输入数据失败则返回 IMAGE_RESULT_DATA_ABNORMAL ；
 
-如果属性无效则返回 IMAGE_RESULT_DATA_UNSUPPORT 。
+如果图像类型不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT 。
 
 **起始版本：**
 
@@ -2849,7 +2825,7 @@ int32_t OH_PixelMap_IsSupportAlpha (const NativePixelMap * native, int32_t * alp
 
 **参见：**
 
-IsSupportAlpha
+[IsSupportAlpha](image.md#oh_pixelmap_issupportalpha)
 
 
 ### OH_PixelMap_Rotate()
@@ -2897,17 +2873,15 @@ int32_t OH_PixelMap_Rotate (const NativePixelMap * native, float angle )
 
 如果图像分配内存失败则返回 IMAGE_RESULT_MALLOC_ABNORMAL ；
 
-如果图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果属性无效或图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
 
-如果裁剪失败失败则返回 IMAGE_RESULT_CROP ；
+如果裁剪失败则返回 IMAGE_RESULT_CROP ；
 
 如果图像格式未知则返回 IMAGE_RESULT_UNKNOWN_FORMAT ；
 
-如果注册插件失败失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
+如果注册插件失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
 
-如果创建插件失败失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
-
-如果属性无效则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果创建插件失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
 
 如果透明度类型错误则返回 IMAGE_RESULT_ALPHA_TYPE_ERROR ；
 
@@ -2919,7 +2893,7 @@ int32_t OH_PixelMap_Rotate (const NativePixelMap * native, float angle )
 
 **参见：**
 
-Rotate
+[Rotate](image.md#oh_pixelmap_rotate)
 
 
 ### OH_PixelMap_Scale()
@@ -2968,19 +2942,17 @@ int32_t OH_PixelMap_Scale (const NativePixelMap * native, float x, float y )
 
 如果图像分配内存失败则返回 IMAGE_RESULT_MALLOC_ABNORMAL ；
 
-如果图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果属性无效或图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
 
 如果图像初始化失败则返回 IMAGE_RESULT_INIT_ABNORMAL ；
 
-如果裁剪失败失败则返回 IMAGE_RESULT_CROP ；
+如果裁剪失败则返回 IMAGE_RESULT_CROP ；
 
 如果图像格式未知则返回 IMAGE_RESULT_UNKNOWN_FORMAT ；
 
-如果注册插件失败失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
+如果注册插件失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
 
-如果创建插件失败失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
-
-如果属性无效则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果创建插件失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
 
 如果透明度类型错误则返回 IMAGE_RESULT_ALPHA_TYPE_ERROR ；
 
@@ -2992,7 +2964,7 @@ int32_t OH_PixelMap_Scale (const NativePixelMap * native, float x, float y )
 
 **参见：**
 
-Scale
+[Scale](image.md#oh_pixelmap_scale)
 
 
 ### OH_PixelMap_SetAlphaAble()
@@ -3026,7 +2998,7 @@ int32_t OH_PixelMap_SetAlphaAble (const NativePixelMap * native, int32_t alpha )
 
 如果图像输入数据失败则返回 IMAGE_RESULT_DATA_ABNORMAL ；
 
-如果属性无效则返回 IMAGE_RESULT_DATA_UNSUPPORT 。
+如果图像类型不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT 。
 
 **起始版本：**
 
@@ -3034,7 +3006,7 @@ int32_t OH_PixelMap_SetAlphaAble (const NativePixelMap * native, int32_t alpha )
 
 **参见：**
 
-SetAlphaAble
+[SetAlphaAble](image.md#oh_pixelmap_setalphaable)
 
 
 ### OH_PixelMap_SetDensity()
@@ -3069,7 +3041,7 @@ int32_t OH_PixelMap_SetDensity (const NativePixelMap * native, int32_t density )
 
 如果图像输入数据失败则返回 IMAGE_RESULT_DATA_ABNORMAL ；
 
-如果属性无效则返回 IMAGE_RESULT_DATA_UNSUPPORT 。
+如果图像类型不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT 。
 
 **起始版本：**
 
@@ -3077,7 +3049,7 @@ int32_t OH_PixelMap_SetDensity (const NativePixelMap * native, int32_t density )
 
 **参见：**
 
-GetDensity
+[GetDensity](oh_pixelmap_getdensity)
 
 
 ### OH_PixelMap_SetOpacity()
@@ -3111,7 +3083,7 @@ int32_t OH_PixelMap_SetOpacity (const NativePixelMap * native, float opacity )
 
 如果图像输入数据失败则返回 IMAGE_RESULT_DATA_ABNORMAL ；
 
-如果属性无效则返回 IMAGE_RESULT_DATA_UNSUPPORT 。
+如果图像类型不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT 。
 
 **起始版本：**
 
@@ -3119,7 +3091,7 @@ int32_t OH_PixelMap_SetOpacity (const NativePixelMap * native, float opacity )
 
 **参见：**
 
-SetOpacity
+[SetOpacity](image.md#oh_pixelmap_setopacity)
 
 
 ### OH_PixelMap_Translate()
@@ -3168,17 +3140,15 @@ int32_t OH_PixelMap_Translate (const NativePixelMap * native, float x, float y )
 
 如果图像分配内存失败则返回 IMAGE_RESULT_MALLOC_ABNORMAL ；
 
-如果图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果属性无效或图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
 
-如果裁剪失败失败则返回 IMAGE_RESULT_CROP ；
+如果裁剪失败则返回 IMAGE_RESULT_CROP ；
 
 如果图像格式未知则返回 IMAGE_RESULT_UNKNOWN_FORMAT ；
 
-如果注册插件失败失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
+如果注册插件失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
 
-如果创建插件失败失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
-
-如果属性无效则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果创建插件失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
 
 如果透明度类型错误则返回 IMAGE_RESULT_ALPHA_TYPE_ERROR ；
 
@@ -3190,7 +3160,7 @@ int32_t OH_PixelMap_Translate (const NativePixelMap * native, float x, float y )
 
 **参见：**
 
-Translate
+[Translate](image.md#oh_pixelmap_translate)
 
 
 ### OH_PixelMap_UnAccessPixels()
@@ -3237,17 +3207,15 @@ int32_t OH_PixelMap_UnAccessPixels (const NativePixelMap * native)
 
 如果图像分配内存失败则返回 IMAGE_RESULT_MALLOC_ABNORMAL ；
 
-如果图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果属性无效或图像数据不支持则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
 
-如果裁剪失败失败则返回 IMAGE_RESULT_CROP ；
+如果裁剪失败则返回 IMAGE_RESULT_CROP ；
 
 如果图像格式未知则返回 IMAGE_RESULT_UNKNOWN_FORMAT ；
 
-如果注册插件失败失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
+如果注册插件失败则返回 IMAGE_RESULT_PLUGIN_REGISTER_FAILED ；
 
-如果创建插件失败失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
-
-如果属性无效则返回 IMAGE_RESULT_DATA_UNSUPPORT ；
+如果创建插件失败则返回 IMAGE_RESULT_PLUGIN_CREATE_FAILED ；
 
 如果透明度类型错误则返回 IMAGE_RESULT_ALPHA_TYPE_ERROR ；
 
@@ -3259,7 +3227,7 @@ int32_t OH_PixelMap_UnAccessPixels (const NativePixelMap * native)
 
 **参见：**
 
-UnAccessPixels
+[UnAccessPixels](image.md#oh_pixelmap_unaccesspixels)
 
 
 ### OH_UnAccessPixels()
@@ -3293,7 +3261,7 @@ int32_t OHOS::Media::OH_UnAccessPixels (napi_env env, napi_value value )
 
 **参见：**
 
-AccessPixels
+[AccessPixels](image.md#oh_accesspixels)
 
 
 ## 变量说明

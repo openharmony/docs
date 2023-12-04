@@ -19,7 +19,7 @@ PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: numb
 | -------- | -------- | -------- | -------- |
 | fingers | number | 否 | 触发拖动的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1<br/>取值范围：[1,10]<br/>**说明：** <br/>当设置的值小于1或不设置时，会被转化为默认值。 |
 | direction | PanDirection | 否 | 触发拖动的手势方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。<br/>默认值：PanDirection.All |
-| distance | number | 否 | 最小拖动识别距离，单位为vp。<br/>默认值：5<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。 |
+| distance | number | 否 | 最小拖动识别距离，单位为vp。<br/>默认值：5<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。<br/>当拖动距离的值小于等于0时，会被转化为默认值。 |
 
 ## PanDirection枚举说明
 
@@ -47,7 +47,7 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 | --------- | ------------ | ---- | ------------------------------------------------------------ |
 | fingers   | number       | 否   | 触发滑动的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1 |
 | direction | PanDirection | 否   | 设置滑动方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。<br/>默认值：All |
-| distance  | number       | 否   | 最小滑动识别距离，单位为vp。<br/>默认值：5.0<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。 |
+| distance  | number       | 否   | 最小滑动识别距离，单位为vp。<br/>默认值：5.0<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。<br/>当拖动距离的值小于等于0时，会被转化为默认值。 |
 
 **接口**
 
@@ -67,7 +67,11 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 | onActionEnd(event:&nbsp;(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，手指抬起后触发回调。 |
 | onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，接收到触摸取消事件触发回调。 |
 
+## 属性
 
+| 名称 | 类型    |描述                                        |
+| ----  | ------  | ---------------------------------------- |
+| tag<sup>11+</sup>   | string  | 设置Pan手势标志，用于自定义手势判定时区分绑定的手势。|
 ## 示例
 
 ```ts

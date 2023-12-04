@@ -1,12 +1,9 @@
 # 动画衔接
 
 
-UI界面除了运行动画之外，还承载着与用户进行实时交互的功能。当用户行为根据意图变化发生改变时，UI界面应做到即时响应。例如用户在应用启动过程中，上滑退出，那么启动动画应该立即过渡到退出动画，而不应该等启动动画完成后再退出，从而减少用户等待时间。对于桌面翻页类从跟手到离手触发动画的场景，离手后动画的初始速度应承继手势速度，避免由于速度不接续导致停顿感的产生。针对以上场景，OpenHarmony已提供动画与动画，手势与动画之间的衔接能力，保证各类场景下动画平稳光滑的过渡的同时，尽可能降低开发难度。
+UI界面除了运行动画之外，还承载着与用户进行实时交互的功能。当用户行为根据意图变化发生改变时，UI界面应做到即时响应。例如用户在应用启动过程中，上滑退出，那么启动动画应该立即过渡到退出动画，而不应该等启动动画完成后再退出，从而减少用户等待时间。对于桌面翻页类从跟手到离手触发动画的场景，离手后动画的初始速度应承继手势速度，避免由于速度不接续导致停顿感的产生。针对以上场景，系统已提供动画与动画、手势与动画之间的衔接能力，保证各类场景下动画平稳光滑地过渡的同时，尽可能降低开发难度。
 
-
-## 动画与动画的衔接
-
-假设对于某一可动画属性，存在正在运行的动画。当UI侧行为改变该属性终点值时，开发者仅需在animateTo动画闭包中改变属性值或者改变animation接口作用的属性值，即可产生动画。OpenHarmony会自动衔接之前的动画和当前的动画，开发者仅需要关注当前单次动画的实现。
+假设对于某一可动画属性，存在正在运行的动画。当UI侧行为改变该属性终点值时，开发者仅需在animateTo动画闭包中改变属性值或者改变animation接口作用的属性值，即可产生动画。系统会自动衔接之前的动画和当前的动画，开发者仅需要关注当前单次动画的实现。
 
 
 ```ts
@@ -143,20 +140,7 @@ Column()
 
 ```ts
 import curves from '@ohos.curves';
-class SetOffset{
-  offsetX:number = 0;
-  offsetY:number = 0;
-  positionX:number = 100;
-  positionY:number = 100;
-  set(x:number,y:number):void{
-    this.offsetX = x;
-    this.offsetY = y;
-  }
-  setJ(x:number,y:number,diameter:number = 50):void{
-    this.positionX = x - diameter / 2;
-    this.positionY = y - diameter / 2;
-  }
-}
+
 @Entry
 @Component
 struct SpringMotionDemo {
@@ -176,15 +160,15 @@ struct SpringMotionDemo {
                 // 跟手过程，使用responsiveSpringMotion曲线
                 animateTo({ curve: curves.responsiveSpringMotion() }, () => {
                   // 减去半径，以使球的中心运动到手指位置
-                  let setxy = new SetOffset();
-                  setxy.setJ(event.touches[0].screenX,event.touches[0].screenY,this.diameter)
-                  console.info(`move, animateTo x:${setxy.positionX}, y:${setxy.positionY}`);
+                  this.positionX = event.touches[0].screenX - this.diameter / 2;
+                  this.positionY = event.touches[0].screenY - this.diameter / 2;
+                  console.info(`move, animateTo x:${this.positionX}, y:${this.positionY}`);
                 })
               } else if (event.type === TouchType.Up) {
                 // 离手时，使用springMotion曲线
                 animateTo({ curve: curves.springMotion() }, () => {
-                  let setxy = new SetOffset();
-                  setxy.set(100,100)
+                  this.positionX = 100;
+                  this.positionY = 100;
                   console.info(`touchUp, animateTo x:100, y:100`);
                 })
               }

@@ -11,11 +11,10 @@
       - [弹性布局（Flex）](arkts-layout-development-flex-layout.md)
       - [相对布局（RelativeContainer）](arkts-layout-development-relative-layout.md)
       - [栅格布局（GridRow/GridCol）](arkts-layout-development-grid-layout.md)
-      - [媒体查询（mediaquery）](arkts-layout-development-media-query.md)
+      - [媒体查询（@ohos.mediaquery）](arkts-layout-development-media-query.md)
       - [创建列表（List）](arkts-layout-development-create-list.md)
       - [创建网格（Grid/GridItem）](arkts-layout-development-create-grid.md)
       - [创建轮播（Swiper）](arkts-layout-development-create-looping.md)
-    - [改善布局性能](arkts-layout-development-performance-boost.md)
   - 添加组件
     - 添加常用组件
       - [按钮（Button）](arkts-common-components-button.md)
@@ -24,6 +23,7 @@
       - [进度条（Progress）](arkts-common-components-progress-indicator.md)
       - [文本显示（Text/Span）](arkts-common-components-text-display.md)
       - [文本输入（TextInput/TextArea）](arkts-common-components-text-input.md)
+      - [显示图片（Image）](arkts-graphics-display.md)
       - [自定义弹窗（CustomDialog）](arkts-common-components-custom-dialog.md)
       - [视频播放（Video）](arkts-common-components-video-player.md)
       - [XComponent](arkts-common-components-xcomponent.md)
@@ -31,12 +31,11 @@
       - [气泡提示（Popup）](arkts-popup-and-menu-components-popup.md)
       - [菜单（Menu）](arkts-popup-and-menu-components-menu.md)
   - 设置页面路由和组件导航
-    - [页面路由（router）](arkts-routing.md)
     - 组件导航
       - [Navigation](arkts-navigation-navigation.md)
       - [Tabs](arkts-navigation-tabs.md)
+    - [页面路由（@ohos.router）](arkts-routing.md)
   - 显示图形
-    - [显示图片（Image）](arkts-graphics-display.md)
     - [绘制几何图形（Shape）](arkts-geometric-shape-drawing.md)
     - [使用画布绘制自定义图形（Canvas）](arkts-drawing-customization-on-canvas.md)
   - 使用动画
@@ -72,7 +71,6 @@
       - [绑定手势方法](arkts-gesture-events-binding.md)
       - [单一手势](arkts-gesture-events-single-gesture.md)
       - [组合手势](arkts-gesture-events-combined-gestures.md)
-  - [性能提升的推荐方法](arkts-performance-improvement-recommendation.md)
 - UI开发（兼容JS的类Web开发范式）
   - [UI开发（兼容JS的类Web开发范式）概述](ui-js-overview.md)
   - 框架说明

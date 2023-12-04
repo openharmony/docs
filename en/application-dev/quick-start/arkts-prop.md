@@ -15,7 +15,15 @@ For an \@Prop decorated variable, the value synchronization is uni-directional f
 
 - An @Prop variable is allowed to be modified locally, but the change does not propagate back to its parent component.
 
-- Whenever that data source changes, the @Prop decorated variable gets updated, and any locally made changes are overwritten. In other words, the value is synchronized from the parent component to the (owning) child component, but not from the other way around.
+- Whenever that data source changes, the @Prop decorated variable gets updated, and any locally made changes are overwritten. In other words, the value is synchronized from the parent component to the (owning) child component, but not the other way around.
+
+
+
+## Restrictions
+
+- When decorating variables of complex types, @Prop makes a deep copy, during which all types, except primitive types, Map, Set, Date, and Array, will be lost.
+
+- The \@Prop decorator cannot be used in custom components decorated by \@Entry.
 
 
 ## Rules of Use
@@ -24,7 +32,7 @@ For an \@Prop decorated variable, the value synchronization is uni-directional f
 | ----------- | ---------------------------------------- |
 | Decorator parameters      | None.                                       |
 | Synchronization type       | One-way: from the data source provided by the parent component to the @Prop decorated variable. For details about the scenarios of nested types, see [Observed Changes](#observed-changes).|
-| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>**any** is not supported. A combination of simple and complex types is not supported. The **undefined** and **null** values are not allowed.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>The type must be specified.<br>**NOTE**<br>The Length, ResourceStr, and ResourceColor types are a combination of simple and complex types and therefore not supported.<br>Negative examples:<br>CompA ({ aProp: undefined })<br>CompA ({ aProp: null })<br>The type must be the same as that of the [data source](arkts-state-management-overview.md#basic-concepts). There are three cases:<br>- Synchronizing the \@Prop decorated variable from an \@State or other decorated variable. Example: [Simple Type @Prop Synced from @State in Parent Component](#simple-type-prop-synced-from-state-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from the item of an \@State or other decorated array. Example: [Simple Type @Prop Synced from @State Array Item in Parent Component](#simple-type-prop-synced-from-state-array-item-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from a state attribute of the Object or class type in the parent component. Example: [Class Object Type @Prop Synced from @State Class Object Attribute in Parent Component](#class-object-type-prop-synced-from-state-class-object-attribute-in-parent-component).|
+| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>**undefined** or **null** (**any** is not supported).<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @Prop](#union-type-prop).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, @Prop a: string \| undefined = undefined is recommended; **@Prop a: string = undefined** is not recommended.<br>The union types Length, ResourceStr, and ResourceColor defined by the AkrUI framework are supported.<br>The type must be specified.<br>**NOTE**<br>The type must be the same as that of the [data source](arkts-state-management-overview.md#basic-concepts). There are three cases:<br>- Synchronizing the \@Prop decorated variable from an \@State or other decorated variable. Example: [Simple Type @Prop Synced from @State in Parent Component](#simple-type-prop-synced-from-state-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from the item of an \@State or other decorated array. Example: [Simple Type @Prop Synced from @State Array Item in Parent Component](#simple-type-prop-synced-from-state-array-item-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from a state attribute of the Object or class type in the parent component. Example: [Class Object Type @Prop Synced from @State Class Object Attribute in Parent Component](#class-object-type-prop-synced-from-state-class-object-attribute-in-parent-component).|
 | Number of nested layers       | In component reuse scenarios, it is recommended that @Prop be nested with no more than five layers of data. If @Prop is nested with too many layers of data, garbage collection and increased memory usage caused by deep copy will follow, resulting in performance issues. To avoid such issues, use [\@ObjectLink](arkts-observed-and-objectlink.md) instead. If you do not want to synchronize the data of a child component to the parent component, consider using **aboutToReuse** in @Reusable to pass data from the parent component to the child component. For details, see [Component Reuse](arkts-state-management-best-practices.md)|
 | Initial value for the decorated variable  | Local initialization is allowed.                                |
 
@@ -89,7 +97,7 @@ this.title.value = 'Hi'
 this.title.a.value = 'ArkUi' 
 ```
 
-In the scenarios of nested objects, if a class is decorated by \@Observed, the value changes of the class attribute can be observed. For the example, see [@Prop Nesting Scenario](#@prop-nesting-scenario).
+In the scenarios of nested objects, if a class is decorated by \@Observed, the value changes of the class attribute can be observed. For details, see [@Prop Nesting Scenario](#prop-nesting-scenario).
 
 When the decorated variable is of the array type, the value assignment, addition, deletion, and updates of array items can be observed.
 
@@ -288,7 +296,7 @@ struct Index {
         Divider().height(5)
 
         ForEach(this.arr, 
-          (item: void) => {
+          (item: number) => {
             Child({value: item})
           }, 
           (item: string) => item.toString()
@@ -346,7 +354,7 @@ After **replace entire arr** is clicked, the following information is displayed:
 - Because **this.arr[0]** has been changed, the **Child({value: this.arr[0]})** component synchronizes the update of **this.arr[0]** to the instance's \@Prop decorated variable. The same happens for **Child({value: this.arr[1]})** and **Child({value: this.arr[2]})**.
 
 
-- The change of **this.arr** causes **ForEach** to update: The array item with the ID **3** is retained in this update, array items with IDs **1** and **2** are deleted, and array items with IDs **4** and **5** are added. The array before and after the update is **[1, 2, 3]** and **[3, 4, 5]**, respectively. This implies that the **Child** instance generated for item **3** will be moved to the first place, but not updated. In this case, the component value corresponding to **3** is **7**, and the final render result of **ForEach** is **7**, **4**, and **5**.
+- The change of **this.arr** causes **ForEach** to update: According to the diff algorithm, the array item with the ID **3** is retained in this update, array items with IDs **1** and **2** are deleted, and array items with IDs **4** and **5** are added. The array before and after the update is **[1, 2, 3]** and **[3, 4, 5]**, respectively. This implies that the **Child** instance generated for item **3** will be moved to the first place, but not updated. In this case, the component value corresponding to **3** is **7**, and the final render result of **ForEach** is **7**, **4**, and **5**.
 
 
 ### Class Object Type @Prop Synced from @State Class Object Attribute in Parent Component
@@ -626,6 +634,181 @@ struct Child1 {
         .onClick(() => {
           this.vote1.title = 'Bye Bye'
         })
+    }
+  }
+}
+```
+
+## Union Type @Prop 
+
+@Prop supports **undefined**, **null**, and union types. In the following example, the type of **count** is ClassA | undefined. If the attribute or type of **count** is changed when the button in the parent component **Library** is clicked, the change will be synced to the child component.
+
+```ts
+class Animals {
+  public name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+@Component
+struct Child {
+  @Prop animal: Animals | undefined;
+
+  build() {
+    Column() {
+      Text(`Child's animal is  ${this.animal instanceof Animals ? this.animal.name : 'undefined'}`).fontSize(30)
+
+      Button('Child change animals into tigers')
+        .onClick(() => {
+          // Assign the value of an instance of Animals.
+          this.animal = new Animals("Tiger")
+        })
+
+      Button('Child change animal to undefined')
+        .onClick(() => {
+          // Assign the value undefined.
+          this.animal = undefined
+        })
+
+    }.width('100%')
+  }
+}
+
+@Entry
+@Component
+struct Library {
+  @State animal: Animals | undefined = new Animals("lion");
+
+  build() {
+    Column() {
+      Text(`Parents' animals are  ${this.animal instanceof Animals ? this.animal.name : 'undefined'}`).fontSize(30)
+
+      Child({animal: this.animal})
+
+      Button('Parents change animals into dogs')
+        .onClick(() => {
+          // Determine the animal type and update the attribute.
+          if (this.animal instanceof Animals) {
+            this.animal.name = "Dog"
+          } else {
+            console.info('num is undefined, cannot change property')
+          }
+        })
+
+      Button('Parents change animal to undefined')
+        .onClick(() => {
+          // Assign the value undefined.
+          this.animal = undefined
+        })
+    }
+  }
+}
+```
+
+
+## FAQs
+
+### \@Prop Decorated State Variable Not Initialized
+
+The \@Prop decorated state variable must be initialized. If not initialized locally, it must be initialized from the parent component. If it has been initialized locally, initialization from the parent component is optional.
+
+[Incorrect Example]
+
+```ts
+@Observed
+class ClassA {
+  public c: number = 0;
+
+  constructor(c: number) {
+    this.c = c;
+  }
+}
+
+@Component
+struct PropChild {
+  @Prop testNum: ClassA; // The state variable is not initialized locally.
+
+  build() {
+    Text(`PropChild testNum ${this.testNum.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State testNum: ClassA[] = [new ClassA(1)];
+
+  build() {
+    Column() {
+      Text(`Parent testNum ${this.testNum[0].c}`)
+        .onClick(() => {
+          this.testNum[0].c += 1;
+        })
+        
+      // The @Prop state variable is not initialized locally, nor initialized from the parent component.
+      PropChild1()
+    }
+  }
+}
+```
+
+[Correct Example]
+
+```ts
+@Observed
+class ClassA {
+  public c: number = 0;
+
+  constructor(c: number) {
+    this.c = c;
+  }
+}
+
+@Component
+struct PropChild1 {
+  @Prop testNum: ClassA; // The state variable is not initialized locally.
+
+  build() {
+    Text(`PropChild1 testNum ${this.testNum.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
+  }
+}
+@Component
+struct PropChild2 {
+  @Prop testNum: ClassA = new ClassA(1); // The state variable is initialized locally.
+
+  build() {
+    Text(`PropChild2 testNum ${this.testNum.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State testNum: ClassA[] = [new ClassA(1)];
+
+  build() {
+    Column() {
+      Text(`Parent testNum ${this.testNum[0].c}`)
+        .onClick(() => {
+          this.testNum[0].c += 1;
+        })
+        
+      // @PropChild1 is not initialized locally and must be initialized from the parent component.
+      PropChild1({ testNum: this.testNum[0] })
+      // @PropChild2 is initialized locally. In this case, initialization from the parent component is optional.
+      PropChild2()
+      PropChild2({ testNum: this.testNum[0] })
     }
   }
 }

@@ -38,4 +38,5 @@
 | [分栏控件](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/MultiColumns) | 声明式开发范式 | 本示例分别展示了多场景下，一多分栏控件的响应式变化效果。 |
 | [音乐专辑页](https://gitee.com/openharmony/codelabs/tree/master/ExcellentCase/MultiDeviceMusic) | 声明式开发范式 | 基于自适应和响应式布局，实现一次开发、多端部署音乐专辑页面。 |
 | [视频应用](https://gitee.com/openharmony/codelabs/tree/master/ExcellentCase/Multi_device_V2) | 声明式开发范式 | 基于自适应布局和响应式布局能力，实现了常见的视频播放应用的主界面。 |
+| [一多导航栏](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/MultiNavBar) | 声明式开发范式 | 基于自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，主要通过组件提供窗口断点事件，保证应用在不同设备或不同窗口尺寸下可以正常显示。 |
 

@@ -4,9 +4,9 @@ The **BackupExtensionAbility** module provides extended backup and restore capab
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
 
@@ -25,8 +25,19 @@ Defines the version information required for data restore. You can determine the
 | code | number | Yes  | Internal version number of the application.  |
 | name | string | Yes  | Version name of the application.|
 
+## BackupExtensionAbility
 
-## BackupExtensionAbility.onBackup
+Implements backup and restore for application access data. You can use [onBackup](#onbackup) and [onRestore](#onrestore) to implement custom backup and restore operations.
+
+### Attributes
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+| Name                 | Type                                                             | Readable| Writable| Description                                               |
+| --------------------- | ----------------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
+| context<sup>11+</sup> | [ExtensionContext](js-apis-inner-application-extensionContext.md) | Yes  | No  | Context of the BackupExtensionAbility. It inherits from **Context**.|
+
+### onBackup
 
 onBackup(): void;
 
@@ -45,7 +56,7 @@ Called when data is being backed up. You need to implement extended data backup 
   ```
 
 
-## BackupExtensionAbility.onRestore
+### onRestore
 
 onRestore(bundleVersion: BundleVersion): void;
 
@@ -62,6 +73,8 @@ Called when data is being restored. You need to implement extended data restore 
 **Example**
 
   ```ts
+  import { BundleVersion } from '@ohos.application.BackupExtensionAbility';
+  
   class BackupExt extends BackupExtension {
     async onRestore(bundleVersion : BundleVersion) {
       console.log(`onRestore ok ${JSON.stringify(bundleVersion)}`);

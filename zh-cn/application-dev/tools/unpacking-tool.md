@@ -133,14 +133,14 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 
 | 类名               | 接口原型                                                     | 类型     | 接口详细描述                                                            |
 | ------------------ | ------------------------------------------------------------ | -------- |-------------------------------------------------------------------|
-| UncompressEntrance | UncomperssResult parseApp(String appPath,String parseMode,String deviceType,String hapName) | Java接口 | 接口功能：根据参数解析app包的pack.info信息 输入参数：app包路径，解析参数 返回值：UncomperssResult |
-| UncompressEntrance | UncomperssResult parseApp(InputStream input,String parseMode,String deviceType,String hapName,String outPath) | Java接口 | 接口功能：根据参数解析app包的pack.info信息 输入参数：app文件流，解析参数 返回值：UncomperssResult |
-| UncompressEntrance | UncomperssResult parseHap(String hapPath)                    | Java接口 | 接口功能：根据参数解析app包的json配置文件 输入参数：hap包路径，解析参数 返回值：UncomperssResult    |
-| UncompressEntrance | UncomperssResult parseHap(InputStream input)                 | Java接口 | 接口功能：根据参数解析app包的json配置文件 输入参数：hap包文件流，解析参数 返回值：UncomperssResult   |
+| UncompressEntrance | UncompressResult parseApp(String appPath,String parseMode,String deviceType,String hapName) | Java接口 | 接口功能：根据参数解析app包的pack.info信息 输入参数：app包路径，解析参数 返回值：UncompressResult |
+| UncompressEntrance | UncompressResult parseApp(InputStream input,String parseMode,String deviceType,String hapName,String outPath) | Java接口 | 接口功能：根据参数解析app包的pack.info信息 输入参数：app文件流，解析参数 返回值：UncompressResult |
+| UncompressEntrance | UncompressResult parseHap(String hapPath)                    | Java接口 | 接口功能：根据参数解析app包的json配置文件 输入参数：hap包路径，解析参数 返回值：UncompressResult    |
+| UncompressEntrance | UncompressResult parseHap(InputStream input)                 | Java接口 | 接口功能：根据参数解析app包的json配置文件 输入参数：hap包文件流，解析参数 返回值：UncompressResult   |
 
 ## 拆包工具信息字段
 
-### UncomperssResult（Bundle信息）结构体信息
+### UncompressResult（Bundle信息）结构体信息
 
 | 字段            | 类型               | 描述                                     | 备注 |
 | ----------------| ------------------ |----------------------------------------| ---- |

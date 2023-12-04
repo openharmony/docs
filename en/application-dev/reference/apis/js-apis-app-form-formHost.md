@@ -969,6 +969,12 @@ Obtains the widget information provided by all applications on the device. This 
 
 **System capability**: SystemCapability.Ability.Form
 
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
+
 **Error codes**
 
 | Error Code ID| Error Message|
@@ -982,11 +988,6 @@ Obtains the widget information provided by all applications on the device. This 
 
 For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
-**Parameters**
-
-| Name| Type   | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
 
 **Example**
 
@@ -1017,6 +1018,12 @@ Obtains the widget information provided by all applications on the device. This 
 
 **System capability**: SystemCapability.Ability.Form
 
+**Return value**
+
+| Type                                                        | Description                               |
+| :----------------------------------------------------------- | :---------------------------------- |
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
+
 **Error codes**
 
 | Error Code ID| Error Message|
@@ -1028,12 +1035,6 @@ Obtains the widget information provided by all applications on the device. This 
 | 16501000 | An internal functional error occurred. |
 
 For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
-
-**Return value**
-
-| Type                                                        | Description                               |
-| :----------------------------------------------------------- | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
 
 **Example**
 
@@ -1322,7 +1323,7 @@ Obtains the widget state. This API uses an asynchronous callback to return the r
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| want | [Want](js-apis-application-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
+| want | [Want](js-apis-app-ability-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
 | callback | AsyncCallback&lt;[formInfo.FormStateInfo](js-apis-app-form-formInfo.md#formstateinfo)&gt; | Yes| Callback used to return the result. If the widget state is obtained, **error** is undefined and **data** is the widget state obtained; otherwise, **error** is an error object.|
 
 **Error codes**
@@ -1383,7 +1384,7 @@ Obtains the widget state. This API uses a promise to return the result.
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| want   | [Want](js-apis-application-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
+| want   | [Want](js-apis-app-ability-want.md) | Yes  | **Want** information carried to query the widget state. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
 
 **Return value**
 
@@ -1460,8 +1461,6 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import Base from '@ohos.base';
-
 formHost.on('formUninstall', (formId: string) => {
   console.log(`formHost on formUninstall, formId: ${formId}`);
 });
@@ -1494,8 +1493,6 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
-import Base from '@ohos.base';
-
 formHost.off('formUninstall', (formId: string) => {
   console.log(`formHost on formUninstall, formId: ${formId}`);
 });
@@ -1861,7 +1858,7 @@ try {
 
 ## notifyFormsPrivacyProtected
 
-notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Promise\<void\>;
+notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Promise\<void\>
 
 Notifies that the privacy protection status of the specified widgets changes. This API uses a promise to return the result.
 
@@ -1912,9 +1909,11 @@ try {
 
 ## acquireFormData<sup>10+</sup>
 
-acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>): void;
+acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>): void
 
 Requests data from the widget provider. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Required permissions**: ohos.permission.REQUIRE_FORM
 
@@ -1925,6 +1924,7 @@ Requests data from the widget provider. This API uses an asynchronous callback t
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formId | string | Yes  | Widget ID.|
+| callback | AsyncCallback<{[key: string]: Object} | Yes  | Callback used to return the API call result and the shared data.|
 
 **Error codes**
 
@@ -1960,9 +1960,11 @@ try {
 
 ## acquireFormData<sup>10+</sup>
 
-acquireFormData(formId: string): Promise<{[key: string]: Object}>;
+acquireFormData(formId: string): Promise<{[key: string]: Object}>
 
 Requests data from the widget provider. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Required permissions**: ohos.permission.REQUIRE_FORM
 

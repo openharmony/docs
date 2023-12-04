@@ -43,7 +43,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                           | Type                                    | Description                                      |
 | ----------------------------- | ---------------------------------------- | ---------------------------------------- |
-| mode                  | [NavRouteMode](#navroutemode)                                  | Route mode used for redirection.<br>Default value: **NavRouteMode.PUSH_WITH_RECREATE** |
+| mode                  | [NavRouteMode](#navroutemode)                                  | Route mode used for redirection.<br>Default value: **NavRouteMode.PUSH_WITH_RECREATE**|
 
 ## RouteInfo<sup>10+</sup>
 
@@ -62,9 +62,9 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ## Events
 
-| Name                                                    | Description                                                  |
+| Name                                                   | Description                                                    |
 | ------------------------------------------------------- | ------------------------------------------------------------ |
-| onStateChange(callback: (isActivated: boolean) => void) | Called when the component activation status changes. The value **true** means that component is activated, and **false** means the opposite.<br>**NOTE**<br>**onStateChange(true)** is called when the **\<NavRouter>** component is activated and its **\<NavDestination>** child component is loaded. **onStateChange(false)** is called when the **\<NavDestination>** child component is not displayed. |
+| onStateChange(callback: (isActivated: boolean) => void) | Called when the component activation status changes. The value **true** means that component is activated, and **false** means the opposite.<br>**NOTE**<br>**onStateChange(true)** is called when the **\<NavRouter>** component is activated and its **\<NavDestination>** child component is loaded. **onStateChange(false)** is called when the **\<NavDestination>** child component is not displayed.|
 
 ## Example
 
@@ -75,7 +75,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 struct NavRouterExample {
   private arr: number[] = [0, 1, 2, 3]
   @State isActive: boolean = false
-  @State dex: number = 0
+  @State dex: number = -1
 
   build() {
     Column() {
@@ -107,7 +107,9 @@ struct NavRouterExample {
                 }.backgroundColor('#ccc')
                 .title(`NavDestination${item + 1}`)
               }.onStateChange((isActivated: boolean) => {
-                this.dex = index
+                if(isActivated) {
+                  this.dex = index;
+                }
               })
             }
           }, (item:number) => item.toString())

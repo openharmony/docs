@@ -76,7 +76,7 @@ SaveButton(option:{icon?: SaveIconStyle, text?: SaveDescription, buttonType?: Bu
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明)), result: [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)) =&gt; void) | 点击动作触发该回调。<br/>result：存储权限的授权结果，授权方式为5秒单次，即触发点击后，可以在5秒中之内调用媒体库接口一次，超出5秒或者调用次数超出一次都会鉴权失败。<br/>event：见ClickEvent对象说明。 |
+| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明)), result: [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)) =&gt; void) | 点击动作触发该回调。<br/>result：存储权限的授权结果，授权时长为10秒，即触发点击后，可以在10秒之内不限制次数的调用特定媒体库接口，超出10秒的调用会鉴权失败。<br/>event：见ClickEvent对象说明。 |
 
 
 ## 示例
@@ -98,7 +98,7 @@ struct Index {
             try {
               const context = getContext(this);
               let helper = photoAccessHelper.getPhotoAccessHelper(context);
-              // onClick触发后5秒内通过createAsset接口创建图片文件，5秒后createAsset权限收回。
+              // onClick触发后10秒内通过createAsset接口创建图片文件，10秒后createAsset权限收回。
               let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'png');
               // 使用uri打开文件，可以持续写入内容，写入过程不受时间限制
               let file = await fs.open(uri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);

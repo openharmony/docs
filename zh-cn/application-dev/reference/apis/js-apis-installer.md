@@ -177,6 +177,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 | 17700048 | Failed to install the HAP because the code signature verification is failed. |
 | 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
 
 **示例：**
 
@@ -258,6 +259,7 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 | 17700048 | Failed to install the HAP because the code signature verification is failed. |
 | 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
 
 **示例：**
 
@@ -343,6 +345,7 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 | 17700048 | Failed to install the HAP because the code signature verification is failed. |
 | 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
 
 **示例：**
 
@@ -1104,7 +1107,8 @@ try {
 | sharedBundleDirPaths<sup>10+</sup> | Array\<String> | 否 |共享包文件所在路径，默认值为空。 |
 | specifiedDistributionType<sup>10+</sup> | string | 否 |应用安装时指定的分发类型，默认值为空，最大长度为128字节。该字段通常由操作系统运营方的应用市场指定。 |
 | additionalInfo<sup>10+</sup> | string | 否 |应用安装时的额外信息，默认值为空，最大长度为3000字节。该字段通常由操作系统运营方的应用市场在安装企业应用时指定，用于保存应用的额外信息。 |
-| verifyCodeParams<sup>10+</sup> | Array<[VerifyCodeParam](#verifycodeparam10)> | 否 | 代码签名文件参数，默认值为空。         |
+| verifyCodeParams<sup>deprecated<sup> | Array<[VerifyCodeParam](#verifycodeparamdeprecated)> | 否 | 代码签名文件参数，默认值为空。         |
+| pgoParams<sup>11+</sup> | Array<[PGOParam](#pgoparam11)> | 否 | PGO配置文件参数，默认值为空。         |
 
 ## UninstallParam<sup>10+</sup>
 
@@ -1119,7 +1123,9 @@ try {
 | bundleName  | string | 是   | 共享包包名。                                                 |
 | versionCode | number | 否   | 指示共享包的版本号。默认值：如果不填写versionCode，则卸载该包名的所有共享包。 |
 
-## VerifyCodeParam<sup>10+</sup>
+## VerifyCodeParam<sup>deprecated<sup>
+
+> 从API version 11开始不再维护，应用的代码签名文件将集成到安装包中，不再需要该接口来指定安装包的代码签名文件。
 
 应用程序代码签名文件信息。
 
@@ -1131,3 +1137,16 @@ try {
 | ---------- | ------ | ---------------- | ---------------- |
 | moduleName | string | 是 | 应用程序模块名称。 |
 | signatureFilePath  | string | 是 | 代码签名文件路径。           |
+
+## PGOParam<sup>11+</sup>
+
+PGO（Profile-guided Optimization）配置文件参数信息。
+
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称     | 类型   | 必填 | 说明             |
+| ---------- | ------ | ---------------- | ---------------- |
+| moduleName | string | 是 | 应用程序模块名称。 |
+| pgoFilePath  | string | 是 | PGO配置文件路径。           |

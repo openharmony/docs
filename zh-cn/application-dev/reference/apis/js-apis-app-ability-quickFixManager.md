@@ -1,10 +1,11 @@
 # @ohos.app.ability.quickFixManager (quickFixManager)
 
-quickFixManager模块提供快速修复的能力，快速修复是OpenHarmony提供给开发者的一种技术手段，支持开发者以远快于（小时级、分钟级）应用升级的方式进行缺陷修复。
+quickFixManager模块提供快速修复的能力，快速修复是系统提供给开发者的一种技术手段，支持开发者以远快于（小时级、分钟级）应用升级的方式进行缺陷修复。
 
 > **说明：**
 >
-> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块接口均为系统接口，三方应用不支持调用。
 
 ## 导入模块
 
@@ -143,7 +144,7 @@ import { BusinessError } from '@ohos.base';
       console.error(`applyQuickFix err: ${error}`);
     });
   } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
   }
 ```
 
@@ -190,7 +191,7 @@ import quickFixManager from '@ohos.app.ability.quickFixManager';
       }
     });
   } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
   }
 ```
 
@@ -241,7 +242,7 @@ import { BusinessError } from '@ohos.base';
       console.error(`getApplicationQuickFixInfo err: ${error}`);
     });
   } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
   }
   ```
 
@@ -266,14 +267,14 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 
 **错误码**：
 
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 18500001 | The bundle is not exist or no patch has applied. |
 | 18500009 | The application has a apply quick fix task that is being processed. |
 
 在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。
+
+
 
 **示例：**
 

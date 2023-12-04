@@ -4,7 +4,7 @@
 开发者使用Web组件将应用侧代码注册到前端页面中，注册完成之后，前端页面中使用注册的对象名称就可以调用应用侧的函数，实现在前端页面中调用应用侧方法。
 
 
-注册应用侧代码有两种方式，一种在Web组件初始化使用调用，使用[javaScriptProxy()](../reference/arkui-ts/ts-basic-components-web.md#javascriptproxy)接口。另外一种在Web组件初始化完成后调用，使用[registerJavaScriptProxy()](../reference/apis/js-apis-webview.md#registerjavascriptproxy)接口。
+注册应用侧代码有两种方式，一种在Web组件初始化调用，使用[javaScriptProxy()](../reference/arkui-ts/ts-basic-components-web.md#javascriptproxy)接口。另外一种在Web组件初始化完成后调用，使用[registerJavaScriptProxy()](../reference/apis/js-apis-webview.md#registerjavascriptproxy)接口。
 
 
 在下面的示例中，将test()方法注册在前端页面中， 该函数可以在前端页面触发运行。
@@ -89,7 +89,7 @@
         Button('Register JavaScript To Window')
           .onClick(() => {
             try {
-              this.webviewController.registerJavaScriptProxy(this.testObj, "objName", ["test", "toString"]);
+              this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
               let e: business_error.BusinessError = error as business_error.BusinessError;
               console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -117,7 +117,7 @@
   <p id="demo"></p>
   <script>
       function callArkTS() {
-          let str = objName.test();
+          let str = testObjName.test();
           document.getElementById("demo").innerHTML = str;
           console.info('ArkTS Hello World! :' + str);
       }

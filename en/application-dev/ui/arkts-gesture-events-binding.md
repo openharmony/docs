@@ -114,7 +114,7 @@ struct Index {
       TapGesture()
         .onAction(() => {
           console.info('Column TapGesture is onAction');
-        }), GestureMask.IgnoreInternal)
+        }), GestureMask.Normal)
   }
 }
 ```

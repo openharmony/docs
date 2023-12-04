@@ -3,28 +3,29 @@
 - [File Management Overview](file-management-overview.md)
 - Application Files
   - [Application File Overview](app-file-overview.md)
-  - [Application Sandbox Directory](app-sandbox-directory.md)
+  - [Application Sandbox](app-sandbox-directory.md)
   - Application File Access and Management
     - [Accessing Application Files](app-file-access.md)
     - [Uploading and Downloading Application Files](app-file-upload-download.md)
     - [Obtaining Application and File System Space Statistics](app-fs-space-statistics.md)
-  - [Pushing Files to an Application Sandbox](send-file-to-app-sandbox.md)
+  - [Pushing Files to an Application Sandbox Directory](send-file-to-app-sandbox.md)
   - [Sharing an Application File](share-app-file.md)
-  - Application Data Backup and Restoration
-    - [Application Data Backup and Restoration Overview](app-file-backup-overview.md)
-    - [Backup and Restoration Accessed by Applications](app-file-backup-extension.md)
-    - [Backup and Restoration Triggered by System Applications](app-file-backup.md)
+  - Application Data Backup and Restore
+    - [Application Data Backup and Restore Overview](app-file-backup-overview.md)
+    - [Accessing Backup and Restore](app-file-backup-extension.md)
+    - [Triggering Backup and Restore (for System Applications Only)](app-file-backup.md)
 - User Files
   - [User File Overview](user-file-overview.md)
+  - [User File URI](user-file-uri-intro.md)
   - Selecting and Saving User Files (FilePicker)
     - [Selecting User Files](select-user-file.md)
     - [Saving User Files](save-user-file.md)
   - Album Management (photoAccessHelper)
     - [photoAccessHelper Overview](photoAccessHelper-overview.md)
-    - [Managing Media Assets (Images and Videos)](photoAccessHelper-resource-guidelines.md)
+    - [Managing Media Assets](photoAccessHelper-resource-guidelines.md)
     - [Managing User Albums](photoAccessHelper-userAlbum-guidelines.md)
     - [Managing System Albums](photoAccessHelper-systemAlbum-guidelines.md)
-    - [Managing Media Asset Change Notifications](photoAccessHelper-notify-guidelines.md)
+    - [Observing Media Assets](photoAccessHelper-notify-guidelines.md)
   - [Developing a File Manager Application (for System Applications Only)](dev-user-file-manager.md)
   - [Managing External Storage Devices (for System Applications Only)](manage-external-storage.md)
 - Distributed File System

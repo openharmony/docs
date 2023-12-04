@@ -1,12 +1,20 @@
 # 应用文件分享
 
-应用文件分享是应用之间通过分享URI（Uniform Resource Identifier）或文件描述符FD（File Descriptor）的方式，进行文件共享的过程。由于FD分享的文件关闭FD后，无法再打开分享文件，因此不推荐使用，本文重点介绍URI分享方式。
+应用文件分享是应用之间通过分享URI（Uniform Resource Identifier）或文件描述符FD（File Descriptor）的方式，进行文件共享的过程。
 
 - 基于URI分享方式，应用可分享单个文件，通过[ohos.app.ability.wantConstant](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantflags)的wantConstant.Flags接口以只读或读写权限授权给其他应用。应用可通过[ohos.file.fs](../reference/apis/js-apis-file-fs.md#fsopen)的open()接口打开URI，并进行读写操作。当前OpenHarmony API 9仅支持临时授权，分享给其他应用的文件在被分享应用退出时权限被收回。
 
 - 基于FD分享方式，应用可分享单个文件，通过ohos.file.fs的open接口以指定权限授权给其他应用。应用从Want中解析拿到FD后可通过ohos.file.fs的读写接口对文件进行读写。
 
-开发者可以使用相关接口，[分享文件给其他应用](#分享文件给其他应用)或[使用其他应用分享的文件](#使用其他应用分享的文件)。
+由于FD分享的文件关闭FD后，无法再打开分享文件，因此不推荐使用，本文重点介绍基于URI[分享文件给其他应用](#分享文件给其他应用)或[使用其他应用分享的文件](#使用其他应用分享的文件)。
+
+## 应用可分享目录
+
+| 沙箱路径                             | 物理路径                                                                             | 说明 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; |
+| -------                              | -------                                                                             | ---- |
+| /data/storage/el1/base               | /data/app/el1/\<currentUserId\>/base/\<PackageName\>                                | 应用el1级别加密数据目录 |
+| /data/storage/el2/base               | /data/app/el2/\<currentUserId\>/base/\<PackageName\>                                | 应用el2级别加密数据目录 |
+| /data/storage/el2/distributedfiles   | /mnt/hmdfs/\<currentUserId\>/account/device_view/\<networkId\>/data/\<PackageName\> | 应用el2加密级别有帐号分布式数据融合目录 |
 
 ## 文件URI规范
 
@@ -150,3 +158,9 @@ function getShareFile() {
   }
 }
 ```
+
+## 相关实例
+
+针对应用文件分享，有以下相关实例可供参考：
+
+- [文件分享与访问（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileShare/SandboxShare)

@@ -18,7 +18,7 @@ import ability from '@ohos.ability.ability';
 使用前根据具体情况引入如下模块
 ```ts
 import ohos_data_ability from '@ohos.data.dataAbility';
-import relationalStore from '@ohos.data.relationalStore'
+import relationalStore from '@ohos.data.relationalStore';
 ```
 
 ## DataAbilityHelper.openFile
@@ -49,9 +49,9 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
 let mode = 'rw';
 DAHelper.openFile('dataability:///com.example.DataAbility', mode, (error, data) => {
     if (error && error.code !== 0) {
-        console.error('openFile fail, error: ${JSON.stringify(error)}');
+        console.error(`openFile fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('openFile success, data: ${JSON.stringify(data)}');
+        console.log(`openFile success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -88,7 +88,7 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
 );
 let mode = 'rw';
 DAHelper.openFile('dataability:///com.example.DataAbility', mode).then((data) => {
-    console.info('openFile data: ${JSON.stringify(data)}');
+    console.info(`openFile data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -131,7 +131,7 @@ DAHelper.on(
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
-注消观察者以停止监听uri指定数据的数据变化通知。
+注销观察者以停止监听uri指定数据的数据变化通知。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -192,9 +192,9 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
 );
 DAHelper.getType('dataability:///com.example.DataAbility', (error, data) => {
     if (error && error.code !== 0) {
-        console.error('getType fail, error: ${JSON.stringify(error)}');
+        console.error(`getType fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('getType success, data: ${JSON.stringify(data)}');
+        console.log(`getType success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -229,7 +229,7 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
     'dataability:///com.example.DataAbility'
 );
 DAHelper.getType('dataability:///com.example.DataAbility').then((data) => {
-    console.info('getType data: ${JSON.stringify(data)}');
+    console.info(`getType data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -260,9 +260,9 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
 );
 DAHelper.getFileTypes( 'dataability:///com.example.DataAbility', 'image/*', (error, data) => {
     if (error && error.code !== 0) {
-        console.error('getFileTypes fail, error: ${JSON.stringify(error)}');
+        console.error(`getFileTypes fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('getFileTypes success, data: ${JSON.stringify(data)}');
+        console.log(`getFileTypes success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -298,7 +298,7 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
     'dataability:///com.example.DataAbility'
 );
 DAHelper.getFileTypes('dataability:///com.example.DataAbility', 'image/*').then((data) => {
-    console.info('getFileTypes data: ${JSON.stringify(data)}');
+    console.info(`getFileTypes data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -328,9 +328,9 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
 );
 DAHelper.normalizeUri('dataability:///com.example.DataAbility', (error, data) => {
     if (error && error.code !== 0) {
-        console.error('normalizeUri fail, error: ${JSON.stringify(error)}');
+        console.error(`normalizeUri fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('normalizeUri success, data: ${JSON.stringify(data)}');
+        console.log(`normalizeUri success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -365,7 +365,7 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
     'dataability:///com.example.DataAbility'
 );
 DAHelper.normalizeUri('dataability:///com.example.DataAbility',).then((data) => {
-    console.info('normalizeUri data: ${JSON.stringify(data)}');
+    console.info(`normalizeUri data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -395,9 +395,9 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
 );
 DAHelper.denormalizeUri('dataability:///com.example.DataAbility', (error, data) => {
     if (error && error.code !== 0) {
-        console.error('denormalizeUri fail, error: ${JSON.stringify(error)}');
+        console.error(`denormalizeUri fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('denormalizeUri success, data: ${JSON.stringify(data)}');
+        console.log(`denormalizeUri success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -432,7 +432,7 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
     'dataability:///com.example.DataAbility'
 );
 DAHelper.denormalizeUri('dataability:///com.example.DataAbility',).then((data) => {
-    console.info('denormalizeUri data: ${JSON.stringify(data)}');
+    console.info(`denormalizeUri data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -462,7 +462,7 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
 );
 DAHelper.notifyChange('dataability:///com.example.DataAbility', (error) => {
     if (error && error.code !== 0) {
-        console.error('notifyChange fail, error: ${JSON.stringify(error)}');
+        console.error(`notifyChange fail, error: ${JSON.stringify(error)}`);
     } else {
         console.log('notifyChange success');
     }
@@ -537,9 +537,9 @@ const valueBucket: rdb.ValuesBucket = {
 };
 DAHelper.insert('dataability:///com.example.DataAbility', valueBucket, (error, data) => {
     if (error && error.code !== 0) {
-        console.error('insert fail, error: ${JSON.stringify(error)}');
+        console.error(`insert fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('insert success, data: ${JSON.stringify(data)}');
+        console.log(`insert success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -582,7 +582,7 @@ const valueBucket: rdb.ValuesBucket = {
     'blobType': 'u8',
 };
 DAHelper.insert('dataability:///com.example.DataAbility', valueBucket).then((data) => {
-    console.info('insert data: ${JSON.stringify(data)}');
+    console.info(`insert data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -617,9 +617,9 @@ let cars = new Array({'name': 'roe11', 'age': 21, 'salary': 20.5, 'blobType': 'u
                      {'name': 'roe13', 'age': 21, 'salary': 20.5, 'blobType': 'u8',} as rdb.ValuesBucket);
 DAHelper.batchInsert('dataability:///com.example.DataAbility', cars, (error, data) => {
     if (error && error.code !== 0) {
-        console.error('batchInsert fail, error: ${JSON.stringify(error)}');
+        console.error(`batchInsert fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('batchInsert success, data: ${JSON.stringify(data)}');
+        console.log(`batchInsert success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -659,7 +659,7 @@ let cars = new Array({'name': 'roe11', 'age': 21, 'salary': 20.5, 'blobType': 'u
                      {'name': 'roe12', 'age': 21, 'salary': 20.5, 'blobType': 'u8',} as rdb.ValuesBucket,
                      {'name': 'roe13', 'age': 21, 'salary': 20.5, 'blobType': 'u8',} as rdb.ValuesBucket);
 DAHelper.batchInsert('dataability:///com.example.DataAbility', cars).then((data) => {
-    console.info('batchInsert data: ${JSON.stringify(data)}');
+    console.info(`batchInsert data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -692,16 +692,16 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
 let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.delete('dataability:///com.example.DataAbility', da, (error, data) => {
     if (error && error.code !== 0) {
-        console.error('delete fail, error: ${JSON.stringify(error)}');
+        console.error(`delete fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('delete success, data: ${JSON.stringify(data)}');
+        console.log(`delete success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
 
 ## DataAbilityHelper.delete
 
-delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>;
+delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>
 
 从数据库中删除一个或多个数据记录（Promise形式）。
 
@@ -732,7 +732,7 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
 );
 let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.delete('dataability:///com.example.DataAbility', da).then((data) => {
-    console.info('delete data: ${JSON.stringify(data)}');
+    console.info(`delete data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -756,16 +756,15 @@ predicates筛选条件为空，自定义数据库删除数据记录的处理逻�
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
-import ohos_data_ability from '@ohos.data.dataAbility';
 
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.delete('dataability:///com.example.DataAbility', (error, data) => {
     if (error && error.code !== 0) {
-        console.error('delete fail, error: ${JSON.stringify(error)}');
+        console.error(`delete fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('delete success, data: ${JSON.stringify(data)}');
+        console.log(`delete success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -807,16 +806,16 @@ const va: rdb.ValuesBucket = {
 let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.update('dataability:///com.example.DataAbility', va, da, (error, data) => {
     if (error && error.code !== 0) {
-        console.error('update fail, error: ${JSON.stringify(error)}');
+        console.error(`update fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('update success, data: ${JSON.stringify(data)}');
+        console.log(`update success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
 
 ## DataAbilityHelper.update
 
-update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>;
+update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>
 
 更新数据库中的数据记录（Promise形式）。
 
@@ -855,7 +854,7 @@ const va: rdb.ValuesBucket = {
 };
 let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.update('dataability:///com.example.DataAbility', va, da).then((data) => {
-    console.info('update data: ${JSON.stringify(data)}');
+    console.info(`update data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -880,7 +879,6 @@ predicates筛选条件为空，自定义更新数据库的处理逻辑（callbac
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
-import ohos_data_ability from '@ohos.data.dataAbility';
 import rdb from '@ohos.data.rdb';
 
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
@@ -894,9 +892,9 @@ const va: rdb.ValuesBucket = {
 };
 DAHelper.update('dataability:///com.example.DataAbility', va, (error, data) => {
     if (error && error.code !== 0) {
-        console.error('update fail, error: ${JSON.stringify(error)}');
+        console.error(`update fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('update success, data: ${JSON.stringify(data)}');
+        console.log(`update success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -915,7 +913,7 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 表示要查询数据的uri。                         |
 | columns    | Array\<string>                | 是   | 表示要查询的列。如果此参数为空，则查询所有列。   |
-| predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，自定义查询数据库中数据的处理逻辑。 |
 | callback   | AsyncCallback\<ResultSet>         | 是   | 表示数据查询的回调方法，返回查询结果。                         |
 
 **示例：**
@@ -932,9 +930,9 @@ let cars=new Array('value1', 'value2', 'value3', 'value4');
 let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.query('dataability:///com.example.DataAbility', cars, da, (error, data) => {
     if (error && error.code !== 0) {
-        console.error('query fail, error: ${JSON.stringify(error)}');
+        console.error(`query fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('query success, data: ${JSON.stringify(data)}');
+        console.log(`query success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -943,7 +941,7 @@ DAHelper.query('dataability:///com.example.DataAbility', cars, da, (error, data)
 
 query(uri: string, callback: AsyncCallback\<ResultSet>): void
 
-predicates筛选条件为空，自定义查询数据库中数据的处理逻辑（callback形式）。
+查询数据库中的数据（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -959,16 +957,15 @@ predicates筛选条件为空，自定义查询数据库中数据的处理逻辑�
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
-import ohos_data_ability from '@ohos.data.dataAbility';
 
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.query('dataability:///com.example.DataAbility', (error, data) => {
     if (error && error.code !== 0) {
-        console.error('query fail, error: ${JSON.stringify(error)}');
+        console.error(`query fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('query success, data: ${JSON.stringify(data)}');
+        console.log(`query success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -977,7 +974,7 @@ DAHelper.query('dataability:///com.example.DataAbility', (error, data) => {
 
 query(uri: string, columns: Array\<string>, callback: AsyncCallback\<ResultSet>): void
 
-predicates筛选条件为空，自定义查询数据库中数据的处理逻辑（callback形式）。
+查询数据库中的数据（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -994,7 +991,6 @@ predicates筛选条件为空，自定义查询数据库中数据的处理逻辑�
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
-import ohos_data_ability from '@ohos.data.dataAbility';
 
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
@@ -1002,9 +998,9 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
 let cars = new Array('value1', 'value2', 'value3', 'value4');
 DAHelper.query('dataability:///com.example.DataAbility', cars, (error, data) => {
     if (error && error.code !== 0) {
-        console.error('query fail, error: ${JSON.stringify(error)}');
+        console.error(`query fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('query success, data: ${JSON.stringify(data)}');
+        console.log(`query success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -1013,7 +1009,7 @@ DAHelper.query('dataability:///com.example.DataAbility', cars, (error, data) => 
 
 query(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>): void
 
-predicates筛选条件为空，自定义查询数据库中数据的处理逻辑（callback形式）。
+查询数据库中的数据（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -1022,7 +1018,7 @@ predicates筛选条件为空，自定义查询数据库中数据的处理逻辑�
 | 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 表示要查询数据的uri。                         |
-| predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，自定义查询数据库中数据的处理逻辑。 |
 | callback   | AsyncCallback\<ResultSet>         | 是   | 表示数据查询的回调方法，返回查询结果。                         |
 
 **示例：**
@@ -1038,16 +1034,16 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
 let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.query('dataability:///com.example.DataAbility', da, (error, data) => {
     if (error && error.code !== 0) {
-        console.error('query fail, error: ${JSON.stringify(error)}');
+        console.error(`query fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('query success, data: ${JSON.stringify(data)}');
+        console.log(`query success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
 
 ## DataAbilityHelper.query
 
-query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilityPredicates): Promise\<ResultSet>;
+query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilityPredicates): Promise\<ResultSet>
 
 查询数据库中的数据（Promise形式）。
 
@@ -1059,7 +1055,7 @@ query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilit
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 表示要查询数据的uri。                         |
 | columns    | Array\<string>               | 否   | 表示要查询的列。如果此参数为空，则查询所有列。   |
-| predicates | dataAbility.DataAbilityPredicates | 否   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| predicates | dataAbility.DataAbilityPredicates | 否   | 表示筛选条件。当此参数为null时，自定义查询数据库中数据的处理逻辑。 |
 
 **返回值：**
 
@@ -1080,7 +1076,7 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
 let cars = new Array('value1', 'value2', 'value3', 'value4');
 let da = new ohos_data_ability.DataAbilityPredicates();
 DAHelper.query('dataability:///com.example.DataAbility', cars, da).then((data) => {
-    console.info('query data: ${JSON.stringify(data)}');
+    console.info(`query data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -1114,9 +1110,9 @@ let dataAbilityHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbi
 dataAbilityHelper.call('dataability:///com.example.jsapidemo.UserDataAbility',
     'method', 'arg', {'key1':'value1'}, (error, data) => {
     if (error && error.code !== 0) {
-        console.error('call fail, error: ${JSON.stringify(error)}');
+        console.error(`call fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('call success, data: ${JSON.stringify(data)}');
+        console.log(`call success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -1164,7 +1160,7 @@ dataAbilityHelper.call('dataability:///com.example.jsapidemo.UserDataAbility',
 
 ## DataAbilityHelper.executeBatch
 
-executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: AsyncCallback\<Array\<DataAbilityResult>>): void;
+executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: AsyncCallback\<Array\<DataAbilityResult>>): void
 
 批量操作数据库中的数据。
 
@@ -1191,16 +1187,16 @@ let dataAbilityHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbi
 );
 dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbility', op, (error, data) => {
     if (error && error.code !== 0) {
-        console.error('executeBatch fail, error: ${JSON.stringify(error)}');
+        console.error(`executeBatch fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('executeBatch success, data: ${JSON.stringify(data)}');
+        console.log(`executeBatch success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
 
 ## DataAbilityHelper.executeBatch
 
-executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Array\<DataAbilityResult>>;
+executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Array\<DataAbilityResult>>
 
 批量操作数据库中的数据。
 
@@ -1239,12 +1235,14 @@ dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbi
 
 ```
 
-## PacMap
+## PacMap<sup>11+</sup>
 
-[key: string]: number | string | boolean | Array\<string | number | boolean> | null;
+[key: string]: number | string | boolean | Array\<string | number | boolean> | null
+
+用于存储数据的PacMap类型。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
-| [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | Yes| 数据存储在键值对中。|
+| [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | 是 | 数据存储在键值对中。|

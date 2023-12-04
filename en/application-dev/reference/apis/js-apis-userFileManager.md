@@ -489,7 +489,7 @@ Creates an album. This API uses an asynchronous callback to return the result.
 
 The album name must meet the following requirements:
 - The album name is a string of 1 to 255 characters.
-- The album name cannot contain any of the following characters:<br>.. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -528,7 +528,7 @@ Creates an album. This API uses a promise to return the result.
 
 The album name must meet the following requirements:
 - The album name is a string of 1 to 255 characters.
-- The album name cannot contain any of the following characters:<br>.. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -1412,12 +1412,7 @@ Obtains the index of an image or video in an album. This API uses an asynchronou
 | photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
 | albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
 | options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
-
-**Return value**
-
-| Type                                   | Description             |
-| --------------------------------------- | ----------------- |
-| AsyncCallback&lt;number&gt;| Callback invoked to return the index obtained.|
+| callback | AsyncCallback&lt;number&gt;| Yes  | Callback invoked to return the index obtained.|
 
 **Error codes**
 
@@ -1829,7 +1824,7 @@ Provides APIs for encapsulating file asset attributes.
 
 | Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| uri                       | string                   | Yes  | No  | File asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**.        |
+| uri                       | string                   | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).        |
 | fileType   | [FileType](#filetype) | Yes  | No  | Type of the file.                                              |
 | displayName               | string                   | Yes  | Yes  | File name, including the file name extension, to display.                                |
 
@@ -1845,7 +1840,7 @@ Obtains the value of a **FileAsset** parameter.
 
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | Yes   | Name of the parameter, for example, **ImageVideoKey.URI**.|
+| member | string | Yes   | Name of the parameter, for example, **ImageVideoKey.DISPLAY_NAME**. You need to enter the **PhotoKeys** to be obtained in **fetchColumns** for all attributes except **uri**, **photoType**, and **displayName**. For example, **fetchColumns: ['title']**.|
 
 **Example**
 
@@ -1883,8 +1878,8 @@ Sets a **FileAsset** parameter.
 
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | Yes   | Name of the parameter, for example, **ImageVideoKey.URI**.|
-| value | string | Yes   | Value to set. Only the value of **ImageVideoKey.DISPLAY_NAME** can be changed.|
+| member | string | Yes   | Name of the parameter, for example, **ImageVideoKey.DISPLAY_NAME**.|
+| value | string | Yes   | Value to set. Only the values of **DISPLAY_NAME** and **TITLE** can be changed.|
 
 **Example**
 
@@ -1942,11 +1937,13 @@ async function example() {
   let displayName: string = userFileManager.ImageVideoKey.DISPLAY_NAME.toString();
   let fileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
   console.info('fileAsset get fileAssetDisplayName = ', fileAssetDisplayName);
-  fileAsset.set(displayName, 'newDisplayName2');
+  let newFileAssetDisplayName = 'new' + fileAssetDisplayName;
+  console.info('fileAsset newFileAssetDisplayName = ', newFileAssetDisplayName);
+  fileAsset.set(displayName, newFileAssetDisplayName);
   fileAsset.commitModify((err) => {
     if (err == undefined) {
-      let newFileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
-      console.info('fileAsset get newFileAssetDisplayName = ', newFileAssetDisplayName);
+      let commitModifyDisplayName = fileAsset.get(displayName);
+      console.info('fileAsset commitModify successfully, commitModifyDisplayName = ', commitModifyDisplayName);
     } else {
       console.error('commitModify failed, message =', err);
     }
@@ -1985,15 +1982,17 @@ async function example() {
   let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
   let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
   let displayName = userFileManager.ImageVideoKey.DISPLAY_NAME.toString();
-  let newFileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
+  let fileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
   console.info('fileAsset get fileAssetDisplayName = ', fileAssetDisplayName);
-  fileAsset.set(displayName, 'newDisplayName3');
+  let newFileAssetDisplayName = 'new' + fileAssetDisplayName;
+  console.info('fileAsset newFileAssetDisplayName = ', newFileAssetDisplayName);
+  fileAsset.set(displayName, newFileAssetDisplayName);
   try {
     await fileAsset.commitModify();
-    let newFileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
-    console.info('fileAsset get newFileAssetDisplayName = ', newFileAssetDisplayName);
+    let commitModifyDisplayName = fileAsset.get(displayName);
+    console.info('fileAsset commitModify successfully, commitModifyDisplayName = ', commitModifyDisplayName);
   } catch (err) {
-    console.error('release failed. message = ', err);
+    console.error('commitModify failed. message = ', err);
   }
 }
 ```
@@ -2004,7 +2003,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file asset. This API uses an asynchronous callback to return the result.
 
-**NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
+> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.READ_AUDIO, ohos.permission.WRITE_IMAGEVIDEO, or ohos.permission.WRITE_AUDIO
 
@@ -2015,7 +2014,7 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | mode     | string                      | Yes   | File open mode, which can be **r** (read-only), **w** (write-only), or **rw** (read-write).|
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor of the file opened.                           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor (FD) of the file opened.                           |
 
 **Example**
 
@@ -2041,7 +2040,7 @@ open(mode: string): Promise&lt;number&gt;
 
 Opens this file asset. This API uses a promise to return the result.
 
-**NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
+> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.READ_AUDIO, ohos.permission.WRITE_IMAGEVIDEO, or ohos.permission.WRITE_AUDIO
 
@@ -2057,7 +2056,7 @@ Opens this file asset. This API uses a promise to return the result.
 
 | Type                   | Description           |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
+| Promise&lt;number&gt; | Promise used to return the FD of the file opened.|
 
 **Example**
 
@@ -2092,7 +2091,7 @@ Closes a file asset. This API uses an asynchronous callback to return the result
 
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| fd       | number                    | Yes   | File descriptor of the file to close.|
+| fd       | number                    | Yes   | FD of the file to close.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.|
 
 **Example**
@@ -2137,7 +2136,7 @@ Closes a file asset. This API uses a promise to return the result.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| fd   | number | Yes   | File descriptor of the file to close.|
+| fd   | number | Yes   | FD of the file to close.|
 
 **Return value**
 
@@ -2506,7 +2505,7 @@ getExif(): Promise&lt;string&gt;
 
 Obtains a JSON string consisting of the exchangeable image file format (EXIF) tags of this JPG image. This API uses a promise to return the result.
 
-**CAUTION**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and **ImageVideoKey.USER_COMMENT**. These two fields must be passed in via **fetchColumns**.
+> **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [ImageVideoKey.USER_COMMENT](#imagevideokey). These two fields must be passed in via **fetchColumns**.
 
 **System API**: This is a system API.
 
@@ -2595,7 +2594,7 @@ getExif(callback: AsyncCallback&lt;string&gt;): void
 
 Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses an asynchronous callback to return the result.
 
-**CAUTION**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and **ImageVideoKey.USER_COMMENT**. These two fields must be passed in via **fetchColumns**.
+> **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [ImageVideoKey.USER_COMMENT](#imagevideokey). These two fields must be passed in via **fetchColumns**.
 
 **System API**: This is a system API.
 
@@ -2689,7 +2688,7 @@ setUserComment(userComment: string): Promise&lt;void&gt;
 
 Sets user comment information of an image or video. This API uses a promise to return the result.
 
-**NOTE**<br>This API can be used to modify the comment information of only images or videos.
+> **NOTE**<br>This API can be used to modify the comment information of only images or videos.
 
 **System API**: This is a system API.
 
@@ -2738,7 +2737,7 @@ setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets user comment information of an image or video. This API uses an asynchronous callback to return the result.
 
-**NOTE**<br>This API can be used to modify the comment information of only images or videos.
+> **NOTE**<br>This API can be used to modify the comment information of only images or videos.
 
 **System API**: This is a system API.
 
@@ -2877,7 +2876,7 @@ async function example() {
   };
   try {
     let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
-    await fetchResult.close();
+    fetchResult.close();
     console.info('close succeed.');
   } catch (err) {
     console.error('close fail. message = ' + err);
@@ -2956,9 +2955,10 @@ async function example() {
 
 ### getNextObject
 
- getNextObject(callback: AsyncCallback&lt;T&gt;): void
+getNextObject(callback: AsyncCallback&lt;T&gt;): void
 
 Obtains the next file asset in the result set. This API uses an asynchronous callback to return the result.
+Before using this API, you must use [isAfterLast()](#isafterlast) to check whether the current position is the end of the result set.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -2966,7 +2966,7 @@ Obtains the next file asset in the result set. This API uses an asynchronous cal
 
 | Name   | Type                                         | Mandatory| Description                                     |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callbacke | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the next file asset.|
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the next file asset.|
 
 **Example**
 
@@ -2982,7 +2982,7 @@ async function example() {
   };
   let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
   await fetchResult.getFirstObject();
-  if (fetchResult.isAfterLast()) {
+  if (!fetchResult.isAfterLast()) {
     fetchResult.getNextObject((err, fileAsset) => {
       if (fileAsset != undefined) {
         console.info('fileAsset displayName: ', fileAsset.displayName);
@@ -2996,9 +2996,10 @@ async function example() {
 
 ### getNextObject
 
- getNextObject(): Promise&lt;T&gt;
+getNextObject(): Promise&lt;T&gt;
 
 Obtains the next file asset in the result set. This API uses a promise to return the result.
+Before using this API, you must use [isAfterLast()](#isafterlast) to check whether the current position is the end of the result set.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -3022,7 +3023,7 @@ async function example() {
   };
   let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
   await fetchResult.getFirstObject();
-  if (fetchResult.isAfterLast()) {
+  if (!fetchResult.isAfterLast()) {
     let fileAsset: userFileManager.FileAsset = await fetchResult.getNextObject();
     console.info('fileAsset displayName: ', fileAsset.displayName);
   }
@@ -4056,7 +4057,7 @@ async function example() {
 
 delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
-Deletes files from a system album.
+Deletes a file from the system album. Only the files in the trash can be deleted.
 
 This API will be deprecated. Use [Album.deletePhotoAssets](#deletephotoassets10) instead.
 
@@ -4068,7 +4069,7 @@ This API will be deprecated. Use [Album.deletePhotoAssets](#deletephotoassets10)
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | Yes  | URI of the album.|
+| uri | string | Yes  | URI of the file to delete.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Example**
@@ -4102,7 +4103,7 @@ async function example() {
 
 delete(uri: string): Promise&lt;void&gt;;
 
-Deletes files from a system album.
+Deletes a file from the system album. Only the files in the trash can be deleted.
 
 This API will be deprecated. Use [Album.deletePhotoAssets](#deletephotoassets10) instead.
 
@@ -4114,7 +4115,7 @@ This API will be deprecated. Use [Album.deletePhotoAssets](#deletephotoassets10)
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | Yes  | URI of the album.|
+| uri | string | Yes  | URI of the file to delete.|
 
 **Return value**
 
@@ -4130,7 +4131,8 @@ import { BusinessError } from '@ohos.base';
 
 async function example() {
   console.info('privateAlbumDeleteDemoPromise');
-  let albumListlet albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum>let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
@@ -4151,7 +4153,7 @@ async function example() {
 
 recover(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
-Recovers files in a system album.
+Recovers a file in the system album. Only the files in the trash can be recovered.
 
 This API will be deprecated. Use [Album.recoverPhotoAssets](#recoverphotoassets10) instead.
 
@@ -4163,7 +4165,7 @@ This API will be deprecated. Use [Album.recoverPhotoAssets](#recoverphotoassets1
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | Yes  | URI of the album.|
+| uri | string | Yes  | URI of the file to recover.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Example**
@@ -4197,7 +4199,7 @@ async function example() {
 
 recover(uri: string): Promise&lt;void&gt;;
 
-Recovers files in a system album.
+Recovers a file in the system album. Only the files in the trash can be recovered.
 
 This API will be deprecated. Use [Album.recoverPhotoAssets](#recoverphotoassets10) instead.
 
@@ -4209,7 +4211,7 @@ This API will be deprecated. Use [Album.recoverPhotoAssets](#recoverphotoassets1
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | Yes  | URI of the album.|
+| uri | string | Yes  | URI of the file to recover.|
 
 **Return value**
 
@@ -4369,7 +4371,7 @@ Defines the key information about an audio file.
 | ------------- | ------------------- | ---------------------------------------------------------- |
 | URI           | uri                 | URI of the file.                                                  |
 | DISPLAY_NAME  | display_name        | File name displayed.                                                  |
-| DATE_ADDED    | date_added          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time.            |
+| DATE_ADDED    | date_added          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).            |
 | DATE_MODIFIED | date_modified       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
 | TITLE         | title               | Title in the file.                                                  |
 | ARTIST        | artist              | Author of the file.                                                  |
@@ -4398,9 +4400,9 @@ Defines the key information about an image or video file.
 | ORIENTATION   | orientation         | Orientation of the image file.                                            |
 | FAVORITE      | favorite            | Whether the file is added to favorites.                                                   |
 | POSITION<sup>10+</sup>  | position            | File location type.                              |
-| DATE_TRASHED<sup>10+</sup>  | date_trashed  | Date when the file was deleted. The value is the number of seconds between the time when the file is deleted and January 1, 1970.                |
+| DATE_TRASHED<sup>10+</sup>  | date_trashed  | Date when the file was deleted. The value is the number of seconds elapsed since the Epoch time.                |
 | HIDDEN<sup>10+</sup>  | hidden            | Whether the file is hidden.                              |
-| CAMERA_SHOT_KEY<sup>10+</sup>    | camera_shot_key           | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.) |
+| CAMERA_SHOT_KEY<sup>10+</sup>    | camera_shot_key           | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)   |
 | USER_COMMENT<sup>10+</sup>  | user_comment            | User comment information.                              |
 
 ## AlbumKey
@@ -4436,7 +4438,7 @@ Defines the options for fetching media files.
 
 | Name                  | Type               | Readable| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Column names used for retrieval. If this parameter is left empty, the media files are fetched by URI, name, and file type by default. The specific field names are subject to the definition of the search object. Example:<br>fetchColumns: ['uri', 'title']|
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns.<br>If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object.<br>Example: fetchColumns: ['uri', 'title']|
 | predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | Yes  | Yes  | Predicates that specify the fetch criteria.|
 
 ## AlbumFetchOptions

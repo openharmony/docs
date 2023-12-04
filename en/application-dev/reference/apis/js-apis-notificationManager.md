@@ -83,6 +83,12 @@ Publishes a notification. This API uses a promise to return the result.
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
 | request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 
+**Return value**
+
+| Type    | Description| 
+| ------- |--|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -206,6 +212,12 @@ Publishes a notification to a specified user. This API uses a promise to return 
 | request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | userId   | number                                      | Yes  | User ID.                          |
 
+**Return value**
+
+| Type    | Description       | 
+| ------- |-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -305,6 +317,12 @@ Cancels a notification with the specified ID and optional label. This API uses a
 | ----- | ------ | ---- | -------- |
 | id    | number | Yes  | Notification ID.  |
 | label | string | No  | Notification label. This parameter is left empty by default.|
+
+**Return value**
+
+| Type    | Description       | 
+| ------- |-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -419,6 +437,12 @@ Cancels all notifications. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Return value**
+
+| Type    | Description       | 
+| ------- |-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -509,6 +533,12 @@ Adds a notification slot. This API uses a promise to return the result.
 | ---- | ---------------- | ---- | -------------------- |
 | slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Yes  | Notification slot to add.|
 
+**Return value**
+
+| Type    | Description       | 
+| ------- |-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -591,6 +621,12 @@ Adds a notification slot of a specified type. This API uses a promise to return 
 | Name| Type    | Mandatory| Description                  |
 | ---- | -------- | ---- | ---------------------- |
 | type | [SlotType](#slottype) | Yes  | Type of the notification slot to add.|
+
+**Return value**
+
+| Type    | Description       | 
+| ------- |-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -687,6 +723,12 @@ Adds an array of notification slots. This API uses a promise to return the resul
 | ----- | ------------------------- | ---- | ------------------------ |
 | slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Yes  | Notification slots to add.|
 
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -778,7 +820,7 @@ Obtains a notification slot of a specified type. This API uses a promise to retu
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<NotificationSlot\> | Promise used to return the result.|
+| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -814,13 +856,14 @@ Obtains all notification slots of this application. This API uses an asynchronou
 
 **Parameters**
 
-For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
-
 | Name    | Type                             | Mandatory| Description                |
 | -------- | --------------------------------- | ---- | -------------------- |
 | callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | Yes  | Callback used to return all notification slots of the current application.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -936,6 +979,12 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 | -------- | -------- | ---- | ----------------------------------------------------------- |
 | slotType | [SlotType](#slottype) | Yes  | Type of the notification slot, which can be used for social communication, service information, content consultation, and other purposes.|
 
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -1005,6 +1054,12 @@ removeAllSlots(): Promise\<void\>
 Removes all notification slots. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -1095,6 +1150,12 @@ Sets whether to enable notification for a specified application. This API uses a
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -1471,6 +1532,12 @@ Sets whether to enable the notification badge for a specified application. This 
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
 
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -1610,6 +1677,12 @@ Sets the notification badge number. This API uses a promise to return the result
 | ----------- | ------ | ---- | ---------- |
 | badgeNumber | number | Yes  | Notification badge number to set.|
 
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 | ID| Error Message                           |
@@ -1746,6 +1819,12 @@ Sets the notification slot for a specified application. This API uses a promise 
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
 | slot   | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Yes  | Notification slot.|
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -1998,6 +2077,8 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 | callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -2270,6 +2351,12 @@ Cancels notifications under a notification group of this application. This API u
 | --------- | ------ | ---- | -------------- |
 | groupName | string | Yes  | Name of the notification group.|
 
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -2361,6 +2448,12 @@ Removes notifications under a notification group of a specified application. Thi
 | --------- | ------------ | ---- | -------------- |
 | bundle    | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.    |
 | groupName | string       | Yes  | Name of the notification group.|
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -2457,6 +2550,13 @@ Sets the DND time. This API uses a promise to return the result.
 | Name| Type            | Mandatory| Description          |
 | ---- | ---------------- | ---- | -------------- |
 | date | [DoNotDisturbDate](#donotdisturbdate) | Yes  | DND time to set.|
+
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -2561,6 +2661,12 @@ Sets the DND time for a specified user. This API uses a promise to return the re
 | ------ | ---------------- | ---- | -------------- |
 | date   | [DoNotDisturbDate](#donotdisturbdate) | Yes  | DND time to set.|
 | userId | number           | Yes  | ID of the user for whom you want to set the DND time.|
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -2802,6 +2908,8 @@ Checks whether DND mode is supported. This API uses an asynchronous callback to 
 
 **Error codes**
 
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2998,6 +3106,12 @@ Requests notification to be enabled for this application. This API uses a promis
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -3085,6 +3199,12 @@ Requests notification to be enabled for this application in a modal. This API us
 | Name  | Type                    | Mandatory| Description                |
 | -------- | ------------------------ | ---- |--------------------|
 | context | UIAbilityContext | Yes  | Ability context bound to the notification dialog box.|
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -3673,6 +3793,12 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 | representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                           |
 | userId               | number                                      | Yes  | User ID.                           |
 
+**Return value**
+
+| Type             | Description       | 
+|-----------------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -3724,8 +3850,6 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 Cancels a notification published by the reminder agent. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
@@ -3781,8 +3905,6 @@ Cancels a notification published by the reminder agent. This API uses a promise 
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
@@ -3794,6 +3916,12 @@ Cancels a notification published by the reminder agent. This API uses a promise 
 | id                   | number | Yes  | Notification ID.          |
 | representativeBundle | string | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.|
 | userId               | number | Yes  | User ID.|
+
+**Return value**
+
+| Type             | Description       | 
+|-----------------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -4241,10 +4369,10 @@ Subscribes to notification events. The notification service sends the notificati
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description          |
-| ------ | ----------------------------- | ---- | -------------- |
-| type | string | Yes  | Event type. The value is fixed to **'checkNotification'**.|
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10)    | Yes  | Pointer to the notification verification function.|
+| Name| Type                                                                                                                     | Mandatory| Description          |
+| ------ |-------------------------------------------------------------------------------------------------------------------------| ---- | -------------- |
+| type | string                                                                                                                  | Yes  | Event type. The value is fixed to **'checkNotification'**.|
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | Yes  | Pointer to the notification verification function.|
 
 **Error codes**
 
@@ -4290,10 +4418,10 @@ Unsubscribes from notification events.
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description          |
-| ------ | ----------------------------- | ---- | -------------- |
-| type | string                                                       | Yes  | Event type. The value is fixed to **'checkNotification'**.|
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10)  | No  | Callback used to return the result. This parameter is left empty by default.|
+| Name| Type                                                                                                                     | Mandatory| Description          |
+| ------ |-------------------------------------------------------------------------------------------------------------------------| ---- | -------------- |
+| type | string                                                                                                                  | Yes  | Event type. The value is fixed to **'checkNotification'**.|
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | No  | Callback used to return the result. This parameter is left empty by default.|
 
 **Error codes**
 
@@ -4314,6 +4442,116 @@ try{
     console.info(`notificationManager.off error: ${JSON.stringify(error as Base.BusinessError)}`);
 }
 ```
+
+## notificationManager.triggerSystemLiveView<sup>11+</sup>
+
+triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOptions: ButtonOptions): Promise\<void>;
+
+Triggers a system live view notification. This API uses a promise to return the URI of the file in the destination directory.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Parameters**
+
+| Name| Type                  | Mandatory| Description          |
+| -------------- | ------------- | ---- | -------------- |
+| bundle         | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | Yes  |Bundle of the application.|
+| notificationId | number        | Yes  | Notification ID.|
+| buttonOptions  | [ButtonOptions](#buttonoptions11) | Yes  | Button information.|
+
+**Return value**
+
+| Type| Description|
+| ---- | ----|
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600007  | The notification is not exist.      |
+| 17700001 | The specified bundle name was not found. |
+
+**Example**
+
+```ts
+// Bundle of the application
+let bundle = {
+    bundle: "bundleName1",
+};
+// Notification ID
+let notificationId = 1;
+// Button information
+let buttonOptions = {
+    buttonName: "buttonName1",
+}
+notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions).then(() => {
+	console.info("triggerSystemLiveView success");
+}).catch((error: Base.BusinessError) => {
+    console.error(`triggerSystemLiveView fail: ${JSON.stringify(error)}`);
+});
+```
+
+
+## notificationManager.subscribeSystemLiveView<sup>11+</sup>
+
+subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
+
+Subscribes to the system live view notification. This API uses a promise to return the URI of the file in the destination directory.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Parameters**
+
+| Name| Type                  | Mandatory| Description          |
+| -------------- | ------------- | ---- | -------------- |
+| subscriber | [SystemLiveViewSubscriber](#systemliveviewsubscriber11)  | Yes  | Subscriber of the system live view notification.|
+
+**Return value**
+
+| Type| Description|
+| ---- | ----|
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
+
+**Example**
+
+```ts
+let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
+    console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
+}
+let subscriber: notificationManager.SystemLiveViewSubscriber  = {
+    onResponse: onResponseCallback,
+};
+notificationManager.subscribeSystemLiveView(subscriber).then(() => {
+	console.info("subscribeSystemLiveView success");
+}).catch((error: Base.BusinessError) => {
+    console.error(`subscribeSystemLiveView fail: ${JSON.stringify(error)}`);
+});
+```
+
+
 
 ## DoNotDisturbDate
 
@@ -4352,6 +4590,7 @@ try{
 | NOTIFICATION_CONTENT_PICTURE      | NOTIFICATION_CONTENT_PICTURE | Picture-attached notification.         |
 | NOTIFICATION_CONTENT_CONVERSATION | NOTIFICATION_CONTENT_CONVERSATION | Conversation notification (not supported currently).|
 | NOTIFICATION_CONTENT_MULTILINE    | NOTIFICATION_CONTENT_MULTILINE | Multi-line text notification.       |
+| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW    | NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW | Live view notification (for system applications only).       |
 
 ## SlotLevel
 
@@ -4376,6 +4615,7 @@ try{
 | SOCIAL_COMMUNICATION | 1 | Notification slot for social communication.|
 | SERVICE_INFORMATION  | 2 | Notification slot for service information.|
 | CONTENT_INFORMATION  | 3 | Notification slot for content consultation.|
+| LIVE_VIEW            | 4 | Notification slot for live view (for system applications only).|
 | OTHER_TYPES          | 0xFFFF | Notification slot for other purposes.|
 
 
@@ -4433,3 +4673,31 @@ try{
 | ------- | ------------------------------------ | ---- | ---------------------- |
 | code    | number                               | Yes  | Result code.<br>**0**: display.<br>**1**: no display.|
 | message | string                               | Yes  | Result.   |
+
+
+## ButtonOptions<sup>11+</sup>
+
+Provides the button information of the notification.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API.
+
+
+| Name   | Type                                 | Mandatory| Description                  |
+| ------- | ------------------------------------ | ---- | ---------------------- |
+| buttonName    | string                         | Yes  | Button name.|
+
+
+## SystemLiveViewSubscriber<sup>11+</sup>
+
+Subscriber of the system live view notification.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API.
+
+
+| Name   | Type                                 | Mandatory| Description                  |
+| ------- | ------------------------------------ | ---- | ---------------------- |
+| onResponse    | (notificationId: number, buttonOptions: ButtonOptions) => void;                         | No  | Callback when the button is touched.|

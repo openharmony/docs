@@ -20,9 +20,9 @@ module对象包含HAP的配置信息。
 | shortcuts | 标识应用的快捷方式信息。采用对象数组格式，其中的每个元素表示一个快捷方式对象。 | 对象数组 | 可缺省，缺省值为空。 |
 | reqPermissions | 标识应用运行时向系统申请的权限。 | 对象数组 | 可缺省，缺省值为空。 |
 | colorMode | 标识应用自身的颜色模式，目前支持如下三种模式：<br/>-&nbsp;dark：表示按照深色模式选取资源。<br/>-&nbsp;light：表示按照浅色模式选取资源。<br/>-&nbsp;auto：表示跟随系统的颜色模式值选取资源。 | 字符串 | 可缺省，缺省值为"auto"。 |
-| distributionFilter | 该标签下的子标签均为可选字段，用于定义HAP对应的细分设备规格的分发策略，以便应用市场在云端分发HAP时做精准匹配。该标签需要配置在/resource/profile资源目录下；在进行分发时，通过deviceType与下表属性的匹配关系，唯一确定一个用于分发到设备的HAP。 | 对象 | 可缺省，缺省值为空。但当应用中包含多个entry模块时，必须配置该标签。 |
+| distroFilter | 该标签下的子标签均为可选字段，用于定义HAP对应的细分设备规格的分发策略，以便应用市场在云端分发HAP时做精准匹配。该标签需要配置在/resource/profile资源目录下；在进行分发时，通过deviceType与下表属性的匹配关系，唯一确定一个用于分发到设备的HAP。 | 对象 | 可缺省，缺省值为空。但当应用中包含多个entry模块时，必须配置该标签。 |
 |commonEvents | 定义了公共事件静态订阅者的信息，该字段中需要声明静态订阅者的名称、权限要求及订阅事件列表信息，当订阅的公共事件发送时，该公共事件静态订阅者将被拉起。这里的静态订阅者区分于常用的动态订阅者，前者无需在业务代码中主动调用订阅事件的接口，在公共事件发布时可能未被拉起，而动态订阅者则在业务代码中主动调用公共事件订阅的相关API，因此需要应用处于活动状态。 | 对象数组 | 可缺省，缺省为空。 |
-| entryTheme | 此标签标识OpenHarmony内部主题的关键字。将标记值设置为名称的资源索引。 | 字符串 | 可缺省，缺省值为空。 |
+| entryTheme | 此标签标识系统内部主题的关键字。将标记值设置为名称的资源索引。 | 字符串 | 可缺省，缺省值为空。 |
 |testRunner | 此标签用于支持对测试框架的配置。 | 对象 | 可缺省，缺省值为空。 |
 |generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。如果存在，则在系统OTA升级但应用的[version下的code](./app-structure.md#version对象内部结构)保持不变时，可根据哈希值判断应用是否需要升级。**<br/>注：该字段仅对预置应用生效。**|布尔值|该标签可缺省, 缺省值为false。|
 |libIsolation |用于区分同应用不同hap下的so文件，以防止so冲突。<br/>-&nbsp;true：当前hap的so会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前hap的so会直接储存在libs目录中。|布尔值|该标签可缺省, 缺省值为false。|
@@ -59,7 +59,7 @@ module示例：
         "formsEnabled": false,
         "label": "$string:MainAbility_label",
         "type": "page",
-        "launchType": "standard"
+        "launchType": "multiton"
       }
     ],
     "distro": {
@@ -188,7 +188,7 @@ metadata对象示例：
 | 智慧屏 | tv | - |
 | 智能手表 | wearable | 系统能力较丰富的手表，具备电话功能。 |
 | 车机 | car | - |
-| 默认设备 | default | 能够使用全部系统能力的OpenHarmony设备。 |
+| 默认设备 | default | 能够使用全部系统能力的设备。 |
 
 ## abilities对象的内部结构
 
@@ -202,7 +202,7 @@ metadata对象示例：
 | icon | 标识Ability图标资源文件的索引。取值示例：$media:ability_icon。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的icon将同时作为应用的icon。如果存在多个符合条件的Ability，则取位置靠前的Ability的icon作为应用的icon。<br/>说明：应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。 | 字符串 | 可缺省，缺省值为空。 |
 | label | 标识Ability对用户显示的名称。取值是对该名称的资源索引，支持多语言，例：$string:ability_label。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的label将同时作为应用的label。如果存在多个符合条件的Ability，则取位置靠前的Ability的label作为应用的label。<br/>说明：&nbsp;应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。该标签为资源文件中定义的字符串的引用，或以"{}"包括的字符串。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
 | uri | 标识Ability的统一资源标识符。该标签最大长度为255个字节。 | 字符串 | 可缺省，对于data类型的Ability不可缺省。 |
-| launchType | 标识Ability的启动模式，支持"standard"和"singleton"两种模式：<br/>standard：表示该Ability可以有多实例。该模式适用于大多数应用场景。<br/>singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用"singleton"模式。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串 | 可缺省，缺省值为"singleton"。 |
+| launchType | 标识Ability的启动模式，支持"multiton"和"singleton"两种模式：<br/>multiton：表示该Ability可以有多实例。该模式适用于大多数应用场景。<br/>singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用"singleton"模式。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串 | 可缺省，缺省值为"singleton"。 |
 | visible | 标识Ability是否可以被其他应用调用。<br/>true：可以被其他应用调用。<br/>false：不能被其他应用调用，包括无法被aa工具命令拉起应用。 | 布尔类型 | 可缺省，缺省值为"false"。 |
 | permissions | 标识其他应用的Ability调用此Ability时需要申请的权限集合，一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为系统预定义的权限。 | 字符串数组 | 可缺省，缺省值为空。 |
 |skills | 标识Ability能够接收的want的特征。 | 对象数组 | 可缺省，缺省值为空。 |
@@ -210,7 +210,7 @@ metadata对象示例：
 | metaData | 元数据。 | 对象 | 可缺省，缺省值为空。 |
 | type | 标识Ability的类型。取值范围如下：<br/>page：表示基于Page模板开发的FA，用于提供与用户交互的能力。<br/>service：表示基于Service模板开发的PA，用于提供后台运行任务的能力。<br/>data：表示基于Data模板开发的PA，用于对外部提供统一的数据访问对象。<br/>CA：表示支持其他应用以窗口方式调起该Ability。 | 字符串 | 不可缺省。 |
 | orientation | 标识该Ability的显示模式。该标签仅适用于page类型的Ability。取值范围如下：<br/>unspecified：由系统自动判断显示方向。<br/>landscape：横屏模式。<br/>portrait：竖屏模式。<br/>followRecent：跟随栈中最近的应用。 | 字符串 | 可缺省，缺省值为"unspecified"。 |
-| backgroundModes | 标识后台服务的类型，可以为一个服务配置多个后台服务类型。该标签仅适用于service类型的Ability。取值范围如下：<br/>dataTransfer：通过网络/对端设备进行数据下载、备份、分享、传输等业务。<br/>audioPlayback：音频输出业务。<br/>audioRecording：音频输入业务。<br/>pictureInPicture：画中画、小窗口播放视频业务。<br/>voip：音视频电话、VOIP业务。<br/>location：定位、导航业务。<br/>bluetoothInteraction：蓝牙扫描、连接、传输业务。<br/>wifiInteraction：WLAN扫描、连接、传输业务。<br/>screenFetch：录屏、截屏业务。<br/>multiDeviceConnection：多设备互联业务 | 字符串数组 | 可缺省，缺省值为空。 |
+| backgroundModes | 标识后台服务的类型，可以为一个服务配置多个后台服务类型。该标签仅适用于service类型的Ability。取值范围如下：<br/>dataTransfer：通过网络/对端设备进行数据下载、备份、分享、传输等。<br/>audioPlayback：音频播放。<br/>audioRecording：录音。<br/>pictureInPicture：画中画、小窗口播放视频。<br/>voip：音视频电话、VOIP。<br/>location：定位、导航。<br/>bluetoothInteraction：蓝牙扫描、连接、传输。<br/>wifiInteraction：Wi-Fi扫描、连接、传输。<br/>screenFetch：录屏、截屏。<br/>multiDeviceConnection：多设备互联。 | 字符串数组 | 可缺省，缺省值为空。 |
 | grantPermission | 指定是否可以向Ability内任何数据授予权限。 | 布尔值 | 可缺省，缺省值为空。 |
 | readPermission | 标识读取Ability的数据所需的权限。该标签仅适用于data类型的Ability。取值为长度不超过255字节的字符串。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串 | 可缺省，缺省为空。 |
 | writePermission | 标识向Ability写数据所需的权限。该标签仅适用于data类型的Ability。取值为长度不超过255字节的字符串。 | 字符串 | 可缺省，缺省为空。 |
@@ -227,9 +227,9 @@ metadata对象示例：
 | removeMissionAfterTerminate | 该标签标识Ability销毁后是否从任务列表中移除任务。该标签仅适用于page类型的Ability。true表示销毁后移除任务，&nbsp;false表示销毁后不移除任务。 | 布尔值 | 可缺省，缺省值为false。 |
 
 
-**OpenHarmony中不允许应用隐藏入口图标**
+**不允许应用隐藏入口图标**
 
-OpenHarmony系统对无图标应用严格管控，防止一些恶意应用故意配置无入口图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户终端设备的安全。
+系统对无图标应用实施严格管控，防止一些恶意应用故意配置无入口图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户终端设备的安全。
 
 **入口图标的设置:** 需要在配置文件（config.json）中abilities配置下设置icon，label以及skills，而且skills的配置下必须同时包含“ohos.want.action.home” 和 “entity.system.home”。
 ```
@@ -301,7 +301,7 @@ abilities示例：
     "icon": "$media:ic_launcher",
     // $string:example 为字符串类资源
     "label": "$string:example",
-    "launchType": "standard",
+    "launchType": "multiton",
     "orientation": "unspecified",
     "permissions": [],
     "visible": true,
@@ -331,7 +331,7 @@ abilities示例：
     "description": "example play ability",
     "icon": "$media:ic_launcher",
     "label": "$string:example",
-    "launchType": "standard",
+    "launchType": "multiton",
     "orientation": "unspecified",
     "visible": false,
     "skills": [
@@ -600,9 +600,9 @@ forms示例：
 ]
 ```
 
-## distributionFilter对象的内部结构
+## distroFilter对象的内部结构
 
-**表21** **distributionFilter对象的内部结构说明**
+**表21** **distroFilter对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -658,10 +658,10 @@ forms示例：
 | value | 该标签标识应用需要分发的国家码，标签为字符串数组，子串表示支持的国家或地区，由两个大写字母表示。 | 字符串数组 | 不可缺省。 |
 
 
-distributionFilter示例：
+distroFilter示例：
 
 ```json
-"distributionFilter":  {
+"distroFilter":  {
   "apiVersion": {
     "policy": "include",
     "value": [4,5]

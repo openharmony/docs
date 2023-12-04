@@ -14,7 +14,6 @@ The **a2dp** module provides APIs for using the Bluetooth Advanced Audio Distrib
 import a2dp from '@ohos.bluetooth.a2dp';
 ```
 
-
 ## a2dp.createA2dpSrcProfile<a name="createA2dpSrcProfile"></a>
 
 createA2dpSrcProfile(): A2dpSourceProfile
@@ -32,6 +31,7 @@ Creates an **A2dpSrcProfile** instance.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpProfile = a2dp.createA2dpSrcProfile();
     console.info('a2dp success');
@@ -78,6 +78,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
@@ -119,6 +120,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
@@ -142,7 +144,7 @@ Obtains the playing state of a device.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| device | string | Yes   | Address of the remote device.|
+| device | string | Yes   | Address of the target device. |
 
 **Return value**
 
@@ -164,9 +166,366 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### isAbsoluteVolumeSupported<sup>11+</sup><a name="isAbsoluteVolumeSupported"></a>
+
+isAbsoluteVolumeSupported(deviceId: string, callback: AsyncCallback&lt;boolean&gt;): void
+
+Checks whether a device supports the absolute volume capability. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | Yes   | Address of the device to check. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the device supports absolute volume, **supported** is returned.|
+
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.isAbsoluteVolumeSupported('XX:XX:XX:XX:XX:XX', (err, supported) => {
+        console.info('device support absolute volume ' + supported);
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### isAbsoluteVolumeSupported<sup>11+</sup>
+
+isAbsoluteVolumeSupported(deviceId: string): Promise<boolean>
+
+Checks whether a device supports the absolute volume capability. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | Yes   | Address of the device to check. |
+
+**Return value**
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. If the device supports absolute volume, **supported** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.isAbsoluteVolumeSupported('XX:XX:XX:XX:XX:XX').then((supported) => {
+        console.info('device support absolute volume ' + supported);
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### isAbsoluteVolumeEnabled<sup>11+</sup>
+
+isAbsoluteVolumeEnabled(deviceId: string, callback: AsyncCallback&lt;boolean&gt;): void
+
+Checks whether the absolute volume capability is enabled for a device. This API uses an asynchronous callback to return the result. Before using this API, use [isAbsoluteVolumeSupported](#isabsolutevolumesupported11) to check whether the device supports the absolute volume capability.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | Yes   | Address of the device to check. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If absolute volume is enabled, **enabled** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.isAbsoluteVolumeEnabled('XX:XX:XX:XX:XX:XX', (err, enabled) => {
+        console.info('device absolute volume enable ' + enabled);
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### isAbsoluteVolumeEnabled<sup>11+</sup><a name="isAbsoluteVolumeEnabled"></a>
+
+isAbsoluteVolumeEnabled(deviceId: string): Promise&lt;boolean&gt;
+
+Checks whether the absolute volume capability is enabled for a device. This API uses a promise to return the result. Before using this API, use [isAbsoluteVolumeSupported](#isabsolutevolumesupported11-1) to check whether the device supports the absolute volume capability.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | Yes   | Address of the device to check. |
+
+**Return value**
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. If absolute volume is enabled, **enabled** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.isAbsoluteVolumeEnabled('XX:XX:XX:XX:XX:XX').then((enabled) => {
+        console.info('device absolute volume enable ' + enabled);
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### enableAbsoluteVolume<sup>11+</sup>
+
+enableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
+
+Enables the absolute volume capability for a device. This API uses an asynchronous callback to return the result. Before using this API, use [isAbsoluteVolumeSupported](#isabsolutevolumesupported11) to check whether the device supports the absolute volume capability.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | Yes   | Address of the target device. |
+| callback | AsyncCallback&lt;void&gt; | No| Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.enableAbsoluteVolume('XX:XX:XX:XX:XX:XX', (err) => {
+        if (err) {
+            console.error("enableAbsoluteVolume error");
+        }
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### enableAbsoluteVolume<sup>11+</sup>
+
+enableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
+
+Enables the absolute volume capability for a device. This API uses a promise to return the result. Before using this API, use [isAbsoluteVolumeSupported](#isabsolutevolumesupported11-1) to check whether the device supports the absolute volume capability.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | Yes   | Address of the target device. |
+
+**Return value**
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.enableAbsoluteVolume('XX:XX:XX:XX:XX:XX').then(() => {
+            console.info("enableAbsoluteVolume");
+        }
+    );
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### disableAbsoluteVolume<sup>11+</sup>
+
+disableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
+
+Disables the absolute volume capability for a device. This API uses an asynchronous callback to return the result. Before using this API, use [isAbsoluteVolumeSupported](#isabsolutevolumesupported11) to check whether the device supports the absolute volume capability.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | Yes   | Address of the target device. |
+| callback | AsyncCallback&lt;void&gt; | No| Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.disableAbsoluteVolume('XX:XX:XX:XX:XX:XX', (err) => {
+        if (err) {
+            console.error("disableAbsoluteVolume error");
+        }
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### disableAbsoluteVolume<sup>11+</sup>
+
+disableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
+
+Disables the absolute volume capability for a device. This API uses a promise to return the result. Before using this API, use [isAbsoluteVolumeSupported](#isabsolutevolumesupported11-1) to check whether the device supports the absolute volume capability.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | Yes   | Address of the target device. |
+
+**Return value**
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.disableAbsoluteVolume('XX:XX:XX:XX:XX:XX').then(() => {
+        console.info("disableAbsoluteVolume");
+    });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }

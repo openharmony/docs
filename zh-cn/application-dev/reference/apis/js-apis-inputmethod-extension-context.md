@@ -4,7 +4,8 @@ InputMethodExtensionContext模块是InputMethodExtensionAbility的上下文环�
 
 > **说明：**
 >
->本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
 
@@ -43,13 +44,24 @@ destroy(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-this.context.destroy((err: BusinessError) => {
-  if(err) {
-    console.log('Failed to destroy context.');
-    return;
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+class InputMethodExtnAbility extends InputMethodExtensionAbility {
+  onCreate(want: Want): void {
+    let context = this.context;
   }
-  console.log('Succeeded in destroying context.');
-});
+  onDestroy() {
+    this.context.destroy((err: BusinessError) => {
+      if(err) {
+        console.log(`Failed to destroy context, err code = ${err.code}`);
+        return;
+      }
+      console.log('Succeeded in destroying context.');
+    });
+  }
+}
 ```
 
 ## InputMethodExtensionContext.destroy
@@ -69,9 +81,20 @@ destroy(): Promise\<void>;
 **示例：**
 
 ```ts
-this.context.destroy().then(() => {
-  console.log('Succeed in destroying context.');
-}).catch((err: BusinessError)=>{
-  console.log('Failed to destroy context.');
-});
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+class InputMethodExtnAbility extends InputMethodExtensionAbility {
+  onCreate(want: Want): void {
+    let context = this.context;
+  }
+  onDestroy() {
+    this.context.destroy().then(() => {
+      console.log('Succeed in destroying context.');
+    }).catch((err: BusinessError)=>{
+      console.log(`Failed to destroy context, err code = ${err.code}`);
+    });
+  }
+}
 ```

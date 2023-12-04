@@ -1,4 +1,4 @@
-# 会话管理
+# 会话管理(ArkTS)
 
 相机使用预览、拍照、录像、元数据功能前，均需要创建相机会话。
 
@@ -19,7 +19,6 @@
    ```ts
    import camera from '@ohos.multimedia.camera';
    import { BusinessError } from '@ohos.base';
-   import featureAbility from '@ohos.ability.featureAbility';
    ```
 
 2. 调用cameraManager类中的createCaptureSession()方法创建一个会话。

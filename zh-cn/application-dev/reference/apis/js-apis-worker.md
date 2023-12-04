@@ -6,6 +6,8 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 
 Worker的上下文对象和主线程的上下文对象是不同的，Worker线程不支持UI操作。
 
+Worker使用过程中的相关注意点请见[Worker注意事项](../../arkts-utils/taskpool-vs-worker.md#worker注意事项)
+
 > **说明：**<br/>
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -20,10 +22,10 @@ import worker from '@ohos.worker';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称                              | 类型                                                      | 可读 | 可写 | 说明                                                         |
-| --------------------------------- | --------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)      | 是   | 是   | worker线程用于与宿主线程通信的对象。                         |
-| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscope) | 是   | 是   | worker线程用于与宿主线程通信的对象。<br/>此属性从API version 7开始支持,从API version 9 开始被废弃。<br/>建议使用workerPort<sup>9+</sup>替代。 |
+| 名称                              | 类型                                                         | 可读 | 可写 | 说明                                                         |
+| --------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | 是   | 是   | worker线程用于与宿主线程通信的对象。                         |
+| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 是   | worker线程用于与宿主线程通信的对象。<br/>此属性从API version 7开始支持,从API version 9 开始被废弃。<br/>建议使用workerPort<sup>9+</sup>替代。 |
 
 
 ## WorkerOptions
@@ -79,8 +81,8 @@ ThreadWorker构造函数。
 
 ```ts
 import worker from '@ohos.worker';
-// worker线程创建
 
+// worker线程创建
 // FA模型-目录同级（entry模块下，workers目录与pages目录同级）
 const workerFAModel01 = new worker.ThreadWorker("workers/worker.ts", {name:"first worker in FA model"});
 // FA模型-目录不同级（entry模块下，workers目录与pages目录的父目录同级）
@@ -600,6 +602,8 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未
 分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
 
 ```ts
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 //用法一:
@@ -667,6 +671,8 @@ workerInstance.removeAllListener();
 ```
 
 ## WorkerEventTarget<sup>9+</sup>
+
+处理Worker监听事件。
 
 ### addEventListener<sup>9+</sup>
 
@@ -775,6 +781,8 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未
 分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
 
 ```ts
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 //用法一:
@@ -874,7 +882,8 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -884,7 +893,8 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     let buffer = new ArrayBuffer(8);
@@ -920,7 +930,8 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -930,7 +941,8 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     workerPort.postMessage("receive data from main thread");
@@ -959,12 +971,14 @@ close(): void
 ```ts
 // main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```
 
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     workerPort.close()
@@ -1001,13 +1015,15 @@ ThreadWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主
 ```ts
 // main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 ```
 
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     console.log("receive main thread message");
@@ -1044,12 +1060,14 @@ ThreadWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一�
 ```ts
 // main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```
 
 ```ts
 // worker.ts
 import worker from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessageerror = () => {
     console.log("worker.ts onmessageerror")
@@ -1129,12 +1147,14 @@ GlobalScope的onerror属性表示Worker在执行过程中发生异常被调用�
 ```ts
 // main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts")
 ```
 
 ```ts
 // worker.ts
 import worker from '@ohos.worker';
+
 const workerPort = worker.workerPort
 workerPort.onerror = () => {
     console.log("worker.ts onerror")
@@ -1154,7 +1174,7 @@ workerPort.onerror = () => {
 ## Worker<sup>(deprecated)</sup>
 
 
-使用以下方法前，均需先构造Worker实例，Worker类继承[EventTarget](#eventtarget)。
+使用以下方法前，均需先构造Worker实例，Worker类继承[EventTarget](#eventtargetdeprecated)。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorker<sup>9+</sup>](#threadworker9)替代。
@@ -1187,6 +1207,7 @@ Worker构造函数。
 
 ```ts
 import worker from '@ohos.worker';
+
 // worker线程创建
 
 // FA模型-目录同级
@@ -1321,10 +1342,10 @@ on(type: string, listener: EventListener): void
 
 **参数：**
 
-| 参数名   | 类型                            | 必填 | 说明             |
-| -------- | ------------------------------- | ---- | ---------------- |
-| type     | string                          | 是   | 监听的事件类型。 |
-| listener | [EventListener](#eventlistener) | 是   | 回调事件。       |
+| 参数名   | 类型                                      | 必填 | 说明             |
+| -------- | ----------------------------------------- | ---- | ---------------- |
+| type     | string                                    | 是   | 监听的事件类型。 |
+| listener | [EventListener](#eventlistenerdeprecated) | 是   | 回调事件。       |
 
 **示例：**
 
@@ -1349,10 +1370,10 @@ once(type: string, listener: EventListener): void
 
 **参数：**
 
-| 参数名   | 类型                            | 必填 | 说明             |
-| -------- | ------------------------------- | ---- | ---------------- |
-| type     | string                          | 是   | 监听的事件类型。 |
-| listener | [EventListener](#eventlistener) | 是   | 回调事件。       |
+| 参数名   | 类型                                      | 必填 | 说明             |
+| -------- | ----------------------------------------- | ---- | ---------------- |
+| type     | string                                    | 是   | 监听的事件类型。 |
+| listener | [EventListener](#eventlistenerdeprecated) | 是   | 回调事件。       |
 
 **示例：**
 
@@ -1377,10 +1398,10 @@ off(type: string, listener?: EventListener): void
 
 **参数：**
 
-| 参数名   | 类型                            | 必填 | 说明                 |
-| -------- | ------------------------------- | ---- | -------------------- |
-| type     | string                          | 是   | 需要删除的事件类型。 |
-| listener | [EventListener](#eventlistener) | 否   | 删除的回调事件。     |
+| 参数名   | 类型                                      | 必填 | 说明                 |
+| -------- | ----------------------------------------- | ---- | -------------------- |
+| type     | string                                    | 是   | 需要删除的事件类型。 |
+| listener | [EventListener](#eventlistenerdeprecated) | 否   | 删除的回调事件。     |
 
 **示例：**
 
@@ -1484,13 +1505,15 @@ Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worke
 
 **参数：**
 
-| 参数名 | 类型                           | 必填 | 说明                   |
-| ------ | ------------------------------ | ---- | ---------------------- |
+| 参数名 | 类型                               | 必填 | 说明                   |
+| ------ | ---------------------------------- | ---- | ---------------------- |
 | event  | [MessageEvent](#messageeventt) | 是   | 收到的Worker消息数据。 |
 
 **示例：**
 
 ```ts
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.onmessage = (e: MessageEvents): void => {
     console.log("onmessage");
@@ -1511,8 +1534,8 @@ Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被
 
 **参数：**
 
-| 参数名 | 类型                           | 必填 | 说明       |
-| ------ | ------------------------------ | ---- | ---------- |
+| 参数名 | 类型                               | 必填 | 说明       |
+| ------ | ---------------------------------- | ---- | ---------- |
 | event  | [MessageEvent](#messageeventt) | 是   | 异常数据。 |
 
 **示例：**
@@ -1542,10 +1565,10 @@ addEventListener(type: string, listener: EventListener): void
 
 **参数：**
 
-| 参数名   | 类型                            | 必填 | 说明             |
-| -------- | ------------------------------- | ---- | ---------------- |
-| type     | string                          | 是   | 监听的事件类型。 |
-| listener | [EventListener](#eventlistener) | 是   | 回调的事件。     |
+| 参数名   | 类型                                      | 必填 | 说明             |
+| -------- | ----------------------------------------- | ---- | ---------------- |
+| type     | string                                    | 是   | 监听的事件类型。 |
+| listener | [EventListener](#eventlistenerdeprecated) | 是   | 回调的事件。     |
 
 **示例：**
 
@@ -1570,10 +1593,10 @@ removeEventListener(type: string, callback?: EventListener): void
 
 **参数：**
 
-| 参数名   | 类型                            | 必填 | 说明                     |
-| -------- | ------------------------------- | ---- | ------------------------ |
-| type     | string                          | 是   | 需要删除的监听事件类型。 |
-| callback | [EventListener](#eventlistener) | 否   | 删除的回调事件。         |
+| 参数名   | 类型                                      | 必填 | 说明                     |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string                                    | 是   | 需要删除的监听事件类型。 |
+| callback | [EventListener](#eventlistenerdeprecated) | 否   | 删除的回调事件。         |
 
 **示例：**
 
@@ -1682,7 +1705,7 @@ workerInstance.removeAllListener();
 
 ## DedicatedWorkerGlobalScope<sup>(deprecated)</sup>
 
-Worker线程用于与宿主线程通信的类，通过postMessage接口发送消息给宿主线程、close接口销毁Worker线程。DedicatedWorkerGlobalScope类继承[WorkerGlobalScope](#workerglobalscope)。
+Worker线程用于与宿主线程通信的类，通过postMessage接口发送消息给宿主线程、close接口销毁Worker线程。DedicatedWorkerGlobalScope类继承[WorkerGlobalScope](#workerglobalscopedeprecated)。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9)替代。
@@ -1727,7 +1750,8 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -1737,7 +1761,8 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 ```
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     // let data = e.data;
@@ -1768,7 +1793,8 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -1778,7 +1804,8 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 ```
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e: MessageEvents): void => {
     // let data = e.data;
@@ -1802,11 +1829,13 @@ close(): void
 ```ts
 // main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 ```
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e: MessageEvents): void => {
     parentPort.close()
@@ -1830,19 +1859,21 @@ DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿
 | 参数名 | 类型                                                         | 必填 | 说明                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。         |
-| ev     | [MessageEvent](#messageeventt)                               | 是   | 收到宿主线程发送的数据。 |
+| ev     | [MessageEvent](#messageeventt)                           | 是   | 收到宿主线程发送的数据。 |
 
 **示例：**
 
 ```ts
 // main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 ```
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e: MessageEvents): void => {
     console.log("receive main thread message");
@@ -1863,21 +1894,23 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到�
 
 **参数：**
 
-| 参数名 | 类型                           | 必填 | 说明       |
-| ------ | ------------------------------ | ---- | ---------- |
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 指向调用者对象。 |
-| ev     | [MessageEvent](#messageeventt) | 是   | 异常数据。 |
+| ev     | [MessageEvent](#messageeventt)                           | 是   | 异常数据。       |
 
 **示例：**
 
 ```ts
 // main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 ```
 ```ts
 // worker.ts
 import worker from '@ohos.worker';
+
 const parentPort = worker.parentPort;
 parentPort.onmessageerror = () => {
     console.log("worker.ts onmessageerror")
@@ -1969,7 +2002,7 @@ workerInstance.addEventListener("alert", ()=>{
 
 ## WorkerGlobalScope<sup>(deprecated)</sup>
 
-Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eventtarget)。
+Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eventtargetdeprecated)。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[GlobalScope<sup>9+</sup>](#globalscope9)替代。
@@ -2006,11 +2039,13 @@ WorkerGlobalScope的onerror属性表示Worker在执行过程中发生异常被�
 ```ts
 // main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts")
 ```
 ```ts
 // worker.ts
 import worker from '@ohos.worker';
+
 const parentPort = worker.parentPort
 parentPort.onerror = () => {
     console.log("worker.ts onerror")
@@ -2031,6 +2066,7 @@ parentPort.onerror = () => {
 ```ts
 // main thread
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
 workerInstance.postMessage("message from main thread to worker");
 workerInstance.onmessage = (d: MessageEvents): void => {
@@ -2041,6 +2077,7 @@ workerInstance.onmessage = (d: MessageEvents): void => {
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 class MyModel {
     name = "undefined"
@@ -2087,6 +2124,7 @@ Actor并发模型的交互原理：各个Actor并发地处理主线程任务，�
 ```ts
 // main thread(同级目录为例)
 import worker, { MessageEvents } from '@ohos.worker';
+
 // 主线程中创建Worker对象
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
 
@@ -2106,6 +2144,10 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 // 在调用terminate后，执行回调onexit
 workerInstance.onexit = () => {
     console.log("main thread terminate");
+}
+
+workerInstance.onerror = (err: ErrorEvent) => {
+    console.log("main error message " + err.message);
 }
 ```
 ```ts
@@ -2163,6 +2205,10 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 // 在调用terminate后，执行onexit
 workerInstance.onexit = () => {
     console.log("main thread terminate");
+}
+
+workerInstance.onerror = (err: ErrorEvent) => {
+    console.log("main error message " + err.message);
 }
 ```
 ```ts

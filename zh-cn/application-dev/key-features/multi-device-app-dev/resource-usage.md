@@ -51,8 +51,8 @@ base目录与限定词目录下面可以创建资源组目录（包括element、
 在element目录的各个资源文件中，以“name-value”的形式定义资源，如下所示。而在media目录中，直接以文件名作为name，故开发者将文件放入media目录即可，无需再额外定义name。
 
 
-```
-// color.json
+```json
+// color.json 
 {
     "color": [
         {
@@ -92,7 +92,7 @@ base目录与限定词目录下面可以创建资源组目录（包括element、
 ![zh-cn_image_0000001325731389](figures/zh-cn_image_0000001325731389.png)
 
 
-```
+```ts
 @Entry
 @Component
 struct Index {

@@ -3,7 +3,7 @@
 
 ## 历史记录导航
 
-使用者在前端页面点击网页中的链接时，Web组件默认会自动打开并加载目标网址。当前端页面替换为新的加载链接时，会自动记录已经访问的网页地址。可以通过[forward()](../reference/apis/js-apis-webview.md#forward)和[backward()](../reference/apis/js-apis-webview.md#backward)接口向前/向后浏览上一个/下一个历史记录。
+在前端页面点击网页中的链接时，Web组件默认会自动打开并加载目标网址。当前端页面替换为新的加载链接时，会自动记录已经访问的网页地址。可以通过[forward()](../reference/apis/js-apis-webview.md#forward)和[backward()](../reference/apis/js-apis-webview.md#backward)接口向前/向后浏览上一个/下一个历史记录。
 
   在下面的示例中，点击应用的按钮来触发前端页面的后退操作。
 
@@ -39,7 +39,7 @@ struct WebComponent {
 
 在下面的示例中，应用首页Index.ets加载前端页面route.html，在前端route.html页面点击超链接，可跳转到应用的ProfilePage.ets页面。
 
-- 应用首页index.ets页面代码。
+- 应用首页Index.ets页面代码。
   
   ```ts
   // index.ets
@@ -105,7 +105,7 @@ struct WebComponent {
 
 Web组件可以实现点击前端页面超链接跳转到其他应用。
 
-在下面的示例中，点击call.html前端页面中的超连接，跳转到电话应用的拨号界面。
+在下面的示例中，点击call.html前端页面中的超链接，跳转到电话应用的拨号界面。
 
 - 应用侧代码。
   

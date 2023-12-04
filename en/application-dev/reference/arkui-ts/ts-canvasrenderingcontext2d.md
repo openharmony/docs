@@ -42,7 +42,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | [fillStyle](#fillstyle)                  | string \| number<sup>10+</sup> \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | Style to fill an area.<br>- When the type is string, this attribute indicates the color of the fill area.<br>Default value: **'black'**<br>- When the type is number, this attribute indicates the color of the fill area.<br>Default value: **'#000000'**<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | [lineWidth](#linewidth)                  | number                                   | Line width.<br>Default value: **1(px)**                              |
-| [strokeStyle](#strokestyle)              | string \| number<sup>10+</sup> \|[CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | Stroke style.<br>- When the type is string, this attribute indicates the stroke color.<br>Default value: **'black'**<br>- When the type is number, this attribute indicates the stroke color.<br>Default value: **'#000000'**<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [strokeStyle](#strokestyle)              | string \| number<sup>10+</sup> \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | Stroke style.<br>- When the type is string, this attribute indicates the stroke color.<br>Default value: **'black'**<br>- When the type is number, this attribute indicates the stroke color.<br>Default value: **'#000000'**<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | [lineCap](#linecap)                      | CanvasLineCap                            | Style of the line endpoints. The options are as follows:<br>- **'butt'**: The endpoints of the line are squared off.<br>- **'round'**: The endpoints of the line are rounded.<br>- **'square'**: The endpoints of the line are squared off by adding a box with an equal width and half the height of the line's thickness.<br>Default value: **'butt'**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | [lineJoin](#linejoin)                    | CanvasLineJoin                           | Style of the shape used to join line segments. The options are as follows:<br>- **'round'**: The shape used to join line segments is a sector, whose radius at the rounded corner is equal to the line width.<br>- **'bevel'**: The shape used to join line segments is a triangle. The rectangular corner of each line is independent.<br>- **'miter'**: The shape used to join line segments has a mitered corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**.<br>Default value: **'miter'**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | [miterLimit](#miterlimit)                | number                                   | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet.<br>Default value: **10**<br>Since API version 9, this API is supported in ArkTS widgets.|
@@ -1679,7 +1679,10 @@ Since API version 9, this API is supported in ArkTS widgets.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.beginPath()
-            this.context.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2)
+            this.context.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2, false)
+            this.context.stroke()
+            this.context.beginPath()
+            this.context.ellipse(200, 300, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2, true)
             this.context.stroke()
           })
       }
@@ -1689,7 +1692,7 @@ Since API version 9, this API is supported in ArkTS widgets.
   }
   ```
 
-  ![en-us_image_0000001256978339](figures/en-us_image_0000001256978339.png)
+  ![en-us_image_0000001194192440](figures/en-us_image_0000001194192440.png)
 
 
 ### rect
@@ -2661,10 +2664,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-| Name    | Type  | Mandatory  | Description                                      |
-| ------- | ------ | ---- | ---------------------------------------- |
-| type    | string | No   | Image format. The default value is **image/png**.           |
-| quality | number | No   | Image quality, which ranges from 0 to 1, when the image format is **image/jpeg** or **image/webp**. If the set value is beyond the value range, the default value **0.92** is used.|
+| Name    | Type  | Mandatory  | Default Value         | Description                                      |
+| ------- | ------ | ---- | ----- | ---------------------------------------- |
+| type    | string | No   | "image/png"    | Image format. The default value is **image/png**.           |
+| quality | number | No   | 0.92    | Image quality, which ranges from 0 to 1, when the image format is **image/jpeg** or **image/webp**. If the set value is beyond the value range, the default value **0.92** is used.|
 
 **Return value**
 
@@ -2678,25 +2681,30 @@ Since API version 9, this API is supported in ArkTS widgets.
   // xxx.ets
   @Entry
   @Component
-  struct ToDataURL {
+  struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    @State toDataURL: string = ""
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
+          .width(100)
+          .height(100)
           .onReady(() =>{
-            let dataURL = this.context.toDataURL()
+            this.context.fillStyle = "#00ff00"
+            this.context.fillRect(0,0,100,100)
+            this.toDataURL = this.context.toDataURL("image/png", 0.92)
           })
+        Text(this.toDataURL)
       }
       .width('100%')
       .height('100%')
+      .backgroundColor('#ffff00')
     }
   }
   ```
+  ![en-us_image_0000001238952387](figures/en-us_image_0000001194192441.png)  
 
 
 ### restore

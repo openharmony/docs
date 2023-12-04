@@ -29,13 +29,13 @@ TaskPool（任务池）和Worker的作用是为应用程序提供一个多线程
 
 TaskPool和Worker均支持多线程并发能力。由于TaskPool的工作线程会绑定系统的调度优先级，并且支持负载均衡（自动扩缩容），而Worker需要开发者自行创建，存在创建耗时以及不支持设置调度优先级，故在性能方面使用TaskPool会优于Worker，因此大多数场景推荐使用TaskPool。
 
-TaskPool偏向独立任务（线程级）维度，超长任务（大于3分钟）会被系统自动回收；而Worker偏向线程的维度，支持长时间占据线程执行。
+TaskPool偏向独立任务维度，该任务在线程中执行，无需关注线程的生命周期，超长任务（大于3分钟）会被系统自动回收；而Worker偏向线程的维度，支持长时间占据线程执行，需要主动管理线程生命周期。
 
 常见的一些开发场景及适用具体说明如下：
 
 - 运行时间超过3分钟（不包含Promise和async/await异步调用的耗时，例如网络下载、文件读写等I/O任务的耗时）的任务。例如后台进行1小时的预测算法训练等CPU密集型任务，需要使用Worker。
 
-- 有关联的一系列同步任务。例如某数据库操作时，要用创建的句柄操作，包含增、删、改、查多个任务，要保证同一个句柄，需要使用Worker。
+- 有关联的一系列同步任务。例如在一些需要创建、使用句柄的场景中，句柄创建每次都是不同的，该句柄需永久保存，保证使用该句柄进行操作，需要使用Woker。
 
 - 需要设置优先级的任务。例如图库直方图绘制场景，后台计算的直方图数据会用于前台界面的显示，影响用户体验，需要高优先级处理，需要使用TaskPool。
 
@@ -50,7 +50,7 @@ TaskPool偏向独立任务（线程级）维度，超长任务（大于3分钟�
 
 ![taskpool](figures/taskpool.png)
 
-TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择合适的工作线程，进行任务的分发及执行，再将结果返回给主线程。接口直观易用，支持任务的执行、取消，以及指定优先级的能力，同时通过系统统一线程管理，结合动态调度及负载均衡算法，可以节约系统资源。系统默认会启动一个任务工作线程，当任务较多时会扩容，工作线程数量上限跟当前设备的物理核数相关，为max(3, 物理核数-1)个，长时间没有任务分发时会缩容，减少工作线程数量。
+TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择合适的工作线程，进行任务的分发及执行，再将结果返回给主线程。接口直观易用，支持任务的执行、取消，以及指定优先级的能力，同时通过系统统一线程管理，结合动态调度及负载均衡算法，可以节约系统资源。系统默认会启动一个任务工作线程，当任务较多时会扩容，工作线程数量上限跟当前设备的物理核数相关，具体数量内部管理，保证最优的调度及执行效率，长时间没有任务分发时会缩容，减少工作线程数量。
 
 
 ## Worker运作机制
@@ -64,15 +64,11 @@ TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择
 
 ## TaskPool注意事项
 
-- 实现任务的函数需要使用装饰器\@Concurrent标注，且仅支持在.ets文件中使用。
-
-- 实现任务的函数只支持普通函数或者async函数，不支持类成员函数或者匿名函数。
-
-- 实现任务的函数仅支持在Stage模型的工程中使用import的变量和入参变量，否则只能使用入参变量。
+- 实现任务的函数需要使用装饰器[\@Concurrent](arkts-concurrent.md)标注，且仅支持在.ets文件中使用。
 
 - 任务函数在TaskPool工作线程的执行耗时不能超过3分钟（不包含Promise和async/await异步调用的耗时，例如网络下载、文件读写等I/O任务的耗时），否则会被强制退出。
 
-- 实现任务的函数入参需满足序列化支持的类型，详情请参见[普通对象传输](multi-thread-concurrency-overview.md#普通对象)。
+- 实现任务的函数入参需满足序列化支持的类型，详情请参见[数据传输对象](multi-thread-concurrency-overview.md#数据传输对象)。
 
 - ArrayBuffer参数在TaskPool中默认转移，需要设置转移列表的话可通过接口[setTransferList()](../reference/apis/js-apis-taskpool.md#settransferlist10)设置。
 
@@ -95,12 +91,17 @@ TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择
 
 - 序列化传输的数据量大小限制为16MB。
 
+- 使用Worker模块时，需要在主线程中注册onerror接口，否则当worker线程出现异常时会发生jscrash问题。
+
 
 ### 文件路径注意事项
 
   当使用Worker模块具体功能时，均需先构造Worker实例对象，其构造函数与API版本相关。
 
 ```ts
+// 导入模块
+import worker form '@ohos.worker';
+
 // API 9及之后版本使用：
 const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
 // API 8及之前版本使用：
@@ -115,6 +116,9 @@ const worker2: worker.Worker = new worker.Worker('entry/ets/workers/MyWorker.ts'
 
 
 ```ts
+// 导入模块
+import worker form '@ohos.worker';
+
 // 写法一
 // Stage模型-目录同级（entry模块下，workers目录与pages目录同级）
 const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts', {name:"first worker in Stage model"});
@@ -148,6 +152,9 @@ const worker4: worker.ThreadWorker = new worker.ThreadWorker('@bundle:com.exampl
   构造函数中的scriptURL示例如下：
 
 ```ts
+// 导入模块
+import worker form '@ohos.worker';
+
 // FA模型-目录同级（entry模块下，workers目录与pages目录同级）
 const worker1: worker.ThreadWorker = new worker.ThreadWorker('workers/worker.js', {name:'first worker in FA model'});
 // FA模型-目录不同级（entry模块下，workers目录与pages目录的父目录同级）

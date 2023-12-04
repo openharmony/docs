@@ -86,7 +86,7 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | --------------------- | ---- | ------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示屏幕解锁成功；返回false表示屏幕解锁失败。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示屏幕解锁成功；返回false表示取消解锁。 |
 
 **错误码**：
 
@@ -95,6 +95,7 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 13200002  | the screenlock management service is abnormal.         |
+| 13200003  | illegal use.         |
 
 **示例：** 
 
@@ -110,6 +111,10 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
   });
   ```
 
+> **说明：**
+>
+> 在 api11 中 增加错误码`13200003 illegal use` 。
+
 ## screenLock.unlock<sup>9+</sup>
 
 unlock(): Promise&lt;boolean&gt;
@@ -124,7 +129,7 @@ unlock(): Promise&lt;boolean&gt;
 
 | 类型                | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示屏幕解锁成功；返回false表示屏幕解锁失败。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示屏幕解锁成功；返回false表示取消解锁。 |
 
 **错误码**：
 
@@ -133,6 +138,7 @@ unlock(): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 13200002  | the screenlock management service is abnormal.         |
+| 13200003  | illegal use.         |
 
 **示例：** 
 
@@ -145,6 +151,10 @@ unlock(): Promise&lt;boolean&gt;
     console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
   });
   ```
+
+> **说明：**
+>
+> 在 api11 中 增加错误码`13200003 illegal use` 。
 
 ## screenLock.lock<sup>9+</sup>
 

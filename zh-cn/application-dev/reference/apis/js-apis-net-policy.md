@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import policy from '@ohos.net.policy';
 ```
 
@@ -44,7 +44,7 @@ setBackgroundAllowed(isAllowed: boolean, callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.setBackgroundAllowed(true, (error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -88,7 +88,7 @@ setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.setBackgroundAllowed(true).then(() => {
   console.log("setBackgroundAllowed success");
@@ -128,7 +128,7 @@ isBackgroundAllowed(callback: AsyncCallback\<boolean>): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.isBackgroundAllowed((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
@@ -167,7 +167,7 @@ isBackgroundAllowed(): Promise\<boolean>;
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .isBackgroundAllowed()
@@ -212,7 +212,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE, (error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -257,7 +257,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE)
@@ -301,9 +301,9 @@ getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
-policy.getPolicyByUid(11111, (error: BusinessError, data: object) => {
+policy.getPolicyByUid(11111, (error: BusinessError, data: policy.NetUidPolicy) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -346,11 +346,11 @@ getPolicyByUid(uid: number): Promise\<NetUidPolicy>;
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .getPolicyByUid(11111)
-  .then((data: object) => {
+  .then((data: policy.NetUidPolicy) => {
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
@@ -390,9 +390,9 @@ getUidsByPolicy(policy: NetUidPolicy, callback: AsyncCallback\<Array\<number>>):
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
-policy.getUidsByPolicy(11111, (error: BusinessError, data: object) => {
+policy.getUidsByPolicy(11111, (error: BusinessError, data: number[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -435,7 +435,7 @@ getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>;
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .getUidsByPolicy(11111)
@@ -478,9 +478,9 @@ getNetQuotaPolicies(callback: AsyncCallback\<Array\<NetQuotaPolicy>>): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
-policy.getNetQuotaPolicies((error: BusinessError, data: NetQuotaPolicy[]) => {
+policy.getNetQuotaPolicies((error: BusinessError, data: policy.NetQuotaPolicy[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -516,11 +516,11 @@ getNetQuotaPolicies(): Promise\<Array\<NetQuotaPolicy>>;
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .getNetQuotaPolicies()
-  .then((data: NetQuotaPolicy[]) => {
+  .then((data: policy.NetQuotaPolicy[]) => {
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
@@ -560,30 +560,25 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>, callback: AsyncCallba
 
 **示例：**
 
-```js
+```ts
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
-let netQuotaPolicyList: Array = [];
-class Netquotapolicy {
-  networkMatchRule: NetworkMatchRule = new NetworkMatchRule();
-  quotaPolicy: QuotaPolicy = new QuotaPolicy();
+let netQuotaPolicyList: Array<policy.NetQuotaPolicy> = [];
+let netquotapolicy: policy.NetQuotaPolicy = {
+  networkMatchRule: {
+    netType: connection.NetBearType.BEARER_CELLULAR,
+    identity: '',
+    simId: '1'
+  },
+  quotaPolicy: {
+    periodDuration: 'M1',
+    warningBytes: 40000,
+    limitBytes: 50000,
+    metered: true,
+    limitAction: policy.LimitAction.LIMIT_ACTION_NONE
+  }
 }
-class NetworkMatchRule {
-  netType: enum = connection.NetBearType.BEARER_CELLULAR;
-  identity: string = '';
-  simId: string = '1';
-}
-class QuotaPolicy {
-  periodDuration: string = 'M1';
-  warningBytes: number = 40000;
-  limitBytes: number = 50000;
-  metered: boolean = true;
-  limitAction: policy.LimitAction.LIMIT_ACTION_NONE;
-}
-
-let netquotapolicy = new Netquotapolicy();
-
 netQuotaPolicyList.push(netquotapolicy);
 
 policy.setNetQuotaPolicies(netQuotaPolicyList, (error: BusinessError) => {
@@ -628,30 +623,25 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
-let netQuotaPolicyList: Array = [];
-class Netquotapolicy {
-  networkMatchRule: NetworkMatchRule = new NetworkMatchRule();
-  quotaPolicy: QuotaPolicy = new QuotaPolicy();
+let netQuotaPolicyList: Array<policy.NetQuotaPolicy> = [];
+let netquotapolicy: policy.NetQuotaPolicy = {
+  networkMatchRule: {
+    netType: connection.NetBearType.BEARER_CELLULAR,
+    identity: '',
+    simId: '1'
+  },
+  quotaPolicy: {
+    periodDuration: 'M1',
+    warningBytes: 40000,
+    limitBytes: 50000,
+    metered: true,
+    limitAction: policy.LimitAction.LIMIT_ACTION_NONE
+  }
 }
-class NetworkMatchRule {
-  netType: enum = connection.NetBearType.BEARER_CELLULAR;
-  identity: string = '';
-  simId: string = '1';
-}
-class QuotaPolicy {
-  periodDuration: string = 'M1';
-  warningBytes: number = 40000;
-  limitBytes: number = 50000;
-  metered: boolean = true;
-  limitAction: policy.LimitAction.LIMIT_ACTION_NONE;
-}
-
-let netquotapolicy = new Netquotapolicy();
-
 netQuotaPolicyList.push(netquotapolicy);
 
 policy
@@ -697,7 +687,7 @@ isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolea
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.isUidNetAllowed(11111, true, (error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
@@ -743,7 +733,7 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>;
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .isUidNetAllowed(11111, true)
@@ -788,7 +778,7 @@ isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): 
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.isUidNetAllowed(11111, 'wlan0', (error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
@@ -834,7 +824,7 @@ isUidNetAllowed(uid: number, iface: string): Promise\<boolean>;
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .isUidNetAllowed(11111, 'wlan0')
@@ -879,7 +869,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean, callback: Async
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.setDeviceIdleTrustlist([11111, 22222], true, (error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -924,7 +914,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .setDeviceIdleTrustlist([11111, 22222], true)
@@ -967,9 +957,9 @@ getDeviceIdleTrustlist(callback: AsyncCallback\<Array\<number>>): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
-policy.getDeviceIdleTrustlist((error: BusinessError, data: number) => {
+policy.getDeviceIdleTrustlist((error: BusinessError, data: number[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -1005,11 +995,11 @@ getDeviceIdleTrustlist(): Promise\<Array\<number>>;
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .getDeviceIdleTrustlist()
-  .then((data: number) => {
+  .then((data: number[]) => {
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
@@ -1049,7 +1039,7 @@ getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPoli
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.getBackgroundPolicyByUid(11111, (error: BusinessError, data: number) => {
   console.log(JSON.stringify(error));
@@ -1094,7 +1084,7 @@ getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>;
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .getBackgroundPolicyByUid(11111)
@@ -1138,7 +1128,7 @@ resetPolicies(simId: string, callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.resetPolicies('1', (error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -1182,7 +1172,7 @@ resetPolicies(simId: string): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .resetPolicies('1')
@@ -1228,7 +1218,7 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType, 
 
 **示例：**
 
-```js
+```ts
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 policy.updateRemindPolicy(
@@ -1280,7 +1270,7 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType):
 
 **示例：**
 
-```js
+```ts
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 policy
@@ -1330,7 +1320,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean, callback: AsyncC
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy.setPowerSaveTrustlist([11111, 22222], true, (error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -1375,7 +1365,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .setPowerSaveTrustlist([11111, 22222], true)
@@ -1418,9 +1408,9 @@ getPowerSaveTrustlist(callback: AsyncCallback\<Array\<number>>): void
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
-policy.getPowerSaveTrustlist((error: BusinessError, data: number) => {
+policy.getPowerSaveTrustlist((error: BusinessError, data: number[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -1456,11 +1446,11 @@ getPowerSaveTrustlist(): Promise\<Array\<number>>;
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 policy
   .getPowerSaveTrustlist()
-  .then((data: number) => {
+  .then((data: number[]) => {
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
@@ -1504,8 +1494,13 @@ on(type: "netUidPolicyChange", callback: Callback\<{ uid: number, policy: NetUid
 
 **示例：**
 
-```js
-policy.on('netUidPolicyChange', (data: number) => {
+```ts
+import policy from '@ohos.net.policy';
+interface Data {
+  uid: number,
+  policy: policy.NetUidPolicy
+}
+policy.on('netUidPolicyChange', (data: Data) => {
   console.log('on netUidPolicyChange: ' + JSON.stringify(data));
 });
 ```
@@ -1542,7 +1537,7 @@ off(type: "netUidPolicyChange", callback?: Callback<{ uid: number, policy: NetUi
 
 **示例：**
 
-```js
+```ts
 let callback = (data: object) => {
   console.log('on netUidPolicyChange, data:' + JSON.stringify(data));
 };
@@ -1582,7 +1577,7 @@ on(type: "netUidRuleChange", callback: Callback\<{ uid: number, rule: NetUidRule
 
 **示例：**
 
-```js
+```ts
 policy.on('netUidRuleChange', (data: object) => {
   console.log('on netUidRuleChange: ' + JSON.stringify(data));
 });
@@ -1620,7 +1615,7 @@ off(type: "netUidRuleChange", callback?: Callback<{ uid: number, rule: NetUidRul
 
 **示例：**
 
-```js
+```ts
 let callback = (data: object) => {
   console.log('on netUidRuleChange, data:' + JSON.stringify(data));
 };
@@ -1660,7 +1655,7 @@ on(type: "netMeteredIfacesChange", callback: Callback\<Array\<string>>): void
 
 **示例：**
 
-```js
+```ts
 policy.on('netMeteredIfacesChange', (data: string[]) => {
   console.log('on netMeteredIfacesChange: ' + JSON.stringify(data));
 });
@@ -1698,7 +1693,7 @@ off(type: "netMeteredIfacesChange", callback?: Callback\<Array\<string>>): void
 
 **示例：**
 
-```js
+```ts
 let callback = (data: string[]) => {
   console.log('on netMeteredIfacesChange, data:' + JSON.stringify(data));
 };
@@ -1738,8 +1733,8 @@ on(type: "netQuotaPolicyChange", callback: Callback\<Array\<NetQuotaPolicy>>): v
 
 **示例：**
 
-```js
-policy.on('netQuotaPolicyChange', (data: NetQuotaPolicy[]) => {
+```ts
+policy.on('netQuotaPolicyChange', (data: policy.NetQuotaPolicy[]) => {
   console.log('on netQuotaPolicyChange: ' + JSON.stringify(data));
 });
 ```
@@ -1776,12 +1771,13 @@ off(type: "netQuotaPolicyChange", callback?: Callback\<Array\<NetQuotaPolicy>>):
 
 **示例：**
 
-```js
-let callback = (data: boolean) => {
+```ts
+policy.on('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
   console.log('on netQuotaPolicyChange, data:' + JSON.stringify(data));
-};
-policy.on('netQuotaPolicyChange', callback);
-policy.off('netQuotaPolicyChange', callback);
+});
+policy.off('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
+  console.log('on netQuotaPolicyChange, data:' + JSON.stringify(data));
+});
 ```
 
 ### on('netBackgroundPolicyChange')<sup>10+</sup>
@@ -1816,7 +1812,7 @@ on(type: "netBackgroundPolicyChange", callback: Callback\<boolean>): void
 
 **示例：**
 
-```js
+```ts
 policy.on('netBackgroundPolicyChange', (data: boolean) => {
   console.log('on netBackgroundPolicyChange: ' + JSON.stringify(data));
 });
@@ -1854,7 +1850,7 @@ off(type: "netBackgroundPolicyChange", callback?: Callback\<boolean>): void
 
 **示例：**
 
-```js
+```ts
 let callback = (data: boolean) => {
   console.log('on netBackgroundPolicyChange, data:' + JSON.stringify(data));
 };

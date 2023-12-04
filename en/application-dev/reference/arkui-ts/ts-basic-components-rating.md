@@ -31,7 +31,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name     | Type                                                    | Description                                                        |
 | --------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | stars     | number                                                       | Total number of ratings.<br>Default value: **5**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
-| stepSize  | number                                                       | Step of an operation.<br>Default value: **0.5**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>Value range: [0.1, stars]|
+| stepSize  | number                                                       | Step of an operation.<br>Default value: **0.5**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than 0.1 evaluates to the default value.<br>Value range: [0.1, stars]|
 | starStyle | {<br>backgroundUri: string,<br>foregroundUri: string,<br>secondaryUri?: string<br>} | Star style.<br>**backgroundUri**: image path for the unselected star. You can use the default system image or a custom image.<br>**foregroundUri**: image path for the selected star. You can use the default system image or a custom image.<br>**secondaryUri**: image path for the partially selected star. You can use the default system image or a custom image.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>For details about the image types supported by the **startStyle** attribute, see [Image](ts-basic-components-image.md).<br>Local and online images are supported, but not **PixelMap** and **Resource** objects.<br>By default, the image is loaded in asynchronous mode. Synchronous loading is not supported.<br>If this parameter is set to **undefined** or an empty string, the **\<Rating>** component loads the default star image source.|
 
 >  **NOTE**
@@ -46,6 +46,15 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name                                      | Description                                    |
 | ---------------------------------------- | ---------------------------------------- |
 | onChange(callback:(value: number) =&gt; void) | Triggered when the rating value changes.<br>Since API version 9, this API is supported in ArkTS widgets.|
+
+## Sequential Keyboard Navigation Specifications                                   
+| Key        | Description                       | 
+|------------|-----------------------------| 
+| Tab        | Switch the focus between components.                   | 
+| Left and right arrow keys  | Increase or decrease the rating on preview at the specified step, without changing the actual rating.|    
+| Home       | Move the focus to the first star, without changing the actual rating.         | 
+| End        | Move the focus to the last star, without changing the actual rating.        | 
+| Space/Enter | Submit the rating result based on the current rating.              |
 
 ## Example
 

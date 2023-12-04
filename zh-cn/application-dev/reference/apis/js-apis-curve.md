@@ -182,7 +182,7 @@ springMotion(response?: number, dampingFraction?: number, overlapDuration?: numb
 
 | 类型                           | 说明             |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve)| 曲线对象。<br>**说明:** 弹性动画曲线为物理曲线，[animation](../arkui-ts/ts-animatorproperty.md)、[animateTo](../arkui-ts/ts-explicit-animation.md)中的duration参数不生效，动画持续时间取决于springMotion动画曲线参数和之前的速度。时间不能归一，故不能通过该曲线的[interpolate](#interpolate9)函数获得插值。 |
+|  [ICurve](#icurve)| 曲线对象。<br>**说明:** 弹性动画曲线为物理曲线，[animation](../arkui-ts/ts-animatorproperty.md)、[animateTo](../arkui-ts/ts-explicit-animation.md)、[pageTransition](../arkui-ts/ts-page-transition-animation.md)中的duration参数不生效，动画持续时间取决于springMotion动画曲线参数和之前的速度。时间不能归一，故不能通过该曲线的[interpolate](#interpolate9)函数获得插值。 |
 
 **示例：**
 
@@ -317,7 +317,7 @@ interpolate(fraction:&nbsp;number): number
 ```ts
 import Curves from '@ohos.curves'
 let curveValue = Curves.initCurve(Curve.EaseIn) // 创建一个默认先慢后快插值曲线
-let value: number = curve.interpolate(0.5) // 计算得到时间到一半时的插值
+let value: number = curveValue.interpolate(0.5) // 计算得到时间到一半时的插值
 ```
 
 

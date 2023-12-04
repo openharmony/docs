@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import statfs from '@ohos.statfs';
 ```
 ## statfs.getFreeBytes
@@ -33,12 +33,13 @@ getFreeBytes(path:string):Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let path = "/dev";
-  statfs.getFreeBytes(path).then(function (number) {
-      console.info("getFreeBytes promise successfully:" + number);
-  }).catch(function (err) {
-      console.info("getFreeBytes failed with error:" + err);
+  statfs.getFreeBytes(path).then((number: number) => {
+    console.info("getFreeBytes promise successfully:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("getFreeBytes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -91,12 +92,13 @@ getTotalBytes(path: string): Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let path = "/dev";
-  statfs.getTotalBytes(path).then(function (number) {
-      console.info("getTotalBytes promise successfully:" + number);
-  }).catch(function (err) {
-      console.info("getTotalBytes failed with error:" + err);
+  statfs.getTotalBytes(path).then((number: number) => {
+    console.info("getTotalBytes promise successfully:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("getTotalBytes failed with error:" + JSON.stringify(err));
   });
   ```
 

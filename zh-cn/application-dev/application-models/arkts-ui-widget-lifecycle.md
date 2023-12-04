@@ -22,7 +22,6 @@
    import formProvider from '@ohos.app.form.formProvider';
    import { Configuration } from '@ohos.app.ability.Configuration';
    import Want from '@ohos.app.ability.Want';
-   import formInfo from '@ohos.app.form.formInfo';
    import Base from '@ohos.base';
    
    export default class EntryFormAbility extends FormExtensionAbility {
@@ -76,8 +75,9 @@
     }
 
     onConfigurationUpdate(config: Configuration) {
-      // 当系统配置信息置更新时触发的回调
-      console.info('[EntryFormAbility] configurationUpdate:' + JSON.stringify(config));
+      // 当前formExtensionAbility存活时更新系统配置信息时触发的回调。
+      // 需注意：formExtensionAbility创建后5秒内无操作将会被清理。
+      console.info('[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
     }
 
     onAcquireFormState(want: Want) {

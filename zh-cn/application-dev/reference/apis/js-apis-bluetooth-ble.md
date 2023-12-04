@@ -12,7 +12,6 @@ ble模块提供了对蓝牙操作和管理的方法。
 
 ```js
 import ble from '@ohos.bluetooth.ble';
-import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -61,6 +60,7 @@ createGattClientDevice(deviceId: string): GattClientDevice
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -98,6 +98,7 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let result: Array<string> = ble.getConnectedBLEDevices();
 } catch (err) {
@@ -136,6 +137,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('BLE scan device find result = '+ JSON.stringify(data));
 }
@@ -181,6 +183,7 @@ stopBLEScan(): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     ble.stopBLEScan();
 } catch (err) {
@@ -220,6 +223,7 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -287,8 +291,898 @@ stopAdvertising(): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     ble.stopAdvertising();
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## ble.startAdvertising<sup>11+</sup><a name="startAdvertising"></a>
+
+startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&lt;number&gt;): void
+
+开始发送BLE广播。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名               | 类型                                    | 必填  | 说明                             |
+| ------------------- | --------------------------------------- | ----- | ------------------------------- |
+| advertisingParams   | [AdvertisingParams](#advertisingparams) | 是    | 启动BLE广播的相关参数。           |
+| callback            | AsyncCallback&lt;number&gt;             | 是    | 广播ID标识，通过注册回调函数获取。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------------------------------------- |
+|201     | Permission denied.                       |
+|401     | Invalid parameter.                       |
+|801     | Capability not supported.                |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+let manufactureValueBuffer = new Uint8Array(4);
+manufactureValueBuffer[0] = 1;
+manufactureValueBuffer[1] = 2;
+manufactureValueBuffer[2] = 3;
+manufactureValueBuffer[3] = 4;
+
+let serviceValueBuffer = new Uint8Array(4);
+serviceValueBuffer[0] = 4;
+serviceValueBuffer[1] = 6;
+serviceValueBuffer[2] = 7;
+serviceValueBuffer[3] = 8;
+console.info('manufactureValueBuffer = '+ JSON.stringify(manufactureValueBuffer));
+console.info('serviceValueBuffer = '+ JSON.stringify(serviceValueBuffer));
+try {
+    let setting: ble.AdvertiseSetting = {
+        interval:150,
+        txPower:0,
+        connectable:true,
+    };
+    let manufactureDataUnit: ble.ManufactureData = {
+        manufactureId:4567,
+        manufactureValue:manufactureValueBuffer.buffer
+    };
+    let serviceDataUnit: ble.ServiceData = {
+        serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
+        serviceValue:serviceValueBuffer.buffer
+    };
+    let advData: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    let advResponse: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    let advertisingParams: ble.AdvertisingParams = {
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
+        duration: 0,
+    }
+    let advHandle = 0xFF;
+    ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
+        if (err) {
+            return;
+        } else {
+            advhandle = outAdvHandle;
+            console.log("advHandle: " + advHandle);
+        }
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## ble.startAdvertising<sup>11+</sup><a name="startAdvertising"></a>
+
+startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
+
+开始发送BLE广播。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名               | 类型                                   | 必填  | 说明                    |
+| ------------------- | -------------------------------------- | ----- | ----------------------- |
+| advertisingParams   | [AdvertisingParams](#advertisingparams) | 是    | 启动BLE广播的相关参数。  |
+
+**返回值：**
+
+| 类型                       | 说明                            |
+| -------------------------- | ------------------------------- |
+| Promise&lt;number&gt;      | 广播ID标识，通过promise形式获取。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------------------------------------- |
+|201     | Permission denied.                       |
+|401     | Invalid parameter.                       |
+|801     | Capability not supported.                |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+let manufactureValueBuffer = new Uint8Array(4);
+manufactureValueBuffer[0] = 1;
+manufactureValueBuffer[1] = 2;
+manufactureValueBuffer[2] = 3;
+manufactureValueBuffer[3] = 4;
+
+let serviceValueBuffer = new Uint8Array(4);
+serviceValueBuffer[0] = 4;
+serviceValueBuffer[1] = 6;
+serviceValueBuffer[2] = 7;
+serviceValueBuffer[3] = 8;
+console.info('manufactureValueBuffer = '+ JSON.stringify(manufactureValueBuffer));
+console.info('serviceValueBuffer = '+ JSON.stringify(serviceValueBuffer));
+try {
+    let setting: ble.AdvertiseSetting = {
+        interval:150,
+        txPower:0,
+        connectable:true,
+    };
+    let manufactureDataUnit: ble.ManufactureData = {
+        manufactureId:4567,
+        manufactureValue:manufactureValueBuffer.buffer
+    };
+    let serviceDataUnit: ble.ServiceData = {
+        serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
+        serviceValue:serviceValueBuffer.buffer
+    };
+    let advData: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    let advResponse: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    let advertisingParams: ble.AdvertisingParams = {
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
+        duration: 0,
+    }
+    let advHandle = 0xFF;
+    ble.startAdvertising(advertisingParams)
+        .then(outAdvHandle => {
+            advHandle = outAdvHandle;
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## ble.enableAdvertising<sup>11+</sup><a name="enableAdvertising"></a>
+
+enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: AsyncCallback&lt;void&gt;): void
+
+临时启动BLE广播。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名                    | 类型                                                 | 必填  | 说明                             |
+| ------------------------- | --------------------------------------------------- | ----- | ------------------------------- |
+| advertisingEnableParams   | [AdvertisingEnableParams](#advertisingenableparams) | 是    | 临时启动BLE广播的相关参数。        |
+| callback                  | AsyncCallback&lt;void&gt;                           | 是    | 回调函数。                        |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------- |
+|201     | Permission denied.                       |
+|401     | Invalid parameter.                       |
+|801     | Capability not supported.                |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+let manufactureValueBuffer = new Uint8Array(4);
+manufactureValueBuffer[0] = 1;
+manufactureValueBuffer[1] = 2;
+manufactureValueBuffer[2] = 3;
+manufactureValueBuffer[3] = 4;
+
+let serviceValueBuffer = new Uint8Array(4);
+serviceValueBuffer[0] = 4;
+serviceValueBuffer[1] = 6;
+serviceValueBuffer[2] = 7;
+serviceValueBuffer[3] = 8;
+console.info('manufactureValueBuffer = '+ JSON.stringify(manufactureValueBuffer));
+console.info('serviceValueBuffer = '+ JSON.stringify(serviceValueBuffer));
+try {
+    let setting: ble.AdvertiseSetting = {
+        interval:150,
+        txPower:0,
+        connectable:true,
+    };
+    let manufactureDataUnit: ble.ManufactureData = {
+        manufactureId:4567,
+        manufactureValue:manufactureValueBuffer.buffer
+    };
+    let serviceDataUnit: ble.ServiceData = {
+        serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
+        serviceValue:serviceValueBuffer.buffer
+    };
+    let advData: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    let advResponse: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    let advertisingParams: ble.AdvertisingParams = {
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
+        duration: 300,
+    }
+    let advHandle = 0xFF;
+    ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
+        if (err) {
+            return;
+        } else {
+            advhandle = outAdvHandle;
+            console.log("advHandle: " + advHandle);
+        }
+    });
+
+    let advertisingEnableParams: ble.AdvertisingEnableParams = {
+        advertisingId: advHandle,
+        duration: 0
+    }
+
+    // after 3s, advertising disabled, then enable the advertising
+    ble.enableAdvertising(advertisingEnableParams, (err) => {
+        if (err) {
+            return;
+        }
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## ble.enableAdvertising<sup>11+</sup><a name="enableAdvertising"></a>
+
+enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise&lt;void&gt;
+
+临时启动BLE广播。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名                    | 类型                                                 | 必填  | 说明                             |
+| ------------------------- | --------------------------------------------------- | ----- | ------------------------------- |
+| advertisingEnableParams   | [AdvertisingEnableParams](#advertisingenableparams) | 是    | 临时启动BLE广播的相关参数。        |
+
+**返回值：**
+
+| 类型                       | 说明          |
+| -------------------------- | ------------ |
+| Promise&lt;void&gt;      | 回调函数。    |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------- |
+|201     | Permission denied.                       |
+|401     | Invalid parameter.                       |
+|801     | Capability not supported.                |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+let manufactureValueBuffer = new Uint8Array(4);
+manufactureValueBuffer[0] = 1;
+manufactureValueBuffer[1] = 2;
+manufactureValueBuffer[2] = 3;
+manufactureValueBuffer[3] = 4;
+
+let serviceValueBuffer = new Uint8Array(4);
+serviceValueBuffer[0] = 4;
+serviceValueBuffer[1] = 6;
+serviceValueBuffer[2] = 7;
+serviceValueBuffer[3] = 8;
+console.info('manufactureValueBuffer = '+ JSON.stringify(manufactureValueBuffer));
+console.info('serviceValueBuffer = '+ JSON.stringify(serviceValueBuffer));
+try {
+    let setting: ble.AdvertiseSetting = {
+        interval:150,
+        txPower:0,
+        connectable:true,
+    };
+    let manufactureDataUnit: ble.ManufactureData = {
+        manufactureId:4567,
+        manufactureValue:manufactureValueBuffer.buffer
+    };
+    let serviceDataUnit: ble.ServiceData = {
+        serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
+        serviceValue:serviceValueBuffer.buffer
+    };
+    let advData: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    let advResponse: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    let advertisingParams: ble.AdvertisingParams = {
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
+        duration: 300,
+    }
+    let advHandle = 0xFF;
+    ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
+        if (err) {
+            return;
+        } else {
+            advhandle = outAdvHandle;
+            console.log("advHandle: " + advHandle);
+        }
+    });
+
+    let advertisingEnableParams: ble.AdvertisingEnableParams = {
+        advertisingId: advHandle,
+        duration: 0
+    }
+
+    // after 3s, advertising disabled, then enable the advertising
+    ble.enableAdvertising(advertisingEnableParams)
+        .then(() => {
+            console.info("enable success");
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## ble.disableAdvertising<sup>11+</sup><a name="disableAdvertising"></a>
+
+disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback: AsyncCallback&lt;void&gt;): void
+
+临时启动BLE广播。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名                    | 类型                                                   | 必填  | 说明                             |
+| ------------------------- | ----------------------------------------------------- | ----- | ------------------------------- |
+| advertisingDisableParams  | [AdvertisingDisableParams](#advertisingdisableparams) | 是    | 临时停止BLE广播的相关参数。        |
+| callback                  | AsyncCallback&lt;void&gt;                             | 是    | 回调函数。                        |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------- |
+|201     | Permission denied.                       |
+|401     | Invalid parameter.                       |
+|801     | Capability not supported.                |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+let manufactureValueBuffer = new Uint8Array(4);
+manufactureValueBuffer[0] = 1;
+manufactureValueBuffer[1] = 2;
+manufactureValueBuffer[2] = 3;
+manufactureValueBuffer[3] = 4;
+
+let serviceValueBuffer = new Uint8Array(4);
+serviceValueBuffer[0] = 4;
+serviceValueBuffer[1] = 6;
+serviceValueBuffer[2] = 7;
+serviceValueBuffer[3] = 8;
+console.info('manufactureValueBuffer = '+ JSON.stringify(manufactureValueBuffer));
+console.info('serviceValueBuffer = '+ JSON.stringify(serviceValueBuffer));
+try {
+    let setting: ble.AdvertiseSetting = {
+        interval:150,
+        txPower:0,
+        connectable:true,
+    };
+    let manufactureDataUnit: ble.ManufactureData = {
+        manufactureId:4567,
+        manufactureValue:manufactureValueBuffer.buffer
+    };
+    let serviceDataUnit: ble.ServiceData = {
+        serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
+        serviceValue:serviceValueBuffer.buffer
+    };
+    let advData: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    let advResponse: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    let advertisingParams: ble.AdvertisingParams = {
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
+        duration: 0,
+    }
+    let advHandle = 0xFF;
+    ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
+        if (err) {
+            return;
+        } else {
+            advhandle = outAdvHandle;
+            console.log("advHandle: " + advHandle);
+        }
+    });
+
+    let advertisingDisableParams: ble.AdvertisingDisableParams = {
+        advertisingId: advHandle
+    }
+    ble.disableAdvertising(advertisingDisableParams, (err) => {
+        if (err) {
+            return;
+        }
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## ble.disableAdvertising<sup>11+</sup><a name="disableAdvertising"></a>
+
+disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&lt;void&gt;
+
+开始发送BLE广播。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名                    | 类型                                                   | 必填  | 说明                             |
+| ------------------------- | ----------------------------------------------------- | ----- | ------------------------------- |
+| advertisingDisableParams  | [AdvertisingDisableParams](#advertisingdisableparams) | 是    | 临时停止BLE广播的相关参数。        |
+
+**返回值：**
+
+| 类型                       | 说明          |
+| -------------------------- | ------------ |
+| Promise&lt;void&gt;        | 回调函数。    |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------- |
+|201     | Permission denied.                       |
+|401     | Invalid parameter.                       |
+|801     | Capability not supported.                |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+let manufactureValueBuffer = new Uint8Array(4);
+manufactureValueBuffer[0] = 1;
+manufactureValueBuffer[1] = 2;
+manufactureValueBuffer[2] = 3;
+manufactureValueBuffer[3] = 4;
+
+let serviceValueBuffer = new Uint8Array(4);
+serviceValueBuffer[0] = 4;
+serviceValueBuffer[1] = 6;
+serviceValueBuffer[2] = 7;
+serviceValueBuffer[3] = 8;
+console.info('manufactureValueBuffer = '+ JSON.stringify(manufactureValueBuffer));
+console.info('serviceValueBuffer = '+ JSON.stringify(serviceValueBuffer));
+try {
+    let setting: ble.AdvertiseSetting = {
+        interval:150,
+        txPower:0,
+        connectable:true,
+    };
+    let manufactureDataUnit: ble.ManufactureData = {
+        manufactureId:4567,
+        manufactureValue:manufactureValueBuffer.buffer
+    };
+    let serviceDataUnit: ble.ServiceData = {
+        serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
+        serviceValue:serviceValueBuffer.buffer
+    };
+    let advData: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    let advResponse: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    let advertisingParams: ble.AdvertisingParams = {
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
+        duration: 0,
+    }
+    let advHandle = 0xFF;
+    ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
+        if (err) {
+            return;
+        } else {
+            advhandle = outAdvHandle;
+            console.log("advHandle: " + advHandle);
+        }
+    });
+
+    let advertisingDisableParams: ble.AdvertisingDisableParams = {
+        advertisingId: advHandle
+    }
+    ble.disableAdvertising(advertisingDisableParams)
+        .then(() => {
+            console.info("enable success");
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+## ble.stopAdvertising<sup>11+</sup><a name="stopAdvertising"></a>
+
+stopAdvertising(advertisingId: number, callback: AsyncCallback&lt;void&gt;): void
+
+停止发送BLE广播。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名                    | 类型                          | 必填  | 说明                         |
+| ------------------------- | ---------------------------- | ----- | --------------------------- |
+| advertisingId             | number                       | 是    | 需要停止的广播ID标识。        |
+| callback                  | AsyncCallback&lt;void&gt;    | 是    | 回调函数。                   |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201     | Permission denied.                       |
+|401     | Invalid parameter.                       |
+|801     | Capability not supported.                |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+let manufactureValueBuffer = new Uint8Array(4);
+manufactureValueBuffer[0] = 1;
+manufactureValueBuffer[1] = 2;
+manufactureValueBuffer[2] = 3;
+manufactureValueBuffer[3] = 4;
+
+let serviceValueBuffer = new Uint8Array(4);
+serviceValueBuffer[0] = 4;
+serviceValueBuffer[1] = 6;
+serviceValueBuffer[2] = 7;
+serviceValueBuffer[3] = 8;
+console.info('manufactureValueBuffer = '+ JSON.stringify(manufactureValueBuffer));
+console.info('serviceValueBuffer = '+ JSON.stringify(serviceValueBuffer));
+try {
+    let setting: ble.AdvertiseSetting = {
+        interval:150,
+        txPower:0,
+        connectable:true,
+    };
+    let manufactureDataUnit: ble.ManufactureData = {
+        manufactureId:4567,
+        manufactureValue:manufactureValueBuffer.buffer
+    };
+    let serviceDataUnit: ble.ServiceData = {
+        serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
+        serviceValue:serviceValueBuffer.buffer
+    };
+    let advData: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    let advResponse: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    let advertisingParams: ble.AdvertisingParams = {
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
+        duration: 0,
+    }
+    let advHandle = 0xFF;
+    ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
+        if (err) {
+            return;
+        } else {
+            advhandle = outAdvHandle;
+            console.log("advHandle: " + advHandle);
+        }
+    });
+
+    ble.stopAdvertising(advHandle, (err) => {
+        if (err) {
+            return;
+        }
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## ble.stopAdvertising<sup>11+</sup><a name="stopAdvertising"></a>
+
+stopAdvertising(advertisingId: number): Promise&lt;void&gt;
+
+停止发送BLE广播。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名                    | 类型                          | 必填  | 说明                         |
+| ------------------------- | ---------------------------- | ----- | --------------------------- |
+| advertisingId             | number                       | 是    | 需要停止的广播ID标识。        |
+
+**返回值：**
+
+| 类型                       | 说明          |
+| -------------------------- | ------------ |
+| Promise&lt;void&gt;        | 回调函数。    |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201     | Permission denied.                       |
+|401     | Invalid parameter.                       |
+|801     | Capability not supported.                |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+let manufactureValueBuffer = new Uint8Array(4);
+manufactureValueBuffer[0] = 1;
+manufactureValueBuffer[1] = 2;
+manufactureValueBuffer[2] = 3;
+manufactureValueBuffer[3] = 4;
+
+let serviceValueBuffer = new Uint8Array(4);
+serviceValueBuffer[0] = 4;
+serviceValueBuffer[1] = 6;
+serviceValueBuffer[2] = 7;
+serviceValueBuffer[3] = 8;
+console.info('manufactureValueBuffer = '+ JSON.stringify(manufactureValueBuffer));
+console.info('serviceValueBuffer = '+ JSON.stringify(serviceValueBuffer));
+try {
+    let setting: ble.AdvertiseSetting = {
+        interval:150,
+        txPower:0,
+        connectable:true,
+    };
+    let manufactureDataUnit: ble.ManufactureData = {
+        manufactureId:4567,
+        manufactureValue:manufactureValueBuffer.buffer
+    };
+    let serviceDataUnit: ble.ServiceData = {
+        serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
+        serviceValue:serviceValueBuffer.buffer
+    };
+    let advData: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    let advResponse: ble.AdvertiseData = {
+        serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
+        manufactureData:[manufactureDataUnit],
+        serviceData:[serviceDataUnit],
+    };
+    let advertisingParams: ble.AdvertisingParams = {
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
+        duration: 0,
+    }
+    let advHandle = 0xFF;
+    ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
+        if (err) {
+            return;
+        } else {
+            advhandle = outAdvHandle;
+            console.log("advHandle: " + advHandle);
+        }
+    });
+
+    ble.stopAdvertising(advhandle)
+        .then(() => {
+            console.info("enable success");
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## ble.on('advertisingStateChange')<sup>11+</sup>
+
+on(type: 'advertisingStateChange', callback: Callback&lt;AdvertisingStateChangeInfo&gt;): void
+
+订阅BLE广播状态。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                                                    | 必填   | 说明                                                      |
+| -------- | ------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
+| type     | string                                                                    | 是    | 填写"advertisingStateChange"字符串，表示广播状态事件。        |
+| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo)&gt; | 是    | 表示回调函数的入参，广播状态。回调函数由用户创建通过该接口注册。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201     | Permission denied.                       |
+|401     | Invalid parameter.                       |
+|801     | Capability not supported.                |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+function onReceiveEvent(data: ble.AdvertisingStateChangeInfo) {
+    console.info('bluetooth advertising state = ' + JSON.stringify(data));
+}
+try {
+    ble.on('advertisingStateChange', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## ble.off('advertisingStateChange')<sup>11+</sup>
+
+off(type: 'advertisingStateChange', callback?: Callback&lt;AdvertisingStateChangeInfo&gt;): void
+
+取消订阅BLE广播状态。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                                                    | 必填   | 说明                                                      |
+| -------- | ------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
+| type     | string                                                                    | 是    | 填写"advertisingStateChange"字符串，表示广播状态事件。        |
+| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo)&gt; | 否    | 表示取消订阅广播状态上报。不填该参数则取消订阅该type对应的所有回调。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201     | Permission denied.                       |
+|401     | Invalid parameter.                       |
+|801     | Capability not supported.                |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+function onReceiveEvent(data: ble.AdvertisingStateChangeInfo) {
+    console.info('bluetooth advertising state = ' + JSON.stringify(data));
+}
+try {
+    ble.on('advertisingStateChange', onReceiveEvent);
+    ble.off('advertisingStateChange', onReceiveEvent);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -323,6 +1217,7 @@ on(type: 'BLEDeviceFind', callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): vo
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -355,6 +1250,7 @@ off(type: 'BLEDeviceFind', callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 
 以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
 
+
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |2900099 | Operation failed.                        |
@@ -362,6 +1258,7 @@ off(type: 'BLEDeviceFind', callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -408,6 +1305,7 @@ server端添加服务。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // 创建descriptors
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -471,6 +1369,7 @@ removeService(serviceUuid: string): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let server: ble.GattServer = ble.createGattServer();
 try {
     server.removeService('00001810-0000-1000-8000-00805F9B34FB');
@@ -503,6 +1402,7 @@ close(): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let server: ble.GattServer = ble.createGattServer();
 try {
     server.close();
@@ -543,6 +1443,7 @@ server端特征值发生变化时，主动通知已连接的client设备。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferC = new ArrayBuffer(8);
 let notifyCharacter: ble.NotifyCharacteristic = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
@@ -601,6 +1502,7 @@ server端特征值发生变化时，主动通知已连接的client设备。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferC = new ArrayBuffer(8);
 let notifyCharacter: ble.NotifyCharacteristic = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
@@ -648,6 +1550,7 @@ server端回复client端的读写请求。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 /* send response */
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
@@ -688,6 +1591,7 @@ server端订阅特征值读请求事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1123;
@@ -730,8 +1634,13 @@ server端取消订阅特征值读请求事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('characteristicRead');
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -755,6 +1664,7 @@ server端订阅特征值写请求事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 let gattServer: ble.GattServer = ble.createGattServer();
@@ -800,8 +1710,13 @@ server端取消订阅特征值写请求事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('characteristicWrite');
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -825,6 +1740,7 @@ server端订阅描述符读请求事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 descValue[0] = 1101;
@@ -867,8 +1783,13 @@ server端取消订阅描述符读请求事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('descriptorRead');
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -892,6 +1813,7 @@ server端订阅描述符写请求事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 let gattServer: ble.GattServer = ble.createGattServer();
@@ -937,8 +1859,13 @@ server端取消订阅描述符写请求事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('descriptorWrite');
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -962,12 +1889,18 @@ server端订阅BLE连接状态变化事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
+import constant from '@ohos.bluetooth.constant';
 function Connected(bleConnectionChangeState: ble.BLEConnectionChangeState) {
   let deviceId: string = bleConnectionChangeState.deviceId;
-  let status: ProfileConnectionState = bleConnectionChangeState.state;
+  let status: constant.ProfileConnectionState = bleConnectionChangeState.state;
 }
+try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.on('connectionStateChange', Connected);
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -991,8 +1924,13 @@ server端取消订阅BLE连接状态变化事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('connectionStateChange');
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -1016,6 +1954,7 @@ server端订阅MTU状态变化事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.on('BLEMtuChange', (mtu: number) => {
@@ -1047,6 +1986,7 @@ server端取消订阅MTU状态变化事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.off('BLEMtuChange');
@@ -1084,6 +2024,7 @@ client端发起连接远端蓝牙低功耗设备。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.connect();
@@ -1116,6 +2057,7 @@ client端断开与远端蓝牙低功耗设备的连接。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.disconnect();
@@ -1148,6 +2090,7 @@ close(): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.close();
@@ -1185,6 +2128,7 @@ client获取远端蓝牙低功耗设备名。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // callback
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -1227,6 +2171,7 @@ client获取远端蓝牙低功耗设备名。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // promise
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -1268,10 +2213,11 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // callkback 模式
-function getServices(code: BusinessError, gattServices: Array<GattService>) {
+function getServices(code: BusinessError, gattServices: Array<ble.GattService>) {
   if (code.code == 0) {
-      let services: Array<GattService> = gattServices;
+      let services: Array<ble.GattService> = gattServices;
       console.log('bluetooth code is ' + code.code);
       console.log('bluetooth services size is ', services.length);
 
@@ -1319,6 +2265,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Promise 模式
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
@@ -1362,6 +2309,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function readCcc(code: BusinessError, BLECharacteristic: ble.BLECharacteristic) {
   if (code.code != 0) {
       return;
@@ -1431,6 +2379,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let descriptors: Array<ble.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -1486,6 +2435,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function readDesc(code: BusinessError, BLEDescriptor: ble.BLEDescriptor) {
     if (code.code != 0) {
         return;
@@ -1548,6 +2498,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
@@ -1597,6 +2548,7 @@ client端向低功耗蓝牙设备写入特定的特征值。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let descriptors: Array<ble.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -1663,6 +2615,7 @@ client端向低功耗蓝牙设备写入特定的特征值。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let descriptors: Array<ble.BLEDescriptor>  = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -1717,6 +2670,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
@@ -1770,6 +2724,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
@@ -1815,6 +2770,7 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // callback
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -1856,6 +2812,7 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // promise
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -1896,6 +2853,7 @@ client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmiss
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.setBLEMtuSize(128);
@@ -1935,6 +2893,7 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // 创建descriptors
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -1992,6 +2951,7 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // 创建descriptors
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -2050,6 +3010,7 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // 创建descriptors
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -2107,6 +3068,7 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // 创建descriptors
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -2149,6 +3111,7 @@ on(type: 'BLECharacteristicChange', callback: Callback&lt;BLECharacteristic&gt;)
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function CharacteristicChange(characteristicChangeReq: ble.BLECharacteristic) {
     let serviceUuid: string = characteristicChangeReq.serviceUuid;
     let characteristicUuid: string = characteristicChangeReq.characteristicUuid;
@@ -2183,6 +3146,7 @@ off(type: 'BLECharacteristicChange', callback?: Callback&lt;BLECharacteristic&gt
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLECharacteristicChange');
@@ -2212,6 +3176,7 @@ client端订阅蓝牙低功耗设备的连接状态变化事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function ConnectStateChanged(state: ble.BLEConnectionChangeState) {
   console.log('bluetooth connect state changed');
   let connectState: ble.ProfileConnectionState = state.state;
@@ -2245,6 +3210,7 @@ off(type: 'BLEConnectionStateChange', callback?: Callback&lt;BLEConnectionChange
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLEConnectionStateChange');
@@ -2274,6 +3240,7 @@ client端订阅MTU状态变化事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     gattClient.on('BLEMtuChange', (mtu: number) => {
@@ -2305,6 +3272,7 @@ client端取消订阅MTU状态变化事件。
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLEMtuChange');
@@ -2507,6 +3475,50 @@ try {
 | serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | 是    | 是    | 表示要广播的服务数据列表。               |
 | includeDeviceName | boolean                  | 是    | 是    | 表示是否携带设备名，可选参数。        |
 
+## AdvertisingParams<sup>11+</sup>
+
+描述首次启动广播设置的参数。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                | 类型                             | 可读  | 可写  | 说明                      |
+| ------------------- | ------------------------------- | ----- | ----- | ------------------------ |
+| advertisingSettings<sup>11+</sup> | AdvertiseSetting                | 是    | 是    | 表示发送广播的相关参数。    |
+| advertisingData<sup>11+</sup>    | [AdvertiseData](#advertisedata) | 是    | 是    | 表示广播的数据包内容。      |
+| advertisingResponse<sup>11+</sup> | [AdvertiseData](#advertisedata) | 是    | 是    | 表示回复扫描请求的响应内容。 |
+| duration<sup>11+</sup>            | number                          | 是    | 是    | 表示发送广播持续的时间。     |
+
+## AdvertisingEnableParams<sup>11+</sup>
+
+描述临时启动广播设置的参数。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                | 类型                   | 可读  | 可写  | 说明                      |
+| ------------------- | --------------------- | ----- | ----- | ------------------------ |
+| advertisingId<sup>11+</sup>       | number                | 是    | 是    | 表示当前广播的ID标识。     |
+| duration<sup>11+</sup>            | number                | 是    | 是    | 表示发送广播持续的时间。    |
+
+## AdvertisingDisableParams<sup>11+</sup>
+
+描述临时停止广播设置的参数。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                | 类型                   | 可读  | 可写  | 说明                      |
+| ------------------- | --------------------- | ----- | ----- | ------------------------ |
+| advertisingId<sup>11+</sup>       | number                | 是    | 是    | 表示当前广播的ID标识。     |
+
+## AdvertisingStateChangeInfo<sup>11+</sup>
+
+描述广播启动、停止等状态信息。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                | 类型                                     | 可读  | 可写  | 说明                      |
+| ------------------- | --------------------------------------- | ----- | ----- | ------------------------ |
+| advertisingId<sup>11+</sup>       | number                                  | 是    | 是    | 表示广播ID标识。           |
+| state<sup>11+</sup>               | [AdvertisingState](#advertisingstate)   | 是    | 是    | 表示广播状态。             |
 
 ## ManufactureData
 
@@ -2616,3 +3628,16 @@ try {
 | --------------------- | ---- | ---------------------------------------- |
 | MATCH_MODE_AGGRESSIVE | 1    | 表示硬件上报扫描结果门限较低，比如扫描到的功率较低或者一段时间扫描到的次数较少也触发上报，默认值。 |
 | MATCH_MODE_STICKY     | 2    | 表示硬件上报扫描结果门限较高，更高的功率门限以及扫描到多次才会上报。       |
+
+## AdvertisingState<sup>11+</sup>
+
+枚举，广播状态。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称      | 值    | 说明                           |
+| --------  | ---- | ------------------------------ |
+| STARTED<sup>11+</sup>   | 1    | 表示首次启动广播后的状态。       |
+| ENABLED<sup>11+</sup>   | 2    | 表示临时启动广播后的状态。       |
+| DISABLED<sup>11+</sup>  | 3    | 表示临时停止广播后的状态。       |
+| STOPPED<sup>11+</sup>    | 4    | 表示完全停止广播后的状态。       |

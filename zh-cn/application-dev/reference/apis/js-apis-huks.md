@@ -236,7 +236,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 | 参数名   | 类型                        | 必填 | 说明                                          |
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。           |
-| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。                      |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，比如删除的密钥范围（全量/单个），当删除单个时，TAG字段可传空。                      |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **错误码：**
@@ -288,7 +288,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | 参数名   | 类型                        | 必填 | 说明                                |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。 |
-| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。            |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，比如删除的密钥范围（全量/单个），当删除单个时，TAG字段可传空。            |
 
 **错误码：**
 
@@ -844,6 +844,291 @@ async function attestKey() {
 }
 ```
 
+## huks.anonAttestKeyItem<sup>11+</sup>
+
+anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
+
+获取匿名化密钥证书，使用Callback方式回调异步返回结果。
+
+该操作需要联网进行，且耗时较长。
+
+**系统能力**：SystemCapability.Security.Huks.Extension
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                          |
+| -------- | ---------------------------------------------------- | ---- | --------------------------------------------- |
+| keyAlias | string                                               | 是   | 密钥别名，存放待获取证书密钥的别名。          |
+| options  | [HuksOptions](#huksoptions)                          | 是   | 用于获取证书时指定所需参数与数据。            |
+| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
+**示例：**
+
+```ts
+import huks from '@ohos.security.huks';
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
+    huks.HuksKeyStorageType | huks.HuksKeyPadding | huks.HuksKeyGenerateType |
+    huks.HuksCipherMode | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key anon attest";
+function stringToUint8Array(str: string): Uint8Array {
+    let arr: number[] = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
+        arr.push(str.charCodeAt(i));
+    }
+    let tmpUint8Array = new Uint8Array(arr);
+    return tmpUint8Array;
+}
+
+async function generateKeyThenAttestKey(alias: string): Promise<void> {
+    let aliasString = keyAliasString;
+    let aliasUint8 = stringToUint8Array(aliasString);
+    let generateProperties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+            value: huks.HuksKeyAlg.HUKS_ALG_RSA
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+            value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_DIGEST,
+            value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PADDING,
+            value: huks.HuksKeyPadding.HUKS_PADDING_PSS
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
+            value: huks.HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+            value: huks.HuksCipherMode.HUKS_MODE_ECB
+        }
+    ];
+    let generateOptions: huks.HuksOptions = {
+        properties: generateProperties
+    };
+    let anonAttestProperties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
+            value: securityLevel
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_CHALLENGE,
+            value: challenge
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_VERSION_INFO,
+            value: versionInfo
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_ALIAS,
+            value: aliasUint8
+        }
+    ];
+    let anonAttestOptions: huks.HuksOptions = {
+        properties: anonAttestProperties
+    };
+    try {
+        huks.generateKeyItem(alias, generateOptions, (error, data) => {
+            if (error) {
+                console.error(`callback: generateKeyItem failed`);
+            } else {
+                console.info(`callback: generateKeyItem success`);
+                try {
+                    huks.anonAttestKeyItem(aliasString, anonAttestOptions, (error, data) => {
+                        if (error) {
+                            console.error(`callback: anonAttestKeyItem failed`);
+                        } else {
+                            console.info(`callback: anonAttestKeyItem success`);
+                        }
+                    });
+                } catch (error) {
+                    console.error(`callback: anonAttestKeyItem input arg invalid`);
+                }
+            }
+        });
+    } catch (error) {
+        console.error(`callback: generateKeyItem input arg invalid`);
+    }
+}
+```
+
+## huks.anonAttestKeyItem<sup>11+</sup>
+
+anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
+
+获取匿名化密钥证书，使用Promise方式异步返回结果。
+
+该操作需要联网进行，且耗时较长。
+
+**系统能力**：SystemCapability.Security.Huks.Extension
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                 |
+| -------- | --------------------------- | ---- | ------------------------------------ |
+| keyAlias | string                      | 是   | 密钥别名，存放待获取证书密钥的别名。 |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于获取证书时指定所需参数与数据。   |
+
+**返回值：**
+
+| 类型                                           | 说明                                          |
+| ---------------------------------------------- | --------------------------------------------- |
+| Promise<[HuksReturnResult](#huksreturnresult9)> | Promise对象。不返回err值时表示接口使用成功，其他时为错误。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
+**示例：**
+
+```ts
+import huks from '@ohos.security.huks';
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
+    huks.HuksKeyStorageType | huks.HuksKeyPadding | huks.HuksKeyGenerateType |
+    huks.HuksCipherMode | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key anon attest";
+function stringToUint8Array(str: string): Uint8Array {
+    let arr: number[] = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
+        arr.push(str.charCodeAt(i));
+    }
+    let tmpUint8Array = new Uint8Array(arr);
+    return tmpUint8Array;
+}
+async function generateKey(alias: string): Promise<void> {
+    let properties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+            value: huks.HuksKeyAlg.HUKS_ALG_RSA
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+            value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_DIGEST,
+            value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PADDING,
+            value: huks.HuksKeyPadding.HUKS_PADDING_PSS
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
+            value: huks.HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+            value: huks.HuksCipherMode.HUKS_MODE_ECB
+        }
+    ];
+    let options: huks.HuksOptions = {
+        properties: properties
+    };
+    try {
+        let data = await huks.generateKeyItem(alias, options);
+    } catch (error) {
+        console.error(`promise: generateKeyItem failed`);
+    }
+}
+async function anonAttestKey(): Promise<void> {
+    let aliasString = keyAliasString;
+    let aliasUint8 = stringToUint8Array(aliasString);
+    let properties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
+            value: securityLevel
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_CHALLENGE,
+            value: challenge
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_VERSION_INFO,
+            value: versionInfo
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_ALIAS,
+            value: aliasUint8
+        }
+    ];
+    let options: huks.HuksOptions = {
+        properties: properties
+    };
+    await generateKey(aliasString);
+    try {
+        let data = await huks.anonAttestKeyItem(aliasString, options);
+    } catch (error) {
+        console.error(`promise: anonAttestKeyItem fail`);
+    }
+}
+```
+
 ## huks.importWrappedKeyItem<sup>9+</sup>
 
 importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void
@@ -1381,10 +1666,10 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明                                    |
-| -------- | --------------------------- | ---- | --------------------------------------- |
-| keyAlias | string                      | 是   | 所需查找的密钥的别名。                  |
-| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。                |
+| 参数名   | 类型                        | 必填 | 说明                                                     |
+| -------- | --------------------------- | ---- |--------------------------------------------------------|
+| keyAlias | string                      | 是   | 所需查找的密钥的别名。                                            |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，比如查询的密钥范围（全量/单个），当查询单个时，TAG字段可传空。     |
 | callback | AsyncCallback\<boolean>     | 是   | 回调函数。若密钥存在，data为true，若密钥不存在，则error中会输出密钥不存在的error code。 |
 
 **错误码：**
@@ -1441,7 +1726,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | 参数名   | 类型                        | 必填 | 说明                     |
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。   |
-| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。 |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，比如查询的密钥范围（全量/单个），当查询单个时，TAG字段可传空。 |
 
 **返回值：**
 
@@ -2163,6 +2448,7 @@ async function huksAbort() {
 | HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 12000013 | 缺失所需凭据。              |
 | HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 12000014 | 内存不足。                  |
 | HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 12000015 | 调用其他系统服务失败。      |
+| HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET<sup>11+</sup>  | 12000016 | 需要锁屏密码但未设置。     |
 
 ## HuksKeyPurpose
 
@@ -2386,6 +2672,7 @@ async function huksAbort() {
 | --------------------------------------- | ---- | ------------------------------------------------ |
 | HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD | 1 << 0 | 表示安全访问控制类型为清除密码后密钥无效。       |
 | HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL | 1 << 1 | 表示安全访问控制类型为新录入生物特征后密钥无效。 |
+| HUKS_AUTH_ACCESS_ALWAYS_VALID<sup>11+</sup> | 1 << 2 | 表示安全访问控制类型为该密钥总是有效。 |
 
 ## HuksChallengeType<sup>9+</sup>
 
@@ -2443,93 +2730,94 @@ async function huksAbort() {
 
 **系统能力**：SystemCapability.Security.Huks.Core
 
-| 名称                                         | 值                                       | 说明                                   |
-| -------------------------------------------- | ---------------------------------------- | -------------------------------------- |
-| HUKS_TAG_INVALID                             | HuksTagType.HUKS_TAG_TYPE_INVALID \| 0   | 表示非法的Tag。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_ALGORITHM                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 1                  | 表示算法的Tag。    <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_PURPOSE                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 2      | 表示密钥用途的Tag。    <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_KEY_SIZE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | 表示密钥长度的Tag。   <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_DIGEST                              | HuksTagType.HUKS_TAG_TYPE_UINT \| 4      | 表示摘要算法的Tag。    <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_PADDING                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 5      | 表示补齐算法的Tag。    <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_BLOCK_MODE                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 6      | 表示加密模式的Tag。     <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_KEY_TYPE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 7      | 表示密钥类型的Tag。     <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_ASSOCIATED_DATA                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 8     | 表示附加身份验证数据的Tag。    <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_NONCE                               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 9     | 表示密钥加解密的字段。     <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_IV                                  | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10    | 表示密钥初始化的向量。   <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_INFO                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 11    | 表示密钥派生时的info。    <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_SALT                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 12    | 表示密钥派生时的盐值。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_PWD                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 13    | 表示密钥派生时的password。   <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_ITERATION                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 14     | 表示密钥派生时的迭代次数。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_KEY_GENERATE_TYPE                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 15     | 表示生成密钥类型的Tag。   <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_DERIVE_MAIN_KEY                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 16    | 表示密钥派生时的主密钥。   <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_DERIVE_FACTOR                       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 17    | 表示密钥派生时的派生因子。   <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_DERIVE_ALG                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 18     | 表示密钥派生时的算法类型。   <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_AGREE_ALG                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 19     | 表示密钥协商时的算法类型。   <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS       | HuksTagType.HUKS_TAG_TYPE_BOOL \| 20     | 表示密钥协商时的公钥别名。   <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 21    | 表示密钥协商时的私钥别名。    <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_AGREE_PUBLIC_KEY                    | HuksTagType.HUKS_TAG_TYPE_BYTES \| 22    | 表示密钥协商时的公钥。     <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_KEY_ALIAS                           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 23    | 表示密钥别名。        <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_DERIVE_KEY_SIZE                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 24     | 表示派生密钥的大小。     <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_IMPORT_KEY_TYPE<sup>9+</sup>        | HuksTagType.HUKS_TAG_TYPE_UINT \| 25     | 表示导入的密钥类型。      <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_UNWRAP_ALGORITHM_SUITE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 26     | 表示导入加密密钥的套件。        <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|29 | 表示派生密钥/协商密钥的存储类型。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_RSA_PSS_SALT_LEN_TYPE<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|30 | 表示rsa_pss_salt_length的类型。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ACTIVE_DATETIME<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_ULONG \| 201   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。        <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ORIGINATION_EXPIRE_DATETIME<sup>(deprecated)</sup>         | HuksTagType.HUKS_TAG_TYPE_ULONG \| 202   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。                           <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_USAGE_EXPIRE_DATETIME<sup>(deprecated)</sup>               | HuksTagType.HUKS_TAG_TYPE_ULONG \| 203   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。               <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_CREATION_DATETIME<sup>(deprecated)</sup>       | HuksTagType.HUKS_TAG_TYPE_ULONG \| 204   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。     <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_ALL_USERS                           | HuksTagType.HUKS_TAG_TYPE_BOOL \| 301      | 预留               <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_USER_ID                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 302    | 表示当前密钥属于哪个userID                  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_NO_AUTH_REQUIRED                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 303    | 预留。                   <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_USER_AUTH_TYPE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 304    | 表示用户认证类型。从[HuksUserAuthType](#huksuserauthtype9)中选择，需要与安全访问控制类型同时设置。支持同时指定两种用户认证类型，如：安全访问控制类型指定为HKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL时，密钥访问认证类型可以指定以下三种： HKS_USER_AUTH_TYPE_FACE 、HKS_USER_AUTH_TYPE_FINGERPRINT、HKS_USER_AUTH_TYPE_FACE \| HKS_USER_AUTH_TYPE_FINGERPRINT   <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_AUTH_TIMEOUT                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 305    | 表示authtoken单次有效期。               <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_AUTH_TOKEN                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 306   | 用于传入authToken的字段                <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_KEY_AUTH_ACCESS_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 307 | 表示安全访问控制类型。从[HuksAuthAccessType](#huksauthaccesstype9)中选择，需要和用户认证类型同时设置。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_KEY_SECURE_SIGN_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 308 | 表示生成或导入密钥时，指定该密钥的签名类型。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_CHALLENGE_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 309 | 表示密钥使用时生成的challenge类型。从[HuksChallengeType](#hukschallengetype9)中选择   <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_CHALLENGE_POS<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 310 | 表示challenge类型为用户自定义类型时，huks产生的challenge有效长度仅为8字节连续的数据。从[HuksChallengePosition](#hukschallengeposition9)中选择。   <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_KEY_AUTH_PURPOSE<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|311 | 表示密钥认证用途的tag   <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ATTESTATION_CHALLENGE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | 表示attestation时的挑战值。            <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ATTESTATION_APPLICATION_ID          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | 表示attestation时拥有该密钥的application的Id。     <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ATTESTATION_ID_BRAND                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | 表示设备的品牌。                      <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ATTESTATION_ID_DEVICE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 504   | 表示设备的设备ID。                   <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ATTESTATION_ID_PRODUCT              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 505   | 表示设备的产品名。                  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ATTESTATION_ID_SERIAL               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 506   | 表示设备的SN号。                    <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ATTESTATION_ID_IMEI                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 507   | 表示设备的IMEI号。                  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ATTESTATION_ID_MEID                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 508   | 表示设备的MEID号。                  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ATTESTATION_ID_MANUFACTURER         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 509   | 表示设备的制造商。                  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ATTESTATION_ID_MODEL                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 510   | 表示设备的型号。                     <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ATTESTATION_ID_ALIAS                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 511   | 表示attestation时的密钥别名。        <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ATTESTATION_ID_SOCID                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 512   | 表示设备的SOCID。                     <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ATTESTATION_ID_UDID                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 513   | 表示设备的UDID。                   <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 514   | 表示attestation时的安全凭据。        <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ATTESTATION_ID_VERSION_INFO         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 515   | 表示attestation时的版本号。         <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_IS_KEY_ALIAS                        | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1001   | 表示是否使用生成key时传入的别名的Tag。  <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_KEY_STORAGE_FLAG                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 1002   | 表示密钥存储方式的Tag。          <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_IS_ALLOWED_WRAP                     | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1003   | 预留。            <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_KEY_WRAP_TYPE                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 1004   | 预留。                <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_KEY_AUTH_ID                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1005  | 预留。                   <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_KEY_ROLE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 1006   | 预留。                      <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_KEY_FLAG                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 1007   | 表示密钥标志的Tag。         <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_IS_ASYNCHRONIZED                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 1008   | 预留。                           <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_SECURE_KEY_ALIAS                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009   | 预留。                          <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_SECURE_KEY_UUID                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010  | 预留。                            <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_KEY_DOMAIN                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 1011   | 预留。                      <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_PROCESS_NAME                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001 | 表示进程名称的Tag。          <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_PACKAGE_NAME                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002 | 预留。             <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ACCESS_TIME                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10003  | 预留。                    <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_USES_TIME                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 10004  | 预留。                 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_CRYPTO_CTX                          | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10005 | 预留。                <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_KEY                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10006 | 预留。                           <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_KEY_VERSION                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10007  | 表示密钥版本的Tag。                   <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_PAYLOAD_LEN                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10008  | 预留。                          <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_AE_TAG                              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10009 | 用于传入GCM模式中的AEAD数据的字段。      <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_IS_KEY_HANDLE                       | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10010 | 预留。              <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_OS_VERSION                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 10101  | 表示操作系统版本的Tag。      <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_OS_PATCHLEVEL                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 10102  | 表示操作系统补丁级别的Tag。    <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_SYMMETRIC_KEY_DATA                  | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20001 | 预留。        <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20002 | 预留。             <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20003 | 预留。         <br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| 名称                                                        | 值                                       | 说明                                                         |
+| ----------------------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------ |
+| HUKS_TAG_INVALID<sup>(deprecated)</sup>                     | HuksTagType.HUKS_TAG_TYPE_INVALID \| 0   | 表示非法的Tag。从API version 9开始废弃。 <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_ALGORITHM                                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 1      | 表示算法的Tag。    <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_PURPOSE                                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 2      | 表示密钥用途的Tag。    <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_KEY_SIZE                                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | 表示密钥长度的Tag。   <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_DIGEST                                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 4      | 表示摘要算法的Tag。    <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_PADDING                                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 5      | 表示补齐算法的Tag。    <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_BLOCK_MODE                                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 6      | 表示加密模式的Tag。     <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_KEY_TYPE                                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 7      | 表示密钥类型的Tag。     <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_ASSOCIATED_DATA                                    | HuksTagType.HUKS_TAG_TYPE_BYTES \| 8     | 表示附加身份验证数据的Tag。    <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_NONCE                                              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 9     | 表示密钥加解密的字段。     <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_IV                                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10    | 表示密钥初始化的向量。   <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_INFO                                               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 11    | 表示密钥派生时的info。    <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_SALT                                               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 12    | 表示密钥派生时的盐值。  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_PWD<sup>(deprecated)</sup>                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 13    | 表示密钥派生时的password。从API version 9开始废弃。   <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_ITERATION                                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 14     | 表示密钥派生时的迭代次数。 <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_GENERATE_TYPE                                  | HuksTagType.HUKS_TAG_TYPE_UINT \| 15     | 表示生成密钥类型的Tag。   <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_DERIVE_MAIN_KEY<sup>(deprecated)</sup>             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 16    | 表示密钥派生时的主密钥。从API version 9开始废弃。   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_DERIVE_FACTOR<sup>(deprecated)</sup>               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 17    | 表示密钥派生时的派生因子。从API version 9开始废弃。   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_DERIVE_ALG<sup>(deprecated)</sup>                  | HuksTagType.HUKS_TAG_TYPE_UINT \| 18     | 表示密钥派生时的算法类型。从API version 9开始废弃。   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_AGREE_ALG                                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 19     | 表示密钥协商时的算法类型。   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS                      | HuksTagType.HUKS_TAG_TYPE_BOOL \| 20     | 表示密钥协商时的公钥别名。   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS                            | HuksTagType.HUKS_TAG_TYPE_BYTES \| 21    | 表示密钥协商时的私钥别名。    <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_AGREE_PUBLIC_KEY                                   | HuksTagType.HUKS_TAG_TYPE_BYTES \| 22    | 表示密钥协商时的公钥。     <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_ALIAS                                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 23    | 表示密钥别名。        <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_DERIVE_KEY_SIZE                                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 24     | 表示派生密钥的大小。     <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_IMPORT_KEY_TYPE<sup>9+</sup>                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 25     | 表示导入的密钥类型。      <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_UNWRAP_ALGORITHM_SUITE<sup>9+</sup>                | HuksTagType.HUKS_TAG_TYPE_UINT \| 26     | 表示导入加密密钥的套件。        <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG<sup>10+</sup>      | HuksTagType.HUKS_TAG_TYPE_UINT \|29      | 表示派生密钥/协商密钥的存储类型。  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_RSA_PSS_SALT_LEN_TYPE<sup>10+</sup>                | HuksTagType.HUKS_TAG_TYPE_UINT \|30      | 表示rsa_pss_salt_length的类型。  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ACTIVE_DATETIME<sup>(deprecated)</sup>             | HuksTagType.HUKS_TAG_TYPE_ULONG \| 201   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。        <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ORIGINATION_EXPIRE_DATETIME<sup>(deprecated)</sup> | HuksTagType.HUKS_TAG_TYPE_ULONG \| 202   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。                           <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_USAGE_EXPIRE_DATETIME<sup>(deprecated)</sup>       | HuksTagType.HUKS_TAG_TYPE_ULONG \| 203   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。               <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_CREATION_DATETIME<sup>(deprecated)</sup>           | HuksTagType.HUKS_TAG_TYPE_ULONG \| 204   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。     <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_ALL_USERS                                          | HuksTagType.HUKS_TAG_TYPE_BOOL \| 301    | 预留               <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_USER_ID                                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 302    | 表示当前密钥属于哪个userID                  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_NO_AUTH_REQUIRED                                   | HuksTagType.HUKS_TAG_TYPE_BOOL \| 303    | 预留。                   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_USER_AUTH_TYPE                                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 304    | 表示用户认证类型。从[HuksUserAuthType](#huksuserauthtype9)中选择，需要与安全访问控制类型同时设置。支持同时指定两种用户认证类型，如：安全访问控制类型指定为HKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL时，密钥访问认证类型可以指定以下三种： HKS_USER_AUTH_TYPE_FACE 、HKS_USER_AUTH_TYPE_FINGERPRINT、HKS_USER_AUTH_TYPE_FACE \| HKS_USER_AUTH_TYPE_FINGERPRINT   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_AUTH_TIMEOUT                                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 305    | 表示authtoken单次有效期。               <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_AUTH_TOKEN                                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 306   | 用于传入authToken的字段                <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_AUTH_ACCESS_TYPE<sup>9+</sup>                  | HuksTagType.HUKS_TAG_TYPE_UINT \| 307    | 表示安全访问控制类型。从[HuksAuthAccessType](#huksauthaccesstype9)中选择，需要和用户认证类型同时设置。  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_SECURE_SIGN_TYPE<sup>9+</sup>                  | HuksTagType.HUKS_TAG_TYPE_UINT \| 308    | 表示生成或导入密钥时，指定该密钥的签名类型。  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_CHALLENGE_TYPE<sup>9+</sup>                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 309    | 表示密钥使用时生成的challenge类型。从[HuksChallengeType](#hukschallengetype9)中选择   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_CHALLENGE_POS<sup>9+</sup>                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 310    | 表示challenge类型为用户自定义类型时，huks产生的challenge有效长度仅为8字节连续的数据。从[HuksChallengePosition](#hukschallengeposition9)中选择。   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_AUTH_PURPOSE<sup>10+</sup>                     | HuksTagType.HUKS_TAG_TYPE_UINT \|311     | 表示密钥认证用途的tag   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_CHALLENGE                              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | 表示attestation时的挑战值。            <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_APPLICATION_ID                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | 表示attestation时拥有该密钥的application的Id。     <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_ID_BRAND<sup>(deprecated)</sup>        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | 表示设备的品牌。从API version 9开始废弃。                      <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_ID_DEVICE<sup>(deprecated)</sup>       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 504   | 表示设备的设备ID。从API version 9开始废弃。                   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_ID_PRODUCT<sup>(deprecated)</sup>      | HuksTagType.HUKS_TAG_TYPE_BYTES \| 505   | 表示设备的产品名。从API version 9开始废弃。                  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_ID_SERIAL<sup>(deprecated)</sup>       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 506   | 表示设备的SN号。从API version 9开始废弃。                    <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_ID_IMEI<sup>(deprecated)</sup>         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 507   | 表示设备的IMEI号。从API version 9开始废弃。                  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_ID_MEID<sup>(deprecated)</sup>         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 508   | 表示设备的MEID号。从API version 9开始废弃。                  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_ID_MANUFACTURER<sup>(deprecated)</sup> | HuksTagType.HUKS_TAG_TYPE_BYTES \| 509   | 表示设备的制造商。从API version 9开始废弃。                  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_ID_MODEL<sup>(deprecated)</sup>        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 510   | 表示设备的型号。从API version 9开始废弃。                     <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_ID_ALIAS                               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 511   | 表示attestation时的密钥别名。        <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_ID_SOCID<sup>(deprecated)</sup>        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 512   | 表示设备的SOCID。从API version 9开始废弃。                     <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_ID_UDID<sup>(deprecated)</sup>         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 513   | 表示设备的UDID。从API version 9开始废弃。                   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO                      | HuksTagType.HUKS_TAG_TYPE_BYTES \| 514   | 表示attestation时的安全凭据。        <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_ID_VERSION_INFO                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 515   | 表示attestation时的版本号。         <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_IS_KEY_ALIAS                                       | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1001   | 表示是否使用生成key时传入的别名的Tag。  <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_KEY_STORAGE_FLAG                                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 1002   | 表示密钥存储方式的Tag。          <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_IS_ALLOWED_WRAP                                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1003   | 预留。            <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_WRAP_TYPE                                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 1004   | 预留。                <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_AUTH_ID                                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1005  | 预留。                   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_ROLE                                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 1006   | 预留。                      <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_FLAG                                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 1007   | 表示密钥标志的Tag。         <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_IS_ASYNCHRONIZED                                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 1008   | 预留。                           <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_SECURE_KEY_ALIAS<sup>(deprecated)</sup>            | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009   | 原为预留字段，从API version 9开始废弃。                          <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_SECURE_KEY_UUID<sup>(deprecated)</sup>             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010  | 原为预留字段，从API version 9开始废弃。                            <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_DOMAIN                                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 1011   | 预留。                      <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_IS_DEVICE_PASSWORD_SET<sup>11+</sup>                | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1012   | 表示密钥锁屏密码访问控制字段，可限制密钥只有在用户设置了锁屏密码时可用  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_PROCESS_NAME<sup>(deprecated)</sup>                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001 | 表示进程名称的Tag。从API version 9开始废弃。          <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_PACKAGE_NAME<sup>(deprecated)</sup>                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002 | 原为预留字段，从API version 9开始废弃。             <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ACCESS_TIME<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_UINT \| 10003  | 原为预留字段，从API version 9开始废弃。                    <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_USES_TIME<sup>(deprecated)</sup>                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 10004  | 原为预留字段，从API version 9开始废弃。                 <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_CRYPTO_CTX<sup>(deprecated)</sup>                  | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10005 | 原为预留字段，从API version 9开始废弃。                <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY                                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10006 | 预留。                           <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_KEY_VERSION<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_UINT \| 10007  | 表示密钥版本的Tag。从API version 9开始废弃。                   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_PAYLOAD_LEN<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_UINT \| 10008  | 原为预留字段，从API version 9开始废弃。                          <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_AE_TAG                                             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10009 | 用于传入GCM模式中的AEAD数据的字段。      <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_IS_KEY_HANDLE<sup>(deprecated)</sup>               | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10010 | 原为预留字段，从API version 9开始废弃。              <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_OS_VERSION<sup>(deprecated)</sup>                  | HuksTagType.HUKS_TAG_TYPE_UINT \| 10101  | 表示操作系统版本的Tag。从API version 9开始废弃。      <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_OS_PATCHLEVEL<sup>(deprecated)</sup>               | HuksTagType.HUKS_TAG_TYPE_UINT \| 10102  | 表示操作系统补丁级别的Tag。从API version 9开始废弃。    <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_SYMMETRIC_KEY_DATA                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20001 | 预留。        <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20002 | 预留。             <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20003 | 预留。         <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 
 ## huks.generateKey<sup>(deprecated)</sup>
 
@@ -2670,11 +2958,11 @@ deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                                               |
-| -------- | ----------------------------------------- | ---- | -------------------------------------------------- |
-| keyAlias | string                                    | 是   | 密钥别名，应为生成key时传入的别名。                |
-| options  | [HuksOptions](#huksoptions)               | 是   | 空对象（此处传空即可）。                           |
-| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | 是   | 回调函数。返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
+| 参数名   | 类型                                      | 必填 | 说明                                                 |
+| -------- | ----------------------------------------- | ---- |----------------------------------------------------|
+| keyAlias | string                                    | 是   | 密钥别名，应为生成key时传入的别名。                                |
+| options  | [HuksOptions](#huksoptions)               | 是   | 用于删除时指定密钥的属性TAG，比如删除的密钥范围（全量/单个），当删除单个时，TAG字段可传空。 |
+| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | 是   | 回调函数。返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。               |
 
 **示例：**
 
@@ -2706,7 +2994,7 @@ deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 | 参数名   | 类型        | 必填 | 说明                                                  |
 | -------- | ----------- | ---- | ----------------------------------------------------- |
 | keyAlias | string      | 是   | 密钥别名，应为生成key时传入的别名。 |
-| options | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。 |
+| options | [HuksOptions](#huksoptions) | 是   | 用于删除时指定密钥的属性TAG，比如删除的密钥范围（全量/单个），当删除单个时，TAG字段可传空。 |
 
 **返回值：**
 
@@ -3027,8 +3315,8 @@ isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 | 参数名   | 类型                   | 必填 | 说明                                  |
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | keyAlias | string                 | 是   | 所需查找的密钥的别名。 |
-| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。 |
-| callback | AsyncCallback\<boolean> | 是   | 回调函数。FALSE代表密钥不存在，TRUE代表密钥存在。 |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，比如查询的密钥范围（全量/单个），当查询单个时，TAG字段可传空。 |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数。false代表密钥不存在，true代表密钥存在。 |
 
 **示例：**
 
@@ -3060,13 +3348,13 @@ isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | 参数名   | 类型        | 必填 | 说明                             |
 | -------- | ----------- | ---- | -------------------------------- |
 | keyAlias | string      | 是   | 所需查找的密钥的别名。 |
-| options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。 |
+| options  | [HuksOptions](#huksoptions) | 是   | 用于查询时指定密钥的属性TAG，比如查询的密钥范围（全量/单个），当查询单个时，TAG字段可传空。 |
 
 **返回值：**
 
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
-| Promise\<boolean> | Promise对象。FALSE代表密钥不存在，TRUE代表密钥存在。 |
+| Promise\<boolean> | Promise对象。false代表密钥不存在，true代表密钥存在。 |
 
 **示例：**
 
@@ -3324,16 +3612,12 @@ function huksFinish() {
     console.log(resultMessage);
 }
 async function huksAbort() {
-    huks.abort(handle, options).then((data) => {
-        if (data.errorCode === 0) {
-            resultMessage = "abort success!";
-        } else {
-            resultMessage = "abort fail errorCode: " + data.errorCode;
-        }
-    }).catch((err: BusinessError) => {
-        resultMessage = "abort fail， catch errorMessage:" + JSON.stringify(err)
+    new Promise<huks.HuksResult>((resolve, reject) => {
+        huks.abort(handle, options, (err, data) => {
+            console.log(`Huks_Demo hmac huksAbort1 data ${JSON.stringify(data)}`);
+            console.log(`Huks_Demo hmac huksAbort1 err ${JSON.stringify(err)}`);
+        });
     });
-    console.log(resultMessage);
 }
 ```
 
@@ -3462,12 +3746,16 @@ async function huksFinish() {
 }
 
 function huksAbort() {
-    new Promise<huks.HuksResult>((resolve, reject) => {
-        huks.abort(handle, options, (err, data) => {
-            console.log(`Huks_Demo hmac huksAbort1 data ${JSON.stringify(data)}`);
-            console.log(`Huks_Demo hmac huksAbort1 err ${JSON.stringify(err)}`);
-        });
+    huks.abort(handle, options).then((data) => {
+        if (data.errorCode === 0) {
+            resultMessage = "abort success!";
+        } else {
+            resultMessage = "abort fail errorCode: " + data.errorCode;
+        }
+    }).catch((err: BusinessError) => {
+        resultMessage = "abort fail， catch errorMessage:" + JSON.stringify(err)
     });
+    console.log(resultMessage);
 }
 ```
 

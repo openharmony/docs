@@ -13,8 +13,17 @@ PersistentStorage retains the selected AppStorage attributes on the device disk.
 
 PersistentStorage creates a two-way synchronization with attributes in AppStorage. A frequently used API function is to access AppStorage through PersistentStorage. Additional API functions include managing persisted attributes. The business logic always obtains or sets attributes through AppStorage.
 
-
 ## Restrictions
+
+PersistentStorage accepts the following types and values:
+
+- Primitive types such as number, string, boolean, and enum.
+- Objects that can be reconstructed by **JSON.stringify()** and **JSON.parse()**. In other words, built-in types such as Date, Map, and Set, as well as object attribute methods, are not supported.
+
+PersistentStorage does not accept the following types and values:
+
+- Nested objects (object arrays and object attributes), because the framework cannot detect the value changes of nested objects (including arrays) in AppStorage
+- **undefined** and **null**
 
 Persistence of data is a relatively slow operation. Applications should avoid the following situations:
 
@@ -22,7 +31,7 @@ Persistence of data is a relatively slow operation. Applications should avoid th
 
 - Persistence of variables that change frequently
 
-The preceding situations may overload the change process of persisted data. As a result, the PersistentStorage implementation may limit the change frequency of persisted attributes.
+It is recommended that the persistent variables of PersistentStorage be less than 2 KB data. As PersistentStorage writes data to disks synchronously, a large amount of persistent data may result in time-consuming local data read and write operations in the UI thread, affecting UI rendering performance. If you need to store a large amount of data, consider using the database API.
 
 PersistentStorage can be called to persist data only when the [UIContext](../reference/apis/js-apis-arkui-UIContext.md#uicontext), which can be obtained through [runScopedTask](../reference/apis/js-apis-arkui-UIContext.md#runscopedtask), is specified.
 

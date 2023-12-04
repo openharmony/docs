@@ -2,33 +2,35 @@
 
 ## Scenarios
 
-You can use the native APIs provided by MindSpore Lite to deploy AI algorithms and provides APIs for the UI layer to invoke the algorithms for model inference. A typical scenario is the AI SDK development.
+You can use the Native APIs provided by [MindSpore Lite](../reference/native-apis/_mind_spore.md) to deploy AI algorithms and provides APIs for the UI layer to invoke the algorithms for model inference. A typical scenario is the AI SDK development.
 
-## Basic concepts
+## Basic Concepts
 
-- [N-API](../reference/native-lib/third_party_napi/napi.md): a set of native APIs used to build JavaScript components. N-APIs can be used to encapsulate libraries developed using C/C++ into JavaScript modules.
+- [N-API](../reference/native-lib/third_party_napi/napi.md): a set of Native APIs used to build JavaScript components. N-APIs can be used to encapsulate C/C++ libraries into JavaScript modules.
 
-## Preparing the Environment
+## Setting Up the Environment
 
 - Install DevEco Studio 3.1.0.500 or later, and update the SDK to API version 10 or later.
 
 ## How to Develop
 
-1. Create a native C++ project.
+### 1. Create a Native C++ project.
 
-Open DevEco Studio, choose **File** > **New** > **Create Project** to create a native C++ template project. By default, the **entry/src/main/** directory of the created project contains the **cpp/** directory. You can store C/C++ code in this directory and provide JavaScript APIs for the UI layer to call the code.
+Open DevEco Studio, choose **File** > **New** > **Create Project** to create a Native C++ template project. By default, the **entry/src/main/** directory of the created project contains the **cpp/** directory. You can store C/C++ code in this directory and provide JavaScript APIs for the UI layer to call the code.
 
-2. Compile the C++ inference code.
+### 2. Write the inference code in C++.
 
 Assume that you have prepared a model in the **.ms** format.
 
 Before using the Native APIs provided by MindSpore Lite for development, you need to reference the corresponding header files.
 
 ```c
+#include <iostream>
 #include <mindspore/model.h>
 #include <mindspore/context.h>
 #include <mindspore/status.h>
 #include <mindspore/tensor.h>
+#include <rawfile/raw_file_manager.h>
 ```
 
 (1). Read model files.
@@ -60,6 +62,14 @@ void *ReadModelFile(NativeResourceManager *nativeResourceManager, const std::str
 (2). Create a context, set parameters such as the number of threads and device type, and load the model.
 
 ```c++
+void DestroyModelBuffer(void **buffer) {
+    if (buffer == nullptr) {
+        return;
+    }
+    free(*buffer);
+    *buffer = nullptr;
+}
+
 OH_AI_ModelHandle CreateMSLiteModel(void *modelBuffer, size_t modelSize) {
     // Create a context.
     auto context = OH_AI_ContextCreate();
@@ -93,7 +103,33 @@ OH_AI_ModelHandle CreateMSLiteModel(void *modelBuffer, size_t modelSize) {
 
 (3). Set the model input data, perform model inference, and obtain the output data.
 
-```js
+```c++
+#define GET_PARAMS(env, info, num)    \
+    size_t argc = num;                \
+    napi_value argv[num] = {nullptr}; \
+    napi_value thisVar = nullptr;     \
+    void *data = nullptr;             \
+    napi_get_cb_info(env, info, &argc, argv, &thisVar, &data)
+
+constexpr int kNumPrintOfOutData = 10;
+constexpr int RANDOM_RANGE = 128;
+
+void FillTensorWithRandom(OH_AI_TensorHandle msTensor) {
+    auto size = OH_AI_TensorGetDataSize(msTensor);
+    char *data = (char *)OH_AI_TensorGetMutableData(msTensor);
+    for (size_t i = 0; i < size; i++) {
+        data[i] = (char)(rand() / RANDOM_RANGE);
+    }
+}
+
+// Fill data to input tensors.
+int FillInputTensors(OH_AI_TensorHandleArray &inputs) {
+    for (size_t i = 0; i < inputs.handle_num; i++) {
+        FillTensorWithRandom(inputs.handle_list[i]);
+    }
+    return OH_AI_STATUS_SUCCESS;
+}
+
 void RunMSLiteModel(OH_AI_ModelHandle model) {
     // Set the model input data.
     auto inputs = OH_AI_ModelGetInputs(model);
@@ -183,12 +219,12 @@ target_link_libraries(mslite_napi PUBLIC ace_napi.z)
 ```
 
 
-3. Use N-APIs to encapsulate C++ dynamic libraries into JavaScript modules.
+### 3. Use N-APIs to encapsulate the C++ dynamic library into a JavaScript module.
 
 
 Create the **libmslite_api/** subdirectory in **entry/src/main/cpp/types/**, and create the **index.d.ts** file in the subdirectory. The file content is as follows:
 
-```js
+```ts
 export const runDemo: (a:String, b:Object) => number;
 ```
 
@@ -203,27 +239,44 @@ In addition, add the **oh-package.json5** file to associate the API with the **.
 }
 ```
 
-4. Invoke the encapsulated MindSpore module in the UI code.
+### 4. Invoke the encapsulated MindSpore module in the UI code.
 
 In **entry/src/ets/MainAbility/pages/index.ets**, define the **onClick()** event and call the encapsulated **runDemo()** API in the event callback.
 
-```js
+```ts
+import hilog from '@ohos.hilog'
 import msliteNapi from'libmslite_napi.so' // Import the msliteNapi module.
+import resManager from '@ohos.resourceManager'
 
-// Certain code omitted
+const TAG = 'MSLiteNativeDemo'
 
-// Trigger the event when the text on the UI is tapped.
-.onClick(() => {
-  resManager.getResourceManager().then(mgr => {
-    hilog.info(0x0000, TAG, '*** Start MSLite Demo ***');
-    let ret = 0;
-    ret = msliteNapi.runDemo("", mgr); // Call runDemo() to perform AI model inference.
-    if (ret == -1) {
-      hilog.info(0x0000, TAG, 'Error when running MSLite Demo!');
+@Entry
+@Component
+struct Index {
+    @State message: string = 'MindSpore Lite Demo'
+    build() {
+        Row() {
+            Column() {
+                Text(this.message)
+                    .fontSize(30)
+                    .fontWeight(FontWeight.Bold)
+                    .onClick(() => {
+                        resManager.getResourceManager().then(mgr => {
+                            hilog.info(0x0000, TAG, '*** Start MSLite Demo ***');
+                            let ret: number = 0;
+                            ret = msliteNapi.runDemo("", mgr); // Call runDemo() to perform AI model inference.
+                            if (ret == -1) {
+                                hilog.info(0x0000, TAG, 'Error when running MSLite Demo!');
+                            }
+                            hilog.info(0x0000, TAG, '*** Finished MSLite Demo ***');
+                        })
+                    })
+            }
+            .width('100%')
+        }
+        .height('100%')
     }
-    hilog.info(0x0000, TAG, '*** Finished MSLite Demo ***');
-  })
-})
+}
 ```
 
 ## Debugging and Verification

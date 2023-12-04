@@ -52,7 +52,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name                                   | Type                                    | Description                                      |
 | ------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | listDirection                         | [Axis](ts-appendix-enums.md#axis)        | Direction in which the list items are arranged.<br>Default value: **Axis.Vertical**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| divider                               | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?:[ResourceColor](ts-types.md#resourcecolor),<br>startMargin?: Length,<br>endMargin?: Length<br>} \| null | Style of the divider for the list items. By default, there is no divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start edge of the list.<br>- **endMargin**: distance between the divider and the end edge of the list.<br>Since API version 9, this API is supported in ArkTS widgets.<br>The sum of **endMargin** and **startMargin** cannot exceed the column width.<br>**strokeWidth**, **startMargin**, and **endMargin** cannot be set in percentage.<br>The divider is drawn between list items along the main axis, and not above the first list item and below the last list item.<br>In multi-column mode, the value of **startMargin** is calculated from the start edge of the cross axis of each column. In other cases, it is calculated from the start edge of the cross axis of the list.|
+| divider                               | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?:[ResourceColor](ts-types.md#resourcecolor),<br>startMargin?: Length,<br>endMargin?: Length<br>} \| null | Style of the divider for the list items. By default, there is no divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start edge of the list.<br>- **endMargin**: distance between the divider and the end edge of the list.<br>Since API version 9, this API is supported in ArkTS widgets.<br>If **endMargin** and **startMargin** add up to a value that exceeds the column width, they will be set to **0**.<br>**strokeWidth**, **startMargin**, and **endMargin** cannot be set in percentage.<br>The divider is drawn between list items along the main axis, and not above the first list item and below the last list item.<br>In multi-column mode, the value of **startMargin** is calculated from the start edge of the cross axis of each column. In other cases, it is calculated from the start edge of the cross axis of the list.|
 | scrollBar                             | [BarState](ts-appendix-enums.md#barstate) | Scrollbar status.<br>Default value: **BarState.Off**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>In API version 9 and earlier versions, the default value is **BarState.Off**. In API version 10, the default value is **BarState.Auto**.|
 | cachedCount                           | number                                   | Number of list items or list item groups to be preloaded (cached). It works only in [LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md). A list item group is calculated as a whole, and all list items of the group are preloaded at the same time. For details, see [Minimizing White Blocks During Swiping](../../ui/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<br>Default value: **1**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>In single-column mode, the number of the list items to be cached before and after the currently displayed one equals the value of **cachedCount**.<br>In multi-column mode, the number of the list items to be cached is the value of **cachedCount** multiplied by the number of columns.|
 | editMode<sup>(deprecated)</sup>       | boolean                                  | Whether to enter editing mode.<br>This API is deprecated since API version 9. For details about how to implement deletion of a selected list item, see [Example 3](#example-3).<br>Default value: **false**|
@@ -223,7 +223,7 @@ struct ListExample {
         console.info('center' + centerIndex)
       })
       .onScroll((scrollOffset: number, scrollState: ScrollState) => {
-        console.info(`onScroll scrollState = ${ScrollState[scrollState]}, scrollOffset = ${[scrollOffset]}`)
+        console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
       })
       .width('90%')
     }
@@ -353,14 +353,19 @@ struct ListExample {
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = Array.apply(this, { length: 20 }).map((item, i) => i)
+  private arr: number[] = []
   private scrollerForList: Scroller = new Scroller()
 
+  aboutToAppear() {
+    for (let i = 0; i < 20; i++) {
+      this.arr.push(i)
+    }
+  }
   build() {
     Column() {
       Row() {
         List({ space: 20, initialIndex: 3, scroller: this.scrollerForList }) {
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item: number) => {
             ListItem() {
               Text('' + item)
                 .width('100%').height(100).fontSize(16)
@@ -369,11 +374,11 @@ struct ListExample {
             .borderRadius(10).backgroundColor(0xFFFFFF)
             .width('60%')
             .height('80%')
-          }, item => item)
+          }, (item: number) => JSON.stringify(item))
         }
         .chainAnimationOptions({
-          minSpace: 50,
-          maxSpace: 100,
+          minSpace: 20,
+          maxSpace: 60,
           edgeEffect: ChainEdgeEffect.STRETCH
         })
         .chainAnimation(true)

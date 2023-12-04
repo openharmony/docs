@@ -1,0 +1,25 @@
+- Performance
+  - [Application Performance Improvement Overview](performance-overview.md)
+  - ArkTS High-Performance Programming
+    - [High-Performance Programming Practices and Tools](high-performance-programming.md)
+    - [Efficient Concurrent Programming](efficient-concurrent-programming.md)
+    - [Secure and Efficient N-API Development](develop-Native-modules-using-NAPI-safely-and-efficiently.md)
+  - Reducing Frame Freezing
+    - [LazyForEach Usage](lazyforeach_optimization.md)
+    - [Best Practices for Component Reuse](component-recycle.md)
+    - [High-Performance WaterFlow Development](waterflow_optimization.md)
+    - [High-Performance Swiper Development](swiper_optimization.md)
+    - [Proper State Management](proper_state_management.md)
+    - [Precisely Controlling Render Scope](precisely-control-render-scope.md)
+    - [Reducing Animation Frame Loss](reduce-animation-frame-loss.md)
+  - Improving Application Startup and Response Times
+    - [Speeding Up Application Cold Start](improve-application-cold-start-speed.md)
+    - [Speeding Up Application Response](improve-application-response.md)
+    - [Flex Layout Performance Improvement](flex-development-performance-boost.md)
+    - [Improving Layout Performance](reduce-view-nesting-levels.md)
+    - [IPC Usage](reasonable-using-ipc.md)
+    - [Reducing Redundant Operations on First Frame Drawing](reduce-redundant-operations-when-render-first-frame.md)
+    - [Application Animation Practice](animation_practice.md)
+    - [More Performance Improvement Methods](arkts-performance-improvement-recommendation.md)
+  - Profiling Tools
+    - [CPU Profiler](application-performance-analysis.md)

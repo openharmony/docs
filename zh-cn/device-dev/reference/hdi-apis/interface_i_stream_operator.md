@@ -108,7 +108,7 @@ IStreamOperator::Capture ([in] int captureId, [in] struct CaptureInfo info, [in]
 
 本接口必须在调用[CommitStreams](#commitstreams)配置流之后调用。 图像捕获有两种模式，分别是连续捕获和单次捕获。
 
-- 连续捕获即触发之后模块内部进行连续的捕获，消费者可以连续收到图像数据，不需要多次调用本接口，若再次调用了本接口， 则停止当前捕获，更新捕获信息，再进行一次新的捕获，多用于预览、录像或者连拍场景。
+- 连续捕获即触发之后模块内部进行连续的捕获，消费者只需调用此函数一次即可连续接收捕获的图像数据。若再次调用了本接口， 则停止当前捕获，更新捕获信息，再进行一次新的捕获，多用于预览、录像或者连拍场景。
 
 - 单次捕获即触发之后只捕获一帧图像数据，用于单次拍照场景。捕获启动时，会调用[OnCaptureStarted](interface_i_stream_operator_callback.md#oncapturestarted)来通知调用者捕获已经启动。
 
@@ -179,7 +179,7 @@ IStreamOperator::CommitStreams ([in] enum OperationMode mode, [in] unsigned char
   | 名称 | 描述 | 
 | -------- | -------- |
 | mode | 流运行的模式，支持的模式定义在[OperationMode](_camera.md#operationmode)。 | 
-| modeSetting | 流的配置参数，包括帧率，ZOOM等信息。ZOOM：变焦 | 
+| modeSetting | 流的配置参数，包括帧率，ZOOM等信息。ZOOM：变焦，目前可以忽略 | 
 
 **返回:**
 

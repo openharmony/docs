@@ -1,4 +1,4 @@
-# Camera Photographing Sample
+# Camera Photographing Sample (ArkTS)
 
 ## Development Process
 
@@ -7,16 +7,16 @@ After obtaining the output stream capabilities supported by the camera, create a
 ![Photographing Development Process](figures/photographing-development-process.png)
 
 ## Sample Code
-There are multiple [methods for obtaining the context](../application-models/application-context-stage.md).
+For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
 ```ts
 import camera from '@ohos.multimedia.camera';
 import image from '@ohos.multimedia.image';
 import { BusinessError } from '@ohos.base';
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-async function cameraShootingCase(context: featureAbility.Context, surfaceId: string): Promise<void> {
+async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
   // Create a CameraManager instance.
-  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+  let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   if (!cameraManager) {
     console.error("camera.getCameraManager error");
     return;

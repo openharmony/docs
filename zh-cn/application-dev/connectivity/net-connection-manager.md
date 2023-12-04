@@ -80,17 +80,17 @@
 
 6. 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅。
 
-```js
+```ts
 // 引入包名
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 let netSpecifier: connection.NetSpecifier = {
   netCapabilities: {
-  // 假设当前默认网络是WiFi，需要创建蜂窝网络连接，可指定网络类型为蜂窝网
-  bearerTypes: connection.NetBearType.BEARER_CELLULAR,
-  // 指定网络能力为Internet
-  networkCap: connection.NetCap.NET_CAPABILITY_INTERNET
+    // 假设当前默认网络是WiFi，需要创建蜂窝网络连接，可指定网络类型为蜂窝网
+    bearerTypes: [connection.NetBearType.BEARER_CELLULAR],
+    // 指定网络能力为Internet
+    networkCap: [connection.NetCap.NET_CAPABILITY_INTERNET]
   },
 };
 
@@ -127,10 +127,10 @@ conn.unregister((err: BusinessError, data: void) => {
 
 2. 调用getAllNets方法，获取所有处于连接状态的网络列表。
 
-```js
+```ts
 // 引入包名
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 // 构造单例对象
 export class GlobalContext {
@@ -156,7 +156,7 @@ export class GlobalContext {
 }
 
 // 获取所有处于连接状态的网络列表
-connection.getAllNets((err: BusinessError, data: connection.NetHandle) => {
+connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
   console.log(JSON.stringify(err));
   console.log(JSON.stringify(data));
   if (data) {
@@ -177,14 +177,14 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle) => {
 
 4. 调用getConnectionProperties方法，获取NetHandle对应网络的连接信息。
 
-```js
-import connection from '@ohos.net.connection'
+```ts
+import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
-import data from '@ohos.telephony.data';
 
 // 构造单例对象
 export class GlobalContext {
   public netList: connection.NetHandle[] = [];
+  public netHandle: connection.NetHandle|null = null;
   private constructor() {}
   private static instance: GlobalContext;
   private _objects = new Map<string, Object>();
@@ -215,11 +215,11 @@ connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
 })
 
 // 获取netHandle对应网络的能力信息。能力信息包含了网络类型、网络具体能力等网络信息
-connection.getNetCapabilities(this.netHandle, (err: BusinessError, data: connection.NetCapabilities) => {
+connection.getNetCapabilities(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.NetCapabilities) => {
   console.log(JSON.stringify(err));
 
   // 获取网络类型(bearerTypes)
-  let bearerTypes: Set<number> = data.bearerTypes;
+  let bearerTypes: Set<number> = new Set(data.bearerTypes);
   let bearerTypesNum = Array.from(bearerTypes.values());
   for (let item of bearerTypesNum) {
     if (item == 0) {
@@ -233,7 +233,7 @@ connection.getNetCapabilities(this.netHandle, (err: BusinessError, data: connect
       console.log(JSON.stringify("BEARER_ETHERNET"));
     }
   }
-
+  
   // 获取网络具体能力(networkCap)
   let itemNumber : Set<number> = new Set([0, 11, 12, 15, 16]);
   let dataNumber = Array.from(itemNumber.values());
@@ -258,7 +258,7 @@ connection.getNetCapabilities(this.netHandle, (err: BusinessError, data: connect
 })
 
 // 获取netHandle对应网络的连接信息。连接信息包含了链路信息、路由信息等
-connection.getConnectionProperties(this.netHandle, (err: BusinessError, data: connection.ConnectionProperties) => {
+connection.getConnectionProperties(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.ConnectionProperties) => {
   console.log(JSON.stringify(err));
   console.log(JSON.stringify(data));
 })
@@ -272,7 +272,7 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
   }
 })
 
-let itemNumber : Set<number> = new Set(this.netList);
+let itemNumber : Set<connection.NetHandle> = new Set(GlobalContext.getContext().netList);
 let dataNumber = Array.from(itemNumber.values());
 for (let item of dataNumber) {
   // 循环获取网络列表每个netHandle对应网络的能力信息
@@ -297,9 +297,10 @@ for (let item of dataNumber) {
 
 2. 调用getAddressesByName方法，使用默认网络解析主机名以获取所有IP地址。
 
-```js
-    // 引入包名
-import connection from '@ohos.net.connection'
+```ts
+// 引入包名
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 // 使用默认网络解析主机名以获取所有IP地址
 connection.getAddressesByName(this.host, (err: BusinessError, data: connection.NetAddress[]) => {

@@ -145,7 +145,7 @@ import { BusinessError } from '@ohos.base';
       console.error(`applyQuickFix err: ${error}`);
     });
   } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
   }
 ```
 
@@ -192,7 +192,7 @@ import quickFixManager from '@ohos.app.ability.quickFixManager';
       }
     });
   } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
   }
 ```
 
@@ -243,7 +243,7 @@ import { BusinessError } from '@ohos.base';
       console.error(`getApplicationQuickFixInfo err: ${error}`);
     });
   } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
   }
   ```
 

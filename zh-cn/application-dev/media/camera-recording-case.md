@@ -1,4 +1,6 @@
-# 录像实现方案
+# 录像实现方案(ArkTS)
+
+当前示例提供完整的录像流程及其接口调用顺序的介绍。对于单个流程（如设备输入、会话管理、录像）的介绍请参考[相机开发指导(ArkTS)](camera-preparation.md)的具体章节。
 
 ## 开发流程
 
@@ -8,16 +10,16 @@
 
 
 ## 完整示例
-[各类Context的获取方式](../application-models/application-context-stage.md)
+[BaseContext获取方式](../reference/apis/js-apis-inner-application-baseContext.md)。
 ```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
 import media from '@ohos.multimedia.media';
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 
-async function videoRecording(context: featureAbility.Context, surfaceId: string): Promise<void> {
+async function videoRecording(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
   // 创建CameraManager对象
-  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+  let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   if (!cameraManager) {
     console.error("camera.getCameraManager error");
     return;

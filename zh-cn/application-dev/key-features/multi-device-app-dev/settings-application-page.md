@@ -42,7 +42,7 @@ Navigation组件由Navbar和Content两部分区域组成，Navigation组件支�
 
 设置主页的核心代码如下所示。Navigation组件默认处于Auto模式，其样式会根据应用窗口尺寸在单栏和双栏之间自动切换。
 
-```typescript
+```ts
 @Entry
 @Component
 struct Index { 
@@ -58,7 +58,7 @@ struct Index {
   }
 }
 ```
-```typescript
+```ts
 //核心代码 SettingList.ets
 import { MainItem } from '../components/MainItem'
 import { ItemGroup } from '../components/ItemGroup'
@@ -236,7 +236,7 @@ NavRouter组件默认提供了点击响应处理，不需要开发者自定义�
 
 结合设置应用的具体场景来看，上图1号小红框是NavRouter的第一个孩子节点，2号红框是NavRouter的第二个孩子节点，相应的核心代码实现如下。
 
-```typescript
+```ts
 class  MainItemObj {
   title?: Resource
   tag?: string
@@ -294,7 +294,7 @@ NavDestination组件用于实际刷新Navigation组件Content区域的显示。�
 
 结合具体场景，红框3是一个NavRouter组件，点击后可以控制Navigation组件中的Content区域刷新为红框4对应的NavDestination组件吗，其核心代码实现如下所示。
 
-```typescript
+```ts
 class SubItemArrowObj{
   title?: Resource
 }

@@ -15,7 +15,7 @@ import Ability from '@ohos.app.ability.Ability';
 
 ## Ability.onConfigurationUpdate
 
-onConfigurationUpdate(newConfig: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void
 
 Called when the configuration of the environment where the ability is running is updated.
 
@@ -35,14 +35,14 @@ import { Configuration } from '@ohos.app.ability.Configuration';
 
 class MyUIAbility extends UIAbility {
     onConfigurationUpdate(config: Configuration) {
-        console.log('onConfigurationUpdate, config: ${JSON.stringify(config)}');
+        console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
     }
 }
   ```
 
 ## Ability.onMemoryLevel
 
-onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
+onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 Called when the system adjusts the memory level.
 
@@ -63,7 +63,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyUIAbility extends UIAbility {
     onMemoryLevel(level: AbilityConstant.MemoryLevel) {
-        console.log('onMemoryLevel, level: ${JSON.stringify(level)}');
+        console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
     } 
 }
   ```

@@ -23,7 +23,7 @@
 | permissions                | Array\<string>                                               | 是   | 否   | 访问应用程序所需的权限，通过调用[bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo)接口，appFlags参数传入GET_APPLICATION_INFO_WITH_PERMISSION获取。 |
 | codePath                   | string                                                       | 是   | 否   | 应用程序的安装目录。                                             |
 | metadata<sup>(deprecated)<sup>  | Map\<string, Array\<[Metadata](js-apis-bundleManager-metadata.md)>> | 是   | 否   | 应用程序的元信息，通过调用[bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo)接口，appFlags参数传入GET_APPLICATION_INFO_WITH_METADATA获取。<strong>注：</strong> 从API version 10开始不再维护，建议使用metadataArray替代。 |
-| metadataArray              | Array\<[ModuleMetadata](#modulemetadata)> | 是   | 否   | 应用程序的元信息，通过调用[bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo)接口，appFlags参数传入GET_APPLICATION_INFO_WITH_METADATA获取。 |
+| metadataArray<sup>10+</sup>              | Array\<[ModuleMetadata](#modulemetadata)> | 是   | 否   | 应用程序的元信息，通过调用[bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo)接口，appFlags参数传入GET_APPLICATION_INFO_WITH_METADATA获取。 |
 | removable                  | boolean                                                      | 是   | 否   | 应用程序是否可以被移除。                                         |
 | accessTokenId             | number                                                       | 是   | 否   | 应用程序的accessTokenId。                                      |
 | uid                       | number                                                       | 是   | 否   | 应用程序的uid。                                                |
@@ -35,8 +35,10 @@
 | systemApp          | boolean                                                       | 是   | 否   | 标识应用是否为系统应用。           |
 | bundleType                |[BundleType](js-apis-bundleManager.md#bundletype)             | 是   | 否   | 标识包的类型，取值为APP(普通应用)或者ATOMIC_SERVICE(原子化服务)。                                |
 | debug<sup>10+</sup>       | boolean                                | 是   | 否   | 标识应用是否处于调试模式，默认为false。        |
+| dataUnclearable<sup>11+</sup>       | boolean                      | 是   | 否   | 标识应用数据是否可被删除。true表示不可删除，false表示可以删除。默认为false。        |
+| applicationReservedFlag<sup>11+</sup>       | number                      | 是   | 否   | 应用程序的保留信息标志，按位存储应用程序的各类信息，可以通过[ApplicationReservedFlag](js-apis-bundleManager.md#applicationreservedflag11)来获取相应的信息。        |
 
-## ModuleMetadata
+## ModuleMetadata<sup>10+</sup>
 
 描述模块的元数据信息。
 
@@ -44,5 +46,5 @@
 
 | 名称      | 类型           | 可读 | 可写 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| moduleName| string         | 是   | 否   | 模块名。   |
-| metadata  | Array\<[Metadata](js-apis-bundleManager-metadata.md)>      | 是   | 否   | 该模块下的元数据信息列表。 |
+| moduleName<sup>10+</sup>| string         | 是   | 否   | 模块名。   |
+| metadata<sup>10+</sup>  | Array\<[Metadata](js-apis-bundleManager-metadata.md)>      | 是   | 否   | 该模块下的元数据信息列表。 |

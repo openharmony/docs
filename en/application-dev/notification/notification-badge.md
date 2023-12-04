@@ -1,6 +1,6 @@
 # Managing the Notification Badge
 
-OpenHarmony provides APIs for setting the notification badge, which is displayed in the upper right corner of the application icon on the home screen to notify the user of the count of unread notifications.
+The system provides APIs for setting the notification badge, which is displayed in the upper right corner of the application icon on the home screen to notify the user of the count of unread notifications.
 
 When a new notification arrives, the count on the badge is incremented by 1.
 

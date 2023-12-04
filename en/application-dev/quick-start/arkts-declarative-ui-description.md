@@ -29,7 +29,7 @@ Column() {
 
 ### With Mandatory Parameters
 
-A struct with mandatory parameters is a component whose API definition expects parameters enclosed in the parentheses.
+A struct with mandatory parameters is a component whose API definition expects parameters enclosed in parentheses.
 
 - Set the mandatory parameter **src** of the **\<Image>** component as follows:
 
@@ -107,7 +107,7 @@ Use chainable attribute methods to configure the style and other attributes of b
 Use chainable event methods to configure events supported by built-in components. It is recommended that a separate line be used for each event method.
 
 
-- Example of using a lambda expression to configure the event of a component:
+- Example of using an arrow function expression to configure the event of a component:
 
   ```ts
   Button('Click me')
@@ -116,7 +116,7 @@ Use chainable event methods to configure events supported by built-in components
     })
   ```
 
-- Example of using an anonymous function expression to configure the event of a component (**() => {...}** must be used to ensure that the function is bound to the component and complies with the ArkTS syntax specifications):
+- Example of using an anonymous function expression to configure the event of a component (use **() => {...}** to ensure that the function is bound to the component and complies with the ArkTS syntax specifications):
 
   ```ts
   Button('add counter')
@@ -139,7 +139,7 @@ Use chainable event methods to configure events supported by built-in components
 
 ## Configuring Child Components
 
-For a component that supports child components, for example, a container component, add the UI descriptions of the child components inside parentheses. The **\<Column>**, **\<Row>**, **\<Stack>**, **\<Grid>**, and **\<List>** components are all container components.
+For a component with child components, for example, a container component, add the UI descriptions of the child components inside parentheses. The **\<Column>**, **\<Row>**, **\<Stack>**, **\<Grid>**, and **\<List>** components are all container components.
 
 
 - Simple example of configuring child components for the **\<Column>** component:
@@ -155,7 +155,7 @@ For a component that supports child components, for example, a container compone
   }
   ```
 
-- Example of nesting multiple child components in the **\<Column>** component:.
+- Example of nested child components in the **\<Column>** component:.
 
   ```ts
   Column() {

@@ -24,7 +24,7 @@
 | disabled | ()=&gt;void | 否 | 组件禁用状态的样式。 |
 | focused | ()=&gt;void | 否 | 组件获焦状态的样式。 |
 | clicked | ()=&gt;void | 否 | 组件点击状态的样式。 |
-| selected<sup>10+</sup> | ()=&gt;void | 否 | 组件选中状态的样式。 |
+| selected<sup>10+</sup> | ()=&gt;void | 否 | 组件选中状态的样式。<br/>**说明：**<br/>支持选中态的组件：ListItem、GridItem、CheckBox、CheckBoxGroup、Radio、Toggle、MenuItem。 |
 
 
 ## 示例

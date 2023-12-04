@@ -35,7 +35,7 @@ import fileio from '@ohos.fileio';
 
 **FA模型**
 
-  ```ts
+  ```js
   import featureAbility from '@ohos.ability.featureAbility';
 
   let context = featureAbility.getContext();
@@ -340,7 +340,7 @@ accessSync(path: string, mode?: number): void
   let filePath = pathDir + "/test.txt";
   try {
     fileio.accessSync(filePath);
-  } catch(err: BusinessError) {
+  } catch(err: unknown) {
     console.info("accessSync failed with error:" + err);
   }
   ```
@@ -635,7 +635,7 @@ mkdirSync(path: string, mode?: number): void
 **示例：**
 
   ```ts
-  let dirPath = path + '/testDir';
+  let dirPath = pathDir + '/testDir';
   fileio.mkdirSync(dirPath);
   ```
 
@@ -749,7 +749,15 @@ openSync(path: string, flags?: number, mode?: number): number
   fileio.writeSync(fd, 'hello world');
   let fd1 = fileio.openSync(filePath, 0o2002);
   fileio.writeSync(fd1, 'hello world');
-  let num = fileio.readSync(fd1, new ArrayBuffer(4096), {position: 0});
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+  }
+  let option = new Option();
+  option.position = 0;
+  let buf = new ArrayBuffer(4096)
+  let num = fileio.readSync(fd1, buf, option);
   console.info("num == " + num);
   ```
 
@@ -785,12 +793,13 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   ```ts
   import { BusinessError } from '@ohos.base';
   import buffer from '@ohos.buffer';
+  import { ReadOut } from '@ohos.fileio';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o2);
   let arrayBuffer = new ArrayBuffer(4096);
-  fileio.read(fd, arrayBuffer).then((readLen: number) => {
+  fileio.read(fd, arrayBuffer).then((readResult: fileio.ReadOut) => {
     console.info("read file data succeed");
-    let buf = buffer.from(arrayBuffer, 0, readLen);
+    let buf = buffer.from(arrayBuffer, 0, readResult.bytesRead);
     console.log(`The content of file: ${buf.toString()}`);
   }).catch((err: BusinessError) => {
     console.info("read file data failed with error:" + err);
@@ -827,10 +836,10 @@ read(fd: number, buffer: ArrayBuffer, options: { offset?: number; length?: numbe
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o2);
   let arrayBuffer = new ArrayBuffer(4096);
-  fileio.read(fd, arrayBuffer, (err: BusinessError, readLen: number) => {
+  fileio.read(fd, arrayBuffer, (err: BusinessError, readResult: fileio.ReadOut) => {
     if (readLen) {
       console.info("read file data succeed");
-      let buf = buffer.from(arrayBuffer, 0, readLen);
+      let buf = buffer.from(arrayBuffer, 0, readResult.bytesRead);
       console.info(`The content of file: ${buf.toString()}`);
     }
   });
@@ -1470,7 +1479,7 @@ ftruncate(fd: number, len?: number): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.ftruncate(fd, 5).then((err: BusinessError) => {
+  fileio.ftruncate(fd, 5).then(() => {
     console.info("truncate file succeed");
   }).catch((err: BusinessError) => {
     console.info("truncate file failed with error:" + err);
@@ -1702,7 +1711,15 @@ readText(filePath: string, options: { position?: number; length?: number; encodi
   ```ts
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.readText(filePath, { position: 1, encoding: 'UTF-8' }, (err: BusinessError, str: string) => {
+  class Option {
+    length: number = 4096;
+    position: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.position = 1;
+  option.encoding = 'utf-8';
+  fileio.readText(filePath, option, (err: BusinessError, str: string) => {
     // do something
   });
   ```
@@ -1737,7 +1754,15 @@ readTextSync(filePath: string, options?: { position?: number; length?: number; e
 
   ```ts
   let filePath = pathDir + "/test.txt";
-  let str = fileio.readTextSync(filePath, {position: 1, length: 3});
+  class Option {
+    length: number = 4096;
+    position: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.position = 1;
+  option.length = 3;
+  let str = fileio.readTextSync(filePath, option);
   ```
 
 
@@ -2063,7 +2088,7 @@ fdatasync(fd: number): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fdatasync(fd).then((err: BusinessError) => {
+  fileio.fdatasync(fd).then(() => {
     console.info("sync data succeed");
   }).catch((err: BusinessError) => {
     console.info("sync data failed with error:" + err);
@@ -2388,7 +2413,7 @@ mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  fileio.mkdtemp(pathDir + "/XXXXXX", (err: BusinessError, res: string) {
+  fileio.mkdtemp(pathDir + "/XXXXXX", (err: BusinessError, res: string) => {
     // do something
   });
   ```
@@ -2590,7 +2615,7 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
   ```ts
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.createStream(filePath, "r+", (err: BusinessError, stream: fileio.Stream) {
+  fileio.createStream(filePath, "r+", (err: BusinessError, stream: fileio.Stream) => {
     // do something
   });
   ```
@@ -2966,11 +2991,10 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 **示例：**
 
   ```ts
-  let filePath = pathDir +"/test.txt";
-  fileio.createWatcher(filePath, 1, (number: number) => {
-    console.info("Monitoring times: " + number);
+  let filePath = pathDir + "/test.txt";
+  fileio.createWatcher(filePath, 1, async (event: number) => {
+    console.info("event: " + event);
   });
-  
   ```
 
 
@@ -3217,9 +3241,9 @@ stop(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  let filePath = path + "/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, (number: number) => {
-    console.info("Monitoring times: " + number);
+  let filePath = pathDir + "/test.txt";
+  let watcher = fileio.createWatcher(filePath, 1, (event: number) => {
+    console.info("event: " + event);
   });
   watcher.stop().then(() => {
     console.info("close watcher succeed");
@@ -3244,9 +3268,9 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  let filePath = path +"/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, (number: number) => {
-    console.info("Monitoring times: " + number);
+  let filePath = pathDir + "/test.txt";
+  let watcher = fileio.createWatcher(filePath, 1, async(event: number) => {
+    console.info("event: " + event);
   });
   watcher.stop(() => {
     console.info("close watcher succeed");
@@ -3608,9 +3632,9 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
   option.offset = 1;
   option.length = 5;
   option.position = 5;
-  ss.read(arrayBuffer, option).then((readLen: number) => {
+  ss.read(arrayBuffer, option).then((readResult: fileio.ReadOut) => {
     console.info("read data succeed");
-    let buf = buffer.from(arrayBuffer, 0, readLen);
+    let buf = buffer.from(arrayBuffer, 0, readResult.bytesRead);
     console.info(`The content of file: ${buf.toString()}`);
   }).catch((err: BusinessError) => {
     console.info("read data failed with error:" + err);
@@ -3655,10 +3679,10 @@ read(buffer: ArrayBuffer, options: { position?: number; offset?: number; length?
   option.offset = 1;
   option.length = 5;
   option.position = 5;
-  ss.read(arrayBuffer, option, (err: BusinessError, readLen: number) => {
-    if (readLen) {
+  ss.read(arrayBuffer, option, (err: BusinessError, readResult: fileio.ReadOut) => {
+    if (readResult.bytesRead) {
       console.info("read data succeed");
-      let buf = buffer.from(arrayBuffer, 0, readLen);
+      let buf = buffer.from(arrayBuffer, 0, readResult.bytesRead);
       console.info(`The content of file: ${buf.toString()}`);
     }
   });
@@ -3704,7 +3728,8 @@ readSync(buffer: ArrayBuffer, options?: { position?: number; offset?: number; le
   option.offset = 1;
   option.length = 5;
   option.position = 5;
-  let num = ss.readSync(new ArrayBuffer(4096), option);
+  let buf = new ArrayBuffer(4096)
+  let num = ss.readSync(buf, option);
   ```
 
 
@@ -3768,7 +3793,7 @@ read(callback: AsyncCallback&lt;Dirent&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  dir.read((err: BusinessError, dirent: fileio.Dirent) {
+  dir.read((err: BusinessError, dirent: fileio.Dirent) => {
     if (dirent) {
       // do something
       console.log("read succeed, the name of file is " + dirent.name);
@@ -3818,7 +3843,7 @@ close(): Promise&lt;void&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  dir.close().then((err: BusinessError) => {
+  dir.close().then(() => {
     console.info("close dir successfully");
   });
   ```

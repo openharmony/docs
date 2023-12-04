@@ -14,7 +14,7 @@ In certain circumstances, you may need to add a specific function, such as a cli
 
 ### Initializing \@BuilderParam Decorated Method
 
-An \@BuildParam decorated method can be initialized only by an \@Builder function reference.
+An \@BuilderParam decorated method can be initialized only by an \@Builder function reference.
 
 - Local initialization with the owning component's custom \@Builder function or a global \@Builder function reference
 
@@ -36,11 +36,8 @@ An \@BuildParam decorated method can be initialized only by an \@Builder functio
   ```ts
   @Component
   struct Child {
-    @Builder componentBuilder() {
-      Text(`Parent builder `)
-    }
-
-    @BuilderParam aBuilder0: () => void = this.componentBuilder;
+    @Builder FunABuilder0() {}
+    @BuilderParam aBuilder0: () => void = this.FunABuilder0;
 
     build() {
       Column() {
@@ -64,10 +61,12 @@ An \@BuildParam decorated method can be initialized only by an \@Builder functio
   }
   ```
 
+  ![f1b703f7-2f2d-43af-b11d-fdc9542d8361](figures/f1b703f7-2f2d-43af-b11d-fdc9542d8361.png)
+
 
 - **this** in the function body points to the correct object.
 
-  In the following example, when the **Parent** component calls **this.componentBuilder()**, **this.label** points to the owning component, that is, **Parent**. With **\@BuilderParam aBuilder0** passed to the **Child** component from **\@Builder componentBuilder()**, when the **Child** component calls **this.aBuilder0()**, **this.label** points to the label of the child component, that is, **Child**. For **\@BuilderParam aBuilder1**, when **this.componentBuilder** is passed to **aBuilder1**, **bind** is called to bind **this**. Therefore, **this.label** points to the label of the parent component.
+  In the following example, when the **Parent** component calls **this.componentBuilder()**, **this** points to the owning component, that is, **Parent**. With **\@BuilderParam aBuilder0** passed to the **Child** component from **\@Builder componentBuilder()**, when the **Child** component calls **this.aBuilder0()**, **this** points to the label of the child component, that is, **Child**. For **\@BuilderParam aBuilder1**, when **this.componentBuilder** is passed to **aBuilder1**, **bind** is called to bind **this**. Therefore, **this.label** points to the label of the parent component.
 
    >  **NOTE**
    >
@@ -76,13 +75,11 @@ An \@BuildParam decorated method can be initialized only by an \@Builder functio
   ```ts
   @Component
   struct Child {
-    @Builder componentBuilder() {
-      Text(`Child builder `)
-    }
-
     label: string = `Child`
-    @BuilderParam aBuilder0: () => void = this.componentBuilder;
-    @BuilderParam aBuilder1: () => void = this.componentBuilder;
+    @Builder FunABuilder0() {}
+    @Builder FunABuilder1() {}
+    @BuilderParam aBuilder0: () => void = this.FunABuilder0;
+    @BuilderParam aBuilder1: () => void = this.FunABuilder1;
 
     build() {
       Column() {
@@ -104,11 +101,13 @@ An \@BuildParam decorated method can be initialized only by an \@Builder functio
     build() {
       Column() {
         this.componentBuilder()
-        Child({ aBuilder0: this.componentBuilder, aBuilder1: this.componentBuilder })
+        Child({ aBuilder0: this.componentBuilder, aBuilder1: ():void=>{this.componentBuilder()} })
       }
     }
   }
   ```
+
+  ![3f17235e-57e6-4058-8729-a19127a3b007](figures/3f17235e-57e6-4058-8729-a19127a3b007.png)
 
 
 ## Application Scenarios
@@ -120,11 +119,10 @@ An \@BuilderParam decorated method can be a method with or without parameters. W
 
 
 ```ts
-class GlobalBuilderParam {
-  label: string = ""
+class Tmp{
+  label:string = ''
 }
-
-@Builder function GlobalBuilder1($$ : GlobalBuilderParam) {
+@Builder function GlobalBuilder1($$ : Tmp) {
   Text($$.label)
     .width(400)
     .height(50)
@@ -133,15 +131,12 @@ class GlobalBuilderParam {
 
 @Component
 struct Child {
-  @Builder componentBuilder() {
-    Text(`Child builder `)
-  }
-
   label: string = 'Child'
+  @Builder FunABuilder0() {}
   // Without parameters. The pointed componentBuilder is also without parameters.
-  @BuilderParam aBuilder0: () => void = this.componentBuilder;
+  @BuilderParam aBuilder0: () => void = this.FunABuilder0;
   // With parameters. The pointed GlobalBuilder1 is also with parameters.
-  @BuilderParam aBuilder1: ($$ : GlobalBuilderParam) => void = this.componentBuilder;
+  @BuilderParam aBuilder1: ($$ : Tmp) => void = GlobalBuilder1;
 
   build() {
     Column() {
@@ -169,6 +164,8 @@ struct Parent {
 }
 ```
 
+![3869e265-4d12-44ff-93ef-e84473c68c97](figures/3869e265-4d12-44ff-93ef-e84473c68c97.png)
+
 
 ### Component Initialization Through Trailing Closure
 
@@ -183,17 +180,11 @@ You can pass the content in the trailing closure to \@BuilderParam as an \@Build
 
 ```ts
 // xxx.ets
-class CustomContainerParam {
-  header: string = '';
-}
 @Component
 struct CustomContainer {
-  @Builder componentCloser() {
-    Text(`Custom closer `)
-  }
-
   @Prop header: string = '';
-  @BuilderParam closer: () => void = this.componentCloser;
+  @Builder CloserFun(){}
+  @BuilderParam closer: () => void = this.CloserFun
 
   build() {
     Column() {
@@ -217,15 +208,12 @@ struct CustomContainer {
 @Component
 struct CustomContainerUser {
   @State text: string = 'header';
-  param: CustomContainerParam = {
-    header: this.text
-  };
 
   build() {
     Column() {
       // Create the CustomContainer component. During initialization, append a pair of braces ({}) to the component name to form a trailing closure.
       // Used as the parameter passed to CustomContainer @BuilderParam closer: () => void.
-      CustomContainer(this.param) {
+      CustomContainer({ header: this.text }) {
         Column() {
           specificParam('testA', 'testB')
         }.backgroundColor(Color.Yellow)
@@ -237,3 +225,5 @@ struct CustomContainerUser {
   }
 }
 ```
+
+![7ae8ed5e-fc23-49ea-be3b-08a672a7b817](figures/7ae8ed5e-fc23-49ea-be3b-08a672a7b817.png)

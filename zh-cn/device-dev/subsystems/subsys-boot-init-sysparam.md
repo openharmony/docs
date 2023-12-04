@@ -4,38 +4,36 @@
 
 OHOS系统参数为各系统服务提供简单易用的键值对访问接口，使得各个系统服务可以通过各自的系统参数来进行业务功能的配置。
 
-### 基本概念
+### 系统参数定义
 
-图1 系统参数操作原语
+每个子系统定义各自模块的系统参数，包括系统参数名称、默认值以及系统参数的权限访问信息。
+#### 系统参数定义文件
 
-![系统参数操作原语](figures/系统参数操作原语.png)
+- 系统参数定义文件后缀名为".para" ，其格式示例如下：
 
-**表1** 系统参数操作原语说明
-| 功能 | 说明 |
-| -------- | -------- |
-| get      | 获取系统参数的值        |
-| set      | 设置系统参数的值        |
-| wait     | 同步等待系统参数的值变更 |
-| watch    | 异步观察系统参数的值变更 |
-
-#### 系统参数定义
+	```
+	const.product.name=OHOS-PRODUCT
+	const.os.version.api=26
+	const.telephony.enable=false|true
+	```
+#### 系统参数名(key)定义
 
 - 系统参数命名格式
 
   系统参数名称采用点分格式，由多段组成，每一段可以由字母、数字、下划线组成，总长度不超过96字节；系统参数名称分为两类：
 
-  **表2** 系统参数名称
+  系统参数名称
 
   | 类别 | 名称 | 示例 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | 参数名称 | Parameter Name | const.product.**name** | 完整的系统参数名称，末尾不是"."。           |
-  | 参数目录 | Parameter Directory | const.product **.**     | 以"."结尾，标识相同前缀的所有系统参数集合。 |
+  | 参数名称 | Parameter Name | const.product.**name** | 完整的系统参数名称，末尾不是"."。 |
+  | 参数目录 | Parameter Directory | const.**. | 以"."结尾，标识相同前缀的所有系统参数集合。 |
 
 - 系统参数类型
 
   系统参数一共分为三大类：
 
-  **表3** 系统参数分类
+  系统参数分类
 
   | 类别 | 前缀 | 说明 |
   | -------- | -------- | -------- |
@@ -44,71 +42,77 @@ OHOS系统参数为各系统服务提供简单易用的键值对访问接口，�
   | 可持久化 | persist. | 可写并可持久化保存参数，重启后不会丢失，值最大长度96字节（包括结束符）。|
 
   每个系统参数名称总体格式如下：
-  ```
+
+  ```java
   [ const | persist ].$sub_system.$desc
   ```
   $sub_system为子系统或模块的名称。
 
   $desc为子系统或模块下参数的描述字符，可以为点分格式进行分级描述。
 
-#### 系统参数定义规则
+#### 系统参数值(value)定义
 
-每个子系统定义各自模块的系统参数，包括系统参数名称、默认值以及系统参数的权限访问信息。
+- 系统参数的赋值分为三大类：
 
-- 系统参数值定义文件
+系统参数赋值方式
 
-  - 系统参数值定义文件后缀名为".para" ，其格式示例如下：
+| 类别 | 示例 | 说明 |
+| -------- | -------- | -------- |
+| 字符串   | const.product.name=OHOS-PRODUCT | 多行字符串需要通过引号扩起来。 |
+| 数字     | const.os.version.api=26         | 数字不需要。|
+| 布尔     | const.telephony.enable=false    | 布尔型的可以为0,1,false,true。|
 
-    ```shell
-    # This is comment
-    const.product.name=OHOS-PRODUCT
-    const.os.version.api=26
-    const.telephony.enable=false|true
+### 系统参数权限设置
 
-    const.test.withblank=My Value
-    const.test.withcomment=MyValue # This should be ommitted
-    const.test.multiline="This is a multiline parameter.
-    Line2 value.
-    Last line."
-    ```
+系统参数支持DAC和MAC访问控制。
+#### 默认权限
 
-  - 系统参数必须通过完整的系统参数命令来赋值，赋值方式分为三大类：
+系统参数没有定义任何DAC，MAC权限时，其默认权限为：
 
-    **表4** 系统参数赋值方式
+| [DAC] User | [DAC] Group | [DAC] UGO | [MAC] SELinux Label |
+| ---------- | ----------- | --------- | ------------------- |
+| root       | root        | 775       | default_param       |
 
-    | 类别 | 示例 | 说明 |
-    | -------- | -------- | -------- |
-    | 字符串   | const.product.name=OHOS-PRODUCT | 多行字符串需要通过引号扩起来。 |
-    | 数字     | const.os.version.api=26         | 数字不需要。|
-    | 布尔     | const.telephony.enable=false    | 布尔型的可以为0,1,false,true。|
+Other进程对默认权限参数的访问行为列举如下：
+
+| 操作  | 系统Native进程 | 系统应用进程 | 三方应用进程 |
+| ----- | -------------- | ------------ | ------------ |
+| get   | 允许           | 允许         | 允许         |
+| watch | 允许           | 允许         | 允许         |
+| set   | 不允许         | 不允许       | 不允许       |
+
+#### DAC访问控制权限设置
 
 - 系统参数DAC访问控制定义文件
 
-  当前系统参数的访问权限控制通过自主访问控制（Discretionary Access Control）方式管理，访问权限定义文件后缀名为".para.dac" ，示例如下：
+  当前系统参数的访问权限控制通过自主访问控制（Discretionary Access Control）方式管理，访问权限定义文件后缀名为".para.dac" ，init下的文件路径为/base/startup/init/services/etc/param/ohos.para.dac，具体定义内容示例如下：
 
-  ```java
-  const.product.="root:root:660"
+  ```
+  const.product.              = root:root:0775
+  persist.init.               = root:root:0775
+  startup.appspawn.           = root:root:0750
+  startup.uevent.             = ueventd:ueventd:0775
   ```
 
-  如上所示，可以通过参数路径为相同前缀的所有系统参数定义一类访问权限信息；DAC信息通过":"分三段来描述，分别为参数的user，group以及UGO规则信息。
+  如上所示，可以为相同前缀的所有系统参数定义一类访问权限信息，DAC信息通过":"分三段来描述，分别为参数的user，group以及UGO规则信息。
 
   UGO规则信息每一位的定义如下：
 
-  **图2** UGO规则信息
+  **图1** UGO规则信息
 
   ![UGO规则信息](figures/系统参数DAC.png)
 
-- 系统参数配置selinux策略
+#### MAC访问控制权限设置
 
-  - 添加selinux标签
+ - 添加selinux标签
 
-    为系统参数添加selinux标签，首先需要在文件/base/security/selinux/sepolicy/base/public/parameter.te中定义标签，例如：
+    为系统参数添加selinux标签，首先需要在文件/base/security/selinux_adapter/sepolicy/base/public/parameter.te中定义标签，例如：
 
     ```java
     type servicectrl_param, parameter_attr
     ```
 
-    标签定义完成后，在文件/base/security/selinux/sepolicy/base/public/parameter_contexts中添加和标签关联的系统参数前缀，这里以前缀ohos.servicectrl.为例：
+    标签定义完成后，在文件/base/security/selinux_adapter/sepolicy/base/public/parameter_contexts中添加和标签关联的系统参数前缀，这里以前缀ohos.servicectrl.为例：
 
     ```java
     ohos.servicectrl.           u:object_r:servicectrl_param:s0
@@ -139,19 +143,97 @@ OHOS系统参数为各系统服务提供简单易用的键值对访问接口，�
     allow { domain -limit_domain } servicectrl_param:file { map open read };
     ```
 
--  建议：
+#### 系统参数权限基本要求
 
-   各个子系统只保留两个系统参数标签：
+    每个selinux标签对应的系统参数有独立的共享内存区，同类型的系统参数建议共用selinux标签，减少系统共享内存的开销。
 
-   一个私有，用来控制系统参数设置
+    以sample部件为例，建议增加以下几类标签进行访问控制：
 
-   一个公有，允许所有服务进行访问
+    a）公开只读的系统参数，不需要定义新的标签，使用default_param
 
--  默认参数加载
+    b）可写系统参数：增加标签{component}_writable_param
 
-    系统参数的加载顺序如下：
+    c）仅部件内部可读的系统参数（隐私数据）：增加标签【可选】 {component}_private_param
 
-    **表5** 系统参数加载顺序
+### 系统参数标签配置
+
+#### 系统参数标签文件大小配置
+
+每个标签默认分配1K内存，能存放5个左右的系统参数。如果标签下支持的系统参数较多，需在ohso.para.size文件中按照标签扩大内存大小。
+
+支持/system/etc/param/ohos.para.size和/sys_prod/etc/param/ohos.para.size进行扩展。
+
+配置规则：
+
+系统参数标签=大小
+
+例如：
+
+```
+devinfo_public_param=30720
+hilog_param=40960
+```
+
+默认系统参数的共享内存大小：80KB
+
+#### 系统参数标签说明
+
+  init 会根据系统参数标签在/dev/__parameters__/目录下创建对应的共享内存映射文件,该共享内存用来存储与该标签绑定的系统参数。
+
+  共享内存文件示例：
+
+  ```
+  -rwxr-xr-- 1 root root 30720 2017-08-10 16:22 u:object_r:default_param:s0
+  -rwxr-xr-- 1 root root  1024 2017-08-10 16:22 u:object_r:devinfo_private_param:s0
+  -rwxr-xr-- 1 root root 30720 2017-08-10 16:22 u:object_r:devinfo_public_param:s0
+  -rwxr-xr-- 1 root root 40960 2017-08-10 16:22 u:object_r:hilog_param:s0
+  ```
+
+  系统参数标签会在/base/security/selinux_adapter/sepolicy/base/public/parameter.te文件中定义：
+
+  系统参数标签定义：
+
+  ```
+  type default_param, parameter_attr;
+  type devinfo_private_param, parameter_attr;
+  type devinfo_public_param, parameter_attr;
+  type hilog_param, parameter_attr;
+  ```
+
+  系统参数标签与系统参数的关联在/base/security/selinux_adapter/sepolicy/base/public/parameter_contexts定义：
+
+  以hilog_param标签为例：
+
+  ```
+  hilog.                   u:object_r:hilog_param:s0  #以hilog.为前缀的系统参数存储在hilog_param标签对应的共享内存中
+  persist.sys.hilog.       u:object_r:hilog_param:s0  #以persist.sys.hilog.为前缀的系统参数也存储在hilog_param标签对应的共享内存中
+  ```
+### 查看系统参数共享内存占用情况
+
+    系统参数共享内存占用情况的查询，提供了查询命令：param dump [verbose]
+
+    查询结果的介绍说明如下：
+
+    ```
+      Dump all parameters begin ...
+      Local security information
+      pid: 1612 uid: 0 gid: 0
+      map file: u:object_r:default_param:s0            // 系统参数标签名称（共享内存映射文件名）
+      total size: 10485720                             // 系统参数标签文件大小（标签映射的共享内存大小）
+      first offset: 0                                  // 第一个参数节点的偏移量
+      current offset: 15948                            // 当前的参数节点的偏移量
+      total node: 242                                  // 该标签内节点总数
+      total param node: 219                            // 参数节点总数
+      total security node: 0                           // selinux节点数
+      commitId        : 26                             //
+      commitPersistId : 0                              //
+      node info:                                       // 该标签下所有节点的信息
+      ... ...
+    ```
+### 系统参数的加载顺序
+
+    系统参数加载顺序
+
     | 类别 | 路径 | 说明 |
     | -------- | -------- | -------- |
     | 内核参数    | /proc/cmdline | 将内核参数中的部分值转化成系统参数，并保存。内核参数中.xxx=valXXX类型的参数都转换成ohos.boot.xxx=valXXX系统参数。 |
@@ -160,19 +242,28 @@ OHOS系统参数为各系统服务提供简单易用的键值对访问接口，�
     | system参数 | /system/etc/param/*.para | 加载各子系统定义的参数参数。如果系统参数已经存在，则忽略掉。 |
     | persist参数 | /data/parameters/ | 如果持久化参数存在，则最后加载持久化系统参数。持久化系统参数会覆盖加载的默认系统参数。 |
 
-#### 系统参数标签文件大小配置
+### 参数和标签的展示
 
-如果标签对应的系统参数个数多，超过5条时，需要配置系统参数标签文件的大小，默认大小（512），配置文件为/base/startup/init/services/etc/param/ohos.para.size
+   目前按照子系统，部件把参数和标签统计的信息已经录入数据库，可以搭建[OpenHarmony实时架构信息收集与分析系统](https://gitee.com/handyohos/ohos_archinfo/tree/master)进行查看
 
-配置规则：
+   搭建服务可参考：[OpenHarmony实时架构信息analyser模块说明](https://gitee.com/handyohos/ohos_archinfo/blob/master/analyser/README.md)
 
-系统参数标签=大小
+   自行收集数据库信息可参考：[OpenHarmony实时架构信息收集与分析系统](https://gitee.com/handyohos/ohos_archinfo/tree/master#/handyohos/ohos_archinfo/blob/master/collector/README.md)
 
-例如：
+   数据库也可以取每日构建的dayu200-db
+### 系统参数的基本操作
 
-```java
-startup_init_param=40960
-```
+系统参数操作原语
+
+![系统参数操作原语](figures/系统参数操作原语.png)
+
+系统参数操作原语说明
+| 功能 | 说明 |
+| -------- | -------- |
+| get      | 获取系统参数的值        |
+| set      | 设置系统参数的值        |
+| wait     | 同步等待系统参数的值变更 |
+| watch    | 异步观察系统参数的值变更 |
 
 ### 约束与限制
 
@@ -196,7 +287,6 @@ startup_init_param=40960
     | param get [**key**] | 获取指定key名称的系统参数值；如果不指定任何name，则返回所有系统参数值。 |
     | param set **key value** | 设置指定key名称的参数值为value。 |
     | param wait **key** **value** | 同步等待指定key名称的系统参数值与value匹配。value可支持模糊匹配，如"*"表示任何值，"val\*"表示只匹配前三个val字符。 |
-    | param watch | 异步观察系统参数的值变更。|
 
   - syspara系统接口
 
@@ -376,3 +466,102 @@ startup_init_param=40960
     GetDevUdid(value26, 65);
     printf("device udid =%s\n", value26);
     ```
+### 系统参数错误码说明
+
+**错误码说明**
+
+| 枚举                             | 枚举值 | 说明                                      |
+| -------------------------------- | ------ | ----------------------------------------- |
+| PARAM_CODE_ERROR                 | -1     | 系统错误                                  |
+| PARAM_CODE_SUCCESS               | 0      | 成功                                      |
+| PARAM_CODE_INVALID_PARAM         | 100    | 系统参数接口的入参为空                     |
+| PARAM_CODE_INVALID_NAME          | 101    | 系统参数key不符合规范，长度或非法字符      |
+| PARAM_CODE_INVALID_VALUE         | 102    | 系统参数value值不符合规范，长度或非法字符  |
+| PARAM_CODE_REACHED_MAX           | 103    | 树节点已达最大值                          |
+| PARAM_CODE_NOT_SUPPORT           | 104    | 不支持此接口                              |
+| PARAM_CODE_TIMEOUT               | 105    | 访问服务端超时                            |
+| PARAM_CODE_NOT_FOUND             | 106    | 没有找到该参数                            |
+| PARAM_CODE_READ_ONLY             | 107    | 系统参数为只读参数                        |
+| PARAM_CODE_IPC_ERROR             | 108    | IPC通信异常                               |
+| PARAM_CODE_NODE_EXIST            | 109    | 系统参数的节点存在                        |
+| PARAM_WATCHER_CALLBACK_EXIST     | 110    | watcher的callback重复添加                 |
+| PARAM_WATCHER_GET_SERVICE_FAILED | 111    | watcher获取服务失败                       |
+| PARAM_CODE_MEMORY_MAP_FAILED     | 112    | 建立文件共享内存映射失败                  |
+| PARAM_WORKSPACE_NOT_INIT         | 113    | workspace 没有初始化                      |
+| PARAM_CODE_FAIL_CONNECT          | 114    | 连接paramServer 失败                      |
+| PARAM_CODE_MEMORY_NOT_ENOUGH     | 115    | 系统参数空间不足                          |
+| DAC_RESULT_INVALID_PARAM         | 1000   | 无用，定义权限错误的起始值                |
+| DAC_RESULT_FORBIDED              | 1001   | DAC权限被禁止                             |
+| SELINUX_RESULT_FORBIDED          | 1002   | selinux权限被禁止                         |
+| PARAM_CODE_MAX                   | 1003   | 枚举最大值                                |
+
+**错误定位关键日志**
+
+- system parameter set:
+
+    SetParameter failed! the errNum is: xx!
+
+    SystemSetParameter failed! name is : xxx, errNum is: xx!
+
+- system parameter get:
+
+    GetParameter_ failed! the errNum is: xx!
+
+    SystemReadParam failed! name is: xxxx, errNum is: xx!
+
+- system parameter wait:
+
+    WaitParameter failed! the errNum is: xx!
+
+    SystemWaitParameter failed! name is: xxx, errNum is: xx!
+
+- system parameter Watcher:
+
+    WatchParameter failed! the errNum is xx!
+
+    SystemWatchParameter is failed! keyPrefix is:xxx, errNum is:xx!
+## 系统参数常见问题
+
+### 如何设置一个系统参数
+
+  1、hdc shell进入终端，执行param set param.key.xxx(系统参数名) param.value.xxx(系统参数名值), 确认参数是否可以设置成功，成功则无需其他设置
+
+  2、代码侧设置系统参数，调用SetParameter接口，具体参照[接口说明](#接口说明)
+  
+  3、执行param set 失败，则根据失败的日志确定对应的排查操作：
+
+  若dac 权限不足，参照DAC访问控制权限设置进行设置
+
+  若selinux 权限不足，根据" avc:  denied" 告警信息设置对应规则
+
+  若内存不够，参照[系统参数标签配置](#系统参数标签配置)进行扩展
+
+### 如何读取一个系统参数
+
+  1、hdc shell进入终端，执行param get param.key.xxx(系统参数名), 查看参数是否可以读取成功，读取成功则无需其他操作
+
+  2、代码侧获取系统参数，调用GetParameter接口，具体参照[接口说明](#接口说明)
+
+  3、执行param get 失败，则根据失败的日志确定对应的排查操作：
+
+  首先需要确认改参数是否被设置，若没有被设置，则需要先设置该参数；若已设置，则进行下一步排查
+
+  若dac 权限不足，参照DAC访问控制权限设置进行设置
+
+  若selinux 权限不足，根据" avc:  denied" 告警信息设置对应规则
+
+### 如何订阅一个系统参数的变化
+
+  1、hdc shell进入终端，执行param shell，进入Parameter shell后执行 watcher parameter param.key.xxx(系统参数名)，当系统参数值发生变化时，会收到类似"Receive parameter commit 691 change aaa.aaa 11111"的消息
+
+  2、代码侧监控系统参数变化，调用WatchParameter接口
+
+  3、执行watcher parameter 失败，则根据失败的日志确定对应的排查操作：
+
+  若dac 权限不足，参照DAC访问控制权限设置进行设置
+
+  若selinux 权限不足，根据" avc:  denied" 告警信息设置对应规则
+
+### 三方应用为何无法访问系统参数
+
+默认DAC规则只允许三方应用对参数具有get, watch 的权限，因此三方应用若需要set权限需要重新设置DAC规则。 此外, 三方应用的selinux权限默认是未设置的，因此需要参照mac访问控制权限设置进行设置

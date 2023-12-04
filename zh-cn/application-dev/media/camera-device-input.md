@@ -1,4 +1,4 @@
-# 设备输入
+# 设备输入(ArkTS)
 
 在开发一个相机应用前，需要先创建一个独立的相机设备，应用通过调用和控制相机设备，完成预览、拍照和录像等基础操作。
 
@@ -11,13 +11,13 @@
    ```ts
    import camera from '@ohos.multimedia.camera';
    import { BusinessError } from '@ohos.base';
-   import featureAbility from '@ohos.ability.featureAbility';
+   import common from '@ohos.app.ability.common';
    ```
 
 2. 通过getCameraManager()方法，获取cameraManager对象。
-   [各类Context的获取方式](../application-models/application-context-stage.md)。
+   [BaseContext获取方式](../reference/apis/js-apis-inner-application-baseContext.md)。
    ```ts
-   function getCameraManager(context: featureAbility.Context): camera.CameraManager {
+   function getCameraManager(context: common.BaseContext): camera.CameraManager {
      let cameraManager: camera.CameraManager = camera.getCameraManager(context);
      return cameraManager;
    }

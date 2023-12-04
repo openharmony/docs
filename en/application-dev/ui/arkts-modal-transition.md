@@ -4,16 +4,15 @@
 Modal transition is a type of transition achieved by a modal – a view that appears on top of the current view while the current view remains.
 
 
-  **Table 1** Modal transition APIs
-
-| API| Description| Usage|
-| -------- | -------- | -------- |
-| [bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md) | Binds a modal to the component.| Use this API to display a custom modal. It can work with the transition animation and shared element animation to implement complex transition animation effects, for example, displaying an image in full in the modal upon the click of a thumbnail.|
-| [bindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md) | Binds a sheet to the component.| Use this API to display a custom sheet, for example, a sharing confirmation dialog box.|
-| [bindMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) | Binds a menu to the component, which is displayed when the component is clicked.| Use this API where a menu is required, for example, for the plus sign (+), a common menu indicator in applications.|
-| [bindContextMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) | Binds a context menu to the component, which is displayed when the user long-presses or right-clicks the component.| Use this API for components that bounce up when long-pressed, for example, home screen icons.|
-| [bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md) | Binds a popup to the component.| Use this API to display a popup containing additional information about a component when the component is clicked.|
-| if | Adds or deletes the component.| Use this API to display a temporary page in a certain state. In this mode, the return navigation needs to be implemented with a listener.|
+**Table 1** Modal transition APIs
+| API                                      | Description               | Usage                                    |
+| ---------------------------------------- | ----------------- | ---------------------------------------- |
+| [bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md) | Binds a modal to the component.       | Use this API to display a custom modal. It can work with the transition animation and shared element animation to implement complex transition animation effects, for example, displaying an image in full in the modal upon the click of a thumbnail.|
+| [bindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md) | Binds a sheet to the component.         | Use this API to display a custom sheet, for example, a sharing confirmation dialog box.                         |
+| [bindMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) | Binds a menu to the component, which is displayed when the component is clicked.    | Use this API where a menu is required, for example, for the plus sign (+), a common menu indicator in applications.                |
+| [bindContextMenu](../reference/arkui-ts/ts-universal-attributes-menu.md) | Binds a context menu to the component, which is displayed when the user long-presses or right-clicks the component.| Use this API for components that bounce up when long-pressed, for example, home screen icons.            |
+| [bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md) | Binds a popup to the component.       | Use this API to display a popup containing additional information about a component when the component is clicked.              |
+| if                                       | Adds or deletes the component.     | Use this API to display a temporary page in a certain state. In this mode, the return navigation needs to be implemented with a listener. |
 
 
 ## Creating Modal Transition with bindContentCover
@@ -23,7 +22,7 @@ You can bind a full-screen modal to a component through the [bindContentCover](.
 1. Define [bindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md).
 
 2. Define the modal view.
-  
+
    ```ts
    // Use @Builder to build a modal view.
    @Builder MyBuilder() {
@@ -36,20 +35,20 @@ You can bind a full-screen modal to a component through the [bindContentCover](.
    ```
 
 3. Call the modal API to display the modal. Implement an animation by using the animation or shared element transition APIs.
-  
+
    ```ts
-   class PresentTmp{
-     isPresent: boolean = false;
-     set(){
-       this.isPresent = !this.isPresent;
-     }
-   }
+    class PresentTmp{
+      isPresent: boolean = false;
+      set(){
+        this.isPresent = !this.isPresent;
+      }
+    }
    // Define the state variable to control the visibility of the modal.
    @State isPresent: boolean = false;
-   
+
    Button('Click to present model view')
      // Bind the modal to the component. ModalTransition indicates the transition mode of the modal. The value None means no transition animation for the modal.
-     .bindContentCover(this.isPresent, this.MyBuilder, ModalTransition.None)
+     .bindContentCover(this.isPresent, this.MyBuilder, ModalTransition.NONE)
      .onClick(() => {
        // Change the state variable to display the modal.
        let setPre:PresentTmp = new PresentTmp()
@@ -120,7 +119,7 @@ struct BindContentCoverDemo {
         // Change the state variable to display the modal.
         this.isPresent = !this.isPresent;
       })
-      // Bind the modal to the component. ModalTransition indicates the transition mode of the modal. The value None means no transition animation for the modal.
+      // Bind a modal to the component. ModalTransition.DEFAULT means to use the slide-up and slide-down animation type.
       .bindContentCover(this.isPresent, this.MyBuilder(), ModalTransition.DEFAULT)
       .justifyContent(FlexAlign.Center)
       .backgroundColor(0XF56C6C)
@@ -172,7 +171,7 @@ struct BindSheetDemo {
         .margin(10)
         .fontSize(20)
         .onClick(() => {
-          this.sheetHeight = null;
+          this.sheetHeight = -1;
         })
 
       Button("close dragbar")

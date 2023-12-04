@@ -36,7 +36,7 @@
 
 2. \@Watch方法在自定义组件的属性变更之后同步执行；
 
-3. 如果在\@Watch的方法里改变了其他的状态变量，也会引起的状态变更和\@Watch的执行；
+3. 如果在\@Watch的方法里改变了其他的状态变量，也会引起状态变更和\@Watch的执行；
 
 4. 在第一次初始化的时候，\@Watch装饰的方法不会被调用，即认为初始化不是状态变量的改变。只有在后续状态改变时，才会调用\@Watch回调方法。
 
@@ -62,7 +62,7 @@
 struct TotalView {
   @Prop @Watch('onCountUpdated') count: number = 0;
   @State total: number = 0;
-  // @Watch cb
+  // @Watch 回调
   onCountUpdated(propName: string): void {
     this.total += this.count;
   }

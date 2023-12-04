@@ -13,6 +13,115 @@
 import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
 ```
 
+## hiAppEvent.addProcessor<sup>11+</sup>
+
+addProcessor(processor: Processor): number
+
+开发者可添加数据处理者，该数据处理者用于提供事件上云功能，数据处理者的实现可预置在设备中，开发者可根据数据处理者的约束设置属性。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**参数：**
+
+| 参数名     | 类型        | 必填 | 说明              |
+| ---------  | ---------- | ---- | -------------    |
+| processor  | [Processor](#processor11)  | 是   | 上报事件的数据处理者。|
+
+**返回值：**
+
+| 类型    | 说明                   |
+| ------ | ---------------------- |
+| number | 所添加上报事件数据处理者的ID。 添加失败返回-1，添加成功返回大于0的值。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| ------- | ----------------- |
+| 401     | Parameter error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+try {
+    let processor: hiAppEvent.Processor = {
+      name: 'analytics_demo'
+    };
+    let id: number = hiAppEvent.addProcessor(processor);
+    hiLog.info('hiAppEvent', `addProcessor event was successful, id=${id}`);
+} catch (error) {
+    hiLog.info('hiAppEvent', `failed to addProcessor event, code=${error.code}`);
+} 
+```
+
+## Processor<sup>11+</sup>
+
+可以上报事件的数据处理者对象。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+| 名称                | 类型                     | 必填 | 说明                                                                                                        |
+| ------------------- | ----------------------- | ---- | ---------------------------------------------------------------------------------------------------------- |
+| name                | string                  | 是   | 数据处理者的名称。                                                                                           |
+| debugMode           | boolean                 | 否   | 是否开启debug模式。配置值为true表示开启debug模式，false表示不开启debug模式。                                    |
+| routeInfo           | string                  | 否   | 服务器位置信息，不超过8kB。                                                                                   |
+| onStartReport       | boolean                 | 否   | 数据处理者在启动时是否上报事件。配置值为true表示上报事件，false表示不上报事件。                                   |
+| onBackgroundReport  | boolean                 | 否   | 当应用程序进入后台时是否上报事件。配置值为true表示上报事件，false表示不上报事件。                                 |
+| periodReport        | number                  | 否   | 根据时间周期定时上报事件。单位为秒，数值不小于0，如果为0则不上报。                                                |
+| batchReport         | number                  | 否   | 当事件条数达到数量阈值时上报事件。阈值的数值范围为大于0且小于1000。不在数值范围内则不上报。                         |
+| userIds             | string[]                | 否   | 数据处理者可以上报的用户ID的name数组。name值只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。    |
+| userProperties      | string[]                | 否   | 数据处理者可以上报的用户属性的name数组。name值只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。   |
+| eventConfigs        | [AppEventReportConfig](#appeventreportconfig11)[]  | 否   | 数据处理者可以上报的事件数组。                                                                                 |
+
+## AppEventReportConfig<sup>11+</sup>
+
+数据处理者可以上报事件的描述配置。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+| 名称         | 类型    | 必填 | 说明                                                          |
+| ----------- | ------- | ---- | ------------------------------------------------------------ |
+| domain      | string  | 否   | 事件领域。事件领域名称支持数字、小写字母、下划线字符，需要以小写字母开头且不能以下划线结尾，长度非空且不超过16个字符。 |
+| name        | string  | 否   | 事件名称。首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过48个字符。 |
+| isRealTime  | boolean | 否   | 是否实时上报事件。配置值为true表示实时上报事件，false表示不实时上报事件。 |
+
+## hiAppEvent.removeProcessor<sup>11+</sup>
+
+removeProcessor(id: number): void
+
+删除上报事件的数据处理者。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                         |
+| ------| ------- | ---- | --------------------------- |
+| id    | number  | 是   | 上报事件数据处理者ID。值大于0。|
+	
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| ------- | ----------------- |
+| 401     | Parameter error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+try {
+    let processor: hiAppEvent.Processor = {
+      name: 'analytics_demo'
+    };
+    let id: number = hiAppEvent.addProcessor(processor);
+    hiAppEvent.removeProcessor(id);
+} catch (error) {
+    hiLog.info('hiAppEvent', `failed to removeProcessor event, code=${error.code}`);
+} 
+```
+
 ## hiAppEvent.write
 
 write(info: [AppEventInfo](#appeventinfo), callback: AsyncCallback&lt;void&gt;): void
@@ -122,16 +231,16 @@ hiAppEvent.write({
 
 ## AppEventInfo
 
-此接口提供了应用事件信息的参数选项。
+提供了应用事件信息的参数选项。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 | 名称      | 类型                    | 必填 | 说明                                                         |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | domain    | string                  | 是   | 事件领域。事件领域名称支持数字、小写字母、下划线字符，需要以小写字母开头且不能以下划线结尾，长度非空且不超过16个字符。 |
-| name      | string                  | 是   | 事件名称。事件名称支持数字字符、字母字符、下划线字符，需要以字母字符或$字符开头且不能以下划线字符结尾，长度非空且不超过48个字符。 |
+| name      | string                  | 是   | 事件名称。首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过48个字符。 |
 | eventType | [EventType](#eventtype) | 是   | 事件类型。                                                   |
-| params    | object                  | 是   | 事件参数对象，每个事件参数包括参数名和参数值，其规格定义如下：<br>- 参数名为string类型，只支持数字字符、字母字符、下划线字符，需要以字母字符或$字符开头且不能以下划线字符结尾，长度非空且不超过16个字符。<br>- 参数值支持string、number、boolean、数组类型，string类型参数长度需在8*1024个字符以内，超出会做丢弃处理；number类型参数取值需在Number.MIN_SAFE_INTEGER~Number.MAX_SAFE_INTEGER范围内，超出可能会产生不确定值；数组类型参数中的元素类型只能全为string、number、boolean中的一种，且元素个数需在100以内，超出会做丢弃处理。<br>- 参数个数需在32个以内，超出的参数会做丢弃处理。 |
+| params    | object                  | 是   | 事件参数对象，每个事件参数包括参数名和参数值，其规格定义如下：<br>- 参数名为string类型，首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过16个字符。<br>- 参数值支持string、number、boolean、数组类型，string类型参数长度需在8*1024个字符以内，超出会做丢弃处理；number类型参数取值需在Number.MIN_SAFE_INTEGER~Number.MAX_SAFE_INTEGER范围内，超出可能会产生不确定值；数组类型参数中的元素类型只能全为string、number、boolean中的一种，且元素个数需在100以内，超出会做丢弃处理。<br>- 参数个数需在32个以内，超出的参数会做丢弃处理。 |
 
 ## hiAppEvent.configure
 
@@ -173,7 +282,7 @@ hiAppEvent.configure(config2);
 
 ## ConfigOption
 
-此接口提供了对应用事件打点功能的配置选项。
+提供了对应用事件打点功能的配置选项。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -181,6 +290,152 @@ hiAppEvent.configure(config2);
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
 | disable    | boolean | 否   | 打点功能开关，默认值为false。true：关闭打点功能，false：不关闭打点功能。 |
 | maxStorage | string  | 否   | 打点数据存放目录的配额大小，默认值为“10M”。<br>在目录大小超出配额后，下次打点会触发对目录的清理操作：按从旧到新的顺序逐个删除打点数据文件，直到目录大小不超出配额时结束。 |
+
+## hiAppEvent.setUserId<sup>11+</sup>
+
+setUserId(name: string, value: string): void
+
+设置用户ID。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**参数：**
+
+| 参数名     | 类型                      | 必填 | 说明           |
+| --------- | ------------------------- | ---- | -------------  |
+| name      | string                    | 是   | 用户ID的key。只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。   |
+| value     | string                    | 是   | 用户ID的值。长度不超过256，当值为null、undefine或空，则清除用户ID。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| ------- | ----------------- |
+| 401     | Parameter error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+try {
+  hiAppEvent.setUserId('key', 'value');
+} catch (error) {
+  hiLog.info('hiAppEvent', `failed to setUseId event, code=${error.code}`);
+} 
+```
+
+## hiAppEvent.getUserId<sup>11+</sup>
+
+getUserId(name: string): string
+
+获取之前通过setUserId接口设置的value值。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**参数：**
+
+| 参数名     | 类型                    | 必填 | 说明         |
+| --------- | ----------------------- | ---- | ----------  |
+| name      | string                  | 是   | 用户ID的key。只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。|
+
+**返回值：**
+
+| 类型    | 说明                            |
+| ------ | ------------------------------- |
+| string | 用户ID的值。没有查到返回空字符串。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| ------- | ----------------- |
+| 401     | Parameter error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+hiAppEvent.setUserId('key', 'value');
+try {
+  let value: string = hiAppEvent.getUserId('key');
+  hiLog.info('hiAppEvent', `getUseId event was successful, userId=${value}`);/* "value" */
+} catch (error) {
+  hiLog.info('hiAppEvent', `failed to getUseId event, code=${error.code}`);
+} 
+```
+
+## hiAppEvent.setUserProperty<sup>11+</sup>
+
+setUserProperty(name: string, value: string): void
+
+设置用户属性。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**参数：**
+
+| 参数名     | 类型                      | 必填 | 说明           |
+| --------- | ------------------------- | ---- | -------------- |
+| name      | string                    | 是   | 用户属性的key。 只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。  |
+| value     | string                    | 是   | 用户属性的值。长度不超过1024，当值为null、undefine或空，则清除用户ID。  |
+
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| ------- | ----------------- |
+| 401     | Parameter error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+try {
+  hiAppEvent.setUserProperty('key', 'value');
+} catch (error) {
+  hiLog.info('hiAppEvent', `failed to setUserProperty event, code=${error.code}`);
+} 
+```
+
+## hiAppEvent.getUserProperty<sup>11+</sup>
+
+getUserProperty(name: string): string
+
+获取之前通过setUserProperty接口设置的value值。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**参数：**
+
+| 参数名     | 类型                    | 必填 | 说明          |
+| --------- | ----------------------- | ---- | ----------    |
+| name      | string                  | 是   | 用户属性的key。只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。|
+
+**返回值：**
+
+| 类型    | 说明                             |
+| ------ | -------------------------------- |
+| string | 用户属性的值。 没有查到返回空字符串。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| ------- | ----------------- |
+| 401     | Parameter error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+hiAppEvent.setUserProperty('key', 'value');
+try {
+  let value: string = hiAppEvent.getUserProperty('key');
+  hiLog.info('hiAppEvent', `getUserProperty event was successful, userProperty=${value}`);/* "value" */
+} catch (error) {
+  hiLog.info('hiAppEvent', `failed to getUserProperty event, code=${error.code}`);
+} 
+```
 
 ## hiAppEvent.addWatcher
 
@@ -305,7 +560,7 @@ hiAppEvent.removeWatcher(watcher);
 
 ## Watcher
 
-此接口提供了应用事件观察者的参数选项。
+提供了应用事件观察者的参数选项。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -318,7 +573,7 @@ hiAppEvent.removeWatcher(watcher);
 
 ## TriggerCondition
 
-此接口提供了回调触发条件的参数选项，只要满足任一条件就会触发订阅回调。
+提供了回调触发条件的参数选项，只要满足任一条件就会触发订阅回调。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -330,7 +585,7 @@ hiAppEvent.removeWatcher(watcher);
 
 ## AppEventFilter
 
-此接口提供了过滤应用事件的参数选项。
+提供了过滤应用事件的参数选项。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -343,13 +598,11 @@ hiAppEvent.removeWatcher(watcher);
 
 订阅数据持有者类，用于对订阅事件进行处理。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
-
 ### constructor
 
 constructor(watcherName: string)
 
-类构造函数，在添加应用事件观察者时，会由系统自动调用来创建一个该观察者对应的订阅数据持有者对象，并返回给开发者。
+类构造函数，创建订阅数据持有者实例，通过观察者名称关联到应用内已添加的观察者对象。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -362,9 +615,7 @@ constructor(watcherName: string)
 **示例：**
 
 ```ts
-let holder1 = hiAppEvent.addWatcher({
-    name: "watcher1",
-});
+let holder1: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("watcher1");
 ```
 
 ### setSize
@@ -392,9 +643,7 @@ setSize(size: number): void
 **示例：**
 
 ```ts
-let holder2 = hiAppEvent.addWatcher({
-    name: "watcher2",
-});
+let holder2: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("watcher2");
 holder2.setSize(1000);
 ```
 
@@ -406,18 +655,22 @@ takeNext(): [AppEventPackage](#appeventpackage)
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
+**返回值：**
+
+| 类型                                | 说明                                                   |
+| ----------------------------------- | ------------------------------------------------------ |
+| [AppEventPackage](#appeventpackage) | 取出的事件包对象，订阅事件数据被全部取出后会返回null。 |
+
 **示例：**
 
 ```ts
-let holder3 = hiAppEvent.addWatcher({
-    name: "watcher3",
-});
+let holder3: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("watcher3");
 let eventPkg = holder3.takeNext();
 ```
 
 ## AppEventPackage
 
-此接口提供了订阅返回的应用事件包的参数定义。
+提供了订阅返回的应用事件包的参数定义。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -459,7 +712,7 @@ hiAppEvent.clearData();
 
 ## event
 
-此接口提供了所有预定义事件的事件名称常量。
+提供了所有预定义事件的事件名称常量。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -472,7 +725,7 @@ hiAppEvent.clearData();
 
 ## param
 
-此接口提供了所有预定义参数的参数名称常量。
+提供了所有预定义参数的参数名称常量。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 

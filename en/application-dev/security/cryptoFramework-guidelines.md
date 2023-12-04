@@ -206,7 +206,7 @@ function testConvertSymKey() {
 
 > **NOTE**
 >
-> SM2 asymmetric keys can be randomly generated from API version 10.
+> SM2 asymmetric keys can be randomly generated since API version 10.
 
 Randomly generate an asymmetric key pair and obtain its binary data.
 
@@ -241,7 +241,7 @@ function generateSM2Key() {
 
  > **NOTE**
  >
- > SM4 keys can be randomly generated from API version 10.
+ > SM4 keys can be randomly generated since API version 10.
 
 Randomly generate a symmetric key and obtain its binary data.
 
@@ -272,7 +272,7 @@ function testGenerateSM4Key() {
 
  > **NOTE**
  >
- > SM2 key conversion is supported from API version 10.
+ > SM2 key conversion is supported since API version 10.
 
 Generate an SM2 asymmetric key pair from the given binary key data.
 
@@ -299,6 +299,83 @@ function convertSM2AsyKey() {
 }
 ```
 
+### Randomly Generating an HMAC Key and Obtaining the Binary Data
+
+ > **NOTE**
+ >
+ > Since API version 11, HMAC keys can be generated randomly.
+
+Randomly generate a symmetric key **SymKey** for the HMAC algorithm and obtain the binary data.
+
+1. Create a **SymKeyGenerator** instance.
+2. Use the symmetric key generator to randomly generate a symmetric key for the HMAC algorithm.
+3. Obtain the binary data of the key generated.
+
+Example: Randomly generate an HMAC key (256 bits) in promise mode.
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function testGenerateHmacKey() {
+  // Create a SymKeyGenerator instance.
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("HMAC|SHA256");
+  // Use the key generator to randomly generate a symmetric key.
+  let promiseSymKey = symKeyGenerator.generateSymKey();
+  promiseSymKey.then(key => {
+    // Obtain the binary data of the symmetric key and output a 256-bit byte stream. The length is 32 bytes.
+    let encodedKey = key.getEncoded();
+    console.info('key hex:' + encodedKey.data);
+  })
+}
+```
+
+### Converting Binary Data into an HMAC Key
+
+ > **NOTE**
+ >
+ > Since API version 11, HMAC key conversion is supported.
+
+Generate a symmetric key **SymKey** for the HMAC algorithm based on the specified HMAC symmetric key binary data.
+
+1. Create a **SymKeyGenerator** instance.
+2. Use the symmetric key generator to generate a **SymKey** object based on the specified HMAC binary key data.
+
+> **NOTE**
+>
+> - If **HMAC** is used to create a symmetric key generator, the binary key data of 1 to 4096 bytes can be passed in to generate a **symKey**.
+> - If **HMAC|SHA512** is used to create a symmetric key generator, binary key data of 64 bytes must be passed in to generate a **symKey**.
+
+Example: Generate an HMAC key in callback mode (using SHA512 as the hash function).
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function stringToUint8Array(str) {
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  let tmpUint8Array = new Uint8Array(arr);
+  return tmpUint8Array;
+}
+
+function testConvertHmacKey() {
+  let keyBlob = {
+    // The length is 512-bit (64 bytes).
+    data : stringToUint8Array("12345678abcdefgh12345678abcdefgh12345678abcdefgh12345678abcdefgh")
+  }
+  // Create a SymKeyGenerator instance.
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("HMAC");
+  symKeyGenerator.convertKey(keyBlob, (error, symKey) => {
+    if (error) {
+      console.info('Convert symKey fail!');
+      return;
+    }
+    console.info('Convert symKey success!');
+  })
+}
+```
+
 ## Generating an Asymmetric Key Object and Obtaining Key Parameters
 
 ### When to Use
@@ -309,12 +386,13 @@ Typical key generation operations involve the following:
 
 > **NOTE**
 >
-> - Key parameters can be used to generate asymmetric keys from API version 10.
+> - Key parameters can be used to generate asymmetric keys since API version 10.
 > - Asymmetric systems use a public key (**PubKey**) to encrypt data and a related private key (**PriKey**) to decrypt it. The public key and private key form a key pair (**KeyPair**). For details about asymmetric key parameters, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
 ### Available APIs
 
 The following table describes the APIs used in typical key generation operations. For more information about the APIs, see [AsyKeyGeneratorBySpec](../reference/apis/js-apis-cryptoFramework.md#asykeygeneratorbyspec10).
+
 
 |Instance|API|Description|
 |---|---|---|
@@ -540,8 +618,8 @@ Important data needs to be encrypted in data storage or transmission for securit
 
 > **NOTE**
 >
-> - From API version 10, [CipherSpecItem](../reference/apis/js-apis-cryptoFramework.md#cipherspecitem10) can be obtained and set when the PKCS1_OAEP padding mode is used in RSA.
-> - From API version 10, the string parameter without the key length is supported in encryption and decryption.
+> - Since API version 10, [CipherSpecItem](../reference/apis/js-apis-cryptoFramework.md#cipherspecitem10) can be obtained and set when the PKCS1_OAEP padding mode is used in RSA.
+> - Since API version 10, the string parameter without the key length is supported in encryption and decryption.
 
 ### Available APIs
 
@@ -559,8 +637,8 @@ The following table describes the APIs used in the typical encryption and decryp
 |Cipher|init(opMode : CryptoMode, key : Key, params : ParamsSpec) : Promise\<void>|Sets a key and initializes the **Cipher** instance. This API uses a promise to return the result.|
 |Cipher|update(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void|Updates the data for encryption and decryption. This API uses an asynchronous callback to return the result.|
 |Cipher|update(data : DataBlob) : Promise\<DataBlob>|Updates the data for encryption and decryption. This API uses a promise to return the result.|
-|Cipher|doFinal(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void|Finalizes the encryption or decryption. This API uses an asynchronous callback to return the result.|
-|Cipher|doFinal(data : DataBlob) : Promise\<DataBlob>|Finalizes the encryption or decryption. This API uses a promise to return the result.|
+|Cipher|doFinal(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void|Finishes the encryption or decryption. This API uses an asynchronous callback to return the result.|
+|Cipher|doFinal(data : DataBlob) : Promise\<DataBlob>|Finishes the encryption or decryption. This API uses a promise to return the result.|
 |Cipher|getCipherSpec(itemType: CipherSpecItem): string \| Uint8Array|Obtains cipher specifications. Currently, only the RSA is supported.|
 |Cipher|setCipherSpec(itemType: CipherSpecItem, itemValue: Uint8Array): void|Sets cipher specifications. Currently, only the RSA is supported.|
 
@@ -1191,7 +1269,7 @@ function encryptLongMessagePromise() {
 > - The RSA encryption has a limit on the length of the plaintext to be encrypted. For details, see [Encryption and Decryption](cryptoFramework-overview.md#encryption-and-decryption).
 > - In RSA decryption, the length of the ciphertext to be decrypted each time is the number of bits of the RSA key divided by 8.
 
-### Using PKCS1_OAEP in RSA Encryption and Decryption
+### Using PKCS1_OAEP in RSA Encryption and Decryption 
 
 Use the PKCS1_OAEP padding mode in RSA encryption and decryption in promise mode.
 
@@ -1317,7 +1395,7 @@ function rsaUseSpecDecryptOAEPPromise() {
 
 > **NOTE**
 >
-> SM2 encryption and decryption are supported from API version 10.
+> SM2 encryption and decryption are supported since API version 10.
 
 Use an SM2 asymmetric key pair to encrypt and decrypt data.
 
@@ -1471,7 +1549,7 @@ function decryptMessageCallback() {
 
 > **NOTE**
 >
-> SM4 encryption and decryption are supported from API version 10.
+> SM4 encryption and decryption are supported since API version 10.
 
 Use an SM4 symmetric key to encrypt and decrypt data.
 
@@ -1554,8 +1632,8 @@ A digital signature can be used to verify the authenticity of a message. Typical
 
 > **NOTE**
 >
-> - From API version 10, [SignSpecItem](../reference/apis/js-apis-cryptoFramework.md#signspecitem10) can be set and obtained when the PSS padding mode is used.
-> - From API version 10, the string parameter without the key length is supported in signature verification.
+> 1. Since API version 10, [SignSpecItem](../reference/apis/js-apis-cryptoFramework.md#signspecitem10) can be set and obtained when the PSS padding mode is used.
+> 2. Since API version 10, the string parameter without the key length is supported in signature verification.
 
 ### Available APIs
 
@@ -1617,7 +1695,7 @@ let input2: cryptoFramework.DataBlob = { data: stringToUint8Array(plan2) };
 
 function signMessagePromise() {
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-  let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256"); // From API version 10, a Sign instance can be created by specifying a string parameter defining the key specifications.
+  let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256"); // Since API version 10, a Sign instance can be created by specifying a string parameter defining the key specifications.
   let keyGenPromise = rsaGenerator.generateKeyPair();
   keyGenPromise.then(keyPair => {
     globalKeyPair = keyPair;
@@ -1648,7 +1726,7 @@ function verifyMessagePromise() {
 
 function signMessageCallback() {
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-  let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256"); // From API version 10, a Sign instance can be created by specifying a string parameter defining the key specifications.
+  let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256"); // Since API version 10, a Sign instance can be created by specifying a string parameter defining the key specifications.
   rsaGenerator.generateKeyPair((err, keyPair) => {
     globalKeyPair = keyPair;
     let priKey = globalKeyPair.priKey;
@@ -1969,7 +2047,7 @@ function verifyMessageCallbackPSS() {
 
 > **NOTE**
 >
-> SM2 signing and signature verification are supported from API version 10.
+> SM2 signing and signature verification are supported since API version 10.
 
 Use SM2 to sign data and verify the signature.
 
@@ -2033,7 +2111,7 @@ Key agreement allows two parties to establish a shared secret over an insecure c
 
 > **NOTE**
 >
-> From API version 10, the string parameter without the key length is supported in key agreement.
+> Since API version 10, the string parameter without the key length is supported in key agreement.
 
 ### Available APIs
 
@@ -2058,7 +2136,7 @@ let globalKeyPair: cryptoFramework.KeyPair;
 
 function ecdhPromise() {
   let eccGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
-  let eccKeyAgreement = cryptoFramework.createKeyAgreement("ECC256"); // ECC is supported for key agreement from API version 10.
+  let eccKeyAgreement = cryptoFramework.createKeyAgreement("ECC256"); // ECC is supported for key agreement since API version 10.
   let keyGenPromise = eccGenerator.generateKeyPair();
   keyGenPromise.then(keyPair => {
     globalKeyPair = keyPair;
@@ -2100,7 +2178,7 @@ Typical MD operations involve the following:
 
 ### Available APIs
 
-For more information about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
+For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
 | Instance         | API                                                      | Description                                              |
 | --------------- | ------------------------------------------------------------ | -------------------------------------------------- |
@@ -2183,7 +2261,7 @@ function doMdByCallback() {
 ### Generating a Digest by Segment
 
 1. Use **createMd()** to create an **Md** instance.
-2. Use **update()** multiple times to pass in by segment.
+2. Use **update()** multiple times to pass in data by segment.
 3. Use **digest()** to compute a digest.
 4. Obtain the digest algorithm and length of the digest generated.
 
@@ -2204,7 +2282,6 @@ function stringToUint8Array(str: string) {
 async function doLoopMdPromise() {
   let mdAlgName = "SHA256"; // Digest algorithm name.
   let md = cryptoFramework.createMd(mdAlgName);
-  ;
   console.info("[Promise]: Md algName is: " + md.algName);
   let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // Assume that the message is of 43 bytes.
   let messageArr: number[] = [];
@@ -2245,7 +2322,7 @@ async function doLoopMdPromise() {
 
 ### When to Use
 
-A hash-based message authentication code (HMAC) can be used to verify both the integrity and authenticity of a message using a shared secret.
+A hash-based message authentication code (HMAC) can be used to verify both the integrity and authenticity of a message using a shared secret. 
 
 Typical MAC operations involve the following:
 
@@ -2264,8 +2341,8 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 | Mac             | init(key : SymKey) : Promise\<void>;                        | Initializes the **Mac** instance. This API uses a promise to return the result. |
 | Mac             | update(input : DataBlob, callback : AsyncCallback\<void>) : void; | Updates the data for the MAC operation. This API uses an asynchronous callback to return the result.      |
 | Mac             | update(input : DataBlob) : Promise\<void>;                  | Updates the data for the MAC operation. This API uses a promise to return the result.       |
-| Mac             | doFinal(callback : AsyncCallback\<DataBlob>) : void;        | Finalizes the MAC operation to generate a MAC. This API uses an asynchronous callback to return the result.                |
-| Mac             | doFinal() : Promise\<DataBlob>;                             | Finalizes the MAC operation to generate a MAC. This API uses a promise to return the result.                 |
+| Mac             | doFinal(callback : AsyncCallback\<DataBlob>) : void;        | Finishes the MAC operation to generate a MAC. This API uses an asynchronous callback to return the result.                |
+| Mac             | doFinal() : Promise\<DataBlob>;                             | Finishes the MAC operation to generate a MAC. This API uses a promise to return the result.                 |
 | Mac             | getMacLength() : number;                                     | Obtains the length of the MAC based on the specified algorithm.              |
 | Mac             | readonly algName : string;                                   | Obtains the digest algorithm.                           |
 
@@ -2370,7 +2447,7 @@ function doHmacByCallback() {
 
 ### Generating an HMAC by Segment
 
-Generate an HMAC by segment.
+Generate an HMAC by segment. 
 
 1. Use **createMac()** to create a **Mac** instance.
 2. Use **init()** to initialize the **Mac** instance with the symmetric key passed in.
@@ -2529,5 +2606,71 @@ function doRandBySync() {
     let e: BusinessError = error as BusinessError;
     console.error(`do rand failed, ${e.code}, ${e.message}`);
   }
+}
+```
+
+## Key Derivation
+
+### When to Use
+
+Use a key derivation function to generate a key of the specified length from a password.
+
+> **NOTE**
+>
+> Operations on key derivation functions are supported since API version 11.
+
+### Available APIs
+
+For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
+
+|Instance|API|Description|
+|---|---|---|
+|cryptoFramework|creatKdf(algName : string) : Kdf|Creates a **Kdf** instance.|
+|Kdf|generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void |Generates a derived key. This API uses an asynchronous callback to return the result.|
+|Kdf|generateSecret(params: KdfSpec): Promise<DataBlob>;|Generates a derived key. This API uses a promise to return the result.|
+
+### How to Develop
+
+1. Construct a parameter object (for example, **PKBDF2Spec**) for the key derivation function.
+2. Use **creatKdf** to create a key derivation function instance.
+3. Pass in key derivation function parameters and generate a key of the specified length.
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+
+function kdfPromise() {
+  let spec: cryptoFramework.PBKDF2Spec = {
+    algName: 'PBKDF2',
+    password: '123456',
+    salt: new Uint8Array(16),
+    iterations: 10000,
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
+  let kdfPromise = kdf.generateSecret(spec);
+  kdfPromise.then((secret) => {
+    console.info("key derivation output is " + secret.data);
+  }).catch((error: BusinessError) => {
+    console.error("key derivation error.");
+  });
+}
+
+function kdfCallback() {
+  let spec: cryptoFramework.PBKDF2Spec = {
+    algName: 'PBKDF2',
+    password: '123456',
+    salt: new Uint8Array(16),
+    iterations: 10000,
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
+  kdf.generateSecret(spec, (err, secret) => {
+    if (err) {
+      console.error("key derivation error.");
+      return;
+    }
+    console.info("key derivation output is " + secret.data);
+  });
 }
 ```

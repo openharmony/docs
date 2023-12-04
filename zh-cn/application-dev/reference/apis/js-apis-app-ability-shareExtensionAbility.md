@@ -95,7 +95,7 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
 
 2. 在ShareExtAbility目录，右键选择“New &gt; TypeScript File”，新建一个TypeScript文件并命名为ShareExtAbility.ts。
 
-    ```
+    ```text
     ├── ets
     │ ├── ShareExtAbility
     │ │   ├── ShareExtAbility.ts
@@ -104,43 +104,48 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
 
 3. ShareExtAbility.ts文件中，增加导入ShareExtensionAbility的依赖包，自定义类继承ShareExtensionAbility并实现生命周期回调。
 
-   ```ts
-   import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
-   const TAG: string = "[ShareExtAbility]";
+  ```ts
+  import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
+  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+  import Want from '@ohos.app.ability.Want';
 
-   export default class ShareExtAbility extends ShareExtensionAbility {
-     onCreate() {
-       console.info(TAG, `onCreate`);
-     }
+  const TAG: string = "[ShareExtAbility]";
 
-     onForeground() {
-       console.info(TAG, `ononForeground`);
-     }
-   
-     onBackground() {
-       console.info(TAG, `onBackground`);
-     }
-   
-     onSessionCreate(want, session) {
-       console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
-       this.message = want.parameters.shareMessages;
-       this.storage = new LocalStorage(
-        {
+  export default class ShareExtAbility extends ShareExtensionAbility {
+    onCreate() {
+      console.info(TAG, `onCreate`);
+    }
+
+    onForeground() {
+      console.info(TAG, `ononForeground`);
+    }
+
+    onBackground() {
+      console.info(TAG, `onBackground`);
+    }
+
+    onSessionCreate(want: Want, session: UIExtensionContentSession) {
+      console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
+      if (want.parameters) {
+        let obj: Record<string, UIExtensionContentSession | object> = {
           'session': session,
-          'messages': this.message
-        });
-       session.loadContent('pages/Index', this.storage);
-     }
+          'messages': want.parameters.shareMessages
+        }
+        let storage: LocalStorage = new LocalStorage(obj);
+        session.loadContent('pages/Index', storage);
+        session.loadContent('pages/Index', storage);
+      }
+    }
 
-     onSessionDestroy(session) {
-       console.info(TAG, `onSessionDestroy`);
-     }
- 
-     onDestroy() {
-       console.info(TAG, `onDestroy`);
-     }
-   }
-   ```
+    onSessionDestroy() {
+      console.info(TAG, `onSessionDestroy`);
+    }
+
+    onDestroy() {
+      console.info(TAG, `onDestroy`);
+    }
+  }
+  ```
 
 4. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册ShareExtensionAbility，type标签需要设置为“share”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
 
