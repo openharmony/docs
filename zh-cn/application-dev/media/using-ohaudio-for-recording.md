@@ -1,4 +1,4 @@
-# 使用OHAudio开发音频录制功能
+# 使用OHAudio开发音频录制功能(C/C++)
 
 OHAudio是OpenHarmony在API version 10中引入的一套全新Naitve API，此API在设计上实现归一，同时支持普通音频通路和低时延通路。
 
