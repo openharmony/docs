@@ -2541,7 +2541,7 @@ try {
 }
 ```
 
-### setWindowSystemBarEnable<sup>11+</sup>
+### setWindowSystemBarEnable<sup>9+</sup>
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
@@ -2636,7 +2636,7 @@ try {
 }
 ```
 
-### setSpecificSystemBarEnabled<sup>9+</sup>
+### setSpecificSystemBarEnabled<sup>11+</sup>
 
 setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean): Promise&lt;void&gt;
 
