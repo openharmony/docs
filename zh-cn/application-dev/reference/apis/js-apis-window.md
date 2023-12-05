@@ -19,6 +19,7 @@ import window from '@ohos.window';
 
 ## WindowType<sup>7+</sup>
 
+
 窗口类型枚举。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -241,16 +242,6 @@ import window from '@ohos.window';
 | isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 是   | 是   | 窗口是否为圆角。默认为false。true表示圆角；false表示非圆角。<br>- **说明：** 从API version 9开始废弃。<br/>- 从 API version 7开始支持。      |
 | isTransparent<sup>7+</sup>            | boolean                   | 是   | 是   | 窗口是否透明。默认为false。true表示透明；false表示不透明。                                                                   |
 | id<sup>9+</sup>                       | number                    | 是   | 否   | 窗口ID，默认值为0，该参数应为整数。                                                                                    |
-
-## SpecificSystemBar
-
-显示隐藏窗口类型。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-| 名称                     | 类型       | 说明                                                                              |
-|------------------------|----------|---------------------------------------------------------------------------------|
-| SpecificSystemBar    | string   | 有以下取值：<br/>-'status'：状态栏。<br>-'navigation'：导航栏。<br>-'navigationIndicator'：AI横条。 |
 
 ## ColorSpace<sup>8+</sup>
 
@@ -1627,6 +1618,18 @@ promise.then((data) => {
   console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
 });
 ```
+
+## SpecificSystemBar<sup>11+</sup>
+
+显示隐藏窗口类型。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称                  | 类型       | 说明                                                                            |
+|---------------------|----------|-------------------------------------------------------------------------------|
+| status              | string   | 状态栏。|
+| navigation          | string   | 导航栏。|
+| navigationIndicator | string   | AI横条。|
 
 ## Window
 
