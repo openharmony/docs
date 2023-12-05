@@ -105,7 +105,7 @@ stop()
 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 ## 示例
-
+### 示例1
 ```ts
 @Entry
 @Component
@@ -144,7 +144,7 @@ struct Second {
 ```
 ![text_clock](figures/text_clock.gif)
 
-## 示例2
+### 示例2
 ``` ts
 @Entry
 @Component

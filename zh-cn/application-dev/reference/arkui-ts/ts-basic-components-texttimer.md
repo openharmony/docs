@@ -65,7 +65,7 @@ reset()
 重置计时器。
 
 ## 示例
-
+### 示例1
 ```ts
 // xxx.ets
 @Entry
@@ -102,7 +102,7 @@ struct TextTimerExample {
 
 ![zh-cn_image_0000001251007721](figures/zh-cn_image_0000001251007721.gif)
 
-## 示例2
+### 示例2
 ``` ts
 @Entry
 @Component

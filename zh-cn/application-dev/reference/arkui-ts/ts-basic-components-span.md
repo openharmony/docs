@@ -50,7 +50,7 @@ Span(value: string | Resource)
 
 
 ## 示例
-
+### 示例1
 ```ts
 // xxx.ets
 @Entry
@@ -127,7 +127,7 @@ struct SpanExample {
 
 ![Span](figures/span.png)
 
-## 示例2
+### 示例2
 ``` ts
 @Entry
 @Component
