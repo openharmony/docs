@@ -185,7 +185,7 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): P
 
 grantPermission(tokenId: number, policies: Array&lt;PolicyInfo>, policyFlag: number): Promise&lt;void&gt;
 
-异步方法对所选择的文件或目录URI临时授权，以promise形式返回结果，该接口仅对特定设备开放。
+异步方法对所选择的多个文件或目录URI临时授权，以promise形式返回结果，该接口仅对特定设备开放。
 
 **需要权限**：ohos.permission.SET_SANDBOX_POLICY
 
@@ -231,10 +231,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 async function grantPermissionExample() {
   try {
     let uri = "file://docs/storage/Users/username/1.txt";
-    let bundleName = 'com.example.myapplication';
-    let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
-    let applicationInfo = await bundleManager.getApplicationInfo(bundleName, appFlags);
-    let tokenId = applicationInfo.accessTokenId;
+    let tokenId = 1000; //tokenId为拉起FilePicker的应用，由FilePicker获取。
     let policyInfo: fileShare.PolicyInfo = {
       uri: uri, 
       operationMode: fileShare.OperationMode.READ_MODE,
@@ -256,7 +253,7 @@ async function grantPermissionExample() {
 
 persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法对所选择的文件或目录URI持久化授权，以promise形式返回结果，该接口仅对特定设备开放。
+异步方法对所选择的多个文件或目录URI持久化授权，以promise形式返回结果，该接口仅对特定设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -325,7 +322,7 @@ async function persistPermissionExample() {
 
 revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
-异步方法对所选择的文件或目录uri取消持久化授权，以promise形式返回结果，该接口仅对特定设备开放。
+异步方法对所选择的多个文件或目录uri取消持久化授权，以promise形式返回结果，该接口仅对特定设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -394,7 +391,7 @@ async function revokePermissionExample() {
 
 activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法使能某个已经永久授权过的文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
+异步方法使能多个已经永久授权过的文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -461,7 +458,7 @@ async function activatePermissionExample() {
 
 deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法取消使能授权过的文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
+异步方法取消使能授权过的多个文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
