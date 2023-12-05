@@ -20,16 +20,39 @@
 ## 装饰器使用示例
   ```ts
   import taskpool from '@ohos.taskpool';
-
-  async function concurrentFunc() {
-    @Concurrent
-    function printLog(): void {
-      console.log("This is printLog");
-    }
-
-    let task: taskpool.Task = new taskpool.Task(printLog);
-    await taskpool.execute(task);
+  
+  @Concurrent
+  function add(num1: number, num2: number): number {
+    return num1 + num2;
   }
-
-  concurrentFunc();
+  
+  async function ConcurrentFunc(): Promise<void> {
+    try {
+      let task: taskpool.Task = new taskpool.Task(add, 1, 2);
+      console.info("taskpool res is: " + await taskpool.execute(task));
+    } catch (e) {
+      console.error("taskpool execute error is: " + e);
+    }
+  }
+  
+  @Entry
+  @Component
+  struct Index {
+    @State message: string = 'Hello World'
+  
+    build() {
+      Row() {
+        Column() {
+          Text(this.message)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
+            .onClick(() => {
+              ConcurrentFunc();
+            })
+        }
+        .width('100%')
+      }
+      .height('100%')
+    }
+  }
   ```
