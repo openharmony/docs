@@ -117,3 +117,4 @@ struct TextTimerExample {
   }
 }
 ```
+![TextshadowExample](figures/text_timer_textshadow.png)

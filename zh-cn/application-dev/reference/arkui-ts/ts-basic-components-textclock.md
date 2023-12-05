@@ -159,3 +159,4 @@ struct TextClockExample {
   }
 }
 ```
+![TextshadowExample](figures/text_clock_textshadow.png)

@@ -1853,3 +1853,5 @@ struct Index {
   }
 }
 ```
+
+![TextshadowExample](figures/rich_editor_textshadow.png)

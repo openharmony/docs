@@ -147,3 +147,4 @@ struct TextSpanExample {
   }
 }
 ```
+![TextshadowExample](figures/text_span_textshadow.png)
