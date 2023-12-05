@@ -270,7 +270,7 @@ import { AsyncCallback } from '@ohos.base';
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 // the data app wanna send, just a example data
 const hexArray =[0x1, 0x2];
-hceService.transmit().then(() =>{
+hceService.transmit(hexArray).then(() =>{
 // handle the transmit promise 
 });
 ```
