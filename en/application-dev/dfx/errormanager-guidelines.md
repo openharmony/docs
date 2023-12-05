@@ -1,6 +1,6 @@
 # Development of Error Manager
 
-## When to Use
+## Overview
 
 If coding specification issues or errors exist in the code of an application, the application may encounter unexpected errors, for example, uncaught exceptions or application lifecycle timeouts, while it is running. In such a case, the application may exit unexpectedly. Error logs, however, are usually stored on users' local storage, making it inconvenient to locate faults. With the APIs provided by the **errorManager** module, your application will be able to report related errors and logs to your service platform for fault locating before it exits.
 
@@ -23,7 +23,7 @@ When an asynchronous callback is used, the return value can be processed directl
 
 | API                        | Description                                                        |
 | ------------------------------ | ------------------------------------------------------------ |
-| onUnhandledException(errMsg: string): void | Called when an application generates an uncaught exception after being registered.|
+| onUnhandledException(errMsg: string): void | Called when an uncaught exception is reported after the application is registered.|
 
 
 ### Result Codes for Unregistering an Observer
