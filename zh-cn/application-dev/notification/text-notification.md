@@ -111,7 +111,7 @@
             title: 'test_title',
             text: 'test_text',
             briefText: 'test_briefText',
-            longTitle: 'test_longTitle',
+            longTitle: 'longTitle',
             lines: ['line_01', 'line_02', 'line_03', 'line_04'],
           }
         }
@@ -135,11 +135,11 @@
       import image from '@ohos.multimedia.image';
 
       let imagePixelMap: image.PixelMap | undefined = undefined; // 需要获取图片PixelMap信息
-      let color = new ArrayBuffer(0);
+      let color = new ArrayBuffer(4);
       image.createPixelMap(color, {
         size: {
-          height: 0,
-          width: 0
+          height: 1,
+          width: 1
         }
       }).then((data: image.PixelMap) => {
         imagePixelMap = data;
