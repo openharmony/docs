@@ -242,6 +242,16 @@ import window from '@ohos.window';
 | isTransparent<sup>7+</sup>            | boolean                   | 是   | 是   | 窗口是否透明。默认为false。true表示透明；false表示不透明。                                                                   |
 | id<sup>9+</sup>                       | number                    | 是   | 否   | 窗口ID，默认值为0，该参数应为整数。                                                                                    |
 
+## SpecificSystemBar
+
+显示隐藏窗口类型。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称                     | 类型       | 说明                                                                              |
+|------------------------|----------|---------------------------------------------------------------------------------|
+| SpecificSystemBar    | string   | 有以下取值：<br/>-'status'：状态栏。<br>-'navigation'：导航栏。<br>-'navigationIndicator'：AI横条。 |
+
 ## ColorSpace<sup>8+</sup>
 
 色域模式。
@@ -1623,16 +1633,6 @@ promise.then((data) => {
 当前窗口实例，窗口管理器管理的基本单元。
 
 下列API示例中都需先使用[getLastWindow()](#windowgetlastwindow9)、[createWindow()](#windowcreatewindow9)、[findWindow()](#windowfindwindow9)中的任一方法获取到Window实例，再通过此实例调用对应方法。
-
-## SpecificSystemBar
-
-显示隐藏窗口类型。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-| 名称                     | 类型       | 说明                                                                              |
-|------------------------|----------|---------------------------------------------------------------------------------|
-| SpecificSystemBar    | string   | 有以下取值：<br/>-'status'：状态栏。<br>-'navigation'：导航栏。<br>-'navigationIndicator'：AI横条。 |
 
 ### hide<sup>7+</sup>
 
