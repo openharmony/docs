@@ -588,7 +588,7 @@ startDeviceManager(token: number, callback: AsyncCallback\<void>): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | token | number | 是 | 注册后的token。 |
-  | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
+  | callback | AsyncCallback\<void> | 是 | 回调函数。当模块选择完成，err为undefined，否则返回错误对象。 |
 
 **示例：**
 
@@ -596,12 +596,12 @@ startDeviceManager(token: number, callback: AsyncCallback\<void>): void
   import continuationManager from '@ohos.continuation.continuationManager';
 
   let token: number = 1;
-  continuationManager.startDeviceManager(token, (err, data) => {
+  continuationManager.startDeviceManager(token, (err) => {
     if (err.code != 0) {
       console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
       return;
     }
-    console.info('startDeviceManager finished, ' + JSON.stringify(data));
+    console.info('startDeviceManager finished. ');
   });
   ```
 
@@ -623,7 +623,7 @@ startDeviceManager(token: number, options: ContinuationExtraParams, callback: As
   | -------- | -------- | -------- | -------- |
   | token | number | 是 | 注册后的token。 |
   | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 是 | 过滤可选择设备列表的额外参数。 |
-  | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
+  | callback | AsyncCallback\<void> | 是 | 回调函数。当模块选择完成，err为undefined，否则返回错误对象。 |
 
 **示例：**
 
@@ -636,12 +636,12 @@ startDeviceManager(token: number, options: ContinuationExtraParams, callback: As
     {
       deviceType: ["00E"]
     },
-    (err, data) => {
+    (err) => {
       if (err.code != 0) {
         console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
         return;
       }
-      console.info('startDeviceManager finished, ' + JSON.stringify(data));
+      console.info('startDeviceManager finished. ');
   });
   ```
 
@@ -681,8 +681,8 @@ startDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<v
     token,
     {
       deviceType: ["00E"]
-    }).then((data) => {
-      console.info('startDeviceManager finished, ' + JSON.stringify(data));
+    }).then(() => {
+      console.info('startDeviceManager finished. ');
     }).catch((err: BusinessError) => {
       console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
   });
@@ -703,7 +703,7 @@ startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): v
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | token | number | 是 | 注册后的token。 |
-  | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
+  | callback | AsyncCallback\<void> | 是 | 回调函数。当模块选择完成，err为undefined，否则返回错误对象。 |
 
 **错误码：**
 
@@ -721,12 +721,12 @@ startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): v
 
   let token: number = -1;
   try {
-    continuationManager.startContinuationDeviceManager(token, (err, data) => {
+    continuationManager.startContinuationDeviceManager(token, (err) => {
       if (err.code != 0) {
         console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
         return;
       }
-      console.info('startContinuationDeviceManager finished, ' + JSON.stringify(data));
+      console.info('startContinuationDeviceManager finished. ');
     });
   } catch (err) {
     console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
@@ -749,7 +749,7 @@ startContinuationDeviceManager(token: number, options: ContinuationExtraParams, 
   | -------- | -------- | -------- | -------- |
   | token | number | 是 | 注册后的token。 |
   | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 是 | 过滤可选择设备列表的额外参数。 |
-  | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
+  | callback | AsyncCallback\<void> | 是 | 回调函数。当模块选择完成，err为undefined，否则返回错误对象。 |
 
 **错误码：**
 
@@ -772,12 +772,12 @@ startContinuationDeviceManager(token: number, options: ContinuationExtraParams, 
       {
         deviceType: ["00E"]
       },
-      (err, data) => {
+      (err) => {
         if (err.code != 0) {
           console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
           return;
         }
-        console.info('startContinuationDeviceManager finished, ' + JSON.stringify(data));
+        console.info('startContinuationDeviceManager finished. ');
     });
   } catch (err) {
     console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
@@ -828,8 +828,8 @@ startContinuationDeviceManager(token: number, options?: ContinuationExtraParams)
       token,
       {
         deviceType: ["00E"]
-      }).then((data) => {
-        console.info('startContinuationDeviceManager finished, ' + JSON.stringify(data));
+      }).then(() => {
+        console.info('startContinuationDeviceManager finished. ');
       }).catch((err: BusinessError) => {
         console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
       });
@@ -857,7 +857,7 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState,
   | token | number | 是 | 注册后的token。 |
   | deviceId | string | 是 | 设备ID。 |
   | status | [DeviceConnectState](#deviceconnectstate) | 是 | 设备连接状态。 |
-  | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
+  | callback | AsyncCallback\<void> | 是 | 回调函数。当通知设备成功，err为undefined，否则返回错误对象。 |
 
 **示例：**
 
@@ -866,12 +866,12 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState,
 
   let token: number = -1;
   let deviceId: string = "test deviceId";
-  continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED, (err, data) => {
+  continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED, (err) => {
     if (err.code != 0) {
       console.error('updateConnectStatus failed, cause: ' + JSON.stringify(err));
       return;
     }
-    console.info('updateConnectStatus finished, ' + JSON.stringify(data));
+    console.info('updateConnectStatus finished. ');
   });
   ```
 
@@ -910,8 +910,8 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState)
   let token: number = 1;
   let deviceId: string = "test deviceId";
   continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED)
-    .then((data) => {
-      console.info('updateConnectStatus finished, ' + JSON.stringify(data));
+    .then(() => {
+      console.info('updateConnectStatus finished. ');
     })
     .catch((err: BusinessError) => {
       console.error('updateConnectStatus failed, cause: ' + JSON.stringify(err));
@@ -935,7 +935,7 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
   | token | number | 是 | 注册后的token。 |
   | deviceId | string | 是 | 设备ID。 |
   | status | [DeviceConnectState](#deviceconnectstate) | 是 | 设备连接状态。 |
-  | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
+  | callback | AsyncCallback\<void> | 是 | 回调函数。当通知设备成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
 
@@ -954,12 +954,12 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
   let token: number = 1;
   let deviceId: string = "test deviceId";
   try {
-    continuationManager.updateContinuationState(token, deviceId, continuationManager.DeviceConnectState.CONNECTED, (err, data) => {
+    continuationManager.updateContinuationState(token, deviceId, continuationManager.DeviceConnectState.CONNECTED, (err) => {
       if (err.code != 0) {
         console.error('updateContinuationState failed, cause: ' + JSON.stringify(err));
         return;
       }
-      console.info('updateContinuationState finished, ' + JSON.stringify(data));
+      console.info('updateContinuationState finished. ');
     });
   } catch (err) {
     console.error('updateContinuationState failed, cause: ' + JSON.stringify(err));
@@ -1009,8 +1009,8 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
   let deviceId: string = "test deviceId";
   try {
     continuationManager.updateContinuationState(token, deviceId, continuationManager.DeviceConnectState.CONNECTED)
-      .then((data) => {
-        console.info('updateContinuationState finished, ' + JSON.stringify(data));
+      .then(() => {
+        console.info('updateContinuationState finished. ');
       })
       .catch((err: BusinessError) => {
         console.error('updateContinuationState failed, cause: ' + JSON.stringify(err));
@@ -1038,7 +1038,7 @@ unregister(token: number, callback: AsyncCallback\<void>): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | token | number | 是 | 注册后的token。 |
-  | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
+  | callback | AsyncCallback\<void> | 是 | 回调函数。当解注册成功，err为undefined，否则返回错误对象。 |
 
 **示例：**
 
@@ -1046,12 +1046,12 @@ unregister(token: number, callback: AsyncCallback\<void>): void
   import continuationManager from '@ohos.continuation.continuationManager';
 
   let token: number = 1;
-  continuationManager.unregister(token, (err, data) => {
+  continuationManager.unregister(token, (err) => {
     if (err.code != 0) {
       console.error('unregister failed, cause: ' + JSON.stringify(err));
       return;
     }
-    console.info('unregister finished, ' + JSON.stringify(data));
+    console.info('unregister finished. ');
   });
   ```
 
@@ -1087,8 +1087,8 @@ unregister(token: number): Promise\<void>
 
   let token: number = 1;
   continuationManager.unregister(token)
-    .then((data) => {
-      console.info('unregister finished, ' + JSON.stringify(data));
+    .then(() => {
+      console.info('unregister finished. ');
     }).catch((err: BusinessError) => {
       console.error('unregister failed, cause: ' + JSON.stringify(err));
   });
@@ -1109,7 +1109,7 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | token | number | 是 | 注册后的token。 |
-  | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
+  | callback | AsyncCallback\<void> | 是 | 回调函数。当解注册成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
 
@@ -1128,7 +1128,7 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void
 
   let token: number = 1;
   try {
-    continuationManager.unregisterContinuation(token, (err, data) => {
+    continuationManager.unregisterContinuation(token, (err) => {
       if (err.code != 0) {
         console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
         return;
