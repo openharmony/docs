@@ -59,7 +59,6 @@
           }
         }
       };
-      
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
@@ -88,7 +87,6 @@
           }
         }
       };
-      
       // 发布通知
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
@@ -112,12 +110,11 @@
             title: 'test_title',
             text: 'test_text',
             briefText: 'test_briefText',
-            longTitle: 'test_longTitle',
+            longTitle: 'longTitle',
             lines: ['line_01', 'line_02', 'line_03', 'line_04'],
           }
         }
       };
-      
       // 发布通知
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
@@ -136,18 +133,17 @@
       import image from '@ohos.multimedia.image';
 
       let imagePixelMap: image.PixelMap | undefined = undefined; // 需要获取图片PixelMap信息
-      let color = new ArrayBuffer(0);
+      let color = new ArrayBuffer(4);
       image.createPixelMap(color, {
         size: {
-          height: 0,
-          width: 0
+          height: 1,
+          width: 1
         }
       }).then((data: image.PixelMap) => {
         imagePixelMap = data;
       }).catch((err: Base.BusinessError) => {
         console.log(`createPixelMap failed, error: ${err}`);
       })
-      
       if (imagePixelMap !== undefined) {
         let notificationRequest: notificationManager.NotificationRequest = {
           id: 1,
@@ -163,7 +159,6 @@
             }
           }
         };
-
         // 发布通知
         notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
           if (err) {
@@ -181,94 +176,97 @@
      
       ```ts
       import image from '@ohos.multimedia.image';
+      import notificationSubscribe from '@ohos.notificationSubscribe';
 
       let imagePixelMap: image.PixelMap | undefined = undefined; // 需要获取图片PixelMap信息
-      let color = new ArrayBuffer(0);
+      let color = new ArrayBuffer(4);
       image.createPixelMap(color, {
         size: {
-          height: 0,
-          width: 0
+          height: 1,
+          width: 1
         }
       }).then((data: image.PixelMap) => {
         imagePixelMap = data;
       }).catch((err: Base.BusinessError) => {
         console.log(`createPixelMap failed, error: ${err}`);
       })
-      let notificationRequest: notificationManager.NotificationRequest = {
-        slotType: LIVE_VIEW, // 实况窗类型
-        id: 0, // 通知id，默认为0
-        content: {
-          notificationContentType : notificationManager.ContentType.NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW,
-          systemLiveView: {
-            title: "test_title",
-            text:"test_text",
-            typeCode: 1, // 调用方的类型
-            // 按钮
-            button: {
-              names: ["buttonName1"],
-              icons: [imagePixelMap],
-            },
-            // 胶囊
-            capsule: {
-              title: "testTitle",
-              icon: imagePixelMap,
-              backgroundColor: "testColor",
-            },
-            // 进度，更新进度时，只需修改progress，重复publish即可
-            progress: {
-              maxValue: 100,
-              currentValue: 21,
-              isPercentage: false,
-            },
-            // 时间
-            time: {
-              initialTime: 12,
-              isCountDown: true,
-              isPaused: true,
-              isInTitle: false,
+      if(imagePixelMap !== undefined) {
+        let notificationRequest: notificationManager.NotificationRequest = {
+          notificationSlotType: notificationManager.SlotType.LIVE_VIEW, // 实况窗类型
+          id: 0, // 通知id，默认为0
+          content: {
+            notificationContentType : notificationManager.ContentType.NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW,
+            systemLiveView: {
+              title: "test_title",
+              text:"test_text",
+              typeCode: 1, // 调用方的类型
+              // 按钮
+              button: {
+                names: ["buttonName1"],
+                icons: [imagePixelMap],
+              },
+              // 胶囊
+              capsule: {
+                title: "testTitle",
+                icon: imagePixelMap,
+                backgroundColor: "testColor",
+              },
+              // 进度，更新进度时，只需修改progress，重复publish即可
+              progress: {
+                maxValue: 100,
+                currentValue: 21,
+                isPercentage: false,
+              },
+              // 时间
+              time: {
+                initialTime: 12,
+                isCountDown: true,
+                isPaused: true,
+                isInTitle: false,
+              }
             }
           }
+        };
+        // subscribe回调
+        let subscribeCallback = (err: Base.BusinessError): void => {
+          if (err) {
+            console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+          } else {
+            console.info("subscribe success");
+          }
+        };
+        // publish回调
+        let publishCallback = (err: Base.BusinessError): void => {
+          if (err) {
+            console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+          } else {
+            console.info("publish success");
+          }
+        };
+        // 按钮回调(用户点击按钮，会返回这个回调，业务自己决定如何处理)
+        let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
+          console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
         }
-      };
-      // publish回调
-      let publishCallback = (err: Base.BusinessError): void => {
-        if (err) {
-          console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
-        } else {
-          console.info("publish success");
+        let SystemLiveViewSubscriber: notificationManager.SystemLiveViewSubscriber  = {
+          onResponse: onResponseCallback
+        };
+        // subscriber取消通知回调
+        let onCancelCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
+          console.info("Cancel callback: " + JSON.stringify(data));
         }
-      };
-      // 按钮回调(用户点击按钮，会返回这个回调，业务自己决定如何处理)
-      let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
-        console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
+        let NotificationSubscriber: notificationSubscribe.NotificationSubscriber = {
+          onCancel: onCancelCallback
+        };
+        let info: notificationSubscribe.NotificationSubscribeInfo = {
+          bundleNames: ["bundleName1"],
+          userId: 123
+        };
+        // 订阅通知，此接口为系统接口，三方应用不支持调用。
+        notificationSubscribe.subscribe(NotificationSubscriber, info, subscribeCallback);
+        // 订阅系统实况窗(按钮)，此接口为系统接口，三方应用不支持调用。
+        notificationManager.subscribeSystemLiveView(SystemLiveViewSubscriber);
+        // 发布通知
+        notificationManager.publish(notificationRequest, publishCallback);
       }
-      let subscriber: notificationManager.SystemLiveViewSubscriber  = {
-        onResponse: onResponseCallback
-      };
-      // subscriber回调
-      let subscriber = (err: Base.BusinessError): void => {
-        if (err) {
-         console.error(`subscriber failed, code is ${err.code}, message is ${err.message}`);
-        } else {
-         console.info("subscriber success");
-        }
-      };
-      // subscriber取消通知回调
-      let onCancelCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
-        console.info("Cancel callback: " + JSON.stringify(data));
-      }
-      let subscriber: notificationSubscribe.NotificationSubscriber = {
-        onCancel: onCancelCallback
-      };
-      let info: notificationSubscribe.NotificationSubscribeInfo = {
-        bundleNames: ["bundleName1"],
-        userId: 123
-      };
-      // 订阅通知，此接口为系统接口，三方应用不支持调用。
-      notificationSubscribe.subscribe(subscriber, info, subscribeCallback);
-      // 订阅系统实况窗(按钮)，此接口为系统接口，三方应用不支持调用。
-      notificationManager.subscribeSystemLiveView(subscriber);
-      // 发布通知
-      notificationManager.publish(notificationRequest, publishCallback);
       ```
 
