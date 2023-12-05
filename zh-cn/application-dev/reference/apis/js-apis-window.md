@@ -3742,6 +3742,78 @@ try {
 }
 ```
 
+### on('windowVisibilityChange')<sup>11+</sup>
+
+on(type: 'windowVisibilityChange', callback: Callback&lt;boolean&gt;): void
+
+开启本窗口可见状态变化事件的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                                         |
+| -------- | --------------------------| ---- | ------------------------------------------------------------ |
+| type     | string                    | 是   | 监听事件，固定为'windowVisibilityChange'，即本窗口可见状态变化的事件。 |
+| callback | Callback&lt;boolean&gt;   | 是   | 回调函数。当本窗口可见状态发生变化后的回调。回调函数返回boolean类型参数，当返回参数为true时表示窗口可见，否则表示窗口不可见。                               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.on('windowVisibilityChange', (boolean) => {
+    console.info('Window visibility changed, isVisible=' + boolean);
+  });
+} catch (exception) {
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('windowVisibilityChange')<sup>11+</sup>
+
+off(type: 'windowVisibilityChange', callback?: Callback&lt;boolean&gt;): void
+
+关闭本窗口可见状态变化事件的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                   |
+| -------- |----------------------------| ---- |--------------------------------------|
+| type     | string                     | 是   | 监听事件，固定为'windowVisibilityChange'，即本窗口可见状态变化的事件。 |
+| callback | Callback&lt;boolean&gt;    | 否   | 回调函数。当本窗口可见状态发生变化时的回调。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有本窗口可见状态变化事件的回调。            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.off('windowVisibilityChange');
+} catch (exception) {
+  console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### bindDialogTarget<sup>9+</sup>
 
 bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, callback: AsyncCallback&lt;void&gt;): void
