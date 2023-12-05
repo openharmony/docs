@@ -2541,7 +2541,7 @@ try {
 }
 ```
 
-### setWindowSystemBarEnable<sup>9+</sup>
+### setWindowSystemBarEnable<sup>11+</sup>
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
@@ -2580,6 +2580,101 @@ let names: Array<'status' | 'navigation'> = [];
 try {
   let windowClass: window.Window = window.findWindow("test");
   let promise = windowClass.setWindowSystemBarEnable(names);
+  promise.then(() => {
+    console.info('Succeeded in setting the system bar to be invisible.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
+}
+```
+
+### setSpecificSystemBarEnabled<sup>11+</sup>
+
+setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置窗口全屏模式时导航栏、状态栏、AI横条的显示和隐藏模式，使用callback异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | ---------------------------- | -- | --------- |
+| name     | SpecificSystemBar | 是 | 设置窗口全屏模式时状态栏和导航栏和AI横条 |
+| enable  | boolean | 是 | 设置窗口全屏模式时,指定'true'默认显示 'false'则默认不显示|
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+// 此处以不显示AI横条为例
+import { BusinessError } from '@ohos.base';
+
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.setSpecificSystemBarEnabled(navigationIndicator, false, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the system bar to be invisible.');
+  });
+} catch (exception) {
+  console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
+}
+```
+
+### setSpecificSystemBarEnabled<sup>9+</sup>
+
+setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean): Promise&lt;void&gt;
+
+设置窗口全屏模式时导航栏、状态栏、AI横条的显示和隐藏，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型  | 必填 | 说明 |
+| ----- | ---------------------------- | -- | --------------------------------- |
+| name  | [SpecificSystemBar](#SpecificSystemBar) | 是 | 设置窗口全屏模式时状态栏和导航栏和AI横条 |
+| enable  | boolean | 是 | 设置窗口全屏模式时,指定'true'默认显示 'false'则默认不显示|
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+// 此处以不显示AI横条为例
+import { BusinessError } from '@ohos.base';
+
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  let promise = windowClass.setSpecificSystemBarEnabled(navigationIndicator,false);
   promise.then(() => {
     console.info('Succeeded in setting the system bar to be invisible.');
   }).catch((err: BusinessError) => {
