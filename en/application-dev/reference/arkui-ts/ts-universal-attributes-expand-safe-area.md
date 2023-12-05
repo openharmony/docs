@@ -1,10 +1,12 @@
 # Safe Area
 
-You can expand a component's safe area through the **expandSafeArea** attribute and specify how to avoid the virtual keyboard through the **setKeyboardAvoidMode** attribute.
+A safe area refers to the display area that isn't covered by a status bar, navigation bar, or other components that the system includes in its non-safe-area. By default, all the content you develop is placed in the safe area. If necessary, you can expand a component's safe area through the **expandSafeArea** attribute and specify how to avoid the virtual keyboard through the **setKeyboardAvoidMode** attribute.
 
 > **NOTE**
 >
 > This attribute is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> To create an immersive experience, the **expandSafeArea** attribute is set to **(type:[SafeAreaType.SYSTEM,], edges:[SafeAreaEdge.BOTTOM])** by default for the **\<Tabs>** and **\<Navigation>** components.
 
 ## Attributes
 
