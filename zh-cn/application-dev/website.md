@@ -366,6 +366,29 @@
             - [动画动效](ui/ui-js-animate-dynamic-effects.md)
             - [动画帧](ui/ui-js-animate-frame.md)
       - [自定义组件](ui/ui-js-custom-components.md)
+  - Ark语言基础类库
+    - [ArkTS语言基础类库概述](arkts-utils/arkts-commonlibrary-overview.md)
+    - 并发
+      - [并发概述](arkts-utils/concurrency-overview.md)
+      - 使用异步并发能力进行开发
+        - [异步并发概述](arkts-utils/async-concurrency-overview.md)
+        - [单次I/O任务开发指导](arkts-utils/single-io-development.md)
+      - 使用多线程并发能力进行开发
+        - [多线程并发概述](arkts-utils/multi-thread-concurrency-overview.md)
+        - [TaskPool和Worker的对比](arkts-utils/taskpool-vs-worker.md)
+        - [\@Concurrent装饰器：校验并发函数](arkts-utils/arkts-concurrent.md)
+        - [CPU密集型任务开发指导](arkts-utils/cpu-intensive-task-development.md)
+        - [I/O密集型任务开发指导](arkts-utils/io-intensive-task-development.md)
+        - [同步任务开发指导](arkts-utils/sync-task-development.md)
+    - 容器类库
+      - [容器类库概述](arkts-utils/container-overview.md)
+      - [线性容器](arkts-utils/linear-container.md)
+      - [非线性容器](arkts-utils/nonlinear-container.md)
+    - XML生成、解析与转换
+      - [XML概述](arkts-utils/xml-overview.md)
+      - [XML生成](arkts-utils/xml-generation.md)
+      - [XML解析](arkts-utils/xml-parsing.md)
+      - [XML转换](arkts-utils/xml-conversion.md)
   - Web
     - [Web组件概述](web/web-component-overview.md)
     - [使用Web组件加载页面](web/web-page-loading-with-web-components.md)
