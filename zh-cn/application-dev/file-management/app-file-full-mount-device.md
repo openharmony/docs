@@ -8,11 +8,11 @@
 
 **表1** 获取用户目录环境能力接口
 
-| 接口名                  | 功能           | 接口类型 | 支持同步 | 支持异步 | 
-|----------------------|--------------| -------- | -------- |------|
-| getUserDownloadDir   | 获取当前用户预授权下载目录路径 | 方法 | √ | -    | 
-| getUserDesktopDir    | 获取当前用户预授权桌面目录路径 | 方法 | √ | -    |
-| getUserDocumentDir   | 获取当前用户预授权文档目录路径 | 方法 | √ | -    |
+| 接口名                  | 功能          | 接口类型 | 支持同步 | 支持异步 | 
+|----------------------|-------------| -------- | -------- |------|
+| getUserDownloadDir   | 获取预授权下载目录路径 | 方法 | √ | -    | 
+| getUserDesktopDir    | 获取预授权桌面目录路径 | 方法 | √ | -    |
+| getUserDocumentDir   | 获取预授权文档目录路径 | 方法 | √ | -    |
 | getUserHomeDir       | 获取当前用户下应用沙箱路径的内卡目录 | 方法 | √ | -    | 
 | getExternalStorageDir | 获取外卡目录    | 方法 | √ | -    | 
 
@@ -69,10 +69,10 @@ async function getUserDownloadDirExample() {
 
 应用拉起FilePicker应用，通过FilePicker应用选择并使能目录的临时访问权限，以下示例代码演示了FilePicker开发者如何使能临时访问权限：
 
-第一步：通过FilePicker选择和保存目录uri。
+第一步：通过FilePicker选择和保存路径uri。
 
 第二步：FilePicker对目录设置临时访问权限。
-参数uri为FilePicker应用获取的选择路径，tokenId为拉起FilePicker应用的tokenId，由FilePicker获取。
+参数uri为FilePicker获取的选择路径，tokenId为拉起FilePicker应用的tokenId，由FilePicker获取。
 
 ```ts
 import { BusinessError } from '@ohos.base';
@@ -104,7 +104,7 @@ async function grantPermissionExample01() {
 
 应用如果需要对选择的路径获取永久授权，需要自己进行持久化授权。
 
-第一步：应该调用picker的select接口，通过FilePicker选择和保存路径URIs。以下示例代码演示了获取URI过程：
+第一步：应该调用picker的select接口，通过FilePicker选择和保存路径URI。以下示例代码演示了获取文件夹URI的过程：
 
 ```ts
 import { BusinessError } from '@ohos.base';
@@ -154,7 +154,7 @@ async function persistPermissionExample() {
 }
 ```
 
-第三步：应用按需对持久化授权后的路径取消授权，参数uri为第一步通过FilePicker应用选择的路径。以下示例代码演示了去除持久化授权URI的过程：
+第三步：应用按需对持久化授权后的路径取消授权，参数URI为第一步通过FilePicker选择的路径。以下示例代码演示了去除持久化授权URI的过程：
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
@@ -185,9 +185,9 @@ async function revokePermissionExample() {
 }
 ```
 
-第四步：应用支持的持久化能力需要在重启后提前使能保存的持久化授权后URI，使能权限的接口与永久权限的接口配套使用。
+第四步：应用支持的持久化能力需要在重启时使能已经持久化授权URI，持久化授权的接口需要与使能持久化权限的接口配套使用。
 
-以下示例代码演示了应用重启时提前使能持久化授权后URI的过程，其中参数URI为应用重启后读取的最近使用文件：
+以下示例代码演示了应用重启时使能持久化授权的URI，其中参数URI为应用重启后读取的最近使用文件：
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
@@ -215,7 +215,7 @@ async function activatePermissionExample01() {
 }
 ```
 
-第五步：应用可以按需取消使能的永久权限能力，参数uri为应用重启后读取的最近使用文件。以下示例代码演示了取消使能的永久权限过程：
+第五步：应用可以按需取消使能的持久化权限能力，参数URI为应用重启后读取的最近使用文件。以下示例代码演示了取消使能持久化权限的过程：
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
@@ -243,9 +243,9 @@ async function deactivatePermissionExample01() {
 }
 ```
 
-### 文件管理器通过接口获取文件父目录
+### 【文件管理器】通过接口获取文件父目录
 
-如果当前FileUri指向文件，将返回文件所在路径URI,如果当前FileUri指向目录，将返回当前路径URI。
+如果当前FileUri指向文件，将返回文件所在路径URI，如果当前FileUri指向目录，将返回当前路径URI。
 以下示例代码演示了文件管理器通过接口获取文件父目录：
 ```ts
 import { BusinessError } from '@ohos.base';
@@ -263,7 +263,7 @@ function getFullDirectoryUriExample01() {
 }
 ```
 
-### 文件管理器通过接口获取公共目录、外卡目录
+### 【文件管理器】通过接口获取公共目录、外卡目录
 
 以下示例代码演示了文件管理器通过接口获取公共目录、外卡目录：
 ```ts
