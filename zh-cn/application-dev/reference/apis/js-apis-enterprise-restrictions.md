@@ -500,9 +500,9 @@ try {
 }
 ```
 
-## restrictions.disallowFingerprintAuth<sup>11+</sup>
+## restrictions.disableFingerprintAuth<sup>11+</sup>
 
-disallowFingerprintAuth(admin: Want, isDisallowed: boolean): void
+disableFingerprintAuth(admin: Want, disable: boolean): void
 
 指定设备管理应用使指纹禁用或启用。
 
@@ -517,7 +517,7 @@ disallowFingerprintAuth(admin: Want, isDisallowed: boolean): void
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| isDisallowed  | boolean | 是 | true表示禁止使用指纹，false表示允许使用指纹。 |
+| disable  | boolean | 是 | true表示禁止使用指纹，false表示允许使用指纹。 |
 
 **错误码**：
 
@@ -537,12 +537,12 @@ let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-restrictions.disallowFingerprintAuth(wantTemp, true);
+restrictions.disableFingerprintAuth(wantTemp, true);
 ```
 
-## restrictions.isFingerprintAuthDisallowed<sup>11+</sup>
+## restrictions.isFingerprintAuthDisabled<sup>11+</sup>
 
-isFingerprintAuthDisallowed(admin: Want): boolean
+isFingerprintAuthDisabled(admin: Want): boolean
 
 指定设备管理应用查询指纹是否被禁用。
 
@@ -582,6 +582,6 @@ let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let result:boolean = restrictions.isFingerprintAuthDisallowed(wantTemp);
+let result: boolean = restrictions.isFingerprintAuthDisabled(wantTemp);
 console.info(`FingerprintAuth disabled : ${result}`);
 ```
