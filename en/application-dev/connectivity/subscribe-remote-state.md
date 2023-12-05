@@ -7,7 +7,7 @@ IPC/RPC allows you to subscribe to the state changes of a remote stub object. Wh
 This subscription mechanism is applicable when the local proxy object needs to detect death of the process hosting the remote stub object or network detach of the device hosting the remote stub object. When the proxy detects death of the remote stub object, the proxy can clear local resources. Currently, IPC supports death notification for anonymous objects, but RPC does not. That is, you can only subscribe to death notifications of services that have been registered with SAMgr.
 
 
-## **Development Using Native APIs**
+## Native APIs
 
 | Name| Return Value Type| Description|
 | -------- | -------- | -------- |
@@ -80,7 +80,7 @@ bool result = object->AddDeathRecipient(deathRecipient); // Add a recipient for 
 result = object->RemoveDeathRecipient(deathRecipient); // Remove the recipient for death notifications.
 ```
 
-## **Development Using JS APIs**
+## ArkTS APIs
 
 | Name                                                      | Return Value Type| Description                                                    |
 | ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ |
