@@ -5253,6 +5253,7 @@ aVCastController.off('error')
 | nextAssetId     | string                  | 否   | 下一首媒体ID。                                                            |
 | filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype10)。                   |
 | skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | 否   | 快进快退支持的时间间隔，默认为SECONDS_15，即15秒。                            |
+| displayTags<sup>11+</sup>     | [DisplayTag](#displaytag11)                           | 否   | 媒体资源的金标类型。|
 
 ## AVMediaDescription<sup>10+</sup>
 
@@ -5325,6 +5326,16 @@ aVCastController.off('error')
 | ----------- | ------ | ---- | ------------------ |
 | elapsedTime | number | 是   | 已用时间，单位毫秒（ms）。 |
 | updateTime  | number | 是   | 更新时间，单位毫秒（ms）。 |
+
+## DisplayTag<sup>11+</sup>
+
+枚举，表示当前媒体资源的金标，即应用媒体音源的特殊类型标识。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+| 名称                        | 值   | 说明           |
+| --------------------------  | ---- | ------------ |
+| TAG_AUDIO_VIVID             | 1    | AUDIO VIVID  |
 
 ## AVCastCategory<sup>10+</sup>
 
