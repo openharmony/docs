@@ -206,9 +206,12 @@ on(type: "hceCmd", callback: AsyncCallback<number[]>): void;
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';
 import { AsyncCallback } from '@ohos.base';
+
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
-const apduCallback: AsyncCallback<number[]> = (err, data) =>{
-   //handle the data and err
+
+const apduCallback: AsyncCallback<number[]> = (err, data) => {
+  //handle the data and err
+  console.log("got apdu data");
 };
 hceService.on('hceCmd', apduCallback);
 ```
@@ -267,11 +270,16 @@ transmit(response: number[]): Promise\<void>;
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';
 import { AsyncCallback } from '@ohos.base';
+
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
+
 // the data app wanna send, just a example data
-const hexArray =[0x1, 0x2];
-hceService.transmit(hexArray).then(() =>{
-// handle the transmit promise 
+const responseData = [0x1, 0x2];
+hceService.transmit(responseData).then(() => {
+  // handle the transmit promise
+  console.log("send data.");
+}).catch((err: BusinessError) => {
+  console.log("send data error:", err);
 });
 ```
 
