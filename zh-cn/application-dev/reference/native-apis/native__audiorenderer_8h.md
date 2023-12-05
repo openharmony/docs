@@ -3,7 +3,7 @@
 
 ## 概述
 
-声明输出类型的输出音频流相关接口。
+声明输出类型的音频流相关接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
