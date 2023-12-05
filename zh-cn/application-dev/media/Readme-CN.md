@@ -6,7 +6,8 @@
   - [AVPlayer和AVRecorder](avplayer-avrecorder-overview.md)
   - 音频播放
     - [音频播放开发概述](audio-playback-overview.md)
-    - [使用AVPlayer开发音频播放功能](using-avplayer-for-playback.md)
+    - [使用AVPlayer开发音频播放功能(ArkTS)](using-avplayer-for-playback.md)
+    - [使用AVPlayer开发音频播放功能(C/C++)](using-ndk-avplayer-for-playerback.md)
     - [使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)
     - [使用OpenSL ES开发音频播放功能](using-opensl-es-for-playback.md)
     - [使用TonePlayer开发音频播放功能（仅对系统应用开放）](using-toneplayer-for-playback.md)
