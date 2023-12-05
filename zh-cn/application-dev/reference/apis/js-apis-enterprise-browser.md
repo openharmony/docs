@@ -55,7 +55,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let appId: string = 'com.example.myapplication';
-let policies: string = '{"InsecurePrivateNetworkRequestsAllowed":{"level":"mandatory","scope":"machine","source":"platform","value":true},"LegacySameSiteCookieBehaviorEnabledForDomainList":{"level":"mandatory","scope":"machine","source":"platform","value":["[*.]"]}}'
+let policies: string = '{"InsecurePrivateNetworkRequestsAllowed":{"level":"mandatory","scope":"machine","source":"platform","value":true},"LegacySameSiteCookieBehaviorEnabledForDomainList":{"level":"mandatory","scope":"machine","source":"platform","value":["[*.]"]}}';
 browser.setPolicies(wantTemp, appId, policies, (err) => {
   if (err) {
     console.error(`Failed to set browser policies. Code is ${err.code}, message is ${err.message}`);
@@ -110,7 +110,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let appId: string = 'com.example.myapplication';
-let policies: string = '{"InsecurePrivateNetworkRequestsAllowed":{"level":"mandatory","scope":"machine","source":"platform","value":true},"LegacySameSiteCookieBehaviorEnabledForDomainList":{"level":"mandatory","scope":"machine","source":"platform","value":["[*.]"]}}'
+let policies: string = '{"InsecurePrivateNetworkRequestsAllowed":{"level":"mandatory","scope":"machine","source":"platform","value":true},"LegacySameSiteCookieBehaviorEnabledForDomainList":{"level":"mandatory","scope":"machine","source":"platform","value":["[*.]"]}}';
 browser.setPolicies(wantTemp, appId, policies).then(() => {
   console.info('Succeeded in setting browser policies');
 }).catch((err: BusinessError) => {

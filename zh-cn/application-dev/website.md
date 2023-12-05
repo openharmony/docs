@@ -161,8 +161,7 @@
         - [后台服务](application-models/background-services.md)
       - 了解线程模型
         - [线程模型概述](application-models/thread-model-stage.md)
-        - [使用Emitter进行线程间通信](application-models/itc-with-emitter.md)
-        - [使用Worker进行线程间通信](application-models/itc-with-worker.md)
+        - [使用EventHub进行线程间通信](application-models/itc-with-eventHub.md)
       - 任务（Mission）管理
         - [任务（Mission）管理场景介绍](application-models/mission-management-overview.md)
         - [任务（Mission）与启动模式](application-models/mission-management-launch-type.md)
@@ -201,7 +200,7 @@
           - [启动DataAbility](application-models/start-dataability.md)
           - [访问DataAbility](application-models/access-dataability.md)
           - [DataAbility权限控制](application-models/dataability-permission-control.md)
-        - [服务卡片开发指导](application-models/widget-development-fa.md)
+        - [服务卡片开发指导（FA模型）](application-models/widget-development-fa.md)
         - [FA模型的Context](application-models/application-context-fa.md)
         - [信息传递载体Want](application-models/want-fa.md)
         - [组件启动规则（FA模型）](application-models/component-startup-rules-fa.md)
@@ -211,7 +210,7 @@
         - [后台服务](application-models/rpc.md)
       - 了解线程模型
         - [线程模型概述](application-models/thread-model-fa.md)
-        - [线程间通信](application-models/itc-fa-overview.md)
+        - [使用Emitter进行线程间通信](application-models/itc-with-emitter.md)
       - [任务管理](application-models/mission-management-fa.md)
       - [FA模型应用配置文件](application-models/config-file-fa.md)
     - FA模型与Stage模型应用组件互通指导

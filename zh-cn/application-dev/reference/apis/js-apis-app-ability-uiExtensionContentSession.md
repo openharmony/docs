@@ -712,4 +712,5 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
+<<<<<<< weekly_20231114
 错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
