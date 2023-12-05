@@ -8317,6 +8317,18 @@ WindowStage生命周期。
 | RESUMED<sup>11+</sup> | 5      | 前台可交互状态。前台应用进入多任务为不可交互状态，继续返回前台时恢复可交互状态。 |
 | PAUSED<sup>11+</sup>  | 6      | 前台不可交互状态。前台应用进入多任务为不可交互状态，继续返回前台时恢复可交互状态。 |
 
+## SubWindowOptions<sup>11+</sup>
+
+子窗口创建参数。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称      | 类型  | 可读 | 可写 | 说明         |
+| ---------- | ---- | ---- | ---- | ----------- |
+| title    | string | 否 | 是 | 子窗口标题。       |
+| decorEnabled | boolean | 否 | 是 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
+
+
 ## WindowStage<sup>9+</sup>
 
 窗口管理器。管理各个基本窗口单元，即[Window](#window)实例。
@@ -8588,7 +8600,69 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+### createSubWindowWithOptions<sup>11+</sup>
 
+createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
+
+创建该WindowStage实例下的子窗口，使用Promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| name   | string | 是   | 子窗口的名字。 |
+| options  | [SubWindowOptions](#subwindowoptions11) | 是   | 子窗口参数。  |
+
+**返回值：**
+
+| 类型                             | 说明                                             |
+| -------------------------------- | ------------------------------------------------ |
+| Promise&lt;[Window](#window)&gt; | Promise对象。返回当前WindowStage下创建的子窗口对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300005 | This window stage is abnormal. |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      let options : window.SubWindowOptions = {
+        title: 'title',
+        decorEnabled: true
+      };
+      let promise = windowStage.createSubWindowWithOptions('mySubWindow', options);
+      promise.then((data) => {
+        windowClass = data;
+        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+      }).catch((err: BusinessError) => {
+        console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
+      });
+    } catch (exception) {
+      console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
+    }
+  }
+};
+```
 ### getSubWindow<sup>9+</sup>
 
 getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
