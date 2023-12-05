@@ -247,14 +247,14 @@
         let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
           console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
         }
-        let SystemLiveViewSubscriber: notificationManager.SystemLiveViewSubscriber  = {
+        let systemLiveViewSubscriber: notificationManager.SystemLiveViewSubscriber  = {
           onResponse: onResponseCallback
         };
         // subscriber取消通知回调
         let onCancelCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
           console.info("Cancel callback: " + JSON.stringify(data));
         }
-        let NotificationSubscriber: notificationSubscribe.NotificationSubscriber = {
+        let notificationSubscriber: notificationSubscribe.NotificationSubscriber = {
           onCancel: onCancelCallback
         };
         let info: notificationSubscribe.NotificationSubscribeInfo = {
@@ -262,9 +262,9 @@
           userId: 123
         };
         // 订阅通知，此接口为系统接口，三方应用不支持调用。
-        notificationSubscribe.subscribe(NotificationSubscriber, info, subscribeCallback);
+        notificationSubscribe.subscribe(notificationSubscriber, info, subscribeCallback);
         // 订阅系统实况窗(按钮)，此接口为系统接口，三方应用不支持调用。
-        notificationManager.subscribeSystemLiveView(SystemLiveViewSubscriber);
+        notificationManager.subscribeSystemLiveView(systemLiveViewSubscriber);
         // 发布通知
         notificationManager.publish(notificationRequest, publishCallback);
       }
