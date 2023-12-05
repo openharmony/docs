@@ -2615,7 +2615,7 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, callback: 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | ---------------------------- | -- | --------- |
-| name     | SpecificSystemBar | 是 | 设置窗口全屏模式时状态栏、导航栏或AI横条的显示和隐藏  |
+| name     | [SpecificSystemBar](#specificsystembar-sup-11-sup) | 是 | 设置窗口全屏模式时状态栏、导航栏或AI横条的显示和隐藏  |
 | enable  | boolean | 是 | 设置窗口全屏模式时状态栏、导航栏或AI横条的显示和隐藏，'true'默认显示 'false'则默认不显示|
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
@@ -2661,7 +2661,7 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean): Promise&l
 
 | 参数名 | 类型  | 必填 | 说明 |
 | ----- | ---------------------------- | -- | --------------------------------- |
-| name  | [SpecificSystemBar](#SpecificSystemBar) | 是 | 设置窗口全屏模式时状态栏、导航栏或AI横条的显示和隐藏 |
+| name  | [SpecificSystemBar](#specificsystembar-sup-11-sup) | 是 | 设置窗口全屏模式时状态栏、导航栏或AI横条的显示和隐藏 |
 | enable  | boolean | 是 | 设置窗口全屏模式时状态栏、导航栏或AI横条的显示和隐藏，'true'默认显示 'false'则默认不显示|
 
 **返回值：**
