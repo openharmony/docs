@@ -1621,7 +1621,7 @@ promise.then((data) => {
 
 ## SpecificSystemBar<sup>11+</sup>
 
-显示隐藏窗口类型。
+当前显示或隐藏系统栏集合。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -2616,7 +2616,7 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean): Promise&l
 | 参数名 | 类型  | 必填 | 说明 |
 | ----- | ---------------------------- | -- | --------------------------------- |
 | name  | [SpecificSystemBar](#specificsystembar11) | 是 | 设置窗口全屏模式时状态栏、导航栏或AI横条的显示和隐藏 |
-| enable  | boolean | 是 | 设置窗口全屏模式时状态栏、导航栏或AI横条的显示和隐藏，'true'默认显示 'false'则默认不显示|
+| enable  | boolean | 是 | 设置窗口全屏模式时状态栏、导航栏或AI横条的显示和隐藏，true默认显示 false则默认不显示|
 
 **返回值：**
 
