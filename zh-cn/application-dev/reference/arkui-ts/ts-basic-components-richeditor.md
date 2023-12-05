@@ -1775,7 +1775,7 @@ struct Index {
 ```
 ![UpdateParagraphAndTypingStyle](figures/richEditorUpdateParagraphAndTypingStyle.gif)
 
-## 示例8
+### 示例8
 ``` ts
 @Entry
 @Component
