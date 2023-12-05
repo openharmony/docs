@@ -300,8 +300,8 @@ struct MyComponent {
       public count:number;
       public increaseBy:number;
       constructor(count: number, increaseBy:number) {
-      this.count = count;
-      this.increaseBy = increaseBy;
+        this.count = count;
+        this.increaseBy = increaseBy;
      }
    }
    let obj = new C1(1, 2)
