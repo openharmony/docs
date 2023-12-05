@@ -1389,6 +1389,7 @@ let wantTemp: Want = {
 bundleManager.uninstall(wantTemp, 'bundleName', (err) => {
   if (err) {
     console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
   }
   console.info('Succeeded in uninstalling bundles');
 });
@@ -1436,6 +1437,7 @@ let wantTemp: Want = {
 bundleManager.uninstall(wantTemp, 'bundleName', 100, (err) => {
   if (err) {
     console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
   }
   console.info('Succeeded in uninstalling bundles');
 });
@@ -1483,6 +1485,7 @@ let wantTemp: Want = {
 bundleManager.uninstall(wantTemp, 'bundleName', true, (err) => {
   if (err) {
     console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
   }
   console.info('Succeeded in uninstalling bundles');
 });
@@ -1531,6 +1534,7 @@ let wantTemp: Want = {
 bundleManager.uninstall(wantTemp, 'bundleName', 100, true, (err) => {
   if (err) {
     console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
   }
   console.info('Succeeded in uninstalling bundles');
 });
@@ -1627,11 +1631,12 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap'];
 
 bundleManager.install(wantTemp, hapFilePaths, (err) => {
   if (err) {
     console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
   }
   console.info('Succeeded in installing bundles');
 });
@@ -1676,7 +1681,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap'];
 let installParam: bundleManager.InstallParam = {
   userId: 100,
   installFlag: 1,
@@ -1685,6 +1690,7 @@ let installParam: bundleManager.InstallParam = {
 bundleManager.install(wantTemp, hapFilePaths, installParam, (err) => {
   if (err) {
     console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
   }
   console.info('Succeeded in installing bundles');
 });
@@ -1735,7 +1741,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap'];
 
 bundleManager.install(wantTemp, hapFilePaths).then(() => {
   console.info('Succeeded in installing bundles');

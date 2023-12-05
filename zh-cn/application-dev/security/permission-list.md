@@ -52,6 +52,18 @@
 
 **起始版本**：10
 
+## ohos.permission.GET_BLUETOOTH_LOCAL_MAC
+
+允许应用获取本机的蓝牙MAC地址。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.INTERNET
 
 允许使用Internet网络。
@@ -3250,6 +3262,18 @@
 
 **起始版本**：11
 
+## ohos.permission.INTERCEPT_INPUT_EVENT
+
+允许系统应用拦截输入事件。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.MANAGE_TRUSTED_RING
 
 允许使用关键资产信任环服务提供的能力。
@@ -3661,6 +3685,30 @@
 ## ohos.permission.TRIGGER_ACTIVATIONLOCK
 
 允许系统SA调用“查找设备”。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_USB_CONFIG
+
+允许应用管理USB设备功能和端口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.WRITE_PRIVACY_PUSH_DATA
+
+允许应用往另一个应用中写入隐私Push数据。
 
 **权限级别**：system_core
 

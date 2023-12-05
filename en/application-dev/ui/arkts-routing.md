@@ -234,7 +234,7 @@ You can use any of the following methods to return to a page:
 
   This method not only allows you to return to the specified page, but also pass in custom parameter information during the return process. The parameter information can be obtained and parsed by invoking the **router.getParams()** API on the target page.
 
-On the target page, call the **router.getParams()** API at the position where parameters need to be obtained, for example, in the **onPageShow()** lifecycle callback:
+On the target page, call the **router.getParams()** API at the position where parameters need to be obtained, for example, in the [onPageShow()](../quick-start/arkts-page-custom-components-lifecycle.md) lifecycle callback:
 
 
 ```ts

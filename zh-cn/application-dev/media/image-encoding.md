@@ -1,10 +1,12 @@
-# 图片编码
+# 图片编码(ArkTS)
 
 图片编码指将PixelMap编码成不同格式的存档图片（当前仅支持打包为JPEG、WebP 和 png 格式），用于后续处理，如保存、传输等。
 
 ## 开发步骤
 
 图片编码相关API的详细介绍请参见：[图片编码接口说明](../reference/apis/js-apis-image.md#imagepacker)。
+
+### 图片编码进文件流
 
 1. 创建图像编码ImagePacker对象。
    
@@ -59,6 +61,7 @@
    import {BusinessError} from '@ohos.base'
    import fs from '@ohos.file.fs'
    import featureAbility from '@ohos.ability.featureAbility'
+   const context : _Context = featureAbility.getContext();
    const path : string = context.getCacheDir() + "pixel_map.jpg";
    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(pixelMap, file.fd, packOpts).then(() => {

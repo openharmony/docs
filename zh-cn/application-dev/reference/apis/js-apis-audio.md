@@ -852,6 +852,7 @@ async function createTonePlayerBefore(){
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
 | SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
 | SOURCE_TYPE_WAKEUP <sup>10+</sup>            | 3 | 语音唤醒音频流录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core <br/>**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE <br/> 此接口为系统接口|
+| SOURCE_TYPE_VOICE_CALL<sup>11+</sup>            | 4 | 通话录音的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core<br/>**需要权限：** ohos.permission.RECORD_VOICE_CALL <br/> 此接口为系统接口|
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
 ## AudioPlaybackCaptureConfig<sup>10+</sup><a name="audioplaybackcaptureconfig"></a>
@@ -2348,7 +2349,7 @@ audioVolumeManager.getVolumeGroupInfos(audio.LOCAL_NETWORK_ID, (err: BusinessErr
 
 getVolumeGroupInfos(networkId: string\): Promise<VolumeGroupInfos\>
 
-获取音量组信息列表，使用promise方式异步返回结果。
+获取音量组信息列表，使用Promise方式异步返回结果。
 
 **系统接口：** 该接口为系统接口
 
@@ -2453,7 +2454,7 @@ audioVolumeManager.getVolumeGroupManager(groupId, (err: BusinessError, value: au
 
 getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 
-获取音频组管理器，使用promise方式异步返回结果。
+获取音频组管理器，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -5103,7 +5104,7 @@ async function getPreferOutputDevice() {
 ### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
 getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&lt;AudioDeviceDescriptors&gt;
 
-根据音频信息，返回优先级最高的输出设备，使用promise方式异步返回结果。
+根据音频信息，返回优先级最高的输出设备，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -5307,7 +5308,7 @@ audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo, (err: B
 
 getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo): Promise&lt;AudioDeviceDescriptors&gt;
 
-根据音频信息，返回优先级最高的输入设备，使用promise方式异步返回结果。
+根据音频信息，返回优先级最高的输入设备，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 

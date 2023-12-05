@@ -273,6 +273,81 @@ Out of memory.
 系统内存不足，请稍后重试，或者重启设备。
 
 
+## 19100013 用户无权限
+
+**错误信息**
+
+User has no permission.
+
+**错误描述**
+
+用户无权限。
+
+**处理步骤**
+
+请检查权限。
+
+
+## 19100014 账号未登录
+
+**错误信息**
+
+Account not login.
+
+**错误描述**
+
+账号未登录。
+
+**处理步骤**
+
+请登录账号。
+
+
+## 19100015 系统需要升级
+
+**错误信息**
+
+System need to be upgraded.
+
+**错误描述**
+
+系统需要升级。
+
+**处理步骤**
+
+请升级系统。
+
+
+## 19100016 want参数中没有uri
+
+**错误信息**
+
+Uri does not exist in want.
+
+**错误描述**
+
+want参数中没有uri。
+
+**处理步骤**
+
+请传入正确的参数。
+
+
+## 19100017 want参数中parameters内没有displayName
+
+**错误信息**
+
+DisplayName does not exist in want (under parameters).
+
+**错误描述**
+
+want参数中parameters内没有displayName。
+
+**处理步骤**
+
+请传入正确的参数。
+
+
 ## 19100019 DLP文件已过期
 
 **错误信息**

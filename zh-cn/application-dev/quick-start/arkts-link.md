@@ -140,64 +140,83 @@ struct ParentComponent {
 ```ts
 class GreenButtonState {
   width: number = 0;
+
   constructor(width: number) {
     this.width = width;
   }
 }
+
 @Component
 struct GreenButton {
   @Link greenButtonState: GreenButtonState;
+
   build() {
     Button('Green Button')
       .width(this.greenButtonState.width)
-      .height(150.0)
-      .backgroundColor('#00ff00')
+      .height(40)
+      .backgroundColor('#64bb5c')
+      .fontColor('#FFFFFF，90%')
       .onClick(() => {
         if (this.greenButtonState.width < 700) {
           // 更新class的属性，变化可以被观察到同步回父组件
-          this.greenButtonState.width += 125;
+          this.greenButtonState.width += 60;
         } else {
           // 更新class，变化可以被观察到同步回父组件
-          this.greenButtonState = new GreenButtonState(100);
+          this.greenButtonState = new GreenButtonState(180);
         }
       })
   }
 }
+
 @Component
 struct YellowButton {
   @Link yellowButtonState: number;
+
   build() {
     Button('Yellow Button')
       .width(this.yellowButtonState)
-      .height(150.0)
-      .backgroundColor('#ffff00')
+      .height(40)
+      .backgroundColor('#f7ce00')
+      .fontColor('#FFFFFF，90%')
       .onClick(() => {
         // 子组件的简单类型可以同步回父组件
-        this.yellowButtonState += 50.0;
+        this.yellowButtonState += 40.0;
       })
   }
 }
+
 @Entry
 @Component
 struct ShufflingContainer {
-  @State greenButtonState: GreenButtonState = new GreenButtonState(300);
-  @State yellowButtonProp: number = 100;
+  @State greenButtonState: GreenButtonState = new GreenButtonState(180);
+  @State yellowButtonProp: number = 180;
+
   build() {
     Column() {
-      // 简单类型从父组件@State向子组件@Link数据同步
-      Button('Parent View: Set yellowButton')
-        .onClick(() => {
-          this.yellowButtonProp = (this.yellowButtonProp < 700) ? this.yellowButtonProp + 100 : 100;
-        })
-      // class类型从父组件@State向子组件@Link数据同步
-      Button('Parent View: Set GreenButton')
-        .onClick(() => {
-          this.greenButtonState.width = (this.greenButtonState.width < 700) ? this.greenButtonState.width + 100 : 100;
-        })
-      // class类型初始化@Link
-      GreenButton({ greenButtonState: $greenButtonState })
-      // 简单类型初始化@Link
-      YellowButton({ yellowButtonState: $yellowButtonProp })
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+        // 简单类型从父组件@State向子组件@Link数据同步
+        Button('Parent View: Set yellowButton')
+          .width(312)
+          .height(40)
+          .margin(12)
+          .fontColor('#FFFFFF，90%')
+          .onClick(() => {
+            this.yellowButtonProp = (this.yellowButtonProp < 700) ? this.yellowButtonProp + 40 : 100;
+          })
+        // class类型从父组件@State向子组件@Link数据同步
+        Button('Parent View: Set GreenButton')
+          .width(312)
+          .height(40)
+          .margin(12)
+          .fontColor('#FFFFFF，90%')
+          .onClick(() => {
+            this.greenButtonState.width = (this.greenButtonState.width < 700) ? this.greenButtonState.width + 100 : 100;
+          })
+        // class类型初始化@Link
+        GreenButton({ greenButtonState: $greenButtonState }).margin(12)
+        // 简单类型初始化@Link
+        YellowButton({ yellowButtonState: $yellowButtonProp }).margin(12)
+      }
     }
   }
 }
@@ -215,12 +234,22 @@ struct Child {
 
   build() {
     Column() {
-      Button(`Button1: push`).onClick(() => {
-        this.items.push(this.items.length + 1);
-      })
-      Button(`Button2: replace whole item`).onClick(() => {
-        this.items = [100, 200, 300];
-      })
+      Button(`Button1: push`)
+        .margin(12)
+        .width(312)
+        .height(40)
+        .fontColor('#FFFFFF，90%')
+        .onClick(() => {
+          this.items.push(this.items.length + 1);
+        })
+      Button(`Button2: replace whole item`)
+        .margin(12)
+        .width(312)
+        .height(40)
+        .fontColor('#FFFFFF，90%')
+        .onClick(() => {
+          this.items = [100, 200, 300];
+        })
     }
   }
 }
@@ -233,9 +262,15 @@ struct Parent {
   build() {
     Column() {
       Child({ items: $arr })
+        .margin(12)
       ForEach(this.arr,
         (item: void) => {
-          Text(`${item}`)
+          Button(`${item}`)
+            .margin(12)
+            .width(312)
+            .height(40)
+            .backgroundColor('#11a2a2a2')
+            .fontColor('#e6000000')
         },
         (item: ForEachInterface) => item.toString()
       )
