@@ -8252,8 +8252,8 @@ WindowStage生命周期。
 
 | 名称      | 类型  | 可读 | 可写 | 说明         |
 | ---------- | ---- | ---- | ---- | ----------- |
-| title    | string | 否 | 是 | 子窗口标题       |
-| decorEnabled | boolean | 否 | 是 | 子窗口是否显示装饰       |
+| title    | string | 否 | 是 | 子窗口标题。       |
+| decorEnabled | boolean | 否 | 是 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
 
 
 ## WindowStage<sup>9+</sup>
