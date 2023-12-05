@@ -37,7 +37,7 @@ Span(value: string | Resource)
 | letterSpacing       | number \| string  | 设置文本字符间距。取值小于0，字符聚集重叠，取值大于0且随着数值变大，字符间距越来越大，稀疏分布。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。                                |
 | textCase | [TextCase](ts-appendix-enums.md#textcase) | 设置文本大小写。<br/>默认值：TextCase.Normal <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | font<sup>10+</sup> | [Font](ts-types.md#font) | 设置文本样式。包括字体大小、字体粗细、字体族和字体风格。|
-| textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式 |
+| textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式。 |
 
 
 ## 事件
@@ -126,3 +126,24 @@ struct SpanExample {
 ```
 
 ![Span](figures/span.png)
+
+## 示例2
+``` ts
+@Entry
+@Component
+struct TextSpanExample {
+  @State textShadows : ShadowOptions | Array<ShadowOptions> = [{ radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 },{ radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 },
+      { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 },{ radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 },
+      { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 }]
+  build() {
+    Column({ space: 8 }) {
+      Text() {
+        Span('123456789').fontSize(50).textShadow(this.textShadows)
+      }
+      Text() {
+        Span('123456789') // span can inherit text shadow & font size from outer text
+      }.fontSize(50).textShadow(this.textShadows)
+    }
+  }
+}
+```

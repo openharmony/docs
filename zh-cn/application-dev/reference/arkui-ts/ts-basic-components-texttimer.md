@@ -27,7 +27,7 @@ TextTimer(options?: { isCountDown?: boolean, count?: number, controller?: TextTi
 | 名称        | 参数类型       | 描述                             |
 | -------- | ---------------------- | ---------------------- |
 | format   | string   | 自定义格式，需至少包含一个HH、mm、ss、SS中的关键字。如使用yy、MM、dd等日期格式，则使用默认值。<br/>默认值：'HH:mm:ss.SS' |
-| textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式 |
+| textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式。 |
 
 ## 事件
 
@@ -101,3 +101,19 @@ struct TextTimerExample {
 
 
 ![zh-cn_image_0000001251007721](figures/zh-cn_image_0000001251007721.gif)
+
+## 示例2
+``` ts
+@Entry
+@Component
+struct TextTimerExample {
+  @State textShadows : ShadowOptions | Array<ShadowOptions> = [{ radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 },{ radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 },
+      { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 },{ radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 },
+      { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 }]
+  build() {
+    Column({ space: 8 }) {
+      TextTimer().fontSize(50).textShadow(this.textShadows)
+    }
+  }
+}
+```
