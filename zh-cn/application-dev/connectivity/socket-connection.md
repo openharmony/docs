@@ -25,12 +25,12 @@ Socket 连接主要是通过 Socket 进行数据传输，支持 TCP/UDP/TLS 协�
 
 Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 
-| 接口名                             | 功能描述                                                                       |
+| 接口名                             | 描述                                                                          |
 | ---------------------------------- | ------------------------------------------------------------------------------ |
 | constructUDPSocketInstance()       | 创建一个 UDPSocket 对象。                                                      |
 | constructTCPSocketInstance()       | 创建一个 TCPSocket 对象。                                                      |
 | constructTCPSocketServerInstance() | 创建一个 TCPSocketServer 对象。                                                |
-| listen()                           | 绑定 IP 地址和端口，监听并接受与此套接字建立的 TCPSocket 连接。（仅 TCP 支持） |
+| listen()                           | 绑定 IP 地址和端口，监听并接受与此套接字建立的 TCPSocket 连接。（仅 TCP 支持）    |
 | bind()                             | 绑定 IP 地址和端口。                                                           |
 | send()                             | 发送数据。                                                                     |
 | close()                            | 关闭连接。                                                                     |
