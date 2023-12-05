@@ -359,6 +359,167 @@ closeSync(file: number | File): void
   fs.closeSync(file);
   ```
 
+## fs.copy<sup>11+</sup>
+
+copy(srcUri: string, destUri: string, options?: CopyOptions): Promise\<void>
+
+拷贝文件或者目录，使用Promise异步返回。
+
+支持跨设备拷贝。强制覆盖拷贝。入参支持文件或目录URI。
+跨端拷贝时，限制同时最多存在10个拷贝任务；单次拷贝的文件数量不得超过500个。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名  | 类型                         | 必填   | 说明                                       |
+  | ---- | -------------------------- | ---- | ---------------------------------------- |
+  | srcUri  | string | 是    | 待复制文件或目录的uri。                      |
+  | destUri | string | 是    | 目标文件或目录的uri。                          |
+  | options | [CopyOptions](#copyoptions11)| 否| options中提供拷贝进度回调。|
+
+**返回值：**
+
+  | 类型                  | 说明                           |
+  | ------------------- | ---------------------------- |
+  | Promise\<void> | Promise对象。无返回值。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import fileuri from '@ohos.file.fileuri';
+
+let srcDirPathLocal: string = pathDir + "/src";
+let dstDirPathLocal: string = pathDir + "/dest";
+
+let srcDirUriLocal: string = fileuri.getUriFromPath(srcDirPathLocal);
+let dstDirUriLocal: string = fileuri.getUriFromPath(dstDirPathLocal);
+
+let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
+  console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
+};
+let options: fs.CopyOptions = {
+  "progressListener" : progressListener
+}
+try {
+  fs.copy(srcDirUriLocal, dstDirUriLocal, options).then(()=>{
+    console.info("Succeeded in copying. ");
+  }).catch((err: BusinessError)=>{
+    console.info(`Failed to copy: ${JSON.stringify(err)}`);
+  })
+} catch(err) {
+  console.error(`Failed to copy: ${JSON.stringify(err)}`);
+}
+```
+
+## fs.copy<sup>11+</sup>
+
+copy(srcUri: string, destUri: string, callback: AsyncCallback\<void>): void
+
+拷贝文件或者目录，使用callback异步回调。
+
+支持跨设备拷贝。强制覆盖拷贝。入参支持文件或目录URI。
+跨端拷贝时，限制同时最多存在10个拷贝任务；单次拷贝的文件数量不得超过500个。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名  | 类型                         | 必填   | 说明                                       |
+  | ---- | -------------------------- | ---- | ---------------------------------------- |
+  | srcUri  | string | 是    | 待复制文件或目录的uri。                      |
+  | destUri | string | 是    | 目标文件或目录的uri。                          |
+  | callback | AsyncCallback\<void>| 是| 异步拷贝之后的回调。|
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import fileuri from '@ohos.file.fileuri';
+
+let srcDirPathLocal: string = pathDir + "/src";
+let dstDirPathLocal: string = pathDir + "/dest";
+
+let srcDirUriLocal: string = fileuri.getUriFromPath(srcDirPathLocal);
+let dstDirUriLocal: string = fileuri.getUriFromPath(dstDirPathLocal);
+
+try {
+  fs.copy(srcDirUriLocal, dstDirUriLocal, (err: BusinessError) => {
+    if (err) {
+      console.info(`Failed to copy: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info("Succeeded in copying. ");
+  })
+} catch(err) {
+  console.error(`Failed to copy: ${JSON.stringify(err)}`);
+}
+```
+
+## fs.copy<sup>11+</sup>
+
+copy(srcUri: string, destUri: string, options: CopyOptions, callback: AsyncCallback\<void>): void
+
+拷贝文件或者目录，使用callback异步回调。
+
+支持跨设备拷贝。强制覆盖拷贝。入参支持文件或目录URI。
+跨端拷贝时，限制同时最多存在10个拷贝任务；单次拷贝的文件数量不得超过500个。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名  | 类型                         | 必填   | 说明                                       |
+  | ---- | -------------------------- | ---- | ---------------------------------------- |
+  | srcUri  | string | 是    | 待复制文件或目录的uri。                      |
+  | destUri | string | 是    | 目标文件或目录的uri。                          |
+  | options | [CopyOptions](#copyoptions11) |是| 拷贝进度回调。                          |
+  | callback | AsyncCallback\<void>| 是| 异步拷贝之后的回调。|
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import fileuri from '@ohos.file.fileuri';
+
+let srcDirPathLocal: string = pathDir + "/src";
+let dstDirPathLocal: string = pathDir + "/dest";
+
+let srcDirUriLocal: string = fileuri.getUriFromPath(srcDirPathLocal);
+let dstDirUriLocal: string = fileuri.getUriFromPath(dstDirPathLocal);
+
+try {
+  let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
+    console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
+  };
+  let options: fs.CopyOptions = {
+    "progressListener" : progressListener
+  }
+  fs.copy(srcDirUriLocal, dstDirUriLocal, options, (err: BusinessError) => {
+    if (err) {
+      console.info(`Failed to copy: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info("Succeeded in copying. ");
+  })
+} catch(err) {
+  console.error(`Failed to copy: ${JSON.stringify(err)}`);
+}
+```
+
 ## fs.copyFile
 
 copyFile(src: string | number, dest: string | number, mode?: number): Promise&lt;void&gt;
@@ -3439,6 +3600,35 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 | fileName | string | 是    | 否    | 发生监听事件的文件名。 |
 | event | number | 是    | 否    | 监听变动的事件集，多个事件通过或(\|)的方式进行集合。<br/>-&nbsp;0x1: IN_ACCESS， 文件被访问。<br/>-&nbsp;0x2: IN_MODIFY，文件内容被修改。<br/>-&nbsp;0x4: IN_ATTRIB，文件元数据被修改。<br/>-&nbsp;0x8: IN_CLOSE_WRITE，文件在打开时进行了写操作，然后被关闭。<br/>-&nbsp;0x10: IN_CLOSE_NOWRITE，文件或目录在打开时未进行写操作，然后被关闭。<br/>-&nbsp;0x20: IN_OPEN，文件或目录被打开。 <br/>-&nbsp;0x40: IN_MOVED_FROM，监听目录中文件被移动走。<br/>-&nbsp;0x80: IN_MOVED_TO，监听目录中文件被移动过来。<br/>-&nbsp;0x100: IN_CREATE，监听目录中文件或子目录被创建。<br/>-&nbsp;0x200: IN_DELETE，监听目录中文件或子目录被删除。<br/>-&nbsp;0x400: IN_DELETE_SELF，监听的目录被删除，删除后监听停止。<br/>-&nbsp;0x800: IN_MOVE_SELF，监听的文化或目录被移动，移动后监听继续。<br/>-&nbsp;0xfff: IN_ALL_EVENTS，监听以上所有事件。 |
 | cookie | number | 是    | 否    | 绑定相关事件的cookie。当前仅支持事件IN_MOVED_FROM与IN_MOVED_TO，同一个文件的移动事件IN_MOVED_FROM和IN_MOVED_TO具有相同的cookie值。 |
+
+## Progress<sup>11+</sup>
+
+拷贝进度回调数据
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+| 名称   | 类型   | 可读   | 可写   | 说明      |
+| ---- | ------ | ---- | ---- | ------- |
+| processedSize | number | 是    | 否    | 已拷贝的数据大小。 |
+| totalSize | number | 是    | 否    | 待拷贝的数据总大小。 |
+
+## CopyOptions<sup>11+</sup>
+
+拷贝进度回调监听
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+| 名称   | 类型   | 可读   | 可写   | 说明      |
+| ---- | ------ | ---- | ---- | ------- |
+| progressListener | [ProgressListener](#progresslistener) | 是    | 是    | 拷贝进度监听。 |
+
+## ProgressListener
+
+拷贝进度监听。
+
+| 类型 | 说明 |
+| ----| ------|
+|(progress: [Progress](#progress11)) => void| 拷贝进度监听|
 
 ## Stat
 
