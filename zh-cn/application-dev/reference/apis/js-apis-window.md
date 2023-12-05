@@ -1624,6 +1624,16 @@ promise.then((data) => {
 
 下列API示例中都需先使用[getLastWindow()](#windowgetlastwindow9)、[createWindow()](#windowcreatewindow9)、[findWindow()](#windowfindwindow9)中的任一方法获取到Window实例，再通过此实例调用对应方法。
 
+## SpecificSystemBar
+
+显示隐藏窗口类型。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称                     | 类型       | 说明                                                                              |
+|------------------------|----------|---------------------------------------------------------------------------------|
+| SpecificSystemBar    | string   | 有以下取值：<br/>-'status'：状态栏。<br>-'navigation'：导航栏。<br>-'navigationIndicator'：AI横条。 |
+
 ### hide<sup>7+</sup>
 
 hide (callback: AsyncCallback&lt;void&gt;): void
@@ -2602,8 +2612,8 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, callback: 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | ---------------------------- | -- | --------- |
-| name     | SpecificSystemBar | 是 | 设置窗口全屏模式时状态栏和导航栏和AI横条 |
-| enable  | boolean | 是 | 设置窗口全屏模式时,指定'true'默认显示 'false'则默认不显示|
+| name     | SpecificSystemBar | 是 | 设置窗口全屏模式时状态栏、导航栏或AI横条的显示和隐藏  |
+| enable  | boolean | 是 | 设置窗口全屏模式时状态栏、导航栏或AI横条的显示和隐藏，'true'默认显示 'false'则默认不显示|
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **错误码：**
@@ -2648,8 +2658,8 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean): Promise&l
 
 | 参数名 | 类型  | 必填 | 说明 |
 | ----- | ---------------------------- | -- | --------------------------------- |
-| name  | [SpecificSystemBar](#SpecificSystemBar) | 是 | 设置窗口全屏模式时状态栏和导航栏和AI横条 |
-| enable  | boolean | 是 | 设置窗口全屏模式时,指定'true'默认显示 'false'则默认不显示|
+| name  | [SpecificSystemBar](#SpecificSystemBar) | 是 | 设置窗口全屏模式时状态栏、导航栏或AI横条的显示和隐藏 |
+| enable  | boolean | 是 | 设置窗口全屏模式时状态栏、导航栏或AI横条的显示和隐藏，'true'默认显示 'false'则默认不显示|
 
 **返回值：**
 
