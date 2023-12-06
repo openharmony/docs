@@ -29,7 +29,7 @@ Column() {
 
 ### With Mandatory Parameters
 
-A struct with mandatory parameters is a component whose API definition expects parameters enclosed in the parentheses.
+A struct with mandatory parameters is a component whose API definition expects parameters enclosed in parentheses.
 
 - Set the mandatory parameter **src** of the **\<Image>** component as follows:
 
@@ -107,7 +107,7 @@ Use chainable attribute methods to configure the style and other attributes of b
 Use chainable event methods to configure events supported by built-in components. It is recommended that a separate line be used for each event method.
 
 
-- Example of using a lambda expression to configure the event of a component:
+- Example of using an arrow function expression to configure the event of a component:
 
   ```ts
   Button('Click me')

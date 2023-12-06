@@ -1,4 +1,4 @@
-# stateStyles Decorator: Polymorphic Style
+# stateStyles: Polymorphic Style
 
 
 Unlike \@Styles and \@Extend, which are used to reuse styles only on static pages, stateStyles enables you to set state-specific styles.  
@@ -104,19 +104,21 @@ struct CompWithInlineStateStyles {
   normalColor: Color = Color.Green
 
   build() {
-    Button('clickMe').height(100).width(100)
-      .stateStyles({
-        normal: {
-          .backgroundColor(this.normalColor)
-        },
-        focused: {
-          .backgroundColor(this.focusedColor)
-        }
-      })
-      .onClick(() => {
-        this.focusedColor = Color.Pink
-      })
-      .margin('30%')
+    Column() {
+      Button('clickMe').height(100).width(100)
+        .stateStyles({
+          normal: {
+            .backgroundColor(this.normalColor)
+          },
+          focused: {
+            .backgroundColor(this.focusedColor)
+          }
+        })
+        .onClick(() => {
+          this.focusedColor = Color.Pink
+        })
+        .margin('30%')
+    }
   }
 }
 ```

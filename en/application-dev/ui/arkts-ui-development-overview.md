@@ -6,7 +6,7 @@ Powered by the ArkTS-based declarative development paradigm, ArkUI is a simplifi
 
 - **ArkTS**
 
-  ArkTS is a UI development language. As a superset of TypeScript, ArkTS contains all TS features and added features, including a wide array of decorators, custom components, and the UI description mechanism. State data management provides clear page update and rendering processes and pipes through decorators with different functions. State management covers UI component states and application states. With these features, you are able to build an application-wide data update and UI rendering process. To learn more about ArkTS, see [Getting Started with ArkTS](../quick-start/arkts-get-started.md).
+  ArkTS is the preferred programming language for application development in OpenHarmony. As a superset of [TypeScript](https://www.typescriptlang.org/) (TS for short), it contains all TS features and added features – declarative UI description, custom components, dynamic extension of UI elements, state management, and rendering control. State management provides clear page re-render processes and pipes through decorators with different functions. State management covers UI component states and application states, with which you are able to build an application-wide data update and UI rendering process. To learn more about ArkTS, see [Getting Started with ArkTS](../quick-start/arkts-get-started.md).
 
 - **Layout**
 
@@ -87,9 +87,3 @@ The table below lists the main tasks involved in UI development with ArkUI. You 
 | Use graphics       | Understand how to display images, draw custom geometry, and make custom graphics on the canvas.  | - [Displaying Images](arkts-graphics-display.md)<br>- [Drawing Geometric Shapes](arkts-geometric-shape-drawing.md)<br>- [Drawing Custom Graphics Using the Canvas](arkts-drawing-customization-on-canvas.md) |
 | Apply animations       | Learn the typical scenarios of applying animations on components and pages.                 | - [Animation Within a Page](arkts-layout-update-animation.md)<br>- [Animation Between Pages](arkts-zoom-animation.md)|
 | Bind events       | Learn the basic concepts of events and how to use common events and gesture events.          | - [Universal Events](arkts-common-events-touch-screen-event.md)<br>- [Gesture Events](arkts-gesture-events-binding.md)|
-
-##  
-
- 
-
- 

@@ -60,6 +60,7 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
   }
   ```
 
+  ![f1b703f7-2f2d-43af-b11d-fdc9542d8361](figures/f1b703f7-2f2d-43af-b11d-fdc9542d8361.png)
 
 - **this** in the function body points to the correct object.
 
@@ -100,6 +101,7 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
   }
   ```
 
+  ![3f17235e-57e6-4058-8729-a19127a3b007](figures/3f17235e-57e6-4058-8729-a19127a3b007.png)
 
 ## Application Scenarios
 
@@ -151,6 +153,7 @@ struct Parent {
 }
 ```
 
+![3869e265-4d12-44ff-93ef-e84473c68c97](figures/3869e265-4d12-44ff-93ef-e84473c68c97.png)
 
 ### Example of Component Initialization Through Trailing Closure
 
@@ -209,3 +212,5 @@ struct CustomContainerUser {
   }
 }
 ```
+
+![7ae8ed5e-fc23-49ea-be3b-08a672a7b817](figures/7ae8ed5e-fc23-49ea-be3b-08a672a7b817.png)

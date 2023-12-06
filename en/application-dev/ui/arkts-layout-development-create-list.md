@@ -121,10 +121,6 @@ For example, if the **lanes** attribute is set to **{ minLength: 200, maxLength:
 
 - When the list width changes to 400 vp, which is twice that of the **minLength** value, the list is automatically adapted to two-column.
 
->**NOTE**
->
->When the **lanes** attribute is set to a value of the LengthConstrain type, the value is used only to calculate the number of rows or columns in the list and does not affect the size of the list items.
-
 With regard to a vertical list, when the **alignListItem** attribute is set to **ListItemAlign.Center**, list items are center-aligned horizontally; when the **alignListItem** attribute is at its default value **ListItemAlign.Start**, list items are aligned toward the start edge of the cross axis in the list.
 
 
@@ -407,7 +403,7 @@ List() {
   ForEach(this.contactsGroups, item => {
     ListItemGroup({ header: this.itemHead(item.title) }) {
       // Render <ListItem> components cyclically.
-      ForEach(item.contacts, (contact) => {
+      ForEach(item.contacts, contact => {
         ListItem() {
           ...
         }
@@ -455,7 +451,7 @@ struct ContactsList {
       ForEach(this.contactsGroups, item => {
         ListItemGroup({ header: this.itemHead(item.title) }) {
           // Render <ListItem> components cyclically.
-          ForEach(item.contacts, (contact) => {
+          ForEach(item.contacts, contact => {
             ListItem() {
               ...
             }
@@ -543,6 +539,7 @@ struct ContactsList {
         ...
       }
       .onScrollIndex((firstIndex: number) => {
+          this.selectedIndex = firstIndex
         // Recalculate the value of this.selectedIndex in the alphabetical index bar based on the index of the item to which the list has scrolled.
         ...
       })

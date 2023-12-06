@@ -20,7 +20,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 | Name                    | Type                                    | Mandatory  | Description           |
 | ----------------------- | ---------------------------------------- | ---- | --------------- |
-| placeholder   | [ResourceStr](ts-types.md#resourcestr)       | No   | Placeholder text displayed when there is no input.     |
+| placeholder   | [ResourceStr](ts-types.md#resourcestr)       | No   | Text displayed when there is no input.     |
 | text          | [ResourceStr](ts-types.md#resourcestr)       | No   | Current text input.<br>If the component has [stateStyles](ts-universal-attributes-polymorphic-style.md) or any other attribute that may trigger updating configured, you are advised to bind the state variable to the text in real time through the **onChange** event,<br>so as to prevent display errors when the component is updated.    |
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No   | Text input controller.|
 
@@ -34,7 +34,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | type                     | [InputType](#inputtype)     | Input box type.<br>Default value: **InputType.Normal**       |
 | placeholderColor         | [ResourceColor](ts-types.md#resourcecolor)     | Placeholder text color.|
 | placeholderFont          | [Font](ts-types.md#font) | Placeholder text font.|
-| enterKeyType             | EnterKeyType | Type of the Enter key. Currently, only the default value is supported.<br>Default value: **EnterKeyType.Done**|
+| enterKeyType             | EnterKeyType | Type of the Enter key.<br>Default value: **EnterKeyType.Done**|
 | caretColor               | [ResourceColor](ts-types.md#resourcecolor)    | Color of the caret in the text box.                              |
 | maxLength                | number                                   | Maximum number of characters in the text input.                           |
 | inputFilter<sup>8+</sup> | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>error?: (value: string) =&gt; void<br>} | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are filtered out. The regular expression can match single characters, but not strings.<br>- **value**: regular expression to set.<br>- **error**: filtered-out content to return when regular expression matching fails.|

@@ -4,10 +4,9 @@
 Generally, the [\<Navigation>](../reference/arkui-ts/ts-basic-components-navigation.md) component functions as the root container of a page and supports three display modes: single-page, column, and adaptive. In addition, **\<Navigation>** provides attributes to set the title bar, toolbar, and navigation bar of a page.
 
 
-The pages of the Navigation component include the home page and content page. The home page consists of the title bar, content area, and toolbar. You can use the [\<NavRouter>](../reference/arkui-ts/ts-basic-components-navrouter.md) child component in the content area to implement the navigation bar function. The content page displays the content of the [\<NavDestination>](../reference/arkui-ts/ts-basic-components-navdestination.md) child component.
+The pages of the **\<Navigation>** component include the home page and content page. The home page consists of the title bar, content area, and toolbar. You can use [\<NavRouter>](../reference/arkui-ts/ts-basic-components-navrouter.md) as a child component in the content area to implement a navigation bar. The content page displays the content of the [\<NavDestination>](../reference/arkui-ts/ts-basic-components-navdestination.md) child component.
 
-
-**\<NavRouter>** is a special child component used together with **\<Navigation>**. It provides default processing logic for responding to clicks, eliminating the need for manual logic definition. **\<NavRouter>** has only two root nodes. The second root node is **\<NavDestination>**. **\<NavDestination>** is a special child component used together with **\<NavRouter>** to display the content page of the **\<Navigation>** component. When the user clicks the **\<NavRouter>** component, the corresponding **\<NavDestination>** content area is displayed.
+As a special child component of **\<Navigation>**, **\<NavRouter>** provides default processing logic for responding to clicks, eliminating the need for manual logic definition. It has only two child components, the second of which must be **\<NavDestination>**. As a special child component of **\<NavRouter>**, **\<NavDestination>** makes up the content page of the **\<Navigation>** component. When the user clicks the **\<NavRouter>** component, the corresponding **\<NavDestination>** content area is displayed.
 
 
 ## Setting the Page Display Mode

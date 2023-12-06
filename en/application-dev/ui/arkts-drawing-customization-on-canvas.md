@@ -15,27 +15,28 @@ You can draw custom graphics on the canvas in any of the following ways:
   @Entry
   @Component
   struct CanvasExample1 {
-  // Configure the parameters of the CanvasRenderingContext2D object, including whether to enable anti-aliasing. The value true indicates that anti-aliasing is enabled.
-   private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  // Create a CanvasRenderingContext2D object by calling CanvasRenderingContext2D object in Canvas.
-  private context: CanvasRenderingContext2D= new CanvasRenderingContext2D(this.settings)
+    // Configure the parameters of the CanvasRenderingContext2D object, including whether to enable anti-aliasing. The value true indicates that anti-aliasing is enabled.
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    // Create a CanvasRenderingContext2D object by calling CanvasRenderingContext2D object in Canvas.
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  
     build() {
-  Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         // Invoke the CanvasRenderingContext2D object in Canvas.
         Canvas(this.context)
           .width('100%')
           .height('100%')
           .backgroundColor('#F5DC62')
-          .onReady(() =>{
-           // You can draw content here.
+          .onReady(() => {
+            // You can draw content here.
             this.context.strokeRect(50, 50, 200, 150);
-        })
+          })
       }
       .width('100%')
       .height('100%')
     }
   }
-
+  
   ```
 
   ![2023022793003(1)](figures/2023022793003(1).jpg)
@@ -151,7 +152,7 @@ Two modes are available for drawing with the **Canvas** component:
 
 ## Common Usage of the Canvas Component
 
-**OffscreenCanvasRenderingContext2D** and **CanvasRenderingContext2D** provide a large number of attributes and methods, which can be used to draw text and graphics and process pixels. They are the core of the **Canvas** component. Common APIs include [fill](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#fill), [clip](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#clip), and [stroke](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#stroke). In addition, [fillStyle](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#fillstyle), [globalAlpha](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#globalalpha), [strokeStyle](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#strokestyle), and more attributes are provided to spruce up the graphics. This topic describes typical usage of the canvas.
+**OffscreenCanvasRenderingContext2D** and **CanvasRenderingContext2D** provide a large number of attributes and methods, which can be used to draw text and graphics and process pixels. They are the core of the **Canvas** component. Common APIs include [fill](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#fill), [clip](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#clip), and [stroke](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#stroke). In addition, attributes such as [fillStyle](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#fillstyle), [globalAlpha](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#globalalpha), and [strokeStyle](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#strokestyle) are provided to spruce up the graphics. This topic describes typical usage of the canvas.
 
 - Draw a basic shape.
   
@@ -175,12 +176,12 @@ Two modes are available for drawing with the **Canvas** component:
        this.context.beginPath();
        this.context.ellipse(150, 450, 50, 100, Math.PI * 0.25, Math.PI * 0, Math.PI * 2);
        this.context.stroke();
-  })
-  
+    })
+
   ```
-  
-![2023022794521(1)](figures/2023022794521(1).jpg)
-  
+
+  ![2023022794521(1)](figures/2023022794521(1).jpg)
+
 - Draw text.
 
   You can use APIs such as [fillText](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#filltext) and [strokeText](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext) to draw text.

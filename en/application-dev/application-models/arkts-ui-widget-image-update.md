@@ -7,52 +7,59 @@ Typically, a widget includes local images or online images downloaded from the n
 1. For the widget to download online images, declare the **ohos.permission.INTERNET** permission for the widget. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md).
 
 2. Update local files in the **onAddForm** lifecycle callback of the EntryFormAbility.
-   
+
    ```ts
    import formBindingData from '@ohos.app.form.formBindingData';
    import formProvider from '@ohos.app.form.formProvider';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
    import request from '@ohos.request';
    import fs from '@ohos.file.fs';
-   
+   import Want from '@ohos.app.ability.Want';
+   import Base from '@ohos.base';
+   import fileFs from '@ohos.file.fs';
+
    export default class EntryFormAbility extends FormExtensionAbility {
      ...
-     // When the widget is added, a local image is opened and transferred to the widget page for display.
-     onAddForm(want) {
-       // Assume that the local image head.PNG is in the tmp directory of the current widget.
-       let tempDir = this.context.getApplicationContext().tempDir;
-       // Open the local image and obtain the FD after the image is opened.
-       let file;
-       try {
-         file = fs.openSync(tempDir + '/' + 'head.PNG');
-       } catch (e) {
-         console.error(`openSync failed: ${JSON.stringify(e)}`);
-       }
-       let formData = {
-         'text': 'Image: Bear',
-         'imgName': 'imgBear',
-         'formImages': {
-           'imgBear': file.fd
-         },
-         'loaded': true
-       }
-       // Encapsulate the FD in formData and return it to the widget page.
-       return formBindingData.createFormBindingData(formData);
-     }
-   
+    // When the widget is added, a local image is opened and transferred to the widget page for display.
+    onAddForm(want: Want) {
+      // Assume that the local image head.PNG is in the tmp directory of the current widget.
+      let tempDir = this.context.getApplicationContext().tempDir;
+      // Open the local image and obtain the FD after the image is opened.
+      let file: fileFs.File;
+      let imgBear: Record<string, number>;
+      try {
+        file = fs.openSync(tempDir + '/' + 'head.PNG');
+        imgBear = {
+          'imgBear': file.fd
+        }
+      } catch (e) {
+        console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
+      }
+      class FormDataClass{
+        text: string = 'Image: Bear'
+        imgName: string = 'imgBear'
+        loaded: boolean = true
+        formImages: Record<string, number> = imgBear
+      }
+      let formData = new FormDataClass();
+
+      // Encapsulate the FD in formData and return it to the widget page.
+      return formBindingData.createFormBindingData(formData);
+    }
+
      ...
    }
    ```
 
 3. Update online images in the **onFormEvent** lifecycle callback of the EntryFormAbility.
-   
+
    ```ts
    import formBindingData from '@ohos.app.form.formBindingData';
    import formProvider from '@ohos.app.form.formProvider';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
    import request from '@ohos.request';
    import fs from '@ohos.file.fs';
-   
+
    export default class EntryFormAbility extends FormExtensionAbility {
      // When the message event is triggered on the widget page, an online image is downloaded and transferred to the widget page for display.
      onFormEvent(formId, message) {
@@ -103,7 +110,7 @@ Typically, a widget includes local images or online images downloaded from the n
          console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
        });
      }
-   
+
      ...
    };
    ```
@@ -118,7 +125,7 @@ Typically, a widget includes local images or online images downloaded from the n
      @LocalStorageProp('text') text: string = 'Loading...';
      @LocalStorageProp('loaded') loaded: boolean = false;
      @LocalStorageProp('imgName') imgName: string = 'name';
-   
+
      build() {
        Column() {
          Text(this.text)
@@ -126,7 +133,7 @@ Typically, a widget includes local images or online images downloaded from the n
            .textAlign(TextAlign.Center)
            .width('100%')
            .height('15%')
-   
+
          Row() {
            if (this.loaded) {
              Image('memory://' + this.imgName)
@@ -141,7 +148,7 @@ Typically, a widget includes local images or online images downloaded from the n
            }
          }.alignItems(VerticalAlign.Center)
          .justifyContent(FlexAlign.Center)
-   
+
          Button ('Update')
            .height('15%')
            .onClick(() => {

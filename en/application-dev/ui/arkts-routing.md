@@ -8,26 +8,27 @@ Page routing refers to the redirection and data transfer between different pages
 
 Page redirection is an important part of the development process. When using an application, you usually need to jump between different pages, and sometimes you need to pass data from one page to another.
 
-  **Figure 1** Page redirection 
+**Figure 1** Page redirection
+
 ![router-jump-to-detail](figures/router-jump-to-detail.gif)
 
 The **Router** module provides two redirection modes: [router.pushUrl()](../reference/apis/js-apis-router.md#routerpushurl9) and [router.replaceUrl()](../reference/apis/js-apis-router.md#routerreplaceurl9). The two modes determine whether the target page will replace the current page.
 
 - **router.pushUrl()**: The target page does not replace the current page. Instead, it is pushed into the [page stack](../application-models/page-mission-stack.md). In this way, the state of the current page can be retained, and users can return to the current page by pressing the back button or calling the [router.back()](../reference/apis/js-apis-router.md#routerback) API.
 
-- **router.replaceUrl()**: The target page replaces the current page and destroys the current page. In this way, the resources of the current page can be released, and users cannot return to the current page.
+- **router.replaceUrl()**: The target page replaces and destroys the current page. In this mode, the resources of the current page can be released, and users cannot return to the current page.
 
 >**NOTE**
 >
 >The maximum capacity of a page stack is 32 pages. If this limit is exceeded, the [router.clear()](../reference/apis/js-apis-router.md#routerclear) API can be called to clear the historical page stack and free the memory.
 
-The **Router** module also provides two instance modes: **Standard** and **Single**. The two modes determine whether the target URL corresponds to multiple instances.
+The **Router** module also provides two instance modes: **Standard** and **Single**. Depending on the mode, the target URL is mapped to one or more instances.
 
-- **Standard**: standard instance mode, which is the default instance mode. Each time this API is called, a target page is created and pushed to the top of the stack.
+- **Standard**: multi-instance mode. It is the default instance mode. In this mode, the target page is added to the top of the page stack, regardless of whether a page with the same URL exists in the stack.
 
-- **Single**: singleton mode. If the URL of the target page already exists in the page stack, the page with the same URL closest to the top of the stack is moved to the top of the stack and reloaded. If the URL of the target page does not exist in the page stack, the page is redirected in standard mode.
+- **Single**: singleton mode. In this mode, if the URL of the target page already exists in the page stack, the page closest to the top of the stack with the same URL is moved to the top of the stack and becomes the new page. If the URL of the target page does not exist in the page stack, the page is redirected in standard mode.
 
-Before using the **Router** module, you need to import it to the code.
+Before using the **Router** module, import it first.
 
 
 ```ts
@@ -78,7 +79,7 @@ import router from '@ohos.router';
   >
   >In **Standard** instance mode, the **router.RouterMode.Standard** parameter can be omitted.
 
-- Scenario 3: There is a setting page (**Setting**) and a theme switching page (**Theme**). You want to click a theme option on the **Setting** page to go to the **Theme** page. In addition, you want to ensure that only one **Theme** page exists in the page stack at a time. When the back button is clicked on the **Theme** page, the **Setting** page is displayed. In this scenario, you can use the **pushUrl()** API and use the **Single** instance mode.
+- Scenario 3: There is a **Setting** page and a **Theme** page. After a theme option on the **Setting** page is clicked, the **Theme** page is displayed. Only one **Theme** page exists in the page stack at the same time. When the back button is clicked on the **Theme** page, the **Setting** page is displayed. In this scenario, you can use the **pushUrl()** API and use the **Single** instance mode.
 
 
   ```ts
@@ -150,11 +151,11 @@ function onJumpClick(): void {
 }
 ```
 
-On the target page, you can call the [getParams()](../reference/apis/js-apis-router.md#routergetparams) API of the **Router** module to obtain the transferred parameters. Example:
+On the target page, you can call the [getParams()](../reference/apis/js-apis-router.md#routergetparams) API of the **Router** module to obtain the passed parameters. Example:
 
 
 ```ts
-const params = router.getParams(); // Obtain the transferred parameter object.
+const params = router.getParams(); // Obtain the passed parameter object.
 const id = params['id']; // Obtain the value of the id attribute.
 const age = params['info'].age; // Obtain the value of the age attribute.
 ```
@@ -162,13 +163,13 @@ const age = params['info'].age; // Obtain the value of the age attribute.
 
 ## Page Return
 
-After a user completes an operation on a page, the user usually needs to return to the previous page or a specified page. In this case, the page return function is required. During the return process, the data may need to be transferred to the target page, which requires the data transfer function.
+Implement the page return feature so that users can return to the previous page or a specified page. You can pass parameters to the target page during the return process.
 
   **Figure 2** Page return 
 
 ![router-back-to-home](figures/router-back-to-home.gif)
 
-Before using the **Router** module, you need to import it to the code.
+Before using the **Router** module, import it first.
 
 
 ```ts
@@ -195,7 +196,7 @@ You can use any of the following methods to return to a page:
   });
   ```
 
-  This method allows you to return to a specified page. You need to specify the path of the target page. For this method to work, the target page must it exist in the page stack.
+  This method allows users to return to a page with the specified path. For this method to work, the target page must exist in the page stack.
 
 - Method 3: Return to the specified page and transfer custom parameter information.
 
@@ -209,14 +210,14 @@ You can use any of the following methods to return to a page:
   });
   ```
 
-  This method not only allows you to return to the specified page, but also transfer custom parameter information when returning. The parameter information can be obtained and parsed by invoking the **router.getParams()** API on the target page.
+  This method not only allows you to return to the specified page, but also pass in custom parameter information during the return process. The parameter information can be obtained and parsed by invoking the **router.getParams()** API on the target page.
 
-On the target page, call the **router.getParams()** API at the position where parameters need to be obtained, for example, in the **onPageShow()** lifecycle callback:
+On the target page, call the **router.getParams()** API at the position where parameters need to be obtained, for example, in the [onPageShow()](../quick-start/arkts-page-custom-components-lifecycle.md) lifecycle callback:
 
 
 ```ts
 onPageShow() {
-  const params = router.getParams(); // Obtain the transferred parameter object.
+  const params = router.getParams(); // Obtain the passed parameter object.
   const info = params['info']; // Obtain the value of the info attribute.
 }
 ```
@@ -243,7 +244,7 @@ Such a dialog box can be in the [default style](#default-confirmation-dialog-box
 
 To implement this function, you can use the [router.showAlertBeforeBackPage()](../reference/apis/js-apis-router.md#routershowalertbeforebackpage9) and [router.back()](../reference/apis/js-apis-router.md#routerback) APIs provided by the **Router** module.
 
-Before using the **Router** module, you need to import it to the code.
+Before using the **Router** module, import it first.
 
 
 ```ts
@@ -272,17 +273,17 @@ function onBackClick(): void {
 
 The **router.showAlertBeforeBackPage()** API receives an object as a parameter. The object contains the following attributes:
 
-- **message**: content of the dialog box. The value is of the string type.
-  If the API is successfully called, the confirmation dialog box is displayed on the target page. Otherwise, an exception is thrown and the error code and error information is obtained through **err.code** and **err.message**.
+**message**: content of the dialog box. The value is of the string type.
+If the API is called successfully, the confirmation dialog box is displayed on the target page. Otherwise, an exception is thrown and the error code and error information is obtained through **err.code** and **err.message**.
 
-  When the user clicks the back button, a confirmation dialog box is displayed, prompting the user to confirm their operation. If the user selects Cancel, the application stays on the current page. If the user selects OK, the **router.back()** API is triggered and the redirection is performed based on the parameters.
+When the user clicks the back button, a confirmation dialog box is displayed, prompting the user to confirm their operation. If the user selects Cancel, the application stays on the current page. If the user selects OK, the **router.back()** API is triggered and the redirection is performed based on the parameters.
 
 
 ### Custom Confirmation Dialog Box
 
 To implement a custom confirmation dialog box, use APIs in the [PromptAction](../reference/apis/js-apis-promptAction.md#promptactionshowdialog) module or customize a popup window.  This topic uses the APIs in the **PromptAction** module an example to describe how to implement a custom confirmation dialog box.
 
-Before using the **Router** module, you need to import it to the code.
+Before using the **Router** module, import it first.
 
 
 ```ts

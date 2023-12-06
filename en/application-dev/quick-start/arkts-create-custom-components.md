@@ -13,6 +13,7 @@ The custom component has the following features:
 
 - Data-driven update: holds some state and triggers UI re-rendering with the change of state variables.
 
+## Basic Usage of Custom Components
 
 The following example shows the basic usage of a custom component.
 
@@ -71,7 +72,6 @@ To fully understand the preceding example, a knowledge of the following concepts
 - [Universal Style of a Custom Component](#universal-style-of-a-custom-component)
 
 
-
 ## Basic Structure of a Custom Component
 
 - struct: The definition of a custom component must start with the \@Component struct followed by the component name, and then component body enclosed by curly brackets {....}. No inheritance is allowed. You can omit the **new** operator when instantiating a struct.
@@ -121,7 +121,7 @@ In addition to the mandatory **build()** function, a custom component may implem
 
 - Static functions are not supported.
 
-- Access to the member functions is always private.
+- Access to the member functions is private.
 
 
 A custom component can also implement member variables with the following restrictions:
@@ -129,14 +129,14 @@ A custom component can also implement member variables with the following restri
 
 - Static member variables are not supported.
 
-- Access to the member variables is always private. The access rules of member variables are the same as those of member functions.
+- Access to the member variables is private. The access rules of member variables are the same as those of member functions.
 
 - Local initialization is optional for some member variables and mandatory for others. For details about whether local initialization or initialization from the parent component is required, see [State Management](arkts-state-management-overview.md).
 
 
 ## Rules of for Custom Component Parameters
 
-As can be learnt from preceding examples, a custom component can be created from a **build** or [@Builder](arkts-builder.md) function, and during the creation, parameters can be supplied to the component.
+As can be learnt from preceding examples, a custom component can be created from a **build** or [@Builder](arkts-builder.md) decorated function. During the creation, the custom component's parameters are initialized based on the decorator rules.
 
 
 ```ts
@@ -164,12 +164,12 @@ struct ParentComponent {
 ```
 
 
-## build Function
+## build() Function
 
-All languages declared in the **build** function are called UI description languages. The UI description languages must comply with the following rules:
+Whatever declared in the **build()** function are called UI descriptions. UI descriptions must comply with the following rules:
 
-- For an \@Entry decorated custom component, exactly one root component is required under the **build** function. This root component must be a container component. **ForEach** is not allowed at the top level.
-  For an \@Component decorated custom component, exactly one root component is required under the **build** function. This root component is not necessarily a container component. **ForEach** is not allowed at the top level.
+- For an \@Entry decorated custom component, exactly one root component is required under the **build()** function. This root component must be a container component. **ForEach** is not allowed at the top level.
+  For an \@Component decorated custom component, exactly one root component is required under the **build()** function. This root component is not necessarily a container component. **ForEach** is not allowed at the top level.
 
   ```ts
   @Entry
@@ -192,36 +192,36 @@ All languages declared in the **build** function are called UI description langu
   }
   ```
 
-- Local variable declaration is not allowed. The following example is invalid:
+- Local variable declaration is not allowed. The following example should be avoided:
 
   ```ts
   build() {
-    // Invalid: Local variable declaration is not allowed.
+    // Avoid: declaring a local variable.
     let a: number = 1;
   }
   ```
 
-- **console.info** cannot be directly used in the UI description, but can be used in methods or functions. The following is an example:
+- **console.info** can be used in the UI description only when it is in a method or function. The following example should be avoided:
 
   ```ts
   build() {
-    // Invalid: Use of console.info is not allowed.
+    // Avoid: using console.info directly.
     console.info('print debug log');
   }
   ```
 
-- Creation of a local scope is not allowed. The following example is invalid:
+- Creation of a local scope is not allowed. The following example should be avoided:
 
   ```ts
   build() {
-    // Invalid: Creation of local scope is not allowed.
+    // Avoid: creating a local scope.
     {
       ...
     }
   }
   ```
 
-- Calling a function other than the \@Builder decorated is not allowed. The parameters of built-in components can be the return values of TS methods.
+- Only methods decorated by \@Builder can be called. The parameters of built-in components can be the return values of TS methods.
 
   ```ts
   @Component
@@ -239,23 +239,23 @@ All languages declared in the **build** function are called UI description langu
 
     build() {
       Column() {
-        // Invalid: No function calls except @Builder functions.
+        // Avoid: calling a method not decorated by @Builder.
         this.doSomeCalculations();
-        // Valid: The function can be called.
+        // Prefer: Call an @Builder decorated method.
         this.doSomeRender();
-        // Valid: The parameter can be the return value of a TS method.
+        // Prefer: Pass the return value of a TS method as the parameter.
         Text(this.calcTextValue())
       }
     }
   }
   ```
 
-- The **switch** syntax is not allowed. Use **if** instead. The following example is invalid:
+- The **switch** syntax is not allowed. Use **if** instead. The following example should be avoided:
 
   ```ts
   build() {
     Column() {
-      // Invalid: The switch syntax is not allowed.
+      // Avoid: using the switch syntax.
       switch (expression) {
         case 1:
           Text('...')
@@ -271,12 +271,12 @@ All languages declared in the **build** function are called UI description langu
   }
   ```
 
-- Expressions are not allowed. The following example is invalid:
+- Expressions are not allowed. The following example should be avoided:
 
   ```ts
   build() {
     Column() {
-      // Invalid: Expressions are not allowed.
+      // Avoid: expressions.
       (this.aVar > 10) ? Text('...') : Image('...')
     }
   }

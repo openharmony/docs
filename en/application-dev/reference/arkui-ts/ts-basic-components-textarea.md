@@ -2,6 +2,8 @@
 
 The **\<TextArea>** component provides multi-line text input and automatically wraps text so that each line does not have more than the width of the component.
 
+If the component does not have its height set, it adapts its height to the content. If the component does not have its width set, it takes the maximum available width.
+
 >  **NOTE**
 >
 >  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.

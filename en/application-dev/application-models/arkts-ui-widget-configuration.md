@@ -38,7 +38,7 @@ Widget-related configuration includes **FormExtensionAbility** configuration and
 
    | Field| Description| Data Type| Default Value Allowed|
    | -------- | -------- | -------- | -------- |
-   | name | Class name of the widget. The value is a string with a maximum of 127 bytes.| String| No|
+   | name | Name of the widget. The value is a string with a maximum of 127 bytes.| String| No|
    | description | Description of the widget. The value can be a string or a resource index to descriptions in multiple languages. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
    | src | Full path of the UI code corresponding to the widget. For an ArkTS widget, the full path must contain the widget file name extension, for example, **./ets/widget/pages/WidgetCard.ets**. For a JS widget, the full path does not need to contain the widget file name extension, for example, **./js/widget/pages/WidgetCard**.| String| No|
    | uiSyntax | Type of the widget.<br>- **arkts**: ArkTS widget<br>- **hml**: JS widget| String| Yes (initial value: **hml**)|

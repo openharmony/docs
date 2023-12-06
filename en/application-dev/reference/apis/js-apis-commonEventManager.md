@@ -459,11 +459,14 @@ try {
 }
 
 // Unsubscribe from the common event.
-try {
-    CommonEventManager.unsubscribe(subscriber, unsubscribeCallBack);
-} catch (err) {
-    console.info("unsubscribe failed " + JSON.stringify(err));
-}
+// Wait until execution of the asynchronous API subscribe is completed. Add setTimeout when necessary.
+setTimeout(() => {
+    try {
+        CommonEventManager.unsubscribe(subscriber, unsubscribeCallBack);
+    } catch (err) {
+        console.info("unsubscribe failed " + JSON.stringify(err));
+    }
+}, 500);
 ```
 
 ## CommonEventData

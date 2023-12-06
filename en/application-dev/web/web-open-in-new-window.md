@@ -16,21 +16,54 @@ In the following example, when a user clicks the **Open Page in New Window** but
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
+  import web_webview from '@ohos.web.webview'
+
+  // There are two Web components on the same page. When a new window is opened in WebComponent, NewWebViewComp is displayed.
+  @CustomDialog
+  struct NewWebViewComp {
+  controller?: CustomDialogController
+  webviewController1: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+      Column() {
+        Web({ src: "", controller: this.webviewController1 })
+          .javaScriptAccess(true)
+          .multiWindowAccess(false)
+          .onWindowExit(()=> {
+            console.info("NewWebViewComp onWindowExit")
+            if (this.controller) {
+              this.controller.close()
+            }
+          })
+        }
+    }
+  }
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
-    build() {
-      Column() {
-        Web({ src:$rawfile("window.html"), controller: this.controller })
-        .multiWindowAccess(true)
-        .onWindowNew((event) => {
-          console.info("onWindowNew...");
-          var popController: web_webview.WebviewController = new web_webview.WebviewController();
-          // Create a window, associate it with popController, and have popController returned to the Web component. If you do not need to open a new window, set the return value to event.handler.setWebController(null).
-          event.handler.setWebController(popController);
-        })
+      controller: web_webview.WebviewController = new web_webview.WebviewController()
+      dialogController: CustomDialogController | null = null
+      build() {
+        Column() {
+          Web({ src:$rawfile("window.html"), controller: this.controller })
+            .javaScriptAccess(true)
+           // Enable MultiWindowAccess.
+            .multiWindowAccess(true)
+            .allowWindowOpenMethod(true)
+            .onWindowNew((event) => {
+            if (this.dialogController) {
+              this.dialogController.close()
+            }
+            let popController:web_webview.WebviewController = new web_webview.WebviewController()
+            this.dialogController = new CustomDialogController({
+              builder: NewWebViewComp({webviewController1: popController})
+            })
+            this.dialogController.open()
+            // Return the WebviewController corresponding to the new window to the web kernel.
+            // If you do not need to open a new window, call event.handler.setWebController and set the value to null.
+            // If event.handler.setWebController is not called, the render process will be blocked.
+            event.handler.setWebController(popController)
+          })
       }
     }
   }
@@ -40,24 +73,22 @@ In the following example, when a user clicks the **Open Page in New Window** but
 - Code of the **window.html** page:
 
   ```html
-  <!DOCTYPE html>
+   <!DOCTYPE html>
   <html>
   <head>
       <meta charset="utf-8">
       <title>WindowEvent</title>
   </head>
-
   <body>
   <input type="button" value="Open Page in New Window" onclick="OpenNewWindow()">
   <script type="text/javascript">
       function OpenNewWindow()
       {
           let openedWindow = window.open("about:blank", "", "location=no,status=no,scrollvars=no");
-          if (openedWindow) {
-              openedWindow.document.body.write("<p>This is my window</p>");
-          } else {
-              log.innerHTML = "window.open failed";
-          }
+
+          openedWindow.document.write (" <p>This is my window </p>");
+          openedWindow.focus();
+
       }
   </script>
   </body>
