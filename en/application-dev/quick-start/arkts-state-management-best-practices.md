@@ -18,7 +18,7 @@ The following example describes the initialization rules of the \@Prop, \@Link, 
 ### Not Recommended
 
 
-  
+
 ```ts
 @Observed
 class ClassA {
@@ -105,7 +105,7 @@ The preceding example contains several errors:
 
 1. \@Component LinkChild: The type of **\@Link testNum: number** and the initialization from the parent component **LinkChild ({testNum:this.testNum.c})** are incorrect. The data source of \@Link must be a decorated state variable. The \@Link decorated variables must be of the same type as the data source, for example, \@Link: T and \@State: T. Therefore, the value should be changed to **\@Link testNum: ClassA**, and the initialization from the parent component should be **LinkChild({testNum: $testNum})**.
 
-2. \@Component PropChild2: An \@Prop decorated variable can be initialized locally or from the parent component, but it must be initialized. **\@Prop testNum: ClassA** is not initialized locally, and therefore it must be initialized from the parent component: **PropChild1({testNum: this.testNum})**.
+2. \@Component PropChild2: An \@Prop decorated variable can be initialized locally or from the parent component, but it must be initialized. **\@Prop testNum: ClassA** is not initialized locally, and therefore it must be initialized from the parent component: **PropChild2({testNum: this.testNum})**.
 
 3. \@Component PropChild3: The **\@Prop testNum: ClassA** value is not changed. Therefore, \@ObjectLink is a better choice here, because \@Prop involves a deep copy, which can result in an increase in overhead.
 
@@ -117,7 +117,7 @@ The preceding example contains several errors:
 ### Recommended
 
 
-  
+
 ```ts
 @Observed
 class ClassA {
@@ -199,7 +199,7 @@ Each decorator has its scope of observable changes, and only those observed chan
 
 In the following example, some UI components are not updated.
 
-  
+
 ```ts
 class ClassA {
   a: number;
@@ -302,7 +302,7 @@ struct MyView {
 
 The following example uses \@Observed/\@ObjectLink to observe property changes for nested objects.
 
-  
+
 ```ts
 class ClassA {
   a: number;
@@ -400,7 +400,7 @@ struct MyView {
 
 The following example creates a child component with an \@ObjectLink decorated variable to render **ParentCounter** with nested attributes. **SubCounter** nested in **ParentCounter** is decorated with \@Observed.
 
-  
+
 ```ts
 let nextId = 1;
 @Observed
@@ -609,7 +609,7 @@ struct ParentComp {
 
 In the following example, the \@ObjectLink decorated variable is a reference to the data source. That is, **this.value.subValue** and **this.subValue** are different references of the same object. Therefore, when the click handler of **CounterComp** is clicked, both **this.value.subCounter.counter** and **this.subValue.counter** change, and the corresponding component **Text (this.subValue.counter: ${this.subValue.counter})** is re-rendered.
 
-  
+
 ```ts
 let nextId = 1;
 
@@ -710,8 +710,8 @@ Below shows \@ObjectLink working in action.
 
 If \@Prop is used instead of \@ObjectLink, then: When the first click handler is clicked, the UI is updated properly; However, when the second **onClick** event occurs, the first **Text** component of **CounterComp** is not re-rendered, because \@Prop makes a local copy of the variable.
 
-  **this.value.subCounter** and **this.subValue** are not the same object. Therefore, the change of **this.value.subCounter** does not change the copy object of **this.subValue**, and **Text(this.subValue.counter: ${this.subValue.counter})** is not re-rendered.
-  
+**this.value.subCounter** and **this.subValue** are not the same object. Therefore, the change of **this.value.subCounter** does not change the copy object of **this.subValue**, and **Text(this.subValue.counter: ${this.subValue.counter})** is not re-rendered.
+
 ```ts
 @Component
 struct CounterComp {
@@ -846,7 +846,7 @@ Therefore, state variables cannot be directly changed in the **build()** or \@Bu
 
 In the following example, **Text('${this.count++}')** directly changes the state variable in the **build()** method.
 
-  
+
 ```ts
 @Entry
 @Component
@@ -884,7 +884,7 @@ In ArkUI, the full and minimum updates of **Text('${this.count++}')** impose dif
 
 When possible, perform the count++ operation in the event handler.
 
-  
+
 ```ts
 @Entry
 @Component
@@ -926,7 +926,7 @@ ForEach(this.arr.sort().filter(....),
 
 In the correct invoking sequence, **filter**, which returns a new array, is called before **sort()**. In this way, the **sort()** method does not change the array **this.arr**.
 
-  
+
 ```ts
 ForEach(this.arr.filter(....).sort(), 
   item => { 
@@ -940,7 +940,7 @@ ForEach(this.arr.filter(....).sort(),
 
 ### Not Recommended
 
-  
+
 ```ts
 @Entry
 @Component
@@ -995,7 +995,7 @@ The preceding example has the following pitfalls:
 
 To address this issue, decorate the **realState1** and **realState2** variables with \@State. Then, the variable **needsUpdate** is no longer required.
 
-  
+
 ```ts
 @Entry
 @Component
@@ -1364,3 +1364,131 @@ struct ChildFour {
   }
 }
 ```
+
+## Precisely Controlling the Number of Components Associated with State Variables
+
+When components are associated with state variables, they are re-rendered when the state value changes. The more components associated, the more components re-rendered, and the heavier the UI thread load, which causes a drop in application performance. Things can get worse when the associated components are complex. Therefore, it is critical to precisely control the number of associated components. For example, instead of associating a state variable with multiple components at the same level, associating it with these components' parent can greatly reduce the number of components to be re-rendered, thereby improving UI responsiveness.
+
+### Not Recommended
+
+```ts
+@Observed
+class Translate {
+  translateX: number = 20;
+}
+@Component
+struct Title {
+  @ObjectLink translateObj: Translate;
+  build() {
+    Row() {
+      Image($r('app.media.icon'))
+        .width(50)
+        .height(50)
+        .translate({
+          x:this.translateObj.translateX // this.translateObj.translateX used in two component both in Row
+        })
+      Text("Title")
+        .fontSize(20)
+        .translate({
+          x: this.translateObj.translateX
+        })
+    }
+  }
+}
+@Entry
+@Component
+struct Page {
+  @State translateObj: Translate = new Translate();
+  build() {
+    Column() {
+      Title({
+        translateObj: this.translateObj
+      })
+      Stack() {
+      }
+      .backgroundColor("black")
+      .width(200)
+      .height(400)
+      .translate({
+        x:this.translateObj.translateX //this.translateObj.translateX used in two components both in Column
+      })
+      Button("move")
+        .translate({
+          x:this.translateObj.translateX
+        })
+        .onClick(() => {
+          animateTo({
+            duration: 50
+          },()=>{
+            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150
+          })
+        })
+    }
+  }
+}
+```
+
+In the preceding example, the state variable **this.translateObj.translateX** is used in multiple child components at the same level. When it changes, all these associated components are re-rendered. Since the changes of these components are the same, you can associate the state variable with their parent component to reduce the number of components re-rendered. Analysis reveals that all these child components are located in the **\<Column>** component under strcut **Page**. Therefore, you can associate the **translate** attribute to the **\<Column>** component instead.
+
+### Not Recommended
+
+```
+@Observed
+class Translate {
+  translateX: number = 20;
+}
+@Component
+struct Title {
+  @ObjectLink translateObj: Translate;
+  build() {
+    Row() { 
+      Image($r('app.media.icon'))
+        .width(50)
+        .height(50)
+        // .translate({
+        //   x: this.translateObj.translateX
+        // })
+      Text("Title")
+        .fontSize(20)
+        // .translate({
+        //   x: this.translateObj.translateX
+        // })
+    }
+  }
+}
+@Entry
+@Component
+struct Page {
+  @State translateObj: Translate = new Translate();
+  build() {
+    Column() {
+      Title({
+        translateObj: this.translateObj
+      })
+      Stack() {
+      }
+      .backgroundColor("black")
+      .width(200)
+      .height(400)
+      // .translate({
+      //   x: this.translateObj.translateX
+      // })
+      Button("move")
+        // .translate({
+        //   x: this.translateObj.translateX
+        // })
+        .onClick(() => {
+          animateTo({
+            duration: 50
+          },()=>{
+            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150
+          })
+        })
+    }
+    .translate({ // the component in Column shares the same property translate
+      x: this.translateObj.translateX
+    })
+  }
+}
+```
+
