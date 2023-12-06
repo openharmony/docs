@@ -6031,13 +6031,17 @@ promise.then(()=> {
     console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
 });
 ```
-### minimize<sup>10+</sup>
+### minimize<sup>11+</sup>
 
 minimize(callback: AsyncCallback&lt;void&gt;): void
 
-最小化主窗口。使用callback异步回调。
+此接口根据调用对象不同，实现不同的两个功能：
 
-**系统接口：** 此接口为系统接口。
+当调用对象为主窗口时，实现最小化功能，可在Dock栏中还原；
+
+当调用对象为子窗口时，实现隐藏功能，不可在Dock栏中还原。
+
+使用callback异步回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -6059,48 +6063,30 @@ minimize(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // 为主窗口加载对应的目标页面。
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // 获取应用主窗口。
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-            // 调用minimize接口。
-            mainWindow.minimize((err) => {
-                if (err.code) {
-                    console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Successfully minimized app main window.');
-            });
-        })
-    }
-};
+let windowClass: window.Window = window.findWindow("test");
+windowClass.minimize((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to minimize the window. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in minimizing the window.');
+});
 ```
 
-### minimize<sup>10+</sup>
+### minimize<sup>11+</sup>
 
 minimize(): Promise&lt;void&gt;
 
-最小化主窗口。使用Promise异步回调。
+此接口根据调用对象不同，实现不同的两个功能：
 
-**系统接口：** 此接口为系统接口。
+当调用对象为主窗口时，实现最小化功能，可在Dock栏中还原；
+
+当调用对象为子窗口时，实现隐藏功能，不可在Dock栏中还原。
+
+使用Promise异步回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -6122,38 +6108,15 @@ minimize(): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // 为主窗口加载对应的目标页面。
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // 获取应用主窗口。
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-            // 获取minimize接口的promise对象。
-            let promise = mainWindow.minimize();
-            promise.then(()=> {
-                console.info('Successfully minimized app main window.');
-            }).catch((err)=>{
-                console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
-            });
-        })
-    }
-};
+let windowClass: window.Window = window.findWindow("test");
+let promise = windowClass.minimize();
+promise.then(() => {
+  console.info('Succeeded in minimizing the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to minimize the window. Cause: ' + JSON.stringify(err));
+});
 ```
 
 ### setResizeByDragEnabled<sup>10+</sup>
