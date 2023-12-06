@@ -220,7 +220,7 @@ Creates an image or video asset with the specified file name. This API uses an a
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | displayName  | string        | Yes  | File name of the image or video to create.             |
-| callback |  AsyncCallback&lt;[FileAsset](#fileasset)&gt; | Yes  | Callback invoked to return the image or video created.|
+| callback |  AsyncCallback&lt;[FileAsset](#fileasset)&gt; | Yes  | Callback invoked to return the image or video asset created. |
 
 **Error codes**
 
@@ -269,7 +269,7 @@ Creates an image or video asset with the specified file name and URI. This API u
 
 | Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FileAsset](#fileasset)&gt; | Promise used to return the created image or video asset.|
+| Promise&lt;[FileAsset](#fileasset)&gt; | Promise used to return the created image or video asset created. |
 
 **Error codes**
 
@@ -363,7 +363,7 @@ Creates an image or video asset with the specified file name and options. This A
 
 | Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FileAsset](#fileasset)&gt; | Promise used to return the created image and video asset.|
+| Promise&lt;[FileAsset](#fileasset)&gt; | Promise used to return the created image or video asset created. |
 
 **Error codes**
 
@@ -1840,7 +1840,7 @@ Obtains the value of a **FileAsset** parameter.
 
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | Yes   | Name of the parameter, for example, **ImageVideoKey.DISPLAY_NAME**. You need to enter the **PhotoKeys** to be obtained in **fetchColumns** for all attributes except **uri**, **photoType**, and **displayName**. For example, **fetchColumns: ['title']**.|
+| member | string | Yes   | Member parameter name, for example, **ImageVideoKey.DISPLAY_NAME**. You need to enter the **PhotoKeys** to be obtained in **fetchColumns** for all attributes except **uri**, **photoType**, and **displayName**. For example, **fetchColumns: ['title']**.|
 
 **Example**
 
@@ -1878,7 +1878,7 @@ Sets a **FileAsset** parameter.
 
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | Yes   | Name of the parameter, for example, **ImageVideoKey.DISPLAY_NAME**.|
+| member | string | Yes   | Member parameter name, for example, **ImageVideoKey.DISPLAY_NAME**.|
 | value | string | Yes   | Value to set. Only the values of **DISPLAY_NAME** and **TITLE** can be changed.|
 
 **Example**
