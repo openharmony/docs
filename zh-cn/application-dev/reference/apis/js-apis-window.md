@@ -311,6 +311,19 @@ import window from '@ohos.window';
 | WINDOW_INACTIVE   | 3      | 失焦状态。 |
 | WINDOW_HIDDEN     | 4      | 切到后台。 |
 
+## WindowLimits<sup>11+</sup>
+
+窗口尺寸限制参数。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称      | 类型   | 可读 | 可写 | 必填 | 说明                                                         |
+| :-------- | :----- | :--- | :--- | :--- | :----------------------------------------------------------- |
+| maxWidth  | number | 是   | 是   | 否   | 窗口的最大宽度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最大宽度。  |
+| maxHeight | number | 是   | 是   | 否   | 窗口的最大高度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最大高度。  |
+| minWidth  | number | 是   | 是   | 否   | 窗口的最小宽度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小宽度。  |
+| minHeight | number | 是   | 是   | 否   | 窗口的最小高度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小高度。  |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -6396,6 +6409,92 @@ export default class EntryAbility extends UIAbility {
       });
     })
   }
+}
+```
+
+### getWindowLimits<sup>11+</sup>
+
+getWindowLimits(): WindowLimits
+
+获取当前窗口的尺寸限制。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                          | 说明           |
+| ----------------------------- | ------------------ |
+| [WindowLimits](#windowlimits11) | 当前窗口尺寸限制。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| :------- | :----------------------------- |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  let windowLimits = windowClass.getWindowLimits();
+} catch (exception) {
+  console.error('Failed to obtain the window limits of window. Cause: ' + JSON.stringify(exception));
+}
+```
+
+###  setWindowLimits<sup>11+</sup>
+
+setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
+
+设置当前窗口的尺寸限制，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名       | 类型                          | 必填 | 说明                           |
+| :----------- | :---------------------------- | :--- | :----------------------------- |
+| windowLimits | [WindowLimits](#windowlimits11) | 是   | 目标窗口的尺寸限制，单位为px。 |
+
+**返回值：**
+
+| 类型                                         | 说明                                |
+| :------------------------------------------- | :---------------------------------- |
+| Promise&lt;[WindowLimits](#windowlimits11)&gt; | Promise对象。返回设置后的尺寸限制。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| :------- | :-------------------------------------------- |
+| 1300002  | This window state is abnormal.                |
+| 1300003  | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+try {
+  let windowLimits: window.WindowLimits = {
+    maxWidth: 1500,
+    maxHeight: 1000,
+    minWidth: 500,
+    minHeight: 400
+  };
+  let windowClass: window.Window = window.findWindow("test");
+  let promise = windowClass.setWindowLimits(windowLimits);
+    promise.then((data) => {
+    console.info('Succeeded in changing the window limits. Cause:' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to change the window limits. Cause: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to change the window limits. Cause:' + JSON.stringify(exception));
 }
 ```
 
