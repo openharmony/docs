@@ -61,28 +61,28 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 import { SelectTitleBar } from "@ohos.arkui.advanced.SelectTitleBar"
 import promptAction from '@ohos.promptAction'
 
+class menuItems {
+  value: Resource;
+  isEnabled: boolean;
+  action: () => void
+
+  constructor(value: Resource,isEnabled: boolean,action: () => void) {
+    this.value = value
+    this.isEnabled = isEnabled
+    this.action = action
+  }
+}
+
 @Entry
 @Component
 struct Index {
-  menuItems: {
-    value: Resource,
-    isEnabled: boolean,
-    action: () => void
-  }[] =
-    [
-      { isEnabled: true, value: $r('app.media.ic_public_save'),
-        action: () => promptAction.showToast({ message: "show toast index 1" })
-      },
-      { isEnabled: true, value: $r('app.media.ic_public_reduce'),
-        action: () => promptAction.showToast({ message: "show toast index 2" })
-      },
-      { isEnabled: true, value: $r('app.media.ic_public_edit'),
-        action: () => promptAction.showToast({ message: "show toast index 3" })
-      },
-      { isEnabled: true, value: $r('app.media.ic_public_reduce'),
-        action: () => promptAction.showToast({ message: "show toast index 4" })
-      }
-    ]
+  private  menuItems:Array<menuItems> =
+  [
+    new menuItems($r('app.media.ic_public_save'),true,() => promptAction.showToast({ message: "show toast index 1" })),
+    new menuItems($r('app.media.ic_public_reduce'),true,() => promptAction.showToast({ message: "show toast index 2" })),
+    new menuItems($r('app.media.ic_public_edit'),true,() => promptAction.showToast({ message: "show toast index 3" })),
+    new menuItems($r('app.media.ic_public_reduce'),true,() => promptAction.showToast({ message: "show toast index 4" }))
+  ]
 
   build() {
     Row() {
