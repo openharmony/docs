@@ -486,6 +486,17 @@ async function createTonePlayerBefore(){
 | --------- | -------- |------|
 | CHANNEL_1 | 0x1 << 0 | 单声道。 |
 | CHANNEL_2 | 0x1 << 1 | 双声道。 |
+| CHANNEL_3<sup>11+</sup> | 3 | 三声道。 |
+| CHANNEL_4<sup>11+</sup> | 4 | 四声道。 |
+| CHANNEL_5<sup>11+</sup> | 5 | 五声道。 |
+| CHANNEL_6<sup>11+</sup> | 6 | 六声道。 |
+| CHANNEL_7<sup>11+</sup> | 7 | 七声道。 |
+| CHANNEL_8<sup>11+</sup> | 8 | 八声道。 |
+| CHANNEL_9<sup>11+</sup> | 9 | 九声道。 |
+| CHANNEL_10<sup>11+</sup> | 10 | 十声道。 |
+| CHANNEL_12<sup>11+</sup> | 12 | 十二声道。 |
+| CHANNEL_14<sup>11+</sup> | 14 | 十四声道。 |
+| CHANNEL_16<sup>11+</sup> | 16 | 十六声道。 |
 
 ## AudioSamplingRate<sup>8+</sup>
 
@@ -665,6 +676,7 @@ async function createTonePlayerBefore(){
 | channels     | [AudioChannel](#audiochannel8)                    | 是   | 音频文件的通道数。 |
 | sampleFormat | [AudioSampleFormat](#audiosampleformat8)          | 是   | 音频采样格式。     |
 | encodingType | [AudioEncodingType](#audioencodingtype8)          | 是   | 音频编码格式。     |
+| channelLayout<sup>11+</sup> | [AudioChannelLayout](#audiochannellayout11)  | 否   | 音频声道布局。     |
 
 ## AudioRendererInfo<sup>8+</sup>
 
