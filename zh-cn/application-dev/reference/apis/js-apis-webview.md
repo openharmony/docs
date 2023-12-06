@@ -4958,6 +4958,12 @@ getSecurityLevel(): SecurityLevel;
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**返回值：**
+
+| 类型                                | 说明                        |
+| ----------------------------------- | --------------------------- |
+| [SecurityLevel](#SecurityLevel) | 当前网页的安全级别，具体值为NONE、SECURE、WARNING、DANGEROUS。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
@@ -5122,12 +5128,6 @@ static fetchCookie(url: string, callback: AsyncCallback\<string>): void
 异步callback方式获取指定url对应cookie的值。
 
 **系统能力：** SystemCapability.Web.Webview.Core
-
-**返回值：**
-
-| 类型                                | 说明                        |
-| ----------------------------------- | --------------------------- |
-| [SecurityLevel](#SecurityLevel) | 当前网页的安全级别，具体值为NONE、SECURE、WARNING、DANGEROUS。 |
 
 **参数：**
 
