@@ -17,9 +17,9 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)返回Abiltiy的状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统接口**: 该接口为系统接口。
 
-**系统API**: 此枚举类型为系统接口内部定义，三方应用不支持调用。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
@@ -35,6 +35,8 @@ Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-in
 updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 通过传入修改的配置项来更新配置（callback形式）。
+
+**系统接口**：该接口为系统接口。
 
 **需要权限**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -89,6 +91,8 @@ try {
 updateConfiguration(config: Configuration): Promise\<void>
 
 通过修改配置来更新配置（Promise形式）。
+
+**系统接口**：该接口为系统接口。
 
 **需要权限**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -147,6 +151,8 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 获取UIAbility运行相关信息（callback形式）。
 
+**系统接口**：该接口为系统接口。
+
 **需要权限**: ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
@@ -190,6 +196,8 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 获取UIAbility运行相关信息（Promise形式）。
 
+**系统接口**：该接口为系统接口。
+
 **需要权限**: ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
@@ -231,6 +239,8 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 
 获取关于运行扩展能力的信息（callback形式）。
 
+**系统接口**：该接口为系统接口。
+
 **需要权限**: ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
@@ -254,13 +264,14 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit, (err, data) => { 
-        if (err.code !== 0) {
-            console.log('getExtensionRunningInfos fail, err: ' + JSON.stringify(err));
+    abilityManager.getExtensionRunningInfos(upperLimit, (err: BusinessError, data: Array<abilityManager.ExtensionRunningInfo>) => {
+        if (err) {
+            console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
         } else {
             console.log('getExtensionRunningInfos success, data: ' + JSON.stringify(data));
         }
@@ -276,7 +287,9 @@ try {
 getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningInfo>>
 
 获取关于运行扩展能力的信息（Promise形式）。
- 
+
+**系统接口**：该接口为系统接口。
+
 **需要权限**: ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
@@ -305,14 +318,15 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
-        console.log('getExtensionRunningInfos success, data: ' + JSON.stringify(data));
-    }).catch((err) => {
-        console.log('getExtensionRunningInfos fail, err: '  + JSON.stringify(err));
+    abilityManager.getExtensionRunningInfos(upperLimit).then((data: Array<abilityManager.ExtensionRunningInfo>) => {
+        console.log(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
+    }).catch((err: BusinessError) => {
+        console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
     console.log('error.code: ' + JSON.stringify(paramError.code)
@@ -320,11 +334,13 @@ try {
 }
 ```
 
-## getTopAbility<sup>9+</sup>
+## getTopAbility
 
-getTopAbility(callback: AsyncCallback\<ElementName>): void;
+getTopAbility(callback: AsyncCallback\<ElementName>): void
 
 获取窗口焦点的ability接口（callback形式）。
+
+**系统接口**：该接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -346,10 +362,11 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
-abilityManager.getTopAbility((err, data) => { 
-    if (err.code !== 0) {
-        console.log('getTopAbility fail, err: ' + JSON.stringify(err));
+abilityManager.getTopAbility((err: BusinessError, data) => { 
+    if (err) {
+        console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
     } else {
         console.log('getTopAbility success, data: ' + JSON.stringify(data));
     }
@@ -358,10 +375,12 @@ abilityManager.getTopAbility((err, data) => {
 
 ## getTopAbility
 
-getTopAbility(): Promise\<ElementName>;
+getTopAbility(): Promise\<ElementName>
 
 获取窗口焦点的ability接口（Promise形式）。
- 
+
+**系统接口**：该接口为系统接口。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
