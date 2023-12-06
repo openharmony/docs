@@ -132,7 +132,7 @@ let result = lightWeightMap.hasAll(map);
 
 ### hasKey
 
-hasKey(key: K): boolean;
+hasKey(key: K): boolean
 
 判断此LightWeightMap中是否含有该指定key。
 
@@ -203,7 +203,6 @@ lightWeightMap.set("squirrel", 123);
 let result = lightWeightMap.hasValue(123);
 ```
 
-
 ### increaseCapacityTo
 
 increaseCapacityTo(minimumCapacity: number): void
@@ -211,6 +210,12 @@ increaseCapacityTo(minimumCapacity: number): void
 将当前LightWeightMap扩容至可以容纳指定数量元素。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| minimumCapacity | number | 是 | 需要容纳的数量。 |
 
 **错误码：**
 
@@ -220,19 +225,12 @@ increaseCapacityTo(minimumCapacity: number): void
 | -------- | -------- |
 | 10200011 | The increaseCapacityTo method cannot be bound. |
 
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| minimumCapacity | number | 是 | 需要容纳的数量。 |
-
 **示例：**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.increaseCapacityTo(10);
 ```
-
 
 ### get
 
@@ -423,7 +421,7 @@ map.setAll(lightWeightMap); // 将lightWeightMap中所有的元素添加到map�
 ### set
 set(key: K, value: V): Object
 
-向LightWeightMap中添加一组数据。
+向LightWeightMap中添加或更新一组数据。
 
 **系统能力：** SystemCapability.Utils.Lang
 
