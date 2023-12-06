@@ -17,9 +17,9 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)返回Ability的状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统接口**: 该接口为系统接口。
 
-**系统API**: 此枚举类型为系统接口内部定义，三方应用不支持调用。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
@@ -35,6 +35,8 @@ Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-in
 updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 通过传入修改的配置项来更新配置（callback形式）。
+
+**系统接口**：该接口为系统接口。
 
 **需要权限**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -91,6 +93,8 @@ try {
 updateConfiguration(config: Configuration): Promise\<void>
 
 通过修改配置来更新配置（Promise形式）。
+
+**系统接口**：该接口为系统接口。
 
 **需要权限**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -152,6 +156,8 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 获取UIAbility运行相关信息（callback形式）。
 
+**系统接口**：该接口为系统接口。
+
 **需要权限**: ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
@@ -197,6 +203,8 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 获取UIAbility运行相关信息（Promise形式）。
 
+**系统接口**：该接口为系统接口。
+
 **需要权限**: ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
@@ -240,6 +248,8 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 
 获取关于运行扩展能力的信息（callback形式）。
 
+**系统接口**：该接口为系统接口。
+
 **需要权限**: ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
@@ -268,7 +278,7 @@ import { BusinessError } from '@ohos.base';
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit, (err: BusinessError, data: Array<ExtensionRunningInfo>) => {
+    abilityManager.getExtensionRunningInfos(upperLimit, (err: BusinessError, data: Array<abilityManager.ExtensionRunningInfo>) => {
         if (err) {
             console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
         } else {
@@ -287,7 +297,9 @@ try {
 getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningInfo>>
 
 获取关于运行扩展能力的信息（Promise形式）。
- 
+
+**系统接口**：该接口为系统接口。
+
 **需要权限**: ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
@@ -321,7 +333,7 @@ import { BusinessError } from '@ohos.base';
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit).then((data: Array<ExtensionRunningInfo>) => {
+    abilityManager.getExtensionRunningInfos(upperLimit).then((data: Array<abilityManager.ExtensionRunningInfo>) => {
         console.log(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
         console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
@@ -333,11 +345,13 @@ try {
 }
 ```
 
-## getTopAbility<sup>9+</sup>
+## getTopAbility
 
-getTopAbility(callback: AsyncCallback\<ElementName>): void;
+getTopAbility(callback: AsyncCallback\<ElementName>): void
 
 获取窗口焦点的ability接口（callback形式）。
+
+**系统接口**：该接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -361,7 +375,7 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
-abilityManager.getTopAbility((err: BusinessError, data: AsyncCallback<ElementName>) => { 
+abilityManager.getTopAbility((err: BusinessError, data) => { 
     if (err) {
         console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -372,10 +386,12 @@ abilityManager.getTopAbility((err: BusinessError, data: AsyncCallback<ElementNam
 
 ## getTopAbility
 
-getTopAbility(): Promise\<ElementName>;
+getTopAbility(): Promise\<ElementName>
 
 获取窗口焦点的ability接口（Promise形式）。
- 
+
+**系统接口**：该接口为系统接口。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -398,7 +414,7 @@ getTopAbility(): Promise\<ElementName>;
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
-abilityManager.getTopAbility().then((data: AsyncCallback<ElementName>) => {
+abilityManager.getTopAbility().then((data) => {
     console.log(`getTopAbility success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
@@ -407,13 +423,13 @@ abilityManager.getTopAbility().then((data: AsyncCallback<ElementName>) => {
 
 ## acquireShareData<sup>10+</sup>
 
-acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void;
+acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void
 
 系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（callback形式）。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统接口**：该接口为系统接口。
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -454,13 +470,13 @@ try {
 
 ## acquireShareData<sup>10+</sup>
 
-acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
+acquireShareData(missionId: number): Promise<{[key: string]: Object}>
 
 系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（Promise形式）。
- 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统接口**：该接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -503,15 +519,15 @@ try {
 
 ## notifySaveAsResult<sup>10+</sup>
 
-notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: AsyncCallback\<void>): void;
+notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: AsyncCallback\<void>): void
 
-该接口仅供DLP（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用callback异步回调。
+该接口仅供[DLP](js-apis-dlppermission.md)（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用callback异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
 **系统接口**：此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -564,15 +580,15 @@ try {
 
 ## notifySaveAsResult<sup>10+</sup>
 
-notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void>;
+notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void>
 
-该接口仅供DLP管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用Promise异步回调。
+该接口仅供[DLP](js-apis-dlppermission.md)（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用Promise异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
 **系统接口**：此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
