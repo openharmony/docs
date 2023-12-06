@@ -21,6 +21,7 @@
   - [Purgeable memory开发指导](purgeable-memory-guidelines.md)
 - 设备管理
   - [USB DDK开发指导](usb-ddk-guidelines.md)
+  - [HID DDK开发指导](hid-ddk-guidelines.md)
 
 - 数据管理
   - [RelationalStore开发指导](native-relational-store-guidelines.md)
