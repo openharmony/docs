@@ -3,9 +3,9 @@
 FeatureAbility模块提供与用户进行交互的Ability的能力，包括启动新的Ability、停止Ability、获取dataAbilityHelper对象、获取当前Ability对应的窗口，连接断连Service等。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
-> 本模块接口仅可在FA模型下使用。
+>
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块接口仅可在FA模型下使用，Stage模型下需使用[UIAbility模块](js-apis-app-ability-uiAbility.md)和[UIAbilityContext模块](js-apis-inner-application-uiAbilityContext.md)。
 
 ## 使用限制
 
@@ -29,6 +29,8 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
  - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)。
 
 **参数：**
 
@@ -106,6 +108,8 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-2)。
+
 **参数：**
 
 | 参数名        | 类型                                       | 必填   | 说明             |
@@ -181,6 +185,8 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[dataShare.createDataShareHelper](js-apis-data-dataShare.md#datasharecreatedatasharehelper)。
+
 **参数：**
 
 | 参数名   | 类型     | 必填   | 说明           |
@@ -217,6 +223,9 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
  - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult)。
+
 
 **参数：**
 
@@ -295,6 +304,8 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
  - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult-2)。
 
 **参数：**
 
@@ -376,6 +387,8 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)。
+
 **参数：**
 
 | 参数名        | 类型                              | 必填   | 说明             |
@@ -440,6 +453,8 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult-1)。
 
 **参数：**
 
@@ -510,6 +525,8 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[on('windowEvent')](js-apis-window.md#onwindowevent10)。
+
 **参数：**
 
 | 参数名       | 类型                      | 必填   | 说明                                       |
@@ -572,6 +589,8 @@ getWant(callback: AsyncCallback\<Want>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbility.launchWant](js-apis-app-ability-uiAbility.md#属性)。
+
 **参数：**
 
 | 参数名       | 类型                            | 必填   | 说明        |
@@ -606,6 +625,8 @@ getWant(): Promise\<Want>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbility.launchWant](js-apis-app-ability-uiAbility.md#属性)。
+
 **返回值：**
 
 | 类型                      | 说明               |
@@ -636,6 +657,8 @@ getContext(): Context
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbility.context](js-apis-app-ability-uiAbility.md#属性)。
+
 **返回值：**
 
 | 类型      | 说明         |
@@ -663,6 +686,8 @@ terminateSelf(callback: AsyncCallback\<void>): void
 停止当前的Ability（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)。
 
 **参数：**
 
@@ -701,6 +726,8 @@ terminateSelf(): Promise\<void>
 停止当前的Ability（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)。
 
 **返回值：**
 
@@ -743,6 +770,8 @@ connectAbility(request: Want, options:ConnectOptions): number
  - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.connectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)。
 
 **参数：**
 
@@ -811,6 +840,8 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.disconnectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability-1)。
+
 **参数：**
 
 | 参数名         | 类型                   | 必填   | 说明                      |
@@ -869,6 +900,8 @@ disconnectAbility(connection: number): Promise\<void>
 断开与指定ServiceAbility的连接（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.disconnectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability)。
 
 **参数：**
 
@@ -934,6 +967,8 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[window.getLastWindow](js-apis-window.md#windowgetlastwindow9)。
+
 **参数：**
 
 | 参数名     | 类型                          | 必填 | 说明                          |
@@ -975,6 +1010,8 @@ getWindow(): Promise\<window.Window>
 获取当前Ability对应的窗口（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[window.getLastWindow](js-apis-window.md#windowgetlastwindow9-1)。
 
 **返回值：**
 
