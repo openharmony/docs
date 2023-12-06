@@ -34,11 +34,11 @@
 - [组件布局中相对定位的分类和使用](relative-position.md)
 - [导航栏的使用编辑](Editing-with-the-navigation-bar.md)
 - [如何通过上下滑动实现亮度和音量调节](set-volume-brightness-through-gesture.md)
-
 - [搜索框与文字轮播的巧用](Search-box-and-text-carousel.md)
 - [如何控制循环动画的播放停止](how-to-control-the-pause-of-playback-of-looping-animations.md)
 - [自定义输入框](customize-the-input-box.md)
-- [导航栏的使用编辑](Editing-with-the-navigation-bar.md)
+- [如何实现内容的下拉变化](realization-of-collapsible-title-effect.md)
+
 ### 装饰器
 - [控制页面刷新范围](overall-and-part-refresh.md)
 - [如何监听多层状态变化](observed-and-objectlink.md)
