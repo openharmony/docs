@@ -55,10 +55,14 @@ struct TouchTargetExample {
           this.text = 'button1 clicked'
         })
 
-      // The touch target is located rightward by one button width, with its width half of the button width. The touch event is triggered if the left of the right part of button2 is touched.
-      Text("{x:'100%',y:0,width:'50%',height:'100%'}")
+      // Add multiple touch targets for a component.
+      Text("[{x:'100%',y:0,width:'50%',height:'100%'}," +
+      "\n{ x: 0, y: 0, width: '50%', height: '100%' }]")
       Button("button2")
-        .responseRegion({ x: '100%', y: 0, width: '50%', height: '100%' })
+        .responseRegion([
+          { x: '100%', y: 0, width: '50%', height: '100%' }, // The first touch target is located rightward by one button width, with its width half of the button width. The touch event is triggered if the left of the right part of button2 is touched.
+          { x: 0, y: 0, width: '50%', height: '100%' } // The width of the second touch target is half of the button width. The touch event is triggered if the left half of button2 is touched.
+        ])
         .onClick(() => {
           this.text = 'button2 clicked'
         })
