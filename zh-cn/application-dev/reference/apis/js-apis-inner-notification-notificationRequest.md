@@ -37,13 +37,13 @@
 | creatorPid            | number                                        | 是  | 否  | 创建通知的PID。              |
 | creatorUserId         | number                                       | 是  | 否  | 创建通知的UserId。           |
 | hashCode              | string                                        | 是  | 否  | 通知唯一标识。               |
-| classification        | string                                        | 否  | 否  | 通知分类。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
+| classification        | string                                        | 否  | 否  | 通知分类。<br>**系统接口**: 此接口为系统接口。                  |
 | groupName<sup>8+<sup> | string                                        | 否  | 否  | 组通知名称。                 |
 | template<sup>8+<sup> | [NotificationTemplate](./js-apis-inner-notification-notificationTemplate.md) | 否  | 否  | 通知模板。                   |
-| isRemoveAllowed<sup>8+<sup> | boolean                                | 是  | 否  | 通知是否能被移除。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
-| source<sup>8+<sup> | number                                        | 是  | 否  | 通知源。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
+| isRemoveAllowed<sup>8+<sup> | boolean                                | 是  | 否  | 通知是否能被移除。<br>**系统接口**: 此接口为系统接口。<br>**需要权限**: ohos.permission.SET_UNREMOVABLE_NOTIFICATION                 |
+| source<sup>8+<sup> | number                                        | 是  | 否  | 通知源。<br>**系统接口**: 此接口为系统接口。                  |
 | distributedOption<sup>8+<sup> | [DistributedOptions](#distributedoptions)                 | 否  | 否  | 分布式通知的选项。          |
-| deviceId<sup>8+<sup> | string                                        | 是  | 否  | 通知源的deviceId。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。          |
+| deviceId<sup>8+<sup> | string                                        | 是  | 否  | 通知源的deviceId。<br>**系统接口**: 此接口为系统接口。          |
 | notificationFlags<sup>8+<sup> | [NotificationFlags](js-apis-inner-notification-notificationFlags.md#notificationflags)                    | 是  | 否  | 获取NotificationFlags。          |
 | removalWantAgent<sup>9+<sup> | [WantAgent](js-apis-app-ability-wantAgent.md) | 否  | 否  | 当移除通知时，通知将被重定向到的WantAgent实例。          |
 | badgeNumber<sup>9+<sup> | number                    | 否  | 否  | 应用程序图标上显示的通知数。          |
@@ -60,4 +60,4 @@
 | isDistributed<sup>8+<sup>          | boolean        | 否   | 否   | 是否为分布式通知。                  |
 | supportDisplayDevices<sup>8+<sup>  | Array\<string> | 否   | 否   | 可以同步通知到的设备列表。         |
 | supportOperateDevices<sup>8+<sup>  | Array\<string> | 否   | 否   | 可以打开通知的设备列表。              |
-| remindType<sup>8+<sup>             | number         | 是   | 否   | 通知的提醒方式。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                    |
+| remindType<sup>8+<sup>             | number         | 是   | 否   | 通知的提醒方式。<br>**系统接口**: 此接口为系统接口。                   |
