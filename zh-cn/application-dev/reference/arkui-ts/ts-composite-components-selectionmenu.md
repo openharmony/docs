@@ -99,6 +99,8 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 ## 示例
 
 ```ts
+import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@ohos.arkui.advanced.SelectionMenu'
+
 @Entry
 @Component
 struct Index {
@@ -389,5 +391,8 @@ struct Index {
   }
 }
 ```
+> **说明：**
+>
+> 系统暂未预置加粗、斜体等图标，示例代码使用本地资源图标，开发者使用时需自行替换editorMenuOptions中icon项的资源。
 
 ![selectionmenu](figures/selectionmenu.jpeg)
