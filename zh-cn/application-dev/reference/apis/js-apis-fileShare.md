@@ -16,7 +16,7 @@ import fileShare from '@ohos.fileshare';
 
 枚举，授予或使能权限的URI访问模式。
 
-**系统能力：** SystemCapability.FileManagement.AppFileService
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 | 名称  | 值   | 说明  |
 | ----- |-----|-----|
@@ -27,7 +27,7 @@ import fileShare from '@ohos.fileshare';
 
 枚举，授予或使能权限的URI策略。
 
-**系统能力：** SystemCapability.FileManagement.AppFileService
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 | 名称  | 值   | 说明      |
 | ----- |-----|---------|
@@ -38,7 +38,7 @@ import fileShare from '@ohos.fileshare';
 
 枚举，授予或使能权限策略失败的URI对应的错误码。
 
-**系统能力：** SystemCapability.FileManagement.AppFileService
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 | 名称  | 值   | 说明        |
 | ----- |-----|-----------|
@@ -50,7 +50,7 @@ import fileShare from '@ohos.fileshare';
 
 授予或使能权限失败的URI策略结果，支持persistPermission、revokePermission、activatePermission、deactivatePermission接口抛出错误时使用。
 
-**系统能力**：SystemCapability.FileManagement.AppFileService
+**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 | 名称      | 类型                                  | 说明                |
 |---------|-------------------------------------|-------------------|
@@ -62,7 +62,7 @@ import fileShare from '@ohos.fileshare';
 
 需要授予或使能权限URI的策略信息。
 
-**系统能力**：SystemCapability.FileManagement.AppFileService
+**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 | 名称            | 类型       | 必填  | 说明                                                                                                                                              |
 |---------------| ---------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -189,7 +189,7 @@ grantPermission(tokenId: number, policies: Array&lt;PolicyInfo>, policyFlag: num
 
 **需要权限**：ohos.permission.SET_SANDBOX_POLICY
 
-**系统能力：** SystemCapability.FileManagement.AppFileService
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **系统接口**：此接口为系统接口。
 
@@ -260,7 +260,7 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
-**系统能力：** SystemCapability.FileManagement.AppFileService
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
 
@@ -329,7 +329,7 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
-**系统能力：** SystemCapability.FileManagement.AppFileService
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
 
@@ -398,7 +398,7 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
-**系统能力：** SystemCapability.FileManagement.AppFileService
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
 
@@ -465,7 +465,7 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
-**系统能力：** SystemCapability.FileManagement.AppFileService
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
 
