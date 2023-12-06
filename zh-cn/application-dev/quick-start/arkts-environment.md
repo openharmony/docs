@@ -35,7 +35,6 @@ Environment是ArkUI框架在应用程序启动时创建的单例对象。它为A
 ```ts
 // 将设备languageCode存入AppStorage中
 Environment.EnvProp('languageCode', 'en');
-let enable = AppStorage.Get('languageCode');
 
 @Entry
 @Component
