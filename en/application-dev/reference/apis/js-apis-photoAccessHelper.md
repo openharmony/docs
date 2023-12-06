@@ -956,11 +956,224 @@ async function example() {
 }
 ```
 
+### getHiddenAlbums<sup>11+</sup>
+
+getHiddenAlbums(mode: HiddenPhotosDisplayMode, options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
+
+Obtains hidden albums based on the specified display mode and retrieval options. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO and ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden files. |
+| options  | [FetchOptions](#fetchoptions)         | Yes  |  Options for retrieving the hidden files. |
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied.         |
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+// Obtain the album newAlbumName that contains hidden files.
+async function getHiddenAlbumsView() {
+  console.info('getHiddenAlbumsViewDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  predicates.equalTo('album_name', 'newAlbumName');
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE, fetchOptions,
+    async (err, fetchResult) => {
+      if (fetchResult == undefined) {
+        console.error('getHiddenAlbumsViewCallback fetchResult is undefined');
+        return;
+      }
+      let album = await fetchResult.getFirstObject();
+      console.info('getHiddenAlbumsViewCallback successfully, album name: ' + album.albumName);
+      fetchResult.close();
+  });
+}
+```
+
+### getHiddenAlbums<sup>11+</sup>
+
+getHiddenAlbums(mode: HiddenPhotosDisplayMode, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
+
+Obtains hidden albums based on the specified display mode. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO and ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden files. |
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied.         |
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+// Obtain the preset hidden album.
+async function getSysHiddenAlbum() {
+  console.info('getSysHiddenAlbumDemo');
+  phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE, async (err, fetchResult) => {
+    if (fetchResult == undefined) {
+      console.error('getSysHiddenAlbumCallback fetchResult is undefined');
+      return;
+    }
+    let hiddenAlbum: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    console.info('getSysHiddenAlbumCallback successfully, albumUri: ' + hiddenAlbum.albumUri);
+    fetchResult.close();
+  });
+}
+
+// Obtain the hidden albums displayed by album, that is, the albums with hidden files. Such albums do not include the preset hidden album and the albums in the trash.
+async function getHiddenAlbumsView() {
+  console.info('getHiddenAlbumsViewDemo');
+  phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE, async (err, fetchResult) => {
+    if (fetchResult == undefined) {
+      console.error('getHiddenAlbumsViewCallback fetchResult is undefined');
+      return;
+    }
+    let albums: Array<photoAccessHelper.Album> = await fetchResult.getAllObjects();
+    console.info('getHiddenAlbumsViewCallback successfully, albums size: ' + albums.length);
+
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    for (let i = 0; i < albums.length; i++) {
+      // Obtain hidden files in the album.
+      albums[i].getAssets(fetchOption, (err, assetFetchResult) => {
+        console.info('album get hidden assets successfully, getCount: ' + assetFetchResult.getCount());
+      });
+    }
+    fetchResult.close();
+  });
+}
+```
+
+### getHiddenAlbums<sup>11+</sup>
+
+getHiddenAlbums(mode: HiddenPhotosDisplayMode, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
+
+Obtains hidden albums based on the specified display mode and retrieval options. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO and ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden files. |
+| options  | [FetchOptions](#fetchoptions)         | No  |  Options for retrieving the files. If this parameter is not specified, the files are retrieved based on the display mode of hidden files.     |
+
+**Return value**
+
+| Type                       | Description          |
+| --------------------------- | -------------- |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the result.
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+// Obtain the preset hidden album.
+async function getSysHiddenAlbum() {
+  console.info('getSysHiddenAlbumDemo');
+  phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE)
+    .then( async (fetchResult) => {
+      if (fetchResult == undefined) {
+        console.error('getSysHiddenAlbumPromise fetchResult is undefined');
+        return;
+      }
+      let hiddenAlbum: photoAccessHelper.Album = await fetchResult.getFirstObject();
+      console.info('getAlbumsPromise successfully, albumUri: ' + hiddenAlbum.albumUri);
+      fetchResult.close();
+    }).catch((err: BusinessError) => {
+      console.error('getSysHiddenAlbumPromise failed with err: ' + err);
+    });
+}
+
+// Obtain the hidden albums displayed by album, that is, the albums with hidden files. Such albums do not include the preset hidden album and the albums in the trash.
+async function getHiddenAlbumsView() {
+  console.info('getHiddenAlbumsViewDemo');
+  phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE).then( async (fetchResult) => {
+    if (fetchResult == undefined) {
+      console.error('getHiddenAlbumsViewPromise fetchResult is undefined');
+      return;
+    }
+    let albums: Array<photoAccessHelper.Album> = await fetchResult.getAllObjects();
+    console.info('getHiddenAlbumsViewPromise successfully, albums size: ' + albums.length);
+
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    for (let i = 0; i < albums.length; i++) {
+      // Obtain hidden files in the album.
+      albums[i].getAssets(fetchOption).then((assetFetchResult) => {
+        console.info('album get hidden assets successfully, getCount: ' + assetFetchResult.getCount());
+      }).catch((err: BusinessError) => {
+        console.error('album get hidden assets failed with error: ' + err);
+      });
+    }
+    fetchResult.close();
+  }).catch((err: BusinessError) => {
+    console.error('getHiddenAlbumsViewPromise failed with err: ' + err);
+  });
+}
+```
+
 ### deleteAssets
 
 deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes media files. This API uses an asynchronous callback to return the result. The deleted files are moved to the trash.
+Deletes media assets. This API uses an asynchronous callback to return the result. The deleted assets are moved to the trash.
 
 **System API**: This is a system API.
 
@@ -1024,7 +1237,7 @@ async function example() {
 
 deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
-Deletes media files. This API uses a promise to return the result. The deleted files are moved to the trash.
+Deletes media assets. This API uses a promise to return the result. The deleted assets are moved to the trash.
 
 **System API**: This is a system API.
 
@@ -3250,7 +3463,7 @@ async function example() {
 
 ### requestSource<sup>11+</sup>
 
-requestSource(): Promise&lt;string&gt;
+requestSource(): Promise&lt;number&gt;
 
 Opens the source file to obtain the FD. This API uses a promise to return the result.
 
@@ -3303,7 +3516,7 @@ async function example() {
 
 ### commitEditedAsset<sup>11+</sup>
 
-commitEditedAsset(editData: string, uri: string, callback: AsyncCallback&lt;number&gt;): void
+commitEditedAsset(editData: string, uri: string, callback: AsyncCallback&lt;void&gt;)
 
 Commits the edited image or video asset. This API uses an asynchronous callback to return the result.
 
@@ -3322,7 +3535,7 @@ The edited file is saved to the media library based on the URI. The URI is **Fil
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
 | editData | string | Yes   | New data to commit.|
-| uri | string; | Yes   | URI of the committed image or video in the application sandbox.|
+| uri | string | Yes   | URI of the committed image or video in the application sandbox.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.|
 
 **Error codes**
@@ -3368,7 +3581,7 @@ async function example() {
 
 ### commitEditedAsset<sup>11+</sup>
 
-commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt;
+commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt
 
 Commits the edited image or video asset. This API uses a promise to return the result.
 
@@ -3434,7 +3647,7 @@ async function example() {
 
 ### revertToOriginal<sup>11+</sup>
 
-revertToOriginal(callback: AsyncCallback&lt;void&gt;): void
+revertToOriginal(callback: AsyncCallback&lt;void&gt;)
 
 Reverts to the state of the file before being edited. This API uses an asynchronous callback to return the result.
 
@@ -3594,7 +3807,7 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 ```ts
 import { BusinessError } from '@ohos.base';
 async function example01() {
-  try {  
+  try {
     let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
     PhotoSelectOptions.maxSelectNumber = 5;
@@ -3934,7 +4147,7 @@ async function example() {
 getNextObject(callback: AsyncCallback&lt;T&gt;): void
 
 Obtains the next file asset in the result set. This API uses an asynchronous callback to return the result.
-Before using this API, you must use [isAfterLast()](#isafterlast) to check whether the current position is the last line.
+Before using this API, you must use [isAfterLast()](#isafterlast) to check whether the current position is the end of the result set.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -5238,6 +5451,7 @@ Enumerate the album subtypes.
 | TRASH |  1028 |  Trash.<br>**System API**: This is a system API.|
 | SCREENSHOT |  1029 |  Album for screenshots and screen recording files.<br>**System API**: This is a system API.|
 | CAMERA |  1030 |  Album for photos and videos taken by the camera.<br>**System API**: This is a system API.|
+| IMAGE<sup>11+</sup> |  1031 | Album for images.<br>**System API**: This is a system API.|
 | ANY |  2147483647 |  Any album.|
 
 ## PhotoKeys
@@ -5281,6 +5495,19 @@ Enumerates the key album attributes.
 | ------------- | ------------------- | ---------------------------------------------------------- |
 | URI           | 'uri'                 | URI of the album.                                                  |
 | ALBUM_NAME    | 'album_name'          | Name of the album.                                                  |
+
+## HiddenPhotosDisplayMode<sup>11+</sup>
+
+Enumerates the display modes of hidden files in the system.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name         | Value             | Description                                                      |
+| ------------- | ------------------- | ---------------------------------------------------------- |
+| ASSETS_MODE   | 0       | Display all hidden files in the system.   |
+| ALBUMS_MODE    | 1    | Display hidden files by album (display all albums that contain hidden files in the system, excluding the preset hidden album and the albums in the trash). |
 
 ## PhotoCreateOptions
 
@@ -5350,8 +5577,9 @@ Enumerates the **DefaultChangeUri** subtypes.
 
 | Name             | Value                     | Description                                                        |
 | ----------------- | ----------------------- | ------------------------------------------------------------ |
-| DEFAULT_PHOTO_URI | 'file://media/Photo'      | Default **PhotoAsset** URI. The **PhotoAsset** change notifications are received based on this parameter and **forSubUri{true}**.|
-| DEFAULT_ALBUM_URI | 'file://media/PhotoAlbum' | Default album URI. Album change notifications are received based on this parameter and **forSubUri{true}**. |
+| DEFAULT_PHOTO_URI | 'file://media/Photo'      | Default **PhotoAsset** URI, which must be used with **forChildUris{true}** to subscribe to change notifications of all photo assets.|
+| DEFAULT_ALBUM_URI | 'file://media/PhotoAlbum' | Default album URI, which must be used with **forChildUris{true}** to subscribe to change notifications of all albums.|
+| DEFAULT_HIDDEN_ALBUM_URI<sup>11+</sup>  | 'file://media/HiddenAlbum' | URI of an album in the hidden albums that are displayed by album, that is, the URI of an album with hidden files. Such albums do not include the preset hidden album and the albums in the trash. This URI is used to subscribe to the change notifications of the hidden albums displayed by album. **System API**: This is a system API.|
 
 ## PhotoViewMIMETypes
 
@@ -5375,6 +5603,8 @@ Defines the options for selecting images or videos.
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Available media file types. **IMAGE_VIDEO_TYPE** is used by default.|
 | maxSelectNumber       | number | No  | Maximum number of media files that can be selected. The default value is **50**, and the maximum value is **500**.     |
+| isPhotoTakingSupported<sup>11+</sup> | boolean  | No  | Whether photo taking is supported.|
+| isEditSupported<sup>11+</sup>       | boolean | No  | Whether the photo is editable.     |
 
 ## PhotoSelectResult
 
@@ -5385,4 +5615,4 @@ Defines information about the images or videos selected.
 | Name                   | Type               | Readable| Writable| Description                          |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
 | photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the images or videos selected. The URI array can be used only by calling [photoAccessHelper.getAssets](#getassets) with temporary authorization. For details about how to use the media file URI, see [Using a Media File URI] (../../file-management/user-file-uri-intro.md#using-a-media-file-uri).|
-| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media file is the original image.|
+| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media asset is the original image.|
