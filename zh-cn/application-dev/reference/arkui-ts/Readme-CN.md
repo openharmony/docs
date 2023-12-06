@@ -13,6 +13,7 @@
     - [组件区域变化事件](ts-universal-component-area-change-event.md)
     - [组件可见区域变化事件](ts-universal-component-visible-area-change-event.md)
     - [组件快捷键事件](ts-universal-events-keyboardshortcut.md)
+    - [自定义事件分发](ts-universal-attributes-on-child-touch-test.md)
   - 通用属性
     - [尺寸设置](ts-universal-attributes-size.md)
     - [位置设置](ts-universal-attributes-location.md)
