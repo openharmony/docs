@@ -526,6 +526,11 @@
 | BACKGROUND_THICK      | 远距景深模糊。   |
 | BACKGROUND_ULTRA_THICK | 超远距景深模糊。  |
 | NONE<sup>10+</sup> | 关闭模糊。  |
+| COMPONENT_ULTRA_THIN<sup>11+</sup> | 组件超轻薄材质模糊。 |
+| COMPONENT_THIN<sup>11+</sup> | 组件轻薄材质模糊。 |
+| COMPONENT_REGULAR<sup>11+</sup> | 组件普通材质模糊。 |
+| COMPONENT_THICK<sup>11+</sup> | 组件厚材质模糊。 |
+| COMPONENT_ULTRA_THICK<sup>11+</sup> | 组件超厚材质模糊。 |
 
 ## ThemeColorMode<sup>10+</sup>
 
