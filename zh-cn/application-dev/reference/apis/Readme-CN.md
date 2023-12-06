@@ -230,6 +230,7 @@
   - [@ohos.arkui.dragController (DragController)](js-apis-arkui-dragController.md)
   - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
   - [@ohos.arkui.inspector (布局回调)](js-apis-arkui-inspector.md)
+  - [@ohos.arkui.observer (无感监听)](js-apis-arkui-observer.md)
   - [@ohos.arkui.performanceMonitor (性能监测)](js-apis-arkui-performancemonitor.md)
   - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
   - [@ohos.curves (插值计算)](js-apis-curve.md)
