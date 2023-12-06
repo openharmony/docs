@@ -315,8 +315,6 @@ import window from '@ohos.window';
 
 窗口尺寸限制参数。
 
-**系统接口：** 此接口为系统接口。
-
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称      | 类型   | 可读 | 可写 | 说明                                                         |
@@ -6389,7 +6387,7 @@ getWindowLimits(): WindowLimits
 
 **返回值：**
 
-| 类型                          | **说明**           |
+| 类型                          | 说明           |
 | ----------------------------- | ------------------ |
 | [WindowLimits](#windowlimits) | 当前窗口尺寸限制。 |
 
