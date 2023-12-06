@@ -43,14 +43,20 @@ OpenSL ES中提供了以下的接口，OpenHarmony当前仅实现了部分[接�
 
 ## 完整示例
 
+### 在 CMake 脚本中链接动态库
+
+``` cmake
+target_link_libraries(sample PUBLIC libOpenSLES.so)
+```
+
 参考以下示例代码，播放一个音频文件。
 
 1. 添加头文件。
      
    ```c++
-   #include <OpenSLES.h>
-   #include <OpenSLES_OpenHarmony.h>
-   #include <OpenSLES_Platform.h>
+   #include "SLES/OpenSLES.h"
+   #include "SLES/OpenSLES_OpenHarmony.h"
+   #include "SLES/OpenSLES_Platform.h"
    ```
 
 2. 使用slCreateEngine接口和获取engine实例。
