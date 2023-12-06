@@ -125,7 +125,7 @@ ViewModel通常包含多个顶层数据源。\@State和\@Provide装饰的变量�
    ```ts
    @Component
    struct LinkLinkChild {
-     @Link @Watch("testNumChange") testNumGrand: number = 0;
+     @Link @Watch("testNumChange") testNumGrand: number;
    
      testNumChange(propName: string): void {
        console.log(`LinkLinkChild: testNumGrand value ${this.testNumGrand}`);
@@ -139,7 +139,7 @@ ViewModel通常包含多个顶层数据源。\@State和\@Provide装饰的变量�
    
    @Component
    struct PropLinkChild {
-     @Prop @Watch("testNumChange") testNumGrand: number = 0;
+     @Prop @Watch("testNumChange") testNumGrand: number;
    
      testNumChange(propName: string): void {
        console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
@@ -175,7 +175,7 @@ ViewModel通常包含多个顶层数据源。\@State和\@Provide装饰的变量�
    ```ts
    @Component
    struct LinkLinkChild {
-     @Link @Watch("testNumChange") testNumGrand: number = 0;
+     @Link @Watch("testNumChange") testNumGrand: number;
    
      testNumChange(propName: string): void {
        console.log(`LinkLinkChild: testNumGrand value ${this.testNumGrand}`);
@@ -189,7 +189,7 @@ ViewModel通常包含多个顶层数据源。\@State和\@Provide装饰的变量�
    
    @Component
    struct PropLinkChild {
-     @Prop @Watch("testNumChange") testNumGrand: number = 0;
+     @Prop @Watch("testNumChange") testNumGrand: number;
    
      testNumChange(propName: string): void {
        console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
@@ -277,7 +277,7 @@ ViewModel通常包含多个顶层数据源。\@State和\@Provide装饰的变量�
 ```ts
 @Component
 struct LinkLinkChild {
-  @Consume @Watch("testNumChange") testNum: number = 0;
+  @Consume @Watch("testNumChange") testNum: number;
 
   testNumChange(propName: string): void {
     console.log(`LinkLinkChild: testNum value ${this.testNum}`);
@@ -290,7 +290,7 @@ struct LinkLinkChild {
 
 @Component
 struct PropLinkChild {
-  @Prop @Watch("testNumChange") testNumGrand: number = 0;
+  @Prop @Watch("testNumChange") testNumGrand: number;
 
   testNumChange(propName: string): void {
     console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
