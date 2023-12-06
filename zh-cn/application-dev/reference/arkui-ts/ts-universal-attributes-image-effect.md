@@ -12,8 +12,8 @@
 
 | 名称                               | 参数类型                                     | 默认值    | 描述                                       |
 | -------------------------------- | ---------------------------------------- | ------ | ---------------------------------------- |
-| blur                             | number | [BlurOptions](ts-appendix-enums.md#bluroptions11)<sup>11+<sup>                                        | -      | 为当前组件添加内容模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| backdropBlur                    | number | [BlurOptions](ts-appendix-enums.md#bluroptions11)<sup>11+<sup>                       | -      | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| blur                             | (number ,?[BlurOptions](ts-appendix-enums.md#bluroptions11)<sup>11+</sup>)                                        | -      | number:当前组件添加内容模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)<br/> [BlurOptions](ts-appendix-enums.md#bluroptions11)<sup>11+</sup>:灰阶梯参数。  <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| backdropBlur                    | (number , ?[BlurOptions](ts-appendix-enums.md#bluroptions11)<sup>11+</sup>)                       | -      | number:为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)。<br/> [BlurOptions](ts-appendix-enums.md#bluroptions11)<sup>11+</sup>:灰阶梯参数。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | shadow                           | [ShadowOptions](#shadowoptions对象说明) \| [ShadowStyle](#shadowstyle10枚举说明)<sup>10+</sup> | -      | 为当前组件添加阴影效果。<br/>入参类型为ShadowOptions时，可以指定模糊半径、阴影的颜色、X轴和Y轴的偏移量。<br/>入参类型为ShadowStyle时，可指定不同阴影样式。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用，ArkTS卡片上不支持参数为 [ShadowStyle](#shadowstyle10枚举说明)类型。 |
 | grayscale                        | number                                   | 0.0    | 为当前组件添加灰度效果。值定义为灰度转换的比例，入参1.0则完全转为灰度图像，入参则0.0图像无变化，入参在0.0和1.0之间时，效果呈线性变化。（百分比)<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置小于0的值时，按值为0处理，设置大于1的值时，按值为1处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | brightness                       | number                                   | 1.0    | 为当前组件添加高光效果，入参为高光比例，值为1时没有效果，小于1时亮度变暗，0为全黑，大于1时亮度增加，数值越大亮度越大。<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
@@ -26,7 +26,7 @@
 | sphericalEffect<sup>10+</sup>    | number                                   | -      | 设置组件的图像球面化程度。<br/>取值范围：[0,1]。<br/>**说明：**<br/>1. 如果value等于0则图像保持原样，如果value等于1则图像为完全球面化效果。在0和1之间，数值越大，则球面化程度越高。<br/>`value < 0 `或者` value > 1`为异常情况，`value < 0`按0处理，`value > 1`按1处理。<br/> 2. 如果组件的图像使用异步加载，则不支持球面效果。例如Image组件默认使用异步加载，如果要使用球面效果，就要设置`syncLoad`为`true`，但是这种做法不推荐。`backgroundImage`也是使用异步加载，所以如果设置了`backgroundImage`，不支持球面效果。<br/>3. 如果组件设置了阴影，不支持球面效果。<br>**系统接口：** 此接口为系统接口。 |
 | lightUpEffect<sup>10+</sup>      | number                                   | -      | 设置组件图像亮起程度。<br/>取值范围：[0,1]。<br/>如果value等于0则图像为全黑，如果value等于1则图像为全亮效果。0到1之间数值越大，表示图像亮度越高。`value < 0` 或者 `value > 1`为异常情况，`value < 0`按0处理，`value > 1`按1处理。 <br>**系统接口：** 此接口为系统接口。 |
 | pixelStretchEffect<sup>10+</sup> | [PixelStretchEffectOptions](ts-types.md#pixelstretcheffectoptions10) | -      | 设置组件的图像边缘像素扩展距离。<br/>参数`options`包括上下左右四个方向的边缘像素扩展距离。<br/>**说明：**<br/>1. 如果距离为正值，表示向外扩展，放大原来图像大小。上下左右四个方向分别用边缘像素填充，填充的距离即为设置的边缘扩展的距离。<br/>2. 如果距离为负值，表示内缩，但是最终图像大小不变。<br/>内缩方式：<br/>图像根据`options`的设置缩小，缩小大小为四个方向边缘扩展距离的绝对值。<br/>图像用边缘像素扩展到原来大小。<br/>3. 对`options`的输入约束：<br/>上下左右四个方向的扩展统一为非正值或者非负值。即四个边同时向外扩或者内缩，方向一致。<br/>所有方向的输入均为百分比或者具体值，不支持百分比和具体值混用。<br/>所有异常情况下，显示为{0，0，0，0}效果，即跟原图保持一致。<br>**系统接口：** 此接口为系统接口。 |
-| linearGradientBlur<sup>10+</sup> | <br/>value: number,<br/>{<br/>fractionStops:Array\<[FractionStop]()>,<br/>direction:[GradientDirection](ts-appendix-enums.md#gradientdirection)<br/>} <br/> | -      | 为当前组件添加内容线性渐变模糊效果，<br/>-value为模糊半径，模糊半径越大越模糊，为0时不模糊。取值范围：[0, 60]<br/>线性梯度模糊包含两个部分fractionStops和direction<br/>-fractionStops数组中保存的每一个二元数组（取值0-1，小于0则为0，大于0则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效  <br/> -direction为渐变模糊方向，默认值为[GradientDirection](ts-appendix-enums.md#gradientdirection).Bottom <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| linearGradientBlur<sup>10+</sup> | <br/>value: number,<br/>{<br/>fractionStops:Array\<[FractionStop]()>,<br/>direction:[GradientDirection](ts-appendix-enums.md#gradientdirection)<br/>} <br/> | -      | 为当前组件添加内容线性渐变模糊效果，<br/>-value为模糊半径，模糊半径越大越模糊，为0时不模糊。取值范围：[0, 60]<br/>线性梯度模糊包含两个部分fractionStops和direction<br/>-fractionStops数组中保存的每一个二元数组（取值0-1，小于0则为0，大于0则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效  <br/> -direction为渐变模糊方向，默认值为[GradientDirection](ts-appendix-enums.md#gradientdirection).Bottom。 |
 | renderGroup<sup>10+<sup>         | boolean                                  | false  | 设置当前控件和子控件是否先整体离屏渲染绘制后再与父控件融合绘制。当前控件的不透明度不为1时绘制效果可能有差异。 |
 | blendMode<sup>11+</sup>          | value: [BlendMode](#blendmode枚举说明)    |BlendMode.NORMAL| 将当前控件背景与子节点内容进行混合，<br/> **说明：** <br/> -value为混合模式，不同的模式控制不同的混合方式从而产生不同的效果，默认值为BlendMode.NORMAL<br/>**注意事项：** <br/> 1、实现效果只需要一层blend，不推荐blendMode嵌套使用，会影响性能且效果可能不正常 <br/> 2、SOURCE_IN和DESTINATION_IN混合模式只适用于alpha通道存在的图像，即包含透明度信息的图像。如果图像没有alpha通道，则无法使用这两种混合模式。<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。 |
 
@@ -363,7 +363,7 @@ right:-10,bottom:-10 })`，则缩小后的大小为`(100-10-10)*(100-10-10)`，�
 @Entry
 @Component
 struct ImageExample1 {
-  private_resource1:Resource = $r('app.media.1')
+  private_resource1:Resource = $r('app.media.testlinearGradientBlurOrigin')
   @State image_src: Resource = this.private_resource1
   build() {
     Column() {
