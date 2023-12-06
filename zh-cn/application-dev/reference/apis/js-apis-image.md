@@ -170,7 +170,7 @@ async function Demo() {
 ## PixelMap<sup>7+</sup>
 
 图像像素类，用于读取或写入图像数据以及获取图像信息。在调用PixelMap的方法前，需要先通过createPixelMap创建一个PixelMap实例。目前pixelmap序列化大小最大128MB，超过会送显失败。大小计算方式为(宽\*高\*每像素占用字节数)。
-
+从API version 11开始，PixelMap支持通过worker跨线程调用。当PixelMap通过[Worker](js-apis-worker.md)跨线程后，原线程的PixelMap的所有接口均不能调用，否则将报错501 服务器不具备完成请求的功能。
 ### 属性
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
