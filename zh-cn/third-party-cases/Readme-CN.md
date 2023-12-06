@@ -33,7 +33,10 @@
 - [如何为组件的不同触摸区域添加不同交互动作](different-touch-target-event.md)
 - [组件布局中相对定位的分类和使用](relative-position.md)
 - [导航栏的使用编辑](Editing-with-the-navigation-bar.md)
-
+- [搜索框与文字轮播的巧用](Search-box-and-text-carousel.md)
+- [如何控制循环动画的播放停止](how-to-control-the-pause-of-playback-of-looping-animations.md)
+- [自定义输入框](customize-the-input-box.md)
+- [导航栏的使用编辑](Editing-with-the-navigation-bar.md)
 ### 装饰器
 - [控制页面刷新范围](overall-and-part-refresh.md)
 - [如何监听多层状态变化](observed-and-objectlink.md)
