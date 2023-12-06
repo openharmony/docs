@@ -13,7 +13,7 @@
 
 - 显示当前正在进行的事件，如下载等。
 
-通过ANS（Advanced Notification Service，通知系统服务）对通知类型的消息进行管理，支持多种通知类型，例如基础类型通知、进度条类型通知、后台代理提醒。
+通过ANS（Advanced Notification Service，通知系统服务）对通知类型的消息进行管理，支持多种通知类型，例如[基础类型通知](../notification/text-notification.md)、[进度条类型通知](../notification/progress-bar-notification.md)。
 
 
 ## 通知业务流程
@@ -23,6 +23,10 @@
 一条通知从通知发送端产生，通过[IPC通信](../connectivity/ipc-rpc-overview.md)发送到通知子系统，再由通知子系统分发给通知订阅端。
 
 系统应用还支持通知相关配置，如使能开关、配置参数由系统配置发起请求，发送到通知子系统存储到内存和数据库。
+
+> **说明：**
+>
+> 开发者只需关注发送端，订阅端是系统应用，例如通知中心，运动健康等。
 
 **图1** 通知业务流程  
 ![zh-cn_image_0000001466582017](figures/zh-cn_image_0000001466582017.png)
