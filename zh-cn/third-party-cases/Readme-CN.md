@@ -50,6 +50,7 @@
 - [如何创建悬浮窗](float-window.md)
 - [保持屏幕常亮](keep-screen-on.md)
 - [如何创建子窗口并与主窗口通信](subwindow-mainwindow-communication.md)
+- [如何实现横竖屏切换](horizontal-vertical-switch.md)
 
 ### 数据管理
 - [用户首选项的基本使用](preferences-data-process.md)
