@@ -4,7 +4,7 @@ ExceptionPrompt适用于有离线内容可显示的情况。
 
 **说明：**
 
-该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
@@ -46,6 +46,7 @@ optionType定义ExceptionPrompt组件的配置信息及参数。
 | TipContent     | ResourceStr        | 否   | 指定当前ExceptionPrompt的文字提示式样。                      |
 | ContentText    | ResourceStr        | 否   | 指定当前ExceptionPrompt有网但是获取不到内容XX，XX包含但不限于“信息”，“资料”，“图片”等。 |
 | HardwareStatus | HardwareStatusType | 否   | 指定当前硬件打开状态。默认HardwareStatusType.on：打开状态；或者HardwareStatusType.on：关闭。 |
+| PaddingStatus  | boolean            | 是   | 指定当前ExceptionPrompt的边距样式，true：默认边距，false：可适配边距 |
 
 ## Type
 
@@ -101,6 +102,7 @@ struct Index {
     Icon: '',
     TipContent: '',
     ContentText: '',
+    PaddingStatus: true
   }
 
   build() {
