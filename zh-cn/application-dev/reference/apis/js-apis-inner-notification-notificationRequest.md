@@ -40,7 +40,7 @@
 | classification        | string                                        | 否  | 否  | 通知分类。<br>**系统接口**: 此接口为系统接口。                  |
 | groupName<sup>8+<sup> | string                                        | 否  | 否  | 组通知名称。                 |
 | template<sup>8+<sup> | [NotificationTemplate](./js-apis-inner-notification-notificationTemplate.md) | 否  | 否  | 通知模板。                   |
-| isRemoveAllowed<sup>8+<sup> | boolean                                | 是  | 否  | 通知是否能被移除。<br>**系统接口**: 此接口为系统接口。<br>**需要权限**: ohos.permission.SET_UNREMOVABLE_NOTIFICATION                 |
+| isRemoveAllowed<sup>8+<sup> | boolean                                | 是  | 否  | 通知是否能被移除。<br>**系统接口**: 此接口为系统接口。<br>**需要权限**: ohos.permission.SET_UNREMOVABLE_NOTIFICATION  |
 | source<sup>8+<sup> | number                                        | 是  | 否  | 通知源。<br>**系统接口**: 此接口为系统接口。                  |
 | distributedOption<sup>8+<sup> | [DistributedOptions](#distributedoptions)                 | 否  | 否  | 分布式通知的选项。          |
 | deviceId<sup>8+<sup> | string                                        | 是  | 否  | 通知源的deviceId。<br>**系统接口**: 此接口为系统接口。          |
