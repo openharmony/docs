@@ -729,7 +729,7 @@ ListItem的swipeAction属性可用于实现列表项的左右滑动功能。swip
                    markedIndex: (index === 1 ? 1 : 0)
                  })
                }
-               .swipeAction({ end: this.itemRnd.bind(this, index) }) // 设置侧滑属性.
+               .swipeAction({ end: this.itemEnd.bind(this, index) }) // 设置侧滑属性.
              }
            }, (item:Person) => item.id.toString())
          }
