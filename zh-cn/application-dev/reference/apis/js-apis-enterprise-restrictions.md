@@ -500,9 +500,9 @@ try {
 }
 ```
 
-## restrictions.disableFingerprintAuth<sup>11+</sup>
+## restrictions.setFingerprintAuthDisabled<sup>11+</sup>
 
-disableFingerprintAuth(admin: Want, disable: boolean): void
+setFingerprintAuthDisabled(admin: Want, disable: boolean): void
 
 指定设备管理应用使指纹禁用或启用。
 
@@ -537,7 +537,7 @@ let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-restrictions.disableFingerprintAuth(wantTemp, true);
+restrictions.setFingerprintAuthDisabled(wantTemp, true);
 ```
 
 ## restrictions.isFingerprintAuthDisabled<sup>11+</sup>
