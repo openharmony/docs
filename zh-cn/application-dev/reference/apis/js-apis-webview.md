@@ -4962,7 +4962,7 @@ getSecurityLevel(): SecurityLevel;
 
 | 类型                                | 说明                        |
 | ----------------------------------- | --------------------------- |
-| [SecurityLevel](#SecurityLevel) | 当前网页的安全级别，具体值为NONE、SECURE、WARNING、DANGEROUS。 |
+| [SecurityLevel](#securitylevel) | 当前网页的安全级别，具体值为NONE、SECURE、WARNING、DANGEROUS。 |
 
 **错误码：**
 
