@@ -218,7 +218,7 @@ dialogControllerList: CustomDialogController = new CustomDialogController({
       selectedIndex: this.radioIndex,
     confirm: {
       value: '取消',
-      action: () => null,
+      action: () => {},
     },
     radioContent: [
       {
@@ -285,7 +285,7 @@ dialogControllerCheckBox: CustomDialogController = new CustomDialogController({
     checkTips: '禁止后不再提示',
     primaryButton: {
       value: '禁止',
-      action: () => null,
+      action: () => {},
     },
     secondaryButton: {
       value: '允许',
@@ -335,7 +335,7 @@ dialogControllerConfirm: CustomDialogController = new CustomDialogController({
     content: '文本文本文本文本文本',
     primaryButton: {
       value: '取消',
-      action: () => null,
+      action: () => {},
     },
     secondaryButton: {
       value: '确认',
