@@ -762,7 +762,7 @@ Sets the text zoom ratio of the page. The default value is **100**, which indica
 
 initialScale(percent: number)
 
-Scale factor of the entire page. The default value is 100.
+Sets the scale factor of the entire page. The default value is 100%.
 
 **Parameters**
 
@@ -1457,7 +1457,7 @@ Called when **confirm()** is invoked by the web page.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the default dialog box is displayed.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 

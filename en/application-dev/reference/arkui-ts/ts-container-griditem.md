@@ -9,7 +9,7 @@ The **\<GridItem>** component provides a single item in a grid.
 
 ## Child Components
 
-Supported
+This component can contain a single child component.
 
 
 ## APIs

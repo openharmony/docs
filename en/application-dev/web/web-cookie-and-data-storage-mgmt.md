@@ -38,7 +38,7 @@ struct WebComponent {
 
 ## Cache and Storage Management
 
-Network resource requests are relatively time-consuming during website access. You can use store resources locally by means of cache and Dom Storage to fasten the access to the same website.
+Network resource requests are relatively time-consuming during website access. You can store resources locally by means of **cache** and **Dom Storage** to fasten the access to the same website.
 
 
 ### Cache

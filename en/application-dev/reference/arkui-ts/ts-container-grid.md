@@ -27,7 +27,9 @@ The **\<Grid>** component accepts only **\<[GridItem](ts-container-griditem.md)>
 >
 >  The child component that has the **visibility** attribute set to **None** is not displayed, but still takes up the corresponding cell.
 >
->  The child component that has the **position** attribute set takes up the corresponding cell, and is offset by the distance specified by **position** relative to the upper left corner of the grid. This child component does not scroll with the corresponding cell and is not displayed after the corresponding cell extends beyond the display range of the grid.
+>  The child component that has the **position** attribute set is displayed in the corresponding cell, offset by the distance specified by **position** relative to the upper left corner of the grid. This child component does not scroll with the corresponding cell and is not displayed after the corresponding cell extends beyond the display range of the grid.
+>
+>  When there is a gap between child components, it is filled as much as possible based on the current display area. Therefore, the relative position of grid items may change as the grid scrolls.
 
 ## APIs
 

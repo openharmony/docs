@@ -7,6 +7,8 @@ A context menu – a vertical list of items – can be bound to a component and 
 >  - The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
 >  - **CustomBuilder** does not support the use of **bindMenu** and **bindContextMenu** methods. To display a multi-level menu, use the [\<Menu>](ts-basic-components-menu.md) component instead.
+>
+>  - The text in the context menu cannot be selected by long-pressing.
 
 
 ## Attributes
