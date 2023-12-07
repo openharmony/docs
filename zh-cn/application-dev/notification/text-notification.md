@@ -107,7 +107,7 @@
             title: 'test_title',
             text: 'test_text',
             briefText: 'test_briefText',
-            longTitle: 'test_longTitle',
+            longTitle: 'longTitle',
             lines: ['line_01', 'line_02', 'line_03', 'line_04'],
           }
         }
