@@ -1085,8 +1085,8 @@ import {BusinessError} from '@ohos.base'
 
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
-    let csm : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    pixelmap.applyColorSpace(csm, (err : BusinessError) => {
+    let targetColorSpace : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
+    pixelmap.applyColorSpace(targetColorSpace, (err : BusinessError) => {
         if (err) {
             console.log('Failed to apply color space for pixelmap object.');
         } else {
@@ -1135,8 +1135,8 @@ import {BusinessError} from '@ohos.base'
 
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
-    let csm : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    pixelmap.applyColorSpace(csm).then(() => {
+    let targetColorSpace : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
+    pixelmap.applyColorSpace(targetColorSpace).then(() => {
         console.log('Succeeded in applying color space for pixelmap object.');
     }).catch((error : BusinessError) => {
         console.log('Failed to apply color space for pixelmap object.');
