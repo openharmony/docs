@@ -1055,7 +1055,7 @@ async function Demo() {
 
 applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback: AsyncCallback\<void>): void
 
-根据输入的广色域信息对图像像素颜色进行变换，使用callback形式返回。
+根据输入的目标色彩空间对图像像素颜色进行色彩空间转换，使用callback形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1063,7 +1063,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback:
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| targetColorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 图像广色域信息。|
+| targetColorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间，支持SRGB、DCI_P3、DISPLAY_P3、ADOBE_RGB_1998。|
 | callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
 
 **错误码：**
@@ -1100,7 +1100,7 @@ async function Demo() {
 
 applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\<void>
 
-根据输入的广色域信息对图像像素颜色进行色彩空间转换，使用Promise形式返回。
+根据输入的目标色彩空间对图像像素颜色进行色彩空间转换，使用Promise形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1108,7 +1108,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 
 | 参数名 | 类型               | 必填 | 说明        |
 | ------ | ------------------ | ---- | ----------- |
-| targetColorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间。|
+| targetColorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间，支持SRGB、DCI_P3、DISPLAY_P3、ADOBE_RGB_1998。|
 
 **返回值：**
 
@@ -3524,7 +3524,7 @@ PixelMap的初始化选项。
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
 | index              | number                             | 是   | 是   | 解码图片序号。   |
 | fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。   |
-| desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 是   | 期望图像广色域信息。 |
+| desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 是   | 目标色彩空间。 |
 
 ## Region<sup>7+</sup>
 
