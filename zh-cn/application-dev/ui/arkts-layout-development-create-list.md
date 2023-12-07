@@ -418,11 +418,11 @@ class heF{
     this.itemHead(val)
   }
 }
-let fff:heF = this.heF()
+let fff:heF = new heF()
 List() {
   // 循环渲染ListItemGroup，contactsGroups为多个分组联系人contacts和标题title的数据集合
   ForEach(contactsGroups, (item: cgtmpf) => {
-    ListItemGroup({ header: fff(item.title) }) {
+    ListItemGroup({ header: fff.foo(item.title) }) {
       // 循环渲染ListItem
       if (item.contacts) {
         ForEach(item.contacts, () => {
@@ -474,15 +474,15 @@ export let contactsGroups: object[] = [
     contacts: [
       new Contact('艾佳', $r('app.media.iconA')),
       new Contact('安安', $r('app.media.iconB')),
-      new Contact('Angela', $r('app.media.iconC')),
-    ],
+      new Contact('Angela', $r('app.media.iconC'))
+    ]
   } as cgtmpf,
   {
     title: 'B',
     contacts: [
       new Contact('白叶', $r('app.media.iconD')),
-      new Contact('伯明', $r('app.media.iconE')),
-    ],
+      new Contact('伯明', $r('app.media.iconE'))
+    ]
   } as cgtmpf,
 ]
 @Entry
@@ -768,7 +768,10 @@ Badge({
        TextPickerDialog.show({
          range: availableThings,
          onAccept: (value: TextPickerResult) => {
-            todo.toDoData.push(new ToDo(availableThings[value.index])); // 新增列表项数据toDoData
+            let arr = Array.isArray(value.index)?value.index:[value.index];
+            for(let i = 0; i < arr.length; i++) {
+              todo.toDoData.push(new ToDo(availableThings[arr[i]])); // 新增列表项数据toDoData
+            }
          },
        })
      })
