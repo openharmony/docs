@@ -985,6 +985,8 @@ Camera驱动的开发过程主要包含以下步骤：
 
 ## 参考<a name="4"></a>
 
+### HCS配置文件说明
+
 针对Camera模块0penHarmony提供了默认的HCS配置。开发者若有特殊需求可自行修改相关的HCS配置文件。Camera模块HCS配置文件路径：`/vendor/hihope/rk3568/hdf_config/uhdf/camera`，其中：
 
 -  `./hdi_impl/camera_host_config.hcs` 相机静态能力:包括镜头位置、镜头类型、连接类型、支持的曝光模式等，需要根据产品的具体规格来配置
@@ -995,3 +997,115 @@ Camera驱动的开发过程主要包含以下步骤：
 -  `./pipeline_core/params.hcs` 场景、流类型名及其id定义，pipeline内部是以流id区分流类型的，所以此处需要添加定义
 
     编译后在`/drivers/periphera/camra/vdi_base/common/pipeline_core/pipeline_impl/src/strategy/config`目录下生产`params.c`和`params.h`文件
+
+### Camera Dump使用指导
+
+#### 功能简介
+Camera Dump功能为Camera相关功能的开发提供测试保障，根据需要配置开关文件即可开启此功能。
+* 在流程的不同阶段提供buffer Dump功能，可帮助开发者快速定位图像问题点和数据，清晰直观地判断图像数据在哪个处理节点中出现问题。
+* 对metadata的Dump可以判断metadata参数设置是否正确，还能确定不同参数对图像画质的影响。
+
+#### 源码目录说明
+
+
+```
+/drivers/peripheral/camera/vdi_base/common/dump
+├── include
+│   └── camera_dump.h    #Dump头文件
+└── src
+    └── camera_dump.cpp  #Dump核心源码
+```
+
+
+#### Dump配置文件说明
+
+Dump配置文件为dump.config，存放在开发设备 /data/local/tmp 目录中。
+
+  **表1** Dump开关说明
+
+| 开关 | **取值** | **描述** |
+| -------- | -------- | -------- |
+| enableDQBufDump | true/false | 开启开关，可以Dump v4l2_buffer.cpp文件中DequeueBuffer函数中的数据 |
+| enableUVCNodeBufferDump | true/false | 开启开关，可以Dump uvc_node.cpp文件中YUV422To420函数转换前的数据 |
+| enableUVCNodeConvertedBufferDump | true/false | 开启开关，可以Dump uvc_node.cpp文件中YUV422To420函数转换后的数据 |
+| enableExifNodeConvertedBufferDump | true/false | 开启开关，可以Dump exif_node.cpp文件中DeliverBuffer函数中的数据 |
+| enableFaceNodeConvertedBufferDump | true/false | 开启开关，可以Dump face_node.cpp文件中DeliverBuffer函数中的数据 |
+| enableForkNodeConvertedBufferDump | true/false | 开启开关，可以Dump fork_node.cpp文件中DeliverBuffer函数中的数据 |
+| enableRKFaceNodeConvertedBufferDump | true/false | 开启开关，可以Dump rk_face_node.cpp文件中DeliverBuffer函数中的数据关 |
+| enableRKExifNodeConvertedBufferDump | true/false | 开启开关，可以Dump rk_exif_node.cpp文件中DeliverBuffer函数中的数据 |
+| enableCodecNodeConvertedBufferDump | true/false | 开启开关，可以Dump codec_node.cpp文件中DeliverBuffer函数中的数据 |
+| enableRKCodecNodeConvertedBufferDump | true/false | 开启开关，可以Dump rk_codec_node.cpp文件中DeliverBuffer函数中的数据 |
+| enableSreamTunnelBufferDump | true/false | 开启开关，可以Dump stream_tunnel.cpp文件中PutBuffer函数中的数据 |
+| enableMetadataDump | true/false | 开启Dump metadata 数据开关 |
+
+
+除了上述开关，还可以配置Dump的采样间隔，如表2所示。
+
+  **表2** Dump采样间隔
+
+| Dump采样间隔 | **取值** | **描述** |
+| -------- | -------- | -------- |
+| previewInterval | int(大于等于1) | Dump预览间隔，默认1，每帧都Dump |
+| videoInterval | int(大于等于1) | Dump录像间隔，默认1，每帧都Dump |
+
+#### 配置示例
+
+在本地计算机任意位置新建一个文件，命名为dump.config，根据以上开关，将要Dump的位置对应的开关写入文件中，值指定为true。
+
+完整配置：
+
+>__enableDQBufDump=true__<br/>
+>enableUVCNodeBufferDump=false<br/>
+>enableUVCNodeConvertedBufferDump=false<br/>
+>enableExifNodeConvertedBufferDump=false<br/>
+>enableFaceNodeConvertedBufferDump=false<br/>
+>enableForkNodeConvertedBufferDump=false<br/>
+>enableRKFaceNodeConvertedBufferDump=false<br/>
+>enableRKExifNodeConvertedBufferDump=false<br/>
+>enableCodecNodeConvertedBufferDump=false<br/>
+>enableRKCodecNodeConvertedBufferDump=false<br/>
+>enableSreamTunnelBufferDump=false<br/>
+>**enableMetadataDump=true**<br/>
+>**previewInterval=1**<br/>
+>videoInterval=1<br/>
+
+
+配置示例：
+
+例如，要Dump DequeueBuffer和metadata的数据，并且将Dump采样间隔设置为3，可以按上面加粗的配置修改。
+
+#### 开启Dump功能
+1. 将配置文件发送到开发设备的目录 /data/local/tmp 中。
+
+   ```
+   hdc file send dump.config /data/local/tmp
+   ```
+
+2. 修改Dump目录权限。
+
+   ```
+   hdc shell mount -o rw,remount /data
+   hdc shell chmod 777 /data/ -R
+   ```
+
+3. 打开Dump。
+
+   ```
+   hdc shell "hidumper -s 5100 -a '-host camera_host -o'"
+   ```
+
+   * -s 5100  获取id为5100的元能力的全部信息，这里指Camera。
+   * -a '-host camera_host -o'" 导出指定的系统元能力信息。
+   * 详细的hidumper说明，请参考[HiDumper使用指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-dfx-hidumper.md)。
+
+
+4. 打开相机，进行预览、拍照和录像等操作。
+
+#### Dump结果
+打开Dump后，会在设备的 /data/local/tmp 目录中生成Dump调测数据文件，将数据文件发送到本地电脑中后即可查看。
+```
+hdc file recv /data/local/tmp/xxxx.yuv ~/
+```
+
+
+
