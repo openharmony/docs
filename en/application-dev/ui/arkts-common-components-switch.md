@@ -16,7 +16,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 In this API, **ToggleType** indicates the toggle type, which can be **Button**, **Checkbox**, or **Switch**, and **isOn** specifies whether the toggle is turned on.
 
-Since API version 11, the default style of **Checkbox** is changed from rounded square to round.
+Since API version 11, the default style of the **\<Checkbox>** component is changed from rounded square to circle.
 
 The API can be called in either of the following ways:
 
