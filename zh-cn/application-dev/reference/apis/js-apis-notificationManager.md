@@ -391,7 +391,7 @@ notificationManager.cancel(0, cancelCallback);
 
 cancelAll(callback: AsyncCallback\<void\>): void
 
-取消所有已发布的通知（callback形式）。
+取消当前应用所有已发布的通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -431,7 +431,7 @@ notificationManager.cancelAll(cancelAllCallback);
 
 cancelAll(): Promise\<void\>
 
-取消所有已发布的通知（Promise形式）。
+取消当前应用所有已发布的通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
