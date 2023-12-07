@@ -1087,7 +1087,7 @@ async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let csm : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
     pixelmap.applyColorSpace(csm, (err : BusinessError) => {
-        if (err != undefined) {
+        if (err) {
             console.log('Failed to apply color space for pixelmap object.');
         } else {
             console.log('Succeeded in applying color space for pixelmap object.');
