@@ -18,7 +18,7 @@
 
 \@State装饰的变量拥有以下特点：
 
-- \@State装饰的变量与子组件中的\@Prop、\@Link或\@ObjectLink装饰变量之间建立单向或双向数据同步。
+- \@State装饰的变量与子组件中的\@Prop装饰变量之间建立单向数据同步,与\@Link、\@ObjectLink装饰变量之间建立双向数据同步。
 
 - \@State装饰的变量生命周期与其所属自定义组件的生命周期相同。
 
@@ -151,6 +151,12 @@
 
   ```ts
   this.title.push(new Model(12))
+  ```
+
+  数组项中属性的赋值观察不到。
+
+  ```ts
+  this.title[0].value = 6
   ```
 
 - 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。
@@ -300,8 +306,8 @@ struct MyComponent {
       public count:number;
       public increaseBy:number;
       constructor(count: number, increaseBy:number) {
-      this.count = count;
-      this.increaseBy = increaseBy;
+        this.count = count;
+        this.increaseBy = increaseBy;
      }
    }
    let obj = new C1(1, 2)

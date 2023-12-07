@@ -5,15 +5,11 @@
 
 声明输入音频流的回调函数指针。
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-**相关模块：**
-
-[OHAudio](_o_h_audio.md)
+**相关模块：**[OHAudio](_o_h_audio.md)
 
 
 ## 汇总

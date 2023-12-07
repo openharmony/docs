@@ -1,10 +1,11 @@
 # @ohos.file.picker (Picker)
 
+**picker** encapsulates APIs such as **PhotoViewPicker**, **DocumentViewPicker**, and **AudioViewPicker** to provide capabilities for selecting and saving images and videos, audio clips, or documents. The application can select the picker as required. The APIs of this module must be called in UIAbility. Otherwise, the **photoPicker** or **FilePicker** application cannot be started.
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-**picker** encapsulates APIs such as **PhotoViewPicker**, **DocumentViewPicker**, and **AudioViewPicker** to provide capabilities for selecting and saving images and videos, audio clips, or documents. The application can select the picker as required. The APIs of this module must be called in UIAbility. Otherwise, the **photoPicker** or **FilePicker** application cannot be started.
+
 
 ## Modules to Import
 
@@ -820,7 +821,7 @@ Defines the options for selecting documents.
 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| maxSelectNumber<sup>10+</sup>       | number  | No  | Maximum number of documents or directories that can be selected.<br>Value range: 1 to 500 |
+| maxSelectNumber<sup>10+</sup>       | number  | No  | Maximum number of documents or folders that can be selected.<br>Value range: 1 to 500            |
 | defaultFilePathUri<sup>10+</sup>    | string  | No  | Path of the document or directory to select.|
 | fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt; | No  | File name extension types to select. Use a comma (,) to separate multiple file name extensions.|
 
@@ -833,7 +834,7 @@ Defines the options for saving documents.
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
 | newFileNames            | Array&lt;string&gt;    | No  | Names of the documents to save. If this parameter is not specified, the user needs to enter the document names. |
-| defaultFilePathUri<sup>10+</sup>    | string  | No  | Path of the document or directory to save.|
+| defaultFilePathUri<sup>10+</sup>    | string  | No  | Path of the file or directory to save.|
 | fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | No  | File name extensions of the documents to save.|
 
 ## AudioSelectOptions

@@ -141,8 +141,6 @@ Applies a transition animation for state changes.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-Since API version 9, this API is supported in ArkTS widgets.
-
 **Parameters**
 
 | Name  | Type                                      | Mandatory  | Description                                   |
