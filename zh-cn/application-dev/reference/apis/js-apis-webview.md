@@ -4983,10 +4983,10 @@ Struct WebComponent {
 	controller: web_webview.WebController = new web_webview.WebviewController()
   build() {
   Column() {
-    Web({ src: ‘www.example.com’, controller: this.controller })
+    Web({ src: 'www.example.com', controller: this.controller })
 	    .onPageEnd(() => {
 	      let securityLevel = this.controller.getSecurityLevel()
-	      console.info(‘securityLevel: ‘, securityLevel)
+	      console.info('securityLevel: ', securityLevel)
 	    })
 	  }
   }
