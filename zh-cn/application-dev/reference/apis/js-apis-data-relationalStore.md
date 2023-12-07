@@ -657,7 +657,10 @@ class EntryAbility extends UIAbility {
 | -------------- | ---- | ---------------------------------- |
 | CURSOR_FIELD        | '#_cursor'     | 用于cursor查找的字段名。|
 | ORIGIN_FIELD        | '#_origin'     | 用于cursor查找时指定数据来源的字段名。    |
-| DELETED_FLAG_FIELD  | '#_deleted_flag' | 用于cursor查找的结果集返回时填充的字段，表示云端删除的数据同步到本地后数据未清理。<br>返回的结果集中，该字段对应的value为false表示数据未清理，true表示数据已清理。|
+| DELETED_FLAG_FIELD  | '#_deleted_flag' | 用于cursor查找的结果集返回时填充的字段，表示云端删除的数据同步到本地后数据是否清理。<br>返回的结果集中，该字段对应的value为false表示数据未清理，true表示数据已清理。|
+| OWNER_FIELD  | '#_cloud_owner' | 用于共享表中查找owner时返回的结果集中填充的字段，表示当前共享记录的共享发起者。|
+| PRIVILEGE_FIELD  | '#_cloud_privilege' | 用于共享表中查找共享数据权限时返回的结果集中填充的字段，表示当前共享记录的允许的操作权限。|
+| SHARING_RESOURCE_FIELD   | '#_sharing_resource_field' | 用于数据共享时查找共享数据的共享资源时返回的结果集中填充的字段，表示共享数据的共享资源。|
 
 ## SubscribeType
 
@@ -4935,6 +4938,169 @@ if(store != undefined) {
         console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
     })
 }
+```
+
+### querySharingResource<sup>11+</sup>
+
+querySharingResource(predicates: RdbPredicates, columns?: Array<string>): Promise&lt;ResultSet&gt;
+
+根据谓词条件匹配的数据记录查找对应记录的共享资源，返回查找的结果集。 如果指定了列字段，则返回结果集中同时包含对应列的字段值。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | 表示查询的谓词条件。    |
+| columns    | Array<string>        | 否   | 表示要查找的列字段名。 |
+
+**返回值：**
+
+| 参数名    | 说明                                               |
+| -------- | ------------------------------------------------- |
+| Promise&lt;ResultSet&gt; | 查询结果集的Promise对象。        |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+import data_relationalStore from '@ohos.data.relationalStore';
+
+let sharingResource;
+let predicates = new data_relationalStore.RdbPredicates('test_table');
+predicates.equalTo('data', 'data_test');
+if(store != undefined) {
+    (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data']).then((resultSet) => {
+        if (!resultSet.goToFirstRow()) {
+            console.error(`row error`);
+            return;
+        }
+        const res = resultSet.getString(resultSet.getColumnIndex(data_relationalStore.Field.SHARING_RESOURCE_FIELD));
+        console.info(`sharing resource: ${res}`);
+        sharingResource = res;
+    }).catch((err: BusinessError) => {
+        console.error(`query failed, code is ${err.code},message is ${err.message}`);
+    })
+}
+
+```
+
+### querySharingResource<sup>11+</sup>
+
+querySharingResource(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;): void
+
+根据谓词条件匹配的数据记录查找对应记录的共享资源，返回查找的结果集。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates)              | 是   | 表示查询的谓词条件。           |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 回调函数。当共享资源查询成功，err为undefined，并返回共享资源的结果集，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+import data_relationalStore from '@ohos.data.relationalStore';
+
+let sharingResource;
+let predicates = new data_relationalStore.RdbPredicates('test_table');
+predicates.equalTo('data', 'data_test');
+if(store != undefined) {
+    try {
+      (store as relationalStore.RdbStore).querySharingResource(predicates,(err, resultSet) => {
+          if (err) {
+              console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
+              return;
+          }
+          if (!resultSet.goToFirstRow()) {
+              console.error(`row error`);
+              return;
+          }
+          const res = resultSet.getString(resultSet.getColumnIndex(data_relationalStore.Field.SHARING_RESOURCE_FIELD));
+          console.info(`sharing resource: ${res}`);
+          sharingResource = res;
+      })
+    } catch(e) {
+        console.error(`query failed, code is ${e.code},message is ${e.message}`);
+    }
+}
+
+```
+
+### querySharingResource<sup>11+</sup>
+
+querySharingResource(predicates: RdbPredicates, columns: Array<string>, callback: AsyncCallback&lt;ResultSet&gt;): void
+
+根据谓词条件匹配的数据记录查找对应记录的共享资源，返回查找到的共享资源的结果集，同时在结果集中返回谓词条件匹配的指定列名的字段值。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | 表示查询的谓词条件。           |
+| columns    | Array<string>                   | 是   | 表示要查找的列字段名。           |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt;  | 是   | 回调函数。 当共享资源查询成功，err为undefined，并返回共享资源的结果集，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+import data_relationalStore from '@ohos.data.relationalStore';
+
+let sharingResource;
+let predicates = new data_relationalStore.RdbPredicates('test_table');
+predicates.equalTo('data', 'data_test');
+if(store != undefined) {
+    try {
+      (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data'], (err, resultSet) => {
+          if (err) {
+              console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
+              return;
+          }
+          if (!resultSet.goToFirstRow()) {
+              console.error(`row error`);
+              return;
+          }
+          const res = resultSet.getString(resultSet.getColumnIndex(data_relationalStore.Field.SHARING_RESOURCE_FIELD));
+          console.info(`sharing resource: ${res}`);
+          sharingResource = res;
+      })
+    } catch(e) {
+        console.error(`query failed, code is ${e.code},message is ${e.message}`);
+    }
+}
+
 ```
 
 ## ResultSet
