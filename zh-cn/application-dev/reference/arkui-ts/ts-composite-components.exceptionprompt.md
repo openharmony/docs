@@ -45,7 +45,7 @@ optionType定义ExceptionPrompt组件的配置信息及参数。
 | Icon           | ResourceStr        | 否   | 指定当前ExceptionPrompt的异常图标式样。                      |
 | TipContent     | ResourceStr        | 否   | 指定当前ExceptionPrompt的文字提示式样。                      |
 | ContentText    | ResourceStr        | 否   | 指定当前ExceptionPrompt有网但是获取不到内容XX，XX包含但不限于“信息”，“资料”，“图片”等。 |
-| HardwareStatus | HardwareStatusType | 否   | 指定当前硬件打开状态。默认HardwareStatusType.on：打开状态；或者HardwareStatusType.on：关闭。 |
+| HardwareStatus | HardwareStatusType | 否   | 指定当前网络硬件开关状态。默认HardwareStatusType.on：打开状态；HardwareStatusType.off：关闭状态。 |
 | PaddingStatus  | boolean            | 是   | 指定当前ExceptionPrompt的边距样式，true：默认边距，false：可适配边距 |
 
 ## Type
@@ -59,7 +59,7 @@ TypeEnum定义Type的类型。
 |   NETWORK_NOT_CONNECTED    |      网络未连接状态      |
 | NETWORK_CONNECTED_UNSTABLE |    网络连接不稳定状态    |
 |  UNSTABLE_CONNECT_SERVER   |     连不上服务器状态     |
-|    CUSTOM_NETWORK_TIPS     | 有网但是获取不带内容状态 |
+|    CUSTOM_NETWORK_TIPS     | 有网但是获取不到内容状态 |
 |        CUSTOM_TIPS         |    自定义提示内容状态    |
 ## HardwareStatus
 
@@ -78,10 +78,10 @@ HardwareStatusType定义HardwareStatus的类型
 
 ## 事件
 
-| 名称                                                   | 功能描述                                 |
-| ------------------------------------------------------ | ---------------------------------------- |
-| ReconnectionFunction: () => void = () => { }           | 点击左侧文本，变为正在连接状态事件       |
-| ConfigureNetworkFunction: () =&gt; void = () =&gt; { } | 点击设置网络跳转到设置网络网络弹出框事件 |
+| 名称                                                   | 功能描述                             |
+| ------------------------------------------------------ | ------------------------------------ |
+| ReconnectionFunction: () => void = () => { }           | 点击左侧文本，变为正在连接状态事件   |
+| ConfigureNetworkFunction: () =&gt; void = () =&gt; { } | 点击设置网络跳转到设置网络弹出框事件 |
 
 ## 示例 2
 
