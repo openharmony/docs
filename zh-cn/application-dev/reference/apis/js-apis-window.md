@@ -333,12 +333,11 @@ import window from '@ohos.window';
 | 名称       | 值   | 说明                          |
 | ---------- | ---- | ----------------------------- |
 | UNDEFINED  | 0    | 表示APP未定义窗口模式。       |
-| FULLSCREEN | 1    | 表示APP全屏模式。             |
+| FULL_SCREEN | 1    | 表示APP全屏模式。             |
 | MAXIMIZE    | 2    | 表示APP窗口最大化模式。   |
 | MINIMIZE    | 3    | 表示APP窗口最小化模式。   |
 | FLOATING    | 4    | 表示APP自由悬浮形式窗口模式。   |
-| PRIMARY  | 100    | 表示APP分屏多窗口主要模式。   |
-| SECONDARY   | 101    | 表示APP分屏多窗口次要模式。 |
+| SPLIT_SCREEN  | 100    | 表示APP分屏多窗口主要模式。   |
 
 ## window.createWindow<sup>9+</sup>
 
