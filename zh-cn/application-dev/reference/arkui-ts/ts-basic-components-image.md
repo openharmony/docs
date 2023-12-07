@@ -108,7 +108,7 @@ onComplete(callback: (event?: { width: number, height: number, componentWidth: n
 
 ### onError
 
-onError(callback: (event?: { componentWidth: number, componentHeight: number , message: string }) =&gt; void)
+onError(callback: [ImageErrorCallback](#imageerrorcallback11))
 
 图片加载异常时触发该回调。
 
@@ -118,10 +118,7 @@ onError(callback: (event?: { componentWidth: number, componentHeight: number , m
 
 | 参数名               | 类型   | 说明                      |
 | -------------------- | ------ | ------------------------- |
-| componentWidth       | number | 组件的宽。<br/>单位：像素 |
-| componentHeight      | number | 组件的高。<br/>单位：像素 |
-| message<sup>9+</sup> | string | 报错信息。                |
-
+| callback       | [ImageErrorCallback](#imageerrorcallback11) | 图片加载异常时触发的回调。 |
 
 ### onFinish
 
@@ -132,6 +129,26 @@ onFinish(event: () =&gt; void)
 仅支持svg格式的图片。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+## ImageErrorCallback<sup>11+</sup>
+
+type ImageErrorCallback = (error: [ImageError](#imageerror11)) => void
+
+图片加载异常时触发的回调。
+
+| 参数名               | 类型   | 说明                      |
+| -------------------- | ------ | ------------------------- |
+| error       | [ImageError](#imageerror11) | 图片加载异常时触发回调的返回对象。 |
+
+## ImageError<sup>11+</sup>
+
+图片加载异常时触发回调的返回对象。
+
+| 参数名               | 类型   | 说明                      |
+| -------------------- | ------ | ------------------------- |
+| componentWidth       | number | 组件的宽。<br/>单位：像素 |
+| componentHeight      | number | 组件的高。<br/>单位：像素 |
+| message<sup>9+</sup> | string | 报错信息。                |
 
 ## 示例
 
