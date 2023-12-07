@@ -1100,7 +1100,7 @@ async function Demo() {
 
 applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\<void>
 
-根据输入的广色域信息对图像像素颜色进行变换，使用Promise形式返回。
+根据输入的广色域信息对图像像素颜色进行色彩空间转换，使用Promise形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1108,7 +1108,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 
 | 参数名 | 类型               | 必填 | 说明        |
 | ------ | ------------------ | ---- | ----------- |
-| targetColorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 图像广色域信息。|
+| targetColorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间。|
 
 **返回值：**
 
