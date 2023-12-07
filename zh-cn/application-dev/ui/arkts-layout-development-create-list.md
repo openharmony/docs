@@ -420,11 +420,11 @@ class heF{
     this.itemHead(val)
   }
 }
-let fff:heF = this.heF()
+let fff:heF = new heF()
 List() {
   // 循环渲染ListItemGroup，contactsGroups为多个分组联系人contacts和标题title的数据集合
   ForEach(contactsGroups, (item: cgtmpf) => {
-    ListItemGroup({ header: fff(item.title) }) {
+    ListItemGroup({ header: fff.foo(item.title) }) {
       // 循环渲染ListItem
       if (item.contacts) {
         ForEach(item.contacts, () => {
@@ -476,15 +476,15 @@ export let contactsGroups: object[] = [
     contacts: [
       new Contact('艾佳', $r('app.media.iconA')),
       new Contact('安安', $r('app.media.iconB')),
-      new Contact('Angela', $r('app.media.iconC')),
-    ],
+      new Contact('Angela', $r('app.media.iconC'))
+    ]
   } as cgtmpf,
   {
     title: 'B',
     contacts: [
       new Contact('白叶', $r('app.media.iconD')),
-      new Contact('伯明', $r('app.media.iconE')),
-    ],
+      new Contact('伯明', $r('app.media.iconE'))
+    ]
   } as cgtmpf,
 ]
 @Entry
@@ -643,14 +643,14 @@ ListItem的swipeAction属性可用于实现列表项的左右滑动功能。swip
    ```ts
    let personId = 0;
 
-   export class Person = {
+   export class Person {
     id: string;
     WeChatImage: string;
     WeChatName: string;
     ChatInfo: string;
     time: string;
 
-    construct(WeChatImage: string, WeChatName: string, ChatInfo: string, time: string){
+    constructor(WeChatImage: string, WeChatName: string, ChatInfo: string, time: string){
       this.id = `${personId++}`
       this.WeChatImage = WeChatImage;
       this.WeChatName = WeChatName;
@@ -663,24 +663,30 @@ ListItem的swipeAction属性可用于实现列表项的左右滑动功能。swip
 3. 初始化消息列表数据。
 
    ```ts
-   export const ContactInfo: any[] = [
+   interface ContactData {
+     WeChatImage: string;
+     WeChatName: string;
+     ChatInfo: string;
+     time: string;
+    }
+   export const ContactInfo: ContactData[] = [
     {
-      "WeChatImage":"iconB.png",
-      "WeChatName":"安安",
-      "ChatInfo":"吃饭了吗",
-      "time":"10:30"
+      WeChatImage:"iconB.png",
+      WeChatName:"安安",
+      ChatInfo:"吃饭了吗",
+      time:"10:30"
     },
     {
-      "WeChatImage":"iconC.png",
-      "WeChatName":"Angela",
-      "ChatInfo":"哈哈哈",
-      "time":"10:28"
+      WeChatImage:"iconC.png",
+      WeChatName:"Angela",
+      ChatInfo:"哈哈哈",
+      time:"10:28"
     },
     {
-      "WeChatImage":"iconD.png",
-      "WeChatName":"大明",
-      "ChatInfo":"谢谢",
-      "time":"10:27"
+      WeChatImage:"iconD.png",
+      WeChatName:"大明",
+      ChatInfo:"谢谢",
+      time:"10:27"
     }
    ]
 
@@ -690,6 +696,7 @@ ListItem的swipeAction属性可用于实现列表项的左右滑动功能。swip
     ContactInfo.forEach((item:Person) => {
       contactList.push(new Person(item.WeChatImage,item.WeChatName,item.ChatInfo,item.time))
     })
+    return contactList;
    }
 
    export const WeChatColor:string = "#cccccc"
@@ -819,13 +826,13 @@ Badge({
    ```ts
    //ToDoListItem.ets
    @Component
-   export class ToDoListItem {
+   export struct ToDoListItem {
      @Link isEditMode: boolean
      @Link selectedItems: ToDo[]
      private toDoItem: ToDo;
 
      hasBeenSelected(): boolean{
-      return this.selectedItems.IndexOf(this.toDoItem) != -1
+      return this.selectedItems.indexOf(this.toDoItem) != -1
      }
 
      build() {
@@ -883,26 +890,30 @@ Badge({
                  TextPickerDialog.show({
                    range: this.availableThings,
                    onAccept: (value: TextPickerResult) => {
-                   this.toDoData.push(new ToDo(this.availableThings[value.index])); // 新增列表项数据toDoData(可选事项)
+                   let arr = Array.isArray(value.index)?value.index:[value.index];
+                   for(let i = 0; i < arr.length; i++) {
+                      this.toDoData.push(new ToDo(this.availableThings[arr[i]])); // 新增列表项数据toDoData(可选事项)
+                   }
                  },
                })
              })
            }
-         }
-       }
-     }
-     List({ space: 10 }) {
-       ForEach(this.toDoData, (toDoItem:ToDo) => {
-         ListItem() {
-           // 将toDoData的每个数据放入到以model的形式放进ListItem里
-           isEditMode: $isEditMode,
-           toDoItem: toDoItem,
-           selectedItems: $selectedItems
-         }
-       }, (toDoItem:ToDo) => toDoItem.key.toString())
-     }
-   }
-   ```
+            List({ space: 10 }) {
+              ForEach(this.toDoData, (toDoItem: ToDo) => {
+                ListItem() {
+                  // 将toDoData的每个数据放入到以model的形式放进ListItem里
+                  ToDoListItem({
+                    isEditMode: this.isEditMode,
+                    toDoItem: toDoItem,
+                    selectedItems: this.selectedItems })
+                }
+              }, (toDoItem: ToDo) => toDoItem.key.toString())
+            }
+          }
+        }
+      }
+    }
+```
 
 
 
