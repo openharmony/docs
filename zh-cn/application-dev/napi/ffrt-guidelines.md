@@ -1,4 +1,4 @@
-﻿# FFRT 开发指导
+# FFRT 开发指导
 
 ## 场景介绍
 
@@ -12,7 +12,7 @@ Function Flow编程模型是一种基于任务和数据驱动的并发编程模�
 |                | 线程编程模型                                                 | FFRT任务编程模型                                             |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 并行度挖掘方式 | 程序员通过创建多线程并把任务分配到每个线程中执行来挖掘运行时的并行度。 | 程序员（编译器工具或语言特性配合）静态编程时将应用分解成任务及其数据依赖关系，运行时调度器分配任务到工作线程执行。 |
-| 谁负责线程创建 | 程序员负责创建线程，线程编程模型无法约束线程的创建，滥用可能造成系统中大量线程。| FFRT运行时负责工作线程池的创建和管理由调度器负责，程序员无法直接创建线程。 |
+| 谁负责线程创建 | 程序员负责创建线程，线程编程模型无法约束线程的创建，滥用可能造成系统中大量线程。| 由调度器负责工作线程池的创建和管理，程序员无法直接创建线程。 |
 | 负载均衡       | 程序员静态编程时将任务映射到线程，映射不合理或任务执行时间不确定造成线程负载不均。 | FFRT运行时根据线程执行状态调度就绪任务到空闲线程执行，减轻了线程负载不均问题。 |
 | 调度开销       | 线程调度由内核态调度器完成，调度开销大。                       | FFRT运行时在用户态以协程方式调度执行，相比内核线程调度机制更为轻量，减小调度的开销，并可通过硬化调度卸载进一步减小调度开销。 |
 | 依赖表达       | 线程创建时即处于可执行状态，执行时与其他线程同步操作，增加线程切换。 | FFRT运行时根据任务创建时显式表达的输入依赖和输出依赖关系判断任务可执行状态，当输入依赖不满足时，任务不被调度执行。 |
@@ -201,7 +201,7 @@ void ffrt_submit_base(ffrt_function_header_t* func, const ffrt_deps_t* in_deps, 
   * ffrt_alloc_auto_managed_function_storage_base申请的内存为ffrt_auto_managed_function_storage_size字节，其生命周期归ffrt管理，在该task结束时，由FFRT自动释放，用户无需释放。
 * ffrt_function_header_t 中定义了两个函数指针：
   * exec：用于描述该Task如何被执行，当FFRT需要执行该Task时由FFRT调用。
-  * destroy：用于描述该Task如何被执行，当FFRT需要执行该Task时由FFRT调用。
+  * destroy：用于描述该Task如何被销毁，当FFRT需要销毁该Task时由FFRT调用。
 
 ##### 样例
 
@@ -656,7 +656,7 @@ void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
 ##### 描述
 
 * **C API中的ffrt_task_handle_t需要用户调用`ffrt_task_handle_destroy`显式销毁。**
-* C API中的task_handle_t对象的置空和销毁由用户完成，对同一个ffrt_task_handle_t仅能调用一次。`ffrt_task_handle_destroy`，重复对同一个ffrt_task_handle_t调用`ffrt_task_handle_destroy`，其行为是未定义的。
+* C API中的task_handle_t对象的置空和销毁由用户完成，对同一个ffrt_task_handle_t仅能调用一次`ffrt_task_handle_destroy`，重复对同一个ffrt_task_handle_t调用`ffrt_task_handle_destroy`，其行为是未定义的。
 * 在`ffrt_task_handle_destroy`之后再对ffrt_task_handle_t进行访问，其行为是未定义的。
 
 ##### 样例
@@ -864,8 +864,8 @@ void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
 
 ##### 描述
 * ffrt_queue_attr_t用于创建ffrt_queue_t且不单独使用，因此必须在创建队列前先创建好队列属性。
-* ffrt_queue_attr_t对象的置空和销毁由用户完成，对同一个ffrt_queue_t仅能调用一次`ffrt_queue_attr_destroy`，重复对同一个ffrt_queue_t调用`ffrt_queue_attr_destroy`，其行为是未定义的。
-* 在`ffrt_queue_attr_destroy`之后再对ffrt_queue_t进行访问，其行为是未定义的。
+* ffrt_queue_attr_t对象的置空和销毁由用户完成，对同一个ffrt_queue_attr_t仅能调用一次`ffrt_queue_attr_destroy`，重复对同一个ffrt_queue_attr_t调用`ffrt_queue_attr_destroy`，其行为是未定义的。
+* 在`ffrt_queue_attr_destroy`之后再对ffrt_queue_attr_t进行访问，其行为是未定义的。
 
 ##### 样例
 参考ffrt_queue_t章节的样例。
@@ -897,7 +897,7 @@ void ffrt_queue_destroy(ffrt_queue_t queue)
 
 ##### 描述
 * 提交至该队列的任务将按照顺序执行，如果某个提交的任务中发生阻塞，则无法保证该任务的执行顺序。
-* ffrt_queue_t对象的置空和销毁由用户完成，对同一个ffrt_queue_t仅能调用一次`ffrt_queue_t`，重复对同一个ffrt_queue_t调用`ffrt_queue_destroy`，其行为是未定义的。
+* ffrt_queue_t对象的置空和销毁由用户完成，对同一个ffrt_queue_t仅能调用一次`ffrt_queue_destroy`，重复对同一个ffrt_queue_t调用`ffrt_queue_destroy`，其行为是未定义的。
 * 在`ffrt_queue_destroy`之后再对ffrt_queue_t进行访问，其行为是未定义的。
 
 ##### 样例
@@ -1416,7 +1416,7 @@ void ffrt_yield();
 
 ## 开发步骤
 
-以下步骤描述了如何使用`FFRT`提供的Native API接口，创建并行队列任务和串行队列任务以及销毁相应资源。
+以下步骤描述了如何使用`FFRT`提供的Native API接口，创建并行任务和串行队列任务以及销毁相应资源。
 
 **添加动态链接库**
 
