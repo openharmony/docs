@@ -324,6 +324,22 @@ import window from '@ohos.window';
 | minWidth  | number | 是   | 是   | 否   | 窗口的最小宽度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小宽度。  |
 | minHeight | number | 是   | 是   | 否   | 窗口的最小高度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小高度。  |
 
+## WindowStatusType<sup>11+</sup>
+
+窗口模式枚举。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称       | 值   | 说明                          |
+| ---------- | ---- | ----------------------------- |
+| UNDEFINED  | 0    | 表示APP未定义窗口模式。       |
+| FULLSCREEN | 1    | 表示APP全屏模式。             |
+| MAXIMIZE    | 2    | 表示APP窗口最大化模式。   |
+| MINIMIZE    | 3    | 表示APP窗口最小化模式。   |
+| FLOATING    | 4    | 表示APP自由悬浮形式窗口模式。   |
+| PRIMARY  | 100    | 表示APP分屏多窗口主要模式。   |
+| SECONDARY   | 101    | 表示APP分屏多窗口次要模式。 |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -3824,6 +3840,60 @@ try {
   windowClass.off('windowVisibilityChange');
 } catch (exception) {
   console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### on('windowStatusChange')<sup>11+</sup>
+
+on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): void
+
+开启窗口模式变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'windowStatusChange'，即窗口模式变化事件。 |
+| callback | Callback&lt;[WindowStatusType](#WindowStatusType11)&gt; | 是   | 回调函数。返回当前的窗口模式。                           |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.on('windowStatusChange', (WindowStatusType) => {
+      console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(status));
+  });
+} catch (exception) {
+  console.error('Failed to enable the listener for window status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('windowStatusChange')<sup>11+</sup>
+
+off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): void
+
+关闭窗口模式变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                                                     |
+| -------- | ----------------------------- | ---- | -------------------------------------------------------- |
+| type     | string                        | 是   | 监听事件，固定为'windowStatusChange'，即窗口模式变化事件。 |
+| callback | Callback&lt;[WindowStatusType](#WindowStatusType11)&gt; | 否   | 回调函数。返回当前的窗口模式。如果传入参数，则关闭该监听。如果未传入参数，则关闭窗口模式变化的监听。                           |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.off('windowStatusChange');
+} catch (exception) {
+  console.error('Failed to disable the listener for window status changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
