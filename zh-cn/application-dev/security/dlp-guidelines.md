@@ -44,6 +44,8 @@
 |setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;|设置沙箱应用配置信息|
 |getSandboxAppConfig(): Promise&lt;string&gt;|查询沙箱应用配置信息|
 |cleanSandboxAppConfig(): Promise&lt;void&gt;|清理沙箱应用配置信息|
+| startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&lt;DLPManagerResult&gt; <br> | 在当前UIAbility界面以无边框形式打开DLP权限管理应用（只支持Stage模式） |
+
 ## 开发步骤
 
 开发步骤
@@ -226,6 +228,29 @@
         console.info('res', JSON.stringify(res))
       } catch (err) {
         console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      }
+    }
+    ```
+
+13. 以无边框形式打开DLP权限管理应用。此方法只能在UIAbility上下文中调用，只支持Stage模式。
+
+    ```ts
+    import common from '@ohos.app.ability.common';
+ 
+    async func() {
+      try {
+        let context = getContext(this) as common.UIAbilityContext; // 获取当前UIAbilityContext
+        let want = {
+          "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
+          "parameters": {
+             "displayName": "1.txt"
+          }
+        }; // 请求参数
+        let res: dlpPermission.DLPManagerResult = await dlpPermission.startDLPManagerForResult(context, want); // 打开DLP权限管理应用
+        console.info('res.resultCode', res.resultCode);
+        console.info('res.want', JSON.stringifg(res.want));
+      } catch (err) {
+        console.error('error', err.code, err.message); // 失败报错
       }
     }
     ```

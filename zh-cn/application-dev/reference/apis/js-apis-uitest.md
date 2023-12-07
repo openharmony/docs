@@ -156,7 +156,7 @@ UI事件的相关信息。
 ## On<sup>9+</sup>
 
 UiTest框架在API 9中，通过On类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
-On提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[ON.isBefore](#isbefore)和[ON.isAfter](#isafter)等API限定邻近控件特征进行辅助定位。<br>On类提供的所有API均为同步接口，建议使用者通过静态构造器ON来链式创建On对象。
+On提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[ON.isBefore](#isbefore9)和[ON.isAfter](#isafter9)等API限定邻近控件特征进行辅助定位。<br>On类提供的所有API均为同步接口，建议使用者通过静态构造器ON来链式创建On对象。
 
 ```ts
 import { ON } from '@ohos.UiTest';
@@ -884,9 +884,9 @@ isLongClickable(): Promise\<boolean>
 
 **返回值：**
 
-| 类型              | 说明                                                         |
-| ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象是否可安装点击，true：可长按点击，false：不可长按点击。 |
+| 类型              | 说明                                               |
+| ----------------- |--------------------------------------------------|
+| Promise\<boolean> | 以Promise形式返回控件对象是否可长按点击，true：可长按点击，false：不可长按点击。 |
 
 **错误码：**
 
@@ -1115,7 +1115,7 @@ isSelected(): Promise\<boolean>
 
 | 类型              | 说明                                                |
 | ----------------- | --------------------------------------------------- |
-| Promise\<boolean> | 控件对象被选中状态，true：被选中，false：未被选中。 |
+| Promise\<boolean> | 以Promise形式返回控件对象被选中状态，true：被选中，false：未被选中。 |
 
 **错误码：**
 
@@ -1184,6 +1184,7 @@ clearText(): Promise\<void>
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1613,7 +1614,7 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 | 类型                              | 说明                              |
 | --------------------------------- | --------------------------------- |
-| Promise\<[Component](#component)> | 以Promise形式返回找到的控件对象。 |
+| Promise\<[Component](#component9)> | 以Promise形式返回找到的控件对象。 |
 
 **错误码：**
 
@@ -1948,7 +1949,7 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 
 | 类型              | 说明                                   |
 | ----------------- | -------------------------------------- |
-| Promise\<boolean> | 截图操作是否成功完成。成功完成为true。 |
+| Promise\<boolean> | 以Promise形式返回截图操作是否成功完成。成功完成为true。 |
 
 **错误码：**
 
@@ -2353,7 +2354,7 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 | 类型              | 说明                                   |
 | ----------------- | -------------------------------------- |
-| Promise\<boolean> | 截图操作是否成功完成。成功完成为true。 |
+| Promise\<boolean> | 以Promise形式返回截图操作是否成功完成。成功完成为true。 |
 
 **错误码：**
 
@@ -2486,9 +2487,9 @@ createUIEventObserver(): UIEventObserver;
 
 **返回值：**
 
-| 类型                                            | 说明                                  |
-| ----------------------------------------------- | ------------------------------------- |
-| Promise\<[UIEventObserver](#uieventobserver10)> | 以Promise形式返回找到的目标窗口对象。 |
+| 类型                                   | 说明                                  |
+| ------------------------------------ | ------------------------------------- |
+|[UIEventObserver](#uieventobserver10) | 返回找到的目标窗口对象。 |
 
 **错误码：**
 
@@ -3245,7 +3246,7 @@ UI事件监听器。
 
 ### once('toastShow')
 
-once(type: 'toastShow', callback: Callback\<UIElementInfo>):void;
+once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 
 开始监听toast控件出现的事件，使用callback的形式返回结果。
 
@@ -3964,7 +3965,7 @@ isSelected(): Promise\<boolean>
 
 | 类型              | 说明                                                  |
 | ----------------- | ----------------------------------------------------- |
-| Promise\<boolean> | 控件对象被选中的状态，true：被选中，false：未被选中。 |
+| Promise\<boolean> | 以Promise形式返回控件对象被选中的状态，true：被选中，false：未被选中。 |
 
 **示例：**
 
@@ -4375,7 +4376,7 @@ UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的
 
 | 类型              | 说明                                   |
 | ----------------- | -------------------------------------- |
-| Promise\<boolean> | 截图操作是否成功完成。成功完成为true。 |
+| Promise\<boolean> | 以Promise形式返回截图操作是否成功完成。成功完成为true。 |
 
 **示例：**
 

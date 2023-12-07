@@ -189,7 +189,7 @@ stop(elementName: ElementName): void;
 
 on(type: "hceCmd", callback: AsyncCallback<number[]>): void;
 
-订阅回调，用于接收对端读卡设备发送的APDU数据。暂不支持使用，仅做接口声明。
+订阅回调，用于接收对端读卡设备发送的APDU数据。
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
@@ -201,6 +201,21 @@ on(type: "hceCmd", callback: AsyncCallback<number[]>): void;
 | -------- | ----------------------- | ---- | -------------------------------------------- |
 | type     | string                  | 是   | 固定填"hceCmd"字符串。                         |
 | callback | AsyncCallback<number[]> | 是   | 订阅的事件回调，入参是符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
+
+**示例：**
+```js
+import cardEmulation from '@ohos.nfc.cardEmulation';
+import { AsyncCallback } from '@ohos.base';
+
+let hceService: cardEmulation.HceService = new cardEmulation.HceService();
+
+const apduCallback: AsyncCallback<number[]> = (err, data) => {
+  //handle the data and err
+  console.log("got apdu data");
+};
+hceService.on('hceCmd', apduCallback);
+```
+
 
 ### sendResponse<sup>8+</sup>
 
@@ -225,7 +240,7 @@ sendResponse(responseApdu: number[]): void;
 
 transmit(response: number[]): Promise\<void>;
 
-发送APDU数据到对端读卡设备。暂不支持使用，仅做接口声明。
+发送APDU数据到对端读卡设备。
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
@@ -250,6 +265,23 @@ transmit(response: number[]): Promise\<void>;
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 3100301 | Card emulation running state is abnormal in service. |
+
+**示例：**
+```js
+import cardEmulation from '@ohos.nfc.cardEmulation';
+import { AsyncCallback } from '@ohos.base';
+
+let hceService: cardEmulation.HceService = new cardEmulation.HceService();
+
+// the data app wanna send, just a example data
+const responseData = [0x1, 0x2];
+hceService.transmit(responseData).then(() => {
+  // handle the transmit promise
+  console.log("send data.");
+}).catch((err: BusinessError) => {
+  console.log("send data error:", err);
+});
+```
 
 ### transmit<sup>9+</sup>
 

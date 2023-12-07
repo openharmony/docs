@@ -5047,9 +5047,9 @@ getColumnName(columnIndex: number): string
 
 ```ts
 if(resultSet != undefined) {
-const id = (resultSet as relationalStore.ResultSet).getColumnName(0);
-const name = (resultSet as relationalStore.ResultSet).getColumnName(1);
-const age = (resultSet as relationalStore.ResultSet).getColumnName(2);
+  const id = (resultSet as relationalStore.ResultSet).getColumnName(0);
+  const name = (resultSet as relationalStore.ResultSet).getColumnName(1);
+  const age = (resultSet as relationalStore.ResultSet).getColumnName(2);
 }
 ```
 
@@ -5085,7 +5085,7 @@ goTo(offset:number): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goTo(1);
+  (resultSet as relationalStore.ResultSet).goTo(1);
 }
 ```
 
@@ -5121,7 +5121,7 @@ goToRow(position: number): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToRow(5);
+  (resultSet as relationalStore.ResultSet).goToRow(5);
 }
 ```
 
@@ -5152,7 +5152,7 @@ goToFirstRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToFirstRow();
+  (resultSet as relationalStore.ResultSet).goToFirstRow();
 }
 ```
 
@@ -5182,7 +5182,7 @@ goToLastRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToLastRow();
+  (resultSet as relationalStore.ResultSet).goToLastRow();
 }
 ```
 
@@ -5212,7 +5212,7 @@ goToNextRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToNextRow();
+  (resultSet as relationalStore.ResultSet).goToNextRow();
 }
 ```
 
@@ -5242,7 +5242,7 @@ goToPreviousRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToPreviousRow();
+  (resultSet as relationalStore.ResultSet).goToPreviousRow();
 }
 ```
 
@@ -5278,7 +5278,7 @@ getBlob(columnIndex: number): Uint8Array
 
 ```ts
 if(resultSet != undefined) {
-const codes = (resultSet as relationalStore.ResultSet).getBlob((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
+  const codes = (resultSet as relationalStore.ResultSet).getBlob((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
 }
 ```
 
@@ -5314,7 +5314,7 @@ getString(columnIndex: number): string
 
 ```ts
 if(resultSet != undefined) {
-const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
+  const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
 }
 ```
 
@@ -5350,7 +5350,7 @@ getLong(columnIndex: number): number
 
 ```ts
 if(resultSet != undefined) {
-const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
+  const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
  }
 ```
 
@@ -5386,7 +5386,7 @@ getDouble(columnIndex: number): number
 
 ```ts
 if(resultSet != undefined) {
-const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
+  const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
 }
 ```
 
@@ -5422,7 +5422,7 @@ getAsset(columnIndex: number): Asset
 
 ```ts
 if(resultSet != undefined) {
-const doc = (resultSet as relationalStore.ResultSet).getAsset((resultSet as relationalStore.ResultSet).getColumnIndex("DOC"));
+  const doc = (resultSet as relationalStore.ResultSet).getAsset((resultSet as relationalStore.ResultSet).getColumnIndex("DOC"));
 }
 ```
 
@@ -5458,7 +5458,7 @@ getAssets(columnIndex: number): Assets
 
 ```ts
 if(resultSet != undefined) {
-const docs = (resultSet as relationalStore.ResultSet).getAssets((resultSet as relationalStore.ResultSet).getColumnIndex("DOCS"));
+  const docs = (resultSet as relationalStore.ResultSet).getAssets((resultSet as relationalStore.ResultSet).getColumnIndex("DOCS"));
 }
 ```
 
@@ -5495,7 +5495,7 @@ isColumnNull(columnIndex: number): boolean
 
 ```ts
 if(resultSet != undefined) {
-const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
+  const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
 }
 ```
 
@@ -5511,7 +5511,7 @@ close(): void
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).close();
+  (resultSet as relationalStore.ResultSet).close();
 }
 ```
 

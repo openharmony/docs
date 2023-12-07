@@ -10,74 +10,75 @@
 
 1. 构建需要展开的页面，并通过状态变量构建好普通状态和展开状态的界面。
 
-  ```ts
-  class Tmp{
-    set(item:CradData):CradData{
-      return item
-    }
-  }
-  // 通过状态变量的判断，在同一个组件内构建普通状态和展开状态的界面
-  @Component
-  export struct MyExtendView {
-    // 声明与父组件进行交互的是否展开状态变量
-    @Link isExpand: boolean;
-    @State cardList: Array<CardData> = xxxx;
-  
-    build() {
-      List() {
-        // 根据需要定制展开后的组件
-        if (this.isExpand) {
-          Text('expand')
-            .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.8) }))
+      ```ts
+      class Tmp{
+        set(item:CradData):CradData{
+          return item
         }
-  
-        ForEach(this.cardList, (item: CradData) => {
-          let Item:Tmp = new Tmp()
-          let Imp:Tmp = Item.set(item)
-          let Mc:Record<string,Tmp> = {'cardData':Imp}
-          MyCard(Mc)
-        })
       }
-      .width(this.isExpand ? 200 : 500) // 根据组要定义展开后的组件的属性
-      .animation({ curve: curves.springMotion() }) // 为组件属性绑定动画
-    }
-  }
-  ```
+      // 通过状态变量的判断，在同一个组件内构建普通状态和展开状态的界面
+      @Component
+      export struct MyExtendView {
+        // 声明与父组件进行交互的是否展开状态变量
+        @Link isExpand: boolean;
+        @State cardList: Array<CardData> = xxxx;
+      
+        build() {
+          List() {
+            // 根据需要定制展开后的组件
+            if (this.isExpand) {
+              Text('expand')
+                .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion(0.6, 0.8) }))
+            }
+      
+            ForEach(this.cardList, (item: CradData) => {
+              let Item:Tmp = new Tmp()
+              let Imp:Tmp = Item.set(item)
+              let Mc:Record<string,Tmp> = {'cardData':Imp}
+              MyCard(Mc) // 封装的卡片组件，需自行实现
+            })
+          }
+          .width(this.isExpand ? 200 : 500) // 根据需要定义展开后组件的属性
+          .animation({ curve: curves.springMotion() }) // 为组件属性绑定动画
+        }
+      }
+      ... 
+      ```
 
 2. 将需要展开的页面展开，通过状态变量控制兄弟组件消失或出现，并通过绑定出现消失转场实现兄弟组件转场效果。
 
-  ```ts
-  class Tmp{
-    isExpand: boolean = false;
-    set(){
-      this.isExpand = !this.isExpand;
-    }
-  }
-  let Exp:Record<string,boolean> = {'isExpand': false}
-    @State isExpand: boolean = false
-    
-    ...
-    List() {
-      // 通过是否展开状态变量控制兄弟组件的出现或者消失，并配置出现消失转场动画
-      if (!this.isExpand) {
-        Text('收起')
-          .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.9) }))
+      ```ts
+      class Tmp{
+        isExpand: boolean = false;
+        set(){
+          this.isExpand = !this.isExpand;
+        }
       }
-    
-      MyExtendView(Exp)
-        .onClick(() => {
-          let Epd:Tmp = new Tmp()
-          Epd.set()
-        })
-    
-      // 通过是否展开状态变量控制兄弟组件的出现或者消失，并配置出现消失转场动画
-      if (this.isExpand) {
-        Text('展开')
-          .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion() }))
-      }
-    }
-  ...
-  ```
+      let Exp:Record<string,boolean> = {'isExpand': false}
+        @State isExpand: boolean = false
+        
+        ...
+        List() {
+          // 通过是否展开状态变量控制兄弟组件的出现或者消失，并配置出现消失转场动画
+          if (!this.isExpand) {
+            Text('收起')
+              .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion(0.6, 0.9) }))
+          }
+        
+          MyExtendView(Exp)
+            .onClick(() => {
+              let Epd:Tmp = new Tmp()
+              Epd.set()
+            })
+        
+          // 通过是否展开状态变量控制兄弟组件的出现或者消失，并配置出现消失转场动画
+          if (this.isExpand) {
+            Text('展开')
+              .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion() }))
+          }
+        }
+      ...
+      ```
 
 
 完整示例和效果如下。

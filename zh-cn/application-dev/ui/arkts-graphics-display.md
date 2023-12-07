@@ -176,7 +176,8 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
        ```ts
        let code: http.ResponseCode | number = OutData.responseCode
        if (ResponseCode.ResponseCode.OK === code) {
-         let imageSource: image.ImageSource = image.createImageSource(OutData.result.toString());
+         let imageData: ArrayBuffer = OutData.result as ArrayBuffer;
+         let imageSource: image.ImageSource = image.createImageSource(imageData);
        
          class tmp {
            height: number = 100

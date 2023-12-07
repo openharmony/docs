@@ -311,6 +311,19 @@ import window from '@ohos.window';
 | WINDOW_INACTIVE   | 3      | 失焦状态。 |
 | WINDOW_HIDDEN     | 4      | 切到后台。 |
 
+## WindowLimits<sup>11+</sup>
+
+窗口尺寸限制参数。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称      | 类型   | 可读 | 可写 | 必填 | 说明                                                         |
+| :-------- | :----- | :--- | :--- | :--- | :----------------------------------------------------------- |
+| maxWidth  | number | 是   | 是   | 否   | 窗口的最大宽度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最大宽度。  |
+| maxHeight | number | 是   | 是   | 否   | 窗口的最大高度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最大高度。  |
+| minWidth  | number | 是   | 是   | 否   | 窗口的最小宽度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小宽度。  |
+| minHeight | number | 是   | 是   | 否   | 窗口的最小高度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小高度。  |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -3742,6 +3755,78 @@ try {
 }
 ```
 
+### on('windowVisibilityChange')<sup>11+</sup>
+
+on(type: 'windowVisibilityChange', callback: Callback&lt;boolean&gt;): void
+
+开启本窗口可见状态变化事件的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                                         |
+| -------- | --------------------------| ---- | ------------------------------------------------------------ |
+| type     | string                    | 是   | 监听事件，固定为'windowVisibilityChange'，即本窗口可见状态变化的事件。 |
+| callback | Callback&lt;boolean&gt;   | 是   | 回调函数。当本窗口可见状态发生变化后的回调。回调函数返回boolean类型参数，当返回参数为true时表示窗口可见，否则表示窗口不可见。                               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.on('windowVisibilityChange', (boolean) => {
+    console.info('Window visibility changed, isVisible=' + boolean);
+  });
+} catch (exception) {
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('windowVisibilityChange')<sup>11+</sup>
+
+off(type: 'windowVisibilityChange', callback?: Callback&lt;boolean&gt;): void
+
+关闭本窗口可见状态变化事件的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                   |
+| -------- |----------------------------| ---- |--------------------------------------|
+| type     | string                     | 是   | 监听事件，固定为'windowVisibilityChange'，即本窗口可见状态变化的事件。 |
+| callback | Callback&lt;boolean&gt;    | 否   | 回调函数。当本窗口可见状态发生变化时的回调。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有本窗口可见状态变化事件的回调。            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.off('windowVisibilityChange');
+} catch (exception) {
+  console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### bindDialogTarget<sup>9+</sup>
 
 bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, callback: AsyncCallback&lt;void&gt;): void
@@ -5959,13 +6044,17 @@ promise.then(()=> {
     console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
 });
 ```
-### minimize<sup>10+</sup>
+### minimize<sup>11+</sup>
 
 minimize(callback: AsyncCallback&lt;void&gt;): void
 
-最小化主窗口。使用callback异步回调。
+此接口根据调用对象不同，实现不同的两个功能：
 
-**系统接口：** 此接口为系统接口。
+当调用对象为主窗口时，实现最小化功能，可在Dock栏中还原；
+
+当调用对象为子窗口时，实现隐藏功能，不可在Dock栏中还原。
+
+使用callback异步回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5987,48 +6076,30 @@ minimize(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // 为主窗口加载对应的目标页面。
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // 获取应用主窗口。
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-            // 调用minimize接口。
-            mainWindow.minimize((err) => {
-                if (err.code) {
-                    console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Successfully minimized app main window.');
-            });
-        })
-    }
-};
+let windowClass: window.Window = window.findWindow("test");
+windowClass.minimize((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to minimize the window. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in minimizing the window.');
+});
 ```
 
-### minimize<sup>10+</sup>
+### minimize<sup>11+</sup>
 
 minimize(): Promise&lt;void&gt;
 
-最小化主窗口。使用Promise异步回调。
+此接口根据调用对象不同，实现不同的两个功能：
 
-**系统接口：** 此接口为系统接口。
+当调用对象为主窗口时，实现最小化功能，可在Dock栏中还原；
+
+当调用对象为子窗口时，实现隐藏功能，不可在Dock栏中还原。
+
+使用Promise异步回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -6050,38 +6121,15 @@ minimize(): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // 为主窗口加载对应的目标页面。
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // 获取应用主窗口。
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-            // 获取minimize接口的promise对象。
-            let promise = mainWindow.minimize();
-            promise.then(()=> {
-                console.info('Successfully minimized app main window.');
-            }).catch((err)=>{
-                console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
-            });
-        })
-    }
-};
+let windowClass: window.Window = window.findWindow("test");
+let promise = windowClass.minimize();
+promise.then(() => {
+  console.info('Succeeded in minimizing the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to minimize the window. Cause: ' + JSON.stringify(err));
+});
 ```
 
 ### setResizeByDragEnabled<sup>10+</sup>
@@ -6361,6 +6409,92 @@ export default class EntryAbility extends UIAbility {
       });
     })
   }
+}
+```
+
+### getWindowLimits<sup>11+</sup>
+
+getWindowLimits(): WindowLimits
+
+获取当前窗口的尺寸限制。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                          | 说明           |
+| ----------------------------- | ------------------ |
+| [WindowLimits](#windowlimits11) | 当前窗口尺寸限制。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| :------- | :----------------------------- |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  let windowLimits = windowClass.getWindowLimits();
+} catch (exception) {
+  console.error('Failed to obtain the window limits of window. Cause: ' + JSON.stringify(exception));
+}
+```
+
+###  setWindowLimits<sup>11+</sup>
+
+setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
+
+设置当前窗口的尺寸限制，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名       | 类型                          | 必填 | 说明                           |
+| :----------- | :---------------------------- | :--- | :----------------------------- |
+| windowLimits | [WindowLimits](#windowlimits11) | 是   | 目标窗口的尺寸限制，单位为px。 |
+
+**返回值：**
+
+| 类型                                         | 说明                                |
+| :------------------------------------------- | :---------------------------------- |
+| Promise&lt;[WindowLimits](#windowlimits11)&gt; | Promise对象。返回设置后的尺寸限制。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| :------- | :-------------------------------------------- |
+| 1300002  | This window state is abnormal.                |
+| 1300003  | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+try {
+  let windowLimits: window.WindowLimits = {
+    maxWidth: 1500,
+    maxHeight: 1000,
+    minWidth: 500,
+    minHeight: 400
+  };
+  let windowClass: window.Window = window.findWindow("test");
+  let promise = windowClass.setWindowLimits(windowLimits);
+    promise.then((data) => {
+    console.info('Succeeded in changing the window limits. Cause:' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to change the window limits. Cause: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to change the window limits. Cause:' + JSON.stringify(exception));
 }
 ```
 
@@ -8245,6 +8379,18 @@ WindowStage生命周期。
 | RESUMED<sup>11+</sup> | 5      | 前台可交互状态。前台应用进入多任务为不可交互状态，继续返回前台时恢复可交互状态。 |
 | PAUSED<sup>11+</sup>  | 6      | 前台不可交互状态。前台应用进入多任务为不可交互状态，继续返回前台时恢复可交互状态。 |
 
+## SubWindowOptions<sup>11+</sup>
+
+子窗口创建参数。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称      | 类型  | 可读 | 可写 | 说明         |
+| ---------- | ---- | ---- | ---- | ----------- |
+| title    | string | 否 | 是 | 子窗口标题。       |
+| decorEnabled | boolean | 否 | 是 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
+
+
 ## WindowStage<sup>9+</sup>
 
 窗口管理器。管理各个基本窗口单元，即[Window](#window)实例。
@@ -8516,7 +8662,69 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+### createSubWindowWithOptions<sup>11+</sup>
 
+createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
+
+创建该WindowStage实例下的子窗口，使用Promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| name   | string | 是   | 子窗口的名字。 |
+| options  | [SubWindowOptions](#subwindowoptions11) | 是   | 子窗口参数。  |
+
+**返回值：**
+
+| 类型                             | 说明                                             |
+| -------------------------------- | ------------------------------------------------ |
+| Promise&lt;[Window](#window)&gt; | Promise对象。返回当前WindowStage下创建的子窗口对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300005 | This window stage is abnormal. |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      let options : window.SubWindowOptions = {
+        title: 'title',
+        decorEnabled: true
+      };
+      let promise = windowStage.createSubWindowWithOptions('mySubWindow', options);
+      promise.then((data) => {
+        windowClass = data;
+        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+      }).catch((err: BusinessError) => {
+        console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
+      });
+    } catch (exception) {
+      console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
+    }
+  }
+};
+```
 ### getSubWindow<sup>9+</sup>
 
 getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void

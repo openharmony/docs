@@ -13,11 +13,11 @@ VPN 即虚拟专网（VPN-Virtual Private Network）在公用网络上建立专�
 
 完整的 JS API 说明以及实例代码请参考：[VPN API 参考](../reference/apis/js-apis-net-vpn.md)。
 
-| 类型         | 接口                                                              | 功能说明                                            |
-| ------------ | ----------------------------------------------------------------- | --------------------------------------------------- |
-| ohos.net.vpn | setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void | 建立一个 VPN 网络，使用 callback 方式作为异步方法。 |
-| ohos.net.vpn | protect(socketFd: number, callback: AsyncCallback\<void\>): void  | 保护 VPN 的隧道，使用 callback 方式作为异步方法。   |
-| ohos.net.vpn | destroy(callback: AsyncCallback\<void\>): void                    | 销毁一个 VPN 网络，使用 callback 方式作为异步方法。 |
+| 接口名                                                            | 描述                                          |
+| ----------------------------------------------------------------- | --------------------------------------------------- |
+| setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void | 建立一个 VPN 网络，使用 callback 方式作为异步方法。 |
+| protect(socketFd: number, callback: AsyncCallback\<void\>): void  | 保护 VPN 的隧道，使用 callback 方式作为异步方法。   |
+| destroy(callback: AsyncCallback\<void\>): void                    | 销毁一个 VPN 网络，使用 callback 方式作为异步方法。 |
 
 ## 启动 VPN 的流程
 
