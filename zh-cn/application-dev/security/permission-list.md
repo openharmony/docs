@@ -3717,3 +3717,15 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.START_SYSTEM_DIALOG
+
+允许应用拉起模系统弹窗。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
