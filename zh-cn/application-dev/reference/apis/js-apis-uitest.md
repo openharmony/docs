@@ -109,12 +109,13 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称                | 类型    | 可读 | 可写 | 说明                                                         |
-| ------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
-| bundleName          | string  | 是   | 否   | 窗口归属应用的包名。                                         |
-| title               | string  | 是   | 否   | 窗口的标题信息。                                             |
-| focused             | boolean | 是   | 否   | 窗口是否处于获焦状态。                                       |
-| actived(deprecated) | boolean | 是   | 否   | 窗口是否正与用户进行交互。<br>从API11开始，名称变更为active。 |
+| 名称                 | 类型    | 可读 | 可写 | 说明                                                         |
+| -------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
+| bundleName           | string  | 是   | 否   | 窗口归属应用的包名。                                         |
+| title                | string  | 是   | 否   | 窗口的标题信息。                                             |
+| focused              | boolean | 是   | 否   | 窗口是否处于获焦状态。                                       |
+| actived(deprecated)  | boolean | 是   | 否   | 窗口是否正与用户进行交互。<br>从API11开始，名称变更为active。 |
+| active<sup>11+</sup> | boolean | 是   | 否   | 窗口是否正与用户进行交互。                                   |
 
 ## UiDirection<sup>10+</sup>
 
@@ -1445,7 +1446,7 @@ async function demo() {
 
 getDescription(): Promise\<string>
 
-获取控件对象的描述信息。
+获取控件对象的描述信息，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1453,7 +1454,7 @@ getDescription(): Promise\<string>
 
 | 类型             | 说明                              |
 | ---------------- | --------------------------------- |
-| Promise\<string> | 以Promise形式返回控件的描述信息。 |
+| Promise\<string> | Promise对象，返回控件的描述信息。 |
 
 **错误码：**
 
@@ -3026,9 +3027,9 @@ async function demo() {
 
 isActived(): Promise\<boolean>
 
-判断窗口是否为用户正在交互窗口。
+判断窗口是否为用户正在交互窗口，使用Promise异步回调。
 
-从API version 11开始不再维护，建议使用[isActive<sup>11+</sup>](#isactive11)。
+从API version 9开始支持，从API version 11开始废弃，建议使用[isActive<sup>11+</sup>](#isactive11)替代。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3036,7 +3037,7 @@ isActived(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口，true：交互窗口，false：非交互窗口。 |
+| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口，true表示是交互窗口，false表示非交互窗口。 |
 
 **错误码：**
 
