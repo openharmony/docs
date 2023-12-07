@@ -1,6 +1,6 @@
 # FormExtensionContext
 
-FormExtensionContext模块是FormExtensionAbility的上下文环境，继承自ExtensionContext。
+FormExtensionContext模块是[FormExtensionAbility](js-apis-app-form-formExtensionAbility.md)的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。
 
 FormExtensionContext模块提供FormExtensionAbility具有的接口和能力。
 
@@ -131,7 +131,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     this.context.startAbility(want).then(() => {
       console.info('StartAbility Success');
     }).catch((error: Base.BusinessError) => {
-      console.error('StartAbility failed');
+      console.error('StartAbility failed, error.code: ${error.code}, error.message: ${error.message}');
     });
   }
 };
@@ -175,7 +175,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -232,7 +232,7 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback&lt
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| connection | number | 是 | 在connectServiceExtensionAbility中返回的number。 |
+| connection | number | 是 | 在[connectServiceExtensionAbility](#formextensioncontextconnectserviceextensionability10)中返回的number。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
@@ -242,7 +242,7 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback&lt
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -263,8 +263,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
         commRemote = null;
         if (error.code) {
           // 处理业务逻辑错误
-          console.error(
-            `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
+          console.error(`disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // 执行正常业务
@@ -293,7 +292,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| connection | number | 是 | 在connectServiceExtensionAbility中返回的number。 |
+| connection | number | 是 | 在[connectServiceExtensionAbility](#formextensioncontextconnectserviceextensionability10)中返回的number。 |
 
 **返回值：**
 
@@ -308,7 +307,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -334,8 +333,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
         .catch((error: Base.BusinessError) => {
           commRemote = null;
           // 处理业务逻辑错误
-          console.error(
-            `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
+          console.error(`disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
     } catch (paramError) {
       commRemote = null;

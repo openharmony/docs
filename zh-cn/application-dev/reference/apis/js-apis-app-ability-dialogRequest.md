@@ -367,7 +367,7 @@ setRequestResult(result: RequestResult): void;
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 

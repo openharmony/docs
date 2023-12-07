@@ -48,7 +48,7 @@ startAbility(want: Want, callback: AsyncCallback\<void\>): void
 | 16000061 | Can not start component belongs to other bundle. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -132,7 +132,7 @@ startAbility(want: Want): Promise\<void\>
 | 16000061 | Can not start component belongs to other bundle. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
