@@ -9,11 +9,11 @@ IPC/RPC提供对远端Stub对象状态的订阅机制，在远端Stub对象消�
 
 ## Native侧接口
 
-| 接口名 | 返回值类型 | 功能描述 |
-| -------- | -------- | -------- |
-| AddDeathRecipient(const sptr\<DeathRecipient> &recipient); | bool | 订阅远端Stub对象状态。 |
-| RemoveDeathRecipient(const sptr\<DeathRecipient> &recipient); | bool | 取消订阅远端Stub对象状态。 |
-| OnRemoteDied(const wptr\<IRemoteObject> &object); | void | 当远端Stub对象死亡时回调。 |
+| 接口名                                                              |  描述                     |
+| ------------------------------------------------------------------- | ------------------------- |
+| bool AddDeathRecipient(const sptr\<DeathRecipient> &recipient);     | 订阅远端Stub对象状态。     |
+| bool RemoveDeathRecipient(const sptr\<DeathRecipient> &recipient);  | 取消订阅远端Stub对象状态。 |
+| void OnRemoteDied(const wptr\<IRemoteObject> &object);              | 当远端Stub对象死亡时回调。 |
 
 ### 参考代码
 
