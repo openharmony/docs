@@ -1,6 +1,6 @@
 # @ohos.app.ability.childProcessManager (childProcessManager)
 
-childProcessManager模块提供子进程管理能力，支持子进程启动操作。该模块仅平板类设备和2in1设备可用。
+childProcessManager模块提供子进程管理能力，支持子进程启动操作。该模块仅平板类设备可用。
 
 > **说明：**
 >
