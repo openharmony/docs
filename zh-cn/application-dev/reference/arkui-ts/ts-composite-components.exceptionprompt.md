@@ -23,7 +23,7 @@ import {
 
 ## 接口
 
-ExceptionPrompt ({ Type: $Type,Options: $Options })
+ExceptionPrompt ({ Type: TypeEnum,Options: Optiontype })
 
 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -40,11 +40,11 @@ ExceptionPrompt ({ Type: $Type,Options: $Options })
 | 名称        | 类型 | 装饰器类型 | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- | --------------------------------- |
 | Type | TypeEnum | @Link | 是   | 指定当前ExceptionPrompt的类型。对应不同显示状态 |
-| Options | optiontype | @Link | 是 | 组件配置信息 |
+| Options | Optiontype | @Link | 是 | 组件配置信息 |
 
 ##  OptionType
 
-optionType定义Options的类型。
+OptionType定义Options的类型。
 
 | 名称           | 类型               | 必填 | 说明                                                         |
 | -------------- | ------------------ | ---- | ------------------------------------------------------------ |
@@ -90,7 +90,7 @@ HardwareStatusType定义HardwareStatus的类型
 ```ts
 import {
   ExceptionPrompt,
-  optionType,
+  OptionType,
   TypeEnum,
   HardwareStatusType
 } from '@ohos.arkui.advanced.ExceptionPrompt'
@@ -99,7 +99,7 @@ import {
 @Component
 struct Index {
   @State Type: TypeEnum = TypeEnum.DEFAULT_HIDE
-  @State Options: optionType = {
+  @State Options: OptionType = {
     HardwareStatus: HardwareStatusType.on,
     Icon: '',
     TipContent: '',
