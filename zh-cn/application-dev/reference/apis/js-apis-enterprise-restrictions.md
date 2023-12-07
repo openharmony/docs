@@ -502,9 +502,9 @@ try {
 
 ## restrictions.setFingerprintAuthDisabled<sup>11+</sup>
 
-setFingerprintAuthDisabled(admin: Want, disable: boolean): void
+setFingerprintAuthDisabled(admin: Want, disabled: boolean): void
 
-指定设备管理应用使指纹禁用或启用。
+以同步方法指定设备管理应用禁用或启用指纹认证。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -517,7 +517,7 @@ setFingerprintAuthDisabled(admin: Want, disable: boolean): void
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| disable  | boolean | 是 | true表示禁止使用指纹，false表示允许使用指纹。 |
+| disabled  | boolean | 是 | true表示禁止使用指纹，false表示允许使用指纹。 |
 
 **错误码**：
 
@@ -537,14 +537,21 @@ let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-restrictions.setFingerprintAuthDisabled(wantTemp, true);
+
+try {
+  restrictions.setFingerprintAuthDisabled(wantTemp, true);
+  console.info('Succeeded in disabling the fingerprint auth');
+} catch (err) {
+  console.error(`Failed to disable fingerprint auth. Code: ${err.code}, message: ${err.message}`);
+};
+
 ```
 
 ## restrictions.isFingerprintAuthDisabled<sup>11+</sup>
 
 isFingerprintAuthDisabled(admin: Want): boolean
 
-指定设备管理应用查询指纹是否被禁用。
+以同步方法指定设备管理应用查询指纹认证是否被禁用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
@@ -582,6 +589,11 @@ let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let result: boolean = restrictions.isFingerprintAuthDisabled(wantTemp);
-console.info(`FingerprintAuth disabled : ${result}`);
+
+try {
+  let result: boolean = restrictions.isFingerprintAuthDisabled(wantTemp);
+  console.info(`Succeeded in getting the state of fingerprint auth. result : ${result}`);
+} catch (err) {
+  console.error(`Failed to get the state of fingerprint auth. Code: ${err.code}, message: ${err.message}`);
+};
 ```
