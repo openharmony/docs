@@ -3863,7 +3863,7 @@ on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): voi
 try {
   let windowClass: window.Window = window.findWindow("test");
   windowClass.on('windowStatusChange', (WindowStatusType) => {
-      console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(status));
+      console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
   });
 } catch (exception) {
   console.error('Failed to enable the listener for window status changes. Cause: ' + JSON.stringify(exception));
