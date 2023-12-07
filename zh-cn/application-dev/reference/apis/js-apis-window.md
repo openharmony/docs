@@ -1621,7 +1621,7 @@ promise.then((data) => {
 
 ## SpecificSystemBar<sup>11+</sup>
 
-当前显示或隐藏系统栏集合。
+当前支持显示或隐藏的系统栏类型。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -2615,8 +2615,8 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean): Promise&l
 
 | 参数名 | 类型  | 必填 | 说明 |
 | ----- | ---------------------------- | -- | --------------------------------- |
-| name  | [SpecificSystemBar](#specificsystembar11) | 是 | 设置窗口全屏模式时状态栏、导航栏或AI横条的显示和隐藏 |
-| enable  | boolean | 是 | 设置窗口全屏模式时状态栏、导航栏或AI横条的显示和隐藏，true默认显示 false则默认不显示|
+| name  | [SpecificSystemBar](#specificsystembar11) | 是 | 设置窗口全屏模式时，显示或隐藏的系统栏类型。 |
+| enable  | boolean | 是 | 设置窗口全屏模式时状态栏、导航栏或AI横条是否显示，true表示显示 false表示隐藏。|
 
 **返回值：**
 
@@ -2636,12 +2636,12 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean): Promise&l
 **示例：**
 
 ```ts
-// 此处以不显示AI横条为例
+// 此处以隐藏AI横条为例
 import { BusinessError } from '@ohos.base';
 
 try {
   let windowClass: window.Window = window.findWindow("test");
-  let promise = windowClass.setSpecificSystemBarEnabled(navigationIndicator,false);
+  let promise = windowClass.setSpecificSystemBarEnabled('navigationIndicator',false);
   promise.then(() => {
     console.info('Succeeded in setting the system bar to be invisible.');
   }).catch((err: BusinessError) => {
