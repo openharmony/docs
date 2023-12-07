@@ -224,6 +224,25 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 | ----------------------- | ---------------- |
 | number | 添加完成的imageSpan所在的位置。 |
 
+### addBuilderSpan<sup>11+</sup>
+
+addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): number
+
+添加builder内容。不支持通过[getSpans](#getspans)等方法获取。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| value  | [CustomBuilder](ts-types.md#custombuilder8)  | 是   | 自定义组件。 |
+| options  | [RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11)   | 否   | builder选项。 |
+
+**返回值：**
+
+| 类型                      | 说明               |
+| ----------------------- | ---------------- |
+| number | 添加完成的builderSpan所在的位置。 |
+
 ### getTypingStyle<sup>11+</sup>
 
 getTypingStyle(): RichEditorTextStyle
@@ -481,6 +500,15 @@ getSelection(): RichEditorSelection
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 图片垂直对齐方式。<br/>默认值:ImageSpanAlignment.BASELINE |
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | 否 | 图片缩放类型。<br/> 默认值:ImageFit.Cover。 |
 | layoutStyle<sup>11+</sup>  |{<br/>margin&nbsp;?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[Margin](ts-types.md#margin),<br/> borderRadius&nbsp;?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9)<br/>}| 否 | 图片布局风格。<br/>|
+
+## RichEditorBuilderSpanOptions<sup>11+</sup>
+
+添加图片的偏移位置和图片样式信息。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| offset  | number   | 否   | 添加builder的位置。省略或者为异常值时，添加到所有文本字符串的最后。 |
+
 ## RichEditorRange
 
 范围信息。
