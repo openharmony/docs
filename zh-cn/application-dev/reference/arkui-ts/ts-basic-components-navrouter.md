@@ -73,55 +73,63 @@ NavRouter(value: RouteInfo)
 @Entry
 @Component
 struct NavRouterExample {
-  private arr: number[] = [0, 1, 2, 3]
-  @State isActive: boolean = false
-  @State dex: number = -1
+  @State isActiveWLAN: boolean = false
+  @State isActiveBluetooth: boolean = false
 
   build() {
     Column() {
       Navigation() {
-        List({ space: 12, initialIndex: 0 }) {
-          ForEach(this.arr, (item: number, index: number = 0) => {
-            ListItem() {
-              NavRouter() {
-                Row() {
-                  Image($r('app.media.icon')).width(30).height(30).borderRadius(30).margin({ left: 3, right: 10 })
-                  Text(`NavRouter${item + 1}`)
-                    .fontSize(22)
-                    .fontWeight(500)
-                    .textAlign(TextAlign.Center)
-                }
-                .width(180)
-                .height(72)
-                .backgroundColor(this.dex === index ? '#ccc' : '#fff')
-                .borderRadius(24)
-
-                NavDestination() {
-                  Text(`我是NavDestination第${item + 1}页内容`).fontSize(50)
-                  Flex({ direction: FlexDirection.Row }) {
-                    Row() {
-                      Image($r('app.media.icon')).width(40).height(40).borderRadius(40).margin({ right: 15 })
-                      Text('今天共有七节课').fontSize(30)
-                    }.padding({ left: 15 })
-                  }
-                }.backgroundColor('#ccc')
-                .title(`NavDestination${item + 1}`)
-              }.onStateChange((isActivated: boolean) => {
-                if(isActivated) {
-                  this.dex = index;
-                }
-              })
+        NavRouter() {
+          Row() {
+            Row().width(30).height(30).borderRadius(30).margin({ left: 3, right: 10 }).backgroundColor(Color.Pink)
+            Text(`WLAN`)
+              .fontSize(22)
+              .fontWeight(500)
+              .textAlign(TextAlign.Center)
+          }
+          .width('90%')
+          .height(72)
+          NavDestination() {
+            Flex({ direction: FlexDirection.Row }) {
+              Text('未找到可用WLAN').fontSize(30).padding({ left: 15 })
             }
-          }, (item:number) => item.toString())
-        }
-        .height('100%')
-        .margin({ top: 12, left: 12 })
+          }.hideTitleBar(false).backgroundColor('#0c182431')
+        }.backgroundColor(this.isActiveWLAN ? '#ccc' : '#fff')
+        .borderRadius(24)
+        .onStateChange((isActivated: boolean) => {
+          this.isActiveWLAN = isActivated
+        })
+
+        NavRouter() {
+          Row() {
+            Row().width(30).height(30).borderRadius(30).margin({ left: 3, right: 10 }).backgroundColor(Color.Pink)
+            Text(`蓝牙`)
+              .fontSize(22)
+              .fontWeight(500)
+              .textAlign(TextAlign.Center)
+          }
+          .width('90%')
+          .height(72)
+
+          NavDestination() {
+            Flex({ direction: FlexDirection.Row }) {
+              Text('未找到可用蓝牙').fontSize(30).padding({ left: 15 })
+            }
+          }.hideTitleBar(false).backgroundColor('#0c182431')
+        }.backgroundColor(this.isActiveBluetooth ? '#ccc' : '#fff')
+        .borderRadius(24)
+        .onStateChange((isActivated: boolean) => {
+          this.isActiveBluetooth = isActivated
+        })
       }
-      .mode(NavigationMode.Split)
-      .hideTitleBar(true)
+      .title('设置')
+      .titleMode(NavigationTitleMode.Free)
+      .mode(NavigationMode.Auto)
+      .hideTitleBar(false)
       .hideToolBar(true)
     }.height('100%')
   }
 }
 ```
 
+![NavRouter](./figures/NavRouter.gif)
