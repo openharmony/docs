@@ -2395,14 +2395,18 @@ try {
       return;
     }
     console.info('Succeeded in putting Batch');
-    kvStore.getEntries('batch_test_string_key', (err, entries) => {
-      if (err != undefined) {
-        console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-      }
-      console.info('Succeeded in getting Entries');
-      console.info(`entries.length: ${entries.length}`);
-      console.info(`entries[0]: ${entries[0]}`);
-    });
+    if (kvStore != null) {
+      kvStore.getEntries('batch_test_string_key', (err, entries) => {
+        if (err != undefined) {
+          console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+        }
+        console.info('Succeeded in getting Entries');
+        console.info(`entries.length: ${entries.length}`);
+        console.info(`entries[0]: ${entries[0]}`);
+      });
+    } else {
+      console.error('KvStore is null'); //后续示例代码与此处保持一致
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -2466,12 +2470,14 @@ try {
   console.info(`entries: ${entries}`);
   kvStore.putBatch(entries).then(async () => {
     console.info('Succeeded in putting Batch');
-    kvStore.getEntries('batch_test_string_key').then((entries) => {
-      console.info('Succeeded in getting Entries');
-      console.info(`PutBatch ${entries}`);
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-    });
+    if (kvStore != null) {
+      kvStore.getEntries('batch_test_string_key').then((entries) => {
+        console.info('Succeeded in getting Entries');
+        console.info(`PutBatch ${entries}`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
   });
@@ -2653,13 +2659,15 @@ try {
       return;
     }
     console.info('Succeeded in putting');
-    kvStore.delete(KEY_TEST_STRING_ELEMENT, (err) => {
-      if (err != undefined) {
-        console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in deleting');
-    });
+    if (kvStore != null) {
+      kvStore.delete(KEY_TEST_STRING_ELEMENT, (err) => {
+        if (err != undefined) {
+          console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in deleting');
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -2712,11 +2720,13 @@ const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
   kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
     console.info(`Succeeded in putting data`);
-    kvStore.delete(KEY_TEST_STRING_ELEMENT).then(() => {
-      console.info('Succeeded in deleting');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
-    });
+    if (kvStore != null) {
+      kvStore.delete(KEY_TEST_STRING_ELEMENT).then(() => {
+        console.info('Succeeded in deleting');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
   });
@@ -2776,13 +2786,15 @@ try {
       return;
     }
     console.info("Succeeded in putting");
-    kvStore.delete(predicates, (err) => {
-      if (err == undefined) {
-        console.info('Succeeded in deleting');
-      } else {
-        console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
-      }
-    });
+    if (kvStore != null) {
+      kvStore.delete(predicates, (err) => {
+        if (err == undefined) {
+          console.info('Succeeded in deleting');
+        } else {
+          console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
+        }
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -2841,11 +2853,13 @@ try {
   predicates.inKeys(arr);
   kvStore.put("name", "bob").then(() => {
     console.info(`Succeeded in putting data`);
-    kvStore.delete(predicates).then(() => {
-      console.info('Succeeded in deleting');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
-    });
+    if (kvStore != null) {
+      kvStore.delete(predicates).then(() => {
+        console.info('Succeeded in deleting');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
   });
@@ -2912,13 +2926,15 @@ try {
       return;
     }
     console.info('Succeeded in putting Batch');
-    kvStore.deleteBatch(keys, async (err) => {
-      if (err != undefined) {
-        console.error(`Failed to delete Batch.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in deleting Batch');
-    });
+    if (kvStore != null) {
+      kvStore.deleteBatch(keys, async (err) => {
+        if (err != undefined) {
+          console.error(`Failed to delete Batch.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in deleting Batch');
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -2984,11 +3000,13 @@ try {
   console.info(`entries: ${entries}`);
   kvStore.putBatch(entries).then(async () => {
     console.info('Succeeded in putting Batch');
-    kvStore.deleteBatch(keys).then(() => {
-      console.info('Succeeded in deleting Batch');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to delete Batch.code is ${err.code},message is ${err.message}`);
-    });
+    if (kvStore != null) {
+      kvStore.deleteBatch(keys).then(() => {
+        console.info('Succeeded in deleting Batch');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to delete Batch.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
   });
@@ -3036,16 +3054,20 @@ try {
   kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async (err) => {
     console.info('Succeeded in putting data');
     const deviceid = 'no_exist_device_id';
-    kvStore.removeDeviceData(deviceid, async (err) => {
-      if (err == undefined) {
-        console.info('succeeded in removing device data');
-      } else {
-        console.error(`Failed to remove device data.code is ${err.code},message is ${err.message} `);
-        kvStore.get(KEY_TEST_STRING_ELEMENT, async (err, data) => {
-          console.info('Succeeded in getting data');
-        });
-      }
-    });
+    if (kvStore != null) {
+      kvStore.removeDeviceData(deviceid, async (err) => {
+        if (err == undefined) {
+          console.info('succeeded in removing device data');
+        } else {
+          console.error(`Failed to remove device data.code is ${err.code},message is ${err.message} `);
+          if (kvStore != null) {
+            kvStore.get(KEY_TEST_STRING_ELEMENT, async (err, data) => {
+              console.info('Succeeded in getting data');
+            });
+          }
+        }
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -3155,13 +3177,15 @@ try {
       return;
     }
     console.info("Succeeded in putting");
-    kvStore.get(KEY_TEST_STRING_ELEMENT, (err, data) => {
-      if (err != undefined) {
-        console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info(`Succeeded in getting data.data=${data}`);
-    });
+    if (kvStore != null) {
+      kvStore.get(KEY_TEST_STRING_ELEMENT, (err, data) => {
+        if (err != undefined) {
+          console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info(`Succeeded in getting data.data=${data}`);
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -3210,11 +3234,13 @@ const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
   kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
     console.info(`Succeeded in putting data`);
-    kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
-      console.info(`Succeeded in getting data.data=${data}`);
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
-    });
+    if (kvStore != null) {
+      kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+        console.info(`Succeeded in getting data.data=${data}`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
   });
@@ -3273,15 +3299,17 @@ try {
       return;
     }
     console.info('Succeeded in putting Batch');
-    kvStore.getEntries('batch_test_string_key', (err, entries) => {
-      if (err != undefined) {
-        console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in getting Entries');
-      console.info(`entries.length: ${entries.length}`);
-      console.info(`entries[0]: ${entries[0]}`);
-    });
+    if (kvStore != null) {
+      kvStore.getEntries('batch_test_string_key', (err, entries) => {
+        if (err != undefined) {
+          console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in getting Entries');
+        console.info(`entries.length: ${entries.length}`);
+        console.info(`entries[0]: ${entries[0]}`);
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -3340,12 +3368,14 @@ try {
   console.info(`entries: ${entries}`);
   kvStore.putBatch(entries).then(async () => {
     console.info('Succeeded in putting Batch');
-    kvStore.getEntries('batch_test_string_key').then((entries) => {
-      console.info('Succeeded in getting Entries');
-      console.info(`PutBatch ${entries}`);
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-    });
+    if (kvStore != null) {
+      kvStore.getEntries('batch_test_string_key').then((entries) => {
+        console.info('Succeeded in getting Entries');
+        console.info(`PutBatch ${entries}`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
   });
@@ -3403,15 +3433,17 @@ try {
     console.info('Succeeded in putting Batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
-    kvStore.getEntries(query, (err, entries) => {
-      if (err != undefined) {
-        console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in getting Entries');
-      console.info(`entries.length: ${entries.length}`);
-      console.info(`entries[0]: ${entries[0]}`);
-    });
+    if (kvStore != null) {
+      kvStore.getEntries(query, (err, entries) => {
+        if (err != undefined) {
+          console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in getting Entries');
+        console.info(`entries.length: ${entries.length}`);
+        console.info(`entries[0]: ${entries[0]}`);
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -3472,11 +3504,13 @@ try {
     console.info('Succeeded in putting Batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
-    kvStore.getEntries(query).then((entries) => {
-      console.info('Succeeded in getting Entries');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-    });
+    if (kvStore != null) {
+      kvStore.getEntries(query).then((entries) => {
+        console.info('Succeeded in getting Entries');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`)
   });
@@ -3538,26 +3572,30 @@ try {
       return;
     }
     console.info('Succeeded in putting batch');
-    kvStore.getResultSet('batch_test_string_key', async (err, result) => {
-      if (err != undefined) {
-        console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in getting result set');
-      resultSet = result;
-      kvStore.closeResultSet(resultSet, (err) => {
+    if (kvStore != null) {
+      kvStore.getResultSet('batch_test_string_key', async (err, result) => {
         if (err != undefined) {
-          console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+          console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in closing result set');
-      })
-    });
+        console.info('Succeeded in getting result set');
+        resultSet = result;
+        if (kvStore != null) {
+          kvStore.closeResultSet(resultSet, (err) => {
+            if (err != undefined) {
+              console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+              return;
+            }
+            console.info('Succeeded in closing result set');
+          });
+        }
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
   console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
-} 
+}
 ```
 
 ### getResultSet
@@ -3617,13 +3655,15 @@ try {
   kvStore.getResultSet('batch_test_string_key').then((result) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet).then(() => {
+        console.info('Succeeded in closing result set');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-  });
-  kvStore.closeResultSet(resultSet).then(() => {
-    console.info('Succeeded in closing result set');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -3683,13 +3723,15 @@ try {
     console.info('Succeeded in putting batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
-    kvStore.getResultSet(query, async (err, result) => {
-      if (err != undefined) {
-        console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in getting result set');
-    });
+    if (kvStore != null) {
+      kvStore.getResultSet(query, async (err, result) => {
+        if (err != undefined) {
+          console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in getting result set');
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -3811,13 +3853,15 @@ try {
     }
     console.info('Succeeded in getting result set');
     resultSet = result;
-    kvStore.closeResultSet(resultSet, (err) => {
-      if (err != undefined) {
-        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in closing result set');
-    })
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet, (err) => {
+        if (err != undefined) {
+          console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in closing result set');
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -3872,14 +3916,17 @@ try {
   kvStore.getResultSet(predicates).then((result) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet).then(() => {
+        console.info('Succeeded in closing result set');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
   });
-  kvStore.closeResultSet(resultSet).then(() => {
-    console.info('Succeeded in closing result set');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-  });
+
 } catch (e) {
   let error = e as BusinessError;
   console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
@@ -3915,18 +3962,21 @@ try {
     }
     console.info('Succeeded in getting result set');
     resultSet = result;
-    kvStore.closeResultSet(resultSet, (err) => {
-      if (err != undefined) {
-        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in closing result set');
-    })
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet, (err) => {
+        if (err != undefined) {
+          console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in closing result set');
+      })
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
   console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
 }
+
 ```
 
 ### closeResultSet
@@ -3959,14 +4009,17 @@ try {
   kvStore.getResultSet('batch_test_string_key').then((result) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet).then(() => {
+        console.info('Succeeded in closing result set');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
   });
-  kvStore.closeResultSet(resultSet).then(() => {
-    console.info('Succeeded in closing result set');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-  });
+
 } catch (e) {
   let error = e as BusinessError;
   console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
@@ -4019,13 +4072,15 @@ try {
     console.info('Succeeded in putting batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
-    kvStore.getResultSize(query, async (err, resultSize) => {
-      if (err != undefined) {
-        console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in getting result set size');
-    });
+    if (kvStore != null) {
+      kvStore.getResultSize(query, async (err, resultSize) => {
+        if (err != undefined) {
+          console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in getting result set size');
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -4395,7 +4450,7 @@ function putBatchString(len: number, prefix: string) {
     entries.push(entry);
   }
   return entries;
-}
+} //自定义函数，放置在作用域最外侧，防止语法检查报错
 
 try {
   let count = 0;
@@ -4411,13 +4466,15 @@ try {
     console.info('Succeeded in starting Transaction');
     let entries = putBatchString(10, 'batch_test_string_key');
     console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries, async (err) => {
-      if (err != undefined) {
-        console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in putting Batch');
-    });
+    if (kvStore != null) {
+      kvStore.putBatch(entries, async (err) => {
+        if (err != undefined) {
+          console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in putting Batch');
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -4910,18 +4967,24 @@ export default class EntryAbility extends UIAbility {
         }
       }
       try {
-        kvStore.on('syncComplete', (data) => {
-          console.info('Sync dataChange');
-        });
-        kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
-          if (err != undefined) {
-            console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
-            return;
+        if (kvStore != null) {
+          kvStore.on('syncComplete', (data) => {
+            console.info('Sync dataChange');
+          });
+          if (kvStore != null) {
+            kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
+              if (err != undefined) {
+                console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
+                return;
+              }
+              console.info('Succeeded in putting data');
+              const mode = distributedKVStore.SyncMode.PULL_ONLY;
+              if (kvStore != null) {
+                kvStore.sync(deviceIds, mode, 1000);
+              }
+            });
           }
-          console.info('Succeeded in putting data');
-          const mode = distributedKVStore.SyncMode.PULL_ONLY;
-          kvStore.sync(deviceIds, mode, 1000);
-        });
+        }
       } catch (e) {
         let error = e as BusinessError;
         console.error(`Failed to sync.code is ${error.code},message is ${error.message}`);
@@ -4990,21 +5053,27 @@ export default class EntryAbility extends UIAbility {
         }
       }
       try {
-        kvStore.on('syncComplete', (data) => {
-          console.info('Sync dataChange');
-        });
-        kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
-          if (err != undefined) {
-            console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
-            return;
+        if (kvStore != null) {
+          kvStore.on('syncComplete', (data) => {
+            console.info('Sync dataChange');
+          });
+          if (kvStore != null) {
+            kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
+              if (err != undefined) {
+                console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
+                return;
+              }
+              console.info('Succeeded in putting data');
+              const mode = distributedKVStore.SyncMode.PULL_ONLY;
+              const query = new distributedKVStore.Query();
+              query.prefixKey("batch_test");
+              query.deviceId(devManager.getLocalDeviceNetworkId());
+              if (kvStore != null) {
+                kvStore.sync(deviceIds, query, mode, 1000);
+              }
+            });
           }
-          console.info('Succeeded in putting data');
-          const mode = distributedKVStore.SyncMode.PULL_ONLY;
-          const query = new distributedKVStore.Query();
-          query.prefixKey("batch_test");
-          query.deviceId(devManager.getLocalDeviceNetworkId());
-          kvStore.sync(deviceIds, query, mode, 1000);
-        });
+        }
       } catch (e) {
         let error = e as BusinessError;
         console.error(`Failed to sync.code is ${error.code},message is ${error.message}`);
@@ -5125,7 +5194,7 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 import { BusinessError } from '@ohos.base';
 
 class KvstoreModel {
-  call(data: string) {
+  call(data: distributedKVStore.ChangeNotification) {
     console.info(`dataChange : ${data}`);
   }
 
@@ -5174,14 +5243,14 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 import { BusinessError } from '@ohos.base';
 
 class KvstoreModel {
-  call(data: string) {
+  call(data: [string, number][]) {
     console.info(`syncComplete : ${data}`);
   }
 
   subscribeDataChange() {
     try {
       if (kvStore != null) {
-        kvStore.on('syncComplete', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
+        kvStore.on('syncComplete', this.call);
       }
     } catch (err) {
       let error = err as BusinessError;
@@ -5192,13 +5261,13 @@ class KvstoreModel {
   unsubscribeDataChange() {
     try {
       if (kvStore != null) {
-        kvStore.off('dsyncComplete', this.call);
+        kvStore.off('syncComplete', this.call);
       }
     } catch (err) {
       let error = err as BusinessError;
       console.error(`Failed to unsubscribeDataChange.code is ${error.code},message is ${error.message}`);
     }
-  }
+  } 
 }
 ```
 
@@ -5331,13 +5400,15 @@ try {
       return;
     }
     console.info("Succeeded in putting");
-    kvStore.get(KEY_TEST_STRING_ELEMENT, (err, data) => {
-      if (err != undefined) {
-        console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info(`Succeeded in getting data.data=${data}`);
-    });
+    if (kvStore != null) {
+      kvStore.get(KEY_TEST_STRING_ELEMENT, (err, data) => {
+        if (err != undefined) {
+          console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info(`Succeeded in getting data.data=${data}`);
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -5385,11 +5456,13 @@ const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
   kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
     console.info(`Succeeded in putting data`);
-    kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
-      console.info(`Succeeded in getting data.data=${data}`);
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
-    });
+    if (kvStore != null) {
+      kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+        console.info(`Succeeded in getting data.data=${data}`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
   });
@@ -5443,13 +5516,15 @@ try {
       return;
     }
     console.info('Succeeded in putting');
-    kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, (err, data) => {
-      if (err != undefined) {
-        console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in getting');
-    });
+    if (kvStore != null) {
+      kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, (err, data) => {
+        if (err != undefined) {
+          console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in getting');
+      });
+    }
   })
 } catch (e) {
   let error = e as BusinessError;
@@ -5502,11 +5577,13 @@ const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
 try {
   kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(async () => {
     console.info('Succeeded in putting');
-    kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
-      console.info('Succeeded in getting');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
-    });
+    if (kvStore != null) {
+      kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
+        console.info('Succeeded in getting');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((error: BusinessError) => {
     console.error(`Failed to put.code is ${error.code},message is ${error.message}`);
   });
@@ -5565,15 +5642,17 @@ try {
       return;
     }
     console.info('Succeeded in putting Batch');
-    kvStore.getEntries('batch_test_string_key', (err, entries) => {
-      if (err != undefined) {
-        console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in getting Entries');
-      console.info(`entries.length: ${entries.length}`);
-      console.info(`entries[0]: ${entries[0]}`);
-    });
+    if (kvStore != null) {
+      kvStore.getEntries('batch_test_string_key', (err, entries) => {
+        if (err != undefined) {
+          console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in getting Entries');
+        console.info(`entries.length: ${entries.length}`);
+        console.info(`entries[0]: ${entries[0]}`);
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -5631,12 +5710,14 @@ try {
   console.info(`entries: ${entries}`);
   kvStore.putBatch(entries).then(async () => {
     console.info('Succeeded in putting Batch');
-    kvStore.getEntries('batch_test_string_key').then((entries) => {
-      console.info('Succeeded in getting Entries');
-      console.info(`PutBatch ${entries}`);
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-    });
+    if (kvStore != null) {
+      kvStore.getEntries('batch_test_string_key').then((entries) => {
+        console.info('Succeeded in getting Entries');
+        console.info(`PutBatch ${entries}`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
   });
@@ -5700,15 +5781,17 @@ try {
       return;
     }
     console.info('Succeeded in putting batch');
-    kvStore.getEntries('localDeviceId', 'batch_test_string_key', (err, entries) => {
-      if (err != undefined) {
-        console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in getting entries');
-      console.info(`entries.length: ${entries.length}`);
-      console.info(`entries[0]: ${entries[0]}`);
-    });
+    if (kvStore != null) {
+      kvStore.getEntries('localDeviceId', 'batch_test_string_key', (err, entries) => {
+        if (err != undefined) {
+          console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in getting entries');
+        console.info(`entries.length: ${entries.length}`);
+        console.info(`entries[0]: ${entries[0]}`);
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -5771,15 +5854,17 @@ try {
   console.info(`entries: ${entries}`);
   kvStore.putBatch(entries).then(async () => {
     console.info('Succeeded in putting batch');
-    kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries) => {
-      console.info('Succeeded in getting entries');
-      console.info(`entries.length: ${entries.length}`);
-      console.info(`entries[0]: ${entries[0]}`);
-      console.info(`entries[0].value: ${entries[0].value}`);
-      console.info(`entries[0].value.value: ${entries[0].value.value}`);
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
-    });
+    if (kvStore != null) {
+      kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries) => {
+        console.info('Succeeded in getting entries');
+        console.info(`entries.length: ${entries.length}`);
+        console.info(`entries[0]: ${entries[0]}`);
+        console.info(`entries[0].value: ${entries[0].value}`);
+        console.info(`entries[0].value.value: ${entries[0].value.value}`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
   });
@@ -5837,15 +5922,17 @@ try {
     console.info('Succeeded in putting Batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
-    kvStore.getEntries(query, (err, entries) => {
-      if (err != undefined) {
-        console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in getting Entries');
-      console.info(`entries.length: ${entries.length}`);
-      console.info(`entries[0]: ${entries[0]}`);
-    });
+    if (kvStore != null) {
+      kvStore.getEntries(query, (err, entries) => {
+        if (err != undefined) {
+          console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in getting Entries');
+        console.info(`entries.length: ${entries.length}`);
+        console.info(`entries[0]: ${entries[0]}`);
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -5906,11 +5993,13 @@ try {
     console.info('Succeeded in putting Batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
-    kvStore.getEntries(query).then((entries) => {
-      console.info('Succeeded in getting Entries');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-    });
+    if (kvStore != null) {
+      kvStore.getEntries(query).then((entries) => {
+        console.info('Succeeded in getting Entries');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`)
   });
@@ -5979,15 +6068,17 @@ try {
     let query = new distributedKVStore.Query();
     query.deviceId('localDeviceId');
     query.prefixKey("batch_test");
-    kvStore.getEntries('localDeviceId', query, (err, entries) => {
-      if (err != undefined) {
-        console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in getting entries');
-      console.info(`entries.length: ${entries.length}`);
-      console.info(`entries[0]: ${entries[0]}`);
-    })
+    if (kvStore != null) {
+      kvStore.getEntries('localDeviceId', query, (err, entries) => {
+        if (err != undefined) {
+          console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in getting entries');
+        console.info(`entries.length: ${entries.length}`);
+        console.info(`entries[0]: ${entries[0]}`);
+      })
+    }
   });
   console.info('Succeeded in getting entries');
 } catch (e) {
@@ -6055,11 +6146,13 @@ try {
     let query = new distributedKVStore.Query();
     query.deviceId('localDeviceId');
     query.prefixKey("batch_test");
-    kvStore.getEntries('localDeviceId', query).then((entries) => {
-      console.info('Succeeded in getting entries');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
-    });
+    if (kvStore != null) {
+      kvStore.getEntries('localDeviceId', query).then((entries) => {
+        console.info('Succeeded in getting entries');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
   });
@@ -6120,21 +6213,25 @@ try {
       return;
     }
     console.info('Succeeded in putting batch');
-    kvStore.getResultSet('batch_test_string_key', async (err, result) => {
-      if (err != undefined) {
-        console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in getting result set');
-      resultSet = result;
-      kvStore.closeResultSet(resultSet, (err) => {
+    if (kvStore != null) {
+      kvStore.getResultSet('batch_test_string_key', async (err, result) => {
         if (err != undefined) {
-          console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+          console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in closing result set');
-      })
-    });
+        console.info('Succeeded in getting result set');
+        resultSet = result;
+        if (kvStore != null) {
+          kvStore.closeResultSet(resultSet, (err) => {
+            if (err != undefined) {
+              console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+              return;
+            }
+            console.info('Succeeded in closing result set');
+          })
+        }
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -6199,13 +6296,15 @@ try {
   kvStore.getResultSet('batch_test_string_key').then((result) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet).then(() => {
+        console.info('Succeeded in closing result set');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-  });
-  kvStore.closeResultSet(resultSet).then(() => {
-    console.info('Succeeded in closing result set');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -6257,13 +6356,15 @@ try {
     }
     console.info('Succeeded in getting resultSet');
     resultSet = result;
-    kvStore.closeResultSet(resultSet, (err) => {
-      if (err != undefined) {
-        console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in closing resultSet');
-    })
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet, (err) => {
+        if (err != undefined) {
+          console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in closing resultSet');
+      })
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -6316,13 +6417,15 @@ try {
   kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result) => {
     console.info('Succeeded in getting resultSet');
     resultSet = result;
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet).then(() => {
+        console.info('Succeeded in closing resultSet');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
-  });
-  kvStore.closeResultSet(resultSet).then(() => {
-    console.info('Succeeded in closing resultSet');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -6387,21 +6490,25 @@ try {
     console.info('Succeeded in putting batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
-    kvStore.getResultSet('localDeviceId', query, async (err, result) => {
-      if (err != undefined) {
-        console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in getting resultSet');
-      resultSet = result;
-      kvStore.closeResultSet(resultSet, (err) => {
+    if (kvStore != null) {
+      kvStore.getResultSet('localDeviceId', query, async (err, result) => {
         if (err != undefined) {
-          console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
+          console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in closing resultSet');
-      })
-    });
+        console.info('Succeeded in getting resultSet');
+        resultSet = result;
+        if (kvStore != null) {
+          kvStore.closeResultSet(resultSet, (err) => {
+            if (err != undefined) {
+              console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
+              return;
+            }
+            console.info('Succeeded in closing resultSet');
+          })
+        }
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -6470,19 +6577,23 @@ try {
   });
   const query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
-  kvStore.getResultSet('localDeviceId', query).then((result) => {
-    console.info('Succeeded in getting resultSet');
-    resultSet = result;
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
-  });
+  if (kvStore != null) {
+    kvStore.getResultSet('localDeviceId', query).then((result) => {
+      console.info('Succeeded in getting resultSet');
+      resultSet = result;
+      if (kvStore != null) {
+        kvStore.closeResultSet(resultSet).then(() => {
+          console.info('Succeeded in closing resultSet');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
+        });
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
+    });
+  }
   query.deviceId('localDeviceId');
   console.info("GetResultSet " + query.getSqlLike());
-  kvStore.closeResultSet(resultSet).then(() => {
-    console.info('Succeeded in closing resultSet');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
-  });
 
 } catch (e) {
   let error = e as BusinessError;
@@ -6615,21 +6726,25 @@ try {
     console.info('Succeeded in putting batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
-    kvStore.getResultSet(query, async (err, result) => {
-      if (err != undefined) {
-        console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in getting resultSet');
-      resultSet = result;
-      kvStore.closeResultSet(resultSet, (err) => {
+    if (kvStore != null) {
+      kvStore.getResultSet(query, async (err, result) => {
         if (err != undefined) {
-          console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
+          console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in closing resultSet');
-      })
-    });
+        console.info('Succeeded in getting resultSet');
+        resultSet = result;
+        if (kvStore != null) {
+          kvStore.closeResultSet(resultSet, (err) => {
+            if (err != undefined) {
+              console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
+              return;
+            }
+            console.info('Succeeded in closing resultSet');
+          })
+        }
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -6683,13 +6798,15 @@ try {
     }
     console.info('Succeeded in getting result set');
     resultSet = result;
-    kvStore.closeResultSet(resultSet, (err) => {
-      if (err != undefined) {
-        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in closing result set');
-    })
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet, (err) => {
+        if (err != undefined) {
+          console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in closing result set');
+      })
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -6744,13 +6861,15 @@ try {
   kvStore.getResultSet(predicates).then((result) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet).then(() => {
+        console.info('Succeeded in closing result set');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-  });
-  kvStore.closeResultSet(resultSet).then(() => {
-    console.info('Succeeded in closing result set');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -6809,13 +6928,15 @@ try {
     }
     console.info('Succeeded in getting result set');
     resultSet = result;
-    kvStore.closeResultSet(resultSet, (err) => {
-      if (err != undefined) {
-        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in closing result set');
-    })
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet, (err) => {
+        if (err != undefined) {
+          console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in closing result set');
+      })
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -6875,13 +6996,15 @@ try {
   kvStore.getResultSet('localDeviceId', predicates).then((result) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet).then(() => {
+        console.info('Succeeded in closing result set');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+      });
+    }
   }).catch((err: BusinessError) => {
     console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-  });
-  kvStore.closeResultSet(resultSet).then(() => {
-    console.info('Succeeded in closing result set');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -6935,13 +7058,15 @@ try {
     console.info('Succeeded in putting batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
-    kvStore.getResultSize(query, async (err, resultSize) => {
-      if (err != undefined) {
-        console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in getting result set size');
-    });
+    if (kvStore != null) {
+      kvStore.getResultSize(query, async (err, resultSize) => {
+        if (err != undefined) {
+          console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in getting result set size');
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
@@ -7069,13 +7194,15 @@ try {
     console.info('Succeeded in putting batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
-    kvStore.getResultSize('localDeviceId', query, async (err, resultSize) => {
-      if (err != undefined) {
-        console.error(`Failed to get resultSize.code is ${err.code},message is ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in getting resultSize');
-    });
+    if (kvStore != null) {
+      kvStore.getResultSize('localDeviceId', query, async (err, resultSize) => {
+        if (err != undefined) {
+          console.error(`Failed to get resultSize.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in getting resultSize');
+      });
+    }
   });
 } catch (e) {
   let error = e as BusinessError;
