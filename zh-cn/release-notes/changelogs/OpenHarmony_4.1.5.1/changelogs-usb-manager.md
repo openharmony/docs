@@ -1,6 +1,6 @@
-# <USB子系统>变更说明
+# USB子系统变更说明
 
-## cl.USB .1 addRight .2 usbFunctionsFromString .3 usbFunctionsToString .4 setCurrentFunctions .5 getCurrentFunctions .6 getPorts .7 getSupportedModes .8 setPortRoles 变更
+## cl.USB .1 对部分接口鉴权方式进行整改
 
 **访问级别**
 
