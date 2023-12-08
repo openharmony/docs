@@ -12,7 +12,7 @@
 
 下面介绍几种常用操作示例。
 
-### 【普通应用】通过授权的方式申请Download目录权限和获取对应路径
+### 通过授权的方式申请Download目录权限和获取对应路径
 
 1.配置Download目录授权权限。
 
@@ -40,7 +40,7 @@
   }
   ```
 
-### 【普通应用】通过FilePicker设置永久授权
+### 通过FilePicker设置永久授权
 
 通过FilePicker选择文件或文件夹后设置永久授权，以及应用重启后的激活权限过程如下所示，通过文件分享接口（[ohos.fileshare](../reference/apis/js-apis-fileShare.md)）实现文件授权能力。
 
