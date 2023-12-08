@@ -975,7 +975,7 @@ formObserver.on('router', callback);
 | ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | type             | string                                   | 是   | 填写'router'，表示订阅卡片的router事件。                             |
 | hostBundleName   | string                                   | 是   | 指定卡片使用方的bundleName。缺省则订阅所有卡片使用方的卡片的router事件。 |
-| observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 是   | 回回调函数。返回触发router事件的卡片的RunningFormInfo。                    |
+| observerCallback | Callback&lt;formInfo.RunningFormInfo&gt; | 是   | 回调函数。返回触发router事件的卡片的RunningFormInfo。                    |
 
 **错误码：**
 以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
