@@ -23,7 +23,7 @@ enableWearDetection(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH和ohos.permission.MANAGE_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -32,7 +32,7 @@ enableWearDetection(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | 是    | 远端设备地址。 |
-| callback | AsyncCallback&lt;void&gt; | 否    | 通过注册回调函数获取使能佩戴检测的结果。如果成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 通过注册回调函数获取使能佩戴检测的结果。如果成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -66,7 +66,7 @@ enableWearDetection(deviceId: string): Promise&lt;void&gt;
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH和ohos.permission.MANAGE_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -113,7 +113,7 @@ disableWearDetection(deviceId: string, callback: AsyncCallback&lt;void&gt;): voi
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH和ohos.permission.MANAGE_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -122,7 +122,7 @@ disableWearDetection(deviceId: string, callback: AsyncCallback&lt;void&gt;): voi
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | 是    | 远端设备地址。 |
-| callback | AsyncCallback&lt;void&gt; | 否    | 通过注册回调函数获取禁用佩戴检测的结果。。如果成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 通过注册回调函数获取禁用佩戴检测的结果。。如果成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -156,7 +156,7 @@ disableWearDetection(deviceId: string): Promise&lt;void&gt;
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH和ohos.permission.MANAGE_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
