@@ -8,38 +8,6 @@
 
 文件授权访问的场景仅支持部分设备。
 
-## 接口说明
-开发者通过获取目录环境能力接口（[ohos.file.environment](../reference/apis/js-apis-file-environment.md)）实现获取环境路径能力，
-通过文件分享接口（[ohos.fileshare](../reference/apis/js-apis-fileShare.md)）实现文件授权能力。
-通过文件URI接口（[ohos.file.fileuri](../reference/apis/js-apis-file-fileuri.md)）获取文件或文件夹当前所在路径的URI，主要功能如下表所示。
-
-**表1** 获取用户目录环境能力接口
-
-| 接口名                  | 功能          | 接口类型 | 支持同步 | 支持异步 | 公开级别    | 需要权限 |
-|----------------------|-------------| -------- | -------- |------|---------|------|
-| getUserDownloadDir   | 获取预授权下载目录路径 | 方法 | √ | -    | publicAPI | 是    | 
-| getUserDesktopDir    | 获取预授权桌面目录路径 | 方法 | √ | -    | publicAPI | 是    | 
-| getUserDocumentDir   | 获取预授权文档目录路径 | 方法 | √ | -    | publicAPI | 是    | 
-| getUserHomeDir       | 获取当前用户下应用沙箱路径的内卡目录 | 方法 | √ | -    | systemAPI | 是    | 
-| getExternalStorageDir | 获取外卡目录    | 方法 | √ | -    |     systemAPI    | 是    | 
-
-**表2** 文件权限接口
-
-| 接口名                       | 功能                | 接口类型 | 支持同步 | 支持异步 | 公开级别       | 需要权限 |
-|---------------------------|-------------------| -------- |------|------|------------|------|
-| grantPermission               | 对所选择的文件或目录uri临时授权 | 方法 | -    | √    | systemAPI  | 是    | 
-| persistPermission         | 对所选择的文件或目录uri持久化授权 | 方法 | -    | √    | publicAPI  | 是    | 
-| revokePermission | 对所选择的文件或目录uri取消持久化授权 | 方法 | -    | √    | publicAPI  | 是    | 
-| activatePermission      | 使能已经永久授权过的文件或目录   | 方法 | -    | √    | publicAPI  | 是    | 
-| deactivatePermission    | 取消使能已经永久授权过的文件或目录 | 方法 | -    | √    | publicAPI  | 是    | 
-
-
-**表3** 文件URI接口
-
-| 接口名                 | 功能                                | 接口类型 | 支持同步 | 支持异步 | 公开级别      | 需要权限 |
-|---------------------|-----------------------------------| -------- | -------- |------|-----------|------|
-| getFullDirectoryUri | 获取所在路径URI,文件获取所在路劲URI，目录获取当前路径URI | 方法 | √ | -    | publicAPI | 否    | 
-
 ## 开发示例
 
 下面介绍几种常用操作示例。
@@ -237,7 +205,7 @@
 
 ### 获取公共目录、外卡目录、内卡目录
 
-应用都可以获得公共目录中的下载目录、桌面目录和文档目录，但获取外卡根目录和当前用户下应用沙箱路径的内卡目录仅对文件管理器应用开放，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis/js-apis-file-environment.md)）获取环境路径。
+应用可以获得公共目录中的下载目录、桌面目录和文档目录，但获取外卡根目录和当前用户下应用沙箱路径的内卡目录仅对文件管理器应用开放，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis/js-apis-file-environment.md)）获取环境路径。
 以下示例代码演示了文件管理器通过接口获取公共目录、外卡目录：
   ```ts
   import { BusinessError } from '@ohos.base';
