@@ -39,10 +39,10 @@ ExceptionPrompt ({ Type: $type,Options: $options })
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 类型 | 必填        | 说明                            |
-| ----------- | ---------- | --------------------------------- | --------------------------------- |
-| Type | PromptTypeEnum | 是   | 指定当前ExceptionPrompt的类型。对应不同显示状态 |
-| Options | PromptOptions | 是 | 指定当前ExceptionPrompt的配置信息 |
+| 名称        | 类型 | 装饰器类型 | 必填        | 说明                            |
+| ----------- | ---------- | --------------------------------- | --------------------------------- | --------------------------------- |
+| Type | PromptTypeEnum | @Link | 是   | 指定当前ExceptionPrompt的类型。对应不同显示状态 |
+| Options | PromptOptions | @Link | 是 | 指定当前ExceptionPrompt的配置信息 |
 
 ##  OptionType
 
@@ -113,8 +113,8 @@ struct Index {
   build() {
     Column() {
       ExceptionPrompt({
-        Type: this.Type,
-        Options: this.Options,
+        Type: $Type,
+        Options: $Options,
         ReconnectionFunction: () => {
         },
         ConfigureNetworkFunction: () => {
