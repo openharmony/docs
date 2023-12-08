@@ -619,8 +619,8 @@ try {
 
 | 名称           | 值   | 说明                               |
 | --------------| ---- | ---------------------------------- |
-| ROLE_INVITER  | -    | 共享邀请者。请使用枚举名称而非枚举值。 |
-| ROLE_INVITEE  | -    | 共享被邀请者。请使用枚举名称而非枚举值。 |
+| ROLE_INVITER  | 0    | 共享邀请者。请使用枚举名称而非枚举值。 |
+| ROLE_INVITEE  | 1    | 共享被邀请者。请使用枚举名称而非枚举值。 |
 
 ### State<sup>11+</sup>
 
@@ -630,10 +630,10 @@ try {
 
 | 名称           | 值   | 说明                               |
 | --------------| ---- | ---------------------------------- |
-| STATE_UNKNOWN    | -    | 未知状态。请使用枚举名称而非枚举值。   |
-| STATE_ACCEPTED   | -    | 共享已接受。请使用枚举名称而非枚举值。 |
-| STATE_REJECTED   | -    | 共享被拒绝。请使用枚举名称而非枚举值。 |
-| STATE_SUSPENDED  | -    | 共享被挂起。请使用枚举名称而非枚举值。 |
+| STATE_UNKNOWN    | 0    | 未知状态。请使用枚举名称而非枚举值。   |
+| STATE_ACCEPTED   | 1    | 共享已接受。请使用枚举名称而非枚举值。 |
+| STATE_REJECTED   | 2    | 共享被拒绝。请使用枚举名称而非枚举值。 |
+| STATE_SUSPENDED  | 3    | 共享被挂起。请使用枚举名称而非枚举值。 |
 
 ### SharingCode<sup>11+</sup>
 
@@ -643,20 +643,20 @@ try {
 
 | 名称           | 值   | 说明                               |
 | --------------| ---- | ---------------------------------- |
-| SUCCESS                 | -    | 成功。请使用枚举名称而非枚举值。   |
-| REPEATED_REQUEST        | -    | 重复邀请，表示当前参与者已被邀请。请使用枚举名称而非枚举值。 |
-| NOT_INVITER             | -    | 非共享邀请者，表示当前参与者不是共享的邀请者。请使用枚举名称而非枚举值。 |
-| NOT_INVITER_OR_INVITEE  | -    | 非法参与者，表是当前参与者既不是共享的邀请者，也不是共享的被邀请者。请使用枚举名称而非枚举值。 |
-| OVER_QUOTA              | -    | 共享次数达到上限，表示当前账号可共享的次数达到上限限制。请使用枚举名称而非枚举值。   |
-| TOO_MANY_PARTICIPANTS   | -    | 共享参与者数量达到上限限制。请使用枚举名称而非枚举值。 |
-| INVALID_ARGS            | -    | 无效的参数。请使用枚举名称而非枚举值。 |
-| NETWORK_ERROR           | -    | 网络错误。请使用枚举名称而非枚举值。 |
-| CLOUD_DISABLED          | -    | 云开关未打开。请使用枚举名称而非枚举值。   |
-| SERVER_ERROR            | -    | 服务端发生错误。请使用枚举名称而非枚举值。 |
-| INNER_ERROR             | -    | 系统发生内部错误。请使用枚举名称而非枚举值。 |
-| INVALID_INVITATION      | -    | 无效的邀请，表示当前邀请已失效或不存在。请使用枚举名称而非枚举值。 |
-| RATE_LIMIT              | -    | 速率限制，表示单次同步的数据量达到上限。请使用枚举名称而非枚举值。   |
-| CUSTOM_ERROR            | -    | 定制错误，小于该枚举值的错误码为系统内部定义的标准错误码，大于该枚举值的错误码为定制错误码。请使用枚举名称而非枚举值。 |
+| SUCCESS                 | 0    | 成功。请使用枚举名称而非枚举值。   |
+| REPEATED_REQUEST        | 1    | 重复邀请，表示当前参与者已被邀请。请使用枚举名称而非枚举值。 |
+| NOT_INVITER             | 2    | 非共享邀请者，表示当前参与者不是共享的邀请者。请使用枚举名称而非枚举值。 |
+| NOT_INVITER_OR_INVITEE  | 3    | 非法参与者，表是当前参与者既不是共享的邀请者，也不是共享的被邀请者。请使用枚举名称而非枚举值。 |
+| OVER_QUOTA              | 4    | 共享次数达到上限，表示当前账号可共享的次数达到上限限制。请使用枚举名称而非枚举值。   |
+| TOO_MANY_PARTICIPANTS   | 5    | 共享参与者数量达到上限限制。请使用枚举名称而非枚举值。 |
+| INVALID_ARGS            | 6    | 无效的参数。请使用枚举名称而非枚举值。 |
+| NETWORK_ERROR           | 7    | 网络错误。请使用枚举名称而非枚举值。 |
+| CLOUD_DISABLED          | 8    | 云开关未打开。请使用枚举名称而非枚举值。   |
+| SERVER_ERROR            | 9    | 服务端发生错误。请使用枚举名称而非枚举值。 |
+| INNER_ERROR             | 10    | 系统发生内部错误。请使用枚举名称而非枚举值。 |
+| INVALID_INVITATION      | 11    | 无效的邀请，表示当前邀请已失效或不存在。请使用枚举名称而非枚举值。 |
+| RATE_LIMIT              | 12    | 速率限制，表示单次同步的数据量达到上限。请使用枚举名称而非枚举值。   |
+| CUSTOM_ERROR            | 1000    | 定制错误，小于该枚举值的错误码为系统内部定义的标准错误码，大于该枚举值的错误码为定制错误码。请使用枚举名称而非枚举值。 |
 
 ### Result&lt;T&gt;<sup>11+</sup>
 
@@ -711,7 +711,7 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | storeId      | string                        | 是   | 数据库名称。 |
-| predicates   | RdbPredicates                 | 是   | 表示查找共享资源的谓词条件，详见[RdbPredicates](js-apis-data-relationalStore.md)。 |
+| predicates   | relationalStore.RdbPredicates | 是   | 表示查找共享资源的谓词条件，详见[RdbPredicates](js-apis-data-relationalStore.md)。 |
 | participants | Array&lt;[Participant](#participant)&gt; | 是   | 共享参与者。 |
 | columns      | Array&lt;string&gt;           | 否   | 表示要查找的列字段名。 |
 
@@ -773,7 +773,7 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | storeId      | string                        | 是   | 数据库名称。 |
-| predicates   | RdbPredicates                 | 是   | 表示查找共享资源的谓词条件，详见[RdbPredicates](js-apis-data-relationalStore.md)。 |
+| predicates   | relationalStore.RdbPredicates | 是   | 表示查找共享资源的谓词条件，详见[RdbPredicates](js-apis-data-relationalStore.md)。 |
 | participants | Array&lt;[Participant](#participant)&gt; | 是   | 共享参与者。 |
 | columns      | Array&lt;string&gt;           | 否   | 表示要查找的列字段名。 |
 | callback     | AsyncCallback&lt;relationalStore.ResultSet&gt;  | 是  | 回调函数。当申请共享资源并发起共享成功，err为undefined，并返回共享资源的结果集，否则为错误对象。 |
@@ -835,7 +835,7 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | storeId      | string                        | 是   | 数据库名称。 |
-| predicates   | RdbPredicates                 | 是   | 表示查找共享资源的谓词条件，详见[RdbPredicates](js-apis-data-relationalStore.md)。 |
+| predicates   | relationalStore.RdbPredicates | 是   | 表示查找共享资源的谓词条件，详见[RdbPredicates](js-apis-data-relationalStore.md)。 |
 | participants | Array&lt;[Participant](#participant)&gt; | 是   | 共享参与者。 |
 | callback     | AsyncCallback&lt;relationalStore.ResultSet&gt;  | 是   | 回调函数。当申请共享资源并发起共享成功，err为undefined，并返回共享资源的结果集，否则为错误对象。 |
 
