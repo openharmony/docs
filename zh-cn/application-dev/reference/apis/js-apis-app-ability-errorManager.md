@@ -38,7 +38,7 @@ on(type: 'error', observer: ErrorObserver): number;
 | ------- | -------- |
 | 16000003 | Id does not exist. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
@@ -90,7 +90,7 @@ off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void;
 | ------- | -------- |
 | 16000003 | Id does not exist. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
@@ -141,7 +141,7 @@ off(type: 'error', observerId: number): Promise\<void>;
 | ------- | -------- |
 | 16000003 | Id does not exist. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     

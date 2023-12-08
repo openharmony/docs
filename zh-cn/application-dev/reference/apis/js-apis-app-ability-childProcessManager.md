@@ -53,7 +53,7 @@ startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
 | 16000061  | Operation not supported. |
 | 16000062  | The number of child process exceeds upper bound. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -108,7 +108,7 @@ startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallbac
 | 16000061  | Operation not supported. |
 | 16000062  | The number of child process exceeds upper bound. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 

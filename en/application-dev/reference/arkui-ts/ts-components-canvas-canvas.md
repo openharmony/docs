@@ -20,7 +20,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    | Type                                    | Mandatory  | Default Value | Description                        |
 | ------- | ---------------------------------------- | ---- | ---- | ---------------------------- |
-| context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | No   | -    | For details, see **CanvasRenderingContext2D**.|
+| context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | No   | -    | For details, see **CanvasRenderingContext2D**. A **CanvasRenderingContext2D** object cannot be shared by multiple **Canvas** objects.|
 
 ## Attributes
 

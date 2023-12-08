@@ -732,7 +732,7 @@ struct Child1 {
 
 ## Prop支持联合类型实例
 
-@Prop支持联合类型和undefined和null，在下面的示例中，count类型为ClassA | undefined，点击父组件Library中的Button改变count的属性或者类型，Child中也会对应刷新。
+@Prop支持联合类型和undefined和null，在下面的示例中，animal类型为Animals | undefined，点击父组件Zoo中的Button改变animal的属性或者类型，Child中也会对应刷新。
 
 ```ts
 class Animals {
@@ -769,7 +769,7 @@ struct Child {
 
 @Entry
 @Component
-struct Library {
+struct Zoo {
   @State animal: Animals | undefined = new Animals("lion");
 
   build() {

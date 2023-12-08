@@ -68,7 +68,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -145,7 +145,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -221,7 +221,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -305,7 +305,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -387,7 +387,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -479,7 +479,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -552,7 +552,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -625,7 +625,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -700,7 +700,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 
 **示例：**
@@ -782,7 +782,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -860,7 +860,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -930,7 +930,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1012,7 +1012,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1077,7 +1077,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1147,7 +1147,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1219,7 +1219,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1297,7 +1297,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1360,7 +1360,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1410,7 +1410,7 @@ terminateSelf(): Promise&lt;void&gt;;
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1469,7 +1469,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1547,7 +1547,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1610,7 +1610,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1673,7 +1673,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1751,7 +1751,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released.        |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1857,7 +1857,7 @@ startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+以下错误码的详细介绍请参见[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1934,7 +1934,7 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+以下错误码的详细介绍请参见[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -2015,7 +2015,7 @@ startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+以下错误码的详细介绍请参见[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -2118,7 +2118,7 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released.        |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 

@@ -37,6 +37,7 @@
   - [Hitrace](_hitrace.md)
   - [Vulkan](_vulkan.md)
   - [Bundle](_bundle.md)
+  - [HidDdk](_hid_ddk.md)
 - 头文件
   - [drawing_bitmap.h](drawing__bitmap_8h.md)
   - [drawing_brush.h](drawing__brush_8h.md)
@@ -120,6 +121,8 @@
   - [usb_ddk_types.h](usb__ddk__types_8h.md)
   - [trace.h](trace_8h.md)
   - [vulkan_ohos.h](vulkan__ohos_8h.md)
+  - [hid_ddk_api.h](hid__ddk__api_8h.md)
+  - [hid_ddk_types.h](hid__ddk__types_8h.md)
 - 结构体
   - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
   - [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)
@@ -239,3 +242,11 @@
   - [VkNativeBufferPropertiesOHOS](_vk_native_buffer_properties_o_h_o_s.md)
   - [VkNativeBufferUsageOHOS](_vk_native_buffer_usage_o_h_o_s.md)
   - [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md)
+  - [Hid_AbsAxesArray](_hid___abs_axes_array.md)
+  - [Hid_Device](_hid___device.md)
+  - [Hid_EmitItem](_hid___emit_item.md)
+  - [Hid_EventProperties](_hid___event_properties.md)
+  - [Hid_EventTypeArray](_hid___event_type_array.md)
+  - [Hid_KeyCodeArray](_hid___key_code_array.md)
+  - [Hid_MscEventArray](_hid___msc_event_array.md)
+  - [Hid_RelAxesArray](_hid___rel_axes_array.md)

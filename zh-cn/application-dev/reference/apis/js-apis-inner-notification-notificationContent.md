@@ -18,7 +18,7 @@
 | longText       | [NotificationLongTextContent](#notificationlongtextcontent)                | 否  | 否  | 长文本类型通知内容。 |
 | multiLine      | [NotificationMultiLineContent](#notificationmultilinecontent)              | 否  | 否  | 多行类型通知内容。   |
 | picture        | [NotificationPictureContent](#notificationpicturecontent)                  | 否  | 否  | 图片类型通知内容。   |
-| systemLiveView | [NotificationSystemLiveViewContent](#notificationsystemliveviewcontent11)    | 否  | 否  | 实况窗类型通知内容（仅对系统应用开放）。|
+| systemLiveView<sup>11+</sup> | [NotificationSystemLiveViewContent](#notificationsystemliveviewcontent)    | 否  | 否  | 实况窗类型通知内容（仅对系统应用开放）。|
 
 ## NotificationBasicContent
 
@@ -81,22 +81,22 @@
 | picture        | [image.PixelMap](js-apis-image.md#pixelmap7) |  否  | 是  | 通知的图片内容(最大支持2MB的图片文件)。|
 
 
-## NotificationSystemLiveViewContent<sup>11+</sup>
+## NotificationSystemLiveViewContent
 
 描述实况通知（仅对系统应用开放）。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称           | 类型                                             | 只读| 必填 | 说明                               |
-| -------------- | ----------------------------------------------- | --- | --- | -----------------------------------|
-| title          | string                                          | 否  | 是  | 通知标题（不可为空字符串）。          |
-| text           | string                                          | 否  | 是  | 通知内容（不可为空字符串）。          |
-| additionalText | string                                          | 否  | 否  | 通知附加内容，是对通知内容的补充。     |
-| typeCode       | number                                          | 否  | 是  | 类型标识符，标记调用方业务类型。       |
-| capsule        | [NotificationCapsule](#notificationcapsule11)   | 否  | 否  | 实况通知的胶囊。                     |
-| button         | [NotificationButton](#notificationbutton11)     | 否  | 否  | 实况通知的按钮。                     |
-| time           | [NotificationTime](#notificationtime11)         | 否  | 否  | 实况通知的时间。                     |
-| progress       | [NotificationProgress](#notificationprogress11) | 否  | 否  | 实况内容的进度。                     |
+| 名称                         | 类型                                             | 只读| 必填 | 说明                               |
+| ---------------------------- | ----------------------------------------------- | --- | --- | -----------------------------------|
+| title                        | string                                          | 否  | 是  | 通知标题（不可为空字符串）。          |
+| text                         | string                                          | 否  | 是  | 通知内容（不可为空字符串）。          |
+| additionalText               | string                                          | 否  | 否  | 通知附加内容，是对通知内容的补充。     |
+| typeCode<sup>11+</sup>       | number                                          | 否  | 是  | 类型标识符，标记调用方业务类型。       |
+| capsule<sup>11+</sup>        | [NotificationCapsule](#notificationcapsule11)   | 否  | 否  | 实况通知的胶囊。                     |
+| button<sup>11+</sup>         | [NotificationButton](#notificationbutton11)     | 否  | 否  | 实况通知的按钮。                     |
+| time<sup>11+</sup>           | [NotificationTime](#notificationtime11)         | 否  | 否  | 实况通知的时间。                     |
+| progress<sup>11+</sup>       | [NotificationProgress](#notificationprogress11) | 否  | 否  | 实况内容的进度。                     |
 
 
 ## NotificationCapsule<sup>11+</sup>

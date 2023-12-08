@@ -143,13 +143,15 @@ The **ResourceColor** type is used to describe the color types of resources.
 | string                              | Color in RGB or ARGB notation. Example: **'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'**|
 | [Resource](#resource)               | Color referenced from system or application resources.             |
 
-## ColoringStrategy
+## ColoringStrategy<sup>10+</sup>
 
-The **ColoringStrategy** type is used to describe the foreground colors.
+The **ColoringStrategy** type is used to describe the foreground and shadow colors.
 
 | Name    | Description             |
 | ------ | --------------- |
-| INVERT | Inverse of the component background color.|
+| INVERT | The foreground colors are the inverse of the component background colors.|
+| AVERAGE<sup>11+</sup> | The shadow colors of the component are the average color obtained from the component background shadow area.|
+| PRIMARY<sup>11+</sup> | The shadow colors of the component are the primary color obtained from the component background shadow area.|
 
 ## LengthConstrain
 
@@ -332,6 +334,17 @@ Describes the animation information of the \<Swiper> component.
 | currentOffset | number | Offset of the currently displayed element relative to the start position of the **\<Swiper>** along the main axis. Unit: vp<br>Default value: **0**|
 | targetOffset | number | Offset of the target element relative to the start position of the **\<Swiper>** along the main axis. Unit: vp<br>Default value: **0**|
 | velocity | number | Hands-off velocity at the beginning of the animation. Unit: vp/s<br>Default value: **0**|
+
+## TabsAnimationEvent<sup>11+</sup>
+
+The **TabsAnimationEvent** type is used to describe the animation information of the **\<Tabs>** component.
+
+| Name           | Type                  | Description                                      |
+| ------------- | ---------------------- | ---------------------------------------- |
+| currentOffset | number | Offset of the currently displayed element relative to the start position of the **\<Tabs>** along the main axis. Unit: vp<br>Default value: **0**|
+| targetOffset | number | Offset of the target element relative to the start position of the **\<Tabs>** along the main axis. Unit: vp<br>Default value: **0**|
+| velocity | number | Hands-off velocity at the beginning of the animation. Unit: vp/s<br>Default value: **0**|
+
 ## SafeAreaType<sup>10+</sup>
 
 The **SafeAreaType** type is used to describe the types of expanded safe areas.

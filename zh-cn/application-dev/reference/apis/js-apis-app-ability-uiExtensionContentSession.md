@@ -35,7 +35,7 @@ sendData(data: { [key: string]: Object }): void
 | ------- | -------------------------------- |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContentSession.setReceiveDataCallback
 
@@ -59,7 +59,7 @@ setReceiveDataCallback(callback: (data: { [key: string]: Object }) => void): voi
 | ------- | -------------------------------- |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContentSession.setReceiveDataForResultCallback<sup>11+</sup>
 
@@ -84,7 +84,7 @@ setReceiveDataForResultCallback(callback: (data: { [key: string]: Object }) => {
 | ------- | -------------------------------- |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContentSession.loadContent
 
@@ -107,7 +107,7 @@ loadContent(path: string, storage?: LocalStorage): void;
 | ------- | -------------------------------- |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbility
 
@@ -152,7 +152,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbility
 
@@ -196,7 +196,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbility
 
@@ -247,7 +247,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbilityForResult
 
@@ -295,7 +295,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbilityForResult
 
@@ -342,7 +342,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbilityForResult
 
@@ -397,7 +397,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContentSession.terminateSelf
 
@@ -484,7 +484,7 @@ setWindowBackgroundColor(color: string): void
 | ------- | -------------------------------- |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContentSession.setWindowPrivacyMode
 
@@ -541,7 +541,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
 | wantParam | {[key: string]: any} | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback<void> | 是 | 回调函数，返回接口调用是否成功。 |
 
 **错误码：**
 
@@ -553,7 +553,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIAbilityContext.startAbilityByType<sup>11+</sup>
 
@@ -576,7 +576,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise<void> | Promise对象无返回值。 |
 
 **错误码：**
 
@@ -588,7 +588,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
 
@@ -628,7 +628,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
 
@@ -667,7 +667,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
 
@@ -712,4 +712,4 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。

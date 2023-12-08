@@ -285,3 +285,75 @@ The data to send is too large.
 **Solution**
 
 Check the length of the data to be sent.
+
+## 17100016 Download Task Not Paused
+
+**Error Message**
+
+The download is not paused.
+
+**Description**
+
+This error code is reported when an attempt is made to resume a download task that is not paused.
+
+**Possible Causes**
+
+**WebDownloadItem.resume** is called when the download task is not paused.
+
+**Solution**
+
+N/A
+
+## 17100017 Invalid WebviewController
+
+**Error Message**
+
+No valid WebviewController is associated.
+
+**Description**
+
+This error code is reported when the current **WebviewController** object is invalid.
+
+**Possible Causes**
+
+The **WebviewController** object is not associated with a valid **\<Web>** component.
+
+**Solution**
+
+Use a **WebviewController** object that is associated with a valid **\<Web>** component.
+
+## 17100018 No WebDownloadDelegate Available
+
+**Error Message**
+
+No WebDownloadDelegate has been set yet.
+
+**Description**
+
+This error code is reported when no **WebDownloadDelegate** is available to receive the download state.
+
+**Possible Causes**
+
+**WebDownloadManager.resumeDownload** is called when **WebDownloadDelegate** has not been set.
+
+**Solution**
+
+Use **WebDownloadManager.setDownloadDelegate** to set a **WebDownloadDelegate** class.
+
+## 17100019 Download Not Started Yet
+
+**Error Message**
+
+The download has not been started yet.
+
+**Description**
+
+This error code is reported when an attempt is made to pause or resume a download task that has not been started.
+
+**Possible Causes**
+
+**pause** or **resume** is called when the download task that has not been started.
+
+**Solution**
+
+Call **start('xxx')** in **WebDownloadDelegate.onBeforeDownload** and specify the download path.
