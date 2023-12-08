@@ -3,13 +3,13 @@
 
 ## Overview
 
-Stability testing is important in that it demonstrates how an application performs under stress. For this reason, wukong, a stability testing tool specially designed for OpenHarmony developers, is provided.
+Stability testing is important in that it demonstrates how an application performs under stress. For this reason, wukong, a purpose-built stability testing tool, is provided.
 
 In this document you will learn about the key functions of wukong and how to use it to perform stability testing.
 
 ## Introduction
 
-wukong is part of the OpenHarmony toolkit and implements basic application stability test capabilities such as random event injection, component injection, exception capture, report generation, and data traversal of abilities.
+wukong is part of the toolkit and implements basic application stability test capabilities such as random event injection, component injection, exception capture, report generation, and data traversal of abilities.
 
 ## Principles
 
@@ -39,7 +39,7 @@ For details about the test commands, see [wukong](https://gitee.com/openharmony/
 
 1. wukong is pre-installed in version 3.2 and later versions.
 
-2. In versions earlier than 3.2, you must build wukong separately and push it to the tested OpenHarmony device. The procedure is as follows:       
+2. In versions earlier than 3.2, you must build wukong separately and push it to the tested device. The procedure is as follows:       
     How to build:
     ```
     ./build.sh --product-name rk3568 --build-target wukong
@@ -54,7 +54,7 @@ For details about the test commands, see [wukong](https://gitee.com/openharmony/
 
 ## Environment Preparations
 
-To run commands, connect the PC to an OpenHarmony device, such as the RK3568 development board.
+To run commands, connect the PC to a device, such as the RK3568 development board.
 
 ## Performing Stability Testing
 
