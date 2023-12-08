@@ -2641,7 +2641,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let windowClass: window.Window = window.findWindow("test");
-  let promise = windowClass.setSpecificSystemBarEnabled('navigationIndicator',false);
+  let promise = windowClass.setSpecificSystemBarEnabled('navigationIndicator', false);
   promise.then(() => {
     console.info('Succeeded in setting the system bar to be invisible.');
   }).catch((err: BusinessError) => {
