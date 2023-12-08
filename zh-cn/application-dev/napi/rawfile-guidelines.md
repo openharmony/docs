@@ -167,6 +167,10 @@
 3. 在hello.cpp文件中获取Js的资源对象，并转为Native的资源对象，即可调用资源的Native接口，获取rawfile列表、rawfile文件内容以及rawfile描述符{fd, offset, length}三种调用方式示例代码如下：
 
     ```c++
+    #include <rawfile/raw_file.h>
+    #include <rawfile/raw_dir.h>
+    #include <rawfile/raw_file_manager.h>
+
     // 示例一：获取rawfile文件列表 GetFileList
     static napi_value GetFileList(napi_env env, napi_callback_info info)
     {
