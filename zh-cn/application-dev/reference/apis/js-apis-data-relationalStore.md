@@ -4948,6 +4948,8 @@ querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): 
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
@@ -5002,6 +5004,8 @@ querySharingResource(predicates: RdbPredicates, callback: AsyncCallback&lt;Resul
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
@@ -5055,6 +5059,8 @@ querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, ca
 根据谓词条件匹配的数据记录查找对应记录的共享资源，返回查找到的共享资源的结果集，同时在结果集中返回谓词条件匹配的指定列名的字段值。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
