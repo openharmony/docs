@@ -42,7 +42,7 @@ ExceptionPrompt ({ type: $type,options: $options })
 | 名称        | 类型 | 装饰器类型 | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- | --------------------------------- |
 | type | TypeEnum | @Link | 是   | 指定当前ExceptionPrompt的类型。对应不同显示状态 |
-| options | Optiontype | @Link | 是 | 组件配置信息 |
+| options | Optiontype | @Link | 是 | 指定当前ExceptionPrompt的配置信息 |
 
 ##  OptionType
 
