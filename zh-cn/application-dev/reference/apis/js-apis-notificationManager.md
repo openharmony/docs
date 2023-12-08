@@ -3869,7 +3869,7 @@ let enable = true;
 Notification.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
     console.info('setSyncNotificationEnabledWithoutApp success');
 }).catch((err) => {
-    console.info('setSyncNotificationEnabledWithoutApp, err:' + JSON.stringify(err));
+    console.error('setSyncNotificationEnabledWithoutApp, err:' + JSON.stringify(err));
 });
 ```
 
@@ -3916,7 +3916,6 @@ function getSyncNotificationEnabledWithoutAppCallback(err, data) {
         console.info('getSyncNotificationEnabledWithoutAppCallback, data:' + data);
     }
 }
-
 Notification.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
 ```
 
@@ -3963,7 +3962,7 @@ let userId = 100;
 Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
     console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
 }).catch((err) => {
-    console.info('getSyncNotificationEnabledWithoutApp, err:' + err);
+    console.error('getSyncNotificationEnabledWithoutApp, err:' + err);
 });
 ```
 
@@ -3995,7 +3994,7 @@ Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
 | TYPE_NONE    | 0 | 非通知勿扰类型。                           |
 | TYPE_ONCE    | 1 | 以设置时间段(只看小时和分钟)一次执行勿扰。 |
 | TYPE_DAILY   | 2 | 以设置时间段(只看小时和分钟)每天执行勿扰。 |
-| TYPE_CLEARLY | 3 | 以设置时间段(明确年月日时分)执行勿扰。     |
+| TYPE_CLEARLY | 3 | 以设置时间段(明确月日时)执行勿扰。     |
 
 
 ## ContentType
@@ -4004,11 +4003,11 @@ Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
 
 | 名称                              | 值          | 说明               |
 | --------------------------------- | ----------- | ------------------ |
-| NOTIFICATION_CONTENT_BASIC_TEXT   | NOTIFICATION_CONTENT_BASIC_TEXT | 普通类型通知。     |
-| NOTIFICATION_CONTENT_LONG_TEXT    | NOTIFICATION_CONTENT_LONG_TEXT | 长文本类型通知。   |
-| NOTIFICATION_CONTENT_PICTURE      | NOTIFICATION_CONTENT_PICTURE | 图片类型通知。     |
-| NOTIFICATION_CONTENT_CONVERSATION | NOTIFICATION_CONTENT_CONVERSATION | 社交类型通知。     |
-| NOTIFICATION_CONTENT_MULTILINE    | NOTIFICATION_CONTENT_MULTILINE | 多行文本类型通知。 |
+| NOTIFICATION_CONTENT_BASIC_TEXT   | 0 | 普通类型通知。     |
+| NOTIFICATION_CONTENT_LONG_TEXT    | 1 | 长文本类型通知。   |
+| NOTIFICATION_CONTENT_PICTURE      | 2 | 图片类型通知。     |
+| NOTIFICATION_CONTENT_CONVERSATION | 3 | 社交类型通知。     |
+| NOTIFICATION_CONTENT_MULTILINE    | 4 | 多行文本类型通知。 |
 
 ## SlotLevel
 
