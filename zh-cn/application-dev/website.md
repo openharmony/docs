@@ -783,6 +783,7 @@
     - 打包拆包工具
       - [打包工具](tools/packing-tool.md)
       - [拆包工具](tools/unpacking-tool.md)
+    - [扫描工具](tools/app-check-tool.md)
     - [cem工具](tools/cem-tool.md)
     - [anm工具](tools/anm-tool.md)
     - [restool工具](tools/restool.md)
