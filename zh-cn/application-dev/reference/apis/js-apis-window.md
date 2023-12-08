@@ -337,7 +337,7 @@ import window from '@ohos.window';
 | MAXIMIZE    | 2    | 表示APP窗口最大化模式。   |
 | MINIMIZE    | 3    | 表示APP窗口最小化模式。   |
 | FLOATING    | 4    | 表示APP自由悬浮形式窗口模式。   |
-| SPLIT_SCREEN  | 100    | 表示APP分屏多窗口主要模式。   |
+| SPLIT_SCREEN  | 5    | 表示APP分屏多窗口主要模式。   |
 
 ## window.createWindow<sup>9+</sup>
 
@@ -3883,7 +3883,7 @@ off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): vo
 | 参数名   | 类型                          | 必填 | 说明                                                     |
 | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
 | type     | string                        | 是   | 监听事件，固定为'windowStatusChange'，即窗口模式变化事件。 |
-| callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | 否   | 回调函数。返回当前的窗口模式。如果传入参数，则关闭该监听。如果未传入参数，则关闭窗口模式变化的监听。                           |
+| callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | 否   | 回调函数。返回当前的窗口模式。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有窗口模式变化的监听。                           |
 
 **示例：**
 
