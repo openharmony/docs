@@ -3,9 +3,9 @@
 FeatureAbility模块提供与用户进行交互的Ability的能力，包括启动新的Ability、停止Ability、获取dataAbilityHelper对象、获取当前Ability对应的窗口，连接断连Service等。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
-> 本模块接口仅可在FA模型下使用。
+>
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块接口仅可在FA模型下使用，Stage模型下需使用[UIAbility模块](js-apis-app-ability-uiAbility.md)和[UIAbilityContext模块](js-apis-inner-application-uiAbilityContext.md)。
 
 ## 使用限制
 
@@ -30,12 +30,14 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)。
+
 **参数：**
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是    | 表示被启动的Ability。 |
-| callback  | AsyncCallback\<number>                   | 是    | 以callback的形式返回启动Ability的结果。      |
+| callback  | AsyncCallback\<number>                   | 是    | 回调函数。当启动Ability成功，err为undefined，data为0表示启动成功，data为其他表示启动失败；否则为错误对象。      |
 
 **错误码：**
 
@@ -59,7 +61,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -106,6 +108,8 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-2)。
+
 **参数：**
 
 | 参数名        | 类型                                       | 必填   | 说明             |
@@ -116,7 +120,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<number> | Promise形式返回启动Ability结果。 |
+| Promise\<number> | Promise对象。返回0表示启动成功，返回其他表示启动失败。 |
 
 **错误码：**
 
@@ -140,7 +144,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -181,6 +185,8 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[dataShare.createDataShareHelper](js-apis-data-dataShare.md#datasharecreatedatasharehelper)。
+
 **参数：**
 
 | 参数名   | 类型     | 必填   | 说明           |
@@ -218,12 +224,15 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult)。
+
+
 **参数：**
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是    | 表示被启动的Ability。 |
-| callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | 是    | 以callback的形式返回启动Ability结果。      |
+| callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | 是    | 回调函数。当启动Ability成功，err为undefined，data为ability的启动结果；否则为错误对象。      |
 
 **错误码：**
 
@@ -247,7 +256,7 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 
 **示例：**
@@ -296,6 +305,8 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult-2)。
+
 **参数：**
 
 | 参数名        | 类型                                       | 必填   | 说明            |
@@ -306,7 +317,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Promise形式返回启动Ability结果。 |
+| Promise\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Promise对象，返回启动Ability的结果。 |
 
 **错误码：**
 
@@ -330,7 +341,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -376,12 +387,14 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)。
+
 **参数：**
 
 | 参数名        | 类型                              | 必填   | 说明             |
 | --------- | ------------------------------- | ---- | -------------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是    | 表示停止Ability之后返回的结果。 |
-| callback  | AsyncCallback\<void>            | 是    | 以callback的形式返回停止Ability结果。      |
+| callback  | AsyncCallback\<void>            | 是    | 回调函数。当停止当前Ability成功，err为undefined，否则为错误对象。      |
 
 **错误码：**
 
@@ -394,7 +407,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -441,6 +454,8 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult-1)。
+
 **参数：**
 
 | 参数名        | 类型                              | 必填   | 说明            |
@@ -451,7 +466,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 | 类型             | 说明              |
 | -------------- | --------------- |
-| Promise\<void> | 以Promise形式返回停止当前Ability结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -464,7 +479,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -509,6 +524,8 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 检查Ability的主窗口是否具有窗口焦点（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[on('windowEvent')](js-apis-window.md#onwindowevent10)。
 
 **参数：**
 
@@ -572,6 +589,8 @@ getWant(callback: AsyncCallback\<Want>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbility.launchWant](js-apis-app-ability-uiAbility.md#属性)。
+
 **参数：**
 
 | 参数名       | 类型                            | 必填   | 说明        |
@@ -606,6 +625,8 @@ getWant(): Promise\<Want>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbility.launchWant](js-apis-app-ability-uiAbility.md#属性)。
+
 **返回值：**
 
 | 类型                      | 说明               |
@@ -636,6 +657,8 @@ getContext(): Context
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbility.context](js-apis-app-ability-uiAbility.md#属性)。
+
 **返回值：**
 
 | 类型      | 说明         |
@@ -664,6 +687,8 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)。
+
 **参数：**
 
 | 参数名       | 类型                   | 必填   | 说明       |
@@ -681,7 +706,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -702,11 +727,13 @@ terminateSelf(): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)。
+
 **返回值：**
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<void> | 以Promise的形式返回停止当前Ability结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -719,7 +746,7 @@ terminateSelf(): Promise\<void>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -743,6 +770,8 @@ connectAbility(request: Want, options:ConnectOptions): number
  - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.connectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)。
 
 **参数：**
 
@@ -775,7 +804,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -811,6 +840,8 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.disconnectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability-1)。
+
 **参数：**
 
 | 参数名         | 类型                   | 必填   | 说明                      |
@@ -827,7 +858,7 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -870,6 +901,8 @@ disconnectAbility(connection: number): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[UIAbilityContext.disconnectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability)。
+
 **参数：**
 
 | 参数名         | 类型     | 必填   | 说明                      |
@@ -880,7 +913,7 @@ disconnectAbility(connection: number): Promise\<void>
 
 | 类型             | 说明              |
 | -------------- | --------------- |
-| Promise\<void> | 以Promise形式返回断开连接结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -891,7 +924,7 @@ disconnectAbility(connection: number): Promise\<void>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -934,6 +967,8 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[window.getLastWindow](js-apis-window.md#windowgetlastwindow9)。
+
 **参数：**
 
 | 参数名     | 类型                          | 必填 | 说明                          |
@@ -975,6 +1010,8 @@ getWindow(): Promise\<window.Window>
 获取当前Ability对应的窗口（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[window.getLastWindow](js-apis-window.md#windowgetlastwindow9-1)。
 
 **返回值：**
 

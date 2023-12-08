@@ -42,16 +42,17 @@ addProcessor(processor: Processor): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 try {
     let processor: hiAppEvent.Processor = {
       name: 'analytics_demo'
     };
     let id: number = hiAppEvent.addProcessor(processor);
-    hiLog.info('hiAppEvent', `addProcessor event was successful, id=${id}`);
-} catch (error) {
-    hiLog.info('hiAppEvent', `failed to addProcessor event, code=${error.code}`);
+    hilog.info(0x0000, 'hiAppEvent', `addProcessor event was successful, id=${id}`);
+} catch (error: BusinessError) {
+    hilog.info(0x0000, 'hiAppEvent', `failed to addProcessor event, code=${error.code}`);
 } 
 ```
 
@@ -99,7 +100,7 @@ removeProcessor(id: number): void
 | 参数名 | 类型    | 必填 | 说明                         |
 | ------| ------- | ---- | --------------------------- |
 | id    | number  | 是   | 上报事件数据处理者ID。值大于0。|
-	
+
 **错误码：**
 
 | 错误码ID | 错误信息          |
@@ -109,7 +110,8 @@ removeProcessor(id: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 try {
     let processor: hiAppEvent.Processor = {
@@ -117,8 +119,8 @@ try {
     };
     let id: number = hiAppEvent.addProcessor(processor);
     hiAppEvent.removeProcessor(id);
-} catch (error) {
-    hiLog.info('hiAppEvent', `failed to removeProcessor event, code=${error.code}`);
+} catch (error: BusinessError) {
+    hilog.info(0x0000, 'hiAppEvent', `failed to removeProcessor event, code=${error.code}`);
 } 
 ```
 
@@ -155,6 +157,7 @@ write(info: [AppEventInfo](#appeventinfo), callback: AsyncCallback&lt;void&gt;):
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 let eventParams: Record<string, number | string> = {
   "int_data": 100,
@@ -167,10 +170,10 @@ hiAppEvent.write({
   params: eventParams,
 }, (err: BusinessError) => {
   if (err) {
-    console.error(`code: ${err.code}, message: ${err.message}`);
+    hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.log(`success to write event`);
+  hilog.info(0x0000, 'hiAppEvent', `success to write event`);
 });
 ```
 
@@ -212,6 +215,7 @@ write(info: [AppEventInfo](#appeventinfo)): Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 let eventParams: Record<string, number | string> = {
   "int_data": 100,
@@ -223,9 +227,9 @@ hiAppEvent.write({
   eventType: hiAppEvent.EventType.FAULT,
   params: eventParams,
 }).then(() => {
-  console.log(`success to write event`);
+  hilog.info(0x0000, 'hiAppEvent', `success to write event`);
 }).catch((err: BusinessError) => {
-  console.error(`code: ${err.code}, message: ${err.message}`);
+  hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -304,7 +308,7 @@ setUserId(name: string, value: string): void
 | 参数名     | 类型                      | 必填 | 说明           |
 | --------- | ------------------------- | ---- | -------------  |
 | name      | string                    | 是   | 用户ID的key。只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。   |
-| value     | string                    | 是   | 用户ID的值。长度不超过256，当值为null、undefine或空，则清除用户ID。 |
+| value     | string                    | 是   | 用户ID的值。长度不超过256，当值为null或空字符串时，则清除用户ID。 |
 
 **错误码：**
 
@@ -315,12 +319,13 @@ setUserId(name: string, value: string): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 try {
   hiAppEvent.setUserId('key', 'value');
-} catch (error) {
-  hiLog.info('hiAppEvent', `failed to setUseId event, code=${error.code}`);
+} catch (error: BusinessError) {
+  hilog.error(0x0000, 'hiAppEvent', `failed to setUseId event, code=${error.code}`);
 } 
 ```
 
@@ -353,14 +358,15 @@ getUserId(name: string): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 hiAppEvent.setUserId('key', 'value');
 try {
   let value: string = hiAppEvent.getUserId('key');
-  hiLog.info('hiAppEvent', `getUseId event was successful, userId=${value}`);/* "value" */
-} catch (error) {
-  hiLog.info('hiAppEvent', `failed to getUseId event, code=${error.code}`);
+  hilog.info(0x0000, 'hiAppEvent', `getUseId event was successful, userId=${value}`);
+} catch (error: BusinessError) {
+  hilog.error(0x0000, 'hiAppEvent', `failed to getUseId event, code=${error.code}`);
 } 
 ```
 
@@ -388,12 +394,13 @@ setUserProperty(name: string, value: string): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 try {
   hiAppEvent.setUserProperty('key', 'value');
-} catch (error) {
-  hiLog.info('hiAppEvent', `failed to setUserProperty event, code=${error.code}`);
+} catch (error: BusinessError) {
+  hilog.info(0x0000, 'hiAppEvent', `failed to setUserProperty event, code=${error.code}`);
 } 
 ```
 
@@ -426,14 +433,15 @@ getUserProperty(name: string): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 hiAppEvent.setUserProperty('key', 'value');
 try {
   let value: string = hiAppEvent.getUserProperty('key');
-  hiLog.info('hiAppEvent', `getUserProperty event was successful, userProperty=${value}`);/* "value" */
+  hilog.info(0x0000, 'hiAppEvent', `getUserProperty event was successful, userProperty=${value}`);
 } catch (error) {
-  hiLog.info('hiAppEvent', `failed to getUserProperty event, code=${error.code}`);
+  hilog.error(0x0000, 'hiAppEvent', `failed to getUserProperty event, code=${error.code}`);
 } 
 ```
 
@@ -488,17 +496,17 @@ hiAppEvent.addWatcher({
   },
   onTrigger: (curRow: number, curSize: number, holder: hiAppEvent.AppEventPackageHolder) => {
     if (holder == null) {
-      console.error("holder is null");
+      hilog.error(0x0000, 'hiAppEvent', "holder is null");
       return;
     }
-    console.info(`curRow=${curRow}, curSize=${curSize}`);
+    hilog.info(0x0000, 'hiAppEvent', `curRow=${curRow}, curSize=${curSize}`);
     let eventPkg: hiAppEvent.AppEventPackage | null = null;
     while ((eventPkg = holder.takeNext()) != null) {
-      console.info(`eventPkg.packageId=${eventPkg.packageId}`);
-      console.info(`eventPkg.row=${eventPkg.row}`);
-      console.info(`eventPkg.size=${eventPkg.size}`);
+      hilog.info(0x0000, 'hiAppEvent', `eventPkg.packageId=${eventPkg.packageId}`);
+      hilog.info(0x0000, 'hiAppEvent', `eventPkg.row=${eventPkg.row}`);
+      hilog.info(0x0000, 'hiAppEvent', `eventPkg.size=${eventPkg.size}`);
       for (const eventInfo of eventPkg.data) {
-        console.info(`eventPkg.data=${eventInfo}`);
+        hilog.info(0x0000, 'hiAppEvent', `eventPkg.data=${eventInfo}`);
       }
     }
   }
@@ -511,11 +519,11 @@ let holder = hiAppEvent.addWatcher({
 if (holder != null) {
   let eventPkg: hiAppEvent.AppEventPackage | null = null;
   while ((eventPkg = holder.takeNext()) != null) {
-    console.info(`eventPkg.packageId=${eventPkg.packageId}`);
-    console.info(`eventPkg.row=${eventPkg.row}`);
-    console.info(`eventPkg.size=${eventPkg.size}`);
+    hilog.info(0x0000, 'hiAppEvent', `eventPkg.packageId=${eventPkg.packageId}`);
+    hilog.info(0x0000, 'hiAppEvent', `eventPkg.row=${eventPkg.row}`);
+    hilog.info(0x0000, 'hiAppEvent', `eventPkg.size=${eventPkg.size}`);
     for (const eventInfo of eventPkg.data) {
-      console.info(`eventPkg.data=${eventInfo}`);
+      hilog.info(0x0000, 'hiAppEvent', `eventPkg.data=${eventInfo}`);
     }
   }
 }

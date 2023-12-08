@@ -160,8 +160,7 @@
         - [后台服务](application-models/background-services.md)
       - 了解线程模型
         - [线程模型概述](application-models/thread-model-stage.md)
-        - [使用Emitter进行线程间通信](application-models/itc-with-emitter.md)
-        - [使用Worker进行线程间通信](application-models/itc-with-worker.md)
+        - [使用EventHub进行线程间通信](application-models/itc-with-eventHub.md)
       - 任务（Mission）管理
         - [任务（Mission）管理场景介绍](application-models/mission-management-overview.md)
         - [任务（Mission）与启动模式](application-models/mission-management-launch-type.md)
@@ -200,7 +199,7 @@
           - [启动DataAbility](application-models/start-dataability.md)
           - [访问DataAbility](application-models/access-dataability.md)
           - [DataAbility权限控制](application-models/dataability-permission-control.md)
-        - [服务卡片开发指导](application-models/widget-development-fa.md)
+        - [服务卡片开发指导（FA模型）](application-models/widget-development-fa.md)
         - [FA模型的Context](application-models/application-context-fa.md)
         - [信息传递载体Want](application-models/want-fa.md)
         - [组件启动规则（FA模型）](application-models/component-startup-rules-fa.md)
@@ -210,7 +209,7 @@
         - [后台服务](application-models/rpc.md)
       - 了解线程模型
         - [线程模型概述](application-models/thread-model-fa.md)
-        - [线程间通信](application-models/itc-fa-overview.md)
+        - [使用Emitter进行线程间通信](application-models/itc-with-emitter.md)
       - [任务管理](application-models/mission-management-fa.md)
       - [FA模型应用配置文件](application-models/config-file-fa.md)
     - FA模型与Stage模型应用组件互通指导
@@ -521,7 +520,8 @@
         - [图像变换(Native)](media/image-transformation-native.md)
         - [PixelMap数据处理(Native)](media/image-pixelmap-operation-native.md)
         - [位图操作](media/image-pixelmap-operation.md)
-      - [图片编码](media/image-encoding.md)
+      - [图片编码(ArkTS)](media/image-encoding.md)
+      - [图片编码(Native)](media/image-encoding-native.md)
       - [图片工具](media/image-tool.md)
   - 安全
     - 访问控制
@@ -783,6 +783,7 @@
     - 打包拆包工具
       - [打包工具](tools/packing-tool.md)
       - [拆包工具](tools/unpacking-tool.md)
+    - [扫描工具](tools/app-check-tool.md)
     - [cem工具](tools/cem-tool.md)
     - [anm工具](tools/anm-tool.md)
     - [restool工具](tools/restool.md)
@@ -1477,15 +1478,15 @@
       - [Shape](reference/arkui-ts/ts-drawing-components-shape.md)
     - 画布组件
       - [Canvas](reference/arkui-ts/ts-components-canvas-canvas.md)
-      - [CanvasGradient对象](reference/arkui-ts/ts-components-canvas-canvasgradient.md)
+      - [CanvasGradient](reference/arkui-ts/ts-components-canvas-canvasgradient.md)
       - [CanvasPattern](reference/arkui-ts/ts-components-canvas-canvaspattern.md)
-      - [CanvasRenderingContext2D对象](reference/arkui-ts/ts-canvasrenderingcontext2d.md)
-      - [ImageBitmap对象](reference/arkui-ts/ts-components-canvas-imagebitmap.md)
-      - [ImageData对象](reference/arkui-ts/ts-components-canvas-imagedata.md)
+      - [CanvasRenderingContext2D](reference/arkui-ts/ts-canvasrenderingcontext2d.md)
+      - [ImageBitmap](reference/arkui-ts/ts-components-canvas-imagebitmap.md)
+      - [ImageData](reference/arkui-ts/ts-components-canvas-imagedata.md)
       - [Matrix2D](reference/arkui-ts/ts-components-canvas-matrix2d.md)
       - [OffscreenCanvas](reference/arkui-ts/ts-components-offscreencanvas.md)
-      - [OffscreenCanvasRenderingContext2D对象](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
-      - [Path2D对象](reference/arkui-ts/ts-components-canvas-path2d.md)
+      - [OffscreenCanvasRenderingContext2D](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
+      - [Path2D](reference/arkui-ts/ts-components-canvas-path2d.md)
     - 高级组件
       - [@ohos.arkui.advanced.ComposeListItem (列表)](reference/arkui-ts/ts-composite-components-composelistitem.md)
       - [@ohos.arkui.advanced.ComposeTitleBar (头像和单双行文本标题栏)](reference/arkui-ts/ts-composite-components-composetitlebar.md)

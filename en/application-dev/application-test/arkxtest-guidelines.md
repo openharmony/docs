@@ -3,13 +3,11 @@
 
 ## Overview
 
-arkXtest is an automated test framework that supports both the JavaScript (JS) and TypeScript (TS) programming languages. It consists of JsUnit and UiTest. 
+arkXtest is an automated test framework that consists of JsUnit and UiTest.
 
 JsUnit is a unit test framework that provides basic APIs for compiling test cases and generating test reports for testing system and application APIs.
 
-UiTest is a UI test framework that provides the UI component search and operation capabilities through simple and easy-to-use APIs, and allows you to develop automated test scripts based on GUI operations. 
-
-This document describes the main functions, implementation principles, environment setup, and test script compilation and execution of arkXtest.
+UiTest is a UI test framework that provides the UI component search and operation capabilities through simple and easy-to-use APIs, and allows you to develop automated test scripts based on GUI operations. This document will help to familiarize you with arkXtest, describing its main functions, implementation principles, environment setup, and test script compilation and execution.
 
 
 ## Implementation
@@ -18,35 +16,29 @@ arkXtest is divided into two parts: unit test framework and UI test framework.
 
 As the backbone of arkXtest, the unit test framework offers such features as identifying, scheduling, and executing test scripts, as well as summarizing test script execution results.
 
-The UI test framework provides UiTest APIs for you to call in different test scenarios. The UI test scripts are executed on top of the unit test framework.
+The UI test framework provides UiTest APIs for you to call in different test scenarios. Its test scripts are executed on top of the unit test framework.
 
 ### Unit Test Framework
 
-Figure 1 Main functions of the unit test framework
+  Figure 1 Main functions of the unit test framework
 
-![](figures/UnitTest.PNG)
+  ![](figures/UnitTest.PNG)
 
-Figure 2 Basic script process
+  Figure 2 Basic script process
 
-![](figures/TestFlow.PNG)
+  ![](figures/TestFlow.PNG)
 
-> **NOTE**
->
-> For details about the API in the unit test framework, see [Function Definition](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_en.md#how-to-use).
 
 ### UI Test Framework
 
-Figure 3 Main functions of the UI test framework
+  Figure 3 Main functions of the UI test framework
 
-![](figures/Uitest.PNG)
+  ![](figures/Uitest.PNG)
 
 
 ## Constraints
 
-- The features of the UI test framework are available only in OpenHarmony 3.1 Release and later versions.
-
-- The feature availability of the unit test framework varies by version. For details about the mappings between the features and versions, see [arkXtest](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_en.md).
-
+The features of the UI test framework are available only in OpenHarmony 3.1 Release and later versions.
 
 ## Preparing the Environment
 
@@ -54,7 +46,7 @@ Figure 3 Main functions of the UI test framework
 
 Software: DevEco Studio 3.0 or later
 
-Hardware: PC connected to an OpenHarmony device, such as the RK3568 development board
+Hardware: PC connected to a test device, such as a development board
 
 ### Setting Up the Environment
 
@@ -79,26 +71,27 @@ Hardware: PC connected to an OpenHarmony device, such as the RK3568 development 
 
 The following sample code is used to start the test page to check whether the page displayed on the device is the expected page.
 
-```js
+```ts
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
+const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
 export default function abilityTest() {
-    describe('ActsAbilityTest', () =>{
+  describe('ActsAbilityTest', () =>{
     it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
-      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
-        console.info('Uitest, start ability finished:' + result)
-      }).catch((err: BusinessError) => {
-        console.info('Uitest, start ability failed: ' + err)
-      })
+      const want: Want = {
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
+      }
+      await delegator.startAbility(want);
       await sleep(1000);
       // Check the top display ability.
       await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
@@ -113,24 +106,57 @@ export default function abilityTest() {
 
 ### Writing a UI Test Script
 
-The UI test is based on the unit test. The UI test script adds the invoking of the UiTest interface (providing a link) to the unit test script to complete the corresponding test activities. In this example, the UI test script is written based on the preceding unit test script. It implements the click operation on the started application page and checks whether the page changes as expected.
+To write a UI test script to complete the corresponding test activities, simply add the invoking of the UiTest interface (providing a link) to a unit test script.
+
+In this example, the UI test script is written based on the preceding unit test script. It implements the click operation on the started application page and checks whether the page changes as expected.
 
 1. Import the dependency.
 
-```js
+```ts
 import { Driver, ON } from '@ohos.UiTest'
 ```
 
-2. Write test code.
+2. Write the code for the **index.ets** page.
 
-```js
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Text("Next")
+          .fontSize(50)
+          .margin({top:20})
+          .fontWeight(FontWeight.Bold)
+        Text("after click")
+          .fontSize(50)
+          .margin({top:20})
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+3. Write test code.
+
+```ts
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest'
-import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
@@ -139,11 +165,11 @@ export default function abilityTest() {
     it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
-      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
-        console.info('Uitest, start ability finished:' + result)
-      }).catch((err: BusinessError) => {
-        console.info('Uitest, start ability failed: ' + err)
-      })
+      const want: Want = {
+        bundleName: bundleName,
+        abilityName: 'EntryAbility'
+      }
+      await delegator.startAbility(want);
       await sleep(1000);
       // Check the top display ability.
       await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
@@ -152,7 +178,7 @@ export default function abilityTest() {
       })
       // UI test code
       // Initialize the driver.
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(1000);
       // Find the button on text 'Next'.
       let button = await driver.findComponent(ON.text('Next'));
@@ -222,7 +248,7 @@ The framework supports multiple test case execution modes, which are triggered b
 | random | Whether to execute test cases in random sequence.| **true**/**false** (default value)                                          | -s random true                      |
 | testType     | Type of the test case to be executed.                                     | function, performance, power, reliability, security, global, compatibility, user, standard, safety, resilience| -s testType function                      |
 | level        | Level of the test case to be executed.                                     | 0, 1, 2, 3, 4                                                   | -s level 0                                |
-| size         | Size of the test case to be executed.                                   | small, medium, large                                        | -s size small |
+| size         | Size of the test case to be executed.                                   | small, medium, large                                        | -s size small        |
 | stress       | Number of times that the test case is executed.                                   |  Positive integer                                        | -s stress 1000                            |
 
 **Running Commands**
@@ -409,6 +435,79 @@ hdc file recv /data/local/tmp/layout/record.csv D:\tool  # D:\tool indicates the
 }
 ```
 
+## Injecting Simulated UI Operations in Shell Command Mode
+Supported operation types: click, double-click, long press, fling, swipe, drag, text input, and key event.
+
+| Key      | Description                                 | Value                                                                                                                                                                                             | Example                                                                                 |
+|-------------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| click       | Simulates a click.                                 | point_x (X coordinate of the click point. Mandatory.)<br> point_y (Y coordinate of the click point. Mandatory.)                                                                                                                                                   | hdc shell uitest uiInput click point_x point_y                                      |
+| doubleClick | Simulates a double-click.                                 | point_x (X coordinate of the double-click point. Mandatory.)<br> point_y (Y coordinate of the double-click point. Mandatory.)                                                                                                                                                   | hdc shell uitest uiInput doubleClick point_x point_y                                |
+| longClick   | Simulates a long-click.                                 | point_x (X coordinate of the long-click point. Mandatory.)<br> point_y (Y coordinate of the long-click point. Mandatory.)                                                                                                                                                   | hdc shell uitest uiInput longClick point_x point_y                                  |
+| fling       | Simulates a fling.                                 | from_x (X coordinate of the fling start point. Mandatory.)<br> from_y (Y coordinate of the fling start point. Mandatory.)<br> to_x (X coordinate of the fling end point. Mandatory.)<br> to_y (Y coordinate of the fling end point. Mandatory.)<br> swipeVelocityPps_ (Fling speed. Value range: 200-40000. Default value: 600. Optional.)<br> stepLength (Fling step. Default value: Fling distance/50. Optional.)| hdc shell uitest uiInput fling from_x from_y to_x to_y swipeVelocityPps_ stepLength |
+| swipe       | Simulates a swipe.                                 | from_x (X coordinate of the swipe start point. Mandatory.)<br> from_y (Y coordinate of the swipe start point. Mandatory.)<br> to_x (X coordinate of the swipe end point. Mandatory.)<br> to_y (Y coordinate of the swipe end point. Mandatory.)<br> swipeVelocityPps_ (Swipe speed. Value range: 200-40000. Default value: 600. Optional.)                                      | hdc shell uitest uiInput swipe from_x from_y to_x to_y swipeVelocityPps_            |
+| drag        | Simulates a drag and drop.                                 | from_x (X coordinate of the drag point. Mandatory.)<br> from_y (Y coordinate of the drag point. Mandatory.)<br> to_x (X coordinate of the drop point. Mandatory.)<br> to_y (Y coordinate of the drop point. Mandatory.)<br> swipeVelocityPps_ (Drag speed. Value range: 200-40000. Default value: 600. Optional.)                                      | hdc shell uitest uiInput drag from_x from_y to_x to_y swipeVelocityPps_             |
+| dircFling   | Simulates a directional fling.                             | direction (Fling direction. Value range: [0, 1, 2, 3]. Fling direction: [left, right, up, down]. Default value: 0. Optional.)<br> swipeVelocityPps_ (Fling speed. Value range: 200-40000. Default value: 600. Optional.)<br> stepLength (Fling step. Default value: Fling distance/50. Optional.)                                                                                                                                 | hdc shell uitest uiInput dircFling direction swipeVelocityPps_ stepLength                                       |
+| input       | Simulates text input in a text box.                            | point_x (X coordinate of the text box. Mandatory.)<br> point_y (Y coordinate of the text box. Mandatory.)<br> input (Text entered.)                                                                                                                                | hdc shell uitest uiInput input point_x point_y text                                 |
+| keyEvent    | Simulates a physical key event (such as pressing a keyboard key, pressing the power key, returning to the previous page, or returning to the home screen) or a key combination.| keyID (ID of a physical key. Mandatory.)<br> keyID2 (ID of a physical key. Optional.)                                                                                                                                                  | hdc shell uitest uiInput keyEvent keyID                                             |
+
+Example 1: Perform a click.
+```shell  
+ hdc shell uitest uiInput click 100 100
+```
+Example 2: Perform a double-click.
+```shell  
+ hdc shell uitest uiInput doubleClick 100 100
+```
+Example 3: Perform a long-click.
+```shell  
+ hdc shell uitest uiInput longClick 100 100
+```
+Example 4: Perform a fling.
+```shell  
+hdc shell uitest uiInput fling 0 0 200 200 500 
+```
+Example 5: Perform a swipe.
+```shell  
+hdc shell uitest uiInput swipe 0 0 200 200 500 
+```
+Example 6: Perform a drag and drop.
+```shell  
+hdc shell uitest uiInput drag 0 0 100 100 500 
+```
+Example 7: Perform a fling-left.
+```shell  
+hdc shell uitest uiInput dircFling 0 500
+```
+Example 8: Perform a fling-right.
+```shell  
+hdc shell uitest uiInput dircFling 1 600
+```
+Example 9: Perform a fling-up.
+```shell  
+hdc shell uitest uiInput dircFling 2 
+```
+Example 10: Perform a fling-down.
+```shell  
+hdc shell uitest uiInput dircFling 3
+```
+
+Example 11: Enter text in the text box.
+```shell  
+hdc shell uitest uiInput inputText 100 100 hello
+```
+
+Example 12: Return to the home screen.
+```shell  
+hdc shell uitest uiInput keyEvent home
+```
+Example 13: Return to the previous page.
+```shell  
+hdc shell uitest uiInput keyEvent back
+```
+Example 14: Perform a key combination to copy and paste text.
+```shell  
+hdc shell uitest uiInput keyEvent 2072 2038
+```
 
 ## FAQs
 

@@ -129,7 +129,7 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 | ID| Error Message|
 | -------- | -------- |
 | 19100001 | Invalid parameter value. |
-| 19100006 | No permission to invoke this API, which is for DLP sandbox application. |
+| 19100006 | This API can only be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **Example**
@@ -171,7 +171,7 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100006 | No permission to invoke this API, which is for DLP sandbox application. |
+| 19100006 | This API can only be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **Example**
@@ -299,7 +299,7 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **Example**
@@ -339,7 +339,7 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **Example**
@@ -522,7 +522,6 @@ try {
 setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 
 Sets the sandbox retention state. This API uses a promise to return the result. 
-
 A sandbox application is automatically installed when a DLP file is opened, and automatically uninstalled when the DLP file is closed. Once the sandbox retention state is set for a DLP file, the sandbox application will not be automatically uninstalled when the DLP file is closed.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
@@ -547,7 +546,7 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100006 | No permission to invoke this API, which is for DLP sandbox application. |
+| 19100006 | This API can only be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **Example**
@@ -572,7 +571,6 @@ try {
 setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the sandbox retention state. This API uses an asynchronous callback to return the result. 
-
 A sandbox application is automatically installed when a DLP file is opened, and automatically uninstalled when the DLP file is closed. Once the sandbox retention state is set for a DLP file, the sandbox application will not be automatically uninstalled when the DLP file is closed.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
@@ -592,7 +590,7 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100006 | No permission to invoke this API, which is for DLP sandbox application. |
+| 19100006 | This API can only be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **Example**
@@ -732,7 +730,7 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **Example**
@@ -772,7 +770,7 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **Example**
@@ -816,7 +814,7 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **Example**
@@ -859,7 +857,7 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 | ID| Error Message|
 | -------- | -------- |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **Example**
@@ -898,7 +896,7 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 | -------- | -------- |
 | 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
-| 19100007 | No permission to invoke this API, which is not for DLP sandbox application. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
 
 **Example**
@@ -2333,6 +2331,9 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 | 19100008 | Not DLP file. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | System service exception. |
+| 19100018 | Not authorized application. |
+| 19100019 | The DLP file has expired. |
+| 19100020 | No network connection. |
 
 **Example**
 
@@ -2406,6 +2407,9 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 | 19100008 | Not DLP file. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | System service exception. |
+| 19100018 | Not authorized application. |
+| 19100019 | The DLP file has expired. |
+| 19100020 | No network connection. |
 
 **Example**
 
@@ -2443,6 +2447,126 @@ try {
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
   fs.closeSync(file);
+}
+```
+
+## dlpPermission.setSandboxAppConfig<sup>11+<sup>
+setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;
+
+Sets sandbox application configuration. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Security.DataLossPrevention
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| configInfo | string | Yes| Sandbox application configuration to set. |
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [DLP Service Error Codes](../errorcodes/errorcode-dlp.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
+| 19100011 | System service exception. |
+| 19100018 | Not authorized application. |
+
+**Example**
+
+```ts
+import dlpPermission from '@ohos.dlpPermission';
+import { BusinessError } from '@ohos.base';
+
+try {
+  dlpPermission.setSandboxAppConfig('configInfo'); // Set sandbox application configuration.
+} catch (err) {
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+}
+```
+
+## dlpPermission.cleanSandboxAppConfig<sup>11+<sup>
+cleanSandboxAppConfig(): Promise&lt;void&gt;
+
+Cleans the sandbox application configuration. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Security.DataLossPrevention
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [DLP Service Error Codes](../errorcodes/errorcode-dlp.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100007 | This API cannot be called by DLP sandbox applications. |
+| 19100011 | System service exception. |
+| 19100018 | Not authorized application. |
+
+**Example**
+
+```ts
+import dlpPermission from '@ohos.dlpPermission';
+import { BusinessError } from '@ohos.base';
+
+try {
+  dlpPermission.cleanSandboxAppConfig(); // Clean sandbox application configuration.
+} catch (err) {
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+}
+```
+
+## dlpPermission.getSandboxAppConfig<sup>11+<sup>
+getSandboxAppConfig(): Promise&lt;string&gt;
+
+Obtains the sandbox application configuration. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Security.DataLossPrevention
+
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;string&gt; | Promise used to return the sandbox application configuration obtained.|
+
+**Error codes**
+
+For details about the error codes, see [DLP Service Error Codes](../errorcodes/errorcode-dlp.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
+| 19100018 | Not authorized application. |
+
+**Example**
+
+```ts
+import dlpPermission from '@ohos.dlpPermission';
+import { BusinessError } from '@ohos.base';
+
+try {
+  dlpPermission.getSandboxAppConfig().then((res) => {
+    console.info('res', JSON.stringify(res));
+  }); // Obtain sandbox application configuration.
+} catch (err) {
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
 ```
 
@@ -2584,6 +2708,7 @@ Represents the authorization information.
 | contactAccount | string | No| Yes| Account of the contact.|
 | offlineAccess | boolean | No| Yes| Whether the file can be accessed offline.|
 | everyoneAccessList | Array&lt;[DLPFileAccess](#dlpfileaccess)&gt; | No| No| Permission granted to everyone. This parameter is left blank by default.|
+| expireTime<sup>11+</sup> | number | No| No| Timestamp when the file permission has expired. This parameter is left blank by default.|
 
 ## GatheringPolicyType
 

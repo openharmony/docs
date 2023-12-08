@@ -220,7 +220,7 @@ structural typing是否有助于生成清晰、易理解的代码，关于这一
 **TypeScript**
 
 ```typescript
-var x = {'name': 1, 2: 3}
+var x = { 'name': 'x', 2: '3' }
 
 console.log(x['name'])
 console.log(x[2])
@@ -230,18 +230,18 @@ console.log(x[2])
 
 ```typescript
 class X {
-  public name: number = 0
+  public name: string = ''
 }
-let x: X = {name: 1}
+let x: X = { name: 'x' }
 console.log(x.name)
 
-let y = [1, 2, 3]
+let y = ['a', 'b', 'c']
 console.log(y[2])
 
-// 在需要通过非标识符（即不同类型的key）获取数据的场景中，使用Map<Object, some_type>:
-let z = new Map<Object, number>()
-z.set('name', 1)
-z.set(2, 2)
+// 在需要通过非标识符（即不同类型的key）获取数据的场景中，使用Map<Object, some_type>。
+let z = new Map<Object, string>()
+z.set('name', '1')
+z.set(2, '2')
 console.log(z.get('name'))
 console.log(z.get(2))
 ```

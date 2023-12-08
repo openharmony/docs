@@ -429,7 +429,7 @@ try {
     if (err) {
       console.error('isInSandbox error,', err.code, err.message);
     } else {
-      console.info('isInSandbox, data');
+      console.info('isInSandbox, data', JSON.stringify(data));
     }
   }); // 是否在沙箱内
 } catch (err) {
@@ -604,6 +604,7 @@ try {
       console.error('setRetentionState error,', err.code, err.message);
     } else {
       console.info('setRetentionState success');
+      console.info('res', JSON.stringify(res));
     }
   }); // 设置沙箱保留
 } catch (err) {
@@ -913,6 +914,64 @@ try {
   }); // 获取DLP访问列表
 } catch (err) {
   console.error('getDLPFileAccessRecords error,', (err as BusinessError).code, (err as BusinessError).message);
+}
+```
+
+## dlpPermission.startDLPManagerForResult<sup>11+</sup>
+
+startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&lt;DLPManagerResult&gt;
+
+在当前UIAbility界面以无边框形式打开DLP权限管理应用。使用Promise方式异步返回结果。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| context | [common.UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 是 | 当前窗口UIAbility上下文。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 请求对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[DLPManagerResult](#dlpmanagerresult11)&gt; | Promise对象。打开DLP权限管理应用并退出后的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
+| 19100016 | Uri does not exist in want. |
+| 19100017 | DisplayName does not exist in want (under parameters). |
+
+**示例：**
+
+```ts
+import dlpPermission from '@ohos.dlpPermission';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
+
+try {
+  let context = getContext(this) as common.UIAbilityContext; // 获取当前UIAbilityContext
+  let want = {
+    "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
+    "parameters": {
+       "displayName": "1.txt"
+    }
+  }; // 请求参数
+  let res: dlpPermission.DLPManagerResult = await dlpPermission.startDLPManagerForResult(context, want); // 打开DLP权限管理应用
+  console.info('res.resultCode', res.resultCode);
+  console.info('res.want', JSON.stringifg(res.want));
+} catch (err) {
+  console.error('error', err.code, err.message); // 失败报错
 }
 ```
 
@@ -2622,6 +2681,19 @@ DLP文件授权类型的枚举。
 | -------- | -------- | -------- | -------- | -------- |
 | uri | string | 是 | 否 | 表示DLP文件的uri。 |
 | lastOpenTime | number | 是 | 否 | 表示DLP文件最近打开时间。 |
+
+## DLPManagerResult<sup>11+</sup>
+
+表示打开DLP权限管理应用的结果。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| resultCode | number | 是 | 否 | 表示打开DLP权限管理应用并退出后返回的结果码。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 否 | 表示打开DLP权限管理应用并退出后返回的数据。 |
 
 ## DLPSandboxInfo
 

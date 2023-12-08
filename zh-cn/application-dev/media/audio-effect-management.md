@@ -1,4 +1,4 @@
-# 音效管理
+# 音效管理(ArkTS)
 
 音效管理主要包括播放实例音效管理和全局音效查询两部分，播放实例音效管理主要包括查询和设置当前音频播放流的音效模式，全局音效查询支持查询ContentType和StreamUsage对应场景支持的音效模式。
 
@@ -20,7 +20,8 @@
 
   ```ts
   import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';  
+  import { BusinessError } from '@ohos.base';
+
   let audioStreamInfo: audio.AudioStreamInfo = {
     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
     channels: audio.AudioChannel.CHANNEL_1,
@@ -52,7 +53,8 @@
 ### 查询当前播放实例的音效模式
 
   ```ts
-  import { BusinessError } from '@ohos.base';  
+  import { BusinessError } from '@ohos.base';
+
   audioRenderer.getAudioEffectMode((err: BusinessError, effectMode: audio.AudioEffectMode) => {
     if (err) {
       console.error(`Failed to get params, code is ${err.code}, message is ${err.message}`);
@@ -68,7 +70,8 @@
 关闭系统音效：
 
   ```ts
-  import { BusinessError } from '@ohos.base';  
+  import { BusinessError } from '@ohos.base';
+
   audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_NONE, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to set params, code is ${err.code}, message is ${err.message}`);
@@ -82,7 +85,8 @@
 开启系统音效默认模式：
 
   ```ts
-  import { BusinessError } from '@ohos.base';  
+  import { BusinessError } from '@ohos.base';
+
   audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to set params, code is ${err.code}, message is ${err.message}`);
@@ -104,6 +108,7 @@
 
    ```ts
    import audio from '@ohos.multimedia.audio';
+
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
    ```
@@ -111,7 +116,8 @@
 ### 查询对应场景的音效模式
 
   ```ts
-  import { BusinessError } from '@ohos.base';  
+  import { BusinessError } from '@ohos.base';
+
   audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA, async (err: BusinessError, audioEffectInfoArray: audio.AudioEffectInfoArray) => {
     if (err) {
       console.error('Failed to get effect info array');
