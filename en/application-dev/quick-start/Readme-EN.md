@@ -20,8 +20,7 @@
     - Shared Package
       - [Shared Package Overview](shared-guide.md)
       - [HAR](har-package.md)
-      - HSP
-        - [In-Application HSP Development](in-app-hsp.md)
+      - [HSP](in-app-hsp.md)
     - Quick Fix
       - [Quick Fix Overview](quickfix-principles.md)
       - [CLI-based Quick Fix Development](quickfix-debug.md)
@@ -41,7 +40,8 @@
   - TypeScript to ArkTS Migration Guide
     - [ArkTS Migration Background](arkts-migration-background.md)
     - [TypeScript to ArkTS Cookbook](typescript-to-arkts-migration-guide.md)
-  - UI paradigms
+    - [Adaptation Cases](arkts-more-cases.md)
+  - UI Paradigms
     - Basic Syntax
       - [Basic Syntax Overview](arkts-basic-syntax-overview.md)
       - [Declarative UI Description](arkts-declarative-ui-description.md)
