@@ -5813,7 +5813,7 @@ isSpatializationSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boo
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | 是   | 指定设备的描述     |
+| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 
 **返回值：**
 
@@ -5911,7 +5911,7 @@ isHeadTrackingSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boole
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | 是   | 指定设备的描述     |
+| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 
 **返回值：**
 
@@ -5971,7 +5971,7 @@ setSpatializationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): 
 
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| enable                      | boolean                                                      | 是   | 表示开启/关闭空间音频渲染。true为开启，false为关闭  |
+| enable                      | boolean                                                      | 是   | 表示开启/关闭空间音频渲染。true为开启，false为关闭。  |
 | callback                    | AsyncCallback&lt;void&gt;                                    | 是   | AsyncCallback对象，无返回结果。 |
 
 **错误码：**
@@ -6013,7 +6013,7 @@ setSpatializationEnabled(enable: boolean): Promise&lt;void&gt;
 
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| enable                | boolean                                                      | 是   | 表示开启/关闭空间音频渲染。true为开启，false为关闭  |
+| enable                | boolean                                                      | 是   | 表示开启/关闭空间音频渲染。true为开启，false为关闭。  |
 
 **返回值：**
 
@@ -6096,7 +6096,7 @@ on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
 
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChange' |
+| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChange'。 |
 | callback | Callback<boolean\> | 是   | Callback对象，返回空间音频渲染开关状态。 |
 
 **错误码：**
@@ -6133,7 +6133,7 @@ off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChange' |
+| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChange'。 |
 | callback | Callback<boolean\> | 否   | Callback对象，返回空间音频渲染开关状态。 |
 
 **错误码：**
@@ -6167,7 +6167,7 @@ setHeadTrackingEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| enable                      | boolean                                                      | 是   | 表示开启/关闭头动跟踪。true为开启，false为关闭  |
+| enable                      | boolean                                                      | 是   | 表示开启/关闭头动跟踪。true为开启，false为关闭。  |
 | callback                    | AsyncCallback&lt;void&gt;                                    | 是   | AsyncCallback对象，无返回结果。 |
 
 **错误码：**
@@ -6209,7 +6209,7 @@ setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 
 | 参数名                 | 类型                                                         | 必填 | 说明                      |
 | ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
-| enable                | boolean                                                      | 是   | 表示开启/关闭头动跟踪。true为开启，false为关闭  |
+| enable                | boolean                                                      | 是   | 表示开启/关闭头动跟踪。true为开启，false为关闭。  |
 
 **返回值：**
 
@@ -6292,7 +6292,7 @@ on(type: 'headTrackingEnabledChange', callback: Callback<boolean\>): void
 
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'headTrackingEnabledChange' |
+| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'headTrackingEnabledChange'。 |
 | callback | Callback<boolean\> | 是   | Callback对象，返回头动跟踪开关状态。 |
 
 **错误码：**
@@ -6329,7 +6329,7 @@ off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'headTrackingEnabledChange' |
+| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'headTrackingEnabledChange'。 |
 | callback | Callback<boolean\> | 否   | Callback对象，返回头动跟踪开关状态。 |
 
 **错误码：**
@@ -6363,7 +6363,7 @@ updateSpatialDeviceState(spatialDeviceState: AudioSpatialDeviceState): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| spatialDeviceState     | [AudioSpatialDeviceState](#audiospatialdevicestate11)     | 是   | 需要更新的空间化设备状态 |
+| spatialDeviceState     | [AudioSpatialDeviceState](#audiospatialdevicestate11)     | 是   | 需要更新的空间化设备状态。 |
 
 **错误码：**
 
