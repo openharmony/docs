@@ -15,9 +15,11 @@
 ### 【普通应用】通过授权的方式申请Download目录权限和获取对应路径
 
 1.配置Download目录授权权限。
+
     “requestPermissions” : [
         "name": "ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY"
     ]
+
 2.应用获取公共Download目录后可以访问操作目录，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis/js-apis-file-environment.md)）获取环境路径。
   ```ts
   import { BusinessError } from '@ohos.base';
