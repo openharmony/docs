@@ -17,6 +17,7 @@
   - [媒体](media/Readme-CN.md)
   - [安全](security/Readme-CN.md)
   - [网络与连接](connectivity/Readme-CN.md)
+  - [基础通信](communication/Readme-CN.md)
   - [数据管理](database/Readme-CN.md)
   - [文件管理](file-management/Readme-CN.md)
   - [电话服务](telephony/Readme-CN.md)
