@@ -1,6 +1,6 @@
 # 文件授权访问
 
-提供给应用的文件授权访问场景主要分为：1.基于权限申明预授权的方式获取公共目录访问权限；2.通过filePicker选择文件或目录授权并支持授权持久化；3.通过接口获取文件或文件夹当前所在路径的URI;4.通过接口获取公共目录、外卡目录的能力，下文介绍具体方法。
+提供给应用的文件授权访问场景主要分为：1.基于权限申明预授权的方式获取公共目录访问权限；2.通过filePicker选择文件或目录授权并支持授权持久化；3.通过接口获取文件或文件夹当前所在路径的URI；4.通过接口获取公共目录、外卡目录的能力，下文介绍具体方法。
 
 文件授权访问的场景仅支持部分设备。
 
@@ -113,7 +113,7 @@ async function persistPermissionExample() {
         console.log("error data : " + JSON.stringify(err.data));
       }
     });
-    let fd = await fs.open(uris[0]);
+    let fd = await fs.open(uri);
     await fs.close(fd);
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -144,7 +144,7 @@ async function revokePermissionExample() {
         console.log("error data : " + JSON.stringify(err.data));
       }
     });
-    let fd = await fs.open(uris[0]);
+    let fd = await fs.open(uri);
     await fs.close(fd);
   } catch (error) {
     let err: BusinessError = error as BusinessError;
