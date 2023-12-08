@@ -1033,7 +1033,7 @@ import formInfo from '@ohos.app.form.formInfo';
 let bundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log('Unregister form router event Listening.' + JSON.stringify(data));
-}；
+};
 formObserver.off('router', hostBundleName, callback);
 ```
 
@@ -1070,7 +1070,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log('Message event listening in registered form.' + JSON.stringify(data));
-}；
+};
 formObserver.on('message', callback);
 ```
 
@@ -1148,7 +1148,7 @@ import formInfo from '@ohos.app.form.formInfo';
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log('Unregister form Message event Listening.' + JSON.stringify(data));
-}；
+};
 formObserver.off('message', hostBundleName, callback);
 ```
 
@@ -1224,7 +1224,7 @@ import formInfo from '@ohos.app.form.formInfo';
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log('Call event listening in registered form.' + JSON.stringify(data));
-}；
+};
 formObserver.on('call', hostBundleName, callback);
 ```
 
