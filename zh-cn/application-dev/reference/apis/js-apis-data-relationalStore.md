@@ -4961,7 +4961,7 @@ querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): 
 
 | 参数名    | 说明                                               |
 | -------- | ------------------------------------------------- |
-| Promise&lt;ResultSet&gt; | 查询结果集的Promise对象。        |
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise对象，返回查询的结果集。   |
 
 **错误码：**
 
@@ -4975,22 +4975,21 @@ querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): 
 
 ```ts
 import { BusinessError } from "@ohos.base";
-import data_relationalStore from '@ohos.data.relationalStore';
 
-let sharingResource;
-let predicates = new data_relationalStore.RdbPredicates('test_table');
+let sharingResource: string;
+let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
 if(store != undefined) {
     (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data']).then((resultSet) => {
         if (!resultSet.goToFirstRow()) {
-            console.error(`row error`);
+            console.error(`resultSet error`);
             return;
         }
-        const res = resultSet.getString(resultSet.getColumnIndex(data_relationalStore.Field.SHARING_RESOURCE_FIELD));
+        const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
         console.info(`sharing resource: ${res}`);
         sharingResource = res;
     }).catch((err: BusinessError) => {
-        console.error(`query failed, code is ${err.code},message is ${err.message}`);
+        console.error(`query sharing resource failed, code is ${err.code},message is ${err.message}`);
     })
 }
 
@@ -5011,7 +5010,7 @@ querySharingResource(predicates: RdbPredicates, callback: AsyncCallback&lt;Resul
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | predicates | [RdbPredicates](#rdbpredicates)              | 是   | 表示查询的谓词条件。           |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 回调函数。当共享资源查询成功，err为undefined，并返回共享资源的结果集，否则为错误对象。 |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 回调函数。返回查询的结果集。 |
 
 **错误码：**
 
@@ -5024,11 +5023,8 @@ querySharingResource(predicates: RdbPredicates, callback: AsyncCallback&lt;Resul
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
-import data_relationalStore from '@ohos.data.relationalStore';
-
-let sharingResource;
-let predicates = new data_relationalStore.RdbPredicates('test_table');
+let sharingResource: string;
+let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
 if(store != undefined) {
     try {
@@ -5038,15 +5034,15 @@ if(store != undefined) {
               return;
           }
           if (!resultSet.goToFirstRow()) {
-              console.error(`row error`);
+              console.error(`resultSet error`);
               return;
           }
-          const res = resultSet.getString(resultSet.getColumnIndex(data_relationalStore.Field.SHARING_RESOURCE_FIELD));
+          const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
           console.info(`sharing resource: ${res}`);
           sharingResource = res;
       })
-    } catch(e) {
-        console.error(`query failed, code is ${e.code},message is ${e.message}`);
+    } catch(err) {
+        console.error(`query sharing resource failed, code is ${err.code},message is ${err.message}`);
     }
 }
 
@@ -5068,7 +5064,7 @@ querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, ca
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | 表示查询的谓词条件。           |
 | columns    | Array&lt;string&gt;              | 是   | 表示要查找的列字段名。           |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt;  | 是   | 回调函数。 当共享资源查询成功，err为undefined，并返回共享资源的结果集，否则为错误对象。 |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt;  | 是   | 回调函数。返回查询的结果集。 |
 
 **错误码：**
 
@@ -5081,11 +5077,8 @@ querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, ca
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
-import data_relationalStore from '@ohos.data.relationalStore';
-
-let sharingResource;
-let predicates = new data_relationalStore.RdbPredicates('test_table');
+let sharingResource: string;
+let predicates = new sharingResource.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
 if(store != undefined) {
     try {
@@ -5095,15 +5088,15 @@ if(store != undefined) {
               return;
           }
           if (!resultSet.goToFirstRow()) {
-              console.error(`row error`);
+              console.error(`resultSet error`);
               return;
           }
-          const res = resultSet.getString(resultSet.getColumnIndex(data_relationalStore.Field.SHARING_RESOURCE_FIELD));
+          const res = resultSet.getString(resultSet.getColumnIndex(sharingResource.Field.SHARING_RESOURCE_FIELD));
           console.info(`sharing resource: ${res}`);
           sharingResource = res;
       })
-    } catch(e) {
-        console.error(`query failed, code is ${e.code},message is ${e.message}`);
+    } catch(err) {
+        console.error(`query sharing resource failed, code is ${err.code},message is ${err.message}`);
     }
 }
 

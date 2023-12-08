@@ -1,12 +1,9 @@
-# @ohos.data.cloudExtension (端云共享extension)
+# @ohos.data.cloudExtension (端云共享Extension)
 
-端云共享extension，提供三方厂商适配共享云服务的能力。通过实现端云共享extension
-提供的接口，对接端侧共享到共享的服务端，实现端云共享的发起、端云共享的取消、退出共享、更改共享数据的操作权限、查询共享参与者、根据共享邀请码查询共享参与者、确认共享邀请、更改已确认的共享邀请，同时按接口要求返回共享云服务返回的结果。
-
-该模块提供以下端云共享extension相关的接口：
-
-- [CloudService](#cloudservice)：提供实现连接ShareCenter的接口。
-- [ShareCenter](#sharecenter)：提供实现发起共享、取消共享、退出共享、查询共享参与者、根据邀请码查询共享参与者、更改共享数据的操作权限、确认共享邀请、更改已确认的共享邀请的接口。
+端云共享Extension，提供三方厂商适配共享云服务的能力。通过实现端云共享Extension提供的接口，对接端侧的数据共享到服务端，实现端云共享的发起、取消或退出，更改共享数据的操作权限、查询共享参与者、根据共享邀请码查询共享参与者、确认或更改共享邀请，并支持返回共享云服务相关结果。
+<br>其中，共享资源标识是指：对于应用发起共享的每一条数据记录，该条数据在进行端云同步时会生成唯一的共享资源标识（字符串类型的值），此标识则作为该条数据记录共享时的识别标识。
+<br>     共享参与者是指： 共享发起者根据好友列表选中的参与当前数据共享的所有人员。
+<br>     共享邀请码是指： 共享发起后，在共享的服务端会生成当前共享操作的邀请码，并将该邀请码附加到当前共享邀请中，通过push消息推送到被邀请者的设备端，被邀请者可以通过该邀请码进行邀请的确认。
 
 > **说明：** 
 >
@@ -21,6 +18,7 @@ import cloudExtension from '@ohos.data.cloudExtension';
 ```
 
 ## Result&lt;T&gt;
+
 共享结果的返回值。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
@@ -28,14 +26,14 @@ import cloudExtension from '@ohos.data.cloudExtension';
 | 名称          | 类型                          | 必填  | 说明           |
 | ----------- | --------------------------- | --- | ------------ |
 | code        | number                      | 是   | 错误码。       |
-| description | string                      | 否   | 错误码详细描述。       |
-| value       | T                           | 否   | 返回结果的值，具体类型由参数T指定。       |
+| description | string                      | 否   | 错误码详细描述，默认为undefined。       |
+| value       | T                           | 否   | 返回结果的值，具体类型由参数T指定，默认为undefined。       |
 
 ## cloudExtension.createCloudServiceStub
 
 createCloudServiceStub(instance: CloudService): Promise&lt;rpc.RemoteObject&gt;
 
-创建[CloudService](#cloudservice)的rpc对象，使用Promise异步回调。
+根据[CloudService](#cloudservice)类的实例创建对应的[RemoteObject](js-apis-rpc.md#RemoteObject)对象，系统内部通过该对象调用[CloudService](#cloudservice)的实现接口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -43,13 +41,13 @@ createCloudServiceStub(instance: CloudService): Promise&lt;rpc.RemoteObject&gt;
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | -------------------------------- |
-| instance  | [CloudService](#cloudservice)   | 是    | CloudService的实例。                   |
+| instance  | [CloudService](#cloudservice)   | 是    | [CloudService](#cloudservice)类的实例。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | -------------------             | ------------------------- |
-| Promise&lt;[rpc.RemoteObject](js-apis-rpc.md)&gt; | 返回结果RemoteObject的Promise对象。 |
+| Promise&lt;[rpc.RemoteObject](js-apis-rpc.md#RemoteObject)&gt; | Promise对象，返回[CloudService](#cloudservice)的[RemoteObject](js-apis-rpc.md#RemoteObject)对象。 |
 
 **示例：**
 
@@ -57,12 +55,11 @@ createCloudServiceStub(instance: CloudService): Promise&lt;rpc.RemoteObject&gt;
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import rpc from '@ohos.rpc';
-import cloudExtension from '@ohos.data.cloudExtension';
 
 export default class MyCloudService implements cloudExtension.CloudService {
     constructor() {}
     async connectShareCenter(userId: number, bundleName: string): Promise<rpc.RemoteObject> {
-        ...
+        // ...
     }
 }
 
@@ -90,7 +87,7 @@ export default class MyServiceExtension extends ServiceExtensionAbility {
 
 createShareServiceStub(instance: ShareCenter): Promise&lt;rpc.RemoteObject&gt;
 
-创建[ShareCenter](#sharecenter)的rpc对象，使用Promise异步回调。
+根据[ShareCenter](#sharecenter)类的实例创建对应的[RemoteObject](js-apis-rpc.md#RemoteObject)对象，系统内部通过该对象调用[ShareCenter](#sharecenter)的实现接口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -98,23 +95,22 @@ createShareServiceStub(instance: ShareCenter): Promise&lt;rpc.RemoteObject&gt;
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | -------------------------------- |
-| instance  | [ShareCenter](#sharecenter)   | 是    | ShareCenter的实例。                   |
+| instance  | [ShareCenter](#sharecenter)   | 是    | [ShareCenter](#sharecenter)类的实例。                   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | -------------------             | ------------------------- |
-| Promise&lt;[rpc.RemoteObject](js-apis-rpc.md)&gt; | 返回结果RemoteObject的Promise对象。 |
+| Promise&lt;[rpc.RemoteObject](js-apis-rpc.md#RemoteObject)&gt; | Promise对象，返回[ShareCenter](#sharecenter)的[RemoteObject](js-apis-rpc.md#RemoteObject)对象。 |
 
 **示例：**
 
 ```ts
 import rpc from '@ohos.rpc';
-import cloudExtension from '@ohos.data.cloudExtension';
 
 export default class MyShareCenter implements cloudExtension.ShareCenter {
     constructor() {}
-    ...
+    // ...
 }
 
 export default class MyCloudService implements cloudExtension.CloudService {
@@ -128,13 +124,13 @@ export default class MyCloudService implements cloudExtension.CloudService {
 
 ## CloudService
 
-提供云服务接口，需要开发者继承此接口以实现接口对接云的能力并按接口返回值进行返回。
+提供对接各云服务的总接口类。开发者需要继承此类并实现类的接口，以达到系统内部调用共享云的能力。
 
 ### connectShareCenter
 
 connectShareCenter(userId: number, bundleName: string): Promise&lt;rpc.RemoteObject&gt;
 
-获取端云共享服务的RemoteObject，通过createShareServiceStub接口进行创建。
+系统内部通过该接口获取[ShareCenter](#sharecenter)的[RemoteObject](js-apis-rpc.md#RemoteObject)对象，可以通过createShareServiceStub接口进行创建。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -149,17 +145,16 @@ connectShareCenter(userId: number, bundleName: string): Promise&lt;rpc.RemoteObj
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;rpc.RemoteObject&gt; | 返回云共享服务RemoteObject的Promise对象。 |
+| Promise&lt;rpc.RemoteObject&gt; | Promise对象，返回[ShareCenter](#sharecenter)的[RemoteObject](js-apis-rpc.md#RemoteObject)对象。 |
 
 **示例：**
 
 ```ts
 import rpc from '@ohos.rpc';
-import cloudExtension from '@ohos.data.cloudExtension';
 
 export default class MyShareCenter implements cloudExtension.ShareCenter {
     constructor() {}
-    ...
+    // ...
 }
 
 export default class MyCloudService implements cloudExtension.CloudService {
@@ -173,13 +168,13 @@ export default class MyCloudService implements cloudExtension.CloudService {
 
 ## ShareCenter
 
-提供云共享服务接口，需要开发者继承此接口以实现接口对接共享云的能力，并按接口返回值进行返回。
+提供对接共享云服务的接口类。开发者需要继承此类并实现类的接口，以达到系统内部调用共享云实现端云共享的发起、取消或退出等能力。
 
 ### share
 
 share(userId: number, bundleName: string, sharingResource: string, participants: Array&lt;cloudData.sharing.Participant&gt;): Promise&lt;Result&lt;Array&lt;Result&lt;cloudData.sharing.Participant&gt;&gt;&gt;&gt;
 
-发起端云共享邀请调用的接口。共享邀请时，会指定当前发起共享的应用、共享数据的资源标志sharingResource和共享参与者。
+发起端云共享邀请。共享邀请时，会指定当前发起共享的应用、共享数据的资源标识和共享参与者。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -189,19 +184,18 @@ share(userId: number, bundleName: string, sharingResource: string, participants:
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
-| sharingResource | string  | 是   | 共享资源标志。   |
-| participants    | Array&lt;cloudData.sharing.Participant&gt;  | 是   | 共享参与者。   |
+| sharingResource | string  | 是   | 共享资源标识。   |
+| participants    | Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;  | 是   | 共享参与者。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Result&lt;Array&lt;Result&lt;cloudData.sharing.Participant&gt;&gt;&gt;&gt; | 返回发起共享结果的Promise对象。 |
+| Promise&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[Result](#result&lt;T&gt;)&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;&gt;&gt;&gt; | Promise对象，返回发起共享的结果。 |
 
 **示例：**
 
 ```ts
-import cloudExtension from '@ohos.data.cloudExtension';
 import cloudData from '@ohos.data.cloudData';
 
 type Participant = cloudData.sharing.Participant;
@@ -212,7 +206,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
         Promise<cloudExtension.Result<Array<cloudExtension.Result<Participant>>>> {
         console.info(`share, bundle: ${bundleName}`);
         // 对接云共享服务端，并获得共享的返回值
-        ...
+        // ...
         // 返回服务端发起共享的返回结果
         let result: Array<cloudExtension.Result<Participant>> = [];
         participants.forEach((item => {
@@ -227,7 +221,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
             value: result
         }
     }
-    ...
+    // ...
 }
 ```
 
@@ -235,7 +229,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 
 unshare(userId: number, bundleName: string, sharingResource: string, participants: Array&lt;cloudData.sharing.Participant&gt;): Promise&lt;Result&lt;Array&lt;Result&lt;cloudData.sharing.Participant&gt;&gt;&gt;&gt;
 
-取消共享的接口。取消共享时，会指定当前取消共享的应用、取消共享数据的资源标志sharingResource和取消共享的参与者。
+取消端云共享。取消共享时，会指定当前取消共享的应用、取消共享数据的资源标识和取消共享的参与者。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -245,19 +239,18 @@ unshare(userId: number, bundleName: string, sharingResource: string, participant
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
-| sharingResource | string  | 是   | 共享资源标志。   |
-| participants    | Array&lt;cloudData.sharing.Participant&gt;  | 是   | 共享参与者。   |
+| sharingResource | string  | 是   | 共享资源标识。   |
+| participants    | Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;  | 是   | 共享参与者。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Result&lt;Array&lt;Result&lt;cloudData.sharing.Participant&gt;&gt;&gt;&gt; | 返回取消共享结果的Promise对象。 |
+| Promise&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[Result](#result&lt;T&gt;)&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;&gt;&gt;&gt; | Promise对象，返回取消共享的结果。 |
 
 **示例：**
 
 ```ts
-import cloudExtension from '@ohos.data.cloudExtension';
 import cloudData from '@ohos.data.cloudData';
 
 type Participant = cloudData.sharing.Participant;
@@ -268,7 +261,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
         Promise<cloudExtension.Result<Array<cloudExtension.Result<Participant>>>> {
         console.info(`unshare, bundle: ${bundleName}`);
         // 对接云共享服务端，并获得取消共享的返回值
-        ...
+        // ...
         // 返回服务端取消共享的返回结果
         let result: Array<cloudExtension.Result<Participant>> = [];
         participants.forEach((item => {
@@ -283,7 +276,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
             value: result
         }
     }
-    ...
+    // ...
 }
 ```
 
@@ -291,7 +284,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 
 exit(userId: number, bundleName: string, sharingResource: string): Promise&lt;Result&lt;void&gt;&gt;
 
-退出共享的接口。退出共享时，会指定当前退出共享的应用以及退出共享数据的资源标志sharingResource。
+退出端云共享。退出共享时，会指定当前退出共享的应用以及退出共享数据的资源标识。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -301,18 +294,17 @@ exit(userId: number, bundleName: string, sharingResource: string): Promise&lt;Re
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
-| sharingResource | string  | 是   | 共享资源标志。   |
+| sharingResource | string  | 是   | 共享资源标识。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Result&lt;void&gt;&gt; | 返回退出共享结果的Promise对象。 |
+| Promise&lt;[Result](#result&lt;T&gt;)&lt;void&gt;&gt; | Promise对象，返回退出共享的结果。 |
 
 **示例：**
 
 ```ts
-import cloudExtension from '@ohos.data.cloudExtension';
 import cloudData from '@ohos.data.cloudData';
 
 export default class MyShareCenter implements cloudExtension.ShareCenter {
@@ -321,14 +313,14 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
         Promise<cloudExtension.Result<void>> {
         console.info(`exit share, bundle: ${bundleName}`);
         // 对接云共享服务端，并获得退出共享的返回值
-        ...
+        // ...
         // 返回服务端退出共享的返回结果
         return {
             code: cloudData.sharing.sharingCode.SUCCESS,
             description: 'exit share success'
         }
     }
-    ...
+    // ...
 }
 ```
 
@@ -336,7 +328,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 
 changePrivilege(userId: number, bundleName: string, sharingResource: string, participants: Array&lt;cloudData.sharing.Participant&gt;): Promise&lt;Result&lt;Array&lt;Result&lt;cloudData.sharing.Participant&gt;&gt;&gt;&gt;
 
-更改已共享数据的操作权限接口。更改权限时，会指定当前更改权限的应用、更改权限数据的资源标志sharingResource和更改权限的参与者。
+更改已共享数据的操作权限。更改权限时，会指定当前更改权限的应用、更改权限数据的资源标识和更改权限的参与者。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -346,19 +338,18 @@ changePrivilege(userId: number, bundleName: string, sharingResource: string, par
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
-| sharingResource | string  | 是   | 共享资源标志。   |
-| participants    | Array&lt;cloudData.sharing.Participant&gt;  | 是   | 共享参与者。   |
+| sharingResource | string  | 是   | 共享资源标识。   |
+| participants    | Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;  | 是   | 共享参与者。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Result&lt;Array&lt;Result&lt;cloudData.sharing.Participant&gt;&gt;&gt;&gt; | 返回更改权限结果的Promise对象。 |
+| Promise&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[Result](#result&lt;T&gt;)&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;&gt;&gt;&gt; | Promise对象，返回更改权限的结果。 |
 
 **示例：**
 
 ```ts
-import cloudExtension from '@ohos.data.cloudExtension';
 import cloudData from '@ohos.data.cloudData';
 
 type Participant = cloudData.sharing.Participant;
@@ -369,7 +360,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
         Promise<cloudExtension.Result<Array<cloudExtension.Result<Participant>>>> {
         console.info(`change privilege, bundle: ${bundleName}`);
         // 对接云共享服务端，并获得更改权限的返回值
-        ...
+        // ...
         // 返回服务端更改权限的返回结果
         let result: Array<cloudExtension.Result<Participant>> = [];
         participants.forEach((item => {
@@ -384,7 +375,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
             value: result
         }
     }
-    ...
+    // ...
 }
 ```
 
@@ -392,7 +383,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 
 queryParticipants(userId: number, bundleName: string, sharingResource: string): Promise&lt;Result&lt;Array&lt;cloudData.sharing.Participant&gt;&gt;&gt;
 
-查询当前共享参与者的接口。查询参与者时，会指定当前查询参与者的应用、查询参与者数据的资源标志sharingResource。
+查询当前端云共享的参与者。查询时，会指定当前查询参与者的应用、查询参与者数据的资源标识。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -402,18 +393,17 @@ queryParticipants(userId: number, bundleName: string, sharingResource: string): 
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
-| sharingResource | string  | 是   | 共享资源标志。   |
+| sharingResource | string  | 是   | 共享资源标识。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Result&lt;Array&lt;cloudData.sharing.Participant&gt;&gt;&gt; | 返回查询参与者结果的Promise对象。 |
+| Promise&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;&gt;&gt; | Promise对象，返回查询共享参与者的结果。 |
 
 **示例：**
 
 ```ts
-import cloudExtension from '@ohos.data.cloudExtension';
 import cloudData from '@ohos.data.cloudData';
 
 type Participant = cloudData.sharing.Participant;
@@ -424,7 +414,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
         Promise<cloudExtension.Result<Array<Participant>>> {
         console.info(`query participants, bundle: ${bundleName}`);
         // 对接云共享服务端，并获得查询参与者的返回值
-        ...
+        // ...
         // 返回服务端查询参与者的返回结果
         let privilege = {
             writable: false,
@@ -454,7 +444,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
             value: participants
         }
     }
-    ...
+    // ...
 }
 ```
 
@@ -462,7 +452,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 
 queryParticipantsByInvitation(userId: number, bundleName: string, invitationCode: string): Promise&lt;Result&lt;Array&lt;cloudData.sharing.Participant&gt;&gt;&gt;
 
-根据邀请码查询当前共享参与者的接口。查询参与者时，会指定当前查询参与者的应用、共享数据的的邀请码。
+根据邀请码查询当前端云共享的参与者。查询时，会指定当前查询参与者的应用、共享数据的邀请码。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -472,18 +462,17 @@ queryParticipantsByInvitation(userId: number, bundleName: string, invitationCode
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
-| invitationCode  | string  | 是   | 共享邀请码，由共享应用从消息中心获取。   |
+| invitationCode  | string  | 是   | 共享邀请码。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Result&lt;Array&lt;cloudData.sharing.Participant&gt;&gt;&gt; | 返回查询参与者结果的Promise对象。 |
+| Promise&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;&gt;&gt; | Promise对象，返回根据邀请码查询共享参与者的结果。 |
 
 **示例：**
 
 ```ts
-import cloudExtension from '@ohos.data.cloudExtension';
 import cloudData from '@ohos.data.cloudData';
 
 type Participant = cloudData.sharing.Participant;
@@ -494,7 +483,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
         Promise<cloudExtension.Result<Array<Participant>>> {
         console.info(`query participants by invitation, bundle: ${bundleName}`);
         // 对接云共享服务端，并获得查询参与者的返回值
-        ...
+        // ...
         // 返回服务端查询参与者的返回结果
         let privilege = {
             writable: false,
@@ -524,7 +513,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
             value: participants
         }
     }
-    ...
+    // ...
 }
 ```
 
@@ -532,7 +521,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 
 confirmInvitation(userId: number, bundleName: string, invitationCode: string, state: cloudData.sharing.State): Promise&lt;Result&lt;string&gt;&gt;
 
-共享的被邀请者确认共享邀请的接口。共享邀请确认时，会指定当前确认邀请的应用、共享数据的的邀请码以及确认状态。
+被邀请者确认端云共享邀请。确认时，会指定当前确认邀请的应用、共享数据的邀请码以及确认状态。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -542,19 +531,18 @@ confirmInvitation(userId: number, bundleName: string, invitationCode: string, st
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
-| invitationCode  | string  | 是   | 共享邀请码，由共享应用从消息中心获取。   |
-| state           | cloudData.sharing.State  | 是   | 共享邀请的确认状态。   |
+| invitationCode  | string  | 是   | 共享邀请码。   |
+| state           | [cloudData.sharing.State](#js-apis-data-cloudData.md#State)  | 是   | 共享邀请的确认状态。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Result&lt;string&gt;&gt; | 返回确认共享邀请数据的共享资源标志（sharingResource）的Promise对象。 |
+| Promise&lt;[Result](#result&lt;T&gt;)&lt;string&gt;&gt; | Promise对象，返回确认端云共享邀请数据的共享资源标识。 |
 
 **示例：**
 
 ```ts
-import cloudExtension from '@ohos.data.cloudExtension';
 import cloudData from '@ohos.data.cloudData';
 
 export default class MyShareCenter implements cloudExtension.ShareCenter {
@@ -563,7 +551,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
         Promise<cloudExtension.Result<string>> {
         console.info(`confirm invitation, bundle: ${bundleName}`);
         // 对接云共享服务端，并获得确认共享邀请的返回值
-        ...
+        // ...
         // 返回服务端确认共享邀请的返回结果
         return {
             code: cloudData.sharing.sharingCode.SUCCESS,
@@ -571,7 +559,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
             value: 'sharing_resource_test'
         }
     }
-    ...
+    // ...
 }
 ```
 
@@ -579,7 +567,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 
 changeConfirmation(userId: number, bundleName: string, sharingResource: string, state: cloudData.sharing.State): Promise&lt;Result&lt;void&gt;&gt;
 
-更改共享邀请的接口。更改共享邀请时，会指定当前更改共享邀请的应用、共享数据的的共享资源标志以及更改的状态。
+更改端云共享邀请。更改共享邀请时，会指定当前更改共享邀请的应用、共享数据的的共享资源标识以及更改的状态。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -589,19 +577,18 @@ changeConfirmation(userId: number, bundleName: string, sharingResource: string, 
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
-| sharingResource | string  | 是   | 共享资源标志。   |
-| state           | cloudData.sharing.State  | 是   | 共享邀请的更改状态。   |
+| sharingResource | string  | 是   | 共享资源标识。   |
+| state           | [cloudData.sharing.State](#js-apis-data-cloudData.md#State)  | 是   | 共享邀请的更改状态。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Result&lt;void&gt;&gt; | 返回更改共享邀请结果的Promise对象。 |
+| Promise&lt;[Result](#result&lt;T&gt;)&lt;void&gt;&gt; | Promise对象，返回更改共享邀请的结果。 |
 
 **示例：**
 
 ```ts
-import cloudExtension from '@ohos.data.cloudExtension';
 import cloudData from '@ohos.data.cloudData';
 
 export default class MyShareCenter implements cloudExtension.ShareCenter {
@@ -610,13 +597,13 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
         Promise<cloudExtension.Result<void>> {
         console.info(`change confirm, bundle: ${bundleName}`);
         // 对接云共享服务端，并获得更改共享邀请的返回值
-        ...
+        // ...
         // 返回服务端更改共享邀请的返回结果
         return {
             code: cloudData.sharing.sharingCode.SUCCESS,
             description: 'change confirm success'
         }
     }
-    ...
+    // ...
 }
 ```
