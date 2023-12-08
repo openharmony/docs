@@ -15,7 +15,7 @@ import radio from '@ohos.telephony.radio';
 
 ## radio.getRadioTech
 
-getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology\}\>\): void
+getRadioTech\(slotId: number, callback: AsyncCallback<[NetworkRadioTech](#networkradiotech11)\>\): void
 
 获取当前接入的CS域和PS域无线接入技术。使用callback异步回调。
 
@@ -28,7 +28,7 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech:[RadioTechnology](#radiotechnology)}\> | 是   | 回调函数。返回当前接入的CS域和PS域无线接入技术。 |
+| callback | AsyncCallback\<[NetworkRadioTech](#networkradiotech11)\> | 是   | 回调函数。返回当前接入的CS域和PS域无线接入技术。 |
 
 **错误码：**
 
@@ -49,11 +49,7 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-class Tech {
-    psRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
-    csRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
-}
-radio.getRadioTech(slotId, (err: BusinessError, data: Tech) => {
+radio.getRadioTech(slotId, (err: BusinessError, data: radio.NetworkRadioTech) => {
     if (err) {
         console.error(`getRadioTech failed, callback: err->${JSON.stringify(err)}`);
         return;
@@ -65,7 +61,7 @@ radio.getRadioTech(slotId, (err: BusinessError, data: Tech) => {
 
 ## radio.getRadioTech
 
-getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology\}\>
+getRadioTech\(slotId: number\): Promise<\[NetworkRadioTech](#networkradiotech11)\>
 
 获取当前接入的CS域和PS域无线接入技术。使用Promise异步回调。
 
@@ -83,7 +79,7 @@ getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioT
 
 | 类型                                                         | 说明                                            |
 | ------------------------------------------------------------ | ----------------------------------------------- |
-| Promise<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech: [RadioTechnology](#radiotechnology)}> | 以Promise形式返回当前接入的CS域和PS域技术。 |
+| Promise\<[NetworkRadioTech](#networkradiotech11)\> | 以Promise形式返回当前接入的CS域和PS域技术。 |
 
 **错误码：**
 
@@ -104,11 +100,7 @@ getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioT
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-class Tech {
-    psRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
-    csRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
-}
-radio.getRadioTech(slotId).then((data: Tech) => {
+radio.getRadioTech(slotId).then((data: radio.NetworkRadioTech) => {
     console.log(`getRadioTech success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getRadioTech failed, promise: err->${JSON.stringify(err)}`);
@@ -3489,6 +3481,17 @@ radio.factoryReset(slotId).then(() => {
     console.error(`factoryReset failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
+
+## NetworkRadioTech<sup>11+</sup>
+
+网络中packet service (PS) 和 circuit service (CS) 无线接入技术。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+|      名称       |           类型              | 必填 |      说明          |
+| --------------- | --------------------------- | ---- | ------------------ |
+| psRadioTech     | [RadioTechnology](#radiotechnology) | 是   | PS无线接入技术。 |
+| csRadioTech     | [RadioTechnology](#radiotechnology) | 是   | CS无线接入技术。 |
 
 ## RadioTechnology
 
