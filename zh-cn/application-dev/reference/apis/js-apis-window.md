@@ -1625,11 +1625,11 @@ promise.then((data) => {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称                  | 类型       | 说明                                                                            |
-|---------------------|----------|-------------------------------------------------------------------------------|
-| status              | string   | 状态栏。|
-| navigation          | string   | 导航栏。|
-| navigationIndicator | string   | AI横条。|
+| 名称                  | 类型       | 说明           |
+|---------------------|----------|--------------|
+| status              | string   | 状态栏。         |
+| navigation          | string   | 导航栏。         |
+| navigationIndicator | string   | AI横条，即底部导航条。 |
 
 ## Window
 
