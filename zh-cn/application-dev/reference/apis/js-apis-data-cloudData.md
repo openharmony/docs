@@ -775,7 +775,7 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | storeId      | string                        | 是   | 数据库名称。 |
 | predicates   | relationalStore.RdbPredicates | 是   | 表示查找共享资源的谓词条件，详见[RdbPredicates](js-apis-data-relationalStore.md)。 |
 | participants | Array&lt;[Participant](#participant)&gt; | 是   | 共享参与者。 |
-| columns      | Array&lt;string&gt;           | 否   | 表示要查找的列字段名。 |
+| columns      | Array&lt;string&gt;           | 是   | 表示要查找的列字段名。 |
 | callback     | AsyncCallback&lt;relationalStore.ResultSet&gt;  | 是  | 回调函数。当申请共享资源并发起共享成功，err为undefined，并返回共享资源的结果集，否则为错误对象。 |
 
 **示例：**
