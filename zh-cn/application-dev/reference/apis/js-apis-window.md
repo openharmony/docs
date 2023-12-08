@@ -3855,7 +3855,7 @@ on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): voi
 | 参数名   | 类型                           | 必填 | 说明                                                     |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
 | type     | string                         | 是   | 监听事件，固定为'windowStatusChange'，即窗口模式变化事件。 |
-| callback | Callback&lt;[WindowStatusType](#WindowStatusType11)&gt; | 是   | 回调函数。返回当前的窗口模式。                           |
+| callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | 是   | 回调函数。返回当前的窗口模式。                           |
 
 **示例：**
 
@@ -3883,7 +3883,7 @@ off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): vo
 | 参数名   | 类型                          | 必填 | 说明                                                     |
 | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
 | type     | string                        | 是   | 监听事件，固定为'windowStatusChange'，即窗口模式变化事件。 |
-| callback | Callback&lt;[WindowStatusType](#WindowStatusType11)&gt; | 否   | 回调函数。返回当前的窗口模式。如果传入参数，则关闭该监听。如果未传入参数，则关闭窗口模式变化的监听。                           |
+| callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | 否   | 回调函数。返回当前的窗口模式。如果传入参数，则关闭该监听。如果未传入参数，则关闭窗口模式变化的监听。                           |
 
 **示例：**
 
