@@ -543,7 +543,7 @@ struct AutoAchieveShareTransitionDemo {
   @State rect_right: number = 0;
 
   // 新建元素相关属性
-  @State rootPosition: number = 0; // 状态栏高度
+  @State rootPosition: number = 0; // 父组件位置
   @State item: string = ''; // 记录展开元素
   @State cardHeight: number = 300; // 卡片高度
   @State cardOpacity: number = 1; // 卡片透明度
