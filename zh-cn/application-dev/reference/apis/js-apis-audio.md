@@ -6363,7 +6363,7 @@ updateSpatialDeviceState(spatialDeviceState: AudioSpatialDeviceState): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| spatialDeviceState     | [AudioSpatialDeviceState](#audiospatialdeviceState11)     | 是   | 需要更新的空间化设备状态 |
+| spatialDeviceState     | [AudioSpatialDeviceState](#audiospatialdevicestate11)     | 是   | 需要更新的空间化设备状态 |
 
 **错误码：**
 
@@ -6406,7 +6406,7 @@ try {
 | address<sup>11+</sup>                    | string         | 是   | 是   | 空间化设备地址。 <br> 该接口为系统接口 <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
 | isSpatializationSupported<sup>11+</sup>  | boolean        | 是   | 是   | 空间化设备是否支持空间音频渲染。 <br> 该接口为系统接口 <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
 | isHeadTrackingSupported<sup>11+</sup>    | boolean        | 是   | 是   | 空间化设备是否支持头动跟踪。<br> 该接口为系统接口  <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
-| spatialDeviceType<sup>11+</sup>          | [AudioSpatialDeviceType](#audiospatialdeviceType11)   | 是   | 是   | 空间化设备类型。 <br> 该接口为系统接口 <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
+| spatialDeviceType<sup>11+</sup>          | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | 是   | 是   | 空间化设备类型。 <br> 该接口为系统接口 <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
 
 **示例：**
 

@@ -342,7 +342,7 @@
 
 ### 更新空间化设备状态
 
-系统应用开发者可以通过该接口更新空间化设备状态，空间化设备状态包含设备的地址、是否具有空间音频渲染的能力、是否具有头动跟踪的能力和设备的形态类型。该接口仅供拥有设置空间音频的权限的系统级应用（比如空间音频UX）调用。空间化设备状态AudioSpatialDeviceState的具体信息可以参考[AudioSpatialDeviceState](../reference/apis/js-apis-audio.md#AudioSpatialDeviceState)。
+系统应用开发者可以通过该接口更新空间化设备状态，空间化设备状态包含设备的地址、是否具有空间音频渲染的能力、是否具有头动跟踪的能力和设备的形态类型。该接口仅供拥有设置空间音频的权限的系统级应用（比如空间音频UX）调用。空间化设备状态AudioSpatialDeviceState的具体信息可以参考[AudioSpatialDeviceState](../reference/apis/js-apis-audio.md#audiospatialdevicestate)。
 
   ```ts
   let spatialDeviceState: audio.AudioSpatialDeviceState = {
