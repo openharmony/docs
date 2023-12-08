@@ -279,6 +279,7 @@
   - [@ohos.dlpPermission (DLP)](js-apis-dlppermission.md)
   - [@ohos.privacyManager (Privacy Management)](js-apis-privacyManager.md)
   - [@ohos.security.cert (Certificate)](js-apis-cert.md)
+  - [@ohos.security.certManager (Certificate Management)](js-apis-certManager.md)
   - [@ohos.security.cryptoFramework (Crypto Framework)](js-apis-cryptoFramework.md)
   - [@ohos.security.huks (HUKS)](js-apis-huks.md)
   - [@ohos.userIAM.faceAuth (Facial Authentication)](js-apis-useriam-faceauth.md)
