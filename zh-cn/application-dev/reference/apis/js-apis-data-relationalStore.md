@@ -4942,7 +4942,7 @@ if(store != undefined) {
 
 ### querySharingResource<sup>11+</sup>
 
-querySharingResource(predicates: RdbPredicates, columns?: Array<string>): Promise&lt;ResultSet&gt;
+querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;ResultSet&gt;
 
 根据谓词条件匹配的数据记录查找对应记录的共享资源，返回查找的结果集。 如果指定了列字段，则返回结果集中同时包含对应列的字段值。
 
@@ -5050,7 +5050,7 @@ if(store != undefined) {
 
 ### querySharingResource<sup>11+</sup>
 
-querySharingResource(predicates: RdbPredicates, columns: Array<string>, callback: AsyncCallback&lt;ResultSet&gt;): void
+querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;): void
 
 根据谓词条件匹配的数据记录查找对应记录的共享资源，返回查找到的共享资源的结果集，同时在结果集中返回谓词条件匹配的指定列名的字段值。
 
