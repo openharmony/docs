@@ -24,7 +24,7 @@ import {
 ## 接口
 
 ```
-ExceptionPrompt ({ Type: $type,Options: $options })
+ExceptionPrompt ({ Type: this.type,Options: this.options })
 ```
 
 从API version 11开始，该接口支持在ArkTS卡片中使用。
@@ -41,8 +41,8 @@ ExceptionPrompt ({ Type: $type,Options: $options })
 
 | 名称        | 类型 | 装饰器类型 | 必填        | 说明                            |
 | ----------- | ---------- | --------------------------------- | --------------------------------- | --------------------------------- |
-| Type | PromptTypeEnum | @Link | 是   | 指定当前ExceptionPrompt的类型。对应不同显示状态 |
-| Options | PromptOptions | @Link | 是 | 指定当前ExceptionPrompt的配置信息 |
+| Type | PromptTypeEnum | @Prop | 是   | 指定当前ExceptionPrompt的类型。对应不同显示状态 |
+| Options | PromptOptions |  | 是 | 指定当前ExceptionPrompt的配置信息 |
 
 ##  OptionType
 
@@ -113,8 +113,8 @@ struct Index {
   build() {
     Column() {
       ExceptionPrompt({
-        Type: $Type,
-        Options: $Options,
+        Type: this.Type,
+        Options: this.Options,
         ReconnectionFunction: () => {
         },
         ConfigureNetworkFunction: () => {
