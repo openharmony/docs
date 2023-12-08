@@ -337,7 +337,7 @@ import window from '@ohos.window';
 | MAXIMIZE    | 2    | 表示APP窗口最大化模式。   |
 | MINIMIZE    | 3    | 表示APP窗口最小化模式。   |
 | FLOATING    | 4    | 表示APP自由悬浮形式窗口模式。   |
-| SPLIT_SCREEN  | 5    | 表示APP分屏多窗口主要模式。   |
+| SPLIT_SCREEN  | 5    | 表示APP分屏模式。   |
 
 ## window.createWindow<sup>9+</sup>
 
