@@ -4955,7 +4955,7 @@ querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): 
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | 表示查询的谓词条件。    |
-| columns    | Array<string>        | 否   | 表示要查找的列字段名。 |
+| columns    | Array&lt;string&gt;      | 否   | 表示要查找的列字段名。 |
 
 **返回值：**
 
@@ -5067,7 +5067,7 @@ querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, ca
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | 表示查询的谓词条件。           |
-| columns    | Array<string>                   | 是   | 表示要查找的列字段名。           |
+| columns    | Array&lt;string&gt;              | 是   | 表示要查找的列字段名。           |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt;  | 是   | 回调函数。 当共享资源查询成功，err为undefined，并返回共享资源的结果集，否则为错误对象。 |
 
 **错误码：**
