@@ -14,7 +14,7 @@ import {
      OptionType,
      TypeEnum,
      HardwareStatusType
-} from '@ohos.arkui.advanced.exceptionprompt';
+} from '@ohos.arkui.advanced.ExceptionPrompt';
 ```
 
 ##  子组件
@@ -23,7 +23,9 @@ import {
 
 ## 接口
 
+```
 ExceptionPrompt ({ type: $type,options: $options })
+```
 
 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -60,21 +62,21 @@ TypeEnum定义type的类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-|            类型            |           说明           |
-| :------------------------: | :----------------------: |
-|        DEFAULT_HIDE        |      默认状态不显示      |
-|   NETWORK_NOT_CONNECTED    |      网络未连接状态      |
-| NETWORK_CONNECTED_UNSTABLE |    网络连接不稳定状态    |
-|  UNSTABLE_CONNECT_SERVER   |     连不上服务器状态     |
-|    CUSTOM_NETWORK_TIPS     | 有网但是获取不到内容状态 |
-|        CUSTOM_TIPS         |    自定义提示内容状态    |
+| 类型                       | 说明                     |
+| :------------------------- | :----------------------- |
+| DEFAULT_HIDE               | 默认状态不显示           |
+| NETWORK_NOT_CONNECTED      | 网络未连接状态           |
+| NETWORK_CONNECTED_UNSTABLE | 网络连接不稳定状态       |
+| UNSTABLE_CONNECT_SERVER    | 连不上服务器状态         |
+| CUSTOM_NETWORK_TIPS        | 有网但是获取不到内容状态 |
+| CUSTOM_TIPS                | 自定义提示内容状态       |
 ## hardwareStatus
 
 HardwareStatusType定义hardwareStatus的类型
 
-| 类型 |    说明    |
-| :--: | :--------: |
-|  ON  | 网络硬件开 |
+| 类型 | 说明       |
+| :--- | :--------- |
+| ON   | 网络硬件开 |
 | OFF  | 网络硬件关 |
 
 
