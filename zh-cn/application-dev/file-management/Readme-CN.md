@@ -14,8 +14,8 @@
     - [应用数据备份恢复概述](app-file-backup-overview.md)
     - [应用接入数据备份恢复](app-file-backup-extension.md)
     - [应用触发数据备份/恢复（仅对系统应用开放）](app-file-backup.md)
-  - 全量挂载设备文件授权访问
-    - [全量挂载设备文件授权访问能力](app-file-full-mount-device-permission.md)
+  - 文件授权访问
+    - [文件授权访问能力](app-file-full-mount-device-permission.md)
 - 用户文件
   - [用户文件概述](user-file-overview.md)
   - [用户文件uri介绍](user-file-uri-intro.md)
