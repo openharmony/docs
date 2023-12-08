@@ -1,37 +1,38 @@
 # 全量挂载设备文件授权访问
 
-全量挂载设备下提供给应用基于权限申明预授权的方式获取公共目录访问权限，通过filePicker选择文件或目录授权并支持授权持久化，通过接口获取文件父目录、公共目录、外卡目录的能力，如下接口仅支持特定设备使用，下文介绍具体方法。
+全量挂载设备下提供给应用基于权限申明预授权的方式获取公共目录访问权限，通过filePicker选择文件或目录授权并支持授权持久化，通过接口获取文件或文件夹当前所在路径的URI、公共目录、外卡目录的能力，如下接口仅支持特定设备使用，下文介绍具体方法。
 
 ## 接口说明
 开发者通过获取目录环境能力接口（[ohos.file.environment](../reference/apis/js-apis-file-environment.md)）实现获取环境路径能力，
-通过文件URI接口（[ohos.file.fileshare](../reference/apis/js-apis-file-fileShare.md)）实现文件授予和使能权限能力，主要功能如下表所示。
+通过文件分享接口（[ohos.fileshare](../reference/apis/js-apis-fileShare.md)）实现文件授予和使能权限能力，
+通过文件URI接口（[ohos.file.fileuri](../reference/apis/js-apis-file-fileuri.md)）获取文件或文件夹当前所在路径的URI，主要功能如下表所示。
 
 **表1** 获取用户目录环境能力接口
 
-| 接口名                  | 功能          | 接口类型 | 支持同步 | 支持异步 | 
-|----------------------|-------------| -------- | -------- |------|
-| getUserDownloadDir   | 获取预授权下载目录路径 | 方法 | √ | -    | 
-| getUserDesktopDir    | 获取预授权桌面目录路径 | 方法 | √ | -    |
-| getUserDocumentDir   | 获取预授权文档目录路径 | 方法 | √ | -    |
-| getUserHomeDir       | 获取当前用户下应用沙箱路径的内卡目录 | 方法 | √ | -    | 
-| getExternalStorageDir | 获取外卡目录    | 方法 | √ | -    | 
+| 接口名                  | 功能          | 接口类型 | 支持同步 | 支持异步 | 公开级别      |
+|----------------------|-------------| -------- | -------- |------|-----------|
+| getUserDownloadDir   | 获取预授权下载目录路径 | 方法 | √ | -    | publicAPI | 
+| getUserDesktopDir    | 获取预授权桌面目录路径 | 方法 | √ | -    | publicAPI | 
+| getUserDocumentDir   | 获取预授权文档目录路径 | 方法 | √ | -    | publicAPI | 
+| getUserHomeDir       | 获取当前用户下应用沙箱路径的内卡目录 | 方法 | √ | -    | systemAPI | 
+| getExternalStorageDir | 获取外卡目录    | 方法 | √ | -    |     systemAPI      | 
 
 **表2** 文件权限接口
 
-| 接口名                       | 功能                | 接口类型 | 支持同步 | 支持异步 | 
-|---------------------------|-------------------| -------- |------|------|
-| grantPermission               | 对所选择的文件或目录uri临时授权 | 方法 | -    | √    | 
-| persistPermission         | 对所选择的文件或目录uri持久化授权 | 方法 | -    | √    | 
-| revokePermission | 对所选择的文件或目录uri取消持久化授权 | 方法 | -    | √    | 
-| activatePermission      | 使能已经永久授权过的文件或目录   | 方法 | -    | √    | 
-| deactivatePermission    | 取消使能已经永久授权过的文件或目录 | 方法 | -    | √    |
+| 接口名                       | 功能                | 接口类型 | 支持同步 | 支持异步 | 公开级别       |
+|---------------------------|-------------------| -------- |------|------|------------|
+| grantPermission               | 对所选择的文件或目录uri临时授权 | 方法 | -    | √    | systemAPI  | 
+| persistPermission         | 对所选择的文件或目录uri持久化授权 | 方法 | -    | √    | publicAPI  | 
+| revokePermission | 对所选择的文件或目录uri取消持久化授权 | 方法 | -    | √    | publicAPI  | 
+| activatePermission      | 使能已经永久授权过的文件或目录   | 方法 | -    | √    | publicAPI  | 
+| deactivatePermission    | 取消使能已经永久授权过的文件或目录 | 方法 | -    | √    | publicAPI  | 
 
 
 **表3** 文件URI接口
 
-| 接口名                 | 功能                                | 接口类型 | 支持同步 | 支持异步 | 
-|---------------------|-----------------------------------| -------- | -------- |------|
-| getFullDirectoryUri | 获取所在路径URI,文件获取所在路劲URI，目录获取当前路径URI | 方法 | √ | -    |
+| 接口名                 | 功能                                | 接口类型 | 支持同步 | 支持异步 | 公开级别      |
+|---------------------|-----------------------------------| -------- | -------- |------|-----------|
+| getFullDirectoryUri | 获取所在路径URI,文件获取所在路劲URI，目录获取当前路径URI | 方法 | √ | -    | publicAPI | 
 
 ## 开发示例
 
@@ -65,9 +66,9 @@ async function getUserDownloadDirExample() {
 }
 ```
 
-### 【FilePicker应用】使能临时访问权限
+### 【FilePicker应用】通过FilePicker的方式选择文件或文件夹使能临时访问权限场景
 
-应用拉起FilePicker应用，通过FilePicker应用选择并使能目录的临时访问权限，以下示例代码演示了FilePicker开发者如何使能临时访问权限：
+应用拉起FilePicker应用，通过FilePicker应用选择文件或文件夹使能临时访问权限，以下示例代码演示了FilePicker开发者如何使能临时访问权限：
 
 第一步：通过FilePicker选择和保存路径uri。
 
@@ -243,7 +244,7 @@ async function deactivatePermissionExample01() {
 }
 ```
 
-### 【文件管理器】通过接口获取文件父目录
+### 【文件管理器】通过接口获取文件或文件夹当前所在路径的URI
 
 如果当前FileUri指向文件，将返回文件所在路径URI，如果当前FileUri指向目录，将返回当前路径URI。
 以下示例代码演示了文件管理器通过接口获取文件父目录：
