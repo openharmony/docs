@@ -40,9 +40,9 @@ BLE是Bluetooth Low Energy的缩写，意为“低功耗蓝牙”。它是一种
 
 | 参数名         | 类型                                    | 必填   | 说明             |
 | ----------- | ------------------------------------- | ---- | -------------- |
-| setting     | [AdvertiseSetting](#advertisesetting) | 是    | BLE广播的相关设置参数。如果需要使用默认值，请配置为null。    |
-| advData     | [AdvertiseData](#advertisedata)       | 是    | BLE广播包内容。      |
-| advResponse | [AdvertiseData](#advertisedata)       | 否    | BLE回复扫描请求回复响应。 |
+| setting     | AdvertiseSetting | 是    | BLE广播的相关设置参数。如果需要使用默认值，请配置为null。    |
+| advData     | AdvertiseData       | 是    | BLE广播包内容。      |
+| advResponse | AdvertiseData      | 否    | BLE回复扫描请求回复响应。 |
 5. 示例代码：
 ```
 import ble from '@ohos.bluetooth.ble';
@@ -132,8 +132,8 @@ try {
 
 | 参数名     | 类型                                     | 必填   | 说明                                  |
 | ------- | -------------------------------------- | ---- | ----------------------------------- |
-| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是    | 表示用于过滤指定设备的过滤器列表，如果不使用过滤的方式，该参数设置为null。 |
-| options | [ScanOptions](#scanoptions)            | 否    | 表示扫描的参数配置，可选参数。如果用户没有赋值，则将使用默认值。 |
+| filters | Array&lt;ScanFilter&gt; | 是    | 表示用于过滤指定设备的过滤器列表，如果不使用过滤的方式，该参数设置为null。 |
+| options | ScanOptions            | 否    | 表示扫描的参数配置，可选参数。如果用户没有赋值，则将使用默认值。 |
 5. 示例代码:
 ```
 import ble from '@ohos.bluetooth.ble';

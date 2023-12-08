@@ -29,15 +29,15 @@ GATT是指蓝牙技术中的通用属性（Generic Attribute），它是一种�
 | ------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | connect()                                  | client端发起连接远端蓝牙低功耗设备。                                                                      |
 | disconnect()                               | client端断开与远端蓝牙低功耗设备的连接。                                                                  |
-| close()                                    | 关闭客户端功能，注销client在协议栈的注册，调用该接口后[GattClientDevice](#gattclientdevice)实例将不能再使用。|
+| close()                                    | 关闭客户端功能，注销client在协议栈的注册，调用该接口后GattClientDevice实例将不能再使用。|
 | getDeviceName()                            | client获取远端蓝牙低功耗设备名。                                                                          |
 | getServices()                              | client端获取蓝牙低功耗设备的所有服务，即服务发现 。                                                         |
 | readCharacteristicValue()                  | client端读取蓝牙低功耗设备特定服务的特征值。                                                               |
 | readDescriptorValue()                      | client端读取蓝牙低功耗设备特定的特征包含的描述符。                                                         |
 | writeCharacteristicValue()                 | client端向低功耗蓝牙设备写入特定的特征值。                                                                 |
 | writeDescriptorValue()                     | client端向低功耗蓝牙设备特定的描述符写入二进制数据。                                                        |
-| getRssiValue()                             | client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect)接口连接成功后才能使用。|
-| setBLEMtuSize()                            | client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmission Unit, MTU），调用[connect](#connect)接口连接成功后才能使用。|
+| getRssiValue()                             | client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用connect接口连接成功后才能使用。|
+| setBLEMtuSize()                            | client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmission Unit, MTU），调用connect接口连接成功后才能使用。|
 | setCharacteristicChangeNotification()      | 向服务端发送设置通知此特征值请求。                                                                          |
 | setCharacteristicChangeIndication()        | 向服务端发送设置通知此特征值请求。                                                                          |
 | on(type: 'BLECharacteristicChange')        | 订阅蓝牙低功耗设备的特征值变化事件。需要先调用setNotifyCharacteristicChanged接口才能接收server端的通知。        |
