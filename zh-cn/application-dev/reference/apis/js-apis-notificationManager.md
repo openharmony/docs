@@ -4369,7 +4369,7 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 ```ts
 import Base from '@ohos.base';
 
-let OnCheckNotification = (info : notificationManager.NotificationCheckInfo): notificationManager.NotificationCheckResult => {
+let onCheckNotification = (info : notificationManager.NotificationCheckInfo): notificationManager.NotificationCheckResult => {
     console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
     if(info.notificationId == 1){
         let result: notificationManager.NotificationCheckResult =  { code: 1, message: "testMsg1"};
@@ -4380,9 +4380,9 @@ let OnCheckNotification = (info : notificationManager.NotificationCheckInfo): no
     }
 }
 try{
-    notificationManager.on("checkNotification", OnCheckNotification);
+    notificationManager.on("checkNotification", onCheckNotification);
 } catch (error){
-    console.info(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
+    console.error(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
 }
 ```
 
@@ -4403,7 +4403,7 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 | 参数名 | 类型                                                                                                                      | 必填 | 说明           |
 | ------ |-------------------------------------------------------------------------------------------------------------------------| ---- | -------------- |
 | type | string                                                                                                                  | 是   | 回调函数类型名，固定为'checkNotification'。 |
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | 否   | 消息验证函数指针，默认为空。 |
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | 否   | 消息验证函数指针。 |
 
 **错误码：**
 
@@ -4421,7 +4421,7 @@ import Base from '@ohos.base';
 try{
     notificationManager.off("checkNotification");
 } catch (error){
-    console.info(`notificationManager.off error: ${JSON.stringify(error as Base.BusinessError)}`);
+    console.error(`notificationManager.off error: ${JSON.stringify(error as Base.BusinessError)}`);
 }
 ```
 
@@ -4558,7 +4558,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 | TYPE_NONE    | 0 | 非通知勿扰类型。                           |
 | TYPE_ONCE    | 1 | 以设置时间段(只看小时和分钟)一次执行勿扰。 |
 | TYPE_DAILY   | 2 | 以设置时间段(只看小时和分钟)每天执行勿扰。 |
-| TYPE_CLEARLY | 3 | 以设置时间段(明确年月日时分)执行勿扰。     |
+| TYPE_CLEARLY | 3 | 以设置时间段(明确月日时)执行勿扰。     |
 
 
 ## ContentType
@@ -4567,12 +4567,12 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 | 名称                              | 值          | 说明               |
 | --------------------------------- | ----------- |------------------|
-| NOTIFICATION_CONTENT_BASIC_TEXT   | NOTIFICATION_CONTENT_BASIC_TEXT | 普通类型通知。          |
-| NOTIFICATION_CONTENT_LONG_TEXT    | NOTIFICATION_CONTENT_LONG_TEXT | 长文本类型通知。         |
-| NOTIFICATION_CONTENT_PICTURE      | NOTIFICATION_CONTENT_PICTURE | 图片类型通知。          |
-| NOTIFICATION_CONTENT_CONVERSATION | NOTIFICATION_CONTENT_CONVERSATION | 社交类型通知（暂不支持该类型）。 |
-| NOTIFICATION_CONTENT_MULTILINE    | NOTIFICATION_CONTENT_MULTILINE | 多行文本类型通知。        |
-| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW<sup>11+</sup>    | NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW | 实况窗类型通知（仅对系统应用开放）。        |
+| NOTIFICATION_CONTENT_BASIC_TEXT   | 0          | 普通类型通知。          |
+| NOTIFICATION_CONTENT_LONG_TEXT    | 1          | 长文本类型通知。         |
+| NOTIFICATION_CONTENT_PICTURE      | 2          | 图片类型通知。          |
+| NOTIFICATION_CONTENT_CONVERSATION | 3          | 社交类型通知（暂不支持该类型）。 |
+| NOTIFICATION_CONTENT_MULTILINE    | 4          | 多行文本类型通知。        |
+| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW<sup>11+</sup>    | 5 | 实况窗类型通知（仅对系统应用开放）。        |
 
 ## SlotLevel
 
