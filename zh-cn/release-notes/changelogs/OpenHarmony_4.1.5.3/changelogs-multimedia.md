@@ -166,3 +166,34 @@ setMicMute(mute: boolean): Promise<void>;
 三方应用，由于本身无法获取权限授权，此变更无任何影响，无需适配
 
 系统应用，即使拥有ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO权限，也不再能够筛选STREAM_USAGE_VOICE_COMMUNICATION作为录制目标，需将此类型从筛选中删除。
+
+## c1.multimedia.5 ohos.multimedia.audio AudioManager订阅事件interrupt接口废弃
+
+**访问级别**
+
+公开接口
+
+**废弃原因**
+
+SDK10时OpenHarmony已全面使用内置焦点模式，见开发指南中的[多音频播放的并发策略](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/audio-playback-concurrency.md)
+本接口为历史遗留的外置焦点接口，与内置焦点独立，已经无法起到焦点抢占的作用，因此废弃，避免误导开发者。
+
+**废弃影响**
+
+非兼容性变更，需要开发者进行适配。
+
+**废弃发生版本**
+
+从OpenHarmony SDK 4.1.5.3开始。
+
+**废弃的接口**
+
+接口属于AudioManager
+
+on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback<InterruptAction>): void;
+
+off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback<InterruptAction>): void;
+
+**适配指导**
+
+根据内置焦点模式实现多音频并发策略控制，参考[多音频播放的并发策略](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/audio-playback-concurrency.md)
