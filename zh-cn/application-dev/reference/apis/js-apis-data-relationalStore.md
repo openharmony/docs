@@ -4980,17 +4980,17 @@ let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
 if(store != undefined) {
-    (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data']).then((resultSet) => {
-        if (!resultSet.goToFirstRow()) {
-            console.error(`resultSet error`);
-            return;
-        }
-        const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
-        console.info(`sharing resource: ${res}`);
-        sharingResource = res;
-    }).catch((err: BusinessError) => {
-        console.error(`query sharing resource failed, code is ${err.code},message is ${err.message}`);
-    })
+  (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data']).then((resultSet) => {
+    if (!resultSet.goToFirstRow()) {
+      console.error(`resultSet error`);
+      return;
+    }
+    const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
+    console.info(`sharing resource: ${res}`);
+    sharingResource = res;
+  }).catch((err: BusinessError) => {
+    console.error(`query sharing resource failed, code is ${err.code},message is ${err.message}`);
+  })
 }
 
 ```
@@ -5027,23 +5027,19 @@ let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
 if(store != undefined) {
-    try {
-      (store as relationalStore.RdbStore).querySharingResource(predicates,(err, resultSet) => {
-          if (err) {
-              console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
-              return;
-          }
-          if (!resultSet.goToFirstRow()) {
-              console.error(`resultSet error`);
-              return;
-          }
-          const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
-          console.info(`sharing resource: ${res}`);
-          sharingResource = res;
-      })
-    } catch(err) {
-        console.error(`query sharing resource failed, code is ${err.code},message is ${err.message}`);
+  (store as relationalStore.RdbStore).querySharingResource(predicates,(err, resultSet) => {
+    if (err) {
+      console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
+      return;
     }
+    if (!resultSet.goToFirstRow()) {
+      console.error(`resultSet error`);
+      return;
+    }
+    const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
+    console.info(`sharing resource: ${res}`);
+    sharingResource = res;
+  })
 }
 
 ```
@@ -5078,26 +5074,22 @@ querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, ca
 
 ```ts
 let sharingResource: string;
-let predicates = new sharingResource.RdbPredicates('test_table');
+let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
 if(store != undefined) {
-    try {
-      (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data'], (err, resultSet) => {
-          if (err) {
-              console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
-              return;
-          }
-          if (!resultSet.goToFirstRow()) {
-              console.error(`resultSet error`);
-              return;
-          }
-          const res = resultSet.getString(resultSet.getColumnIndex(sharingResource.Field.SHARING_RESOURCE_FIELD));
-          console.info(`sharing resource: ${res}`);
-          sharingResource = res;
-      })
-    } catch(err) {
-        console.error(`query sharing resource failed, code is ${err.code},message is ${err.message}`);
+  (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data'], (err, resultSet) => {
+    if (err) {
+      console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
+      return;
     }
+    if (!resultSet.goToFirstRow()) {
+      console.error(`resultSet error`);
+      return;
+    }
+    const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
+    console.info(`sharing resource: ${res}`);
+    sharingResource = res;
+  })
 }
 
 ```

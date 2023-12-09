@@ -731,33 +731,33 @@ import { BusinessError } from "@ohos.base";
 import relaitonalStore from '@ohos.data.relationalStore';
 
 let privilege = {
-    writable: true,
-    readable: true,
-    creatable: false,
-    deletable: false,
-    shareable: false
+  writable: true,
+  readable: true,
+  creatable: false,
+  deletable: false,
+  shareable: false
 }
 let participants = new Array();
 participants.push({
-    identity: '000000000',
-    role: cloudData.sharing.Role.ROLE_INVITER,
-    state: cloudData.sharing.State.STATE_UNKNOWN,
-    privilege: privilege,
-    attachInfo: ''
+  identity: '000000000',
+  role: cloudData.sharing.Role.ROLE_INVITER,
+  state: cloudData.sharing.State.STATE_UNKNOWN,
+  privilege: privilege,
+  attachInfo: ''
 })
 let sharingResource: string;
 let predicates = new relaitonalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
 cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, ['uuid', 'data']).then((resultSet) => {
-    if (!resultSet.goToFirstRow()) {
-        console.error(`row error`);
-        return;
-    }
-    const res = resultSet.getString(resultSet.getColumnIndex(relaitonalStore.Field.SHARING_RESOURCE_FIELD));
-    console.info(`sharing resource: ${res}`);
-    sharingResource = res;
+  if (!resultSet.goToFirstRow()) {
+     console.error(`row error`);
+     return;
+  }
+  const res = resultSet.getString(resultSet.getColumnIndex(relaitonalStore.Field.SHARING_RESOURCE_FIELD));
+  console.info(`sharing resource: ${res}`);
+  sharingResource = res;
 }).catch((err: BusinessError) => {
-    console.error(`alloc resource and share failed, code is ${err.code},message is ${err.message}`);
+  console.error(`alloc resource and share failed, code is ${err.code},message is ${err.message}`);
 })
 
 ```
@@ -786,40 +786,36 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 import relationalStore from '@ohos.data.relationalStore';
 
 let privilege = {
-    writable: true,
-    readable: true,
-    creatable: false,
-    deletable: false,
-    shareable: false
+  writable: true,
+  readable: true,
+  creatable: false,
+  deletable: false,
+  shareable: false
 }
 let participants = new Array();
 participants.push({
-    identity: '000000000',
-    role: cloudData.sharing.Role.ROLE_INVITER,
-    state: cloudData.sharing.State.STATE_UNKNOWN,
-    privilege: privilege,
-    attachInfo: ''
+  identity: '000000000',
+  role: cloudData.sharing.Role.ROLE_INVITER,
+  state: cloudData.sharing.State.STATE_UNKNOWN,
+  privilege: privilege,
+  attachInfo: ''
 })
 let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
-try {
-    cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, ['uuid', 'data'], (err, resultSet) => {
-        if (err) {
-            console.error(`alloc resource and share failed, code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        if (!resultSet.goToFirstRow()) {
-            console.error(`row error`);
-            return;
-        }
-        const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
-        console.info(`sharing resource: ${res}`);
-        sharingResource = res;
-    })
-} catch (e) {
-    console.error(`alloc resource and share failed, code is ${e.code},message is ${e.message}`);
-}
+cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, ['uuid', 'data'], (err, resultSet) => {
+  if (err) {
+    console.error(`alloc resource and share failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  if (!resultSet.goToFirstRow()) {
+    console.error(`row error`);
+    return;
+  }
+  const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
+  console.info(`sharing resource: ${res}`);
+  sharingResource = res;
+})
 
 ```
 
@@ -846,40 +842,36 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 import relationalStore from '@ohos.data.relationalStore';
 
 let privilege = {
-    writable: true,
-    readable: true,
-    creatable: false,
-    deletable: false,
-    shareable: false
+  writable: true,
+  readable: true,
+  creatable: false,
+  deletable: false,
+  shareable: false
 }
 let participants = new Array();
 participants.push({
-    identity: '000000000',
-    role: cloudData.sharing.Role.ROLE_INVITER,
-    state: cloudData.sharing.State.STATE_UNKNOWN,
-    privilege: privilege,
-    attachInfo: ''
+  identity: '000000000',
+  role: cloudData.sharing.Role.ROLE_INVITER,
+  state: cloudData.sharing.State.STATE_UNKNOWN,
+  privilege: privilege,
+  attachInfo: ''
 })
 let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
-try {
-    cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, (err, resultSet) => {
-        if (err) {
-            console.error(`alloc resource and share failed, code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        if (!resultSet.goToFirstRow()) {
-            console.error(`row error`);
-            return;
-        }
-        const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
-        console.info(`sharing resource: ${res}`);
-        sharingResource = res;
-    })
-} catch (e) {
-    console.error(`alloc resource and share failed, code is ${e.code},message is ${e.message}`);
-}
+cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, (err, resultSet) => {
+  if (err) {
+    console.error(`alloc resource and share failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  if (!resultSet.goToFirstRow()) {
+    console.error(`row error`);
+    return;
+  }
+  const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
+  console.info(`sharing resource: ${res}`);
+  sharingResource = res;
+})
 
 ```
 
@@ -910,24 +902,24 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;): Promise&
 import { BusinessError } from "@ohos.base";
 
 let privilege = {
-    writable: true,
-    readable: true,
-    creatable: false,
-    deletable: false,
-    shareable: false
+  writable: true,
+  readable: true,
+  creatable: false,
+  deletable: false,
+  shareable: false
 }
 let participants = new Array();
 participants.push({
-    identity: '000000000',
-    role: cloudData.sharing.Role.ROLE_INVITER,
-    state: cloudData.sharing.State.STATE_UNKNOWN,
-    privilege: privilege,
-    attachInfo: ''
+  identity: '000000000',
+  role: cloudData.sharing.Role.ROLE_INVITER,
+  state: cloudData.sharing.State.STATE_UNKNOWN,
+  privilege: privilege,
+  attachInfo: ''
 })
 cloudData.sharing.share('sharing_resource_test', participants).then((result) => {
-    console.info(`share success, result: ${result}`);
+  console.info(`share success, result: ${result}`);
 }).catch((err: BusinessError) => {
-    console.error(`share failed, code is ${err.code},message is ${err.message}`);
+  console.error(`share failed, code is ${err.code},message is ${err.message}`);
 })
 
 ```
@@ -952,31 +944,27 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;, callback:
 
 ```ts
 let privilege = {
-    writable: true,
-    readable: true,
-    creatable: false,
-    deletable: false,
-    shareable: false
+  writable: true,
+  readable: true,
+  creatable: false,
+  deletable: false,
+  shareable: false
 }
 let participants = new Array();
 participants.push({
-    identity: '000000000',
-    role: cloudData.sharing.Role.ROLE_INVITER,
-    state: cloudData.sharing.State.STATE_UNKNOWN,
-    privilege: privilege,
-    attachInfo: ''
+  identity: '000000000',
+  role: cloudData.sharing.Role.ROLE_INVITER,
+  state: cloudData.sharing.State.STATE_UNKNOWN,
+  privilege: privilege,
+  attachInfo: ''
 })
-try {
-    cloudData.sharing.share('sharing_resource_test', participants, ((err, result) => {
-        if (err) {
-            console.error(`share failed, code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info(`share success, result: ${result}`);
-    }))
-} catch (e) {
-    console.error(`share failed, code is ${e.code},message is ${e.message}`);
-}
+cloudData.sharing.share('sharing_resource_test', participants, ((err, result) => {
+  if (err) {
+    console.error(`share failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`share succeeded, result: ${result}`);
+}))
 
 ```
 
@@ -1007,24 +995,24 @@ unshare(sharingResource: string, participants: Array&lt;Participant&gt;): Promis
 import { BusinessError } from "@ohos.base";
 
 let privilege = {
-    writable: true,
-    readable: true,
-    creatable: false,
-    deletable: false,
-    shareable: false
+  writable: true,
+  readable: true,
+  creatable: false,
+  deletable: false,
+  shareable: false
 }
 let participants = new Array();
 participants.push({
-    identity: '000000000',
-    role: cloudData.sharing.Role.ROLE_INVITER,
-    state: cloudData.sharing.State.STATE_UNKNOWN,
-    privilege: privilege,
-    attachInfo: ''
+  identity: '000000000',
+  role: cloudData.sharing.Role.ROLE_INVITER,
+  state: cloudData.sharing.State.STATE_UNKNOWN,
+  privilege: privilege,
+  attachInfo: ''
 })
 cloudData.sharing.unshare('sharing_resource_test', participants).then((result) => {
-    console.info(`unshare success, result: ${result}`);
+  console.info(`unshare succeeded, result: ${result}`);
 }).catch((err: BusinessError) => {
-    console.error(`unshare failed, code is ${err.code},message is ${err.message}`);
+  console.error(`unshare failed, code is ${err.code},message is ${err.message}`);
 })
 
 ```
@@ -1049,31 +1037,27 @@ unshare(sharingResource: string, participants: Array&lt;Participant&gt;, callbac
 
 ```ts
 let privilege = {
-    writable: true,
-    readable: true,
-    creatable: false,
-    deletable: false,
-    shareable: false
+  writable: true,
+  readable: true,
+  creatable: false,
+  deletable: false,
+  shareable: false
 }
 let participants = new Array();
 participants.push({
-    identity: '000000000',
-    role: cloudData.sharing.Role.ROLE_INVITER,
-    state: cloudData.sharing.State.STATE_UNKNOWN,
-    privilege: privilege,
-    attachInfo: ''
+  identity: '000000000',
+  role: cloudData.sharing.Role.ROLE_INVITER,
+  state: cloudData.sharing.State.STATE_UNKNOWN,
+  privilege: privilege,
+  attachInfo: ''
 })
-try {
-    cloudData.sharing.unshare('sharing_resource_test', participants, ((err, result) => {
-        if (err) {
-            console.error(`unshare failed, code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info(`unshare success, result: ${result}`);
-    }))
-} catch (e) {
-    console.error(`unshare failed, code is ${e.code},message is ${e.message}`);
-}
+cloudData.sharing.unshare('sharing_resource_test', participants, ((err, result) => {
+  if (err) {
+    console.error(`unshare failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`unshare succeeded, result: ${result}`);
+}))
 
 ```
 
@@ -1103,9 +1087,9 @@ exit(sharingResource: string): Promise&lt;Result&lt;void&gt;&gt;
 import { BusinessError } from "@ohos.base";
 
 cloudData.sharing.exit('sharing_resource_test').then((result) => {
-    console.info(`exit share success, result: ${result}`);
+  console.info(`exit share success, result: ${result}`);
 }).catch((err: BusinessError) => {
-    console.error(`exit share failed, code is ${err.code},message is ${err.message}`);
+  console.error(`exit share failed, code is ${err.code},message is ${err.message}`);
 })
 
 ```
@@ -1128,17 +1112,13 @@ exit(sharingResource: string, callback: AsyncCallback&lt;Result&lt;void&gt;&gt;)
 **示例：**
 
 ```ts
-try {
-    cloudData.sharing.exit('sharing_resource_test', ((err, result) => {
-        if (err) {
-            console.error(`exit share failed, code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info(`exit share success, result: ${result}`);
-    }))
-} catch (e) {
-    console.error(`exit share failed, code is ${e.code},message is ${e.message}`);
-}
+cloudData.sharing.exit('sharing_resource_test', ((err, result) => {
+  if (err) {
+    console.error(`exit share failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`exit share succeeded, result: ${result}`);
+}))
 
 ```
 
@@ -1169,25 +1149,25 @@ changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;)
 import { BusinessError } from "@ohos.base";
 
 let privilege = {
-    writable: false,
-    readable: true,
-    creatable: false,
-    deletable: false,
-    shareable: false
+  writable: false,
+  readable: true,
+  creatable: false,
+  deletable: false,
+  shareable: false
 }
 let participants = new Array();
 participants.push({
-   identity: '000000000',
-   role: cloudData.sharing.Role.ROLE_INVITER,
-   state: cloudData.sharing.State.STATE_UNKNOWN,
-   privilege: privilege,
-   attachInfo: ''
+  identity: '000000000',
+  role: cloudData.sharing.Role.ROLE_INVITER,
+  state: cloudData.sharing.State.STATE_UNKNOWN,
+  privilege: privilege,
+  attachInfo: ''
 })
 
 cloudData.sharing.changePrivilege('sharing_resource_test', participants).then((result) => {
-    console.info(`change privilege success, result: ${result}`);
+  console.info(`change privilege succeeded, result: ${result}`);
 }).catch((err: BusinessError) => {
-    console.error(`change privilege failed, code is ${err.code},message is ${err.message}`);
+  console.error(`change privilege failed, code is ${err.code},message is ${err.message}`);
 })
 
 ```
@@ -1212,32 +1192,28 @@ changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;,
 
 ```ts
 let privilege = {
-    writable: false,
-    readable: true,
-    creatable: false,
-    deletable: false,
-    shareable: false
+  writable: false,
+  readable: true,
+  creatable: false,
+  deletable: false,
+  shareable: false
 }
 let participants = new Array();
 participants.push({
-   identity: '000000000',
-   role: cloudData.sharing.Role.ROLE_INVITER,
-   state: cloudData.sharing.State.STATE_UNKNOWN,
-   privilege: privilege,
-   attachInfo: ''
+  identity: '000000000',
+  role: cloudData.sharing.Role.ROLE_INVITER,
+  state: cloudData.sharing.State.STATE_UNKNOWN,
+  privilege: privilege,
+  attachInfo: ''
 })
 
-try {
-    cloudData.sharing.changePrivilege('sharing_resource_test', participants, ((err, result) => {
-        if (err) {
-            console.error(`change privilege failed, code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info(`change privilege success, result: ${result}`);
-    }))
-} catch (e) {
-    console.error(`change privilege failed, code is ${e.code},message is ${e.message}`);
-}
+cloudData.sharing.changePrivilege('sharing_resource_test', participants, ((err, result) => {
+  if (err) {
+    console.error(`change privilege failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`change privilege succeeded, result: ${result}`);
+}))
 
 ```
 
@@ -1267,9 +1243,9 @@ queryParticipants(sharingResource: string): Promise&lt;Result&lt;Array&lt;Partic
 import { BusinessError } from "@ohos.base";
 
 cloudData.sharing.queryParticipants('sharing_resource_test').then((result) => {
-    console.info(`query participants success, result: ${result}`);
+  console.info(`query participants succeeded, result: ${result}`);
 }).catch((err: BusinessError) => {
-    console.error(`query participants failed, code is ${err.code},message is ${err.message}`);
+  console.error(`query participants failed, code is ${err.code},message is ${err.message}`);
 })
 
 ```
@@ -1292,17 +1268,13 @@ queryParticipants(sharingResource: string, callback: AsyncCallback&lt;Result&lt;
 **示例：**
 
 ```ts
-try {
-    cloudData.sharing.queryParticipants('sharing_resource_test', ((err, result) => {
-        if (err) {
-            console.error(`query participants failed, code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info(`query participants success, result: ${result}`);
-    }))
-} catch (e) {
-    console.error(`query participants failed, code is ${e.code},message is ${e.message}`);
-}
+cloudData.sharing.queryParticipants('sharing_resource_test', ((err, result) => {
+  if (err) {
+    console.error(`query participants failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`query participants succeeded, result: ${result}`);
+}))
 
 ```
 
@@ -1332,9 +1304,9 @@ queryParticipantsByInvitation(invitationCode: string): Promise&lt;Result&lt;Arra
 import { BusinessError } from "@ohos.base";
 
 cloudData.sharing.queryParticipantsByInvitation('sharing_invitation_code_test').then((result) => {
-    console.info(`query participants by invitation success, result: ${result}`);
+  console.info(`query participants by invitation succeeded, result: ${result}`);
 }).catch((err: BusinessError) => {
-    console.error(`query participants by invitation failed, code is ${err.code},message is ${err.message}`);
+  console.error(`query participants by invitation failed, code is ${err.code},message is ${err.message}`);
 })
 
 ```
@@ -1357,17 +1329,13 @@ queryParticipantsByInvitation(invitationCode: string, callback: AsyncCallback&lt
 **示例：**
 
 ```ts
-try {
-    cloudData.sharing.queryParticipantsByInvitation('sharing_invitation_code_test', ((err, result) => {
-        if (err) {
-            console.error(`query participants by invitation failed, code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info(`query participants by invitation success, result: ${result}`);
-    }))
-} catch (e) {
-    console.error(`query participants by invitation failed, code is ${e.code},message is ${e.message}`);
-}
+cloudData.sharing.queryParticipantsByInvitation('sharing_invitation_code_test', ((err, result) => {
+  if (err) {
+    console.error(`query participants by invitation failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`query participants by invitation succeeded, result: ${result}`);
+}))
 
 ```
 
@@ -1399,10 +1367,10 @@ import { BusinessError } from "@ohos.base";
 
 let shareResource: string;
 cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED).then((result) => {
-    console.info(`confirm invitation success, result: ${result}`);
-    shareResource = result.value;
+  console.info(`confirm invitation succeeded, result: ${result}`);
+  shareResource = result.value;
 }).catch((err: BusinessError) => {
-    console.error(`confirm invitation failed, code is ${err.code},message is ${err.message}`);
+  console.error(`confirm invitation failed, code is ${err.code},message is ${err.message}`);
 })
 
 ```
@@ -1428,18 +1396,14 @@ confirmInvitation(invitationCode: string, state: State, callback: AsyncCallback&
 ```ts
 
 let shareResource: string;
-try {
-    cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED, ((err, result) => {
-        if (err) {
-            console.error(`confirm invitation failed, code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info(`confirm invitation success, result: ${result}`);
-        shareResource = result.value;
-    }))
-} catch (e) {
-    console.error(`confirm invitation failed, code is ${e.code},message is ${e.message}`);
-}
+cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED, ((err, result) => {
+  if (err) {
+    console.error(`confirm invitation failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`confirm invitation succeeded, result: ${result}`);
+  shareResource = result.value;
+}))
 
 ```
 
@@ -1470,9 +1434,9 @@ changeConfirmation(sharingResource: string, state: State): Promise&lt;Result&lt;
 import { BusinessError } from "@ohos.base";
 
 cloudData.sharing.changeConfirmation('sharing_resource_test', cloudData.sharing.State.STATE_REJECTED).then((result) => {
-    console.info(`change confirmation success, result: ${result}`);
+  console.info(`change confirmation succeeded, result: ${result}`);
 }).catch((err: BusinessError) => {
-    console.error(`change confirmation failed, code is ${err.code},message is ${err.message}`);
+  console.error(`change confirmation failed, code is ${err.code},message is ${err.message}`);
 })
 
 ```
@@ -1496,16 +1460,12 @@ changeConfirmation(sharingResource: string, state: State, callback: AsyncCallbac
 **示例：**
 
 ```ts
-try {
-    cloudData.sharing.changeConfirmation('sharing_resource_test', cloudData.sharing.State.STATE_REJECTED, ((err, result) => {
-        if (err) {
-            console.error(`change confirmation failed, code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.info(`change confirmation success, result: ${result}`);
-    }))
-} catch (e) {
-    console.error(`change confirmation failed, code is ${e.code},message is ${e.message}`);
-}
+cloudData.sharing.changeConfirmation('sharing_resource_test', cloudData.sharing.State.STATE_REJECTED, ((err, result) => {
+  if (err) {
+    console.error(`change confirmation failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`change confirmation succeeded, result: ${result}`);
+}))
 
 ```
