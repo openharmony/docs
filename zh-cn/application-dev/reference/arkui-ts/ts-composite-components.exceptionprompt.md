@@ -42,7 +42,7 @@ ExceptionPrompt ({ Type: this.type,Options: this.options })
 | 名称        | 类型 | 装饰器类型 | 必填        | 说明                            |
 | ----------- | ---------- | --------------------------------- | --------------------------------- | --------------------------------- |
 | Type | PromptTypeEnum | @Prop | 是   | 指定当前ExceptionPrompt的类型。对应不同显示状态 |
-| Options | PromptOptions |  | 是 | 指定当前ExceptionPrompt的配置信息 |
+| Options | PromptOptions | @Prop | 是 | 指定当前ExceptionPrompt的配置信息 |
 
 ##  OptionType
 
