@@ -696,10 +696,10 @@ try {
 | 名称          | 类型                          | 必填  | 说明           |
 | ----------- | --------------------------- | --- | ------------ |
 | identity    | string                  | 是   | 参与者的ID。              |
-| role        | [Role](#role)           | 否   | 参与者的角色，为邀请者或被邀请者。  |
-| state       | [State](#state)         | 否   | 共享的状态。               |
-| privilege   | [Privilege](#privilege) | 否   | 指定的共享数据权限。        |
-| attachInfo  | string                  | 否   | 附加信息，用于拓展额外的参与者信息。如用于参与者身份校验的校验码等。 |
+| role        | [Role](#role)           | 否   | 参与者的角色，为邀请者或被邀请者。默认为undefined。  |
+| state       | [State](#state)         | 否   | 共享的状态。默认为undefined。 |
+| privilege   | [Privilege](#privilege) | 否   | 指定的共享数据权限。默认为[Privilege](#privilege)的默认值。 |
+| attachInfo  | string                  | 否   | 附加信息，用于拓展额外的参与者信息。如用于参与者身份校验的校验码等，默认为空字符串。 |
 
 ### allocResourceAndShare<sup>11+</sup>
 
