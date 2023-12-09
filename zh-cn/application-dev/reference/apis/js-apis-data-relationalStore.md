@@ -660,7 +660,7 @@ class EntryAbility extends UIAbility {
 | DELETED_FLAG_FIELD  | '#_deleted_flag' | 用于cursor查找的结果集返回时填充的字段，表示云端删除的数据同步到本地后数据是否清理。<br>返回的结果集中，该字段对应的value为false表示数据未清理，true表示数据已清理。|
 | OWNER_FIELD  | '#_cloud_owner' | 用于共享表中查找owner时返回的结果集中填充的字段，表示当前共享记录的共享发起者。|
 | PRIVILEGE_FIELD  | '#_cloud_privilege' | 用于共享表中查找共享数据权限时返回的结果集中填充的字段，表示当前共享记录的允许的操作权限。|
-| SHARING_RESOURCE_FIELD   | '#_sharing_resource_field' | 用于数据共享时查找共享数据的共享资源时返回的结果集中填充的字段，表示共享数据的共享资源。|
+| SHARING_RESOURCE_FIELD   | '#_sharing_resource_field' | 用于数据共享时查找共享数据的共享资源时返回的结果集中填充的字段，表示共享数据的共享资源标识。|
 
 ## SubscribeType
 
@@ -4944,7 +4944,7 @@ if(store != undefined) {
 
 querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;ResultSet&gt;
 
-根据谓词条件匹配的数据记录查找对应记录的共享资源，返回查找的结果集。 如果指定了列字段，则返回结果集中同时包含对应列的字段值。
+根据谓词条件匹配的数据记录查找对应记录的共享资源标识，返回查找的结果集。 如果指定了列字段，则返回结果集中同时包含对应列的字段值，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -4999,7 +4999,7 @@ if(store != undefined) {
 
 querySharingResource(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;): void
 
-根据谓词条件匹配的数据记录查找对应记录的共享资源，返回查找的结果集。
+根据谓词条件匹配的数据记录查找对应记录的共享资源，返回查找的结果集，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -5052,7 +5052,7 @@ if(store != undefined) {
 
 querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;): void
 
-根据谓词条件匹配的数据记录查找对应记录的共享资源，返回查找到的共享资源的结果集，同时在结果集中返回谓词条件匹配的指定列名的字段值。
+根据谓词条件匹配的数据记录查找对应记录的共享资源，返回查找到的共享资源的结果集，同时在结果集中返回谓词条件匹配的指定列名的字段值，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 

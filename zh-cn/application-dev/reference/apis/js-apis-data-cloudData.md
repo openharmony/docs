@@ -1,12 +1,15 @@
-# @ohos.data.cloudData (端云协同、端云共享)
+# @ohos.data.cloudData (端云协同与端云共享)
 
 端云协同提供结构化数据（RDB Store）端云同步的能力。即：云作为数据的中心节点，通过与云的数据同步，实现数据云备份、同帐号设备间的数据一致性。
-<br>端云共享是在端云协同能力基础上，实现跨账号的数据共享。
+<br>端云共享是在端云协同能力基础上，实现跨帐号的数据共享。
+<br>其中，端云共享资源标识是指：对于应用发起共享的每一条数据记录，该条数据在进行端云同步时会生成唯一的共享资源标识（字符串类型的值），此标识则作为该条数据记录共享时的识别标识。
+<br>     端云共享参与者是指： 共享发起者根据好友列表选中的参与当前数据共享的所有人员。
+<br>     端云共享邀请码是指： 共享发起后，在共享的服务端会生成当前共享操作的邀请码，并将该邀请码附加到当前共享邀请中，通过push消息推送到被邀请者的设备端，被邀请者可以通过该邀请码进行邀请的确认。
 
 该模块提供以下端云协同相关的常用功能：
 
 - [Config](#config)：提供配置端云协同的方法，包括云同步打开、关闭、清理数据、数据变化通知。
-- [sharing<sup>11+</sup>](#sharing)：提供端云共享的方法，包括发起共享、取消共享、退出共享、更改共享数据权限、查找共享参与者、确认邀请、更改已确认的邀请、查找共享资源并发起共享。
+- [sharing<sup>11+</sup>](#sharing)：提供端云共享的方法，包括发起共享、取消共享、退出共享、更改共享数据权限、查找共享参与者、确认邀请、更改已确认的邀请、查找共享资源。
 
 > **说明：** 
 >
@@ -609,35 +612,35 @@ try {
 
 ## sharing<sup>11+</sup>
 
-提供端云共享的方法，包括发起共享、取消共享、退出共享、更改共享数据权限、查找共享参与者、确认邀请、更改已确认的邀请、查找共享资源并发起共享。
+提供端云共享的方法，包括发起共享、取消共享、退出共享、更改共享数据权限、查找共享参与者、确认邀请、更改已确认的邀请、查找共享资源。
 
 ### Role<sup>11+</sup>
 
-共享参与者的角色。
+端云共享参与者的角色。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
 | 名称           | 值   | 说明                               |
 | --------------| ---- | ---------------------------------- |
-| ROLE_INVITER  | 0    | 共享邀请者。请使用枚举名称而非枚举值。 |
-| ROLE_INVITEE  | 1    | 共享被邀请者。请使用枚举名称而非枚举值。 |
+| ROLE_INVITER  | 0    | 端云共享邀请者。请使用枚举名称而非枚举值。 |
+| ROLE_INVITEE  | 1    | 端云共享被邀请者。请使用枚举名称而非枚举值。 |
 
 ### State<sup>11+</sup>
 
-共享状态。
+端云共享状态。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
 | 名称           | 值   | 说明                               |
 | --------------| ---- | ---------------------------------- |
 | STATE_UNKNOWN    | 0    | 未知状态。请使用枚举名称而非枚举值。   |
-| STATE_ACCEPTED   | 1    | 共享已接受。请使用枚举名称而非枚举值。 |
-| STATE_REJECTED   | 2    | 共享被拒绝。请使用枚举名称而非枚举值。 |
-| STATE_SUSPENDED  | 3    | 共享被挂起。请使用枚举名称而非枚举值。 |
+| STATE_ACCEPTED   | 1    | 端云共享已接受。请使用枚举名称而非枚举值。 |
+| STATE_REJECTED   | 2    | 端云共享被拒绝。请使用枚举名称而非枚举值。 |
+| STATE_SUSPENDED  | 3    | 端云共享被暂时挂起，未作处理。请使用枚举名称而非枚举值。 |
 
 ### SharingCode<sup>11+</sup>
 
-共享错误码。
+端云共享错误码。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -645,48 +648,48 @@ try {
 | --------------| ---- | ---------------------------------- |
 | SUCCESS                 | 0    | 成功。请使用枚举名称而非枚举值。   |
 | REPEATED_REQUEST        | 1    | 重复邀请，表示当前参与者已被邀请。请使用枚举名称而非枚举值。 |
-| NOT_INVITER             | 2    | 非共享邀请者，表示当前参与者不是共享的邀请者。请使用枚举名称而非枚举值。 |
-| NOT_INVITER_OR_INVITEE  | 3    | 非法参与者，表是当前参与者既不是共享的邀请者，也不是共享的被邀请者。请使用枚举名称而非枚举值。 |
-| OVER_QUOTA              | 4    | 共享次数达到上限，表示当前账号可共享的次数达到上限限制。请使用枚举名称而非枚举值。   |
-| TOO_MANY_PARTICIPANTS   | 5    | 共享参与者数量达到上限限制。请使用枚举名称而非枚举值。 |
+| NOT_INVITER             | 2    | 非端云共享的邀请者，表示当前参与者不是端云共享的邀请者。请使用枚举名称而非枚举值。 |
+| NOT_INVITER_OR_INVITEE  | 3    | 非法参与者，表示当前参与者既不是共享的邀请者，也不是共享的被邀请者。请使用枚举名称而非枚举值。 |
+| OVER_QUOTA              | 4    | 端云共享次数达到上限，表示当前帐号可共享的次数达到上限。请使用枚举名称而非枚举值。   |
+| TOO_MANY_PARTICIPANTS   | 5    | 端云共享参与者数量达到上限。请使用枚举名称而非枚举值。 |
 | INVALID_ARGS            | 6    | 无效的参数。请使用枚举名称而非枚举值。 |
 | NETWORK_ERROR           | 7    | 网络错误。请使用枚举名称而非枚举值。 |
 | CLOUD_DISABLED          | 8    | 云开关未打开。请使用枚举名称而非枚举值。   |
 | SERVER_ERROR            | 9    | 服务端发生错误。请使用枚举名称而非枚举值。 |
-| INNER_ERROR             | 10    | 系统发生内部错误。请使用枚举名称而非枚举值。 |
-| INVALID_INVITATION      | 11    | 无效的邀请，表示当前邀请已失效或不存在。请使用枚举名称而非枚举值。 |
-| RATE_LIMIT              | 12    | 速率限制，表示单次同步的数据量达到上限。请使用枚举名称而非枚举值。   |
-| CUSTOM_ERROR            | 1000    | 定制错误，小于该枚举值的错误码为系统内部定义的标准错误码，大于该枚举值的错误码为定制错误码。请使用枚举名称而非枚举值。 |
+| INNER_ERROR             | 10   | 系统发生内部错误。请使用枚举名称而非枚举值。 |
+| INVALID_INVITATION      | 11   | 无效的邀请，表示当前邀请已失效或不存在。请使用枚举名称而非枚举值。 |
+| RATE_LIMIT              | 12   | 速率限制，表示单次同步的数据量达到上限。请使用枚举名称而非枚举值。   |
+| CUSTOM_ERROR            | 1000 | 定制错误，小于该枚举值的错误码用于定义系统内部的标准错误码，大于该枚举值的错误码用于使用者自定义错误码。请使用枚举名称而非枚举值。 |
 
 ### Result&lt;T&gt;<sup>11+</sup>
 
-共享结果的返回值。
+端云共享结果的返回值。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
 | 名称          | 类型                          | 必填  | 说明           |
 | ----------- | --------------------------- | --- | ------------ |
 | code        | number                      | 是   | 错误码。       |
-| description | string                      | 否   | 错误码详细描述。       |
-| value       | T                           | 否   | 返回结果的值，具体类型由参数T指定。       |
+| description | string                      | 否   | 错误码详细描述，默认为undefined。       |
+| value       | T                           | 否   | 返回结果的值，具体类型由参数T指定，默认为undefined。 |
 
 ### Privilege<sup>11+</sup>
 
-指定的共享数据的权限。
+指定的端云共享数据的权限。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
 | 名称          | 类型                          | 必填  | 说明           |
 | ----------- | --------------------------- | --- | ------------ |
-| writable    | boolean              | 否   | 被共享者可修改共享的数据。true表示可修改，false表示不可修改，默认不可修改。   |
-| readable    | boolean              | 否   | 被共享者可读取共享的数据。true表示可读取，false表示不可读取，默认不可读取。   |
-| creatable   | boolean              | 否   | 被共享者可创建新的共享数据。true表示可创建，false表示不可创建，默认不可创建。  |
-| deletable   | boolean              | 否   | 被共享者可删除共享的数据。true表示可删除，false表示不可删除，默认不可删除。  |
-| shareable   | boolean              | 否   | 被共享者可将共享的数据再次共享给其它参与者。true表示可再次共享，false表示不可再次共享，默认不可再次共享。  |
+| writable    | boolean              | 否   | 被共享者是否可修改共享的数据。true表示可修改，false表示不可修改，默认不可修改。   |
+| readable    | boolean              | 否   | 被共享者是否可读取共享的数据。true表示可读取，false表示不可读取，默认不可读取。   |
+| creatable   | boolean              | 否   | 被共享者是否可创建新的共享数据。true表示可创建，false表示不可创建，默认不可创建。  |
+| deletable   | boolean              | 否   | 被共享者是否可删除共享的数据。true表示可删除，false表示不可删除，默认不可删除。  |
+| shareable   | boolean              | 否   | 被共享者是否可将共享的数据再次共享给其他参与者。true表示可再次共享，false表示不可再次共享，默认不可再次共享。  |
 
 ### Participant<sup>11+</sup>
 
-共享参与者。
+端云共享的参与者。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -696,13 +699,13 @@ try {
 | role        | [Role](#role)           | 否   | 参与者的角色，为邀请者或被邀请者。  |
 | state       | [State](#state)         | 否   | 共享的状态。               |
 | privilege   | [Privilege](#privilege) | 否   | 指定的共享数据权限。        |
-| attachInfo  | string                  | 否   | 附加信息，用于拓展额外的参与者信息。 |
+| attachInfo  | string                  | 否   | 附加信息，用于拓展额外的参与者信息。如用于参与者身份校验的校验码等。 |
 
 ### allocResourceAndShare<sup>11+</sup>
 
 allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates, participants: Array&lt;Participant&gt;, columns?: Array&lt;string&gt;): Promise&lt;relationalStore.ResultSet&gt;
 
-根据谓词条件申请共享资源并发起共享，返回已共享资源的结果集。如果指定了列字段，则返回结果集中同时包含对应列的字段值。
+根据谓词条件匹配的数据申请共享资源标识并发起共享，返回已共享资源的结果集。如果指定了列字段，则返回的结果集中同时包含对应列的字段值，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -711,22 +714,21 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | storeId      | string                        | 是   | 数据库名称。 |
-| predicates   | relationalStore.RdbPredicates | 是   | 表示查找共享资源的谓词条件，详见[RdbPredicates](js-apis-data-relationalStore.md)。 |
-| participants | Array&lt;[Participant](#participant)&gt; | 是   | 共享参与者。 |
-| columns      | Array&lt;string&gt;           | 否   | 表示要查找的列字段名。 |
+| predicates   | [relationalStore.RdbPredicates](js-apis-data-relationalStore.md#RdbPredicates) | 是   | 表示查找共享资源标识的数据的谓词条件。 |
+| participants | Array&lt;[Participant](#participant)&gt; | 是   | 端云共享的参与者。 |
+| columns      | Array&lt;string&gt;           | 否   | 表示要查找的列字段名。默认为undefined，不返回列字段。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;relationalStore.ResultSet&gt; | 表示查询并共享结果集的Promise对象。 |
+| Promise&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#ResultSet)&gt; | Promise对象，返回查询并共享的共享资源标识结果集。 |
 
 **示例：**
 
 ```ts
 import { BusinessError } from "@ohos.base";
-import data_relationalStore from '@ohos.data.relationalStore';
-import cloudData from '@ohos.data.cloudData';
+import relaitonalStore from '@ohos.data.relationalStore';
 
 let privilege = {
     writable: true,
@@ -743,15 +745,15 @@ participants.push({
     privilege: privilege,
     attachInfo: ''
 })
-let sharingResource;
-let predicates = new data_relationalStore.RdbPredicates('test_table');
+let sharingResource: string;
+let predicates = new relaitonalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
 cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, ['uuid', 'data']).then((resultSet) => {
     if (!resultSet.goToFirstRow()) {
         console.error(`row error`);
         return;
     }
-    const res = resultSet.getString(resultSet.getColumnIndex(data_relationalStore.Field.SHARING_RESOURCE_FIELD));
+    const res = resultSet.getString(resultSet.getColumnIndex(relaitonalStore.Field.SHARING_RESOURCE_FIELD));
     console.info(`sharing resource: ${res}`);
     sharingResource = res;
 }).catch((err: BusinessError) => {
@@ -764,7 +766,7 @@ cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, [
 
 allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates, participants: Array&lt;Participant&gt;, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;relationalStore.ResultSet&gt;): void
 
-根据谓词条件申请共享资源并发起共享，返回已共享资源的结果集。并根据指定的列字段，返回的结果集中同时包含对应列的字段值。
+根据谓词条件匹配的数据申请共享资源标识并发起共享，返回已共享资源的结果集。并根据指定的列字段，返回的结果集中同时包含对应列的字段值，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -773,16 +775,15 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | storeId      | string                        | 是   | 数据库名称。 |
-| predicates   | relationalStore.RdbPredicates | 是   | 表示查找共享资源的谓词条件，详见[RdbPredicates](js-apis-data-relationalStore.md)。 |
-| participants | Array&lt;[Participant](#participant)&gt; | 是   | 共享参与者。 |
+| predicates   | [relationalStore.RdbPredicates](js-apis-data-relationalStore.md#RdbPredicates) | 是   | 表示查找共享资源标识的数据的谓词条件。 |
+| participants | Array&lt;[Participant](#participant)&gt; | 是   | 端云共享的参与者。 |
 | columns      | Array&lt;string&gt;           | 是   | 表示要查找的列字段名。 |
-| callback     | AsyncCallback&lt;relationalStore.ResultSet&gt;  | 是  | 回调函数。当申请共享资源并发起共享成功，err为undefined，并返回共享资源的结果集，否则为错误对象。 |
+| callback     | AsyncCallback&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#ResultSet)&gt;  | 是  | 回调函数。 返回查询并共享的共享资源标识结果集，否则为错误对象。 |
 
 **示例：**
 
 ```ts
-import data_relationalStore from '@ohos.data.relationalStore';
-import cloudData from '@ohos.data.cloudData';
+import relationalStore from '@ohos.data.relationalStore';
 
 let privilege = {
     writable: true,
@@ -799,8 +800,8 @@ participants.push({
     privilege: privilege,
     attachInfo: ''
 })
-let sharingResource;
-let predicates = new data_relationalStore.RdbPredicates('test_table');
+let sharingResource: string;
+let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
 try {
     cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, ['uuid', 'data'], (err, resultSet) => {
@@ -812,7 +813,7 @@ try {
             console.error(`row error`);
             return;
         }
-        const res = resultSet.getString(resultSet.getColumnIndex(data_relationalStore.Field.SHARING_RESOURCE_FIELD));
+        const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
         console.info(`sharing resource: ${res}`);
         sharingResource = res;
     })
@@ -826,7 +827,7 @@ try {
 
 allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates, participants: Array&lt;Participant&gt;, callback: AsyncCallback&lt;relationalStore.ResultSet&gt;): void
 
-根据谓词条件申请共享资源并发起共享，返回已共享资源的结果集。
+根据谓词条件匹配的数据申请共享资源标识并发起共享，返回已共享资源的结果集，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -835,15 +836,14 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | storeId      | string                        | 是   | 数据库名称。 |
-| predicates   | relationalStore.RdbPredicates | 是   | 表示查找共享资源的谓词条件，详见[RdbPredicates](js-apis-data-relationalStore.md)。 |
-| participants | Array&lt;[Participant](#participant)&gt; | 是   | 共享参与者。 |
-| callback     | AsyncCallback&lt;relationalStore.ResultSet&gt;  | 是   | 回调函数。当申请共享资源并发起共享成功，err为undefined，并返回共享资源的结果集，否则为错误对象。 |
+| predicates   | [relationalStore.RdbPredicates](js-apis-data-relationalStore.md#RdbPredicates) | 是   | 表示查找共享资源标识的数据的谓词条件。 |
+| participants | Array&lt;[Participant](#participant)&gt; | 是   | 端云共享的参与者。 |
+| callback     | AsyncCallback&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#ResultSet)&gt;  | 是   | 回调函数。返回查询并共享的共享资源标识结果集，否则为错误对象。 |
 
 **示例：**
 
 ```ts
-import data_relationalStore from '@ohos.data.relationalStore';
-import cloudData from '@ohos.data.cloudData';
+import relationalStore from '@ohos.data.relationalStore';
 
 let privilege = {
     writable: true,
@@ -860,8 +860,8 @@ participants.push({
     privilege: privilege,
     attachInfo: ''
 })
-let sharingResource;
-let predicates = new data_relationalStore.RdbPredicates('test_table');
+let sharingResource: string;
+let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
 try {
     cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, (err, resultSet) => {
@@ -873,7 +873,7 @@ try {
             console.error(`row error`);
             return;
         }
-        const res = resultSet.getString(resultSet.getColumnIndex(data_relationalStore.Field.SHARING_RESOURCE_FIELD));
+        const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
         console.info(`sharing resource: ${res}`);
         sharingResource = res;
     })
@@ -887,7 +887,7 @@ try {
 
 share(sharingResource: string, participants: Array&lt;Participant&gt;): Promise&lt;Result&lt;Array&lt;Result&lt;Participant&gt;&gt;&gt;&gt;
 
-根据指定的共享资源和共享参与者发起共享邀请。
+根据指定的共享资源标识和共享参与者发起共享邀请，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -895,20 +895,19 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;): Promise&
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource   | string                                     | 是   | 共享数据的资源标志。 |
-| participants      | Array&lt;[Participant](#participant)&gt; | 是   | 共享参与者。 |
+| sharingResource   | string                                     | 是   | 端云共享数据的资源标识。 |
+| participants      | Array&lt;[Participant](#participant)&gt;   | 是   | 端云共享的参与者。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Result&lt;Array&lt;Result&lt;Participant&gt;&gt;&gt;&gt; | 表示共享结果的Promise对象。 |
+| Promise&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[Result](#result&lt;T&gt;)&lt;[Participant](#participant)&gt;&gt;&gt;&gt; | Promise对象，返回端云共享的结果。 |
 
 **示例：**
 
 ```ts
 import { BusinessError } from "@ohos.base";
-import cloudData from '@ohos.data.cloudData';
 
 let privilege = {
     writable: true,
@@ -937,7 +936,7 @@ cloudData.sharing.share('sharing_resource_test', participants).then((result) => 
 
 share(sharingResource: string, participants: Array&lt;Participant&gt;, callback: AsyncCallback&lt;Result&lt;Array&lt;Result&lt;Participant&gt;&gt;&gt;&gt;): void
 
-根据指定的共享资源和共享参与者发起共享邀请。
+根据指定的共享资源标识和共享参与者发起共享邀请，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -945,15 +944,13 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;, callback:
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource  | string                                     | 是   | 共享数据的资源标志。 |
-| participants     | Array&lt;[Participant](#participant)&gt; | 是   | 共享参与者。 |
-| callback         | AsyncCallback&lt;Result&lt;Array&lt;Result&lt;Participant&gt;&gt;&gt;&gt;  | 是   | 回调函数。当共享邀请发起成功，err为undefined，并返回共享的返回结果，否则为错误对象。 |
+| sharingResource  | string                                     | 是   | 端云共享数据的资源标识。 |
+| participants     | Array&lt;[Participant](#participant)&gt; | 是   | 端云共享的参与者。 |
+| callback         | AsyncCallback&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[Result](#result&lt;T&gt;)&lt;[Participant](#participant)&gt;&gt;&gt;&gt;  | 是   | 回调函数。返回端云共享的结果，否则为错误对象。 |
 
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
-
 let privilege = {
     writable: true,
     readable: true,
@@ -987,7 +984,7 @@ try {
 
 unshare(sharingResource: string, participants: Array&lt;Participant&gt;): Promise&lt;Result&lt;Array&lt;Result&lt;Participant&gt;&gt;&gt;&gt;
 
-根据指定的共享资源和共享参与者取消共享。
+根据指定的共享资源标识和共享参与者取消共享，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -995,20 +992,19 @@ unshare(sharingResource: string, participants: Array&lt;Participant&gt;): Promis
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource   | string                                     | 是   | 共享数据的资源标志。 |
-| participants      | Array&lt;[Participant](#participant)&gt; | 是   | 共享参与者。 |
+| sharingResource   | string                                     | 是   | 端云共享数据的资源标识。 |
+| participants      | Array&lt;[Participant](#participant)&gt; | 是   | 端云共享的参与者。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Result&lt;Array&lt;Result&lt;Participant&gt;&gt;&gt;&gt; | 表示取消共享返回结果的Promise对象。 |
+| Promise&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[Result](#result&lt;T&gt;)&lt;[Participant](#participant)&gt;&gt;&gt;&gt; | Promise对象，返回取消共享的结果。 |
 
 **示例：**
 
 ```ts
 import { BusinessError } from "@ohos.base";
-import cloudData from '@ohos.data.cloudData';
 
 let privilege = {
     writable: true,
@@ -1037,7 +1033,7 @@ cloudData.sharing.unshare('sharing_resource_test', participants).then((result) =
 
 unshare(sharingResource: string, participants: Array&lt;Participant&gt;, callback: AsyncCallback&lt;Result&lt;Array&lt;Result&lt;Participant&gt;&gt;&gt;&gt;): void
 
-根据指定的共享资源和共享参与者取消共享。
+根据指定的共享资源标识和共享参与者取消共享，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -1047,13 +1043,11 @@ unshare(sharingResource: string, participants: Array&lt;Participant&gt;, callbac
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | sharingResource  | string                                     | 是   | 共享数据的资源标志。 |
 | participants     | Array&lt;[Participant](#participant)&gt; | 是   | 共享参与者。 |
-| callback         | AsyncCallback&lt;Result&lt;Array&lt;Result&lt;Participant&gt;&gt;&gt;&gt;  | 是   | 回调函数。当取消共享成功，err为undefined，并返回取消共享的返回结果，否则为错误对象。 |
+| callback         | AsyncCallback&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[Result](#result&lt;T&gt;)&lt;[Participant](#participant)&gt;&gt;&gt;&gt;  | 是   | 回调函数。返回取消共享的结果，否则为错误对象。 |
 
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
-
 let privilege = {
     writable: true,
     readable: true,
@@ -1087,7 +1081,7 @@ try {
 
 exit(sharingResource: string): Promise&lt;Result&lt;void&gt;&gt;
 
-根据指定的共享资源退出共享。
+根据指定的共享资源标识退出共享，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -1095,19 +1089,18 @@ exit(sharingResource: string): Promise&lt;Result&lt;void&gt;&gt;
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource   | string       | 是   | 共享数据的资源标志。 |
+| sharingResource   | string       | 是   | 端云共享数据的资源标识。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Result&lt;void&gt;&gt; | 表示退出共享返回结果的Promise对象。 |
+| Promise&lt;[Result](#result&lt;T&gt;)&lt;void&gt;&gt; | Promise对象，返回退出端云共享的结果。 |
 
 **示例：**
 
 ```ts
 import { BusinessError } from "@ohos.base";
-import cloudData from '@ohos.data.cloudData';
 
 cloudData.sharing.exit('sharing_resource_test').then((result) => {
     console.info(`exit share success, result: ${result}`);
@@ -1121,7 +1114,7 @@ cloudData.sharing.exit('sharing_resource_test').then((result) => {
 
 exit(sharingResource: string, callback: AsyncCallback&lt;Result&lt;void&gt;&gt;): void
 
-根据指定的共享资源退出共享。
+根据指定的共享资源标识退出共享，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -1129,14 +1122,12 @@ exit(sharingResource: string, callback: AsyncCallback&lt;Result&lt;void&gt;&gt;)
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource  | string                | 是   | 共享数据的资源标志。 |
-| callback         | AsyncCallback&lt;Result&lt;void&gt;&gt;  | 是   | 回调函数。当退出共享成功，err为undefined，并返回退出共享的返回结果，否则为错误对象。 |
+| sharingResource  | string                | 是   | 端云共享数据的资源标识。 |
+| callback         | AsyncCallback&lt;[Result](#result&lt;T&gt;)&lt;void&gt;&gt;  | 是   | 回调函数。返回退出共享的结果，否则为错误对象。 |
 
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
-
 try {
     cloudData.sharing.exit('sharing_resource_test', ((err, result) => {
         if (err) {
@@ -1155,7 +1146,7 @@ try {
 
 changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;): Promise&lt;Result&lt;Array&lt;Result&lt;Participant&gt;&gt;&gt;&gt;
 
-根据共享资源更改共享参与者对共享数据的操作权限。
+根据指定的共享资源标识更改共享参与者对共享数据的操作权限，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -1163,20 +1154,19 @@ changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;)
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource   | string                                    | 是   | 共享数据的资源标志。 |
-| participants      | Array&lt;[Participant](#participant)&gt;  | 是   | 共享参与者。 |
+| sharingResource   | string                                    | 是   | 端云共享数据的资源标识。 |
+| participants      | Array&lt;[Participant](#participant)&gt;  | 是   | 端云共享的参与者。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Result&lt;Array&lt;Result&lt;Participant&gt;&gt;&gt;&gt; | 表示更改共享参与者权限返回结果的Promise对象。 |
+| Promise&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[Result](#result&lt;T&gt;)&lt;[Participant](#participant)&gt;&gt;&gt;&gt; | Promise对象，返回更改共享参与者权限的结果。 |
 
 **示例：**
 
 ```ts
 import { BusinessError } from "@ohos.base";
-import cloudData from '@ohos.data.cloudData';
 
 let privilege = {
     writable: false,
@@ -1206,7 +1196,7 @@ cloudData.sharing.changePrivilege('sharing_resource_test', participants).then((r
 
 changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;, callback: AsyncCallback&lt;Result&lt;Array&lt;Result&lt;Participant&gt;&gt;&gt;&gt;): void
 
-根据共享资源更改共享参与者对共享数据的操作权限。
+根据指定的共享资源标识更改共享参与者对共享数据的操作权限，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -1214,15 +1204,13 @@ changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;,
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource  | string                | 是   | 共享数据的资源标志。 |
-| participants     | Array&lt;[Participant](#participant)&gt;  | 是   | 共享参与者。 |
-| callback         | callback: AsyncCallback&lt;Result&lt;Array&lt;Result&lt;Participant&gt;&gt;&gt;&gt;  | 是   | 回调函数。当更改权限成功，err为undefined，并返回更改权限的返回结果，否则为错误对象。 |
+| sharingResource  | string                | 是   | 端云共享数据的资源标识。 |
+| participants     | Array&lt;[Participant](#participant)&gt;  | 是   | 端云共享的参与者。 |
+| callback         | callback: AsyncCallback&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[Result](#result&lt;T&gt;)&lt;[Participant](#participant)&gt;&gt;&gt;&gt;  | 是   | 回调函数。返回更改权限的结果，否则为错误对象。 |
 
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
-
 let privilege = {
     writable: false,
     readable: true,
@@ -1257,7 +1245,7 @@ try {
 
 queryParticipants(sharingResource: string): Promise&lt;Result&lt;Array&lt;Participant&gt;&gt;&gt;
 
-根据共享资源查询当前共享的参与者。
+根据指定的共享资源标识查询当前共享的参与者，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -1265,19 +1253,18 @@ queryParticipants(sharingResource: string): Promise&lt;Result&lt;Array&lt;Partic
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource   | string                 | 是   | 共享数据的资源标志。 |
+| sharingResource   | string                 | 是   | 端云共享数据的资源标识。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Result&lt;Array&lt;Participant&gt;&gt;&gt; | 表示查找共享参与者返回结果的Promise对象。 |
+| Promise&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[Participant](#participant)&gt;&gt;&gt; | Promise对象，返回查询共享参与者的结果。 |
 
 **示例：**
 
 ```ts
 import { BusinessError } from "@ohos.base";
-import cloudData from '@ohos.data.cloudData';
 
 cloudData.sharing.queryParticipants('sharing_resource_test').then((result) => {
     console.info(`query participants success, result: ${result}`);
@@ -1291,7 +1278,7 @@ cloudData.sharing.queryParticipants('sharing_resource_test').then((result) => {
 
 queryParticipants(sharingResource: string, callback: AsyncCallback&lt;Result&lt;Array&lt;Participant&gt;&gt;&gt;): void
 
-根据共享资源查询当前共享的参与者。
+根据指定的共享资源标识查询当前共享的参与者，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -1299,14 +1286,12 @@ queryParticipants(sharingResource: string, callback: AsyncCallback&lt;Result&lt;
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource  | string                | 是   | 共享数据的资源标志。 |
-| callback         | AsyncCallback&lt;Result&lt;Array&lt;Participant&gt;&gt;&gt;  | 是   | 回调函数。当查找共享参与者成功，err为undefined，并返回查找共享参与者的返回结果，否则为错误对象。 |
+| sharingResource  | string                | 是   | 端云共享数据的资源标识。 |
+| callback         | AsyncCallback&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[Participant](#participant)&gt;&gt;&gt;  | 是   | 回调函数。返回查找共享参与者的结果，否则为错误对象。 |
 
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
-
 try {
     cloudData.sharing.queryParticipants('sharing_resource_test', ((err, result) => {
         if (err) {
@@ -1325,7 +1310,7 @@ try {
 
 queryParticipantsByInvitation(invitationCode: string): Promise&lt;Result&lt;Array&lt;Participant&gt;&gt;&gt;
 
-根据共享邀请码查询当前共享的参与者。
+根据指定的共享邀请码查询当前共享的参与者，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -1333,19 +1318,18 @@ queryParticipantsByInvitation(invitationCode: string): Promise&lt;Result&lt;Arra
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| invitationCode   | string                 | 是   | 共享邀请的邀请码，共享发起后会生成当前邀请的邀请码，被邀请者收到邀请通知后（一般通过消息中心），根据收到的邀请码进行邀请的确认或参与者的查找。 |
+| invitationCode   | string                 | 是   | 端云共享的邀请码。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Result&lt;Array&lt;Participant&gt;&gt;&gt; | 表示查找共享参与者返回结果的Promise对象。 |
+| Promise&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[Participant](#participant)&gt;&gt;&gt; | Promise对象，返回查找共享参与者的结果。|
 
 **示例：**
 
 ```ts
 import { BusinessError } from "@ohos.base";
-import cloudData from '@ohos.data.cloudData';
 
 cloudData.sharing.queryParticipantsByInvitation('sharing_invitation_code_test').then((result) => {
     console.info(`query participants by invitation success, result: ${result}`);
@@ -1359,7 +1343,7 @@ cloudData.sharing.queryParticipantsByInvitation('sharing_invitation_code_test').
 
 queryParticipantsByInvitation(invitationCode: string, callback: AsyncCallback&lt;Result&lt;Array&lt;Participant&gt;&gt;&gt;): void
 
-根据共享邀请码查询当前共享的参与者。
+根据指定的共享邀请码查询当前共享的参与者，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -1367,14 +1351,12 @@ queryParticipantsByInvitation(invitationCode: string, callback: AsyncCallback&lt
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| invitationCode  | string                | 是   | 共享邀请的邀请码，共享发起后会生成当前邀请的邀请码，被邀请者收到邀请通知后（一般通过消息中心），根据收到的邀请码进行邀请的确认或参与者的查找。 |
-| callback         | AsyncCallback&lt;Result&lt;Array&lt;Participant&gt;&gt;&gt; | 是   | 回调函数。当查找共享参与者成功，err为undefined，并返回查找共享参与者的返回结果，否则为错误对象。 |
+| invitationCode  | string                | 是   | 端云共享的邀请码。 |
+| callback        | AsyncCallback&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[Participant](#participant)&gt;&gt;&gt; | 是   | 回调函数。返回查找共享参与者的结果，否则为错误对象。 |
 
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
-
 try {
     cloudData.sharing.queryParticipantsByInvitation('sharing_invitation_code_test', ((err, result) => {
         if (err) {
@@ -1393,7 +1375,7 @@ try {
 
 confirmInvitation(invitationCode: string, state: State): Promise&lt;Result&lt;string&gt;&gt;
 
-被邀请者根据共享邀请码确认当前邀请，并获取当前邀请的共享资源标志（shareResource）。
+被邀请者根据共享邀请码确认当前邀请，并获取当前邀请的共享资源标识，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -1401,25 +1383,24 @@ confirmInvitation(invitationCode: string, state: State): Promise&lt;Result&lt;st
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| invitationCode   | string                 | 是   | 共享邀请的邀请码，共享发起后会生成当前邀请的邀请码，被邀请者收到邀请通知后（一般通过消息中心），根据收到的邀请码进行邀请的确认或参与者的查找。 |
+| invitationCode   | string                 | 是   | 端云共享的邀请码。 |
 | state            | [State](#state)        | 是   | 确认邀请的状态。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Result&lt;string&gt;&gt; | 表示确认邀请返回结果的Promise对象，返回当前共享邀请的共享资源标记(shareResource)。 |
+| Promise&lt;[Result](#result&lt;T&gt;)&lt;string&gt;&gt; | Promise对象，返回确认共享邀请的结果。 |
 
 **示例：**
 
 ```ts
 import { BusinessError } from "@ohos.base";
-import cloudData from '@ohos.data.cloudData';
 
-let shareResource;
+let shareResource: string;
 cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED).then((result) => {
     console.info(`confirm invitation success, result: ${result}`);
-    shareResource = result;
+    shareResource = result.value;
 }).catch((err: BusinessError) => {
     console.error(`confirm invitation failed, code is ${err.code},message is ${err.message}`);
 })
@@ -1430,7 +1411,7 @@ cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sh
 
 confirmInvitation(invitationCode: string, state: State, callback: AsyncCallback&lt;Result&lt;string&gt;&gt;): void
 
-被邀请者根据共享邀请码确认当前邀请，并获取当前邀请的共享资源标志（shareResource）。
+被邀请者根据共享邀请码确认当前邀请，并获取当前邀请的共享资源标识，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -1438,16 +1419,15 @@ confirmInvitation(invitationCode: string, state: State, callback: AsyncCallback&
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| invitationCode  | string                | 是   | 共享邀请的邀请码，共享发起后会生成当前邀请的邀请码，被邀请者收到邀请通知后（一般通过消息中心），根据收到的邀请码进行邀请的确认或参与者的查找。 |
+| invitationCode  | string                | 是   | 端云共享的邀请码。 |
 | state           | [State](#state)       | 是   | 确认邀请的状态。 |
-| callback        | AsyncCallback&lt;Result&lt;string&gt;&gt; | 是   | 回调函数。当确认邀请成功，err为undefined，并返回确认邀请的返回结果，否则为错误对象。 |
+| callback        | AsyncCallback&lt;[Result](#result&lt;T&gt;)&lt;string&gt;&gt; | 是   | 回调函数。返回确认邀请的结果，否则为错误对象。 |
 
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
 
-let shareResource;
+let shareResource: string;
 try {
     cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED, ((err, result) => {
         if (err) {
@@ -1455,7 +1435,7 @@ try {
             return;
         }
         console.info(`confirm invitation success, result: ${result}`);
-        shareResource = result;
+        shareResource = result.value;
     }))
 } catch (e) {
     console.error(`confirm invitation failed, code is ${e.code},message is ${e.message}`);
@@ -1467,7 +1447,7 @@ try {
 
 changeConfirmation(sharingResource: string, state: State): Promise&lt;Result&lt;void&gt;&gt;
 
-根据共享资源更改共享邀请的确认状态。
+根据共享资源标识更改共享邀请的状态，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -1475,20 +1455,19 @@ changeConfirmation(sharingResource: string, state: State): Promise&lt;Result&lt;
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource   | string                 | 是   | 共享数据的资源标志。 |
-| state             | [State](#state)        | 是   | 更改确认邀请的状态。 |
+| sharingResource   | string                 | 是   | 端云共享数据的资源标识。 |
+| state             | [State](#state)        | 是   | 更改邀请的状态。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Result&lt;void&gt;&gt; | 表示更改确认邀请返回结果的Promise对象。 |
+| Promise&lt;[Result](#result&lt;T&gt;)&lt;void&gt;&gt; |  Promise对象，返回更改共享邀请状态的结果。 |
 
 **示例：**
 
 ```ts
 import { BusinessError } from "@ohos.base";
-import cloudData from '@ohos.data.cloudData';
 
 cloudData.sharing.changeConfirmation('sharing_resource_test', cloudData.sharing.State.STATE_REJECTED).then((result) => {
     console.info(`change confirmation success, result: ${result}`);
@@ -1502,7 +1481,7 @@ cloudData.sharing.changeConfirmation('sharing_resource_test', cloudData.sharing.
 
 changeConfirmation(sharingResource: string, state: State, callback: AsyncCallback&lt;Result&lt;void&gt;&gt;): void;
 
-根据共享资源更改共享邀请的确认状态。
+根据共享资源标识更改共享邀请的状态，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -1510,15 +1489,13 @@ changeConfirmation(sharingResource: string, state: State, callback: AsyncCallbac
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| sharingResource   | string                 | 是   | 共享数据的资源标志。 |
-| state             | [State](#state)        | 是   | 更改确认邀请的状态。 |
-| callback          | AsyncCallback&lt;Result&lt;void&gt;&gt; | 是   | 回调函数。当更改邀请确认成功，err为undefined，并返回更改邀请确认的返回结果，否则为错误对象。 |
+| sharingResource   | string                 | 是   | 端云共享数据的资源标识。 |
+| state             | [State](#state)        | 是   | 更改邀请的状态。 |
+| callback          | AsyncCallback&lt;[Result](#result&lt;T&gt;)&lt;void&gt;&gt; | 是   | 回调函数。返回更改邀请状态的结果，否则为错误对象。 |
 
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
-
 try {
     cloudData.sharing.changeConfirmation('sharing_resource_test', cloudData.sharing.State.STATE_REJECTED, ((err, result) => {
         if (err) {

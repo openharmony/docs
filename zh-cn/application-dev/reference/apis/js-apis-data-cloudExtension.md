@@ -1,9 +1,9 @@
 # @ohos.data.cloudExtension (端云共享Extension)
 
 端云共享Extension，提供三方厂商适配共享云服务的能力。通过实现端云共享Extension提供的接口，对接端侧的数据共享到服务端，实现端云共享的发起、取消或退出，更改共享数据的操作权限、查询共享参与者、根据共享邀请码查询共享参与者、确认或更改共享邀请，并支持返回共享云服务相关结果。
-<br>其中，共享资源标识是指：对于应用发起共享的每一条数据记录，该条数据在进行端云同步时会生成唯一的共享资源标识（字符串类型的值），此标识则作为该条数据记录共享时的识别标识。
-<br>     共享参与者是指： 共享发起者根据好友列表选中的参与当前数据共享的所有人员。
-<br>     共享邀请码是指： 共享发起后，在共享的服务端会生成当前共享操作的邀请码，并将该邀请码附加到当前共享邀请中，通过push消息推送到被邀请者的设备端，被邀请者可以通过该邀请码进行邀请的确认。
+<br>其中，端云共享资源标识是指：对于应用发起共享的每一条数据记录，该条数据在进行端云同步时会生成唯一的共享资源标识（字符串类型的值），此标识则作为该条数据记录共享时的识别标识。
+<br>     端云共享参与者是指： 共享发起者根据好友列表选中的参与当前数据共享的所有人员。
+<br>     端云共享邀请码是指： 共享发起后，在共享的服务端会生成当前共享操作的邀请码，并将该邀请码附加到当前共享邀请中，通过push消息推送到被邀请者的设备端，被邀请者可以通过该邀请码进行邀请的确认。
 
 > **说明：** 
 >
@@ -130,7 +130,7 @@ export default class MyCloudService implements cloudExtension.CloudService {
 
 connectShareCenter(userId: number, bundleName: string): Promise&lt;rpc.RemoteObject&gt;
 
-系统内部通过该接口获取[ShareCenter](#sharecenter)的[RemoteObject](js-apis-rpc.md#RemoteObject)对象，可以通过createShareServiceStub接口进行创建。
+系统内部通过该接口获取[ShareCenter](#sharecenter)的[RemoteObject](js-apis-rpc.md#RemoteObject)对象，可以通过[createShareServiceStub](#createshareservicestub)接口进行创建，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -174,7 +174,7 @@ export default class MyCloudService implements cloudExtension.CloudService {
 
 share(userId: number, bundleName: string, sharingResource: string, participants: Array&lt;cloudData.sharing.Participant&gt;): Promise&lt;Result&lt;Array&lt;Result&lt;cloudData.sharing.Participant&gt;&gt;&gt;&gt;
 
-发起端云共享邀请。共享邀请时，会指定当前发起共享的应用、共享数据的资源标识和共享参与者。
+发起端云共享邀请。共享邀请时，会指定当前发起共享的应用、共享数据的资源标识和共享参与者，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -184,8 +184,8 @@ share(userId: number, bundleName: string, sharingResource: string, participants:
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
-| sharingResource | string  | 是   | 共享资源标识。   |
-| participants    | Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;  | 是   | 共享参与者。   |
+| sharingResource | string  | 是   | 端云共享资源的标识。   |
+| participants    | Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;  | 是   | 端云共享参与者。   |
 
 **返回值：**
 
@@ -229,7 +229,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 
 unshare(userId: number, bundleName: string, sharingResource: string, participants: Array&lt;cloudData.sharing.Participant&gt;): Promise&lt;Result&lt;Array&lt;Result&lt;cloudData.sharing.Participant&gt;&gt;&gt;&gt;
 
-取消端云共享。取消共享时，会指定当前取消共享的应用、取消共享数据的资源标识和取消共享的参与者。
+取消端云共享。取消共享时，会指定当前取消共享的应用、取消共享数据的资源标识和取消共享的参与者，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -239,8 +239,8 @@ unshare(userId: number, bundleName: string, sharingResource: string, participant
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
-| sharingResource | string  | 是   | 共享资源标识。   |
-| participants    | Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;  | 是   | 共享参与者。   |
+| sharingResource | string  | 是   | 端云共享资源标识。   |
+| participants    | Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;  | 是   | 端云共享参与者。   |
 
 **返回值：**
 
@@ -284,7 +284,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 
 exit(userId: number, bundleName: string, sharingResource: string): Promise&lt;Result&lt;void&gt;&gt;
 
-退出端云共享。退出共享时，会指定当前退出共享的应用以及退出共享数据的资源标识。
+退出端云共享。退出共享时，会指定当前退出共享的应用以及退出共享数据的资源标识，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -294,7 +294,7 @@ exit(userId: number, bundleName: string, sharingResource: string): Promise&lt;Re
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
-| sharingResource | string  | 是   | 共享资源标识。   |
+| sharingResource | string  | 是   | 端云共享资源标识。   |
 
 **返回值：**
 
@@ -328,7 +328,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 
 changePrivilege(userId: number, bundleName: string, sharingResource: string, participants: Array&lt;cloudData.sharing.Participant&gt;): Promise&lt;Result&lt;Array&lt;Result&lt;cloudData.sharing.Participant&gt;&gt;&gt;&gt;
 
-更改已共享数据的操作权限。更改权限时，会指定当前更改权限的应用、更改权限数据的资源标识和更改权限的参与者。
+更改已共享数据的操作权限。更改权限时，会指定当前更改权限的应用、更改权限数据的资源标识和更改权限的参与者，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -338,8 +338,8 @@ changePrivilege(userId: number, bundleName: string, sharingResource: string, par
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
-| sharingResource | string  | 是   | 共享资源标识。   |
-| participants    | Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;  | 是   | 共享参与者。   |
+| sharingResource | string  | 是   | 端云共享资源标识。   |
+| participants    | Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;  | 是   | 端云共享参与者。   |
 
 **返回值：**
 
@@ -383,7 +383,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 
 queryParticipants(userId: number, bundleName: string, sharingResource: string): Promise&lt;Result&lt;Array&lt;cloudData.sharing.Participant&gt;&gt;&gt;
 
-查询当前端云共享的参与者。查询时，会指定当前查询参与者的应用、查询参与者数据的资源标识。
+查询当前端云共享的参与者。查询时，会指定当前查询参与者的应用、查询参与者数据的资源标识，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -393,7 +393,7 @@ queryParticipants(userId: number, bundleName: string, sharingResource: string): 
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
-| sharingResource | string  | 是   | 共享资源标识。   |
+| sharingResource | string  | 是   | 端云共享资源标识。   |
 
 **返回值：**
 
@@ -452,7 +452,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 
 queryParticipantsByInvitation(userId: number, bundleName: string, invitationCode: string): Promise&lt;Result&lt;Array&lt;cloudData.sharing.Participant&gt;&gt;&gt;
 
-根据邀请码查询当前端云共享的参与者。查询时，会指定当前查询参与者的应用、共享数据的邀请码。
+根据邀请码查询当前端云共享的参与者。查询时，会指定当前查询参与者的应用、共享数据的邀请码，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -462,7 +462,7 @@ queryParticipantsByInvitation(userId: number, bundleName: string, invitationCode
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
-| invitationCode  | string  | 是   | 共享邀请码。   |
+| invitationCode  | string  | 是   | 端云共享邀请码。   |
 
 **返回值：**
 
@@ -521,7 +521,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 
 confirmInvitation(userId: number, bundleName: string, invitationCode: string, state: cloudData.sharing.State): Promise&lt;Result&lt;string&gt;&gt;
 
-被邀请者确认端云共享邀请。确认时，会指定当前确认邀请的应用、共享数据的邀请码以及确认状态。
+被邀请者确认端云共享邀请。确认时，会指定当前确认邀请的应用、共享数据的邀请码以及确认状态，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -531,8 +531,8 @@ confirmInvitation(userId: number, bundleName: string, invitationCode: string, st
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
-| invitationCode  | string  | 是   | 共享邀请码。   |
-| state           | [cloudData.sharing.State](#js-apis-data-cloudData.md#State)  | 是   | 共享邀请的确认状态。   |
+| invitationCode  | string  | 是   | 端云共享邀请码。   |
+| state           | [cloudData.sharing.State](#js-apis-data-cloudData.md#state)  | 是   | 共享邀请的确认状态。   |
 
 **返回值：**
 
@@ -567,7 +567,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 
 changeConfirmation(userId: number, bundleName: string, sharingResource: string, state: cloudData.sharing.State): Promise&lt;Result&lt;void&gt;&gt;
 
-更改端云共享邀请。更改共享邀请时，会指定当前更改共享邀请的应用、共享数据的的共享资源标识以及更改的状态。
+更改端云共享邀请。更改共享邀请时，会指定当前更改共享邀请的应用、共享数据的的共享资源标识以及更改的状态,使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -577,7 +577,7 @@ changeConfirmation(userId: number, bundleName: string, sharingResource: string, 
 | ------- | ----------------------- | ---- | ----------------------------------------------- |
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
-| sharingResource | string  | 是   | 共享资源标识。   |
+| sharingResource | string  | 是   | 端云共享资源标识。   |
 | state           | [cloudData.sharing.State](#js-apis-data-cloudData.md#State)  | 是   | 共享邀请的更改状态。   |
 
 **返回值：**
