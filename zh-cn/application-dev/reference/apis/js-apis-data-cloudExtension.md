@@ -191,7 +191,7 @@ share(userId: number, bundleName: string, sharingResource: string, participants:
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[Result](#result&lt;T&gt;)&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;&gt;&gt;&gt; | Promise对象，返回发起共享的结果。 |
+| Promise&lt;[Result](#result)&lt;Array&lt;[Result](#result)&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;&gt;&gt;&gt; | Promise对象，返回发起共享的结果。 |
 
 **示例：**
 

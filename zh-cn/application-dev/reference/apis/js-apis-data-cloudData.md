@@ -894,7 +894,7 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;): Promise&
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[Result](#result&lt;T&gt;)&lt;[Participant](#participant)&gt;&gt;&gt;&gt; | Promise对象，返回端云共享的结果。 |
+| Promise&lt;[Result](#result)&lt;Array&lt;[Result](#result)&lt;[Participant](#participant)&gt;&gt;&gt;&gt; | Promise对象，返回端云共享的结果。 |
 
 **示例：**
 
