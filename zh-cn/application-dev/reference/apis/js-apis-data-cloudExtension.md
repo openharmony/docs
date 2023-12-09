@@ -246,7 +246,7 @@ unshare(userId: number, bundleName: string, sharingResource: string, participant
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[Result](#result&lt;T&gt;)&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;&gt;&gt;&gt; | Promise对象，返回取消共享的结果。 |
+| Promise&lt;[Result](#result)&lt;Array&lt;[Result](#result)&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;&gt;&gt;&gt; | Promise对象，返回取消共享的结果。 |
 
 **示例：**
 
@@ -300,7 +300,7 @@ exit(userId: number, bundleName: string, sharingResource: string): Promise&lt;Re
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#result&lt;T&gt;)&lt;void&gt;&gt; | Promise对象，返回退出共享的结果。 |
+| Promise&lt;[Result](#result)&lt;void&gt;&gt; | Promise对象，返回退出共享的结果。 |
 
 **示例：**
 
@@ -345,7 +345,7 @@ changePrivilege(userId: number, bundleName: string, sharingResource: string, par
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[Result](#result&lt;T&gt;)&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;&gt;&gt;&gt; | Promise对象，返回更改权限的结果。 |
+| Promise&lt;[Result](#result)&lt;Array&lt;[Result](#result)&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;&gt;&gt;&gt; | Promise对象，返回更改权限的结果。 |
 
 **示例：**
 
@@ -399,7 +399,7 @@ queryParticipants(userId: number, bundleName: string, sharingResource: string): 
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;&gt;&gt; | Promise对象，返回查询共享参与者的结果。 |
+| Promise&lt;[Result](#result)&lt;Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;&gt;&gt; | Promise对象，返回查询共享参与者的结果。 |
 
 **示例：**
 
@@ -468,7 +468,7 @@ queryParticipantsByInvitation(userId: number, bundleName: string, invitationCode
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#result&lt;T&gt;)&lt;Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;&gt;&gt; | Promise对象，返回根据邀请码查询共享参与者的结果。 |
+| Promise&lt;[Result](#result)&lt;Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#Participant)&gt;&gt;&gt; | Promise对象，返回根据邀请码查询共享参与者的结果。 |
 
 **示例：**
 
@@ -538,7 +538,7 @@ confirmInvitation(userId: number, bundleName: string, invitationCode: string, st
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#result&lt;T&gt;)&lt;string&gt;&gt; | Promise对象，返回确认端云共享邀请数据的共享资源标识。 |
+| Promise&lt;[Result](#result)&lt;string&gt;&gt; | Promise对象，返回确认端云共享邀请数据的共享资源标识。 |
 
 **示例：**
 
@@ -584,7 +584,7 @@ changeConfirmation(userId: number, bundleName: string, sharingResource: string, 
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#result&lt;T&gt;)&lt;void&gt;&gt; | Promise对象，返回更改共享邀请的结果。 |
+| Promise&lt;[Result](#result)&lt;void&gt;&gt; | Promise对象，返回更改共享邀请的结果。 |
 
 **示例：**
 
