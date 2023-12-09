@@ -1030,7 +1030,7 @@ formObserver.on('router', hostBundleName, callback);
 import formObserver from '@ohos.app.form.formObserver';
 import formInfo from '@ohos.app.form.formInfo';
 
-let bundleName: string = 'ohos.samples.FormApplication';
+let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log('Unregister form router event Listening.' + JSON.stringify(data));
 };
