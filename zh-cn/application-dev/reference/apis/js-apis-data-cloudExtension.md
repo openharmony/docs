@@ -145,7 +145,7 @@ connectShareCenter(userId: number, bundleName: string): Promise&lt;rpc.RemoteObj
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;rpc.RemoteObject&gt; | Promise对象，返回[ShareCenter](#sharecenter)的[RemoteObject](js-apis-rpc.md#RemoteObject)对象。 |
+| Promise&lt;[rpc.RemoteObject](js-apis-rpc.md#RemoteObject)&gt; | Promise对象，返回[ShareCenter](#sharecenter)的[RemoteObject](js-apis-rpc.md#RemoteObject)对象。 |
 
 **示例：**
 
