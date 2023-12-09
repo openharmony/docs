@@ -49,6 +49,8 @@ Text(content?: string | Resource)
 | wordBreak<sup>11+</sup> | [WorkBreak](ts-appendix-enums.md#wordbreak11) | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，`maxLines`组合使用可实现英文单词按字母截断，超出部分以省略号显示|
 | selection<sup>11+</sup> |(selectionStart:&nbsp;number, selectionEnd:&nbsp;number)| 设置选中区域。选中区域高亮且显示手柄和文本选择菜单。 <br />默认值：（-1，-1） <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>当`copyOption`设置为CopyOptions.None时，设置`selection`属性不生效。<br/>当`overflow`设置为TextOverflow.Marquee时，设置`selection`属性不生效。<br/>当`selectionStart`大于等于`selectionEnd`时不选中。可选范围为[0, textSize],textSize为文本内容最大字符数，入参小于0处理为0，大于textSize处理为textSize。<br/>当`selectionStart`或`selectionEnd`在截断不可见区域时不选中。截断为false时超出父组件的文本选中区域生效。|
 | ellipsisMode<sup>11+</sup> |[EllipsisMode](ts-appendix-enums.md#ellipsismode11)| 设置省略位置。 <br />默认值：EllipsisMode.END <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>当`ellipsisMode`设置为EllipsisMode.END，需要配合`overflow`设置为TextOverflow.Ellipsis以及maxLines使用，单独设置`ellipsisMode`属性不生效。<br/>EllipsisMode.START和EllipsisMode.CENTER仅在单行超长文本生效。|
+| enableDataDetector<sup>11+</sup> |boolean| 使能文本识别。<br/>默认值： false <br/>**说明：**<br />该接口依赖设备底层应具有文本识别能力。否则设置不生效。<br/>当`copyOption`设置为CopyOptions.None，该功能不会生效。 |
+| dataDetectorConfig<sup>11+</sup> |{<br/>types:&nbsp;[TextDataDetectorType](ts-appendix-enums.md#textdatadetectortype11),<br/>onDetectResultUpdate:&nbsp;(callback:(result:&nbsp;string)&nbsp;=&gt;&nbsp;void)<br/>} | 文本AI识别配置。 <br/>默认值：{<br/>types:&nbsp;[ ],<br/>onDetectResultUpdate:&nbsp;null<br/>} <br />**说明：**<br/>需配合`enableDataDetector`一起使用，设置`enableDataDetector`为true时，`dataDetectorConfig`的配置才能生效。<br/>`types`：文本识别的实体类型。设置`types`为`null`或者`[]`时，识别所有类型的实体，否则只识别指定类型的实体。<br/> `onDetectResultUpdate`：文本识别成功后，触发`onDetectResultUpdate`回调。<br/>`result`：文本识别的结果，Json格式。 |
 
 >  **说明：**
 >
@@ -444,3 +446,41 @@ struct TextExample6 {
 }
 ```
 ![](figures/textExample6.gif)
+
+### 示例7
+enableDataDetector和dataDetectorConfig使用示例
+
+```ts
+@Entry
+@Component
+struct TextExample7 {
+  @State phoneNumber: string = '(86) (755) ********';
+  @State url: string = 'Hello World';
+  @State email: string = '***@openharmony.cn';
+  @State address: string = 'XX省XX市XX区XXXX';
+  @State enableDataDetector: boolean = true;
+  @State types: TextDataDetectorType[] = [];
+
+  build() {
+    Row() {
+      Column() {
+        Text(
+          '电话号码' + this.phoneNumber + '\n' +
+          '链接' + this.url + '\n' +
+          '邮箱' + this.email + '\n' +
+          '地址' + this.address
+        )
+          .fontSize(16)
+          .copyOption(CopyOptions.InApp)
+          .dataDetectorConfig({types : this.types, onDetectResultUpdate: (result: string)=>{}})
+          .textAlign(TextAlign.Center)
+          .borderWidth(1)
+          .padding(10)
+          .width('100%')
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```

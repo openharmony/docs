@@ -672,3 +672,11 @@ Nullable\<T> {
 | CENTER | 位于父组件居中位置。 |
 | END | 水平方向：位于父组件最右侧，垂直方向：位于父组件最下侧。 |
 
+## TextDataDetectorType<sup>11+</sup>
+
+| 名称  | 描述                                   |
+| ----- | -------------------------------------- |
+| PHONE_NUMBER  | 电话号码 |
+| URL | 链接 |
+| EMAIL | 邮箱 |
+| ADDRESS | 地址 |
