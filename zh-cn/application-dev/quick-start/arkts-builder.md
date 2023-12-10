@@ -70,6 +70,8 @@ MyGlobalBuilderFunction()
 
 - \@Builder内UI语法遵循[UI语法规则](arkts-create-custom-components.md#build函数)。
 
+- 只有传入一个参数，且参数需要直接传入对象字面量才会按引用传递该参数，其余传递方式均为按值传递。
+
 
 ### 按引用传递参数
 
