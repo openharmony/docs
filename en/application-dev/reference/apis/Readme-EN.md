@@ -423,6 +423,7 @@
   - [@ohos.deviceInfo (Device Information)](js-apis-device-info.md)
   - [@ohos.distributedDeviceManager (Device Management)](js-apis-distributedDeviceManager.md)
   - [@ohos.distributedHardware.deviceManager (Device Management)](js-apis-device-manager.md)
+  - [@ohos.distributedHardware.hardwareManager (Distributed Hardware Management)](js-apis-distributedHardwareManager.md)
   - [@ohos.driver.deviceManager (Peripheral Management)](js-apis-driver-deviceManager.md)
   - [@ohos.geoLocationManager (Geolocation Manager)](js-apis-geoLocationManager.md)
   - [@ohos.multimodalInput.gestureEvent (Gesture Input Event)](js-apis-multimodalinput-gestureevent.md)
