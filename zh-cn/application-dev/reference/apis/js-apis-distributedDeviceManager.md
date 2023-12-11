@@ -633,8 +633,8 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
       console.info("bindTarget result:" + JSON.stringify(data));
     });
   } catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error("bindTarget errCode:" + e.code + ",errMessage:" + e.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("bindTarget errCode:" + e.code + ",errMessage:" + e.message);
   }
 
   ```
