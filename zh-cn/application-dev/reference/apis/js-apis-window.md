@@ -6629,6 +6629,39 @@ try {
 }
 ```
 
+### keepKeyboardOnFocus<sup>11+</sup>
+
+keepKeyboardOnFocus(keepKeyboardFlag: boolean): void
+
+窗口获焦时保留由其他窗口创建的软键盘，仅支持系统窗口与应用子窗口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名           | 类型    | 必填 | 说明                                                         |
+| ---------------- | ------- | ---- | ------------------------------------------------------------ |
+| keepKeyboardFlag | boolean | 是   | 是否保留其他窗口创建的软键盘。true表示保留；false表示不保留。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------- |
+| 1300002 | This window state is abnormal.           |
+| 1300004 | Unauthorized operation.                  |
+
+**示例：**
+
+```ts
+try {
+  windowClass.keepKeyboardOnFocus(true);
+} catch (exception) {
+  console.error('Failed to keep keyboard onFocus. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### show<sup>(deprecated)</sup>
 
 show(callback: AsyncCallback&lt;void&gt;): void
