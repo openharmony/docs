@@ -624,19 +624,17 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
     'customDescription': 'xxxx'
   }
 
-  if (dmInstance !== undefined) {
-    try {
-      dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
-        if (err) {
-          console.error("bindTarget errCode:" + err.code + ",errMessage:" + err.message);
-          return;
-        }
-       console.info("bindTarget result:" + JSON.stringify(data));
-     });
-   } catch (err) {
-    let e: BusinessError = err as BusinessError;
-    console.error("bindTarget errCode:" + e.code + ",errMessage:" + e.message);
-   }
+  try {
+    dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
+      if (err) {
+        console.error("bindTarget errCode:" + err.code + ",errMessage:" + err.message);
+        return;
+      }
+      console.info("bindTarget result:" + JSON.stringify(data));
+    });
+  } catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error("bindTarget errCode:" + e.code + ",errMessage:" + e.message);
   }
 
   ```
