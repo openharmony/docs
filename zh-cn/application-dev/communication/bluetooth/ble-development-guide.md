@@ -34,7 +34,7 @@ BLE是Bluetooth Low Energy的缩写，意为“低功耗蓝牙”。它是一种
 1. import需要的ble模块。
 2. 开启设备的蓝牙。
 3. 需要SystemCapability.Communication.Bluetooth.Core系统能力。
-4. 开启广播，扫描该广播。
+4. 开启广播，对端设备扫描该广播。
 5. 关闭广播。
 6. 示例代码：
 ```
