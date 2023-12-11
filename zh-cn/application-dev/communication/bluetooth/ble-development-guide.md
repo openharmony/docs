@@ -6,8 +6,8 @@ BLE是Bluetooth Low Energy的缩写，意为“低功耗蓝牙”。它是一种
 ## 场景介绍
 主要场景有：
 
-- 开启/关闭广播
-- 开启/关闭扫描
+- 开启、关闭广播
+- 开启、关闭扫描
 
 ## 接口说明
 
@@ -29,27 +29,19 @@ BLE是Bluetooth Low Energy的缩写，意为“低功耗蓝牙”。它是一种
 | off(type: 'BLEDeviceFind')         | 取消订阅BLE设备发现上报事件。                                                     |
 
 ## 主要场景开发步骤
-说明：
-  - 以下场景开发，都需要提前开启蓝牙。
 
-### 开启广播
-1. 导入模块: import ble from '@ohos.bluetooth.ble'。
-2. 需要权限: ohos.permission.ACCESS_BLUETOOTH。
-3. 需要系统能力: SystemCapability.Communication.Bluetooth.Core。
-4. 参数说明：
-
-| 参数名         | 类型                                    | 必填   | 说明             |
-| ----------- | ------------------------------------- | ---- | -------------- |
-| setting     | AdvertiseSetting | 是    | BLE广播的相关设置参数。如果需要使用默认值，请配置为null。    |
-| advData     | AdvertiseData       | 是    | BLE广播包内容。      |
-| advResponse | AdvertiseData      | 否    | BLE回复扫描请求回复响应。 |
-5. 示例代码：
+### 开启、关闭广播
+1. import需要的ble模块。
+2. 开启设备的蓝牙。
+3. 需要SystemCapability.Communication.Bluetooth.Core系统能力。
+4. 开启广播，扫描该广播。
+5. 关闭广播。
+6. 示例代码：
 ```
 import ble from '@ohos.bluetooth.ble';
 import { BusinessError } from '@ohos.base';
-import promptAction from '@ohos.promptAction';
 
-// 以下为样例数据
+// 开启广播
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -60,136 +52,74 @@ serviceValueBuffer[0] = 5;
 serviceValueBuffer[1] = 6;
 serviceValueBuffer[2] = 7;
 serviceValueBuffer[3] = 8;
-
-// 构造接口第一个参数setting
 let setting: ble.AdvertiseSetting = {
-    interval: 150,
-    txPower: 0,
-    connectable: true
+  interval: 150,
+  txPower: 0,
+  connectable: true
 };
 let manufactureDataUnit: ble.ManufactureData = {
-    manufactureId: 4567,
-    manufactureValue: manufactureValueBuffer.buffer
+  manufactureId: 4567,
+  manufactureValue: manufactureValueBuffer.buffer
 };
 let serviceDataUnit: ble.ServiceData = {
-    serviceUuid: "00001888-0000-1000-8000-00805f9b34fb",
-    serviceValue: serviceValueBuffer.buffer
+  serviceUuid: "00001888-0000-1000-8000-00805f9b34fb",
+  serviceValue: serviceValueBuffer.buffer
 };
-
-// 构造接口第二个参数advData
 let advData: ble.AdvertiseData = {
-    serviceUuids: ["00001888-0000-1000-8000-00805f9b34fb"],
-    manufactureData: [manufactureDataUnit],
-    serviceData: [serviceDataUnit]
+  serviceUuids: ["00001888-0000-1000-8000-00805f9b34fb"],
+  manufactureData: [manufactureDataUnit],
+  serviceData: [serviceDataUnit]
 };
-
-// 构造接口第三个参数advResponse
 let advResponse: ble.AdvertiseData = {
-    serviceUuids: ["00001888-0000-1000-8000-00805f9b34fb"],
-    manufactureData: [manufactureDataUnit],
-    serviceData: [serviceDataUnit]
+  serviceUuids: ["00001888-0000-1000-8000-00805f9b34fb"],
+  manufactureData: [manufactureDataUnit],
+  serviceData: [serviceDataUnit]
 };
 
-try {
-    // 开启广播
-    ble.startAdvertising(setting, advData, advResponse);
-    promptAction.showToast({ message: 'startAdvertising success' });
-} catch (err) {
-    promptAction.showToast({
-        message: 'startAdvertising failed, errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message
-    });
-}
+ble.startAdvertising(setting, advData, advResponse);
+console.info('startAdvertising success');
+
+// 关闭广播
+ble.stopAdvertising();
+console.info('stopAdvertising success');
 ```
-6. 错误码请参见[蓝牙服务子系统错误码](../../reference/errorcodes/errorcode-bluetoothManager.md)。
-7. 如何验证：执行该用例代码，提示“startAdvertising success”，并且使用另外一部手机安装nrfConnect软件开启扫描，如果扫描到该广播，广播内容“Manufacturer data的值为:0x01020304，Service Data的值为:0x05060708”，表示开启广播成功。
+7. 错误码请参见[蓝牙服务子系统错误码](../../reference/errorcodes/errorcode-bluetoothManager.md)。
+8. 如何验证：执行开启广播的用例代码，提示“startAdvertising success”，并且使用另外一部手机安装nrfConnect软件开启扫描，如果扫描到该广播，广播内容“Manufacturer data的值为:0x01020304，Service Data的值为:0x05060708”，表示开启广播成功。关闭广播后，扫描不到有该内容的广播。
 
-### 关闭广播
-1. 导入模块: import ble from '@ohos.bluetooth.ble'。
-2. 需要权限: ohos.permission.ACCESS_BLUETOOTH。
-3. 需要系统能力: SystemCapability.Communication.Bluetooth.Core。
-4. 示例代码：
-```
-import ble from '@ohos.bluetooth.ble';
-import { BusinessError } from '@ohos.base';
-import promptAction from '@ohos.promptAction';
-
-try {
-    // 关闭广播
-    ble.stopAdvertising();
-    promptAction.showToast({ message: 'stopAdvertising success' });
-} catch (err) {
-    promptAction.showToast({ message: 'stopAdvertising failed, errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message});
-}
-```
-5. 错误码请参见[蓝牙服务子系统错误码](../../reference/errorcodes/errorcode-bluetoothManager.md)。
-6. 如何验证：执行该用例代码，弹框提示“stopAdvertising success”，并且使用另外一部手机上的nrfConnect进行扫描，搜索不到“Manufacturer data的值为:0x01020304，Service Data的值为:0x05060708”的广播内容，表示关闭广播成功。
-
-### 开启扫描
-1. 导入模块: import ble from '@ohos.bluetooth.ble。
-2. 需要权限: ohos.permission.ACCESS_BLUETOOTH。
-3. 需要系统能力: SystemCapability.Communication.Bluetooth.Core。
-4. 参数说明:
-
-| 参数名     | 类型                                     | 必填   | 说明                                  |
-| ------- | -------------------------------------- | ---- | ----------------------------------- |
-| filters | Array&lt;ScanFilter&gt; | 是    | 表示用于过滤指定设备的过滤器列表，如果不使用过滤的方式，该参数设置为null。 |
-| options | ScanOptions            | 否    | 表示扫描的参数配置，可选参数。如果用户没有赋值，则将使用默认值。 |
-5. 示例代码:
+### 开启、关闭扫描
+1. import需要的ble模块。
+2. 开启设备的蓝牙。
+3. 需要SystemCapability.Communication.Bluetooth.Core系统能力。
+4. 对端设备开启广播。
+5. 本端设备开启扫描，获取扫描结果。
+6. 关闭扫描。
+7. 示例代码:
 ```
 import ble from '@ohos.bluetooth.ble';
 import { BusinessError } from '@ohos.base';
-import promptAction from '@ohos.promptAction';
 
-// 构造过滤器，根据name扫描
+// 开启扫描
 let scanFilter: ble.ScanFilter = {
-    name: 'Jackistang'
+  name: 'Jackistang'
 };
-
-// 构造扫描选项
 let scanOptions: ble.ScanOptions = {
-    interval: 500,
-    dutyMode: ble.ScanDuty.SCAN_MODE_LOW_POWER,
-    matchMode: ble.MatchMode.MATCH_MODE_AGGRESSIVE
+  interval: 500,
+  dutyMode: ble.ScanDuty.SCAN_MODE_LOW_POWER,
+  matchMode: ble.MatchMode.MATCH_MODE_AGGRESSIVE
 }
-
-try {
-    // 开启ble扫描
-    ble.startBLEScan([scanFilter], scanOptions);
-} catch (err) {
-    promptAction.showToast({
-        message: 'startBLEScan failed. errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message
-    });
-}
+ble.startBLEScan([scanFilter], scanOptions);
+console.info('startBleScan success')
 
 // 接收扫描结果
 ble.on('BLEDeviceFind', (data) => {
-    if (data.length > 0) {
-        promptAction.showToast({ message: 'BLE scan result = ' + data[0].deviceName });
-    }
+  if (data.length > 0) {
+    console.info('BLE scan result = ' + data[0].deviceName);
+  }
 });
+
+// 关闭扫描
+ble.stopBLEScan();
+console.info('stopBleScan success');
 ```
 6. 错误码请参见[蓝牙服务子系统错误码](../../reference/errorcodes/errorcode-bluetoothManager.md)。
-7. 如何验证：使用另外一部手机安装nrfConnect软件并且配置好广播，设备名称修改为“Jackistang”，开启广播。然后测试手机开启扫描，大概每隔0.5秒弹框“BLE scan result =  = Jackistang”，则表示开启扫描成功。
-
-### 关闭扫描
-1. 导入模块: import ble from '@ohos.bluetooth.ble。
-2. 需要权限: ohos.permission.ACCESS_BLUETOOTH。
-3. 需要系统能力: SystemCapability.Communication.Bluetooth.Core。
-4. 示例代码:
-```
-import ble from '@ohos.bluetooth.ble';
-import { BusinessError } from '@ohos.base';
-import promptAction from '@ohos.promptAction';
-
-try {
-    // 关闭ble扫描
-    ble.stopBLEScan();
-    promptAction.showToast({ message: 'stopBleScan success' });
-} catch (err) {
-    promptAction.showToast({
-        message: 'stopBleScan failed. errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message
-    });
-}
-```
-5. 错误码请参见[蓝牙服务子系统错误码](../../reference/errorcodes/errorcode-bluetoothManager.md)。
-6. 如何验证：开启扫描成功后，大概每隔0.5秒会弹框一次扫描结果。执行完该用例后，弹框提示“stopBleScan success”，并且不会再每隔0.5秒弹框提示扫描结果，则表示关闭扫描成功。
+7. 如何验证：使用另外一部手机安装nrfConnect软件并且配置好广播，设备名称修改为“Jackistang”，开启广播。然后测试手机开启扫描，大概每隔0.5秒记录日志“BLE scan result =  = Jackistang”，则表示开启扫描成功。关闭扫描后，不会再有该记录日志产生。
