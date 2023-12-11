@@ -27,16 +27,16 @@
 | removable                  | boolean                                                      | 是   | 否   | 应用程序是否可以被移除。                                         |
 | accessTokenId             | number                                                       | 是   | 否   | 应用程序的accessTokenId。                                      |
 | uid                       | number                                                       | 是   | 否   | 应用程序的uid。                                                |
-| iconResource              | [Resource](js-apis-resource-manager.md#resource9) | 是 | 否 | 应用程序的图标资源信息，通过ApplicationInfo 获取的resource 包含了该资源的信息的bundleName、moduleName 和 id，可以调用全球化的接口@ohos.resourceManager.d.ts中的[getMediaContent](js-apis-resource-manager.md#getmediacontent9)来获取详细的资源数据信息。                     |
-| labelResource             | [Resource](js-apis-resource-manager.md#resource9) | 是 | 否 | 应用程序的标签资源信息，通过ApplicationInfo 获取的resource 包含了该资源的信息的bundleName、moduleName 和 id，可以调用全球化的接口@ohos.resourceManager.d.ts中的[getMediaContent](js-apis-resource-manager.md#getmediacontent9)来获取详细的资源数据信息。                         |
-| descriptionResource       | [Resource](js-apis-resource-manager.md#resource9) | 是 | 否 | 应用程序的描述资源信息，通过ApplicationInfo 获取的resource 包含了该资源的信息的bundleName、moduleName 和 id，可以调用全球化的接口@ohos.resourceManager.d.ts中的[getMediaContent](js-apis-resource-manager.md#getmediacontent9)来获取详细的资源数据信息。|
+| iconResource              | [Resource](js-apis-resource-manager.md#resource9) | 是 | 否 | 应用程序的图标资源信息，通过ApplicationInfo 获取的resource 包含了该资源的信息的bundleName、moduleName 和 id，可以调用全球化的接口[getMediaContent](js-apis-resource-manager.md#getmediacontent9)来获取详细的资源数据信息。                     |
+| labelResource             | [Resource](js-apis-resource-manager.md#resource9) | 是 | 否 | 应用程序的标签资源信息，通过ApplicationInfo 获取的resource 包含了该资源的信息的bundleName、moduleName 和 id，可以调用全球化的接口[getMediaContent](js-apis-resource-manager.md#getmediacontent9)来获取详细的资源数据信息。                         |
+| descriptionResource       | [Resource](js-apis-resource-manager.md#resource9) | 是 | 否 | 应用程序的描述资源信息，通过ApplicationInfo 获取的resource 包含了该资源的信息的bundleName、moduleName 和 id，可以调用全球化的接口[getMediaContent](js-apis-resource-manager.md#getmediacontent9)来获取详细的资源数据信息。|
 | appDistributionType       | string                                                       | 是   | 否   | 应用程序签名证书的分发类型，分为：app_gallery、enterprise、os_integration和crowdtesting。    |
 | appProvisionType          | string                                                       | 是   | 否   | 应用程序签名证书文件的类型，分为debug和release两种类型。           |
 | systemApp          | boolean                                                       | 是   | 否   | 标识应用是否为系统应用。           |
 | bundleType                |[BundleType](js-apis-bundleManager.md#bundletype)             | 是   | 否   | 标识包的类型，取值为APP(普通应用)或者ATOMIC_SERVICE(原子化服务)。                                |
 | debug<sup>10+</sup>       | boolean                                | 是   | 否   | 标识应用是否处于调试模式，默认为false。        |
 
-## ModuleMetadata
+## ModuleMetadata<sup>10+</sup>
 
 描述模块的元数据信息。
 
