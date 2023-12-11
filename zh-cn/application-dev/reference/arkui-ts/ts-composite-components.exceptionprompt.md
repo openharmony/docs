@@ -13,7 +13,7 @@ import {
      ExceptionPrompt,
      PromptOptions,
      PromptType,
-     HardwareStatusType
+     HardwareStatus
 } from '@ohos.arkui.advanced.ExceptionPrompt';
 ```
 
@@ -48,13 +48,13 @@ ExceptionPrompt ({ type: this.type,options: $options })
 
 PromptOptions定义options的类型。
 
-| 名称           | 类型               | 必填 | 说明                                                         |
-| -------------- | ------------------ | ---- | ------------------------------------------------------------ |
-| icon           | ResourceStr        | 否   | 指定当前ExceptionPrompt的异常图标式样                        |
-| tip            | ResourceStr        | 否   | 指定当前ExceptionPrompt的文字提示式样                        |
-| networkTip     | ResourceStr        | 否   | 指定当前ExceptionPrompt有网但是获取不到内容XX，XX包含但不限于“信息”，“资料”，“图片”等 |
-| hardwareStatus | HardwareStatusType | 否   | 指定当前网络硬件开关状态。默认hardwareStatusType.ON：打开状态；HardwareStatusType.OFF：关闭状态 |
-| marginState    | MarginState        | 是   | 指定当前ExceptionPrompt的边距样式                            |
+| 名称           | 类型           | 必填 | 说明                                                         |
+| -------------- | -------------- | ---- | ------------------------------------------------------------ |
+| icon           | ResourceStr    | 否   | 指定当前ExceptionPrompt的异常图标式样                        |
+| tip            | ResourceStr    | 否   | 指定当前ExceptionPrompt的文字提示式样                        |
+| networkTip     | ResourceStr    | 否   | 指定当前ExceptionPrompt有网但是获取不到内容XX，XX包含但不限于“信息”，“资料”，“图片”等 |
+| hardwareStatus | HardwareStatus | 否   | 指定当前网络硬件开关状态。默认hardwareStatus.ON：打开状态；HardwareStatus.OFF：关闭状态 |
+| marginState    | MarginType     | 是   | 指定当前ExceptionPrompt的边距样式                            |
 
 ## type
 
@@ -72,7 +72,7 @@ PromptType定义type的类型。
 | CUSTOM_TIPS                | 自定义提示内容状态       |
 ## hardwareStatus
 
-HardwareStatusType定义HardwareStatus的类型
+HardwareStatus定义HardwareStatus的类型
 
 | 类型 | 说明       |
 | :--- | :--------- |
@@ -81,7 +81,7 @@ HardwareStatusType定义HardwareStatus的类型
 
 ## marginState
 
-MarginState定义marginState的类型
+MarginType定义marginState的类型
 
 | 类型           | 说明                                                         |
 | :------------- | :----------------------------------------------------------- |
@@ -90,19 +90,19 @@ MarginState定义marginState的类型
 
 ## 事件
 
-| 名称                              | 功能描述                             |
-| --------------------------------- | ------------------------------------ |
-| onReconnection: () => void        | 点击左侧文本，变为正在连接状态       |
-| onConfigureNetwork: () =&gt; void | 点击设置网络跳转到设置网络弹出框界面 |
+| 名称                               | 功能描述                             |
+| ---------------------------------- | ------------------------------------ |
+| onReconnectionCallback: () => void | 点击左侧文本，变为正在连接状态       |
+| onConfigureCallback: () =&gt; void | 点击设置网络跳转到设置网络弹出框界面 |
 
-## 示例 2
+## 示例 
 
 ```ts
 import {
   ExceptionPrompt,
   PromptOptions,
   PromptType,
-  HardwareStatusType
+  HardwareStatus
 } from '@ohos.arkui.advanced.ExceptionPrompt'
 
 @Entry
@@ -110,11 +110,11 @@ import {
 struct Index {
   @State type: PromptType = PromptType.DEFAULT_HIDE
   @State options: PromptOptions = {
-    hardwareStatus: HardwareStatusType.ON,
+    hardwareStatus: HardwareStatus.ON,
     icon: '',
-    tipContent: '',
-    contentText: '',
-    marginState: MarginState.DEFAULT_MARGIN
+    networkTip: '',
+    tip: '',
+    marginState: MarginType.DEFAULT_MARGIN
   }
 
   build() {
@@ -122,15 +122,15 @@ struct Index {
       ExceptionPrompt({
         type: this.type,
         options: this.options,
-        onReconnection: () => {
+        onReconnectionCallback: () => {
         },
-        onConfigureNetwork: () => {
+        onConfigureCallback: () => {
         },
       })
 
 ```
 
-## 图例1
+## 图例
 
 ![ExceptionPrompt](figures/ExceptionPrompt.png)
 
