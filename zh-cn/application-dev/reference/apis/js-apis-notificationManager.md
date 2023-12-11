@@ -31,15 +31,20 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 1600001  | Internal error.                           |
-| 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
-| 1600009  | Over max number notifications per second. |
-| 1600012  | No memory space.                          |
+| 错误码ID | 错误信息                                              |
+| -------- | ---------------------------------------------------- |
+| 1600001  | Internal error.                                      |
+| 1600002  | Marshalling or unmarshalling error.                  |
+| 1600003  | Failed to connect service.                           |
+| 1600004  | Notification is not enabled.                         |
+| 1600005  | Notification slot is not enabled.                    |
+| 1600007  | The notification is not exist.                       |
+| 1600009  | Over max number notifications per second.            |
+| 1600012  | No memory space.                                     |
+| 1600014  | No relevant right.                                   |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network is unreachable.                              |
 
 **示例：**
 
@@ -93,15 +98,20 @@ publish(request: NotificationRequest): Promise\<void\>
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 1600001  | Internal error.                           |
-| 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
-| 1600009  | Over max number notifications per second. |
-| 1600012  | No memory space.                          |
+| 错误码ID | 错误信息                                              |
+| -------- | ---------------------------------------------------- |
+| 1600001  | Internal error.                                      |
+| 1600002  | Marshalling or unmarshalling error.                  |
+| 1600003  | Failed to connect service.                           |
+| 1600004  | Notification is not enabled.                         |
+| 1600005  | Notification slot is not enabled.                    |
+| 1600007  | The notification is not exist.                       |
+| 1600009  | Over max number notifications per second.            |
+| 1600012  | No memory space.                                     |
+| 1600014  | No relevant right.                                   |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network is unreachable.                              |
 
 **示例：**
 
@@ -152,16 +162,21 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 1600001  | Internal error.                           |
-| 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
-| 1600009  | Over max number notifications per second. |
-| 1600012  | No memory space.                          |
+| 错误码ID | 错误信息                                              |
+| -------- | ---------------------------------------------------- |
+| 1600001  | Internal error.                                      |
+| 1600002  | Marshalling or unmarshalling error.                  |
+| 1600003  | Failed to connect service.                           |
+| 1600004  | Notification is not enabled.                         |
+| 1600005  | Notification slot is not enabled.                    |
+| 1600007  | The notification is not exist.                       |
+| 1600008  | The user is not exist.                               |
+| 1600009  | Over max number notifications per second.            |
+| 1600012  | No memory space.                                     |
+| 1600014  | No relevant right.                                   |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network is unreachable.                              |
 
 **示例：**
 
@@ -222,16 +237,21 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 1600001  | Internal error.                           |
-| 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
-| 1600009  | Over max number notifications per second. |
-| 1600012  | No memory space.                          |
+| 错误码ID | 错误信息                                              |
+| -------- | ---------------------------------------------------- |
+| 1600001  | Internal error.                                      |
+| 1600002  | Marshalling or unmarshalling error.                  |
+| 1600003  | Failed to connect service.                           |
+| 1600004  | Notification is not enabled.                         |
+| 1600005  | Notification slot is not enabled.                    |
+| 1600007  | The notification is not exist.                       |
+| 1600008  | The user is not exist.                               |
+| 1600009  | Over max number notifications per second.            |
+| 1600012  | No memory space.                                     |
+| 1600014  | No relevant right.                                   |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network is unreachable.                              |
 
 **示例：**
 
@@ -1305,11 +1325,13 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
-| 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
-| 1600001  | Internal error.                     |
-| 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 错误码ID | 错误信息                                  |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 1600008  | The user is not exist.                   |
+| 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
@@ -1354,6 +1376,8 @@ isNotificationEnabled(): Promise\<boolean\>
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
+| 1600008  | The user is not exist.                   |
+| 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
@@ -2291,6 +2315,117 @@ notificationManager.getActiveNotifications().then((data: Array<notificationManag
 	console.info("removeGroupByBundle success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
     console.error(`getActiveNotificationCount fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.getActiveNotificationByFilter<sup>11+<sup>
+
+getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallback<NotificationRequest>): void
+
+获取满足条件的普通实况通知信息。使用callback异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                           |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest.md#notificationfilter11) | 是   | 查询普通实况窗的过滤条件。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 获取满足条件的普通实况通知信息的回调函数。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ---------------------------------------- |
+| 1600007  | The notification is not exist.           |
+| 17700001 | The specified bundle name was not found. |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let bundleOption: notificationManager.BundleOption = {
+  bundle: "bundleName1",
+};
+
+let notificationKey: notificationSubscribe.NotificationKey = {
+    id: 11,
+    label: ""
+};
+
+let filter = {
+    bundle: bundleOption,
+    key: notificationKey,
+    extraInfoKeys: ['event']
+}
+
+let getActiveNotificationByFilterCallback = (err: Base.BusinessError, data: notificationManager.NotificationRequest): void => {
+    if (err) {
+        console.error(`getActiveNotificationByFilter failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("getActiveNotificationByFilter success");
+    }
+}
+
+notificationManager.getActiveNotificationByFilter(filter, getActiveNotificationByFilterCallback);
+```
+
+## notificationManager.getActiveNotificationByFilter<sup>11+<sup>
+
+getActiveNotificationByFilter(filter: NotificationFilter): Promise<NotificationRequest>
+
+获取满足条件的普通实况通知信息。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                           |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest.md#notificationfilter11) | 是   | 查询普通实况窗的过滤条件。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                    |
+| ------------------------------------------------------------ | --------------------------------------- |
+| Promise\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\> | 以Promise形式返回获取的满足条件的普通实况通知信息。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ---------------------------------------- |
+| 1600007  | The notification is not exist.           |
+| 17700001 | The specified bundle name was not found. |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let bundleOption: notificationManager.BundleOption = {
+  bundle: "bundleName1",
+};
+
+let notificationKey: notificationSubscribe.NotificationKey = {
+    id: 11,
+    label: ""
+};
+
+let filter = {
+    bundle: bundleOption,
+    key: notificationKey,
+    extraInfoKeys: ['event']
+}
+
+notificationManager.getActiveNotificationByFilter().then((filter: notificationRequest.NotificationFilter, data: notificationManager.NotificationRequest) => {
+	console.info("getActiveNotificationByFilter success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getActiveNotificationByFilter fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -3970,6 +4105,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
+| 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -3995,9 +4131,64 @@ notificationManager.setNotificationEnableSlot(
 
 ## notificationManager.setNotificationEnableSlot
 
-setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean): Promise\<void> 
+setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, isForceControl: boolean, callback: AsyncCallback\<void>): void
 
-设置指定应用的指定渠道类型的使能状态（Promise形式）。
+设置指定应用的指定渠道类型的使能状态。使用callback异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                     |
+| -------- | ----------------------------- | ---- | ----------------------- |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。|
+| type     | [SlotType](#slottype)         | 是   | 指定渠道类型。           |
+| enable   | boolean                       | 是   | 使能状态。               |
+| isForceControl<sup>11+</sup> | boolean                 | 是   | 渠道开关是否受通知总开关影响（false：受总开关影响，true：不受总开关影响）。 |
+| callback | AsyncCallback\<void\>         | 是   | 设置渠道使能回调函数。    |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 1600012  | No memory space.                         |
+| 17700001 | The specified bundle name was not found. |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let setNotificationEnableSlotCallback = (err: Base.BusinessError): void => {
+    if (err) {
+        console.error(`setNotificationEnableSlot failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("setNotificationEnableSlot success");
+    }
+};
+
+notificationManager.setNotificationEnableSlot(
+    { bundle: "ohos.samples.notification", },
+    notificationManager.SlotType.SOCIAL_COMMUNICATION,
+    true,
+    false,
+    setNotificationEnableSlotCallback);
+```
+
+## notificationManager.setNotificationEnableSlot
+
+setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, isForceControl?: boolean): Promise\<void>
+
+设置指定应用的指定渠道类型的使能状态。使用promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4012,6 +4203,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean)
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。   |
 | type   | [SlotType](#slottype)         | 是   | 渠道类型。 |
 | enable | boolean                       | 是   | 使能状态（true：使能，false：禁止）。     |
+| isForceControl<sup>11+</sup> | boolean               | 否   | 渠道开关是否受通知总开关影响（false：受总开关影响，true：不受总开关影响）。默认为false。     |
 
 **错误码：**
 
@@ -4386,6 +4578,66 @@ try{
 }
 ```
 
+## notificationManager.on<sup>10+</sup>
+
+on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: (checkInfo: NotificationCheckInfo) => Promise\<NotificationCheckResult\>): void
+
+注册通知监听回调。通知服务将通知信息回调给校验程序，校验程序返回校验结果决定该通知是否发布，如营销类通知发布频率控制等。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**参数：**
+
+| 参数名 | 类型                                                                                                             | 必填 | 说明           |
+| ------ |-----------------------------------------------------------------------------------------------------------------| ---- | -------------- |
+| type | string                                                                                                            | 是   | 回调函数类型名，固定为'checkNotification'。 |
+| checkRequest | [NotificationCheckRequest](js-apis-inner-notification-notificationRequest.md#notificationcheckrequest11)    | 是   | 通知请求验证内容。 |
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  Promise\<[NotificationCheckResult](#notificationcheckresult10)\> | 是   | 消息验证函数指针。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+public static async check(checkInfo : notificationManager.NotificationCheckInfo): Promise<NotificationCheckResult> {
+    console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
+    const { contentType, slotType, bundleName, userId, extraInfos } = checkInfo;
+    if(contentType != NOTIFICATION_CONTENT_LIVE_VIEW){
+        let result: notificationManager.NotificationCheckResult =  { code: 1, message: "INVALID_PARAMETERS"};
+        return result;
+    } else {
+        let result: notificationManager.NotificationCheckResult =  { code: 0, message: "SUCCESS"};
+        return result;
+    }
+}
+
+try {
+    notificationManager.on(
+      "checkNotification",
+      {
+        contentType: ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
+        slotType: SlotType.LIVE_VIEW ,
+        extraInfoKeys: ["event"],
+      },
+      check
+    );
+} catch (error) {
+    console.info(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
+}
+```
+
 ## notificationManager.off<sup>10+</sup>
 
 off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;
@@ -4573,6 +4825,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 | NOTIFICATION_CONTENT_CONVERSATION | 3          | 社交类型通知（暂不支持该类型）。 |
 | NOTIFICATION_CONTENT_MULTILINE    | 4          | 多行文本类型通知。        |
 | NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW<sup>11+</sup>    | 5 | 实况窗类型通知（仅对系统应用开放）。        |
+| NOTIFICATION_CONTENT_LIVE_VIEW<sup>11+</sup>    | 6 | 普通实况窗类型通知。  |
 
 ## SlotLevel
 
@@ -4638,11 +4891,15 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-| 名称  | 类型                                  | 必填 | 说明                   |
-| ----- | ------------------------------------- | --- | ---------------------- |
-| bundleName  | string                          | 是   | bundle名称。 |
-| notificationId | number                       | 是   | 通知Id。     |
-| contentType   | [ContentType](#contenttype)   | 是   | 通知类型。   |
+| 名称                         | 类型                         | 必填 | 说明            |
+| ---------------------------- | ---------------------------- | --- | --------------- |
+| bundleName                   | string                       | 是   | Bundle名称。    |
+| notificationId               | number                       | 是   | 通知ID。        |
+| label<sup>11+</sup>          | string                       | 否   | 通知标签。      |
+| contentType                  | [ContentType](#contenttype)  | 是   | 通知类型。      |
+| creatorUserId<sup>11+</sup>  | number                       | 是   | 通知的user ID。 |
+| slotType<sup>11+</sup>       | [SlotType](#slottype)        | 是   | 渠道类型。      |
+| extraInfos<sup>11+</sup>     | [key: string]: object        | 否   | 通知的附加信息。 |
 
 ## NotificationCheckResult<sup>10+</sup>
 

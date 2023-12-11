@@ -11,6 +11,7 @@
 | NOTIFICATION_CONTENT_MULTILINE | 多行文本类型。 |
 | NOTIFICATION_CONTENT_PICTURE | 图片类型。 |
 | NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW | 实况窗类型（仅对系统应用开放）。|
+| NOTIFICATION_CONTENT_LIVE_VIEW | 普通实况窗类型。|
 
 
 目前，系统仅支持通知栏订阅通知，将通知显示在通知栏中。基本类型通知的效果示意如下图所示。
@@ -172,7 +173,7 @@
    
       运行效果如下图所示。  
      ![zh-cn_image_0000001466582045](figures/zh-cn_image_0000001466582045.png)
-   - 实况窗类型通知继承了普通文本类型的字段，新增了类型标识符、胶囊、按钮、时间和进度，类型描述参考[NotificationSystemLiveViewContent](../../application-dev/reference/apis/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent11)。
+   - 系统实况窗类型通知继承了普通文本类型的字段，新增了类型标识符、胶囊、按钮、时间和进度，类型描述参考[NotificationSystemLiveViewContent](../reference/apis/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent)。
      
       ```ts
       import image from '@ohos.multimedia.image';
@@ -270,3 +271,62 @@
       }
       ```
 
+   - 普通实况窗类型通知继承了普通文本类型的字段，新增了实况通知状态、实况通知版本号、通知附加内容和通知附加内容中的图片信息，类型描述参考[NotificationLiveViewContent](../reference/apis/js-apis-inner-notification-notificationContent.md#notificationliveviewcontent11)。
+
+      ```ts
+      let notificationRequest = {
+        content: {
+          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
+          id: 1,
+          normal: {
+            title: 'testTitle',
+            text: 'testText',
+            additionalText: 'testAdditionalText'
+          },
+          liveView: {
+            status: notificationManager.LiveViewStatus.LIVE_VIEW_CREATE,
+            version: 1,
+            extraInfo: {
+              "event": "TAXI",
+              "isMute": false,
+              "primaryData.title": "primary title",
+              "primaryData.content": [{ text: "text1", textColor: "#FFFFFFFF"}, { text: "text2", textColor: "#FFFFFFFF"}],
+              "primaryData.keepTime": 60,
+              "primaryData.extend.text": "extendData text",
+              "primaryData.extend.type": 1,
+              "PickupLayout.layoutType": 4,
+              "PickupLayout.title": "layout title",
+              "PickupLayout.content": "layout content",
+              "PickupLayout.underlineColor": "#FFFFFFFF",
+              "CapsuleData.status": 1,
+              "CapsuleData.type": 1,
+              "CapsuleData.backgroundColor": "#FFFFFFFF",
+              "CapsuleData.title": "capsule title",
+              "CapsuleData.content": "capsule content",
+              "TimerCapsule.content": "capsule title",
+              "TimerCapsule.initialtime": 7349485944,
+              "TimerCapsule.isCountdown": false,
+              "TimerCapsule.isPause": true
+            }
+          }
+        },
+        slotType: notificationManager.SlotType.LIVE_VIEW,
+        isOngoing: true,
+        isUnremovable: false,
+        autoDeletedTime: 500,
+        wantAgent: wantAgentData,
+        extraInfo: {
+          'testKey': 'testValue'
+        },
+      }
+
+      notificationManager.publish(notificationRequest).then(data => {
+        console.log(`${TAG} notification publish AsyncCallback success: ${data}`)
+        expect(true).assertFalse()
+        done()
+      }).catch(err => {
+        console.info(`${TAG} notification publish AsyncCallback err: ${err.code}`)
+        expect(true).assertTrue()
+        done()
+      })
+      ```
