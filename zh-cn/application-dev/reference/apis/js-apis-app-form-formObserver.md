@@ -1002,7 +1002,7 @@ formObserver.on('router', hostBundleName, callback);
 
  off(type: "router", hostBundleName?: string, observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;): void
 
-取消订阅卡片call事件的callback异步回调。
+取消订阅卡片router事件的callback异步回调。
 
 **需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
 
@@ -1117,7 +1117,7 @@ formObserver.on('message', hostBundleName, callback);
 
  off(type: "message", hostBundleName?: string, observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;): void
 
-取消订阅卡片call事件的callback异步回调。
+取消订阅卡片message事件的callback异步回调。
 
 **需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
 
