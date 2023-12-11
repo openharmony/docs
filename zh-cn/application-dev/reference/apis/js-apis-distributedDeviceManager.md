@@ -636,7 +636,6 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
     let e: BusinessError = err as BusinessError;
     console.error("bindTarget errCode:" + e.code + ",errMessage:" + e.message);
   }
-
   ```
 
 ### unbindTarget
