@@ -19,7 +19,7 @@ import wearDetection from '@ohos.bluetooth.wearDetection';
 
 enableWearDetection(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-开启、使能佩戴检测。
+使能佩戴检测。
 
 **系统接口**：此接口为系统接口。
 
@@ -62,7 +62,7 @@ try {
 
 enableWearDetection(deviceId: string): Promise&lt;void&gt;
 
-开启、使能佩戴检测。
+使能佩戴检测。
 
 **系统接口**：此接口为系统接口。
 
@@ -80,7 +80,7 @@ enableWearDetection(deviceId: string): Promise&lt;void&gt;
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| Promise&lt;void&gt; | 以Promise的形式返回结果。如果成功，err为undefine的，否则为错误对象。 |
+| Promise&lt;void&gt; | 以Promise的形式返回结果。如果成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -97,9 +97,8 @@ enableWearDetection(deviceId: string): Promise&lt;void&gt;
 ```js
 try {
     wearDetection.enableWearDetection('XX:XX:XX:XX:XX:XX').then(() => {
-            console.info("enableWearDetection");
-        }
-    );
+        console.info("enableWearDetection");
+    });
 } catch (err) {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
 }
@@ -109,7 +108,7 @@ try {
 
 disableWearDetection(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-关闭、禁用佩戴检测。
+禁用佩戴检测。
 
 **系统接口**：此接口为系统接口。
 
@@ -122,7 +121,7 @@ disableWearDetection(deviceId: string, callback: AsyncCallback&lt;void&gt;): voi
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | 是    | 远端设备地址。 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 通过注册回调函数获取禁用佩戴检测的结果。。如果成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 通过注册回调函数获取禁用佩戴检测的结果。如果成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -152,7 +151,7 @@ try {
 
 disableWearDetection(deviceId: string): Promise&lt;void&gt;
 
-关闭、禁用佩戴检测。
+禁用佩戴检测。
 
 **系统接口**：此接口为系统接口。
 
@@ -170,7 +169,7 @@ disableWearDetection(deviceId: string): Promise&lt;void&gt;
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| Promise&lt;void&gt; | 以Promise的形式返回结果。如果成功，err为undefine的，否则为错误对象。 |
+| Promise&lt;void&gt; | 以Promise的形式返回结果。如果成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -187,9 +186,8 @@ disableWearDetection(deviceId: string): Promise&lt;void&gt;
 ```js
 try {
     wearDetection.disableWearDetection('XX:XX:XX:XX:XX:XX').then(() => {
-            console.info("disableWearDetection");
-        }
-    );
+        console.info("disableWearDetection");
+    });
 } catch (err) {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
 }
