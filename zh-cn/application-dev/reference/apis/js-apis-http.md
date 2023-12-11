@@ -639,17 +639,17 @@ class Header {
 }
 
 let httpRequest = http.createHttp();
-    let promise = httpRequest.requestInStream("EXAMPLE_URL", {
-      method: http.RequestMethod.GET,
-      connectTimeout: 60000,
-      readTimeout: 60000,
-      header: new Header('application/json')
-    });
-    promise.then((data: number)=>{
-      console.info("requestInStream OK!" + data);
-    }).catch((err: Error) => {
-      console.info("requestInStream ERROR : err = " + JSON.stringify(err));
-    });
+let promise = httpRequest.requestInStream("EXAMPLE_URL", {
+  method: http.RequestMethod.GET,
+  connectTimeout: 60000,
+  readTimeout: 60000,
+  header: new Header('application/json')
+});
+promise.then((data: number) => {
+  console.info("requestInStream OK!" + data);
+}).catch((err: Error) => {
+  console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+});
 ```
 
 ### on("headerReceive")<sup>(deprecated)</sup>
