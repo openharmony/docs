@@ -23,17 +23,6 @@ import fileShare from '@ohos.fileshare';
 | READ_MODE  | 0b1 | 读权限 |
 | WRITE_MODE  | 0b10 | 写权限 |
 
-## PolicyFlag<sup>11+</sup>
-
-枚举，授予或使能权限的URI策略。
-
-**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
-
-| 名称  | 值   | 说明      |
-| ----- |-----|---------|
-| ALLOW_PERSISTENCE  | 0b1 | 允许应用持久化 |
-| FORBID_PERSISTENCE  | 0b10 | 禁止应用持久化 |
-
 ## PolicyErrorCode<sup>11+</sup>
 
 枚举，授予或使能权限策略失败的URI对应的错误码。
@@ -180,77 +169,6 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): P
     console.error("grantUriPermission failed with error:" + JSON.stringify(error));
   }
   ```
-
-## fileShare.grantPermission<sup>11+</sup>
-
-grantPermission(tokenId: number, policies: Array&lt;PolicyInfo>, policyFlag: number): Promise&lt;void&gt;
-
-异步方法对所选择的文件或目录URI临时授权，以promise形式返回结果，该接口仅对特定设备开放。
-
-**需要权限**：ohos.permission.SET_SANDBOX_POLICY
-
-**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
-
-**系统接口**：此接口为系统接口。
-
-**参数：**
-
-| 参数名     | 类型                                  | 必填 | 说明                                                                                           |
-|---------|-------------------------------------| -------- |----------------------------------------------------------------------------------------------|
-| tokenId | number                              | 是 | 拉起filePicker应用的tokenId。                                                                      |
-| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。                                                                                |
-| policyFlag    | number                              | 是 | 授权的URI策略，参考[PolicyFlag](#policyflag)，例如：<br/>  fileShare.PolicyFlag.ALLOW_PERSISTENCE ：允许持久化 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-
-| 错误码ID    | 错误信息                                   |
-|----------|----------------------------------------|
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
-| 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error.         |
-| 801      | Capability not supported.               |
-| 13900001 | Operation not permitted.            |
-| 13900042 | Unknown error                          |
-
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import bundleManager from '@ohos.bundle.bundleManager';
-
-async function grantPermissionExample() {
-  try {
-    let uri = "file://docs/storage/Users/username/1.txt";
-    let bundleName = 'com.example.myapplication';
-    let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
-    let applicationInfo = await bundleManager.getApplicationInfo(bundleName, appFlags);
-    let tokenId = applicationInfo.accessTokenId;
-    let policyInfo: fileShare.PolicyInfo = {
-      uri: uri, 
-      operationMode: fileShare.OperationMode.READ_MODE,
-    };
-    let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-    fileShare.grantPermission(tokenId, policies, fileShare.PolicyFlag.ALLOW_PERSISTENCE).then(() => {
-      console.info("grantPermission successfully");
-    }).catch((err: BusinessError) => {
-      console.info("grantPermission failed with error message: " + err.message + ", error code: " + err.code);
-    });
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('grantPermission failed with err: ' + JSON.stringify(err));
-  }
-}
-```
 
 ## fileShare.persistPermission<sup>11+</sup>
 
