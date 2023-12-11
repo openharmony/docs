@@ -1,10 +1,10 @@
-# Camera Photographing (Native)
+# Camera Photographing (C/C++)
 
 Photographing is an important function of the camera application. Based on the complex logic of the camera hardware, the camera module provides APIs for you to set information such as resolution, flash, focal length, photo quality, and rotation angle.
 
 ## How to Develop
 
-Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
+Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
 
 1. Import the image module. The APIs provided by this module are used to obtain the surface ID and create a photo output stream.
    

@@ -1,4 +1,6 @@
-# Camera Photographing Sample (Native)
+# Sample Implementation of Camera Photographing (C/C++)
+
+This topic provides sample code that covers the complete photographing process and the API calling sequence. For details about a single process (such as device input, session management, and photographing), see the corresponding C/C++ development guide links provided in [Camera Development Preparations](camera-preparation.md).
 
 ## Development Process
 

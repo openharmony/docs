@@ -1,4 +1,4 @@
-# Using AudioCapturer for Audio Recording
+# Using AudioCapturer for Audio Recording (ArkTS)
 
 The AudioCapturer is used to record Pulse Code Modulation (PCM) audio data. It is suitable if you have extensive audio development experience and want to implement more flexible recording features.
 
@@ -17,7 +17,7 @@ You can call **on('stateChange')** to listen for state changes. For details abou
 ### How to Develop
 
 1. Set audio recording parameters and create an **AudioCapturer** instance. For details about the parameters, see [AudioCapturerOptions](../reference/apis/js-apis-audio.md#audiocaptureroptions8).
-   
+     
    ```ts
     import audio from '@ohos.multimedia.audio';
     
@@ -49,7 +49,7 @@ You can call **on('stateChange')** to listen for state changes. For details abou
    ```
 
 2. Call **start()** to switch the AudioCapturer to the **running** state and start recording.
-   
+     
    ```ts
     audioCapturer.start((err: BusinessError) => {
       if (err) {
@@ -61,7 +61,7 @@ You can call **on('stateChange')** to listen for state changes. For details abou
    ```
 
 3. Specify the recording file path and call **read()** to read the data in the buffer.
-   
+     
    ```ts
     import fs from '@ohos.file.fs';
     
@@ -77,7 +77,7 @@ You can call **on('stateChange')** to listen for state changes. For details abou
    ```
 
 4. Call **stop()** to stop recording.
-   
+     
    ```ts
     audioCapturer.stop((err: BusinessError) => {
       if (err) {
@@ -89,7 +89,7 @@ You can call **on('stateChange')** to listen for state changes. For details abou
    ```
 
 5. Call **release()** to release the instance.
-   
+     
    ```ts
     audioCapturer.release((err: BusinessError) => {
       if (err) {
@@ -104,7 +104,7 @@ You can call **on('stateChange')** to listen for state changes. For details abou
 ### Sample Code
 
 Refer to the sample code below to record audio using AudioCapturer.
-
+  
 ```ts
 import audio from '@ohos.multimedia.audio';
 import fs from '@ohos.file.fs';
