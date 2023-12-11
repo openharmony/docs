@@ -61,3 +61,33 @@ Text('Text Demo').clip(true)
 ```typescript
 Text('Text Demo').textOverflow({ overflow: TextOverflow.Clip })
 ```
+
+##  cl.arkui.3 Flex容器子组件交叉轴尺寸设置和交叉轴stretch对齐方式明确优先级
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+确定规格：Flex容器中，子组件的尺寸设置优先级高于交叉轴stretch对齐方式，同时设置，仅子组件的交叉轴尺寸设置生效。
+
+**变更影响**
+
+该变更为兼容性变更。
+
+API Version 9以及之前版本：同时设置子组件的尺寸和交叉轴stretch对齐方式，子组件交叉轴尺寸设置不生效。
+
+API Version 10变更后：同时设置子组件的尺寸和交叉轴stretch对齐方式，stretch对齐方式不生效。
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.3.5 开始。
+
+**变更的组件**
+
+受影响的组件有：Flex。
+
+**适配指导**
+
+若需要交叉轴stretch对齐方式生效，删去对子组件的交叉轴上的尺寸设置。
