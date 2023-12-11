@@ -41,7 +41,7 @@ The **OH_NativeImage** module provides the capabilities of **NativeImage**. Func
 | [OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage) (OH_NativeImage \*image) | Updates the OpenGL ES texture associated with the latest frame through an **OH_NativeImage** instance.|
 | [OH_NativeImage_GetTimestamp](#oh_nativeimage_gettimestamp) (OH_NativeImage*image) | Obtains the timestamp of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function.|
 | [OH_NativeImage_GetTransformMatrix](#oh_nativeimage_gettransformmatrix) (OH_NativeImage \*image, float matrix[16]) | Obtains the transform matrix of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function.|
-| [OH_NativeImage_Destroy](#oh_nativeimage_destroy) (OH_NativeImage \*\*image) | Destroys an **OH_NativeImage** instance created by calling **OH_NativeImage_Create**. After the instance is destroyed, the pointer to the **OH_NativeImage** instance is assigned **NULL**. |
+| [OH_NativeImage_Destroy](#oh_nativeimage_destroy) (OH_NativeImage \*\*image) | Destroys an **OH_NativeImage** instance created by calling **OH_NativeImage_Create**. After the instance is destroyed, the pointer to the **OH_NativeImage** instance is assigned **NULL**.|
 
 
 ## Type Description
@@ -83,7 +83,9 @@ OHNativeWindow* OH_NativeImage_AcquireNativeWindow (OH_NativeImage * image)
 
 **Description**
 
-Obtains an **OHNativeWindow** instance associated with an **OH_NativeImage** instance. You need to call **OH_NativeWindow_DestroyNativeWindow** to release the **OHNativeWindow** instance when it is no longer required. 
+Obtains an **OHNativeWindow** instance associated with an **OH_NativeImage** instance. You need to call **OH_NativeWindow_DestroyNativeWindow** to release the **OHNativeWindow** instance when it is no longer required.
+
+ 
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeImage
 

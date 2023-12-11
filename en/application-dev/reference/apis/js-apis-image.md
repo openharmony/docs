@@ -948,7 +948,7 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980111| If the operation invalid              |
+| 62980111| If the image source data incomplete          |
 | 62980115| If the image parameter invalid             |
 
 **Example**
@@ -1070,7 +1070,7 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 | ------- | --------------------------------------------|
 | 62980115 | If the input parameter invalid              |
 | 62980097 | If the ipc error              |
-| 62980096 | If fail to create async work            |
+| 62980096 | If the operation failed          |
 
 **Example**
 
@@ -1844,7 +1844,7 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 | 62980096| If the operation failed              |
 | 62980103| If the image data unsupport             |
 | 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
+| 62980111| If the image source data incomplete              |
 | 62980118| If the image plugin create failed             |
 
 **Example**
@@ -3194,43 +3194,43 @@ Describes the exchangeable image file format (EXIF) data of an image.
 
 | Name             |   Value                   | Description                    |
 | ----------------- | ----------------------- | ------------------------ |
-| BITS_PER_SAMPLE                           | "BitsPerSample"              | Number of bits per pixel.                           |
-| ORIENTATION                               | "Orientation"                | Image orientation.                                 |
-| IMAGE_LENGTH                              | "ImageLength"                | Image length.                                 |
-| IMAGE_WIDTH                               | "ImageWidth"                 | Image width.                                 |
-| GPS_LATITUDE                              | "GPSLatitude"                | Image latitude.                                 |
-| GPS_LONGITUDE                             | "GPSLongitude"               | Image longitude.                                 |
-| GPS_LATITUDE_REF                          | "GPSLatitudeRef"             | Latitude reference, for example, N or S.                       |
-| GPS_LONGITUDE_REF                         | "GPSLongitudeRef"            | Longitude reference, for example, W or E.                       |
-| DATE_TIME_ORIGINAL<sup>9+</sup>           | "DateTimeOriginal"           | Shooting time, for example, 2022:09:06 15:48:00. Currently, this attribute is read-only.         |
-| EXPOSURE_TIME<sup>9+</sup>                | "ExposureTime"               | Exposure time, for example, 1/33 sec. Currently, this attribute is read-only.                    |
-| SCENE_TYPE<sup>9+</sup>                   | "SceneType"                  | Shooting scene type, for example, portrait, scenery, motion, and night. Currently, this attribute is read-only.|
-| ISO_SPEED_RATINGS<sup>9+</sup>            | "ISOSpeedRatings"            | ISO sensitivity or ISO speed, for example, 400. Currently, this attribute is read-only.                       |
-| F_NUMBER<sup>9+</sup>                     | "FNumber"                    | Aperture, for example, f/1.8. Currently, this attribute is read-only.                        |
-| DATE_TIME<sup>10+</sup>                   | "DateTime"                   | Date and time. Currently, this attribute is read-only.                                 |
-| GPS_TIME_STAMP<sup>10+</sup>              | "GPSTimeStamp"               | GPS timestamp. Currently, this attribute is read-only.                                  |
-| GPS_DATE_STAMP<sup>10+</sup>              | "GPSDateStamp"               | GPS date stamp. Currently, this attribute is read-only.                                  |
-| IMAGE_DESCRIPTION<sup>10+</sup>           | "ImageDescription"           | Image description. Currently, this attribute is read-only.                               |
-| MAKE<sup>10+</sup>                        | "Make"                       | Manufacturer. Currently, this attribute is read-only.                                     |
-| MODEL<sup>10+</sup>                       | "Model"                      | Device model. Currently, this attribute is read-only.                                   |
-| PHOTO_MODE<sup>10+</sup>                  | "PhotoMode "                 | Photographing mode. Currently, this attribute is read-only.                                   |
-| SENSITIVITY_TYPE<sup>10+</sup>            | "SensitivityType"            | Sensitivity type. Currently, this attribute is read-only.                                |
-| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup> | "StandardOutputSensitivity"  | Standard output sensitivity. Currently, this attribute is read-only.                             |
-| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>  | "RecommendedExposureIndex"   | Recommended exposure index. Currently, this attribute is read-only.                               |
-| ISO_SPEED<sup>10+</sup>                   | "ISOSpeedRatings"            | ISO speed. Currently, this attribute is read-only.                                |
-| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"              | Aperture value. Currently, this attribute is read-only.                                     |
-| EXPOSURE_BIAS_VALUE<sup>10+</sup>         | "ExposureBiasValue"          | Exposure bias value. Currently, this attribute is read-only.                                 |
-| METERING_MODE<sup>10+</sup>               | "MeteringMode"               | Metering mode. Currently, this attribute is read-only.                                   |
-| LIGHT_SOURCE<sup>10+</sup>                | "LightSource"                | Light source. Currently, this attribute is read-only.                                      |
-| FLASH <sup>10+</sup>                      | "Flash"                      | Flash status. Currently, this attribute is read-only.                     |
-| FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"                | Focal length. Currently, this attribute is read-only.                                       |
-| USER_COMMENT <sup>10+</sup>               | "UserComment"                | User comment. Currently, this attribute is read-only.                                  |
-| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"            | Pixel X dimension. Currently, this attribute is read-only.                                 |
-| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"            | Pixel Y dimension. Currently, this attribute is read-only.                                 |
-| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"               | White balance. Currently, this attribute is read-only.                                     |
-| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"      | Focal length in 35mm film. Currently, this attribute is read-only.                             |
-| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"         | Capture mode. Currently, this attribute is read-only.                 |
-| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"    | Physical aperture. Currently, this attribute is read-only.       |
+| BITS_PER_SAMPLE   | "BitsPerSample"         | Number of bits per pixel.        |
+| ORIENTATION       | "Orientation"           | Image orientation.              |
+| IMAGE_LENGTH      | "ImageLength"           | Image length.              |
+| IMAGE_WIDTH       | "ImageWidth"            | Image width.              |
+| GPS_LATITUDE      | "GPSLatitude"           | Image latitude.              |
+| GPS_LONGITUDE     | "GPSLongitude"          | Image longitude.              |
+| GPS_LATITUDE_REF  | "GPSLatitudeRef"        | Latitude reference, for example, N or S.   |
+| GPS_LONGITUDE_REF | "GPSLongitudeRef"       | Longitude reference, for example, W or E.   |
+| DATE_TIME_ORIGINAL<sup>9+</sup> | "DateTimeOriginal" | Shooting time, for example, 2022:09:06 15:48:00. Currently, this attribute is read-only.    |
+| EXPOSURE_TIME<sup>9+</sup>      | "ExposureTime"     | Exposure time, for example, 1/33 sec. Currently, this attribute is read-only.|
+| SCENE_TYPE<sup>9+</sup>         | "SceneType"        | Shooting scene type, for example, portrait, scenery, motion, and night. This attribute is read-only.     |
+| ISO_SPEED_RATINGS<sup>9+</sup>  | "ISOSpeedRatings"  | ISO sensitivity or ISO speed, for example, 400. Currently, this attribute is read-only.     |
+| F_NUMBER<sup>9+</sup>           | "FNumber"          | Aperture, for example, f/1.8. Currently, this attribute is read-only.     |
+| DATE_TIME<sup>10+</sup>                  | "DateTime"             | Date and time. Currently, this attribute is read-only.               |
+| GPS_TIME_STAMP<sup>10+</sup>             | "GPSTimeStamp"         | GPS timestamp. Currently, this attribute is read-only.        |
+| GPS_DATE_STAMP<sup>10+</sup>             | "GPSDateStamp"         | GPS date stamp. Currently, this attribute is read-only.         |
+| IMAGE_DESCRIPTION<sup>10+</sup>          | "ImageDescription"     | Image description. Currently, this attribute is read-only.              |
+| MAKE<sup>10+</sup>                       | "Make"                 | Manufacturer. Currently, this attribute is read-only.                 |
+| MODEL<sup>10+</sup>                      | "Model"                | Device model. Currently, this attribute is read-only.                 |
+| PHOTO_MODE<sup>10+</sup>                 | "PhotoMode "           | Photographing mode. Currently, this attribute is read-only.             |
+| SENSITIVITY_TYPE<sup>10+</sup>           | "SensitivityType"      | Sensitivity type. Currently, this attribute is read-only.            |
+| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup>           | "StandardOutputSensitivity"          | Standard output sensitivity. Currently, this attribute is read-only.   |
+| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>            | "RecommendedExposureIndex"          | Recommended exposure index. Currently, this attribute is read-only.   |
+| ISO_SPEED<sup>10+</sup>                             | "ISOSpeedRatings"          | ISO speed. Currently, this attribute is read-only.   |
+| APERTURE_VALUE<sup>10+</sup>             | "ApertureValue"            | Aperture value. Currently, this attribute is read-only.   |
+| EXPOSURE_BIAS_VALUE<sup>10+</sup>        | "ExposureBiasValue"        | Exposure bias value. Currently, this attribute is read-only.   |
+| METERING_MODE<sup>10+</sup>              | "MeteringMode"             | Metering mode. Currently, this attribute is read-only.   |
+| LIGHT_SOURCE<sup>10+</sup>               | "LightSource"              | Light source. Currently, this attribute is read-only.   |
+| FLASH <sup>10+</sup>                     | "Flash"                    | Flash status. Currently, this attribute is read-only.   |
+| FOCAL_LENGTH <sup>10+</sup>              | "FocalLength"              | Focal length. Currently, this attribute is read-only.   |
+| USER_COMMENT <sup>10+</sup>               | "UserComment"              | User comment. Currently, this attribute is read-only.   |
+| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"          | Pixel X dimension. Currently, this attribute is read-only.  |
+| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"          | Pixel Y dimension. Currently, this attribute is read-only.   |
+| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"             | White balance. Currently, this attribute is read-only.   |
+| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"    | Focal length in 35mm film. Currently, this attribute is read-only.   |
+| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"       | Capture mode. Currently, this attribute is read-only.   |
+| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"  | Physical aperture. Currently, this attribute is read-only.  |
 
 ## ImageFormat<sup>9+</sup>
 
