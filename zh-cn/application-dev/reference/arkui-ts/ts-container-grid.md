@@ -42,16 +42,17 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他[滚动类组件](ts-container-list.md)绑定同一个滚动控制对象。 |
 | layoutOptions<sup>10+</sup> | GridLayoutOptions | 否 | 滚动Grid布局选项。 |
 
-### GridLayoutOptions<sup>10+</sup>
+## GridLayoutOptions<sup>10+</sup>
 
-布局选项，配合rowsTemplate、columnsTemplate仅设置其中一个的Grid使用，可以替代通过columnStart/columnEnd控制GridItem占用多列、rowStart/rowEnd控制GridItem占用多行的场景。
+布局选项。其中,irregularIndexes和onGetIrregularSizeByIndex可对仅设置rowsTemplate或columnsTemplate的Grid使用，可以指定一个index数组，并为其中的index对应的GridItem设置其占据的行数与列数，使用方法参见示例3；onGetRectByIndex可对同时设置rowsTemplate和columnsTemplate的Grid使用，为指定的index对应的GridItem设置位置和大小，使用方法参见示例4。
 
 **参数：**
 | 名称    | 类型      | 必填   | 描述                    |
 | ----- | ------- | ---- | --------------------- |
 | regularSize  | [number, number]  | 是    | 大小规则的GridItem在Grid中占的行数和列数，只支持占1行1列即[1, 1]。   |
-| irregularIndexes | number[] | 否    | 大小不规则的GridItem在Grid所有子节点中的索引值。onGetIrregularSizeByIndex不设置时irregularIndexes中的GridItem默认占垂直滚动Grid的一整行或水平滚动Grid的一整列。 |
-| onGetIrregularSizeByIndex | (index: number) => [number, number] | 否    | 获取不规则GridItem占用的行数和列数，布局过程中针对irregularIndexes中的index调用，开发者应返回index对应GridItem占用的行数和列数。垂直滚动Grid不支持GridItem占多行，水平滚动Grid不支持GridItem占多列。 |
+| irregularIndexes | number[] | 否    | 指定的GridItem索引在Grid中的大小是不规则的。当不设置onGetIrregularSizeByIndex时，irregularIndexes中GridItem的默认大小为垂直滚动Grid的一整行或水平滚动Grid的一整列。 |
+| onGetIrregularSizeByIndex | (index: number) => [number, number] | 否    | 配合irregularIndexes使用，设置不规则GridItem占用的行数和列数。开发者可为irregularIndexes中指明的index对应的GridItem设置占用的行数和列数。垂直滚动Grid不支持GridItem占多行，水平滚动Grid不支持GridItem占多列。 |
+| onGetRectByIndex<sup>11+</sup> | (index: number) => [number, number,number,number] | 否  |  设置指定索引index对应的GridItem的位置及大小[rowStart,columnStart,rowSpan,columnSpan]。  |
 
 ## 属性
 
@@ -324,7 +325,7 @@ struct GridExample {
 
 ### 示例3
 
-使用GridLayoutOptions
+GridLayoutOptions的使用：irregularIndexes与onGetIrregularSizeByIndex。
 
 ```ts
 // xxx.ets
@@ -402,3 +403,67 @@ struct GridExample {
 ```
 
 ![gridLayoutOptions](figures/gridLayoutOptions.png)
+
+### 示例4
+
+GridLayoutOptions的使用：onGetRectByIndex。
+
+```ts
+@Entry
+@Component
+struct GridExample {
+  @State Number: String[] = ['0', '1','2','3','4','5']
+  
+  layoutOptions3: GridLayoutOptions = {
+    regularSize: [1, 1],
+    onGetRectByIndex: (index: number) => {
+      if (index == 0)
+        return [0, 0, 1, 1]
+      else if(index==1)
+        return [0, 1, 2, 2]
+      else if(index==2)
+        return [0 ,3 ,3 ,3]
+      else if(index==3)
+        return [3, 0, 3, 3]
+      else if(index==4)
+        return [4, 3, 2, 2]
+      else
+        return [5, 5, 1, 1]
+    }
+  }
+
+
+  build() {
+    Column({ space: 5 }) {
+      Text('scroll').fontColor(0xCCCCCC).fontSize(9).width('90%')
+
+      Grid(undefined, this.layoutOptions3) {
+        ForEach(this.Number, (day: string) => {
+          GridItem() {
+            Text(day)
+              .fontSize(16)
+              .backgroundColor(0xF9CF93)
+              .width('100%')
+              .height("100%")
+              .textAlign(TextAlign.Center)
+          }
+          .height("100%")
+          .width('100%')
+        }, (day: string) => day)
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr')
+      .rowsTemplate('1fr 1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(10)
+      .scrollBar(BarState.Off)
+      .width('90%')
+      .backgroundColor(0xFAEEE0)
+      .height(300)
+
+    }.width('100%').margin({ top: 5 })
+  }
+}
+
+```
+
+![onGetRectByIndex](figures/onGetRectByIndex.png)

@@ -172,6 +172,8 @@ async function Demo() {
 
 Provides APIs to read or write image pixel map data and obtain image pixel map information. Before calling any API in **PixelMap**, you must use **createPixelMap** to create a **PixelMap** object. Currently, the maximum size of a serialized pixel map is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
 
+Since API version 11, **PixelMap** supports cross-thread calls through workers. If a **PixelMap** object is invoked by another thread through [Worker](js-apis-worker.md), all APIs of the **PixelMap** object cannot be called in the original thread. Otherwise, error 501 is reported, indicating that the server cannot complete the request.
+
 ### Attributes
 
 **System capability**: SystemCapability.Multimedia.Image.Core
@@ -1038,7 +1040,7 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980111| If the operation invalid              |
+| 62980111| If the operation invalid        |
 | 62980115| If the image parameter invalid             |
 
 **Example**
@@ -1137,7 +1139,6 @@ async function Demo() {
 unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
 Unmarshals a **MessageSequence** object to obtain a **PixelMap** object.
-
 To create a **PixelMap** object in synchronous mode, use [createPixelMapFromParcel](#imagecreatepixelmapfromparcel11).
 
 **System capability**: SystemCapability.Multimedia.Image.Core
@@ -1162,7 +1163,7 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 | ------- | --------------------------------------------|
 | 62980115 | If the input parameter invalid              |
 | 62980097 | If the ipc error              |
-| 62980096 | If fail to create async work            |
+| 62980096 | If fail to create async work         |
 
 **Example**
 
@@ -1285,7 +1286,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name| Type  | Mandatory| Description                              |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, and raw. For details, see [SVG Tags<sup>10+</sup>](#svg-tags).|
+| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw [SVG<sup>10+</sup>](#svg), and .ico<sup>11+</sup>.|
 
 **Return value**
 
@@ -1323,7 +1324,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name | Type                           | Mandatory| Description                               |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, and raw. For details, see [SVG Tags<sup>10+</sup>](#svg-tags).|
+| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw [SVG<sup>10+</sup>](#svg), and .ico<sup>11+</sup>.|
 | options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image index and default property value.|
 
 **Return value**
@@ -1452,7 +1453,7 @@ const imageSourceApi : image.ImageSource = image.createImageSource(data, sourceO
 
 ## image.createImageSource<sup>11+</sup>
 
-createImageSource(rawFileDescriptor: resourceManager.RawFileDescriptor, options: SourceOptions): ImageSource
+createImageSource(rawfile: resourceManager.RawFileDescriptor, options: SourceOptions): ImageSource
 
 Creates an **ImageSource** instance by using the raw file descriptor of the image resource file.
 
@@ -1462,8 +1463,8 @@ Creates an **ImageSource** instance by using the raw file descriptor of the imag
 
 | Name| Type                            | Mandatory| Description                                |
 | ------ | -------------------------------- | ---- | ------------------------------------ |
-| rawFileDescriptor | [resourceManager.RawFileDescriptor](js-apis-resource-manager.md#rawfiledescriptor8) | Yes| Raw file descriptor of the image resource file.|
-| options | [SourceOptions](#sourceoptions9) | Yes| Image properties, including the image index and default property value.|
+| rawfile | [resourceManager.RawFileDescriptor](js-apis-resource-manager.md#rawfiledescriptor8) | Yes| Raw file descriptor of the image resource file.|
+| options | [SourceOptions](#sourceoptions9) | No| Image properties, including the image index and default property value.|
 
 **Return value**
 
@@ -2507,7 +2508,7 @@ imagePackerApi.release().then(()=>{
 
 ### packToFile<sup>11+</sup>
 
-packToFile(source: ImageSource, fd: number, option: PackingOption, callback: AsyncCallback\<void>): void
+packToFile(source: ImageSource, fd: number, options: PackingOption, callback: AsyncCallback\<void>): void
 
 Encodes an **ImageSource** instance and packs it into a file. This API uses an asynchronous callback to return the result.
 
@@ -2519,7 +2520,7 @@ Encodes an **ImageSource** instance and packs it into a file. This API uses an a
 | -------- | ------------------------------- | ---- | ------------------------------ |
 | source   | [ImageSource](#imagesource)     | Yes  | Image to pack.                |
 | fd       | number                          | Yes  | File descriptor.                  |
-| option   | [PackingOption](#packingoption) | Yes  | Option for image packing.                |
+| options   | [PackingOption](#packingoption) | Yes  | Option for image packing.                |
 | callback | AsyncCallback\<void>            | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
@@ -2540,9 +2541,11 @@ imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err : BusinessErro
 
 ### packToFile<sup>11+</sup>
 
-packToFile (source: ImageSource, fd: number, option: PackingOption): Promise\<void>
+packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<void>
 
 Encodes an **ImageSource** instance and packs it into a file. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 **Parameters**
 
@@ -2550,7 +2553,7 @@ Encodes an **ImageSource** instance and packs it into a file. This API uses a pr
 | ------ | ------------------------------- | ---- | -------------- |
 | source | [ImageSource](#imagesource)     | Yes  | Image to pack.|
 | fd     | number                          | Yes  | File descriptor.  |
-| option | [PackingOption](#packingoption) | Yes  | Option for image packing.|
+| options | [PackingOption](#packingoption) | Yes  | Option for image packing.|
 
 **Return value**
 
@@ -2580,7 +2583,7 @@ imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(()=>{
 
 ### packToFile<sup>11+</sup>
 
-packToFile (source: Pixelmap, fd: number, option: PackingOption,  callback: AsyncCallback\<void>): void;
+packToFile (source: Pixelmap, fd: number, options: PackingOption,  callback: AsyncCallback\<void>): void;
 
 Encodes a **PixelMap** instance and packs it into a file. This API uses an asynchronous callback to return the result.
 
@@ -2592,7 +2595,7 @@ Encodes a **PixelMap** instance and packs it into a file. This API uses an async
 | -------- | ------------------------------- | ---- | ------------------------------ |
 | source   | [PixelMap](#pixelmap7)          | Yes  | **PixelMap** object to pack.          |
 | fd       | number                          | Yes  | File descriptor.                  |
-| option   | [PackingOption](#packingoption) | Yes  | Option for image packing.                |
+| options   | [PackingOption](#packingoption) | Yes  | Option for image packing.                |
 | callback | AsyncCallback\<void>            | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
@@ -2616,9 +2619,11 @@ image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
 
 ### packToFile<sup>11+</sup>
 
-packToFile (source: Pixelmap, fd: number, option: PackingOption): Promise\<void>
+packToFile (source: Pixelmap, fd: number, options: PackingOption): Promise\<void>
 
 Encodes a **PixelMap** instance and packs it into a file. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 **Parameters**
 
@@ -2626,7 +2631,7 @@ Encodes a **PixelMap** instance and packs it into a file. This API uses a promis
 | ------ | ------------------------------- | ---- | -------------------- |
 | source | [PixelMap](#pixelmap7)          | Yes  | **PixelMap** object to pack.|
 | fd     | number                          | Yes  | File descriptor.        |
-| option | [PackingOption](#packingoption) | Yes  | Option for image packing.      |
+| options | [PackingOption](#packingoption) | Yes  | Option for image packing.      |
 
 **Return value**
 

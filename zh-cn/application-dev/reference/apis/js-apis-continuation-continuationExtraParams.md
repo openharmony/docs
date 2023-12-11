@@ -19,4 +19,4 @@
 | description | string | 是 | 是 | 表示设备过滤的描述。 |
 | filter | any | 是 | 是 | 表示设备过滤的参数。 |
 | continuationMode | [ContinuationMode](js-apis-continuation-continuationManager.md#continuationmode) | 是 | 是 | 表示协同的模式。 |
-| authInfo | { [key: string]: any } | 是 | 是 | 表示认证的信息。 |
+| authInfo | Record<string, Object> | 是 | 是 | 表示认证的信息。 |

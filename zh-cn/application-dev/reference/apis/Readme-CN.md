@@ -370,6 +370,7 @@
   - [@ohos.bluetooth.socket(蓝牙socket模块)(推荐)](js-apis-bluetooth-socket.md)
   - [@ohos.bluetooth.pbap(蓝牙pbap模块)(推荐)](js-apis-bluetooth-pbap.md)
   - [@ohos.bluetooth.map(蓝牙map模块)(推荐)](js-apis-bluetooth-map.md)
+  - [@ohos.bluetooth.wearDetection(蓝牙佩戴检测模块)(推荐)](js-apis-bluetooth-wearDetection.md)
   - [@ohos.bluetooth (蓝牙)(待停用)](js-apis-bluetooth.md)
   - [@ohos.bluetoothManager (蓝牙)(待停用)](js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (有源标签)](js-apis-connectedTag.md)

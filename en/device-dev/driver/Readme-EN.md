@@ -2,7 +2,7 @@
 
 - [Driver Overview](driver-overview-foundation.md)
 - [HDF Driver Development](driver-hdf-manage.md)
-- Platform Driver Development
+- Developing Platform Drivers
   - [ADC](driver-platform-adc-develop.md)
   - [DAC](driver-platform-dac-develop.md)
   - [GPIO](driver-platform-gpio-develop.md)
@@ -20,7 +20,7 @@
   - [SPI](driver-platform-spi-develop.md)
   - [UART](driver-platform-uart-develop.md)
   - [Watchdog](driver-platform-watchdog-develop.md)
-- Platform Driver Usage
+- Using Platform Drivers
   - [ADC](driver-platform-adc-des.md)
   - [DAC](driver-platform-dac-des.md)
   - [GPIO](driver-platform-gpio-des.md)
@@ -37,7 +37,7 @@
   - [SPI](driver-platform-spi-des.md)
   - [UART](driver-platform-uart-des.md)
   - [Watchdog](driver-platform-watchdog-des.md)
-- Peripheral Driver Usage
+- Using Peripheral Drivers
   - [Audio](driver-peripherals-audio-des.md)
   - [Camera](driver-peripherals-camera-des.md)
   - [Codec](driver-peripherals-codec-des.md)
