@@ -24,7 +24,7 @@ import {
 ## 接口
 
 ```
-ExceptionPrompt ({ Type: this.type,Options: $options })
+ExceptionPrompt ({ type: this.type,options: $options })
 ```
 
 从API version 11开始，该接口支持在ArkTS卡片中使用。
@@ -46,7 +46,7 @@ ExceptionPrompt ({ Type: this.type,Options: $options })
 
 ##  OptionType
 
-PromptOptions定义Options的类型。
+PromptOptions定义options的类型。
 
 | 名称           | 类型               | 必填 | 说明                                                         |
 | -------------- | ------------------ | ---- | ------------------------------------------------------------ |
@@ -54,7 +54,7 @@ PromptOptions定义Options的类型。
 | tip            | ResourceStr        | 否   | 指定当前ExceptionPrompt的文字提示式样                        |
 | networkTip     | ResourceStr        | 否   | 指定当前ExceptionPrompt有网但是获取不到内容XX，XX包含但不限于“信息”，“资料”，“图片”等 |
 | hardwareStatus | HardwareStatusType | 否   | 指定当前网络硬件开关状态。默认hardwareStatusType.ON：打开状态；HardwareStatusType.OFF：关闭状态 |
-| marginState    | MarginStateType    | 是   | 指定当前ExceptionPrompt的边距样式                            |
+| marginState    | MarginState        | 是   | 指定当前ExceptionPrompt的边距样式                            |
 
 ## type
 
@@ -81,7 +81,7 @@ HardwareStatusType定义HardwareStatus的类型
 
 ## marginState
 
-MarginStateType定义marginState的类型
+MarginState定义marginState的类型
 
 | 类型           | 说明                                                         |
 | :------------- | :----------------------------------------------------------- |
@@ -90,10 +90,10 @@ MarginStateType定义marginState的类型
 
 ## 事件
 
-| 名称                                      | 功能描述                             |
-| ----------------------------------------- | ------------------------------------ |
-| onReconnectionFunction: () => void        | 点击左侧文本，变为正在连接状态       |
-| onConfigureNetworkFunction: () =&gt; void | 点击设置网络跳转到设置网络弹出框界面 |
+| 名称                              | 功能描述                             |
+| --------------------------------- | ------------------------------------ |
+| onReconnection: () => void        | 点击左侧文本，变为正在连接状态       |
+| onConfigureNetwork: () =&gt; void | 点击设置网络跳转到设置网络弹出框界面 |
 
 ## 示例 2
 
@@ -114,7 +114,7 @@ struct Index {
     icon: '',
     tipContent: '',
     contentText: '',
-    marginState: MarginStateType.DEFAULT_MARGIN
+    marginState: MarginState.DEFAULT_MARGIN
   }
 
   build() {
@@ -122,9 +122,9 @@ struct Index {
       ExceptionPrompt({
         type: this.type,
         options: this.options,
-        onReconnectionFunction: () => {
+        onReconnection: () => {
         },
-        onConfigureNetworkFunction: () => {
+        onConfigureNetwork: () => {
         },
       })
 
