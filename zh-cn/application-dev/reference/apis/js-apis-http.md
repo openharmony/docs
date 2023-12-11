@@ -87,7 +87,7 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
 > **说明：**
 > console.info()输出的数据中包含换行符会导致数据出现截断现象。
 
-## http.createHttp
+## http.createHttp(支持跨平台)
 
 createHttp(): HttpRequest
 
@@ -112,11 +112,11 @@ import http from '@ohos.net.http';
 let httpRequest = http.createHttp();
 ```
 
-## HttpRequest
+## HttpRequest（支持跨平台）
 
 HTTP请求任务。在调用HttpRequest的方法前，需要先通过createHttp()创建一个任务。
 
-### request
+### request(支持跨平台)
 
 request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 
@@ -195,7 +195,7 @@ httpRequest.request("EXAMPLE_URL", (err: Error, data: http.HttpResponse) => {
 });
 ```
 
-### request
+### request(支持跨平台)
 
 request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpResponse\>):void
 
@@ -291,7 +291,7 @@ promise.then((data:http.HttpResponse) => {
 });
 ```
 
-### request
+### request(支持跨平台)
 
 request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
@@ -390,7 +390,7 @@ promise.then((data:http.HttpResponse) => {
 });
 ```
 
-### destroy
+### destroy(支持跨平台)
 
 destroy(): void
 
@@ -712,7 +712,7 @@ let httpRequest = http.createHttp();
 httpRequest.off("headerReceive");
 ```
 
-### on("headersReceive")<sup>8+</sup>
+### on("headersReceive")<sup>8+</sup>(支持跨平台)
 
 on(type: "headersReceive", callback: Callback\<Object\>): void
 
@@ -739,7 +739,7 @@ httpRequest.on("headersReceive", (header: Object) => {
 httpRequest.off("headersReceive");
 ```
 
-### off("headersReceive")<sup>8+</sup>
+### off("headersReceive")<sup>8+</sup>(支持跨平台)
 
 off(type: "headersReceive", callback?: Callback\<Object\>): void
 
@@ -763,7 +763,7 @@ off(type: "headersReceive", callback?: Callback\<Object\>): void
 示例代码请见on("headersReceive")<sup>8+</sup>
 ```
 
-### once("headersReceive")<sup>8+</sup>
+### once("headersReceive")<sup>8+</sup>(支持跨平台)
 
 once(type: "headersReceive", callback: Callback\<Object\>): void
 
@@ -789,7 +789,7 @@ httpRequest.once("headersReceive", (header: Object) => {
 });
 ```
 
-### on("dataReceive")<sup>10+</sup>
+### on("dataReceive")<sup>10+</sup>(支持跨平台)
 
 on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 
@@ -819,7 +819,7 @@ httpRequest.on("dataReceive", (data: ArrayBuffer) => {
 httpRequest.off("dataReceive");
 ```
 
-### off("dataReceive")<sup>10+</sup>
+### off("dataReceive")<sup>10+</sup>(支持跨平台)
 
 off(type: "dataReceive", callback?: Callback\<ArrayBuffer\>): void
 
@@ -956,7 +956,7 @@ off(type: "dataReceiveProgress", callback?: Callback\<{ receiveSize: number, tot
 示例代码请见on("dataReceiveProgress")<sup>10+</sup>
 ```
 
-## HttpRequestOptions
+## HttpRequestOptions（支持跨平台）
 
 发起请求可选参数的类型和取值范围。
 
@@ -976,7 +976,7 @@ off(type: "dataReceiveProgress", callback?: Callback\<{ receiveSize: number, tot
 | usingProxy<sup>10+</sup>     | boolean \| HttpProxy               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为HttpProxy类型时，使用指定网络代理。 |
 | caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持后缀名为.pem的文本格式证书。                             |
 
-## RequestMethod
+## RequestMethod（支持跨平台）
 
 HTTP 请求方法。
 
@@ -993,7 +993,7 @@ HTTP 请求方法。
 | TRACE   | "TRACE"   | HTTP 请求 TRACE。   |
 | CONNECT | "CONNECT" | HTTP 请求 CONNECT。 |
 
-## ResponseCode
+## ResponseCode（支持跨平台）
 
 发起请求返回的响应码。
 
@@ -1037,7 +1037,7 @@ HTTP 请求方法。
 | GATEWAY_TIMEOUT   | 504  | 充当网关或代理的服务器，未及时从远端服务器获取请求。         |
 | VERSION           | 505  | 服务器请求的HTTP协议的版本。                                 |
 
-## HttpResponse
+## HttpResponse（支持跨平台）
 
 request方法回调函数的返回值类型。
 
@@ -1051,7 +1051,7 @@ request方法回调函数的返回值类型。
 | header               | Object                                       | 是   | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- content-type：header['content-type']；<br />- status-line：header['status-line']；<br />- date：header.date/header['date']；<br />- server：header.server/header['server']； |
 | cookies<sup>8+</sup> | string                                       | 是   | 服务器返回的 cookies。                                       |
 
-## http.createHttpResponseCache<sup>9+</sup>
+## http.createHttpResponseCache<sup>9+</sup>（支持跨平台）
 
 createHttpResponseCache(cacheSize?: number): HttpResponseCache
 
@@ -1079,7 +1079,7 @@ import http from '@ohos.net.http';
 let httpResponseCache = http.createHttpResponseCache();
 ```
 
-## HttpResponseCache<sup>9+</sup>
+## HttpResponseCache<sup>9+</sup>（支持跨平台）
 
 存储HTTP访问请求响应的对象。在调用HttpResponseCache的方法前，需要先通过[createHttpResponseCache()](#httpcreatehttpresponsecache9)创建一个任务。
 
@@ -1199,7 +1199,7 @@ httpResponseCache.delete().then(() => {
 });
 ```
 
-## HttpDataType<sup>9+</sup>
+## HttpDataType<sup>9+</sup>（支持跨平台）
 
 http的数据类型。
 
@@ -1211,7 +1211,7 @@ http的数据类型。
 | OBJECT              | 1 | 对象类型。    |
 | ARRAY_BUFFER        | 2 | 二进制数组类型。|
 
-## HttpProtocol<sup>9+</sup>
+## HttpProtocol<sup>9+</sup>（支持跨平台）
 
 http协议版本。
 
