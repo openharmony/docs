@@ -1,4 +1,4 @@
-# Audio Effect Management
+# Audio Effect Management (ArkTS)
 
 You can manage the audio effect of a specific playback instance, for example, obtaining or setting the audio effect mode of the current audio playback stream. You can also obtain the global audio effect, that is, the audio effect mode corresponding to a specific audio content type (specified by **ContentType**) and audio stream usage (specified by **StreamUsage**).
 
@@ -29,7 +29,6 @@ Before obtaining or setting the audio effect mode, you must call **createAudioRe
   };
 
   let audioRendererInfo: audio.AudioRendererInfo = {
-    content: audio.ContentType.CONTENT_TYPE_SPEECH,
     usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
     rendererFlags: 0
   };

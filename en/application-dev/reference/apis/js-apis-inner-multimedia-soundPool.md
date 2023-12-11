@@ -65,10 +65,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 ```ts
 import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -133,10 +134,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 ```ts
 import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -199,10 +201,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 ```ts
 import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -272,10 +275,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 ```ts
 import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -334,10 +338,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -358,7 +363,6 @@ let playParameters: media.PlayParameters = {
     leftVolume: 0.5, // range = 0.0-1.0
     rightVolume: 0.5, // range = 0.0-1.0
     priority: 0, // The sound playback has the lowest priority.
-    parallelPlayFlag: false // The sound is not played in parallel with other active audio streams.
   }
 soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
   if (error) {
@@ -397,10 +401,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -458,10 +463,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -482,7 +488,6 @@ let playParameters: media.PlayParameters = {
     leftVolume: 0.5, // range = 0.0-1.0
     rightVolume: 0.5, // range = 0.0-1.0
     priority: 0, // The sound playback has the lowest priority.
-    parallelPlayFlag: false // The sound is not played in parallel with other active audio streams.
   }
 
 soundPool.play(soundID, playParameters).then((streamId: number) => {
@@ -520,10 +525,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -580,10 +586,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -633,10 +640,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -694,10 +702,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -748,10 +757,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -810,10 +820,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -868,10 +879,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -934,10 +946,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -990,10 +1003,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1053,10 +1067,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1107,10 +1122,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1168,10 +1184,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1219,10 +1236,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1270,10 +1288,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1311,10 +1330,11 @@ Subscribes to events indicating that a sound finishes loading.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1349,10 +1369,11 @@ Unsubscribes from events indicating that a sound finishes loading.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1386,10 +1407,11 @@ Subscribes to events indicating that a sound finishes playing.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1424,10 +1446,11 @@ Unsubscribes from events indicating that a sound finishes playing.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1472,10 +1495,11 @@ The **SoundPool** class provides the following error types<a name = error_info><
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1511,10 +1535,11 @@ Unsubscribes from error events of this **SoundPool** instance.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create a SoundPool instance.
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
