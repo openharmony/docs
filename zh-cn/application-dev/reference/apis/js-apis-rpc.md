@@ -2710,7 +2710,7 @@ readException(): void
           hilog.error(0x0000, 'testTag', 'rpc read exception fail, errorMessage ' + e.message);
         }
         let num = result.reply.readInt();
-        hilog.info(0x0000, 'testTag', 'RPCTest: reply int: ' + int);
+        hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
       } else {
         hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
       }
@@ -5635,8 +5635,7 @@ static closeFileDescriptor(fd: number): void
 
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  let parcel = new rpc.MessageParcel();   
-  parcel.closeFileDescriptor(file.fd);
+  rpc.MessageParcel.closeFileDescriptor(file.fd);
   ```
 
 ### dupFileDescriptor<sup>8+</sup>
@@ -5666,8 +5665,7 @@ static dupFileDescriptor(fd: number) :number
 
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  let parcel = new rpc.MessageParcel();
-  parcel.dupFileDescriptor(file.fd);
+  rpc.MessageParcel.dupFileDescriptor(file.fd);
   ```
 
 ### containFileDescriptors<sup>8+</sup>
@@ -7645,7 +7643,7 @@ isObjectDead(): boolean
 
 ## MessageOption
 
-公共消息选项（int标志，int等待时间），使用标志中指定的标志构造指定的MessageOption对象。
+公共消息选项，使用标志中指定的标志构造指定的MessageOption对象。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
@@ -8202,13 +8200,9 @@ static restoreCallingIdentity(identity: string): void
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-      let callingIdentity: rpc.IPCSkeleton | undefined = undefined;
-      try {
-        callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
-        hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
-      } finally {
-        rpc.IPCSkeleton.restoreCallingIdentity(callingIdentity);
-      }
+      let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
+      hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
+      rpc.IPCSkeleton.restoreCallingIdentity(callingIdentity);
       return true;
     }
   }
@@ -8243,14 +8237,10 @@ static setCallingIdentity(identity: string): boolean
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-      let callingIdentity: rpc.IPCSkeleton | undefined = undefined;
-      try {
-        callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
-        hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
-      } finally {
-        let ret = rpc.IPCSkeleton.setCallingIdentity("callingIdentity ");
-        hilog.info(0x0000, 'testTag', 'RpcServer: setCallingIdentity is ' + ret);
-      }
+      let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
+      hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
+      let ret = rpc.IPCSkeleton.setCallingIdentity(callingIdentity);
+      hilog.info(0x0000, 'testTag', 'RpcServer: setCallingIdentity is ' + ret);
       return true;
     }
   }
@@ -9842,4 +9832,3 @@ readFromAshmem(size: number, offset: number): number[]
     }
   }
  ```
-
