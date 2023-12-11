@@ -579,7 +579,6 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy): Promise\<void>
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | httpProxy    | [connection.HttpProxy](js-apis-net-connection.md#httpproxy10)     | 是    | 网络全局Http代理配置信息。                  |
-| isDisabled    | boolean     | 是    | true表示禁用该网络接口，false表示开启该网络接口。                  |
 
 **返回值：**
 
