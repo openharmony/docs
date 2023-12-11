@@ -4955,7 +4955,7 @@ querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): 
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | 表示查询的谓词条件。    |
-| columns    | Array&lt;string&gt;      | 否   | 表示要查找的列字段名。此参数不填时，则返回的结果集中只包含共享资源标识字段。 |
+| columns    | Array&lt;string&gt;      | 否   | 表示要查找的列字段名。此参数不填时，返回的结果集中只包含共享资源标识字段。 |
 
 **返回值：**
 
