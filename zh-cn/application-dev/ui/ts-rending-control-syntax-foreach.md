@@ -31,19 +31,6 @@ ForEach(arr: any[],itemGenerator: (item: any, index?: number) =&gt; void, keyGen
 > - 必须在容器组件内使用；
 > 
 > - 生成的子组件允许在ForEach的父容器组件中，允许子组件生成器函数中包含if/else条件渲染，同时也允许ForEach包含在if/else条件渲染语句中；
-> 
-> - 子项生成器函数的调用顺序不一定和数组中的数据项相同，在开发过程中不要假设子项生成器和键值生成器函数是否执行以及执行顺序。如下示例可能无法正常工作：
->   ```
->   ForEach(anArray, item => {Text(`${++counter}. item.label`)})
->   ```
-> 
->   正确的示例如下：
-> 
->   ```
->   ForEach(anArray.map((item1, index1) => { return { i: index1 + 1, data: item1 }; }), 
->           item => Text(`${item.i}. item.data.label`),
->           item => item.data.id.toString())
->   ```
 
 
 ## 示例
