@@ -45,7 +45,7 @@ let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听�
 
 ## MediaQueryListener
 
-媒体查询的句柄，并包含了申请句柄时的首次查询结果。
+媒体查询的句柄，并包含了申请句柄时的首次查询结果。媒体查询根据设置的条件语句，比如'(width <= 600vp)'，比较系统信息，若首次查询时相关信息未初始化，matches返回false。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -81,7 +81,7 @@ on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 
 off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 
-通过句柄向对应的查询条件去注册回调，当媒体属性发生变更时不在触发指定的回调。
+通过句柄向对应的查询条件取消注册回调，当媒体属性发生变更时不再触发指定的回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
