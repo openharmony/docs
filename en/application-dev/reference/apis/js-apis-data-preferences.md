@@ -1,8 +1,8 @@
 # @ohos.data.preferences (User Preferences)
 
-The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, and supports persistence of the KV pairs when required, as well as modification and query of the data.
+The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, including querying, modifying, and persisting KV pairs.
 
-The key is of the string type, and the value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.
+The key is of the string type. The value supports the following data types: number, string, Boolean, Array<number>, Array<string>, Array<boolean>, and Uint8Array.
 
 
 > **NOTE**
@@ -1213,7 +1213,7 @@ Obtains the value corresponding to the specified key from the cached **Preferenc
 | Name  | Type                                        | Mandatory| Description                                                        |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                                       | Yes  | Key of the data to obtain. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype)                      | Yes  | Default value to be returned. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
+| defValue | [ValueType](#valuetype)                      | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array. |
 | callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the value obtained. Otherwise, **err** is an error object.|
 
 **Example**
@@ -1248,7 +1248,7 @@ Obtains the value corresponding to the specified key from the cached **Preferenc
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | Yes  | Key of the data to obtain. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array. |
 
 **Return value**
 
@@ -1286,7 +1286,7 @@ Obtains the value corresponding to the specified key from the cached **Preferenc
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | Yes  | Key of the data to obtain. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array. |
 
 **Return value**
 
@@ -1438,8 +1438,8 @@ Writes data to the cached **Preferences** instance. This API uses an asynchronou
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                    | Yes  | Key of the data. It cannot be empty.                               |
-| value    | [ValueType](#valuetype)   | Yes  | Value to write. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If data is written successfully, **err** is **undefined**. Otherwise, **err** is an error object.    |
+| value    | [ValueType](#valuetype)   | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If data is written successfully, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Example**
 
@@ -1473,7 +1473,7 @@ Writes data to the cached **Preferences** instance. This API uses a promise to r
 | Name| Type                   | Mandatory| Description                                                        |
 | ------ | ----------------------- | ---- | ------------------------------------------------------------ |
 | key    | string                  | Yes  | Key of the data. It cannot be empty.                               |
-| value  | [ValueType](#valuetype) | Yes  | Value to write. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
+| value  | [ValueType](#valuetype) | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array. |
 
 **Return value**
 
@@ -1512,7 +1512,7 @@ Writes data to the cached **Preferences** instance. This API returns the result 
 | Name| Type                   | Mandatory| Description                                                        |
 | ------ | ----------------------- | ---- | ------------------------------------------------------------ |
 | key    | string                  | Yes  | Key of the data. It cannot be empty.                               |
-| value  | [ValueType](#valuetype) | Yes  | Value to write. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
+| value  | [ValueType](#valuetype) | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array. |
 
 **Example**
 
@@ -1908,7 +1908,7 @@ Subscribes to data changes. A callback will be triggered to return the new value
 | Name  | Type    | Mandatory| Description                                    |
 | -------- | -------- | ---- | ---------------------------------------- |
 | type     | string                           | Yes  | Event type. The value is **change**, which indicates data changes. |
-| callback | Function | Yes  | Callback invoked to return the result.<br>**key** indicates the key whose value is changed.    |
+| callback | Function | Yes  | Callback invoked to return the data change.<br>**key** indicates the key whose value is changed.    |
 
 **Example**
 
@@ -1960,7 +1960,7 @@ This API can be used with [removePreferencesFromCache](#data_preferencesremovepr
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
-| callback | Function | Yes  | Callback invoked to return the result.<br>**key** indicates the key whose value is changed.                        |
+| callback | Function | Yes  | Callback invoked to return data changes between processes.<br>**key** indicates the key whose value is changed.                        |
 
 **Error codes**
 
@@ -2140,7 +2140,7 @@ Unsubscribes from inter-process data changes.
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
-| callback | Function | No  | Callback to unregister. If this parameter is left blank, all callbacks for **multiProcessChange** will be unregistered.<br>**key** indicates the key whose value is changed.|
+| callback | Function | No  | Callback to unregister. If this parameter is left blank, all callbacks for the **multiProcessChange** event will be unregistered.<br>**key** indicates the key whose value is changed.|
 
 **Example**
 
@@ -2186,11 +2186,12 @@ Enumerates the value types.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| Type           | Description                          |
-| --------------- | ------------------------------ |
-| number          | The value is a number.            |
-| string          | The value is a string.          |
-| boolean         | The value is of Boolean type.          |
-| Array\<number>  | The value is an array of numbers.  |
-| Array\<boolean> | The value is a Boolean array.  |
-| Array\<string>  | The value is an array of strings.|
+| Type           | Description                             |
+| --------------- | --------------------------------- |
+| number          | The value is a number.               |
+| string          | The value is a string.             |
+| boolean         | The value is true or false.           |
+| Array\<number>  | The value is an array of numbers.     |
+| Array\<boolean> | The value is a Boolean array.     |
+| Array\<string>  | The value is an array of strings.   |
+| Uint8Array<sup>11+</sup>      | The value is an array of 8-bit unsigned integers.|
