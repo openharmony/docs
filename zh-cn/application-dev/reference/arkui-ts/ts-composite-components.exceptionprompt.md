@@ -85,8 +85,8 @@ MarginState定义marginState的类型
 
 | 类型           | 说明                                                         |
 | :------------- | :----------------------------------------------------------- |
-| DEFAULT_MARGIN | 默认边距： left: $r('sys.float.ohos_id_card_margin_start')，right: $r('sys.float.ohos_id_card_margin_end') |
-| FIT_MARGIN     | 可适配边距： left: $r('sys.float.ohos_id_max_padding_start')，right: $r('sys.float.ohos_id_max_padding_end') |
+| DEFAULT_MARGIN | 默认边距：边距1：引用ohos_id_card_margin_start，边距2：引用ohos_id_card_margin_end |
+| FIT_MARGIN     | 可适配边距： 边距1：引用ohos_id_max_padding_start，边距2：引用ohos_id_max_padding_end |
 
 ## 事件
 
