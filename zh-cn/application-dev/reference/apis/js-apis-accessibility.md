@@ -273,22 +273,22 @@ captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
 
 ### 属性
 
-| 名称               | 类型                                    | 可读   | 可写   | 是否支持可选   | 说明                    |
-| ---------------- | ------------------------------------- | ---- | ---- | ---- | --------------------- |
-| type             | [EventType](#eventtype)               | 是    | 是    | 否    | 无障碍事件类型；不可缺省。              |
-| windowUpdateType | [WindowUpdateType](#windowupdatetype) | 是    | 是    | 是    | 窗口变化类型。               |
-| bundleName       | string                                | 是    | 是    | 否    | 目标应用名；不可缺省。                |
-| componentType    | string                                | 是    | 是    | 是    | 事件源组件类型，如按钮、图表。       |
-| pageId           | number                                | 是    | 是    | 是    | 事件源的页面 ID。            |
-| description      | string                                | 是    | 是    | 是    | 事件描述；当前版本暂不支持。        |
-| triggerAction    | [Action](#action)                     | 是    | 是    | 否    | 触发事件的 Action；不可缺省。         |
-| textMoveUnit     | [TextMoveUnit](#textmoveunit)         | 是    | 是    | 是    | 文本移动粒度；当前版本暂不支持。      |
-| contents         | Array&lt;string&gt;                   | 是    | 是    | 是    | 内容列表。                 |
-| lastContent      | string                                | 是    | 是    | 是    | 最新内容。                 |
-| beginIndex       | number                                | 是    | 是    | 是    | 画面显示条目的开始序号；当前版本暂不支持。 |
-| currentIndex     | number                                | 是    | 是    | 是    | 当前条目序号；当前版本暂不支持。      |
-| endIndex         | number                                | 是    | 是    | 是    | 画面显示条目的结束序号；当前版本暂不支持。 |
-| itemCount        | number                                | 是    | 是    | 是    | 条目总数；当前版本暂不支持。        |
+| 名称               | 类型                                    | 可读   | 可写   | 必填  | 说明                    |
+| ---------------- | ------------------------------------- | ---- | ---- |-----| --------------------- |
+| type             | [EventType](#eventtype)               | 是    | 是    | 是   | 无障碍事件类型；不可缺省。              |
+| windowUpdateType | [WindowUpdateType](#windowupdatetype) | 是    | 是    | 否   | 窗口变化类型。               |
+| bundleName       | string                                | 是    | 是    | 是   | 目标应用名；不可缺省。                |
+| componentType    | string                                | 是    | 是    | 否   | 事件源组件类型，如按钮、图表。       |
+| pageId           | number                                | 是    | 是    | 否   | 事件源的页面 ID。            |
+| description      | string                                | 是    | 是    | 否   | 事件描述；当前版本暂不支持。        |
+| triggerAction    | [Action](#action)                     | 是    | 是    | 是   | 触发事件的 Action；不可缺省。         |
+| textMoveUnit     | [TextMoveUnit](#textmoveunit)         | 是    | 是    | 否   | 文本移动粒度；当前版本暂不支持。      |
+| contents         | Array&lt;string&gt;                   | 是    | 是    | 否   | 内容列表。                 |
+| lastContent      | string                                | 是    | 是    | 否   | 最新内容。                 |
+| beginIndex       | number                                | 是    | 是    | 否   | 画面显示条目的开始序号；当前版本暂不支持。 |
+| currentIndex     | number                                | 是    | 是    | 否   | 当前条目序号；当前版本暂不支持。      |
+| endIndex         | number                                | 是    | 是    | 否   | 画面显示条目的结束序号；当前版本暂不支持。 |
+| itemCount        | number                                | 是    | 是    | 否   | 条目总数；当前版本暂不支持。        |
 
 ### constructor
 

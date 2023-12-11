@@ -73,7 +73,10 @@ let FocusDirection: FocusDirection;
 
 ## ElementAttributeKeys<sup>10+</sup>
 
-ElementAttributeKeys keyof [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)
+| 名称      | 类型                                       | 可读   | 可写   | 说明                                                 |
+| ------- | ---------------------------------------- | ---- | ---- |----------------------------------------------------|
+| ElementAttributeKeys | [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues) | 是    | 否    | 表示ElementAttributeKeys是ElementAttributeValues的key。 |
+
 
 **示例：**
 
@@ -143,29 +146,29 @@ let Rect: Rect;
 | downThenLeft  | string          | 表示先向下再向左的手势。 |
 | downThenRight | string          | 表示先向下再向右的手势。 |
 | downThenUp    | string          | 表示先向下再向上的手势。 |
-| twoFingerSingleTap<sup>11+</sup>    | string          | 表示双指单击的手势。 |
-| twoFingerDoubleTap<sup>11+</sup>    | string          | 表示双指双击的手势。 |
-| twoFingerDoubleTapAndHold<sup>11+</sup>    | string          | 表示双指双击长按的手势。 |
-| twoFingerTripleTap<sup>11+</sup>    | string          | 表示双指三击的手势。 |
-| twoFingerTripleTapAndHold<sup>11+</sup>    | string          | 表示双指三击长按的手势。 |
-| threeFingerSingleTap<sup>11+</sup>    | string          | 表示三指单击的手势。 |
-| threeFingerDoubleTap<sup>11+</sup>    | string          | 表示三指双击的手势。 |
-| threeFingerDoubleTapAndHold<sup>11+</sup>    | string          | 表示三指双击长按的手势。 |
-| threeFingerTripleTap<sup>11+</sup>    | string          | 表示三指三击的手势。 |
-| threeFingerTripleTapAndHold<sup>11+</sup>    | string          | 表示三指三击长按的手势。 |
-| fourFingerSingleTap<sup>11+</sup>    | string          | 表示四指单击的手势。 |
-| fourFingerDoubleTap<sup>11+</sup>    | string          | 表示四指双击的手势。 |
-| fourFingerDoubleTapAndHold<sup>11+</sup>    | string          | 表示四指双击长按的手势。 |
-| fourFingerTripleTap<sup>11+</sup>    | string          | 表示四指三击的手势。 |
-| fourFingerTripleTapAndHold<sup>11+</sup>    | string          | 表示四指三击长按的手势。 |
-| threeFingerSwiperUp<sup>11+</sup>    | string          | 表示三指向上滑动的手势。 |
-| threeFingerSwiperDown<sup>11+</sup>    | string          | 表示三指向下滑动的手势。 |
-| threeFingerSwiperLeft<sup>11+</sup>    | string          | 表示三指向左滑动的手势。 |
-| threeFingerSwiperRight<sup>11+</sup>    | string          | 表示三指向右滑动的手势。 |
-| fourFingerSwiperUp<sup>11+</sup>    | string          | 表示四指向上滑动的手势。 |
-| fourFingerSwiperDown<sup>11+</sup>    | string          | 表示四指向下滑动的手势。 |
-| fourFingerSwiperLeft<sup>11+</sup>    | string          | 表示四指向左滑动的手势。 |
-| fourFingerSwiperRight<sup>11+</sup>    | string          | 表示四指向右滑动的手势。 |
+| twoFingerSingleTap<sup>11+</sup>  | string          | 表示双指单击的手势。 |
+| twoFingerDoubleTap<sup>11+</sup>  | string          | 表示双指双击的手势。 |
+| twoFingerDoubleTapAndHold<sup>11+</sup> | string          | 表示双指双击长按的手势。 |
+| twoFingerTripleTap<sup>11+</sup>  | string          | 表示双指三击的手势。 |
+| twoFingerTripleTapAndHold<sup>11+</sup> | string          | 表示双指三击长按的手势。 |
+| threeFingerSingleTap<sup>11+</sup> | string          | 表示三指单击的手势。 |
+| threeFingerDoubleTap<sup>11+</sup> | string          | 表示三指双击的手势。 |
+| threeFingerDoubleTapAndHold<sup>11+</sup> | string          | 表示三指双击长按的手势。 |
+| threeFingerTripleTap<sup>11+</sup> | string          | 表示三指三击的手势。 |
+| threeFingerTripleTapAndHold<sup>11+</sup> | string          | 表示三指三击长按的手势。 |
+| fourFingerSingleTap<sup>11+</sup> | string          | 表示四指单击的手势。 |
+| fourFingerDoubleTap<sup>11+</sup> | string          | 表示四指双击的手势。 |
+| fourFingerDoubleTapAndHold<sup>11+</sup> | string          | 表示四指双击长按的手势。 |
+| fourFingerTripleTap<sup>11+</sup> | string          | 表示四指三击的手势。 |
+| fourFingerTripleTapAndHold<sup>11+</sup> | string          | 表示四指三击长按的手势。 |
+| threeFingerSwipeUp<sup>11+</sup>  | string          | 表示三指向上滑动的手势。 |
+| threeFingerSwipeDown<sup>11+</sup> | string          | 表示三指向下滑动的手势。 |
+| threeFingerSwipeLeft<sup>11+</sup> | string          | 表示三指向左滑动的手势。 |
+| threeFingerSwipeRight<sup>11+</sup> | string          | 表示三指向右滑动的手势。 |
+| fourFingerSwipeUp<sup>11+</sup>   | string          | 表示四指向上滑动的手势。 |
+| fourFingerSwipeDown<sup>11+</sup> | string          | 表示四指向下滑动的手势。 |
+| fourFingerSwipeLeft<sup>11+</sup> | string          | 表示四指向左滑动的手势。 |
+| fourFingerSwipeRight<sup>11+</sup> | string          | 表示四指向右滑动的手势。 |
 
 ## PageUpdateType
 
