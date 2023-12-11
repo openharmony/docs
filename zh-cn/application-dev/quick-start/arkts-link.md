@@ -78,8 +78,11 @@
 
 ### 简单类型和类对象类型的\@Link
 
-以下示例中，点击父组件ShufflingContainer中的“Parent View: Set yellowButton”和“Parent View: Set GreenButton”，可以从父组件将变化同步给子组件，子组件GreenButton和YellowButton中\@Link装饰变量的变化也会同步给其父组件。
+以下示例中，点击父组件ShufflingContainer中的“Parent View: Set yellowButton”和“Parent View: Set GreenButton”，可以从父组件将变化同步给子组件。
 
+  1.点击子组件GreenButton和YellowButton中的Button，子组件会发生相应变化，将变化同步给父组件。因为@Link是双向同步，会将变化同步给@State。
+  
+  2.当点击父组件ShufflingContainer中的Button时，@State变化，也会同步给@Link，子组件也会发生对应的刷新。
 
 ```ts
 class GreenButtonState {
