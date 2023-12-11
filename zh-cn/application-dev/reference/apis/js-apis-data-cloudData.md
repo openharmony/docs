@@ -894,7 +894,7 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;): Promise&
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回端云共享的结果。 |
+| Promise&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回端云共享的结果。 |
 
 **示例：**
 
@@ -938,7 +938,7 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;, callback:
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | sharingResource  | string                                     | 是   | 端云共享数据的资源标识。 |
 | participants     | Array&lt;[Participant](#participant11)&gt; | 是   | 端云共享的参与者。 |
-| callback         | AsyncCallback&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | 是   | 回调函数。返回端云共享的结果。 |
+| callback         | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | 是   | 回调函数。返回端云共享的结果。 |
 
 **示例：**
 
@@ -987,7 +987,7 @@ unshare(sharingResource: string, participants: Array&lt;Participant&gt;): Promis
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回取消共享的结果。 |
+| Promise&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回取消共享的结果。 |
 
 **示例：**
 
@@ -1031,7 +1031,7 @@ unshare(sharingResource: string, participants: Array&lt;Participant&gt;, callbac
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | sharingResource  | string                                     | 是   | 共享数据的资源标志。 |
 | participants     | Array&lt;[Participant](#participant11)&gt; | 是   | 共享参与者。 |
-| callback         | AsyncCallback&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | 是   | 回调函数。返回取消共享的结果。 |
+| callback         | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | 是   | 回调函数。返回取消共享的结果。 |
 
 **示例：**
 
@@ -1079,7 +1079,7 @@ exit(sharingResource: string): Promise&lt;Result&lt;void&gt;&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;void&gt;&gt; | Promise对象，返回退出端云共享的结果。 |
+| Promise&lt;[Result](#resultt11)&lt;void&gt;&gt; | Promise对象，返回退出端云共享的结果。 |
 
 **示例：**
 
@@ -1107,7 +1107,7 @@ exit(sharingResource: string, callback: AsyncCallback&lt;Result&lt;void&gt;&gt;)
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | sharingResource  | string                | 是   | 端云共享数据的资源标识。 |
-| callback         | AsyncCallback&lt;[Result](#resultt)&lt;void&gt;&gt;  | 是   | 回调函数。返回退出共享的结果。 |
+| callback         | AsyncCallback&lt;[Result](#resultt11)&lt;void&gt;&gt;  | 是   | 回调函数。返回退出共享的结果。 |
 
 **示例：**
 
@@ -1141,7 +1141,7 @@ changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;)
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回更改共享参与者权限的结果。 |
+| Promise&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回更改共享参与者权限的结果。 |
 
 **示例：**
 
@@ -1186,7 +1186,7 @@ changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;,
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | sharingResource  | string                | 是   | 端云共享数据的资源标识。 |
 | participants     | Array&lt;[Participant](#participant11)&gt;  | 是   | 端云共享的参与者。 |
-| callback         | callback: AsyncCallback&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | 是   | 回调函数。返回更改权限的结果。 |
+| callback         | callback: AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | 是   | 回调函数。返回更改权限的结果。 |
 
 **示例：**
 
@@ -1235,7 +1235,7 @@ queryParticipants(sharingResource: string): Promise&lt;Result&lt;Array&lt;Partic
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt; | Promise对象，返回查询共享参与者的结果。 |
+| Promise&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt; | Promise对象，返回查询共享参与者的结果。 |
 
 **示例：**
 
@@ -1263,7 +1263,7 @@ queryParticipants(sharingResource: string, callback: AsyncCallback&lt;Result&lt;
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | sharingResource  | string                | 是   | 端云共享数据的资源标识。 |
-| callback         | AsyncCallback&lt;[Result](#resultt)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt;  | 是   | 回调函数。返回查找共享参与者的结果。 |
+| callback         | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt;  | 是   | 回调函数。返回查找共享参与者的结果。 |
 
 **示例：**
 
@@ -1296,7 +1296,7 @@ queryParticipantsByInvitation(invitationCode: string): Promise&lt;Result&lt;Arra
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt; | Promise对象，返回查找共享参与者的结果。|
+| Promise&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt; | Promise对象，返回查找共享参与者的结果。|
 
 **示例：**
 
@@ -1324,7 +1324,7 @@ queryParticipantsByInvitation(invitationCode: string, callback: AsyncCallback&lt
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | invitationCode  | string                | 是   | 端云共享的邀请码。 |
-| callback        | AsyncCallback&lt;[Result](#resultt)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt; | 是   | 回调函数。返回查找共享参与者的结果。 |
+| callback        | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt; | 是   | 回调函数。返回查找共享参与者的结果。 |
 
 **示例：**
 
@@ -1358,7 +1358,7 @@ confirmInvitation(invitationCode: string, state: State): Promise&lt;Result&lt;st
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;string&gt;&gt; | Promise对象，返回确认共享邀请的结果。 |
+| Promise&lt;[Result](#resultt11)&lt;string&gt;&gt; | Promise对象，返回确认共享邀请的结果。 |
 
 **示例：**
 
@@ -1389,7 +1389,7 @@ confirmInvitation(invitationCode: string, state: State, callback: AsyncCallback&
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | invitationCode  | string                | 是   | 端云共享的邀请码。 |
 | state           | [State](#state11)       | 是   | 确认邀请的状态。 |
-| callback        | AsyncCallback&lt;[Result](#resultt)&lt;string&gt;&gt; | 是   | 回调函数。返回确认邀请的结果。 |
+| callback        | AsyncCallback&lt;[Result](#resultt11)&lt;string&gt;&gt; | 是   | 回调函数。返回确认邀请的结果。 |
 
 **示例：**
 
@@ -1426,7 +1426,7 @@ changeConfirmation(sharingResource: string, state: State): Promise&lt;Result&lt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;void&gt;&gt; |  Promise对象，返回更改共享邀请状态的结果。 |
+| Promise&lt;[Result](#resultt11)&lt;void&gt;&gt; |  Promise对象，返回更改共享邀请状态的结果。 |
 
 **示例：**
 
@@ -1455,7 +1455,7 @@ changeConfirmation(sharingResource: string, state: State, callback: AsyncCallbac
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | sharingResource   | string                 | 是   | 端云共享数据的资源标识。 |
 | state             | [State](#state11)        | 是   | 更改邀请的状态。 |
-| callback          | AsyncCallback&lt;[Result](#resultt)&lt;void&gt;&gt; | 是   | 回调函数。返回更改邀请状态的结果。 |
+| callback          | AsyncCallback&lt;[Result](#resultt11)&lt;void&gt;&gt; | 是   | 回调函数。返回更改邀请状态的结果。 |
 
 **示例：**
 
