@@ -11,7 +11,7 @@
 
 ## 接口说明
 
-[`isSupportTemplate()`](../reference/apis/js-apis-notificationManager.md#notificationmanagerissupporttemplate)是查询模板是否支持接口，目前仅支持进度条模板。
+[`isSupportTemplate()`](../reference/apis/js-apis-notificationManager.md#notificationissupporttemplate)是查询模板是否支持接口，目前仅支持进度条模板。
 
 | **接口名** | **描述** |
 | -------- | -------- |
@@ -34,8 +34,7 @@
    notificationManager.isSupportTemplate('downloadTemplate').then((data) => {
      console.info(`[ANS] isSupportTemplate success`);
      console.info('Succeeded in supporting download template notification.');
-     let isSupportTpl: boolean = data; // isSupportTpl的值为true表示支持支持downloadTemplate模板类通知，false表示不支持
-     // ...
+     let isSupportTpl: boolean = data; // isSupportTpl的值为true表示支持downloadTemplate模板类通知，false表示不支持
    }).catch((err) => {
      console.error(`Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
    });
