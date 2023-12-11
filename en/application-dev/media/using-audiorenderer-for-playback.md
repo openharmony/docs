@@ -10,7 +10,7 @@ The figure below shows the state changes of the AudioRenderer. After an **AudioR
 
 To prevent the UI thread from being blocked, most **AudioRenderer** calls are asynchronous. Each API provides the callback and promise functions. The following examples use the callback functions.
 
-**Figure 1** AudioRenderer state transition 
+**Figure 1** AudioRenderer state transition
 
 ![AudioRenderer state transition](figures/audiorenderer-status-change.png)
 
@@ -41,7 +41,6 @@ During application development, you are advised to use **on('stateChange')** to 
    };
    
    let audioRendererInfo: audio.AudioRendererInfo = {
-     content: audio.ContentType.CONTENT_TYPE_SPEECH,
      usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
      rendererFlags: 0
    };
@@ -135,7 +134,6 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
 }
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_MUSIC, // Media type.
   usage: audio.StreamUsage.STREAM_USAGE_MEDIA, // Audio stream usage type.
   rendererFlags: 0 // AudioRenderer flag.
 }
