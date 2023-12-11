@@ -306,6 +306,8 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 
 创建拖拽的Action对象，需要显式指定拖拽背板图(可多个)，以及拖拽的数据，跟手点等信息；当通过一个已创建的 Action 对象发起的拖拽未结束时，无法再次创建新的 Action 对象，接口会抛出异常。
 
+**说明：** 建议控制传递的拖拽背板数量，传递过多容易导致拖起的效率问题。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -400,4 +402,5 @@ struct DragControllerPage {
       }).margin({top:20})
     }
   }
+}
 ```
