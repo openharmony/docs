@@ -331,7 +331,7 @@ let priorityGroup: number = usageStatistics.queryAppGroupSync("com.ohos.camera")
 
 queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;BundleStatsMap&gt;): void
 
-Queries the application usage duration statistics based on the specified start time and end time. This API uses an asynchronous callback to return the result.
+Queries the application usage duration statistics based on the specified start time and end time, with the minimum granularity of a day. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -379,7 +379,7 @@ usageStatistics.queryBundleStatsInfos(0, 20000000000000, (err: BusinessError, re
 
 queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 
-Queries the application usage duration statistics based on the specified start time and end time. This API uses a promise to return the result.
+Queries the application usage duration statistics based on the specified start time and end time, with the minimum granularity of a day. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -551,7 +551,7 @@ Queries events of all applications based on the specified start time and end tim
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
 | end      | number                                   | Yes   | End time, in milliseconds.                                  |
-| callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Yes   | Callback used to return the events obtained.|
+| callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Yes   | Callback used to return the events.|
 
 **Error codes**
 
@@ -607,7 +607,7 @@ Queries events of all applications based on the specified start time and end tim
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise used to return the events obtained.|
+| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise used to return the events.|
 
 **Error codes**
 
@@ -654,7 +654,7 @@ Queries events of this application based on the specified start time and end tim
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
 | end      | number                                   | Yes   | End time, in milliseconds.                                  |
-| callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Yes   | Callback used to return the events obtained.|
+| callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Yes   | Callback used to return the events.|
 
 **Error codes**
 
@@ -708,7 +708,7 @@ Queries events of this application based on the specified start time and end tim
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise used to return the events obtained.|
+| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise used to return the events.|
 
 **Error codes**
 
@@ -1075,7 +1075,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | Type           | Description                       |
 | ------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.  |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -1176,7 +1176,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | Type           | Description                     |
 | ------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.  |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -1256,7 +1256,7 @@ usageStatistics.registerAppGroupCallBack(onBundleGroupChanged, (err: BusinessErr
 
 unregisterAppGroupCallBack(): Promise&lt;void&gt;
 
-Deregisters the callback for application group changes. This API uses a promise to return the result.
+Unregisters the callback for application group changes. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1268,7 +1268,7 @@ Deregisters the callback for application group changes. This API uses a promise 
 
 | Type           | Description                      |
 | ------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise used to return the result.  |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -1298,7 +1298,7 @@ usageStatistics.unregisterAppGroupCallBack().then( () => {
 
 unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 
-Deregisters the callback for application group changes. This API uses an asynchronous callback to return the result.
+Unregisters the callback for application group changes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1361,7 +1361,7 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and scre
 
 | Type                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Promise used to return the result.  |
+| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Promise used to return the statistics about system events.|
 
 **Error codes**
 
@@ -1393,7 +1393,7 @@ usageStatistics.queryDeviceEventStats(0, 20000000000000).then((res: Array<usageS
 
 queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void
 
- 
+Queries statistics about system events (hibernation, wakeup, unlocking, and screen locking) that occur between the specified start time and end time. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1407,7 +1407,7 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | begin    | number                                   | Yes   | Start time, in milliseconds.                                   |
 | end      | number                                   | Yes   | End time, in milliseconds.                                   |
-| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the result.  |
+| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the statistics about system events.|
 
 **Error codes**
 
@@ -1460,7 +1460,7 @@ Queries the number of notifications from all applications based on the specified
 
 | Type                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Promise used to return the result.  |
+| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Promise used to return the number of notifications.|
 
 **Error codes**
 
@@ -1506,7 +1506,7 @@ Queries the number of notifications from all applications based on the specified
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | begin    | number                                   | Yes   | Start time, in milliseconds.                                   |
 | end      | number                                   | Yes   | End time, in milliseconds.                                   |
-| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the result.  |
+| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the number of notifications.|
 
 **Error codes**
 
@@ -1537,6 +1537,7 @@ usageStatistics.queryNotificationEventStats(0, 20000000000000, (err: BusinessErr
 ```
 
 ## HapModuleInfo
+
 Provides the information about the FA usage.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
@@ -1560,6 +1561,7 @@ Provides the information about the FA usage.
 | formRecords          | Array&lt;[HapFormInfo](#hapforminfo)&gt; | Yes   | Array of widget usage records in the FA.                  |
 
 ## HapFormInfo
+
 Provides the FA widget usage information.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
@@ -1594,7 +1596,6 @@ Provides the application group changes returned through a callback.
 
 Provides the usage duration information of an application.
 
-
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
 **System API**: This is a system API.
@@ -1625,7 +1626,7 @@ Provides information about an application event.
 | bundleName            | string | No   | Bundle name of the application.                                   |
 | eventId             | number | No   | Application event type.                                 |
 | eventOccurredTime     | number | No   | Timestamp when the application event occurs.                             |
-| appGroup | number | No   | Usage priority group of the application.|
+| appGroup | number | No   | Group of the application by usage priority.|
 | indexOfLink           | string | No   | Shortcut ID.|
 | nameOfClass           | string | No   | Class name.|
 
