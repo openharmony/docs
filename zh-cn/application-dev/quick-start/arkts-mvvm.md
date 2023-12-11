@@ -139,7 +139,7 @@ ViewModel通常包含多个顶层数据源。\@State和\@Provide装饰的变量�
    
    @Component
    struct PropLinkChild {
-     @Prop @Watch("testNumChange") testNumGrand: number;
+     @Prop @Watch("testNumChange") testNumGrand: number = 0;
    
      testNumChange(propName: string): void {
        console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
@@ -189,7 +189,7 @@ ViewModel通常包含多个顶层数据源。\@State和\@Provide装饰的变量�
    
    @Component
    struct PropLinkChild {
-     @Prop @Watch("testNumChange") testNumGrand: number;
+     @Prop @Watch("testNumChange") testNumGrand: number = 0;
    
      testNumChange(propName: string): void {
        console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
@@ -290,7 +290,7 @@ struct LinkLinkChild {
 
 @Component
 struct PropLinkChild {
-  @Prop @Watch("testNumChange") testNumGrand: number;
+  @Prop @Watch("testNumChange") testNumGrand: number = 0;
 
   testNumChange(propName: string): void {
     console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
