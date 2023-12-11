@@ -38,8 +38,8 @@ WaterFlow(options?: {footer?: CustomBuilder, scroller?: Scroller})
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| columnsTemplate | string | 设置当前瀑布流组件布局列的数量，不设置时默认1列。<br/>例如, '1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。并支持[auto-fill](#auto-fill说明)。<br>默认值：'1fr' |
-| rowsTemplate | string | 设置当前瀑布流组件布局行的数量，不设置时默认1行。<br/>例如, '1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。并支持[auto-fill](#auto-fill说明)。<br/>默认值：'1fr' |
+| columnsTemplate | string | 设置当前瀑布流组件布局列的数量，不设置时默认1列。<br/>例如, '1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。<br>可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数，其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、%或有效数字，使用方法参见示例2。<br>默认值：'1fr' |
+| rowsTemplate | string | 设置当前瀑布流组件布局行的数量，不设置时默认1行。<br/>例如, '1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。<br>可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数，其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、%或有效数字。<br/>默认值：'1fr' |
 | itemConstraintSize | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 设置约束尺寸，子组件布局时，进行尺寸范围限制。               |
 | columnsGap | Length |设置列与列的间距。 <br>默认值：0|
 | rowsGap | Length |设置行与行的间距。<br> 默认值：0|
@@ -74,20 +74,11 @@ layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirec
 | onReachEnd(event: () => void)   | 瀑布流组件到底末尾位置时触发。 |
 | onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | 瀑布流开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，瀑布流将按照返回值的实际滑动量进行滑动。<br/>\- offset：即将发生的滑动量，单位vp。<br/>\- state：当前滑动状态。<br/>- offsetRemain：实际滑动量，单位vp。<br/>触发该事件的条件：手指拖动WaterFlow、WaterFlow惯性划动时每帧开始时触发；List超出边缘回弹、使用滚动控制器的滚动不会触发。|
 
-## auto-fill说明
-
-WaterFlow的columnsTemplate、rowsTemplate属性的auto-fill仅支持以下格式：
-
-```css
-repeat(auto-fill, track-size)
-```
-
-其中repeat、auto-fill为关键字。track-size为行高或者列宽，支持的单位包括px、vp、%或有效数字，track-size至少包括一个有效行高或者列宽。
-
 
 ## 示例
 
-
+### 示例1
+WaterFlow的基本使用。
 ```ts
 // WaterFlowDataSource.ets
 
@@ -292,3 +283,65 @@ struct WaterflowDemo {
 ```
 
 ![zh-cn_image_WaterFlow.gif](figures/waterflow-perf-demo.gif)
+
+### 示例2
+auto-fill的使用。
+```ts
+//index.ets
+import { WaterFlowDataSource } from './WaterFlowDataSource'
+
+@Entry
+@Component
+struct WaterflowDemo {
+  @State minSize: number = 80
+  @State maxSize: number = 180
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
+  datasource: WaterFlowDataSource = new WaterFlowDataSource()
+  private itemWidthArray: number[] = []
+  private itemHeightArray: number[] = []
+
+  // 计算flow item宽/高
+  getSize() {
+    let ret = Math.floor(Math.random() * this.maxSize)
+    return (ret > this.minSize ? ret : this.minSize)
+  }
+
+  // 保存flow item宽/高
+  getItemSizeArray() {
+    for (let i = 0; i < 100; i++) {
+      this.itemWidthArray.push(this.getSize())
+      this.itemHeightArray.push(this.getSize())
+    }
+  }
+
+  aboutToAppear() {
+    this.getItemSizeArray()
+  }
+
+  build() {
+    Column({ space: 2 }) {
+      WaterFlow() {
+        LazyForEach(this.datasource, (item: number) => {
+          FlowItem() {
+            Column() {
+              Text("N" + item).fontSize(12).height('16')
+            }
+          }
+          .width('100%')
+          .height(this.itemHeightArray[item % 100])
+          .backgroundColor(this.colors[item % 5])
+        }, (item: string) => item)
+      }
+      .columnsTemplate('repeat(auto-fill,80)')
+      .columnsGap(10)
+      .rowsGap(5)
+      .padding({left:5})
+      .backgroundColor(0xFAEEE0)
+      .width('100%')
+      .height('100%')
+    }
+  }
+}
+```
+
+![waterflow_auto-fill.png](figures/waterflow_auto-fill.png)
