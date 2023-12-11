@@ -87,13 +87,28 @@ struct ParentComponent {
   >
   > 自定义组件名、类名、函数名不能和系统组件名相同。
 
-- \@Component：\@Component装饰器仅能装饰struct关键字声明的数据结构。struct被\@Component装饰后具备组件化的能力，需要实现build方法描述UI，一个struct只能被一个\@Component装饰。
+- \@Component：\@Component装饰器仅能装饰struct关键字声明的数据结构。struct被\@Component装饰后具备组件化的能力，需要实现build方法描述UI，一个struct只能被一个\@Component装饰。\@Component可以接受一个可选的bool类型参数。
   > **说明：**
   >
   > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
+  > 
+  > 从API version 11开始，\@Component可以接受一个可选的bool类型参数。
 
   ```ts
   @Component
+  struct MyComponent {
+  }
+  ```
+
+  ### freezeWhenInactive<sup>11+</sup>
+  [组件冻结](arkts-custom-components-freeze.md)选项。
+
+  | 名称   | 类型   | 必填 | 说明                                                         |
+  | ------ | ------ | ---- | ------------------------------------------------------------ |
+  | freezeWhenInactive | bool | 否 | 是否开启组件冻结。 |
+
+  ```ts
+  @Component({ freezeWhenInactive: true })
   struct MyComponent {
   }
   ```
