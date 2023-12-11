@@ -23,6 +23,7 @@ import childProcessManager from '@ohos.app.ability.childProcessManager';
 | 名称                       | 值                             | 说明                              |
 | --------                     |  -----------------               |  -----------------               |
 | SELF_FORK |  0   | 从App自身进程Fork子进程。以该模式启动的子进程中不能进行Binder IPC调用，会导致子进程Crash。 |
+| APP_SPAWN_FORK |  1   | 从AppSpawn Fork子进程。以该模式启动的子进程不会继承父进程资源，且没有ApplicationContext，子进程中不支持依赖ApplicationContext的API调用。 |
 
 ## childProcessManager.startChildProcess
 
@@ -36,7 +37,7 @@ startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | 是 | 子进程源文件相对路径，目前只支持源文件放在entry类型的模块中。 |
+  | srcEntry | string | 是 | 子进程源文件相对路径（源文件需要放在src/main中，详见下方示例代码）。目前只支持源文件放在entry类型的模块中。 |
   | startMode | [StartMode](#childprocessmanagerstartmode) | 是 | 子进程启动模式。 |
 
 **返回值：**
@@ -96,7 +97,7 @@ startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallbac
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | 是 | 子进程源文件相对路径，目前只支持源文件放在entry类型的模块中。 |
+  | srcEntry | string | 是 | 子进程源文件相对路径（源文件需要放在src/main中，详见下方示例代码）。目前只支持源文件放在entry类型的模块中。 |
   | startMode | [StartMode](#childprocessmanagerstartmode) | 是 | 子进程启动模式。 |
   | callback | AsyncCallback&lt;number&gt; | 是 | 以callback的形式返回子进程pid。 |
 
