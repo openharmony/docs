@@ -12,7 +12,7 @@
 
 | 名称 | 参数类型 | 参数描述 |
 | -------- | -------- | -------- |
-| transition | TransitionOptions | 设置组件插入显示和删除隐藏的过渡效果。<br/>默认值：不设置任何过渡效果时，默认有透明度从0到1的过渡效果。若设置了其他过渡效果，以设置的过渡效果为准。<br/>**说明：** <br/>所有参数均为可选参数，详细描述见TransitionOptions参数说明。 |
+| transition | [TransitionOptions](#transitionoptions参数说明) | 设置组件插入显示和删除隐藏的过渡效果。<br/>默认值：不设置任何过渡效果时，默认有透明度从0到1的过渡效果。若设置了其他过渡效果，以设置的过渡效果为准。<br/>**说明：** <br/>所有参数均为可选参数，详细描述见[TransitionOptions](#transitionoptions参数说明)参数说明。 |
 
 ## TransitionOptions参数说明
 
