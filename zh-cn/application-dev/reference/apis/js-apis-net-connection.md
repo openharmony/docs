@@ -8,14 +8,14 @@
 ## 导入模块
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 ```
 
-## connection.createNetConnection<sup>8+</sup>
+## connection.createNetConnection
 
 createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection
 
-返回一个NetConnection对象，[netSpecifier](#netspecifier8)指定关注的网络的各项特征；timeout是超时时间(单位是毫秒)；netSpecifier是timeout的必要条件，两者都没有则表示关注默认网络。
+创建一个NetConnection对象，[netSpecifier](#netspecifier)指定关注的网络的各项特征；timeout是超时时间(单位是毫秒)；netSpecifier是timeout的必要条件，两者都没有则表示关注默认网络。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -23,7 +23,7 @@ createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnectio
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| netSpecifier | [NetSpecifier](#netspecifier8) | 否   | 指定网络的各项特征，不指定或为undefined时关注默认网络。                   |
+| netSpecifier | [NetSpecifier](#netspecifier) | 否   | 指定网络的各项特征，不指定或为undefined时关注默认网络。                   |
 | timeout      | number                        | 否   | 获取netSpecifier指定的网络时的超时时间，仅netSpecifier存在时生效，undefined时默认值为0。 |
 
 **返回值：**
@@ -35,20 +35,20 @@ createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnectio
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 
 // 关注默认网络, 不需要传参
-let netConnection = connection.createNetConnection()
+let netConnection = connection.createNetConnection();
 
 // 关注蜂窝网络，需要传入相关网络特征，timeout参数未传入说明未使用超时时间，此时timeout为0
 let netConnectionCellular = connection.createNetConnection({
   netCapabilities: {
     bearerTypes: [connection.NetBearType.BEARER_CELLULAR]
   }
-})
+});
 ```
 
-## connection.getDefaultNet<sup>8+</sup>
+## connection.getDefaultNet
 
 getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
@@ -76,16 +76,16 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
-})
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
+});
 ```
 
-## connection.getDefaultNet<sup>8+</sup>
+## connection.getDefaultNet
 
 getDefaultNet(): Promise\<NetHandle>
 
@@ -113,10 +113,10 @@ getDefaultNet(): Promise\<NetHandle>
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 connection.getDefaultNet().then((data: connection.NetHandle) => {
-  console.log(JSON.stringify(data))
-})
+  console.log(JSON.stringify(data));
+});
 ```
 
 ## connection.getDefaultNetSync<sup>9+</sup>
@@ -147,7 +147,7 @@ getDefaultNetSync(): NetHandle
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 
 let netHandle = connection.getDefaultNetSync();
 ```
@@ -180,13 +180,13 @@ getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 connection.getGlobalHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
   console.info(JSON.stringify(error));
   console.info(JSON.stringify(data));
-})
+});
 ```
 
 ## connection.getGlobalHttpProxy<sup>10+</sup>
@@ -217,14 +217,14 @@ getGlobalHttpProxy(): Promise\<HttpProxy>;
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 connection.getGlobalHttpProxy().then((data: connection.HttpProxy) => {
   console.info(JSON.stringify(data));
 }).catch((error: BusinessError) => {
   console.info(JSON.stringify(error));
-})
+});
 ```
 
 ## connection.setGlobalHttpProxy<sup>10+</sup>
@@ -260,10 +260,10 @@ setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
-let exclusionStr = "192.168,baidu.com"
+let exclusionStr = "192.168,baidu.com";
 let exclusionArray = exclusionStr.split(',');
 connection.setGlobalHttpProxy({
   host: "192.168.xx.xxx",
@@ -314,10 +314,10 @@ setGlobalHttpProxy(httpProxy: HttpProxy): Promise\<void>;
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
-let exclusionStr = "192.168,baidu.com"
+let exclusionStr = "192.168,baidu.com";
 let exclusionArray = exclusionStr.split(',');
 connection.setGlobalHttpProxy({
   host: "192.168.xx.xxx",
@@ -335,7 +335,7 @@ connection.setGlobalHttpProxy({
 getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
 获取网络默认的代理配置信息。
-如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。
+如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet9)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。
 使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
@@ -356,13 +356,13 @@ getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 connection.getDefaultHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
   console.info(JSON.stringify(error));
   console.info(JSON.stringify(data));
-})
+});
 ```
 
 ## connection.getDefaultHttpProxy<sup>10+</sup>
@@ -370,7 +370,7 @@ connection.getDefaultHttpProxy((error: BusinessError, data: connection.HttpProxy
 getDefaultHttpProxy(): Promise\<HttpProxy>;
 
 获取网络默认的代理配置信息。
-如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。
+如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet9)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。
 使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
@@ -391,14 +391,14 @@ getDefaultHttpProxy(): Promise\<HttpProxy>;
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 connection.getDefaultHttpProxy().then((data: connection.HttpProxy) => {
   console.info(JSON.stringify(data));
 }).catch((error: BusinessError) => {
   console.info(JSON.stringify(error));
-})
+});
 ```
 
 ## connection.getAppNet<sup>9+</sup>
@@ -426,12 +426,12 @@ getAppNet(callback: AsyncCallback\<NetHandle>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 connection.getAppNet((error: BusinessError, data: connection.NetHandle) => {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 })
 ```
 
@@ -460,14 +460,14 @@ getAppNet(): Promise\<NetHandle>;
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 connection.getAppNet().then((data: connection.NetHandle) => {
   console.info(JSON.stringify(data));
 }).catch((error: BusinessError) => {
   console.info(JSON.stringify(error));
-})
+});
 ```
 
 ## connection.getAppNetSync<sup>10+</sup>
@@ -482,7 +482,7 @@ getAppNetSync(): NetHandle
 
 | 类型      | 说明                               |
 | --------- | ---------------------------------- |
-| [NetHandle](#nethandle8) | 返回APP绑定的数据网络。 |
+| [NetHandle](#nethandle) | 返回APP绑定的数据网络。 |
 
 **错误码：**
 
@@ -495,12 +495,12 @@ getAppNetSync(): NetHandle
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 
 let netHandle = connection.getAppNetSync();
 ```
 
-## connection.SetAppNet<sup>9+</sup>
+## connection.setAppNet<sup>9+</sup>
 
 setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void
 
@@ -530,18 +530,18 @@ setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
   connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(data));
   });
-})
+});
 ```
 
-## connection.SetAppNet<sup>9+</sup>
+## connection.setAppNet<sup>9+</sup>
 
 setAppNet(netHandle: NetHandle): Promise\<void>;
 
@@ -576,19 +576,19 @@ setAppNet(netHandle: NetHandle): Promise\<void>;
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.setAppNet(netHandle).then(() => {
-    console.log("success")
+    console.log("success");
   }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error))
+    console.log(JSON.stringify(error));
   })
-})
+});
 ```
 
-## connection.getAllNets<sup>8+</sup>
+## connection.getAllNets
 
 getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 
@@ -616,16 +616,16 @@ getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 connection.getAllNets((error: BusinessError, data: connection.NetHandle[]) => {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 }); 
 ```
 
-## connection.getAllNets<sup>8+</sup>
+## connection.getAllNets
 
 getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 
@@ -653,10 +653,10 @@ getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 
 connection.getAllNets().then((data: connection.NetHandle[]) => {
-  console.log(JSON.stringify(data))
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -674,7 +674,7 @@ getAllNetsSync(): Array&lt;NetHandle&gt;
 
 | 类型      | 说明                               |
 | --------- | ---------------------------------- |
-| Array&lt;[NetHandle](#nethandle8)&gt; | 返回激活的数据网络列表。 |
+| Array&lt;[NetHandle](#nethandle)&gt; | 返回激活的数据网络列表。 |
 
 **错误码：**
 
@@ -688,12 +688,12 @@ getAllNetsSync(): Array&lt;NetHandle&gt;
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 
 let netHandle = connection.getAllNetsSync();
 ```
 
-## connection.getConnectionProperties<sup>8+</sup>
+## connection.getConnectionProperties
 
 getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void
 
@@ -723,18 +723,18 @@ getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<Connectio
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(data));
   })
-})
+});
 ```
 
-## connection.getConnectionProperties<sup>8+</sup>
+## connection.getConnectionProperties
 
 getConnectionProperties(netHandle: NetHandle): Promise\<ConnectionProperties>
 
@@ -769,13 +769,13 @@ getConnectionProperties(netHandle: NetHandle): Promise\<ConnectionProperties>
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getConnectionProperties(netHandle).then((data: connection.ConnectionProperties) => {
-    console.log(JSON.stringify(data))
+    console.log(JSON.stringify(data));
   })
-})
+});
 ```
 
 ## connection.getConnectionPropertiesSync<sup>10+</sup>
@@ -792,13 +792,13 @@ getConnectionPropertiesSync(netHandle: NetHandle): ConnectionProperties
 
 | 参数名    | 类型                    | 必填 | 说明             |
 | --------- | ----------------------- | ---- | ---------------- |
-| netHandle | [NetHandle](#nethandle8) | 是   | 数据网络的句柄。 |
+| netHandle | [NetHandle](#nethandle) | 是   | 数据网络的句柄。 |
 
 **返回值：**
 
 | 类型                                                    | 说明                              |
 | ------------------------------------------------------- | --------------------------------- |
-| [ConnectionProperties](#connectionproperties8) | 返回网络的连接信息。 |
+| [ConnectionProperties](#connectionproperties) | 返回网络的连接信息。 |
 
 **错误码：**
 
@@ -813,13 +813,13 @@ getConnectionPropertiesSync(netHandle: NetHandle): ConnectionProperties
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 
 let netHandle = connection.getDefaultNetSync();
 let connectionproperties = connection.getConnectionPropertiesSync(netHandle);
 ```
 
-## connection.getNetCapabilities<sup>8+</sup>
+## connection.getNetCapabilities
 
 getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void
 
@@ -849,18 +849,18 @@ getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilitie
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(data));
   })
-})
+});
 ```
 
-## connection.getNetCapabilities<sup>8+</sup>
+## connection.getNetCapabilities
 
 getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 
@@ -895,13 +895,13 @@ getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
-    console.log(JSON.stringify(data))
+    console.log(JSON.stringify(data));
   })
-})
+});
 ```
 
 ## connection.getNetCapabilitiesSync<sup>10+</sup>
@@ -918,13 +918,13 @@ getNetCapabilitiesSync(netHandle: NetHandle): NetCapabilities
 
 | 参数名    | 类型                    | 必填 | 说明             |
 | --------- | ----------------------- | ---- | ---------------- |
-| netHandle | [NetHandle](#nethandle8) | 是   | 数据网络的句柄。 |
+| netHandle | [NetHandle](#nethandle) | 是   | 数据网络的句柄。 |
 
 **返回值：**
 
 | 类型                                          | 说明                              |
 | --------------------------------------------- | --------------------------------- |
-| [NetCapabilities](#netcapabilities8) | 返回网络的能力信息。 |
+| [NetCapabilities](#netcapabilities) | 返回网络的能力信息。 |
 
 **错误码：**
 
@@ -939,7 +939,7 @@ getNetCapabilitiesSync(netHandle: NetHandle): NetCapabilities
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 
 let netHandle = connection.getDefaultNetSync();
 let getNetCapabilitiesSync = connection.getNetCapabilitiesSync(netHandle);
@@ -973,13 +973,13 @@ isDefaultNetMetered(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 connection.isDefaultNetMetered((error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error))
-  console.log('data: ' + data)
-})
+  console.log(JSON.stringify(error));
+  console.log('data: ' + data);
+});
 ```
 
 ## connection.isDefaultNetMetered<sup>9+</sup>
@@ -1010,11 +1010,11 @@ isDefaultNetMetered(): Promise\<boolean>
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 
 connection.isDefaultNetMetered().then((data: boolean) => {
-  console.log('data: ' + data)
-})
+  console.log('data: ' + data);
+});
 ```
 
 ## connection.isDefaultNetMeteredSync<sup>10+</sup>
@@ -1045,12 +1045,12 @@ isDefaultNetMeteredSync(): boolean
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 
 let isMetered = connection.isDefaultNetMeteredSync();
 ```
 
-## connection.hasDefaultNet<sup>8+</sup>
+## connection.hasDefaultNet
 
 hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
@@ -1078,16 +1078,16 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 connection.hasDefaultNet((error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error))
-  console.log('data: ' + data)
-})
+  console.log(JSON.stringify(error));
+  console.log('data: ' + data);
+});
 ```
 
-## connection.hasDefaultNet<sup>8+</sup>
+## connection.hasDefaultNet
 
 hasDefaultNet(): Promise\<boolean>
 
@@ -1115,10 +1115,10 @@ hasDefaultNet(): Promise\<boolean>
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 connection.hasDefaultNet().then((data: boolean) => {
-  console.log('data: ' + data)
-})
+  console.log('data: ' + data);
+});
 ```
 
 ## connection.hasDefaultNetSync<sup>10+</sup>
@@ -1149,12 +1149,12 @@ hasDefaultNetSync(): boolean
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 
 let isDefaultNet = connection.hasDefaultNetSync();
 ```
 
-## connection.enableAirplaneMode<sup>8+</sup>
+## connection.enableAirplaneMode
 
 enableAirplaneMode(callback: AsyncCallback\<void>): void
 
@@ -1185,15 +1185,15 @@ enableAirplaneMode(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 connection.enableAirplaneMode((error: BusinessError) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 ```
 
-## connection.enableAirplaneMode<sup>8+</sup>
+## connection.enableAirplaneMode
 
 enableAirplaneMode(): Promise\<void>
 
@@ -1224,14 +1224,14 @@ enableAirplaneMode(): Promise\<void>
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 
 connection.enableAirplaneMode().then((error: void) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 ```
 
-## connection.disableAirplaneMode<sup>8+</sup>
+## connection.disableAirplaneMode
 
 disableAirplaneMode(callback: AsyncCallback\<void>): void
 
@@ -1262,15 +1262,15 @@ disableAirplaneMode(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 connection.disableAirplaneMode((error: BusinessError) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 ```
 
-## connection.disableAirplaneMode<sup>8+</sup>
+## connection.disableAirplaneMode
 
 disableAirplaneMode(): Promise\<void>
 
@@ -1301,14 +1301,14 @@ disableAirplaneMode(): Promise\<void>
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 
 connection.disableAirplaneMode().then((error: void) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 ```
 
-## connection.reportNetConnected<sup>8+</sup>
+## connection.reportNetConnected
 
 reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1338,17 +1338,17 @@ reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from '@ohos.base'
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.reportNetConnected(netHandle, (error: BusinessError) => {
-    console.log(JSON.stringify(error))
+    console.log(JSON.stringify(error));
   });
 });
 ```
 
-## connection.reportNetConnected<sup>8+</sup>
+## connection.reportNetConnected
 
 reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
@@ -1382,15 +1382,15 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.reportNetConnected(netHandle).then(() => {
-    console.log(`report success`)
+    console.log(`report success`);
   });
 });
 ```
 
-## connection.reportNetDisconnected<sup>8+</sup>
+## connection.reportNetDisconnected
 
 reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1420,15 +1420,15 @@ reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;)
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.reportNetDisconnected(netHandle).then( () => {
-    console.log(`report success`)
+    console.log(`report success`);
   });
 });
 ```
 
-## connection.reportNetDisconnected<sup>8+</sup>
+## connection.reportNetDisconnected
 
 reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
@@ -1462,15 +1462,15 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.reportNetDisconnected(netHandle).then( () => {
-    console.log(`report success`)
+    console.log(`report success`);
   });
 });
 ```
 
-## connection.getAddressesByName<sup>8+</sup>
+## connection.getAddressesByName
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
 
@@ -1500,15 +1500,15 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from "@ohos.base"
+import connection from '@ohos.net.connection';
+import { BusinessError } from "@ohos.base";
 connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.NetAddress[]) => {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
-})
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
+});
 ```
 
-## connection.getAddressesByName<sup>8+</sup>
+## connection.getAddressesByName
 
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
@@ -1543,10 +1543,10 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
-  console.log(JSON.stringify(data))
-})
+  console.log(JSON.stringify(data));
+});
 ```
 
 ## NetConnection
@@ -1558,7 +1558,7 @@ connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
 > 设备从有网络到无网络状态会触发netLost事件；
 > 设备从WiFi到蜂窝会触发netLost事件（WiFi丢失）之后触发 netAvaliable事件（蜂窝可用）；
 
-### register<sup>8+</sup>
+### register
 
 register(callback: AsyncCallback\<void>): void
 
@@ -1588,15 +1588,15 @@ register(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from "@ohos.base"
+import connection from '@ohos.net.connection';
+import { BusinessError } from "@ohos.base";
 let netCon: connection.NetConnection = connection.createNetConnection();
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 ```
 
-### unregister<sup>8+</sup>
+### unregister
 
 unregister(callback: AsyncCallback\<void>): void
 
@@ -1623,15 +1623,15 @@ unregister(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from "@ohos.base"
+import connection from '@ohos.net.connection';
+import { BusinessError } from "@ohos.base";
 let netCon: connection.NetConnection = connection.createNetConnection();
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 ```
 
-### on('netAvailable')<sup>8+</sup>
+### on('netAvailable')
 
 on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 
@@ -1651,29 +1651,29 @@ on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from "@ohos.base"
+import connection from '@ohos.net.connection';
+import { BusinessError } from "@ohos.base";
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
 netCon.on('netAvailable', (data: connection.NetHandle) => {
-  console.log(JSON.stringify(data))
-})
+  console.log(JSON.stringify(data));
+});
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 ```
 
-### on('netBlockStatusChange')<sup>8+</sup>
+### on('netBlockStatusChange')
 
 on(type: 'netBlockStatusChange', callback: Callback&lt;{ netHandle: NetHandle, blocked: boolean }&gt;): void
 
@@ -1693,16 +1693,16 @@ on(type: 'netBlockStatusChange', callback: Callback&lt;{ netHandle: NetHandle, b
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from "@ohos.base"
+import connection from '@ohos.net.connection';
+import { BusinessError } from "@ohos.base";
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
 class Value {
@@ -1710,16 +1710,16 @@ class Value {
     blocked: boolean = false
 }
 netCon.on('netBlockStatusChange', (data: Value) => {
-  console.log(JSON.stringify(data))
-})
+  console.log(JSON.stringify(data));
+});
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 ```
 
-### on('netCapabilitiesChange')<sup>8+</sup>
+### on('netCapabilitiesChange')
 
 on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo>): void
 
@@ -1734,34 +1734,34 @@ on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 订阅事件，固定为'netCapabilitiesChange'。<br/>netCapabilitiesChange：网络能力变化事件。 |
-| callback | Callback<[NetCapabilityInfo](#netcapabilityinfo)> | 是   | 回调函数，返回数据网络句柄(netHandle)和网络的能力信息(netCap)。|
+| callback | Callback<[NetCapabilityInfo](#netcapabilityinfo10)> | 是   | 回调函数，返回数据网络句柄(netHandle)和网络的能力信息(netCap)。|
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from "@ohos.base"
+import connection from '@ohos.net.connection';
+import { BusinessError } from "@ohos.base";
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
 netCon.on('netAvailable', (data: connection.NetHandle) => {
-  console.log(JSON.stringify(data))
-})
+  console.log(JSON.stringify(data));
+});
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 ```
 
-### on('netConnectionPropertiesChange')<sup>8+</sup>
+### on('netConnectionPropertiesChange')
 
 on(type: 'netConnectionPropertiesChange', callback: Callback<{ netHandle: NetHandle, connectionProperties:
 ConnectionProperties }>): void
@@ -1782,16 +1782,16 @@ ConnectionProperties }>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from "@ohos.base"
+import connection from '@ohos.net.connection';
+import { BusinessError } from "@ohos.base";
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 
 class Value {
     netHandle: NetHandle = connection.NetHandle
@@ -1800,16 +1800,16 @@ class Value {
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
 netCon.on('netConnectionPropertiesChange', (data: Value) => {
-  console.log(JSON.stringify(data))
-})
+  console.log(JSON.stringify(data));
+});
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 ```
 
-### on('netLost')<sup>8+</sup>
+### on('netLost')
 
 on(type: 'netLost', callback: Callback\<NetHandle>): void
 
@@ -1829,29 +1829,29 @@ on(type: 'netLost', callback: Callback\<NetHandle>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from "@ohos.base"
+import connection from '@ohos.net.connection';
+import { BusinessError } from "@ohos.base";
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
 netCon.on('netLost', (data: connection.NetHandle) => {
-  console.log(JSON.stringify(data))
-})
+  console.log(JSON.stringify(data));
+});
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 ```
 
-### on('netUnavailable')<sup>8+</sup>
+### on('netUnavailable')
 
 on(type: 'netUnavailable', callback: Callback\<void>): void
 
@@ -1871,29 +1871,29 @@ on(type: 'netUnavailable', callback: Callback\<void>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from "@ohos.base"
+import connection from '@ohos.net.connection';
+import { BusinessError } from "@ohos.base";
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
 netCon.on('netAvailable', (data: connection.NetHandle) => {
-  console.log(JSON.stringify(data))
-})
+  console.log(JSON.stringify(data));
+});
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error))
-})
+  console.log(JSON.stringify(error));
+});
 ```
 
-## NetHandle<sup>8+</sup>
+## NetHandle
 
 数据网络的句柄。
 
@@ -1919,7 +1919,7 @@ bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>):
 
 | 参数名      | 类型                     | 必填 | 说明                            |
 | ----------- | ------------------------ | ---- | -------------------------------|
-| socketParam | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | 是 | 待绑定的TCPSocket或UDPSocket对象。|
+| socketParam | [TCPSocket](js-apis-socket.md#tcpsocket7) \| [UDPSocket](js-apis-socket.md#udpsocket7) | 是 | 待绑定的TCPSocket或UDPSocket对象。|
 | callback    | AsyncCallback\<void>      | 是   | 回调函数。当TCPSocket或UDPSocket成功绑定到当前网络，error为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -1961,12 +1961,12 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
         } else {
           console.log(JSON.stringify(data));
         }
-      })
-    })
+      });
+    });
   } else {
     let callback: (value: Data) => void = (value: Data) => {
       console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
-    }
+    };
     udp.bind({address:"192.168.xxx.xxx",
               port:8080,
               family:1} as socket.NetAddress, (error: BusinessError) => {
@@ -1975,7 +1975,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
         return;
       }
       udp.on('message', (data: Data) => {
-        console.log(JSON.stringify(data))
+        console.log(JSON.stringify(data));
       });
       netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
         if (error) {
@@ -1983,10 +1983,10 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
         } else {
           console.log(JSON.stringify(data));
         }
-      })
-    })
+      });
+    });
   }
-})
+});
 ```
 
 ### bindSocket<sup>9+</sup>
@@ -2001,7 +2001,7 @@ bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
 
 | 参数名          | 类型                  | 必填  | 说明                           |
 | --------------- | --------------------- | ---- | ------------------------------ |
-| socketParam     | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | 是   | 待绑定的TCPSocket或UDPSocket对象。|
+| socketParam     | [TCPSocket](js-apis-socket.md#tcpsocket7) \| [UDPSocket](js-apis-socket.md#udpsocket7) | 是   | 待绑定的TCPSocket或UDPSocket对象。|
 
 **返回值：**
 
@@ -2047,8 +2047,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
         } else {
           console.log(JSON.stringify(data));
         }
-      })
-    })
+      });
+    });
   } else {
     let callback: (value: Data) => void = (value: Data) => {
       console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
@@ -2061,7 +2061,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       return;
     }
     udp.on('message', (data: Data) => {
-      console.log(JSON.stringify(data))
+      console.log(JSON.stringify(data));
     });
     netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
       if (error) {
@@ -2069,13 +2069,13 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       } else {
         console.log(JSON.stringify(data));
       }
-    })
-  })
+    });
+  });
 }
-})
+});
 ```
 
-### getAddressesByName<sup>8+</sup>
+### getAddressesByName
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
 
@@ -2105,19 +2105,19 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from "@ohos.base"
+import connection from '@ohos.net.connection';
+import { BusinessError } from "@ohos.base";
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressesByName(host, (error: BusinessError, data: connection.NetAddress[]) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
-  })
-})
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(data));
+  });
+});
 ```
 
-### getAddressesByName<sup>8+</sup>
+### getAddressesByName
 
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
@@ -2152,17 +2152,17 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressesByName(host).then((data: connection.NetAddress[]) => {
-    console.log(JSON.stringify(data))
-  })
-})
+    console.log(JSON.stringify(data));
+  });
+});
 ```
 
-### getAddressByName<sup>8+</sup>
+### getAddressByName
 
 getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 
@@ -2192,19 +2192,19 @@ getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
-import { BusinessError } from "@ohos.base"
+import connection from '@ohos.net.connection';
+import { BusinessError } from "@ohos.base";
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressByName(host, (error: BusinessError, data: connection.NetAddress) => {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
-  })
-}) 
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(data));
+  });
+});
 ```
 
-### getAddressByName<sup>8+</sup>
+### getAddressByName
 
 getAddressByName(host: string): Promise\<NetAddress>
 
@@ -2239,17 +2239,17 @@ getAddressByName(host: string): Promise\<NetAddress>
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection'
+import connection from '@ohos.net.connection';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressByName(host).then((data: connection.NetAddress) => {
-    console.log(JSON.stringify(data))
-  })
-})
+    console.log(JSON.stringify(data));
+  });
+});
 ```
 
-## NetCap<sup>8+</sup>
+## NetCap
 
 网络具体能力。
 
@@ -2263,7 +2263,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。 |
 | NET_CAPABILITY_VALIDATED | 16   | 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置。 |
 
-## NetBearType<sup>8+</sup>
+## NetBearType
 
 网络类型。
 
@@ -2287,7 +2287,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | port  | number | 否  |  主机端口。 |
 | exclusionList  | Array<string> | 否  | 不使用代理的主机名列表，主机名支持域名、IP地址以及通配符形式，详细匹配规则如下：<br/>1、域名匹配规则：<br/>（1）完全匹配：代理服务器主机名只要与列表中的任意一个主机名完全相同，就可以匹配。<br/>（2）包含匹配：代理服务器主机名只要包含列表中的任意一个主机名，就可以匹配。<br/>例如，如果在主机名列表中设置了 “ample.com”，则  “ample.com”、“www.ample.com”、“ample.com:80”都会被匹配，而 “www.example.com”、“ample.com.org”则不会被匹配。<br/>2、IP地址匹配规则：代理服务器主机名只要与列表中的任意一个IP地址完全相同，就可以匹配。<br/>3、域名跟IP地址可以同时添加到列表中进行匹配。<br/>4、单个“*”是唯一有效的通配符，当列表中只有通配符时，将与所有代理服务器主机名匹配，表示禁用代理。通配符只能单独添加，不可以与其他域名、IP地址一起添加到列表中，否则通配符将不生效。<br/>5、匹配规则不区分主机名大小写。<br/>6、匹配主机名时，不考虑http和https等协议前缀。 |
 
-## NetSpecifier<sup>8+</sup>
+## NetSpecifier
 
 提供承载数据网络能力的实例。
 
@@ -2309,7 +2309,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | netHandle         | [NetHandle](#nethandle) |  是  | 数据网络句柄。                                |
 | netCap |  [NetCapabilities](#netcapabilities)       |  否  |  存储数据网络的传输能力和承载类型。 |
 
-## NetCapabilities<sup>8+</sup>
+## NetCapabilities
 
 网络的能力集。
 
@@ -2322,7 +2322,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。           |
 | bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。               |
 
-## ConnectionProperties<sup>8+</sup>
+## ConnectionProperties
 
 网络连接信息。
 
@@ -2337,7 +2337,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | dnses     | Array\<[NetAddress](#netaddress)> | 是 |网络地址，参考[NetAddress](#netaddress)。 |
 | mtu           | number                             | 是 |最大传输单元。   |
 
-## RouteInfo<sup>8+</sup>
+## RouteInfo
 
 网络路由信息。
 
@@ -2351,7 +2351,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | hasGateway     | boolean                     | 是 |是否有网关。     |
 | isDefaultRoute | boolean                     | 是 |是否为默认路由。 |
 
-## LinkAddress<sup>8+</sup>
+## LinkAddress
 
 网络链路信息。
 
@@ -2362,7 +2362,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | address      | [NetAddress](#netaddress) | 是 | 链路地址。           |
 | prefixLength | number                    | 是 |链路地址前缀的长度。 |
 
-## NetAddress<sup>8+</sup>
+## NetAddress
 
 网络地址。
 

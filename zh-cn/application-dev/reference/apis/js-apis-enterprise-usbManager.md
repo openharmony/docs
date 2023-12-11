@@ -33,7 +33,7 @@ setUsbPolicy(admin: Want, usbPolicy: UsbPolicy, callback: AsyncCallback\<void>):
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| usbPolicy  | [UsbPolicy](#usbpolicy) | 是 | USB读写策略（此接口不支持设置为DISABLED）。 |
+| usbPolicy  | [UsbPolicy](#usbpolicy) | 是 | USB读写策略（此接口只支持READ_WRITE和READ_ONLY）。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -147,7 +147,7 @@ USB设备ID信息。
 
 disableUsb(admin: Want, disable: boolean): void
 
-指定设备管理应用设置禁用USB。
+指定设备管理应用设置禁用或启用USB。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -180,8 +180,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 try {
-  let disable = true;
-  usbManager.disableUsb(wantTemp, isDisabled);
+  usbManager.disableUsb(wantTemp, true);
   console.info(`Succeeded in disabling USB`);
 } catch (err) {
   console.error(`Failed to disabling USB. Code: ${err.code}, message: ${err.message}`);
@@ -239,7 +238,7 @@ try {
 
 ## usbManager.addAllowedUsbDevices<sup>11+</sup>
 
-addAllowedUsbDevices(admin: Want, usbDeviceIds: Array<UsbDeviceId>): void
+addAllowedUsbDevices(admin: Want, usbDeviceIds: Array<usbManager.UsbDeviceId>): void
 
 指定设备管理应用添加USB设备可用白名单。
 
@@ -251,10 +250,10 @@ addAllowedUsbDevices(admin: Want, usbDeviceIds: Array<UsbDeviceId>): void
 
 **参数：**
 
-| 参数名       | 类型                                             | 必填 | 说明                                        |
-| ------------ | ------------------------------------------------ | ---- | ------------------------------------------- |
-| admin        | [Want](js-apis-app-ability-want.md)              | 是   | 设备管理应用。                              |
-| usbDeviceIds | Array<[UsbDeviceId](#UsbDeviceId<sup>11+</sup>)> | 是   | USB设备ID数组。添加后的数组长度上限为1000。 |
+| 参数名       | 类型                                            | 必填 | 说明                                        |
+| ------------ | ----------------------------------------------- | ---- | ------------------------------------------- |
+| admin        | [Want](js-apis-app-ability-want.md)             | 是   | 设备管理应用。                              |
+| usbDeviceIds | Array<[usbManager.UsbDeviceId](#usbdeviceid11)> | 是   | USB设备ID数组。添加后的数组长度上限为1000。 |
 
 **错误码**：
 
@@ -274,11 +273,11 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 try {
-  let usbDeviceIds: Array<UsbDeviceId> = [{
+  let usbDeviceIds: Array<usbManager.UsbDeviceId> = [{
       vendorId: 1,
       productId: 1
   }];
-  usbManager.addAllowedUsbDevices(wantTemp, isDisabled);
+  usbManager.addAllowedUsbDevices(wantTemp, usbDeviceIds);
   console.info(`Succeeded in adding allowed USB devices`);
 } catch (err) {
   console.error(`Failed to adding allowed USB devices. Code: ${err.code}, message: ${err.message}`);
@@ -287,7 +286,7 @@ try {
 
 ## usbManager.removeAllowedUsbDevices<sup>11+</sup>
 
-removeAllowedUsbDevices(admin: Want, usbDeviceIds: Array<UsbDeviceId>): void
+removeAllowedUsbDevices(admin: Want, usbDeviceIds: Array<usbManager.UsbDeviceId>): void
 
 指定设备管理应用移除USB设备可用白名单。
 
@@ -299,10 +298,10 @@ removeAllowedUsbDevices(admin: Want, usbDeviceIds: Array<UsbDeviceId>): void
 
 **参数：**
 
-| 参数名       | 类型                                             | 必填 | 说明            |
-| ------------ | ------------------------------------------------ | ---- | --------------- |
-| admin        | [Want](js-apis-app-ability-want.md)              | 是   | 设备管理应用。  |
-| usbDeviceIds | Array<[UsbDeviceId](#UsbDeviceId<sup>11+</sup>)> | 是   | USB设备ID数组。 |
+| 参数名       | 类型                                            | 必填 | 说明            |
+| ------------ | ----------------------------------------------- | ---- | --------------- |
+| admin        | [Want](js-apis-app-ability-want.md)             | 是   | 设备管理应用。  |
+| usbDeviceIds | Array<[usbManager.UsbDeviceId](#usbdeviceid11)> | 是   | USB设备ID数组。 |
 
 **错误码**：
 
@@ -322,11 +321,11 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 try {
-  let usbDeviceIds: Array<UsbDeviceId> = [{
+  let usbDeviceIds: Array<usbManager.UsbDeviceId> = [{
       vendorId: 1,
       productId: 1
   }];
-  usbManager.removeAllowedUsbDevices(wantTemp, isDisabled);
+  usbManager.removeAllowedUsbDevices(wantTemp, usbDeviceIds);
   console.info(`Succeeded in removing allowed USB devices`);
 } catch (err) {
   console.error(`Failed to removing allowed USB devices. Code: ${err.code}, message: ${err.message}`);
@@ -335,7 +334,7 @@ try {
 
 ## usbManager.getAllowedUsbDevices<sup>11+</sup>
 
-getAllowedUsbDevices(admin: Want): Array<UsbDeviceId>
+getAllowedUsbDevices(admin: Want): Array<usbManager.UsbDeviceId>
 
 指定设备管理应用获取USB设备可用白名单。
 
@@ -353,9 +352,9 @@ getAllowedUsbDevices(admin: Want): Array<UsbDeviceId>
 
 **返回值：**
 
-| 类型                                             | 说明                      |
-| ------------------------------------------------ | ------------------------- |
-| Array<[UsbDeviceId](#UsbDeviceId<sup>11+</sup>)> | 可用USB白名单设备ID数组。 |
+| 类型                                            | 说明                      |
+| ----------------------------------------------- | ------------------------- |
+| Array<[usbManager.UsbDeviceId](#usbdeviceid11)> | 可用USB白名单设备ID数组。 |
 
 **错误码**：
 
@@ -375,7 +374,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 try {
-  let result: Array<UsbDeviceId> = usbManager.getAllowedUsbDevices(wantTemp);
+  let result: Array<usbManager.UsbDeviceId> = usbManager.getAllowedUsbDevices(wantTemp);
   console.info(`Succeeded in removing allowed USB devices. Result: ${JSON.stringify(result)}`);
 } catch (err) {
   console.error(`Failed to removing allowed USB devices. Code: ${err.code}, message: ${err.message}`);
@@ -429,7 +428,7 @@ try {
 
 ## usbManager.getUsbStorageDeviceAccessPolicy<sup>11+</sup>
 
-getUsbStorageDeviceAccessPolicy(admin: Want): Array<UsbDeviceId>
+getUsbStorageDeviceAccessPolicy(admin: Want): Array<usbManager.UsbDeviceId>
 
 指定设备管理应用获取USB存储设备访问策略。
 

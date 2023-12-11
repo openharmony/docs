@@ -432,9 +432,9 @@ struct ReaderComp {
 
   build() {
     Row() {
-      Text(this.book.title)
-      Text(`...has${this.book.pages} pages!`)
-      Text(`...${this.book.readIt ? "I have read" : 'I have not read it'}`)
+      Text(this.book.title).fontColor('#e6000000')
+      Text(` has ${this.book.pages} pages!`).fontColor('#e6000000')
+      Text(` ${this.book.readIt ? "I have read" : 'I have not read it'}`).fontColor('#e6000000')
         .onClick(() => this.book.readIt = true)
     }
   }
@@ -443,27 +443,65 @@ struct ReaderComp {
 @Entry
 @Component
 struct Library {
-  @State allBooks: Book[] = [new Book("100 secrets of C++", 765), new Book("Effective C++", 651), new Book("The C++ programming language", 1765)];
+  @State allBooks: Book[] = [new Book("C#", 765), new Book("JS", 652), new Book("TS", 765)];
 
   build() {
     Column() {
       Text('library`s all time favorite')
+        .width(312)
+        .height(40)
+        .backgroundColor('#0d000000')
+        .borderRadius(20)
+        .margin(12)
+        .padding({ left: 20 })
+        .fontColor('#e6000000')
       ReaderComp({ book: this.allBooks[2] })
+        .backgroundColor('#0d000000')
+        .width(312)
+        .height(40)
+        .padding({ left: 20, top: 10 })
+        .borderRadius(20)
+        .colorBlend('#e6000000')
       Divider()
       Text('Books on loaan to a reader')
+        .width(312)
+        .height(40)
+        .backgroundColor('#0d000000')
+        .borderRadius(20)
+        .margin(12)
+        .padding({ left: 20 })
+        .fontColor('#e6000000')
       ForEach(this.allBooks, (book: Book) => {
         ReaderComp({ book: book })
+          .margin(12)
+          .width(312)
+          .height(40)
+          .padding({ left: 20, top: 10 })
+          .backgroundColor('#0d000000')
+          .borderRadius(20)
       },
         (book: Book) => book.id.toString())
       Button('Add new')
+        .width(312)
+        .height(40)
+        .margin(12)
+        .fontColor('#FFFFFF 90%')
         .onClick(() => {
-          this.allBooks.push(new Book("The C++ Standard Library", 512));
+          this.allBooks.push(new Book("JA", 512));
         })
       Button('Remove first book')
+        .width(312)
+        .height(40)
+        .margin(12)
+        .fontColor('#FFFFFF 90%')
         .onClick(() => {
           this.allBooks.shift();
         })
       Button("Mark read for everyone")
+        .width(312)
+        .height(40)
+        .margin(12)
+        .fontColor('#FFFFFF 90%')
         .onClick(() => {
           this.allBooks.forEach((book) => book.readIt = true)
         })
@@ -514,18 +552,22 @@ struct MyComponent {
   build() {
     Column() {
       Row() {
-        Text(`From Main: ${this.customCounter}`).width(90).height(40).fontColor('#FF0010')
+        Text(`From Main: ${this.customCounter}`).fontColor('#ff6b6565').margin({ left: -110, top: 12 })
       }
 
       Row() {
-        Button('Click to change locally !').width(180).height(60).margin({ top: 10 })
+        Button('Click to change locally !')
+          .width(288)
+          .height(40)
+          .margin({ left: 30, top: 12 })
+          .fontColor('#FFFFFF，90%')
           .onClick(() => {
             this.customCounter2++
           })
-      }.height(100).width(180)
+      }
 
       Row() {
-        Text(`Custom Local: ${this.customCounter2}`).width(90).height(40).fontColor('#FF0010')
+        Text(`Custom Local: ${this.customCounter2}`).fontColor('#ff6b6565').margin({ left: -110, top: 12 })
       }
     }
   }
@@ -540,19 +582,23 @@ struct MainProgram {
     Column() {
       Row() {
         Column() {
-          Button('Click to change number').width(480).height(60).margin({ top: 10, bottom: 10 })
-            .onClick(() => {
-              this.mainCounter++
-            })
+          // customCounter必须从父组件初始化，因为MyComponent的customCounter成员变量缺少本地初始化；此处，customCounter2可以不做初始化。
+          MyComponent({ customCounter: this.mainCounter })
+          // customCounter2也可以从父组件初始化，父组件初始化的值会覆盖子组件customCounter2的本地初始化的值
+          MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
         }
       }
 
       Row() {
         Column() {
-          // customCounter必须从父组件初始化，因为MyComponent的customCounter成员变量缺少本地初始化；此处，customCounter2可以不做初始化。
-          MyComponent({ customCounter: this.mainCounter })
-          // customCounter2也可以从父组件初始化，父组件初始化的值会覆盖子组件customCounter2的本地初始化的值
-          MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
+          Button('Click to change number')
+            .width(288)
+            .height(40)
+            .margin({ left: 30, top: 12 })
+            .fontColor('#FFFFFF，90%')
+            .onClick(() => {
+              this.mainCounter++
+            })
         }
       }
     }
@@ -599,15 +645,26 @@ struct Parent {
 
   build() {
     Column() {
-      Button('change ClassB name')
-        .onClick(() => {
-          this.votes.name = "aaaaa"
-        })
-      Button('change ClassA title')
-        .onClick(() => {
-          this.votes.a.title = "wwwww"
-        })  
-      Child({ vote: this.votes })
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+        Button('change ClassB name')
+          .width(312)
+          .height(40)
+          .margin(12)
+          .fontColor('#FFFFFF，90%')
+          .onClick(() => {
+            this.votes.name = "aaaaa"
+          })
+        Button('change ClassA title')
+          .width(312)
+          .height(40)
+          .margin(12)
+          .fontColor('#FFFFFF，90%')
+          .onClick(() => {
+            this.votes.a.title = "wwwww"
+          })
+        Child({ vote: this.votes })
+      }
+
     }
 
   }
@@ -616,18 +673,34 @@ struct Parent {
 @Component
 struct Child {
   @Prop vote: ClassB = new ClassB('', new ClassA(''));
+
   build() {
     Column() {
 
-      Text(this.vote.name).fontSize(36).fontColor(Color.Red).margin(50)
+      Text(this.vote.name)
+        .fontSize(16)
+        .margin(12)
+        .width(312)
+        .height(40)
+        .backgroundColor('#ededed')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
+        .fontColor('#e6000000')
         .onClick(() => {
           this.vote.name = 'Bye'
         })
-      Text(this.vote.a.title).fontSize(36).fontColor(Color.Blue)
+      Text(this.vote.a.title)
+        .fontSize(16)
+        .margin(12)
+        .width(312)
+        .height(40)
+        .backgroundColor('#ededed')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
         .onClick(() => {
           this.vote.a.title = "openHarmony"
         })
-      Child1({vote1:this.vote.a})
+      Child1({ vote1: this.vote.a })
 
     }
   }
@@ -636,9 +709,17 @@ struct Child {
 @Component
 struct Child1 {
   @Prop vote1: ClassA = new ClassA('');
+
   build() {
     Column() {
-      Text(this.vote1.title).fontSize(36).fontColor(Color.Red).margin(50)
+      Text(this.vote1.title)
+        .fontSize(16)
+        .margin(12)
+        .width(312)
+        .height(40)
+        .backgroundColor('#ededed')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
         .onClick(() => {
           this.vote1.title = 'Bye Bye'
         })
@@ -651,7 +732,7 @@ struct Child1 {
 
 ## Prop支持联合类型实例
 
-@Prop支持联合类型和undefined和null，在下面的示例中，count类型为ClassA | undefined，点击父组件Library中的Button改变count的属性或者类型，Child中也会对应刷新。
+@Prop支持联合类型和undefined和null，在下面的示例中，animal类型为Animals | undefined，点击父组件Zoo中的Button改变animal的属性或者类型，Child中也会对应刷新。
 
 ```ts
 class Animals {
@@ -688,7 +769,7 @@ struct Child {
 
 @Entry
 @Component
-struct Library {
+struct Zoo {
   @State animal: Animals | undefined = new Animals("lion");
 
   build() {

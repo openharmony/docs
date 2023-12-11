@@ -17,31 +17,35 @@ import config from '@ohos.accessibility.config';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| highContrastText | [Config](#config)\<boolean>| 是 | 是 | 表示高对比度文字功能启用状态。 |
-| invertColor | [Config](#config)\<boolean>| 是 | 是 | 表示颜色反转功能启用状态。 |
-| daltonizationState<sup>11+</sup> | [Config](#config)\<boolean>| 是 | 是 | 表示颜色滤镜功能启动状态。配合daltonizationColorFilter使用 |
-| daltonizationColorFilter | [Config](#config)&lt;[DaltonizationColorFilter](#daltonizationcolorfilter)&gt;| 是 | 是 | 表示颜色滤镜功能配置。 |
-| contentTimeout | [Config](#config)\<number>| 是 | 是 | 表示内容显示建议时长配置。取值 0~5000，单位为毫秒。 |
-| animationOff | [Config](#config)\<boolean>| 是 | 是 | 表示关闭动画功能启用状态。 |
-| brightnessDiscount | [Config](#config)\<number>| 是 | 是 | 表示亮度折扣系统配置。取值 0~1.0。 |
-| mouseKey | [Config](#config)\<boolean>| 是 | 是 | 表示鼠标键功能启用状态。 |
-| mouseAutoClick | [Config](#config)\<number>| 是 | 是 | 表示鼠标自动点击功能启用状态。取值 0~5000，单位为毫秒。 |
-| shortkey | [Config](#config)\<boolean>| 是 | 是 | 表示辅助扩展快捷键功能启用状态。 |
-| shortkeyTarget | [Config](#config)\<string>| 是 | 是 | 表示辅助扩展快捷键的目标配置。取值为辅助应用的名称，格式为：'bundleName/abilityName'。 |
-| captions | [Config](#config)\<boolean>| 是 | 是 | 表示辅助字幕功能启用状态。 |
-| captionsStyle | [Config](#config)\<[accessibility.CaptionsStyle](js-apis-accessibility.md#captionsstyle8)>| 是 | 是 | 表示辅助字幕的配置。 |
-| audioMono<sup>10+</sup>| [Config](#config)\<boolean>| 是 | 是 | 表示音频单声道的配置。 |
-| audioBalance<sup>10+</sup>| [Config](#config)\<number>| 是 | 是 | 表示左右声道音量平衡的配置。取值 -1.0~1.0。 |
+| 名称                                 | 类型                                                                                         | 可读 | 可写 | 说明                                                        |
+|------------------------------------|--------------------------------------------------------------------------------------------| -------- | -------- |-----------------------------------------------------------|
+| highContrastText                   | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示高对比度文字功能启用状态。                                           |
+| invertColor                        | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示颜色反转功能启用状态。                                             |
+| daltonizationState<sup>11+</sup>   | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示颜色滤镜功能启动状态。配合daltonizationColorFilter使用                 |
+| daltonizationColorFilter           | [Config](#config)&lt;[DaltonizationColorFilter](#daltonizationcolorfilter)&gt;             | 是 | 是 | 表示颜色滤镜功能配置。                                               |
+| contentTimeout                     | [Config](#config)\<number>                                                                 | 是 | 是 | 表示内容显示建议时长配置。取值 0~5000，单位为毫秒。                             |
+| animationOff                       | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示关闭动画功能启用状态。                                             |
+| brightnessDiscount                 | [Config](#config)\<number>                                                                 | 是 | 是 | 表示亮度折扣系统配置。取值 0~1.0。                                      |
+| mouseKey                           | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示鼠标键功能启用状态。                                              |
+| mouseAutoClick                     | [Config](#config)\<number>                                                                 | 是 | 是 | 表示鼠标自动点击功能启用状态。取值 0~5000，单位为毫秒。                           |
+| shortkey                           | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示辅助扩展快捷键功能启用状态。                                          |
+| shortkeyTarget                     | [Config](#config)\<string>                                                                 | 是 | 是 | 表示辅助扩展快捷键的目标配置。取值为辅助应用的名称，格式为：'bundleName/abilityName'。   |
+| captions                           | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示辅助字幕功能启用状态。                                             |
+| captionsStyle                      | [Config](#config)\<[accessibility.CaptionsStyle](js-apis-accessibility.md#captionsstyle8)> | 是 | 是 | 表示辅助字幕的配置。                                                |
+| audioMono<sup>10+</sup>            | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示音频单声道的配置。                                               |
+| audioBalance<sup>10+</sup>         | [Config](#config)\<number>                                                                 | 是 | 是 | 表示左右声道音量平衡的配置。取值 -1.0~1.0。                                |
+| shortkeyMultiTargets<sup>11+</sup> | [Config](#config)&lt;Array\<string>&gt;                                                    | 是 | 是 | 表示辅助扩展快捷键的列表配置。取值为辅助应用的名称，格式为：['bundleName/abilityName']。 |
+| clickResponseTime<sup>11+</sup>    | [Config](#config)&lt;[ClickResponseTime](#clickresponsetime11)&gt;                         | 是 | 是 | 表示点击持续时间功能配置。                                             |
+| ignoreRepeatClick<sup>11+</sup>    | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示忽略重复点击功能启用状态。配合repeatClickInterval使用。                   |
+| repeatClickInterval<sup>11+</sup>  | [Config](#config)&lt;[RepeatClickInterval](#repeatclickinterval11)&gt;                     | 是 | 是 | 表示忽略重复点击功能配置。                                             |
 
 boolean返回值的含义：True表示开启，False表示关闭。
-
+[]()
 ## enableAbility
 
 enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): Promise&lt;void&gt;;
 
-权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 启用辅助扩展，使用Promise异步回调。
 
@@ -90,7 +94,7 @@ config.enableAbility(name, capability).then(() => {
 
 enableAbility(name: string, capability: Array&lt;[accessibility.Capability](js-apis-accessibility.md#capability)&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
-权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 启用辅助扩展，使用callback异步回调。
 
@@ -136,7 +140,7 @@ config.enableAbility(name, capability, (err: BusinessError) => {
 
 disableAbility(name: string): Promise&lt;void&gt;;
 
-权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 关闭辅助扩展，使用Promise异步回调。
 
@@ -182,7 +186,7 @@ config.disableAbility(name).then(() => {
 
 disableAbility(name: string, callback: AsyncCallback&lt;void&gt;): void;
 
-权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 关闭辅助扩展，使用callback异步回调。
 
@@ -225,7 +229,7 @@ config.disableAbility(name, (err: BusinessError) => {
 
 on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&gt;): void;
 
-权限配置：ohos.permission.READ_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 添加启用的辅助扩展的列表变化监听，使用callback异步回调。
 
@@ -252,7 +256,7 @@ config.on('enabledAccessibilityExtensionListChange', () => {
 
 off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void&gt;): void;
 
-权限配置：ohos.permission.READ_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 取消启用的辅助扩展的列表变化监听，使用callback异步回调。
 
@@ -283,7 +287,7 @@ config.off('enabledAccessibilityExtensionListChange', () => {
 
 set(value: T): Promise&lt;void&gt;;
 
-权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 设置属性，使用Promise异步回调。
 
@@ -320,7 +324,7 @@ config.highContrastText.set(value).then(() => {
 
 set(value: T, callback: AsyncCallback&lt;void&gt;): void;
 
-权限配置：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 设置属性，使用callback异步回调。
 
@@ -410,7 +414,7 @@ config.highContrastText.get((err: BusinessError, data: boolean) => {
 
 on(callback: Callback&lt;T&gt;): void;
 
-权限配置：ohos.permission.READ_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 添加属性变化监听，使用callback异步回调。
 
@@ -436,7 +440,7 @@ config.highContrastText.on((data: boolean) => {
 
 off(callback?: Callback&lt;T&gt;): void;
 
-权限配置：ohos.permission.READ_ACCESSIBILITY_CONFIG
+需要权限：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 取消属性变化监听，使用callback异步回调。
 
@@ -471,4 +475,31 @@ config.highContrastText.off((data: boolean) => {
 | Protanomaly | 表示红色弱视类型。 |
 | Deuteranomaly | 表示绿色弱视类型。 |
 | Tritanomaly  | 表示蓝色弱视类型。 |
+
+## ClickResponseTime<sup>11+</sup>
+
+用于不同时间长短的点击重复时间。  
+
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
+
+| 名称          | 说明         |
+|-------------|------------|
+| Short       | 表示短 (默认)。  |
+| Medium      | 表示中。       |
+| Long        | 表示长。       |
+
+## RepeatClickInterval<sup>11+</sup>
+
+用于不同时间间隔的忽略重复点击。  
+忽略重复点击功能开启时（[ignoreRepeatClick](#属性)设置为true)，忽略重复点击的配置(即设置的RepeatClickInterval的值)生效；忽略重复点击功能关闭时（[ignoreRepeatClick](#属性)设置为false)，显示为正常类型。
+
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
+
+| 名称       | 说明    |
+|----------|-------|
+| Shortest | 表示最短。 |
+| Short    | 表示短。  |
+| Medium   | 表示中。  |
+| Long     | 表示长。  |
+| Longest  | 表示最长。 |
 

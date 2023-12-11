@@ -49,13 +49,14 @@ show(options?: TextPickerDialogOptions)
 @Entry
 @Component
 struct TextPickerDialogExample {
-  private select: number | number[] = 2
+  private select: number | number[] = 0
   private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  @State v:string = '';
 
   build() {
     Row() {
       Column() {
-        Button("TextPickerDialog")
+        Button("TextPickerDialog:" + this.v)
           .margin(20)
           .onClick(() => {
             TextPickerDialog.show({
@@ -67,6 +68,9 @@ struct TextPickerDialogExample {
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
                 this.select = value.index
+                console.log(this.select + '')
+                // 点击确定后，被选到的文本数据展示到页面
+                this.v = value.value as string
                 console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
               },
               onCancel: () => {

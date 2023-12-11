@@ -1,0 +1,138 @@
+# 蓝牙管理开发指导
+
+## 简介
+在蓝牙技术中，BR是Basic Rate的缩写，表示基本速率模式。它是蓝牙1.0和1.1版本中使用的一种数据传输模式，最大传输速率为1Mbps。BR模式适用于低功耗设备和较短距离的数据传输。
+
+## 场景介绍
+主要场景有：
+
+- 开启/关闭蓝牙
+
+## 接口说明
+
+完整的 JS API 说明以及实例代码请参考：[BR 接口](../../reference/apis/js-apis-bluetooth-access.md)。
+
+具体接口说明如下表。
+
+| 接口名                             | 功能描述                                                                       |
+| ---------------------------------- | ------------------------------------------------------------------------------ |
+| enableBluetooth()                  | 开启蓝牙。                                                                       |
+| disableBluetooth()                 | 关闭蓝牙。                                                                       |
+| getState()                         | 获取蓝牙开关状态。                                                                |
+| on(type: 'stateChange')            | 订阅蓝牙设备开关状态事件。                                                         |
+| off(type: 'stateChange')           | 取消订阅蓝牙设备开关状态事件。                                                     |
+
+
+## 主要场景开发步骤
+
+### 开启蓝牙
+1. 导入模块: import access from '@ohos.bluetooth.access'。
+2. 需要权限: ohos.permission.ACCESS_BLUETOOTH。
+3. 需要系统能力: SystemCapability.Communication.Bluetooth.Core。
+4. 示例代码：
+```
+import access from '@ohos.bluetooth.access';
+import { BusinessError } from '@ohos.base';
+import promptAction from '@ohos.promptAction';
+
+try {
+    // 开启蓝牙
+    access.enableBluetooth();
+    access.on('stateChange', (data) => {
+        let btStateMessage = '';
+        switch (data) {
+            case 0:
+                btStateMessage += 'STATE_OFF';
+                break;
+            case 1:
+                btStateMessage += 'STATE_TURNING_ON';
+                break;
+            case 2:
+                btStateMessage += 'STATE_ON';
+                break;
+            case 3:
+                btStateMessage += 'STATE_TURNING_OFF';
+                break;
+            case 4:
+                btStateMessage += 'STATE_BLE_TURNING_ON';
+                break;
+            case 5:
+                btStateMessage += 'STATE_BLE_ON';
+                break;
+            case 6:
+                btStateMessage += 'STATE_BLE_TURNING_OFF';
+                break;
+            default:
+                btStateMessage += 'unknown status';
+                break;
+        }
+        if (btStateMessage == 'STATE_ON') {
+            access.off('stateChange');
+        }
+        promptAction.showToast({ message: 'bluetooth statues: ' + btStateMessage });
+    })
+} catch (err) {
+    promptAction.showToast({
+        message: 'enableBluetooth failed, errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message
+    });
+}
+```
+5. 错误码请参见[蓝牙服务子系统错误码](../../reference/errorcodes/errorcode-bluetoothManager.md)。
+6. 如何验证：
+执行该用例代码，弹框提示“bluetooth statues: STATE_ON”，则表示开启蓝牙成功。
+
+### 关闭蓝牙
+1. 蓝牙是开启状态。
+2. 导入模块: import access from '@ohos.bluetooth.access'。
+3. 需要权限: ohos.permission.ACCESS_BLUETOOTH。
+4. 需要系统能力: SystemCapability.Communication.Bluetooth.Core。
+5. 示例代码：
+```
+import access from '@ohos.bluetooth.access';
+import { BusinessError } from '@ohos.base';
+import promptAction from '@ohos.promptAction';
+
+try {
+    // 关闭蓝牙
+    access.disableBluetooth();
+    access.on('stateChange', (data) => {
+        let btStateMessage = '';
+        switch (data) {
+            case 0:
+                btStateMessage += 'STATE_OFF';
+                break;
+            case 1:
+                btStateMessage += 'STATE_TURNING_ON';
+                break;
+            case 2:
+                btStateMessage += 'STATE_ON';
+                break;
+            case 3:
+                btStateMessage += 'STATE_TURNING_OFF';
+                break;
+            case 4:
+                btStateMessage += 'STATE_BLE_TURNING_ON';
+                break;
+            case 5:
+                btStateMessage += 'STATE_BLE_ON';
+                break;
+            case 6:
+                btStateMessage += 'STATE_BLE_TURNING_OFF';
+                break;
+            default:
+                btStateMessage += 'unknown status';
+                break;
+        }
+        if (btStateMessage == 'STATE_OFF') {
+            access.off('stateChange');
+        }
+        promptAction.showToast({ message: "bluetooth statues: " + btStateMessage });
+    })
+} catch (err) {
+    promptAction.showToast({
+        message: 'disableBluetooth failed, errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message
+    });
+}
+```
+6. 错误码请参见[蓝牙服务子系统错误码](../../reference/errorcodes/errorcode-bluetoothManager.md)。
+7. 如何验证：执行该用例代码，弹框提示“bluetooth statues: STATE_OFF”，则表示关闭蓝牙成功。

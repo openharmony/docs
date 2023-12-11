@@ -1,4 +1,4 @@
-# Action Sheet
+# Action Sheet (ActionSheet)
 
 An action sheet is a dialog box that displays actions a user can take.
 
@@ -30,6 +30,8 @@ Defines and shows the action sheet.
 | offset     | {<br>dx: Length,<br>dy: Length<br>} | No     | Offset of the dialog box relative to the alignment position.{<br>dx: 0,<br>dy: 0<br>} |
 | sheets     | Array&lt;SheetInfo&gt; | Yes      | Options in the dialog box. Each option supports the image, text, and callback.|
 | maskRect<sup>10+</sup> | [Rectangle](ts-methods-alert-dialog-box.md#rectangle10) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
+| showInSubWindow<sup>11+</sup> | boolean | No| Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.<br>Default value: **false**, indicating that the dialog box is not displayed in the subwindow<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.|
+| isModal<sup>11+</sup> | boolean | No| Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**|
 
 ## SheetInfo
 
@@ -49,7 +51,6 @@ Defines and shows the action sheet.
 
 ## Example
 
-
 ```ts
 @Entry
 @Component
@@ -63,6 +64,8 @@ struct ActionSheetExample {
             subtitle: 'ActionSheet subtitle',
             message: 'message',
             autoCancel: true,
+            showInSubWindow: true,
+            isModal: true,
             confirm: {
               defaultFocus: true,
               value: 'Confirm button',
@@ -103,4 +106,4 @@ struct ActionSheetExample {
 }
 ```
 
-![en-us_image_action](figures/en-us_image_action.gif)
+![en-us_image_action_showinsubwindow](figures/en-us_image_action_showinsubwindow.jpg)

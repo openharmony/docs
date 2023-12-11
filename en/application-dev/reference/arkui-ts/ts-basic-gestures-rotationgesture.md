@@ -15,8 +15,8 @@ RotationGesture(value?: { fingers?: number, angle?: number })
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| fingers | number | No| Minimum number of fingers to trigger a rotation. The value ranges from 2 to 5.<br>Default value: **2**|
-| angle | number | No| Minimum degree that can trigger the rotation gesture.<br>Default value: **1**<br>**NOTE**<br>If the value is less than or equal to 0, it will be converted to the default value.|
+| fingers | number | No| Minimum number of fingers to trigger a rotation. The value ranges from 2 to 5.<br>Default value: **2**<br>While more fingers than the minimum number can be pressed to trigger the gesture, only the first two fingers participate in gesture calculation.|
+| angle | number | No| Minimum degree that can trigger the rotation gesture.<br>Default value: **1**<br>**NOTE**<br>If the value is less than or equal to 0 or greater than 360, it will be converted to the default value.|
 
 
 ## Events
@@ -28,7 +28,11 @@ RotationGesture(value?: { fingers?: number, angle?: number })
 | onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the finger used for the rotation gesture is lift.|
 | onActionCancel(event: () =&gt; void) | Triggered when a tap cancellation event is received after the rotation gesture is recognized.|
 
+## Attributes
 
+| Name| Type   |Description                                       |
+| ----  | ------  | ---------------------------------------- |
+| tag<sup>11+</sup>   | string  | Tag for the rotation gesture. It is used to distinguish the gesture during custom gesture recognition.|
 ## Example
 
 ```ts

@@ -69,7 +69,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, (err: BusinessError, rdbStore
     console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`Get RdbStore successfully.`);
+  console.info('Get RdbStore successfully.');
 })
 ```
 
@@ -95,7 +95,7 @@ class EntryAbility extends UIAbility {
         console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
-      console.info(`Get RdbStore successfully.`);
+      console.info('Get RdbStore successfully.');
     })
   }
 }
@@ -152,7 +152,7 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
 
 relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
   store = rdbStore;
-  console.info(`Get RdbStore successfully.`)
+  console.info('Get RdbStore successfully.')
 }).catch((err: BusinessError) => {
   console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -176,7 +176,7 @@ class EntryAbility extends UIAbility {
 
     relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
       store = rdbStore;
-      console.info(`Get RdbStore successfully.`)
+      console.info('Get RdbStore successfully.')
     }).catch((err: BusinessError) => {
       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
@@ -228,7 +228,7 @@ relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
     return;
   }
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 })
 ```
 
@@ -249,7 +249,7 @@ class EntryAbility extends UIAbility {
         return;
       }
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     })
   }
 }
@@ -300,7 +300,7 @@ let context = getContext(this);
 
 relationalStore.deleteRdbStore(context, "RdbTest.db").then(()=>{
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -319,7 +319,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     relationalStore.deleteRdbStore(this.context, "RdbTest.db").then(()=>{
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
@@ -378,7 +378,7 @@ relationalStore.deleteRdbStore(context, STORE_CONFIG, (err: BusinessError) => {
     return;
   }
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 })
 ```
 
@@ -403,7 +403,7 @@ class EntryAbility extends UIAbility {
         return;
       }
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     })
   }
 }
@@ -462,7 +462,7 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
 
 relationalStore.deleteRdbStore(context, STORE_CONFIG).then(()=>{
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -485,7 +485,7 @@ class EntryAbility extends UIAbility {
     };
     relationalStore.deleteRdbStore(this.context, STORE_CONFIG).then(()=>{
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
@@ -567,7 +567,7 @@ class EntryAbility extends UIAbility {
 
 ## ValueType
 
-用于表示允许的数据字段类型。
+用于表示允许的数据字段类型，接口参数具体类型根据其功能而定。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1258,7 +1258,7 @@ predicates.glob("NAME", "?h*g");
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-配置谓词以匹配数据表的field列中值在给定范围内的字段。
+配置谓词以匹配数据表的field列中值在给定范围内的字段（包含范围边界）。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1268,7 +1268,7 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | 是   | 数据库表中的列名。         |
 | low    | [ValueType](#valuetype) | 是   | 指示与谓词匹配的最小值。   |
-| high   | [ValueType](#valuetype) | 是   | 指示要与谓词匹配的最大值。 |
+| high   | [ValueType](#valuetype) | 是   | 指示与谓词匹配的最大值。 |
 
 **返回值**：
 
@@ -1287,7 +1287,7 @@ predicates.between("AGE", 10, 50);
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-配置谓词以匹配数据表的field列中值超出给定范围的字段。
+配置谓词以匹配数据表的field列中值超出给定范围的字段（不包含范围边界）。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3288,7 +3288,7 @@ if(store != undefined) {
       console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Delete table done.`);
+    console.info('Delete table done.');
   })
 }
 ```
@@ -3328,7 +3328,7 @@ if(store != undefined) {
       console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Delete table done.`);
+    console.info('Delete table done.');
   })
 }
 ```
@@ -3371,7 +3371,7 @@ import { BusinessError } from "@ohos.base";
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
 if(store != undefined) {
   (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE).then(() => {
-    console.info(`Delete table done.`);
+    console.info('Delete table done.');
   }).catch((err: BusinessError) => {
     console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3649,7 +3649,7 @@ if(store != undefined) {
       console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Backup success.`);
+    console.info('Backup success.');
   })
 }
 ```
@@ -3690,7 +3690,7 @@ import { BusinessError } from "@ohos.base";
 if(store != undefined) {
   let promiseBackup = (store as relationalStore.RdbStore).backup("dbBackup.db");
   promiseBackup.then(() => {
-    console.info(`Backup success.`);
+    console.info('Backup success.');
   }).catch((err: BusinessError) => {
     console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3729,7 +3729,7 @@ if(store != undefined) {
       console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Restore success.`);
+    console.info('Restore success.');
   })
 }
 ```
@@ -3770,7 +3770,7 @@ import { BusinessError } from "@ohos.base";
 if(store != undefined) {
   let promiseRestore = (store as relationalStore.RdbStore).restore("dbBackup.db");
   promiseRestore.then(() => {
-    console.info(`Restore success.`);
+    console.info('Restore success.');
   }).catch((err: BusinessError) => {
     console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3811,7 +3811,7 @@ if(store != undefined) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   })
 }
 ```
@@ -3853,7 +3853,7 @@ import { BusinessError } from "@ohos.base";
 
 if(store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"]).then(() => {
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   }).catch((err: BusinessError) => {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3896,7 +3896,7 @@ if(store != undefined) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   })
 }
 ```
@@ -3942,7 +3942,7 @@ if(store != undefined) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   })
 }
 ```
@@ -3989,7 +3989,7 @@ if(store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
     autoSync: true
   }).then(() => {
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   }).catch((err: BusinessError) => {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
   })
@@ -4172,7 +4172,7 @@ if(store != undefined) {
       console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Sync done.`);
+    console.info('Sync done.');
     for (let i = 0; i < result.length; i++) {
       console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
     }
@@ -4236,7 +4236,7 @@ let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
 if(store != undefined) {
   (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates).then((result: Object[][]) => {
-    console.info(`Sync done.`);
+    console.info('Sync done.');
     for (let i = 0; i < result.length; i++) {
       console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
     }
@@ -5047,9 +5047,9 @@ getColumnName(columnIndex: number): string
 
 ```ts
 if(resultSet != undefined) {
-const id = (resultSet as relationalStore.ResultSet).getColumnName(0);
-const name = (resultSet as relationalStore.ResultSet).getColumnName(1);
-const age = (resultSet as relationalStore.ResultSet).getColumnName(2);
+  const id = (resultSet as relationalStore.ResultSet).getColumnName(0);
+  const name = (resultSet as relationalStore.ResultSet).getColumnName(1);
+  const age = (resultSet as relationalStore.ResultSet).getColumnName(2);
 }
 ```
 
@@ -5085,7 +5085,7 @@ goTo(offset:number): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goTo(1);
+  (resultSet as relationalStore.ResultSet).goTo(1);
 }
 ```
 
@@ -5121,7 +5121,7 @@ goToRow(position: number): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToRow(5);
+  (resultSet as relationalStore.ResultSet).goToRow(5);
 }
 ```
 
@@ -5152,7 +5152,7 @@ goToFirstRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToFirstRow();
+  (resultSet as relationalStore.ResultSet).goToFirstRow();
 }
 ```
 
@@ -5182,7 +5182,7 @@ goToLastRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToLastRow();
+  (resultSet as relationalStore.ResultSet).goToLastRow();
 }
 ```
 
@@ -5212,7 +5212,7 @@ goToNextRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToNextRow();
+  (resultSet as relationalStore.ResultSet).goToNextRow();
 }
 ```
 
@@ -5242,7 +5242,7 @@ goToPreviousRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToPreviousRow();
+  (resultSet as relationalStore.ResultSet).goToPreviousRow();
 }
 ```
 
@@ -5278,7 +5278,7 @@ getBlob(columnIndex: number): Uint8Array
 
 ```ts
 if(resultSet != undefined) {
-const codes = (resultSet as relationalStore.ResultSet).getBlob((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
+  const codes = (resultSet as relationalStore.ResultSet).getBlob((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
 }
 ```
 
@@ -5314,7 +5314,7 @@ getString(columnIndex: number): string
 
 ```ts
 if(resultSet != undefined) {
-const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
+  const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
 }
 ```
 
@@ -5350,7 +5350,7 @@ getLong(columnIndex: number): number
 
 ```ts
 if(resultSet != undefined) {
-const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
+  const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
  }
 ```
 
@@ -5386,7 +5386,7 @@ getDouble(columnIndex: number): number
 
 ```ts
 if(resultSet != undefined) {
-const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
+  const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
 }
 ```
 
@@ -5422,7 +5422,7 @@ getAsset(columnIndex: number): Asset
 
 ```ts
 if(resultSet != undefined) {
-const doc = (resultSet as relationalStore.ResultSet).getAsset((resultSet as relationalStore.ResultSet).getColumnIndex("DOC"));
+  const doc = (resultSet as relationalStore.ResultSet).getAsset((resultSet as relationalStore.ResultSet).getColumnIndex("DOC"));
 }
 ```
 
@@ -5458,7 +5458,7 @@ getAssets(columnIndex: number): Assets
 
 ```ts
 if(resultSet != undefined) {
-const docs = (resultSet as relationalStore.ResultSet).getAssets((resultSet as relationalStore.ResultSet).getColumnIndex("DOCS"));
+  const docs = (resultSet as relationalStore.ResultSet).getAssets((resultSet as relationalStore.ResultSet).getColumnIndex("DOCS"));
 }
 ```
 
@@ -5495,7 +5495,7 @@ isColumnNull(columnIndex: number): boolean
 
 ```ts
 if(resultSet != undefined) {
-const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
+  const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
 }
 ```
 
@@ -5511,7 +5511,7 @@ close(): void
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).close();
+  (resultSet as relationalStore.ResultSet).close();
 }
 ```
 

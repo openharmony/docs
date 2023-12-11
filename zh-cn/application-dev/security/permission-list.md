@@ -52,6 +52,18 @@
 
 **起始版本**：10
 
+## ohos.permission.GET_BLUETOOTH_LOCAL_MAC
+
+允许应用获取本机的蓝牙MAC地址。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.INTERNET
 
 允许使用Internet网络。
@@ -2906,7 +2918,7 @@
 
 允许系统应用设置主题内容，包括壁纸、图标、皮肤、AOD和字体等。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -3243,6 +3255,18 @@
 允许系统应用屏蔽快捷键分发逻辑。
 
 **权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.INTERCEPT_INPUT_EVENT
+
+允许系统应用拦截输入事件。
+
+**权限级别**：system_core
 
 **授权方式**：system_grant
 
@@ -3601,6 +3625,102 @@
 ## ohos.permission.START_RECENT_ABILITY
 
 允许应用启动指定的UIAbility，如果该UIAbility有多个实例，将启动最近启动的实例。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.READ_CLOUD_SYNC_CONFIG
+
+允许接入云空间的应用查询应用云同步相关配置信息。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_CLOUD_SYNC_CONFIG
+
+允许接入云空间的应用管理应用云同步相关配置。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_FINDDEVICE
+
+允许应用拉起“查找设备”应用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_FINDSERVICE
+
+允许系统应用获取“查找我的设备”开关状态和打开开关。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.TRIGGER_ACTIVATIONLOCK
+
+允许系统SA调用“查找设备”。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_USB_CONFIG
+
+允许应用管理USB设备功能和端口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.WRITE_PRIVACY_PUSH_DATA
+
+允许应用往另一个应用中写入隐私Push数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.START_SYSTEM_DIALOG
+
+允许应用拉起模系统弹窗。
 
 **权限级别**：system_basic
 

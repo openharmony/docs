@@ -65,7 +65,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not self application.              |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -151,7 +151,7 @@ startAbility(want: Want): Promise&lt;void&gt;;
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not self application.              |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 

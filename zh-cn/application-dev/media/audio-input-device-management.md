@@ -1,4 +1,4 @@
-# 音频输入设备管理
+# 音频输入设备管理(ArkTS)
 
 有时设备同时连接多个音频输入设备，需要指定音频输入设备进行音频录制，此时需要使用AudioRoutingManager接口进行输入设备的管理，API说明可以参考[AudioRoutingManager API文档](../reference/apis/js-apis-audio.md#audioroutingmanager9)。
 
@@ -8,7 +8,6 @@
 
 ```ts
 import audio from '@ohos.multimedia.audio';  // 导入audio模块
-
 import { BusinessError } from '@ohos.base'; // 导入BusinessError
 
 let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
@@ -66,6 +65,7 @@ audioRoutingManager.off('deviceChange', (deviceChanged: audio.DeviceChangeAction
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
     deviceRole : audio.DeviceRole.INPUT_DEVICE,
     deviceType : audio.DeviceType.EARPIECE,

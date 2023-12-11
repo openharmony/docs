@@ -170,7 +170,7 @@ async function Demo() {
 ## PixelMap<sup>7+</sup>
 
 图像像素类，用于读取或写入图像数据以及获取图像信息。在调用PixelMap的方法前，需要先通过createPixelMap创建一个PixelMap实例。目前pixelmap序列化大小最大128MB，超过会送显失败。大小计算方式为(宽\*高\*每像素占用字节数)。
-
+从API version 11开始，PixelMap支持通过worker跨线程调用。当PixelMap通过[Worker](js-apis-worker.md)跨线程后，原线程的PixelMap的所有接口均不能调用，否则将报错501 服务器不具备完成请求的功能。
 ### 属性
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -1037,7 +1037,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980111| If the image source data incomplete          |
+| 62980111| If the operation invalid        |
 | 62980115| If the image parameter invalid             |
 
 **示例：**
@@ -1160,7 +1160,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 | ------- | --------------------------------------------|
 | 62980115 | If the input parameter invalid              |
 | 62980097 | If the ipc error              |
-| 62980096 | If the operation failed          |
+| 62980096 | If fail to create async work         |
 
 **示例：**
 
@@ -1283,7 +1283,7 @@ createImageSource(uri: string): ImageSource
 
 | 参数名 | 类型   | 必填 | 说明                               |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG<sup>10+</sup>](#svg标签说明)。 |
+| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 
 **返回值：**
 
@@ -1321,7 +1321,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG<sup>10+</sup>](#svg标签说明)。 |
+| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 | options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。|
 
 **返回值：**
@@ -1450,7 +1450,7 @@ const imageSourceApi : image.ImageSource = image.createImageSource(data, sourceO
 
 ## image.createImageSource<sup>11+</sup>
 
-createImageSource(rawFileDescriptor: resourceManager.RawFileDescriptor, options: SourceOptions): ImageSource
+createImageSource(rawfile: resourceManager.RawFileDescriptor, options: SourceOptions): ImageSource
 
 通过图像资源文件的RawFileDescriptor创建图片源实例。
 
@@ -1460,8 +1460,8 @@ createImageSource(rawFileDescriptor: resourceManager.RawFileDescriptor, options:
 
 | 参数名 | 类型                             | 必填 | 说明                                 |
 | ------ | -------------------------------- | ---- | ------------------------------------ |
-| rawFileDescriptor | [resourceManager.RawFileDescriptor](js-apis-resource-manager.md#rawfiledescriptor8) | 是 | 图像资源文件的RawFileDescriptor。 |
-| options | [SourceOptions](#sourceoptions9) | 是 | 图片属性，包括图片序号与默认属性值。 |
+| rawfile | [resourceManager.RawFileDescriptor](js-apis-resource-manager.md#rawfiledescriptor8) | 是 | 图像资源文件的RawFileDescriptor。 |
+| options | [SourceOptions](#sourceoptions9) | 否 | 图片属性，包括图片序号与默认属性值。 |
 
 **返回值：**
 
@@ -2505,7 +2505,7 @@ imagePackerApi.release().then(()=>{
 
 ### packToFile<sup>11+</sup>
 
-packToFile(source: ImageSource, fd: number, option: PackingOption, callback: AsyncCallback\<void>): void
+packToFile(source: ImageSource, fd: number, options: PackingOption, callback: AsyncCallback\<void>): void
 
 指定打包参数，将ImageSource图片源编码后直接打包进文件。使用callback形式返回结果。
 
@@ -2517,7 +2517,7 @@ packToFile(source: ImageSource, fd: number, option: PackingOption, callback: Asy
 | -------- | ------------------------------- | ---- | ------------------------------ |
 | source   | [ImageSource](#imagesource)     | 是   | 打包的图片源。                 |
 | fd       | number                          | 是   | 文件描述符。                   |
-| option   | [PackingOption](#packingoption) | 是   | 设置打包参数。                 |
+| options   | [PackingOption](#packingoption) | 是   | 设置打包参数。                 |
 | callback | AsyncCallback\<void>            | 是   | 获取回调，失败时返回错误信息。 |
 
 **示例：**
@@ -2538,9 +2538,11 @@ imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err : BusinessErro
 
 ### packToFile<sup>11+</sup>
 
-packToFile (source: ImageSource, fd: number, option: PackingOption): Promise\<void>
+packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<void>
 
 指定打包参数，将ImageSource图片源编码后直接打包进文件。使用Promise形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
 
@@ -2548,7 +2550,7 @@ packToFile (source: ImageSource, fd: number, option: PackingOption): Promise\<vo
 | ------ | ------------------------------- | ---- | -------------- |
 | source | [ImageSource](#imagesource)     | 是   | 打包的图片源。 |
 | fd     | number                          | 是   | 文件描述符。   |
-| option | [PackingOption](#packingoption) | 是   | 设置打包参数。 |
+| options | [PackingOption](#packingoption) | 是   | 设置打包参数。 |
 
 **返回值：**
 
@@ -2578,7 +2580,7 @@ imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(()=>{
 
 ### packToFile<sup>11+</sup>
 
-packToFile (source: Pixelmap, fd: number, option: PackingOption,  callback: AsyncCallback\<void>): void;
+packToFile (source: Pixelmap, fd: number, options: PackingOption,  callback: AsyncCallback\<void>): void;
 
 指定打包参数，将PixelMap图片源编码后直接打包进文件。使用callback形式返回结果。
 
@@ -2590,7 +2592,7 @@ packToFile (source: Pixelmap, fd: number, option: PackingOption,  callback: Asyn
 | -------- | ------------------------------- | ---- | ------------------------------ |
 | source   | [PixelMap](#pixelmap7)          | 是   | 打包的PixelMap资源。           |
 | fd       | number                          | 是   | 文件描述符。                   |
-| option   | [PackingOption](#packingoption) | 是   | 设置打包参数。                 |
+| options   | [PackingOption](#packingoption) | 是   | 设置打包参数。                 |
 | callback | AsyncCallback\<void>            | 是   | 获取回调，失败时返回错误信息。 |
 
 **示例：**
@@ -2614,9 +2616,11 @@ image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
 
 ### packToFile<sup>11+</sup>
 
-packToFile (source: Pixelmap, fd: number, option: PackingOption): Promise\<void>
+packToFile (source: Pixelmap, fd: number, options: PackingOption): Promise\<void>
 
 指定打包参数，将PixelMap图片源编码后直接打包进文件。使用Promise形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
 
@@ -2624,7 +2628,7 @@ packToFile (source: Pixelmap, fd: number, option: PackingOption): Promise\<void>
 | ------ | ------------------------------- | ---- | -------------------- |
 | source | [PixelMap](#pixelmap7)          | 是   | 打包的PixelMap资源。 |
 | fd     | number                          | 是   | 文件描述符。         |
-| option | [PackingOption](#packingoption) | 是   | 设置打包参数。       |
+| options | [PackingOption](#packingoption) | 是   | 设置打包参数。       |
 
 **返回值：**
 

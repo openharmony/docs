@@ -526,6 +526,11 @@
 | BACKGROUND_THICK      | 远距景深模糊。   |
 | BACKGROUND_ULTRA_THICK | 超远距景深模糊。  |
 | NONE<sup>10+</sup> | 关闭模糊。  |
+| COMPONENT_ULTRA_THIN<sup>11+</sup> | 组件超轻薄材质模糊。 |
+| COMPONENT_THIN<sup>11+</sup> | 组件轻薄材质模糊。 |
+| COMPONENT_REGULAR<sup>11+</sup> | 组件普通材质模糊。 |
+| COMPONENT_THICK<sup>11+</sup> | 组件厚材质模糊。 |
+| COMPONENT_ULTRA_THICK<sup>11+</sup> | 组件超厚材质模糊。 |
 
 ## ThemeColorMode<sup>10+</sup>
 
@@ -638,6 +643,22 @@ Nullable\<T> {
 | REMOVED   | 当整个动画结束并立即删除时，将触发回调。                         |
 | LOGICALLY | 当动画在逻辑上处于下降状态，但可能仍处于其长尾状态时，将触发回调。 |
 
+## BlurOptions<sup>11+<sup>
+灰阶模糊参数。
+| 名称        |   类型   |   必填 | 说明                        |
+| ----        |  ----   |   ---- | --------------------------  |
+| grayscale   |  [number, number]   |   是   |  灰阶模糊参数，参数取值范围[0,127] 。 |
+
+## BackgroundBrightnessOptions<sup>11+<sup>
+背景光源参数。
+ | 名称        |   类型         |   必填 |  说明                        |
+| ----         |  ----         |   ---- | --------------------------  |
+| radius       | number        |   是   |   背景光源半径，取值范围：[0, +∞)，默认为0。     |
+| saturation   | number        |   否   |   背景光源饱和度，取值范围：[0, +∞)，默认为0。     |
+| brightness   | number        |   否   |   背景光源亮度，取值范围：[0, +∞)，默认为0。       | 
+| color        | [Color](ts-appendix-enums.md#color)        |   否   |   背景光源颜色，默认透明色。  |
+| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。   |
+| blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
 ## EllipsisMode<sup>11+</sup>
 
 从API version 11开始，该接口支持在ArkTS卡片中使用。

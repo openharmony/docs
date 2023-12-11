@@ -32,7 +32,7 @@ ChipOptions定义chip的样式及具体式样参数。
 
 | 名称            | 类型                                    | 必填 | 说明                                                         |
 | --------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| size            | [ChipSize](#chipsize) \| SizeOptions    | 否   | 操作块尺寸。<br/>默认值：ChipSize：ChipSize.NORMAL，<br/>                SizeOptions：{width:-,height:36vp} |
+| size            | [ChipSize](#chipsize) \| SizeOptions    | 否   | 操作块尺寸。<br/>默认值：ChipSize：ChipSize.NORMAL，<br/>   SizeOptions类型参数不支持百分比设置。|
 | enabled         | boolean                                 | 否   | 操作块是否可选中。<br>默认值：true。                         |
 | prefixIcon      | [PrefixIconOptions](#prefixiconoptions) | 否   | 前缀图标属性。                                               |
 | label           | [LabelOptions](#labeloptions)           | 是   | 文本属性。                                                   |
@@ -46,7 +46,7 @@ ChipOptions定义chip的样式及具体式样参数。
 >
 > suffixIcon有传入参数时，allowClose不生效，suffixIcon没有传入参数时，allowClose决定是否显示删除图标。
 >
-> backgroundColor赋值undefined时，显示默认背景颜色。
+> backgroundColor赋值undefined时，显示默认背景颜色，赋值非法值时，背景色透明。
 
 ## ChipSize
 
