@@ -115,21 +115,21 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 
 1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为ServiceExtAbility。
 
-2. 在ServiceExtAbility目录，右键选择“New &gt; TypeScript File”，新建一个TypeScript文件并命名为ServiceExtAbility.ts。
+2. 在ServiceExtAbility目录，右键选择“New &gt; TypeScript File”，新建一个TypeScript文件并命名为ServiceExtAbility.ets。
 
     ```
     ├── ets
     │ ├── IdlServiceExt
-    │ │   ├── i_idl_service_ext.ts      # 生成文件
-    │ │   ├── idl_service_ext_proxy.ts  # 生成文件
-    │ │   ├── idl_service_ext_stub.ts   # 生成文件
-    │ │   ├── idl_service_ext_impl.ts   # 开发者自定义文件，对idl接口的具体实现
+    │ │   ├── i_idl_service_ext.ets      # 生成文件
+    │ │   ├── idl_service_ext_proxy.ets  # 生成文件
+    │ │   ├── idl_service_ext_stub.ets   # 生成文件
+    │ │   ├── idl_service_ext_impl.ets   # 开发者自定义文件，对idl接口的具体实现
     │ ├── ServiceExtAbility
-    │ │   ├── ServiceExtAbility.ts
+    │ │   ├── ServiceExtAbility.ets
     └
     ```
 
-3. 在ServiceExtAbility.ts文件中，增加导入ServiceExtensionAbility的依赖包，自定义类继承ServiceExtensionAbility并实现生命周期回调，在onConnect生命周期回调里，需要将之前定义的ServiceExtImpl对象返回。
+3. 在ServiceExtAbility.ets文件中，增加导入ServiceExtensionAbility的依赖包，自定义类继承ServiceExtensionAbility并实现生命周期回调，在onConnect生命周期回调里，需要将之前定义的ServiceExtImpl对象返回。
 
    ```ts
    import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';

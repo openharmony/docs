@@ -137,7 +137,7 @@ off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): v
 | ------- | -------- |
 | 16300002 | Input error. The specified mission listener does not exist. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -240,7 +240,7 @@ off(type: 'mission', listenerId: number): Promise&lt;void&gt;
 | ------- | -------- |
 | 16300002 | Input error. The specified mission listener does not exist. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -683,7 +683,7 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 | ------- | -------- |
 | 16300001 | Mission not found. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -734,7 +734,7 @@ lockMission(missionId: number): Promise&lt;void&gt;
 | ------- | -------- |
 | 16300001 | Mission not found. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 ```ts
@@ -778,7 +778,7 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 | ------- | -------- |
 | 16300001 | Mission not found. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 ```ts
@@ -828,7 +828,7 @@ unlockMission(missionId: number): Promise&lt;void&gt;
 | ------- | -------- |
 | 16300001 | Mission not found. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1025,7 +1025,7 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 | ------- | -------- |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1072,7 +1072,7 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
 | ------- | -------- |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1124,7 +1124,7 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
 | ------- | -------- |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1165,7 +1165,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, callback: AsyncCallbac
 
 **错误码**：
 
-以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+以下错误码的详细介绍请参见[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -1232,7 +1232,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission: number, ca
 
 **错误码**：
 
-以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+以下错误码的详细介绍请参见[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -1304,7 +1304,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): 
 
 **错误码**：
 
-以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+以下错误码的详细介绍请参见[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -1366,7 +1366,7 @@ moveMissionsToBackground(missionIds: Array&lt;number&gt;, callback: AsyncCallbac
 
 **错误码**：
 
-以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+以下错误码的详细介绍请参见[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -1433,7 +1433,7 @@ moveMissionsToBackground(missionIds : Array&lt;number&gt;): Promise&lt;Array&lt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+以下错误码的详细介绍请参见[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
