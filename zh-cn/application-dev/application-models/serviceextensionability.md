@@ -18,6 +18,8 @@
 
 - Service一旦通过start的方式被拉起，将不会自动退出，系统应用可以调用[stopServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability)方法将Service退出。
 
+- 只能在主线程线程中执行connect/disconnect操作，不要在Worker、TaskPool等子线程中执行connect/disconnect操作。
+
 > **说明：**
 >
 > 1. 当前不支持三方应用实现ServiceExtensionAbility。如果三方开发者想要实现后台处理相关事务的功能，可以使用后台任务，具体请参见[后台任务](../task-management/background-task-overview.md)。
