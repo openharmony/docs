@@ -35,8 +35,8 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | Invalid input parameter |
-| 100001   | Internal error |
+| 401      | if the parameters checking failed. |
+| 100001   | if some internal handling failed. |
 
 **示例：**
 
@@ -117,8 +117,8 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&l
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | Invalid input parameter |
-| 100001   | Internal error |
+| 401      | if the parameters checking failed. |
+| 100001   | if some internal handling failed. |
 
 **示例：**
 
