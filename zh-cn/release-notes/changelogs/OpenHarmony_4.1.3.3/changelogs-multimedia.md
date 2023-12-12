@@ -12,7 +12,7 @@ audioRender和audioCapturer回调接口,为了更准确反馈当前流的发声/
 
 **变更影响**
 
-该变更为非兼容性变更，可能影响三方应用的兼容性。
+非播放/录音状态时，AudAudioRendererChangeInfo.deviceDescriptors和AudAudioRendererChangeInfo.deviceDescriptors为空设备。
 
 **变更发生版本**
 
@@ -26,7 +26,7 @@ on(type: 'audioRendererChange', callback: Callback<AudioRendererChangeInfoArray>
 
 on(type: 'audioCapturerChange', callback: Callback<AudioCapturerChangeInfoArray>): void;
 
-非播放/录音状态时，AudAudioRendererChangeInfo.deviceDescriptors和AudAudioRendererChangeInfo.deviceDescriptors为上一次播放/录音的设备；
+非播放/录音状态时，AudAudioRendererChangeInfo.deviceDescriptors和AudAudioRendererChangeInfo.deviceDescriptors为上一次播放/录音的设备。
 
 变更后：
 
@@ -34,7 +34,7 @@ on(type: 'audioRendererChange', callback: Callback<AudioRendererChangeInfoArray>
 
 on(type: 'audioCapturerChange', callback: Callback<AudioCapturerChangeInfoArray>): void;
 
-非播放/录音状态时，AudAudioRendererChangeInfo.deviceDescriptors和AudAudioRendererChangeInfo.deviceDescriptors为空设备；
+非播放/录音状态时，AudAudioRendererChangeInfo.deviceDescriptors和AudAudioRendererChangeInfo.deviceDescriptors为空设备。
 
 **适配指导**
 
