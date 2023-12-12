@@ -4,6 +4,7 @@
 - [HDF Driver Development](driver-hdf-manage.md)
 - Developing Platform Drivers
   - [ADC](driver-platform-adc-develop.md)
+  - [CLOCK](driver-platform-clock-develop.md)
   - [DAC](driver-platform-dac-develop.md)
   - [GPIO](driver-platform-gpio-develop.md)
   - [HDMI](driver-platform-hdmi-develop.md)
@@ -22,6 +23,7 @@
   - [Watchdog](driver-platform-watchdog-develop.md)
 - Using Platform Drivers
   - [ADC](driver-platform-adc-des.md)
+  - [CLOCK](driver-platform-clock-des.md)
   - [DAC](driver-platform-dac-des.md)
   - [GPIO](driver-platform-gpio-des.md)
   - [HDMI](driver-platform-hdmi-des.md)
