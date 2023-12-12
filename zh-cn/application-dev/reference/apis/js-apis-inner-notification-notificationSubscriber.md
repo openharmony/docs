@@ -440,7 +440,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## onBatchCancel<sup>11+</sup>
 
- onBatchCancel?:(data: Array<[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)>) => void
+ onBatchCancel?:(data: Array\<[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)\>) => void
 
 批量删除的回调函数。
 
@@ -452,7 +452,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 | 参数名   | 类型                                                         | 必填 | 说明                       |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| onBatchCancel | (data: Array<[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)>) => void | 是   | 批量删除的通知信息。 |
+| onBatchCancel | (data: Array\<[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)\>) => void | 是   | 批量删除的通知信息。 |
 
 **示例：**
 
