@@ -7643,7 +7643,7 @@ isObjectDead(): boolean
 
 ## MessageOption
 
-公共消息选项，使用标志中指定的标志构造指定的MessageOption对象。
+公共消息选项，使用指定的标志类型，构造指定的MessageOption对象。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
