@@ -659,7 +659,7 @@ try {
 | -------------------------------- | ------------------------------ |
 | [VibrateTime](#vibratetime9)<sup>9+</sup> | 按照指定持续时间触发马达振动。 |
 | [VibratePreset](#vibratepreset9)<sup>9+</sup> | 按照预置振动类型触发马达振动。 |
-| [VibrateFromFile<sup>10+</sup>](#vibratefromfile10) | 按照自定义振动配置文件触发马达振动。 |
+| [VibrateFromFile](#vibratefromfile10)<sup>10+</sup> | 按照自定义振动配置文件触发马达振动。 |
 
 ## VibrateTime<sup>9+</sup>
 
@@ -693,7 +693,7 @@ try {
 | 名称     | 类型       | 必填 | 说明                           |
 | -------- | --------  | ---- | ------------------------------ |
 | type     | string    |  是  | 值为"file"，按照振动配置文件触发马达振动。 |
-| hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10) | 是 | 振动配置文件的描述符。|
+| hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10)<sup>10+</sup> | 是 | 振动配置文件的描述符。|
 
 ## HapticFileDescriptor<sup>10+</sup>
 
@@ -742,7 +742,7 @@ vibrate(duration: number): Promise&lt;void&gt;
 
 按照指定持续时间触发马达振动。
 
-从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9-1) <sup>(deprecated)</sup>代替。
+从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9-1) <sup>9+</sup>代替。
 
 **需要权限**：ohos.permission.VIBRATE
 
