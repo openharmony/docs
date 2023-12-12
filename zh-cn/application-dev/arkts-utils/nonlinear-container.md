@@ -104,7 +104,7 @@ TreeSet进行增、删、改、查操作的常用API如下：
 
 | 操作 | 描述 |
 | -------- | ------ |
-| 增加元素 | 通过add(value: T)函数每次在HashSet增加一个值。 |
+| 增加元素 | 通过add(value: T)函数每次在TreeSet增加一个值。 |
 | 访问元素 | 通过values()返回一个迭代器对象，包含set中的所有value值。 |
 | 访问元素 | 通过entries()返回一个迭代器对象，包含类似键值对的数组，键值都是value。 |
 | 访问元素 | 通过getFirstValue()获取set中排在首位的value值。 |
