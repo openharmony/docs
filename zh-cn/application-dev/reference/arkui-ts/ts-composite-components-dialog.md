@@ -72,7 +72,7 @@ SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: 
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | 选择弹出框标题。 | 
 | content | [ResourceStr](ts-types.md#resourcestr) | 否 | 选择弹出框内容。 | 
 | selectedIndex | number | 否 | 选择弹出框的选中项。<br/>默认值：-1。 | 
-| confirm | boolean | 否 | 确认按钮。 | 
+| confirm | [ButtonOptions](#buttonoptions) | 否 | 确认按钮。 | 
 | radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md)&gt; | 否 | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。 | 
 
 
