@@ -84,7 +84,7 @@ ble.stopAdvertising();
 console.info('stopAdvertising success');
 ```
 7. 错误码请参见[蓝牙服务子系统错误码](../../reference/errorcodes/errorcode-bluetoothManager.md)。
-8. 如何验证：执行开启广播的用例代码，提示“startAdvertising success”，并且使用另外一部手机安装nrfConnect软件开启扫描，如果扫描到该广播，广播内容“Manufacturer data的值为:0x01020304，Service Data的值为:0x05060708”，表示开启广播成功。关闭广播后，扫描不到有该内容的广播。
+8. 如何验证：执行开启广播的用例代码，记录日志“startAdvertising success”，并且使用另外一部手机安装nrfConnect软件开启扫描，如果扫描到该广播，广播内容“Manufacturer data的值为:0x01020304，Service Data的值为:0x05060708”，表示开启广播成功。关闭广播后，扫描不到该内容的广播。
 
 ### 开启、关闭扫描
 1. import需要的ble模块。
