@@ -36,7 +36,9 @@ struct HelloComponent {
   }
 }
 ```
-
+> **注意：**
+>
+> 如果在另外的文件中引用该自定义组件，需要使用export关键字导出，并在使用的页面import该自定义组件。
 
 HelloComponent可以在其他自定义组件中的build()函数中多次创建，实现自定义组件的重用。
 
