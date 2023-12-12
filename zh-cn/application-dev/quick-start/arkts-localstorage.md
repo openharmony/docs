@@ -275,7 +275,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 ```ts
 // 构造LocalStorage实例
 let storage = new LocalStorage({ 'PropA': 47 });
-// 调用link9+接口构造'PropA'的双向同步数据，linkToPropA 是全局变量
+// 调用link（api9以上）接口构造'PropA'的双向同步数据，linkToPropA 是全局变量
 let linkToPropA = storage.link('PropA');
 
 @Entry(storage)
