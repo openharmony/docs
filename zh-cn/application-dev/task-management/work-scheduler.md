@@ -211,7 +211,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    }
    ```
 
-## IDE调试
+## 调试补充说明
 
 在IDE调试时，WorkSchedulerExeAbility可以通过[startWork](../reference/apis/js-apis-resourceschedule-workScheduler.md#workschedulerstartwork)向系统提交指定的任务，系统在执行提交的任务时，首先会检查该应用前一次提交的任务是否已执行完成；若之前任务处于执行状态，则新提交的任务需等待前一个任务执行完后，才被执行。若需要系统立即执行新提交的任务，在提交任务前可调用[stopWork](../reference/apis/js-apis-resourceschedule-workScheduler.md#workschedulerstopwork)或[stopAndClearWorks](../reference/apis/js-apis-resourceschedule-workScheduler.md#workschedulerstopandclearworks)方法停止前一次任务。
 
