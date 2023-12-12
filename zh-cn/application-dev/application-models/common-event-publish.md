@@ -21,7 +21,7 @@
 
 ## 发布不携带信息的公共事件
 
-不携带信息的公共事件，只能发布无序公共事件。
+不携带信息的公共事件，只能发布无序公共事件。以发布自定义事件"custom_event"为例：
 
 1. 导入模块。
    
@@ -33,7 +33,7 @@
    
    ```ts
    // 发布公共事件
-   commonEventManager.publish("usual.event.SCREEN_OFF", (err) => {
+   commonEventManager.publish("custom_event", (err) => {
        if (err) {
            console.error(`[CommonEvent] PublishCallBack err=${JSON.stringify(err)}`);
        } else {
@@ -67,7 +67,7 @@
    
    ```ts
    // 发布公共事件
-   commonEventManager.publish("usual.event.SCREEN_OFF", options, (err) => {
+   commonEventManager.publish("custom_event", options, (err) => {
        if (err) {
            console.error('[CommonEvent] PublishCallBack err=' + JSON.stringify(err));
        } else {
