@@ -265,7 +265,7 @@
 
 ### 订阅空间音频渲染效果的开关状态变化事件
 
-系统应用开发者可以通过[on('spatializationEnabledChange')](../reference/apis/js-apis-audio.md#on('spatializationenabledchange')11)接口订阅空间音频渲染效果的开关状态变化事件，回调为true为空间音频渲染被开启，false为空间音频渲染被关闭。当开发者通过setSpatializationEnabled()接口成功地改变了空间音频渲染的开关状态时，回调将被触发。
+系统应用开发者可以通过[on('spatializationEnabledChange')](../reference/apis/js-apis-audio.md#onspatializationenabledchange11)接口订阅空间音频渲染效果的开关状态变化事件，回调为true为空间音频渲染被开启，false为空间音频渲染被关闭。当开发者通过setSpatializationEnabled()接口成功地改变了空间音频渲染的开关状态时，回调将被触发。
 
   ```ts
   import audio from '@ohos.multimedia.audio';
@@ -277,7 +277,7 @@
 
 ### 取消订阅空间音频渲染效果的开关状态变化事件
 
-系统应用开发者可以通过[off('spatializationEnabledChange')](../reference/apis/js-apis-audio.md#off('spatializationenabledchange')11)接口取消订阅空间音频渲染效果的开关状态变化事件。
+系统应用开发者可以通过[off('spatializationEnabledChange')](../reference/apis/js-apis-audio.md#offspatializationenabledchange11)接口取消订阅空间音频渲染效果的开关状态变化事件。
 
   ```ts
   import audio from '@ohos.multimedia.audio';
@@ -320,7 +320,7 @@
 
 ### 订阅头动跟踪效果的开关状态变化事件
 
-系统应用开发者可以通过[on('headTrackingEnabledChange')](../reference/apis/js-apis-audio.md#on('headtrackingenabledchange')11)接口订阅头动跟踪效果的开关状态变化事件，回调为true为头动跟踪被开启，false为头动跟踪被关闭。当开发者通过setHeadTrackingEnabled()接口成功地改变了头动跟踪的开关状态时，回调将被触发。
+系统应用开发者可以通过[on('headTrackingEnabledChange')](../reference/apis/js-apis-audio.md#onheadtrackingenabledchange11)接口订阅头动跟踪效果的开关状态变化事件，回调为true为头动跟踪被开启，false为头动跟踪被关闭。当开发者通过setHeadTrackingEnabled()接口成功地改变了头动跟踪的开关状态时，回调将被触发。
 
   ```ts
   import audio from '@ohos.multimedia.audio';
@@ -332,7 +332,7 @@
 
 ### 取消订阅头动跟踪效果的开关状态变化事件
 
-系统应用开发者可以通过[off('headTrackingEnabledChange')](../reference/apis/js-apis-audio.md#off('headtrackingenabledchange')11)接口取消订阅头动跟踪效果的开关状态变化事件。
+系统应用开发者可以通过[off('headTrackingEnabledChange')](../reference/apis/js-apis-audio.md#offheadtrackingenabledchange11)接口取消订阅头动跟踪效果的开关状态变化事件。
 
   ```ts
   import audio from '@ohos.multimedia.audio';
