@@ -17,6 +17,7 @@
 | size           | {<br/>width?:&nbsp;[Length](ts-types.md#length),<br/>height?:&nbsp;[Length](ts-types.md#length)<br/>} | 设置高宽尺寸。<br/>单位：vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | padding        | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 设置内边距属性。<br/>参数为Length类型时，四个方向内边距同时生效。<br>默认值：0 <br>单位：vp<br/>padding设置百分比时，上下左右内边距均以父容器的width作为基础值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | margin         | [Margin](ts-types.md#margin)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 设置外边距属性。<br/>参数为Length类型时，四个方向外边距同时生效。<br>默认值：0 <br>单位：vp<br/>margin设置百分比时，上下左右外边距均以父容器的width作为基础值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| layoutWeight   | number&nbsp;\|&nbsp;string                                   | 父容器尺寸确定时，设置了layoutWeight属性的子元素与兄弟元素占主轴尺寸按照权重进行分配，忽略元素本身尺寸设置，表示自适应占满剩余空间。<br/>默认值：0<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>仅在Row/Column/Flex布局中生效。<br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
 | constraintSize | {<br/>minWidth?:&nbsp;[Length](ts-types.md#length),<br/>maxWidth?:&nbsp;[Length](ts-types.md#length),<br/>minHeight?:&nbsp;[Length](ts-types.md#length),<br/>maxHeight?:&nbsp;[Length](ts-types.md#length)<br/>} | 设置约束尺寸，组件布局时，进行尺寸范围限制。constraintSize的优先级高于Width和Height。若设置的minWidth大于maxWidth，则minWidth生效，minHeight与maxHeight同理。<br>默认值：<br>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>}<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 

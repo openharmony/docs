@@ -62,7 +62,7 @@ listener.on('change', onPortrait);
 
 - screen and (round-screen: true) ：表示当设备屏幕是圆形时条件成立。
 
-- (max-height: 800) ：表示当高度小于等于800时条件成立。
+- (max-height: 800vp) ：表示当高度小于等于800时条件成立。
 
 - (height &lt;= 800) ：表示当高度小于等于800时条件成立。（媒体特性不确定具体值时推荐使用媒体逻辑范围操作符）
 

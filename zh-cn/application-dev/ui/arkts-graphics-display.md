@@ -67,7 +67,7 @@ Image支持加载存档图、多媒体像素图两种类型。
   调用方式：
 
   ```
-  Image($rawfile('snap'))
+  Image($rawfile('example1.png'))
   ```
 
 - 媒体库file://data/storage

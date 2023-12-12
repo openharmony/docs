@@ -361,7 +361,7 @@
 
 ### 子组件设置交叉轴对齐
 
-子组件的[alignSelf](../reference/arkui-ts/ts-universal-attributes-flex-layout.md)属性也可以设置子组件在父容器交叉轴的对齐格式，且会覆盖Flex布局容器中alignItems配置。如下例所示：
+子组件的[alignSelf](../reference/arkui-ts/ts-universal-attributes-flex-layout.md#属性)属性也可以设置子组件在父容器交叉轴的对齐格式，且会覆盖Flex布局容器中alignItems配置。如下例所示：
 
 
 
@@ -395,7 +395,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 
 ### 内容对齐
 
-可以通过[alignContent](../reference/arkui-ts/ts-container-flex.md)参数设置子组件各行在交叉轴剩余空间内的对齐方式，只在多行的flex布局中生效，可选值有：
+可以通过[alignContent](../reference/arkui-ts/ts-container-flex.md#接口)参数设置子组件各行在交叉轴剩余空间内的对齐方式，只在多行的flex布局中生效，可选值有：
 
 - FlexAlign.Start：子组件各行与交叉轴起点对齐。
 
@@ -561,12 +561,12 @@ Flex() {
       .width(100)
       .height(100)
       .backgroundColor(0xF5DEB3)
-  }.width(400).height(120).padding(10).backgroundColor(0xAFEEEE)
+  }.width(420).height(120).padding(10).backgroundColor(0xAFEEEE)
   ```
 
 ![zh-cn_image_0000001562700449](figures/zh-cn_image_0000001562700449.png)
 
-父容器宽度400vp，三个子组件原始宽度为100vp，总和300vp，剩余空间100vp根据flexGrow值的占比分配给子组件，未设置flexGrow的子组件不参与“瓜分”。
+父容器宽度420vp，三个子元素原始宽度为100vp，左右padding为20vp，总和320vp，剩余空间100vp根据flexGrow值的占比分配给子组件，未设置flexGrow的子组件不参与“瓜分”。
 
 第一个元素以及第二个元素以2:3分配剩下的100vp。第一个元素为100vp+100vp * 2/5=140vp，第二个元素为100vp+100vp * 3/5=160vp。
 
