@@ -1,7 +1,7 @@
 # 广播与扫描开发指导
 
 ## 简介
-BLE是Bluetooth Low Energy的缩写，意为“低功耗蓝牙”。它是一种能够在低功耗情况下进行通信的蓝牙技术。与传统蓝牙相比，BLE的功耗更低，适用于需要长时间运行的低功耗设备，如智能手表、健康监测设备、智能家居等。BLE还具有较高的安全性和较长的通信距离。
+广播与扫描，主要提供了蓝牙设备的开启广播、关闭广播、开启扫描、关闭扫描方法，通过广播和扫描发现对端蓝牙设备，实现低功耗的通信。
 
 ## 场景介绍
 主要场景有：
@@ -21,8 +21,6 @@ BLE是Bluetooth Low Energy的缩写，意为“低功耗蓝牙”。它是一种
 | stopBLEScan()                      | 停止BLE扫描流程。                                                                |
 | startAdvertising()                 | 开始发送BLE广播。                                                                |
 | stopAdvertising()                  | 停止发送BLE广播。                                                                |
-| enableAdvertising()                | 临时启动BLE广播。                                                                |
-| disableAdvertising()               | 临时关闭BLE广播。                                                                |
 | on(type: 'advertisingStateChange') | 订阅BLE广播状态。                                                                |
 | off(type: 'advertisingStateChange')| 取消订阅BLE广播状态。                                                            |
 | on(type: 'BLEDeviceFind')          | 订阅BLE设备发现上报事件。                                                        |
@@ -121,5 +119,5 @@ ble.on('BLEDeviceFind', (data) => {
 ble.stopBLEScan();
 console.info('stopBleScan success');
 ```
-6. 错误码请参见[蓝牙服务子系统错误码](../../reference/errorcodes/errorcode-bluetoothManager.md)。
-7. 如何验证：使用另外一部手机安装nrfConnect软件并且配置好广播，设备名称修改为“Jackistang”，开启广播。然后测试手机开启扫描，大概每隔0.5秒记录日志“BLE scan result =  = Jackistang”，则表示开启扫描成功。关闭扫描后，不会再有该记录日志产生。
+8. 错误码请参见[蓝牙服务子系统错误码](../../reference/errorcodes/errorcode-bluetoothManager.md)。
+9. 如何验证：使用另外一部手机安装nrfConnect软件并且配置好广播，设备名称修改为“Jackistang”，开启广播。然后测试手机开启扫描，大概每隔0.5秒记录日志“BLE scan result =  = Jackistang”，则表示开启扫描成功。关闭扫描后，不会再有该记录日志产生。
