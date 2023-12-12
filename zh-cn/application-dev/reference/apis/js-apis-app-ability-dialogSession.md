@@ -1,0 +1,216 @@
+# @ohos.app.ability.dialogSession (dialogSession)
+
+dialogSession模块用于支持系统应用弹框功能。
+
+> **说明：**
+>
+> - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块接口仅可在Stage模型下使用。
+> - 本模块接口为系统接口。
+
+## 导入模块
+
+```ts
+import dialogSession from '@ohos.app.ability.dialogSession';
+```
+
+## DialogAbilityInfo
+
+提供会话组件信息，包括包名、模块名、组件名等信息。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称 | 类型 | 只读 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| bundleName | string | 是 | 是 | 表示包名。 |
+| moduleName | string | 是 | 是 | 表示模块名。 |
+| abilityName | string | 是 | 是 | 表示组件名。 |
+| abilityIconId | number | 是 | 是 | 表示Ability图标ID。 |
+| abilityLabelId | number | 是 | 是 | 表示Ability标签ID。 |
+| bundleIconId | number | 是 | 是 | 表示Bundle图标ID。 |
+| bundleLabelId | number | 是 | 是 | 表示Bundle标签ID。 |
+
+## DialogSessionInfo
+
+提供会话信息，包括请求方信息、目标应用列表信息、其他参数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称 | 类型 | 只读 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| callerAbilityInfo | [DialogAbilityInfo](js-apis-app-ability-dialogSession.md#dialogabilityinfo)| 是 | 是 | 表示请求方组件信息。 |
+| targetAbilityInfos | Array\<[DialogAbilityInfo](js-apis-app-ability-dialogSession.md#dialogabilityinfo)\> | 是 | 是 | 表示目标应用列表信息。 |
+| parameters | Record<string, Object> | 是 | 否 | 表示其他参数。 |
+
+## getDialogSessionInfo
+
+getDialogSessionInfo(dialogSessionId: string): [DialogSessionInfo](js-apis-app-ability-dialogSession.md#dialogsessioninfo)
+
+根据dialogSessionId获取会话信息。
+
+**系统接口**：该接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | dialogSessionId | string | 是 | 用户请求会话ID。 |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | [DialogSessionInfo](js-apis-app-ability-dialogSession.md#dialogsessioninfo) | 同步返回会话信息。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000005 | The specified process does not have the permission. |
+| 16000006  | Cross-user operations are not allowed. |
+| 16000050  | Internal error. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import dialogSession from '@ohos.app.ability.dialogSession';
+import Want from '@ohos.app.ability.Want';
+
+// want由系统内部指定，dialogSessionId为内置参数
+let dialogSessionId: string = want?.parameters?.dialogSessionId;
+
+// 查询DialogSessionInfo
+let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
+```
+
+## sendDialogResult
+
+sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean, callback: AsyncCallback\<void\>): void
+
+发送用户请求。使用callback异步回调。
+
+**系统接口**：该接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | dialogSessionId | string | 是 | 用户请求会话ID。 |
+  | targetWant | Want | 是 | 用户请求目标。 |
+  | isAllowed | boolean | 是 | 用户请求结果。 |
+  | callback | AsyncCallback\<void\> | 是 | 回调函数。当发送用户请求成功，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000005 | The specified process does not have the permission. |
+| 16000006  | Cross-user operations are not allowed. |
+| 16000050  | Internal error. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import dialogSession from '@ohos.app.ability.dialogSession';
+import Want from '@ohos.app.ability.Want';
+
+// want由系统内部指定，dialogSessionId为内置参数
+let dialogSessionId: string = want?.parameters?.dialogSessionId;
+
+// 查询DialogSessionInfo
+let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
+
+let isAllow: Boolean = true;
+
+// isAllow为true时，用户请求结果targetWant为dialogSessionInfo.targetAbilityInfos之一
+let targetWant: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+
+try {
+  dialogSession.sendDialogResult(dialogSessionId, targetWant, isAllow, (err, data) => {
+    if (data) {
+      console.log(`sendDialogResult success, data: ${data}`);
+    } else {
+      console.error(`sendDialogResult error, errorCode: ${err.code}`);
+    }
+  });
+} catch (err) {
+  console.error(`sendDialogResult error, errorCode: ${err.code}`);
+}
+```
+
+## sendDialogResult
+
+sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean): Promise\<void\>
+
+发送用户请求。使用Promise异步回调。
+
+**系统接口**：该接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | dialogSessionId | string | 是 | 用户请求会话ID。 |
+  | targetWant | Want | 是 | 用户请求目标。 |
+  | isAllowed | boolean | 是 | 用户请求结果。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000005 | The specified process does not have the permission. |
+| 16000006  | Cross-user operations are not allowed. |
+| 16000050  | Internal error. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import dialogSession from '@ohos.app.ability.dialogSession';
+import Want from '@ohos.app.ability.Want';
+
+// want由系统内部指定，dialogSessionId为内置参数
+let dialogSessionId: string = want?.parameters?.dialogSessionId;
+
+// 查询DialogSessionInfo
+let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
+
+let isAllow: Boolean = true;
+
+// isAllow为true时，用户请求结果targetWant为dialogSessionInfo.targetAbilityInfos之一
+let targetWant: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+
+try {
+  dialogSession.sendDialogResult(dialogSessionId, targetWant, isAllow)
+    .then((data) => {
+      console.log(`startChildProcess success, pid: ${data}`);
+    }, (err: BusinessError) => {
+      console.error(`startChildProcess error, errorCode: ${err.code}`);
+    })
+} catch (err) {
+  console.error(`sendDialogResult error, errorCode: ${err.code}`);
+}
+```
