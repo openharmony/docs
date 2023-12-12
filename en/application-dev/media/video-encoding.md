@@ -1,4 +1,4 @@
-# Video Encoding
+# Video Encoding (C/C++)
 
 You can call the native APIs provided by the **VideoEncoder** module to encode a video, that is, to compress audio and video data into an audio and video stream.
 

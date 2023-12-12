@@ -1,4 +1,4 @@
-# Obtaining Video Thumbnails
+# Obtaining Video Thumbnails (ArkTS)
 
 You can use **AVImageGenerator** to obtain the thumbnail of a video at the specified time from the raw media asset.
 

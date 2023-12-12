@@ -17,7 +17,7 @@
 | srcDeviceId | string | 是    | 是    | 表示任务迁移源设备ID。 |
 | dstDeviceId | string | 是    | 是    | 表示任务迁移目标设备ID。 |
 | missionId | number | 是    | 是    | 表示任务ID。 |
-| wantParam | {[key: string]: any} | 是    | 是    | 表示扩展参数。 |
+| wantParam | Record<string, Object> | 是    | 是    | 表示扩展参数。 |
 
 **示例：**
 

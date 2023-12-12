@@ -1,12 +1,12 @@
-# Secondary Processing of Video Streams (Native)
+# Secondary Processing of Video Streams (C/C++)
 
 You can use the APIs in the **ImageReceiver** class to create a **VideoOutput** instance and obtain real-time data of the video stream for secondary processing. For example, you can add a filter algorithm to the preview stream.
 
 ## How to Develop
 
-Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
+Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
 
-1. Import the image module. The APIs provided by this module are used to obtain the surface ID and create a photo output stream.
+1. Import the image module. The APIs provided by this module are used to obtain the surface ID and create a video output stream.
      
    ```ts
    // Import the image module on the TS side.
@@ -15,7 +15,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 2. Obtain the surface ID.
    
-   Call **createImageReceiver()** of the image module to create an **ImageReceiver** instance, and use **getReceivingSurfaceId()** of the instance to obtain the surface ID, which is associated with the preview output stream to obtain the stream data.
+   Call **createImageReceiver()** of the image module to create an **ImageReceiver** instance, and use **getReceivingSurfaceId()** of the instance to obtain the surface ID, which is associated with the video output stream to process the stream data.
  
    ```ts
    async function getVideoSurfaceId(): Promise<string | undefined> {
