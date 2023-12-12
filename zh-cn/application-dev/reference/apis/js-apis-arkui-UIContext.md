@@ -641,6 +641,23 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 }
 ```
 
+### dragPreview<sup>11+</sup>
+
+dragPreview(value: CustomBuilder | DragItemInfo): void
+
+设置组件拖拽过程中的预览图。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ----- | ----- | ----- | ----- |
+| value | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是    | 组件拖拽过程中的预览图。<br/>默认值：空<br/>|
+
+**示例：**
+请参考[dragPreview用法示例](../arkui-ts/ts-universal-attributes-drag-drop.md#示例2)
+
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
