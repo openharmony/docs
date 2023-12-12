@@ -138,7 +138,7 @@ isBatteryConfigSupported(sceneName: string): boolean
 
 | 名称       | 值  | 说明              |
 | -------- | ---- | ----------------- |
-| NONE     | 0    | 表示连接充电器类型未知。      |
+| NONE     | 0    | 表示未获取到连接充电器类型。      |
 | AC       | 1    | 表示连接的充电器类型为交流充电器。 |
 | USB      | 2    | 表示连接的充电器类型为USB。   |
 | WIRELESS | 3    | 表示连接的充电器类型为无线充电器。 |
