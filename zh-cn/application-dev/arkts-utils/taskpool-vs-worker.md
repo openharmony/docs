@@ -19,7 +19,7 @@ TaskPool（任务池）和Worker的作用是为应用程序提供一个多线程
 | 方法调用 | 直接将方法传入调用。 | 在Worker线程中进行消息解析并调用对应方法。 |
 | 返回值 | 异步调用后默认返回。 | 主动发送消息，需在onmessage解析赋值。 |
 | 生命周期 | TaskPool自行管理生命周期，无需关心任务负载高低。 | 开发者自行管理Worker的数量及生命周期。 |
-| 任务池个数上限 | 自动管理，无需配置。 | 最多开启8个Worker。 |
+| 任务池个数上限 | 自动管理，无需配置。 | 同个进程下，最多支持同时开启8个Worker线程。 |
 | 任务执行时长上限 | 3分钟（不包含Promise和async/await异步调用的耗时，例如网络下载、文件读写等I/O任务的耗时）。 | 无限制。 |
 | 设置任务的优先级 | 支持配置任务优先级。 | 不支持。 |
 | 执行任务的取消 | 支持取消已经发起的任务。 | 不支持。 |
@@ -167,9 +167,7 @@ const worker2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.
 - Worker的创建和销毁耗费性能，建议开发者合理管理已创建的Worker并重复使用。Worker空闲时也会一直运行，因此当不需要Worker时，可以调用[terminate()](../reference/apis/js-apis-worker.md#terminate9)接口或[parentPort.close()](../reference/apis/js-apis-worker.md#close9)方法主动销毁Worker。若Worker处于已销毁或正在销毁等非运行状态时，调用其功能接口，会抛出相应的错误。
 
 
-- Worker存在数量限制，支持最多同时存在8个Worker。
-  - 在API version 8及之前的版本，当Worker数量超出限制时，会抛出“Too many workers, the number of workers exceeds the maximum.”错误。
-  - 从API version 9开始，当Worker数量超出限制时，会抛出“Worker initialization failure, the number of workers exceeds the maximum.”错误。
+- Worker存在数量限制，支持最多同时存在8个Worker。当Worker数量超出限制时，会抛出“Worker initialization failure, the number of workers exceeds the maximum.”错误。
 
 ## 多线程安全注意事项
 多线程安全是指多个线程同时访问或修改共享资源时，能够保证程序的正确性和可靠性。
