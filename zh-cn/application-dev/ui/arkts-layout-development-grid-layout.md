@@ -21,7 +21,7 @@
 
 ### 栅格系统断点
 
-栅格系统以设备的水平宽度（屏幕密度像素值，单位vp）作为断点依据，定义设备的宽度类型，形成了一套断点规则。开发者可根据需求在不同的断点区间实现不同的页面布局效果。
+栅格系统以设备的水平宽度（[屏幕密度像素值](../reference/arkui-ts/ts-pixel-units.md)，单位vp）作为断点依据，定义设备的宽度类型，形成了一套断点规则。开发者可根据需求在不同的断点区间实现不同的页面布局效果。
 
 栅格系统默认断点将设备宽度分为xs、sm、md、lg四类，尺寸范围如下：
 
@@ -103,7 +103,7 @@ GridRow中通过columns设置栅格布局的总列数。
 
 
   ```ts
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
+  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown, Color.Red, Color.Orange, Color.Yellow, Color.Green];
   ...
   GridRow() {
     ForEach(this.bgColors, (item, index) => {
