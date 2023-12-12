@@ -271,7 +271,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## onDoNotDisturbDateChange<sup>8+</sup>(deprecated)
 
-onDoNotDisturbDateChange?:(mode: notificationManager.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
+onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notification.md#donotdisturbdate)) => void
 
 免打扰时间选项发生变更时的回调函数。
 
@@ -287,13 +287,13 @@ onDoNotDisturbDateChange?:(mode: notificationManager.[DoNotDisturbDate](js-apis-
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| onDoNotDisturbDateChange | (mode: notificationManager.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void | 是 | 回调返回免打扰时间选项变更。 |
+| onDoNotDisturbDateChange | (mode: notification.[DoNotDisturbDate](js-apis-notification.md#donotdisturbdate)) => void | 是 | 回调返回免打扰时间选项变更。 |
 
 **示例：**
 
 ```ts
 import Base from '@ohos.base';
-import NotificationManager from '@ohos.notificationManager';
+import Notification from '@ohos.notification';
 
 let subscribeCallback = (err: Base.BusinessError) => {
   if (err) {
@@ -303,7 +303,7 @@ let subscribeCallback = (err: Base.BusinessError) => {
   }
 };
 
-let onDoNotDisturbDateChangeCallback = (mode: NotificationManager.DoNotDisturbDate) => {
+let onDoNotDisturbDateChangeCallback = (mode: Notification.DoNotDisturbDate) => {
   console.info('===> onDoNotDisturbDateChange:' + mode);
 }
 
@@ -437,6 +437,48 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
+
+## onBatchCancel<sup>11+</sup>
+
+ onBatchCancel?:(data: Array<[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)>) => void
+
+批量删除的回调函数。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                       |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| onBatchCancel | (data: Array<[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)>) => void | 是   | 批量删除的通知信息。 |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
+};
+
+let onBatchCancelCallBack = (data: Array<notificationSubscribe.SubscribeCallbackData>) => {
+  console.info('===> onBatchCancel in test');
+  let req = data[0].request;
+  console.info('===> onBatchCancel callback req.id:' + req.id);
+};
+
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onBatchCancel: onBatchCancelCallBack
+};
+
+notificationSubscribe.subscribe(subscriber, subscribeCallback);
+```
 ## SubscribeCallbackData
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification

@@ -3136,7 +3136,7 @@ notificationManager.requestEnableNotification().then(() => {
 });
 ```
 
-## notificationManager.requestEnableNotification<sup>11+<sup>
+## notificationManager.requestEnableNotification<sup>10+<sup>
 
 requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void
 
@@ -3187,7 +3187,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## notificationManager.requestEnableNotification<sup>11+<sup>
+## notificationManager.requestEnableNotification<sup>10+<sup>
 
 requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 
@@ -4598,7 +4598,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 | SERVICE_INFORMATION  | 2 | 服务类型。 |
 | CONTENT_INFORMATION  | 3 | 内容类型。 |
 | LIVE_VIEW<sup>11+</sup>            | 4 | 实况窗类型（仅对系统应用开放）。 |
-| CUSTOMER_SERVICE     | 5 | 客户服务类型。该类型用于用户与商家之间的客服消息，需由用户主动发起。  |
+| CUSTOMER_SERVICE<sup>11+</sup>     | 5 | 客户服务类型。该类型用于用户与商家之间的客服消息，需由用户主动发起。  |
 | OTHER_TYPES          | 0xFFFF | 其他类型。 |
 
 
