@@ -80,7 +80,7 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 \@StorageLink(key)是和AppStorage中key对应的属性建立双向数据同步：
 
-1. 本地修改发生，该修改会被回AppStorage中；
+1. 本地修改发生，该修改会被写回AppStorage中；
 
 2. AppStorage中的修改发生后，该修改会被同步到所有绑定AppStorage对应key的属性上，包括单向（\@StorageProp和通过Prop创建的单向绑定变量）、双向（\@StorageLink和通过Link创建的双向绑定变量）变量和其他实例（比如PersistentStorage）。
 
