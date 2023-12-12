@@ -110,7 +110,7 @@ clientDevice.getDeviceName((err: BusinessError, data: string) => {
 clientDevice.getServices((code, gattServices) => {
   let message = '';
   if (code != null) {
-    console.info('getServices error, errCode: ' + (code as BusinessError).code + ', errMessage: ' + (code as BusinessError).message);
+    console.error('getServices error, errCode: ' + (code as BusinessError).code + ', errMessage: ' + (code as BusinessError).message);
   } else {
     for (let i = 0; i < gattServices.length; i++) {
       message += 'serviceUuid is ' + gattServices[i].serviceUuid + '\n';
@@ -150,7 +150,7 @@ let bleCharacteristicDataIn = {
 };
 clientDevice.readCharacteristicValue(bleCharacteristicDataIn, (err, bleCharacteristicDataOut) => {
   if (err != null) {
-    console.info('readCharacteristicValue error, code = ' + err.code)
+    console.error('readCharacteristicValue error, code = ' + (err as BusinessError).code)
     return;
   }
   let message = 'characteristic value = ';
@@ -170,7 +170,7 @@ let descriptorIn = {
 };
 clientDevice.readDescriptorValue(descriptorIn, (err, descriptorOut) => {
   if (err != null) {
-    console.info('readDescriptorValue error, code: ' + err.code.toString())
+    console.error('readDescriptorValue error, code: ' + (err as BusinessError).code)
     return;
   }
   let message = 'descriptor value: ';

@@ -52,7 +52,7 @@ let sppOption: socket.SppOptions = {
 };
 socket.sppListen('server1', sppOption, (code, serverSocketID) => {
   if (code != null) {
-    console.info('sppListen error, code is ' + code.code);
+    console.error('sppListen error, code is ' + (code as BusinessError).code);
     return;
   } else {
     serverNumber = serverSocketID;
@@ -64,7 +64,7 @@ socket.sppListen('server1', sppOption, (code, serverSocketID) => {
 let clientNumber = -1;
 socket.sppAccept(serverNumber, (code, clientSocketID) => {
   if (code != null) {
-    console.info('sppAccept error, code is ' + code.code);
+    console.error('sppAccept error, code is ' + (code as BusinessError).code);
     return;
   } else {
     clientNumber = clientSocketID;
@@ -88,7 +88,7 @@ socket.on('sppRead', clientNumber, (dataBuffer: ArrayBuffer) => {
   if (data != null) {
     console.info('sppRead success, data = ' + JSON.stringify(data));
   } else {
-    console.info('sppRead error, data is null');
+    console.error('sppRead error, data is null');
   }
 });
 
@@ -98,7 +98,7 @@ socket.off('sppRead', clientNumber, (dataBuffer: ArrayBuffer) => {
   if (data != null) {
     console.info('offSppRead success, data = ' + JSON.stringify(data));
   } else {
-    console.info('offSppRead error, data is null');
+    console.error('offSppRead error, data is null');
   }
 });
 
@@ -133,7 +133,7 @@ socket.sppConnect(deviceId, {
   type: 0
 }, (code, socketID) => {
   if (code != null) {
-    console.info('sppConnect error, code = ' + code.code);
+    console.error('sppConnect error, code = ' + (code as BusinessError).code);
     return;
   }
   console.info('sppConnect success, socketId = ' + socketID);
