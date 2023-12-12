@@ -254,7 +254,7 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import { Configuration } from '@ohos.app.ability.Configuration';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onConfigurationUpdate(config: Configuration) {
+  onConfigurationUpdate(newConfig: Configuration) {
     // 仅当前formExtensionAbility存活时更新配置才会触发此生命周期。
     // 需要注意，formExtensionAbility创建后5秒内无操作将会被清理。
     console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);

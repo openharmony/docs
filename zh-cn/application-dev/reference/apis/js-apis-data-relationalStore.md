@@ -69,7 +69,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, (err: BusinessError, rdbStore
     console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`Get RdbStore successfully.`);
+  console.info('Get RdbStore successfully.');
 })
 ```
 
@@ -95,7 +95,7 @@ class EntryAbility extends UIAbility {
         console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
-      console.info(`Get RdbStore successfully.`);
+      console.info('Get RdbStore successfully.');
     })
   }
 }
@@ -152,7 +152,7 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
 
 relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
   store = rdbStore;
-  console.info(`Get RdbStore successfully.`)
+  console.info('Get RdbStore successfully.')
 }).catch((err: BusinessError) => {
   console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -176,7 +176,7 @@ class EntryAbility extends UIAbility {
 
     relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
       store = rdbStore;
-      console.info(`Get RdbStore successfully.`)
+      console.info('Get RdbStore successfully.')
     }).catch((err: BusinessError) => {
       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
@@ -228,7 +228,7 @@ relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
     return;
   }
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 })
 ```
 
@@ -249,7 +249,7 @@ class EntryAbility extends UIAbility {
         return;
       }
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     })
   }
 }
@@ -300,7 +300,7 @@ let context = getContext(this);
 
 relationalStore.deleteRdbStore(context, "RdbTest.db").then(()=>{
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -319,7 +319,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     relationalStore.deleteRdbStore(this.context, "RdbTest.db").then(()=>{
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
@@ -378,7 +378,7 @@ relationalStore.deleteRdbStore(context, STORE_CONFIG, (err: BusinessError) => {
     return;
   }
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 })
 ```
 
@@ -403,7 +403,7 @@ class EntryAbility extends UIAbility {
         return;
       }
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     })
   }
 }
@@ -462,7 +462,7 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
 
 relationalStore.deleteRdbStore(context, STORE_CONFIG).then(()=>{
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -485,7 +485,7 @@ class EntryAbility extends UIAbility {
     };
     relationalStore.deleteRdbStore(this.context, STORE_CONFIG).then(()=>{
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
@@ -497,15 +497,14 @@ class EntryAbility extends UIAbility {
 
 管理关系数据库配置。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
 | 名称        | 类型          | 必填 | 说明                                                      |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
-| name          | string        | 是   | 数据库文件名。                                            |
-| securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别                                        |
-| encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。 |
-| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。 |
-| customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。 |
+| name          | string        | 是   | 数据库文件名。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core   |
+| securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core|
+| encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| autoCleanDirtyData<sup>11+<sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## SecurityLevel
 
@@ -567,7 +566,7 @@ class EntryAbility extends UIAbility {
 
 ## ValueType
 
-用于表示允许的数据字段类型。
+用于表示允许的数据字段类型，接口参数具体类型根据其功能而定。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -634,6 +633,30 @@ class EntryAbility extends UIAbility {
 | SYNC_MODE_TIME_FIRST<sup>10+</sup>   | -   | 表示数据从修改时间较近的一端同步到修改时间较远的一端。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 | SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | -   | 表示数据从本地设备同步到云端。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
 | SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | -   | 表示数据从云端同步到本地设备。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
+
+## Origin<sup>11+</sup>
+
+表示数据来源。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+| 名称           | 值   | 说明                               |
+| -------------- | ---- | ---------------------------------- |
+| LOCAL       | -   | 表示本地数据。请使用枚举名称而非枚举值。      |
+| CLOUD       | -   | 表示云端同步的数据。请使用枚举名称而非枚举值。     |
+| REMOTE      | -   | 表示端端同步的数据。请使用枚举名称而非枚举值。 |
+
+## Field<sup>11+</sup>
+
+用于谓词查询条件的特殊字段。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+| 名称           | 值   | 说明                               |
+| -------------- | ---- | ---------------------------------- |
+| CURSOR_FIELD        | '#_cursor'     | 用于cursor查找的字段名。|
+| ORIGIN_FIELD        | '#_origin'     | 用于cursor查找时指定数据来源的字段名。    |
+| DELETED_FLAG_FIELD  | '#_deleted_flag' | 用于cursor查找的结果集返回时填充的字段，表示云端删除的数据同步到本地后数据未清理。<br>返回的结果集中，该字段对应的value为false表示数据未清理，true表示数据已清理。|
 
 ## SubscribeType
 
@@ -1233,7 +1256,7 @@ predicates.glob("NAME", "?h*g");
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-配置谓词以匹配数据表的field列中值在给定范围内的字段。
+配置谓词以匹配数据表的field列中值在给定范围内的字段（包含范围边界）。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1243,7 +1266,7 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | 是   | 数据库表中的列名。         |
 | low    | [ValueType](#valuetype) | 是   | 指示与谓词匹配的最小值。   |
-| high   | [ValueType](#valuetype) | 是   | 指示要与谓词匹配的最大值。 |
+| high   | [ValueType](#valuetype) | 是   | 指示与谓词匹配的最大值。 |
 
 **返回值**：
 
@@ -1262,7 +1285,7 @@ predicates.between("AGE", 10, 50);
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-配置谓词以匹配数据表的field列中值超出给定范围的字段。
+配置谓词以匹配数据表的field列中值超出给定范围的字段（不包含范围边界）。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3263,7 +3286,7 @@ if(store != undefined) {
       console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Delete table done.`);
+    console.info('Delete table done.');
   })
 }
 ```
@@ -3303,7 +3326,7 @@ if(store != undefined) {
       console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Delete table done.`);
+    console.info('Delete table done.');
   })
 }
 ```
@@ -3346,7 +3369,7 @@ import { BusinessError } from "@ohos.base";
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
 if(store != undefined) {
   (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE).then(() => {
-    console.info(`Delete table done.`);
+    console.info('Delete table done.');
   }).catch((err: BusinessError) => {
     console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3624,7 +3647,7 @@ if(store != undefined) {
       console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Backup success.`);
+    console.info('Backup success.');
   })
 }
 ```
@@ -3665,7 +3688,7 @@ import { BusinessError } from "@ohos.base";
 if(store != undefined) {
   let promiseBackup = (store as relationalStore.RdbStore).backup("dbBackup.db");
   promiseBackup.then(() => {
-    console.info(`Backup success.`);
+    console.info('Backup success.');
   }).catch((err: BusinessError) => {
     console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3704,7 +3727,7 @@ if(store != undefined) {
       console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Restore success.`);
+    console.info('Restore success.');
   })
 }
 ```
@@ -3745,7 +3768,7 @@ import { BusinessError } from "@ohos.base";
 if(store != undefined) {
   let promiseRestore = (store as relationalStore.RdbStore).restore("dbBackup.db");
   promiseRestore.then(() => {
-    console.info(`Restore success.`);
+    console.info('Restore success.');
   }).catch((err: BusinessError) => {
     console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3786,7 +3809,7 @@ if(store != undefined) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   })
 }
 ```
@@ -3828,7 +3851,7 @@ import { BusinessError } from "@ohos.base";
 
 if(store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"]).then(() => {
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   }).catch((err: BusinessError) => {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3871,7 +3894,7 @@ if(store != undefined) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   })
 }
 ```
@@ -3917,7 +3940,7 @@ if(store != undefined) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   })
 }
 ```
@@ -3964,7 +3987,7 @@ if(store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
     autoSync: true
   }).then(() => {
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   }).catch((err: BusinessError) => {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
   })
@@ -4147,7 +4170,7 @@ if(store != undefined) {
       console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Sync done.`);
+    console.info('Sync done.');
     for (let i = 0; i < result.length; i++) {
       console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
     }
@@ -4211,7 +4234,7 @@ let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
 if(store != undefined) {
   (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates).then((result: Object[][]) => {
-    console.info(`Sync done.`);
+    console.info('Sync done.');
     for (let i = 0; i < result.length; i++) {
       console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
     }
@@ -4795,6 +4818,123 @@ if(store != undefined) {
 }
 ```
 
+### cleanDirtyData<sup>11+</sup>
+
+cleanDirtyData(table: string, cursor: number, callback: AsyncCallback&lt;void&gt;): void
+
+清理云端删除的数据同步到本地后，未自动清理的，且数据的游标（cursor）小于指定游标的数据。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| table     | string                        | 是   | 表示当前数据库的表的名称。                             |
+| cursor    | number                        | 是   | 整数类型，表示数据游标，小于此游标的脏数据将被清理。     |
+| callback  | AsyncCallback&lt;void&gt;     | 是   | 指定的callback回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+if(store != undefined) {
+ (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100, (err) => {
+    if (err) {
+      console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('clean dirty data succeeded');
+  })
+}
+```
+
+### cleanDirtyData<sup>11+</sup>
+
+cleanDirtyData(table: string, callback: AsyncCallback&lt;void&gt;): void
+
+清理云端删除的数据同步到本地后，未自动清理的所有数据。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| table     | string                        | 是   | 表示当前数据库的表的名称。 |
+| callback  | AsyncCallback&lt;void&gt;     | 是   | 指定的callback回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cleanDirtyData('test_table', (err) => {
+    if (err) {
+      console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('clean dirty data succeeded');
+  })
+}
+```
+
+### cleanDirtyData<sup>11+</sup>
+
+cleanDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
+
+清理云端删除的数据同步到本地后，未自动清理的，且数据的游标（cursor）小于指定游标的数据。若无cursor参数，将全部清理。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| table     | string           | 是   | 表示当前数据库的表的名称。           |
+| cursor    | number           | 否   | 整数类型，表示数据游标，小于此游标的脏数据将被清理。当此参数不填时，清理当前表的所有脏数据。 |
+
+**返回值：**
+| 参数名    | 说明                                               |
+| -------- | ------------------------------------------------- |
+| Promise<void> | 无返回结果的Promise对象。        |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+if(store != undefined) {
+    (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100).then(() => {
+        console.info('clean dirty data  succeeded');
+    }).catch ((err: BusinessError) => {
+        console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
+    })
+}
+```
+
 ## ResultSet
 
 提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
@@ -4905,9 +5045,9 @@ getColumnName(columnIndex: number): string
 
 ```ts
 if(resultSet != undefined) {
-const id = (resultSet as relationalStore.ResultSet).getColumnName(0);
-const name = (resultSet as relationalStore.ResultSet).getColumnName(1);
-const age = (resultSet as relationalStore.ResultSet).getColumnName(2);
+  const id = (resultSet as relationalStore.ResultSet).getColumnName(0);
+  const name = (resultSet as relationalStore.ResultSet).getColumnName(1);
+  const age = (resultSet as relationalStore.ResultSet).getColumnName(2);
 }
 ```
 
@@ -4943,7 +5083,7 @@ goTo(offset:number): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goTo(1);
+  (resultSet as relationalStore.ResultSet).goTo(1);
 }
 ```
 
@@ -4979,7 +5119,7 @@ goToRow(position: number): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToRow(5);
+  (resultSet as relationalStore.ResultSet).goToRow(5);
 }
 ```
 
@@ -5010,7 +5150,7 @@ goToFirstRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToFirstRow();
+  (resultSet as relationalStore.ResultSet).goToFirstRow();
 }
 ```
 
@@ -5040,7 +5180,7 @@ goToLastRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToLastRow();
+  (resultSet as relationalStore.ResultSet).goToLastRow();
 }
 ```
 
@@ -5070,7 +5210,7 @@ goToNextRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToNextRow();
+  (resultSet as relationalStore.ResultSet).goToNextRow();
 }
 ```
 
@@ -5100,7 +5240,7 @@ goToPreviousRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToPreviousRow();
+  (resultSet as relationalStore.ResultSet).goToPreviousRow();
 }
 ```
 
@@ -5136,7 +5276,7 @@ getBlob(columnIndex: number): Uint8Array
 
 ```ts
 if(resultSet != undefined) {
-const codes = (resultSet as relationalStore.ResultSet).getBlob((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
+  const codes = (resultSet as relationalStore.ResultSet).getBlob((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
 }
 ```
 
@@ -5172,7 +5312,7 @@ getString(columnIndex: number): string
 
 ```ts
 if(resultSet != undefined) {
-const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
+  const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
 }
 ```
 
@@ -5208,7 +5348,7 @@ getLong(columnIndex: number): number
 
 ```ts
 if(resultSet != undefined) {
-const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
+  const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
  }
 ```
 
@@ -5244,7 +5384,7 @@ getDouble(columnIndex: number): number
 
 ```ts
 if(resultSet != undefined) {
-const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
+  const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
 }
 ```
 
@@ -5280,7 +5420,7 @@ getAsset(columnIndex: number): Asset
 
 ```ts
 if(resultSet != undefined) {
-const doc = (resultSet as relationalStore.ResultSet).getAsset((resultSet as relationalStore.ResultSet).getColumnIndex("DOC"));
+  const doc = (resultSet as relationalStore.ResultSet).getAsset((resultSet as relationalStore.ResultSet).getColumnIndex("DOC"));
 }
 ```
 
@@ -5316,7 +5456,7 @@ getAssets(columnIndex: number): Assets
 
 ```ts
 if(resultSet != undefined) {
-const docs = (resultSet as relationalStore.ResultSet).getAssets((resultSet as relationalStore.ResultSet).getColumnIndex("DOCS"));
+  const docs = (resultSet as relationalStore.ResultSet).getAssets((resultSet as relationalStore.ResultSet).getColumnIndex("DOCS"));
 }
 ```
 
@@ -5353,7 +5493,7 @@ isColumnNull(columnIndex: number): boolean
 
 ```ts
 if(resultSet != undefined) {
-const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
+  const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
 }
 ```
 
@@ -5369,7 +5509,7 @@ close(): void
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).close();
+  (resultSet as relationalStore.ResultSet).close();
 }
 ```
 

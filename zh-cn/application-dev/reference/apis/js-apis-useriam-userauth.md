@@ -57,7 +57,7 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 | 名称     | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
-| result   | number                         | 是   | 用户认证结果。若结果为成功返回0，若失败返回相应错误码，错误码详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)。 |
+| result   | number                         | 是   | 用户认证结果。若成功返回SUCCESS，若失败返回相应错误码，参见[UserAuthResultCode](#userauthresultcode9)。 |
 | token    | Uint8Array                     | 否   | 当认证结果为成功时，返回认证通过的令牌信息。                 |
 | authType | [UserAuthType](#userauthtype8) | 否   | 当认证结果为成功时，返回认证类型。                           |
 

@@ -28,6 +28,7 @@ OpenSL ES中提供了以下的接口，OpenHarmony当前仅实现了部分[接�
 - **OpenHarmony上支持的BufferQueue接口**：
   
   以下接口需引入&lt;OpenSLES_OpenHarmony.h&gt;使用。
+
   | 接口 | 说明 | 
   | -------- | -------- |
   | SLresult (\*Enqueue) (SLOHBufferQueueItf self, const void \*buffer, SLuint32 size) | 根据情况将buffer加到相应队列中。<br/>如果是播放操作，则将带有音频数据的buffer插入到filledBufferQ_队列中；如果是录音操作，则将录音使用后的空闲buffer插入到freeBufferQ_队列中。<br/>self：表示调用该函数的BufferQueue接口对象。<br/>buffer：播放时表示带有音频数据的buffer，录音时表示已存储完录音数据后的空闲buffer。<br/>size：表示buffer的大小。 | 
@@ -38,14 +39,20 @@ OpenSL ES中提供了以下的接口，OpenHarmony当前仅实现了部分[接�
 
 ## 完整示例
 
+### 在 CMake 脚本中链接动态库
+
+``` cmake
+target_link_libraries(sample PUBLIC libOpenSLES.so)
+```
+
 参考下列示例代码，完成音频录制。
 
 1. 添加头文件
-     
+
    ```c++
-   #include <OpenSLES.h>
-   #include <OpenSLES_OpenHarmony.h>
-   #include <OpenSLES_Platform.h>
+   #include "SLES/OpenSLES.h"
+   #include "SLES/OpenSLES_OpenHarmony.h"
+   #include "SLES/OpenSLES_Platform.h"
    ```
 
 2. 使用slCreateEngine接口创建引擎对象和实例化引擎对象engine。

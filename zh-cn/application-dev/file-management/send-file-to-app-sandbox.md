@@ -39,7 +39,7 @@ hdc file send ${待推送文件的本地路径} /data/app/el1/bundle/public/com.
 hdc shell ps -ef | grep com.ohos.example
 ```
 
-设置文件user_id、group_id命令如下：
+使用应用进程的user_id设置文件的user_id和group_id，命令如下：
 ```
 hdc shell chown ${user_id}:${user_id} ${文件路径}
 ```

@@ -1801,7 +1801,7 @@ setTouchpadRightClickType(type: RightClickType, callback: AsyncCallback\<void>):
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| type| RightClickType| 是    |type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。  |
+| type| [RightClickType](#rightclicktype10)| 是    |type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。  |
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
 **示例**：
@@ -1834,7 +1834,7 @@ setTouchpadRightClickType(type: RightClickType): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| type| RightClickType| 是    | type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。 |
+| type| [RightClickType](#rightclicktype10)| 是    | type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。 |
 
 **返回值**：
 
@@ -1868,7 +1868,7 @@ getTouchpadRightClickType(callback: AsyncCallback\<RightClickType>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<RightClickType> | 是    | 回调函数，异步返回触控板右键菜单类型。 |
+| callback | AsyncCallback\<[RightClickType](#rightclicktype10)> | 是    | 回调函数，异步返回触控板右键菜单类型。 |
 
 **示例**：
 
@@ -1896,7 +1896,7 @@ getTouchpadRightClickType(): Promise\<RightClickType>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise\<RightClickType > | Promise实例，异步返回触控板右键菜单类型。 |
+| Promise\<[RightClickType](#rightclicktype10)> | Promise实例，异步返回触控板右键菜单类型。 |
 
 **示例**：
 
@@ -2093,6 +2093,10 @@ setPointerColor(color: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置鼠标光标颜色，使用AsyncCallback异步方式返回结果。
 
+**说明**
+>
+> 设置和调试时，需连接外部设备，如鼠标、蓝牙等。
+
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
 **系统API**: 此接口为系统接口。
@@ -2125,6 +2129,10 @@ try {
 setPointerColor(color: number): Promise&lt;void&gt;
 
 设置鼠标光标颜色，使用Promise异步方式返回结果。
+
+**说明**
+>
+> 设置和调试时，需连接外部设备，如鼠标、蓝牙等。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -2159,6 +2167,10 @@ try {
 setPointerColorSync(color: number): void;
 
 设置鼠标光标颜色，使用同步方式进行设置。
+
+**说明**
+>
+> 设置和调试时，需连接外部设备，如鼠标、蓝牙等。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 

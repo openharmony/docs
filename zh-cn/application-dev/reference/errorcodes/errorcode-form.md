@@ -76,6 +76,24 @@ Failed to obtain configuration information.
 
 确认并验证卡片配置信息正确性。
 
+## 16500101 当前应用非系统应用
+
+**错误信息**
+
+The application is not a system application.
+
+**错误描述**
+
+当前应用非系统应用时，系统会报此错误码。
+
+**可能原因**
+
+当前应用非系统应用。
+
+**处理步骤**
+
+检查当前应用是否为系统应用。
+
 ## 16501000 内部错误
 
 **错误信息**

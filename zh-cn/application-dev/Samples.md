@@ -74,7 +74,7 @@
 
 #### Ability的启动模式
 
-本示例展示了在一个Stage模型中，实现standard、singleton、specified多种模式场景。
+本示例展示了在一个Stage模型中，实现multiton、singleton、specified多种模式场景。
 
 开发语言：ArkTS
 

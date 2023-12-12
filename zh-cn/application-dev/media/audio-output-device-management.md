@@ -8,7 +8,6 @@
 
 ```ts
 import audio from '@ohos.multimedia.audio';  // 导入audio模块
-
 import { BusinessError } from '@ohos.base'; // 导入BusinessError
 
 let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
@@ -67,6 +66,7 @@ audioRoutingManager.off('deviceChange');
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
     deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
     deviceType : audio.DeviceType.SPEAKER,
@@ -101,8 +101,9 @@ async function selectOutputDevice() {
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let rendererInfo: audio.AudioRendererInfo = {
-    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0,
 }
 
@@ -119,8 +120,9 @@ async function getPreferOutputDeviceForRendererInfo() {
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let rendererInfo: audio.AudioRendererInfo = {
-    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0,
 }
 

@@ -9,11 +9,11 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
 **表1** Native侧IPC接口
 
-| 类/接口 | 方法 | 功能说明 |
-| -------- | -------- | -------- |
-| IRemoteBroker | sptr&lt;IRemoteObject&gt; AsObject() | 返回通信对象。Stub端返回RemoteObject对象本身，Proxy端返回代理对象。 |
-| IRemoteStub | virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | 请求处理方法，派生类需要重写该方法用来处理Proxy的请求并返回结果。 |
-| IRemoteProxy | Remote()->SendRequest(code, data, reply, option)             | 消息发送方法，业务的Proxy类需要从IRemoteProxy类派生，该方法用来向对端发送消息。 |
+| 接口名                               | 描述                                                             |
+| ------------------------------------ | ---------------------------------------------------------------- |
+| sptr&lt;IRemoteObject&gt; AsObject() | 返回通信对象。Stub端返回RemoteObject对象本身，Proxy端返回代理对象。 |
+| virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | 请求处理方法，派生类需要重写该方法用来处理Proxy的请求并返回结果。 |
+| IRemoteProxy | Remote()->SendRequest(code, data, reply, option)  | 消息发送方法，业务的Proxy类需要从IRemoteProxy类派生，该方法用来向对端发送消息。 |
 
 
 ## 开发步骤
@@ -175,7 +175,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    sptr<TestAbilityProxy> proxy(new TestAbilityProxy(remoteObject)); // 直接构造具体Proxy
    ```
 
-### **JS侧开发步骤**
+### **ArkTS侧开发步骤**
 
 1. 添加依赖
 
@@ -299,7 +299,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
 3. 服务端处理客户端请求
 
-   服务端被绑定的Ability在onConnect方法里返回继承自rpc.RemoteObject的对象，该对象需要实现onRemoteMessageRequest方法，处理客户端的请求。
+   服务端被绑定的Ability在onConnect方法里返回继承自[rpc.RemoteObject](../reference/apis/js-apis-rpc.md#remoteobject)的对象，该对象需要实现[onRemoteMessageRequest](../reference/apis/js-apis-rpc.md#onremotemessagerequest9)方法，处理客户端的请求。
 
    ```ts
     import rpc from '@ohos.rpc';
@@ -322,7 +322,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
 4. 客户端处理服务端响应
 
-   客户端在onConnect回调里接收到代理对象，调用sendRequest方法发起请求，在期约（JavaScript期约：用于表示一个异步操作的最终完成或失败及其结果值）或者回调函数里接收结果。
+   客户端在onConnect回调里接收到代理对象，调用[sendMessageRequest](../reference/apis/js-apis-rpc.md#sendmessagerequest9-2)方法发起请求，在期约（用于表示一个异步操作的最终完成或失败及其结果值）或者回调函数里接收结果。
 
    ```ts
     import rpc from '@ohos.rpc';
