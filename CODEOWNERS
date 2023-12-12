@@ -250,7 +250,8 @@ zh-cn/application-dev/reference/apis/js-apis-dataAbilityHelper.md @feng-aiwen @g
 zh-cn/application-dev/reference/apis/js-apis-DataUriUtils.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
 zh-cn/application-dev/reference/apis/js-apis-deque.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-device-info.md @mupceet @zhang_yixin13 @handyohos @nan-xiansen
-zh-cn/application-dev/reference/apis/js-apis-device-manager.md @intermilano @RayShih @william-ligang @liuhonggang123
+zh-cn/application-dev/reference/apis/js-apis-device-manager.md @intermilano @RayShih @william-ligang @liuhonggang123 @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-distributedDeviceManager.md @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-deviceUsageStatistics.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-display.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis/js-apis-distributed-account.md @nianCode @zengyawen @JiDong-CS @murphy1984
