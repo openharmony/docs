@@ -56,7 +56,7 @@ Gauge(options:{value: number, min?: number, max?: number})
 
 | 名称      | 类型定义             | 描述                                                         |
 | --------- | -------------------- | ------------------------------------------------------------ |
-| ColorStop | [[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明),&nbsp;number] | 描述渐进色颜色断点类型，第一个参数为颜色值，若设置为非颜色类型，则置为黑色。第二个参数为颜色所占比重，若设置为负数或是非数值类型，则将比重置为0。 |
+| ColorStop | [[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明),&nbsp;number] | 描述渐进色颜色断点类型，第一个参数为颜色值，若设置为非颜色类型，则置为0xFFE84026。第二个参数为颜色所占比重，若设置为负数或是非数值类型，则将比重置为0。 |
 
 ## GuageShadowOptions<sup>11+</sup>对象说明
 | 名称          | 参数类型 | 必填 | 描述 |
