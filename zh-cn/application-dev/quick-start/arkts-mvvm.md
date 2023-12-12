@@ -277,7 +277,7 @@ ViewModel通常包含多个顶层数据源。\@State和\@Provide装饰的变量�
 ```ts
 @Component
 struct LinkLinkChild {
-  @Consume @Watch("testNumChange") testNum: number;
+  @Consume @Watch("testNumChange") testNum: number = 0;
 
   testNumChange(propName: string): void {
     console.log(`LinkLinkChild: testNum value ${this.testNum}`);
