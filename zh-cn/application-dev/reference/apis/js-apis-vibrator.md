@@ -779,7 +779,7 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 
 按照指定持续时间触发马达振动。
 
-从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9) <sup>(deprecated)</sup>代替。
+从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9) <sup>9+</sup>代替。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -814,7 +814,7 @@ vibrate(effectId: EffectId): Promise&lt;void&gt;
 
 按照预置振动效果触发马达振动。
 
-从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9-1) <sup>(deprecated)</sup>代替。
+从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9-1) <sup>9+</sup>代替。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -852,7 +852,7 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 
 按照指定振动效果触发马达振动。
 
-从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9) <sup>(deprecated)</sup>代替。
+从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9) <sup>9+</sup>代替。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -886,7 +886,7 @@ stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 按照指定模式停止马达的振动。
 
-从API version 9 开始不再维护，建议使用 [vibrator.stopVibration](#vibratorstopvibration9-1) 代替。
+从API version 9 开始不再维护，建议使用 [vibrator.stopVibration](#vibratorstopvibration9-1) <sup>9+</sup>代替。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -933,7 +933,7 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void
 
 按照指定模式停止马达的振动。
 
-从API version 9 开始不再维护，建议使用 [vibrator.stopVibration](#vibratorstopvibration9) <sup>(deprecated)</sup>代替。
+从API version 9 开始不再维护，建议使用 [vibrator.stopVibration](#vibratorstopvibration9) <sup>9+</sup>代替。
 
 **需要权限**：ohos.permission.VIBRATE
 
