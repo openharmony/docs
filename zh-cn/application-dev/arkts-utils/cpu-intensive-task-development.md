@@ -98,7 +98,7 @@ struct Index {
    ```js
    // 接收Worker子线程的结果
    workerInstance.onmessage = function(e) {
-     // data：主线程发送的信息
+     // data：Worker线程发送的信息
      let data = e.data;
      console.info('MyWorker.ts onmessage');
      // 在Worker线程中进行耗时操作
