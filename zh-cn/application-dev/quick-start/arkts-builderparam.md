@@ -116,7 +116,7 @@
   Text($$.label)
     .width(400)
     .height(50)
-    .backgroundColor(Color.Blue)
+    .backgroundColor(Color.Green)
 }
 
 @Component
