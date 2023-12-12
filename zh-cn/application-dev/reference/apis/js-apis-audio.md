@@ -6003,7 +6003,7 @@ audioSpatializationManager.setSpatializationEnabled(enable, (err: BusinessError)
 
 setSpatializationEnabled(enable: boolean): Promise&lt;void&gt;
 
-根据输入指令，开启/关闭空间音频渲染效果，使用promise方式异步返回结果。
+根据输入指令，开启/关闭空间音频渲染效果，使用Promise方式异步返回结果。
 
 **系统接口：** 该接口为系统接口
 
@@ -6086,7 +6086,7 @@ try {
 
 on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
 
-订阅空间音频渲染开关状态变化事件，使用callback方式返回结果。
+订阅空间音频渲染开关状态变化事件。
 
 **系统接口：** 该接口为系统接口
 
@@ -6123,7 +6123,7 @@ audioSpatializationManager.on('spatializationEnabledChange', (isSpatializationEn
 
 off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 
-取消订阅空间音频渲染开关状态变化事件，使用callback方式返回结果。
+取消订阅空间音频渲染开关状态变化事件。
 
 **系统接口：** 该接口为系统接口
 
@@ -6199,7 +6199,7 @@ audioSpatializationManager.setHeadTrackingEnabled(enable, (err: BusinessError) =
 
 setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 
-根据输入指令，开启/关闭头动跟踪效果，使用promise方式异步返回结果。
+根据输入指令，开启/关闭头动跟踪效果，使用Promise方式异步返回结果。
 
 **系统接口：** 该接口为系统接口
 
@@ -6282,7 +6282,7 @@ try {
 
 on(type: 'headTrackingEnabledChange', callback: Callback<boolean\>): void
 
-订阅头动跟踪开关状态变化事件，使用callback方式返回结果。
+订阅头动跟踪开关状态变化事件。
 
 **系统接口：** 该接口为系统接口
 
@@ -6319,7 +6319,7 @@ audioSpatializationManager.on('headTrackingEnabledChange', (isHeadTrackingEnable
 
 off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 
-取消订阅头动跟踪开关状态变化事件，使用callback方式返回结果。
+取消订阅头动跟踪开关状态变化事件。
 
 **系统接口：** 该接口为系统接口
 
@@ -6401,12 +6401,14 @@ try {
 
 **系统接口：** 该接口为系统接口
 
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
 | 名称                          | 类型                       | 可读 | 可写 | 说明       |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
-| address<sup>11+</sup>                    | string         | 是   | 是   | 空间化设备地址。 <br> 该接口为系统接口 <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
-| isSpatializationSupported<sup>11+</sup>  | boolean        | 是   | 是   | 空间化设备是否支持空间音频渲染。 <br> 该接口为系统接口 <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
-| isHeadTrackingSupported<sup>11+</sup>    | boolean        | 是   | 是   | 空间化设备是否支持头动跟踪。<br> 该接口为系统接口  <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
-| spatialDeviceType<sup>11+</sup>          | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | 是   | 是   | 空间化设备类型。 <br> 该接口为系统接口 <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
+| address<sup>11+</sup>                    | string         | 是   | 是   | 空间化设备地址。|
+| isSpatializationSupported<sup>11+</sup>  | boolean        | 是   | 是   | 空间化设备是否支持空间音频渲染。|
+| isHeadTrackingSupported<sup>11+</sup>    | boolean        | 是   | 是   | 空间化设备是否支持头动跟踪。|
+| spatialDeviceType<sup>11+</sup>          | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | 是   | 是   | 空间化设备类型。|
 
 **示例：**
 

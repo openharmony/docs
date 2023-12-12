@@ -122,11 +122,11 @@
   });
   ```
 
-## 空间音频管理
+## 空间音频管理（仅对系统应用开放）
 
 空间音频管理仅开放给系统级应用，主要包括空间音频相关状态（空间音频渲染的开启与关闭、头动跟踪的开启与关闭）的查询、设置与监听，空间音频相关能力（空间音频渲染能力、头动跟踪能力）的查询，以及空间化设备状态的更新。
 对于播放音频类的系统级应用，开发者可以查询空间音频渲染与头动跟踪的开关状态，以及系统/指定设备是否支持空间音频渲染与头动跟踪能力。
-对于空间音频控制类的系统级应用（比如空间音频UX等），开发者在查询上述状态和能力之外，还可以对空间音频渲染和头动跟踪的开关进行设置，以及更新空间化设备的状态，指明特定空间化设备是否支持空间音频渲染和头动跟踪能力。调用该类设置和更新接口时，需要申请设置空间音频的专有权限。
+对于空间音频控制类的系统级应用（比如空间音频UX等），开发者在查询上述状态和能力之外，还可以对空间音频渲染和头动跟踪的开关进行设置，以及更新空间化设备的状态，指明特定空间化设备是否支持空间音频渲染和头动跟踪能力。
 
 ### 获取音频流管理接口
 
@@ -140,7 +140,7 @@
 
 ### 查询系统是否支持空间音频渲染能力
 
-系统应用开发者可以通过该接口查询当前系统是否具有空间音频渲染的能力。
+系统应用开发者可以通过[isSpatializationSupported](../reference/apis/js-apis-audio.md#isspatializationsupported11)接口查询当前系统是否具有空间音频渲染的能力。
 
   ```ts
   import audio from '@ohos.multimedia.audio';
@@ -156,7 +156,7 @@
 
 ### 查询指定设备是否支持空间音频渲染能力
 
-系统应用开发者可以通过该接口查询指定设备是否具有空间音频渲染的能力，开发者需要使用AudioDeviceDescriptor作为入参来指定设备，建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../reference/apis/js-apis-audio.md#audiodevicedescriptor)。
+系统应用开发者可以通过[isSpatializationSupportedForDevice](../reference/apis/js-apis-audio.md#isspatializationsupportedfordevice11)接口查询指定设备是否具有空间音频渲染的能力，开发者需要使用AudioDeviceDescriptor作为入参来指定设备，建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../reference/apis/js-apis-audio.md#audiodevicedescriptor)。
 
   ```ts
   import audio from '@ohos.multimedia.audio';
@@ -186,7 +186,7 @@
 
 ### 查询系统是否支持头动跟踪能力
 
-系统应用开发者可以通过该接口查询当前系统是否具有头动跟踪的能力。
+系统应用开发者可以通过[isHeadTrackingSupported](../reference/apis/js-apis-audio.md#isheadtrackingsupported11)接口查询当前系统是否具有头动跟踪的能力。
 
   ```ts
   import audio from '@ohos.multimedia.audio';
@@ -202,7 +202,7 @@
 
 ### 查询指定设备是否支持头动跟踪能力
 
-系统应用开发者可以通过该接口查询指定设备是否具有头动跟踪的能力，开发者需要使用AudioDeviceDescriptor作为入参来指定设备，建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../reference/apis/js-apis-audio.md#audiodevicedescriptor)。
+系统应用开发者可以通过[isHeadTrackingSupportedForDevice](../reference/apis/js-apis-audio.md#isheadtrackingsupportedfordevice11)接口查询指定设备是否具有头动跟踪的能力，开发者需要使用AudioDeviceDescriptor作为入参来指定设备，建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../reference/apis/js-apis-audio.md#audiodevicedescriptor)。
 
   ```ts
   import audio from '@ohos.multimedia.audio';
@@ -232,7 +232,7 @@
 
 ### 开启/关闭空间音频渲染效果
 
-系统应用开发者可以通过该接口开启/关闭空间音频渲染的效果，入参为true时为开启空间音频渲染，入参为false时为关闭空间音频渲染。该接口仅供拥有设置空间音频的权限的系统级应用（比如空间音频UX）调用。在开启空间音频渲染时，需要先确保系统和当前发声设备都具有空间音频渲染的能力，同时，如果音频流的AudioEffectMode为EFFECT_NONE，则无论开关，都没有空间音频渲染效果。
+系统应用开发者可以通过[setSpatializationEnabled](../reference/apis/js-apis-audio.md#setspatializationenabled11)接口开启/关闭空间音频渲染的效果，入参为true时为开启空间音频渲染，入参为false时为关闭空间音频渲染。该接口仅供空间音频设置类的系统级应用（比如空间音频UX）调用。在开启空间音频渲染时，需要先确保系统和当前发声设备都具有空间音频渲染的能力，同时，如果音频流的AudioEffectMode为EFFECT_NONE，则无论开关，都没有空间音频渲染效果。
 
   ```ts
   import audio from '@ohos.multimedia.audio';
@@ -249,7 +249,7 @@
 
 ### 查询空间音频渲染效果的开关状态
 
-系统应用开发者可以通过该接口查询空间音频渲染效果的开关状态，返回true为空间音频渲染开启，false为空间音频渲染关闭。该接口将返回setSpatializationEnabled()接口中成功设置的值，默认为开启。该状态仅为开关状态，实际是否生效还需依赖系统和当前发声设备是否支持空间音频渲染，以及音频流的AudioEffectMode。
+系统应用开发者可以通过[isSpatializationEnabled](../reference/apis/js-apis-audio.md#isspatializationenabled11)接口查询空间音频渲染效果的开关状态，返回true为空间音频渲染开启，false为空间音频渲染关闭。该接口将返回setSpatializationEnabled()接口中成功设置的值，默认为开启。该状态仅为开关状态，实际是否生效还需依赖系统和当前发声设备是否支持空间音频渲染，以及音频流的AudioEffectMode。
 
   ```ts
   import audio from '@ohos.multimedia.audio';
@@ -265,7 +265,7 @@
 
 ### 订阅空间音频渲染效果的开关状态变化事件
 
-系统应用开发者可以通过该接口订阅空间音频渲染效果的开关状态变化事件，回调为true为空间音频渲染被开启，false为空间音频渲染被关闭。当开发者通过setSpatializationEnabled()接口成功地改变了空间音频渲染的开关状态时，回调将被触发。
+系统应用开发者可以通过[on('spatializationEnabledChange')](../reference/apis/js-apis-audio.md#on('spatializationenabledchange')11)接口订阅空间音频渲染效果的开关状态变化事件，回调为true为空间音频渲染被开启，false为空间音频渲染被关闭。当开发者通过setSpatializationEnabled()接口成功地改变了空间音频渲染的开关状态时，回调将被触发。
 
   ```ts
   import audio from '@ohos.multimedia.audio';
@@ -277,7 +277,7 @@
 
 ### 取消订阅空间音频渲染效果的开关状态变化事件
 
-系统应用开发者可以通过该接口取消订阅空间音频渲染效果的开关状态变化事件。
+系统应用开发者可以通过[off('spatializationEnabledChange')](../reference/apis/js-apis-audio.md#off('spatializationenabledchange')11)接口取消订阅空间音频渲染效果的开关状态变化事件。
 
   ```ts
   import audio from '@ohos.multimedia.audio';
@@ -287,7 +287,7 @@
 
 ### 开启/关闭头动跟踪效果
 
-系统应用开发者可以通过该接口开启/关闭头动跟踪的效果，入参为true时为开启头动跟踪，入参为false时为关闭头动跟踪。该接口仅供拥有设置空间音频的权限的系统级应用（比如空间音频UX）调用。在开启头动跟踪时，需要先确保系统和当前发声设备都具有头动跟踪的能力，同时，如果音频流的AudioEffectMode为EFFECT_NONE，则无论开关，都没有头动跟踪效果。
+系统应用开发者可以通过[setHeadTrackingEnabled](../reference/apis/js-apis-audio.md#setheadtrackingenabled11)接口开启/关闭头动跟踪的效果，入参为true时为开启头动跟踪，入参为false时为关闭头动跟踪。该接口仅供空间音频设置类的系统级应用（比如空间音频UX）调用。在开启头动跟踪时，需要先确保系统和当前发声设备都具有头动跟踪的能力，同时，如果音频流的AudioEffectMode为EFFECT_NONE，则无论开关，都没有头动跟踪效果。
 
   ```ts
   import audio from '@ohos.multimedia.audio';
@@ -304,7 +304,7 @@
 
 ### 查询头动跟踪效果的开关状态
 
-系统应用开发者可以通过该接口查询头动跟踪效果的开关状态，返回true为头动跟踪开启，false为头动跟踪关闭。该接口将返回setHeadTrackingEnabled()接口中成功设置的值，默认为关闭。该状态仅为开关状态，实际是否生效还需依赖系统和当前发声设备是否支持头动跟踪，以及音频流的AudioEffectMode。
+系统应用开发者可以通过[isHeadTrackingEnabled](../reference/apis/js-apis-audio.md#isheadtrackingenabled11)接口查询头动跟踪效果的开关状态，返回true为头动跟踪开启，false为头动跟踪关闭。该接口将返回setHeadTrackingEnabled()接口中成功设置的值，默认为关闭。该状态仅为开关状态，实际是否生效还需依赖系统和当前发声设备是否支持头动跟踪，以及音频流的AudioEffectMode。
 
   ```ts
   import audio from '@ohos.multimedia.audio';
@@ -320,7 +320,7 @@
 
 ### 订阅头动跟踪效果的开关状态变化事件
 
-系统应用开发者可以通过该接口订阅头动跟踪效果的开关状态变化事件，回调为true为头动跟踪被开启，false为头动跟踪被关闭。当开发者通过setHeadTrackingEnabled()接口成功地改变了头动跟踪的开关状态时，回调将被触发。
+系统应用开发者可以通过[on('headTrackingEnabledChange')](../reference/apis/js-apis-audio.md#on('headtrackingenabledchange')11)接口订阅头动跟踪效果的开关状态变化事件，回调为true为头动跟踪被开启，false为头动跟踪被关闭。当开发者通过setHeadTrackingEnabled()接口成功地改变了头动跟踪的开关状态时，回调将被触发。
 
   ```ts
   import audio from '@ohos.multimedia.audio';
@@ -332,7 +332,7 @@
 
 ### 取消订阅头动跟踪效果的开关状态变化事件
 
-系统应用开发者可以通过该接口取消订阅头动跟踪效果的开关状态变化事件。
+系统应用开发者可以通过[off('headTrackingEnabledChange')](../reference/apis/js-apis-audio.md#off('headtrackingenabledchange')11)接口取消订阅头动跟踪效果的开关状态变化事件。
 
   ```ts
   import audio from '@ohos.multimedia.audio';
@@ -342,7 +342,7 @@
 
 ### 更新空间化设备状态
 
-系统应用开发者可以通过该接口更新空间化设备状态，空间化设备状态包含设备的地址、是否具有空间音频渲染的能力、是否具有头动跟踪的能力和设备的形态类型。该接口仅供拥有设置空间音频的权限的系统级应用（比如空间音频UX）调用。空间化设备状态AudioSpatialDeviceState的具体信息可以参考[AudioSpatialDeviceState](../reference/apis/js-apis-audio.md#audiospatialdevicestate)。
+系统应用开发者可以通过[updateSpatialDeviceState](../reference/apis/js-apis-audio.md#updatespatialdevicestate11)接口更新空间化设备状态，空间化设备状态包含设备的地址、是否具有空间音频渲染的能力、是否具有头动跟踪的能力和设备的形态类型。该接口仅供空间音频设置类的系统级应用（比如空间音频UX）调用。空间化设备状态AudioSpatialDeviceState的具体信息可以参考[AudioSpatialDeviceState](../reference/apis/js-apis-audio.md#audiospatialdevicestate)。
 
   ```ts
   let spatialDeviceState: audio.AudioSpatialDeviceState = {
