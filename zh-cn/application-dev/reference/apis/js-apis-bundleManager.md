@@ -4408,17 +4408,18 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensio
 // 示例接口带userId参数查询
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 
 let extensionAbilityType = "form";
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
 
 try {
-    var data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityType, extensionFlags, userId)
+    let data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityType, extensionFlags, userId)
     hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
     hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed.');
@@ -4429,10 +4430,11 @@ try {
 // 示例接口不带userId参数查询
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
 
 let extensionAbilityType = "form";
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
