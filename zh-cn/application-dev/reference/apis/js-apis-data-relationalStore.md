@@ -712,6 +712,18 @@ class EntryAbility extends UIAbility {
 | DISTRIBUTED_DEVICE | -  | 表示在不同设备之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core               |
 | DISTRIBUTED_CLOUD  | -   | 表示在设备和云端之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 
+## Reference<sup>11+</sup>
+
+记录表之间通过表字段指定的关联关系。其中表a关联到表b，称a为b关联的子表，b为a关联的父表。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称       | 类型   | 必填 | 说明                                     |
+| ---------- | ------ | ---- | ---------------------------------------- |
+| sourceTable | string | 是   | 关联的子表。   |
+| targetTable | string | 是   | 关联的父表。   |
+| refFields   | {[src: string]: string} | 是   | 表示关联表的关联字段，可以指定多个字段。其中key为子表字段，value为父表字段。       |
+
 ## DistributedConfig<sup>10+</sup>
 
 记录表的分布式配置信息。
@@ -720,7 +732,8 @@ class EntryAbility extends UIAbility {
 
 | 名称     | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| autoSync | boolean | 是   | 该值为true时，表示该表支持自动同步和手动同步；该值为false时，表示该表只支持手动同步，不支持自动同步。 |
+| autoSync   | boolean | 是   | 该值为true时，表示该表支持自动同步和手动同步；该值为false时，表示该表只支持手动同步，不支持自动同步。 |
+| references | Array&lt;[Reference](#reference)&gt; | 否   | 设置表之间的关联关系，默认数据库表之间无关联关系。 |
 
 ## ConflictResolution<sup>10+</sup>
 
