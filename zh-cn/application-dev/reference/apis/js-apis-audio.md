@@ -396,6 +396,23 @@ async function createTonePlayerBefore(){
 | DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | 分布式输入设备。<br/>此接口为系统接口。    |
 | ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | 分布式输入和输出设备。<br/>此接口为系统接口。 |
 
+## DeviceUsage<sup>11+</sup>
+
+枚举，可获取的设备种类。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**系统接口：** 该接口为系统接口
+
+| 名称                            |  值     | 说明                        |
+| ------------------------------- | ------ |---------------------------|
+| MEDIA_OUTPUT_DEVICES<sup>11+</sup> | 1      | 媒体输出设备。|
+| MEDIA_INPUT_DEVICES<sup>11+</sup>  | 2      | 媒体输入设备。|
+| ALL_MEDIA_DEVICES<sup>11+</sup>    | 3      | 所有媒体设备。|
+| CALL_OUTPUT_DEVICES<sup>11+</sup>  | 4      | 通话输出设备。|
+| CALL_INPUT_DEVICES<sup>11+</sup>   | 8      | 通话输入设备。|
+| ALL_CALL_DEVICES<sup>11+</sup>     | 12     | 所有通话设备。|
+
 ## DeviceRole
 
 枚举，设备角色。
@@ -4743,6 +4760,118 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
 ```ts
 audioRoutingManager.off('deviceChange');
+```
+
+### getAvailableDevices<sup>11+</sup>
+
+getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors
+
+获取音频可选设备列表，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名     | 类型                      | 必填 | 说明             |
+| ---------- | ------------------------- | ---- | ---------------- |
+| deviceUsage| [DeviceUsage](#deviceusage) | 是   | 设备的usage。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                      |
+| ------------------------------------------------------------ | ------------------------- |
+| [AudioDeviceDescriptors](#audiodevicedescriptors) | 返回设备列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let data: audio.AudioDeviceDescriptors = audioRoutingManager.getAvailableDevices(audio.DeviceUsage.MEDIA_OUTPUT_DEVICES);
+  console.info(`Indicate that the device list is obtained ${data}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the device list. ${error}`);
+}
+```
+
+### on('availableDeviceChange')<sup>11+</sup>
+
+on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<DeviceChangeAction\>): void
+
+订阅音频可选设备连接变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'availableDeviceChange' |
+| deviceUsage | [DeviceUsage](#deviceusage)                       | 是   | 设备的usage。     |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error. |
+
+**示例：**
+
+```ts
+audioRoutingManager.on('availableDeviceChange', audio.DeviceUsage.MEDIA_OUTPUT_DEVICES, (deviceChanged: audio.DeviceChangeAction) => {
+  console.info('device change type : ' + deviceChanged.type);
+  console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);
+});
+```
+
+### off('availableDeviceChange')<sup>11+</sup>
+
+off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction\>): void
+
+取消订阅音频可选设备连接变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'availableDeviceChange' |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | 否   | 回调函数，返回可选设备更新详情。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error. |
+
+**示例：**
+
+```ts
+audioRoutingManager.off('availableDeviceChange');
 ```
 
 ### selectInputDevice<sup>9+</sup>
