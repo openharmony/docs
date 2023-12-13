@@ -580,6 +580,15 @@
 | MIDDLE | 中面积（稳定） | 弹簧动效， 刚性：350，阻尼：35，初始速度：0.5 | 95% |
 | HEAVY  | 大面积（厚重） | 弹簧动效， 刚性：240，阻尼：28，初始速度：0 | 95% |
 
+## FoldStatus<sup>11+</sup>
+
+| 名称                      | 描述         |
+| ----------------------  | ---------- |
+| FOLD_STATUS_UNKNOWN     | 表示设备当前折叠状态未知。 |
+| FOLD_STATUS_EXPANDED    | 表示设备当前折叠状态为完全展开。   |
+| FOLD_STATUS_FOLDED      | 表示设备当前折叠状态为折叠。   |
+| FOLD_STATUS_HALF_FOLDED | 表示设备当前折叠状态为半折叠。半折叠指完全展开和折叠之间的状态。|
+
 ## TextContentStyle<sup>10+</sup>
 
 | 名称    | 描述                                                         |

@@ -125,6 +125,7 @@
   - [EffectComponent](ts-container-effectcomponent.md)
   - [Flex](ts-container-flex.md)
   - [FlowItem](ts-container-flowitem.md)
+  - [FolderStack](ts-container-folderstack.md)
   - [FormLink](ts-container-formlink.md)
   - [GridCol](ts-container-gridcol.md)
   - [GridRow](ts-container-gridrow.md)
