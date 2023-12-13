@@ -197,3 +197,58 @@ off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback<InterruptA
 **适配指导**
 
 根据内置焦点模式实现多音频并发策略控制，参考[多音频播放的并发策略](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/audio-playback-concurrency.md)
+
+## c1.multimedia.6 ohos.multimedia.audio AudioRenderer接口write/AudioCapturer接口read废弃
+
+**访问级别**
+
+公开接口
+
+**废弃原因**
+
+AudioRenderer/AudioCapturer新增了writeData, readData订阅接口，通过回调请求方式，省去开发者自行管理数据处理时机的工作。
+并通过让系统管理数据请求时机，避免出现数据轮转时机不准确导致的underrun/overrun问题。
+
+**废弃影响**
+
+非兼容性变更，需要开发者进行适配。
+
+**废弃发生版本**
+
+从OpenHarmony SDK 4.1.5.3开始。
+
+**废弃的接口**
+
+接口属于AudioRenderer
+
+write(buffer: ArrayBuffer, callback: AsyncCallback<number>): void;
+
+write(buffer: ArrayBuffer): Promise<number>;
+
+接口属于AudioCapturer
+
+read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer>): void;
+
+read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer>;
+
+**适配指导**
+
+根据废弃接口提示，使用新接口即可。
+
+AudioRenderer新接口：
+
+on(type: 'writeData', callback: Callback<ArrayBuffer>): void;
+
+off(type: 'writeData', callback?: Callback<ArrayBuffer>): void;
+
+通过订阅方式，收到Callback时，应用需要填写播放数据到ArrayBuffer内，Callback结束后，系统会自动从ArrayBuffer内取走数据进行输出。
+
+AudioCapturer新接口：
+
+on(type: 'readData', callback: Callback<ArrayBuffer>): void;
+
+off(type: 'readData', callback?: Callback<ArrayBuffer>): void;
+
+通过订阅方式，收到Callback时，应用需要从ArrayBuffer内取出录音数据，Callback结束后，系统会把后续录音数据填入ArrayBuffer，准备触发下次回调。
+
+废弃接口会在至少5个SDK版本内保持兼容，请应用按需规划适配计划
