@@ -4519,7 +4519,7 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
 | 1600003  | Failed to connect service.          |
 | 1600012  | No memory space.                    |
 
-**示例:**
+**示例：**
 
 ```ts
 import Base from '@ohos.base';
