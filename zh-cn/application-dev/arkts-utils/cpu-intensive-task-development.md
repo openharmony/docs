@@ -96,7 +96,6 @@ struct Index {
     // 接收Worker子线程的结果
     workerInstance.onmessage = (() => {
      console.info('MyWorker.ts onmessage');
-     // 在Worker线程中进行耗时操作
     })
 
     workerInstance.onerror = (() => {
