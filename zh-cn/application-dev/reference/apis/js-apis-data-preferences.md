@@ -1897,7 +1897,7 @@ try {
 
 ### on('change')
 
-on(type: 'change', callback: ( key : string ) => void): void
+on(type: 'change', callback: Callback<string>): void
 
 订阅数据变更，订阅的Key的值发生变更后，在执行[flush](#flush)方法后，触发callback回调。
 
@@ -1947,7 +1947,7 @@ try {
 
 ### on('multiProcessChange')<sup>10+</sup>
 
-on(type: 'multiProcessChange', callback: ( key : string ) => void): void
+on(type: 'multiProcessChange', callback: Callback<string>): void
 
 订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程发生变更后，执行[flush](#flush)方法后，触发callback回调。
 
@@ -2075,7 +2075,7 @@ try {
 
 ### off('change')
 
-off(type: 'change', callback?: ( key : string ) => void): void
+off(type: 'change', callback?: Callback<string>): void
 
 取消订阅数据变更。
 
@@ -2129,7 +2129,7 @@ try {
 
 ### off('multiProcessChange')<sup>10+</sup>
 
-off(type: 'multiProcessChange', callback?: ( key : string ) => void): void
+off(type: 'multiProcessChange', callback?: Callback<string>): void
 
 取消订阅进程间数据变更。
 
