@@ -20,10 +20,10 @@ import hardwareManager from '@ohos.distributedHardware.hardwareManager';
 
 **系统能力**：SystemCapability.DistributedHardware.DistributedHardwareFWK
 
-| 名称         | 类型                                                | 必填 | 说明                                   |
-| ------------ | --------------------------------------------------- | ---- | -------------------------------------- |
-| type         | [DistributedHardwareType](#distributedhardwaretype) | 是   | 分布式硬件类型。                       |
-| srcNetworkId | string                                              | 否   | 表示源端设备，缺省时表示所有源端设备。 |
+| 名称         | 类型                                                | 必填 | 说明                                                         |
+| ------------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type         | [DistributedHardwareType](#distributedhardwaretype) | 是   | 分布式硬件类型。<br/>**需要权限**：ohos.permission.ACCESS_DISTRIBUTED_HARDWARE |
+| srcNetworkId | string                                              | 否   | 表示源端设备，缺省时表示所有源端设备。<br/>**需要权限**：ohos.permission.ACCESS_DISTRIBUTED_HARDWARE |
 
 ## DistributedHardwareType
 
@@ -54,43 +54,6 @@ import hardwareManager from '@ohos.distributedHardware.hardwareManager';
 
 ## hardwareManager.pauseDistributedHardware
 
-pauseDistributedHardware(description: HardwareDescriptor, callback: AsyncCallback<void>): void;
-
-暂停被控端分布式硬件业务。使用callback异步回调。
-
-**需要权限**：ohos.permission.ACCESS_DISTRIBUTED_HARDWARE
-
-**系统能力**：SystemCapability.DistributedHardware.DistributedHardwareFWK
-
-**参数：**
-
-| 参数名       | 类型                                      | 必填   | 说明        |
-| --------- | --------------------------------------- | ---- | --------- |
-| description | [HardwareDescriptor](#hardwaredescriptor) | 是    | 硬件描述信息。 |
-| callback  | AsyncCallback&lt;void&gt;               | 是    | 执行回调函数，方法执行成功时err为undefined，方法执行失败时为错误对象。 |
-
-**示例：**
-
-  ```ts
-  import hardwareManager from '@ohos.distributedHardware.hardwareManager'
-  import { BusinessError } from '@ohos.base';
-  
-  try {
-    let description: hardwareManager.HardwareDescriptor = {
-      type: hardwareManager.DistributedHardwareType.CAMERA
-    };
-    hardwareManager.pauseDistributedHardware(description, (error:BusinessError) => {
-      if (error.code) {
-        console.error('pauseDistributedHardware failed, cause: ' + JSON.stringify(error));
-      }
-      console.log('pause distributed hardware successfully');
-    })
-  } catch (error) {
-    console.error('pause distributed hardware failed: ' + JSON.stringify(error))
-  }
-  ```
-## hardwareManager.pauseDistributedHardware
-
 pauseDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
 
 暂停被控端分布式硬件业务。使用promise异步回调。
@@ -111,10 +74,17 @@ pauseDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                           |
+| -------- | -------------------------------------------------- |
+| 24200101 | The specified distributed hardware is not started. |
+| 24200102 | The specified source device is not connected.      |
+
 **示例：**
 
   ```ts
-  import hardwareManager from '@ohos.distributedHardware.hardwareManager'
+  import hardwareManager from '@ohos.distributedHardware.hardwareManager';
   import { BusinessError } from '@ohos.base';
   
   try {
@@ -129,44 +99,6 @@ pauseDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
   } catch (error) {
     console.error('pause distributed hardware failed: ' + JSON.stringify(error))
   }
-  ```
-
-## hardwareManager.resumeDistributedHardware
-
-resumeDistributedHardware(description: HardwareDescriptor, callback: AsyncCallback<void>): void;
-
-恢复被控端分布式硬件业务。使用callback异步回调。
-
-**需要权限**：ohos.permission.ACCESS_DISTRIBUTED_HARDWARE
-
-**系统能力**：SystemCapability.DistributedHardware.DistributedHardwareFWK
-
-**参数：**
-
-| 参数名      | 类型                                      | 必填 | 说明                                                         |
-| ----------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| description | [HardwareDescriptor](#hardwaredescriptor) | 是   | 硬件描述信息。                                               |
-| callback    | AsyncCallback&lt;void&gt;                 | 是   | 执行回调函数，方法执行成功时err为undefined，方法执行失败时为错误对象。 |
-
-**示例：**
-
-  ```ts
-import hardwareManager from '@ohos.distributedHardware.hardwareManager'
-import { BusinessError } from '@ohos.base';
-
-try {
-  let description: hardwareManager.HardwareDescriptor = {
-    type: hardwareManager.DistributedHardwareType.CAMERA
-  };
-  hardwareManager.resumeDistributedHardware(description, (error:BusinessError) => {
-    if (error.code) {
-      console.error('resumeDistributedHardware failed, cause: ' + JSON.stringify(error));
-    }
-    console.log('resume distributed hardware successfully');
-  })
-} catch (error) {
-  console.error('resume distributed hardware failed: ' + JSON.stringify(error));
-}
   ```
 
 ## hardwareManager.resumeDistributedHardware
@@ -191,10 +123,17 @@ resumeDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                           |
+| -------- | -------------------------------------------------- |
+| 24200101 | The specified distributed hardware is not started. |
+| 24200102 | The specified source device is not connected.      |
+
 **示例：**
 
   ```ts
-import hardwareManager from '@ohos.distributedHardware.hardwareManager'
+import hardwareManager from '@ohos.distributedHardware.hardwareManager';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -213,51 +152,13 @@ try {
 
 ## hardwareManager.stopDistributedHardware
 
-stopDistributedHardware(description: HardwareDescriptor, callback: AsyncCallback<void>): void;
-
-停止被控端分布式硬件业务。使用callback异步回调。
-
-**需要权限**：ohos.permission.ACCESS_DISTRIBUTED_HARDWARE
-
-**系统能力**：SystemCapability.DistributedHardware.hardwareManager
-
-**参数：**
-
-| 参数名      | 类型                                      | 必填 | 说明                                                         |
-| ----------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| description | [HardwareDescriptor](#hardwaredescriptor) | 是   | 硬件描述信息。                                               |
-| callback    | AsyncCallback&lt;void&gt;                 | 是   | 执行回调函数，方法执行成功时err为undefined，方法执行失败时为错误对象。 |
-
-**示例：**
-
-  ```ts
-import hardwareManager from '@ohos.distributedHardware.hardwareManager'
-import { BusinessError } from '@ohos.base';
-
-try {
-  let description: hardwareManager.HardwareDescriptor = {
-    type: hardwareManager.DistributedHardwareType.CAMERA
-  };
-  hardwareManager.stopDistributedHardware(description, (error:BusinessError) => {
-    if (error.code) {
-      console.error('stopDistributedHardware failed, cause: ' + JSON.stringify(error));
-    }
-    console.log('stop distributed hardware successfully');
-  })
-} catch (error) {
-  console.error('stop distributed hardware failed: ' + JSON.stringify(error));
-}
-  ```
-
-## hardwareManager.stopDistributedHardware
-
 stopDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
 
 停止被控端分布式硬件业务。使用promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_DISTRIBUTED_HARDWARE
 
-**系统能力**：SystemCapability.DistributedHardware.hardwareManager
+**系统能力**：SystemCapability.DistributedHardware.DistributedHardwareFWK
 
 **参数：**
 
@@ -271,10 +172,17 @@ stopDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                           |
+| -------- | -------------------------------------------------- |
+| 24200101 | The specified distributed hardware is not started. |
+| 24200102 | The specified source device is not connected.      |
+
 **示例：**
 
   ```ts
-import hardwareManager from '@ohos.distributedHardware.hardwareManager'
+import hardwareManager from '@ohos.distributedHardware.hardwareManager';
 import { BusinessError } from '@ohos.base';
 
 try {
