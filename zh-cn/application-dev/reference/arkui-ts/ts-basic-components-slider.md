@@ -39,7 +39,9 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | OutSet | 滑块在滑轨上。 |
 | InSet | 滑块在滑轨内。 |
 
-支持除触摸热区以外的通用属性设置。
+## 属性
+
+支持除触摸热区以外的[通用属性](ts-universal-attributes-size.md)。
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
