@@ -20,7 +20,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 | 参数名                           | 参数类型                                     | 必填   | 参数描述                                     |
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | builder                       | CustomDialog                             | 是    | 自定义弹窗内容构造器。                              |
-| cancel                        | ()&nbsp;=&gt;&nbsp;void                  | 否    | 点击遮障层退出时的回调。                             |
+| cancel                        | ()&nbsp;=&gt;&nbsp;void                  | 否    | 返回、ESC键和点击遮障层弹窗退出时的回调。 |
 | autoCancel                    | boolean                                  | 否    | 是否允许点击遮障层退出。<br>默认值：true                 |
 | alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否    | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
 | offset                        | [Offset](ts-types.md#offset)             | 否    | 弹窗相对alignment所在位置的偏移量。                   |
@@ -146,7 +146,7 @@ struct CustomDialogUser {
       textValue: $textValue,
       inputValue: $inputValue
     }),
-    cancel: this.existApp,
+    cancel: this.exitApp,
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -20 },
@@ -169,7 +169,7 @@ struct CustomDialogUser {
     console.info('Callback when the second button is clicked')
   }
 
-  existApp() {
+  exitApp() {
     console.info('Click the callback in the blank area')
   }
 
