@@ -4908,6 +4908,8 @@ onRequestRedirected: (request: Want) =&gt; void
 **示例：**
 
   ```ts
+  import Want from '@ohos.app.ability.Want';
+
   class MyAuthenticator extends account_appAccount.Authenticator {
       createAccountImplicitly(
         options: account_appAccount.CreateAccountImplicitlyOptions, callback: account_appAccount.AuthCallback) {
@@ -5018,6 +5020,8 @@ onRequestRedirected: (request: Want) =&gt; void
 **示例：**
 
   ```ts
+  import Want from '@ohos.app.ability.Want';
+
   class MyAuthenticator extends account_appAccount.Authenticator {
       addAccountImplicitly(authType: string, callerBundleName: string,
         options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
@@ -5193,6 +5197,7 @@ getRemoteObject(): rpc.RemoteObject;
 
   ```ts
   import rpc from '@ohos.rpc';
+  import Want from '@ohos.app.ability.Want';
   
   class MyAuthenticator extends account_appAccount.Authenticator {
     addAccountImplicitly(authType: string, callerBundleName: string,
