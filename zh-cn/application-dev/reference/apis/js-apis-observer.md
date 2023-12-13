@@ -834,7 +834,7 @@ on\(type: 'simStateChange', options: ObserverOptions, callback: Callback\<SimSta
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | sim状态更改事件，参数固定为'simStateChange'。                 |
 | options   | [ObserverOptions](#observeroptions11)                       | 是   | 监听的选项。                                                 |
-| callback | Callback\<[SimStateData](#simstatedata7)\> | 是   |  以callback形式异步返回结果。 |
+| callback | Callback\<[SimStateData](#simstatedata7)\> | 是   | 以callback形式异步返回结果。 |
 
 **错误码：**
 
@@ -1025,10 +1025,10 @@ SIM卡类型和状态。
 
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
-|     名称            |                 类型                    | 必填 | 说明    |
-| ------------------- | -------------------------------------- | ---- | ------  |
-| callState           | [CallState](js-apis-call.md#callstate) | 是   | 通话类型 |
-| number              | string                                 | 是   | 电话号码 |
+|     名称            |                 类型                    | 必填 | 说明     |
+| ------------------- | -------------------------------------- | ---- | -------- |
+| callState           | [CallState](js-apis-call.md#callstate) | 是   | 通话类型。 |
+| number              | string                                 | 是   | 电话号码。 |
 
 
 ## DataConnectStateInfo<sup>11+</sup>
@@ -1037,10 +1037,10 @@ SIM卡类型和状态。
 
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
-|     名称            |                 类型                                            | 必填 | 说明       |
-| ------------------- | ---------------------------------------------------------------| ---- | ---------- |
-| state               | [DataConnectState](js-apis-telephony-data.md#dataconnectstate) | 是   | 数据连接状态 |
-| network             | [RatType](js-apis-radio.md#radiotechnology)                    | 是   | 网络类型     |
+|     名称            |                 类型                                            | 必填 | 说明         |
+| ------------------- | ---------------------------------------------------------------| ---- | ------------ |
+| state               | [DataConnectState](js-apis-telephony-data.md#dataconnectstate) | 是   | 数据连接状态。 |
+| network             | [RatType](js-apis-radio.md#radiotechnology)                    | 是   | 网络类型。     |
 
 
 ## ObserverOptions<sup>11+</sup>
