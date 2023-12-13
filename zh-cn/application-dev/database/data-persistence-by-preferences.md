@@ -38,8 +38,8 @@
 | getSync(key: string, defValue: ValueType): void              | 获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue。该接口存在异步接口。 |
 | deleteSync(key: string): void                                | 从Preferences实例中删除名为给定Key的存储键值对。该接口存在异步接口。 |
 | flush(callback: AsyncCallback&lt;void&gt;): void             | 将当前Preferences实例的数据异步存储到用户首选项持久化文件中。 |
-| on(type: 'change', callback: ( key : string ) => void): void | 订阅数据变更，订阅的Key的值发生变更后，在执行flush方法后，触发callback回调。 |
-| off(type: 'change', callback?: ( key : string ) => void): void | 取消订阅数据变更。                                           |
+| on(type: 'change', callback: Callback<string>): void | 订阅数据变更，订阅的Key的值发生变更后，在执行flush方法后，触发callback回调。 |
+| off(type: 'change', callback?: Callback<string>): void | 取消订阅数据变更。                                           |
 | deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void | 从内存中移除指定的Preferences实例。若Preferences实例有对应的持久化文件，则同时删除其持久化文件。 |
 
 
@@ -48,7 +48,7 @@
 1. 导入`@ohos.data.preferences`模块。
    
    ```ts
-   import dataPreferences from '@ohos.data.preferences';
+   import data_preferences from '@ohos.data.preferences';
    ```
 
 2. 要通过用户首选项实现数据持久化，首先要获取Preferences实例。读取指定文件，将数据加载到Preferences实例，用于数据操作。
@@ -61,13 +61,13 @@
    import { BusinessError } from '@ohos.base';
    import window from '@ohos.window';
 
-   let preferences: dataPreferences.Preferences | null = null;
+   let preferences: data_preferences.Preferences | null = null;
 
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        try {
-         let options: dataPreferences.Options = { name: 'myStore' };
-         preferences = dataPreferences.getPreferencesSync(this.context, options);
+         let options: data_preferences.Options = { name: 'myStore' };
+         preferences = data_preferences.getPreferencesSync(this.context, options);
        } catch (err) {
          let code = (err as BusinessError).code;
          let message = (err as BusinessError).message;
@@ -86,11 +86,11 @@
    import { BusinessError } from '@ohos.base';
    
    let context = featureAbility.getContext();
-   let preferences: dataPreferences.Preferences | null = null;
+   let preferences: data_preferences.Preferences | null = null;
    
    try {
-       let options: dataPreferences.Options =  { name: 'myStore' };
-       preferences = dataPreferences.getPreferencesSync(context, options);
+       let options: data_preferences.Options =  { name: 'myStore' };
+       preferences = data_preferences.getPreferencesSync(context, options);
    } catch (err) {
        let code = (err as BusinessError).code;
      	let message = (err as BusinessError).message;
@@ -215,8 +215,8 @@
    
    ```ts
    try {
-       let options: dataPreferences.Options = { name: 'myStore' };
-       dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
+       let options: data_preferences.Options = { name: 'myStore' };
+       data_preferences.deletePreferences(this.context, options, (err: BusinessError) => {
            if (err) {
                console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
                return;
