@@ -12,8 +12,6 @@
 import notificationSubscribe from '@ohos.notificationSubscribe';
 ```
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
 ## onConsume
 
 onConsume?: (data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void
@@ -22,7 +20,7 @@ onConsume?: (data: [SubscribeCallbackData](js-apis-notification.md#subscribecall
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -64,7 +62,7 @@ onCancel?:(data: [SubscribeCallbackData](js-apis-notification.md#subscribecallba
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -106,7 +104,7 @@ onUpdate?:(data: [NotificationSortingMap](js-apis-notification.md#notificationso
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -144,7 +142,7 @@ onConnect?:() => void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -184,7 +182,7 @@ onDisconnect?:() => void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -238,7 +236,7 @@ onDestroy?:() => void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -281,7 +279,7 @@ onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notific
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -363,7 +361,7 @@ onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](j
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -405,7 +403,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -446,7 +444,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -483,7 +481,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 名称            | 类型                                                                 | 可读 | 可写 | 说明     |
 | --------------- |--------------------------------------------------------------------| ---- | --- | -------- |
@@ -498,7 +496,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 名称   | 类型    | 可读 | 可写 | 说明             |
 | ------ | ------- | ---- | --- | ---------------- |
@@ -511,7 +509,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 名称        | 类型   | 可读 | 可写 | 说明         |
 | ----------- | ------ | ---- | ---- | ------------ |
