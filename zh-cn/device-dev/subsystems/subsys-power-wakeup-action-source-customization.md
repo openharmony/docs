@@ -126,11 +126,12 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     }
     ```
 
-2. 修改powermgr.gni(https://gitee.com/openharmony/powermgr_power_manager)，使能power_manager_feature_wakeup_action特性。
-
+2. 修改[powermgr.gni](https://gitee.com/openharmony/powermgr_power_manager/blob/master/powermgr.gni)，使能power_manager_feature_wakeup_action特性。
+    ```
     power_manager_feature_wakeup_action = true
-
-3. 在battery_config.json(https://gitee.com/openharmony/powermgr_battery_manager)中添加如下配置
+    ```
+    
+3. 参考[battery_config.json](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/battery_config.json)中添加如下配置
     ```json
     "charge_scene": {
         "low_battery_thers": {
@@ -142,20 +143,17 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     ```
     其中path为保存低电量阈值的节点路径。
 
-4. 修改batterymgr.gni(https://gitee.com/openharmony/powermgr_battery_manager)，使能battery_manager_feature_set_low_capacity_threshold特性。
+4. 修改[batterymgr.gni](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/batterymgr.gni)，使能battery_manager_feature_set_low_capacity_threshold特性。
 
     battery_manager_feature_set_low_capacity_threshold = true
 
-5. 在power_config.json(https://gitee.com/openharmony/drivers_peripheral)中添加如下部分
+5. 在[power_config.json](https://gitee.com/openharmony/drivers_peripheral/blob/master/power/interfaces/hdi_service/profile/power_config.json)中添加如下部分
     ```json
     {
         "scene" :{
             "wakeuo_cause": {
                 "get": {
                     "path": "xxx"
-                },
-                "set": {
-                    "path": ""
                 }
             }
         }
@@ -163,7 +161,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     ```
     其中get为保存低电量唤醒原因的节点路径。
 
-5. 修改power.gni(https://gitee.com/openharmony/drivers_peripheral)，打开drivers_peripheral_power_wakeup_cause_path特性。
+5. 修改[power.gni](https://gitee.com/openharmony/drivers_peripheral/blob/master/power/power.gni)，打开drivers_peripheral_power_wakeup_cause_path特性。
 
     drivers_peripheral_power_wakeup_cause_path = true
 
