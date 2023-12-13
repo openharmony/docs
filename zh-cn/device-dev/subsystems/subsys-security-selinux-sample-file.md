@@ -15,7 +15,6 @@
     ```text
     type system_lib_file, system_file_attr, file_attr;
     ```
-  3. 验证方法：重新编译镜像。
 
 ## 读写分区新增文件
 

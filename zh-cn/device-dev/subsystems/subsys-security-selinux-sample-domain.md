@@ -21,7 +21,7 @@
         ]
     }
     ```
-2. 在type.te中定义demo，使`u:r:demo:s0`是合法的。
+2. 在type.te中定义SELinux标签u:r:demo:s0中的SELinux类型demo，使u:r:demo:s0是合法的。
 
     如果demo是由init孵化，则定义：
     ```text
@@ -53,7 +53,7 @@
         ]
     }
     ```
-2. 在type.te中定义demo，使`u:r:demo:s0`是合法的。
+2. 在type.te中定义SELinux标签u:r:demo:s0中的SELinux类型demo，使u:r:demo:s0是合法的。
     ```text
     type demo, sadomain, domain;
     ```
@@ -80,7 +80,7 @@
     }
     ```
 
-2. 在type.te中定义demo，使`u:r:demo:s0`是合法的。
+2. 在type.te中定义SELinux标签u:r:demo:s0中的SELinux类型demo，使u:r:demo:s0是合法的。
     ```text
     type demo, hdfdomain, domain;
     ```

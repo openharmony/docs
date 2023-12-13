@@ -2,7 +2,7 @@
 
 ## 适用场景
 
-新增系统参数，期望使用SELinux进行访问管控，对参数配置独立SELinux标签，参数定义参考[系统参数规范](subsys-boot-init-sysparam.md)
+新增系统参数，期望使用SELinux进行访问管控，对参数配置独立SELinux标签，参数定义参考[系统参数规范](subsys-boot-init-sysparam.md)。
 
 ## 配置指导
 

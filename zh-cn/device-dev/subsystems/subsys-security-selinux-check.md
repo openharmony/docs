@@ -32,7 +32,7 @@ Regex is not allowed in the secondary directory under data, check '/data/log(/.*
 
 主要有两种修复方式：
 
-1. 将不满足的路径`/data/log/(.*)?`添加到`//base/security/selinux_adapter/sepolicy/`下的白名单文件`data_regex_whitelist.txt`中。
+1. 将不满足的路径`/data/log/(.*)?`添加到`//base/security/selinux_adapter/sepolicy/`下的白名单文件`data_regex_whitelist.txt`中，修改该白名单需要评估安全性和合理性，审慎修改。
 2. 修改data二级目录中不合理的正则表达式，以满足要求，例如，改成以下形式，则是合法的：
     ```text
     /data/log                       u:object_r:data_log:s0
@@ -43,7 +43,7 @@ Regex is not allowed in the secondary directory under data, check '/data/log(/.*
 
 ### 检查说明
 
-  一级目录标签是指根路径下的子目录使用的标签，主要有：
+一级目录标签是指根路径下的子目录使用的标签，主要有：
 ```text
 u:object_r:dev_file:s0
 u:object_r:etc_file:s0
@@ -58,7 +58,7 @@ u:object_r:data_file:s0
 u:object_r:module_update_file:s0
 ```
 
-  `file_contexts`中禁止使用一级目录标签来定义路径标签，避免配置不合理的SELinux权限，对根路径的子目录产生影响，构成安全隐患。
+`file_contexts`中禁止使用一级目录标签来定义路径标签，避免配置不合理的SELinux权限，对根路径的子目录产生影响，构成安全隐患。
 
 ### 编译拦截
 
@@ -82,7 +82,7 @@ partition label is not allow to use, check '/data/log u:object_r:data_file:s0' f
 
 主要有两种修复方式：
 
-1. 将不满足的路径及标签`'/data/log   u:object_r:data_file:s0'`添加到`//base/security/selinux_adapter/sepolicy/`下的白名单文件`partition_label_use_whitelist.txt`中。
+1. 将不满足的路径及标签`'/data/log   u:object_r:data_file:s0'`添加到`//base/security/selinux_adapter/sepolicy/`下的白名单文件`partition_label_use_whitelist.txt`中，修改该白名单需要评估安全性和合理性，审慎修改。
 2. 更改`/data/log`的不合理标签，使用自定义标签，以满足要求，例如，改成以下形式，则是合法的：
     ```text
     /data/log    u:object_r:data_log:s0
@@ -140,9 +140,9 @@ allow appspawn appspawn_exec:file { execute execute_no_trans };
 
 ### 修复方法
 
-  主要有两种修复方式：
+主要有两种修复方式：
 
-1. 将不合理的主体和客体组合添加到`//base/security/selinux_adapter/sepolicy/`下的白名单文件`perm_group_whitelist.json`中，该文件如下：
+1. 将不合理的主体和客体组合添加到`//base/security/selinux_adapter/sepolicy/`下的白名单文件`perm_group_whitelist.json`中，修改该白名单需要评估合理性，审慎添加，该文件如下：
     ```text
     {
         "whitelist": [
@@ -167,7 +167,7 @@ allow appspawn appspawn_exec:file { execute execute_no_trans };
     | 否 | 是 | developer |
     | 是 | 否 | user，且需删除当前主客体在developer字段中的白名单 |
 
-  2. 修改不合理的策略，以满足要求，例如，更改方案，避免同时申请这两个权限。
+2. 修改不合理的策略，以满足要求，例如，更改方案，避免同时申请这两个权限。
 
 ### 删除冗余的白名单
 
@@ -219,7 +219,7 @@ developer_only(`
 ')
 ```
 
-其中被developer_only括起来的策略，表示该策略仅作为开发者模式下的基线。否则，表示该策略是user和开发者模式共用的基线。
+其中被developer_only括起来的策略，表示该策略仅作为开发者模式下的基线；否则，表示该策略是user和开发者模式共用的基线。
 
 ### 编译拦截
 
@@ -246,7 +246,7 @@ developer_only(`
 
 主要有两种修复方式：
 
-1. 将报错中`"actual rule"`字段的cil策略，作为新基线添加到`//base/security/selinux_adapter/sepolicy/`下的基线文件`xx.baseline`中，`xx`为违反基线的进程标签。其中，基线的填写位置参考下表：
+1. 将报错中`"actual rule"`字段的cil策略，作为新基线添加到`//base/security/selinux_adapter/sepolicy/`下的基线文件`xx.baseline`中，`xx`为违反基线的进程标签。修改该基线文件需要评估安全性和合理性，审慎修改。其中，基线的填写位置参考下表：
 
     **表3** 篡改高危进程基线检查基线更新位置与报错对应关系
     | user基线报错 | developer基线报错 | 更新基线是否需要在developer_only内 |
@@ -255,7 +255,7 @@ developer_only(`
     | 否 | 是 | 是 |
     | 是 | 否 | 将developer_only内的基线挪到外部 |
 
-  2. 修改不合理的策略，以满足要求，例如，更改方案，避免违反基线。
+2. 修改不合理的策略，以满足要求，例如，更改方案，避免违反基线。
 
 ### 删除冗余的基线
 

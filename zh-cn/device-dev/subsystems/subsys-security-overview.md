@@ -26,7 +26,7 @@ OpenHarmony安全子系统目前提供给开发者的安全能力主要包含应
 
 - OpenHarmony SELinux
 
-  OpenHarmony结合系统架构特点，基于安全增强式Linux（英文全称：**S**ecurity-**E**nhanced **Linux**）对OpenHarmony操作系统内文件、参数、SA、HDF等系统资源提供强制访问控制保护能力。
+  OpenHarmony结合系统架构特点，基于安全增强式Linux（**S**ecurity-**E**nhanced **Linux**）对OpenHarmony操作系统内文件、参数、SA、HDF等系统资源提供强制访问控制保护能力。
 
 
 ## 基本概念

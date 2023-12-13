@@ -2,7 +2,7 @@
 
 ## 策略目录结构
 
-OpenHarmony SELinux策略文件主要存放在`//base/security/selinux_adapter/sepolicy/ohos_policy`路径下，通常按以下路径规范存放：
+OpenHarmony SELinux策略文件存放在`//base/security/selinux_adapter/sepolicy/ohos_policy`路径下，在该目录下按以下规范存放：
 ```text
 ├── 子系统
 │   └── 部件
@@ -22,12 +22,12 @@ OpenHarmony SELinux策略文件主要存放在`//base/security/selinux_adapter/s
 | 文件名 | 文件说明 |
 | -------- | -------- |
 | *.te | SELinux策略文件，用于定义类型、配置allow策略、配置neverallow策略。 |
-| file_contexts | 实体文件标签映射文件，体现文件路径与标签的映射关系。 |
+| file_contexts | 实体文件标签映射文件，体现实体文件路径与标签的映射关系。 |
 | virtfs_contexts | 虚拟文件标签映射文件，体现虚拟文件路径与标签的映射关系。 |
 | sehap_contexts | 应用标签映射文件，体现应用关键信息与应用进程标签、应用数据目录标签的映射关系。 |
 | parameter_contexts | 参数标签映射文件，体现参数与标签的映射关系。 |
-| sevice_contexts | SA标签映射文件，体现SA与标签的映射关系。 |
-| hdf_service_contexts | HDF标签映射文件，体现HDF与标签的映射关系。 |
+| sevice_contexts | SA服务标签映射文件，体现SA服务与标签的映射关系。 |
+| hdf_service_contexts | HDF服务标签映射文件，体现HDF服务与标签的映射关系。 |
 
 ## 基础策略文件介绍
 
@@ -65,11 +65,9 @@ audit: type=1400 audit(1502458430.566:4): avc:  denied  { open } for  pid=1658 c
   - `scontext=u:r:hdcd:s0`，表示主体SELinux标签为`u:r:hdcd:s0`。
   - `tcontext=u:object_r:selinuxfs:s0`，表示被访问客体SELinux标签为`u:object_r:selinuxfs:s0`。
   - `tclass=file`，表示当前执行file的操作类型。
-  - `permissive=1`，表示当前SELinux处于宽容模式，只告警不拦截。另外，当`permissive=0`时，表示强制模式时，会拦截。
+  - `permissive=1`，表示当前SELinux处于宽容模式，只告警不拦截。另外，当`permissive=0`时，表示强制模式，会告警并拦截。
 
-### 策略编写
-
-根据`avc denied`告警，编写SELinux策略，如：
+开发者可以使用关键字`avc denied`来过滤日志，对于影响业务的avc告警，可以利用告警提供的信息来编写相应的SELinux策略，例如：
 ```text
 audit: type=1400 audit(1502458430.566:4): avc:  denied  { open } for  pid=1658 comm="setenforce" path="/sys/fs/selinux/enforce" dev="selinuxfs" ino=4 scontext=u:r:hdcd:s0 tcontext=u:object_r:selinuxfs:s0 tclass=file permissive=1
 ```
@@ -99,7 +97,19 @@ neverallow subject object:class permissions;
 
 ## 策略宏隔离
 
-在考虑设备开发者便利的同时，需要兼顾商用设备安全性，因此OpenHarmony SELinux提供了策略隔离宏，决定不同版本上策略是否生效。通常在编译命令中指定`--build-variant root`时，为root版本。指定`--build-variant user`时，为user版本。从OpenHarmony 4.1版本开始，SELinux中开发者模式策略宏隔离developer_only已支持，该宏默认设置为true。
+在考虑设备开发者便利的同时，需要兼顾商用设备安全性，因此OpenHarmony SELinux提供了策略隔离宏，决定在不同版本上策略是否生效。OpenHarmony SELinux中支持对仅在root版本生效的策略做宏隔离，宏名称为`debug_only`。在用于设备开发者调试的root版本中，也就是在版本编译命令中指定`--build-variant root`时，宏开启。在用于商用发布的user版本中，也就是在版本编译命令中指定`--build-variant user`时，宏关闭。该宏的使用方法参考如下:
+```text
+debug_only(`
+    allow ueventd init:fd use;
+')
+```
+
+另外，OpenHarmony SELinux中也支持对开发者模式的策略做宏隔离，宏名称为`developer_only`，该宏默认开启。开发者模式策略是指，为便于使用user版本进行调试开发的开发者，需要开放的一些用于调试的SELinux策略。开发者模式宏的使用方法参考如下:
+```text
+developer_only(`
+    allow sh init:fd use;
+')
+```
 
 | 隔离宏 | root版本 | root版本开发者模式 | user版本 | user版本开发者模式 |
 | -------- | -------- | -------- | -------- | -------- |

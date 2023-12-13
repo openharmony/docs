@@ -38,14 +38,10 @@ allow hap_domain huks_service:binder { call };
 
 | 面向应用数据目录的开放范围 | 替换为attribute |
 | -------- | -------- |
-| 所有normal等级的应用数据目录 | normal_hap_attr |
-| 所有system_basic等级的应用数据目录 | system_basic_hap_attr |
-| 所有system_core等级的应用数据目录 | system_core_hap_attr |
-| 所有应用的数据目录 | normal_hap_attr & system_basic_hap_attr & system_core_hap_attr |
-
-## 涉及新增参数标签的SELinux策略自检
-
-参数前缀命名参考[系统参数规范](subsys-boot-init-sysparam.md)
+| 所有normal等级的应用数据目录 | normal_hap_data_file_attr |
+| 所有system_basic等级的应用数据目录 | system_basic_hap_data_file_attr |
+| 所有system_core等级的应用数据目录 | system_core_hap_data_file_attr |
+| 所有应用的数据目录 | normal_hap_data_file_attr & system_basic_hap_data_file_attr & system_core_hap_data_file_attr |
 
 ## 涉及新增ioctl的SELinux策略自检
 
