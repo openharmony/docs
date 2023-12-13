@@ -136,3 +136,16 @@ context: AbilityStageContext;
 | 属性名      | 类型                        | 说明                                                         |
 | ----------- | --------------------------- | ------------------------------------------------------------ |
 | context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | 在Ability启动阶段进行初始化时回调，获取到该Ability的context值。 |
+
+**示例：**
+    
+```ts
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
+export default class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    let abilityStageContext = this.context;
+    // ...
+  }
+}
+```
