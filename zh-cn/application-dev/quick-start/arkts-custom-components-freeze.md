@@ -88,7 +88,9 @@ struct SeconedTest {
 
 - 等到组件状态重新变为active时，再更新在冻结状态时变化的状态变量。
 
-- 需要注意的是：在首次渲染的时候，ListItem的子组件会懒加载，即只会创建当前正在显示的ListItem的子组件，对于未滑动到的ListItem，其子组件不会创建。只有当滑动显示到对应的ListItem的时候，才会创建其子组件。
+- 需要注意的是：在首次渲染的时候，ListItem的子组件会懒加载，即只会创建当前正在显示的ListItem的子组件，对于未滑动到的ListItem，其子组件不会创建：
+  - 当滑动ListItem首次进入List区域内时，ListItem子节点会被创建，不存在状态的变化。
+  - 当滑动ListItem离开List区域内时，ListItem子节点从active->inactive。
 
 ```ts
 @Entry
@@ -164,7 +166,9 @@ struct FreezeChild {
 
 - 对划出Grid区域外的GridItem进行冻结，不会触发组件的更新。
 
-- 需要注意的是，Grid在首次非完全滑动时，无法冻结子节点，首次打开Grid不会处理Grid区域外的GridItem，只有当滑动显示后，才会设置active和inactive。
+- 需要注意的是，和ListItem不同，GridItem首次创建非懒加载，即会创建GridItem及其子节点：
+  - 当滑动GridItem进入Grid区域内时，GridItem子节点从inactive->active。
+  - 当滑动GridItem离开Grid区域内时，GridItem子节点从active->inactive。
 
 ```ts
 @Entry
@@ -302,7 +306,9 @@ struct FreezeChild {
 
 - 对WaterFlow中当前不可见的FlowItem进行冻结，不会触发组件的更新。
 
-- 需要注意的是，WaterFlow在首次非完全滑动时，无法冻结子节点，首次打开WaterFlow不会处理WaterFlow区域外的FlowItem，只有当滑动显示后，才会设置active和inactive。
+- 需要注意的是，和ListItem不同，FlowItem首次创建非懒加载，即会创建FlowItem及其子节点：
+  - 当滑动FlowItem进入WaterFlow区域内时，FlowItem子节点从inactive->active。
+  - 当滑动FlowItem离开WaterFlow区域内时，FlowItem子节点从active->inactive。
 
 ```ts
 @Entry
@@ -542,7 +548,7 @@ struct FreezeChild {
 2.List区域外的ListItem滑动到List区域内，状态由inactive变为active，对应的@Watch方法onMessageUpdated()被触发。  
 3.再次点击change message更改message的值，仅有当前显示的ListItem中的子组件@Watch方法onMessageUpdated()被触发。
 
-![LazyforEach.gif](figures/LazyforEach.gif)
+![FrezzeLazyforEach.gif](figures/FrezzeLazyforEach.gif)
 
 
 
