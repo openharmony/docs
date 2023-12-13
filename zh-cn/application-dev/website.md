@@ -161,7 +161,7 @@
         - [后台服务](application-models/background-services.md)
       - 了解线程模型
         - [线程模型概述](application-models/thread-model-stage.md)
-        - [使用EventHub进行线程间通信](application-models/itc-with-eventHub.md)
+        - [使用EventHub进行线程内通信](application-models/itc-with-eventHub.md)
       - 任务（Mission）管理
         - [任务（Mission）管理场景介绍](application-models/mission-management-overview.md)
         - [任务（Mission）与启动模式](application-models/mission-management-launch-type.md)
