@@ -18,7 +18,7 @@
 | 参数名 | 描述 | 配置项 | 场景举例 |
 | -------- | -------- | -------- | -------- |
 | DATA_TRANSFER | 数据传输 | dataTransfer | 后台下载大文件，如浏览器后台下载等。 |
-| AUDIO_PLAYBACK | 音频播放 | audioPlayback | 音乐类应用在后台播放音乐。 |
+| AUDIO_PLAYBACK | 音视频播放  | audioPlayback | 音乐类应用在后台播放音乐。 |
 | AUDIO_RECORDING | 录音 | audioRecording | 录音机在后台录音。 |
 | LOCATION | 定位导航 | location | 导航类应用后台导航。 |
 | BLUETOOTH_INTERACTION | 蓝牙相关 | bluetoothInteraction | 通过蓝牙传输分享的文件。 |
@@ -29,7 +29,7 @@
 
 
 - 申请了DATA_TRANSFER（数据传输）的长时任务，系统仅会提升应用进程的优先级，降低系统终止应用进程的概率，但仍然会挂起对应的应用进程。对于上传下载对应的功能，需要调用系统[上传下载代理接口](../reference/apis/js-apis-request.md)托管给系统执行。
-- 申请了AUDIO_PLAYBACK（音频播放）的长时任务，要实现后台播放的功能，需要同时申请[媒体会话](../media/avsession-overview.md)。
+- 使用了[媒体会话](../media/avsession-overview.md)服务的音视频应用，才能通过申请AUDIO_PLAYBACK长时任务实现后台播放。
 
 
 ### 约束与限制
@@ -57,20 +57,25 @@
 
 ## 开发步骤
 
+本文以申请录音长时任务为例，示例中包含“申请长时任务”和“取消长时任务”两个按钮，显示效果为：
+- 点击“申请长时任务”按钮，应用申请录音长时任务成功，通知栏显示“正在运行录音任务”通知。
+- 点击“取消长时任务”按钮，取消长时任务，通知栏撤销相关通知。
+
 ### Stage模型
 
 1. 需要申请ohos.permission.KEEP_BACKGROUND_RUNNING权限，配置方式请参见[配置文件声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
 
 2. 声明后台模式类型。
-   在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型。
+   在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型（配置文件中填写长时任务类型的配置项）。
    
    ```json
     "module": {
         "abilities": [
             {
                 "backgroundModes": [
+                 // 长时任务类型的配置项
                 "audioRecording"
-                ], // 后台模式类型
+                ],
             }
         ],
         ...
@@ -78,6 +83,8 @@
    ```
 
 3. 导入模块。
+
+  长时任务相关的模块为backgroundTaskManager和wantAgent，其余模块按实际需要导入。
    
    ```ts
     import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
@@ -109,13 +116,14 @@
       startContinuousTask() {
         let wantAgentInfo: wantAgent.WantAgentInfo = {
           // 点击通知后，将要执行的动作列表
+          // 添加需要被拉起应用的bundleName和abilityName
           wants: [
             {
               bundleName: "com.example.myapplication",
               abilityName: "com.example.myapplication.MainAbility"
             }
           ],
-          // 点击通知后，动作类型
+          // 指定点击通知栏消息后的动作是拉起ability
           operationType: wantAgent.OperationType.START_ABILITY,
           // 使用者自定义的一个私有值
           requestCode: 0,
