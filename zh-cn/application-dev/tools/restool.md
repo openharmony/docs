@@ -43,7 +43,7 @@ Locale匹配规则：Locale匹配需满足以下三条规则
                 2、脚本存在空时默认匹配，否则必须相等
                 3、地区存在空时默认匹配，否则必须相等
 
-参数说明举例：参数 Locale[zh_CN,en_US];Device[phone]
+参数举例说明：参数 Locale[zh_CN,en_US];Device[phone]
              说明 过滤其他语言，保留能匹配上zh_CN和en_US的语言
                   过滤其他设备，保留phone
                   其他类型配置均保留
