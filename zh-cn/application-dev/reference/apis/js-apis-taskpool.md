@@ -8,7 +8,7 @@
 
 任务池API以数字形式返回错误码。有关各个错误码的更多信息，请参阅文档[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
-taskpool使用过程中的相关注意点请见[TaskPool注意事项](../../arkts-utils/taskpool-vs-worker.md#taskpool注意事项)
+taskpool使用过程中的相关注意点请查[TaskPool注意事项](../../arkts-utils/taskpool-vs-worker.md#taskpool注意事项)
 
 > **说明：**<br/>
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -500,6 +500,83 @@ console.info("testTransfer view byteLength: " + view.byteLength);
 console.info("testTransfer view1 byteLength: " + view1.byteLength);
 ```
 
+### sendData<sup>11+</sup>
+
+static sendData(...args: Object[]): void
+
+在任务执行过程中向宿主线程发送消息并触发回调。使用该方法前需要先构造Task。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                              |
+| -------- | ------------- | ---- | ------------------------------------------------- |
+| args     | Object[]      | 是   | 可传输对象默认转移，作为回调函数的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | --------------------------------------- |
+| 10200006  | An exception occurred during serialization. |
+| 10200022  | The function is not called in the taskpool thread. |
+| 10200023  | The function is not called in the concurrent function. |
+| 10200024  | The callback is not registered on the host side. |
+
+**示例：**
+
+```ts
+@Concurrent
+function ConcurrentFunc(num: number): number {
+  let res: number = num * 10;
+  taskpool.Task.sendData(res);
+  return num;
+}
+```
+
+### onReceiveData<sup>11+</sup>
+
+onReceiveData(callback?: Function): void
+
+为任务注册回调函数，以接收和处理来自任务池工作线程的数据。使用该方法前需要先构造Task。
+
+> **说明：**<br/>
+> 不支持给同一个任务定义多种回调函数，如果重复赋值只有最后一个会生效。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| callback | Function | 否   | 处理数据的回调函数，发送到宿主线程的数据将会作为入参传入该回调函数。不传参可以取消注册的回调函数。 |
+
+**示例：**
+
+```ts
+@Concurrent
+function ConcurrentFunc(num: number): number {
+  let res: number = num * 10;
+  taskpool.Task.sendData(res);
+  return num;
+}
+
+function pringLog(data: number): void {
+  console.info("taskpool: data is: " + data);
+}
+
+async function testFunc(): Promise<void> {
+  let task: taskpool.Task = new taskpool.Task(ConcurrentFunc, 1);
+  task.onReceiveData(pringLog);
+  let ret: number = await taskpool.execute(task) as number;
+  console.info("taskpool: result is: " + ret);
+}
+
+testFunc();
+```
+
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -627,7 +704,7 @@ taskGroup.addTask(task);
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
 | taskId   | number             | 是   | 否   | 任务的ID。                                                     |
 | state    | [State](#state10)  | 是   | 否   | 任务的状态。                                                    |
-| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行  |
+| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。  |
 
 ## ThreadInfo<sup>10+</sup>
 
