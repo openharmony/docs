@@ -9,7 +9,7 @@ OpenHarmony支持系统睡眠时唤醒执行动作，如在睡眠中低电量情
 ### 约束与限制
 
 配置策略：
-产品定制的配置路径，需要根据[配置策略](https://gitee.com/openharmony/customization_config_policy)决定。本开发指导中的定制路径以`/vendor`进行举例，请开发者根据具体的产品配置策略，修改定制路径。
+产品定制的配置路径，需要根据[配置策略](https://gitee.com/openharmony/customization_config_policy)决定。本开发指导中的定制路径以`/vendor`进行举例，请开发者根据具体的产品配置策略，修改定制路径。唤醒后动作需要底层提供：1.保存唤醒原因的节点供上层读取；2.睡眠状态下模拟电源键唤醒功能。
 
 ## 开发指导
 
@@ -126,14 +126,47 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     }
     ```
 
-2. 修改powermgr.gni，使能power_manager_feature_wakeup_action特性。
+2. 修改powermgr.gni(https://gitee.com/openharmony/powermgr_power_manager)，使能power_manager_feature_wakeup_action特性。
 
     power_manager_feature_wakeup_action = true
 
-3. 修改batterymgr.battery_manager_feature_set_low_capacity_threshold特性。
+3. 在battery_config.json(https://gitee.com/openharmony/powermgr_battery_manager)中添加如下配置
+    ```json
+    "charge_scene": {
+        "low_battery_thers": {
+          "set": {
+            "path": "xxx"
+          }
+        }
+    }
+    ```
+    其中path为保存低电量阈值的节点路径。
+
+4. 修改batterymgr.gni(https://gitee.com/openharmony/powermgr_battery_manager)，使能battery_manager_feature_set_low_capacity_threshold特性。
 
     battery_manager_feature_set_low_capacity_threshold = true
 
-4. 使系统进入睡眠且系统电量低于下发的阈值。
+5. 在power_config.json(https://gitee.com/openharmony/drivers_peripheral)中添加如下部分
+    ```json
+    {
+        "scene" :{
+            "wakeuo_cause": {
+                "get": {
+                    "path": "xxx"
+                },
+                "set": {
+                    "path": ""
+                }
+            }
+        }
+    }
+    ```
+    其中get为保存低电量唤醒原因的节点路径。
+
+5. 修改power.gni(https://gitee.com/openharmony/drivers_peripheral)，打开drivers_peripheral_power_wakeup_cause_path特性。
+
+    drivers_peripheral_power_wakeup_cause_path = true
+
+6. 使系统在睡眠中电量下降至阈值。
 
     设备关机。
