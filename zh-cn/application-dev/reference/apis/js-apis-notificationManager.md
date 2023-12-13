@@ -510,7 +510,7 @@ let addSlotCallBack = (err: Base.BusinessError): void => {
 }
 // 通知slot对象
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 notificationManager.addSlot(notificationSlot, addSlotCallBack);
 ```
@@ -557,7 +557,7 @@ import Base from '@ohos.base';
 
 // 通知slot对象
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 notificationManager.addSlot(notificationSlot).then(() => {
 	console.info("addSlot success");
@@ -696,7 +696,7 @@ let addSlotsCallBack = (err: Base.BusinessError): void => {
 }
 // 通知slot对象
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 // 通知slot array 对象
 let notificationSlotArray: notificationManager.NotificationSlot[] = new Array();
@@ -747,7 +747,7 @@ import Base from '@ohos.base';
 
 // 通知slot对象
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 // 通知slot array 对象
 let notificationSlotArray: notificationManager.NotificationSlot[] = new Array();
@@ -1796,7 +1796,7 @@ let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 notificationManager.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
 ```
@@ -1847,7 +1847,7 @@ let bundle: notificationManager.BundleOption = {
 };
 
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 
 notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
@@ -4466,6 +4466,8 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 // 包信息
 let bundle = {
     bundle: "bundleName1",
@@ -4520,6 +4522,8 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
     console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
 }
