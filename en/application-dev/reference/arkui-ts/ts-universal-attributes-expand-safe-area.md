@@ -1,6 +1,6 @@
 # Safe Area
 
-With the **expandSafeArea** attribute, you can expand a component's safe area.
+A safe area refers to the display area that isn't covered by a status bar, navigation bar, or other components that the system includes in its non-safe-area. By default, all the content you develop is placed in the safe area. If necessary, you can expand a component's safe area through the **expandSafeArea** attribute.
 
 > **NOTE**
 >
@@ -10,7 +10,7 @@ With the **expandSafeArea** attribute, you can expand a component's safe area.
 
 | Name          | Parameter                          | Description                               |
 | -------------- | ----------------------------- | --------------------------------------- |
-| expandSafeArea | type?: Array <[SafeAreaType](ts-types.md#safeareatype10)>,<br>edges?: Array <[SafeAreaEdge](ts-types.md#safeareaedge10)> | Safe area to be expanded to.<br>Default value:<br>type: [SafeAreaType.SYSTEM, SafeAreaType.CUTOUT, SafeAreaType.KEYBOARD],<br>edges: [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM, SafeAreaEdge.START, SafeAreaEdge.END]<br>The default value expands the safe area to all available areas.<br>**type**: indicates the type of the extended security zone. This parameter is optional.<br>**edges**: edge for expanding the safe area. This parameter is optional.|
+| expandSafeArea | type?: Array <[SafeAreaType](ts-types.md#safeareatype10)>,<br>edges?: Array <[SafeAreaEdge](ts-types.md#safeareaedge10)> | Sets the safe area to be expanded to.<br>Default value:<br>type: [SafeAreaType.SYSTEM, SafeAreaType.CUTOUT, SafeAreaType.KEYBOARD],<br>edges: [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM, SafeAreaEdge.START, SafeAreaEdge.END]<br>The default value expands the safe area to all available areas.<br>**type**: type of the expanded safe zone. This parameter is optional.<br>**edges**: edge for expanding the safe area. This parameter is optional.|
 
 ## Example
 
