@@ -73,6 +73,26 @@ getUIInspector(): UIInspector
 uiContext.getUIInspector();
 ```
 
+### getUIObserver<sup>11+</sup>
+
+getUIObserver(): UIObserver
+
+获取UIObserver对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                          | 说明                 |
+| --------------------------- | ------------------ |
+| [UIObserver](#uiobserver11) | 返回UIObserver实例对象。 |
+
+**示例：**
+
+```ts
+uiContext.getUIObserver();
+```
+
 ### getMediaQuery
 
 getMediaQuery(): MediaQuery
@@ -823,6 +843,108 @@ createComponentObserver(id: string): inspector.ComponentObserver
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 let inspector:UIInspector = uiContext.getUIInspector();
 let listener = inspector.createComponentObserver('COMPONENT_ID');
+```
+
+## UIObserver<sup>11+</sup>
+
+以下API需先使用UIContext中的[getUIObserver()](#getuiobserver11)方法获取到UIObserver对象，再通过该对象调用对应方法。
+
+### on('navDestinationUpdate')<sup>11+</sup>
+
+on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
+
+监听NavDestination组件的状态变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.on('navDestinationUpdate', (info) => {
+    console.info('NavDestination state update', JSON.stringify(info));
+});
+```
+
+### off('navDestinationUpdate')<sup>11+</sup>
+
+off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo\>): void
+
+取消监听NavDestination组件的状态变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.off('navDestinationUpdate');
+```
+
+### on('navDestinationUpdate')<sup>11+</sup>
+
+on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback<NavDestinationInfo>): void
+
+监听NavDestination组件的状态变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                   |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
+    console.info('NavDestination state update', JSON.stringify(info));
+});
+```
+
+### off('navDestinationUpdate')<sup>11+</sup>
+
+off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback<NavDestinationInfo>): void
+
+取消监听NavDestination组件的状态变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                   |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.off('navDestinationUpdate', { navigationId: "testId" });
 ```
 
 ## MediaQuery
