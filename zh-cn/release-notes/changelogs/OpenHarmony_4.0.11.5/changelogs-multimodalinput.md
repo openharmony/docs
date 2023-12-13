@@ -12,7 +12,7 @@
 
 使用inputMonitor监听多模输入TouchEvent时，需要单独import多模的touchEvent类
 
-```javascript
+```ts
 import touchEvent from '@ohos.multimodalInput.touchEvent';
 try {
   inputMonitor.on('touch', (touchEvent: touchEvent.TouchEvent) => {
