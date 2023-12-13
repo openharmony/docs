@@ -1,4 +1,4 @@
-# Alert Dialog Box
+# Alert Dialog Box (AlertDialog)
 
 You can set the text content and response callback for an alert dialog box.
 
@@ -29,6 +29,8 @@ You can set the text content and response callback for an alert dialog box.
 | offset     | [Offset](ts-types.md#offset) | No    | Offset of the dialog box relative to the alignment position.<br>Default value: **{ dx: 0 , dy: 0 }**|
 | gridCount  | number                       | No    | Number of grid columns occupied by the width of the dialog box.<br>Default value: **4**|
 | maskRect<sup>10+</sup>| [Rectangle](#rectangle10) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
+| showInSubWindow<sup>11+</sup> | boolean | No| Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.<br>Default value: **false**, indicating that the dialog box is not displayed in the subwindow<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.|
+| isModal<sup>11+</sup> | boolean | No| Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**|
 
 Priorities of the **confirm** parameters: **fontColor** and **backgroundColor** > **style** > **defaultFocus**
 
@@ -174,6 +176,8 @@ struct AlertDialogExample {
               alignment: DialogAlignment.Bottom,
               offset: { dx: 0, dy: -20 },
               gridCount: 3,
+              showInSubWindow: true,
+              isModal: true,
               confirm: {
                 value: 'button',
                 action: () => {
@@ -197,6 +201,8 @@ struct AlertDialogExample {
               autoCancel: true,
               alignment: DialogAlignment.Bottom,
               gridCount: 4,
+              showInSubWindow: true,
+              isModal: true,
               offset: { dx: 0, dy: -20 },
               primaryButton: {
                 value: 'cancel',
@@ -229,6 +235,8 @@ struct AlertDialogExample {
               autoCancel: true,
               alignment: DialogAlignment.Bottom,
               gridCount: 4,
+              showInSubWindow: true,
+              isModal: true,
               offset: { dx: 0, dy: -20 },
               buttonDirection: DialogButtonDirection.HORIZONTAL,
               buttons: [
@@ -265,4 +273,4 @@ struct AlertDialogExample {
 }
 ```
 
-![en-us_image_alert](figures/en-us_image_alert.gif)
+![en-us_image_alert_showinsubwindow](figures/en-us_image_alert_showinsubwindow.jpg)

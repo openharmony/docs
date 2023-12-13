@@ -69,7 +69,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, (err: BusinessError, rdbStore
     console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`Get RdbStore successfully.`);
+  console.info('Get RdbStore successfully.');
 })
 ```
 
@@ -95,7 +95,7 @@ class EntryAbility extends UIAbility {
         console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
-      console.info(`Get RdbStore successfully.`);
+      console.info('Get RdbStore successfully.');
     })
   }
 }
@@ -152,7 +152,7 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
 
 relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
   store = rdbStore;
-  console.info(`Get RdbStore successfully.`)
+  console.info('Get RdbStore successfully.')
 }).catch((err: BusinessError) => {
   console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -176,7 +176,7 @@ class EntryAbility extends UIAbility {
 
     relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
       store = rdbStore;
-      console.info(`Get RdbStore successfully.`)
+      console.info('Get RdbStore successfully.')
     }).catch((err: BusinessError) => {
       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
@@ -228,7 +228,7 @@ relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
     return;
   }
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 })
 ```
 
@@ -249,7 +249,7 @@ class EntryAbility extends UIAbility {
         return;
       }
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     })
   }
 }
@@ -300,7 +300,7 @@ let context = getContext(this);
 
 relationalStore.deleteRdbStore(context, "RdbTest.db").then(()=>{
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -319,7 +319,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     relationalStore.deleteRdbStore(this.context, "RdbTest.db").then(()=>{
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
@@ -378,7 +378,7 @@ relationalStore.deleteRdbStore(context, STORE_CONFIG, (err: BusinessError) => {
     return;
   }
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 })
 ```
 
@@ -403,7 +403,7 @@ class EntryAbility extends UIAbility {
         return;
       }
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     })
   }
 }
@@ -462,7 +462,7 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
 
 relationalStore.deleteRdbStore(context, STORE_CONFIG).then(()=>{
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -485,7 +485,7 @@ class EntryAbility extends UIAbility {
     };
     relationalStore.deleteRdbStore(this.context, STORE_CONFIG).then(()=>{
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
@@ -567,7 +567,7 @@ class EntryAbility extends UIAbility {
 
 ## ValueType
 
-用于表示允许的数据字段类型。
+用于表示允许的数据字段类型，接口参数具体类型根据其功能而定。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -657,7 +657,10 @@ class EntryAbility extends UIAbility {
 | -------------- | ---- | ---------------------------------- |
 | CURSOR_FIELD        | '#_cursor'     | 用于cursor查找的字段名。|
 | ORIGIN_FIELD        | '#_origin'     | 用于cursor查找时指定数据来源的字段名。    |
-| DELETED_FLAG_FIELD  | '#_deleted_flag' | 用于cursor查找的结果集返回时填充的字段，表示云端删除的数据同步到本地后数据未清理。<br>返回的结果集中，该字段对应的value为false表示数据未清理，true表示数据已清理。|
+| DELETED_FLAG_FIELD  | '#_deleted_flag' | 用于cursor查找的结果集返回时填充的字段，表示云端删除的数据同步到本地后数据是否清理。<br>返回的结果集中，该字段对应的value为false表示数据未清理，true表示数据已清理。|
+| OWNER_FIELD  | '#_cloud_owner' | 用于共享表中查找owner时返回的结果集中填充的字段，表示当前共享记录的共享发起者。|
+| PRIVILEGE_FIELD  | '#_cloud_privilege' | 用于共享表中查找共享数据权限时返回的结果集中填充的字段，表示当前共享记录的允许的操作权限。|
+| SHARING_RESOURCE_FIELD   | '#_sharing_resource_field' | 用于数据共享时查找共享数据的共享资源时返回的结果集中填充的字段，表示共享数据的共享资源标识。|
 
 ## SubscribeType
 
@@ -1258,7 +1261,7 @@ predicates.glob("NAME", "?h*g");
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-配置谓词以匹配数据表的field列中值在给定范围内的字段。
+配置谓词以匹配数据表的field列中值在给定范围内的字段（包含范围边界）。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1268,7 +1271,7 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | 是   | 数据库表中的列名。         |
 | low    | [ValueType](#valuetype) | 是   | 指示与谓词匹配的最小值。   |
-| high   | [ValueType](#valuetype) | 是   | 指示要与谓词匹配的最大值。 |
+| high   | [ValueType](#valuetype) | 是   | 指示与谓词匹配的最大值。 |
 
 **返回值**：
 
@@ -1287,7 +1290,7 @@ predicates.between("AGE", 10, 50);
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-配置谓词以匹配数据表的field列中值超出给定范围的字段。
+配置谓词以匹配数据表的field列中值超出给定范围的字段（不包含范围边界）。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3288,7 +3291,7 @@ if(store != undefined) {
       console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Delete table done.`);
+    console.info('Delete table done.');
   })
 }
 ```
@@ -3328,7 +3331,7 @@ if(store != undefined) {
       console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Delete table done.`);
+    console.info('Delete table done.');
   })
 }
 ```
@@ -3371,7 +3374,7 @@ import { BusinessError } from "@ohos.base";
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
 if(store != undefined) {
   (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE).then(() => {
-    console.info(`Delete table done.`);
+    console.info('Delete table done.');
   }).catch((err: BusinessError) => {
     console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3649,7 +3652,7 @@ if(store != undefined) {
       console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Backup success.`);
+    console.info('Backup success.');
   })
 }
 ```
@@ -3690,7 +3693,7 @@ import { BusinessError } from "@ohos.base";
 if(store != undefined) {
   let promiseBackup = (store as relationalStore.RdbStore).backup("dbBackup.db");
   promiseBackup.then(() => {
-    console.info(`Backup success.`);
+    console.info('Backup success.');
   }).catch((err: BusinessError) => {
     console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3729,7 +3732,7 @@ if(store != undefined) {
       console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Restore success.`);
+    console.info('Restore success.');
   })
 }
 ```
@@ -3770,7 +3773,7 @@ import { BusinessError } from "@ohos.base";
 if(store != undefined) {
   let promiseRestore = (store as relationalStore.RdbStore).restore("dbBackup.db");
   promiseRestore.then(() => {
-    console.info(`Restore success.`);
+    console.info('Restore success.');
   }).catch((err: BusinessError) => {
     console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3811,7 +3814,7 @@ if(store != undefined) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   })
 }
 ```
@@ -3853,7 +3856,7 @@ import { BusinessError } from "@ohos.base";
 
 if(store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"]).then(() => {
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   }).catch((err: BusinessError) => {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3896,7 +3899,7 @@ if(store != undefined) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   })
 }
 ```
@@ -3942,7 +3945,7 @@ if(store != undefined) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   })
 }
 ```
@@ -3989,7 +3992,7 @@ if(store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
     autoSync: true
   }).then(() => {
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   }).catch((err: BusinessError) => {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
   })
@@ -4172,7 +4175,7 @@ if(store != undefined) {
       console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Sync done.`);
+    console.info('Sync done.');
     for (let i = 0; i < result.length; i++) {
       console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
     }
@@ -4236,7 +4239,7 @@ let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
 if(store != undefined) {
   (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates).then((result: Object[][]) => {
-    console.info(`Sync done.`);
+    console.info('Sync done.');
     for (let i = 0; i < result.length; i++) {
       console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
     }
@@ -4937,6 +4940,160 @@ if(store != undefined) {
 }
 ```
 
+### querySharingResource<sup>11+</sup>
+
+querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;ResultSet&gt;
+
+根据谓词条件匹配的数据记录查找对应记录的共享资源标识，返回查找的结果集。 如果指定了列字段，则返回结果集中同时包含对应列的字段值，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | 表示查询的谓词条件。    |
+| columns    | Array&lt;string&gt;      | 否   | 表示要查找的列字段名。此参数不填时，返回的结果集中只包含共享资源标识字段。 |
+
+**返回值：**
+
+| 参数名    | 说明                                               |
+| -------- | ------------------------------------------------- |
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise对象，返回查询的结果集。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+let sharingResource: string;
+let predicates = new relationalStore.RdbPredicates('test_table');
+predicates.equalTo('data', 'data_test');
+if(store != undefined) {
+  (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data']).then((resultSet) => {
+    if (!resultSet.goToFirstRow()) {
+      console.error(`resultSet error`);
+      return;
+    }
+    const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
+    console.info(`sharing resource: ${res}`);
+    sharingResource = res;
+  }).catch((err: BusinessError) => {
+    console.error(`query sharing resource failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+
+```
+
+### querySharingResource<sup>11+</sup>
+
+querySharingResource(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;): void
+
+根据谓词条件匹配的数据记录查找对应记录的共享资源，返回查找的结果集，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates)              | 是   | 表示查询的谓词条件。           |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 回调函数。返回查询的结果集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+let sharingResource: string;
+let predicates = new relationalStore.RdbPredicates('test_table');
+predicates.equalTo('data', 'data_test');
+if(store != undefined) {
+  (store as relationalStore.RdbStore).querySharingResource(predicates,(err, resultSet) => {
+    if (err) {
+      console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    if (!resultSet.goToFirstRow()) {
+      console.error(`resultSet error`);
+      return;
+    }
+    const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
+    console.info(`sharing resource: ${res}`);
+    sharingResource = res;
+  })
+}
+
+```
+
+### querySharingResource<sup>11+</sup>
+
+querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;): void
+
+根据谓词条件匹配的数据记录查找对应记录的共享资源，返回查找到的共享资源的结果集，同时在结果集中返回谓词条件匹配的指定列名的字段值，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | 表示查询的谓词条件。           |
+| columns    | Array&lt;string&gt;              | 是   | 表示要查找的列字段名。           |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt;  | 是   | 回调函数。返回查询的结果集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+let sharingResource: string;
+let predicates = new relationalStore.RdbPredicates('test_table');
+predicates.equalTo('data', 'data_test');
+if(store != undefined) {
+  (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data'], (err, resultSet) => {
+    if (err) {
+      console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    if (!resultSet.goToFirstRow()) {
+      console.error(`resultSet error`);
+      return;
+    }
+    const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
+    console.info(`sharing resource: ${res}`);
+    sharingResource = res;
+  })
+}
+
+```
+
 ## ResultSet
 
 提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
@@ -5047,9 +5204,9 @@ getColumnName(columnIndex: number): string
 
 ```ts
 if(resultSet != undefined) {
-const id = (resultSet as relationalStore.ResultSet).getColumnName(0);
-const name = (resultSet as relationalStore.ResultSet).getColumnName(1);
-const age = (resultSet as relationalStore.ResultSet).getColumnName(2);
+  const id = (resultSet as relationalStore.ResultSet).getColumnName(0);
+  const name = (resultSet as relationalStore.ResultSet).getColumnName(1);
+  const age = (resultSet as relationalStore.ResultSet).getColumnName(2);
 }
 ```
 
@@ -5085,7 +5242,7 @@ goTo(offset:number): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goTo(1);
+  (resultSet as relationalStore.ResultSet).goTo(1);
 }
 ```
 
@@ -5121,7 +5278,7 @@ goToRow(position: number): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToRow(5);
+  (resultSet as relationalStore.ResultSet).goToRow(5);
 }
 ```
 
@@ -5152,7 +5309,7 @@ goToFirstRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToFirstRow();
+  (resultSet as relationalStore.ResultSet).goToFirstRow();
 }
 ```
 
@@ -5182,7 +5339,7 @@ goToLastRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToLastRow();
+  (resultSet as relationalStore.ResultSet).goToLastRow();
 }
 ```
 
@@ -5212,7 +5369,7 @@ goToNextRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToNextRow();
+  (resultSet as relationalStore.ResultSet).goToNextRow();
 }
 ```
 
@@ -5242,7 +5399,7 @@ goToPreviousRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToPreviousRow();
+  (resultSet as relationalStore.ResultSet).goToPreviousRow();
 }
 ```
 
@@ -5278,7 +5435,7 @@ getBlob(columnIndex: number): Uint8Array
 
 ```ts
 if(resultSet != undefined) {
-const codes = (resultSet as relationalStore.ResultSet).getBlob((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
+  const codes = (resultSet as relationalStore.ResultSet).getBlob((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
 }
 ```
 
@@ -5314,7 +5471,7 @@ getString(columnIndex: number): string
 
 ```ts
 if(resultSet != undefined) {
-const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
+  const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
 }
 ```
 
@@ -5350,7 +5507,7 @@ getLong(columnIndex: number): number
 
 ```ts
 if(resultSet != undefined) {
-const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
+  const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
  }
 ```
 
@@ -5386,7 +5543,7 @@ getDouble(columnIndex: number): number
 
 ```ts
 if(resultSet != undefined) {
-const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
+  const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
 }
 ```
 
@@ -5422,7 +5579,7 @@ getAsset(columnIndex: number): Asset
 
 ```ts
 if(resultSet != undefined) {
-const doc = (resultSet as relationalStore.ResultSet).getAsset((resultSet as relationalStore.ResultSet).getColumnIndex("DOC"));
+  const doc = (resultSet as relationalStore.ResultSet).getAsset((resultSet as relationalStore.ResultSet).getColumnIndex("DOC"));
 }
 ```
 
@@ -5458,7 +5615,7 @@ getAssets(columnIndex: number): Assets
 
 ```ts
 if(resultSet != undefined) {
-const docs = (resultSet as relationalStore.ResultSet).getAssets((resultSet as relationalStore.ResultSet).getColumnIndex("DOCS"));
+  const docs = (resultSet as relationalStore.ResultSet).getAssets((resultSet as relationalStore.ResultSet).getColumnIndex("DOCS"));
 }
 ```
 
@@ -5495,7 +5652,7 @@ isColumnNull(columnIndex: number): boolean
 
 ```ts
 if(resultSet != undefined) {
-const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
+  const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
 }
 ```
 
@@ -5511,7 +5668,7 @@ close(): void
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).close();
+  (resultSet as relationalStore.ResultSet).close();
 }
 ```
 

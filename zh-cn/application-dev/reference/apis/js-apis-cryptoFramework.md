@@ -146,6 +146,15 @@ buffer数组，提供blob数据类型。
 | RSA_N_BN | 301 | RSA算法中的模数n。 |
 | RSA_SK_BN | 302 | RSA算法中的私钥sk（即私钥指数d）。 |
 | RSA_PK_BN | 303 | RSA算法中的公钥pk（即公钥指数e）。 |
+| DH_P_BN<sup>11+</sup> | 401 | DH算法中的素数p |
+| DH_G_BN<sup>11+</sup> | 402 | DH算法中的参数g |
+| DH_L_NUM<sup>11+</sup> | 403 | DH算法中私钥长度，单位为bit. |
+| DH_SK_BN<sup>11+</sup> | 404 | DH算法中的私钥sk |
+| DH_PK_BN<sup>11+</sup> | 405 | DH算法中的公钥pk |
+| ED25519_SK_BN<sup>11+</sup> | 501 | ED25519算法中的私钥sk |
+| ED25519_PK_BN<sup>11+</sup> | 502 | ED25519算法中的公钥pk |
+| X25519_SK_BN<sup>11+</sup> | 601 | X25519算法中的私钥sk |
+| X25519_PK_BN<sup>11+</sup> | 602 | X25519算法中的公钥pk |
 
 ## AsyKeySpecType<sup>10+</sup>
 
@@ -164,7 +173,7 @@ buffer数组，提供blob数据类型。
 
 表示加解密参数的枚举，这些加解密参数支持通过[setCipherSpec](#setcipherspec10)接口设置/通过[getCipherSpec](#getcipherspec10)接口获取。
 
-当前只支持RSA算法，详细规格请参考框架概述[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)
+当前只支持RSA算法和SM2算法，从API version 11开始，增加对SM2_MD_NAME_STR参数的支持，详细规格请参考框架概述[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -174,12 +183,13 @@ buffer数组，提供blob数据类型。
 | OAEP_MGF_NAME_STR | 101 | 表示RSA算法中，使用PKCS1_OAEP模式时，掩码生成算法（目前仅支持MGF1）。 |
 | OAEP_MGF1_MD_STR | 102 | 表示RSA算法中，使用PKCS1_OAEP模式时，MGF1掩码生成功能的消息摘要算法。 |
 | OAEP_MGF1_PSRC_UINT8ARR | 103 | 表示RSA算法中，使用PKCS1_OAEP模式时，pSource的字节流。 |
+| SM2_MD_NAME_STR<sup>11+</sup> | 104 | 表示SM2算法中，使用的摘要算法名。 |
 
 ## SignSpecItem<sup>10+</sup>
 
 表示签名验签参数的枚举，这些签名验签参数支持通过[setSignSpec](#setsignspec10)、[setVerifySpec](#setverifyspec10)接口设置/通过[getSignSpec](#getsignspec10)、[getVerifySpec](#getverifyspec10)接口获取。
 
-当前只支持RSA算法，详细规格请参考框架概述[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)
+当前只支持RSA算法和SM2算法，从API version 11开始，增加对SM2_USER_ID_UINT8ARR参数的支持，详细规格请参考框架概述[签名验签规格](../../security/cryptoFramework-overview.md#签名验签规格)
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -190,6 +200,7 @@ buffer数组，提供blob数据类型。
 | PSS_MGF1_MD_STR | 102 | 表示RSA算法中，使用PSS模式时，MGF1掩码生成功能的消息摘要参数。 |
 | PSS_SALT_LEN_NUM | 103 | 表示RSA算法中，使用PSS模式时，盐值的长度，长度以字节为单位。 |
 | PSS_TRAILER_FIELD_NUM | 104 | 表示RSA算法中，使用PSS模式时，用于编码操作的整数，值为1。 |
+| SM2_USER_ID_UINT8ARR<sup>11+</sup> | 105 | 表示SM2算法中，用户身份标识字段。 |
 
 ## AsyKeySpec<sup>10+</sup>
 
@@ -369,6 +380,134 @@ buffer数组，提供blob数据类型。
 | params | [RSACommonParamsSpec](#rsacommonparamsspec10) | 是   | 是   | 指定RSA算法中公私钥都包含的公共参数。 |
 | sk | bigint | 是   | 是   | 指定RSA算法的私钥sk。 |
 | pk | bigint | 是   | 是   | 指定RSA算法的公钥pk。 |
+
+## ED25519PriKeySpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ED25519算法中私钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称 | 类型   | 可读 | 可写 | 说明                      |
+| ---- | ------ | ---- | ---- | ------------------------- |
+| sk   | bigint | 是   | 是   | 指定ED25519算法的私钥sk。 |
+
+## ED25519PubKeySpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ED25519算法中公钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称 | 类型   | 可读 | 可写 | 说明                      |
+| ---- | ------ | ---- | ---- | ------------------------- |
+| pk   | bigint | 是   | 是   | 指定ED25519算法的公钥pk。 |
+
+## ED25519KeyPairSpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ED25519算法中公私钥包含的全量参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称 | 类型   | 可读 | 可写 | 说明                      |
+| ---- | ------ | ---- | ---- | ------------------------- |
+| sk   | bigint | 是   | 是   | 指定ED25519算法的私钥sk。 |
+| pk   | bigint | 是   | 是   | 指定ED25519算法的公钥pk。 |
+
+## X25519PriKeySpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定X25519算法中私钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称 | 类型   | 可读 | 可写 | 说明                     |
+| ---- | ------ | ---- | ---- | ------------------------ |
+| sk   | bigint | 是   | 是   | 指定X25519算法的私钥sk。 |
+
+## X25519PubKeySpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定X25519算法中公钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称 | 类型   | 可读 | 可写 | 说明                     |
+| ---- | ------ | ---- | ---- | ------------------------ |
+| pk   | bigint | 是   | 是   | 指定X25519算法的公钥pk。 |
+
+## X25519KeyPairSpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定X25519算法中公私钥包含的全量参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称 | 类型   | 可读 | 可写 | 说明                     |
+| ---- | ------ | ---- | ---- | ------------------------ |
+| sk   | bigint | 是   | 是   | 指定X25519算法的私钥sk。 |
+| pk   | bigint | 是   | 是   | 指定X25519算法的公钥pk。 |
+
+## DHCommonParamsSpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DH算法中公私钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称 | 类型   | 可读 | 可写 | 说明                                |
+| ---- | ------ | ---- | ---- | ----------------------------------- |
+| p    | bigint | 是   | 是   | 指定DH算法中大素数p。               |
+| g    | bigint | 是   | 是   | 指定DH算法中参数g。                 |
+| l    | number | 是   | 是   | 指定DH算法中私钥的长度，单位为bit。 |
+
+## DHPriKeySpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DH算法中私钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称   | 类型               | 可读 | 可写 | 说明                                 |
+| ------ | ------------------ | ---- | ---- | ------------------------------------ |
+| params | DHCommonParamsSpec | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
+| sk     | bigint             | 是   | 是   | 指定DH算法的私钥sk。                 |
+
+## DHPubKeySpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DH算法中公钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称   | 类型               | 可读 | 可写 | 说明                                 |
+| ------ | ------------------ | ---- | ---- | ------------------------------------ |
+| params | DHCommonParamsSpec | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
+| pk     | bigint             | 是   | 是   | 指定DH算法的公钥pk。                 |
+
+## DHKeyPairSpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DH算法中公私钥包含的全量参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称   | 类型               | 可读 | 可写 | 说明                                 |
+| ------ | ------------------ | ---- | ---- | ------------------------------------ |
+| params | DHCommonParamsSpec | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
+| sk     | bigint             | 是   | 是   | 指定DH算法的私钥sk。                 |
+| pk     | bigint             | 是   | 是   | 指定DH算法的公钥pk。                 |
 
 ## KdfSpec<sup>11+</sup>
 
@@ -1428,6 +1567,90 @@ try {
 }
 ```
 
+## ECCKeyUtil<sup>11+</sup>
+
+根据椭圆曲线名生成相应的非对称公共密钥参数。
+
+### genECCCommonParamsSpec<sup>11+</sup>
+
+static genECCCommonParamsSpec(curveName: string): ECCCommonParamsSpec
+
+根据椭圆曲线相应的NID(Name IDentifier)字符串名称生成相应的非对称公共密钥参数。详见概述“[ECC密钥生成规格](../../security/cryptoFramework-overview.md#ecc密钥生成规格)”和“[SM2密钥生成规格](../../security/cryptoFramework-overview.md#sm2密钥生成规格)”章节。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                                           |
+| ------- | ------ | ---- | ---------------------------------------------- |
+| algName | string | 是   | 椭圆曲线相应的NID(Name IDentifier)字符串名称。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 401      | invalid parameters.              |
+| 801      | this operation is not supported. |
+| 17620001 | memory error.                    |
+
+**示例：**
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+try {
+    let ECCCommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_brainpoolP160r1');
+    console.info(`genECCCommonParamsSpec success`);
+} catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error(`genECCCommonParamsSpec error, ${e.code}, ${e.message}`);
+}
+```
+
+## DHKeyUtil<sup>11+</sup>
+
+根据素数P的长度和私钥长度（bit位数）生成DH公共密钥参数。
+
+### genDHCommonParamsSpec<sup>11+</sup>
+
+static genDHCommonParamsSpec(pLen: number, skLen?: number): DHCommonParamsSpec
+
+根据素数P的长度和私钥长度（bit位数）生成DH公共密钥参数。详见概述”[DH密钥生成规格](../../security/cryptoFramework-overview.md#dh密钥生成规格)“一节。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                             |
+| ------ | ------ | ---- | ------------------------------------------------ |
+| pLen   | number | 是   | 用于指定DH公共密钥参数中素数P的长度，单位为bit。 |
+| skLen  | number | 否   | 用于指定DH公共密钥参数中私钥的长度，单位为bit。  |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 401      | invalid parameters.              |
+| 801      | this operation is not supported. |
+| 17620001 | memory error.                    |
+| 17630001 | crypto operation error.          |
+
+**示例：**
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+try {
+    let DHCommonParamsSpec = cryptoFramework.ECCKeyUtil.genDHCommonParamsSpec(2048);
+    console.info(`genDHCommonParamsSpec success`);
+} catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error(`genDHCommonParamsSpec error, ${e.code}, ${e.message}`);
+}
+```
+
 ## Cipher
 
 提供加解密的算法操作功能，按序调用本类中的[init()](#init-1)、[update()](#update)、[doFinal()](#dofinal)方法，可以实现对称加密/对称解密/非对称加密/非对称解密。
@@ -1887,7 +2110,7 @@ cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSo
 
 getCipherSpec(itemType: CipherSpecItem): string | Uint8Array
 
-获取加解密参数。当前只支持RSA算法。
+获取加解密参数。当前只支持RSA算法和SM2算法，从API version 11开始，支持SM2算法获取加解密参数。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1934,7 +2157,7 @@ Sign实例生成。
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定签名算法：RSA，ECC，DSA或SM2<sup>10+</sup>。使用RSA PKCS1模式时需要设置摘要，使用RSA PSS模式时需要设置摘要和掩码摘要。 |
+| algName | string | 是   | 指定签名算法：RSA，ECC，DSA，SM2<sup>10+</sup>或ED25519<sup>11+</sup>。使用RSA PKCS1模式时需要设置摘要，使用RSA PSS模式时需要设置摘要和掩码摘要。 |
 
 **返回值**：
 
@@ -2247,9 +2470,11 @@ function signMessagePromise() {
 
 setSignSpec(itemType: SignSpecItem, itemValue: number): void
 
+setSignSpec(itemType: SignSpecItem, itemValue: number\|Uint8Array<sup>11+</sup>): void
+
 设置签名参数。常用的签名参数可以直接通过[createSign](#cryptoframeworkcreatesign) 来指定，剩余参数可以通过本接口指定。
 
-当前只支持RSA算法。
+当前只支持RSA算法、SM2算法，从API version11开始，支持SM2算法设置签名参数。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2258,7 +2483,7 @@ setSignSpec(itemType: SignSpecItem, itemValue: number): void
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | 是   | 用于指定需要设置的签名参数。 |
-| itemValue | number | 是   | 用于指定签名参数的具体值。 |
+| itemValue | number\|Uint8Array | 是   | 用于指定签名参数的具体值。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2329,7 +2554,7 @@ Verify实例生成。
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定签名算法：RSA，ECC，DSA或SM2<sup>10+</sup>，。使用RSA PKCS1模式时需要设置摘要，使用RSA PSS模式时需要设置摘要和掩码摘要。 |
+| algName | string | 是   | 指定签名算法：RSA，ECC，DSA，SM2<sup>10+</sup>或ED25519<sup>11+</sup>。使用RSA PKCS1模式时需要设置摘要，使用RSA PSS模式时需要设置摘要和掩码摘要。 |
 
 **返回值**：
 
@@ -2596,7 +2821,11 @@ verifyInitPromise.then((): Promise<void> => {
 
 setVerifySpec(itemType: SignSpecItem, itemValue: number): void
 
-设置验签参数。常用的签名参数可以直接通过[createVerify](#cryptoframeworkcreateverify) 来指定，剩余参数可以通过本接口指定。当前只支持RSA算法。
+setVerifySpec(itemType: SignSpecItem, itemValue: number\|Uint8Array<sup>11+</sup>): void
+
+设置验签参数。常用的签名参数可以直接通过[createVerify](#cryptoframeworkcreateverify) 来指定，剩余参数可以通过本接口指定。
+
+当前只支持RSA算法、SM2算法，从API version 11开始，支持SM2算法设置验签参数。
 
 验签的参数应当与签名的参数保持一致。
 
@@ -2607,7 +2836,7 @@ setVerifySpec(itemType: SignSpecItem, itemValue: number): void
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | 是   | 用于指定需要设置的验签参数。 |
-| itemValue | number | 是   | 用于指定验签参数的具体值。 |
+| itemValue | number\|Uint8Array | 是   | 用于指定验签参数的具体值。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2678,9 +2907,9 @@ KeyAgreement实例生成。
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 说明                              |
-| ------- | ------ | ---- | --------------------------------- |
-| algName | string | 是   | 指定密钥协商算法：目前仅支持ECC。 |
+| 参数名  | 类型   | 必填 | 说明                                                         |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| algName | string | 是   | 指定密钥协商算法：目前仅支持ECC，从API version 11开始，增加支持X25519和DH。 |
 
 **返回值**：
 

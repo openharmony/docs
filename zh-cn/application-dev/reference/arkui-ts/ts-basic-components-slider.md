@@ -39,7 +39,9 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | OutSet | 滑块在滑轨上。 |
 | InSet | 滑块在滑轨内。 |
 
-支持除触摸热区以外的通用属性设置。
+## 属性
+
+支持除触摸热区以外的[通用属性](ts-universal-attributes-size.md)。
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
@@ -54,7 +56,7 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | stepColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置刻度颜色。 |
 | trackBorderRadius<sup>10+</sup> | [Length](ts-types.md#length) | 设置底板圆角半径。 |
 | blockSize<sup>10+</sup> | [SizeOptions](ts-types.md#sizeoptions) | 设置滑块大小。 |
-| blockStyle<sup>10+</sup> | [SliderBlockStyle](#sliderblockstyle10) | 设置滑块形状参数。 |
+| blockStyle<sup>10+</sup> | [SliderBlockStyle](#sliderblockstyle10对象说明) | 设置滑块形状参数。 |
 | stepSize<sup>10+</sup> | [Length](ts-types.md#length) | 设置刻度大小（直径）。 |
 
 ## SliderBlockStyle<sup>10+</sup>对象说明
@@ -63,9 +65,9 @@ Slider组件滑块形状参数。
 
 | 名称  | 类型                                                         | 必填 | 说明                                                         |
 | ----- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type  | [SliderBlockType](#sliderblocktype10)                        | 是   | 设置滑块形状。<br/>默认值：SliderBlockType.DEFAULT，使用圆形滑块。 |
+| type  | [SliderBlockType](#sliderblocktype10枚举说明)                | 是   | 设置滑块形状。<br/>默认值：SliderBlockType.DEFAULT，使用圆形滑块。 |
 | image | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 设置滑块图片资源。<br />图片显示区域大小由blockSize属性控制，请勿输入尺寸过大的图片。 |
-| shape | [Circle](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[Ellipse](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[Path](ts-drawing-components-path.md)&nbsp;\|&nbsp;[Rect](ts-drawing-components-rect.md)&nbsp; | 否   | 设置滑块使用的自定义形状。                                              |
+| shape | [Circle](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[Ellipse](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[Path](ts-drawing-components-path.md)&nbsp;\|&nbsp;[Rect](ts-drawing-components-rect.md)&nbsp; | 否   | 设置滑块使用的自定义形状。                                   |
 
 ## SliderBlockType<sup>10+</sup>枚举说明
 

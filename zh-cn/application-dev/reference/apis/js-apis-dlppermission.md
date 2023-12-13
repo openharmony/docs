@@ -50,6 +50,7 @@ import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+
 try {
   let res = dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件
   console.info('res', res);
@@ -93,6 +94,7 @@ import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+
 try {
   dlpPermission.isDLPFile(file.fd, (err, res) => {
     if (err != undefined) {
@@ -139,7 +141,7 @@ import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
 try {
-  let inSandbox = dlpPermission.isInSandbox(); // 是否在沙箱内
+  let inSandbox: boolean = await dlpPermission.isInSandbox(); // 是否在沙箱内
   if (inSandbox) {
     let res: Promise<dlpPermission.DLPPermissionInfo> = dlpPermission.getDLPPermissionInfo(); // 获取当前权限信息
     console.info('res', JSON.stringify(res));
@@ -182,7 +184,7 @@ import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
 
 try {
-  let inSandbox = dlpPermission.isInSandbox(); // 是否在沙箱内
+  let inSandbox: boolean = await dlpPermission.isInSandbox(); // 是否在沙箱内
   if (inSandbox) {
     dlpPermission.getDLPPermissionInfo((err, res) => {
       if (err != undefined) {
@@ -429,7 +431,7 @@ try {
     if (err) {
       console.error('isInSandbox error,', err.code, err.message);
     } else {
-      console.info('isInSandbox, data');
+      console.info('isInSandbox, data', JSON.stringify(data));
     }
   }); // 是否在沙箱内
 } catch (err) {
@@ -556,7 +558,7 @@ import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
-  let inSandbox = dlpPermission.isInSandbox(); // 是否在沙箱内
+  let inSandbox: boolean = await dlpPermission.isInSandbox(); // 是否在沙箱内
   if (inSandbox) {
     dlpPermission.setRetentionState([uri]); // 设置沙箱保留
   }
@@ -604,6 +606,7 @@ try {
       console.error('setRetentionState error,', err.code, err.message);
     } else {
       console.info('setRetentionState success');
+      console.info('res', JSON.stringify(res));
     }
   }); // 设置沙箱保留
 } catch (err) {
@@ -913,6 +916,68 @@ try {
   }); // 获取DLP访问列表
 } catch (err) {
   console.error('getDLPFileAccessRecords error,', (err as BusinessError).code, (err as BusinessError).message);
+}
+```
+
+## dlpPermission.startDLPManagerForResult<sup>11+</sup>
+
+startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&lt;DLPManagerResult&gt;
+
+在当前UIAbility界面以无边框形式打开DLP权限管理应用。使用Promise方式异步返回结果。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| context | [common.UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 是 | 当前窗口UIAbility上下文。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 请求对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[DLPManagerResult](#dlpmanagerresult11)&gt; | Promise对象。打开DLP权限管理应用并退出后的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[DLP服务错误码](../errorcodes/errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
+| 19100016 | Uri does not exist in want. |
+| 19100017 | DisplayName does not exist in want (under parameters). |
+
+**示例：**
+
+```ts
+import dlpPermission from '@ohos.dlpPermission';
+import common from '@ohos.app.ability.common';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import UIAbility from '@ohos.app.ability.UIAbility'
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+try {
+  let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+  let want: Want = {
+    "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
+    "parameters": {
+      "displayName": "1.txt"
+    }
+  }; // 请求参数
+  dlpPermission.startDLPManagerForResult(context, want).then((res) => {
+    console.info('res.resultCode', res.resultCode);
+    console.info('res.want', JSON.stringifg(res.want));
+  }); // 打开DLP权限管理应用
+} catch (err) {
+  console.error('error', err.code, err.message); // 失败报错
 }
 ```
 
@@ -1373,10 +1438,28 @@ addDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.sinagtureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
@@ -1425,10 +1508,28 @@ addDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.sinagtureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link', async (err, res) => {
@@ -1480,10 +1581,28 @@ stopFuseLink(): Promise&lt;void&gt;
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.sinagtureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
@@ -1532,10 +1651,28 @@ stopFuseLink(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.sinagtureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
@@ -1588,10 +1725,28 @@ resumeFuseLink(): Promise&lt;void&gt;
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.sinagtureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
@@ -1641,10 +1796,28 @@ resumeFuseLink(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.sinagtureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
@@ -1705,10 +1878,28 @@ replaceDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.sinagtureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
@@ -1760,10 +1951,28 @@ replaceDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): v
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.sinagtureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
@@ -1825,10 +2034,28 @@ deleteDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.sinagtureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
@@ -1878,10 +2105,28 @@ deleteDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): vo
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.sinagtureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
@@ -1947,10 +2192,28 @@ recoverDLPFile(plaintextFd: number): Promise&lt;void&gt;
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.sinagtureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 let destFile = fs.openSync("destUri");
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
@@ -2007,10 +2270,28 @@ recoverDLPFile(plaintextFd: number, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.sinagtureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 let destFile = fs.openSync("destUri");
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
@@ -2067,10 +2348,28 @@ closeDLPFile(): Promise&lt;void&gt;
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.sinagtureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.closeDLPFile(); //关闭DLP对象
@@ -2120,10 +2419,28 @@ closeDLPFile(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.sinagtureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.closeDLPFile((err, res) => { // 关闭DLP文件
@@ -2345,6 +2662,8 @@ let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
 
 try{
   bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
@@ -2421,6 +2740,8 @@ let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
 
 try{
   bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
@@ -2622,6 +2943,19 @@ DLP文件授权类型的枚举。
 | -------- | -------- | -------- | -------- | -------- |
 | uri | string | 是 | 否 | 表示DLP文件的uri。 |
 | lastOpenTime | number | 是 | 否 | 表示DLP文件最近打开时间。 |
+
+## DLPManagerResult<sup>11+</sup>
+
+表示打开DLP权限管理应用的结果。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| resultCode | number | 是 | 否 | 表示打开DLP权限管理应用并退出后返回的结果码。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 否 | 表示打开DLP权限管理应用并退出后返回的数据。 |
 
 ## DLPSandboxInfo
 

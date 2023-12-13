@@ -1,4 +1,4 @@
-# Video Recording
+# Video Recording (ArkTS)
 
 The system provides the AVRecorder for you to develop the video recording service. The AVRecorder supports audio recording, audio encoding, video encoding, audio encapsulation, and video encapsulation. It is applicable to simple video recording scenarios and can be used to generate local video files directly.
 
@@ -21,7 +21,7 @@ For details about the state, see [AVRecorderState](../reference/apis/js-apis-med
 Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API reference.
 
 1. Create an **AVRecorder** instance. The AVRecorder is the **idle** state.
-     
+   
    ```ts
    import media from '@ohos.multimedia.media'
    let avRecorder: media.AVRecorder;
@@ -33,10 +33,10 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    ```
 
 2. Set the events to listen for.
-   | Event Type| Description| 
+   | Event Type| Description|
    | -------- | -------- |
-   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.| 
-   | error | Mandatory; used to listen for AVRecorder errors.| 
+   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.|
+   | error | Mandatory; used to listen for AVRecorder errors.|
 
    ```ts
    // Callback function for state changes.
@@ -84,10 +84,11 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    ```
 
 4. Obtain the surface ID required for video recording.
+
    Call **getInputSurface()**. The returned surface ID is transferred to the video data collection module (video input source), which is the camera module in the sample code.
 
-     The video data collection module obtains the surface based on the surface ID and transmits video data to the AVRecorder through the surface. Then the AVRecorder processes the video data.
-     
+   The video data collection module obtains the surface based on the surface ID and transmits video data to the AVRecorder through the surface. Then the AVRecorder processes the video data.
+   
    ```ts
    avRecorder.getInputSurface().then((surfaceId: string) => {
      console.info('avRecorder getInputSurface success')
@@ -119,7 +120,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 
 Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
 
-  
+
 ```ts
 import media from '@ohos.multimedia.media'
 import { BusinessError } from '@ohos.base';

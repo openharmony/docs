@@ -620,7 +620,7 @@ continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
 
 ## distributedMissionManager.on('continueStateChange')<sup>10+</sup>
 
-on(type: 'continueStateChange',  callback: Callback&lt;{ state: ContinueState, info: ContinuableInfo }&gt;): void
+on(type: 'continueStateChange',  callback: Callback&lt;ContinueCallbackInfo&gt;): void
 
 注册当前任务流转状态的监听。
 
@@ -633,7 +633,7 @@ on(type: 'continueStateChange',  callback: Callback&lt;{ state: ContinueState, i
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
 | type | string  | 是    | 当前任务流转状态，取值为'continueStateChange'。    |
-| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | 是    | 回调函数，返回当前任务的流转状态和流转信息。    |
+| callback | Callback&lt;[ContinueCallbackInfo](#continuecallbackinfo11)&gt; | 是    | 回调函数，返回当前任务的流转状态和流转信息。    |
 
 **示例：**
 
@@ -651,7 +651,7 @@ on(type: 'continueStateChange',  callback: Callback&lt;{ state: ContinueState, i
 
 ## distributedMissionManager.off('continueStateChange')<sup>10+</sup>
 
-off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState, info: ContinuableInfo }&gt;): void
+off(type: 'continueStateChange',  callback?: Callback&lt;ContinueCallbackInfo&gt;): void
 
 取消当前任务流转的状态监听。
 
@@ -664,7 +664,7 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
 | type | string  | 是    | 当前任务流转状态，取值为'continueStateChange'。    |
-| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | 否    | 需要取消的回调函数。<br>参数不填写，取消type对应的所有回调监听。    |
+| callback | Callback&lt;[ContinueCallbackInfo](#continuecallbackinfo11)&gt; | 否    | 需要取消的回调函数。<br>参数不填写，取消type对应的所有回调监听。    |
 
 **示例：**
 
@@ -730,3 +730,14 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 | ------------- | --------- | ------------------------------------------------------------ |
 | ACTIVE        | 0         | 表示当前任务流转处于激活状态。                              |
 | INACTIVE      | 1         | 表示当前任务流转处于未激活状态。                            |
+
+## ContinueCallbackInfo<sup>11+</sup>
+
+当前任务流转状态监听的回调信息，包含流转状态和流转信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+| 名称       | 类型    | 可读   | 可写   | 说明          |
+| -------- | ------ | ---- | ---- | ----------- |
+| state | [ContinueState](#continuestate10)   | 是    | 否    |   表示当前任务的流转状态。 |
+| info  | [ContinuableInfo](./js-apis-inner-application-continuableInfo.md) | 是    | 否    |   表示当前任务的流转信息。 |

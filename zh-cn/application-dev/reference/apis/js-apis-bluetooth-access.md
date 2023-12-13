@@ -113,6 +113,90 @@ try {
 ```
 
 
+## access.factoryReset<sup>11+</sup><a name="factoryReset"></a>
+
+factoryReset(callback: AsyncCallback&lt;void&gt;): void
+
+恢复蓝牙出厂设置。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名   | 类型                                               | 必填  | 说明                                                       |
+| -------- | ------------------------------------------------- | ----- | ---------------------------------------------------------- |
+| callback     | AsyncCallback&lt;void&gt;             | 是    | 回调函数。当恢复蓝牙出厂设置时成功，err为undefined，否则为错误对象。       |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+|错误码ID   | 错误信息           |
+| -------- | ------------------ |
+|2900001   | Service stopped.   |
+|2900099   | Operation failed.  |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@ohos.base';
+try {
+    access.factoryReset((err: BusinessError) => {
+        if (err) {
+            console.error("factoryReset error");
+        }
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## access.factoryReset<sup>11+</sup><a name="factoryReset"></a>
+
+factoryReset(): Promise&lt;void&gt;
+
+恢复蓝牙出厂设置。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**返回值：**
+
+| 类型                              | 说明              |
+| --------------------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+|错误码ID   | 错误信息           |
+| -------- | ------------------ |
+|2900001   | Service stopped.   |
+|2900099   | Operation failed.  |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@ohos.base';
+try {
+    access.factoryReset().then(() => {
+        console.info("factoryReset");
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
 ## access.on('stateChange')<a name="stateChange"></a>
 
 on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void

@@ -36,8 +36,8 @@ RichEditor(value: RichEditorOptions)
 | 名称                      | 参数类型                                                     | 描述                                                         |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘。 | 
-| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp;\| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType:TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}|
-| copyOptions | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice <br/>**说明：** <br/>设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按组件内容，会弹出文本默认选择菜单，可选中内容并进行复制、全选操作。<br/>设置copyOptions为CopyOptions.None，复制、剪切功能不生效。  |
+| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp;\| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions11)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType:TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}|
+| copyOptions | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice <br/>**说明：** <br/>copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择弹框。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。<br/>设置copyOptions为CopyOptions.None，复制、剪切功能不生效。  |
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -45,12 +45,12 @@ RichEditor(value: RichEditorOptions)
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onReady(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 富文本组件初始化完成后，触发回调。 |
-| onSelect(callback:&nbsp;(value:&nbsp;[RichEditorSelection](#richeditorselection))&nbsp;=&gt;&nbsp;void) | 鼠标左键按下选择，松开左键后触发回调。<br />- 用手指选择时，松开手指触发回调。 <br />- value：选中的所有span信息。 |
+| onSelect(callback:&nbsp;(value:&nbsp;[RichEditorSelection](#richeditorselection))&nbsp;=&gt;&nbsp;void) | 鼠标左键按下选择，松开左键后触发回调。<br />用手指选择时，松开手指触发回调。 <br />- value：选中的所有span信息。 |
 | aboutToIMEInput(callback:&nbsp;(value:&nbsp;[RichEditorInsertValue](#richeditorinsertvalue))&nbsp;=&gt;&nbsp;boolean) | 输入法输入内容前，触发回调。<br />- value：输入法将要输入内容信息。|
 | onIMEInputComplete(callback:&nbsp;(value:&nbsp;[RichEditorTextSpanResult](#richeditortextspanresult))&nbsp;=&gt;&nbsp;void) | 输入法输完成输入后，触发回调。<br />- value：输入法完成输入后的文本Span信息。 |
 | aboutToDelete(callback:&nbsp;(value:&nbsp;[RichEditorDeleteValue](#richeditordeletevalue))&nbsp;=&gt;&nbsp;boolean) | 输入法删除内容前，触发回调。 <br />- value：准备删除的内容所在的文本Span信息。|
 | onDeleteComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 输入法完成删除后，触发回调。 |
-| onPaste<sup>11+</sup>(callback: (event?: [PasteEvent](#pasteevent)) => void) | 完成粘贴前，触发回调。 <br/>**说明：** <br/>系统的默认粘贴和拖拽行为，只支持纯文本的粘贴。<br/>开发者可以通过该方法，覆盖系统默认行为，实现图文的粘贴。|
+| onPaste<sup>11+</sup>(callback: (event?: [PasteEvent](#pasteevent11)) => void) | 完成粘贴前，触发回调。 <br/>**说明：** <br/>系统的默认粘贴和拖拽行为，只支持纯文本的粘贴。<br/>开发者可以通过该方法，覆盖系统默认行为，实现图文的粘贴。|
 
 ## RichEditorInsertValue
 
@@ -224,6 +224,25 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 | ----------------------- | ---------------- |
 | number | 添加完成的imageSpan所在的位置。 |
 
+### addBuilderSpan<sup>11+</sup>
+
+addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): number
+
+添加builder内容。不支持通过[getSpans](#getspans)等方法获取。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| value  | [CustomBuilder](ts-types.md#custombuilder8)  | 是   | 自定义组件。 |
+| options  | [RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11)   | 否   | builder选项。 |
+
+**返回值：**
+
+| 类型                      | 说明               |
+| ----------------------- | ---------------- |
+| number | 添加完成的builderSpan所在的位置。 |
+
 ### getTypingStyle<sup>11+</sup>
 
 getTypingStyle(): RichEditorTextStyle
@@ -253,6 +272,8 @@ setTypingStyle(value: RichEditorTextStyle): void
 updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateImageSpanStyleOptions): void
 
 更新文本或者图片样式。<br/>若只更新了一个Span的部分内容，则会根据更新部分、未更新部分将该Span拆分为多个Span。
+
+使用该接口更新文本或图片样式时默认不会关闭自定义文本选择菜单。
 
 **参数：**
 
@@ -318,7 +339,7 @@ getParagraphs(value?: RichEditorRange): Array\<RichEditorParagraphResult>
 
 | 类型                      | 说明               |
 | ----------------------- | ---------------- |
-| Array\<[RichEditorParagraphResult](#richeditorparagraphresult11) | 选中段落的信息。 |
+| Array\<[RichEditorParagraphResult](#richeditorparagraphresult11)> | 选中段落的信息。 |
 
 ### closeSelectionMenu
 
@@ -456,6 +477,7 @@ getSelection(): RichEditorSelection
 | fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否 | 字体粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
 | fontFamily  | [ResourceStr](ts-types.md#resourcestr) \| number \| string | 否 | 设置字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../apis/js-apis-font.md)。 <br/>默认字体:'HarmonyOS Sans'。|
 | decoration  | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 否 | 设置文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>}。 |
+| textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 是 | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式。 |
 
 
 ## RichEditorImageSpanOptions
@@ -478,6 +500,15 @@ getSelection(): RichEditorSelection
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 图片垂直对齐方式。<br/>默认值:ImageSpanAlignment.BASELINE |
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | 否 | 图片缩放类型。<br/> 默认值:ImageFit.Cover。 |
 | layoutStyle<sup>11+</sup>  |{<br/>margin&nbsp;?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[Margin](ts-types.md#margin),<br/> borderRadius&nbsp;?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9)<br/>}| 否 | 图片布局风格。<br/>|
+
+## RichEditorBuilderSpanOptions<sup>11+</sup>
+
+添加图片的偏移位置和图片样式信息。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| offset  | number   | 否   | 添加builder的位置。省略或者为异常值时，添加到所有文本字符串的最后。 |
+
 ## RichEditorRange
 
 范围信息。
@@ -804,23 +835,23 @@ struct SelectionMenu {
     [$r('app.media.icon'), $r("app.media.icon"), $r('app.media.icon'),
     $r("app.media.icon"), $r('app.media.icon')]
   @State iconBgColor: ResourceColor[] = new Array(this.iconArr.length).fill(this.colorTransparent)
-  @State iconIsFocus: boolean[] = new Array(this.iconArr.length).fill(false)
-  @State clickWeightNum: number = 0
-  @State clickNum: number[] = [0, 0, 0]
   @State pasteEnable: boolean = false
   @State visibilityValue: Visibility = Visibility.Visible
+  @State textStyle: RichEditorTextStyle = {}
   private fontWeightTable: string[] = ["100", "200", "300", "400", "500", "600", "700", "800", "900", "bold", "normal", "bolder", "lighter", "medium", "regular"]
   private theme: SelectionMenuTheme = defaultTheme;
 
   aboutToAppear() {
     if (this.controller) {
       let richEditorSelection = this.controller.getSelection()
-      let start = richEditorSelection.selection[0]
-      let end = richEditorSelection.selection[1]
-      if (start === 0 && this.controller.getSpans({ start: end + 1, end: end + 1 }).length === 0) {
-        this.visibilityValue = Visibility.None
-      } else {
-        this.visibilityValue = Visibility.Visible
+      if (richEditorSelection) {
+        let start = richEditorSelection.selection[0]
+        let end = richEditorSelection.selection[1]
+        if (start === 0 && this.controller.getSpans({ start: end + 1, end: end + 1 }).length === 0) {
+          this.visibilityValue = Visibility.None
+        } else {
+          this.visibilityValue = Visibility.Visible
+        }
       }
     }
     let sysBoard = pasteboard.getSystemPasteboard()
@@ -983,38 +1014,118 @@ struct SelectionMenu {
       Row({ space: 2 }) {
         ForEach(this.iconArr, (item:Resource, index ?: number) => {
           Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-            Image(item).fillColor(this.theme.imageFillColor).width(24).height(24).focusable(true)
+            Image(item).fillColor(this.theme.imageFillColor).width(24).height(24).focusable(true).draggable(false)
           }
-          .border({ width: this.iconIsFocus[index as number] ? 2 : 0, color: this.theme.iconFocusBorderColor })
           .borderRadius(this.theme.iconBorderRadius)
           .width(this.theme.buttonSize)
           .height(this.theme.buttonSize)
-          .focusable(true)
-          .focusOnTouch(true)
           .onClick(() => {
             if (index as number == 0) {
-              this.clickNum[0]++
               this.sliderShow = false
-              this.controller.updateSpanStyle({ start: this.start, end: this.end, textStyle: {
-                fontWeight: this.clickNum[0] % 2 !== 0 ? FontWeight.Bolder : FontWeight.Normal
-              } })
+              if (this.controller) {
+                let selection = this.controller.getSelection();
+                let spans = selection.spans
+                spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+                  if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+                    let span = item as RichEditorTextSpanResult
+                    this.textStyle = span.textStyle
+                    let start = span.offsetInSpan[0]
+                    let end = span.offsetInSpan[1]
+                    let offset = span.spanPosition.spanRange[0]
+                    if (this.textStyle.fontWeight != 11) {
+                      this.textStyle.fontWeight = FontWeight.Bolder
+                    } else {
+                      this.textStyle.fontWeight = FontWeight.Normal
+                    }
+                    this.controller.updateSpanStyle({
+                      start: offset + start,
+                      end: offset + end,
+                      textStyle: this.textStyle
+                    })
+                  }
+                })
+              }
             } else if (index as number == 1) {
-              this.clickNum[1]++
               this.sliderShow = false
-              this.controller.updateSpanStyle({ start: this.start, end: this.end, textStyle: {
-                fontStyle: this.clickNum[1] % 2 !== 0 ? FontStyle.Italic : FontStyle.Normal
-              } })
+              if (this.controller) {
+                let selection = this.controller.getSelection();
+                let spans = selection.spans
+                spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+                  if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+                    let span = item as RichEditorTextSpanResult
+                    this.textStyle = span.textStyle
+                    let start = span.offsetInSpan[0]
+                    let end = span.offsetInSpan[1]
+                    let offset = span.spanPosition.spanRange[0]
+                    if (this.textStyle.fontStyle == FontStyle.Italic) {
+                      this.textStyle.fontStyle = FontStyle.Normal
+                    } else {
+                      this.textStyle.fontStyle = FontStyle.Italic
+                    }
+                    this.controller.updateSpanStyle({
+                      start: offset + start,
+                      end: offset + end,
+                      textStyle: this.textStyle
+                    })
+                  }
+                })
+              }
             } else if (index as number == 2) {
-              this.clickNum[2]++
               this.sliderShow = false
-              this.controller.updateSpanStyle({ start: this.start, end: this.end, textStyle: {
-                decoration: {
-                  type: this.clickNum[2] % 2 !== 0 ? TextDecorationType.Underline : TextDecorationType.None
-                } } })
+              if (this.controller) {
+                let selection = this.controller.getSelection();
+                let spans = selection.spans
+                spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+                  if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+                    let span = item as RichEditorTextSpanResult
+                    this.textStyle = span.textStyle
+                    let start = span.offsetInSpan[0]
+                    let end = span.offsetInSpan[1]
+                    let offset = span.spanPosition.spanRange[0]
+                    if (this.textStyle.decoration) {
+                      if (this.textStyle.decoration.type == TextDecorationType.Underline) {
+                        this.textStyle.decoration.type = TextDecorationType.None
+                      } else {
+                        this.textStyle.decoration.type = TextDecorationType.Underline
+                      }
+                    } else {
+                      this.textStyle.decoration = { type: TextDecorationType.Underline, color: Color.Black }
+                    }
+                    this.controller.updateSpanStyle({
+                      start: offset + start,
+                      end: offset + end,
+                      textStyle: this.textStyle
+                    })
+                  }
+                })
+              }
             } else if (index as number == 3) {
               this.sliderShow = !this.sliderShow
             } else if (index as number == 4) {
               this.sliderShow = false
+              if (this.controller) {
+                let selection = this.controller.getSelection();
+                let spans = selection.spans
+                spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+                  if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+                    let span = item as RichEditorTextSpanResult
+                    this.textStyle = span.textStyle
+                    let start = span.offsetInSpan[0]
+                    let end = span.offsetInSpan[1]
+                    let offset = span.spanPosition.spanRange[0]
+                    if (this.textStyle.fontColor == Color.Orange || this.textStyle.fontColor == '#FFFFA500') {
+                      this.textStyle.fontColor = Color.Black
+                    } else {
+                      this.textStyle.fontColor = Color.Orange
+                    }
+                    this.controller.updateSpanStyle({
+                      start: offset + start,
+                      end: offset + end,
+                      textStyle: this.textStyle
+                    })
+                  }
+                })
+              }
             }
           })
           .onTouch((event?: TouchEvent | undefined) => {
@@ -1034,12 +1145,6 @@ struct SelectionMenu {
             if(isHover != undefined) {
               this.iconBgColor[index as number] = $r('sys.color.ohos_id_color_hover')
             }
-          })
-          .onFocus(() => {
-            this.iconIsFocus[index as number] = true
-          })
-          .onBlur(() => {
-            this.iconIsFocus[index as number] = false
           })
           .backgroundColor(this.iconBgColor[index as number])
         })
@@ -1123,7 +1228,8 @@ struct SelectionMenu {
       })
       .radius(this.theme.containerBorderRadius)
       .clip(true)
-      .width('100%')
+      .backgroundColor(Color.White)
+      .width(this.theme.defaultMenuWidth)
     }
     .width(this.theme.defaultMenuWidth)
   }
@@ -1135,17 +1241,38 @@ struct SelectionMenu {
         Slider({ value: this.textSize, step: 10, style: SliderStyle.InSet })
           .width(210)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.textSize = value
-            this.controller.updateSpanStyle({ start: this.start, end: this.end, textStyle: { fontSize: this.textSize }
-            })
+            if (this.controller) {
+              let selection = this.controller.getSelection();
+              if (mode == SliderChangeMode.End) {
+                if (this.textSize == undefined) {
+                  this.textSize = 0
+                }
+                let spans = selection.spans
+                spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+                  if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+                    this.textSize = Math.max(this.textSize, (item as RichEditorTextSpanResult).textStyle.fontSize)
+                  }
+                })
+              }
+              if (mode == SliderChangeMode.Moving || mode == SliderChangeMode.Click) {
+                this.start = selection.selection[0]
+                this.end = selection.selection[1]
+                this.textSize = value
+                this.controller.updateSpanStyle({
+                  start: this.start,
+                  end: this.end,
+                  textStyle: { fontSize: this.textSize }
+                })
+              }
+            }
           })
         Text('A').fontSize(20).fontWeight(FontWeight.Medium)
       }.borderRadius(this.theme.containerBorderRadius)
     }
-    .backgroundColor(this.colorTransparent)
+    .shadow(ShadowStyle.OUTER_DEFAULT_MD)
+    .backgroundColor(Color.White)
     .borderRadius(this.theme.containerBorderRadius)
     .padding(15)
-    .width(248)
     .height(48)
   }
 }
@@ -1773,3 +1900,84 @@ struct Index {
 }
 ```
 ![UpdateParagraphAndTypingStyle](figures/richEditorUpdateParagraphAndTypingStyle.gif)
+
+### 示例8
+``` ts
+@Entry
+@Component
+struct Index {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  private start: number = -1;
+  private end: number = -1;
+  @State message: string = "[-1, -1]"
+  @State content: string = ""
+  @State visable :number = 0;
+  @State index:number = 0;
+  @State offsetx: number = 0;
+  @State textShadows : (ShadowOptions | Array<ShadowOptions> ) =
+    [{ radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 },{ radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 },
+      { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 },{ radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 },
+      { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 }]
+  @State textshadowOf : ShadowOptions[] = []
+  build() {
+    Column() {
+      Column() {
+        Text("selection range:").width("100%")
+        Text() {
+          Span(this.message)
+        }.width("100%")
+        Text("selection content:").width("100%")
+        Text() {
+          Span(this.content)
+        }.width("100%")
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("20%")
+      Row() {
+        Button("更新样式: 加粗 & 文本阴影").onClick(() => {
+          this.controller.updateSpanStyle({
+            start: this.start,
+            end: this.end,
+            textStyle:
+            {
+              fontWeight: FontWeight.Bolder,
+              textShadow: this.textShadows
+            }
+          })
+        })
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("10%")
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan("0123456789",
+              {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 30,
+                  textShadow: { radius: 10, color: Color.Blue, offsetX: 10, offsetY: 0 }
+                }
+              })
+          })
+          .borderWidth(1)
+          .borderColor(Color.Green)
+          .width("100%")
+          .height("30%")
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("70%")
+    }
+  }
+}
+```
+
+![TextshadowExample](figures/rich_editor_textshadow.png)

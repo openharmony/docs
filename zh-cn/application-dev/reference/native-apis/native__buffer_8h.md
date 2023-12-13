@@ -7,7 +7,7 @@
 
 **库：** libnative_buffer.so
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.OH_NativeBuffer
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **起始版本：** 9
 

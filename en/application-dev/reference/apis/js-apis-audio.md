@@ -23,9 +23,9 @@ import audio from '@ohos.multimedia.audio';
 
 | Name                                   | Type     | Readable | Writable| Description              |
 | --------------------------------------- | ----------| ---- | ---- | ------------------ |
-| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | Yes  | No  | Network ID of the local device.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
-| DEFAULT_VOLUME_GROUP_ID<sup>9+</sup>    | number    | Yes  | No  | Default volume group ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Volume      |
-| DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number    | Yes  | No  | Default audio interruption group ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Interrupt      |
+| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | Yes  | No  | Network ID of the local device.<br>This is a system API.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
+| DEFAULT_VOLUME_GROUP_ID<sup>9+</sup>    | number    | Yes  | No  | Default volume group ID.<br>**System capability**: SystemCapability.Multimedia.Audio.Volume      |
+| DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number    | Yes  | No  | Default audio interruption group ID.<br>**System capability**: SystemCapability.Multimedia.Audio.Interrupt      |
 
 **Example**
 
@@ -54,6 +54,7 @@ Obtains an **AudioManager** instance.
 **Example**
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let audioManager = audio.getAudioManager();
 ```
 
@@ -70,7 +71,7 @@ Creates an **AudioRenderer** instance. This API uses an asynchronous callback to
 | Name  | Type                                           | Mandatory| Description            |
 | -------- | ----------------------------------------------- | ---- | ---------------- |
 | options  | [AudioRendererOptions](#audiorendereroptions8)  | Yes  | Renderer configurations.    |
-| callback | AsyncCallback<[AudioRenderer](#audiorenderer8)> | Yes  | Callback used to return the **AudioRenderer** instance.|
+| callback | AsyncCallback<[AudioRenderer](#audiorenderer8)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **AudioRenderer** instance obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -85,7 +86,6 @@ let audioStreamInfo: audio.AudioStreamInfo = {
 }
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_SPEECH,
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
   rendererFlags: 0
 }
@@ -139,7 +139,6 @@ let audioStreamInfo: audio.AudioStreamInfo = {
 }
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_SPEECH,
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
   rendererFlags: 0
 }
@@ -175,12 +174,13 @@ This permission is required only when [SourceType](#sourcetype) is set to **SOUR
 | Name  | Type                                           | Mandatory| Description            |
 | :------- | :---------------------------------------------- | :--- | :--------------- |
 | options  | [AudioCapturerOptions](#audiocaptureroptions8)  | Yes  | Capturer configurations.|
-| callback | AsyncCallback<[AudioCapturer](#audiocapturer8)> | Yes  | Callback used to return the **AudioCapturer** instance.|
+| callback | AsyncCallback<[AudioCapturer](#audiocapturer8)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **AudioCapturer** instance obtained; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
   channels: audio.AudioChannel.CHANNEL_2,
@@ -279,7 +279,7 @@ Creates a **TonePlayer** instance. This API uses an asynchronous callback to ret
 | Name  | Type                                            | Mandatory| Description           |
 | -------- | ----------------------------------------------- | ---- | -------------- |
 | options  | [AudioRendererInfo](#audiorendererinfo8)        | Yes  | Audio renderer information.|
-| callback | AsyncCallback<[TonePlayer](#toneplayer9)>       | Yes  | Callback used to return the **TonePlayer** instance.|
+| callback | AsyncCallback<[TonePlayer](#toneplayer9)>       | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **TonePlayer** instance obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -323,12 +323,13 @@ Creates a **TonePlayer** instance. This API uses a promise to return the result.
 
 | Type                                     | Description                            |
 | ----------------------------------------- | -------------------------------- |
-| Promise<[TonePlayer](#toneplayer9)>       | Promise used to return the **TonePlayer** instance.  |
+| Promise<[TonePlayer](#toneplayer9)>       | Promise used to return the **TonePlayer** instance.|
 
 **Example**
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let tonePlayer: audio.TonePlayer;
 async function createTonePlayerBefore(){
   let audioRendererInfo: audio.AudioRendererInfo = {
@@ -678,7 +679,7 @@ Describes audio renderer information.
 
 | Name         | Type                       | Mandatory | Description            |
 | ------------- | --------------------------- | ---- | ---------------- |
-| content       | [ContentType](#contenttype) | No  | Audio content type.<br>This parameter is mandatory in API versions 8 and 9 and optional since API version 10.|
+| content       | [ContentType](#contenttypedeprecated) | No  | Audio content type.<br>This parameter is mandatory in API versions 8 and 9 and optional since API version 10.|
 | usage         | [StreamUsage](#streamusage) | Yes  | Audio stream usage.|
 | rendererFlags | number                      | Yes  | Audio renderer flags.<br>The value **0** means a common audio renderer, and **1** means a low-latency audio renderer. Currently, the JS APIs do not support the low-latency audio renderer.|
 
@@ -734,13 +735,13 @@ Describes the event received by the application when the volume is changed.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
-| Name      | Type                               | Mandatory  | Description                                                    |
-| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                              |
-| volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.    |
-| updateUi   | boolean                             | Yes  | Whether to show the volume change in UI.                                       |
-| volumeGroupId | number                           | Yes  | Volume group ID. It can be used as an input parameter of **getGroupManager**.<br>This is a system API. |
-| networkId  | string                              | Yes  | Network ID.<br>This is a system API.                            |
+| Name      | Type                               | Mandatory  | Description                                       |
+| ---------- | ----------------------------------- | ---- |-------------------------------------------|
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                   |
+| volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**. |
+| updateUi   | boolean                             | Yes  | Whether the volume change is shown on the UI. The value **true** means that the volume change is shown, and **false** means the opposite.            |
+| volumeGroupId | number                           | Yes  | Volume group ID. It can be used as an input parameter of **getGroupManager**.<br>This is a system API.|
+| networkId  | string                              | Yes  | Network ID.<br>This is a system API.                      |
 
 ## MicStateChangeEvent<sup>9+</sup>
 
@@ -808,10 +809,10 @@ Enumerates the audio channel blending modes.
 
 | Name                                        |  Value    | Description                  |
 | :------------------------------------------- | :----- | :--------------------- |
-| MODE_DEFAULT<sup>11+</sup>                          | 0     | The audio channels are not blended. |
-| MODE_BLEND_LR<sup>11+</sup>                              | 1      | The left and right audio channels are blended.|
-| MODE_ALL_LEFT<sup>11+</sup>   | 2      | The left channel is replicated into the right channel. |
-| MODE_ALL_RIGHT<sup>11+</sup> | 3 | The right channel is replicated into the left channel.|
+| MODE_DEFAULT | 0     | The audio channels are not blended. |
+| MODE_BLEND_LR | 1      | The left and right audio channels are blended.|
+| MODE_ALL_LEFT | 2      | The left channel is replicated into the right channel. |
+| MODE_ALL_RIGHT | 3 | The right channel is replicated into the left channel.|
 
 ## DeviceChangeType
 
@@ -856,6 +857,7 @@ Enumerates the audio source types.
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | Voice recognition source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup>   | 2 | Internal audio recording source.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture|
 | SOURCE_TYPE_WAKEUP <sup>10+</sup>            | 3 | Audio recording source in voice wake-up scenarios.<br>**System capability**: SystemCapability.Multimedia.Audio.Core<br>**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE <br> This is a system API.|
+| SOURCE_TYPE_VOICE_CALL<sup>11+</sup>            | 4 | Audio source in voice calls.<br>**System capability**: SystemCapability.Multimedia.Audio.Core<br>**Required permissions**: ohos.permission.RECORD_VOICE_CALL <br> This is a system API.|
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | Voice communication source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 
 ## AudioPlaybackCaptureConfig<sup>10+</sup><a name="audioplaybackcaptureconfig"></a>
@@ -930,12 +932,13 @@ This API is used to extend the audio configuration based on the hardware capabil
 | -------- | ------------------------- | ---- | ------------------------ |
 | key      | string                    | Yes  | Key of the audio parameter to set.  |
 | value    | string                    | Yes  | Value of the audio parameter to set.  |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.setAudioParameter('key_example', 'value_example', (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set the audio parameter. ${err}`);
@@ -968,7 +971,7 @@ This API is used to extend the audio configuration based on the hardware capabil
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -993,12 +996,13 @@ This API is used to extend the audio configuration based on the hardware capabil
 | Name  | Type                       | Mandatory| Description                        |
 | -------- | --------------------------- | ---- | ---------------------------- |
 | key      | string                      | Yes  | Key of the audio parameter whose value is to be obtained.      |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the value of the audio parameter.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the audio parameter value obtained; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.getAudioParameter('key_example', (err: BusinessError, value: string) => {
   if (err) {
     console.error(`Failed to obtain the value of the audio parameter. ${err}`);
@@ -1053,12 +1057,13 @@ Sets an audio scene. This API uses an asynchronous callback to return the result
 | Name  | Type                                | Mandatory| Description                |
 | :------- | :----------------------------------- | :--- | :------------------- |
 | scene    | <a href="#audioscene">AudioScene</a> | Yes  | Audio scene to set.      |
-| callback | AsyncCallback<void\>                 | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<void\>                 | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set the audio scene mode. ${err}`);
@@ -1088,12 +1093,13 @@ Sets an audio scene. This API uses a promise to return the result.
 
 | Type          | Description                |
 | :------------- | :------------------- |
-| Promise<void\> | Promise used to return the result.|
+| Promise<void\> | Promise that returns no value.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
   console.info('Promise returned to indicate a successful setting of the audio scene mode.');
 }).catch ((err: BusinessError) => {
@@ -1113,12 +1119,13 @@ Obtains the audio scene. This API uses an asynchronous callback to return the re
 
 | Name  | Type                                               | Mandatory| Description                        |
 | :------- | :-------------------------------------------------- | :--- | :--------------------------- |
-| callback | AsyncCallback<<a href="#audioscene">AudioScene</a>> | Yes  | Callback used to return the audio scene.|
+| callback | AsyncCallback<<a href="#audioscene">AudioScene</a>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the audio scene obtained; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.getAudioScene((err: BusinessError, value: audio.AudioScene) => {
   if (err) {
     console.error(`Failed to obtain the audio scene mode. ${err}`);
@@ -1146,6 +1153,7 @@ Obtains the audio scene. This API uses a promise to return the result.
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.getAudioScene().then((value: audio.AudioScene) => {
   console.info(`Promise returned to indicate that the audio scene mode is obtained ${value}.`);
 }).catch ((err: BusinessError) => {
@@ -1199,6 +1207,7 @@ Obtains an **AudioVolumeManager** instance.
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let audioVolumeManager: audio.AudioVolumeManager = audioManager.getVolumeManager();
 ```
 
@@ -1220,6 +1229,7 @@ Obtains an **AudioStreamManager** instance.
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let audioStreamManager: audio.AudioStreamManager = audioManager.getStreamManager();
 ```
 
@@ -1241,6 +1251,7 @@ Obtains an **AudioRoutingManager** instance.
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let audioRoutingManager: audio.AudioRoutingManager = audioManager.getRoutingManager();
 ```
 
@@ -1266,12 +1277,13 @@ This permission is required only for muting or unmuting the ringer when **volume
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
 | volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.|
-| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.                                  |
+| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set the volume. ${err}`);
@@ -1308,7 +1320,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -1335,12 +1347,13 @@ Obtains the volume of a stream. This API uses an asynchronous callback to return
 | Name    | Type                               | Mandatory| Description              |
 | ---------- | ----------------------------------- | ---- | ------------------ |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.      |
-| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the volume.|
+| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the stream volume obtained; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
     console.error(`Failed to obtain the volume. ${err}`);
@@ -1399,12 +1412,13 @@ Obtains the minimum volume allowed for a stream. This API uses an asynchronous c
 | Name    | Type                               | Mandatory| Description              |
 | ---------- | ----------------------------------- | ---- | ------------------ |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.      |
-| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the minimum volume.|
+| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the minimum stream volume obtained; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
     console.error(`Failed to obtain the minimum volume. ${err}`);
@@ -1463,12 +1477,13 @@ Obtains the maximum volume allowed for a stream. This API uses an asynchronous c
 | Name    | Type                               | Mandatory| Description                  |
 | ---------- | ----------------------------------- | ---- | ---------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.          |
-| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the maximum volume.|
+| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the maximum stream volume obtained; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
     console.error(`Failed to obtain the maximum volume. ${err}`);
@@ -1528,12 +1543,13 @@ Mutes or unmutes a stream. This API uses an asynchronous callback to return the 
 | ---------- | ----------------------------------- | ---- | ------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                         |
 | mute       | boolean                             | Yes  | Mute status to set. The value **true** means to mute the stream, and **false** means the opposite.|
-| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.               |
+| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to mute the stream. ${err}`);
@@ -1566,7 +1582,7 @@ Mutes or unmutes a stream. This API uses a promise to return the result.
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -1594,12 +1610,13 @@ Checks whether a stream is muted. This API uses an asynchronous callback to retu
 | Name    | Type                               | Mandatory| Description                                           |
 | ---------- | ----------------------------------- | ---- | ----------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                   |
-| callback   | AsyncCallback&lt;boolean&gt;        | Yes  | Callback used to return the mute status of the stream. The value **true** means that the stream is muted, and **false** means the opposite.|
+| callback   | AsyncCallback&lt;boolean&gt;        | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true** if the stream is muted or **false** if not muted; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.isMute(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: boolean) => {
   if (err) {
     console.error(`Failed to obtain the mute status. ${err}`);
@@ -1658,12 +1675,13 @@ Checks whether a stream is active. This API uses an asynchronous callback to ret
 | Name    | Type                               | Mandatory| Description                                             |
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                     |
-| callback   | AsyncCallback&lt;boolean&gt;        | Yes  | Callback used to return the active status of the stream. The value **true** means that the stream is active, and **false** means the opposite.|
+| callback   | AsyncCallback&lt;boolean&gt;        | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true** if the stream is active or **false** if not active; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.isActive(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: boolean) => {
   if (err) {
     console.error(`Failed to obtain the active status of the stream. ${err}`);
@@ -1726,12 +1744,13 @@ This permission is required only for muting or unmuting the ringer.
 | Name  | Type                           | Mandatory| Description                    |
 | -------- | ------------------------------- | ---- | ------------------------ |
 | mode     | [AudioRingMode](#audioringmode) | Yes  | Ringer mode.          |
-| callback | AsyncCallback&lt;void&gt;       | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt;       | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set the ringer mode. ${err}`);
@@ -1768,7 +1787,7 @@ This permission is required only for muting or unmuting the ringer.
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -1794,12 +1813,13 @@ Obtains the ringer mode. This API uses an asynchronous callback to return the re
 
 | Name  | Type                                                | Mandatory| Description                    |
 | -------- | ---------------------------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback&lt;[AudioRingMode](#audioringmode)&gt; | Yes  | Callback used to return the ringer mode.|
+| callback | AsyncCallback&lt;[AudioRingMode](#audioringmode)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the ringer mode obtained; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.getRingerMode((err: BusinessError, value: audio.AudioRingMode) => {
   if (err) {
     console.error(`Failed to obtain the ringer mode. ${err}`);
@@ -1852,11 +1872,12 @@ Obtains the audio devices with a specific flag. This API uses an asynchronous ca
 | Name    | Type                                                        | Mandatory| Description                |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
 | deviceFlag | [DeviceFlag](#deviceflag)                                    | Yes  | Audio device flag.    |
-| callback   | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Yes  | Callback used to return the device list.|
+| callback   | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the audio devices obtained; otherwise, **err** is an error object.|
 
 **Example**
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err: BusinessError, value: audio.AudioDeviceDescriptors) => {
   if (err) {
     console.error(`Failed to obtain the device list. ${err}`);
@@ -1912,16 +1933,17 @@ Sets a device to the active state. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-| Name    | Type                                 | Mandatory| Description                    |
-| ---------- | ------------------------------------- | ---- | ------------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type.      |
-| active     | boolean                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.          |
-| callback   | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result.|
+| Name    | Type                                 | Mandatory| Description         |
+| ---------- | ------------------------------------- | ---- |-------------|
+| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type.  |
+| active     | boolean                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.    |
+| callback   | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set the active status of the device. ${err}`);
@@ -1954,7 +1976,7 @@ Sets a device to the active state. This API uses a promise to return the result.
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -1982,12 +2004,13 @@ Checks whether a device is active. This API uses an asynchronous callback to ret
 | Name    | Type                                 | Mandatory| Description                    |
 | ---------- | ------------------------------------- | ---- | ------------------------ |
 | deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type.      |
-| callback   | AsyncCallback&lt;boolean&gt;          | Yes  | Callback used to return the active state of the device.|
+| callback   | AsyncCallback&lt;boolean&gt;          | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true** if the stream is active or **false** if not active; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err: BusinessError, value: boolean) => {
   if (err) {
     console.error(`Failed to obtain the active status of the device. ${err}`);
@@ -2017,9 +2040,9 @@ Checks whether a device is active. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                   | Description                     |
-| ---------------------- | ------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the active state of the device.|
+| Type                   | Description                           |
+| ---------------------- |---------------------------------------|
+| Promise&lt;boolean&gt; | Promise used to return the active status of the device. The value **true** means that the device is active, and **false** means the opposite. |
 
 **Example**
 
@@ -2048,12 +2071,13 @@ Mutes or unmutes the microphone. This API uses an asynchronous callback to retur
 | Name  | Type                     | Mandatory| Description                                         |
 | -------- | ------------------------- | ---- | --------------------------------------------- |
 | mute     | boolean                   | Yes  | Mute status to set. The value **true** means to mute the microphone, and **false** means the opposite.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                     |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.setMicrophoneMute(true, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to mute the microphone. ${err}`);
@@ -2087,7 +2111,7 @@ Mutes or unmutes the microphone. This API uses a promise to return the result.
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -2115,12 +2139,13 @@ Checks whether the microphone is muted. This API uses an asynchronous callback t
 
 | Name  | Type                        | Mandatory| Description                                                   |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the mute status of the microphone. The value **true** means that the microphone is muted, and **false** means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true** if the microphone is muted or **false** if not muted; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioManager.isMicrophoneMute((err: BusinessError, value: boolean) => {
   if (err) {
     console.error(`Failed to obtain the mute status of the microphone. ${err}`);
@@ -2166,7 +2191,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 >
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [on('volumeChange')](#onvolumechange9) in **AudioVolumeManager**.
 
-Subscribes to system volume change events.
+Subscribes to system volume change events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2195,7 +2220,7 @@ audioManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
-Subscribes to ringer mode change events.
+Subscribes to ringer mode change events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2224,7 +2249,7 @@ audioManager.on('ringerModeChange', (ringerMode: audio.AudioRingMode) => {
 
 on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void
 
-Subscribes to device change events. When a device is connected or disconnected, registered clients will receive the callback.
+Subscribes to audio device connection change events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2254,7 +2279,7 @@ audioManager.on('deviceChange', (deviceChanged: audio.DeviceChangeAction) => {
 
 off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
-Unsubscribes from device change events.
+Unsubscribes from audio device connection change events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2279,7 +2304,7 @@ audioManager.off('deviceChange');
 
 on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
 
-Subscribes to audio interruption events. When the application's audio is interrupted by another playback event, the application will receive the callback.
+Subscribes to audio interruption events. When the application's audio is interrupted by another playback event, the application will receive the callback. This API uses an asynchronous callback to return the result.
 
 Same as [on('audioInterrupt')](#onaudiointerrupt9), this API is used to listen for focus changes. However, this API is used in scenarios without audio streams (no **AudioRenderer** instance is created), such as frequency modulation (FM) and voice wakeup.
 
@@ -2291,12 +2316,13 @@ Same as [on('audioInterrupt')](#onaudiointerrupt9), this API is used to listen f
 | --------- |---------------------------------------------------------| ---- | ------------------------------------------------------------ |
 | type      | string                                                  | Yes  | Event type. The event **'interrupt'** is triggered when the audio playback of the current application is interrupted by another application.|
 | interrupt | [AudioInterrupt](#audiointerruptdeprecated)             | Yes  | Audio interruption event type.                                    |
-| callback  | Callback<[InterruptAction](#interruptactiondeprecated)> | Yes  | Callback invoked for the audio interruption event.                                      |
+| callback  | Callback<[InterruptAction](#interruptactiondeprecated)> | Yes  | Callback used to return the audio interruption event.|
 
 **Example**
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let interAudioInterrupt: audio.AudioInterrupt = {
   streamUsage:2,
   contentType:0,
@@ -2318,7 +2344,7 @@ audioManager.on('interrupt', interAudioInterrupt, (InterruptAction: audio.Interr
 
 off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<InterruptAction>): void
 
-Unsubscribes from audio interruption events.
+Unsubscribes from audio interruption events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -2328,12 +2354,13 @@ Unsubscribes from audio interruption events.
 | --------- |---------------------------------------------------------| ---- | ------------------------------------------------------------ |
 | type      | string                                                  | Yes  | Event type. The event **'interrupt'** is triggered when the audio playback of the current application is interrupted by another application.|
 | interrupt | [AudioInterrupt](#audiointerruptdeprecated)                       | Yes  | Audio interruption event type.                                    |
-| callback  | Callback<[InterruptAction](#interruptactiondeprecated)> | No  | Callback invoked for the audio interruption event.                                      |
+| callback  | Callback<[InterruptAction](#interruptactiondeprecated)> | No  | Callback used to return the audio interruption event.|
 
 **Example**
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let interAudioInterrupt: audio.AudioInterrupt = {
   streamUsage:2,
   contentType:0,
@@ -2366,11 +2393,12 @@ Obtains the volume groups. This API uses an asynchronous callback to return the 
 | Name    | Type                                                        | Mandatory| Description                |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
 | networkId | string                                    | Yes  | Network ID of the device. The network ID of the local device is **audio.LOCAL_NETWORK_ID**.   |
-| callback  | AsyncCallback&lt;[VolumeGroupInfos](#volumegroupinfos9)&gt; | Yes  | Callback used to return the volume group information array.|
+| callback  | AsyncCallback&lt;[VolumeGroupInfos](#volumegroupinfos9)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the volume groups obtained; otherwise, **err** is an error object.|
 
 **Example**
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioVolumeManager.getVolumeGroupInfos(audio.LOCAL_NETWORK_ID, (err: BusinessError, value: audio.VolumeGroupInfos) => {
   if (err) {
     console.error(`Failed to obtain the volume group infos list. ${err}`);
@@ -2400,7 +2428,7 @@ Obtains the volume groups. This API uses a promise to return the result.
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| Promise&lt;[VolumeGroupInfos](#volumegroupinfos9)&gt; | Volume group information array.|
+| Promise&lt;[VolumeGroupInfos](#volumegroupinfos9)&gt; | Promise used to return the volume group information list.|
 
 **Example**
 
@@ -2431,7 +2459,7 @@ Obtains the volume groups. This API returns the result synchronously.
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| [VolumeGroupInfos](#volumegroupinfos9) | Volume group information array.|
+| [VolumeGroupInfos](#volumegroupinfos9) | Volume group information list.|
 
 **Error codes**
 
@@ -2468,12 +2496,13 @@ Obtains the volume group manager. This API uses an asynchronous callback to retu
 | Name    | Type                                                        | Mandatory| Description                |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
 | groupId    | number                                    | Yes  | Volume group ID.    |
-| callback   | AsyncCallback&lt;[AudioVolumeGroupManager](#audiovolumegroupmanager9)&gt; | Yes  | Callback used to return the volume group manager.|
+| callback   | AsyncCallback&lt;[AudioVolumeGroupManager](#audiovolumegroupmanager9)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the volume group manager obtained; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
 audioVolumeManager.getVolumeGroupManager(groupId, (err: BusinessError, value: audio.AudioVolumeGroupManager) => {
   if (err) {
@@ -2509,11 +2538,12 @@ Obtains the volume group manager. This API uses a promise to return the result.
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
 let audioVolumeGroupManager: audio.AudioVolumeGroupManager | undefined = undefined;
 async function getVolumeGroupManager(){
   audioVolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(groupId);
-  console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+  console.info('Promise returned to indicate that the volume group infos list is obtained.');
 }
 ```
 
@@ -2580,7 +2610,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error              |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
@@ -2616,12 +2646,13 @@ This permission is required only for muting or unmuting the ringer when **volume
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
 | volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.|
-| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.                                  |
+| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioVolumeGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set the volume. ${err}`);
@@ -2656,7 +2687,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -2679,12 +2710,13 @@ Obtains the volume of a stream. This API uses an asynchronous callback to return
 | Name    | Type                               | Mandatory| Description              |
 | ---------- | ----------------------------------- | ---- | ------------------ |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.      |
-| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the volume.|
+| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the stream volume obtained; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
     console.error(`Failed to obtain the volume. ${err}`);
@@ -2777,12 +2809,13 @@ Obtains the minimum volume allowed for a stream. This API uses an asynchronous c
 | Name    | Type                               | Mandatory| Description              |
 | ---------- | ----------------------------------- | ---- | ------------------ |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.      |
-| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the minimum volume.|
+| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the minimum stream volume obtained; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
     console.error(`Failed to obtain the minimum volume. ${err}`);
@@ -2875,12 +2908,13 @@ Obtains the maximum volume allowed for a stream. This API uses an asynchronous c
 | Name    | Type                               | Mandatory| Description                  |
 | ---------- | ----------------------------------- | ---- | ---------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.          |
-| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the maximum volume.|
+| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the maximum stream volume obtained; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
     console.error(`Failed to obtain the maximum volume. ${err}`);
@@ -2980,12 +3014,13 @@ This permission is required only for muting or unmuting the ringer when **volume
 | ---------- | ----------------------------------- | ---- | ------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                         |
 | mute       | boolean                             | Yes  | Mute status to set. The value **true** means to mute the stream, and **false** means the opposite.|
-| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.               |
+| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioVolumeGroupManager.mute(audio.AudioVolumeType.MEDIA, true, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to mute the stream. ${err}`);
@@ -3020,7 +3055,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -3043,12 +3078,13 @@ Checks whether a stream is muted. This API uses an asynchronous callback to retu
 | Name    | Type                               | Mandatory| Description                                           |
 | ---------- | ----------------------------------- | ---- | ----------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                   |
-| callback   | AsyncCallback&lt;boolean&gt;        | Yes  | Callback used to return the mute status of the stream. The value **true** means that the stream is muted, and **false** means the opposite.|
+| callback   | AsyncCallback&lt;boolean&gt;        | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true** if the stream is muted or **false** if not muted; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioVolumeGroupManager.isMute(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: boolean) => {
   if (err) {
     console.error(`Failed to obtain the mute status. ${err}`);
@@ -3147,12 +3183,13 @@ This permission is required only for muting or unmuting the ringer.
 | Name  | Type                           | Mandatory| Description                    |
 | -------- | ------------------------------- | ---- | ------------------------ |
 | mode     | [AudioRingMode](#audioringmode) | Yes  | Ringer mode.          |
-| callback | AsyncCallback&lt;void&gt;       | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt;       | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioVolumeGroupManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set the ringer mode. ${err}`);
@@ -3186,7 +3223,7 @@ This permission is required only for muting or unmuting the ringer.
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -3208,12 +3245,13 @@ Obtains the ringer mode. This API uses an asynchronous callback to return the re
 
 | Name  | Type                                                | Mandatory| Description                    |
 | -------- | ---------------------------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback&lt;[AudioRingMode](#audioringmode)&gt; | Yes  | Callback used to return the ringer mode.|
+| callback | AsyncCallback&lt;[AudioRingMode](#audioringmode)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the ringer mode obtained; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioVolumeGroupManager.getRingerMode((err: BusinessError, value: audio.AudioRingMode) => {
   if (err) {
     console.error(`Failed to obtain the ringer mode. ${err}`);
@@ -3277,7 +3315,7 @@ try {
 
 on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
-Subscribes to ringer mode change events.
+Subscribes to ringer mode change events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -3294,7 +3332,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error              |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
@@ -3318,12 +3356,13 @@ Mutes or unmutes the microphone. This API uses an asynchronous callback to retur
 | Name  | Type                     | Mandatory| Description                                         |
 | -------- | ------------------------- | ---- | --------------------------------------------- |
 | mute     | boolean                   | Yes  | Mute status to set. The value **true** means to mute the microphone, and **false** means the opposite.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                     |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioVolumeGroupManager.setMicrophoneMute(true, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to mute the microphone. ${err}`);
@@ -3353,7 +3392,7 @@ Mutes or unmutes the microphone. This API uses a promise to return the result.
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -3375,12 +3414,13 @@ Checks whether the microphone is muted. This API uses an asynchronous callback t
 
 | Name  | Type                        | Mandatory| Description                                                   |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the mute status of the microphone. The value **true** means that the microphone is muted, and **false** means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true** if the microphone is muted or **false** if not muted; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioVolumeGroupManager.isMicrophoneMute((err: BusinessError, value: boolean) => {
   if (err) {
     console.error(`Failed to obtain the mute status of the microphone. ${err}`);
@@ -3444,7 +3484,7 @@ try {
 
 on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 
-Subscribes to system microphone state change events.
+Subscribes to system microphone state change events. This API uses an asynchronous callback to return the result.
 
 Currently, when multiple **AudioManager** instances are used in a single process, only the subscription of the last instance takes effect, and the subscription of other instances is overwritten (even if the last instance does not initiate a subscription). Therefore, you are advised to use a single **AudioManager** instance.
 
@@ -3463,7 +3503,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error              |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
@@ -3513,7 +3553,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 | Name    | Type                               | Mandatory| Description                                                    |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | adjustType | [VolumeAdjustType](#volumeadjusttype10) | Yes  | Volume adjustment type.                                            |
-| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.                                  |
+| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -3528,6 +3568,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to adjust the volume by step. ${err}`);
@@ -3561,7 +3602,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -3576,6 +3617,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP).then(() => {
   console.info('Success to adjust the volume by step.');
 }).catch((error: BusinessError) => {
@@ -3603,7 +3645,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
 | adjustType | [VolumeAdjustType](#volumeadjusttype10) | Yes  | Volume adjustment type.                                      |
-| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.                                  |
+| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -3618,6 +3660,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to adjust the system volume by step ${err}`);
@@ -3651,7 +3694,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -3666,6 +3709,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP).then(() => {
   console.info('Success to adjust the system volume by step.');
 }).catch((error: BusinessError) => {
@@ -3688,7 +3732,7 @@ Obtains the volume gain. This API uses an asynchronous callback to return the re
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
 | volumeLevel | number                         | Yes  | Volume level.                                              |
 | device     | [DeviceType](#devicetype)           | Yes  | Device type.                                              |
-| callback   | AsyncCallback&lt;number&gt;           | Yes  | Callback used to return the volume gain (in dB).                             |
+| callback   | AsyncCallback&lt;number&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the volume gain obtained; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -3703,6 +3747,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER, (err: BusinessError, dB: number) => {
   if (err) {
     console.error(`Failed to get the volume DB. ${err}`);
@@ -3746,6 +3791,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER).then((value: number) => {
   console.info(`Success to get the volume DB. ${value}`);
 }).catch((error: BusinessError) => {
@@ -3811,14 +3857,15 @@ Obtains the information about the current audio renderer. This API uses an async
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                             |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------- |
-| callback | AsyncCallback<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)> | Yes       | Callback used to return the audio renderer information. |
+| Name     | Type                                                         | Mandatory | Description                                                  |
+| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
+| callback | AsyncCallback<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the information about the current audio renderer obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioStreamManager.getCurrentAudioRendererInfoArray(async (err: BusinessError, AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
   console.info('getCurrentAudioRendererInfoArray **** Get Callback Called ****');
   if (err) {
@@ -3859,14 +3906,15 @@ Obtains the information about the current audio renderer. This API uses a promis
 
 **Return value**
 
-| Type                                                         | Description                                            |
-| ------------------------------------------------------------ | ------------------------------------------------------ |
-| Promise<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)> | Promise used to return the audio renderer information. |
+| Type                                                         | Description                                      |
+| ------------------------------------------------------------ | ------------------------------------------------ |
+| Promise<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)> | Promise used to return the renderer information. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 async function getCurrentAudioRendererInfoArray(){
   await audioStreamManager.getCurrentAudioRendererInfoArray().then((AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
     console.info(`getCurrentAudioRendererInfoArray ######### Get Promise is called ##########`);
@@ -3956,14 +4004,15 @@ Obtains the information about the current audio capturer. This API uses an async
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                             |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------- |
-| callback | AsyncCallback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | Yes       | Callback used to return the audio capturer information. |
+| Name     | Type                                                         | Mandatory | Description                                                  |
+| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
+| callback | AsyncCallback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the information about the current audio capturer obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioStreamManager.getCurrentAudioCapturerInfoArray(async (err: BusinessError, AudioCapturerChangeInfoArray: audio.AudioCapturerChangeInfoArray) => {
   console.info('getCurrentAudioCapturerInfoArray **** Get Callback Called ****');
   if (err) {
@@ -4010,6 +4059,7 @@ Obtains the information about the current audio capturer. This API uses a promis
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 async function getCurrentAudioCapturerInfoArray(){
   await audioStreamManager.getCurrentAudioCapturerInfoArray().then((AudioCapturerChangeInfoArray: audio.AudioCapturerChangeInfoArray) => {
     console.info('getCurrentAudioCapturerInfoArray **** Get Promise Called ****');
@@ -4089,7 +4139,7 @@ try {
 
 on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArray&gt;): void
 
-Subscribes to audio renderer change events.
+Subscribes to audio renderer change events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -4098,15 +4148,15 @@ Subscribes to audio renderer change events.
 | Name     | Type                                                         | Mandatory | Description                                                  |
 | -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes       | Event type. The event `'audioRendererChange'` is triggered when the audio renderer is changed. |
-| callback | Callback<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)> | Yes       | Callback used to return the new audio renderer information.  |
+| callback | Callback<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)> | Yes       | Callback used to return the audio renderer information.      |
 
 **Error codes**
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| ID      | Error Message            |
+| ------- | ------------------------ |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
@@ -4153,9 +4203,9 @@ Unsubscribes from audio renderer change events.
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| ID      | Error Message           |
+| ------- | ----------------------- |
+| 6800101 | nvalid parameter error. |
 
 **Example**
 
@@ -4168,7 +4218,7 @@ console.info('######### RendererChange Off is called #########');
 
 on(type: 'audioCapturerChange', callback: Callback&lt;AudioCapturerChangeInfoArray&gt;): void
 
-Subscribes to audio capturer change events.
+Subscribes to audio capturer change events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -4177,15 +4227,15 @@ Subscribes to audio capturer change events.
 | Name     | Type                                                         | Mandatory | Description                                                  |
 | -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes       | Event type. The event `'audioCapturerChange'` is triggered when the audio capturer is changed. |
-| callback | Callback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | Yes       | Callback used to return the new audio capturer information.  |
+| callback | Callback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | Yes       | Callback used to return the audio capturer information.      |
 
 **Error codes**
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| ID      | Error Message            |
+| ------- | ------------------------ |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
@@ -4215,7 +4265,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray: audi
 
 ### off('audioCapturerChange')<sup>9+</sup>
 
-off(type: 'audioCapturerChange'): void;
+off(type: 'audioCapturerChange'): void
 
 Unsubscribes from audio capturer change events.
 
@@ -4231,9 +4281,9 @@ Unsubscribes from audio capturer change events.
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| ID      | Error Message            |
+| ------- | ------------------------ |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
@@ -4257,12 +4307,13 @@ Checks whether a stream is active. This API uses an asynchronous callback to ret
 | Name       | Type                                | Mandatory | Description                                                  |
 | ---------- | ----------------------------------- | --------- | ------------------------------------------------------------ |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream types.                                          |
-| callback   | AsyncCallback&lt;boolean&gt;        | Yes       | Callback used to return the active status of the stream. The value **true** means that the stream is active, and **false** means the opposite. |
+| callback   | AsyncCallback&lt;boolean&gt;        | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true** if the stream is active or **false** if not active; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioStreamManager.isActive(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: boolean) => {
 if (err) {
   console.error(`Failed to obtain the active status of the stream. ${err}`);
@@ -4349,7 +4400,7 @@ try {
 
 getAudioEffectInfoArray(usage: StreamUsage, callback: AsyncCallback&lt;AudioEffectInfoArray&gt;): void
 
-Obtains information about the sound effect mode in use. This API uses an asynchronous callback to return the result.
+Obtains information about the audio effect mode in use. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -4358,7 +4409,7 @@ Obtains information about the sound effect mode in use. This API uses an asynchr
 | Name     | Type                                                         | Mandatory | Description                                                  |
 | -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
 | usage    | [StreamUsage](#streamusage)                                  | Yes       | Audio stream usage.                                          |
-| callback | AsyncCallback<[AudioEffectInfoArray](#audioeffectinfoarray10)> | Yes       | Callback used to return the information about the sound effect mode obtained. |
+| callback | AsyncCallback<[AudioEffectInfoArray](#audioeffectinfoarray10)> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the information about the audio effect mode obtained; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -4372,7 +4423,8 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 ```ts
 import { BusinessError } from '@ohos.base';
-audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA, async (err: BusinessError, audioEffectInfoArray: audio.AudioEffectInfoArray) => {
+
+audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MUSIC, async (err: BusinessError, audioEffectInfoArray: audio.AudioEffectInfoArray) => {
   console.info('getAudioEffectInfoArray **** Get Callback Called ****');
   if (err) {
     console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
@@ -4388,7 +4440,7 @@ audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA,
 
 getAudioEffectInfoArray(usage: StreamUsage): Promise&lt;AudioEffectInfoArray&gt;
 
-Obtains information about the sound effect mode in use. This API uses a promise to return the result.
+Obtains information about the audio effect mode in use. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -4402,7 +4454,7 @@ Obtains information about the sound effect mode in use. This API uses a promise 
 
 | Type                                                     | Description                                                  |
 | -------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise<[AudioEffectInfoArray](#audioeffectinfoarray10)> | Promise used to return the information about the sound effect mode obtained. |
+| Promise<[AudioEffectInfoArray](#audioeffectinfoarray10)> | Promise used to return the information about the audio effect mode obtained. |
 
 **Error codes**
 
@@ -4416,7 +4468,8 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 ```ts
 import { BusinessError } from '@ohos.base';
-audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA).then((audioEffectInfoArray: audio.AudioEffectInfoArray) => {
+
+audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MUSIC).then((audioEffectInfoArray: audio.AudioEffectInfoArray) => {
   console.info('getAudioEffectInfoArray ######### Get Promise is called ##########');
   console.info(`The effect modes are: ${audioEffectInfoArray}`);
 }).catch((err: BusinessError) => {
@@ -4429,7 +4482,7 @@ audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA)
 
 getAudioEffectInfoArraySync(usage: StreamUsage): AudioEffectInfoArray
 
-Obtains information about the sound effect mode in use. This API returns the result synchronously.
+Obtains information about the audio effect mode in use. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -4443,15 +4496,15 @@ Obtains information about the sound effect mode in use. This API returns the res
 
 | Type                                            | Description                              |
 | ----------------------------------------------- | ---------------------------------------- |
-| [AudioEffectInfoArray](#audioeffectinfoarray10) | Information about the sound effect mode. |
+| [AudioEffectInfoArray](#audioeffectinfoarray10) | Information about the audio effect mode. |
 
 **Error codes**
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message           |
-| ------- | ----------------------- |
-| 6800101 | invalid parameter error |
+| ID      | Error Message            |
+| ------- | ------------------------ |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
@@ -4459,7 +4512,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 import { BusinessError } from '@ohos.base';
 
 try {
-  let audioEffectInfoArray: audio.AudioEffectInfoArray = audioStreamManager.getAudioEffectInfoArraySync(audio.StreamUsage.STREAM_USAGE_MEDIA);
+  let audioEffectInfoArray: audio.AudioEffectInfoArray = audioStreamManager.getAudioEffectInfoArraySync(audio.StreamUsage.STREAM_USAGE_MUSIC);
   console.info(`The effect modes are: ${audioEffectInfoArray}`);
 } catch (err) {
   let error = err as BusinessError;
@@ -4482,15 +4535,16 @@ Obtains the audio devices with a specific flag. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name       | Type                                                         | Mandatory | Description                              |
-| ---------- | ------------------------------------------------------------ | --------- | ---------------------------------------- |
-| deviceFlag | [DeviceFlag](#deviceflag)                                    | Yes       | Audio device flag.                       |
-| callback   | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Yes       | Callback used to return the device list. |
+| Name       | Type                                                         | Mandatory | Description                                                  |
+| ---------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
+| deviceFlag | [DeviceFlag](#deviceflag)                                    | Yes       | Audio device flag.                                           |
+| callback   | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the audio devices obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err: BusinessError, value: audio.AudioDeviceDescriptors) => {
   if (err) {
     console.error(`Failed to obtain the device list. ${err}`);
@@ -4577,7 +4631,7 @@ try {
 
 on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChangeAction\>): void
 
-Subscribes to device change events. When a device is connected or disconnected, registered clients will receive the callback.
+Subscribes to audio device connection change events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -4587,15 +4641,15 @@ Subscribes to device change events. When a device is connected or disconnected, 
 | :--------- | :--------------------------------------------------- | :-------- | :----------------------------------------------------------- |
 | type       | string                                               | Yes       | Event type. The event **'deviceChange'** is triggered when the device connection status is changed. |
 | deviceFlag | [DeviceFlag](#deviceflag)                            | Yes       | Audio device flag.                                           |
-| callback   | Callback<[DeviceChangeAction](#devicechangeaction)\> | Yes       | Callback used to return the device update details.                  |
+| callback   | Callback<[DeviceChangeAction](#devicechangeaction)\> | Yes       | Callback used to return the device update details.           |
 
 **Error codes**
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| ID      | Error Message            |
+| ------- | ------------------------ |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
@@ -4613,7 +4667,7 @@ audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (de
 
 off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
-Unsubscribes from device change events.
+Unsubscribes from audio device connection change events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -4622,15 +4676,15 @@ Unsubscribes from device change events.
 | Name     | Type                                                | Mandatory | Description                                                  |
 | -------- | --------------------------------------------------- | --------- | ------------------------------------------------------------ |
 | type     | string                                              | Yes       | Event type. The event **'deviceChange'** is triggered when the device connection status is changed. |
-| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No        | Callback used to return the device update details.                  |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No        | Callback used to return the device update details.           |
 
 **Error codes**
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| ID      | Error Message            |
+| ------- | ------------------------ |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
@@ -4651,16 +4705,17 @@ Selects an audio input device. Only one input device can be selected. This API u
 
 **Parameters**
 
-| Name              | Type                                              | Mandatory | Description                         |
-| ----------------- | ------------------------------------------------- | --------- | ----------------------------------- |
-| inputAudioDevices | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes       | Input device.                       |
-| callback          | AsyncCallback&lt;void&gt;                         | Yes       | Callback used to return the result. |
+| Name              | Type                                              | Mandatory | Description                                                  |
+| ----------------- | ------------------------------------------------- | --------- | ------------------------------------------------------------ |
+| inputAudioDevices | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes       | Input device.                                                |
+| callback          | AsyncCallback&lt;void&gt;                         | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
+
 let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
   deviceRole : audio.DeviceRole.INPUT_DEVICE,
   deviceType : audio.DeviceType.MIC,
@@ -4706,15 +4761,16 @@ Selects an audio input device. Only one input device can be selected. This API u
 
 **Return value**
 
-| Type                | Description                        |
-| ------------------- | ---------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Type                | Description                    |
+| ------------------- | ------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
+
 let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
   deviceRole : audio.DeviceRole.INPUT_DEVICE,
   deviceType : audio.DeviceType.MIC,
@@ -4753,13 +4809,14 @@ Sets a communication device to the active state. This API uses an asynchronous c
 | Name       | Type                                                 | Mandatory | Description                                                  |
 | ---------- | ---------------------------------------------------- | --------- | ------------------------------------------------------------ |
 | deviceType | [CommunicationDeviceType](#communicationdevicetype9) | Yes       | Communication device type.                                   |
-| active     | boolean                                              | Yes       | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite. |
-| callback   | AsyncCallback&lt;void&gt;                            | Yes       | Callback used to return the result.                          |
+| active     | boolean                                              | Yes       | Active status of the device. The value **true** means to set the device to the active state, and **false** means the opposite. |
+| callback   | AsyncCallback&lt;void&gt;                            | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER, true, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set the active status of the device. ${err}`);
@@ -4783,13 +4840,13 @@ Sets a communication device to the active state. This API uses a promise to retu
 | Name       | Type                                                 | Mandatory | Description                                                  |
 | ---------- | ---------------------------------------------------- | --------- | ------------------------------------------------------------ |
 | deviceType | [CommunicationDeviceType](#communicationdevicetype9) | Yes       | Communication device type.                                   |
-| active     | boolean                                              | Yes       | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite. |
+| active     | boolean                                              | Yes       | Active status of the device. The value **true** means to set the device to the active state, and **false** means the opposite. |
 
 **Return value**
 
-| Type                | Description                        |
-| ------------------- | ---------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Type                | Description                    |
+| ------------------- | ------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
@@ -4810,15 +4867,16 @@ Checks whether a communication device is active. This API uses an asynchronous c
 
 **Parameters**
 
-| Name       | Type                                                 | Mandatory | Description                                             |
-| ---------- | ---------------------------------------------------- | --------- | ------------------------------------------------------- |
-| deviceType | [CommunicationDeviceType](#communicationdevicetype9) | Yes       | Communication device type.                              |
-| callback   | AsyncCallback&lt;boolean&gt;                         | Yes       | Callback used to return the active state of the device. |
+| Name       | Type                                                 | Mandatory | Description                                                  |
+| ---------- | ---------------------------------------------------- | --------- | ------------------------------------------------------------ |
+| deviceType | [CommunicationDeviceType](#communicationdevicetype9) | Yes       | Communication device type.                                   |
+| callback   | AsyncCallback&lt;boolean&gt;                         | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true** if the communication device is active or **false** if not active; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRoutingManager.isCommunicationDeviceActive(audio.CommunicationDeviceType.SPEAKER, (err: BusinessError, value: boolean) => {
   if (err) {
     console.error(`Failed to obtain the active status of the device. ${err}`);
@@ -4845,9 +4903,9 @@ Checks whether a communication device is active. This API uses a promise to retu
 
 **Return value**
 
-| Type                   | Description                                            |
-| ---------------------- | ------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the active state of the device. |
+| Type                   | Description                                                  |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise used to return the active status of the device. The value **true** means that the device is active, and **false** means the opposite. |
 
 **Example**
 
@@ -4874,9 +4932,9 @@ Checks whether a communication device is active. This API returns the result syn
 
 **Return value**
 
-| Type    | Description                 |
-| ------- | --------------------------- |
-| boolean | Active state of the device. |
+| Type    | Description                                                  |
+| ------- | ------------------------------------------------------------ |
+| boolean | Returns **true** if the device is active; returns **false** otherwise. |
 
 **Error codes**
 
@@ -4913,16 +4971,17 @@ Selects an audio output device. Currently, only one output device can be selecte
 
 **Parameters**
 
-| Name               | Type                                              | Mandatory | Description                         |
-| ------------------ | ------------------------------------------------- | --------- | ----------------------------------- |
-| outputAudioDevices | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes       | Output device.                      |
-| callback           | AsyncCallback&lt;void&gt;                         | Yes       | Callback used to return the result. |
+| Name               | Type                                              | Mandatory | Description                                                  |
+| ------------------ | ------------------------------------------------- | --------- | ------------------------------------------------------------ |
+| outputAudioDevices | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes       | Output device.                                               |
+| callback           | AsyncCallback&lt;void&gt;                         | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
+
 let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
   deviceType : audio.DeviceType.SPEAKER,
@@ -4967,15 +5026,16 @@ Selects an audio output device. Currently, only one output device can be selecte
 
 **Return value**
 
-| Type                | Description                        |
-| ------------------- | ---------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Type                | Description                    |
+| ------------------- | ------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
+
 let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
   deviceType : audio.DeviceType.SPEAKER,
@@ -5013,22 +5073,22 @@ Selects an audio output device based on the filter criteria. Currently, only one
 
 **Parameters**
 
-| Name               | Type                                              | Mandatory | Description                         |
-| ------------------ | ------------------------------------------------- | --------- | ----------------------------------- |
-| filter             | [AudioRendererFilter](#audiorendererfilter9)      | Yes       | Filter criteria.                    |
-| outputAudioDevices | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes       | Output device.                      |
-| callback           | AsyncCallback&lt;void&gt;                         | Yes       | Callback used to return the result. |
+| Name               | Type                                              | Mandatory | Description                                                  |
+| ------------------ | ------------------------------------------------- | --------- | ------------------------------------------------------------ |
+| filter             | [AudioRendererFilter](#audiorendererfilter9)      | Yes       | Filter criteria.                                             |
+| outputAudioDevices | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes       | Output device.                                               |
+| callback           | AsyncCallback&lt;void&gt;                         | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
+
 let outputAudioRendererFilter: audio.AudioRendererFilter = {
   uid : 20010041,
   rendererInfo : {
-    content : audio.ContentType.CONTENT_TYPE_MUSIC,
-    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
     rendererFlags : 0
   },
   rendererId : 0
@@ -5079,20 +5139,20 @@ Selects an audio output device based on the filter criteria. Currently, only one
 
 **Return value**
 
-| Type                | Description                        |
-| ------------------- | ---------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Type                | Description                    |
+| ------------------- | ------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
+
 let outputAudioRendererFilter: audio.AudioRendererFilter = {
   uid : 20010041,
   rendererInfo : {
-    content : audio.ContentType.CONTENT_TYPE_MUSIC,
-    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
     rendererFlags : 0
   },
   rendererId : 0
@@ -5136,7 +5196,7 @@ Obtains the output device with the highest priority based on the audio renderer 
 | Name         | Type                                                         | Mandatory | Description                                                  |
 | ------------ | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
 | rendererInfo | [AudioRendererInfo](#audiorendererinfo8)                     | Yes       | Audio renderer information.                                  |
-| callback     | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Yes       | Callback used to return the information about the output device with the highest priority. |
+| callback     | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the output device with the highest priority obtained; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -5152,6 +5212,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
+
 let rendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 0
@@ -5203,6 +5264,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
+
 let rendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 0
@@ -5287,14 +5349,15 @@ Subscribes to the change of the output device with the highest priority. This AP
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| ID      | Error Message                |
+| ------- | ---------------------------- |
+| 6800101 | Input parameter value error. |
 
 **Example**
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let rendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 0
@@ -5310,7 +5373,7 @@ audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, 
 
 off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDeviceDescriptors\>): void
 
-Unsubscribes from the change of the output device with the highest priority.
+Unsubscribes from the change of the output device with the highest priority. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -5325,9 +5388,9 @@ Unsubscribes from the change of the output device with the highest priority.
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| ID      | Error Message                |
+| ------- | ---------------------------- |
+| 6800101 | Input parameter value error. |
 
 **Example**
 
@@ -5349,7 +5412,7 @@ Obtains the input device with the highest priority based on the audio capturer i
 | Name         | Type                                                         | Mandatory | Description                                                  |
 | ------------ | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
 | capturerInfo | [AudioCapturerInfo](#audiocapturerinfo8)                     | Yes       | Audio capturer information.                                  |
-| callback     | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Yes       | Callback used to return the information about the input device with the highest priority. |
+| callback     | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the input device with the highest priority obtained; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -5365,6 +5428,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
+
 let capturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
   capturerFlags: 0
@@ -5414,6 +5478,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
+
 let capturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
   capturerFlags: 0
@@ -5451,9 +5516,9 @@ Obtains the input device with the highest priority based on the audio capturer i
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message           |
-| ------- | ----------------------- |
-| 6800101 | invalid parameter error |
+| ID      | Error Message            |
+| ------- | ------------------------ |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
@@ -5496,14 +5561,15 @@ Subscribes to the change of the input device with the highest priority. This API
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| ID      | Error Message            |
+| ------- | ------------------------ |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let capturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
   capturerFlags: 0
@@ -5519,7 +5585,7 @@ audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo
 
 off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<AudioDeviceDescriptors\>): void
 
-Unsubscribes from the change of the input device with the highest priority.
+Unsubscribes from the change of the input device with the highest priority. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -5534,9 +5600,9 @@ Unsubscribes from the change of the input device with the highest priority.
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| ID      | Error Message            |
+| ------- | ------------------------ |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
@@ -5562,7 +5628,7 @@ Describes the audio renderer change event.
 | streamId          | number                                            | Yes      | No       | Unique ID of an audio stream.                              |
 | clientUid         | number                                            | Yes      | No       | UID of the audio renderer client.<br>This is a system API. |
 | rendererInfo      | [AudioRendererInfo](#audiorendererinfo8)          | Yes      | No       | Audio renderer information.                                |
-| rendererState     | [AudioState](#audiostate)                         | Yes      | No       | Audio state.<br>This is a system API.                      |
+| rendererState     | [AudioState](#audiostate8)                        | Yes      | No       | Audio state.<br>This is a system API.                      |
 | deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes      | No       | Audio device description.                                  |
 
 **Example**
@@ -5621,7 +5687,7 @@ Describes the audio capturer change event.
 | streamId            | number                                            | Yes      | No       | Unique ID of an audio stream.                                |
 | clientUid           | number                                            | Yes      | No       | UID of the audio capturer client.<br>This is a system API.   |
 | capturerInfo        | [AudioCapturerInfo](#audiocapturerinfo8)          | Yes      | No       | Audio capturer information.                                  |
-| capturerState       | [AudioState](#audiostate)                         | Yes      | No       | Audio state.<br>This is a system API.                        |
+| capturerState       | [AudioState](#audiostate8)                        | Yes      | No       | Audio state.<br>This is a system API.                        |
 | deviceDescriptors   | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes      | No       | Audio device description.                                    |
 | muted<sup>11+</sup> | boolean                                           | Yes      | No       | Whether the audio capturer is muted. The value **true** means that the audio capturer is muted, and **false** means the opposite. |
 
@@ -5676,19 +5742,19 @@ Describes an audio device.
 
 | Name                          | Type                                                  | Readable | Writable | Description                                                  |
 | ----------------------------- | ----------------------------------------------------- | -------- | -------- | ------------------------------------------------------------ |
-| deviceRole                    | [DeviceRole](#devicerole)                             | Yes      | No       | Device role.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
-| deviceType                    | [DeviceType](#devicetype)                             | Yes      | No       | Device type.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
-| id<sup>9+</sup>               | number                                                | Yes      | No       | Device ID, which is unique.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
-| name<sup>9+</sup>             | string                                                | Yes      | No       | Device name.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
-| address<sup>9+</sup>          | string                                                | Yes      | No       | Device address.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
-| sampleRates<sup>9+</sup>      | Array&lt;number&gt;                                   | Yes      | No       | Supported sampling rates.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
-| channelCounts<sup>9+</sup>    | Array&lt;number&gt;                                   | Yes      | No       | Number of channels supported.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
-| channelMasks<sup>9+</sup>     | Array&lt;number&gt;                                   | Yes      | No       | Supported channel masks.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
-| displayName<sup>10+</sup>     | string                                                | Yes      | No       | Display name of the device.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
-| networkId<sup>9+</sup>        | string                                                | Yes      | No       | ID of the device network.<br>This is a system API.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
-| interruptGroupId<sup>9+</sup> | number                                                | Yes      | No       | ID of the interruption group to which the device belongs.<br>This is a system API.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
-| volumeGroupId<sup>9+</sup>    | number                                                | Yes      | No       | ID of the volume group to which the device belongs.<br>This is a system API.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
-| encodingTypes<sup>11+</sup>   | Array&lt;[AudioEncodingType](#audioencodingtype8)&gt; | Yes      | No       | Supported encoding types.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
+| deviceRole                    | [DeviceRole](#devicerole)                             | Yes      | No       | Device role.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
+| deviceType                    | [DeviceType](#devicetype)                             | Yes      | No       | Device type.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
+| id<sup>9+</sup>               | number                                                | Yes      | No       | Device ID, which is unique.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
+| name<sup>9+</sup>             | string                                                | Yes      | No       | Device name.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
+| address<sup>9+</sup>          | string                                                | Yes      | No       | Device address.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
+| sampleRates<sup>9+</sup>      | Array&lt;number&gt;                                   | Yes      | No       | Supported sampling rates.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
+| channelCounts<sup>9+</sup>    | Array&lt;number&gt;                                   | Yes      | No       | Number of channels supported.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
+| channelMasks<sup>9+</sup>     | Array&lt;number&gt;                                   | Yes      | No       | Supported channel masks.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
+| displayName<sup>10+</sup>     | string                                                | Yes      | No       | Display name of the device.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
+| networkId<sup>9+</sup>        | string                                                | Yes      | No       | ID of the device network.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
+| interruptGroupId<sup>9+</sup> | number                                                | Yes      | No       | ID of the interruption group to which the device belongs.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
+| volumeGroupId<sup>9+</sup>    | number                                                | Yes      | No       | ID of the volume group to which the device belongs.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
+| encodingTypes<sup>11+</sup>   | Array&lt;[AudioEncodingType](#audioencodingtype8)&gt; | Yes      | No       | Supported encoding types.<br> **System capability**: SystemCapability.Multimedia.Audio.Core |
 
 **Example**
 
@@ -5730,11 +5796,11 @@ Implements filter criteria. Before calling **selectOutputDeviceByFilter**, you m
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let outputAudioRendererFilter: audio.AudioRendererFilter = {
   uid : 20010041,
   rendererInfo : {
-    content : audio.ContentType.CONTENT_TYPE_MUSIC,
-    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
     rendererFlags : 0
   },
   rendererId : 0
@@ -5758,6 +5824,7 @@ Provides APIs for audio rendering. Before calling any API in **AudioRenderer**, 
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let state: audio.AudioState = audioRenderer.state;
 
 ```
@@ -5772,14 +5839,15 @@ Obtains the renderer information of this **AudioRenderer** instance. This API us
 
 **Parameters**
 
-| Name     | Type                                                     | Mandatory | Description                                       |
-| :------- | :------------------------------------------------------- | :-------- | :------------------------------------------------ |
-| callback | AsyncCallback<[AudioRendererInfo](#audiorendererinfo8)\> | Yes       | Callback used to return the renderer information. |
+| Name     | Type                                                     | Mandatory | Description                                                  |
+| :------- | :------------------------------------------------------- | :-------- | :----------------------------------------------------------- |
+| callback | AsyncCallback<[AudioRendererInfo](#audiorendererinfo8)\> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the renderer information obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getRendererInfo((err: BusinessError, rendererInfo: audio.AudioRendererInfo) => {
   console.info('Renderer GetRendererInfo:');
   console.info(`Renderer content: ${rendererInfo.content}`);
@@ -5807,6 +5875,7 @@ Obtains the renderer information of this **AudioRenderer** instance. This API us
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getRendererInfo().then((rendererInfo: audio.AudioRendererInfo) => {
   console.info('Renderer GetRendererInfo:');
   console.info(`Renderer content: ${rendererInfo.content}`);
@@ -5859,14 +5928,15 @@ Obtains the stream information of this **AudioRenderer** instance. This API uses
 
 **Parameters**
 
-| Name     | Type                                                 | Mandatory | Description                                     |
-| :------- | :--------------------------------------------------- | :-------- | :---------------------------------------------- |
-| callback | AsyncCallback<[AudioStreamInfo](#audiostreaminfo8)\> | Yes       | Callback used to return the stream information. |
+| Name     | Type                                                 | Mandatory | Description                                                  |
+| :------- | :--------------------------------------------------- | :-------- | :----------------------------------------------------------- |
+| callback | AsyncCallback<[AudioStreamInfo](#audiostreaminfo8)\> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the stream information obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getStreamInfo((err: BusinessError, streamInfo: audio.AudioStreamInfo) => {
   console.info('Renderer GetStreamInfo:');
   console.info(`Renderer sampling rate: ${streamInfo.samplingRate}`);
@@ -5895,6 +5965,7 @@ Obtains the stream information of this **AudioRenderer** instance. This API uses
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getStreamInfo().then((streamInfo: audio.AudioStreamInfo) => {
   console.info('Renderer GetStreamInfo:');
   console.info(`Renderer sampling rate: ${streamInfo.samplingRate}`);
@@ -5949,14 +6020,15 @@ Obtains the stream ID of this **AudioRenderer** instance. This API uses an async
 
 **Parameters**
 
-| Name     | Type                   | Mandatory | Description                            |
-| :------- | :--------------------- | :-------- | :------------------------------------- |
-| callback | AsyncCallback<number\> | Yes       | Callback used to return the stream ID. |
+| Name     | Type                   | Mandatory | Description                                                  |
+| :------- | :--------------------- | :-------- | :----------------------------------------------------------- |
+| callback | AsyncCallback<number\> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the stream information obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getAudioStreamId((err: BusinessError, streamId: number) => {
   console.info(`Renderer GetStreamId: ${streamId}`);
 });
@@ -5981,6 +6053,7 @@ Obtains the stream ID of this **AudioRenderer** instance. This API uses a promis
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getAudioStreamId().then((streamId: number) => {
   console.info(`Renderer getAudioStreamId: ${streamId}`);
 }).catch((err: BusinessError) => {
@@ -6028,10 +6101,10 @@ Sets an audio effect mode. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Name     | Type                                  | Mandatory | Description                         |
-| -------- | ------------------------------------- | --------- | ----------------------------------- |
-| mode     | [AudioEffectMode](#audioeffectmode10) | Yes       | Audio effect mode to set.           |
-| callback | AsyncCallback\<void>                  | Yes       | Callback used to return the result. |
+| Name     | Type                                  | Mandatory | Description                                                  |
+| -------- | ------------------------------------- | --------- | ------------------------------------------------------------ |
+| mode     | [AudioEffectMode](#audioeffectmode10) | Yes       | Audio effect mode to set.                                    |
+| callback | AsyncCallback\<void>                  | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -6045,6 +6118,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err: BusinessError) => {
   if (err) {
     console.error('Failed to set params');
@@ -6071,9 +6145,9 @@ Sets an audio effect mode. This API uses a promise to return the result.
 
 **Return value**
 
-| Type           | Description                        |
-| -------------- | ---------------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Type           | Description                    |
+| -------------- | ------------------------------ |
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
@@ -6087,6 +6161,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT).then(() => {
   console.info('setAudioEffectMode SUCCESS');
 }).catch((err: BusinessError) => {
@@ -6105,14 +6180,15 @@ Obtains the audio effect mode in use. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name     | Type                                                 | Mandatory | Description                                    |
-| -------- | ---------------------------------------------------- | --------- | ---------------------------------------------- |
-| callback | AsyncCallback<[AudioEffectMode](#audioeffectmode10)> | Yes       | Callback used to return the audio effect mode. |
+| Name     | Type                                                 | Mandatory | Description                                                  |
+| -------- | ---------------------------------------------------- | --------- | ------------------------------------------------------------ |
+| callback | AsyncCallback<[AudioEffectMode](#audioeffectmode10)> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the audio effect mode obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getAudioEffectMode((err: BusinessError, effectMode: audio.AudioEffectMode) => {
   if (err) {
     console.error('Failed to get params');
@@ -6141,6 +6217,7 @@ Obtains the audio effect mode in use. This API uses a promise to return the resu
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getAudioEffectMode().then((effectMode: audio.AudioEffectMode) => {
   console.info(`getAudioEffectMode: ${effectMode}`);
 }).catch((err: BusinessError) => {
@@ -6159,14 +6236,15 @@ Starts the renderer. This API uses an asynchronous callback to return the result
 
 **Parameters**
 
-| Name     | Type                 | Mandatory | Description                         |
-| -------- | -------------------- | --------- | ----------------------------------- |
-| callback | AsyncCallback\<void> | Yes       | Callback used to return the result. |
+| Name     | Type                 | Mandatory | Description                                                  |
+| -------- | -------------------- | --------- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<void> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.start((err: BusinessError) => {
   if (err) {
     console.error('Renderer start failed.');
@@ -6187,14 +6265,15 @@ Starts the renderer. This API uses a promise to return the result.
 
 **Return value**
 
-| Type           | Description                        |
-| -------------- | ---------------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Type           | Description                    |
+| -------------- | ------------------------------ |
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.start().then(() => {
   console.info('Renderer started');
 }).catch((err: BusinessError) => {
@@ -6213,14 +6292,15 @@ Pauses rendering. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                 | Mandatory | Description                         |
-| -------- | -------------------- | --------- | ----------------------------------- |
-| callback | AsyncCallback\<void> | Yes       | Callback used to return the result. |
+| Name     | Type                 | Mandatory | Description                                                  |
+| -------- | -------------------- | --------- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<void> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.pause((err: BusinessError) => {
   if (err) {
     console.error('Renderer pause failed');
@@ -6241,14 +6321,15 @@ Pauses rendering. This API uses a promise to return the result.
 
 **Return value**
 
-| Type           | Description                        |
-| -------------- | ---------------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Type           | Description                    |
+| -------------- | ------------------------------ |
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.pause().then(() => {
   console.info('Renderer paused');
 }).catch((err: BusinessError) => {
@@ -6267,14 +6348,15 @@ Drains the playback buffer. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name     | Type                 | Mandatory | Description                         |
-| -------- | -------------------- | --------- | ----------------------------------- |
-| callback | AsyncCallback\<void> | Yes       | Callback used to return the result. |
+| Name     | Type                 | Mandatory | Description                                                  |
+| -------- | -------------------- | --------- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<void> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.drain((err: BusinessError) => {
   if (err) {
     console.error('Renderer drain failed');
@@ -6295,14 +6377,15 @@ Drains the playback buffer. This API uses a promise to return the result.
 
 **Return value**
 
-| Type           | Description                        |
-| -------------- | ---------------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Type           | Description                    |
+| -------------- | ------------------------------ |
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.drain().then(() => {
   console.info('Renderer drained successfully');
 }).catch((err: BusinessError) => {
@@ -6321,14 +6404,15 @@ Stops rendering. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                 | Mandatory | Description                         |
-| -------- | -------------------- | --------- | ----------------------------------- |
-| callback | AsyncCallback\<void> | Yes       | Callback used to return the result. |
+| Name     | Type                 | Mandatory | Description                                                  |
+| -------- | -------------------- | --------- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<void> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.stop((err: BusinessError) => {
   if (err) {
     console.error('Renderer stop failed');
@@ -6349,14 +6433,15 @@ Stops rendering. This API uses a promise to return the result.
 
 **Return value**
 
-| Type           | Description                        |
-| -------------- | ---------------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Type           | Description                    |
+| -------------- | ------------------------------ |
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.stop().then(() => {
   console.info('Renderer stopped successfully');
 }).catch((err: BusinessError) => {
@@ -6375,14 +6460,15 @@ Releases the renderer. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-| Name     | Type                 | Mandatory | Description                         |
-| -------- | -------------------- | --------- | ----------------------------------- |
-| callback | AsyncCallback\<void> | Yes       | Callback used to return the result. |
+| Name     | Type                 | Mandatory | Description                                                  |
+| -------- | -------------------- | --------- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<void> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.release((err: BusinessError) => {
   if (err) {
     console.error('Renderer release failed');
@@ -6403,14 +6489,15 @@ Releases the renderer. This API uses a promise to return the result.
 
 **Return value**
 
-| Type           | Description                        |
-| -------------- | ---------------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Type           | Description                    |
+| -------------- | ------------------------------ |
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.release().then(() => {
   console.info('Renderer released successfully');
 }).catch((err: BusinessError) => {
@@ -6432,7 +6519,7 @@ Writes the buffer. This API uses an asynchronous callback to return the result.
 | Name     | Type                   | Mandatory | Description                                                  |
 | -------- | ---------------------- | --------- | ------------------------------------------------------------ |
 | buffer   | ArrayBuffer            | Yes       | Buffer to be written.                                        |
-| callback | AsyncCallback\<number> | Yes       | Callback used to return the result. If the operation is successful, the number of bytes written is returned; otherwise, an error code is returned. |
+| callback | AsyncCallback\<number> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of bytes written; otherwise, **err** is an error object. |
 
 **Example**
 
@@ -6496,9 +6583,9 @@ Writes the buffer. This API uses a promise to return the result.
 
 **Return value**
 
-| Type             | Description                                                  |
-| ---------------- | ------------------------------------------------------------ |
-| Promise\<number> | Promise used to return the result. If the operation is successful, the number of bytes written is returned; otherwise, an error code is returned. |
+| Type             | Description                                         |
+| ---------------- | --------------------------------------------------- |
+| Promise\<number> | Promise used to return the number of written bytes. |
 
 **Example**
 
@@ -6551,14 +6638,15 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 
 **Parameters**
 
-| Name     | Type                   | Mandatory | Description                            |
-| -------- | ---------------------- | --------- | -------------------------------------- |
-| callback | AsyncCallback\<number> | Yes       | Callback used to return the timestamp. |
+| Name     | Type                   | Mandatory | Description                                                  |
+| -------- | ---------------------- | --------- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<number> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of nanoseconds obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getAudioTime((err: BusinessError, timestamp: number) => {
   console.info(`Current timestamp: ${timestamp}`);
 });
@@ -6583,6 +6671,7 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getAudioTime().then((timestamp: number) => {
   console.info(`Current timestamp: ${timestamp}`);
 }).catch((err: BusinessError) => {
@@ -6630,14 +6719,15 @@ Obtains a reasonable minimum buffer size in bytes for rendering. This API uses a
 
 **Parameters**
 
-| Name     | Type                   | Mandatory | Description                              |
-| -------- | ---------------------- | --------- | ---------------------------------------- |
-| callback | AsyncCallback\<number> | Yes       | Callback used to return the buffer size. |
+| Name     | Type                   | Mandatory | Description                                                  |
+| -------- | ---------------------- | --------- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<number> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the minimum buffer size obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 let bufferSize: number;
 audioRenderer.getBufferSize((err: BusinessError, data: number) => {
   if (err) {
@@ -6668,6 +6758,7 @@ Obtains a reasonable minimum buffer size in bytes for rendering. This API uses a
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 let bufferSize: number;
 audioRenderer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
@@ -6718,15 +6809,16 @@ Sets the render rate. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name     | Type                                     | Mandatory | Description                         |
-| -------- | ---------------------------------------- | --------- | ----------------------------------- |
-| rate     | [AudioRendererRate](#audiorendererrate8) | Yes       | Audio render rate.                  |
-| callback | AsyncCallback\<void>                     | Yes       | Callback used to return the result. |
+| Name     | Type                                     | Mandatory | Description                                                  |
+| -------- | ---------------------------------------- | --------- | ------------------------------------------------------------ |
+| rate     | [AudioRendererRate](#audiorendererrate8) | Yes       | Audio render rate.                                           |
+| callback | AsyncCallback\<void>                     | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err: BusinessError) => {
   if (err) {
     console.error('Failed to set params');
@@ -6753,14 +6845,15 @@ Sets the render rate. This API uses a promise to return the result.
 
 **Return value**
 
-| Type           | Description                        |
-| -------------- | ---------------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Type           | Description                    |
+| -------------- | ------------------------------ |
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL).then(() => {
   console.info('setRenderRate SUCCESS');
 }).catch((err: BusinessError) => {
@@ -6779,14 +6872,15 @@ Obtains the current render rate. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                    |
-| -------- | ------------------------------------------------------- | --------- | ---------------------------------------------- |
-| callback | AsyncCallback<[AudioRendererRate](#audiorendererrate8)> | Yes       | Callback used to return the audio render rate. |
+| Name     | Type                                                    | Mandatory | Description                                                  |
+| -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
+| callback | AsyncCallback<[AudioRendererRate](#audiorendererrate8)> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the render rate obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getRenderRate((err: BusinessError, renderRate: audio.AudioRendererRate) => {
   console.info(`getRenderRate: ${renderRate}`);
 });
@@ -6803,14 +6897,15 @@ Obtains the current render rate. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                              | Description                                   |
-| ------------------------------------------------- | --------------------------------------------- |
-| Promise<[AudioRendererRate](#audiorendererrate8)> | Promise used to return the audio render rate. |
+| Type                                              | Description                             |
+| ------------------------------------------------- | --------------------------------------- |
+| Promise<[AudioRendererRate](#audiorendererrate8)> | Promise used to return the render rate. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getRenderRate().then((renderRate: audio.AudioRendererRate) => {
   console.info(`getRenderRate: ${renderRate}`);
 }).catch((err: BusinessError) => {
@@ -6864,14 +6959,15 @@ Sets the audio interruption mode for the application. This API uses a promise to
 
 **Return value**
 
-| Type                | Description                                                  |
-| ------------------- | ------------------------------------------------------------ |
-| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **undefined** is returned. Otherwise, **error** is returned. |
+| Type                | Description                    |
+| ------------------- | ------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 let mode = 0;
 audioRenderer.setInterruptMode(mode).then(() => {
   console.info('setInterruptMode Success!');
@@ -6891,15 +6987,16 @@ Sets the audio interruption mode for the application. This API uses an asynchron
 
 **Parameters**
 
-| Name     | Type                             | Mandatory | Description                         |
-| -------- | -------------------------------- | --------- | ----------------------------------- |
-| mode     | [InterruptMode](#interruptmode9) | Yes       | Audio interruption mode.            |
-| callback | AsyncCallback\<void>             | Yes       | Callback used to return the result. |
+| Name     | Type                             | Mandatory | Description                                                  |
+| -------- | -------------------------------- | --------- | ------------------------------------------------------------ |
+| mode     | [InterruptMode](#interruptmode9) | Yes       | Audio interruption mode.                                     |
+| callback | AsyncCallback\<void>             | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 let mode = 1;
 audioRenderer.setInterruptMode(mode, (err: BusinessError) => {
   if(err){
@@ -6963,14 +7060,15 @@ Sets the volume for the application. This API uses a promise to return the resul
 
 **Return value**
 
-| Type                | Description                                                  |
-| ------------------- | ------------------------------------------------------------ |
-| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **undefined** is returned. Otherwise, **error** is returned. |
+| Type                | Description                    |
+| ------------------- | ------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.setVolume(0.5).then(() => {
   console.info('setVolume Success!');
 }).catch((err: BusinessError) => {
@@ -6992,15 +7090,17 @@ Sets the volume for the application. This API uses an asynchronous callback to r
 | Name     | Type                 | Mandatory | Description                                                  |
 | -------- | -------------------- | --------- | ------------------------------------------------------------ |
 | volume   | number               | Yes       | Volume to set, which can be within the range from 0.0 to 1.0. |
-| callback | AsyncCallback\<void> | Yes       | Callback used to return the result.                          |
+| callback | AsyncCallback\<void> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.setVolume(0.5, (err: BusinessError) => {
   if(err){
     console.error(`setVolume Fail: ${err}`);
+    return;
   }
   console.info('setVolume Success!');
 });
@@ -7019,12 +7119,13 @@ Obtains the minimum volume of the application from the perspective of an audio s
 
 | Name     | Type                        | Mandatory | Description                                                  |
 | -------- | --------------------------- | --------- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;number&gt; | Yes       | Callback used to return the minimum volume, ranging from 0 to 1. |
+| callback | AsyncCallback&lt;number&gt; | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the minimum volume (range: 0-1) obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getMinStreamVolume((err: BusinessError, minVolume: number) => {
   if (err) {
     console.error(`getMinStreamVolume error: ${err}`);
@@ -7053,6 +7154,7 @@ Obtains the minimum volume of the application from the perspective of an audio s
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getMinStreamVolume().then((value: number) => {
   console.info(`Get min stream volume Success! ${value}`);
 }).catch((err: BusinessError) => {
@@ -7102,12 +7204,13 @@ Obtains the maximum volume of the application from the perspective of an audio s
 
 | Name     | Type                        | Mandatory | Description                                                  |
 | -------- | --------------------------- | --------- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;number&gt; | Yes       | Callback used to return the maximum volume, ranging from 0 to 1. |
+| callback | AsyncCallback&lt;number&gt; | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the maximum volume (range: 0-1) obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getMaxStreamVolume((err: BusinessError, maxVolume: number) => {
   if (err) {
     console.error(`getMaxStreamVolume Fail: ${err}`);
@@ -7136,6 +7239,7 @@ Obtains the maximum volume of the application from the perspective of an audio s
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getMaxStreamVolume().then((value: number) => {
   console.info(`Get max stream volume Success! ${value}`);
 }).catch((err: BusinessError) => {
@@ -7185,12 +7289,13 @@ Obtains the number of underflow audio frames in the audio stream that is being p
 
 | Name     | Type                        | Mandatory | Description                                                  |
 | -------- | --------------------------- | --------- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;number&gt; | Yes       | Callback used to return the number of underflow audio frames. |
+| callback | AsyncCallback&lt;number&gt; | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of underloaded audio frames obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getUnderflowCount((err: BusinessError, underflowCount: number) => {
   if (err) {
     console.error(`getUnderflowCount Fail: ${err}`);
@@ -7219,6 +7324,7 @@ Obtains the number of underflow audio frames in the audio stream that is being p
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getUnderflowCount().then((value: number) => {
   console.info(`Get underflow count Success! ${value}`);
 }).catch((err: BusinessError) => {
@@ -7266,14 +7372,15 @@ Obtains the output device descriptors of the audio streams. This API uses an asy
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                            |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------ |
-| callback | AsyncCallback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | Yes       | Callback used to return the output device descriptors. |
+| Name     | Type                                                         | Mandatory | Description                                                  |
+| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the output device descriptors obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getCurrentOutputDevices((err: BusinessError, deviceInfo: audio.AudioDeviceDescriptors) => {
   if (err) {
     console.error(`getCurrentOutputDevices Fail: ${err}`);
@@ -7311,6 +7418,7 @@ Obtains the output device descriptors of the audio streams. This API uses a prom
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioRenderer.getCurrentOutputDevices().then((deviceInfo: audio.AudioDeviceDescriptors) => {
   for (let i = 0; i < deviceInfo.length; i++) {
     console.info(`DeviceInfo id: ${deviceInfo[i].id}`);
@@ -7399,11 +7507,46 @@ console.info(`BlendMode: ${mode}`);
 
 ```
 
+### setVolumeWithRamp<sup>11+</sup>
+
+setVolumeWithRamp(volume: number, duration: number): void
+
+Sets a volume ramp. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name     | Type   | Mandatory | Description                                      |
+| -------- | ------ | --------- | ------------------------------------------------ |
+| volume   | number | Yes       | Target volume, within the range [0.0, 1.0].      |
+| duration | number | Yes       | Time range during which the ramp applies, in ms. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID      | Error Message                            |
+| ------- | ---------------------------------------- |
+| 6800101 | Input parameter value error.             |
+| 401     | Input parameter type or number mismatch. |
+
+**Example**
+
+```js
+let volume = 0.5;
+let duration = 1000;
+
+audioRenderer.setVolumeWithRamp(volume, duration);
+console.info(`setVolumeWithRamp: ${volume}`);
+
+```
+
 ### on('audioInterrupt')<sup>9+</sup>
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
-Subscribes to audio interruption events. This API uses a callback to obtain interrupt events.
+Subscribes to audio interruption events. This API uses an asynchronous callback to return the result.
 
 Same as [on('interrupt')](#oninterrupt), this API is used to listen for focus changes. The **AudioRenderer** instance proactively gains the focus when the **start** event occurs and releases the focus when the **pause** or **stop** event occurs. Therefore, you do not need to request to gain or release the focus.
 
@@ -7420,9 +7563,9 @@ Same as [on('interrupt')](#oninterrupt), this API is used to listen for focus ch
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| ID      | Error Message            |
+| ------- | ------------------------ |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
@@ -7503,7 +7646,7 @@ async function onAudioInterrupt(){
 
 on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
-Subscribes to mark reached events. When the number of frames rendered reaches the value of the **frame** parameter, a callback is invoked.
+Subscribes to mark reached events. When the number of frames rendered reaches the value of the **frame** parameter, a callback is invoked. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7552,7 +7695,7 @@ audioRenderer.off('markReach');
 
 on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
-Subscribes to period reached events. When the number of frames rendered reaches the value of the **frame** parameter, a callback is triggered and the specified value is returned.
+Subscribes to period reached events. When the number of frames rendered reaches the value of the **frame** parameter, a callback is triggered and the specified value is returned. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7592,7 +7735,7 @@ Unsubscribes from period reached events.
 **Example**
 
 ```ts
-audioRenderer.off('periodReach')
+audioRenderer.off('periodReach');
 
 ```
 
@@ -7600,7 +7743,7 @@ audioRenderer.off('periodReach')
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
-Subscribes to state change events.
+Subscribes to state change events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -7627,9 +7770,9 @@ audioRenderer.on('stateChange', (state: audio.AudioState) => {
 
 ### on('outputDeviceChange') <sup>10+</sup>
 
-on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void;
+on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
-Subscribes to audio output device change events.
+Subscribes to audio output device change events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -7642,9 +7785,9 @@ Subscribes to audio output device change events.
 
 **Error codes**
 
-| ID      | Error Message                   |
-| ------- | ------------------------------- |
-| 6800101 | if input parameter value error. |
+| ID      | Error Message            |
+| ------- | ------------------------ |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
@@ -7659,9 +7802,9 @@ audioRenderer.on('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptors
 
 ### off('outputDeviceChange') <sup>10+</sup>
 
-off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void;
+off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void
 
-Unsubscribes from audio output device change events.
+Unsubscribes from audio output device change events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -7674,9 +7817,9 @@ Unsubscribes from audio output device change events.
 
 **Error codes**
 
-| ID      | Error Message                   |
-| ------- | ------------------------------- |
-| 6800101 | if input parameter value error. |
+| ID      | Error Message            |
+| ------- | ------------------------ |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
@@ -7705,6 +7848,7 @@ Provides APIs for audio capture. Before calling any API in **AudioCapturer**, yo
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let state: audio.AudioState = audioCapturer.state;
 
 ```
@@ -7719,14 +7863,15 @@ Obtains the capturer information of this **AudioCapturer** instance. This API us
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                       |
-| :------- | :------------------------------------------------------ | :-------- | :------------------------------------------------ |
-| callback | AsyncCallback<[AudioCapturerInfo](#audiocapturerinfo)\> | Yes       | Callback used to return the capturer information. |
+| Name     | Type                                                    | Mandatory | Description                                                  |
+| :------- | :------------------------------------------------------ | :-------- | :----------------------------------------------------------- |
+| callback | AsyncCallback<[AudioCapturerInfo](#audiocapturerinfo)\> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the capturer information obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioCapturer.getCapturerInfo((err: BusinessError, capturerInfo: audio.AudioCapturerInfo) => {
   if (err) {
     console.error('Failed to get capture info');
@@ -7750,14 +7895,15 @@ Obtains the capturer information of this **AudioCapturer** instance. This API us
 
 **Return value**
 
-| Type                                              | Description                                      |
-| :------------------------------------------------ | :----------------------------------------------- |
-| Promise<[AudioCapturerInfo](#audiocapturerinfo)\> | Promise used to return the capturer information. |
+| Type                                              | Description                                  |
+| :------------------------------------------------ | :------------------------------------------- |
+| Promise<[AudioCapturerInfo](#audiocapturerinfo)\> | Promise used to return capturer information. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioCapturer.getCapturerInfo().then((audioParamsGet: audio.AudioCapturerInfo) => {
   if (audioParamsGet != undefined) {
     console.info('AudioFrameworkRecLog: Capturer CapturerInfo:');
@@ -7813,14 +7959,15 @@ Obtains the stream information of this **AudioCapturer** instance. This API uses
 
 **Parameters**
 
-| Name     | Type                                                 | Mandatory | Description                                     |
-| :------- | :--------------------------------------------------- | :-------- | :---------------------------------------------- |
-| callback | AsyncCallback<[AudioStreamInfo](#audiostreaminfo8)\> | Yes       | Callback used to return the stream information. |
+| Name     | Type                                                 | Mandatory | Description                                                  |
+| :------- | :--------------------------------------------------- | :-------- | :----------------------------------------------------------- |
+| callback | AsyncCallback<[AudioStreamInfo](#audiostreaminfo8)\> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the stream information obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioCapturer.getStreamInfo((err: BusinessError, streamInfo: audio.AudioStreamInfo) => {
   if (err) {
     console.error('Failed to get stream info');
@@ -7853,6 +8000,7 @@ Obtains the stream information of this **AudioCapturer** instance. This API uses
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioCapturer.getStreamInfo().then((audioParamsGet: audio.AudioStreamInfo) => {
   console.info('getStreamInfo:');
   console.info(`sampleFormat: ${audioParamsGet.sampleFormat}`);
@@ -7907,14 +8055,15 @@ Obtains the stream ID of this **AudioCapturer** instance. This API uses an async
 
 **Parameters**
 
-| Name     | Type                   | Mandatory | Description                            |
-| :------- | :--------------------- | :-------- | :------------------------------------- |
-| callback | AsyncCallback<number\> | Yes       | Callback used to return the stream ID. |
+| Name     | Type                   | Mandatory | Description                                                  |
+| :------- | :--------------------- | :-------- | :----------------------------------------------------------- |
+| callback | AsyncCallback<number\> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the stream ID obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioCapturer.getAudioStreamId((err: BusinessError, streamId: number) => {
   console.info(`audioCapturer GetStreamId: ${streamId}`);
 });
@@ -7939,6 +8088,7 @@ Obtains the stream ID of this **AudioCapturer** instance. This API uses a promis
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioCapturer.getAudioStreamId().then((streamId: number) => {
   console.info(`audioCapturer getAudioStreamId: ${streamId}`);
 }).catch((err: BusinessError) => {
@@ -7986,14 +8136,15 @@ Starts capturing. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                 | Mandatory | Description                         |
-| :------- | :------------------- | :-------- | :---------------------------------- |
-| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+| Name     | Type                 | Mandatory | Description                                                  |
+| :------- | :------------------- | :-------- | :----------------------------------------------------------- |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioCapturer.start((err: BusinessError) => {
   if (err) {
     console.error('Capturer start failed.');
@@ -8015,14 +8166,15 @@ Starts capturing. This API uses a promise to return the result.
 
 **Return value**
 
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
+| Type           | Description                    |
+| :------------- | :----------------------------- |
+| Promise<void\> | Promise that returns no value. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioCapturer.start().then(() => {
   console.info('AudioFrameworkRecLog: ---------START---------');
   console.info('AudioFrameworkRecLog: Capturer started: SUCCESS');
@@ -8047,14 +8199,15 @@ Stops capturing. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                 | Mandatory | Description                         |
-| :------- | :------------------- | :-------- | :---------------------------------- |
-| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+| Name     | Type                 | Mandatory | Description                                                  |
+| :------- | :------------------- | :-------- | :----------------------------------------------------------- |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. If the vibration stops, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioCapturer.stop((err: BusinessError) => {
   if (err) {
     console.error('Capturer stop failed');
@@ -8076,14 +8229,15 @@ Stops capturing. This API uses a promise to return the result.
 
 **Return value**
 
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
+| Type           | Description                    |
+| :------------- | :----------------------------- |
+| Promise<void\> | Promise that returns no value. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioCapturer.stop().then(() => {
   console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
   console.info('AudioFrameworkRecLog: Capturer stopped: SUCCESS');
@@ -8106,14 +8260,15 @@ Releases this **AudioCapturer** instance. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name     | Type                 | Mandatory | Description                         |
-| :------- | :------------------- | :-------- | :---------------------------------- |
-| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+| Name     | Type                 | Mandatory | Description                                                  |
+| :------- | :------------------- | :-------- | :----------------------------------------------------------- |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioCapturer.release((err: BusinessError) => {
   if (err) {
     console.error('capturer release failed');
@@ -8135,14 +8290,15 @@ Releases this **AudioCapturer** instance. This API uses a promise to return the 
 
 **Return value**
 
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
+| Type           | Description                    |
+| :------------- | :----------------------------- |
+| Promise<void\> | Promise that returns no value. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioCapturer.release().then(() => {
   console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
   console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
@@ -8163,16 +8319,17 @@ Reads the buffer. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name           | Type                        | Mandatory | Description                          |
-| :------------- | :-------------------------- | :-------- | :----------------------------------- |
-| size           | number                      | Yes       | Number of bytes to read.             |
-| isBlockingRead | boolean                     | Yes       | Whether to block the read operation. |
-| callback       | AsyncCallback<ArrayBuffer\> | Yes       | Callback used to return the buffer.  |
+| Name           | Type                        | Mandatory | Description                                                  |
+| :------------- | :-------------------------- | :-------- | :----------------------------------------------------------- |
+| size           | number                      | Yes       | Number of bytes to read.                                     |
+| isBlockingRead | boolean                     | Yes       | Whether to block the read operation. The value **true** means to block the read operation, and **false** means the opposite. |
+| callback       | AsyncCallback<ArrayBuffer\> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the buffer read; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 let bufferSize: number = 0;
 audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
@@ -8198,21 +8355,22 @@ Reads the buffer. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name           | Type    | Mandatory | Description                          |
-| :------------- | :------ | :-------- | :----------------------------------- |
-| size           | number  | Yes       | Number of bytes to read.             |
-| isBlockingRead | boolean | Yes       | Whether to block the read operation. |
+| Name           | Type    | Mandatory | Description                                                  |
+| :------------- | :------ | :-------- | :----------------------------------------------------------- |
+| size           | number  | Yes       | Number of bytes to read.                                     |
+| isBlockingRead | boolean | Yes       | Whether to block the read operation. The value **true** means to block the read operation, and **false** means the opposite. |
 
 **Return value**
 
-| Type                  | Description                                                  |
-| :-------------------- | :----------------------------------------------------------- |
-| Promise<ArrayBuffer\> | Promise used to return the result. If the operation is successful, the buffer data read is returned; otherwise, an error code is returned. |
+| Type                  | Description                                           |
+| :-------------------- | :---------------------------------------------------- |
+| Promise<ArrayBuffer\> | Promise used to return the data read from the buffer. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 let bufferSize: number = 0;
 audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
@@ -8239,14 +8397,15 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 
 **Parameters**
 
-| Name     | Type                   | Mandatory | Description                         |
-| :------- | :--------------------- | :-------- | :---------------------------------- |
-| callback | AsyncCallback<number\> | Yes       | Callback used to return the result. |
+| Name     | Type                   | Mandatory | Description                                                  |
+| :------- | :--------------------- | :-------- | :----------------------------------------------------------- |
+| callback | AsyncCallback<number\> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of nanoseconds obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioCapturer.getAudioTime((err: BusinessError, timestamp: number) => {
   console.info(`Current timestamp: ${timestamp}`);
 });
@@ -8263,14 +8422,15 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 
 **Return value**
 
-| Type             | Description                           |
-| :--------------- | :------------------------------------ |
-| Promise<number\> | Promise used to return the timestamp. |
+| Type             | Description                                                  |
+| :--------------- | :----------------------------------------------------------- |
+| Promise<number\> | Promise used to return the number of nanoseconds elapsed from the Unix epoch. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioCapturer.getAudioTime().then((audioTime: number) => {
   console.info(`AudioFrameworkRecLog: AudioCapturer getAudioTime : Success ${audioTime}`);
 }).catch((err: BusinessError) => {
@@ -8318,14 +8478,15 @@ Obtains a reasonable minimum buffer size in bytes for capturing. This API uses a
 
 **Parameters**
 
-| Name     | Type                   | Mandatory | Description                              |
-| :------- | :--------------------- | :-------- | :--------------------------------------- |
-| callback | AsyncCallback<number\> | Yes       | Callback used to return the buffer size. |
+| Name     | Type                   | Mandatory | Description                                                  |
+| :------- | :--------------------- | :-------- | :----------------------------------------------------------- |
+| callback | AsyncCallback<number\> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the minimum buffer size obtained; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 audioCapturer.getBufferSize((err: BusinessError, bufferSize: number) => {
   if (!err) {
     console.info(`BufferSize : ${bufferSize}`);
@@ -8357,6 +8518,7 @@ Obtains a reasonable minimum buffer size in bytes for capturing. This API uses a
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 let bufferSize: number = 0;
 audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize :SUCCESS ${data}`);
@@ -8465,7 +8627,7 @@ console.info(`Info encodingTypes: ${info.deviceDescriptors[0].encodingTypes[0]}`
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
-Subscribes to audio interruption events. This API uses a callback to obtain interrupt events.
+Subscribes to audio interruption events. This API uses an asynchronous callback to return the result.
 
 Same as [on('interrupt')](#oninterrupt), this API is used to listen for focus changes. The **AudioCapturer** instance proactively gains the focus when the **start** event occurs and releases the focus when the **pause** or **stop** event occurs. Therefore, you do not need to request to gain or release the focus.
 
@@ -8482,14 +8644,15 @@ Same as [on('interrupt')](#oninterrupt), this API is used to listen for focus ch
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| ID      | Error Message            |
+| ------- | ------------------------ |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let isCapturing: boolean; // An identifier specifying whether capturing is in progress.
 onAudioInterrupt();
 
@@ -8557,9 +8720,9 @@ Unsubscribes from audio interruption events.
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message                  |
-| ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| ID      | Error Message            |
+| ------- | ------------------------ |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
@@ -8572,7 +8735,7 @@ audioCapturer.off('audioInterrupt');
 
 on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
-Subscribes to audio input device change events.
+Subscribes to audio input device change events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -8604,7 +8767,7 @@ audioCapturer.on('inputDeviceChange', (deviceChangeInfo: audio.AudioDeviceDescri
 
 off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void
 
-Unsubscribes from audio input device change events.
+Unsubscribes from audio input device change events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -8632,7 +8795,7 @@ audioCapturer.off('inputDeviceChange');
 
 on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): void
 
-Subscribes to audio capturer change events.
+Subscribes to audio capturer change events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -8664,7 +8827,7 @@ audioCapturer.on('audioCapturerChange', (capturerChangeInfo: audio.AudioCapturer
 
 off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>): void
 
-Unsubscribes from audio capturer change events.
+Unsubscribes from audio capturer change events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -8692,7 +8855,7 @@ audioCapturer.off('audioCapturerChange');
 
 on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
-Subscribes to mark reached events. When the number of frames captured reaches the value of the **frame** parameter, a callback is invoked.
+Subscribes to mark reached events. When the number of frames captured reaches the value of the **frame** parameter, a callback is invoked. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -8740,7 +8903,7 @@ audioCapturer.off('markReach');
 
 on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
-Subscribes to period reached events. When the number of frames captured reaches the value of the **frame** parameter, a callback is triggered and the specified value is returned.
+Subscribes to period reached events. When the number of frames captured reaches the value of the **frame** parameter, a callback is triggered and the specified value is returned. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -8750,7 +8913,7 @@ Subscribes to period reached events. When the number of frames captured reaches 
 | :------- | :---------------- | :-------- | :----------------------------------------------------------- |
 | type     | string            | Yes       | Event type. The value is fixed at **'periodReach'**.         |
 | frame    | number            | Yes       | Number of frames to trigger the event. The value must be greater than **0**. |
-| callback | Callback\<number> | Yes       | Callback invoked when the event is triggered.                |
+| callback | Callback\<number> | Yes       | Callback used to return the value of the **frame** parameter. |
 
 **Example**
 
@@ -8780,7 +8943,7 @@ Unsubscribes from period reached events.
 **Example**
 
 ```ts
-audioCapturer.off('periodReach')
+audioCapturer.off('periodReach');
 
 ```
 
@@ -8788,7 +8951,7 @@ audioCapturer.off('periodReach')
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
-Subscribes to state change events.
+Subscribes to state change events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
@@ -8854,6 +9017,7 @@ Enumerates the tone types of the player.
 ## TonePlayer<sup>9+</sup>
 
 Provides APIs for playing and managing DTMF tones, such as dial tones, ringback tones, supervisory tones, and proprietary tones.
+Before calling any API in **TonePlayer**, you must use [createTonePlayer](#audiocreatetoneplayer9) to create a **TonePlayer** instance.
 
 **System API**: This is a system API.
 
@@ -8869,15 +9033,16 @@ Loads the DTMF tone configuration. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-| Name     | Type                   | Mandatory | Description                         |
-| :------- | :--------------------- | :-------- | :---------------------------------- |
-| type     | [ToneType](#tonetype9) | Yes       | Tone type.                          |
-| callback | AsyncCallback<void\>   | Yes       | Callback used to return the result. |
+| Name     | Type                   | Mandatory | Description                                                  |
+| :------- | :--------------------- | :-------- | :----------------------------------------------------------- |
+| type     | [ToneType](#tonetype9) | Yes       | Tone type.                                                   |
+| callback | AsyncCallback<void\>   | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_5, (err: BusinessError) => {
   if (err) {
     console.error(`callback call load failed error: ${err.message}`);
@@ -8907,9 +9072,9 @@ Loads the DTMF tone configuration. This API uses a promise to return the result.
 
 **Return value**
 
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
+| Type           | Description                    |
+| :------------- | :----------------------------- |
+| Promise<void\> | Promise that returns no value. |
 
 **Example**
 
@@ -8934,14 +9099,15 @@ Starts DTMF tone playing. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name     | Type                 | Mandatory | Description                         |
-| :------- | :------------------- | :-------- | :---------------------------------- |
-| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+| Name     | Type                 | Mandatory | Description                                                  |
+| :------- | :------------------- | :-------- | :----------------------------------------------------------- |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 tonePlayer.start((err: BusinessError) => {
   if (err) {
     console.error(`callback call start failed error: ${err.message}`);
@@ -8965,9 +9131,9 @@ Starts DTMF tone playing. This API uses a promise to return the result.
 
 **Return value**
 
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
+| Type           | Description                    |
+| :------------- | :----------------------------- |
+| Promise<void\> | Promise that returns no value. |
 
 **Example**
 
@@ -8992,14 +9158,15 @@ Stops the tone that is being played. This API uses an asynchronous callback to r
 
 **Parameters**
 
-| Name     | Type                 | Mandatory | Description                         |
-| :------- | :------------------- | :-------- | :---------------------------------- |
-| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+| Name     | Type                 | Mandatory | Description                                                  |
+| :------- | :------------------- | :-------- | :----------------------------------------------------------- |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 tonePlayer.stop((err: BusinessError) => {
   if (err) {
     console.error(`callback call stop error: ${err.message}`);
@@ -9023,9 +9190,9 @@ Stops the tone that is being played. This API uses a promise to return the resul
 
 **Return value**
 
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
+| Type           | Description                    |
+| :------------- | :----------------------------- |
+| Promise<void\> | Promise that returns no value. |
 
 **Example**
 
@@ -9050,14 +9217,15 @@ Releases the resources associated with the **TonePlayer** instance. This API use
 
 **Parameters**
 
-| Name     | Type                 | Mandatory | Description                         |
-| :------- | :------------------- | :-------- | :---------------------------------- |
-| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+| Name     | Type                 | Mandatory | Description                                                  |
+| :------- | :------------------- | :-------- | :----------------------------------------------------------- |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+
 tonePlayer.release((err: BusinessError) => {
   if (err) {
     console.error(`callback call release failed error: ${err.message}`);
@@ -9081,9 +9249,9 @@ Releases the resources associated with the **TonePlayer** instance. This API use
 
 **Return value**
 
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
+| Type           | Description                    |
+| :------------- | :----------------------------- |
+| Promise<void\> | Promise that returns no value. |
 
 **Example**
 
@@ -9136,11 +9304,11 @@ Describes input parameters of audio interruption events.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name            | Type                        | Mandatory | Description                                                  |
-| --------------- | --------------------------- | --------- | ------------------------------------------------------------ |
-| streamUsage     | [StreamUsage](#streamusage) | Yes       | Audio stream usage.                                          |
-| contentType     | [ContentType](#contenttype) | Yes       | Audio content type.                                          |
-| pauseWhenDucked | boolean                     | Yes       | Whether audio playback can be paused during audio interruption. The value **true** means that audio playback can be paused during audio interruption, and **false** means the opposite. |
+| Name            | Type                                  | Mandatory | Description                                                  |
+| --------------- | ------------------------------------- | --------- | ------------------------------------------------------------ |
+| streamUsage     | [StreamUsage](#streamusage)           | Yes       | Audio stream usage.                                          |
+| contentType     | [ContentType](#contenttypedeprecated) | Yes       | Audio content type.                                          |
+| pauseWhenDucked | boolean                               | Yes       | Whether audio playback can be paused during audio interruption. The value **true** means that audio playback can be paused during audio interruption, and **false** means the opposite. |
 
 ## InterruptAction<sup>(deprecated)</sup>
 

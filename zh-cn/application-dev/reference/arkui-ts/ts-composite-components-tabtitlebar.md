@@ -67,6 +67,25 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 import { TabTitleBar } from "@ohos.arkui.advanced.TabTitleBar"
 import promptAction from '@ohos.promptAction'
 
+class tabItem {
+  title: ResourceStr;
+  icon?: ResourceStr;
+  constructor(title: ResourceStr,icon?: ResourceStr) {
+    this.title = title
+    this.icon = icon
+  }
+}
+class menuItem{
+  value: ResourceStr;
+  isEnabled?: boolean;
+  action?: ()=>void;
+  constructor(value: ResourceStr,isEnabled?: boolean,action?: ()=>void) {
+    this.value = value;
+    this.isEnabled = isEnabled;
+    this.action = action;
+  }
+}
+
 @Entry
 @Component
 struct Index {
@@ -109,34 +128,15 @@ struct Index {
       .backgroundColor("#3498DB")
   }
 
-  private readonly tabItems: {
-    title: ResourceStr,
-    icon?: ResourceStr
-  }[] =
-    [
-      { title: "页签1" },
-      { title: "页签2" },
-      { title: "页签3" },
-      { title: "Happy",
-        icon: $r('app.media.emoji_happy') },
-      { title: "页签4" },
-    ]
-  private readonly menuItems: {
-    value: Resource,
-    isEnabled: boolean,
-    action: () => void
-  }[] =
-    [
-      { isEnabled: true, value: $r('app.media.ic_public_reduce'),
-        action: () => promptAction.showToast({ message: "on item click! index 0" })
-      },
-      { isEnabled: true, value: $r('app.media.ic_public_edit'),
-        action: () => promptAction.showToast({ message: "on item click! index 1" })
-      },
-      { isEnabled: true, value: $r('app.media.ic_public_save'),
-        action: () => promptAction.showToast({ message: "on item click! index 2" })
-      }
-    ]
+  private readonly tabItems: Array<tabItem> = [new tabItem('页签1'),new tabItem('页签2'),new tabItem('页签3'),new tabItem("Happy",$r('app.media.emoji_happy'))]
+  private  readonly menuItems: Array<menuItem> = [
+    new menuItem($r('app.media.ic_public_reduce'),true,
+      () => promptAction.showToast({ message: "on item click! index 0" })),
+    new menuItem($r('app.media.ic_public_edit'),true,
+      () => promptAction.showToast({ message: "on item click! index 1" })),
+    new menuItem($r('app.media.ic_public_save'),true,
+      () => promptAction.showToast({ message: "on item click! index 2" }))
+  ]
 
   build() {
     Row() {

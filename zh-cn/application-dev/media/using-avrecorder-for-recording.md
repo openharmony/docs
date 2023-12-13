@@ -1,4 +1,4 @@
-# 使用AVRecorder开发音频录制功能
+# 使用AVRecorder开发音频录制功能(ArkTS)
 
 使用AVRecorder可以实现音频录制功能，本开发指导将以“开始录制-暂停录制-恢复录制-停止录制”的一次流程为示例，向开发者讲解AVRecorder音频录制相关功能。
 
@@ -36,8 +36,7 @@
    | 事件类型 | 说明 | 
    | -------- | -------- |
    | stateChange | 必要事件，监听AVRecorder的state属性改变 | 
-   | error | 必要事件，监听AVRecorder的错误信息 | 
-
+   | error | 必要事件，监听AVRecorder的错误信息 |
      
    ```ts
    // 状态上报回调函数
@@ -62,8 +61,7 @@
    > - 需要使用支持的[录制规格](avplayer-avrecorder-overview.md#支持的格式)。
    > 
    > - 录制输出的url地址（即示例里avConfig中的url），形式为fd://xx (fd number)。需要基础文件操作接口（[ohos.file.fs](../reference/apis/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../file-management/app-file-access.md)。
-
-     
+ 
    ```ts
    let avProfile: media.AVRecorderProfile = {
      audioBitrate: 100000, // 音频比特率
@@ -86,15 +84,45 @@
 
 4. 开始录制，调用start()接口，此时进入started状态。
 
+   ```ts
+   // 开始录制
+   avRecorder.start();
+   ```
+
 5. 暂停录制，调用pause()接口，此时进入paused状态。
+
+   ```ts
+   // 暂停录制
+   avRecorder.pause();
+   ```
 
 6. 恢复录制，调用resume()接口，此时再次进入started状态。
 
+   ```ts
+   // 恢复录制
+   avRecorder.resume();
+   ```
+
 7. 停止录制，调用stop()接口，此时进入stopped状态。
+
+   ```ts
+   // 停止录制
+   avRecorder.stop();
+   ```
 
 8. 重置资源，调用reset()重新进入idle状态，允许重新配置录制参数。
 
+   ```ts
+   // 重置资源
+   avRecorder.reset();
+   ```
+
 9. 销毁实例，调用release()进入released状态，退出录制。
+
+   ```ts
+   // 销毁实例
+   avRecorder.release();
+   ```
 
 
 ## 完整示例

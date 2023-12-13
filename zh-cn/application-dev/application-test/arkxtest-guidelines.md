@@ -281,37 +281,37 @@ export default function abilityTest() {
 示例代码6：用例执行超时时长配置。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner  -s timeout 15000
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s timeout 15000
 ```
 
 示例代码7：用例以breakOnError模式执行用例。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s breakOnError true
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s breakOnError true
 ```
 
 示例代码8：执行测试类型匹配的测试用例。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s testType function
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s testType function
 ```
 
 示例代码9：执行测试级别匹配的测试用例。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s level 0
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s level 0
 ```
 
 示例代码10：执行测试规模匹配的测试用例。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s size small
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s size small
 ```
 
 示例代码11：执行测试用例指定次数。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s stress 1000
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s stress 1000
 ```
 
 **查看测试结果**

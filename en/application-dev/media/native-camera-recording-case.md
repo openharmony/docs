@@ -1,4 +1,6 @@
-# Camera Recording Sample (Native)
+# Sample Implementation of Camera Recording (C/C++)
+
+This topic provides sample code that covers the complete recording process and the API calling sequence. For details about a single process (such as device input, session management, and recording), see the corresponding C/C++ development guide links provided in [Camera Development Preparations](camera-preparation.md).
 
 ## Development Process
 

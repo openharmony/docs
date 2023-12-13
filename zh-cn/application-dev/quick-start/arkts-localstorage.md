@@ -1,7 +1,7 @@
 # LocalStorage：页面级UI状态存储
 
 
-LocalStorage是页面级的UI状态存储，通过\@Entry装饰器接收的参数可以在页面内共享同一个LocalStorage实例。LocalStorage也可以在UIAbility内，页面间共享状态。
+LocalStorage是页面级的UI状态存储，通过\@Entry装饰器接收的参数可以在页面内共享同一个LocalStorage实例。LocalStorage也可以是UIAbility的实例，在页面间共享状态。
 
 
 本文仅介绍LocalStorage使用场景和相关的装饰器：\@LocalStorageProp和\@LocalStorageLink。
@@ -279,7 +279,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 // 构造LocalStorage实例
 let para:Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
-// 调用link9+接口构造'PropA'的双向同步数据，linkToPropA 是全局变量
+// 调用link（api9以上）接口构造'PropA'的双向同步数据，linkToPropA 是全局变量
 let linkToPropA: SubscribedAbstractProperty<object> = storage.link('PropA');
 
 @Entry(storage)

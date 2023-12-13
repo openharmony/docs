@@ -56,6 +56,7 @@
     - [特效绘制合并](ts-universal-attributes-use-effect.md)
     - [组件内容填充方式](ts-universal-attributes-renderfit.md)
     - [事件独占控制](ts-universal-attributes-monopolize-events.md)
+    - [鼠标光标控制](ts-universal-attributes-cursor.md)
   - 手势处理
     - [绑定手势方法](ts-gesture-settings.md)
     - 基础手势
@@ -124,6 +125,7 @@
   - [EffectComponent](ts-container-effectcomponent.md)
   - [Flex](ts-container-flex.md)
   - [FlowItem](ts-container-flowitem.md)
+  - [FolderStack](ts-container-folderstack.md)
   - [FormLink](ts-container-formlink.md)
   - [GridCol](ts-container-gridcol.md)
   - [GridRow](ts-container-gridrow.md)
@@ -160,15 +162,15 @@
   - [Shape](ts-drawing-components-shape.md)
 - 画布组件
   - [Canvas](ts-components-canvas-canvas.md)
-  - [CanvasGradient对象](ts-components-canvas-canvasgradient.md)
+  - [CanvasGradient](ts-components-canvas-canvasgradient.md)
   - [CanvasPattern](ts-components-canvas-canvaspattern.md)
-  - [CanvasRenderingContext2D对象](ts-canvasrenderingcontext2d.md)
-  - [ImageBitmap对象](ts-components-canvas-imagebitmap.md)
-  - [ImageData对象](ts-components-canvas-imagedata.md)
+  - [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)
+  - [ImageBitmap](ts-components-canvas-imagebitmap.md)
+  - [ImageData](ts-components-canvas-imagedata.md)
   - [Matrix2D](ts-components-canvas-matrix2d.md)
   - [OffscreenCanvas](ts-components-offscreencanvas.md)
-  - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
-  - [Path2D对象](ts-components-canvas-path2d.md)
+  - [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md)
+  - [Path2D](ts-components-canvas-path2d.md)
 - 高级组件
   - [@ohos.arkui.advanced.Chip (操作块)](ts-composite-components-chip.md)
   - [@ohos.arkui.advanced.ComposeListItem (列表)](ts-composite-components-composelistitem.md)

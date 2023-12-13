@@ -65,10 +65,11 @@ load(uri: string, callback: AsyncCallback\<number>): void
 
 ```ts
 import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -133,10 +134,11 @@ load(uri: string): Promise\<number>
 
 ```ts
 import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -199,10 +201,11 @@ load(fd: number, offset: number, length: number, callback: AsyncCallback\<number
 
 ```ts
 import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -272,10 +275,11 @@ load(fd: number, offset: number, length: number): Promise\<number>
 
 ```ts
 import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -334,10 +338,11 @@ play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>):
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -358,7 +363,6 @@ let playParameters: media.PlayParameters = {
     leftVolume: 0.5, // range = 0.0-1.0
     rightVolume: 0.5, // range = 0.0-1.0
     priority: 0, // 最低优先级
-    parallelPlayFlag: false // 不和其它正在播放的音频并行播放
   }
 soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
   if (error) {
@@ -397,10 +401,11 @@ play(soundID: number, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -458,10 +463,11 @@ play(soundID: number, params?: PlayParameters): Promise\<number>
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -482,7 +488,6 @@ let playParameters: media.PlayParameters = {
     leftVolume: 0.5, // range = 0.0-1.0
     rightVolume: 0.5, // range = 0.0-1.0
     priority: 0, // 最低优先级
-    parallelPlayFlag: false // 不和其它正在播放的音频并行播放
   }
 
 soundPool.play(soundID, playParameters).then((streamId: number) => {
@@ -520,10 +525,11 @@ stop(streamID: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -580,10 +586,11 @@ stop(streamID: number): Promise\<void>
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -633,10 +640,11 @@ setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -694,10 +702,11 @@ setLoop(streamID: number, loop: number): Promise\<void>
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -748,10 +757,11 @@ setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>):
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -810,10 +820,11 @@ setPriority(streamID: number, priority: number): Promise\<void>
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -868,10 +879,11 @@ setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -934,10 +946,11 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -990,10 +1003,11 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: A
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1053,10 +1067,11 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<v
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1107,10 +1122,11 @@ unload(soundID: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1168,10 +1184,11 @@ unload(soundID: number): Promise\<void>
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1219,10 +1236,11 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1270,10 +1288,11 @@ release(): Promise\<void>
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1311,10 +1330,11 @@ on(type: 'loadComplete', callback: Callback\<number>): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1349,10 +1369,11 @@ off(type: 'loadComplete'): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1386,10 +1407,11 @@ on(type: 'playFinished', callback: Callback\<void>): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1424,10 +1446,11 @@ off(type: 'playFinished'): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1472,10 +1495,11 @@ SoundPool回调的**错误分类**<a name = error_info></a>可以分为以下几
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
@@ -1511,10 +1535,11 @@ off(type: 'error'): void
 **示例：**
 
 ```js
+import { BusinessError } from '@ohos.base';
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {

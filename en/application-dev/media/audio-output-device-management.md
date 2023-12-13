@@ -1,4 +1,4 @@
-# Audio Output Device Management
+# Audio Output Device Management (ArkTS)
 
 If a device is connected to multiple audio output devices, you can use **AudioRoutingManager** to specify an audio output device to play audio. For details about the API reference, see [AudioRoutingManager](../reference/apis/js-apis-audio.md#audioroutingmanager9).
 
@@ -102,7 +102,6 @@ Call **getPreferOutputDeviceForRendererInfo()** to obtain the output device with
 ```ts
 import audio from '@ohos.multimedia.audio';
 let rendererInfo: audio.AudioRendererInfo = {
-    content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0,
 }
@@ -121,7 +120,6 @@ async function getPreferOutputDeviceForRendererInfo() {
 ```ts
 import audio from '@ohos.multimedia.audio';
 let rendererInfo: audio.AudioRendererInfo = {
-    content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0,
 }

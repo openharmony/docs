@@ -617,18 +617,18 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
   // 认证的设备信息，可以从发现的结果中获取
   let deviceId = "XXXXXXXX";
   let bindParam: Record<string, string | number> = {
-    bindType: 1, // 认证类型： 1 - 无帐号PIN码认证
-    targetPkgName: 'xxxx',
-    appName: 'xxxx',
-    appOperation: 'xxxx',
-    customDescription: 'xxxx'
+    'bindType': 1, // 认证类型： 1 - 无帐号PIN码认证
+    'targetPkgName': 'xxxx',
+    'appName': 'xxxx',
+    'appOperation': 'xxxx',
+    'customDescription': 'xxxx'
   }
 
   try {
     dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
       if (err) {
-          console.error("bindTarget errCode:" + err.code + ",errMessage:" + err.message);
-          return;
+        console.error("bindTarget errCode:" + err.code + ",errMessage:" + err.message);
+        return;
       }
       console.info("bindTarget result:" + JSON.stringify(data));
     });

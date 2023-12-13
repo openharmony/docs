@@ -52,6 +52,18 @@ Allows an application to access Bluetooth and use Bluetooth capabilities, such a
 
 **Start version**: 10
 
+## ohos.permission.GET_BLUETOOTH_LOCAL_MAC
+
+Allows an application to obtain the Bluetooth MAC address of the local device.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
 ## ohos.permission.INTERNET
 
 Allows an application to access the Internet.
@@ -3250,6 +3262,18 @@ Allows a system application to shield the shortcut key distribution logic.
 
 **Start version**: 11
 
+## ohos.permission.INTERCEPT_INPUT_EVENT
+
+Allows a system application to intercept input events.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
 ## ohos.permission.MANAGE_TRUSTED_RING
 
 Allows the use of the capabilities provided by the critical asset trusted ring service.
@@ -3315,6 +3339,18 @@ Allows an application to access the **Desktop** directory in the user directory.
 Allows an application to support persistent access to file URIs.
 
 **Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.SET_SANDBOX_POLICY
+
+Allows a system application to set dynamic sandbox policies.
+
+**Permission level**: system_core
 
 **Authorization mode**: system_grant
 
@@ -3502,6 +3538,18 @@ Allows a system application to start HiViewCare.
 
 **Start version**: 11
 
+## ohos.permission.START_ABILITY_WITH_ANIMATION
+
+Allows an application to disable the ability startup animation.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
 ## ohos.permission.ACCESS_DDK_USB
 
 Allows extended peripheral drivers to access the USB DDK interfaces to implement development of USB extended peripheral drivers.
@@ -3531,6 +3579,138 @@ Allows an application to use enhanced functions of the devices connected to this
 Allows extended peripheral drivers to access the HID DDK interfaces to implement development of HID extended peripheral drivers.
 
 **Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.ACCESS_ACCOUNT_KIT_SERVICE
+
+Allows the account service to query and modify account data.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.REQUEST_ANONYMOUS_ATTEST
+
+Allows a system application to use the device anonymous attestation capability.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.ACCESS_ACCOUNT_KIT_UI
+
+Allows a system application to display the account user authentication page.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.START_RECENT_ABILITY
+
+Allows an application to start the specified UIAbility or the last started instance if the UIAbility has multiple instances.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.READ_CLOUD_SYNC_CONFIG
+
+Allows an application that has accessed the cloud to obtain its device-cloud synchronization configuration.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.MANAGE_CLOUD_SYNC_CONFIG
+
+Allows an application that has accessed the cloud to manage the device-cloud synchronization configuration.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.ACCESS_FINDDEVICE
+
+Allows an application to start the **Find Device** app.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.MANAGE_FINDSERVICE
+
+Allows a system application to obtain and change the setting of **Find My Phone**.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.TRIGGER_ACTIVATIONLOCK
+
+Allows an SA to call **Find Device**.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.MANAGE_USB_CONFIG
+
+Allows an application to manage the USB device functions and ports.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.WRITE_PRIVACY_PUSH_DATA
+
+Allows an application to write privacy push data to another application.
+
+**Permission level**: system_core
 
 **Authorization mode**: system_grant
 

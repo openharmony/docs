@@ -228,7 +228,7 @@ getBlob(columnIndex: number): Uint8Array
 
 Obtains the value in the form of a byte array based on the specified column and the current row.
 
-If the value of the specified column or key in the current row is empty, or if the specified column or key is not of the Blob type, the implementation class determines whether to throw an exception.
+If the specified column or key is empty or the value is not of the Blob type, you need to determine whether to throw an exception.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -261,6 +261,8 @@ getString(columnIndex: number): string
 
 Obtains the value in the form of a string based on the specified column and the current row.
 
+If the specified column or key is empty or the value is not of the string type, you need to determine whether to throw an exception.
+
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
@@ -291,6 +293,8 @@ if (resultSet != undefined) {
 getLong(columnIndex: number): number
 
 Obtains the value in the form of a long integer based on the specified column and the current row.
+
+If the specified column or key is empty or the value is not of the long type, you need to determine whether to throw an exception.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -323,6 +327,8 @@ getDouble(columnIndex: number): number
 
 Obtains the value in the form of a double-precision floating-point number based on the specified column and the current row.
 
+If the specified column or key is empty or the value is not of the double type, you need to determine whether to throw an exception.
+
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
@@ -354,6 +360,8 @@ close(): void
 
 Closes this result set.
 
+Calling this API will invalidate the result set and release all its resources.
+
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Example**
@@ -368,7 +376,9 @@ if (resultSet != undefined) {
 
 getColumnIndex(columnName: string): number
 
-Obtains the column index based on the column name.
+Obtains the column index based on a column name.
+
+The column name is passed in as an input parameter.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -398,7 +408,9 @@ if (resultSet != undefined) {
 
 getColumnName(columnIndex: number): string
 
-Obtains the column name based on the column index.
+Obtains the column name based on a column index.
+
+The column index is passed in as an input parameter.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -429,6 +441,8 @@ if (resultSet != undefined) {
 getDataType(columnIndex: number): DataType
 
 Obtains the data type based on the specified column index.
+
+If the specified column or key is empty or the value is not of the DataType type, you need to determine whether to throw an exception.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 

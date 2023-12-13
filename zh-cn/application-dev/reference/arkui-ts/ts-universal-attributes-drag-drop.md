@@ -23,9 +23,12 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 | -------- | -------- | -------- |
 | allowDrop | Array\<[UniformDataType](../apis/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)> | 设置该组件上允许落入的数据类型。<br/>默认值：空<br/> |
 | draggable | boolean | 设置该组件是否允许进行拖拽。<br/>默认值：false<br/> |
+| dragPreview<sup>11+</sup> | [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明) | 设置组件长按后浮起的预览图。仅组件支持拖拽情况下有效，当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md)的预览图时，则长按浮起的预览图以[bindContextMenu](ts-universal-attributes-menu.md)设置的预览图为准。[dragPreview](ts-universal-attributes-drag-drop.md)设置的预览图同时会被用作拖拽的背板图，开发者在[onDragStart](ts-universal-events-drag-drop.md)中返回的背板图优先级低于[dragPreview](ts-universal-attributes-drag-drop.md)设置的预览图。由于[CustomBuilder](ts-types.md#custombuilder8)需要离线渲染之后才能使用，因此存在一定的性能开销和时延，推荐优先使用 [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明)中的[PixelMap](../apis/js-apis-image.md#pixelmap7)方式。<br/>默认值：空<br/> |
 
 
 ## 示例
+### 示例1
+allowDrop与draggable属性用法示例
 
 ```ts
 // xxx.ets
@@ -143,3 +146,66 @@ struct ImageExample {
 ```
 
 ![dragImage.gif](figures/dragImage.gif)
+
+### 示例2
+dragPreview属性用法示例
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DragPreviewDemo{
+  @Builder dragPreviewBuilder() {
+    Column() {
+      Text("dragPreview")
+        .width(150)
+        .height(50)
+        .fontSize(20)
+        .borderRadius(10)
+        .textAlign(TextAlign.Center)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Pink)
+    }
+  }
+
+  @Builder MenuBuilder() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Text("menu item 1")
+        .fontSize(15)
+        .width(100)
+        .height(40)
+        .textAlign(TextAlign.Center)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Pink)
+      Divider()
+        .height(5)
+      Text("menu item 2")
+        .fontSize(15)
+        .width(100)
+        .height(40)
+        .textAlign(TextAlign.Center)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Pink)
+    }
+    .width(100)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Image('/resource/image.jpeg')
+          .width("30%")
+          .draggable(true)
+          .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
+          .onDragStart(() => {
+            console.log("Image onDragStart")
+          })
+          .dragPreview(this.dragPreviewBuilder)
+      }
+      .width("100%")
+    }
+    .height("100%")
+  }
+}
+```
+
+![dragPreview.gif](figures/dragPreview.gif)

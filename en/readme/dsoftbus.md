@@ -1,27 +1,28 @@
-# DSoftBus<a name="EN-US_TOPIC_0000001090266209"></a>
+# DSoftBus
 
-## Introduction<a name="section11660541593"></a>
+## Introduction
 
-The DSoftBus subsystem provides communication capabilities for OpenHarmony, including WLAN, Bluetooth, DSoftBus, and remote procedure call \(RPC\).
+The DSoftBus subsystem provides the following communication capabilities for OpenHarmony:
 
-WLAN: basic WLAN functions, peer-to-peer \(P2P\) connection, and WLAN notification, enabling your application to communicate with other devices through a WLAN
+- WLAN: basic WLAN functions, peer-to-peer (P2P) connection, and WLAN notification, enabling your application to communicate with other devices through a WLAN.
 
-Bluetooth: classic Bluetooth and Bluetooth Low Energy \(BLE\)
+- Bluetooth: classic Bluetooth and Bluetooth Low Energy (BLE).
 
-DSoftBus: distributed communications between near-field devices, and device discovery, connection setup, networking, and data transmission capabilities regardless of communication modes
+- DSoftBus: distributed communications between near-field devices, and device discovery, connection setup, networking, and data transmission capabilities regardless of communication modes.
 
-RPC: communications between processes on a device or across devices
+- Remote procedure call (RPC): communications between processes on a device or across devices.
 
-## Architecture<a name="section342962219551"></a>
 
-**Figure  1**  DSoftBus subsystem architecture<a name="fig4460722185514"></a>  
+## Architecture
+
+**Figure 1** DSoftBus architecture
 
 
 ![](figures/dsoftbus.png)
 
-## Directory Structure<a name="section161941989596"></a>
+## Directory Structure
 
-The main code directory structure of the DSoftBus subsystem is as follows:
+The DSoftBus directory structure is as follows:
 
 ```
 /foundation/communication
@@ -31,40 +32,39 @@ The main code directory structure of the DSoftBus subsystem is as follows:
 └── wifi            # WLAN code
 ```
 
-## Constraints<a name="section119744591305"></a>
+## Constraints
 
--   Networking: Devices must be in the same LAN.
+The devices must be in the same LAN.
 
-## Usage Guidelines<a name="section1312121216216"></a>
+## Usage
 
-### RPC<a name="section129654513264"></a>
+### RPC
 
-In RPC, the requesting process \(client\) can obtain the proxy of the process that provides the service \(server\). Through the proxy, the two processes can communicate with each other.
+In an RPC, the client process obtains the proxy of the process that provides the service (server). Through the proxy, the two processes communicate with each other.
 
-1.  Implement the server and its capabilities.
-2.  To be more specific, the client obtains a proxy of the server. This proxy provides the same capabilities as the server. Then the client can call a method of the server by accessing the corresponding method of the proxy. The proxy forwards the request to the server.
+1.  Implement the server capabilities.
+2.  The client obtains a proxy of the server. This proxy provides the same capabilities as the server. To call a method of the server, the client only needs to call the same method of the proxy.
 3.  The server processes the received request and returns the result to the proxy via the driver.
 4.  The proxy returns the result to the client.
 
-### DSoftBus<a name="section36252592710"></a>
+### DSoftBus
 
 -   Networking
 
-1.  After the service is started, obtain the list of online devices.
+1.  The server starts and obtains the list of online devices.
 2.  Register a listener for device status changes.
 3.  Obtain the device ID, name, and type.
-4.  Obtain extended information about the device, such as the device type, networking type, and device capability.
-5.  Delete the registered listener.
+4.  Obtain detailed information about the device, such as the device type, networking type, and device capability.
+5.  Delete the registered listener when the process exits.
 
 -   Transmission
 
-1.  Create a session server and register a callback.
-2.  After a device goes online, open a session with the device.
-3.  Send data through the session.
-4.  Close the session if you no longer need it.
-5.  Remove the created session server if you no longer want to use distributed transmission \(such as exiting the process\).
+1.  Creates a socket instance based on information, such as the socket name and caller bundle name.
+2.  The server starts listening for the socket, and the client binds the socket.
+3.  Send data after the bind is successful.
+4.  Close the socket when it is not used.
 
-## Repositories Involved<a name="section1371113476307"></a>
+## Repositories Involved
 
 **DSoftBus subsystem**
 
@@ -75,4 +75,3 @@ In RPC, the requesting process \(client\) can obtain the proxy of the process th
 [communication\_ipc](https://gitee.com/openharmony/communication_ipc)
 
 [communication\_wifi](https://gitee.com/openharmony/communication_wifi)
-

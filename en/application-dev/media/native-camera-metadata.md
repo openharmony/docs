@@ -1,4 +1,4 @@
-# Camera Metadata (Native)
+# Camera Metadata (C/C++)
 
 Metadata is the description and context of image information returned by the camera application. It provides detailed data for the image information, such as the coordinates of a viewfinder frame for identifying a portrait in a photo or video.
 
@@ -6,9 +6,10 @@ Metadata uses a tag (key) to find the corresponding data during the transfer of 
 
 ## How to Develop
 
-Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
+Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
 
 1. Import the NDK.
+
    ```c++
     // Include the NDK header files in camera_manager.cpp.
     #include "multimedia/camera_framework/camera.h"
@@ -27,7 +28,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```
 
 3. Call **OH_CameraManager_GetSupportedCameraOutputCapability** to obtain the metadata types supported by the current device, and then call **OH_CameraManager_CreateMetadataOutput** to create a metadata output stream.
-   
+     
    ```c++
     Camera_ErrorCode ret = OH_CameraManager_CreateMetadataOutput(cameraManager_, metaDataObjectType, &metadataOutput);
     if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
@@ -36,7 +37,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```
 
 4. Call **start()** to start outputting metadata. If the call fails, an error code is returned. For details, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
-   
+     
    ```c++
     ret = OH_MetadataOutput_Start(metadataOutput);
     if (ret != CAMERA_OK) {
@@ -45,7 +46,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```
 
 5. Call **stop()** to stop outputting metadata. If the call fails, an error code is returned. For details, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
-   
+     
    ```c++
     ret = OH_MetadataOutput_Stop(metadataOutput);
     if (ret != CAMERA_OK) {
@@ -58,7 +59,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 During camera application development, you can listen for the status of metadata objects and output stream.
 
 - Register the **'metadataObjectsAvailable'** event to listen for metadata objects that are available. When a valid metadata object is detected, the callback function returns the metadata. This event can be registered when a **MetadataOutput** object is created.
-  
+    
   ```c++
   void OnMetadataObjectAvailable(Camera_MetadataOutput* metadataOutput,
       Camera_MetadataObject* metadataObject, uint32_t size)
@@ -85,7 +86,7 @@ During camera application development, you can listen for the status of metadata
   > Currently, only **FACE_DETECTION** is available for the metadata type. The metadata object is the rectangle of the recognized face, including the x-axis coordinate and y-axis coordinate of the upper left corner of the rectangle as well as the width and height of the rectangle.
 
 - Register the **'error'** event to listen for metadata stream errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
-  
+    
   ```c++
   void OnMetadataOutputError(Camera_MetadataOutput* metadataOutput, Camera_ErrorCode errorCode)
   {

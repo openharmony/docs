@@ -90,6 +90,26 @@ getPss(): bigint
   let pss: bigint = hidebug.getPss();
   ```
 
+## hidebug.getVss<sup>11+<sup>
+
+getVss(): bigint
+
+获取应用进程虚拟耗用内存大小。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型   | 说明                                     |
+| ------ | ---------------------------------------- |
+| bigint | 返回应用进程虚拟耗用内存大小，单位为kB。 |
+
+**示例：**
+
+  ```ts
+let vss: bigint = hidebug.getVss();
+  ```
+
 ## hidebug.getSharedDirty
 
 getSharedDirty(): bigint

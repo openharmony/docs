@@ -11,12 +11,16 @@
 
 CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number, maskColor?: ResourceColor, maskRect?: Rectangle, openAnimation?: AnimateParam, closeAnimation?: AnimateParam, showInSubWindow?: boolean, backgroundColor?:ResourceColor, cornerRadius?:Dimension&nbsp;\|&nbsp;BorderRadiuses})
 
+> **说明：**
+>
+> 自定义弹窗的所有参数，不支持动态刷新。
+
 **参数:**
 
 | 参数名                           | 参数类型                                     | 必填   | 参数描述                                     |
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | builder                       | CustomDialog                             | 是    | 自定义弹窗内容构造器。                              |
-| cancel                        | ()&nbsp;=&gt;&nbsp;void                  | 否    | 点击遮障层退出时的回调。                             |
+| cancel                        | ()&nbsp;=&gt;&nbsp;void                  | 否    | 返回、ESC键和点击遮障层弹窗退出时的回调。 |
 | autoCancel                    | boolean                                  | 否    | 是否允许点击遮障层退出。<br>默认值：true                 |
 | alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否    | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
 | offset                        | [Offset](ts-types.md#offset)             | 否    | 弹窗相对alignment所在位置的偏移量。                   |
@@ -53,8 +57,9 @@ close(): void
 
 关闭显示的自定义弹窗，若已关闭，则不生效。
 
+## 示例
 
-## 示例																				
+### 示例1
 
 ```ts
 // xxx.ets
@@ -140,13 +145,11 @@ struct CustomDialogUser {
       textValue: $textValue,
       inputValue: $inputValue
     }),
-    cancel: this.existApp,
+    cancel: this.exitApp,
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -20 },
     gridCount: 4,
-    showInSubWindow: true,
-    isModal: true,
     customStyle: false,
     cornerRadius: 10,
   })
@@ -164,12 +167,88 @@ struct CustomDialogUser {
     console.info('Callback when the second button is clicked')
   }
 
-  existApp() {
+  exitApp() {
     console.info('Click the callback in the blank area')
   }
   build() {
     Column() {
       Button(this.inputValue)
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.dialogController.open()
+          }
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![zh-cn_image_custom](figures/zh-cn_image_custom.gif)
+
+### 示例2
+
+```ts
+// xxx.ets
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController
+  cancel: () => void = () => {
+  }
+  confirm: () => void = () => {
+  }
+  build() {
+    Column() {
+      Text('可展示在主窗口外的弹窗')
+        .fontSize(30)
+        .height(100)
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.controller != undefined) {
+            this.controller.close()
+          }
+        })
+        .margin(20)
+    }
+  }
+}
+@Entry
+@Component
+struct CustomDialogUser {
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample({
+      cancel: this.onCancel,
+      confirm: this.onAccept
+    }),
+    cancel: this.existApp,
+    autoCancel: true,
+    alignment: DialogAlignment.Center,
+    offset: { dx: 0, dy: -20 },
+    gridCount: 4,
+    showInSubWindow: true,
+    isModal: true,
+    customStyle: false,
+    cornerRadius: 10,
+  })
+  // 在自定义组件即将析构销毁时将dialogControlle置空
+  aboutToDisappear() {
+    this.dialogController = null // 将dialogController置空
+  }
+
+  onCancel() {
+    console.info('Callback when the first button is clicked')
+  }
+
+  onAccept() {
+    console.info('Callback when the second button is clicked')
+  }
+
+  existApp() {
+    console.info('Click the callback in the blank area')
+  }
+
+  build() {
+    Column() {
+      Button('click me')
         .onClick(() => {
           if (this.dialogController != null) {
             this.dialogController.open()

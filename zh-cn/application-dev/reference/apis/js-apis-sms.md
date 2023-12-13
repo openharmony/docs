@@ -336,7 +336,7 @@ import type Context from './application/BaseContext';
 import featureAbility from '@ohos.ability.featureAbility';
 let context: Context = featureAbility.getContext();
 
-// 彩信pdu存储路径
+// 彩信pdu存储路径，pdu来源于编码接口
 const sandBoxPath: string = '/data/storage/el2/base/files/';
 let filePath: string  = sandBoxPath + 'SendReq.mms';
 
@@ -368,7 +368,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
-// 彩信pdu存储路径
+// 彩信pdu存储路径，pdu来源于编码接口
 const sandBoxPath = '/data/storage/el2/base/files/';
 let filePath  = sandBoxPath + 'SendReq.mms';
 
@@ -450,7 +450,7 @@ import type Context from './application/BaseContext';
 import featureAbility from '@ohos.ability.featureAbility';
 let context: Context = featureAbility.getContext();
 
-// 彩信pdu存储路径
+// 彩信pdu存储路径，pdu来源于编码接口
 const sandBoxPath: string = '/data/storage/el2/base/files/';
 let filePath: string = sandBoxPath + 'SendReq.mms';
 
@@ -481,7 +481,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
-// 彩信pdu存储路径
+// 彩信pdu存储路径，pdu来源于编码接口
 const sandBoxPath = '/data/storage/el2/base/files/';
 let filePath  = sandBoxPath + 'SendReq.mms';
 
@@ -1220,7 +1220,7 @@ promise.then((data: string[]) => {
 
 addSimMessage\(options: SimMessageOptions, callback: AsyncCallback\<void\>\): void
 
-添加SIM卡消息。使用callback异步回调。
+添加SIM卡消息，sim卡消息满，添加报错。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1271,7 +1271,7 @@ sms.addSimMessage(simMessageOptions, (err: BusinessError) => {
 
 addSimMessage\(options: SimMessageOptions\): Promise\<void\>
 
-添加SIM卡消息。使用Promise异步回调。
+添加SIM卡消息，sim卡消息满，添加报错。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1328,7 +1328,7 @@ sms.addSimMessage(simMessageOptions).then(() => {
 
 delSimMessage\(slotId: number, msgIndex: number, callback: AsyncCallback\<void\>\): void
 
-删除SIM卡消息。使用callback异步回调。
+删除SIM卡消息，msgIndex无效时，删除报错。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1376,7 +1376,7 @@ sms.delSimMessage(slotId, msgIndex, (err: BusinessError) => {
 
 delSimMessage\(slotId: number, msgIndex: number\): Promise\<void\>
 
-删除SIM卡信息。使用Promise异步回调。
+删除SIM卡消息，msgIndex无效时，删除报错。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 

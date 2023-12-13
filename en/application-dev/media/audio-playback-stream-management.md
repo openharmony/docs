@@ -1,4 +1,4 @@
-# Audio Playback Stream Management
+# Audio Playback Stream Management (ArkTS)
 
 An audio playback application must notice audio stream state changes and perform corresponding operations. For example, when detecting that an audio stream is being played or paused, the application must change the UI display of the **Play** button.
 

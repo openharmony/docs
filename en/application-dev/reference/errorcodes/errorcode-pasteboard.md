@@ -77,3 +77,21 @@ The target data cannot be copied, such as read-only data.
 **Solution**
 
 Make sure the target data allows the copy action.
+
+## 12900005 Request Timeout
+
+**Error Message**
+
+Request time out.
+
+**Description**
+
+This error code is reported when the time spent in internal data processing exceeds the timeout.
+
+**Possible Causes**
+
+The data to be processed is large and consumes too much time.
+
+**Solution**
+
+If the data to be processed is too large, consider using an asynchronous API.

@@ -48,8 +48,66 @@ show(value: {&nbsp;title: string&nbsp;|&nbsp;Resource, subtitle:&nbsp;Resource,&
 | DEFAULT   | 白底蓝字（深色主题：白底=黑底）。 |
 | HIGHLIGHT | 蓝底白字。                        |
 
-
 ## 示例
+
+### 示例1
+
+```ts
+@Entry
+@Component
+struct ActionSheetExample {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button('Click to Show ActionSheet')
+        .onClick(() => {
+          ActionSheet.show({
+            title: 'ActionSheet title',
+            subtitle: 'ActionSheet subtitle',
+            message: 'message',
+            autoCancel: true,
+            confirm: {
+              defaultFocus: true,
+              value: 'Confirm button',
+              action: () => {
+                console.log('Get Alert Dialog handled')
+              }
+            },
+            cancel: () => {
+              console.log('actionSheet canceled')
+            },
+            alignment: DialogAlignment.Bottom,
+            offset: { dx: 0, dy: -10 },
+            sheets: [
+              {
+                title: 'apples',
+                action: () => {
+                  console.log('apples')
+                }
+              },
+              {
+                title: 'bananas',
+                action: () => {
+                  console.log('bananas')
+                }
+              },
+              {
+                title: 'pears',
+                action: () => {
+                  console.log('pears')
+                }
+              }
+            ]
+          })
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_action](figures/zh-cn_image_action.gif)
+
+### 示例2
 
 ```ts
 @Entry
@@ -76,7 +134,7 @@ struct ActionSheetExample {
             cancel: () => {
               console.log('actionSheet canceled')
             },
-            alignment: DialogAlignment.Bottom,
+            alignment: DialogAlignment.Center,
             offset: { dx: 0, dy: -10 },
             sheets: [
               {

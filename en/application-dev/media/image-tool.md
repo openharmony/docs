@@ -1,4 +1,4 @@
-# Image Tool
+# Image Tool (ArkTS)
 
 The image tool provides the capabilities of reading and editing Exchangeable Image File Format (EXIF) data of an image.
 
@@ -14,32 +14,32 @@ Read [Image](../reference/apis/js-apis-image.md#getimageproperty7) for APIs used
 
 1. Obtain the image and create an **ImageSource** object.
 
-```ts
-   // Import the required module.
-   import image from '@ohos.multimedia.image';
-
-   // Obtain the sandbox path and create an ImageSource object.
-   const fd : number = ...; // Obtain the file descriptor of the image to be processed.
-   const imageSource : image.ImageSource = image.createImageSource(fd);
+   ```ts
+      // Import the required module.
+      import image from '@ohos.multimedia.image';
+   
+      // Obtain the sandbox path and create an ImageSource object.
+      const fd : number = ...; // Obtain the file descriptor of the image to be processed.
+      const imageSource : image.ImageSource = image.createImageSource(fd);
    ```
 
 2. Read and edit EXIF data.
 
-```ts
-   import {BusinessError} from '@ohos.base';
-   // Read the EXIF data, where BitsPerSample indicates the number of bits per pixel.
-   imageSource.getImageProperty('BitsPerSample', (error : BusinessError, data : string) => {
-     if (error) {
-       console.error('Failed to get the value of the specified attribute key of the image.And the error is: ' + error);
-     } else {
-       console.info('Succeeded in getting the value of the specified attribute key of the image ' + data);
-     }
-   })
-   
-   // Edit the EXIF data.
-   imageSource.modifyImageProperty('ImageWidth', '120').then(() => {
-     imageSource.getImageProperty("ImageWidth").then((width : string) => {
-        console.info('The new imageWidth is ' + width);
-     })
-   })
+   ```ts
+      import {BusinessError} from '@ohos.base';
+      // Read the EXIF data, where BitsPerSample indicates the number of bits per pixel.
+      imageSource.getImageProperty('BitsPerSample', (error : BusinessError, data : string) => {
+        if (error) {
+          console.error('Failed to get the value of the specified attribute key of the image.And the error is: ' + error);
+        } else {
+          console.info('Succeeded in getting the value of the specified attribute key of the image ' + data);
+        }
+      })
+      
+      // Edit the EXIF data.
+      imageSource.modifyImageProperty('ImageWidth', '120').then(() => {
+        imageSource.getImageProperty("ImageWidth").then((width : string) => {
+           console.info('The new imageWidth is ' + width);
+        })
+      })
    ```

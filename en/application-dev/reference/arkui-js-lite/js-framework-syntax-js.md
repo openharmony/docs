@@ -29,6 +29,7 @@ The ECMAScript 6.0 syntax is supported. Lite wearables only support the followin
 10. template strings
 
 - Module declaration
+  
   Import functionality modules.
 
 
@@ -37,6 +38,7 @@ The ECMAScript 6.0 syntax is supported. Lite wearables only support the followin
   ```
 
 - Code reference
+  
   Import JavaScript code.
 
 
@@ -89,34 +91,3 @@ Use **$refs** to obtain a DOM element.
      },
    };
    ```
-
-
-## Lifecycle APIs
-
-- Page lifecycle APIs
-    | Name       | Type      | Parameter  | Return Value | Description    | Triggered When               |
-    | --------- | -------- | ---- | ---- | ------ | ------------------- |
-    | onInit    | Function | N/A   | N/A   | Listens for page initialization. | Page initialization is complete. This API is called only once in the page lifecycle.|
-    | onReady   | Function | N/A   | N/A   | Listens for page creation.| A page is created. This API is called only once in the page lifecycle.   |
-    | onShow    | Function | N/A   | N/A   | Listens for page display.  | The page is displayed.           |
-    | onHide    | Function | N/A   | N/A   | Listens for page disappearance.  | The page disappears.           |
-    | onDestroy | Function | N/A   | N/A   | Listens for page destruction.  | The page is destroyed.           |
-
-    The lifecycle APIs of page A are called in the following sequence:
-  - Open page A: onInit() -> onReady() -> onShow()
-
-  - Open page B on page A: onHide() -> onDestroy()
-
-  - Go back to page A from page B: onInit() -> onReady() -> onShow()
-
-  - Exit page A: onHide() -> onDestroy()
-
-  - Hide page A: onHide()
-
-  - Show background page A on the foreground: onShow()
-
-- Application lifecycle APIs
-    | Name       | Type      | Parameter  | Return Value | Description  | Triggered When     |
-    | --------- | -------- | ---- | ---- | ---- | --------- |
-    | onCreate  | Function | N/A   | N/A   | Listens for application creation.| The application is created.|
-    | onDestroy | Function | N/A   | N/A   | Listens for application exit.| The application exits.|

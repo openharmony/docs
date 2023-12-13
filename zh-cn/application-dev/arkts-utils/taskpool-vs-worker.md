@@ -19,7 +19,7 @@ TaskPool（任务池）和Worker的作用是为应用程序提供一个多线程
 | 方法调用 | 直接将方法传入调用。 | 在Worker线程中进行消息解析并调用对应方法。 |
 | 返回值 | 异步调用后默认返回。 | 主动发送消息，需在onmessage解析赋值。 |
 | 生命周期 | TaskPool自行管理生命周期，无需关心任务负载高低。 | 开发者自行管理Worker的数量及生命周期。 |
-| 任务池个数上限 | 自动管理，无需配置。 | 最多开启8个Worker。 |
+| 任务池个数上限 | 自动管理，无需配置。 | 同个进程下，最多支持同时开启8个Worker线程。 |
 | 任务执行时长上限 | 3分钟（不包含Promise和async/await异步调用的耗时，例如网络下载、文件读写等I/O任务的耗时）。 | 无限制。 |
 | 设置任务的优先级 | 支持配置任务优先级。 | 不支持。 |
 | 执行任务的取消 | 支持取消已经发起的任务。 | 不支持。 |
@@ -35,7 +35,7 @@ TaskPool偏向独立任务维度，该任务在线程中执行，无需关注线
 
 - 运行时间超过3分钟（不包含Promise和async/await异步调用的耗时，例如网络下载、文件读写等I/O任务的耗时）的任务。例如后台进行1小时的预测算法训练等CPU密集型任务，需要使用Worker。
 
-- 有关联的一系列同步任务。例如在一些需要创建、使用句柄的场景中，句柄创建每次都是不同的，该句柄需永久保存，保证使用该句柄进行操作，需要使用Woker。
+- 有关联的一系列同步任务。例如在一些需要创建、使用句柄的场景中，句柄创建每次都是不同的，该句柄需永久保存，保证使用该句柄进行操作，需要使用Worker。
 
 - 需要设置优先级的任务。例如图库直方图绘制场景，后台计算的直方图数据会用于前台界面的显示，影响用户体验，需要高优先级处理，需要使用TaskPool。
 
@@ -119,35 +119,18 @@ const worker2: worker.Worker = new worker.Worker('entry/ets/workers/MyWorker.ts'
 // 导入模块
 import worker form '@ohos.worker';
 
-// 写法一
 // Stage模型-目录同级（entry模块下，workers目录与pages目录同级）
 const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts', {name:"first worker in Stage model"});
 // Stage模型-目录不同级（entry模块下，workers目录是pages目录的子目录）
 const worker2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/pages/workers/MyWorker.ts');
-
-// 写法二
-// Stage模型-目录同级（entry模块下，workers目录与pages目录同级），假设bundlename是com.example.workerdemo
-const worker3: worker.ThreadWorker = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/workers/worker');
-// Stage模型-目录不同级（entry模块下，workers目录是pages目录的子目录），假设bundlename是com.example.workerdemo
-const worker4: worker.ThreadWorker = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/pages/workers/worker');
 ```
-
 
 - 基于Stage模型工程目录结构，写法一的路径含义：
   - entry：module.json5文件中module的name属性对应值。
   - ets：用于存放ets源码，固定目录。
   - workers/MyWorker.ts：worker源文件在ets目录下的路径。
 
-- 基于Stage模型工程目录结构，写法二的路径含义：
-  - \@bundle：固定标签。
-  - bundlename：当前应用包名。
-  - entryname：module.json5文件中module的name属性对应值。
-  - ets：用于存放ets源码，固定目录。
-  - workerdir/workerfile：worker源文件在ets目录下的路径，可不带文件后缀名。
-
-
 **FA模型**
-
 
   构造函数中的scriptURL示例如下：
 
@@ -166,10 +149,7 @@ const worker2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.
 
 - Worker的创建和销毁耗费性能，建议开发者合理管理已创建的Worker并重复使用。Worker空闲时也会一直运行，因此当不需要Worker时，可以调用[terminate()](../reference/apis/js-apis-worker.md#terminate9)接口或[parentPort.close()](../reference/apis/js-apis-worker.md#close9)方法主动销毁Worker。若Worker处于已销毁或正在销毁等非运行状态时，调用其功能接口，会抛出相应的错误。
 
-
-- Worker存在数量限制，支持最多同时存在8个Worker。
-  - 在API version 8及之前的版本，当Worker数量超出限制时，会抛出“Too many workers, the number of workers exceeds the maximum.”错误。
-  - 从API version 9开始，当Worker数量超出限制时，会抛出“Worker initialization failure, the number of workers exceeds the maximum.”错误。
+- Worker存在数量限制，支持最多同时存在8个Worker。当Worker数量超出限制时，会抛出“Worker initialization failure, the number of workers exceeds the maximum.”错误。
 
 ## 多线程安全注意事项
 多线程安全是指多个线程同时访问或修改共享资源时，能够保证程序的正确性和可靠性。

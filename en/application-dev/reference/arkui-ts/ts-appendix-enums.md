@@ -379,6 +379,13 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Static   | The element position remains unchanged on the target page, and transition opacity can be configured. Currently, this effect is only valid in redirecting to the target page.|
 | Exchange | The element is relocated and scaled properly on the target page.                 |
 
+## ShadowType<sup>10+<sup>
+
+| Name      | Description                                  |
+| -------- | ---------------------------------------- |
+| COLOR    | Color.                                   |
+| BLUR     | Blur.                                   |
+
 ## FontStyle
 
 Since API version 9, this API is supported in ArkTS widgets.
@@ -451,6 +458,14 @@ Since API version 9, this API is supported in ArkTS widgets.
 | LongPress  | The menu is displayed when the component is long-pressed.  |
 | RightClick | The menu is displayed when the component is right-clicked.|
 
+## RichEditorResponseType<sup>11+</sup>
+
+| Name        | Description           |
+| ---------- | ------------- |
+| LONG_PRESS  | The menu is displayed when the component is long-pressed.  |
+| RIGHT_CLICK | The menu is displayed when the component is right-clicked.|
+| SELECT | The menu is displayed when the component is selected.|
+
 ## HoverEffect<sup>8+</sup>
 
 | Name       | Description            |
@@ -486,6 +501,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | None        | Copy is not allowed.  |
 | InApp       | Intra-application copy is allowed.|
 | LocalDevice | Intra-device copy is allowed.|
+| CROSS_DEVICE<sup>11+</sup> | Cross-device copy is allowed.|
 
 ## HitTestMode<sup>9+</sup>
 
@@ -573,7 +589,7 @@ This API is supported in ArkTS widgets.
 | NONE  | No preview is displayed.                      |
 | IMAGE | The preview is a screenshot of the component on which a long-press triggers the context menu.|
 
-## Nullable<sup>11+</sup>
+## Nullable <sup>11+</sup>
 
 Nullable\<T> {
 
@@ -595,3 +611,63 @@ The object of this type can be of a custom type or **undefined**.
 | NORMAL  | Word breaks can occur between any two characters for Chinese, Japanese, and Korean (CJK) text, but can occur only at a space character for non-CJK text (such as English).|
 | BREAK_ALL | Word breaks can occur between any two characters for non-CJK text. CJK text behavior is the same as for **NORMAL**.|
 | BREAK_WORD | This option has the same effect as **BREAK_ALL** for non-CJK text, except that it does not break unbreakable words. CJK text behavior is the same as for **NORMAL**.|
+
+## GestureJudgeResult<sup>11+</sup>
+| Name | Description                                  |
+| ----- | -------------------------------------- |
+| CONTINUE  | The system gesture recognition process continues.|
+| REJECT  | Recognition of the custom gesture is determined as failed.|
+
+## GestureType<sup>11+</sup>
+| Name | Description                                  |
+| ----- | -------------------------------------- |
+| TAP_GESTURE   | Tap gesture.|
+| LONG_PRESS_GESTURE  | Long press gesture.|
+| PAN_GESTURE    | Pan gesture.|
+| PINCH_GESTURE   | Pinch gesture.|
+| SWIPE_GESTURE    | Swipe gesture.|
+| ROTATION_GESTURE   | Rotation gesture.|
+| DRAG    | Drag and drop.|
+| CLICK   | Click.|
+## FinishCallbackType<sup>11+</sup>
+
+Since API version 11, this API is supported in ArkTS widgets.
+
+| Name      | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| REMOVED   | The callback is invoked when the entire animation is removed once it has finished.                        |
+| LOGICALLY | The callback is invoked when the animation logically enters the falling state, though it may still be in its long tail state.|
+
+## BlurOptions<sup>11+<sup>
+Describes the grayscale blur parameters.
+| Name       |   Type  |   Mandatory| Description                       |
+| ----        |  ----   |   ---- | --------------------------  |
+| grayscale   |  [number, number]   |   Yes  |  Grayscale blur.<br>Value range: [0,127]|
+
+## BackgroundBrightnessOptions<sup>11+<sup>
+Describes the background effect parameters.
+ | Name       |   Type        |   Mandatory|  Description                       |
+| ----         |  ----         |   ---- | --------------------------  |
+| radius       | number        |   Yes  |   Radius of the background effect.<br>Value range: [0, +∞)<br>Default value: **0**    |
+| saturation   | number        |   No  |   Saturation of the background effect.<br>Value range: [0, +∞)<br>Default value: **0**    |
+| brightness   | number        |   No  |   Brightness of the background effect.<br>Value range: [0, +∞)<br>Default value: **0**      |
+| color        | [Color](ts-appendix-enums.md#color)        |   No  |   Color of the background effect.<br>Default value: Transparent |
+| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   No | Adaptive color mode used for the background blur effect.<br>Default value: **DEFAULT**  |
+| blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   No  |   Grayscale blur.<br>Default value: **[0,0]** |
+## EllipsisMode<sup>11+</sup>
+
+Since API version 11, this API is supported in ArkTS widgets.
+
+| Name | Description                                  |
+| ----- | -------------------------------------- |
+| START  | An ellipsis is used at the start of the line of text.|
+| CENTER | An ellipsis is used at the center of the line of text.|
+| END | An ellipsis is used at the end of the line of text.|
+
+## ArrowPointPosition<sup>11+</sup>
+
+| Name           | Description                                    |
+| ------------- | -------------------------------------- |
+| START | On the leftmost side of the parent component in the horizontal layout; on the top of the parent component in the vertical layout.|
+| CENTER | In the center of the parent component.|
+| END | On the rightmost side of the parent component in the horizontal layout; at the bottom of the parent component in the vertical layout.|

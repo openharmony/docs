@@ -1,6 +1,6 @@
 # @ohos.wallpaper (壁纸)
 
-壁纸管理服务是OpenHarmony中的系统服务，主要为系统提供壁纸管理服务能力，支持系统显示、设置、切换壁纸等功能。
+壁纸管理服务为OpenHarmony系统服务，提供壁纸切换功能。从API 9开始壁纸管理的接口调整为系统API，壁纸的切换只能通过系统应用来完成。壁纸管理提供壁纸切换通道，使用壁纸的应用（如：桌面）需订阅壁纸变化通知并刷新壁纸显示。
 
 > **说明：**
 > 
@@ -145,7 +145,7 @@ try {
 
 setCustomWallpaper(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
-将指定uri的内容设置为壁纸资源，仅当com.ohos.sceneboard存在时，支持使用该接口。使用callback异步回调。
+将指定的zip资源包设置为桌面或锁屏的壁纸资源，仅当com.ohos.sceneboard存在时，支持使用该接口。且具有ohos.permission.GET_WALLPAPER权限的应用可以访问/data/wallpaper/目录获取设置的资源。使用callback异步回调。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -157,7 +157,7 @@ setCustomWallpaper(source: string, wallpaperType: WallpaperType, callback: Async
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| source | string | 是 | 自定义壁纸的Uri路径。 |
+| source | string | 是 | 指定的zip资源包。 |
 | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined，否则返回error信息。 |
 
@@ -185,7 +185,7 @@ try {
 
 setCustomWallpaper(source: string, wallpaperType: WallpaperType): Promise&lt;void&gt;
 
-将指定uri的内容设置为壁纸资源，仅当com.ohos.sceneboard存在时，支持使用该接口。使用Promise异步回调。
+将指定的zip资源包设置为桌面或锁屏的壁纸资源，仅当com.ohos.sceneboard存在时，支持使用该接口。且具有ohos.permission.GET_WALLPAPER权限的应用可以访问/data/wallpaper/目录获取设置的资源。使用Promise异步回调。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -197,7 +197,7 @@ setCustomWallpaper(source: string, wallpaperType: WallpaperType): Promise&lt;voi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| source | string | 是 | 自定义壁纸的Uri路径。 |
+| source | string | 是 | 指定的zip资源包。 |
 | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
 
 **返回值：**

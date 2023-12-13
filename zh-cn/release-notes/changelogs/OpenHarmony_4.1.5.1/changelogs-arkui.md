@@ -142,4 +142,25 @@ try {
     console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```
+## cl.arkui.3 RelativeContainer组件尺寸计算优先级变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+当同时设置了组件尺寸和约束条件时，优先使用开发者设置的尺寸来表示组件大小。同时在API version 11上，增加了bias属性用于设置组件在约束条件下的偏移，上述约定也更便于开发者理解bias的含义。
+
+**变更影响**
+
+变更前，当组件的尺寸和约束条件同时设置时，优先采用约束条件来决定组件大小；变更后优先采用用户设置的尺寸来决定组件大小。
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.1 开始（API version 11及以上）。
+
+**变更的接口/组件**
+
+受影响的组件有：RelativeContainer。
 

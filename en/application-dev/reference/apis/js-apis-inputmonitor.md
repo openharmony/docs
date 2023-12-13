@@ -79,6 +79,64 @@ try {
 }
 ```
 
+## inputMonitor.on('mouse')<sup>11+</sup>
+
+on(type: 'mouse', rect: display.Rect[], receiver: Callback&lt;MouseEvent&gt;): void
+
+Enables listening for mouse events and trigger a callback task when the mouse moves within the specified rectangular area.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters** 
+
+| Name       | Type                         | Mandatory   | Description                  |
+| -------- | -------------------------- | ---- | ------------------- |
+| type     | string                     | Yes    | Event type. This field has a fixed value of **mouse**. |
+| rect     | display.Rect[]             | Yes    | The rectangular area that can trigger the callback task, the number of rectangles can be 1 or 2. |
+| receiver | Callback&lt;[MouseEvent](./js-apis-mouseevent.md)&gt; | Yes    | Callback used to return the mouse event   |
+
+  **Example**
+
+```js
+import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
+import promptAction from '@ohos.promptAction'
+import display from '@ohos.display';
+
+/**
+ * A callback task triggered when the mouse is within the rectangular area.
+ */
+function callback(mouseEvent : MouseEvent) {
+  promptAction.showToast({
+    message: `Monitoring successful:${JSON.stringify(mouseEvent)}`
+  })
+  console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
+  return false;
+};
+
+/**
+ * The rectangular area that triggers the callback event.
+ */
+let rect: display.Rect[] = [{
+  left: 100,
+  top: 100,
+  width: 100,
+  height: 100
+}, {
+  left: 600,
+  top: 100,
+  width: 100,
+  height: 100
+}];
+
+try {
+  inputMonitor.on('mouse', rect, callback);
+} catch (error) {
+  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
 ## inputMonitor.off('touch')
 
 off(type: 'touch', receiver?: TouchEventReceiver): void

@@ -32,7 +32,7 @@ Obtains the snapshot of a component that has been loaded. This API uses an async
 | Name     | Type                                 | Mandatory  | Description                                      |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | id       | string                              | Yes   | [ID](../arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
-| callback | AsyncCallback&lt;image.PixelMap&gt; | Yes   | Callback used to return the result.                              |
+| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.PixelMap&gt; | Yes   | Callback used to return the result.                              |
 
 **Error codes**
 
@@ -61,9 +61,13 @@ struct SnapshotExample {
       Button("click to generate UI snapshot")
         .onClick(() => {
           componentSnapshot.get("root", (error: Error, pixmap: image.PixelMap) => {
-                 this.pixmap = pixmap
-                 // save pixmap to file
-                 // ....
+                if(error){
+                  console.log("error: " + JSON.stringify(error))
+                  return;
+                }
+                this.pixmap = pixmap
+                // save pixmap to file
+                // ....
              })
         })
     }
@@ -131,7 +135,9 @@ struct SnapshotExample {
               this.pixmap = pixmap
               // save pixmap to file
               // ....
-            })
+            }).catch(err:Error){
+              console.log("error: " + err)
+            }
         })
     }
     .width('80%')
@@ -163,7 +169,7 @@ Renders a custom component in the application background and outputs its snapsho
 | Name     | Type                                      | Mandatory  | Description        |
 | -------- | ---------------------------------------- | ---- | ---------- |
 | builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | Yes   | Builder of the custom component.|
-| callback | AsyncCallback&lt;image.PixelMap&gt;      | Yes   | Callback used to return the result. The coordinates and size of the offscreen component's drawing area can be obtained through the callback.|
+| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.PixelMap&gt;      | Yes   | Callback used to return the result. The coordinates and size of the offscreen component's drawing area can be obtained through the callback.|
 
 **Error codes**
 
@@ -208,6 +214,10 @@ struct OffscreenSnapshotExample {
         .onClick(() => {
           componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()},
             (error: Error, pixmap: image.PixelMap) => {
+              if(error){
+                  console.log("error: " + JSON.stringify(error))
+                  return;
+              }
               this.pixmap = pixmap
               // save pixmap to file
               // ....
@@ -297,7 +307,9 @@ struct OffscreenSnapshotExample {
               // get component size and location
               let info = componentUtils.getRectangleById("builder")
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
-            })
+            }).catch(err:Error){
+              console.log("error: " + err)
+            }
         })
     }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
     .border({ color: '#880606', width: 2 })

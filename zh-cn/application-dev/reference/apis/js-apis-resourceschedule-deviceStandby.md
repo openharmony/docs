@@ -21,7 +21,7 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 
 **需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**系统API:** 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数**：
 
@@ -70,7 +70,7 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 
 **需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**系统API:** 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数**：
 
@@ -122,7 +122,7 @@ requestExemptionResource(request: ResourceRequest): void;
 
 **需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**系统API:** 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数**：
 
@@ -165,7 +165,7 @@ releaseExemptionResource(request: ResourceRequest): void;
 
 **需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**系统API:** 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数**：
 
@@ -204,7 +204,7 @@ deviceStandby.releaseExemptionResource(resRequest);
 
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
 
-**系统API:** 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 |名称   |值   |说明|
 | ------------ | ------------ |--------------|
@@ -222,7 +222,7 @@ deviceStandby.releaseExemptionResource(resRequest);
 
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
 
-**系统API:** 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 |名称  |类型   | 必填   |说明   |
 | ------------ | ------------ |------------ | ------------ |
@@ -236,7 +236,7 @@ deviceStandby.releaseExemptionResource(resRequest);
 
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
 
-**系统API:** 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 |名称   |类型   | 必填   |说明   |
 | ------------ | ------------ |------------| ------------ |

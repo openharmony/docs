@@ -31,7 +31,7 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 
 | 参数名 | 参数类型                                                     | 必填 | 参数描述                                                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src    | [PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)\|&nbsp;[DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 是   | 图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](../../ui/arkts-graphics-display.md#加载图片资源)。<br>1. PixelMap格式为像素图，常用于图片编辑的场景。<br>2. ResourceStr包含Resource和string格式。<br>string格式可用于加载网络图片和本地图片，常用于加载网络图片。当使用相对路径引用本地图片时，例如Image("common/test.jpg")，不支持跨包/跨模块调用该Image组件，建议使用Resource格式来管理需全局使用的图片资源。<br>- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br>- 支持file://路径前缀的字符串。用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。<br>Resource格式可以跨包/跨模块访问资源文件，是访问本地图片的推荐方式。<br/>3. 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。<br>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持http://等网络相关路径前缀和file://路径前缀的字符串。<br/>- ArkTS卡片上不支持&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)类型。 <br/>- 加载本地图片过程中，如果对图片进行修改或者替换，可能会引起应用崩溃。因此需要覆盖图片文件时，应该先删除该文件再重新创建一个同名文件。<br/>- 网络图片必须支持RFC 9113标准，否则会导致加载失败。|
+| src    | [PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)\|&nbsp;[DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 是   | 图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](../../ui/arkts-graphics-display.md#加载图片资源)。<br>1. PixelMap格式为像素图，常用于图片编辑的场景。<br>2. ResourceStr包含Resource和string格式。<br>string格式可用于加载网络图片和本地图片，常用于加载网络图片。当使用相对路径引用本地图片时，例如Image("common/test.jpg")，不支持跨包/跨模块调用该Image组件，建议使用Resource格式来管理需全局使用的图片资源。<br>- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br>- 支持file://路径前缀的字符串，[应用沙箱URI](../apis/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。<br>Resource格式可以跨包/跨模块访问资源文件，是访问本地图片的推荐方式。<br/>3. 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。<br>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持http://等网络相关路径前缀和file://路径前缀的字符串。<br/>- ArkTS卡片上不支持&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)类型。 <br/>- 加载本地图片过程中，如果对图片进行修改或者替换，可能会引起应用崩溃。因此需要覆盖图片文件时，应该先删除该文件再重新创建一个同名文件。<br/>- 网络图片必须支持RFC 9113标准，否则会导致加载失败。|
 
 ## 属性
 
@@ -51,7 +51,7 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 | autoResize                       | boolean                                                 | 设置图片解码过程中是否对图源自动缩放。设置为true时，组件会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。如原图大小为1920x1080，而显示区域大小为200x200，则图片会降采样解码到200x200的尺寸，大幅度节省图片占用的内存。<br/>默认值：true<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 <br>**说明：** <br>降采样解码时图片的部分信息丢失，因此可能会导致图片质量的下降（如：出现锯齿），这时可以选择把autoResize设为false，按原图尺寸解码，提升显示效果。|
 | syncLoad<sup>8+</sup>            | boolean                                                 | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：**<br>建议加载尺寸较小的本地图片时将syncLoad设为true，因为耗时较短，在主线程上执行即可。 |
 | copyOption<sup>9+</sup>          | [CopyOptions](ts-appendix-enums.md#copyoptions9)        | 设置图片是否可复制。<br>当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。<br>默认值：CopyOptions.None<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：**<br>svg图片不支持复制。 |
-| colorFilter<sup>9+</sup>         | [ColorFilter](ts-types.md#colorfilter9)                 | 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br>RGBA值分别是0和1之间的浮点数字，当矩阵对角线值为1时，保持图片原有色彩。<br> **计算规则：**<br>如果输入的滤镜矩阵为：<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>像素点为[R, G, B, A]<br>则过滤后的颜色为 [R’, G’, B’, A’]<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| colorFilter<sup>9+</sup>         | [ColorFilter](ts-types.md#colorfilter9)                 | 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br>当矩阵对角线值为1时，保持图片原有色彩。<br> **计算规则：**<br>如果输入的滤镜矩阵为：<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>像素点为[R, G, B, A]<br>则过滤后的颜色为 [R’, G’, B’, A’]<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | draggable<sup>9+</sup> | boolean                                                 | 设置组件默认拖拽效果，设置为true时，组件可拖拽。<br>不能和[onDragStart](ts-universal-events-drag-drop.md)事件同时使用。<br/>默认值：false<br>**说明：**<br />API version 9的默认值为false，API version 10的默认值为true。 |
 
 >  **说明：**
@@ -108,7 +108,7 @@ onComplete(callback: (event?: { width: number, height: number, componentWidth: n
 
 ### onError
 
-onError(callback: (event?: { componentWidth: number, componentHeight: number , message: string }) =&gt; void)
+onError(callback: [ImageErrorCallback](#imageerrorcallback11))
 
 图片加载异常时触发该回调。
 
@@ -118,10 +118,7 @@ onError(callback: (event?: { componentWidth: number, componentHeight: number , m
 
 | 参数名               | 类型   | 说明                      |
 | -------------------- | ------ | ------------------------- |
-| componentWidth       | number | 组件的宽。<br/>单位：像素 |
-| componentHeight      | number | 组件的高。<br/>单位：像素 |
-| message<sup>9+</sup> | string | 报错信息。                |
-
+| callback       | [ImageErrorCallback](#imageerrorcallback11) | 图片加载异常时触发的回调。 |
 
 ### onFinish
 
@@ -132,6 +129,26 @@ onFinish(event: () =&gt; void)
 仅支持svg格式的图片。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+## ImageErrorCallback<sup>11+</sup>
+
+type ImageErrorCallback = (error: [ImageError](#imageerror11)) => void
+
+图片加载异常时触发的回调。
+
+| 参数名               | 类型   | 说明                      |
+| -------------------- | ------ | ------------------------- |
+| error       | [ImageError](#imageerror11) | 图片加载异常时触发回调的返回对象。 |
+
+## ImageError<sup>11+</sup>
+
+图片加载异常时触发回调的返回对象。
+
+| 参数名               | 类型   | 说明                      |
+| -------------------- | ------ | ------------------------- |
+| componentWidth       | number | 组件的宽。<br/>单位：像素 |
+| componentHeight      | number | 组件的高。<br/>单位：像素 |
+| message<sup>9+</sup> | string | 报错信息。                |
 
 ## 示例
 

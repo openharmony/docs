@@ -44,6 +44,8 @@
 |setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;|设置沙箱应用配置信息|
 |getSandboxAppConfig(): Promise&lt;string&gt;|查询沙箱应用配置信息|
 |cleanSandboxAppConfig(): Promise&lt;void&gt;|清理沙箱应用配置信息|
+| startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&lt;DLPManagerResult&gt; <br> | 在当前UIAbility界面以无边框形式打开DLP权限管理应用（只支持Stage模式） |
+
 ## 开发步骤
 
 开发步骤
@@ -54,7 +56,7 @@
    import dlpPermission from '@ohos.dlpPermission';
    ```
 
-2. 打开DLP文件，系统会自动安装应用的DLP沙箱分身应用。
+2. 打开DLP文件，系统会自动安装应用的DLP沙箱分身应用。以下代码应在应用页Ability中使用。
 
     ```ts
     async OpenDlpFile(dlpUri: string, fileName: string, fd: number) {
@@ -76,8 +78,8 @@
 
       try {
         console.log("openDLPFile:" + JSON.stringify(want));
-        console.log("openDLPFile: delegator:" + JSON.stringify(CustomGlobal.context));
-        CustomGlobal.context.startAbility(want);
+        console.log("openDLPFile: delegator:" + JSON.stringify(this.context));
+        this.context.startAbility(want);
       } catch (err) {
         console.error('openDLPFile startAbility failed', (err as BusinessError).code, (err as BusinessError).message);
         return;
@@ -227,5 +229,32 @@
       } catch (err) {
         console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
       }
+    }
+    ```
+
+13. 以无边框形式打开DLP权限管理应用。此方法只能在UIAbility上下文中调用，只支持Stage模式。
+
+    ```ts
+    import dlpPermission from '@ohos.dlpPermission';
+    import common from '@ohos.app.ability.common';
+    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+    import UIAbility from '@ohos.app.ability.UIAbility'
+    import Want from '@ohos.app.ability.Want';
+    import { BusinessError } from '@ohos.base';
+    
+    try {
+      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+      let want: Want = {
+        "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
+        "parameters": {
+          "displayName": "1.txt"
+        }
+      }; // 请求参数
+      dlpPermission.startDLPManagerForResult(context, want).then((res) => {
+        console.info('res.resultCode', res.resultCode);
+        console.info('res.want', JSON.stringifg(res.want));
+      }); // 打开DLP权限管理应用
+    } catch (err) {
+      console.error('error', err.code, err.message); // 失败报错
     }
     ```
