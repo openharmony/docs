@@ -21,7 +21,7 @@ Checkbox(options?:&nbsp;{name?: string,  group?: string })
 | 参数名  | 参数类型 | 必填  | 参数描述 |
 | --------| --------| ------ | -------- |
 | name    | string | 否 | 多选框名称。 |
-| group   | string | 否 | 多选框的群组名称。<br/>**说明：** <br/>未配合使用CheckboxGroup组件时，此值无用。 |
+| group   | string | 否 | 多选框的群组名称。<br/>**说明：** <br/>未配合使用[CheckboxGroup](ts-basic-components-checkboxgroup.md)组件时，此值无用。 |
 
 ## 属性
 
