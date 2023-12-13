@@ -18,7 +18,7 @@ PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: numb
 | 参数名称 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | fingers | number | 否 | 用于指定触发拖动的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1<br/>取值范围：[1,10]<br/>**说明：** <br/>当设置的值小于1或不设置时，会被转化为默认值。 |
-| direction | PanDirection | 否 | 用于指定触发拖动的手势方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。<br/>默认值：PanDirection.All |
+| direction | [PanDirection](#pandirection枚举说明) | 否 | 用于指定触发拖动的手势方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。<br/>默认值：PanDirection.All |
 | distance | number | 否 | 用于指定触发拖动手势事件的最小拖动距离，单位为vp。<br/>默认值：5<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。<br/>当设定的值小于等于0时，按默认值5处理。 |
 
 ## PanDirection枚举说明
@@ -43,17 +43,17 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 
 **参数：**
 
-| 参数名称  | 参数类型     | 必填 | 参数描述                                                     |
-| --------- | ------------ | ---- | ------------------------------------------------------------ |
-| fingers   | number       | 否   | 用于指定触发滑动的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1 |
-| direction | PanDirection | 否   | 用于指定设置滑动方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。<br/>默认值：All |
-| distance  | number       | 否   | 用于指定触发拖动手势事件的最小拖动距离，单位为vp。<br/>默认值：5<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。<br/>当设定的值小于等于0时，按默认值（5）处理。 |
+| 参数名称  | 参数类型                              | 必填 | 参数描述                                                     |
+| --------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| fingers   | number                                | 否   | 用于指定触发滑动的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1 |
+| direction | [PanDirection](#pandirection枚举说明) | 否   | 用于指定设置滑动方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。<br/>默认值：PanDirection.All |
+| distance  | number                                | 否   | 用于指定触发拖动手势事件的最小拖动距离，单位为vp。<br/>默认值：5<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。<br/>当设定的值小于等于0时，按默认值（5）处理。 |
 
 **接口**
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| setDirection(value:&nbsp;PanDirection) | 设置direction属性。 |
+| setDirection(value:&nbsp;[PanDirection](#pandirection枚举说明)) | 设置direction属性。 |
 | setDistance(value:&nbsp;number) | 设置distance属性。 |
 | setFingers(value:&nbsp;number) | 设置fingers属性。 |
 
