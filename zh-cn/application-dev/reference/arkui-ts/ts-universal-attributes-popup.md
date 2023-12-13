@@ -28,7 +28,7 @@
 | arrowOffset<sup>9+</sup>              | [Length](ts-types.md#length)                                 | 否   | popup箭头在弹窗处的偏移。箭头在气泡上下方时，数值为0表示箭头居最左侧，偏移量为箭头至最左侧的距离，默认居中。箭头在气泡左右侧时，偏移量为箭头至最上侧的距离，默认居中。如果显示在屏幕边缘，气泡会自动左右偏移，数值为0时箭头始终指向绑定组件。 |
 | showInSubWindow<sup>9+</sup>          | boolean                                                      | 否   | 是否在子窗口显示气泡，默认值为false。                        |
 | mask<sup>10+</sup>                    | boolean&nbsp;\|&nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置气泡是否有遮罩层及遮罩颜色。如果设置为false，则没有遮罩层；如果设置为true，则设置有遮罩层并且颜色为透明色；如果设置为Color，则为遮罩层的颜色。 |
-| messageOptions<sup>10+</sup>          | [PopupMessageOptions](#popupmessageoptions10)                | 否   | 设置弹窗信息文本参数。                                       |
+| messageOptions<sup>10+</sup>          | [PopupMessageOptions](#popupmessageoptions10类型说明)        | 否   | 设置弹窗信息文本参数。                                       |
 | targetSpace<sup>10+</sup>             | [Length](ts-types.md#length)                                 | 否   | 设置popup与目标的间隙。                                      |
 | placement<sup>10+</sup>               | [Placement](ts-appendix-enums.md#placement8)                 | 否   | 设置popup组件相对于目标的显示位置，默认值为Placement.Bottom。<br />如果同时设置了`placementOnTop`和`placement`，则以`placement`的设置生效。 |
 | offset<sup>10+</sup>                  | [Position](ts-types.md#position8)                            | 否   | 设置popup组件相对于placement设置的显示位置的偏移。<br />**说明：**<br />不支持设置百分比。 |
@@ -36,14 +36,14 @@
 | popupColor<sup>11+</sup>              | [Color](ts-appendix-enums.md#color) \|string\|number \| [Resource](ts-types.md#resource) | 否   | 提示气泡的颜色。<br/>默认值：'#4d4d4d'                       |
 | autoCancel<sup>11+</sup>              | boolean                                                      | 否   | 页面有操作时，是否自动关闭气泡。<br/>默认值：true            |
 | width<sup>11+</sup>                   | [Dimension](ts-types.md#dimension10)                         | 否   | 弹窗宽度。                                                   |
-| arrowPointPosition<sup>11+</sup>      | [ArrowPointPosition](ts-appendix-enums.md#ArrowPointPosition11) | 否   | 气泡尖角相对于父组件显示位置，气泡尖角在垂直和水平方向上有 ”Start“、”Center“、”End“三个位置点可选。以上所有位置点均位于父组件区域的范围内，不会超出父组件的边界范围。 |
+| arrowPointPosition<sup>11+</sup>      | [ArrowPointPosition](ts-appendix-enums.md#arrowpointposition11) | 否   | 气泡尖角相对于父组件显示位置，气泡尖角在垂直和水平方向上有 ”Start“、”Center“、”End“三个位置点可选。以上所有位置点均位于父组件区域的范围内，不会超出父组件的边界范围。 |
 
 ## PopupMessageOptions<sup>10+</sup>类型说明
 
-| 名称        | 类型                                       | 必填   | 描述          |
-| --------- | ---------------------------------------- | ---- | ----------- |
-| textColor | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置弹窗信息文本颜色。 |
-| font      | [Font](ts-types.md#Font)                 | 否    | 设置弹窗信息字体属性。 |
+| 名称      | 类型                                       | 必填 | 描述                   |
+| --------- | ------------------------------------------ | ---- | ---------------------- |
+| textColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置弹窗信息文本颜色。 |
+| font      | [Font](ts-types.md#font)                   | 否   | 设置弹窗信息字体属性。 |
 ## CustomPopupOptions<sup>8+</sup>类型说明
 
 | 名称                           | 类型                                       | 必填   | 描述                                       |
