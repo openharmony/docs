@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import systemcapability from '@ohos.systemCapability'
+import systemcapability from '@ohos.systemCapability';
 ```
 
 ## systemcapability.querySystemCapabilities
