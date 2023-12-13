@@ -188,6 +188,8 @@ console.info('thermal level is: ' + level);
 
 ## ThermalLevel
 
+> **说明：**<br>枚举ESCAPE从API version 11开始支持。
+
 热档位信息。
 
 **系统能力：** SystemCapability.PowerManager.ThermalManager

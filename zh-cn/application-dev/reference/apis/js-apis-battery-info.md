@@ -19,6 +19,8 @@ setBatteryConfig(sceneName: string, sceneValue: string): number
 
 按场景名称设置电池配置。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力:** SystemCapability.PowerManager.BatteryManager.Core
 
 **参数**：
@@ -33,6 +35,14 @@ setBatteryConfig(sceneName: string, sceneValue: string): number
 | 类型   | 说明                                                       |
 | ------ | ---------------------------------------------------------- |
 | number | 返回设置充电结果。返回0表示设置成功，返回非0表示设置失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[耗电统计错误码](../errorcodes/errorcode-battery-info.md)。
+
+| 错误码ID   | 错误信息    |
+|---------|---------|
+| 4600101 | If connecting to the service failed. |
 
 **示例**：
 
@@ -52,6 +62,8 @@ getBatteryConfig(sceneName: string): string
 
 按场景名称查询电池配置。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力:** SystemCapability.PowerManager.BatteryManager.Core
 
 **参数**：
@@ -65,6 +77,14 @@ getBatteryConfig(sceneName: string): string
 | 类型   | 说明                           |
 | ------ | ------------------------------ |
 | string | 返回电池充电配置，否则返回""。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[耗电统计错误码](../errorcodes/errorcode-battery-info.md)。
+
+| 错误码ID   | 错误信息    |
+|---------|---------|
+| 4600101 | If connecting to the service failed. |
 
 **示例**：
 
@@ -83,6 +103,8 @@ isBatteryConfigSupported(sceneName: string): boolean
 
 检查是否按场景名称启用电池配置。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力:** SystemCapability.PowerManager.BatteryManager.Core
 
 **参数**：
@@ -96,6 +118,14 @@ isBatteryConfigSupported(sceneName: string): boolean
 | 类型    | 说明                                              |
 | ------- | ------------------------------------------------- |
 | boolean | 如果设备支持充电场景，则返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[耗电统计错误码](../errorcodes/errorcode-battery-info.md)。
+
+| 错误码ID   | 错误信息    |
+|---------|---------|
+| 4600101 | If connecting to the service failed. |
 
 **示例**：
 
