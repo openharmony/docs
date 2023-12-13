@@ -125,6 +125,38 @@ buffer数组的列表。
 | count          | number                            | 是   | 是   | 传入的数据中，包含的证书数量。                               |
 | encodingFormat | [EncodingFormat](#encodingformat) | 是   | 是   | 指明证书编码格式。                                           |
 
+## X509CertMatchParameters<sup>11+</sup>
+
+匹配证书的参数。
+
+### 属性
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称           | 类型                              | 可读 | 可写 | 说明               |
+| -------------- | --------------------------------- | ---- | ---- | ------------------ |
+| x509Cert | [X509Cert](#x509cert)    | 是   | 是   |  指定具体的证书作为过滤条件  |
+| validDate | string    | 是   | 是   |  指定证书有效期必须在给定的参数范围内  |
+| issuer | Uint8Array | 是   | 是   | 指定issuer作为过滤条件，der编码格式 |
+| keyUsage | Array\<boolean> | 是   | 是   | 如果该值设置为null，则不进行校验；如果证书不包含KeyUsage扩展字段，则表示运行任何的KeyUsage |
+| serialNumber | bigint    | 是   | 是   |  指定证书的序列化作为过滤条件  |
+| subject | Uint8Array | 是   | 是   | 指定subject作为过滤条件，der编码格式 |
+| publicKey | [DataBlob](#datablob) | 是   | 是   | 指定证书公钥作为过滤条件 |
+| publicKeyAlgID | string | 是   | 是   | 指定证书公钥的算法作为过滤条件 |
+
+## X509CRLMatchParameters<sup>11+</sup>
+
+匹配证书吊销列表的参数。
+
+### 属性
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称           | 类型                              | 可读 | 可写 | 说明               |
+| -------------- | --------------------------------- | ---- | ---- | ------------------ |
+| issuer | Array\<Uint8Array> | 是   | 是   | 指定签发者作为过滤条件, 至少要匹配到其中一个issuer  |
+| x509Cert | [X509Cert](#x509cert)        | 是   | 是   | 指定具体的证书作为过滤条件, 判断该证书是否在CRL列表里  |
+
 
 ## cryptoCert.createX509Cert
 
@@ -1866,7 +1898,102 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
   }
 });
 ```
+### match<sup>11+</sup>
 
+match(param: X509CertMatchParameters): boolean
+
+表示检查X509证书, 判断是否与输入参数匹配。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名    | 类型   | 必填 | 说明                                       |
+| --------- | ------ | ---- | ------------------------------------------ |
+| param | [X509CertMatchParameters](#x509certmatchparameters11) | 是   | 表示X50Cert需校验参数对象 |
+
+**返回值**：
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| boolean | 当参数匹配时，该方法返回true；否则返回false |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+async function createX509Cert(): Promise<certFramework.X509Cert> {
+  let certData = '-----BEGIN CERTIFICATE-----\n' +
+    'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+    'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+    'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+    'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+    'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+    'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+    'Qw==\n' +
+    '-----END CERTIFICATE-----\n';
+
+  let encodingBlob: certFramework.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  };
+
+  let x509Cert: certFramework.X509Cert = null;
+  try {
+    x509Cert = await certFramework.createX509Cert(encodingBlob);
+  }
+  catch (err) {
+    console.error('createX509Cert failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  }
+  return x509Cert;
+}
+
+async function matchX509Cert() {
+  const x509Cert = await createX509Cert();
+  try {
+    //需业务自行赋值
+    const param: certFramework.X509CertMatchParameters = {
+      x509Cert,
+      validDate: '20231121074700Z',
+      issuer: new Uint8Array([0x30, 0x64, 0x31]), //数据需要业务自行赋值
+      keyUsage: [false, false, false, false, false, false, true, true, true],
+      serialNumber: BigInt('232100834349818463'),
+      subject: new Uint8Array([0x30, 0x6c, 0x31]), //数据需要业务自行赋值
+      publicKey: {
+        data: new Uint8Array([0x30, 0x82, 0x01]) //数据需要业务自行赋值
+      },
+      publicKeyAlgID: '1.2.840.113549.1.1.1'
+    };
+    const result = x509Cert.match(param);
+    console.log('call x509Cert match success');
+  }
+  catch (err) {
+    console.error('call x509Cert match failed');
+  }
+}
+
+matchX509Cert();
+```
 ## cryptoCert.createCertExtension<sup>10+</sup>
 
 createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExtension>) : void
@@ -5640,6 +5767,119 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 });
 ```
 
+### match<sup>11+</sup>
+
+match(param: X509CRLMatchParameters): boolean
+
+表示检查X509CRL, 判断是否与输入参数匹配。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名    | 类型   | 必填 | 说明                                       |
+| --------- | ------ | ---- | ------------------------------------------ |
+| param | [X509CRLMatchParameters](#x509crlmatchparameters11)| 是   | 表示X509CRL需校验参数对象 |
+
+**返回值**：
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| boolean | 当参数匹配时，该方法返回true；否则返回false |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 19020001 | memory error.  |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let crlEncodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+const certData = "-----BEGIN CERTIFICATE-----\r\n" +
+  "MIIC8TCCAdmgAwIBAgIIFB75m06RTHwwDQYJKoZIhvcNAQELBQAwWDELMAkGA1UE\r\n" +
+  "BhMCQ04xEDAOBgNVBAgTB0ppYW5nc3UxEDAOBgNVBAcTB05hbmppbmcxCzAJBgNV\r\n" +
+  "BAoTAnRzMQswCQYDVQQLEwJ0czELMAkGA1UEAxMCdHMwHhcNMjMxMTIzMDMzMjAw\r\n" +
+  "WhcNMjQxMTIzMDMzMjAwWjBhMQswCQYDVQQGEwJDTjEQMA4GA1UECBMHSmlhbmdz\r\n" +
+  "dTEQMA4GA1UEBxMHTmFuamluZzEMMAoGA1UEChMDdHMxMQwwCgYDVQQLEwN0czEx\r\n" +
+  "EjAQBgNVBAMTCTEyNy4wLjAuMTAqMAUGAytlcAMhALsWnY9cMNC6jzduM69vI3Ej\r\n" +
+  "pUlgHtEHS8kRfmYBupJSo4GvMIGsMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFNSg\r\n" +
+  "poQvfxR8A1Y4St8NjOHkRpm4MAsGA1UdDwQEAwID+DAnBgNVHSUEIDAeBggrBgEF\r\n" +
+  "BQcDAQYIKwYBBQUHAwIGCCsGAQUFBwMEMBQGA1UdEQQNMAuCCTEyNy4wLjAuMTAR\r\n" +
+  "BglghkgBhvhCAQEEBAMCBkAwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0\r\n" +
+  "ZTANBgkqhkiG9w0BAQsFAAOCAQEAfnLmPF6BtAUCZ9pjt1ITdXc5M4LJfMw5IPcv\r\n" +
+  "fUAvhdaUXtqBQcjGCWtDdhyb1n5Xp+N7oKz/Cnn0NGFTwVArtFiQ5NEP2CmrckLh\r\n" +
+  "Da4VnsDFU+zx2Bbfwo5Ms7iArxyx0fArbMZzN9D1lZcVjiIxp1+3k1/0sdCemcY/\r\n" +
+  "y7mw5NwkcczLWLBZl1/Ho8b4dlo1wTA7TZk9uu8UwYBwXDrQe6S9rMcvMcRKiJ9e\r\n" +
+  "V4SYZIO7ihr8+n4LQDQP+spvX4cf925a3kyZrftfvGCJ2ZNwvsPhyumYhaBqAgSy\r\n" +
+  "Up2BImymAqPi157q9EeYcQz170TtDZHGmjYzdQxhOAHRb6/IdQ==\r\n" +
+  "-----END CERTIFICATE-----\r\n";
+const certEncodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM,
+};
+
+async function crlMatch() {
+  let x509Cert: certFramework.X509Cert = null;
+  try {
+    x509Cert = await certFramework.createX509Cert(certEncodingBlob);
+    console.log('createX509Cert success');
+  }
+  catch (err) {
+    console.error('createX509Cert failed');
+  }
+
+  certFramework.createX509CRL(crlEncodingBlob, (error, x509CRL) => {
+    if (error != null) {
+      console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+    } else {
+      console.log('createX509CRL success');
+      try {
+        const param: certFramework.X509CRLMatchParameters = {
+          issuer: [new Uint8Array([0x30, 0x58, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x06, 0x13, 0x02, 0x43, 0x4E, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x08, 0x13, 0x07, 0x4A, 0x69, 0x61, 0x6E, 0x67, 0x73, 0x75, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x07, 0x13, 0x07, 0x4E, 0x61, 0x6E, 0x6A, 0x69, 0x6E, 0x67, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0A, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0B, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x03, 0x13, 0x02, 0x74, 0x73])],
+          x509Cert: x509Cert
+        }
+        const result = x509CRL.match(param);
+      } catch (error) {
+        let e: BusinessError = error as BusinessError;
+        console.error('x509CRL match failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+      }
+    }
+  });
+}
+```
+
 ## cryptoCert.createCertChainValidator
 
 createCertChainValidator(algorithm :string) : CertChainValidator
@@ -6761,4 +7001,538 @@ certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
     }
   }
 })
+```
+## cryptoCert.createCertCRLCollection<sup>11+</sup>
+
+createCertCRLCollection(certs: Array\<X509Cert>, crls?: Array\<X509CRL>): CertCRLCollection
+
+表示创建CertCRLCollection的对象，并返回相应的结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                  | 必填 | 说明                           |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| certs | Array\<[X509Cert](#x509cert)>    | 是   |  X509Cert数组   |
+| crls | Array\<[X509CRL](#x509crl11)>     | 否   |  X509CRL数组   |
+
+**返回值**：
+
+| 类型               | 说明                 |
+| ------------------ | -------------------- |
+| CertCRLCollection | 表示CertCRLCollection对象 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+async function createX509CRL(): Promise<certFramework.X509CRL> {
+  let crlData = '-----BEGIN X509 CRL-----\n' +
+    'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+    'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+    'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+    'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+    '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+    'eavsH0Q3\n' +
+    '-----END X509 CRL-----\n';
+
+  // 证书吊销列表二进制数据，需业务自行赋值
+  let encodingBlob: certFramework.EncodingBlob = {
+    data: stringToUint8Array(crlData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  };
+  let x509CRL: certFramework.X509CRL = null;
+  try {
+    x509CRL = await certFramework.createX509CRL(encodingBlob);
+  } catch (err) {
+    console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  }
+  return x509CRL;
+}
+
+async function createX509Cert(): Promise<certFramework.X509Cert> {
+  let certData = '-----BEGIN CERTIFICATE-----\n' +
+    'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+    'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+    'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+    'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+    'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+    'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+    'Qw==\n' +
+    '-----END CERTIFICATE-----\n';
+
+  let encodingBlob: certFramework.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  };
+
+  let x509Cert: certFramework.X509Cert = null;
+  try {
+    x509Cert = await certFramework.createX509Cert(encodingBlob);
+  } catch (err) {
+    console.error('createX509Cert failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  }
+  return x509Cert;
+}
+
+async function createCollection() {
+  const x509Cert = await createX509Cert();
+  const x509CRL = await createX509CRL();
+  try {
+    const collection: certFramework.CertCRLCollection = certFramework.createCertCRLCollection([x509Cert], [x509CRL]);
+    console.log('createCertCRLCollection success');
+  } catch (err) {
+    console.error('createCertCRLCollection failed');
+  }
+}
+```
+
+## CertCRLCollection<sup>11+</sup>
+
+CertCRL集合对象。
+
+### 属性
+
+**系统能力：** SystemCapability.Security.Cert
+
+### selectCerts<sup>11+</sup>
+
+selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>>
+
+查找所有与X509CertMatchParameters匹配的Array＜X509Cert＞, 使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名    | 类型                            | 必填 | 说明      |
+| --------- | ------------------------------- | ---- | ------------ |
+| param | [X509CertMatchParameters](#x509certmatchparameters11) | 是   | 表示X509证书需匹配的参数对象   |
+
+**返回值**：
+
+| 类型           | 说明        |
+| -------------- | ----------- |
+| Promise\<Array\<[X509Cert](#x509cert)>> | Promise对象 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+async function createX509Cert(): Promise<certFramework.X509Cert> {
+  let certData = '-----BEGIN CERTIFICATE-----\n' +
+    'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+    'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+    'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+    'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+    'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+    'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+    'Qw==\n' +
+    '-----END CERTIFICATE-----\n';
+
+  let encodingBlob: certFramework.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  };
+
+  let x509Cert: certFramework.X509Cert = null;
+  try {
+    x509Cert = await certFramework.createX509Cert(encodingBlob);
+  } catch (err) {
+    console.error('createX509Cert failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  }
+  return x509Cert;
+}
+
+async function selectCerts() {
+  const x509Cert = await createX509Cert();
+  const collection = certFramework.createCertCRLCollection([x509Cert]);
+
+  try {
+    const param: certFramework.X509CertMatchParameters = {
+      x509Cert,
+      validDate: '20231121074700Z',
+      issuer: new Uint8Array([0x30, 0x64, 0x31]), //数据需要业务自行赋值      
+      keyUsage: [false, false, false, false, false, false, true, true, true],
+      serialNumber: BigInt('232100834349818463'),
+      subject: new Uint8Array([0x30, 0x6c, 0x31]), //数据需要业务自行赋值
+      publicKey: {
+        data: new Uint8Array([0x30, 0x82, 0x01]) //数据需要业务自行赋值
+      },
+      publicKeyAlgID: '1.2.840.113549.1.1.1'
+    };
+    const certs = await collection.selectCerts(param);
+    console.log('call selectCerts success');
+  } catch (err) {
+    console.error('call selectCerts failed');
+  }
+}
+```
+
+### selectCerts<sup>11+</sup>
+
+selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509Cert>>): void
+
+查找所有与X509CertMatchParameters匹配的Array＜X509Cert＞, 使用Callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名    | 类型                            | 必填 | 说明            |
+| --------- | ------------------------------- | ---- | ----------------- |
+| param | [X509CertMatchParameters](#x509certmatchparameters11) | 是   | 表示X509证书需匹配的参数对象     |
+| callback  | AsyncCallback\<Array\<[X509Cert](#x509cert)>>    | 是   | 回调函数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+async function createX509Cert(): Promise<certFramework.X509Cert> {
+  let certData = '-----BEGIN CERTIFICATE-----\n' +
+    'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+    'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+    'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+    'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+    'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+    'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+    'Qw==\n' +
+    '-----END CERTIFICATE-----\n';
+
+  let encodingBlob: certFramework.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  };
+
+  let x509Cert: certFramework.X509Cert = null;
+  try {
+    x509Cert = await certFramework.createX509Cert(encodingBlob);
+  } catch (err) {
+    console.error('createX509Cert failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  }
+  return x509Cert;
+}
+
+async function selectCerts() {
+  const x509Cert = await createX509Cert();
+  const collection = certFramework.createCertCRLCollection([x509Cert]);
+  //需业务自行赋值
+  const param: certFramework.X509CertMatchParameters = {
+    x509Cert,
+    validDate: '20231121074700Z',
+    issuer: new Uint8Array([0x30, 0x64, 0x31]), //数据需要业务自行赋值
+    keyUsage: [false, false, false, false, false, false, true, true, true],
+    serialNumber: BigInt('232100834349818463'),
+    subject: new Uint8Array([0x30, 0x6c, 0x31]), //数据需要业务自行赋值
+    publicKey: {
+      data: new Uint8Array([0x30, 0x82, 0x01]) //数据需要业务自行赋值
+    },
+    publicKeyAlgID: '1.2.840.113549.1.1.1'
+  };
+  collection.selectCerts(param, (err, certs) => {
+    if (err != null) {
+      console.error('selectCerts failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+    } else {
+      console.log('selectCerts success');
+    }
+  });
+}
+```
+
+### selectCRLs<sup>11+</sup>
+
+selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
+
+查找所有与X509CRLMatchParameters匹配的Array＜X509CRL＞, 使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名    | 类型                            | 必填 | 说明      |
+| --------- | ------------------------------- | ---- | ------------ |
+| param | [X509CRLMatchParameters](#x509crlmatchparameters11) | 是   | 表示X509证书吊销列表需匹配的参数对象   |
+
+**返回值**：
+
+| 类型           | 说明        |
+| -------------- | ----------- |
+| Promise\<Array\<[X509CRL](#x509crl)>> | Promise对象 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+async function createX509CRL(): Promise<certFramework.X509CRL> {
+  let crlData = '-----BEGIN X509 CRL-----\n' +
+    'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+    'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+    'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+    'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+    '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+    'eavsH0Q3\n' +
+    '-----END X509 CRL-----\n';
+
+  // 证书吊销列表二进制数据，需业务自行赋值
+  let encodingBlob: certFramework.EncodingBlob = {
+    data: stringToUint8Array(crlData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  };
+  let x509CRL: certFramework.X509CRL = null;
+  try {
+    x509CRL = await certFramework.createX509CRL(encodingBlob);
+  } catch (err) {
+    console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  }
+  return x509CRL;
+}
+
+async function createX509Cert(): Promise<certFramework.X509Cert> {
+  const certData = "-----BEGIN CERTIFICATE-----\r\n" +
+    "MIIC8TCCAdmgAwIBAgIIFB75m06RTHwwDQYJKoZIhvcNAQELBQAwWDELMAkGA1UE\r\n" +
+    "BhMCQ04xEDAOBgNVBAgTB0ppYW5nc3UxEDAOBgNVBAcTB05hbmppbmcxCzAJBgNV\r\n" +
+    "BAoTAnRzMQswCQYDVQQLEwJ0czELMAkGA1UEAxMCdHMwHhcNMjMxMTIzMDMzMjAw\r\n" +
+    "WhcNMjQxMTIzMDMzMjAwWjBhMQswCQYDVQQGEwJDTjEQMA4GA1UECBMHSmlhbmdz\r\n" +
+    "dTEQMA4GA1UEBxMHTmFuamluZzEMMAoGA1UEChMDdHMxMQwwCgYDVQQLEwN0czEx\r\n" +
+    "EjAQBgNVBAMTCTEyNy4wLjAuMTAqMAUGAytlcAMhALsWnY9cMNC6jzduM69vI3Ej\r\n" +
+    "pUlgHtEHS8kRfmYBupJSo4GvMIGsMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFNSg\r\n" +
+    "poQvfxR8A1Y4St8NjOHkRpm4MAsGA1UdDwQEAwID+DAnBgNVHSUEIDAeBggrBgEF\r\n" +
+    "BQcDAQYIKwYBBQUHAwIGCCsGAQUFBwMEMBQGA1UdEQQNMAuCCTEyNy4wLjAuMTAR\r\n" +
+    "BglghkgBhvhCAQEEBAMCBkAwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0\r\n" +
+    "ZTANBgkqhkiG9w0BAQsFAAOCAQEAfnLmPF6BtAUCZ9pjt1ITdXc5M4LJfMw5IPcv\r\n" +
+    "fUAvhdaUXtqBQcjGCWtDdhyb1n5Xp+N7oKz/Cnn0NGFTwVArtFiQ5NEP2CmrckLh\r\n" +
+    "Da4VnsDFU+zx2Bbfwo5Ms7iArxyx0fArbMZzN9D1lZcVjiIxp1+3k1/0sdCemcY/\r\n" +
+    "y7mw5NwkcczLWLBZl1/Ho8b4dlo1wTA7TZk9uu8UwYBwXDrQe6S9rMcvMcRKiJ9e\r\n" +
+    "V4SYZIO7ihr8+n4LQDQP+spvX4cf925a3kyZrftfvGCJ2ZNwvsPhyumYhaBqAgSy\r\n" +
+    "Up2BImymAqPi157q9EeYcQz170TtDZHGmjYzdQxhOAHRb6/IdQ==\r\n" +
+    "-----END CERTIFICATE-----\r\n";
+  const certEncodingBlob: certFramework.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM,
+  };
+
+  let x509Cert: certFramework.X509Cert = null;
+  try {
+    x509Cert = await certFramework.createX509Cert(certEncodingBlob);
+    console.log('createX509Cert success');
+  } catch (err) {
+    console.error('createX509Cert failed');
+  }
+  return x509Cert;
+}
+
+async function selectCRLs() {
+  const x509CRL = await createX509CRL();
+  const x509Cert = await createX509Cert();
+  const collection = certFramework.createCertCRLCollection(null, [x509CRL]);
+
+  const param: certFramework.X509CRLMatchParameters = {
+    issuer: [new Uint8Array([0x30, 0x58, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x06, 0x13, 0x02, 0x43, 0x4E, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x08, 0x13, 0x07, 0x4A, 0x69, 0x61, 0x6E, 0x67, 0x73, 0x75, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x07, 0x13, 0x07, 0x4E, 0x61, 0x6E, 0x6A, 0x69, 0x6E, 0x67, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0A, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0B, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x03, 0x13, 0x02, 0x74, 0x73])],
+    x509Cert: x509Cert
+  }
+  try {
+    const crls = await collection.selectCRLs(param);
+    console.log('selectCRLs success');
+  } catch (err) {
+    console.error('selectCRLs failed');
+  }
+}
+```
+
+### selectCRLs<sup>11+</sup>
+
+selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CRL>>): void
+
+查找所有与X509CRLMatchParameters匹配的Array＜X509CRL＞, 使用Callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名    | 类型                            | 必填 | 说明            |
+| --------- | ------------------------------- | ---- | ----------------- |
+| param | [X509CRLMatchParameters](#x509crlmatchparameters11) | 是   | 表示X509证书需匹配的参数对象     |
+| callback  | AsyncCallback\<Array\<[X509CRL](#x509crl)>>    | 是   | 回调函数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[cert错误码](../errorcodes/errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+async function createX509CRL(): Promise<certFramework.X509CRL> {
+  let crlData = '-----BEGIN X509 CRL-----\n' +
+    'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+    'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+    'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+    'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+    '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+    'eavsH0Q3\n' +
+    '-----END X509 CRL-----\n';
+
+  // 证书吊销列表二进制数据，需业务自行赋值
+  let encodingBlob: certFramework.EncodingBlob = {
+    data: stringToUint8Array(crlData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  };
+  let x509CRL: certFramework.X509CRL = null;
+  try {
+    x509CRL = await certFramework.createX509CRL(encodingBlob);
+  } catch (err) {
+    console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  }
+  return x509CRL;
+}
+
+async function createX509Cert(): Promise<certFramework.X509Cert> {
+  const certData = "-----BEGIN CERTIFICATE-----\r\n" +
+    "MIIC8TCCAdmgAwIBAgIIFB75m06RTHwwDQYJKoZIhvcNAQELBQAwWDELMAkGA1UE\r\n" +
+    "BhMCQ04xEDAOBgNVBAgTB0ppYW5nc3UxEDAOBgNVBAcTB05hbmppbmcxCzAJBgNV\r\n" +
+    "BAoTAnRzMQswCQYDVQQLEwJ0czELMAkGA1UEAxMCdHMwHhcNMjMxMTIzMDMzMjAw\r\n" +
+    "WhcNMjQxMTIzMDMzMjAwWjBhMQswCQYDVQQGEwJDTjEQMA4GA1UECBMHSmlhbmdz\r\n" +
+    "dTEQMA4GA1UEBxMHTmFuamluZzEMMAoGA1UEChMDdHMxMQwwCgYDVQQLEwN0czEx\r\n" +
+    "EjAQBgNVBAMTCTEyNy4wLjAuMTAqMAUGAytlcAMhALsWnY9cMNC6jzduM69vI3Ej\r\n" +
+    "pUlgHtEHS8kRfmYBupJSo4GvMIGsMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFNSg\r\n" +
+    "poQvfxR8A1Y4St8NjOHkRpm4MAsGA1UdDwQEAwID+DAnBgNVHSUEIDAeBggrBgEF\r\n" +
+    "BQcDAQYIKwYBBQUHAwIGCCsGAQUFBwMEMBQGA1UdEQQNMAuCCTEyNy4wLjAuMTAR\r\n" +
+    "BglghkgBhvhCAQEEBAMCBkAwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0\r\n" +
+    "ZTANBgkqhkiG9w0BAQsFAAOCAQEAfnLmPF6BtAUCZ9pjt1ITdXc5M4LJfMw5IPcv\r\n" +
+    "fUAvhdaUXtqBQcjGCWtDdhyb1n5Xp+N7oKz/Cnn0NGFTwVArtFiQ5NEP2CmrckLh\r\n" +
+    "Da4VnsDFU+zx2Bbfwo5Ms7iArxyx0fArbMZzN9D1lZcVjiIxp1+3k1/0sdCemcY/\r\n" +
+    "y7mw5NwkcczLWLBZl1/Ho8b4dlo1wTA7TZk9uu8UwYBwXDrQe6S9rMcvMcRKiJ9e\r\n" +
+    "V4SYZIO7ihr8+n4LQDQP+spvX4cf925a3kyZrftfvGCJ2ZNwvsPhyumYhaBqAgSy\r\n" +
+    "Up2BImymAqPi157q9EeYcQz170TtDZHGmjYzdQxhOAHRb6/IdQ==\r\n" +
+    "-----END CERTIFICATE-----\r\n";
+  const certEncodingBlob: certFramework.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM,
+  };
+
+  let x509Cert: certFramework.X509Cert = null;
+  try {
+    x509Cert = await certFramework.createX509Cert(certEncodingBlob);
+    console.log('createX509Cert success');
+  } catch (err) {
+    console.error('createX509Cert failed');
+  }
+  return x509Cert;
+}
+
+async function selectCRLs() {
+  const x509CRL = await createX509CRL();
+  const x509Cert = await createX509Cert();
+  const collection = certFramework.createCertCRLCollection(null, [x509CRL]);
+
+  const param: certFramework.X509CRLMatchParameters = {
+    issuer: [new Uint8Array([0x30, 0x58, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x06, 0x13, 0x02, 0x43, 0x4E, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x08, 0x13, 0x07, 0x4A, 0x69, 0x61, 0x6E, 0x67, 0x73, 0x75, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x07, 0x13, 0x07, 0x4E, 0x61, 0x6E, 0x6A, 0x69, 0x6E, 0x67, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0A, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0B, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x03, 0x13, 0x02, 0x74, 0x73])],
+    x509Cert: x509Cert
+  }
+  collection.selectCRLs(param, (err, crls) => {
+    if (err != null) {
+      console.error('selectCRLs failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+    } else {
+      console.log('selectCRLs success');
+    }
+  });
+}
 ```

@@ -699,7 +699,129 @@ function sampleCrlEntry(): void {
   })
 }
 ```
+## 使用证书集合及证书吊销列表集合操作
 
+> **说明**
+>
+> 本场景基于API version 11，OH SDK版本4.1.5.3及以上。
+
+
+**场景说明**
+
+使用证书集合及证书吊销列表集合操作中，典型的场景：从输入的证书集合和证书吊销列表集合中选择满足条件的证书或者证书吊销列表。
+
+**接口及参数说明**
+
+详细接口说明可参考[API参考](../reference/apis/js-apis-cert.md)。
+
+以上场景涉及的常用接口如下表所示：
+
+| 实例名             | 接口名                                                       | 描述                             |
+| ------------------ | ------------------------------------------------------------ | -------------------------------- |
+| cryptoCert | createCertCRLCollection(certs: Array\<X509Cert>, crls?: Array\<X509CRL>): CertCRLCollection | 表示创建CertCRLCollection的对象，并返回相应的结果 |
+| CertCRLCollection | selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>> | 查找所有与X509CertMatchParameters匹配的证书对象数组, 使用Promise方式异步返回结果 |
+| CertCRLCollection | selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509Cert>>): void          | 查找所有与X509CertMatchParameters匹配的证书对象数组, 使用Callback回调异步返回结果 |
+| CertCRLCollection | selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>> | 查找所有与X509CRLMatchParameters匹配的证书吊销列表数组, 使用Promise方式异步返回结果 |
+| CertCRLCollection | selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CRL>>): void         | 查找所有与X509CRLMatchParameters匹配的证书吊销列表数组, 使用Callback回调异步返回结果 |
+
+**开发步骤**
+
+示例：创建证书及证书吊销列表集合对象，从中选择满足条件的证书或者证书吊销列表。
+
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+async function createX509CRL(): Promise<certFramework.X509CRL> {
+  let crlData = '-----BEGIN X509 CRL-----\n' +
+    'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+    'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+    'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+    'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+    '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+    'eavsH0Q3\n' +
+    '-----END X509 CRL-----\n';
+
+  // 证书吊销列表二进制数据，需业务自行赋值
+  let encodingBlob: certFramework.EncodingBlob = {
+    data: stringToUint8Array(crlData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  };
+  let x509CRL: certFramework.X509CRL = null;
+  try {
+    x509CRL = await certFramework.createX509CRL(encodingBlob);
+  } catch (err) {
+    console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  }
+  return x509CRL;
+}
+
+async function createX509Cert(): Promise<certFramework.X509Cert> {
+  let certData = '-----BEGIN CERTIFICATE-----\n' +
+    'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+    'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+    'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+    'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+    'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+    'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+    'Qw==\n' +
+    '-----END CERTIFICATE-----\n';
+
+  let encodingBlob: certFramework.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  };
+
+  let x509Cert: certFramework.X509Cert = null;
+  try {
+    x509Cert = await certFramework.createX509Cert(encodingBlob);
+  } catch (err) {
+    console.error('createX509Cert failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  }
+  return x509Cert;
+}
+
+async function sample() {
+  const x509Cert = await createX509Cert();
+  const x509CRL = await createX509CRL();
+  let collection: certFramework.CertCRLCollection = null;
+  try {
+    collection = certFramework.createCertCRLCollection([x509Cert], [x509CRL]);
+    console.log('createCertCRLCollection success');
+  } catch (err) {
+    console.error('createCertCRLCollection failed');
+  }
+
+  const certParam: certFramework.X509CertMatchParameters = {
+    validDate: '231128000000Z'
+  }
+  try {
+    let certs: certFramework.X509Cert[] = await collection.selectCerts(certParam);
+  } catch (err) {
+    console.error('selectCerts failed');
+  }
+
+  const crlParam: certFramework.X509CRLMatchParameters = {
+    updateDateTime: '231128000000Z'
+  }
+  try {
+    let crls: certFramework.X509CRL[] = await collection.selectCRLs(crlParam);
+    console.error('selectCRLs success');
+  } catch (err) {
+    console.error('selectCRLs failed');
+  }
+}
+```
 ## 相关实例
 
 针对证书开发，有以下相关实例可供参考：
