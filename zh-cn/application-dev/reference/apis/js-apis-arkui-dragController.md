@@ -211,7 +211,7 @@ struct DragControllerPage {
 | pointerId   | number                                                 | 是   | 设置启动拖拽时屏幕上触摸点的Id。         |
 | data        | [unifiedDataChannel.UnifiedData](js-apis-data-unifiedDataChannel.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。               |
 | extraParams | string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |
-| touchPoint<sup>11+</sup>    | TouchPoint                                             | 否   | 配置跟手点坐标，不配置时，默认居中。      |
+| touchPoint<sup>11+</sup>    | [TouchPoint](../arkui-ts/ts-types.md#touchpoint)  | 否   | 配置跟手点坐标，不配置时，默认居中。      |
 | previewOptions<sup>11+</sup>| DragPreviewOptions                                     | 否   | 拖拽背板自定义配置。 |
 
 ## DragStatus<sup>11+</sup>
