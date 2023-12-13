@@ -75,7 +75,7 @@ stat(file: string | number): Promise&lt;Stat&gt;
   fs.stat(filePath).then((stat: fs.Stat) => {
     console.info("get file info succeed, the size of file is " + stat.size);
   }).catch((err: BusinessError) => {
-    console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("get file info failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -104,9 +104,9 @@ stat(file: string | number, callback: AsyncCallback&lt;Stat&gt;): void
   import { BusinessError } from '@ohos.base';
   fs.stat(pathDir, (err: BusinessError, stat: fs.Stat) => {
     if (err) {
-      console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("get file info failed with error message: " + err.message + ", error code: " + err.code);
     } else {
-      console.info("get file info succeed, the size of file is " + stat.size);
+      console.error("get file info succeed, the size of file is " + stat.size);
     }
   });
   ```
@@ -178,7 +178,7 @@ access(path: string): Promise&lt;boolean&gt;
       console.info("file not exists");
     }
   }).catch((err: BusinessError) => {
-    console.info("access failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("access failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -208,7 +208,7 @@ access(path: string, callback: AsyncCallback&lt;boolean&gt;): void
   let filePath = pathDir + "/test.txt";
   fs.access(filePath, (err: BusinessError, res: boolean) => {
     if (err) {
-      console.info("access failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("access failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       if (res) {
         console.info("file exists");
@@ -257,7 +257,7 @@ accessSync(path: string): boolean
     }
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.info("accessSync failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("accessSync failed with error message: " + err.message + ", error code: " + err.code);
   }
   ```
 
@@ -295,7 +295,7 @@ close(file: number | File): Promise&lt;void&gt;
   fs.close(file).then(() => {
     console.info("close file succeed");
   }).catch((err: BusinessError) => {
-    console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("close file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -326,7 +326,7 @@ close(file: number | File, callback: AsyncCallback&lt;void&gt;): void
   let file = fs.openSync(filePath);
   fs.close(file, (err: BusinessError) => {
     if (err) {
-      console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("close file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("close file succeed");
     }
@@ -394,7 +394,7 @@ copyFile(src: string | number, dest: string | number, mode?: number): Promise&lt
   fs.copyFile(srcPath, dstPath, 0).then(() => {
     console.info("copy file succeed");
   }).catch((err: BusinessError) => {
-    console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("copy file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -427,7 +427,7 @@ copyFile(src: string | number, dest: string | number, mode: number, callback: As
   let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath, 0, (err: BusinessError) => {
     if (err) {
-      console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("copy file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("copy file succeed");
     }
@@ -462,7 +462,7 @@ copyFile(src: string | number, dest: string | number, callback: AsyncCallback&lt
   let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath, (err: BusinessError) => {
     if (err) {
-      console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("copy file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("copy file succeed");
     }
@@ -534,7 +534,7 @@ copyDir(src: string, dest: string, mode?: number): Promise\<void>
   fs.copyDir(srcPath, destPath, 0).then(() => {
     console.info("copy directory succeed");
   }).catch((err: BusinessError) => {
-    console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("copy directory failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -570,10 +570,10 @@ copyDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, 
   fs.copyDir(srcPath, destPath, 0, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < err.data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+        console.error("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
-      console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("copy directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("copy directory succeed");
     }  
@@ -613,10 +613,10 @@ copyDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
   fs.copyDir(srcPath, destPath, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < err.data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+        console.error("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
-      console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("copy directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("copy directory succeed");
     }  
@@ -655,7 +655,7 @@ copyDirSync(src: string, dest: string, mode?: number): void
     console.info("copy directory succeed");
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("copy directory failed with error message: " + err.message + ", error code: " + err.code);
   }
   ```
 
@@ -728,7 +728,7 @@ mkdir(path: string): Promise&lt;void&gt;
   fs.mkdir(dirPath).then(() => {
     console.info("mkdir succeed");
   }).catch((err: BusinessError) => {
-    console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("mkdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -765,7 +765,7 @@ mkdir(path: string, recursion: boolean): Promise<void>
   fs.mkdir(dirPath, true).then(() => {
     console.info("mkdir succeed");
   }).catch((err: BusinessError) => {
-    console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("mkdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -795,7 +795,7 @@ mkdir(path: string, callback: AsyncCallback&lt;void&gt;): void
   let dirPath = pathDir + "/testDir";
   fs.mkdir(dirPath, (err: BusinessError) => {
     if (err) {
-      console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("mkdir succeed");
     }
@@ -829,7 +829,7 @@ mkdir(path: string, recursion: boolean, callback: AsyncCallback&lt;void&gt;): vo
   let dirPath = pathDir + "/testDir1/testDir2/testDir3";
   fs.mkdir(dirPath, true, (err: BusinessError) => {
     if (err) {
-      console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("mkdir succeed");
     }
@@ -921,7 +921,7 @@ open(path: string, mode?: number): Promise&lt;File&gt;
     console.info("file fd: " + file.fd);
     fs.closeSync(file);
   }).catch((err: BusinessError) => {
-    console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("open file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -954,7 +954,7 @@ open(path: string, mode: number, callback: AsyncCallback&lt;File&gt;): void
   let filePath = pathDir + "/test.txt";
   fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err: BusinessError, file: fs.File) => {
     if (err) {
-      console.info("open failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("open failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("file fd: " + file.fd);
     }
@@ -987,7 +987,7 @@ open(path: string, callback: AsyncCallback&lt;File&gt;): void
   let filePath = pathDir + "/test.txt";
   fs.open(filePath, (err: BusinessError, file: fs.File) => {
     if (err) {
-      console.info("open failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("open failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("file fd: " + file.fd);
     }
@@ -1068,7 +1068,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
     let buf = buffer.from(arrayBuffer, 0, readLen);
     console.info(`The content of file: ${buf.toString()}`);
   }).catch((err: BusinessError) => {
-    console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("read file data failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -1105,7 +1105,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   let arrayBuffer = new ArrayBuffer(4096);
   fs.read(file.fd, arrayBuffer, (err: BusinessError, readLen: number) => {
     if (err) {
-      console.info("read failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("read failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("read file data succeed");
       let buf = buffer.from(arrayBuffer, 0, readLen);
@@ -1183,7 +1183,7 @@ rmdir(path: string): Promise&lt;void&gt;
   fs.rmdir(dirPath).then(() => {
     console.info("rmdir succeed");
   }).catch((err: BusinessError) => {
-    console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("rmdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1213,7 +1213,7 @@ rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
   let dirPath = pathDir + "/testDir";
   fs.rmdir(dirPath, (err: BusinessError) => {
     if (err) {
-      console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("rmdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("rmdir succeed");
     }
@@ -1277,7 +1277,7 @@ unlink(path: string): Promise&lt;void&gt;
   fs.unlink(filePath).then(() => {
     console.info("remove file succeed");
   }).catch((err: BusinessError) => {
-    console.info("remove file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("remove file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1307,7 +1307,7 @@ unlink(path: string, callback: AsyncCallback&lt;void&gt;): void
   let filePath = pathDir + "/test.txt";
   fs.unlink(filePath, (err: BusinessError) => {
     if (err) {
-      console.info("remove file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("remove file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("remove file succeed");
     }
@@ -1376,7 +1376,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; len
   fs.write(file.fd, str).then((writeLen: number) => {
     console.info("write data to file succeed and size is:" + writeLen);
   }).catch((err: BusinessError) => {
-    console.info("write data to file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("write data to file failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -1412,7 +1412,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; len
   let str: string = "hello, world";
   fs.write(file.fd, str, (err: BusinessError, writeLen: number) => {
     if (err) {
-      console.info("write data to file failed with error message:" + err.message + ", error code: " + err.code);
+      console.error("write data to file failed with error message:" + err.message + ", error code: " + err.code);
     } else {
       console.info("write data to file succeed and size is:" + writeLen);
     }
@@ -1491,7 +1491,7 @@ truncate(file: string | number, len?: number): Promise&lt;void&gt;
   fs.truncate(filePath, len).then(() => {
     console.info("truncate file succeed");
   }).catch((err: BusinessError) => {
-    console.info("truncate file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("truncate file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1523,7 +1523,7 @@ truncate(file: string | number, len?: number, callback: AsyncCallback&lt;void&gt
   let len: number = 5;
   fs.truncate(filePath, len, (err: BusinessError) => {
     if (err) {
-      console.info("truncate failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("truncate failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("truncate succeed");
     }
@@ -1596,7 +1596,7 @@ readLines(filePath: string, options?: Options): Promise&lt;ReaderIterator&gt;
       console.info("content: " + it.value);
     }
   }).catch((err: BusinessError) => {
-    console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("readLines failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1631,7 +1631,7 @@ readLines(filePath: string, options?: Options, callback: AsyncCallback&lt;Reader
   };
   fs.readLines(filePath, options, (err: BusinessError, readerIterator: fs.ReaderIterator) => {
     if (err) {
-      console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("readLines failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
         console.info("content: " + it.value);
@@ -1715,7 +1715,7 @@ next(): ReaderIteratorResult
       console.info("content: " + it.value);
     }
   }).catch((err: BusinessError) => {
-    console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("readLines failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1763,7 +1763,7 @@ readText(filePath: string, options?: { offset?: number; length?: number; encodin
   fs.readText(filePath).then((str: string) => {
     console.info("readText succeed:" + str);
   }).catch((err: BusinessError) => {
-    console.info("readText failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("readText failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1803,7 +1803,7 @@ readText(filePath: string, options?: { offset?: number; length?: number; encodin
   option.length = stat.size;
   fs.readText(filePath, option, (err: BusinessError, str: string) => {
     if (err) {
-      console.info("readText failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("readText failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("readText succeed:" + str);
     }
@@ -1884,7 +1884,7 @@ lstat(path: string): Promise&lt;Stat&gt;
   fs.lstat(filePath).then((stat: fs.Stat) => {
     console.info("lstat succeed, the size of file is " + stat.size);
   }).catch((err: BusinessError) => {
-    console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("lstat failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1914,7 +1914,7 @@ lstat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
   let filePath = pathDir + "/linkToFile";
   fs.lstat(filePath, (err: BusinessError, stat: fs.Stat) => {
     if (err) {
-      console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("lstat failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("lstat succeed, the size of file is" + stat.size);
     }
@@ -1987,7 +1987,7 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
   fs.rename(srcFile, dstFile).then(() => {
     console.info("rename succeed");
   }).catch((err: BusinessError) => {
-    console.info("rename failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("rename failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2019,7 +2019,7 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
   let dstFile = pathDir + "/new.txt";
   fs.rename(srcFile, dstFile, (err: BusinessError) => {
     if (err) {
-      console.info("rename failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("rename failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("rename succeed");
     }
@@ -2086,7 +2086,7 @@ fsync(fd: number): Promise&lt;void&gt;
   fs.fsync(file.fd).then(() => {
     console.info("sync data succeed");
   }).catch((err: BusinessError) => {
-    console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("sync data failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -2119,7 +2119,7 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
   let file = fs.openSync(filePath);
   fs.fsync(file.fd, (err: BusinessError) => {
     if (err) {
-      console.info("fsync failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("fsync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("fsync succeed");
     }
@@ -2188,7 +2188,7 @@ fdatasync(fd: number): Promise&lt;void&gt;
   fs.fdatasync(file.fd).then(() => {
     console.info("sync data succeed");
   }).catch((err: BusinessError) => {
-    console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("sync data failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -2221,7 +2221,7 @@ fdatasync(fd: number, callback: AsyncCallback&lt;void&gt;): void
   let file = fs.openSync(filePath);
   fs.fdatasync (file.fd, (err: BusinessError) => {
     if (err) {
-      console.info("fdatasync failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("fdatasync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("fdatasync succeed");
     }
@@ -2290,7 +2290,7 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
   fs.symlink(srcFile, dstFile).then(() => {
     console.info("symlink succeed");
   }).catch((err: BusinessError) => {
-    console.info("symlink failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("symlink failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2322,7 +2322,7 @@ symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): v
   let dstFile = pathDir + "/test";
   fs.symlink(srcFile, dstFile, (err: BusinessError) => {
     if (err) {
-      console.info("symlink failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("symlink failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("symlink succeed");
     }
@@ -2413,7 +2413,7 @@ listFile(path: string, options?: {
       console.info("fileName: %s", filenames[i]);
     }
   }).catch((err: BusinessError) => {
-    console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("list file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2465,7 +2465,7 @@ listFile(path: string, options?: {
   option.filter.lastModifiedAfter = new Date().getTime();
   fs.listFile(pathDir, option, (err: BusinessError, filenames: Array<string>) => {
     if (err) {
-      console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("list file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("listFile succeed");
       for (let i = 0; i < filenames.length; i++) {
@@ -2604,7 +2604,7 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
   fs.moveDir(srcPath, destPath, 1).then(() => {
     console.info("move directory succeed");
   }).catch((err: BusinessError) => {
-    console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2640,10 +2640,10 @@ moveDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, 
   fs.moveDir(srcPath, destPath, 1, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < err.data.length; i++) {
-        console.info("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+        console.error("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
-      console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move directory succeed");
     }  
@@ -2683,10 +2683,10 @@ moveDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
   fs.moveDir(srcPath, destPath, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < err.data.length; i++) {
-        console.info("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+        console.error("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
-      console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move directory succeed");
     }  
@@ -2724,7 +2724,7 @@ moveDirSync(src: string, dest: string, mode?: number): void
     fs.moveDirSync(srcPath, destPath, 1);
     console.info("move directory succeed");
   } catch (err) {
-    console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
   }
   ```
 
@@ -2763,7 +2763,7 @@ moveFile(src: string, dest: string, mode?: number): Promise\<void>
   fs.moveFile(srcPath, destPath, 0).then(() => {
     console.info("move file succeed");
   }).catch((err: BusinessError) => {
-    console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("move file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2796,7 +2796,7 @@ moveFile(src: string, dest: string, mode: number, callback: AsyncCallback\<void>
   let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, 0, (err: BusinessError) => {
     if (err) {
-      console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("move file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move file succeed");
     }  
@@ -2830,7 +2830,7 @@ moveFile(src: string, dest: string, callback: AsyncCallback\<void>): void
   let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, (err: BusinessError) => {
     if (err) {
-      console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("move file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move file succeed");
     }  
@@ -2897,7 +2897,7 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
   fs.mkdtemp(pathDir + "/XXXXXX").then((dir: string) => {
     console.info("mkdtemp succeed:" + dir);
   }).catch((err: BusinessError) => {
-    console.info("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2926,7 +2926,7 @@ mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
   import { BusinessError } from '@ohos.base';
   fs.mkdtemp(pathDir + "/XXXXXX", (err: BusinessError, res: string) => {
     if (err) {
-      console.info("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("mkdtemp succeed");
     }
@@ -3025,7 +3025,7 @@ createRandomAccessFile(file: string | File, mode?: number): Promise&lt;RandomAcc
     console.info("randomAccessFile fd: " + randomAccessFile.fd);
     randomAccessFile.close();
   }).catch((err: BusinessError) => {
-    console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -3058,7 +3058,7 @@ createRandomAccessFile(file: string | File, mode: number, callback: AsyncCallbac
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   fs.createRandomAccessFile(file, fs.OpenMode.READ_ONLY (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
     if (err) {
-      console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("randomAccessFile fd: " + randomAccessFile.fd);
       randomAccessFile.close();
@@ -3093,7 +3093,7 @@ createRandomAccessFile(file: string | File, mode: number, callback: AsyncCallbac
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   fs.createRandomAccessFile(file, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
     if (err) {
-      console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("randomAccessFile fd: " + randomAccessFile.fd);
       randomAccessFile.close();
@@ -3169,7 +3169,7 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
   fs.createStream(filePath, "r+").then((stream: fs.Stream) => {
     console.info("createStream succeed");
   }).catch((err: BusinessError) => {
-    console.info("createStream failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("createStream failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     stream.closeSync();
   });
@@ -3203,7 +3203,7 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
   let filePath = pathDir + "/test.txt";
   fs.createStream(filePath, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
-      console.info("create stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("create stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("createStream succeed");
     }
@@ -3279,11 +3279,11 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
   let file = fs.openSync(filePath);
   fs.fdopenStream(file.fd, "r+").then((stream: fs.Stream) => {
     console.info("openStream succeed");
-    stream.closeSync();
-  }).catch((err: BusinessError) => {
-    console.info("openStream failed with error message: " + err.message + ", error code: " + err.code);
-  }).finally(() => {
     fs.closeSync(file);
+  }).catch((err: BusinessError) => {
+    console.error("openStream failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    stream.closeSync();
   });
   ```
 
@@ -3315,12 +3315,12 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
-      console.info("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("fdopen stream succeed");
-      stream.closeSync();
+      fs.closeSync(file);
     }
-    fs.closeSync(file);
+    stream.closeSync();
   });
   ```
 
@@ -3355,8 +3355,8 @@ fdopenStreamSync(fd: number, mode: string): Stream
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE);
   let stream = fs.fdopenStreamSync(file.fd, "r+");
-  stream.closeSync();
   fs.closeSync(file);
+  stream.closeSync();
   ```
 
 ## fs.createWatcher<sup>10+</sup>
@@ -3657,7 +3657,7 @@ close(): Promise&lt;void&gt;
   stream.close().then(() => {
     console.info("close fileStream succeed");
   }).catch((err: BusinessError) => {
-    console.info("close fileStream  failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("close fileStream  failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -3687,7 +3687,7 @@ close(callback: AsyncCallback&lt;void&gt;): void
   let stream = fs.createStreamSync(filePath, "r+");
   stream.close((err: BusinessError) => {
     if (err) {
-      console.info("close stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("close stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("close stream succeed");
     }
@@ -3742,7 +3742,7 @@ flush(): Promise&lt;void&gt;
     console.info("flush succeed");
     stream.close();
   }).catch((err: BusinessError) => {
-    console.info("flush failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("flush failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -3772,7 +3772,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
   let stream = fs.createStreamSync(filePath, "r+");
   stream.flush((err: BusinessError) => {
     if (err) {
-      console.info("flush stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("flush stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("flush succeed");
     }
@@ -3844,7 +3844,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
     console.info("write succeed and size is:" + number);
     stream.close();
   }).catch((err: BusinessError) => {
-    console.info("write failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("write failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -3884,7 +3884,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
   option.length = 5;
   stream.write("hello, world", option, (err: BusinessError, bytesWritten: number) => {
     if (err) {
-      console.info("write stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("write stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       if (bytesWritten) {
         console.info("write succeed and size is:" + bytesWritten);
@@ -3982,7 +3982,7 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
     console.log(`The content of file: ${buf.toString()}`);
     stream.close();
   }).catch((err: BusinessError) => {
-    console.info("read data failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("read data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -4023,7 +4023,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
   option.length = 5;
   stream.read(arrayBuffer, option, (err: BusinessError, readLen: number) => {
     if (err) {
-      console.info("read stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("read stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("read data succeed");
       let buf = buffer.from(arrayBuffer, 0, readLen);
@@ -4150,7 +4150,7 @@ lock(exclusive?: boolean): Promise\<void>
   file.lock(true).then(() => {
     console.log("lock file succeed");
   }).catch((err: BusinessError) => {
-    console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("lock file failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -4183,7 +4183,7 @@ lock(exclusive?: boolean, callback: AsyncCallback\<void>): void
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.lock(true, (err: BusinessError) => {
     if (err) {
-      console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("lock file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.log("lock file succeed");
     }
@@ -4343,7 +4343,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
   randomaccessfile.write(arrayBuffer, option).then((bytesWritten: number) => {
     console.info("randomAccessFile bytesWritten: " + bytesWritten);
   }).catch((err: BusinessError) => {
-    console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     randomAccessFile.close();
     fs.closeSync(file);
@@ -4389,7 +4389,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
   let arrayBuffer = new ArrayBuffer(bufferLength);
   randomAccessFile.write(arrayBuffer, option, (err: BusinessError, bytesWritten: number) => {
     if (err) {
-      console.info("write failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("write failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       if (bytesWritten) {
         console.info("write succeed and size is:" + bytesWritten);
@@ -4486,7 +4486,7 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
   randomaccessfile.read(arrayBuffer, option).then((readLength: number) => {
     console.info("randomAccessFile readLength: " + readLength);
   }).catch((err: BusinessError) => {
-    console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     randomAccessFile.close();
     fs.closeSync(file);
@@ -4531,7 +4531,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
   let arrayBuffer = new ArrayBuffer(length);
   randomaccessfile.read(arrayBuffer, option, (err: BusinessError, readLength: number) => {
     if (err) {
-      console.info("read failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("read failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       if (readLength) {
         console.info("read succeed and size is:" + readLength);
