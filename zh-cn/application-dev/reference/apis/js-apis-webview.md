@@ -1359,7 +1359,7 @@ class testObj {
   }
 
   test(testStr:string): string {
-    console.log('ArkUI Web Component str' + testStr);
+    console.log('Web Component str' + testStr);
     return testStr;
   }
 
@@ -1368,12 +1368,12 @@ class testObj {
   }
 
   testNumber(testNum:number): number {
-    console.log('ArkUI Web Component number' + testNum);
+    console.log('Web Component number' + testNum);
     return testNum;
   }
 
   testBool(testBol:boolean): boolean {
-    console.log('ArkUI Web Component boolean' + testBol);
+    console.log('Web Component boolean' + testBol);
     return testBol;
   }
 }
