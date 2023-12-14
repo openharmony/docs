@@ -1051,6 +1051,99 @@ async function Demo() {
 }
 ```
 
+### applyColorSpace<sup>11+</sup>
+
+applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback: AsyncCallback\<void>): void
+
+根据输入的目标色彩空间对图像像素颜色进行色彩空间转换，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                          |
+| -------- | -------------------- | ---- | ----------------------------- |
+| targetColorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间，支持SRGB、DCI_P3、DISPLAY_P3、ADOBE_RGB_1998。|
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------------------|
+| 401 | If the input parameter is not valid parameter. |
+| 62980104| If the internal object initialized failed |
+| 62980108| If the color space converted failed       |
+| 62980115| If the image parameter invalid            |
+
+**示例：**
+
+```ts
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import {BusinessError} from '@ohos.base'
+
+async function Demo() {
+    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
+    let targetColorSpace : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
+    pixelmap.applyColorSpace(targetColorSpace, (err : BusinessError) => {
+        if (err) {
+            console.error('Failed to apply color space for pixelmap object.');
+        } else {
+            console.log('Succeeded in applying color space for pixelmap object.');
+        }
+    })
+}
+```
+
+### applyColorSpace<sup>11+</sup>
+
+applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\<void>
+
+根据输入的目标色彩空间对图像像素颜色进行色彩空间转换，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型               | 必填 | 说明        |
+| ------ | ------------------ | ---- | ----------- |
+| targetColorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间，支持SRGB、DCI_P3、DISPLAY_P3、ADOBE_RGB_1998。|
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------------------|
+| 401 | If the input parameter is not valid parameter. |
+| 62980104| If the internal object initialized failed |
+| 62980108| If the color space converted failed       |
+| 62980115| If the image parameter invalid            |
+
+**示例：**
+
+```ts
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import {BusinessError} from '@ohos.base'
+
+async function Demo() {
+    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
+    let targetColorSpace : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
+    pixelmap.applyColorSpace(targetColorSpace).then(() => {
+        console.log('Succeeded in applying color space for pixelmap object.');
+    }).catch((error : BusinessError) => {
+        console.error('Failed to apply color space for pixelmap object.');
+    })
+}
+```
+
 ### marshalling<sup>10+</sup>
 
 marshalling(sequence: rpc.MessageSequence): void
@@ -3431,6 +3524,7 @@ PixelMap的初始化选项。
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
 | index              | number                             | 是   | 是   | 解码图片序号。   |
 | fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。   |
+| desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 是   | 目标色彩空间。 |
 
 ## Region<sup>7+</sup>
 
