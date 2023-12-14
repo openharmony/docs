@@ -308,9 +308,11 @@ Sensor_SubscriptionAttribute* OH_Sensor_CreateSubscriptionAttribute (void)
 
 创建[Sensor_SubscriptionAttribute](#sensor_subscriptionattribute)实例。
 
+**起始版本：** 11
+
 **返回：**
 
-如果操作成功，返回指向NULL**。 11 **
+如果操作成功，返回指向[Sensor_SubscriptionAttribute](#sensor_subscriptionattribute)实例的指针；否则返回**NULL**。
 
 
 ### OH_Sensor_CreateSubscriptionId()
