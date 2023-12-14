@@ -531,7 +531,7 @@ observer.off('callStateChange');
 
 ## observer.on('cellularDataConnectionStateChange')<sup>7+</sup>
 
-on\(type: 'cellularDataConnectionStateChange', callback: Callback\<DataConnectStateInfo\>\): void
+on\(type: 'cellularDataConnectionStateChange', callback: Callback\<DataConnectionStateInfo\>\): void
 
 订阅蜂窝数据链路连接状态，使用callback方式作为异步方法。
 
@@ -542,7 +542,7 @@ on\(type: 'cellularDataConnectionStateChange', callback: Callback\<DataConnectSt
 | 参数名   | 类型                               | 必填 | 说明                                                                 |
 | -------- | --------------------------------- | ---- | -------------------------------------------------------------------- |
 | type     | string                            | 是   | 蜂窝数据链路连接状态事件，参数固定为'cellularDataConnectionStateChange'。|
-| callback | Callback\<[DataConnectStateInfo](#dataconnectstateinfo11)\>  | 是   | 以callback形式异步返回结果，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
+| callback | Callback\<[DataConnectionStateInfo](#dataconnectionstateinfo11)\>  | 是   | 以callback形式异步返回结果，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
 
 **错误码：**
 
@@ -562,7 +562,7 @@ on\(type: 'cellularDataConnectionStateChange', callback: Callback\<DataConnectSt
 import data from '@ohos.telephony.data';
 import radio from '@ohos.telephony.radio';
 
-observer.on('cellularDataConnectionStateChange', (data: observer.DataConnectStateInfo) => {
+observer.on('cellularDataConnectionStateChange', (data: observer.DataConnectionStateInfo) => {
     console.log("on cellularDataConnectionStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -570,7 +570,7 @@ observer.on('cellularDataConnectionStateChange', (data: observer.DataConnectStat
 
 ## observer.on('cellularDataConnectionStateChange')<sup>7+</sup>
 
-on\(type: 'cellularDataConnectionStateChange', options: ObserverOptions, callback: Callback\<DataConnectStateInfo\>\): void
+on\(type: 'cellularDataConnectionStateChange', options: ObserverOptions, callback: Callback\<DataConnectionStateInfo\>\): void
 
 订阅指定卡槽位的蜂窝数据链路连接状态，使用callback方式作为异步方法。
 
@@ -582,7 +582,7 @@ on\(type: 'cellularDataConnectionStateChange', options: ObserverOptions, callbac
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 蜂窝数据链路连接状态事件，参数固定为'cellularDataConnectionStateChange'。|
 | options  | [ObserverOptions](#observeroptions11)                        | 是   | 监听的选项。             |
-| callback | Callback\<[DataConnectStateInfo](#dataconnectstateinfo11)\> | 是   | 以callback形式异步返回结果，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
+| callback | Callback\<[DataConnectionStateInfo](#dataconnectionstateinfo11)\> | 是   | 以callback形式异步返回结果，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
 
 **错误码：**
 
@@ -605,7 +605,7 @@ import radio from '@ohos.telephony.radio';
 let options: observer.ObserverOptions = {
     slotId: 0
 }
-observer.on('cellularDataConnectionStateChange', options, (data: observer.DataConnectStateInfo) => {
+observer.on('cellularDataConnectionStateChange', options, (data: observer.DataConnectionStateInfo) => {
     console.log("on cellularDataConnectionStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -613,7 +613,7 @@ observer.on('cellularDataConnectionStateChange', options, (data: observer.DataCo
 
 ## observer.off('cellularDataConnectionStateChange')<sup>7+</sup>
 
-off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<DataConnectStateInfo\>\): void
+off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<DataConnectionStateInfo\>\): void
 
 移除订阅蜂窝数据链路连接状态，使用callback方式作为异步方法。
 
@@ -628,7 +628,7 @@ off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<DataConnec
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 蜂窝数据链路连接状态事件，参数固定为'cellularDataConnectionStateChange'。|
-| callback | Callback\<[DataConnectStateInfo](#dataconnectstateinfo11)\> | 否   | 以callback形式异步返回结果，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
+| callback | Callback\<[DataConnectionStateInfo](#dataconnectionstateinfo11)\> | 否   | 以callback形式异步返回结果，参考data的[DataConnectState](js-apis-telephony-data.md#dataconnectstate)，radio的[RadioTechnology](js-apis-radio.md#radiotechnology)。 |
 
 **错误码：**
 
@@ -648,7 +648,7 @@ off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<DataConnec
 import data from '@ohos.telephony.data';
 import radio from '@ohos.telephony.radio';
 
-let callback: (data: observer.DataConnectStateInfo) => void = (data: observer.DataConnectStateInfo) => {
+let callback: (data: observer.DataConnectionStateInfo) => void = (data: observer.DataConnectionStateInfo) => {
     console.log("on cellularDataConnectionStateChange, data:" + JSON.stringify(data));
 }
 observer.on('cellularDataConnectionStateChange', callback);
@@ -1031,7 +1031,7 @@ SIM卡类型和状态。
 | number              | string                                 | 是   | 电话号码。 |
 
 
-## DataConnectStateInfo<sup>11+</sup>
+## DataConnectionStateInfo<sup>11+</sup>
 
 数据连接状态和无线接入技术。
 
