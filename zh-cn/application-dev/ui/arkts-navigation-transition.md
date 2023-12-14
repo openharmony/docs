@@ -120,8 +120,8 @@ struct NavigationDemo {
         List({ space: 12, initialIndex: 0 }) {
           ForEach(this.listArray, (item : string) => {
             ListItem() {
-              // 通过NavDestination定义导航目标界面，界面之间同故宫组件间的状态变量或者普通变量传递参数
-              // NavRouter点击之后会传递name和param参数给Navigation的navDestination书香方法设置的builder函数(myRouter)
+              // 通过NavDestination定义导航目标界面，界面之间通过组件间的状态变量或者普通变量传递参数
+              // NavRouter点击之后会传递name和param参数给Navigation的navDestination属性方法设置的builder函数(myRouter)
               NavRouter({ name: '方式一进入', param: '' + item }) {
                 Row() {
                   Row() {
