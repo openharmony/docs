@@ -1088,7 +1088,7 @@ async function Demo() {
     let targetColorSpace : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
     pixelmap.applyColorSpace(targetColorSpace, (err : BusinessError) => {
         if (err) {
-            console.log('Failed to apply color space for pixelmap object.');
+            console.error('Failed to apply color space for pixelmap object.');
         } else {
             console.log('Succeeded in applying color space for pixelmap object.');
         }
@@ -1139,7 +1139,7 @@ async function Demo() {
     pixelmap.applyColorSpace(targetColorSpace).then(() => {
         console.log('Succeeded in applying color space for pixelmap object.');
     }).catch((error : BusinessError) => {
-        console.log('Failed to apply color space for pixelmap object.');
+        console.error('Failed to apply color space for pixelmap object.');
     })
 }
 ```
