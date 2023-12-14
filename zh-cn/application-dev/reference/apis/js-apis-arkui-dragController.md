@@ -35,8 +35,8 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | Invalid input parameter |
-| 100001   | Internal error |
+| 401      | if the parameters checking failed. |
+| 100001   | if some internal handling failed. |
 
 **示例：**
 
@@ -117,8 +117,8 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&l
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | Invalid input parameter |
-| 100001   | Internal error |
+| 401      | if the parameters checking failed. |
+| 100001   | if some internal handling failed. |
 
 **示例：**
 
@@ -306,6 +306,8 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 
 创建拖拽的Action对象，需要显式指定拖拽背板图(可多个)，以及拖拽的数据，跟手点等信息；当通过一个已创建的 Action 对象发起的拖拽未结束时，无法再次创建新的 Action 对象，接口会抛出异常。
 
+**说明：** 建议控制传递的拖拽背板数量，传递过多容易导致拖起的效率问题。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -400,4 +402,175 @@ struct DragControllerPage {
       }).margin({top:20})
     }
   }
+}
 ```
+## AnimationOptions<sup>11+</sup>
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+发起拖拽所需要的属性和拖拽时携带的信息。
+
+| 名称        | 类型                                                   | 必填 | 说明                                     |
+| ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
+| duration    | number                                                 | 否   | 动画持续时间，单位为毫秒。<br/>默认值：1000<br/>**说明：**<br/>-&nbsp;设置小于0的值时按0处理。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。|
+| curve       |&nbsp;[Curve](../arkui-ts/ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve) | 否    | 设置动画曲线。<br/>默认值：Curve.EaseInOut|                          |
+
+## dragController.getDragPreview<sup>11+</sup>
+
+getDragPreview(): DragPreview
+
+返回一个代表拖拽背板的对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型        | 说明                                            |
+| ------------| ------------------------------------------------|
+| DragPreview | 一个代表拖拽背板的对象，提供背板样式设置的接口。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | Invalid input parameter |
+| 100001   | Internal error |
+
+**示例：**
+
+请参考[animate](#animate11)
+
+## DragPreview<sup>11+</sup>
+
+拖拽背板的对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### setForegroundColor<sup>11+</sup>
+
+setForegroundColor(color: ResourceColor): void
+
+设置背板蒙版颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                     |
+| -------- | -------------------------------- | ---- | ------------------------ |
+| color    | [ResourceColor](../arkui-ts/ts-types.md#resourcecolor) | 是   |      背板蒙版颜色。                    |
+
+**示例：**
+
+请参考[animate](#animate11)
+
+  ### animate<sup>11+</sup>
+
+animate(options: AnimationOptions, handler: Callback&lt;void&gt;): void
+
+设置背板蒙版颜色变化动效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                               |
+| -------- | -------------------------------- | ---- | -----------------------------------|
+| options  | [AnimationOptions](#animationoptions11)                | 是   | 动效参数                           |
+| handler  | Callback&lt;void&gt;                         | 是   | 用于修改背板蒙版颜色等属性的回调方法。  |
+
+**示例：**
+
+  ```ts
+
+import UDC from '@ohos.data.unifiedDataChannel';
+import dragController from "@ohos.arkui.dragController"
+import componentSnapshot from '@ohos.arkui.componentSnapshot';
+import image from '@ohos.multimedia.image';
+import curves from '@ohos.curves';
+import { BusinessError } from '@ohos.base';
+
+@Entry
+@Component
+struct DragControllerPage {
+  @State pixmap: image.PixelMap|null = null
+
+  @Builder DraggingBuilder() {
+    Column() {
+      Text("DraggingBuilder")
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
+  @Builder PixmapBuilder() {
+    Column() {
+      Text("PixmapBuilder")
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
+  build() {
+    Column() {
+      Button('拖拽至此处').onDragEnter(() => {
+          try {
+            let previewObj: dragController.DragPreview = dragController.getDragPreview();
+            let foregroundColor: ResourceColor = Color.Green;
+
+            let previewAnimation: dragController.AnimationOptions = {
+              curve: curves.cubicBezierCurve(0.2,0,0,1),
+            }
+            previewObj.animate(previewAnimation, () => {
+              previewObj.setForegroundColor(foregroundColor);
+            });
+          } catch (error) {
+              let msg = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`show error code is ${code}, message is ${msg}`);
+          }
+      })
+      .onDrop(() => {
+
+      })
+      Button('拖起').onTouch((event?:TouchEvent) => {
+        if(event){
+          if (event.type == TouchType.Down) {
+            let text = new UDC.Text()
+            let unifiedData = new UDC.UnifiedData(text)
+            console.log("one drag Down");
+            let dragInfo: dragController.DragInfo = {
+              pointerId: 0,
+              data: unifiedData,
+              extraParams: ''
+            }
+              class tmp{
+                event:DragEvent|undefined = undefined
+                extraParams:string = ''
+              }
+              let eve:tmp = new tmp()
+              dragController.executeDrag(() => {
+                this.DraggingBuilder()
+              }, dragInfo, (err , eve) => {
+            console.log(`ljx ${JSON.stringify(err)}`)
+                if (eve && eve.event) {
+                  if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                    console.log('success');
+                  } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                    console.log('failed');
+                  }
+                }
+            })
+
+
+
+          }
+        }
+      }).margin({top:100})
+    }
+    .width('100%')
+    .height('100%')
+  }
+}

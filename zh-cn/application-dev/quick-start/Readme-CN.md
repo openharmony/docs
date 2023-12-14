@@ -48,6 +48,7 @@
       - 自定义组件
         - [创建自定义组件](arkts-create-custom-components.md)
         - [页面和自定义组件生命周期](arkts-page-custom-components-lifecycle.md)
+        - [自定义组件冻结功能](arkts-custom-components-freeze.md)
       - [\@Builder装饰器：自定义构建函数](arkts-builder.md)
       - [\@BuilderParam装饰器：引用\@Builder函数](arkts-builderparam.md)
       - [\@Styles装饰器：定义组件重用样式](arkts-style.md)

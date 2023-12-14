@@ -1816,6 +1816,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 定义自定义系统事件。用户可以使用公共事件接口获取该事件。
 上传下载 SA 具有 'ohos.permission.SEND_TASK_COMPLETE_EVENT' 该权限，用户可以配置事件的 metadata 指向的二级配置文件来拦截其他事件发送者。
 
+使用 CommonEventData 类型传输公共事件相关数据。成员的内容填写和 [CommonEventData介绍](js-apis-inner-commonEvent-commonEventData.md) 介绍的有所区别，其中 CommonEventData.code 表示任务的状态，目前为 0x40 COMPLETE 或 0x41 FAILED; CommonEventData.data 表示任务的 taskId。
+
 事件配置信息请参考[静态订阅公共事件](../../application-models/common-event-static-subscription.md)。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
@@ -1823,19 +1825,6 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | 名称 | 值 | 说明        |
 | -------- | ------- |-----------|
 | COMPLETE | 'ohos.request.event.COMPLETE' | 表示任务完成事件。 |
-
-## CommonEventData<sup>11+</sup>
-应用接收到的公共事件的数据。
-
-**系统能力**: SystemCapability.Request.FileTransferAgent
-
-| 名称 | 类型 | 说明        |
-| -------- | ------- |-----------|
-| event | string | 表示当前接收的公共事件名称。 |
-| bundleName | string | 表示包名称。 |
-| code | number | 表示任务的状态，目前为 0x40 COMPLETE 或 0x41 FAILED。 |
-| data | string | 表示任务的 taskId。 |
-| parameter | {[key: string]: any} | 表示公共事件的附加信息，默认填空。 |
 
 ## FileSpec<sup>10+</sup> 
 表单项的文件信息。

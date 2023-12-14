@@ -46,7 +46,7 @@ getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
 ```ts
 //此处获取的phAccessHelper实例为全局对象，后续使用到phAccessHelper的地方默认为使用此处获取的对象，如未添加此段代码报phAccessHelper未定义的错误请自行添加
-const context = getContext(this);
+let context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 ```
 
@@ -94,10 +94,10 @@ async function example() {
   };
 
   phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
-    if (fetchResult != undefined) {
+    if (fetchResult !== undefined) {
       console.info('fetchResult success');
       let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-      if (photoAsset != undefined) {
+      if (photoAsset !== undefined) {
         console.info('photoAsset.displayName : ' + photoAsset.displayName);
       }
     } else {
@@ -154,10 +154,10 @@ async function example() {
   };
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    if (fetchResult != undefined) {
+    if (fetchResult !== undefined) {
       console.info('fetchResult success');
       let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-      if (photoAsset != undefined) {
+      if (photoAsset !== undefined) {
         console.info('photoAsset.displayName :' + photoAsset.displayName);
       }
     }
@@ -206,7 +206,7 @@ async function example() {
   console.info('createAssetDemo');
   let testFileName: string = 'testFile' + Date.now() + '.jpg';
   phAccessHelper.createAsset(testFileName, (err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('createAsset file displayName' + photoAsset.displayName);
       console.info('createAsset successfully');
     } else {
@@ -312,7 +312,7 @@ async function example() {
     subtype: photoAccessHelper.PhotoSubtype.DEFAULT
   }
   phAccessHelper.createAsset(testFileName, createOption, (err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('createAsset file displayName' + photoAsset.displayName);
       console.info('createAsset successfully');
     } else {
@@ -422,7 +422,7 @@ async function example() {
     title: 'testPhoto'
   }
   phAccessHelper.createAsset(photoType, extension, options, (err, uri) => {
-    if (uri != undefined) {
+    if (uri !== undefined) {
       console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
@@ -471,7 +471,7 @@ async function example() {
   let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
   let extension: string = 'jpg';
   phAccessHelper.createAsset(photoType, extension, (err, uri) => {
-    if (uri != undefined) {
+    if (uri !== undefined) {
       console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
@@ -826,7 +826,7 @@ async function example() {
       console.error('getAlbumsCallback failed with err: ' + err);
       return;
     }
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getAlbumsCallback fetchResult is undefined');
       return;
     }
@@ -879,7 +879,7 @@ async function example() {
       console.error('getAlbumsCallback failed with err: ' + err);
       return;
     }
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getAlbumsCallback fetchResult is undefined');
       return;
     }
@@ -943,7 +943,7 @@ async function example() {
     predicates: predicates
   };
   phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions).then( async (fetchResult) => {
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getAlbumsPromise fetchResult is undefined');
       return;
     }
@@ -1003,7 +1003,7 @@ async function getHiddenAlbumsView() {
   };
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE, fetchOptions,
     async (err, fetchResult) => {
-      if (fetchResult == undefined) {
+      if (fetchResult === undefined) {
         console.error('getHiddenAlbumsViewCallback fetchResult is undefined');
         return;
       }
@@ -1053,7 +1053,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function getSysHiddenAlbum() {
   console.info('getSysHiddenAlbumDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE, async (err, fetchResult) => {
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getSysHiddenAlbumCallback fetchResult is undefined');
       return;
     }
@@ -1067,7 +1067,7 @@ async function getSysHiddenAlbum() {
 async function getHiddenAlbumsView() {
   console.info('getHiddenAlbumsViewDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE, async (err, fetchResult) => {
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getHiddenAlbumsViewCallback fetchResult is undefined');
       return;
     }
@@ -1126,7 +1126,7 @@ async function getSysHiddenAlbum() {
   console.info('getSysHiddenAlbumDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE)
     .then( async (fetchResult) => {
-      if (fetchResult == undefined) {
+      if (fetchResult === undefined) {
         console.error('getSysHiddenAlbumPromise fetchResult is undefined');
         return;
       }
@@ -1142,7 +1142,7 @@ async function getSysHiddenAlbum() {
 async function getHiddenAlbumsView() {
   console.info('getHiddenAlbumsViewDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE).then( async (fetchResult) => {
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getHiddenAlbumsViewPromise fetchResult is undefined');
       return;
     }
@@ -1216,19 +1216,19 @@ async function example() {
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    if (asset == undefined) {
+    if (asset === undefined) {
       console.error('asset not exist');
       return;
     }
     phAccessHelper.deleteAssets([asset.uri], (err) => {
-      if (err == undefined) {
+      if (err === undefined) {
         console.info('deleteAssets successfully');
       } else {
         console.error('deleteAssets failed with error: ' + err);
       }
     });
   } catch (err) {
-    console.info('fetch failed, message =', err);
+    console.error('fetch failed, message =', err);
   }
 }
 ```
@@ -1283,9 +1283,9 @@ async function example() {
     predicates: predicates
   };
   try {
-    const fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    if (asset == undefined) {
+    if (asset === undefined) {
       console.error('asset not exist');
       return;
     }
@@ -1337,7 +1337,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
   let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-  if (photoAsset != undefined) {
+  if (photoAsset !== undefined) {
     console.info('photoAsset.displayName : ' + photoAsset.displayName);
   }
   let onCallback1 = (changeData: photoAccessHelper.ChangeData) => {
@@ -1354,7 +1354,7 @@ async function example() {
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
 
   photoAsset.setFavorite(true, (err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('setFavorite successfully');
     } else {
       console.error('setFavorite failed with error:' + err);
@@ -1402,7 +1402,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
   let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-  if (photoAsset != undefined) {
+  if (photoAsset !== undefined) {
     console.info('photoAsset.displayName : ' + photoAsset.displayName);
   }
   let onCallback1 = (changeData: photoAccessHelper.ChangeData) => {
@@ -1418,7 +1418,7 @@ async function example() {
   // 关闭onCallback1监听，onCallback2 继续监听
   phAccessHelper.unRegisterChange(photoAsset.uri, onCallback1);
   photoAsset.setFavorite(true, (err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('setFavorite successfully');
     } else {
       console.error('setFavorite failed with error:' + err);
@@ -1468,14 +1468,14 @@ async function example() {
     predicates: predicates
   };
   try {
-    const fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    if (asset == undefined) {
+    if (asset === undefined) {
       console.error('asset not exist');
       return;
     }
     phAccessHelper.createDeleteRequest([asset.uri], (err) => {
-      if (err == undefined) {
+      if (err === undefined) {
         console.info('createDeleteRequest successfully');
       } else {
         console.error('createDeleteRequest failed with error: ' + err);
@@ -1533,9 +1533,9 @@ async function example() {
     predicates: predicates
   };
   try {
-    const fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    if (asset == undefined) {
+    if (asset === undefined) {
       console.error('asset not exist');
       return;
     }
@@ -1608,7 +1608,7 @@ async function example() {
     let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
 
     phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
-      if (err == undefined) {
+      if (err === undefined) {
         console.info(`getPhotoIndex successfully and index is : ${index}`);
       } else {
         console.info(`getPhotoIndex failed;`);
@@ -1696,6 +1696,243 @@ async function example() {
 }
 ```
 
+### saveFormInfo<sup>11+</sup>
+
+saveFormInfo(info:FormInfo, callback: AsyncCallback&lt;void&gt;):void
+
+将图库卡片相关信息保存到数据库中，使用callback方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [FormInfo](#forminfo11)        | 是   | 图库卡片信息，包括图库卡片的id和卡片绑定的图片的uri。              |
+| callback |  AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401   | if the argument is invalid.         |
+| 14000011       | System inner fail.         |
+
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('saveFormInfoDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+  let info: photoAccessHelper.FormInfo = {
+    //formId是一个由纯数字组成的字符串，uri为图库中存在的图片的uri信息，图库中无图片创建卡片时uri需为空字符串
+    formId : "20230116123",
+    uri: photoAsset.uri,
+  }
+
+  phAccessHelper.saveFormInfo(info, async (err: BusinessError) => {
+    if (err == undefined) {
+      console.info('saveFormInfo success');
+    } else {
+      console.error('saveFormInfo fail' + err);
+    }
+  });
+}
+```
+
+### saveFormInfo<sup>11+</sup>
+
+saveFormInfo(info:FormInfo):Promise&lt;void&gt;
+
+将图库卡片相关信息保存到数据库中，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [FormInfo](#forminfo11)        | 是   | 图库卡片信息，包括图库卡片的id和卡片绑定的图片的uri。              |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401   | if the argument is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('saveFormInfoDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+  let info: photoAccessHelper.FormInfo = {
+    //formId是一个由纯数字组成的字符串，uri为图库中存在的图片的uri信息，图库中无图片创建卡片时uri需为空字符串
+    formId: "20230116123",
+    uri: photoAsset.uri,
+  }
+
+  phAccessHelper.saveFormInfo(info).then(() => {
+    console.info('saveFormInfo successfully');
+  }).catch((err: BusinessError) => {
+    console.info('saveFormInfo failed' + err);
+  });
+}
+```
+
+### removeFormInfo<sup>11+</sup>
+
+removeFormInfo(info:FormInfo, callback: AsyncCallback&lt;void&gt;):void
+
+从数据库中删除图库卡片信息，使用callback方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [FormInfo](#forminfo11)        | 是   |  图库卡片信息，包括图库卡片的id和卡片绑定的图片的uri。              |
+| callback |  AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401   | if the argument is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('removeFormInfoDemo');
+  let info: photoAccessHelper.FormInfo = {
+    //formId是一个由纯数字组成的字符串，移除卡片的时候uri填空即可
+    formId: "20230116123",
+    uri: "",
+  }
+
+  phAccessHelper.removeFormInfo(info, async (err: BusinessError) => {
+    if (err == undefined) {
+      console.info('removeFormInfo success');
+    } else {
+      console.error('removeFormInfo fail' + err);
+    }
+  });
+}
+```
+
+### removeFormInfo<sup>11+</sup>
+
+removeFormInfo(info:FormInfo):Promise&lt;void&gt;
+
+从数据库中删除图库卡片信息，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [FormInfo](#forminfo11)        | 是   |  图库卡片信息，包括图库卡片的id和卡片绑定的图片的uri。              |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401   | if the argument is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('removeFormInfoDemo');
+  let info: photoAccessHelper.FormInfo = {
+    //formId是一个由纯数字组成的字符串，移除卡片的时候uri填空即可
+    formId: "20230116123",
+    uri: "",
+  }
+
+  phAccessHelper.removeFormInfo(info).then(() => {
+    console.info('removeFormInfo successfully');
+  }).catch((err: BusinessError) => {
+    console.info('removeFormInfo failed' + err);
+  });
+}
+```
+
 ### release
 
 release(callback: AsyncCallback&lt;void&gt;): void
@@ -1727,7 +1964,7 @@ release(callback: AsyncCallback&lt;void&gt;): void
 async function example() {
   console.info('releaseDemo');
   phAccessHelper.release((err) => {
-    if (err != undefined) {
+    if (err !== undefined) {
       console.error('release failed. message = ', err);
     } else {
       console.info('release ok.');
@@ -1938,7 +2175,7 @@ async function example() {
   console.info('photoAsset get photoAssetTitle = ', photoAssetTitle);
   photoAsset.set(title, 'newTitle2');
   photoAsset.commitModify((err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       let newPhotoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title);
       console.info('photoAsset get newPhotoAssetTitle = ', newPhotoAssetTitle);
     } else {
@@ -2010,7 +2247,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 打开当前文件，使用callback方式返回异步结果。
 
-**注意**：当前写操作是互斥的操作，写操作完成后需要调用close进行释放。
+**注意**：当前此（写）操作是互斥的操作，返回的文件描述符在使用完毕后需要调用close进行释放。
 
 **系统接口**：此接口为系统接口。
 
@@ -2022,7 +2259,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名      | 类型                          | 必填   | 说明                                  |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| mode     | string                      | 是    | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写）。 |
+| mode     | string                      | 是    | 打开文件方式，分别为：'r'（只读）, 'w'（只写）, 'rw'（读写）。 |
 | callback | AsyncCallback&lt;number&gt; | 是    | callback返回文件描述符。                            |
 
 **错误码：**
@@ -2042,10 +2279,10 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 ```ts
 async function example() {
   console.info('openDemo');
-   let testFileName: string = 'testFile' + Date.now() + '.jpg';
-  const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+  let testFileName: string = 'testFile' + Date.now() + '.jpg';
+  let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
   photoAsset.open('rw', (err, fd) => {
-    if (fd != undefined) {
+    if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
@@ -2061,7 +2298,7 @@ open(mode: string): Promise&lt;number&gt;
 
 打开当前文件，使用promise方式返回异步结果。
 
-**注意**：当前写操作是互斥的操作，写操作完成后需要调用close进行释放。
+**注意**：当前此（写）操作是互斥的操作，返回的文件描述符在使用完毕后需要调用close进行释放。
 
 **系统接口**：此接口为系统接口。
 
@@ -2073,7 +2310,7 @@ open(mode: string): Promise&lt;number&gt;
 
 | 参数名  | 类型     | 必填   | 说明                                  |
 | ---- | ------ | ---- | ----------------------------------- |
-| mode | string | 是    | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写）。 |
+| mode | string | 是    | 打开文件方式，分别为：'r'（只读）, 'w'（只写）, 'rw'（读写）。 |
 
 **返回值：**
 
@@ -2100,9 +2337,9 @@ async function example() {
   console.info('openDemo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
-    const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+    let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
     let fd: number = await photoAsset.open('rw');
-    if (fd != undefined) {
+    if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
@@ -2120,7 +2357,7 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 
 以只读方式打开当前文件，使用callback方式返回异步结果。
 
-**注意**：读操作完成后需要调用close进行释放。
+**注意**：返回的文件描述符在使用完毕后需要调用close进行释放。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
@@ -2148,10 +2385,10 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 ```ts
 async function example() {
   console.info('getReadOnlyFdDemo');
-   let testFileName: string = 'testFile' + Date.now() + '.jpg';
-  const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+  let testFileName: string = 'testFile' + Date.now() + '.jpg';
+  let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
   photoAsset.getReadOnlyFd((err, fd) => {
-    if (fd != undefined) {
+    if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
@@ -2167,7 +2404,7 @@ getReadOnlyFd(): Promise&lt;number&gt;
 
 以只读方式打开当前文件，使用promise方式返回异步结果。
 
-**注意**：读操作完成后需要调用close进行释放。
+**注意**：返回的文件描述符在使用完毕后需要调用close进行释放。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
@@ -2197,9 +2434,9 @@ async function example() {
   console.info('getReadOnlyFdDemo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
-    const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+    let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
     let fd: number = await photoAsset.getReadOnlyFd();
-    if (fd != undefined) {
+    if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
@@ -2250,11 +2487,11 @@ async function example() {
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-    const photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let fd: number = await photoAsset.open('rw');
     console.info('file fd', fd);
     photoAsset.close(fd, (err) => {
-      if (err == undefined) {
+      if (err === undefined) {
         console.info('asset close succeed.');
       } else {
         console.error('close failed, message = ' + err);
@@ -2310,7 +2547,7 @@ async function example() {
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-    const asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let fd = await asset.open('rw');
     console.info('file fd', fd);
     await asset.close(fd);
@@ -2361,10 +2598,10 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+  let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail((err, pixelMap) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('getThumbnail successful ' + pixelMap);
     } else {
       console.error('getThumbnail fail', err);
@@ -2416,10 +2653,10 @@ async function example() {
   };
   let size: image.Size = { width: 720, height: 720 };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail(size, (err, pixelMap) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('getThumbnail successful ' + pixelMap);
     } else {
       console.error('getThumbnail fail', err);
@@ -2477,7 +2714,7 @@ async function example() {
   };
   let size: image.Size = { width: 720, height: 720 };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail(size).then((pixelMap) => {
     console.info('getThumbnail successful ' + pixelMap);
@@ -2531,9 +2768,9 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   asset.setFavorite(true, (err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('favorite successfully');
     } else {
       console.error('favorite failed with error:' + err);
@@ -2592,7 +2829,7 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   asset.setFavorite(true).then(() => {
     console.info('setFavorite successfully');
   }).catch((err: BusinessError) => {
@@ -2647,9 +2884,9 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   asset.setHidden(true, (err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('setHidden successfully');
     } else {
       console.error('setHidden failed with error:' + err);
@@ -2711,9 +2948,9 @@ async function example() {
     predicates: predicates
   };
   let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.HIDDEN);
-  const album = await albumList.getFirstObject();
+  let album = await albumList.getFirstObject();
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   asset.setHidden(false).then(() => {
     console.info('setHidden successfully');
   }).catch((err: BusinessError) => {
@@ -2728,7 +2965,9 @@ getExif(): Promise&lt;string&gt;
 
 返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
 
-**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与[PhotoKeys.USER_COMMENT](#photokeys)组成，fetchColumns需要传入这两个字段。
+此接口中获取的Exif标签信息是由[image](js-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](js-apis-image.md#propertykey7)。
+
+**注意**：此接口返回的是Exif标签组成的json格式的字符串，完整Exif信息由all_exif与[PhotoKeys.USER_COMMENT](#photokeys)组成，fetchColumns需要传入这两个字段。
 
 **系统接口**：此接口为系统接口。
 
@@ -2753,48 +2992,6 @@ getExif(): Promise&lt;string&gt;
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
-
-**支持Exif标签列表**：
-
-Exif标签的详细信息请参考[image.PropertyKey](js-apis-image.md#propertykey7)。
-
-| 标签key值                                    | 标签说明              |
-| --------------------------------------- | ----------------- |
-| BitsPerSample | 每个像素比特数 |
-| Orientation | 图像方向 |
-| ImageLength | 图像长度 |
-| ImageWidth | 图像宽度 |
-| GPSLatitude | GPS纬度 |
-| GPSLongitude | GPS经度 |
-| GPSLatitudeRef | 经度引用，例如W或E |
-| GPSLongitudeRef | 纬度引用，例如N或S |
-| DateTimeOriginal | 拍摄时间 |
-| ExposureTime | 曝光时间 |
-| SceneType | 场景类型 |
-| ISOSpeedRatings | ISO感光度分值 |
-| FNumber | 光圈F值 |
-| DateTime | 修改时间 |
-| GPSTimeStamp | GPS时间戳 |
-| GPSDateStamp | GPS日期戳 |
-| ImageDescription | 图像描述 |
-| Make | 制造商 |
-| MakeNote | 制造商 |
-| Model | 型号 |
-| PhotoMode | 拍摄模式 |
-| SensitivityType | 感光类型 |
-| StandardOutputSensitivity | 标准输出感光度 |
-| RecommendedExposureIndex | 推荐曝光指数 |
-| ApertureValue | 光圈 |
-| MeteringMode | 测光模式 |
-| LightSource | 光源 |
-| Flash | 闪光灯 |
-| FocalLength | 镜头焦距 |
-| UserComment | 用户注释 |
-| PixelXDimension | 有效图像宽度 |
-| PixelYDimension | 有效图像高度 |
-| WhiteBalance | 白平衡 |
-| FocalLengthIn35mmFilm | 35mm等效焦距 |
-| ExposureBiasValue | 曝光补偿 |
 
 **示例：**
 
@@ -2827,7 +3024,9 @@ getExif(callback: AsyncCallback&lt;string&gt;): void
 
 返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
 
-**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与[PhotoKeys.USER_COMMENT](#photokeys)组成，fetchColumns需要传入这两个字段。
+此接口中获取的Exif标签信息是由[image](js-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](js-apis-image.md#propertykey7)。
+
+**注意**：此接口返回的是Exif标签组成的json格式的字符串，完整Exif信息由all_exif与[PhotoKeys.USER_COMMENT](#photokeys)组成，fetchColumns需要传入这两个字段。
 
 **系统接口**：此接口为系统接口。
 
@@ -2853,48 +3052,6 @@ getExif(callback: AsyncCallback&lt;string&gt;): void
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
-**支持Exif标签列表**：
-
-Exif标签的详细信息请参考[image.PropertyKey](js-apis-image.md#propertykey7)。
-
-| 标签key值                                    | 标签说明              |
-| --------------------------------------- | ----------------- |
-| BitsPerSample | 每个像素比特数 |
-| Orientation | 图像方向 |
-| ImageLength | 图像长度 |
-| ImageWidth | 图像宽度 |
-| GPSLatitude | GPS纬度 |
-| GPSLongitude | GPS经度 |
-| GPSLatitudeRef | 经度引用，例如W或E |
-| GPSLongitudeRef | 纬度引用，例如N或S |
-| DateTimeOriginal | 拍摄时间 |
-| ExposureTime | 曝光时间 |
-| SceneType | 场景类型 |
-| ISOSpeedRatings | ISO感光度分值 |
-| FNumber | 光圈F值 |
-| DateTime | 修改时间 |
-| GPSTimeStamp | GPS时间戳 |
-| GPSDateStamp | GPS日期戳 |
-| ImageDescription | 图像描述 |
-| Make | 制造商 |
-| MakeNote | 制造商 |
-| Model | 型号 |
-| PhotoMode | 拍摄模式 |
-| SensitivityType | 感光类型 |
-| StandardOutputSensitivity | 标准输出感光度 |
-| RecommendedExposureIndex | 推荐曝光指数 |
-| ApertureValue | 光圈 |
-| MeteringMode | 测光模式 |
-| LightSource | 光源 |
-| Flash | 闪光灯 |
-| FocalLength | 镜头焦距 |
-| UserComment | 用户注释 |
-| PixelXDimension | 有效图像宽度 |
-| PixelYDimension | 有效图像高度 |
-| WhiteBalance | 白平衡 |
-| FocalLengthIn35mmFilm | 35mm等效焦距 |
-| ExposureBiasValue | 曝光补偿 |
-
 **示例：**
 
 ```ts
@@ -2914,7 +3071,7 @@ async function example() {
     console.info('getExifDemo photoAsset displayName: ' + JSON.stringify(photoAsset.displayName));
     let userCommentKey = 'UserComment';
     photoAsset.getExif((err, exifMessage) => {
-      if (exifMessage != undefined) {
+      if (exifMessage !== undefined) {
         let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
         console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
       } else {
@@ -3093,6 +3250,7 @@ async function example() {
     console.info('setPendingCallbackDemo');
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
     let photoAsset = await phAccessHelper.createAsset(testFileName);
+    let fd = await photoAsset.open('rw');
     photoAsset.setPending(true, async (err) => {
       if (err !== undefined) {
         console.error('setPending(true) failed with error: ' + err);
@@ -3141,7 +3299,6 @@ setPending(pendingState: boolean): Promise&lt;void&gt;
 | --------------------------------------- | ----------------- |
 |Promise&lt;boolean&gt; | Promise对象，返回void。 |
 
-
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
@@ -3161,7 +3318,7 @@ async function example() {
     console.info('setPendingPromiseDemo');
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
     let photoAsset = await phAccessHelper.createAsset(testFileName);
-    let fd = await photoAsset.open('fd');
+    let fd = await photoAsset.open('rw');
     await photoAsset.setPending(true);
     // write photo buffer in fd
     photoAsset.setPending(false);
@@ -3420,7 +3577,7 @@ requestSource(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | 是    | Callback对象，返回源文件fd。 |
+| callback | AsyncCallback&lt;number&gt; | 是    | Callback对象，返回源文件fd。 |
 
 **错误码：**
 
@@ -3477,8 +3634,7 @@ requestSource(): Promise&lt;number&gt;
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-|Promise&lt;string&gt; | Promise对象，返回源文件fd。 |
-
+|Promise&lt;number&gt; | Promise对象，返回源文件fd。 |
 
 **错误码：**
 
@@ -3570,7 +3726,7 @@ async function example() {
       if (err === undefined) {
         console.info('commitEditedAsset is successful');
       } else {
-        console.error('requestSource failed with error: ' + err);
+        console.error('commitEditedAsset failed with error: ' + err);
       }
     });
   } catch (err) {
@@ -3581,7 +3737,7 @@ async function example() {
 
 ### commitEditedAsset<sup>11+</sup>
 
-commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt
+commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt;
 
 提交编辑数据以及编辑后的图片或视频，该方法使用promise形式来返回结果。
 
@@ -3607,7 +3763,6 @@ commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
 |Promise&lt;void&gt; | Promise对象，返回void。 |
-
 
 **错误码：**
 
@@ -3637,7 +3792,7 @@ async function example() {
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let editData = '123456';
     let uri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
-    photoAsset.commitEditedAsset(editData, uri);
+    await photoAsset.commitEditedAsset(editData, uri);
     console.info('commitEditedAsset is successful');
   } catch (err) {
     console.error('commitEditedAssetPromiseDemo failed with error: ' + err);
@@ -3699,7 +3854,7 @@ async function example() {
       }
     });
   } catch (err) {
-    console.error('RevertToOriginalCallbackDemo failed with error: ' + err);
+    console.error('revertToOriginalCallbackDemo failed with error: ' + err);
   }
 }
 ```
@@ -3724,6 +3879,65 @@ revertToOriginal(): Promise&lt;void&gt;
 | --------------------------------------- | ----------------- |
 |Promise&lt;string&gt; | Promise对象，返回void。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('revertToOriginalPromiseDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    photoAsset.revertToOriginal();
+    console.info('revertToOriginal is successful');
+  } catch (err) {
+    console.error('revertToOriginalPromiseDemo failed with error: ' + err);
+  }
+}
+```
+
+### requestPhoto<sup>11+</sup>
+
+requestPhoto(callback: AsyncCallback&lt;image.PixelMap&gt;): string
+
+通过callback的形式，获取资源的快速缩略图和普通缩略图。
+
+快速缩略图尺寸为128\*128，普通缩略图尺寸为256\*256。应用调用接口后，callback将返回两次缩略图对象，第一次为快速缩略图，第二次为普通缩略图。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是    | Callback对象，返回获取的缩略图，调用2次。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| string | 本次获取任务的id。 |
 
 **错误码：**
 
@@ -3743,25 +3957,164 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   try {
-    console.info('RevertToOriginalPromiseDemo')
-    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOptions: photoAccessHelper.FetchOptions = {
+    console.info('requestPhotoDemo')
+    let options = {
       fetchColumns: [],
-      predicates: predicates
-    };
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    photoAsset.revertToOriginal();
-    console.info('revertToOriginal is successful');
+      predicates: new dataSharePredicates.DataSharePredicates()
+    }
+    let fetchResult = await phAccessHelper.getAssets(options);
+    let photoAsset = await fetchResult.getFirstObject();
+    let taskId: string = photoAsset.requestPhoto(async (err, pixel: image.PixelMap) => {
+      if (err === undefined) {
+        console.info("requestSource in, size: " + JSON.stringify((await pixel.getImageInfo()).size))
+      } else {
+        console.error('requestSource failed with error: ' + err);
+      }
+    })
+    console.info('requestSource taskId: ' + taskId)
   } catch (err) {
-    console.error('RevertToOriginalPromiseDemo failed with error: ' + err);
+    console.error('requestPhotoDemo failed with error: ' + err)
+  }
+}
+```
+
+### requestPhoto<sup>11+</sup>
+
+requestPhoto(options: RequestPhotoOptions, callback: AsyncCallback&lt;image.PixelMap&gt;): string
+
+通过callback的形式，根据传入的选项，获取资源的缩略图。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| options | [RequestPhotoOptions](#requestphotooptions11) | 是    | 获取资源缩略图的选项。 |
+| callback | AsyncCallback&lt;[image.PixelMap]((js-apis-image.md#pixelmap7))&gt; | 是    | Callback对象，返回获取的缩略图，根据选项的设置可能调用超过1次。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| string | 本次获取任务的id。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('requestPhotoDemo')
+    let options = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    }
+    let fetchResult = await phAccessHelper.getAssets(options);
+    let photoAsset = await fetchResult.getFirstObject();
+    let taskId: string = photoAsset.requestPhoto({
+      "size": {
+        "width": 256,
+        "height": 256
+      },
+      "requestPhotoType": photoAccessHelper.RequestPhotoType.REQUEST_ALL_THUMBNAILS
+    }, async (err, pixel: image.PixelMap) => {
+      if (err === undefined) {
+        console.info("requestSource in, size: " + JSON.stringify((await pixel.getImageInfo()).size))
+      } else {
+        console.error('requestSource failed with error: ' + err);
+      }
+    })
+    console.info('requestSource taskId: ' + taskId)
+  } catch (err) {
+    console.error('requestPhotoDemo failed with error: ' + err)
+  }
+}
+```
+
+### cancelPhotoRequest<sup>11+</sup>
+
+cancelPhotoRequest(requestId: string): void
+
+根据id取消指定的获取媒体缩略图的任务。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| requestId | string | 是    | 待取消的获取媒体缩略图的任务id。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('cancelPhotoRequestDemo')
+    let options = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    }
+    let fetchResult = await phAccessHelper.getAssets(options);
+    let photoAsset = await fetchResult.getFirstObject();
+    let taskId: string = photoAsset.requestPhoto({
+      "size": {
+        "width": 256,
+        "height": 256
+      },
+      "requestPhotoType": photoAccessHelper.RequestPhotoType.REQUEST_ALL_THUMBNAILS
+    }, async (err, pixel: image.PixelMap) => {
+      if (err === undefined) {
+        console.info("requestSource in, size: " + JSON.stringify((await pixel.getImageInfo()).size))
+      } else {
+        console.error('requestSource failed with error: ' + err);
+      }
+    })
+    console.info('requestSource taskId: ' + taskId)
+    photoAsset.cancelPhotoRequest(taskId);
+  } catch (err) {
+    console.error('cancelPhotoRequestDemo failed with error: ' + err)
   }
 }
 ```
 
 ## PhotoViewPicker
 
-图库选择器对象，用来支撑选择图片/视频和等用户场景。在使用前，需要先创建PhotoViewPicker实例。
+图库选择器对象，用来支撑选择图片/视频等用户场景。在使用前，需要先创建PhotoViewPicker实例。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3961,7 +4314,7 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const fetchCount = fetchResult.getCount();
+  let fetchCount = fetchResult.getCount();
   console.info('fetchCount = ', fetchCount);
 }
 ```
@@ -4002,7 +4355,7 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const fetchCount = fetchResult.getCount();
+  let fetchCount = fetchResult.getCount();
   console.info('count:' + fetchCount);
   let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getLastObject();
   if (fetchResult.isAfterLast()) {
@@ -4091,7 +4444,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getFirstObject((err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
       console.error('photoAsset failed with err:' + err);
@@ -4183,7 +4536,7 @@ async function example() {
   await fetchResult.getFirstObject();
   if (!fetchResult.isAfterLast()) {
     fetchResult.getNextObject((err, photoAsset) => {
-      if (photoAsset != undefined) {
+      if (photoAsset !== undefined) {
         console.info('photoAsset displayName: ', photoAsset.displayName);
       } else {
         console.error('photoAsset failed with err: ' + err);
@@ -4277,7 +4630,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getLastObject((err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
       console.error('photoAsset failed with err: ' + err);
@@ -4367,7 +4720,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getObjectByPosition(0, (err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
       console.error('photoAsset failed with err: ' + err);
@@ -4462,7 +4815,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getAllObjects((err, photoAssetList) => {
-    if (photoAssetList != undefined) {
+    if (photoAssetList !== undefined) {
       console.info('photoAssetList length: ', photoAssetList.length);
     } else {
       console.error('photoAssetList failed with err:' + err);
@@ -4574,10 +4927,10 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  const album: photoAccessHelper.Album = await albumList.getFirstObject();
+  let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  let album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.getAssets(fetchOption, (err, albumFetchResult) => {
-    if (albumFetchResult != undefined) {
+    if (albumFetchResult !== undefined) {
       console.info('album getAssets successfully, getCount: ' + albumFetchResult.getCount());
     } else {
       console.error('album getAssets failed with error: ' + err);
@@ -4637,8 +4990,8 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  const album: photoAccessHelper.Album = await albumList.getFirstObject();
+  let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  let album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.getAssets(fetchOption).then((albumFetchResult) => {
     console.info('album getPhotoAssets successfully, getCount: ' + albumFetchResult.getCount());
   }).catch((err: BusinessError) => {
@@ -4686,11 +5039,11 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  const album: photoAccessHelper.Album = await albumList.getFirstObject();
+  let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  let album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify((err) => {
-    if (err != undefined) {
+    if (err !== undefined) {
       console.error('commitModify failed with error: ' + err);
     } else {
       console.info('commitModify successfully');
@@ -4739,8 +5092,8 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  const album: photoAccessHelper.Album = await albumList.getFirstObject();
+  let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  let album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify().then(() => {
     console.info('commitModify successfully');
@@ -5350,10 +5703,11 @@ setCoverUri(uri: string): Promise&lt;void&gt;
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   try {
-    console.info('setCoverUriDemoCallback');
+    console.info('setCoverUriDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
     let fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
@@ -5363,15 +5717,13 @@ async function example() {
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    album.setCoverUri(asset.uri, (err) => {
-      if (err === undefined) {
-        console.info('album setCoverUri successfully');
-      } else {
-        console.error('album setCoverUri failed with error: ' + err);
-      }
+    album.setCoverUri(asset.uri).then(() => {
+      console.info('album setCoverUri successfully');
+    }).catch((err: BusinessError) => { 
+      console.error('album setCoverUri failed with error: ' + err);
     });
   } catch (err) {
-    console.error('setCoverUriDemoCallback failed with error: ' + err);
+    console.error('setCoverUriDemoPromise failed with error: ' + err);
   }
 }
 ```
@@ -5454,6 +5806,20 @@ async function example() {
 | IMAGE<sup>11+</sup> |  1031 | 所有图片相册。**系统接口**：此接口为系统接口。 |
 | ANY |  2147483647 |  任意相册。 |
 
+## RequestPhotoType<sup>11+</sup>
+
+枚举，获取图片或视频缩略图的操作类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| REQUEST_ALL_THUMBNAILS  |  0 |  即获取快速缩略图，又获取质量缩略图。 |
+| REQUEST_FAST_THUMBNAIL |  1 |  只获取快速缩略图。 |
+| REQUEST_QUALITY_THUMBNAIL |  2 |  只获取质量缩略图。 |
+
 ## PhotoKeys
 
 枚举，图片和视频文件关键信息。
@@ -5532,6 +5898,19 @@ async function example() {
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | title           | string | 否  | 图片或者视频的标题。  |
 
+## RequestPhotoOptions<sup>11+</sup>
+
+获取图片或视频缩略图的选项。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                | 必填 | 说明                                              |
+| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
+| size           | [image.Size](js-apis-image.md#size) | 否  | 获取缩略图的尺寸。  |
+| requestPhotoType    | [RequestPhotoType](#requestphototype11) | 否  | 获取的操作类型。  |
+
 ## FetchOptions
 
 检索条件。
@@ -5542,6 +5921,19 @@ async function example() {
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
 | fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、photoType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
 | predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 是   | 谓词查询，显示过滤条件。 |
+
+## FormInfo<sup>11+</sup>
+
+图库卡片相关信息。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                | 必填 | 说明                                              |
+| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
+|formId       |string  |是 | 卡片的ID，由图库创建卡片时提供。 |
+|uri          |string  |是 | 卡片绑定的图片的uri。创建卡片时uri可为空或图片的uri，移除卡片时uri不做校验，传空即可。  |
 
 ## ChangeData
 

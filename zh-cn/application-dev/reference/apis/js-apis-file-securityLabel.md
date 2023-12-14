@@ -87,7 +87,7 @@ setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
   securityLabel.setSecurityLabel(filePath, "s0").then(() => {
     console.info("setSecurityLabel successfully");
   }).catch((err: BusinessError) => {
-    console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -129,7 +129,7 @@ setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt
   let filePath = pathDir + '/test.txt';
   securityLabel.setSecurityLabel(filePath, "s0", (err: BusinessError) => {
     if (err) {
-      console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("setSecurityLabel successfully.");
     }

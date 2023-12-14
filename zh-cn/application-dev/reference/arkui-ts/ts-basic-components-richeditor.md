@@ -36,7 +36,7 @@ RichEditor(value: RichEditorOptions)
 | 名称                      | 参数类型                                                     | 描述                                                         |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘。 | 
-| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp;\| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions11)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType:TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}<br/>**说明：** <br/>设置RichEditorResponseType为SELECT，鼠标选中触发菜单弹出后再点击复制或者页面其他位置，选中文本的蓝色高亮会保留。|
+| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp;\| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions11)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType:TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}|
 | copyOptions | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice <br/>**说明：** <br/>copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择弹框。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。<br/>设置copyOptions为CopyOptions.None，复制、剪切功能不生效。  |
 ## 事件
 
@@ -835,23 +835,23 @@ struct SelectionMenu {
     [$r('app.media.icon'), $r("app.media.icon"), $r('app.media.icon'),
     $r("app.media.icon"), $r('app.media.icon')]
   @State iconBgColor: ResourceColor[] = new Array(this.iconArr.length).fill(this.colorTransparent)
-  @State iconIsFocus: boolean[] = new Array(this.iconArr.length).fill(false)
-  @State clickWeightNum: number = 0
-  @State clickNum: number[] = [0, 0, 0]
   @State pasteEnable: boolean = false
   @State visibilityValue: Visibility = Visibility.Visible
+  @State textStyle: RichEditorTextStyle = {}
   private fontWeightTable: string[] = ["100", "200", "300", "400", "500", "600", "700", "800", "900", "bold", "normal", "bolder", "lighter", "medium", "regular"]
   private theme: SelectionMenuTheme = defaultTheme;
 
   aboutToAppear() {
     if (this.controller) {
       let richEditorSelection = this.controller.getSelection()
-      let start = richEditorSelection.selection[0]
-      let end = richEditorSelection.selection[1]
-      if (start === 0 && this.controller.getSpans({ start: end + 1, end: end + 1 }).length === 0) {
-        this.visibilityValue = Visibility.None
-      } else {
-        this.visibilityValue = Visibility.Visible
+      if (richEditorSelection) {
+        let start = richEditorSelection.selection[0]
+        let end = richEditorSelection.selection[1]
+        if (start === 0 && this.controller.getSpans({ start: end + 1, end: end + 1 }).length === 0) {
+          this.visibilityValue = Visibility.None
+        } else {
+          this.visibilityValue = Visibility.Visible
+        }
       }
     }
     let sysBoard = pasteboard.getSystemPasteboard()
@@ -1014,38 +1014,118 @@ struct SelectionMenu {
       Row({ space: 2 }) {
         ForEach(this.iconArr, (item:Resource, index ?: number) => {
           Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-            Image(item).fillColor(this.theme.imageFillColor).width(24).height(24).focusable(true)
+            Image(item).fillColor(this.theme.imageFillColor).width(24).height(24).focusable(true).draggable(false)
           }
-          .border({ width: this.iconIsFocus[index as number] ? 2 : 0, color: this.theme.iconFocusBorderColor })
           .borderRadius(this.theme.iconBorderRadius)
           .width(this.theme.buttonSize)
           .height(this.theme.buttonSize)
-          .focusable(true)
-          .focusOnTouch(true)
           .onClick(() => {
             if (index as number == 0) {
-              this.clickNum[0]++
               this.sliderShow = false
-              this.controller.updateSpanStyle({ start: this.start, end: this.end, textStyle: {
-                fontWeight: this.clickNum[0] % 2 !== 0 ? FontWeight.Bolder : FontWeight.Normal
-              } })
+              if (this.controller) {
+                let selection = this.controller.getSelection();
+                let spans = selection.spans
+                spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+                  if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+                    let span = item as RichEditorTextSpanResult
+                    this.textStyle = span.textStyle
+                    let start = span.offsetInSpan[0]
+                    let end = span.offsetInSpan[1]
+                    let offset = span.spanPosition.spanRange[0]
+                    if (this.textStyle.fontWeight != 11) {
+                      this.textStyle.fontWeight = FontWeight.Bolder
+                    } else {
+                      this.textStyle.fontWeight = FontWeight.Normal
+                    }
+                    this.controller.updateSpanStyle({
+                      start: offset + start,
+                      end: offset + end,
+                      textStyle: this.textStyle
+                    })
+                  }
+                })
+              }
             } else if (index as number == 1) {
-              this.clickNum[1]++
               this.sliderShow = false
-              this.controller.updateSpanStyle({ start: this.start, end: this.end, textStyle: {
-                fontStyle: this.clickNum[1] % 2 !== 0 ? FontStyle.Italic : FontStyle.Normal
-              } })
+              if (this.controller) {
+                let selection = this.controller.getSelection();
+                let spans = selection.spans
+                spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+                  if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+                    let span = item as RichEditorTextSpanResult
+                    this.textStyle = span.textStyle
+                    let start = span.offsetInSpan[0]
+                    let end = span.offsetInSpan[1]
+                    let offset = span.spanPosition.spanRange[0]
+                    if (this.textStyle.fontStyle == FontStyle.Italic) {
+                      this.textStyle.fontStyle = FontStyle.Normal
+                    } else {
+                      this.textStyle.fontStyle = FontStyle.Italic
+                    }
+                    this.controller.updateSpanStyle({
+                      start: offset + start,
+                      end: offset + end,
+                      textStyle: this.textStyle
+                    })
+                  }
+                })
+              }
             } else if (index as number == 2) {
-              this.clickNum[2]++
               this.sliderShow = false
-              this.controller.updateSpanStyle({ start: this.start, end: this.end, textStyle: {
-                decoration: {
-                  type: this.clickNum[2] % 2 !== 0 ? TextDecorationType.Underline : TextDecorationType.None
-                } } })
+              if (this.controller) {
+                let selection = this.controller.getSelection();
+                let spans = selection.spans
+                spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+                  if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+                    let span = item as RichEditorTextSpanResult
+                    this.textStyle = span.textStyle
+                    let start = span.offsetInSpan[0]
+                    let end = span.offsetInSpan[1]
+                    let offset = span.spanPosition.spanRange[0]
+                    if (this.textStyle.decoration) {
+                      if (this.textStyle.decoration.type == TextDecorationType.Underline) {
+                        this.textStyle.decoration.type = TextDecorationType.None
+                      } else {
+                        this.textStyle.decoration.type = TextDecorationType.Underline
+                      }
+                    } else {
+                      this.textStyle.decoration = { type: TextDecorationType.Underline, color: Color.Black }
+                    }
+                    this.controller.updateSpanStyle({
+                      start: offset + start,
+                      end: offset + end,
+                      textStyle: this.textStyle
+                    })
+                  }
+                })
+              }
             } else if (index as number == 3) {
               this.sliderShow = !this.sliderShow
             } else if (index as number == 4) {
               this.sliderShow = false
+              if (this.controller) {
+                let selection = this.controller.getSelection();
+                let spans = selection.spans
+                spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+                  if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+                    let span = item as RichEditorTextSpanResult
+                    this.textStyle = span.textStyle
+                    let start = span.offsetInSpan[0]
+                    let end = span.offsetInSpan[1]
+                    let offset = span.spanPosition.spanRange[0]
+                    if (this.textStyle.fontColor == Color.Orange || this.textStyle.fontColor == '#FFFFA500') {
+                      this.textStyle.fontColor = Color.Black
+                    } else {
+                      this.textStyle.fontColor = Color.Orange
+                    }
+                    this.controller.updateSpanStyle({
+                      start: offset + start,
+                      end: offset + end,
+                      textStyle: this.textStyle
+                    })
+                  }
+                })
+              }
             }
           })
           .onTouch((event?: TouchEvent | undefined) => {
@@ -1065,12 +1145,6 @@ struct SelectionMenu {
             if(isHover != undefined) {
               this.iconBgColor[index as number] = $r('sys.color.ohos_id_color_hover')
             }
-          })
-          .onFocus(() => {
-            this.iconIsFocus[index as number] = true
-          })
-          .onBlur(() => {
-            this.iconIsFocus[index as number] = false
           })
           .backgroundColor(this.iconBgColor[index as number])
         })
@@ -1154,7 +1228,8 @@ struct SelectionMenu {
       })
       .radius(this.theme.containerBorderRadius)
       .clip(true)
-      .width('100%')
+      .backgroundColor(Color.White)
+      .width(this.theme.defaultMenuWidth)
     }
     .width(this.theme.defaultMenuWidth)
   }
@@ -1166,17 +1241,38 @@ struct SelectionMenu {
         Slider({ value: this.textSize, step: 10, style: SliderStyle.InSet })
           .width(210)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.textSize = value
-            this.controller.updateSpanStyle({ start: this.start, end: this.end, textStyle: { fontSize: this.textSize }
-            })
+            if (this.controller) {
+              let selection = this.controller.getSelection();
+              if (mode == SliderChangeMode.End) {
+                if (this.textSize == undefined) {
+                  this.textSize = 0
+                }
+                let spans = selection.spans
+                spans.forEach((item: RichEditorTextSpanResult | RichEditorImageSpanResult, index) => {
+                  if (typeof (item as RichEditorTextSpanResult)['textStyle'] != 'undefined') {
+                    this.textSize = Math.max(this.textSize, (item as RichEditorTextSpanResult).textStyle.fontSize)
+                  }
+                })
+              }
+              if (mode == SliderChangeMode.Moving || mode == SliderChangeMode.Click) {
+                this.start = selection.selection[0]
+                this.end = selection.selection[1]
+                this.textSize = value
+                this.controller.updateSpanStyle({
+                  start: this.start,
+                  end: this.end,
+                  textStyle: { fontSize: this.textSize }
+                })
+              }
+            }
           })
         Text('A').fontSize(20).fontWeight(FontWeight.Medium)
       }.borderRadius(this.theme.containerBorderRadius)
     }
-    .backgroundColor(this.colorTransparent)
+    .shadow(ShadowStyle.OUTER_DEFAULT_MD)
+    .backgroundColor(Color.White)
     .borderRadius(this.theme.containerBorderRadius)
     .padding(15)
-    .width(248)
     .height(48)
   }
 }

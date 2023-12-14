@@ -160,7 +160,7 @@
         - [后台服务](application-models/background-services.md)
       - 了解线程模型
         - [线程模型概述](application-models/thread-model-stage.md)
-        - [使用EventHub进行线程间通信](application-models/itc-with-eventHub.md)
+        - [使用EventHub进行线程内通信](application-models/itc-with-eventHub.md)
       - 任务（Mission）管理
         - [任务（Mission）管理场景介绍](application-models/mission-management-overview.md)
         - [任务（Mission）与启动模式](application-models/mission-management-launch-type.md)
@@ -771,6 +771,7 @@
       - [动效能力实践](performance/animation_practice.md)
       - [性能提升的其他方法](performance/arkts-performance-improvement-recommendation.md)
       - [运行时动态加载页面提升性能](performance/performance-dynamic-import.md)
+    - [减小应用包大小](performance/reduce-package-size.md)
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
       - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)

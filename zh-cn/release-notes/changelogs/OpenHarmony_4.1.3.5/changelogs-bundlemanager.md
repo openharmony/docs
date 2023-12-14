@@ -26,6 +26,4 @@
 
 **适配指导**
 
-变更前，打包工具默认以压缩方式打包libs库，如果开发者需要以不压缩方式打包libs库，可以设置[module.json5配置文件](../../../application-dev/quick-start/module-configuration-file.md)中的compressNativeLibs参数为false。
-
-变更后，打包工具默认以不压缩方式打包libs库，如果开发者需要以压缩方式打包libs库，可以设置[module.json5配置文件](../../../application-dev/quick-start/module-configuration-file.md)中的compressNativeLibs参数为true。
+打包工具默认以不压缩方式打包libs库，如果需要以压缩方式打包libs库，可以设置[module.json5配置文件](../../../application-dev/quick-start/module-configuration-file.md)中的compressNativeLibs参数为true。

@@ -1289,7 +1289,7 @@ struct SubCounterComp {
 }
 @Component
 struct CounterComp {
-  @ObjectLink value: ParentCounter;
+  @Prop value: ParentCounter;
   build() {
     Column({ space: 10 }) {
       Text(`this.value.incrCounter(): this.value.counter: ${this.value.counter}`)
