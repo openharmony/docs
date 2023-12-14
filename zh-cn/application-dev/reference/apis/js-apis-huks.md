@@ -2919,6 +2919,7 @@ async function huksAbort() {
 | HUKS_TAG_CHALLENGE_TYPE<sup>9+</sup>                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 309    | 表示密钥使用时生成的challenge类型。从[HuksChallengeType](#hukschallengetype9)中选择   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_CHALLENGE_POS<sup>9+</sup>                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 310    | 表示challenge类型为用户自定义类型时，huks产生的challenge有效长度仅为8字节连续的数据。从[HuksChallengePosition](#hukschallengeposition9)中选择。   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_KEY_AUTH_PURPOSE<sup>10+</sup>                     | HuksTagType.HUKS_TAG_TYPE_UINT \|311     | 表示密钥认证用途的tag   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_AUTH_STORAGE_LEVEL<sup>11+</sup>                     | HuksTagType.HUKS_TAG_TYPE_UINT \|316     | 表示密钥存储安全等级的tag。从[HuksAuthStorageLevel](#huksauthstoragelevel11)中选择。   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_CHALLENGE                              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | 表示attestation时的挑战值。            <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_APPLICATION_ID                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | 表示attestation时拥有该密钥的application的Id。     <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_ID_BRAND<sup>(deprecated)</sup>        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | 表示设备的品牌。从API version 9开始废弃。                      <br> **系统能力：** SystemCapability.Security.Huks.Extension |
