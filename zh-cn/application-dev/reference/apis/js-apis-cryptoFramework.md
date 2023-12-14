@@ -142,7 +142,7 @@ buffer数组，提供blob数据类型。
 | ECC_PK_Y_BN | 210 | ECC算法中，公钥pk（椭圆曲线上的一个点）的y坐标。 |
 | ECC_FIELD_TYPE_STR | 211 | ECC算法中，椭圆曲线的域类型（当前只支持Fp域）。 |
 | ECC_FIELD_SIZE_NUM | 212 | ECC算法中域的大小，单位为bits（注：对于Fp域，域的大小为素数p的bits长度）。 |
-| ECC_CURVE_NAME_STR | 213 | ECC算法中的SECG曲线名称。 |
+| ECC_CURVE_NAME_STR | 213 | ECC算法中的SECG(Standards for Efficient Cryptography Group)曲线名称。 |
 | RSA_N_BN | 301 | RSA算法中的模数n。 |
 | RSA_SK_BN | 302 | RSA算法中的私钥sk（即私钥指数d）。 |
 | RSA_PK_BN | 303 | RSA算法中的公钥pk（即公钥指数e）。 |
@@ -1662,7 +1662,7 @@ try {
 
 init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCallback\<void>): void
 
-初始化加解密的[cipher](#cipher)对象，通过注册回调函数获取结果。
+初始化加解密的[cipher](#cipher)对象，通过注册回调函数获取结果。init、update、doFinal为三段式接口，需要成组使用。其中init和doFinal必选，update可选。
 
 必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
 
@@ -1691,7 +1691,7 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCal
 
 init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 
-初始化加解密的cipher对象，通过Promise获取结果。
+初始化加解密的cipher对象，通过Promise获取结果。init、update、doFinal为三段式接口，需要成组使用。其中init和doFinal必选，update可选。
 
 必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
 
@@ -1835,7 +1835,7 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 | 17630001 | crypto operation error. |
 
 **以AES GCM模式加密为例：**
-更多加解密流程的完整示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节
+此外，更多加解密流程的完整示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -1924,7 +1924,7 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 | 17630001 | crypto operation error.                      |
 
 **以AES GCM模式加密为例：**
-更多加解密流程的完整示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节
+此外，更多加解密流程的完整示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -2104,7 +2104,7 @@ Sign类不支持重复初始化，当业务方需要使用新密钥签名时，�
 
 init(priKey: PriKey, callback: AsyncCallback\<void>): void
 
-使用私钥初始化Sign对象，通过注册回调函数获取结果。
+使用私钥初始化Sign对象，通过注册回调函数获取结果。init、update、sign为三段式接口，需要成组使用。其中init和sign必选，update可选。
 
 Sign类暂不支持重复init。
 
@@ -2131,7 +2131,7 @@ Sign类暂不支持重复init。
 
 init(priKey: PriKey): Promise\<void>
 
-使用私钥初始化Sign对象，通过Promise获取结果。
+使用私钥初始化Sign对象，通过Promise获取结果。init、update、sign为三段式接口，需要成组使用。其中init和sign必选，update可选。
 
 Sign类暂不支持重复init。
 
@@ -2286,7 +2286,7 @@ sign(data: DataBlob | null): Promise\<DataBlob>
 | 17630001 | crypto operation error. |
 
 **callback示例：**
-更多签名验签的完整示例可参考开发指导中的“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”一节。
+此外，更多签名验签的完整示例可参考开发指导中的“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”一节。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -2314,7 +2314,7 @@ function signByCallback() {
 ```
 
 **Promise示例：**
-更多签名验签的完整示例可参考开发指导中的“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”一节。
+此外，更多签名验签的完整示例可参考开发指导中的“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”一节。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -2480,7 +2480,7 @@ Verify类不支持重复初始化，当业务方需要使用新密钥验签时�
 
 init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 
-传入公钥初始化Verify对象，通过注册回调函数获取结果。
+传入公钥初始化Verify对象，通过注册回调函数获取结果。init、update、verify为三段式接口，需要成组使用。其中init和verify必选，update可选。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2505,7 +2505,7 @@ init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 
 init(pubKey: PubKey): Promise\<void>
 
-传入公钥初始化Verify对象，通过Promise获取结果。
+传入公钥初始化Verify对象，通过Promise获取结果。init、update、verify为三段式接口，需要成组使用。其中init和verify必选，update可选。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2660,7 +2660,7 @@ verify(data: DataBlob | null, signatureData: DataBlob): Promise\<boolean>
 | 17630001 | crypto operation error. |
 
 **callback示例：**
-更多签名验签的完整示例可参考开发指导中的“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”一节。
+此外，更多签名验签的完整示例可参考开发指导中的“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”一节。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -2691,7 +2691,7 @@ function verifyByCallback() {
 ```
 
 **Promise示例：**
-更多签名验签的完整示例可参考开发指导中的“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”一节。
+此外，更多签名验签的完整示例可参考开发指导中的“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”一节。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -2999,7 +2999,7 @@ Md类，调用Md方法可以进行MD（Message Digest）摘要计算。调用前
 
 update(input: DataBlob, callback: AsyncCallback\<void>): void
 
-传入消息进行Md更新计算，通过注册回调函数更新。
+传入消息进行Md更新计算，通过注册回调函数更新。update和digest为两段式接口，需要成组使用。其中digest必选，update可选。
 
 > **说明：**
 >
@@ -3026,7 +3026,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 update(input: DataBlob): Promise\<void>
 
-传入消息进行Md更新计算，通过Promise更新。
+传入消息进行Md更新计算，通过Promise更新。update和digest为两段式接口，需要成组使用。其中digest必选，update可选。
 
 > **说明：**
 >
@@ -3218,7 +3218,7 @@ Mac类，调用Mac方法可以进行MAC（Message Authentication Code）加密�
 
 init(key: SymKey, callback: AsyncCallback\<void>): void
 
-使用对称密钥初始化Mac计算，通过注册回调函数获取结果。
+使用对称密钥初始化Mac计算，通过注册回调函数获取结果。init、update、doFinal为三段式接口，需要成组使用。其中init和doFinal必选，update可选。
 
   > **说明：**
   >
@@ -3245,7 +3245,7 @@ init(key: SymKey, callback: AsyncCallback\<void>): void
 
 init(key: SymKey): Promise\<void>
 
-使用对称密钥初始化Mac计算，通过Promise获取结果。
+使用对称密钥初始化Mac计算，通过Promise获取结果。init、update、doFinal为三段式接口，需要成组使用。其中init和doFinal必选，update可选。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3351,7 +3351,7 @@ doFinal(callback: AsyncCallback\<DataBlob>): void
 | 17630001 | crypto operation error. |
 
 **示例：**
-更多Hmac的完整示例可参考开发指导中的“[使用消息认证码操作](../../security/cryptoFramework-guidelines.md#使用消息认证码操作)”一节。
+此外，更多Hmac的完整示例可参考开发指导中的“[使用消息认证码操作](../../security/cryptoFramework-guidelines.md#使用消息认证码操作)”一节。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -3397,7 +3397,7 @@ doFinal(): Promise\<DataBlob>
 | 17630001 | crypto operation error. |
 
 **示例：**
-更多Hmac的完整示例可参考开发指导中的“[使用消息认证码操作](../../security/cryptoFramework-guidelines.md#使用消息认证码操作)”一节。
+此外，更多Hmac的完整示例可参考开发指导中的“[使用消息认证码操作](../../security/cryptoFramework-guidelines.md#使用消息认证码操作)”一节。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
