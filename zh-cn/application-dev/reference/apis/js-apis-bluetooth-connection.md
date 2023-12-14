@@ -574,7 +574,7 @@ getPairState(deviceId: string): BondState
 ```js
 import { BusinessError } from '@ohos.base';
 try {
-    let res: BondState = connection.getPairState("XX:XX:XX:XX:XX:XX");
+    let res: connection.BondState = connection.getPairState("XX:XX:XX:XX:XX:XX");
     console.log('getPairState: ' + res);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -1169,7 +1169,7 @@ try {
 ```
 
 
-## connection.connectAllowedProfiles
+## connection.connectAllowedProfiles<sup>11+</sup>
 
 connectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1220,7 +1220,7 @@ try {
 ```
 
 
-## connection.connectAllowedProfiles
+## connection.connectAllowedProfiles<sup>11+</sup>
 
 connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 
@@ -1274,7 +1274,7 @@ try {
 ```
 
 
-## connection.disconnectAllowedProfiles
+## connection.disconnectAllowedProfiles<sup>11+</sup>
 
 disconnectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1325,7 +1325,7 @@ try {
 ```
 
 
-## connection.disconnectAllowedProfiles
+## connection.disconnectAllowedProfiles<sup>11+</sup>
 
 disconnectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 
