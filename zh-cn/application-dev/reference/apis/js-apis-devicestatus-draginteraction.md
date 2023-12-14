@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```ts
+```js
 import dragInteraction from '@ohos.deviceStatus.dragInteraction';
 ```
 
