@@ -46,15 +46,15 @@ ExceptionPrompt ({ options: this.options })
 
 PromptOptions定义options的类型。
 
-| 名称        | 类型        | 必填 | 说明                                            |
-| ----------- | ----------- | ---- | ----------------------------------------------- |
-| icon        | ResourceStr | 否   | 指定当前ExceptionPrompt的异常图标式样           |
-| tip         | ResourceStr | 否   | 指定当前ExceptionPrompt的文字提示内容           |
-| marginState | MarginType  | 是   | 指定当前ExceptionPrompt的边距样式               |
-| touchText   | ResourceStr | 否   | 指定当前ExceptionPrompt的右侧图标按钮的文字内容 |
-| isTouchShow | boolean     | 否   | 指定当前ExceptionPrompt的右侧图标按钮的显隐状态 |
-| positionTop | number      | 是   | 指定当前ExceptionPrompt的距离顶部的位置         |
-| isShow      | boolean     | 否   | 指定当前ExceptionPrompt的显隐状态               |
+| 名称         | 类型        | 必填 | 说明                                            |
+| ------------ | ----------- | ---- | ----------------------------------------------- |
+| icon         | ResourceStr | 否   | 指定当前ExceptionPrompt的异常图标式样           |
+| tip          | ResourceStr | 否   | 指定当前ExceptionPrompt的文字提示内容           |
+| marginState  | MarginType  | 是   | 指定当前ExceptionPrompt的边距样式               |
+| touchText    | ResourceStr | 否   | 指定当前ExceptionPrompt的右侧图标按钮的文字内容 |
+| isTouchShown | boolean     | 否   | 指定当前ExceptionPrompt的右侧图标按钮的显隐状态 |
+| marginTop    | number      | 是   | 指定当前ExceptionPrompt的距离顶部的位置         |
+| isShown      | boolean     | 否   | 指定当前ExceptionPrompt的显隐状态               |
 
 ## marginState
 
@@ -67,10 +67,10 @@ MarginType定义marginState的类型
 
 ## 事件
 
-| 名称                       | 功能描述                   |
-| -------------------------- | -------------------------- |
-| onTextClick: () => void    | 点击左侧提示文本的回调函数 |
-| onConfigure: () =&gt; void | 点击右侧图标按钮的回调函数 |
+| 名称                             | 功能描述                   |
+| -------------------------------- | -------------------------- |
+| onTextClick: () => void          | 点击左侧提示文本的回调函数 |
+| onIconButtonClick: () =&gt; void | 点击右侧图标按钮的回调函数 |
 
 ## 示例 1
 
@@ -89,9 +89,9 @@ struct Index {
     tip: '',
     marginState: MarginType.DEFAULT_MARGIN
     touchText: '',
-    isTouchShow: false,
-    positionTop: 80,
-    isShow:true
+    isTouchShown: false,
+    marginTop: 80,
+    isShown:true
   }
 
   build() {
@@ -101,7 +101,7 @@ struct Index {
         onTextClick: () => {
             // Click the text on the left to change into the connecting state
         },
-        onConfigure: () => {
+        onIconButtonClick: () => {
             // Click Set Network to open the Set network pop-up interface
         },
       })
@@ -131,9 +131,9 @@ struct CustomDialogExample {
     tip: '异常提示！',
     marginState: MarginType.DEFAULT_MARGIN,
     touchText: '设置',
-    isTouchShow: true,
-    positionTop: 5,
-    isShow: true
+    isTouchShown: true,
+    marginTop: 5,
+    isShown: true
   }
   controller: CustomDialogController
   // 若尝试在CustomDialog中传入多个其他的Controller，以实现在CustomDialog中打开另一个或另一些CustomDialog，那么此处需要将指向自己的controller放在最后
@@ -182,9 +182,9 @@ struct Index1 {
     tip: '',
     marginState: MarginType.DEFAULT_MARGIN,
     touchText: '',
-    isTouchShow: false,
-    positionTop: 80,
-    isShow: true
+    isTouchShown: false,
+    marginTop: 80,
+    isShown: true
   }
   @State textValue: string = ''
   @State inputValue: string = 'click me'
