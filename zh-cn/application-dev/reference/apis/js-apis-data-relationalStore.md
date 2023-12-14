@@ -733,7 +733,7 @@ class EntryAbility extends UIAbility {
 | 名称     | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | autoSync   | boolean | 是   | 该值为true时，表示该表支持自动同步和手动同步；该值为false时，表示该表只支持手动同步，不支持自动同步。 |
-| references | Array&lt;[Reference](#reference)&gt; | 否   | 设置表之间的关联关系，默认数据库表之间无关联关系。 |
+| references | Array&lt;[Reference](#reference11)&gt; | 否   | 设置表之间的关联关系，默认数据库表之间无关联关系。 |
 
 ## ConflictResolution<sup>10+</sup>
 
