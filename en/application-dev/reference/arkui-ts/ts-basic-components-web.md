@@ -21,6 +21,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 > **NOTE**
 >
 > Transition animation is not supported.
+>
 > **\<Web>** components on a page must be bound to different **WebviewController**s.
 
 **Parameters**
@@ -132,8 +133,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   ```
 
   2. Modify the **EntryAbility.ts** file.
-
-    The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
+  The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
   ```ts
   // xxx.ts
   import UIAbility from '@ohos.app.ability.UIAbility';
@@ -164,13 +164,15 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
 ## Attributes
 
-Only the following universal attributes are supported: [width](ts-universal-attributes-size.md#Attributes), [height](ts-universal-attributes-size.md#attributes), [padding](ts-universal-attributes-size.md#Attributes), [margin](ts-universal-attributes-size.md#attributes), and [border](ts-universal-attributes-border.md#attributes).
+The following universal attributes are supported: [aspectRatio](ts-universal-attributes-layout-constraints.md#attributes), [backdropBlur](ts-universal-attributes-image-effect.md#attributes), [backgroundColor](ts-universal-attributes-attribute-modifier.md#attributes), [bindContentCover](ts-universal-attributes-modal-transition.md#attributes), [bindContextMenu](ts-universal-attributes-menu.md#attributes), [bindMenu](ts-universal-attributes-menu.md#attributes), [bindSheet](ts-universal-attributes-sheet-transition.md#attributes), [blur](ts-universal-attributes-image-effect.md#attributes), [border](ts-universal-attributes-border.md#attributes), [borderColor](ts-universal-attributes-border.md#attributes), [borderRadius](ts-universal-attributes-border.md#attributes), [borderStyle](ts-universal-attributes-border.md#attributes), [borderWidth](ts-universal-attributes-border.md#attributes), [clip](ts-universal-attributes-sharp-clipping.md#attributes), [constraintSize](ts-universal-attributes-size.md#attributes), [defaultFocus](ts-universal-attributes-focus.md#attributes), [focusable](ts-universal-attributes-focus.md#attributes), [tabIndex](ts-universal-attributes-focus.md#attributes), [groupDefaultFocus](ts-universal-attributes-focus.md#attributes), [focusOnTouch](ts-universal-attributes-focus.md#attributes), [displayPriority](ts-universal-attributes-layout-constraints.md#attributes), [draggable](ts-universal-attributes-drag-drop.md#attributes), [enabled](ts-universal-attributes-enable.md#attributes), [flexBasis](ts-universal-attributes-flex-layout.md#attributes), [flexGrow](ts-universal-attributes-flex-layout.md#attributes), [flexShrink](ts-universal-attributes-flex-layout.md#attributes), [layoutWeight](ts-universal-attributes-flex-layout.md#attributes), [id](ts-universal-attributes-component-id.md#attributes), [gridOffset](ts-universal-attributes-grid.md#attributes), [gridSpan](ts-universal-attributes-grid.md#attributes), [useSizeType](ts-universal-attributes-grid.md#attributes), [height](ts-universal-attributes-size.md#attributes), [touchable](ts-universal-attributes-click.md#attributes), [margin](ts-universal-attributes-size.md#attributes), [markAnchor](ts-universal-attributes-location.md#attributes), [mask](ts-universal-attributes-sharp-clipping.md#attributes), [offset](ts-universal-attributes-location.md#attributes), [width](ts-universal-attributes-size.md#attributes), [zIndex](ts-universal-attributes-z-order.md#attributes), [visibility](ts-universal-attributes-visibility.md#attributes), [rotate](ts-universal-attributes-transformation.md#attributes), [scale](ts-universal-attributes-transformation.md#attributes), [transform](ts-universal-attributes-transformation.md#attributes), [responseRegion](ts-universal-attributes-touch-target.md#attributes), [padding](ts-universal-attributes-size.md#attributes), [size](ts-universal-attributes-size.md#attributes), [stateStyles](ts-universal-attributes-polymorphic-style.md#attributes), [opacity](ts-universal-attributes-opacity.md#attributes), [shadow](ts-universal-attributes-image-effect.md#attributes), [gesture](ts-gesture-settings.md#binding gesture recognition), [sharedTransition](ts-transition-animation-shared-elements.md#attributes), and [transition](ts-transition-animation-component.md#attributes).
 
 ### domStorageAccess
 
 domStorageAccess(domStorageAccess: boolean)
 
 Sets whether to enable the DOM Storage API. By default, this feature is disabled.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
@@ -263,15 +265,15 @@ Sets whether to enable automatic image loading. By default, this feature is enab
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
     controller: WebviewController | WebController})
 
-Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. The parameters cannot be updated.
+Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. The parameters cannot be updated. Only one object can be registered through this API. To register multiple objects, use [registerJavaScriptProxy<sup>9+</sup>](../apis/js-apis-webview.md#registerjavascriptproxy).
 
 **Parameters**
 
-| Name       | Type                                    | Mandatory  | Default Value | Description                     |
-| ---------- | ---------------------------------------- | ---- | ---- | ------------------------- |
-| object     | object                                   | Yes   | -    | Object to be registered. Methods can be declared, but attributes cannot.   |
-| name       | string                                   | Yes   | -    | Name of the object to be registered, which is the same as that invoked in the window.|
-| methodList | Array\<string\>                          | Yes   | -    | Methods of the JavaScript object to be registered at the application side. |
+| Name       | Type                                    | Mandatory  | Default Value | Description                                    |
+| ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+| object     | object                                   | Yes   | -    | Object to be registered. Methods can be declared, but attributes cannot.                  |
+| name       | string                                   | Yes   | -    | Name of the object to be registered, which is the same as that invoked in the window.               |
+| methodList | Array\<string\>                          | Yes   | -    | Methods of the JavaScript object to be registered at the application side.                |
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | -    | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 
 **Example**
@@ -570,7 +572,7 @@ Sets whether video playback must be started by user gestures. This API is not ap
 
 multiWindowAccess(multiWindow: boolean)
 
-Sets whether to enable the multi-window permission.
+Sets whether to enable the multi-window permission. By default, this feature is disabled.
 Enabling the multi-window permission requires implementation of the **onWindowNew** event. For the sample code, see [onWindowNew](#onwindownew9).
 
 **Parameters**
@@ -820,9 +822,9 @@ Sets the scale factor of the entire page. The default value is 100%.
 
 **Parameters**
 
-| Name    | Type  | Mandatory  | Default Value | Description           |
-| ------- | ------ | ---- | ---- | --------------- |
-| percent | number | Yes   | 100  | Scale factor of the entire page.|
+| Name    | Type  | Mandatory  | Default Value | Description                         |
+| ------- | ------ | ---- | ---- | ----------------------------- |
+| percent | number | Yes   | 100  | Scale factor of the entire page.<br>Value range: 1 to 100|
 
 **Example**
 
@@ -1320,19 +1322,19 @@ Sets whether to enable smooth pinch mode for the web page.
 **Example**
 
   ```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
-        .pinchSmooth(true)
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .pinchSmooth(true)
+      }
     }
   }
-}
   ```
 
 ### allowWindowOpenMethod<sup>10+</sup>
@@ -1456,7 +1458,7 @@ Sets the web-based media playback policy, including the validity period for auto
 
 ## Events
 
-The universal events are not supported.
+The following universal events are supported: [onAppear](ts-universal-events-show-hide.md#events), [onDisAppear](ts-universal-events-show-hide.md#events), [onBlur](ts-universal-focus-event.md#events), [onFocus](ts-universal-focus-event.md#events), [onDragEnd](ts-universal-events-drag-drop.md#events). [onDragEnter](ts-universal-events-drag-drop.md#events), [onDragStart](ts-universal-events-drag-drop.md#events), [onDragMove](ts-universal-events-drag-drop.md#events), [onDragLeave](ts-universal-events-drag-drop.md#events), [onDrop](ts-universal-events-drag-drop.md#events), [onHover](ts-universal-mouse-key.md#events), [onMouse](ts-universal-mouse-key.md#events), [onKeyEvent](ts-universal-events-key.md#events), [onTouch](ts-universal-events-touch.md#events), and [onVisibleAreaChange](ts-universal-component-visible-area-change-event.md#events).
 
 ### onAlert
 
@@ -1645,7 +1647,7 @@ Called when **confirm()** is invoked by the web page.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -1724,6 +1726,8 @@ Called when **confirm()** is invoked by the web page.
 ### onPrompt<sup>9+</sup>
 
 onPrompt(callback: (event?: { url: string; message: string; value: string; result: JsResult }) => boolean)
+
+Triggered when **prompt()** is invoked by the web page.
 
 **Parameters**
 
@@ -4871,11 +4875,13 @@ This API is deprecated since API version 9. You are advised to use [WebviewContr
 let webController: WebController = new WebController()
 ```
 
-### getCookieManager<sup>9+</sup>
+### getCookieManager<sup>(deprecated)</sup>
 
 getCookieManager(): WebCookie
 
 Obtains the cookie management object of the **\<Web>** component.
+
+This API is deprecated since API version 9. You are advised to use [getCookie](../apis/js-apis-webview.md#getcookie) instead.
 
 **Return value**
 
