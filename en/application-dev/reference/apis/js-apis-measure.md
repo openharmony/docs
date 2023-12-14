@@ -125,3 +125,5 @@ Provides attributes of the measured text.
 | lineHeight<sup>10+</sup>  | number \| string \| [Resource](../arkui-ts/ts-types.md#resource)    | No  | Line height of the measured text.|
 | baselineOffset<sup>10+</sup>  | number \| string                                                          | No  | Baseline offset of the measured text.<br>Default value: **0**|
 | textCase<sup>10+</sup>  | number \| [TextCase](../arkui-ts/ts-appendix-enums.md#textcase)                 | No  | Case of the measured text.<br>Default value: **TextCase.Normal**|
+| textIndent<sup>11+</sup> | number \| string | No  | Indentation of the first line.<br>Default value: **0**|
+| wordBreak<sup>11+</sup> | [WorkBreak](../arkui-ts/ts-appendix-enums.md#wordbreak11) | No  | Line break rule.<br>Default value: **WordBreak.BREAK_WORD**<br>**NOTE**<br/>Since API version 11, this API is supported in ArkTS widgets.<br>When used with **{overflow: TextOverflow.Ellipsis}** and **maxLines**, **WordBreak.BREAK_ALL** can insert line breaks between letters when overflow occurs and display excess content with an ellipsis (...). |
