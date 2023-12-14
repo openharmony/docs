@@ -1699,24 +1699,6 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCal
 | 17620002 | runtime error.                                           |
 | 17630001 | crypto operation error.|
 
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let symKey: cryptoFramework.SymKey;     // The process of generating the symmetric key is omitted here.
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-
-cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null, (err, ) => {
-  if (err) {
-    console.error(`Failed to init cipher, ${err.code}, ${err.message}`);
-  } else {
-    console.info(`Init cipher success`);
-    // Perform subsequent operations such as update.
-  }
-})
-```
-
 ### init
 
 init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
@@ -1750,22 +1732,6 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 | 17620001 | memory error.                                     |
 | 17620002 | runtime error.                                    |
 | 17630001 | crypto operation error.|
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let symKey: cryptoFramework.SymKey;     // The process of generating the symmetric key is omitted here.
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null)
-  .then(() => {
-    console.info(`Init cipher success`);
-    // Perform subsequent operations such as update.
-  }, (error: BusinessError) => {
-    console.error(`Failed to init cipher, ${error.code}, ${error.message}`);
-  })
-```
 
 ### update
 
@@ -1801,35 +1767,6 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 | 17620001 | memory error.                               |
 | 17620002 | runtime error.                              |
 | 17630001 | crypto operation error.                     |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
-}
-
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-// The init() process is omitted here.
-let plainText: cryptoFramework.DataBlob = {data: stringToUint8Array('this is test!')};
-cipher.update(plainText, (err, output) => {       // Example of the encryption process.
-  if (err) {
-    console.error(`Failed to update cipher`);
-  } else {
-    console.info(`Update cipher success`);
-    if (output != null) {
-      // Concatenate output.data to the ciphertext.
-    }
-    // Perform subsequent operations such as doFinal().
-  }
-})
-```
 
 ### update
 
@@ -1872,34 +1809,6 @@ update(data: DataBlob): Promise\<DataBlob>
 | 17620002 | runtime error.                               |
 | 17630001 | crypto operation error.                      |
 
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
-}
-
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-// The init() process is omitted here.
-let plainText: cryptoFramework.DataBlob = {data: stringToUint8Array('this is test!')};
-cipher.update(plainText)
-  .then((output) => {
-    console.info(`Update cipher success.`);
-    if (output != null) {
-      // Concatenate output.data to the ciphertext.
-    }
-    // Perform subsequent operations such as doFinal().
-  }, (error: BusinessError) => {
-    console.info(`Update cipher failed.`);
-  })
-```
-
 ### doFinal
 
 doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
@@ -1940,21 +1849,47 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
 
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-let data: cryptoFramework.DataBlob;           // The process of preparing the data to encrypt or decrypt is omitted here.
-// The init() and update() processes are omitted here.
-cipher.doFinal(data, (err, output) => {
-  if (err) {
-    console.error(`Failed to finalize cipher, ${err.code}, ${err.message}`);
-  } else {
-    console.info(`Finalize cipher success`);
-    if (output != null) {
-      // Concatenate output.data to obtain the complete plaintext/ciphertext (and authTag).
-    }
-  }
-})
+function genGcmParamsSpec() {
+  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataIv = new Uint8Array(arr);
+  let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0];
+  let dataAad = new Uint8Array(arr);
+  let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataTag = new Uint8Array(arr);
+  let tagBlob: cryptoFramework.DataBlob = {
+    data: dataTag
+  };
+  let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
+    iv: ivBlob,
+    aad: aadBlob,
+    authTag: tagBlob,
+    algName: "GcmParamsSpec"
+  };
+  return gcmParamsSpec;
+}
+
+function cipherByCallback() {
+  let gcmParams = genGcmParamsSpec();
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+  let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
+  symKeyGenerator.generateSymKey((err, symKey) => {
+    cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams, (err,) => {
+      let message = "This is a test";
+      let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
+      cipher.update(plainText, (err, encryptUpdate) => {
+        cipher.doFinal(null, (err, tag) => {
+          gcmParams.authTag = tag;
+          console.info("encryptUpdate plainText：" + encryptUpdate.data);
+        });
+      });
+    });
+  });
+}
 ```
 
 ### doFinal
@@ -2002,71 +1937,42 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
 
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-let data: cryptoFramework.DataBlob;           // The process of preparing the data to encrypt or decrypt is omitted here.
-// The init() and update() processes are omitted here.
-cipher.doFinal(data)
-  .then(output => {
-    console.info(`Finalize cipher success`);
-    if (output != null) {
-      // Concatenate output.data to obtain the complete plaintext/ciphertext (and authTag).
-    }
-  }, (error: BusinessError) => {
-    console.error(`Failed to finalize cipher, ${error.code}, ${error.message}`);
-  })
-```
-
-**使用RSA加密的callback完整示例：**
-
-```ts
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
+function genGcmParamsSpec() {
+  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataIv = new Uint8Array(arr);
+  let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0];
+  let dataAad = new Uint8Array(arr);
+  let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataTag = new Uint8Array(arr);
+  let tagBlob: cryptoFramework.DataBlob = {
+    data: dataTag
+  };
+  let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
+    iv: ivBlob,
+    aad: aadBlob,
+    authTag: tagBlob,
+    algName: "GcmParamsSpec"
+  };
+  return gcmParamsSpec;
 }
 
-let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-let cipher = cryptoFramework.createCipher("RSA1024|PKCS1");
-rsaGenerator.generateKeyPair((err, keyPair) => {
-  let pubKey = keyPair.pubKey;
-  cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null, (err, data) => {
-    let plainText = "this is cipher text";
-    let input: cryptoFramework.DataBlob = {data: stringToUint8Array(plainText) };
-    cipher.doFinal(input, (err, data) => {
-      AlertDialog.show({ message: "EncryptOutPut is " + data.data} );
-    });
-  });
-});
-```
-
-**使用RSA加密的Promise完整示例：**
-
-```ts
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
+async function cipherByPromise() {
+  let gcmParams = genGcmParamsSpec();
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+  let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
+  let symKey = await symKeyGenerator.generateSymKey();
+  await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
+  let message = "This is a test";
+  let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
+  let encryptUpdate = await cipher.update(plainText);
+  gcmParams.authTag = await cipher.doFinal(null);
+  console.info('encryptUpdate plainText: ' + encryptUpdate.data);
 }
-
-let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-let cipher = cryptoFramework.createCipher("RSA1024|PKCS1");
-let keyGenPromise = rsaGenerator.generateKeyPair();
-keyGenPromise.then((rsaKeyPair: cryptoFramework.KeyPair): Promise<void> => {
-  let pubKey = rsaKeyPair.pubKey;
-  return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null); // Pass in the private key and DECRYPT_MODE to initialize the decryption mode.
-}).then(() => {
-  let plainText = "this is cipher text";
-  let input: cryptoFramework.DataBlob = { data: stringToUint8Array(plainText) };
-  return cipher.doFinal(input);
-}).then(dataBlob => {
-  console.info("EncryptOutPut is " + dataBlob.data);
-});
 ```
 
 > **说明：**
@@ -2396,32 +2302,23 @@ sign(data: DataBlob | null): Promise\<DataBlob>
 **callback示例：**
 
 ```ts
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
-}
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
 
-let globalKeyPair: cryptoFramework.KeyPair;
-let signMessageBlob: cryptoFramework.DataBlob;
-let plan1 = "This is Sign test plan1"; // The first segment of the data.
-let plan2 = "This is Sign test plan2"; // The second segment of the data.
-let input1: cryptoFramework.DataBlob = { data: stringToUint8Array(plan1) };
-let input2: cryptoFramework.DataBlob = { data: stringToUint8Array(plan2) };
-
-function signMessageCallback() {
-  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+function signByCallback() {
+  let inputUpdate: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
+  let inputVerify: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
+  let pkData = new Uint8Array([48, 129, 159, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 129, 141, 0, 48, 129, 137, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1]);
+  let skData = new Uint8Array([48, 130, 2, 120, 2, 1, 0, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 4, 130, 2, 98, 48, 130, 2, 94, 2, 1, 0, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1, 2, 129, 129, 0, 152, 111, 145, 203, 10, 88, 116, 163, 112, 126, 9, 20, 68, 34, 235, 121, 98, 14, 182, 102, 151, 125, 114, 91, 210, 122, 215, 29, 212, 5, 176, 203, 238, 146, 5, 190, 41, 21, 91, 56, 125, 239, 111, 133, 53, 200, 192, 56, 132, 202, 42, 145, 120, 3, 224, 40, 223, 46, 148, 29, 41, 92, 17, 40, 12, 72, 165, 69, 192, 211, 142, 233, 81, 202, 177, 235, 156, 27, 179, 48, 18, 85, 154, 101, 193, 45, 218, 91, 24, 143, 196, 248, 16, 83, 177, 198, 136, 77, 111, 134, 60, 219, 95, 246, 23, 5, 45, 14, 83, 29, 137, 248, 159, 28, 132, 142, 205, 99, 226, 213, 84, 232, 57, 130, 156, 81, 191, 237, 2, 65, 0, 255, 158, 212, 13, 43, 132, 244, 135, 148, 161, 232, 219, 20, 81, 196, 102, 103, 44, 110, 71, 100, 62, 73, 200, 32, 138, 114, 209, 171, 150, 179, 92, 198, 5, 190, 218, 79, 227, 227, 37, 32, 57, 159, 252, 107, 211, 139, 198, 202, 248, 137, 143, 186, 205, 106, 81, 85, 207, 134, 148, 110, 204, 243, 27, 2, 65, 0, 215, 4, 181, 121, 57, 224, 170, 168, 183, 159, 152, 8, 74, 233, 80, 244, 146, 81, 48, 159, 194, 199, 36, 187, 6, 181, 182, 223, 115, 133, 151, 171, 78, 219, 90, 161, 248, 69, 6, 207, 173, 3, 81, 161, 2, 60, 238, 204, 177, 12, 138, 17, 220, 179, 71, 113, 200, 248, 159, 153, 252, 150, 180, 155, 2, 65, 0, 190, 202, 185, 211, 170, 171, 238, 40, 84, 84, 21, 13, 144, 57, 7, 178, 183, 71, 126, 120, 98, 229, 235, 4, 40, 229, 173, 149, 185, 209, 29, 199, 29, 54, 164, 161, 38, 8, 30, 62, 83, 179, 47, 42, 165, 0, 156, 207, 160, 39, 169, 229, 81, 180, 136, 170, 116, 182, 20, 233, 45, 90, 100, 9, 2, 65, 0, 152, 255, 47, 198, 15, 201, 238, 133, 89, 11, 133, 153, 184, 252, 37, 239, 177, 65, 118, 80, 231, 190, 222, 66, 250, 118, 72, 166, 221, 67, 156, 245, 119, 138, 28, 6, 142, 107, 71, 122, 116, 200, 156, 199, 237, 152, 191, 239, 4, 184, 64, 114, 143, 81, 62, 48, 23, 233, 217, 95, 47, 221, 104, 171, 2, 64, 30, 219, 1, 230, 241, 70, 246, 243, 121, 174, 67, 66, 11, 99, 202, 17, 52, 234, 78, 29, 3, 57, 51, 123, 149, 86, 64, 192, 73, 199, 108, 101, 55, 232, 41, 114, 153, 237, 253, 52, 205, 148, 45, 86, 186, 241, 182, 183, 42, 77, 252, 195, 29, 158, 173, 3, 182, 207, 254, 61, 71, 184, 167, 184]);
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pkData };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: skData };
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
   let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
-  rsaGenerator.generateKeyPair((err, keyPair) => {
-    globalKeyPair = keyPair;
-    let priKey = globalKeyPair.priKey;
-    signer.init(priKey, err => {
-      signer.update(input1, err => { // add first segment of data
-        signer.sign(input2, (err, data) => { // add second segment of data, sign input1 and input2
-          signMessageBlob = data;
-          AlertDialog.show({message: "res" +  signMessageBlob.data});
+  rsaGenerator.convertKey(pubKeyBlob, priKeyBlob, (err, keyPair) => {
+    signer.init(keyPair.priKey, err => {
+      signer.update(inputUpdate, err => {
+        signer.sign(inputVerify, (err, signData) => {
+          console.info("sign output is " + signData.data);
         });
       });
     });
@@ -2432,37 +2329,29 @@ function signMessageCallback() {
 **Promise示例：**
 
 ```ts
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
+
+async function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyData };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyData };
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let keyPair = await rsaGenerator.convertKey(pubKeyBlob, priKeyBlob);
+  console.info('convertKey success');
+  return keyPair;
 }
 
-let globalKeyPair: cryptoFramework.KeyPair;
-let signMessageBlob: cryptoFramework.DataBlob;
-let plan1 = "This is Sign test plan1"; // The first segment of the data.
-let plan2 = "This is Sign test plan2"; // The second segment of the data.
-let input1: cryptoFramework.DataBlob = { data: stringToUint8Array(plan1) };
-let input2: cryptoFramework.DataBlob = { data: stringToUint8Array(plan2) };
-
-function signMessagePromise() {
-  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-  let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256"); // From API version 10, a Sign instance can be created by specifying a string parameter defining the key specifications.
-  let keyGenPromise = rsaGenerator.generateKeyPair();
-  keyGenPromise.then(keyPair => {
-    globalKeyPair = keyPair;
-    let priKey = globalKeyPair.priKey;
-    return signer.init(priKey);
-  }).then(() => {
-    return signer.update(input1);
-  }).then(() => {
-    return signer.sign(input2);
-  }).then(dataBlob => {
-    signMessageBlob = dataBlob;
-    console.info("sign output is " + signMessageBlob.data);
-  });
+async function signByPromise() {
+  let pkData = new Uint8Array([48, 129, 159, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 129, 141, 0, 48, 129, 137, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1]);
+  let skData = new Uint8Array([48, 130, 2, 120, 2, 1, 0, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 4, 130, 2, 98, 48, 130, 2, 94, 2, 1, 0, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1, 2, 129, 129, 0, 152, 111, 145, 203, 10, 88, 116, 163, 112, 126, 9, 20, 68, 34, 235, 121, 98, 14, 182, 102, 151, 125, 114, 91, 210, 122, 215, 29, 212, 5, 176, 203, 238, 146, 5, 190, 41, 21, 91, 56, 125, 239, 111, 133, 53, 200, 192, 56, 132, 202, 42, 145, 120, 3, 224, 40, 223, 46, 148, 29, 41, 92, 17, 40, 12, 72, 165, 69, 192, 211, 142, 233, 81, 202, 177, 235, 156, 27, 179, 48, 18, 85, 154, 101, 193, 45, 218, 91, 24, 143, 196, 248, 16, 83, 177, 198, 136, 77, 111, 134, 60, 219, 95, 246, 23, 5, 45, 14, 83, 29, 137, 248, 159, 28, 132, 142, 205, 99, 226, 213, 84, 232, 57, 130, 156, 81, 191, 237, 2, 65, 0, 255, 158, 212, 13, 43, 132, 244, 135, 148, 161, 232, 219, 20, 81, 196, 102, 103, 44, 110, 71, 100, 62, 73, 200, 32, 138, 114, 209, 171, 150, 179, 92, 198, 5, 190, 218, 79, 227, 227, 37, 32, 57, 159, 252, 107, 211, 139, 198, 202, 248, 137, 143, 186, 205, 106, 81, 85, 207, 134, 148, 110, 204, 243, 27, 2, 65, 0, 215, 4, 181, 121, 57, 224, 170, 168, 183, 159, 152, 8, 74, 233, 80, 244, 146, 81, 48, 159, 194, 199, 36, 187, 6, 181, 182, 223, 115, 133, 151, 171, 78, 219, 90, 161, 248, 69, 6, 207, 173, 3, 81, 161, 2, 60, 238, 204, 177, 12, 138, 17, 220, 179, 71, 113, 200, 248, 159, 153, 252, 150, 180, 155, 2, 65, 0, 190, 202, 185, 211, 170, 171, 238, 40, 84, 84, 21, 13, 144, 57, 7, 178, 183, 71, 126, 120, 98, 229, 235, 4, 40, 229, 173, 149, 185, 209, 29, 199, 29, 54, 164, 161, 38, 8, 30, 62, 83, 179, 47, 42, 165, 0, 156, 207, 160, 39, 169, 229, 81, 180, 136, 170, 116, 182, 20, 233, 45, 90, 100, 9, 2, 65, 0, 152, 255, 47, 198, 15, 201, 238, 133, 89, 11, 133, 153, 184, 252, 37, 239, 177, 65, 118, 80, 231, 190, 222, 66, 250, 118, 72, 166, 221, 67, 156, 245, 119, 138, 28, 6, 142, 107, 71, 122, 116, 200, 156, 199, 237, 152, 191, 239, 4, 184, 64, 114, 143, 81, 62, 48, 23, 233, 217, 95, 47, 221, 104, 171, 2, 64, 30, 219, 1, 230, 241, 70, 246, 243, 121, 174, 67, 66, 11, 99, 202, 17, 52, 234, 78, 29, 3, 57, 51, 123, 149, 86, 64, 192, 73, 199, 108, 101, 55, 232, 41, 114, 153, 237, 253, 52, 205, 148, 45, 86, 186, 241, 182, 183, 42, 77, 252, 195, 29, 158, 173, 3, 182, 207, 254, 61, 71, 184, 167, 184]);
+  let keyPair = await genKeyPairByData(pkData, skData);
+  let inputUpdate: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
+  let inputSign: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
+  let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
+  await signer.init(keyPair.priKey);
+  await signer.update(inputUpdate);
+  let signData = await signer.sign(inputSign);
+  console.info('signData result: ' + signData.data);
 }
 ```
 
@@ -2785,36 +2674,63 @@ verify(data: DataBlob | null, signatureData: DataBlob): Promise\<boolean>
 **callback示例：**
 
 ```ts
-let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
-let input1: cryptoFramework.DataBlob;
-let input2: cryptoFramework.DataBlob;
-let signMessageBlob: cryptoFramework.DataBlob;// Signed data, which is omitted here.
-let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
-verifyer.init(globalKeyPair.pubKey, (err, data) => {
-  verifyer.update(input1, (err, data) => {
-    verifyer.verify(input2, signMessageBlob, (err, data) => {
-      console.info("verify result is " + data);
-    })
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
+
+function verifyByCallback() {
+  let inputUpdate: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
+  let inputVerify: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
+  // 根据密钥数据生成的密钥和输入的验签数据，这部分代码Verify与Sign中保持一致，保证验签通过
+  let pkData = new Uint8Array([48, 129, 159, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 129, 141, 0, 48, 129, 137, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1]);
+  let skData = new Uint8Array([48, 130, 2, 120, 2, 1, 0, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 4, 130, 2, 98, 48, 130, 2, 94, 2, 1, 0, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1, 2, 129, 129, 0, 152, 111, 145, 203, 10, 88, 116, 163, 112, 126, 9, 20, 68, 34, 235, 121, 98, 14, 182, 102, 151, 125, 114, 91, 210, 122, 215, 29, 212, 5, 176, 203, 238, 146, 5, 190, 41, 21, 91, 56, 125, 239, 111, 133, 53, 200, 192, 56, 132, 202, 42, 145, 120, 3, 224, 40, 223, 46, 148, 29, 41, 92, 17, 40, 12, 72, 165, 69, 192, 211, 142, 233, 81, 202, 177, 235, 156, 27, 179, 48, 18, 85, 154, 101, 193, 45, 218, 91, 24, 143, 196, 248, 16, 83, 177, 198, 136, 77, 111, 134, 60, 219, 95, 246, 23, 5, 45, 14, 83, 29, 137, 248, 159, 28, 132, 142, 205, 99, 226, 213, 84, 232, 57, 130, 156, 81, 191, 237, 2, 65, 0, 255, 158, 212, 13, 43, 132, 244, 135, 148, 161, 232, 219, 20, 81, 196, 102, 103, 44, 110, 71, 100, 62, 73, 200, 32, 138, 114, 209, 171, 150, 179, 92, 198, 5, 190, 218, 79, 227, 227, 37, 32, 57, 159, 252, 107, 211, 139, 198, 202, 248, 137, 143, 186, 205, 106, 81, 85, 207, 134, 148, 110, 204, 243, 27, 2, 65, 0, 215, 4, 181, 121, 57, 224, 170, 168, 183, 159, 152, 8, 74, 233, 80, 244, 146, 81, 48, 159, 194, 199, 36, 187, 6, 181, 182, 223, 115, 133, 151, 171, 78, 219, 90, 161, 248, 69, 6, 207, 173, 3, 81, 161, 2, 60, 238, 204, 177, 12, 138, 17, 220, 179, 71, 113, 200, 248, 159, 153, 252, 150, 180, 155, 2, 65, 0, 190, 202, 185, 211, 170, 171, 238, 40, 84, 84, 21, 13, 144, 57, 7, 178, 183, 71, 126, 120, 98, 229, 235, 4, 40, 229, 173, 149, 185, 209, 29, 199, 29, 54, 164, 161, 38, 8, 30, 62, 83, 179, 47, 42, 165, 0, 156, 207, 160, 39, 169, 229, 81, 180, 136, 170, 116, 182, 20, 233, 45, 90, 100, 9, 2, 65, 0, 152, 255, 47, 198, 15, 201, 238, 133, 89, 11, 133, 153, 184, 252, 37, 239, 177, 65, 118, 80, 231, 190, 222, 66, 250, 118, 72, 166, 221, 67, 156, 245, 119, 138, 28, 6, 142, 107, 71, 122, 116, 200, 156, 199, 237, 152, 191, 239, 4, 184, 64, 114, 143, 81, 62, 48, 23, 233, 217, 95, 47, 221, 104, 171, 2, 64, 30, 219, 1, 230, 241, 70, 246, 243, 121, 174, 67, 66, 11, 99, 202, 17, 52, 234, 78, 29, 3, 57, 51, 123, 149, 86, 64, 192, 73, 199, 108, 101, 55, 232, 41, 114, 153, 237, 253, 52, 205, 148, 45, 86, 186, 241, 182, 183, 42, 77, 252, 195, 29, 158, 173, 3, 182, 207, 254, 61, 71, 184, 167, 184]);
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pkData };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: skData };
+  // 该数据取自Sign中的signData.data
+  let signMessageBlob: cryptoFramework.DataBlob = { data: new Uint8Array([9, 68, 164, 161, 230, 155, 255, 153, 10, 12, 14, 22, 146, 115, 209, 167, 223, 133, 89, 173, 50, 249, 176, 104, 10, 251, 219, 104, 117, 196, 105, 65, 249, 139, 119, 41, 15, 171, 191, 11, 177, 177, 1, 119, 130, 142, 87, 183, 32, 220, 226, 28, 38, 73, 222, 172, 153, 26, 87, 58, 188, 42, 150, 67, 94, 214, 147, 64, 202, 87, 155, 125, 254, 112, 95, 176, 255, 207, 106, 43, 228, 153, 131, 240, 120, 88, 253, 179, 207, 207, 110, 223, 173, 15, 113, 11, 183, 122, 237, 205, 206, 123, 246, 33, 167, 169, 251, 237, 199, 26, 220, 152, 190, 117, 131, 74, 232, 50, 39, 172, 232, 178, 112, 73, 251, 235, 131, 209]) }
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
+  rsaGenerator.convertKey(pubKeyBlob, priKeyBlob, (err, keyPair) => {
+    verifyer.init(keyPair.pubKey, err => {
+      verifyer.update(inputUpdate, err => {
+        verifyer.verify(inputVerify, signMessageBlob, (err, res) => {
+          console.info("verify result is " + res);
+        });
+      });
+    });
   });
-})
+}
 ```
 
 **Promise示例：**
 
 ```ts
-let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
-let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
-let verifyInitPromise = verifyer.init(globalKeyPair.pubKey);
-let input1: cryptoFramework.DataBlob;;
-let input2: cryptoFramework.DataBlob;;
-let signMessageBlob: cryptoFramework.DataBlob;; // Signed data, which is omitted here.
-verifyInitPromise.then((): Promise<void> => {
-  return verifyer.update(input1);
-}).then(() => {
-  return verifyer.verify(input2, signMessageBlob);
-}).then(res => {
-  console.log("Verify result is " + res);
-});
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
+
+async function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyData };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyData };
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let keyPair = await rsaGenerator.convertKey(pubKeyBlob, priKeyBlob);
+  console.info('convertKey success');
+  return keyPair;
+}
+
+async function verifyByPromise() {
+  // 根据密钥数据生成的密钥和输入的验签数据，这部分代码Verify与Sign中保持一致，保证验签通过
+  let pkData = new Uint8Array([48, 129, 159, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 129, 141, 0, 48, 129, 137, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1]);
+  let skData = new Uint8Array([48, 130, 2, 120, 2, 1, 0, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 4, 130, 2, 98, 48, 130, 2, 94, 2, 1, 0, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1, 2, 129, 129, 0, 152, 111, 145, 203, 10, 88, 116, 163, 112, 126, 9, 20, 68, 34, 235, 121, 98, 14, 182, 102, 151, 125, 114, 91, 210, 122, 215, 29, 212, 5, 176, 203, 238, 146, 5, 190, 41, 21, 91, 56, 125, 239, 111, 133, 53, 200, 192, 56, 132, 202, 42, 145, 120, 3, 224, 40, 223, 46, 148, 29, 41, 92, 17, 40, 12, 72, 165, 69, 192, 211, 142, 233, 81, 202, 177, 235, 156, 27, 179, 48, 18, 85, 154, 101, 193, 45, 218, 91, 24, 143, 196, 248, 16, 83, 177, 198, 136, 77, 111, 134, 60, 219, 95, 246, 23, 5, 45, 14, 83, 29, 137, 248, 159, 28, 132, 142, 205, 99, 226, 213, 84, 232, 57, 130, 156, 81, 191, 237, 2, 65, 0, 255, 158, 212, 13, 43, 132, 244, 135, 148, 161, 232, 219, 20, 81, 196, 102, 103, 44, 110, 71, 100, 62, 73, 200, 32, 138, 114, 209, 171, 150, 179, 92, 198, 5, 190, 218, 79, 227, 227, 37, 32, 57, 159, 252, 107, 211, 139, 198, 202, 248, 137, 143, 186, 205, 106, 81, 85, 207, 134, 148, 110, 204, 243, 27, 2, 65, 0, 215, 4, 181, 121, 57, 224, 170, 168, 183, 159, 152, 8, 74, 233, 80, 244, 146, 81, 48, 159, 194, 199, 36, 187, 6, 181, 182, 223, 115, 133, 151, 171, 78, 219, 90, 161, 248, 69, 6, 207, 173, 3, 81, 161, 2, 60, 238, 204, 177, 12, 138, 17, 220, 179, 71, 113, 200, 248, 159, 153, 252, 150, 180, 155, 2, 65, 0, 190, 202, 185, 211, 170, 171, 238, 40, 84, 84, 21, 13, 144, 57, 7, 178, 183, 71, 126, 120, 98, 229, 235, 4, 40, 229, 173, 149, 185, 209, 29, 199, 29, 54, 164, 161, 38, 8, 30, 62, 83, 179, 47, 42, 165, 0, 156, 207, 160, 39, 169, 229, 81, 180, 136, 170, 116, 182, 20, 233, 45, 90, 100, 9, 2, 65, 0, 152, 255, 47, 198, 15, 201, 238, 133, 89, 11, 133, 153, 184, 252, 37, 239, 177, 65, 118, 80, 231, 190, 222, 66, 250, 118, 72, 166, 221, 67, 156, 245, 119, 138, 28, 6, 142, 107, 71, 122, 116, 200, 156, 199, 237, 152, 191, 239, 4, 184, 64, 114, 143, 81, 62, 48, 23, 233, 217, 95, 47, 221, 104, 171, 2, 64, 30, 219, 1, 230, 241, 70, 246, 243, 121, 174, 67, 66, 11, 99, 202, 17, 52, 234, 78, 29, 3, 57, 51, 123, 149, 86, 64, 192, 73, 199, 108, 101, 55, 232, 41, 114, 153, 237, 253, 52, 205, 148, 45, 86, 186, 241, 182, 183, 42, 77, 252, 195, 29, 158, 173, 3, 182, 207, 254, 61, 71, 184, 167, 184]);
+  let keyPair = await genKeyPairByData(pkData, skData);
+  let inputUpdate: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
+  let inputVerify: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
+  // 该数据取自Sign中的signData.data
+  let signMessageBlob: cryptoFramework.DataBlob = { data: new Uint8Array([9, 68, 164, 161, 230, 155, 255, 153, 10, 12, 14, 22, 146, 115, 209, 167, 223, 133, 89, 173, 50, 249, 176, 104, 10, 251, 219, 104, 117, 196, 105, 65, 249, 139, 119, 41, 15, 171, 191, 11, 177, 177, 1, 119, 130, 142, 87, 183, 32, 220, 226, 28, 38, 73, 222, 172, 153, 26, 87, 58, 188, 42, 150, 67, 94, 214, 147, 64, 202, 87, 155, 125, 254, 112, 95, 176, 255, 207, 106, 43, 228, 153, 131, 240, 120, 88, 253, 179, 207, 207, 110, 223, 173, 15, 113, 11, 183, 122, 237, 205, 206, 123, 246, 33, 167, 169, 251, 237, 199, 26, 220, 152, 190, 117, 131, 74, 232, 50, 39, 172, 232, 178, 112, 73, 251, 235, 131, 209]) };
+  let verifier = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
+  await verifier.init(keyPair.pubKey);
+  await verifier.update(inputUpdate);
+  let res = await verifier.verify(inputVerify, signMessageBlob);
+  console.info('signData result: ' + res);
+}
 ```
 
 ### setVerifySpec<sup>10+</sup>
@@ -3116,22 +3032,6 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
 
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let md = cryptoFramework.createMd("SHA256");
-console.info("Md algName is: " + md.algName);
-
-let blob: cryptoFramework.DataBlob;
-md.update(blob, (err,) => {
-  if (err) {
-    console.error("[Callback] err: " + err.code);
-  }
-});
-```
-
 ### update
 
 update(input: DataBlob): Promise\<void>
@@ -3162,23 +3062,6 @@ update(input: DataBlob): Promise\<void>
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
 
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let md = cryptoFramework.createMd("SHA256");
-console.info("Md algName is: " + md.algName);
-
-let blob: cryptoFramework.DataBlob;
-let promiseMdUpdate = md.update(blob);
-promiseMdUpdate.then(() => {
-  // do something
-}).catch((error: BusinessError) => {
-  console.error("[Promise]: error: " + error.message);
-});
-```
-
 ### digest
 
 digest(callback: AsyncCallback\<DataBlob>): void
@@ -3202,24 +3085,18 @@ digest(callback: AsyncCallback\<DataBlob>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
 
-let md = cryptoFramework.createMd("SHA256");
-console.info("Md algName is: " + md.algName);
-
-let blob: cryptoFramework.DataBlob;
-md.update(blob, (err,) => {
-  if (err) {
-    console.error("[Callback] err: " + err.code);
-  }
-  md.digest((err1, mdOutput) => {
-    if (err1) {
-      console.error("[Callback] err: " + err1.code);
-    } else {
-      console.error("[Callback]: MD result: " + mdOutput);
-    }
+function MdByCallback() {
+  let md = cryptoFramework.createMd("SHA256");
+  md.update({ data: new Uint8Array(buffer.from("mdTestMessage", 'utf-8').buffer) }, (err,) => {
+    md.digest((err, digestOutput) => {
+      console.info("[Callback]: MD result: " + digestOutput.data);
+      console.info("[Callback]: MD len: " + md.getMdLength());
+    });
   });
-});
+}
 ```
 
 ### digest
@@ -3247,21 +3124,16 @@ digest(): Promise\<DataBlob>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
 
-let md = cryptoFramework.createMd("SHA256");
-console.info("Md algName is: " + md.algName);
-
-let blob: cryptoFramework.DataBlob;
-let promiseMdUpdate = md.update(blob);
-promiseMdUpdate.then(() => {
-  let promiseMdDigest = md.digest();
-  return promiseMdDigest;
-}).then(mdOutput => {
-  console.error("[Promise]: MD result: " + mdOutput.data);
-}).catch((error: BusinessError) => {
-  console.error("[Promise]: error: " + error.message);
-});
+async function mdByPromise() {
+  let md = cryptoFramework.createMd("SHA256");
+  await md.update({ data: new Uint8Array(buffer.from("mdTestMessage", 'utf-8').buffer) });
+  let mdOutput = await md.digest();
+  console.info("[Promise]: MD result: " + mdOutput.data);
+  console.info("[Promise]: MD len: " + md.getMdLength());
+}
 ```
 
 ### getMdLength
@@ -3390,26 +3262,6 @@ init(key: SymKey, callback: AsyncCallback\<void>): void
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
 
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let mac = cryptoFramework.createMac("SHA256");
-let keyBlob: cryptoFramework.DataBlob;
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
-  if (err) {
-    console.error("[Callback] err: " + err.code);
-  }
-  mac.init(symKey, (err1, ) => {
-    if (err1) {
-      console.error("[Callback] err: " + err1.code);
-    }
-  });
-});
-```
-
 ### init
 
 init(key: SymKey): Promise\<void>
@@ -3438,26 +3290,6 @@ init(key: SymKey): Promise\<void>
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
 
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let mac = cryptoFramework.createMac("SHA256");
-console.info("Mac algName is: " + mac.algName);
-
-let keyBlob: cryptoFramework.DataBlob;
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-let promiseConvertKey = symKeyGenerator.convertKey(keyBlob);
-promiseConvertKey.then(symKey => {
-  let promiseMacInit = mac.init(symKey);
-  return promiseMacInit;
-}).catch((error: BusinessError) => {
-  console.error("[Promise]: error: " + error.message);
-});
-
-```
-
 ### update
 
 update(input: DataBlob, callback: AsyncCallback\<void>): void
@@ -3484,32 +3316,6 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 | -------- | ---------------------- |
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let keyBlob: cryptoFramework.DataBlob;
-let mac = cryptoFramework.createMac("SHA256");
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
-  if (err) {
-    console.error("[Callback] err: " + err.code);
-  }
-  mac.init(symKey, (err1, ) => {
-    if (err1) {
-      console.error("[Callback] err: " + err1.code);
-    }
-    let blob: cryptoFramework.DataBlob;
-    mac.update(blob, (err2, data) => {
-      if (err2) {
-        console.error("[Callback] err: " + err2.code);
-      }
-    });
-  });
-});
-```
 
 ### update
 
@@ -3543,30 +3349,6 @@ update(input: DataBlob): Promise\<void>
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
 
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let mac = cryptoFramework.createMac("SHA256");
-console.info("Mac algName is: " + mac.algName);
-
-let keyBlob: cryptoFramework.DataBlob;
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-let promiseConvertKey = symKeyGenerator.convertKey(keyBlob);
-promiseConvertKey.then(symKey => {
-  let promiseMacInit = mac.init(symKey);
-  return promiseMacInit;
-}).then(() => {
-  let blob: cryptoFramework.DataBlob;
-  let promiseMacUpdate = mac.update(blob);
-  return promiseMacUpdate;
-}).catch((error: BusinessError) => {
-  console.error("[Promise]: error: " + error.message);
-});
-
-```
-
 ### doFinal
 
 doFinal(callback: AsyncCallback\<DataBlob>): void
@@ -3592,34 +3374,24 @@ doFinal(callback: AsyncCallback\<DataBlob>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
 
-let keyBlob: cryptoFramework.DataBlob;
-let mac = cryptoFramework.createMac("SHA256");
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
-  if (err) {
-    console.error("[Callback] err: " + err.code);
-  }
-  mac.init(symKey, (err1, ) => {
-    if (err1) {
-      console.error("[Callback] err: " + err1.code);
-    }
-    let blob: cryptoFramework.DataBlob;
-    mac.update(blob, (err2, ) => {
-      if (err2) {
-        console.error("[Callback] err: " + err2.code);
-      }
-      mac.doFinal((err3, macOutput) => {
-        if (err3) {
-          console.error("[Callback] err: " + err3.code);
-        } else {
-          console.error("[Promise]: HMAC result: " + macOutput);
-        }
+function HmacByCallback() {
+  let mac = cryptoFramework.createMac("SHA256");
+  let keyBlob: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer) };
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+  symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
+    mac.init(symKey, (err,) => {
+      mac.update({ data: new Uint8Array(buffer.from("hmacTestMessage", 'utf-8').buffer) }, (err,) => {
+        mac.doFinal((err, output) => {
+          console.info("[Callback]: HMAC result: " + output.data);
+          console.info("[Callback]: MAC len: " + mac.getMacLength());
+        });
       });
     });
   });
-});
+}
 ```
 
 ### doFinal
@@ -3647,28 +3419,21 @@ doFinal(): Promise\<DataBlob>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
 
-let mac = cryptoFramework.createMac("SHA256");
-console.info("Mac algName is: " + mac.algName);
-let keyBlob: cryptoFramework.DataBlob;
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-let promiseConvertKey = symKeyGenerator.convertKey(keyBlob);
-promiseConvertKey.then(symKey => {
-  let promiseMacInit = mac.init(symKey);
-  return promiseMacInit;
-}).then(() => {
-  let blob: cryptoFramework.DataBlob;
-  let promiseMacUpdate = mac.update(blob);
-  return promiseMacUpdate;
-}).then(() => {
-  let promiseMacDoFinal = mac.doFinal();
-  return promiseMacDoFinal;
-}).then(macOutput => {
-  console.error("[Promise]: HMAC result: " + macOutput.data);
-}).catch((error: BusinessError) => {
-  console.error("[Promise]: error: " + error.message);
-});
+async function hmacByPromise() {
+  let mac = cryptoFramework.createMac("SHA256");
+  let keyBlob = { data: new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer) };
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+  let symKey = await symKeyGenerator.convertKey(keyBlob);
+  await mac.init(symKey);
+  await mac.update({ data: new Uint8Array(buffer.from("hmacTestMessage", 'utf-8').buffer) });
+  let macOutput = await mac.doFinal();
+  console.info("[Promise]: HMAC result: " + macOutput.data);
+  let macLen = mac.getMacLength();
+  console.info("[Promise]: MAC len: " + macLen);
+}
 ```
 
 ### getMacLength
