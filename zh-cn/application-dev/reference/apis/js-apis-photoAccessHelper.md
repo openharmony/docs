@@ -5997,6 +5997,7 @@ async function example() {
 | maxSelectNumber       | number | 否   | 选择媒体文件数量的最大值(默认值为50，最大值为500)。      |
 | isPhotoTakingSupported<sup>11+</sup> | boolean  | 否   | 支持拍照。 |
 | isEditSupported<sup>11+</sup>       | boolean | 否   | 支持编辑照片。      |
+| isSearchSupported<sup>11+</sup> | boolean  | 否   | 支持搜索。 |
 
 ## PhotoSelectResult
 
