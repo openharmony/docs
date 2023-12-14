@@ -758,7 +758,7 @@ getPorts(): Array\<USBPort\>
 
 | 类型                          | 说明                  |
 | ----------------------------- | --------------------- |
-| Array<[USBPort]>(#usbport) | USB端口描述信息列表。 |
+| Array&lt;[USBPort](#usbport)&gt; | USB端口描述信息列表。 |
 
 **示例：**
 
