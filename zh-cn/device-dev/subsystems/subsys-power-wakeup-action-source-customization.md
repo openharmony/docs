@@ -150,9 +150,9 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     其中path为保存低电量阈值的节点路径。
 
 4. 修改[batterymgr.gni](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/batterymgr.gni)，使能battery_manager_feature_set_low_capacity_threshold特性。
-
+    ```
     battery_manager_feature_set_low_capacity_threshold = true
-
+    ```    
 5. 在[power_config.json](https://gitee.com/openharmony/drivers_peripheral/blob/master/power/interfaces/hdi_service/profile/power_config.json)中添加如下部分
     ```json
     {
@@ -168,15 +168,14 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     其中get为保存低电量唤醒原因的节点路径。
 
 5. 修改[power.gni](https://gitee.com/openharmony/drivers_peripheral/blob/master/power/power.gni)，打开drivers_peripheral_power_wakeup_cause_path特性。
-
+    ```
     drivers_peripheral_power_wakeup_cause_path = true
-
+    ```
 6. 修改[hdf_peripheral.cfg](https://gitee.com/openharmony/drivers_peripheral/blob/master/base/hdf_peripheral.cfg)节权限为system。
     ```
     "chown system system xxx",
     "chown system system yyy",
     ```
-    
 7. 使系统在睡眠中电量下降至阈值。
 
     设备关机。
