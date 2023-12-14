@@ -1664,7 +1664,7 @@ struct WebComponent {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
@@ -1739,7 +1739,7 @@ window.addEventListener('message', function (event) {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
