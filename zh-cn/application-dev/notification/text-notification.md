@@ -274,15 +274,29 @@
    - 普通实况窗类型通知继承了普通文本类型的字段，新增了实况通知状态、实况通知版本号、通知附加内容和通知附加内容中的图片信息，类型描述参考[NotificationLiveViewContent](../reference/apis/js-apis-inner-notification-notificationContent.md#notificationliveviewcontent11)。
 
       ```ts
-      let notificationRequest = {
+      import Want from '@ohos.app.ability.Want';
+      import wantAgent, {WantAgent as _wantAgent} from '@ohos.app.ability.wantAgent';
+
+      let wantAgentInfo: wantAgent.WantAgentInfo = {
+        wants: [
+            {
+                deviceId: '',
+                bundleName: 'com.example.myapplication',
+                abilityName: 'EntryAbility',
+                action: '',
+                entities: [],
+                uri: '',
+                parameters: {}
+            }
+        ],
+        operationType: wantAgent.OperationType.START_ABILITY,
+        requestCode: 0,
+        wantAgentFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG]
+      }
+      let notificationRequest: notificationManager.NotificationRequest = {
+        id: 1,
         content: {
-          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
-          id: 1,
-          normal: {
-            title: 'testTitle',
-            text: 'testText',
-            additionalText: 'testAdditionalText'
-          },
+          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
           liveView: {
             status: notificationManager.LiveViewStatus.LIVE_VIEW_CREATE,
             version: 1,
@@ -310,23 +324,21 @@
             }
           }
         },
-        slotType: notificationManager.SlotType.LIVE_VIEW,
+        notificationSlotType: notificationManager.SlotType.LIVE_VIEW,
         isOngoing: true,
         isUnremovable: false,
         autoDeletedTime: 500,
-        wantAgent: wantAgentData,
+        wantAgent: await WantAgent.getWantAgent(WantAgentInfo),
         extraInfo: {
           'testKey': 'testValue'
         },
       }
 
-      notificationManager.publish(notificationRequest).then(data => {
-        console.log(`${TAG} notification publish AsyncCallback success: ${data}`)
-        expect(true).assertFalse()
-        done()
-      }).catch(err => {
-        console.info(`${TAG} notification publish AsyncCallback err: ${err.code}`)
-        expect(true).assertTrue()
-        done()
-      })
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
+        if (err) {
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in publishing notification.');
+      });
       ```
