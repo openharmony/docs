@@ -67,6 +67,7 @@ try {
 | name                | string                  | 是   | 数据处理者的名称。                                                                                           |
 | debugMode           | boolean                 | 否   | 是否开启debug模式。配置值为true表示开启debug模式，false表示不开启debug模式。                                    |
 | routeInfo           | string                  | 否   | 服务器位置信息，不超过8kB。                                                                                   |
+| appId               | string                  | 否   | 应用id，长度不超过8KB。 |
 | onStartReport       | boolean                 | 否   | 数据处理者在启动时是否上报事件。配置值为true表示上报事件，false表示不上报事件。                                   |
 | onBackgroundReport  | boolean                 | 否   | 当应用程序进入后台时是否上报事件。配置值为true表示上报事件，false表示不上报事件。                                 |
 | periodReport        | number                  | 否   | 根据时间周期定时上报事件。单位为秒，数值不小于0，如果为0则不上报。                                                |
@@ -527,6 +528,26 @@ if (holder != null) {
     }
   }
 }
+
+// 3. 观察者可以在实时回调函数onReceive中处理订阅事件
+hiAppEvent.addWatcher({
+  name: "watcher3",
+  appEventFilters: [
+    {
+      domain: "test_domain",
+      eventTypes: [hiAppEvent.EventType.FAULT, hiAppEvent.EventType.BEHAVIOR]
+    }
+  ],
+  onReceive: (domain: string, appEventGroups: Array<hiAppEvent.AppEventGroup>) => {
+    hilog.info(0x0000, 'hiAppEvent', `domain=${domain}`);
+    for (const eventGroup of appEventGroups) {
+      hilog.info(0x0000, 'hiAppEvent', `eventName=${eventGroup.name}`);
+      for (const eventInfo of eventGroup.appEventInfos) {
+        hilog.info(0x0000, 'hiAppEvent', `event=${JSON.stringify(eventInfo)}`, );
+      }
+    }
+  }
+});
 ```
 
 ## hiAppEvent.removeWatcher
@@ -575,9 +596,10 @@ hiAppEvent.removeWatcher(watcher);
 | 名称             | 类型                                                         | 必填 | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | name             | string                                                       | 是   | 观察者名称，用于唯一标识观察者。                             |
-| triggerCondition | [TriggerCondition](#triggercondition)                        | 否   | 订阅回调触发条件，需要与回调函数一同传入才会生效。           |
+| triggerCondition | [TriggerCondition](#triggercondition)                        | 否   | 订阅回调触发条件，需要与回调函数onTrigger一同传入才会生效。           |
 | appEventFilters  | [AppEventFilter](#appeventfilter)[]                          | 否   | 订阅过滤条件，在需要对订阅事件进行过滤时传入。               |
-| onTrigger        | (curRow: number, curSize: number, holder: [AppEventPackageHolder](#appeventpackageholder)) => void | 否   | 订阅回调函数，需要与回调触发条件一同传入才会生效，函数入参说明如下：<br>curRow：在本次回调触发时的订阅事件总数量； <br>curSize：在本次回调触发时的订阅事件总大小，单位为byte；  <br/>holder：订阅数据持有者对象，可以通过其对订阅事件进行处理。 |
+| onTrigger        | (curRow: number, curSize: number, holder: [AppEventPackageHolder](#appeventpackageholder)) => void | 否   | 订阅回调函数，需要与回调触发条件triggerCondition一同传入才会生效，函数入参说明如下：<br>curRow：在本次回调触发时的订阅事件总数量； <br>curSize：在本次回调触发时的订阅事件总大小，单位为byte；  <br/>holder：订阅数据持有者对象，可以通过其对订阅事件进行处理。 |
+| onReceive<sup>11+</sup>        | (domain: string, appEventGroups: Array<[AppEventGroup](#appeventgroup11)>) => void | 否 | 订阅实时回调函数，与回调函数onTrigger同时存在时，只触发此回调，函数入参说明如下：<br>domain：回调事件的领域名称； <br>appEventGroups：回调事件集合。 |
 
 ## TriggerCondition
 
@@ -601,6 +623,7 @@ hiAppEvent.removeWatcher(watcher);
 | ---------- | ------------------------- | ---- | ------------------------ |
 | domain     | string                    | 是   | 需要订阅的事件领域。     |
 | eventTypes | [EventType](#eventtype)[] | 否   | 需要订阅的事件类型集合。 |
+| names<sup>11+</sup>      | string[]                  | 否   | 需要订阅的事件名称集合。 |
 
 ## AppEventPackageHolder
 
@@ -689,6 +712,17 @@ let eventPkg = holder3.takeNext();
 | size      | number   | 是   | 事件包的事件大小，单位为byte。 |
 | data      | string[] | 是   | 事件包的事件信息。             |
 
+## AppEventGroup<sup>11+</sup>
+
+提供了订阅返回的事件组的参数定义。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+| 名称          | 类型                            | 必填  | 说明          |
+| ------------- | ------------------------------- | ---- | ------------- |
+| name          | string                          | 是   | 事件名称。     |
+| appEventInfos | Array<[AppEventInfo](#appeventinfo)> | 是   | 事件对象集合。 |
+
 ## hiAppEvent.clearData
 
 clearData(): void
@@ -718,6 +752,17 @@ hiAppEvent.clearData();
 | BEHAVIOR  | 4    | 行为类型事件。 |
 
 
+## domain<sup>11+</sup>
+
+提供了所有预定义事件的领域名称常量。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+| 名称 | 类型   | 说明       |
+| ---  | ------ | ---------- |
+| OS   | string | 系统领域。 |
+
+
 ## event
 
 提供了所有预定义事件的事件名称常量。
@@ -729,6 +774,8 @@ hiAppEvent.clearData();
 | USER_LOGIN                | string | 用户登录事件。       |
 | USER_LOGOUT               | string | 用户登出事件。       |
 | DISTRIBUTED_SERVICE_START | string | 分布式服务启动事件。 |
+| APP_CRASH<sup>11+</sup>   | string | 应用崩溃事件。       |
+| APP_FREEZE<sup>11+</sup>  | string | 应用卡死事件。       |
 
 
 ## param
