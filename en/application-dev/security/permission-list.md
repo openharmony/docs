@@ -3338,7 +3338,7 @@ Allows an application to access the **Desktop** directory in the user directory.
 
 Allows an application to support persistent access to file URIs.
 
-**Permission level**: normal
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
