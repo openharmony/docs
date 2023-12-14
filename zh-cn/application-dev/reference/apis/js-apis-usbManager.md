@@ -108,7 +108,7 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 **错误码：**
 
-以下错误码的详细介绍参见[USB错误码](../errorcodes/errorcode-usb.md)。
+以下错误码的详细介绍参见[USB服务错误码](../errorcodes/errorcode-usb.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -220,9 +220,9 @@ if (usb.removeRight(devicesName)) {
 
 addRight(bundleName: string, deviceName: string): boolean
 
-添加软件包访问设备的权限。系统应用默认拥有访问设备权限，调用此接口不会产生影响。
+添加软件包访问设备的权限。系统应用默认拥有访问设备权限，调用此接口不会产生影响
 
-[requestRight](#usbrequestright)会触发弹框请求用户授权；addRight不会触发弹框，而是直接添加软件包访问设备的权限。
+[usb.requestRight](#usbrequestright)会触发弹框请求用户授权；addRight不会触发弹框，而是直接添加软件包访问设备的权限。
 
 **系统接口：** 此接口为系统接口。
 
@@ -698,7 +698,7 @@ setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[USB错误码](../errorcodes/errorcode-usb.md)。
+以下错误码的详细介绍请参见[USB服务错误码](../errorcodes/errorcode-usb.md)。
 
 | 错误码ID | 错误信息                                           |
 | -------- | ---------------------------------------------------- |
@@ -758,7 +758,7 @@ getPorts(): Array\<USBPort\>
 
 | 类型                          | 说明                  |
 | ----------------------------- | --------------------- |
-| [Array\<USBPort\>](#usbport) | USB端口描述信息列表。 |
+| Array[\<USBPort\>](#usbport) | USB端口描述信息列表。
 
 **示例：**
 
