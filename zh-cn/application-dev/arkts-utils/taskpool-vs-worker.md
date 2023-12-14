@@ -88,7 +88,7 @@ TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择
 
 ```js
 // 导入模块
-import worker form '@ohos.worker';
+import worker from '@ohos.worker';
 
 // API 9及之后版本使用：
 const worker1 = new worker.ThreadWorker(scriptURL);
@@ -104,7 +104,7 @@ const worker1 = new worker.Worker(scriptURL);
 
 ```js
 // 导入模块
-import worker form '@ohos.worker';
+import worker from '@ohos.worker';
 
 // 写法一
 // Stage模型-目录同级（entry模块下，workers目录与pages目录同级）
@@ -137,7 +137,7 @@ const worker4 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/et
 
 ```js
 // 导入模块
-import worker form '@ohos.worker';
+import worker from '@ohos.worker';
 
 // FA模型-目录同级（entry模块下，workers目录与pages目录同级）
 const worker1 = new worker.ThreadWorker('workers/worker.js', {name:'first worker in FA model'});
