@@ -32,11 +32,11 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 必填 | 说明 |
 | ---- | -------- | ---- | ---- | -------------- |
-| type | "classic" \| "module" | 是   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。 |
-| name | string   | 是   | 是 | Worker的名称，默认值为 undefined 。 |
-| shared | boolean | 是   | 是 | 表示Worker共享功能，此接口暂不支持。 |
+| type | "classic" \| "module" | 是   | 否 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。 |
+| name | string   | 是   | 否 | Worker的名称，默认值为 undefined 。 |
+| shared | boolean | 是   | 否 | 表示Worker共享功能，此接口暂不支持。 |
 
 
 ## ThreadWorker<sup>9+</sup>
