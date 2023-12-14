@@ -84,7 +84,7 @@
 ### Sensor_Accuracy
 
 ```
-typedef enum Sensor_AccuracySensor_Accuracy
+typedef enum Sensor_Accuracy Sensor_Accuracy
 ```
 **描述**
 枚举传感器报告的数据的精度级别。
@@ -95,7 +95,7 @@ typedef enum Sensor_AccuracySensor_Accuracy
 ### Sensor_Event
 
 ```
-typedef struct Sensor_EventSensor_Event
+typedef struct Sensor_Event Sensor_Event
 ```
 **描述**
 定义传感器数据信息。
@@ -117,7 +117,7 @@ typedef void(* Sensor_EventCallback) (Sensor_Event *event)
 ### Sensor_Info
 
 ```
-typedef struct Sensor_InfoSensor_Info
+typedef struct Sensor_Info Sensor_Info
 ```
 **描述**
 定义传感器信息。
@@ -128,7 +128,7 @@ typedef struct Sensor_InfoSensor_Info
 ### Sensor_Result
 
 ```
-typedef enum Sensor_ResultSensor_Result
+typedef enum Sensor_Result Sensor_Result
 ```
 **描述**
 定义传感器错误码。
@@ -139,7 +139,7 @@ typedef enum Sensor_ResultSensor_Result
 ### Sensor_Subscriber
 
 ```
-typedef struct Sensor_SubscriberSensor_Subscriber
+typedef struct Sensor_Subscriber Sensor_Subscriber
 ```
 **描述**
 定义传感器订阅者信息。
@@ -150,7 +150,7 @@ typedef struct Sensor_SubscriberSensor_Subscriber
 ### Sensor_SubscriptionAttribute
 
 ```
-typedef struct Sensor_SubscriptionAttributeSensor_SubscriptionAttribute
+typedef struct Sensor_SubscriptionAttribute Sensor_SubscriptionAttribute
 ```
 **描述**
 定义传感器订阅属性。
@@ -161,7 +161,7 @@ typedef struct Sensor_SubscriptionAttributeSensor_SubscriptionAttribute
 ### Sensor_SubscriptionId
 
 ```
-typedef struct Sensor_SubscriptionIdSensor_SubscriptionId
+typedef struct Sensor_SubscriptionId Sensor_SubscriptionId
 ```
 **描述**
 定义传感器订阅ID，唯一标识传感器。
@@ -172,7 +172,7 @@ typedef struct Sensor_SubscriptionIdSensor_SubscriptionId
 ### Sensor_Type
 
 ```
-typedef enum Sensor_TypeSensor_Type
+typedef enum Sensor_Type Sensor_Type
 ```
 **描述**
 枚举传感器类型。
