@@ -23,17 +23,17 @@
 
 ### 类型定义
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| [Sensor_Type](#sensor_type) | typedef enum [Sensor_Type](#sensor_type)<br/>枚举传感器类型。  | 
-| [Sensor_Result](#sensor_result) | typedef enum [Sensor_Result](#sensor_result)<br/>定义传感器错误码。  | 
-| [Sensor_Accuracy](#sensor_accuracy) | typedef enum [Sensor_Accuracy](#sensor_accuracy)<br/>枚举传感器报告的数据的精度级别。  | 
-| [Sensor_Info](#sensor_info) | typedef struct [Sensor_Info](#sensor_info)<br/>定义传感器信息。  | 
-| [Sensor_Event](#sensor_event) | typedef struct [Sensor_Event](#sensor_event)<br/>定义传感器数据信息。  | 
-| [Sensor_SubscriptionId](#sensor_subscriptionid) | typedef struct [Sensor_SubscriptionId](#sensor_subscriptionid)<br/>定义传感器订阅ID，唯一标识传感器。  | 
-| [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute) | typedef struct [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute)<br/>定义传感器订阅属性。  | 
-| [Sensor_EventCallback](#sensor_eventcallback)) ([Sensor_Event](#sensor_event) \*event) | typedef void(\*<br/>定义用于报告传感器数据的回调函数。  | 
-| [Sensor_Subscriber](#sensor_subscriber) | typedef struct [Sensor_Subscriber](#sensor_subscriber)<br/>定义传感器订阅者信息。  | 
+| [Sensor_Type](#sensor_type) | typedef enum [Sensor_Type](#sensor_type)<br/>枚举传感器类型。  |
+| [Sensor_Result](#sensor_result) | typedef enum [Sensor_Result](#sensor_result)<br/>定义传感器错误码。  |
+| [Sensor_Accuracy](#sensor_accuracy) | typedef enum [Sensor_Accuracy](#sensor_accuracy)<br/>枚举传感器报告的数据的精度级别。  |
+| [Sensor_Info](#sensor_info) | typedef struct [Sensor_Info](#sensor_info)<br/>定义传感器信息。  |
+| [Sensor_Event](#sensor_event) | typedef struct [Sensor_Event](#sensor_event)<br/>定义传感器数据信息。  |
+| [Sensor_SubscriptionId](#sensor_subscriptionid) | typedef struct [Sensor_SubscriptionId](#sensor_subscriptionid)<br/>定义传感器订阅ID，唯一标识传感器。  |
+| [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute) | typedef struct [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute)<br/>定义传感器订阅属性。  |
+| [Sensor_EventCallback](#sensor_eventcallback)) ([Sensor_Event](#sensor_event) \*event) | typedef void(\*<br/>定义用于报告传感器数据的回调函数。  |
+| [Sensor_Subscriber](#sensor_subscriber) | typedef struct [Sensor_Subscriber](#sensor_subscriber)<br/>定义传感器订阅者信息。  |
 
 
 ### 枚举
@@ -261,9 +261,9 @@ Sensor_Info** OH_Sensor_CreateInfos (uint32_t count)
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| count | - 要创建的实例的数量，请参考 [Sensor_Info](#sensor_info)。  | 
+| count | - 要创建的实例的数量，请参考 [Sensor_Info](#sensor_info)。 |
 
 **返回：**
 
@@ -282,7 +282,7 @@ Sensor_Subscriber* OH_Sensor_CreateSubscriber (void )
 
 **返回：**
 
-如果操作成功，返回指向[Sensor_Subscriber](#sensor_subscriber)实例的指针;否则返回**NULL**。
+如果操作成功，返回指向[Sensor_Subscriber](#sensor_subscriber)实例的指针；否则返回**NULL**。
 
 
 ### OH_Sensor_CreateSubscriptionAttribute()
@@ -310,7 +310,7 @@ Sensor_SubscriptionId* OH_Sensor_CreateSubscriptionId (void )
 
 **返回：**
 
-如果操作成功，返回指向[Sensor_SubscriptionId](#sensor_subscriptionid)实例的指针;否则返回**NULL**。
+如果操作成功，返回指向[Sensor_SubscriptionId](#sensor_subscriptionid)实例的指针；否则返回**NULL**。
 
 
 ### OH_Sensor_DestroyInfos()
