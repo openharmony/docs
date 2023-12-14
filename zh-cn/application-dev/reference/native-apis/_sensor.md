@@ -40,9 +40,9 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [Sensor_Type](#sensor_type) {<br/>SENSOR_TYPE_ACCELEROMETER = 1, SENSOR_TYPE_GYROSCOPE = 2,<br/> SENSOR_TYPE_AMBIENT_LIGHT = 5, SENSOR_TYPE_MAGNETIC_FIELD = 6,<br/>SENSOR_TYPE_BAROMETER = 8, SENSOR_TYPE_HALL = 10, <br/>SENSOR_TYPE_PROXIMITY = 12, SENSOR_TYPE_ORIENTATION = 256,<br/>SENSOR_TYPE_GRAVITY = 257, SENSOR_TYPE_ROTATION_VECTOR = 259, ,<br/>SENSOR_TYPE_PEDOMETER_DETECTION = 265, SENSOR_TYPE_PEDOMETER = 266,<br/>SENSOR_TYPE_HEART_RATE = 278<br/>} | 枚举传感器类型。  |
-| [Sensor_Result](#sensor_result) { SENSOR_SUCCESS = 0, SENSOR_PERMISSION_DENIED = 201, SENSOR_PARAMETER_ERROR = 401, SENSOR_SERVICE_EXCEPTION = 14500101 } | 定义传感器错误码。  |
-| [Sensor_Accuracy](#sensor_accuracy) { SENSOR_ACCURACY_UNRELIABLE = 0, SENSOR_ACCURACY_LOW = 1, SENSOR_ACCURACY_MEDIUM = 2, SENSOR_ACCURACY_HIGH = 3 } | 枚举传感器报告的数据的精度级别。  |
+| [Sensor_Type](#sensor_type) {<br/>SENSOR_TYPE_ACCELEROMETER = 1, <br/>SENSOR_TYPE_GYROSCOPE = 2,<br/> SENSOR_TYPE_AMBIENT_LIGHT = 5, <br/>SENSOR_TYPE_MAGNETIC_FIELD = 6,<br/>SENSOR_TYPE_BAROMETER = 8,<br/> SENSOR_TYPE_HALL = 10, <br/>SENSOR_TYPE_PROXIMITY = 12,<br/> SENSOR_TYPE_ORIENTATION = 256,<br/>SENSOR_TYPE_GRAVITY = 257, <br/>SENSOR_TYPE_ROTATION_VECTOR = 259, ,<br/>SENSOR_TYPE_PEDOMETER_DETECTION = 265,<br/> SENSOR_TYPE_PEDOMETER = 266,<br/>SENSOR_TYPE_HEART_RATE = 278<br/>} | 枚举传感器类型。  |
+| [Sensor_Result](#sensor_result) { <br/>SENSOR_SUCCESS = 0,<br/> SENSOR_PERMISSION_DENIED = 201, <br/>SENSOR_PARAMETER_ERROR = 401,<br/> SENSOR_SERVICE_EXCEPTION = 14500101<br/> } | 定义传感器错误码。  |
+| [Sensor_Accuracy](#sensor_accuracy) { <br/>SENSOR_ACCURACY_UNRELIABLE = 0, <br/>SENSOR_ACCURACY_LOW = 1,<br/> SENSOR_ACCURACY_MEDIUM = 2, <br/>SENSOR_ACCURACY_HIGH = 3 <br/>} | 枚举传感器报告的数据的精度级别。  |
 
 
 ### 函数
@@ -195,10 +195,10 @@ enum Sensor_Accuracy
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| SENSOR_ACCURACY_UNRELIABLE  | 传感器数据不可靠。有可能传感器不与设备接触而进行测量。<br/> |
-| SENSOR_ACCURACY_LOW  | 传感器数据精度较低。数据在使用前必须根据环境进行校准。<br/> |
-| SENSOR_ACCURACY_MEDIUM  | 传感器数据处于中等精度水平。建议用户在使用前根据实际环境进行数据校准。<br/> |
-| SENSOR_ACCURACY_HIGH  | 传感器数据具有很高的精度。数据可以直接使用。<br/> |
+| SENSOR_ACCURACY_UNRELIABLE  | 传感器数据不可靠。有可能传感器不与设备接触而进行测量。 |
+| SENSOR_ACCURACY_LOW  | 传感器数据精度较低。数据在使用前必须根据环境进行校准。 |
+| SENSOR_ACCURACY_MEDIUM  | 传感器数据处于中等精度水平。建议用户在使用前根据实际环境进行数据校准。 |
+| SENSOR_ACCURACY_HIGH  | 传感器数据具有很高的精度。数据可以直接使用。 |
 
 
 ### Sensor_Result
@@ -213,10 +213,10 @@ enum Sensor_Result
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| SENSOR_SUCCESS  | 操作成功。<br/> |
-| SENSOR_PERMISSION_DENIED  | 权限验证失败。<br/> |
-| SENSOR_PARAMETER_ERROR  | 参数检查失败。例如，没有传入强制参数，或者传入的参数类型不正确。<br/> |
-| SENSOR_SERVICE_EXCEPTION  | 传感器服务异常。<br/> |
+| SENSOR_SUCCESS  | 操作成功。 |
+| SENSOR_PERMISSION_DENIED  | 权限验证失败。 |
+| SENSOR_PARAMETER_ERROR  | 参数检查失败。例如，没有传入强制参数，或者传入的参数类型不正确。 |
+| SENSOR_SERVICE_EXCEPTION  | 传感器服务异常。 |
 
 
 ### Sensor_Type
@@ -231,19 +231,19 @@ enum Sensor_Type
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| SENSOR_TYPE_ACCELEROMETER  | 加速度传感器。<br/> |
-| SENSOR_TYPE_GYROSCOPE  | 陀螺仪传感器。<br/> |
-| SENSOR_TYPE_AMBIENT_LIGHT  | 环境光传感器。<br/> |
-| SENSOR_TYPE_MAGNETIC_FIELD  | 地磁传感器。<br/> |
-| SENSOR_TYPE_BAROMETER  | 气压传感器。<br/> |
-| SENSOR_TYPE_HALL  | 霍尔传感器。<br/> |
-| SENSOR_TYPE_PROXIMITY  | 接近光传感器。<br/> |
-| SENSOR_TYPE_ORIENTATION  | 方向传感器。<br/> |
-| SENSOR_TYPE_GRAVITY  | 重力传感器。<br/> |
-| SENSOR_TYPE_ROTATION_VECTOR  | 旋转矢量传感器。<br/> |
-| SENSOR_TYPE_PEDOMETER_DETECTION  | 计步器检测传感器。<br/> |
-| SENSOR_TYPE_PEDOMETER  | 计步器传感器。<br/> |
-| SENSOR_TYPE_HEART_RATE  | 心率传感器。<br/> |
+| SENSOR_TYPE_ACCELEROMETER  | 加速度传感器。 |
+| SENSOR_TYPE_GYROSCOPE  | 陀螺仪传感器。 |
+| SENSOR_TYPE_AMBIENT_LIGHT  | 环境光传感器。 |
+| SENSOR_TYPE_MAGNETIC_FIELD  | 地磁传感器。 |
+| SENSOR_TYPE_BAROMETER  | 气压传感器。 |
+| SENSOR_TYPE_HALL  | 霍尔传感器。 |
+| SENSOR_TYPE_PROXIMITY  | 接近光传感器。 |
+| SENSOR_TYPE_ORIENTATION  | 方向传感器。 |
+| SENSOR_TYPE_GRAVITY  | 重力传感器。 |
+| SENSOR_TYPE_ROTATION_VECTOR  | 旋转矢量传感器。 |
+| SENSOR_TYPE_PEDOMETER_DETECTION  | 计步器检测传感器。 |
+| SENSOR_TYPE_PEDOMETER  | 计步器传感器。 |
+| SENSOR_TYPE_HEART_RATE  | 心率传感器。 |
 
 
 ## 函数说明
@@ -401,7 +401,7 @@ int32_t OH_Sensor_DestroySubscriptionId (Sensor_SubscriptionId * id)
 ### OH_Sensor_GetInfos()
 
 ```
-Sensor_Result OH_Sensor_GetInfos (Sensor_Info ** infos, uint32_t * count )
+Sensor_Result OH_Sensor_GetInfos (Sensor_Info ** infos, uint32_t * count)
 ```
 **描述**
 获取设备上所有传感器的信息。
@@ -423,7 +423,7 @@ Sensor_Result OH_Sensor_GetInfos (Sensor_Info ** infos, uint32_t * count )
 ### OH_Sensor_Subscribe()
 
 ```
-Sensor_Result OH_Sensor_Subscribe (const Sensor_SubscriptionId * id, const Sensor_SubscriptionAttribute * attribute, const Sensor_Subscriber * subscriber )
+Sensor_Result OH_Sensor_Subscribe (const Sensor_SubscriptionId * id, const Sensor_SubscriptionAttribute * attribute, const Sensor_Subscriber * subscriber)
 ```
 **描述**
 订阅传感器数据。系统将以指定的频率向用户报告传感器数据。 订阅加速度传感器，需要申请ohos.permission.ACCELEROMETER权限； 订阅陀螺仪传感器，需要申请ohos.permission.GYROSCOPE权限； 订阅计步器相关传感器时，需要申请ohos.permission.ACTIVITY_MOTION权限； 订阅与健康相关的传感器时，比如心率传感器，需要申请ohos.permission.READ_HEALTH_DATA权限，否则订阅失败。 订阅其余传感器不需要申请权限。
@@ -450,7 +450,7 @@ ohos.permission.ACCELEROMETER or ohos.permission.GYROSCOPE or ohos.permission.AC
 ### OH_Sensor_Unsubscribe()
 
 ```
-Sensor_Result OH_Sensor_Unsubscribe (const Sensor_SubscriptionId * id, const Sensor_Subscriber * subscriber )
+Sensor_Result OH_Sensor_Unsubscribe (const Sensor_SubscriptionId * id, const Sensor_Subscriber * subscriber)
 ```
 **描述**
 取消订阅传感器数据。 取消订阅加速度计传感器，需要申请ohos.permission.ACCELEROMETER权限； 取消订阅陀螺仪传感器，需要申请ohos.permission.GYROSCOPE权限； 取消订阅计步器相关传感器时，需要申请ohos.permission.ACTIVITY_MOTION权限； 取消订阅与健康相关的传感器时，需要申请ohos.permission.READ_HEALTH_DATA权限，否则取消订阅失败。 取消订阅其余传感器不需要申请权限。
@@ -476,7 +476,7 @@ ohos.permission.ACCELEROMETER or ohos.permission.GYROSCOPE or ohos.permission.AC
 ### OH_SensorEvent_GetAccuracy()
 
 ```
-int32_t OH_SensorEvent_GetAccuracy (Sensor_Event * sensorEvent, Sensor_Accuracy * accuracy )
+int32_t OH_SensorEvent_GetAccuracy (Sensor_Event * sensorEvent, Sensor_Accuracy * accuracy)
 ```
 **描述**
 获取传感器数据的精度。
@@ -498,10 +498,37 @@ int32_t OH_SensorEvent_GetAccuracy (Sensor_Event * sensorEvent, Sensor_Accuracy 
 ### OH_SensorEvent_GetData()
 
 ```
-int32_t OH_SensorEvent_GetData (Sensor_Event * sensorEvent, float ** data, uint32_t * length )
+int32_t OH_SensorEvent_GetData (Sensor_Event * sensorEvent, float ** data, uint32_t * length)
 ```
 **描述**
-获取传感器数据。数据的长度和内容依赖于监听的传感器类型，传感器上报的数据格式如下： SENSOR_TYPE_ACCELEROMETER: data[0]、data[1]、data[2]分别表示设备x、y、z轴的加速度分量，单位m/s2； SENSOR_TYPE_GYROSCOPE: data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角速度，单位弧度/s； SENSOR_TYPE_AMBIENT_LIGHT: data[0]表示环境光强度，in lux； SENSOR_TYPE_MAGNETIC_FIELD: data[0]、data[1]、data[2]分别表示设备x、y、z轴的地磁分量，单位微特斯拉； SENSOR_TYPE_BAROMETER：data[0]表示气压值，单位hPa； SENSOR_TYPE_HALL: data[0]表示皮套吸合状态，0表示打开，大于0表示吸附； SENSOR_TYPE_PROXIMITY：data[0]表示接近状态，0表示接近，大于0表示远离； SENSOR_TYPE_ORIENTATION:data[0]、data[1]、data[2]分别表示设备绕z、x、y轴的角度，单位度； SENSOR_TYPE_GRAVITY：data[0]、data[1]、data[2]分别表示设备x、y、z轴的重力加速度分量，单位m/s2； SENSOR_TYPE_ROTATION_VECTOR:data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位度，data[3]表示旋转向量元素； SENSOR_TYPE_PEDOMETER_DETECTION:data[0]表示几步检测状态，1表示检测到了步数变化； SENSOR_TYPE_PEDOMETER:data[0]表示步数； SENSOR_TYPE_HEART_RATE：data[0]表示心率数值；
+
+获取传感器数据。数据的长度和内容依赖于监听的传感器类型，传感器上报的数据格式如下：
+
+SENSOR_TYPE_ACCELEROMETER:data[0]、data[1]、data[2]分别表示设备x、y、z轴的加速度分量，单位m/s²；
+
+SENSOR_TYPE_GYROSCOPE:data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角速度，单位弧度/s；
+
+SENSOR_TYPE_AMBIENT_LIGHT:data[0]表示环境光强度，in lux；
+
+ SENSOR_TYPE_MAGNETIC_FIELD:data[0]、data[1]、data[2]分别表示设备x、y、z轴的地磁分量，单位微特斯拉； 
+
+SENSOR_TYPE_BAROMETER:data[0]表示气压值，单位hPa；
+
+SENSOR_TYPE_HALL:data[0]表示皮套吸合状态，0表示打开，大于0表示吸附；
+
+SENSOR_TYPE_PROXIMITY:data[0]表示接近状态，0表示接近，大于0表示远离；
+
+SENSOR_TYPE_ORIENTATION:data[0]、data[1]、data[2]分别表示设备绕z、x、y轴的角度，单位度；
+
+SENSOR_TYPE_GRAVITY:data[0]、data[1]、data[2]分别表示设备x、y、z轴的重力加速度分量，单位m/s²；
+
+SENSOR_TYPE_ROTATION_VECTOR:data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位度，data[3]表示旋转向量元素；
+
+SENSOR_TYPE_PEDOMETER_DETECTION:data[0]表示计步检测状态，1表示检测到了步数变化；
+
+SENSOR_TYPE_PEDOMETER:data[0]表示步数；
+
+SENSOR_TYPE_HEART_RATE:data[0]表示心率数值。
 
 **起始版本：** 11
 
@@ -521,7 +548,7 @@ int32_t OH_SensorEvent_GetData (Sensor_Event * sensorEvent, float ** data, uint3
 ### OH_SensorEvent_GetTimestamp()
 
 ```
-int32_t OH_SensorEvent_GetTimestamp (Sensor_Event * sensorEvent, int64_t * timestamp )
+int32_t OH_SensorEvent_GetTimestamp (Sensor_Event * sensorEvent, int64_t * timestamp)
 ```
 **描述**
 获取传感器数据的时间戳。
@@ -543,7 +570,7 @@ int32_t OH_SensorEvent_GetTimestamp (Sensor_Event * sensorEvent, int64_t * times
 ### OH_SensorEvent_GetType()
 
 ```
-int32_t OH_SensorEvent_GetType (Sensor_Event * sensorEvent, Sensor_Type * sensorType )
+int32_t OH_SensorEvent_GetType (Sensor_Event * sensorEvent, Sensor_Type * sensorType)
 ```
 **描述**
 获取传感器类型。
@@ -565,7 +592,7 @@ int32_t OH_SensorEvent_GetType (Sensor_Event * sensorEvent, Sensor_Type * sensor
 ### OH_SensorInfo_GetMaxSamplingInterval()
 
 ```
-int32_t OH_SensorInfo_GetMaxSamplingInterval (Sensor_Info * sensor, int64_t * maxSamplingInterval )
+int32_t OH_SensorInfo_GetMaxSamplingInterval (Sensor_Info * sensor, int64_t * maxSamplingInterval)
 ```
 **描述**
 获取传感器的最大数据上报间隔时间。
@@ -587,7 +614,7 @@ int32_t OH_SensorInfo_GetMaxSamplingInterval (Sensor_Info * sensor, int64_t * ma
 ### OH_SensorInfo_GetMinSamplingInterval()
 
 ```
-int32_t OH_SensorInfo_GetMinSamplingInterval (Sensor_Info * sensor, int64_t * minSamplingInterval )
+int32_t OH_SensorInfo_GetMinSamplingInterval (Sensor_Info * sensor, int64_t * minSamplingInterval)
 ```
 **描述**
 获取传感器的最小数据上报间隔。
@@ -609,7 +636,7 @@ int32_t OH_SensorInfo_GetMinSamplingInterval (Sensor_Info * sensor, int64_t * mi
 ### OH_SensorInfo_GetName()
 
 ```
-int32_t OH_SensorInfo_GetName (Sensor_Info * sensor, char * sensorName, uint32_t * length )
+int32_t OH_SensorInfo_GetName (Sensor_Info * sensor, char * sensorName, uint32_t * length)
 ```
 **描述**
 获取传感器名称。
@@ -632,7 +659,7 @@ int32_t OH_SensorInfo_GetName (Sensor_Info * sensor, char * sensorName, uint32_t
 ### OH_SensorInfo_GetResolution()
 
 ```
-int32_t OH_SensorInfo_GetResolution (Sensor_Info * sensor, float * resolution )
+int32_t OH_SensorInfo_GetResolution (Sensor_Info * sensor, float * resolution)
 ```
 **描述**
 获取传感器分辨率。
@@ -654,7 +681,7 @@ int32_t OH_SensorInfo_GetResolution (Sensor_Info * sensor, float * resolution )
 ### OH_SensorInfo_GetType()
 
 ```
-int32_t OH_SensorInfo_GetType (Sensor_Info * sensor, Sensor_Type * sensorType )
+int32_t OH_SensorInfo_GetType (Sensor_Info * sensor, Sensor_Type * sensorType)
 ```
 **描述**
 获取传感器类型。
@@ -676,7 +703,7 @@ int32_t OH_SensorInfo_GetType (Sensor_Info * sensor, Sensor_Type * sensorType )
 ### OH_SensorInfo_GetVendorName()
 
 ```
-int32_t OH_SensorInfo_GetVendorName (Sensor_Info * sensor, char * vendorName, uint32_t * length )
+int32_t OH_SensorInfo_GetVendorName (Sensor_Info * sensor, char * vendorName, uint32_t * length)
 ```
 **描述**
 获取传感器的厂商名称。
@@ -699,7 +726,7 @@ int32_t OH_SensorInfo_GetVendorName (Sensor_Info * sensor, char * vendorName, ui
 ### OH_SensorSubscriber_GetCallback()
 
 ```
-int32_t OH_SensorSubscriber_GetCallback (Sensor_Subscriber * subscriber, Sensor_EventCallback * callback )
+int32_t OH_SensorSubscriber_GetCallback (Sensor_Subscriber * subscriber, Sensor_EventCallback * callback)
 ```
 **描述**
 获取用于报告传感器数据的回调函数。
@@ -765,7 +792,7 @@ int32_t OH_SensorSubscriptionAttribute_GetSamplingInterval (Sensor_SubscriptionA
 ### OH_SensorSubscriptionAttribute_SetSamplingInterval()
 
 ```
-int32_t OH_SensorSubscriptionAttribute_SetSamplingInterval (Sensor_SubscriptionAttribute * attribute, const int64_t samplingInterval )
+int32_t OH_SensorSubscriptionAttribute_SetSamplingInterval (Sensor_SubscriptionAttribute * attribute, const int64_t samplingInterval)
 ```
 **描述**
 设置传感器数据报告间隔。
@@ -787,7 +814,7 @@ int32_t OH_SensorSubscriptionAttribute_SetSamplingInterval (Sensor_SubscriptionA
 ### OH_SensorSubscriptionId_GetType()
 
 ```
-int32_t OH_SensorSubscriptionId_GetType (Sensor_SubscriptionId * id, Sensor_Type * sensorType )
+int32_t OH_SensorSubscriptionId_GetType (Sensor_SubscriptionId * id, Sensor_Type * sensorType)
 ```
 **描述**
 获取传感器类型。
@@ -809,7 +836,7 @@ int32_t OH_SensorSubscriptionId_GetType (Sensor_SubscriptionId * id, Sensor_Type
 ### OH_SensorSubscriptionId_SetType()
 
 ```
-int32_t OH_SensorSubscriptionId_SetType (Sensor_SubscriptionId * id, const Sensor_Type sensorType )
+int32_t OH_SensorSubscriptionId_SetType (Sensor_SubscriptionId * id, const Sensor_Type sensorType)
 ```
 **描述**
 设置传感器类型。
