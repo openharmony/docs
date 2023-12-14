@@ -3338,7 +3338,7 @@
 
 允许应用支持持久化访问文件Uri。
 
-**权限级别**：normal
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
