@@ -1,6 +1,6 @@
 # @ohos.graphics.hdrCapability (HDR能力)
 
-本模块提供HDR能力的一些相关枚举类型，包括HDRFormat等。
+本模块提供HDR(高动态显示范围)能力涉及到的的相关枚举类型。
 
 > **说明：**
 >
@@ -14,7 +14,7 @@ import hdrCapability from '@ohos.graphics.hdrCapability';
 
 ## HDRFormat
 
-HDR格式类型枚举。
+HDR格式枚举。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.ColorManager.Core
 
