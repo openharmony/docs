@@ -135,23 +135,25 @@ resumeDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-import hardwareManager from '@ohos.distributedHardware.hardwareManager';
-import { BusinessError } from '@ohos.base';
+  import hardwareManager from '@ohos.distributedHardware.hardwareManager';
+  import { BusinessError } from '@ohos.base';
 
-try {
-  let description: hardwareManager.HardwareDescriptor = {
-    type: 1,
-    srcNetworkId: '1111'
-  };
-  hardwareManager.resumeDistributedHardware(description).then(() => {
+  try {
+    let description: hardwareManager.HardwareDescriptor = {
+      type: 1,
+      srcNetworkId: '1111'
+    };
+    hardwareManager.resumeDistributedHardware(description).then(() => {
+      console.log('resume distributed hardware successfully');
+    }).catch((error: BusinessError) => {
+      console.error('resume distributed hardware failed, cause:' + error);
+    })
     console.log('resume distributed hardware successfully');
-  }).catch((error: BusinessError) => {
-    console.error('resume distributed hardware failed, cause:' + error);
-  })
-  console.log('resume distributed hardware successfully');
-} catch (error) {
-  console.error('resume distributed hardware failed:' + error);
-}
+  } catch (error) {
+    console.error('resume distributed hardware failed:' + error);
+  }
+
+
   ```
 
 ## hardwareManager.stopDistributedHardware
@@ -186,21 +188,21 @@ stopDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-import hardwareManager from '@ohos.distributedHardware.hardwareManager';
-import { BusinessError } from '@ohos.base';
-
-try {
-  let description: hardwareManager.HardwareDescriptor = {
-    type: 1,
-    srcNetworkId: '1111'
-  };
-  hardwareManager.stopDistributedHardware(description).then(() => {
+  import hardwareManager from '@ohos.distributedHardware.hardwareManager';
+  import { BusinessError } from '@ohos.base';
+  
+  try {
+    let description: hardwareManager.HardwareDescriptor = {
+      type: 1,
+      srcNetworkId: '1111'
+    };
+    hardwareManager.stopDistributedHardware(description).then(() => {
+      console.log('stop distributed hardware successfully');
+    }).catch((error: BusinessError) => {
+      console.error('stop distributed hardware failed, cause:' + error);
+    })
     console.log('stop distributed hardware successfully');
-  }).catch((error: BusinessError) => {
-    console.error('stop distributed hardware failed, cause:' + error);
-  })
-  console.log('stop distributed hardware successfully');
-} catch (error) {
-  console.error('stop distributed hardware failed:' + error);
-}
+  } catch (error) {
+    console.error('stop distributed hardware failed:' + error);
+  }
   ```
