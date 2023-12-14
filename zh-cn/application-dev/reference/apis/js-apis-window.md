@@ -303,14 +303,13 @@ import window from '@ohos.window';
 
 窗口生命周期。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
-
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
-| WINDOW_SHOWN      | 1      | 切到前台。 |
-| WINDOW_ACTIVE     | 2      | 获焦状态。 |
-| WINDOW_INACTIVE   | 3      | 失焦状态。 |
-| WINDOW_HIDDEN     | 4      | 切到后台。 |
+| WINDOW_SHOWN      | 1      | 切到前台。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| WINDOW_ACTIVE     | 2      | 获焦状态。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| WINDOW_INACTIVE   | 3      | 失焦状态。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| WINDOW_HIDDEN     | 4      | 切到后台。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| WINDOW_DESTROYED<sup>11+</sup>  | 7      | 窗口销毁。<br> **系统能力：** SystemCapability.Window.SessionManager。|
 
 ## WindowLimits<sup>11+</sup>
 
