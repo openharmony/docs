@@ -552,7 +552,7 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 | titleResource<sup>11+</sup> | string | 否 | 标题的资源ID，用于切换系统语言后读取对应标题信息。 |
 | type | [ActionButtonType](#actionbuttontype) | 是 | 按钮的类型。 |
 | wantAgent<sup>10+</sup> | [WantAgent](#wantagent) | 否 | 点击按钮跳转的ability信息。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
-| dataShareUpdate<sup>11+</sup> | [DataShareUpdate](#datashareupdate) | 否 | 点击按钮将更新应用数据库。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
+| dataShareUpdate<sup>11+</sup> | [DataShareUpdate](#datashareupdate11) | 否 | 点击按钮将更新应用数据库。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
 
 
 ## WantAgent
