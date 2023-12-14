@@ -1192,7 +1192,7 @@ readInt8(offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([-1, 5]);
-console.log(buf.readInt8(0).toString());	// 打印: -1
+console.log(buf.readInt8(0).toString());	// 打印: 0
 console.log(buf.readInt8(1).toString());	// 打印: 5
 
 let buf1 = buffer.allocUninitializedFromPool(2);
