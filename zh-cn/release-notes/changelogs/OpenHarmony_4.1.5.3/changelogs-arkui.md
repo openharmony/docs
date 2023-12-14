@@ -43,3 +43,47 @@ c) 设置alignment为Center
 **适配指导**
 
 DatePickerDialog、TimePickerDialog、TextPickerDialog设置alignment时与窗口边缘的间距通过offset设置来调整。
+
+## cl.arkui.2 SegmentButton组件buttonMargin、textMargin接口命名变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+原接口命名与接口实际功能不符。
+
+**变更影响**
+
+该变更为非兼容性变更。修改SegmentButton用于设置按钮内边距、文本内边距的接口命名：
+
+a) 按钮内边距接口命名变更
+
+变更前：buttonMargin
+
+变更后：buttonPadding
+
+b) 文本内边距接口命名变更
+
+变更前：textMargin
+
+变更后：textPadding
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.3开始。
+
+**变更的接口/组件**
+
+分段按钮（SegmentButton）。
+
+**适配指导**
+
+变更前：
+
+分段按钮通过buttonMargin、textMargin进行按钮内边距、文本内边距的设置。
+
+变更后：
+
+分段按钮通过buttonPadding、textPadding进行按钮内边距、文本内边距的设置。
