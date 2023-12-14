@@ -23,7 +23,7 @@ OpenHarmony支持系统睡眠时唤醒执行动作，如在睡眠中低电量情
 
 设备要求：
 
-标准系统开发板，如DAYU200/RK3568开源套件。
+标准系统开发板，如DAYU200/Hi3516DV300开源套件。
 
 环境要求：
 
@@ -159,7 +159,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
         "scene" :{
             "wakeuo_cause": {
                 "get": {
-                    "path": "xxx"
+                    "path": "yyy"
                 }
             }
         }
@@ -171,6 +171,12 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
 
     drivers_peripheral_power_wakeup_cause_path = true
 
-6. 使系统在睡眠中电量下降至阈值。
+6. 修改[hdf_peripheral.cfg](https://gitee.com/openharmony/drivers_peripheral/blob/master/base/hdf_peripheral.cfg)节权限为system。
+    ```
+    "chown system system xxx",
+    "chown system system yyy",
+    ```
+    
+7. 使系统在睡眠中电量下降至阈值。
 
     设备关机。
