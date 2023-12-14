@@ -4285,9 +4285,9 @@ off(type: 'audioRendererChange'): void
 
 以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
 
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 6800101 | nvalid parameter error. |
+| 错误码ID | 错误信息                     |
+| ------- |--------------------------|
+| 6800101 | Invalid parameter error. |
 
 **示例：**
 
@@ -5466,9 +5466,9 @@ getPreferredOutputDeviceForRendererInfoSync(rendererInfo: AudioRendererInfo): Au
 
 以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
 
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 6800101 | invalid parameter error.   |
+| 错误码ID | 错误信息                     |
+| ------- |--------------------------|
+| 6800101 | Invalid parameter error. |
 
 **示例：**
 
@@ -8270,7 +8270,7 @@ setChannelBlendMode(mode: ChannelBlendMode): void
 
 **示例：**
 
-```js
+```ts
 let mode = audio.ChannelBlendMode.MODE_DEFAULT;
 
 audioRenderer.setChannelBlendMode(mode);
@@ -8302,7 +8302,7 @@ setVolumeWithRamp(volume: number, duration: number): void
 
 **示例：**
 
-```js
+```ts
 let volume = 0.5;
 let duration = 1000;
 
@@ -9310,7 +9310,7 @@ getCurrentInputDevices(): AudioDeviceDescriptors
 
 **示例：**
 
-```js
+```ts
 let deviceDescriptors: audio.AudioDeviceDescriptors = audioCapturer.getCurrentInputDevices();
 console.info(`Device id: ${deviceDescriptors[0].id}`);
 console.info(`Device type: ${deviceDescriptors[0].deviceType}`);
@@ -9320,7 +9320,9 @@ console.info(`Device address: ${deviceDescriptors[0].address}`);
 console.info(`Device samplerates: ${deviceDescriptors[0].sampleRates[0]}`);
 console.info(`Device channelcounts: ${deviceDescriptors[0].channelCounts[0]}`);
 console.info(`Device channelmask: ${deviceDescriptors[0].channelMasks[0]}`);
-console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
+if (deviceDescriptors[0].encodingTypes) {
+  console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
+}
 ```
 
 ### getCurrentAudioCapturerChangeInfo<sup>11+</sup>
@@ -9339,7 +9341,7 @@ getCurrentAudioCapturerChangeInfo(): AudioCapturerChangeInfo
 
 **示例：**
 
-```js
+```ts
 let info: audio.AudioCapturerChangeInfo = audioCapturer.getCurrentAudioCapturerChangeInfo();
 console.info(`Info streamId: ${info.streamId}`);
 console.info(`Info source: ${info.capturerInfo.source}`);
@@ -9353,7 +9355,9 @@ console.info(`Info address: ${info.deviceDescriptors[0].address}`);
 console.info(`Info samplerates: ${info.deviceDescriptors[0].sampleRates[0]}`);
 console.info(`Info channelcounts: ${info.deviceDescriptors[0].channelCounts[0]}`);
 console.info(`Info channelmask: ${info.deviceDescriptors[0].channelMasks[0]}`);
-console.info(`Info encodingTypes: ${info.deviceDescriptors[0].encodingTypes[0]}`);
+if (deviceDescriptors[0].encodingTypes) {
+  console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
+}
 ```
 
 ### on('audioInterrupt')<sup>10+</sup>
@@ -9485,7 +9489,7 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
 **示例：**
 
-```js
+```ts
 audioCapturer.on('inputDeviceChange', (deviceChangeInfo: audio.AudioDeviceDescriptors) => {
   console.info(`inputDevice id: ${deviceChangeInfo[0].id}`);
   console.info(`inputDevice deviceRole: ${deviceChangeInfo[0].deviceRole}`);
@@ -9515,7 +9519,7 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 
 **示例：**
 
-```js
+```ts
 audioCapturer.off('inputDeviceChange');
 ```
 
@@ -9542,7 +9546,7 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 
 **示例：**
 
-```js
+```ts
 audioCapturer.on('audioCapturerChange', (capturerChangeInfo: audio.AudioCapturerChangeInfo) => {
   console.info(`audioCapturerChange id: ${capturerChangeInfo[0].id}`);
   console.info(`audioCapturerChange deviceRole: ${capturerChangeInfo[0].deviceRole}`);
@@ -9573,7 +9577,7 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 
 **示例：**
 
-```js
+```ts
 audioCapturer.off('audioCapturerChange');
 ```
 
