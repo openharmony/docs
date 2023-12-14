@@ -1358,13 +1358,23 @@ class testObj {
   constructor() {
   }
 
-  test(): string {
-    console.log('ArkUI Web Component');
-    return "ArkUI Web Component";
+  test(testStr:string): string {
+    console.log('ArkUI Web Component str' + testStr);
+    return testStr;
   }
 
   toString(): void {
     console.log('Web Component toString');
+  }
+
+  testNumber(testNum:number): number {
+    console.log('ArkUI Web Component number' + testNum);
+    return testNum;
+  }
+
+  testBool(testBol:boolean): boolean {
+    console.log('ArkUI Web Component boolean' + testBol);
+    return testBol;
   }
 }
 
@@ -1402,7 +1412,7 @@ struct Index {
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
-            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString"]);
+            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -1430,7 +1440,9 @@ struct Index {
     <script type="text/javascript">
     function htmlTest() {
       // This function call expects to return "ArkUI Web Component"
-      let str=objName.test();
+      let str=objName.test("webtest data");
+      objName.testNumber(1);
+      objName.testBool(true);
       document.getElementById("demo").innerHTML=str;
       console.log('objName.test result:'+ str)
 
