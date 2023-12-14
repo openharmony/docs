@@ -672,20 +672,6 @@ on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReas
 **示例：**
 
 ```ts
-import media from '@ohos.multimedia.media';
-import { BusinessError } from '@ohos.base';
-
-// 创建avPlayer实例对象
-let avPlayer: media.AVPlayer;
-media.createAVPlayer((error: BusinessError, video: media.AVPlayer) => {
-  if (video != null) {
-    avPlayer = video;
-    console.info('createAVPlayer success');
-  } else {
-    console.error(`createAVPlayer fail, error message:${error.message}`);
-  }
-});
-
 avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
   switch (state) {
     case 'idle':
@@ -1964,20 +1950,6 @@ avPlayer.off('audioInterrupt')
 **示例：**
 
 ```ts
-import media from '@ohos.multimedia.media';
-import { BusinessError } from '@ohos.base';
-
-// 创建avPlayer实例对象
-let avPlayer: media.AVPlayer;
-media.createAVPlayer((error: BusinessError, video: media.AVPlayer) => {
-  if (video != null) {
-    avPlayer = video;
-    console.info('createAVPlayer success');
-  } else {
-    console.error(`createAVPlayer fail, error message:${error.message}`);
-  }
-});
-
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
   console.info('audio key is ' + key); // 通过key值获取对应的value。key值具体可见[MediaDescriptionKey]
