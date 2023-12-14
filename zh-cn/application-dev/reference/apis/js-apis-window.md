@@ -310,7 +310,7 @@ import window from '@ohos.window';
 | WINDOW_ACTIVE     | 2      | 获焦状态。 |
 | WINDOW_INACTIVE   | 3      | 失焦状态。 |
 | WINDOW_HIDDEN     | 4      | 切到后台。 |
-| WINDOW_DESTROYED<sup>11+</sup>  | 7      | 窗口销毁。<br> **模型约束：** 此接口仅可在Stage模型下使用。|
+| WINDOW_DESTROYED<sup>11+</sup>  | 7      | 窗口销毁。<br> **系统能力：** SystemCapability.Window.SessionManager。|
 
 ## WindowLimits<sup>11+</sup>
 
