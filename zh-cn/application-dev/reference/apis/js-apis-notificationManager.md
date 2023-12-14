@@ -1749,6 +1749,60 @@ let badgeNumber: number = 10;
 notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
 ```
 
+## notificationManager.setSlotFlagsByBundle<sup>11+</sup>
+
+setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
+
+设定指定应用的通知通道（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型         | 必填 | 说明       |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
+| slotFlags   | number | 是   | 通知通道标识位。 |
+
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: "bundleName1",
+};
+
+let slotFlags: number = 1;
+
+notificationManager.setSlotFlagsByBundle(bundle, slotFlags).then(() => {
+	console.info("setSlotFlagsByBundle success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`setSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
 ## notificationManager.setSlotByBundle
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback\<void\>): void
@@ -1854,6 +1908,57 @@ notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("setSlotByBundle success");
 }).catch((err: Base.BusinessError) => {
     console.error(`setSlotByBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.getSlotFlagsByBundle<sup>11+</sup>
+
+getSlotFlagsByBundle(bundle: BundleOption): Promise\<[NotificationSlotFlags]>
+
+获取指定应用的通知通道标识位（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型         | 必填 | 说明       |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+|  Promise\<[NotificationSlotFlags]>| 以Promise形式返回获取指定应用的通知通道标识位。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: "bundleName1",
+};
+
+notificationManager.getSlotFlagsByBundle(bundle).then(() => {
+	console.info("getSlotFlagsByBundle success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
