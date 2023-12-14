@@ -279,6 +279,99 @@ print.print(file).then((printTask: print.PrintTask) => {
 })
 ```
 
+## PrintDocumentAdapter<sup>11+</sup>
+
+第三方应用程序实现此接口来渲染要打印的文件
+
+### onStartLayoutWrite
+
+onStartLayoutWrite(jobId: string, oldAttrs: PrintAttributes, newAttrs: PrintAttributes, fd: number, writeResultCallback: (jobId: string, writeResult: PrintFileCreationState) => void): void
+
+实现这个接口来更新要打印文件，使用writeResultCallback回调。
+
+**需要权限：** ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| jobId | string | 是 | 表示打印任务ID |
+| oldAttrs | PrintAttributes | 是 | 表示旧打印参数 |
+| newAttrs | PrintAttributes | 是 | 表示新打印参数 |
+| fd | number | 是 | 表示文件描述符 |
+| writeResultCallback | (jobId: string, writeResult: PrintFileCreationState) | 是 | 表示更新要打印的文件完成后的回调 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
+    onStartLayoutWrite(jobId: string, oldAttrs: print.PrintAttributes, newAttrs: print.PrintAttributes, fd: number,
+        writeResultCallback: (jobId: string, writeResult: print.PrintFileCreationState) => void) {
+        writeResultCallback(jobId, print.PrintFileCreationState.PRINT_FILE_CREATED);
+    };
+    onJobStateChanged(jobId: string, state: print.PrintDocumentAdapterState) {
+        if (state == print.PrintDocumentAdapterState.PREVIEW_DESTROY) {
+            console.log('PREVIEW_DESTROY');
+        } else if (state == print.PrintDocumentAdapterState.PRINT_TASK_SUCCEED) {
+            console.log('PRINT_TASK_SUCCEED');
+        } else if (state == print.PrintDocumentAdapterState.PRINT_TASK_FAIL) {
+            console.log('PRINT_TASK_FAIL');
+        } else if (state == print.PrintDocumentAdapterState.PRINT_TASK_CANCEL) {
+            console.log('PRINT_TASK_CANCEL');
+        } else if (state == print.PrintDocumentAdapterState.PRINT_TASK_BLOCK) {
+            console.log('PRINT_TASK_BLOCK');
+        }
+    }
+}
+```
+
+### onJobStateChanged
+
+onJobStateChanged(jobId: string, state: PrintDocumentAdapterState): void
+
+实现这个接口来监听打印任务状态的改变。
+
+**需要权限：** ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| jobId | string | 是 | 表示打印任务ID |
+| state | PrintDocumentAdapterState | 是 | 表示打印任务更改为该状态 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
+    onStartLayoutWrite(jobId: string, oldAttrs: print.PrintAttributes, newAttrs: print.PrintAttributes, fd: number,
+        writeResultCallback: (jobId: string, writeResult: print.PrintFileCreationState) => void) {
+        writeResultCallback(jobId, print.PrintFileCreationState.PRINT_FILE_CREATED);
+    };
+    onJobStateChanged(jobId: string, state: print.PrintDocumentAdapterState) {
+        if (state == print.PrintDocumentAdapterState.PREVIEW_DESTROY) {
+            console.log('PREVIEW_DESTROY');
+        } else if (state == print.PrintDocumentAdapterState.PRINT_TASK_SUCCEED) {
+            console.log('PRINT_TASK_SUCCEED');
+        } else if (state == print.PrintDocumentAdapterState.PRINT_TASK_FAIL) {
+            console.log('PRINT_TASK_FAIL');
+        } else if (state == print.PrintDocumentAdapterState.PRINT_TASK_CANCEL) {
+            console.log('PRINT_TASK_CANCEL');
+        } else if (state == print.PrintDocumentAdapterState.PRINT_TASK_BLOCK) {
+            console.log('PRINT_TASK_BLOCK');
+        }
+    }
+}
+```
+
 ## print
 
 print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): void
@@ -439,6 +532,77 @@ print.print(file, context).then((printTask: print.PrintTask) => {
 })
 ```
 
+## print<sup>11+</sup>
+
+print(jobName: string, printAdapter: PrintDocumentAdapter, printAttributes: PrintAttributes, context: Context): Promise&lt;PrintTask&gt;
+
+打印接口，传入文件进行打印，三方应用需要更新打印文件，使用Promise异步回调。
+
+**需要权限：** ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| jobName | string | 是 | 表示待打印文件名称 |
+| printAdapter | Context | 是 | 表示三方应用实现的功能 |
+| printAttributes | PrintAttributes | 是 | 表示打印参数 |
+| context | Context | 是 | 用于启动打印的UIAbilityContext |
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;PrintTask&gt; | 打印完成结果 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let jobName : string = "jobName";
+let printAdapter : print.PrintDocumentAdapter;
+let printAttributes : print.PrintAttributes = {
+    copyNumber: 1,
+    pageRange: {
+        startPage: 0,
+        endPage: 5,
+        pages: []
+    },
+    pageSize: print.PrintPageType.PAGE_ISO_A3,
+    directionMode: print.PrintDirectionMode.DIRECTION_MODE_AUTO,
+    colorMode: print.PrintColorMode.COLOR_MODE_MONOCHROME,
+    duplexMode: print.PrintDuplexMode.DUPLEX_MODE_NONE
+}
+let context = getContext();
+
+print.print(jobName, printAdapter, printAttributes, context).then((printTask: print.PrintTask) => {
+    printTask.on('succeed', () => {
+        console.log('print state is succeed');
+    })
+    // ...
+}).catch((error: BusinessError) => {
+    console.log('print err ' + JSON.stringify(error));
+})
+```
+
+## PrintAttributes<sup>11+</sup>
+
+定义打印参数的接口
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**属性：**
+| **名称** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| copyNumber | number | 否 | 表示文件列表副本 |
+| pageRange | PrinterRange | 否 | 表示待打印文件的范围 |
+| pageSize | PrintPageSize \| PrintPageType | 否 | 表示代打印文件的页面大小 |
+| directionMode | PrintDirectionMode | 否 | 表示待打印文件的方向 |
+| colorMode | PrintColorMode | 否 | 表示待打印文件的色彩模式 |
+| duplexMode | PrintDuplexMode | 否 | 表示待打印文件的单双面模式 |
+
 ## PrintMargin
 
 定义打印页边距的接口
@@ -455,11 +619,9 @@ print.print(file, context).then((printTask: print.PrintTask) => {
 | left | number | 否 | 表示页面左边距 |
 | right | number | 否 | 表示页面右边距 |
 
-## PrinterRange
+## PrinterRange<sup>11+</sup>
 
 定义打印范围的接口
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Print.PrintFramework
 
@@ -499,11 +661,9 @@ print.print(file, context).then((printTask: print.PrintTask) => {
 | horizontalDpi | number | 是 | 表示水平DPI |
 | verticalDpi | number | 是 | 表示垂直DPI |
 
-## PrintPageSize
+## PrintPageSize<sup>11+</sup>
 
 定义打印页面尺寸的接口
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Print.PrintFramework
 
@@ -578,6 +738,88 @@ print.print(file, context).then((printTask: print.PrintTask) => {
 | margin | PrintMargin | 否 | 表示当前页边距设置 |
 | preview | PreviewAttribute | 否 | 表示预览设置 |
 | options | Object | 否 | 表示JSON对象字符串 |
+
+## PrintDirectionMode<sup>11+</sup>
+
+打印纸张方向的枚举
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| DIRECTION_MODE_AUTO | 0 | 表示自动选择纸张方向 |
+| DIRECTION_MODE_PORTRAIT | 1 | 表示纵向打印 |
+| DIRECTION_MODE_LANDSCAPE | 2 | 表示横向打印 |
+
+## PrintColorMode<sup>11+</sup>
+
+打印色彩模式的枚举
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| COLOR_MODE_MONOCHROME | 0 | 表示黑白打印 |
+| COLOR_MODE_COLOR | 1 | 表示彩色打印 |
+
+## PrintDuplexMode<sup>11+</sup>
+
+打印单双面模式的枚举
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| DUPLEX_MODE_NONE | 0 | 表示单面打印 |
+| DUPLEX_MODE_LONG_EDGE | 1 | 表示双面打印长边翻转 |
+| DUPLEX_MODE_SHORT_EDGE | 2 | 表示双面打印短边翻转 |
+
+## PrintPageType<sup>11+</sup>
+
+打印纸张类型的枚举
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| PAGE_ISO_A3 | 0 | 表示A3 |
+| PAGE_ISO_A4 | 1 | 表示A4 |
+| PAGE_ISO_A5 | 2 | 表示A5 |
+| PAGE_JIS_B5 | 3 | 表示B5 |
+| PAGE_ISO_C5 | 4 | 表示C5 |
+| PAGE_ISO_DL | 5 | 表示DL |
+| PAGE_LETTER | 6 | 表示Letter |
+| PAGE_LEGAL | 7 | 表示Legal |
+| PAGE_PHOTO_4X6 | 8 | 表示4x6相纸 |
+| PAGE_PHOTO_5X7 | 9 | 表示5x7相纸 |
+| PAGE_INT_DL_ENVELOPE | 10 | 表示INT DL ENVELOPE |
+| PAGE_B_TABLOID | 11 | 表示B Tabloid |
+
+## PrintDocumentAdapterState<sup>11+</sup>
+
+打印任务状态的枚举
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| PREVIEW_DESTROY | 0 | 表示预览失败 |
+| PRINT_TASK_SUCCEED | 1 | 表示打印任务成功 |
+| PRINT_TASK_FAIL | 2 | 表示打印任务失败 |
+| PRINT_TASK_CANCEL | 3 | 表示打印任务取消 |
+| PRINT_TASK_BLOCK | 4 | 表示打印任务阻塞 |
+
+## PrintFileCreationState<sup>11+</sup>
+
+打印文件创建状态的枚举
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| PRINT_FILE_CREATED | 0 | 表示打印文件创建成功 |
+| PRINT_FILE_CREATION_FAILED | 1 | 表示打印文件创建失败|
+| PRINT_FILE_CREATED_UNRENDERED | 2 | 表示打印文件创建成功但未渲染 |
 
 ## PrinterState
 
@@ -1120,6 +1362,7 @@ let jobInfo : print.PrintJob = {
     jobId : 'jobId_12',
     printerId : 'printerId_32',
     jobState : 3,
+    jobSubstate : print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS,
     copyNumber : 1,
     pageRange : {},
     isSequential : false,
@@ -1173,6 +1416,7 @@ let jobInfo : print.PrintJob = {
     jobId : 'jobId_12',
     printerId : 'printerId_32',
     jobState : 3,
+    jobSubstate : print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS,
     copyNumber : 1,
     pageRange : {},
     isSequential : false,
@@ -1289,6 +1533,7 @@ let jobInfo : print.PrintJob = {
     jobId : 'jobId_12',
     printerId : 'printerId_32',
     jobState : 3,
+    jobSubstate : print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS,
     copyNumber : 1,
     pageRange : {},
     isSequential : false,
@@ -1339,6 +1584,7 @@ let jobInfo : print.PrintJob = {
     jobId : 'jobId_12',
     printerId : 'printerId_32',
     jobState : 3,
+    jobSubstate : print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS,
     copyNumber : 1,
     pageRange : {},
     isSequential : false,
@@ -2149,7 +2395,7 @@ queryPrintJobById(jobId: string, callback: AsyncCallback&lt;PrintJob&gt;): void
 import print from '@ohos.print';
 import { BusinessError } from '@ohos.base';
 
-let jobId : string= '1';
+let jobId : string = '1';
 print.queryPrintJobById(jobId, (err: BusinessError, printJob : PrintJob) => {
     if (err) {
         console.log('queryPrintJobById failed, because : ' + JSON.stringify(err));
@@ -2187,9 +2433,113 @@ queryPrintJobById(jobId: string): Promise&lt;PrintJob&gt;
 import print from '@ohos.print';
 import { BusinessError } from '@ohos.base';
 
-let jobId : string= '1';
+let jobId : string = '1';
 print.queryPrintJobById(jobId).then((printJob : PrintJob) => {
     console.log('queryPrintJobById data : ' + JSON.stringify(printJob));
+}).catch((error: BusinessError) => {
+    console.log('queryPrintJobById error : ' + JSON.stringify(error));
+})
+```
+
+## startGettingPrintFile<sup>11+</sup>
+
+startGettingPrintFile(jobId: string, printAttributes: PrintAttributes, fd: number, onFileStateChanged: Callback&lt;PrintFileCreationState&gt;): void
+
+开始获取打印文件，使用Callback异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| jobId | string | 是 | 表示打印任务ID |
+| printAttributes | PrintAttributes | 是 | 表示打印参数 |
+| fd | number | 是 | 表示打印文件描述符 |
+| onFileStateChanged | Callback&lt;PrintFileCreationState&gt; | 是 | 表示更新文件状态的回调 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let jobId : string= '1';
+class MyPrintAttributes implements print.PrintAttributes {
+    copyNumber?: number;
+    pageRange?: print.PrinterRange;
+    pageSize?: print.PrintPageSize | print.PrintPageType;
+    directionMode?: print.PrintDirectionMode;
+    colorMode?: print.PrintColorMode;
+    duplexMode?: print.PrintDuplexMode;
+}
+
+class MyPrinterRange implements print.PrinterRange {
+    startPage?: number;
+    endPage?: number;
+    pages?: Array<number>;
+}
+
+class MyPrintPageSize implements print.PrintPageSize {
+    id: string;
+    name: string;
+    width: number;
+    height: number;
+}
+
+let printAttributes = new MyPrintAttributes();
+printAttributes.copyNumber = 2;
+printAttributes.pageRange = new MyPrinterRange();
+printAttributes.pageRange.startPage = 0;
+printAttributes.pageRange.endPage = 5;
+printAttributes.pageRange.pages = [1, 3];
+printAttributes.pageSize = print.PrintPageType.PAGE_ISO_A3;
+printAttributes.directionMode = print.PrintDirectionMode.DIRECTION_MODE_AUTO;
+printAttributes.colorMode = print.PrintColorMode.COLOR_MODE_MONOCHROME;
+printAttributes.duplexMode = print.PrintDuplexMode.DUPLEX_MODE_NONE;
+
+let fd : number = 1;
+print.startGettingPrintFile(jobId, printAttributes, fd, (state: print.PrintFileCreationState) => {
+    console.log('onFileStateChanged success, data : ' + JSON.stringify(state));
+})
+```
+
+## notifyPrintService<sup>11+</sup>
+
+notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spooler_closed_for_started'): Promise&lt;void&gt;
+
+将spooler关闭信息通知打印服务，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| jobId | string | 是 | 表示打印任务ID |
+| type | 'spooler_closed_for_cancelled' \| 'spooler_closed_for_started' | 是 | 表示spooler关闭信息 |
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;void&gt; | 将spooler关闭信息通知打印服务后的完成结果 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let jobId : string = '1';
+let type : string = 'spooler_closed_for_started';
+print.notifyPrintService(jobId, type).then((data : void) => {
+    console.log('queryPrintJobById data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
     console.log('queryPrintJobById error : ' + JSON.stringify(error));
 })
