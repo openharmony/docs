@@ -2999,6 +2999,7 @@ isGeneratorObject(value: Object): boolean
 **示例：**
 
   ```ts
+  // 本接口不支持在.ets文件中使用
   let that = new util.types();
   function* foo() {}
   const generator = foo();
@@ -3405,6 +3406,7 @@ isSymbolObject(value: Object): boolean
 **示例：**
 
   ```ts
+  // 本接口不支持在.ets文件中使用。
   let that = new util.types();
   const symbols = Symbol('foo');
   let result = that.isSymbolObject(Object(symbols));
