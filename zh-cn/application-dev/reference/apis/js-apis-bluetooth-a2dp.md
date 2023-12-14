@@ -181,6 +181,8 @@ isAbsoluteVolumeSupported(deviceId: string, callback: AsyncCallback&lt;boolean&g
 
 获取设备是否支持绝对音量能力。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
@@ -219,9 +221,11 @@ try {
 
 ### isAbsoluteVolumeSupported<sup>11+</sup>
 
-isAbsoluteVolumeSupported(deviceId: string): Promise<boolean>
+isAbsoluteVolumeSupported(deviceId: string): Promise&lt;boolean&gt;
 
 获取设备是否支持绝对音量能力。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -267,7 +271,9 @@ try {
 
 isAbsoluteVolumeEnabled(deviceId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取设备绝对音量能力是否开启。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isAbsoluteVolumeSupported)），再获取设备绝对音量能力是否开启。
+获取设备绝对音量能力是否开启。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再获取设备绝对音量能力是否开启。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -309,7 +315,9 @@ try {
 
 isAbsoluteVolumeEnabled(deviceId: string): Promise&lt;boolean&gt;
 
-获取设备绝对音量能力是否开启。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isAbsoluteVolumeSupported)），再获取设备绝对音量能力是否开启。
+获取设备绝对音量能力是否开启。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再获取设备绝对音量能力是否开启。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -355,7 +363,9 @@ try {
 
 enableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-开启设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isAbsoluteVolumeSupported)），再开启设备绝对音量能力。
+开启设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再开启设备绝对音量能力。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
 
@@ -366,7 +376,7 @@ enableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): voi
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | 是    | 远端设备地址。 |
-| callback | AsyncCallback&lt;void&gt; | 否 | 回调函数。如果成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。如果成功，err为undefined，否则为错误对象。 |
 
 
 **错误码**：
@@ -399,7 +409,9 @@ try {
 
 enableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
 
-开启设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isAbsoluteVolumeSupported)），再开启设备绝对音量能力。
+开启设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再开启设备绝对音量能力。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
 
@@ -446,7 +458,9 @@ try {
 
 disableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-关闭设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isAbsoluteVolumeSupported)），再关闭设备绝对音量能力。
+关闭设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再关闭设备绝对音量能力。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
 
@@ -457,7 +471,7 @@ disableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): vo
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | 是    | 远端设备地址。 |
-| callback | AsyncCallback&lt;void&gt; | 否 | 回调函数。如果成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。如果成功，err为undefined，否则为错误对象。 |
 
 
 **错误码**：
@@ -490,7 +504,9 @@ try {
 
 disableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
 
-关闭设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isAbsoluteVolumeSupported)），再关闭设备绝对音量能力。
+关闭设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再关闭设备绝对音量能力。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
 
@@ -538,6 +554,8 @@ getCurrentCodecInfo(deviceId: string): CodecInfo
 
 获取当前编码器信息。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
@@ -582,6 +600,8 @@ setCurrentCodecInfo(deviceId: string, codecInfo: CodecInfo): void
 
 获取当前编码器信息。
 
+**系统接口**：此接口为系统接口。
+
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
@@ -591,7 +611,7 @@ setCurrentCodecInfo(deviceId: string, codecInfo: CodecInfo): void
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | 是    | 远端设备地址。 |
-| codecInfo | [CodecInfo](#CodecInfo) | 是    | 编码器信息。 |
+| codecInfo | [CodecInfo](#codecinfo) | 是    | 编码器信息。 |
 
 **错误码**：
 
@@ -633,7 +653,7 @@ try {
 | STATE_PLAYING     | 0x0001 | 表示正在播放。 |
 
 
-## CodecInfo<a name="CodecInfo"></a>
+## CodecInfo<sup>11+</sup><a name="CodecInfo"></a>
 
 编码器信息。
 
@@ -641,13 +661,13 @@ try {
 
 | 名称        | 类型                    | 可读   | 可写   | 说明                                     |
 | ------------------- | ----------------------- | ---- | ---- | -------------------------------------- |
-| codecType           | [CodecType](#codectype)      | 是    | 是    | 表示编码器类型，默认值为CODEC_TYPE_SBC。 |
-| codecBitsPerSample  | [CodecBitsPerSample](#codecbitspersample)  | 是    | 是    | 表示每个采样点的位数，默认值为SCAN_MODE_LOW_POWER。 |
-| codecChannelMode    | [CodecChannelMode](#codecchannelmode) | 是    | 是    | 表示编码器的声道模式，默认值为CODEC_CHANNEL_MODE_NONE。 |
-| codecSampleRate     | [CodecSampleRate](#codecsamplerate) | 是    | 是    | 表示编码器的采样率，默认值为CODEC_BITS_PER_SAMPLE_NONE。 |
+| codecType<sup>11+</sup>           | [CodecType](#codectype)      | 是    | 是    | 表示编码器类型，默认值为CODEC_TYPE_SBC。 |
+| codecBitsPerSample<sup>11+</sup>  | [CodecBitsPerSample](#codecbitspersample)  | 是    | 是    | 表示每个采样点的位数，默认值为SCAN_MODE_LOW_POWER。 |
+| codecChannelMode<sup>11+</sup>    | [CodecChannelMode](#codecchannelmode) | 是    | 是    | 表示编码器的声道模式，默认值为CODEC_CHANNEL_MODE_NONE。 |
+| codecSampleRate<sup>11+</sup>     | [CodecSampleRate](#codecsamplerate) | 是    | 是    | 表示编码器的采样率，默认值为CODEC_BITS_PER_SAMPLE_NONE。 |
 
 
-## CodecType<a name="CodecType"></a>
+## CodecType<sup>11+</sup><a name="CodecType"></a>
 
 枚举，蓝牙编码器类型。
 
@@ -655,13 +675,13 @@ try {
 
 | 名称                | 值    | 说明      |
 | ----------------- | ------ | ------- |
-| CODEC_TYPE_INVALID | -1 | 位置编码类型。  |
-| CODEC_TYPE_SBC     | 0 | SBC。 |
-| CODEC_TYPE_AAC     | 1 | AAC。 |
-| CODEC_TYPE_L2HC    | 2 | L2HC。|
+| CODEC_TYPE_INVALID<sup>11+</sup> | -1 | 位置编码类型。  |
+| CODEC_TYPE_SBC<sup>11+</sup>     | 0 | SBC。 |
+| CODEC_TYPE_AAC<sup>11+</sup>     | 1 | AAC。 |
+| CODEC_TYPE_L2HC<sup>11+</sup>    | 2 | L2HC。|
 
 
-## CodecChannelMode<a name="CodecChannelMode"></a>
+## CodecChannelMode<sup>11+</sup><a name="CodecChannelMode"></a>
 
 枚举，蓝牙编码器的声道模式。
 
@@ -669,12 +689,12 @@ try {
 
 | 名称                | 值    | 说明      |
 | ----------------- | ------ | ------- |
-| CODEC_CHANNEL_MODE_NONE   | 0 | 未知声道。|
-| CODEC_CHANNEL_MODE_MONO   | 1 | 单声道。  |
-| CODEC_CHANNEL_MODE_STEREO | 2 | 双声道。  |
+| CODEC_CHANNEL_MODE_NONE<sup>11+</sup>   | 0 | 未知声道。|
+| CODEC_CHANNEL_MODE_MONO<sup>11+</sup>   | 1 | 单声道。  |
+| CODEC_CHANNEL_MODE_STEREO<sup>11+</sup> | 2 | 双声道。  |
 
 
-## CodecBitsPerSample<a name="CodecBitsPerSample"></a>
+## CodecBitsPerSample<sup>11+</sup><a name="CodecBitsPerSample"></a>
 
 枚举，蓝牙编码器每个采样点的位数。
 
@@ -682,13 +702,13 @@ try {
 
 | 名称                | 值    | 说明      |
 | ----------------- | ------ | ------- |
-| CODEC_BITS_PER_SAMPLE_NONE | 0 | 未知采样点的位数。|
-| CODEC_BITS_PER_SAMPLE_16   | 1 | 16位采样点的位数。|
-| CODEC_BITS_PER_SAMPLE_24   | 2 | 24位采样点的位数。|
-| CODEC_BITS_PER_SAMPLE_32   | 3 | 32位采样点的位数。|
+| CODEC_BITS_PER_SAMPLE_NONE<sup>11+</sup> | 0 | 未知采样点的位数。|
+| CODEC_BITS_PER_SAMPLE_16<sup>11+</sup>   | 1 | 16位采样点的位数。|
+| CODEC_BITS_PER_SAMPLE_24<sup>11+</sup>   | 2 | 24位采样点的位数。|
+| CODEC_BITS_PER_SAMPLE_32<sup>11+</sup>   | 3 | 32位采样点的位数。|
 
 
-## CodecSampleRate<a name="CodecSampleRate"></a>
+## CodecSampleRate<sup>11+</sup><a name="CodecSampleRate"></a>
 
 枚举，蓝牙编码器的采样率。
 
@@ -696,10 +716,10 @@ try {
 
 | 名称                | 值    | 说明      |
 | ----------------- | ------ | ------- |
-| CODEC_SAMPLE_RATE_NONE    | 0 | 未知采样率。|
-| CODEC_SAMPLE_RATE_44100   | 1 | 44.1k采样率。|
-| CODEC_SAMPLE_RATE_48000   | 2 | 48k采样率。|
-| CODEC_SAMPLE_RATE_88200   | 3 | 88.2k采样率。|
-| CODEC_SAMPLE_RATE_96000   | 3 | 96k位采样率。|
-| CODEC_SAMPLE_RATE_176400  | 3 | 176.4k位采样率。|
-| CODEC_SAMPLE_RATE_192000  | 3 | 192k位采样率。|
+| CODEC_SAMPLE_RATE_NONE<sup>11+</sup>    | 0 | 未知采样率。|
+| CODEC_SAMPLE_RATE_44100<sup>11+</sup>   | 1 | 44.1k采样率。|
+| CODEC_SAMPLE_RATE_48000<sup>11+</sup>   | 2 | 48k采样率。|
+| CODEC_SAMPLE_RATE_88200<sup>11+</sup>   | 3 | 88.2k采样率。|
+| CODEC_SAMPLE_RATE_96000<sup>11+</sup>   | 4 | 96k位采样率。|
+| CODEC_SAMPLE_RATE_176400<sup>11+</sup>  | 5 | 176.4k位采样率。|
+| CODEC_SAMPLE_RATE_192000<sup>11+</sup>  | 6 | 192k位采样率。|
