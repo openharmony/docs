@@ -1712,7 +1712,7 @@ Worker线程用于与宿主线程通信的类，通过postMessage接口发送消
 
 ### postMessage<sup>(deprecated)</sup>
 
-postMessage(messageObject: Object, transfer: Transferable[]): void;
+postMessage(messageObject: Object, transfer: Transferable[]): void
 
 Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
@@ -1730,7 +1730,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 ### postMessage<sup>9+</sup>
 
-postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
+postMessage(messageObject: Object, transfer: ArrayBuffer[]): void
 
 Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
@@ -2123,7 +2123,7 @@ Actor并发模型的交互原理：各个Actor并发地处理主线程任务，�
 
 ```ts
 // main thread(同级目录为例)
-import worker, { MessageEvents } from '@ohos.worker';
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // 主线程中创建Worker对象
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
@@ -2185,7 +2185,7 @@ build-profile.json5 配置 :
 ### Stage模型
 ```ts
 // main thread（以不同目录为例）
-import worker, { MessageEvents } from '@ohos.worker';
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // 主线程中创建Worker对象
 const workerInstance = new worker.ThreadWorker("entry/ets/pages/workers/worker.ts");
