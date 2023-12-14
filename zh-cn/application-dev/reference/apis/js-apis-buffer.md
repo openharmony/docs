@@ -342,7 +342,7 @@ from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 | -------- | -------- | -------- | -------- |
 | object | Object | 是 | 支持Symbol.toPrimitive或valueOf()的对象。 |
 | offsetOrEncoding | number&nbsp;\|&nbsp;string | 是 | 字节偏移量或编码格式。 |
-| length | number | 是 | 字节长度。 |
+| length | number | 是 | 字节长度(此入参仅在object的valueOf()返回值为arraybuffer时生效)。其他情况下可填任意number类型值，该参数不会对结果产生影响。 |
 
 **返回值：**
 
