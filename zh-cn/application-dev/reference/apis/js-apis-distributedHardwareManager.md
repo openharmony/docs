@@ -93,13 +93,13 @@ pauseDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
       srcNetworkId: '1111'
     };
     hardwareManager.pauseDistributedHardware(description).then(() => {
-      console.log(TAG + 'pause distributed hardware successfully');
+      console.log('pause distributed hardware successfully');
     }).catch((error: BusinessError) => {
-      console.error(TAG + 'pause distributed hardware failed, cause:' + error);
+      console.error('pause distributed hardware failed, cause:' + error);
     })
-    console.log(TAG + 'pause distributed hardware successfully');
+    console.log('pause distributed hardware successfully');
   } catch (error) {
-    console.error(TAG + 'pause distributed hardware failed: ' + error);
+    console.error('pause distributed hardware failed:' + error);
   }
   ```
 
@@ -144,13 +144,13 @@ try {
     srcNetworkId: '1111'
   };
   hardwareManager.resumeDistributedHardware(description).then(() => {
-    console.log(TAG + 'resume distributed hardware successfully');
+    console.log('resume distributed hardware successfully');
   }).catch((error: BusinessError) => {
-    console.error(TAG + 'resume distributed hardware failed, cause:' + error);
+    console.error('resume distributed hardware failed, cause:' + error);
   })
-  console.log(TAG + 'resume distributed hardware successfully');
+  console.log('resume distributed hardware successfully');
 } catch (error) {
-  console.error(TAG + 'resume distributed hardware failed: ' + error);
+  console.error('resume distributed hardware failed:' + error);
 }
   ```
 
@@ -195,12 +195,12 @@ try {
     srcNetworkId: '1111'
   };
   hardwareManager.stopDistributedHardware(description).then(() => {
-    console.log(TAG + 'stop distributed hardware successfully');
+    console.log('stop distributed hardware successfully');
   }).catch((error: BusinessError) => {
-    console.error(TAG + 'stop distributed hardware failed, cause:' + error);
+    console.error('stop distributed hardware failed, cause:' + error);
   })
-  console.log(TAG + 'stop distributed hardware successfully');
+  console.log('stop distributed hardware successfully');
 } catch (error) {
-  console.error(TAG + 'stop distributed hardware failed: ' + error);
+  console.error('stop distributed hardware failed:' + error);
 }
   ```
