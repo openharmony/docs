@@ -653,21 +653,11 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | url | string | 是 | 资源地址。 |
 | header | Object | 是 | 添加要包含在上传请求中的HTTP或HTTPS标志头。 |
 | method | string | 是 | 请求方法：POST、PUT。缺省为POST。 |
+| index<sup>11+</sup> | number | 否 | 任务的路径索引，默认值为0。 |
+| begins<sup>11+</sup> | number | 否 | 在上传开始时读取的文件起点。默认值为0，取值为闭区间。|
+| ends<sup>11+</sup> | number | 否 | 在上传结束时读取的文件终点。默认值为-1，取值为闭区间。 |
 | files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。请使用&nbsp;multipart/form-data提交。 |
 | data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
-
-## UploadConfig<sup>11+</sup>
-上传任务的配置信息。
-
-**需要权限**：ohos.permission.INTERNET
-
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
-
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| index | number | 否 | 任务的路径索引，默认值为0。 |
-| begins | number | 否 | 在上传开始时读取的文件起点。默认值为0，取值为闭区间。|
-| ends | number | 否 | 在上传结束时读取的文件终点。默认值为-1，取值为闭区间。 |
 
 ## TaskState<sup>9+</sup>
 上传任务信息，[on('complete' | 'fail')<sup>9+</sup>](#oncomplete--fail9)和[off('complete' | 'fail')<sup>9+</sup>](#offcomplete--fail9)接口的回调参数。
@@ -1878,7 +1868,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | gauge | boolean | 否 | 后台任务的过程进度通知策略，仅应用于后台任务，默认值为false。<br/>-false：代表仅完成或失败的通知。<br/>-true，发出每个进度已完成或失败的通知。 |
 | precise | boolean | 否 | -如果设置为true，在上传/下载无法获取文件大小时任务失败。<br/>-如果设置为false，将文件大小设置为-1时任务继续。<br/>默认值为false。 |
 | token | string | 否 | 当创建了一个带有token的任务后，token则为正常查询期间必须提供的，否则将无法通过查询进行检索。其最小为8个字节，最大为2048个字节。默认为空。 |
-| priority | number | 否 | 任务的优先级。任务模式相同的情况下，该配置项的数字越小优先级越高，默认值为0。 |
+| priority<sup>11+</sup> | number | 否 | 任务的优先级。任务模式相同的情况下，该配置项的数字越小优先级越高，默认值为0。 |
 | extras | object | 否 | 配置的附加功能，默认为空。 |
 
 ## State<sup>10+</sup>  
@@ -1960,7 +1950,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | description | string | 是 | 任务描述。 |
 | action | [Action](#action10) | 是 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。 |
 | mode | [Mode](#mode10) | 是 | 指定任务模式。<br/>-FOREGROUND表示前端任务。<br/>-BACKGROUND表示后台任务。 |
-| priority | number | 否 | 任务配置中的优先级。前端任务的优先级比后台任务高。相同模式的任务，数字越小优先级越高。 |
+| priority<sup>11+</sup> | number | 否 | 任务配置中的优先级。前端任务的优先级比后台任务高。相同模式的任务，数字越小优先级越高。 |
 | mimeType | string | 是 | 任务配置中的mimetype。 |
 | progress | [Progress](#progress10) | 是 | 任务的过程进度。 |
 | gauge | boolean | 是 | 后台任务的进度通知策略。 |
@@ -3544,6 +3534,47 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+## request.agent.getTask<sup>11+</sup>
+
+getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
+
+根据任务id查询任务。使用Promise异步回调。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
+  | id | string | 是 | 任务id。 |
+  | token | string | 是 | 任务查询token。 |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;[Task](#task10)&gt; | Promise对象。返回任务配置信息的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
+
+**示例：**
+
+  ```ts
+  request.agent.getTask(context, "123456").then((task: request.agent.Task) => {
+    console.info(`Succeeded in querying a upload task. result: ${task.uid}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
 
 ## request.agent.remove<sup>10+</sup>
 
