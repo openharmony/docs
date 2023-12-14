@@ -53,6 +53,7 @@
 typedef struct Vibrator_Attribute Vibrator_Attribute
 ```
 **描述**
+
 马达属性。
 
 **起始版本：** 11
@@ -64,6 +65,7 @@ typedef struct Vibrator_Attribute Vibrator_Attribute
 typedef enum Vibrator_ErrorCode Vibrator_ErrorCode
 ```
 **描述**
+
 为用户定义错误码。
 
 **起始版本：** 11
@@ -75,6 +77,7 @@ typedef enum Vibrator_ErrorCode Vibrator_ErrorCode
 typedef struct Vibrator_FileDescription Vibrator_FileDescription
 ```
 **描述**
+
 振动文件描述。
 
 **起始版本：** 11
@@ -86,6 +89,7 @@ typedef struct Vibrator_FileDescription Vibrator_FileDescription
 typedef enum Vibrator_Usage Vibrator_Usage
 ```
 **描述**
+
 振动优先级。
 
 **起始版本：** 11
@@ -100,6 +104,7 @@ typedef enum Vibrator_Usage Vibrator_Usage
 enum Vibrator_ErrorCode : int32_t
 ```
 **描述**
+
 为用户定义错误码。
 
 **起始版本：** 11
@@ -117,6 +122,7 @@ enum Vibrator_ErrorCode : int32_t
 enum Vibrator_Usage
 ```
 **描述**
+
 振动优先级。
 
 **起始版本：** 11
