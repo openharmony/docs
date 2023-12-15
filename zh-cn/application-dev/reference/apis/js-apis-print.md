@@ -562,7 +562,7 @@ import print from '@ohos.print';
 import { BusinessError } from '@ohos.base';
 
 let jobName : string = "jobName";
-let printAdapter : print.PrintDocumentAdapter;
+let printAdapter : print.PrintDocumentAdapter | null = null;
 let printAttributes : print.PrintAttributes = {
     copyNumber: 1,
     pageRange: {
@@ -2484,10 +2484,10 @@ class MyPrinterRange implements print.PrinterRange {
 }
 
 class MyPrintPageSize implements print.PrintPageSize {
-    id: string;
-    name: string;
-    width: number;
-    height: number;
+    id: string = '0';
+    name: string = '0';
+    width: number = 210;
+    height: number = 297;
 }
 
 let printAttributes = new MyPrintAttributes();
