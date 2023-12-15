@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```js
+```typescript
 import calendarManager from '@ohos.calendarManager';
 ```
 
@@ -37,24 +37,23 @@ getCalendarManager(context : Context): CalendarManager
 
 **示例**：
 
-```ts
-  // 获取context
-  // 获取calendarManager
-  // 以下代码中的class EntryAbility extends UIAbility，onWindowStageCreate在工程main/ets/entryability/EntryAbility.ets中，测试ohosTest/ets/testability/TestAbility.ets中有，可直接使用
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import common from '@ohos.app.ability.common';
-  import window from '@ohos.window';
+```typescript
+// 获取context
+// 获取calendarManager
+// 以下代码中的class EntryAbility extends UIAbility，onWindowStageCreate在工程main/ets/entryability/EntryAbility.ets中，测试ohosTest/ets/testability/TestAbility.ets中有，可直接使用
+// calendarMgr需在主线程中获取，worker线程会获取失败
+import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
+import window from '@ohos.window';
 
-  export let mContext : common.UIAbilityContext | null = null;
-  export let calendarMgr : calendarManager.CalendarManager | null = null;
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage){
-      mContext = this.context;
-    }
-    calendarMgr = calendarManager.getCalendarManager(mContext);
-  }
-   
-  let calendarMgr:calendarManager.CalendarManager = calendarManager.getCalendarManager(mContext as Context);
+export let mContext : common.UIAbilityContext | null = null;
+export let calendarMgr : calendarManager.CalendarManager | null = null;
+class EntryAbility extends UIAbility {
+onWindowStageCreate(windowStage: window.WindowStage){
+  mContext = this.context;
+}
+calendarMgr = calendarManager.getCalendarManager(mContext);
+}
 ```
 
 ## CalendarManager
@@ -87,11 +86,11 @@ import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测�
 
 let calendar: calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
-  name: 'MyCalendar',
+  name: 'CreateMyCalendarByCallBack',
   type: calendarManager.CalendarType.LOCAL
 };
 try {
-  calendarMgr.createCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
+  calendarMgr?.createCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
     if (err) {
       console.error(`Failed to create calendar: err->${JSON.stringify(err)}`);
     } else {
@@ -128,17 +127,17 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
 let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
-  name: 'MyCalendar',
+  name: 'CreateMyCalendarByPromise',
   type: calendarManager.CalendarType.LOCAL,
   displayName : 'MyApplication'
 };
-calendarMgr.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
+calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
   console.info(`Succeeded in creating calendar data->${JSON.stringify(data)}`);
   calendar = data;
 }).catch((error : BusinessError) => {
@@ -170,15 +169,22 @@ import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
 const calendarAccount: calendarManager.CalendarAccount = {
-  name: 'MyCalendar',
+  name: 'DeleteMyCalendarByCallBack',
   type: calendarManager.CalendarType.LOCAL
 };
-calendarMgr.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
+calendarMgr?.createCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to create calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in creating calendar data->${JSON.stringify(data)}`);
+  }
+});
+calendarMgr?.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
   if (err) {
     console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
   } else {
     console.info("Succeeded in getting calendar");
-    calendarMgr.deleteCalendar(data, (err: BusinessError) => {
+    calendarMgr?.deleteCalendar(data, (err: BusinessError) => {
       if (err) {
         console.error(`Failed to delete calendar: err->${JSON.stringify(err)}`);
       } else {
@@ -218,12 +224,19 @@ import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
 const calendarAccount: calendarManager.CalendarAccount = {
-  name: 'MyCalendar',
+  name: 'DeleteMyCalendarByPromise',
   type: calendarManager.CalendarType.LOCAL
 };
-calendarMgr.getCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
+calendarMgr?.createCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to create calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in creating calendar data->${JSON.stringify(data)}`);
+  }
+});
+calendarMgr?.getCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
   console.info("Succeeded in getting calendar");
-  calendarMgr.deleteCalendar(data).then(() => {
+  calendarMgr?.deleteCalendar(data).then(() => {
     console.info("Succeeded in deleting calendar");
   }).catch((err: BusinessError) => {
     console.error(`Failed to delete calendar: err->${JSON.stringify(err)}`);
@@ -251,12 +264,12 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
 let calendar : calendarManager.Calendar | undefined = undefined;
-calendarMgr.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
   if (err) {
     console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
   } else {
@@ -285,7 +298,7 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
@@ -294,7 +307,14 @@ const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
 };
-calendarMgr.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
+calendarMgr?.createCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to create calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in creating calendar data->${JSON.stringify(data)}`);
+  }
+});
+calendarMgr?.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
   if (err) {
     console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
   } else {
@@ -328,12 +348,12 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
 let calendar : calendarManager.Calendar | undefined = undefined;
-calendarMgr.getCalendar().then((data: calendarManager.Calendar) => {
+calendarMgr?.getCalendar().then((data: calendarManager.Calendar) => {
   console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
   calendar = data;
 }).catch((err: BusinessError) => {
@@ -359,11 +379,11 @@ getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
-calendarMgr.getAllCalendars((err: BusinessError, data: calendarManager.Calendar[]) => {
+calendarMgr?.getAllCalendars((err: BusinessError, data: calendarManager.Calendar[]) => {
   if (err) {
     console.error(`Failed to get all calendars: err->${JSON.stringify(err)}`);
   } else {
@@ -394,11 +414,11 @@ getAllCalendars(): Promise\<Calendar[]>
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
 import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
-calendarMgr.getAllCalendars().then((data: calendarManager.Calendar[]) => {
+calendarMgr?.getAllCalendars().then((data: calendarManager.Calendar[]) => {
   console.info(`Succeeded in getting all calendars->${JSON.stringify(data)}`);
   data.forEach((calendar) => {
     const account = calendar.getAccount();
@@ -438,9 +458,19 @@ addEvent(event: Event, callback: AsyncCallback\<number>): void
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
 const date = new Date();
 const event: calendarManager.Event = {
   type: calendarManager.EventType.NORMAL,
@@ -478,9 +508,19 @@ addEvent(event: Event): Promise\<number>
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
 const date = new Date();
 const event: calendarManager.Event = {
   type: calendarManager.EventType.NORMAL,
@@ -511,9 +551,19 @@ addEvents(events: Event[], callback: AsyncCallback\<void>): void
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
 const date = new Date();
 const events: calendarManager.Event[] = [
   {
@@ -558,9 +608,19 @@ addEvents(events: Event[]): Promise\<void>
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
 const date = new Date();
 const events: calendarManager.Event[] = [
   {
@@ -598,14 +658,37 @@ deleteEvent(id: number, callback: AsyncCallback\<void>): void
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
-calendar.deleteEvent(1, (err: BusinessError) => {
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
   if (err) {
-    console.error("Failed to delete event");
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
   } else {
-    console.info("Succeeded in deleting event");
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
+const date = new Date();
+const event: calendarManager.Event = {
+  type: calendarManager.EventType.NORMAL,
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
+};
+calendar.addEvent(event, (err: BusinessError, data: number): void => {
+  if (err) {
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in adding event id:${data}`);
+    calendar.deleteEvent(data, (err: BusinessError) => {
+      if (err) {
+        console.error("Failed to delete event");
+      } else {
+        console.info("Succeeded in deleting event");
+      }
+    });
   }
 });
 ```
@@ -632,13 +715,36 @@ deleteEvent(id: number): Promise\<void>
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
-calendar.deleteEvent(1).then(() => {
-  console.info("Succeeded in deleting event");
-}).catch((err: BusinessError) => {
-  console.error("Failed to delete event");
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
+const date = new Date();
+const event: calendarManager.Event = {
+  type: calendarManager.EventType.NORMAL,
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
+};
+calendar.addEvent(event, (err: BusinessError, data: number): void => {
+  if (err) {
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in adding event id:${data}`);
+    calendar.deleteEvent(data).then(() => {
+      console.info("Succeeded in deleting event");
+    }).catch((err: BusinessError) => {
+      console.error("Failed to delete event");
+    });
+  }
 });
 ```
 
@@ -659,10 +765,49 @@ deleteEvents(ids: number[], callback: AsyncCallback\<void>): void
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
-calendar.deleteEvents([1, 2], (err: BusinessError) => {
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
+let id1: number = 0;
+let id2: number = 0;
+const date = new Date();
+const event1: calendarManager.Event = {
+  type: calendarManager.EventType.NORMAL,
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
+};
+const event2: calendarManager.Event = {
+  type: calendarManager.EventType.IMPORTANT,
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
+};
+calendar.addEvent(event1, (err: BusinessError, data: number): void => {
+  if (err) {
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in adding event id:${data}`);
+    id1 = data;
+  }
+});
+calendar.addEvent(event2, (err: BusinessError, data: number): void => {
+  if (err) {
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in adding event id:${data}`);
+    id2 = data;
+  }
+});
+calendar.deleteEvents([id1, id2], (err: BusinessError) => {
   if (err) {
     console.error("Failed to delete events");
   } else {
@@ -693,10 +838,49 @@ deleteEvents(ids: number[]): Promise\<void>
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
-calendar.deleteEvents([1, 2]).then(() => {
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
+let id1: number = 0;
+let id2: number = 0;
+const date = new Date();
+const event1: calendarManager.Event = {
+  type: calendarManager.EventType.NORMAL,
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
+};
+const event2: calendarManager.Event = {
+  type: calendarManager.EventType.IMPORTANT,
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
+};
+calendar.addEvent(event1, (err: BusinessError, data: number): void => {
+  if (err) {
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in adding event id:${data}`);
+    id1 = data;
+  }
+});
+calendar.addEvent(event2, (err: BusinessError, data: number): void => {
+  if (err) {
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in adding event id:${data}`);
+    id2 = data;
+  }
+});
+calendar.deleteEvents([id1, id2]).then(() => {
   console.info("Succeeded in deleting events");
 }).catch((err: BusinessError) => {
   console.error("Failed to delete events");
@@ -720,9 +904,19 @@ updateEvent(event: Event, callback: AsyncCallback\<void>): void
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
 const date = new Date();
 const oriEvent: calendarManager.Event = {
   title: 'update',
@@ -771,9 +965,34 @@ updateEvent(event: Event): Promise\<void>
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
+const date = new Date();
+const oriEvent: calendarManager.Event = {
+  title: 'update',
+  type: calendarManager.EventType.NORMAL,
+  description: 'updateEventTest',
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
+};
+calendar.addEvent(oriEvent, (err: BusinessError, data: number): void => {
+  if (err) {
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in adding event id:${data}`);
+  }
+});
 const filter = calendarManager.EventFilter.filterByTitle('update');
 calendar.getEvents(filter).then((events : calendarManager.Event[]) => {
   console.info(`Succeeded in getEvents`);
@@ -808,9 +1027,19 @@ getEvents(callback: AsyncCallback\<Event[]>): void
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
 calendar.getEvents((err: BusinessError, data: calendarManager.Event[]) => {
   if (err) {
     console.error("Failed to get events");
@@ -838,10 +1067,49 @@ getEvents(eventFilter: EventFilter, eventKey: (keyof Event)[], callback: AsyncCa
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
-const filter = calendarManager.EventFilter.filterById([1, 2]);
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
+let id1: number = 0;
+let id2: number = 0;
+const date = new Date();
+const event1: calendarManager.Event = {
+  type: calendarManager.EventType.NORMAL,
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
+};
+const event2: calendarManager.Event = {
+  type: calendarManager.EventType.IMPORTANT,
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
+};
+calendar.addEvent(event1, (err: BusinessError, data: number): void => {
+  if (err) {
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in adding event id:${data}`);
+    id1 = data;
+  }
+});
+calendar.addEvent(event2, (err: BusinessError, data: number): void => {
+  if (err) {
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in adding event id:${data}`);
+    id2 = data;
+  }
+});
+const filter = calendarManager.EventFilter.filterById([id1, id2]);
 calendar.getEvents(filter, ['title', 'type', 'startTime', 'endTime'], (err: BusinessError, data: calendarManager.Event[]) => {
   if (err) {
     console.error("Failed to get events");
@@ -874,9 +1142,32 @@ getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
+const event: calendarManager.Event = {
+  title: 'MyEvent',
+  type: calendarManager.EventType.IMPORTANT,
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
+};
+calendar.addEvent(event, (err: BusinessError, data: number): void => {
+  if (err) {
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in adding event id:${data}`);
+  }
+});
 const filter = calendarManager.EventFilter.filterByTitle('MyEvent');
 calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
   console.info("Succeeded in getting events");
@@ -901,7 +1192,18 @@ getConfig(): CalendarConfig
 
 **示例**：
 
-```ts
+```typescript
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
 const config = calendar.getConfig();
 console.info("get config success");
 ```
@@ -923,11 +1225,22 @@ setConfig(config: CalendarConfig, callback: AsyncCallback\<void>): void
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
 const config: calendarManager.CalendarConfig = {
-  enableReminder: true
+  enableReminder: true,
+  color: '#aabbcc'
 };
 calendar.setConfig(config, (err: BusinessError) => {
   if (err) {
@@ -960,9 +1273,19 @@ setConfig(config: CalendarConfig): Promise\<void>
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
 const config: calendarManager.CalendarConfig = {
   enableReminder: true,
   color: '#aabbcc'
@@ -990,7 +1313,18 @@ getAccount(): CalendarAccount
 
 **示例**：
 
-```ts
+```typescript
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
+
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
 const account = calendar.getAccount();
 console.info("get account success");
 ```
@@ -1094,10 +1428,49 @@ static filterById(ids: number[]): EventFilter
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
-const filter = calendarManager.EventFilter.filterById([1, 2]);
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
+let id1: number = 0;
+let id2: number = 0;
+const date = new Date();
+const event1: calendarManager.Event = {
+  type: calendarManager.EventType.NORMAL,
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
+};
+const event2: calendarManager.Event = {
+  type: calendarManager.EventType.IMPORTANT,
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
+};
+calendar.addEvent(event1, (err: BusinessError, data: number): void => {
+  if (err) {
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in adding event id:${data}`);
+    id1 = data;
+  }
+});
+calendar.addEvent(event2, (err: BusinessError, data: number): void => {
+  if (err) {
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in adding event id:${data}`);
+    id2 = data;
+  }
+});
+const filter = calendarManager.EventFilter.filterById([id1, id2]);
 calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
   console.info("Succeeded in filtering by id");
 }).catch((err: BusinessError) => {
@@ -1128,9 +1501,43 @@ static filterByTime(start: number, end: number): EventFilter
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
+const event1: calendarManager.Event = {
+  type: calendarManager.EventType.NORMAL,
+  startTime: 1686931200000,
+  endTime: 1687017600000
+};
+const event2: calendarManager.Event = {
+  type: calendarManager.EventType.IMPORTANT,
+  startTime: 1686931200000,
+  endTime: 1687017600000
+};
+calendar.addEvent(event1, (err: BusinessError, data: number): void => {
+  if (err) {
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in adding event id:${data}`);
+  }
+});
+calendar.addEvent(event2, (err: BusinessError, data: number): void => {
+  if (err) {
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in adding event id:${data}`);
+  }
+});
 const filter = calendarManager.EventFilter.filterByTime(1686931200000, 1687017600000);
 calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
   console.info("Succeeded in filtering by time");
@@ -1161,9 +1568,32 @@ static filterByTitle(title: string): EventFilter
 
 **示例**：
 
-```ts
+```typescript
 import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../testability/TestAbility'; // 路径适用于测试模块
 
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
+  if (err) {
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
+  }
+});
+const event: calendarManager.Event = {
+  title: 'MyEvent',
+  type: calendarManager.EventType.NORMAL,
+  startTime: 1686931200000,
+  endTime: 1687017600000
+};
+calendar.addEvent(event, (err: BusinessError, data: number): void => {
+  if (err) {
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
+  } else {
+    console.info(`Succeeded in adding event id:${data}`);
+  }
+});
 const filter = calendarManager.EventFilter.filterByTitle('MyEvent');
 calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
   console.info("Succeeded in filtering by title");
