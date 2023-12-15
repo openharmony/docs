@@ -19,7 +19,7 @@ This topic compares **TaskPool** with **Worker** from two aspects: [implementati
 | Method invocation| Methods are directly passed in and called.| Messages are passed in the worker thread and the corresponding methods are called.|
 | Return value| A value is returned by default after asynchronous calling.| Messages proactively sent must be parsed and assigned by calling **onmessage()**.|
 | Lifecycle| The task pool manages its own lifecycle, without considering the load.| You are required to manage the number and lifecycle of worker threads.|
-| Maximum number of task pools| The number is automatically managed, rather than being manually configured.| A maximum of eight worker threads are supported.|
+| Maximum number of task pools| The number is automatically managed, rather than being manually configured.| A maximum of eight worker threads can run simultaneously in the same process.|
 | Maximum task execution duration| There is no restriction.| There is no restriction.|
 | Task priority setting| Setting the task priority is not supported.| Setting the task priority is not supported.|
 | Task cancellation| Tasks waiting in the task queue can be canceled.| Tasks waiting in the task queue cannot be canceled.|
@@ -27,11 +27,11 @@ This topic compares **TaskPool** with **Worker** from two aspects: [implementati
 
 ## Use Case Comparison
 
-Both **TaskPool** and **Worker** support multithread concurrency. **TaskPool** is oriented to thread-level independent tasks. **Worker** is oriented to threads and supports thread execution for a long time.
+Both **TaskPool** and **Worker** support multithread concurrency. **TaskPool** is oriented to independent tasks. These tasks are executed in threads. Therefore, you do not need to care about the thread lifecycle. On the contrary, **Worker** is oriented to threads and supports thread execution for a long time. You need to manage the thread lifecycle.
 
 Common use cases are as follows:
 
-- Use **Worker** for a series of associated synchronous tasks. For example, use **Worker** for a series of database operations, since the same handle is required.
+- Use **Worker** for a series of associated synchronous tasks. For example, in scenarios where handles are used, if different handles are created each time and they must be stored permanently for subsequent operation, use **Worker**.
 
 - Use **TaskPool** for a task that needs to be canceled frequently. For example, in the large image browsing scenario in Gallery, both images on the left and right sides of the current image are cached. When the user slides to the next image, a cache task on one side needs to be canceled. In this case, use **TaskPool**.
 
@@ -60,7 +60,7 @@ The thread that creates the worker thread is referred to as the host thread (not
 
 - A task function must be decorated with [\@Concurrent](arkts-concurrent.md) and can be used only in .ets files.
 
-- Input parameter types in a task function must be those supported by serialization. For details, see [Common Objects](multi-thread-concurrency-overview.md#common-objects).
+- Input parameter types in a task function must be those supported by serialization. For details, see [Data Transfer Objects](multi-thread-concurrency-overview.md#data-transfer-objects).
 
 - The context objects in different threads are different. Therefore, **TaskPool** worker threads can use only thread-safe libraries, rather than UI-related non-thread-safe libraries.
 
