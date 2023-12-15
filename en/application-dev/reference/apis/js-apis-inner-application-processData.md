@@ -18,20 +18,20 @@ import appManager from '@ohos.application.appManager';
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name                    | Type    | Readable| Writable| Description                      |
+| Name                    | Type    | Read-only| Mandatory| Description                      |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
-| pid         | number   | Yes  | No  | Process ID.                   |
-| bundleName  | string   | Yes  | No | Bundle name of the application.                 |
-| uid         | number   | Yes  | No  | UID of the application.                 |
-| isContinuousTask<sup>9+</sup>         | boolean   | Yes  | No  | Whether the task is a continuous task. The value **true** means that the task is a continuous task, and **false** means the opposite.                |
-| isKeepAlive<sup>9+</sup>         | boolean   | Yes  | No  | Whether the process is a resident task. The value **true** means that the process is a resident, and **false** means the opposite.                  |
-| state<sup>9+</sup>       | number   | Yes  | No  | Application state. The options are as follows:<br>**0**: newly created.<br>**1**: ready.<br>**2**: running in the foreground.<br>**4**: running in the background.<br>**5**: terminated.    |
+| pid         | number   | No  | Yes  | Process ID.                   |
+| bundleName  | string   | No  | Yes | Bundle name of the application.                 |
+| uid         | number   | No  | Yes  | UID of the application.                 |
+| isContinuousTask<sup>9+</sup>         | boolean   | No  | Yes  | Whether the task is a continuous task. The value **true** means that the task is a continuous task, and **false** means the opposite.                |
+| isKeepAlive<sup>9+</sup>         | boolean   | No  | Yes  | Whether the process is a resident task. The value **true** means that the process is a resident, and **false** means the opposite.                  |
+| state<sup>9+</sup>       | number   | No  | Yes  | Application state. The options are as follows:<br>**0**: newly created.<br>**1**: ready.<br>**2**: running in the foreground.<br>**4**: running in the background.<br>**5**: terminated.    |
 
 **Example**
 ```ts
-import appManager from '@ohos.application.appManager';
+import appManager from '@ohos.app.ability.appManager';
 
-let observerCode = appManager.registerApplicationStateObserver({
+let observerCode = appManager.on('applicationState', {
     onForegroundApplicationChanged(appStateData) {
         console.log(`onForegroundApplicationChanged appStateData: ${JSON.stringify(appStateData)}`);
     },
