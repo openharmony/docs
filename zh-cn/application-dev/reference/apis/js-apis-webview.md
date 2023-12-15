@@ -4975,7 +4975,7 @@ getSecurityLevel(): SecurityLevel;
 **示例：**
 
 ```ts
-import web_webview from ‘@ohos.web.webview’
+import web_webview from '@ohos.web.webview'
 	
 @Entry
 @Component
