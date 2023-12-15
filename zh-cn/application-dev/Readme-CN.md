@@ -23,6 +23,7 @@
   - [电话服务](telephony/Readme-CN.md)
   - [任务管理](task-management/Readme-CN.md)
   - [设备管理](device/Readme-CN.md)
+  - [帐号管理](account/Readme-CN.md)
   - [设备使用信息统计](device-usage-statistics/Readme-CN.md)
   - [DFX](dfx/Readme-CN.md)
   - [国际化](internationalization/Readme-CN.md)
