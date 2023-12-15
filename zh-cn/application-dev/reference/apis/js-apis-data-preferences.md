@@ -1191,7 +1191,7 @@ Preferences实例配置选项。
 | 名称        | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | name        | string | 是   | Preferences实例的名称。                                      |
-| dataGroupId | string | 否   | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例，当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。 |
+| dataGroupId | string|null|undefined | 否   | 应用组ID，需要向应用市场获取。<br/>为可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例。当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。<br/> **模型约束：** 此属性仅在Stage模型下可用。|
 
 ## Preferences
 
@@ -1897,7 +1897,7 @@ try {
 
 ### on('change')
 
-on(type: 'change', callback: Callback<string>): void
+on(type: 'change', callback: Callback&lt;string&gt;): void
 
 订阅数据变更，订阅的Key的值发生变更后，在执行[flush](#flush)方法后，触发callback回调。
 
@@ -1908,7 +1908,7 @@ on(type: 'change', callback: Callback<string>): void
 | 参数名   | 类型     | 必填 | 说明                                     |
 | -------- | -------- | ---- | ---------------------------------------- |
 | type     | string   | 是   | 事件类型，固定值'change'，表示数据变更。 |
-| callback | Function | 是   | 回调函数。<br />key: 发生变化的Key。     |
+| callback | Callback&lt;string&gt; | 是   | 回调函数。     |
 
 **示例：**
 
@@ -1947,7 +1947,7 @@ try {
 
 ### on('multiProcessChange')<sup>10+</sup>
 
-on(type: 'multiProcessChange', callback: Callback<string>): void
+on(type: 'multiProcessChange', callback: &lt;string&gt;): void
 
 订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程发生变更后，执行[flush](#flush)方法后，触发callback回调。
 
@@ -1960,7 +1960,7 @@ on(type: 'multiProcessChange', callback: Callback<string>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 事件类型，固定值'multiProcessChange'，表示多进程间的数据变更。 |
-| callback | Function | 是   | 回调函数。<br />key: 发生变化的Key。                         |
+| callback | Callback&lt;string&gt; | 是   | 回调函数。                         |
 
 **错误码：**
 
@@ -2075,7 +2075,7 @@ try {
 
 ### off('change')
 
-off(type: 'change', callback?: Callback<string>): void
+off(type: 'change', callback?: Callback&lt;string&gt;): void
 
 取消订阅数据变更。
 
@@ -2086,7 +2086,7 @@ off(type: 'change', callback?: Callback<string>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 事件类型，固定值'change'，表示数据变更。                     |
-| callback | Function | 否   | 需要取消的回调函数，不填写则全部取消。<br />key: 发生变化的Key。 |
+| callback | Callback&lt;string&gt; | 否   | 需要取消的回调函数，不填写则全部取消。 |
 
 **示例：**
 
@@ -2129,7 +2129,7 @@ try {
 
 ### off('multiProcessChange')<sup>10+</sup>
 
-off(type: 'multiProcessChange', callback?: Callback<string>): void
+off(type: 'multiProcessChange', callback?: Callback&lt;string&gt;): void
 
 取消订阅进程间数据变更。
 
@@ -2140,7 +2140,7 @@ off(type: 'multiProcessChange', callback?: Callback<string>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 事件类型，固定值'multiProcessChange'，表示多进程间的数据变更。 |
-| callback | Function | 否   | 需要取消的回调函数，不填写则全部取消。<br />key: 发生变化的Key。 |
+| callback | Callback&lt;string&gt; | 否   | 需要取消的回调函数，不填写则全部取消。 |
 
 **示例：**
 
