@@ -4975,20 +4975,22 @@ getSecurityLevel(): SecurityLevel;
 **示例：**
 
 ```ts
-import web_webview from '@ohos.web.webview'
+import webview from '@ohos.web.webview'
 	
 @Entry
 @Component
-Struct WebComponent {
-	controller: web_webview.WebController = new web_webview.WebviewController()
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController()
   build() {
-  Column() {
-    Web({ src: 'www.example.com', controller: this.controller })
-	    .onPageEnd(() => {
-	      let securityLevel = this.controller.getSecurityLevel()
-	      console.info('securityLevel: ', securityLevel)
-	    })
-	  }
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .onPageEnd((event) => {
+          if (event) {
+            let securityLevel = this.controller.getSecurityLevel()
+            console.info('securityLevel: ', securityLevel)
+          }
+        })
+    }
   }
 }
 ```
