@@ -1825,7 +1825,7 @@ getRawOffset(): number
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| number | 时区对象表示的时区与UTC时区的偏差。 |
+| number | 时区对象表示的时区与UTC时区的偏差，单位是毫秒。 |
 
 **示例：**
   ```ts
@@ -1846,7 +1846,7 @@ getOffset(date?: number): number
 
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
-| date | number | 否    | 待计算偏差的时刻 |
+| date | number | 否    | 待计算偏差的时刻，单位是毫秒。默认值：系统时间。 |
 
 **返回值：**
 
@@ -2757,7 +2757,7 @@ constructor(icsPath: String)
 
 ### isHoliday<sup>11+</sup>
 
-isHoliday(date?: Date): boolean;
+isHoliday(date?: Date): boolean
 
 判断指定的日期是否是节假日。
 
