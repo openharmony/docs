@@ -1,6 +1,6 @@
 # @ohos.ability.particleAbility (ParticleAbility)
 
-The **particleAbility** module provides APIs for operating a ServiceAbility. You can use the APIs to start and terminate a ParticleAbility, obtain a **dataAbilityHelper** object, and connect to or disconnect from a ServiceAbility.
+The **particleAbility** module provides APIs for operating a DataAbility and ServiceAbility. You can use the APIs to start and terminate a ParticleAbility, obtain a **dataAbilityHelper** object, and connect to or disconnect from a ServiceAbility.
 
 > **NOTE**
 > 
@@ -41,7 +41,7 @@ Observe the following when using this API:
 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 
 particleAbility.startAbility(
     {
@@ -65,7 +65,7 @@ particleAbility.startAbility(
 
 ## particleAbility.startAbility
 
-startAbility(parameter: StartAbilityParameter): Promise\<void>;
+startAbility(parameter: StartAbilityParameter): Promise\<void>
 
 Starts a ParticleAbility. This API uses a promise to return the result.
 
@@ -86,13 +86,13 @@ Observe the following when using this API:
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 
 particleAbility.startAbility(
     {
@@ -151,7 +151,7 @@ Terminates this ParticleAbility. This API uses a promise to return the result.
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -195,9 +195,9 @@ particleAbility.acquireDataAbilityHelper(uri);
 ```
 
 
-## particleAbility.startBackgroundRunning
+## particleAbility.startBackgroundRunning<sup>(deprecated)</sup>
 
-startBackgroundRunning(id: number, request: NotificationRequest, callback: AsyncCallback&lt;void&gt;): void;
+startBackgroundRunning(id: number, request: NotificationRequest, callback: AsyncCallback&lt;void&gt;): void
 
 Requests a continuous task from the system. This API uses an asynchronous callback to return the result. You are advised to use the new API [backgroundTaskManager.startBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning8).
 
@@ -259,7 +259,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 
 ```
 
-## particleAbility.startBackgroundRunning
+## particleAbility.startBackgroundRunning<sup>(deprecated)</sup>
 
 startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;void&gt;
 
@@ -280,7 +280,7 @@ Requests a continuous task from the system. This API uses a promise to return th
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -324,9 +324,9 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 
 ```
 
-## particleAbility.cancelBackgroundRunning
+## particleAbility.cancelBackgroundRunning<sup>(deprecated)</sup>
 
-cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void;
+cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void
 
 Requests to cancel a continuous task from the system. This API uses an asynchronous callback to return the result. You are advised to use the new API [backgroundTaskManager.stopBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning8).
 
@@ -355,9 +355,9 @@ particleAbility.cancelBackgroundRunning(callback);
 
 ```
 
-## particleAbility.cancelBackgroundRunning
+## particleAbility.cancelBackgroundRunning<sup>(deprecated)</sup>
 
-cancelBackgroundRunning(): Promise&lt;void&gt;;
+cancelBackgroundRunning(): Promise&lt;void&gt;
 
 Requests to cancel a continuous task from the system. This API uses a promise to return the result. You are advised to use the new API [backgroundTaskManager.stopBackgroundRunning](js-apis-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning8-1).
 
@@ -367,12 +367,13 @@ Requests to cancel a continuous task from the system. This API uses a promise to
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
  **Example**
 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
+import { BusinessError } from '@ohos.base';
 
 particleAbility.cancelBackgroundRunning().then(() => {
     console.info('Operation succeeded');
@@ -397,12 +398,19 @@ Connects this ability to a specific ServiceAbility.
 | request | [Want](js-apis-application-want.md)           | Yes  | ServiceAbility to connect.|
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes  | Connection options.          |
 
+**Return value**
+
+| Type    | Description                  |
+| ------ | -------------------- |
+| number | ID of the connected ServiceAbility. The ID starts from 0 and is incremented by 1 each time a connection is set up.|
+
 
 **Example**
 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 import rpc from '@ohos.rpc';
+import { BusinessError } from '@ohos.base';
 
 function onConnectCallback(element, remote) {
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
@@ -437,7 +445,7 @@ particleAbility.disconnectAbility(connId).then((data) => {
 
 ## particleAbility.disconnectAbility
 
-disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
+disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 Disconnects this ability from a specific ServiceAbility. This API uses an asynchronous callback to return the result.
 
@@ -447,6 +455,7 @@ Disconnects this ability from a specific ServiceAbility. This API uses an asynch
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
+  | connection | number               | Yes   | ID of the ServiceAbility to disconnect.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -488,7 +497,7 @@ particleAbility.disconnectAbility(connId, (err) => {
 
 ## particleAbility.disconnectAbility
 
-disconnectAbility(connection: number): Promise\<void>;
+disconnectAbility(connection: number): Promise\<void>
 
 Disconnects this ability from a specific ServiceAbility. This API uses a promise to return the result.
 
@@ -498,7 +507,8 @@ Disconnects this ability from a specific ServiceAbility. This API uses a promise
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| connection | number               | Yes   | ID of the ServiceAbility to disconnect.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 

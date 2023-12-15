@@ -414,11 +414,12 @@ context.getDisplayOrientation().then((data) => {
 });
 ```
 
-## Context.getExternalCacheDir
+## Context.getExternalCacheDir<sup>(deprecated)</sup>
 
 getExternalCacheDir(callback: AsyncCallback\<string>): void
 
 Obtains the external cache directory of the application. This API uses an asynchronous callback to return the result.
+> This API is deprecated since API version 7.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -442,11 +443,12 @@ context.getExternalCacheDir((error, data) => {
 });
 ```
 
-## Context.getExternalCacheDir
+## Context.getExternalCacheDir<sup>(deprecated)</sup>
 
 getExternalCacheDir(): Promise\<string>;
 
 Obtains the external cache directory of the application. This API uses a promise to return the result.
+> This API is deprecated since API version 7.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

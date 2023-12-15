@@ -35,7 +35,7 @@ Observe the following when using this API:
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes   | Ability to start.|
-| callback  | AsyncCallback\<number>                   | Yes   | Callback used to return the result.     |
+| callback  | AsyncCallback\<number>                   | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **0**; otherwise, **err** is a non-zero value.     |
 
 **Example**
 
@@ -88,7 +88,7 @@ Observe the following when using this API:
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<number> | Promise used to return the result.|
+| Promise\<number> | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, a non-zero value is returned.|
 
 **Example**
 
@@ -151,7 +151,7 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 Starts an ability. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an exception message, in which **resultCode** is **-1**, is returned to the caller.
- - If different applications call this API to start an ability that uses the sington mode and then call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
+ - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
@@ -165,7 +165,7 @@ Observe the following when using this API:
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes   | Ability to start.|
-| callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Yes   | Callback used to return the result.     |
+| callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is an **AbilityResult** object; otherwise, err is an error object.     |
 
 **Example**
 
@@ -200,7 +200,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 Starts an ability. This API uses a promise to return the result when the ability is terminated. The following situations may be possible to an ability after it is started:
  - Normally, you can call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an exception message, in which **resultCode** is **-1**, is returned to the caller.
- - If different applications call this API to start an ability that uses the sington mode and then call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
+ - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
@@ -270,7 +270,7 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 | Name       | Type                             | Mandatory  | Description            |
 | --------- | ------------------------------- | ---- | -------------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes   | Result returned after the ability is terminated.|
-| callback  | AsyncCallback\<void>            | Yes   | Callback used to return the result.     |
+| callback  | AsyncCallback\<void>            | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.     |
 
 **Example**
 
@@ -327,7 +327,7 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 | Type            | Description             |
 | -------------- | --------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -365,7 +365,7 @@ featureAbility.terminateSelfWithResult(
 });
 ```
 
-## featureAbility.hasWindowFocus<sup>7+</sup>
+## featureAbility.hasWindowFocus<sup>7+<sup>
 
 hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
@@ -388,7 +388,7 @@ featureAbility.hasWindowFocus((err, data) => {
 });
 ```
 
-## featureAbility.hasWindowFocus<sup>7+</sup>
+## featureAbility.hasWindowFocus<sup>7+<sup>
 
 hasWindowFocus(): Promise\<boolean>
 
@@ -518,7 +518,7 @@ Terminates this ability. This API uses a promise to return the result.
 
 | Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -643,7 +643,7 @@ Disconnects this ability from a specific ServiceAbility. This API uses a promise
 
 | Type            | Description             |
 | -------------- | --------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -703,7 +703,7 @@ featureAbility.getWindow((err, data) => {
 
 ## featureAbility.getWindow<sup>7+</sup>
 
-getWindow(): Promise\<window.Window>;
+getWindow(): Promise\<window.Window>
 
 Obtains the window corresponding to this ability. This API uses a promise to return the result.
 
@@ -812,6 +812,6 @@ Enumerates the flags that specify how the Want will be handled.
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | Indicates that the migration is reversible.                              |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                      |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | Indicates that the specific ability will be installed in the background if it has not been installed.                      |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for the [Want](js-apis-application-want.md) object under [parameter](js-apis-inner-ability-startAbilityParameter.md) in the [startAbility](#featureabilitystartability) API passed to the **FeatureAbility** module and must be used together with **flag_ABILITY_NEW_MISSION**.|
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for [Want](js-apis-application-want.md) under the [parameter](js-apis-inner-ability-startAbilityParameter.md) object passed to the [startAbility](#featureabilitystartability) API in **FeatureAbility**. It must be used together with **flag_ABILITY_NEW_MISSION**.|
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Creates a mission on an existing mission stack.                      |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Reuses an ability instance if it is on the top of an existing mission stack; creates an ability instance otherwise.|

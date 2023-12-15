@@ -228,7 +228,7 @@ appManager.getAppMemorySize((err, data) => {
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
-Obtains information about the running processes. This API uses a promise to return the result.
+Obtains information about the running processes. This API uses a promise to return the result. If you have requested the **ohos.permission.GET_RUNNING_INFO** permission, you can obtain information about all running processes; otherwise, you can obtain only information about the current running processes.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -264,7 +264,7 @@ appManager.getRunningProcessInformation().then((data) => {
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
 
-Obtains information about the running processes. This API uses an asynchronous callback to return the result.
+Obtains information about the running processes. This API uses a promise to return the result. If you have requested the **ohos.permission.GET_RUNNING_INFO** permission, you can obtain information about all running processes; otherwise, you can obtain only information about the current running processes.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -592,6 +592,12 @@ Obtains applications that are running in the foreground. This API uses an asynch
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Yes| Callback used to return the API call result and an array holding the application state data. You can perform error handling or custom processing in this callback.|
+
 **Error codes**
 
 | ID| Error Message|
@@ -641,7 +647,7 @@ Obtains applications that are running in the foreground. This API uses a promise
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Promise used to return an array holding the application state data.|
+| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Promise used to return the application information.|
 
 **Error codes**
 

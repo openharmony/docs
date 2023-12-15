@@ -4,8 +4,9 @@ The **ServiceExtensionAbility** module provides lifecycle callbacks when a Servi
 
 > **NOTE**
 > 
-> The APIs of this module are supported since API version 9 and are deprecated in versions later than API version 9. You are advised to use [@ohos.app.ability.ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
-> The APIs of this module can be used only in the stage model.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs provided by this module are system APIs. 
+> The APIs of this module can be used only in the stage model. 
 
 ## Modules to Import
 
@@ -21,8 +22,6 @@ None.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | context | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)  | Yes| No| ServiceExtensionContext, which is inherited from **ExtensionContext**.|
@@ -32,7 +31,7 @@ None.
 
 onCreate(want: Want): void;
 
-Called when a ServiceExtensionAbility is created to initialize the service logic.
+Called to initialize the service logic when a ServiceExtensionAbility is being created.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -59,7 +58,7 @@ Called when a ServiceExtensionAbility is created to initialize the service logic
 
 onDestroy(): void;
 
-Called when this ServiceExtensionAbility is destroyed to clear resources.
+Called to clear resources when this ServiceExtensionAbility is being destroyed.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -80,7 +79,7 @@ Called when this ServiceExtensionAbility is destroyed to clear resources.
 
 onRequest(want: Want, startId: number): void;
 
-Called following **onCreate()** when a ServiceExtensionAbility is started by calling **startAbility()** or **startServiceExtensionAbility()**. The value of **startId** is incremented for each ability that is started.
+Called following **onCreate()** when a ServiceExtensionAbility is started by calling **startAbility()** or **startServiceExtensionAbility()**. The value of **startId** is incremented for each ServiceExtensionAbility that is started.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -91,7 +90,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want |  [Want](js-apis-app-ability-want.md) | Yes| Want information related to this ServiceExtensionAbility, including the ability name and bundle name.|
-| startId | number | Yes| Number of ability start times. The initial value is **1**, and the value is automatically incremented for each ability started.|
+| startId | number | Yes| Number of ServiceExtensionAbility start times. The initial value is **1**, and the value is automatically incremented for each ServiceExtensionAbility started.|
 
 **Example**
 
@@ -108,7 +107,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 
 onConnect(want: Want): rpc.RemoteObject | Promise<rpc.RemoteObject>;
 
-Called following **onCreate()** when a ServiceExtensionAbility is started by calling **connectAbility()**. A **RemoteObject** object is returned for communication between the server and client.
+Called following **onCreate()** when a ServiceExtensionAbility is started by calling **connectAbility()**. A **RemoteObject** object is returned for communication with the client.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -124,7 +123,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 
 | Type| Description|
 | -------- | -------- |
-| rpc.RemoteObject | A **RemoteObject** object used for communication between the server and client.|
+| rpc.RemoteObject | A **RemoteObject** object used for communication with the client.|
 
 **Example**
 
@@ -150,7 +149,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 
 onDisconnect(want: Want): void | Promise\<void>;
 
-Called when a client is disconnected from this ServiceExtensionAbility.
+Called when this ServiceExtensionAbility is disconnected.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -176,7 +175,7 @@ Called when a client is disconnected from this ServiceExtensionAbility.
 
 onReconnect(want: Want): void;
 
-Called when a new client attempts to connect to this ServiceExtensionAbility after all previous clients are disconnected. This capability is reserved.
+Called when this ServiceExtensionAbility is reconnected.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
