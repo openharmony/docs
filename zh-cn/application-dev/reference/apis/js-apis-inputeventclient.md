@@ -80,6 +80,8 @@ injectMouseEvent(mouseEvent: MouseEventData): void;
 **示例：**
 
 ```js
+import mouseEvent from '@ohos.multimodalInput.mouseEvent';
+
 try {
   let mouseButtonUpData: mouseEvent.MouseEvent = {
     id: 0,
@@ -169,6 +171,8 @@ injectTouchEvent(touchEvent: TouchEventData): void;
 **示例：**
 
 ```js
+import touchEvent from '@ohos.multimodalInput.touchEvent';
+
 try {
   let touchEvent: touchEvent.Touch = {
     id: 1,
