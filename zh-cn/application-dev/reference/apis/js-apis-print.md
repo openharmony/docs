@@ -546,7 +546,7 @@ print(jobName: string, printAdapter: PrintDocumentAdapter, printAttributes: Prin
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | jobName | string | 是 | 表示待打印文件名称 |
-| printAdapter | Context | 是 | 表示三方应用实现的功能 |
+| printAdapter | PrintDocumentAdapter | 是 | 表示三方应用实现的功能 |
 | printAttributes | PrintAttributes | 是 | 表示打印参数 |
 | context | Context | 是 | 用于启动打印的UIAbilityContext |
 
