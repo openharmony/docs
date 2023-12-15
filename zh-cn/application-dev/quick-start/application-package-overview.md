@@ -19,7 +19,7 @@
 
 Module按照使用场景可以分为两种类型：
 
-- ** Ability类型的Module：** 用于实现应用的功能和特性。每一个Ability类型的Module编译后，会生成一个以.hap为后缀的文件，我们称其为HAP包。HAP包可以独立安装和运行，是应用安装的基本单位。
+- **Ability类型的Module：** 用于实现应用的功能和特性。每一个Ability类型的Module编译后，会生成一个以.hap为后缀的文件，我们称其为HAP包。HAP包可以独立安装和运行，是应用安装的基本单位。
   一个应用中可以包含多个HAP包，在这些HAP包中，必须有且仅有一个HAP作为应用的入口。该HAP需要采用Entry类型的Ability来实现，其他HAP采用Feature类型的Ability来实现。
   - Entry类型的Ability：应用的主模块，包含应用的入口界面、入口图标和主功能特性。编译后生成Entry类型的HAP，简称为Entry。每一个应用分发到同一类型的设备上的应用程序包，只能包含唯一一个Entry。
   - Feature类型的Ability：应用的动态特性模块。编译后生成Feature类型的HAP，简称为Feature。一个应用中可以包含一个或多个Feature，也可以不含。
