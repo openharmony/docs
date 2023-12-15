@@ -5,14 +5,13 @@
 > **说明：**
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
+>
+> 本模块接口均为系统接口.
 ## 导入模块
 
 ```js
 import notificationSubscribe from '@ohos.notificationSubscribe';
 ```
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
 
 ### onConsume
 
@@ -22,7 +21,7 @@ onConsume?: (data: [SubscribeCallbackData](js-apis-notification.md#subscribecall
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统接口**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -64,7 +63,7 @@ onCancel?:(data: [SubscribeCallbackData](js-apis-notification.md#subscribecallba
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -106,7 +105,7 @@ onUpdate?:(data: [NotificationSortingMap](js-apis-notification.md#notificationso
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -144,7 +143,7 @@ onConnect?:() => void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **示例：**
 
@@ -178,7 +177,7 @@ onDisconnect?:() => void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **示例：**
 
@@ -226,7 +225,7 @@ onDestroy?:() => void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **示例：**
 
@@ -254,7 +253,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ### onDoNotDisturbDateChange<sup>8+</sup>(deprecated)
 
-onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
+onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notification.md#donotdisturbdate)) => void
 
 免打扰时间选项发生变更时的回调函数。
 
@@ -264,7 +263,7 @@ onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notific
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -276,7 +275,7 @@ onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notific
 
 ```ts
 import Base from '@ohos.base';
-import NotificationManager from '@ohos.notificationManager';
+import Notification from '@ohos.notification';
 
 let subscribeCallback = (err: Base.BusinessError) => {
   if (err) {
@@ -286,7 +285,7 @@ let subscribeCallback = (err: Base.BusinessError) => {
   }
 };
 
-let onDoNotDisturbDateChangeCallback = (mode: NotificationManager.DoNotDisturbDate) => {
+let onDoNotDisturbDateChangeCallback = (mode: Notification.DoNotDisturbDate) => {
   console.info('===> onDoNotDisturbDateChange:' + mode);
 }
 
@@ -346,7 +345,7 @@ onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](j
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -388,7 +387,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -424,7 +423,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 名称            | 类型                                                                 | 可读 | 可写 | 说明     |
 | --------------- |--------------------------------------------------------------------| ---- | --- | -------- |
@@ -439,7 +438,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 名称   | 类型    | 可读 | 可写 | 说明             |
 | ------ | ------- | ---- | --- | ---------------- |
@@ -452,7 +451,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 名称        | 类型   | 可读 | 可写 | 说明         |
 | ----------- | ------ | ---- | ---- | ------------ |
