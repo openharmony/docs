@@ -1416,11 +1416,11 @@ getRemoteProductId(deviceId: string): string
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import connection from '@ohos.bluetooth.connection';
 try {
-    let remoteDeviceProductId: string = connection.getRemoteProductId('XX:XX:XX:XX:XX:XX');
+  let remoteDeviceProductId = connection.getRemoteProductId('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
 }
 ```
 
