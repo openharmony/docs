@@ -27,7 +27,7 @@ ListItemGroup用于列表数据的分组展示，其子组件也是ListItem。Li
 
 ### 布局
 
-List除了提供垂直和水平布局能力、超出屏幕时可以滚动的自适应[延伸能力](../key-features/multi-device-app-dev/adaptive-layout.md)之外，还提供了自适应交叉轴方向上排列个数的布局能力。
+List除了提供垂直和水平布局能力、超出屏幕时可以滚动的自适应[延伸能力](../key-features/multi-device-app-dev/adaptive-layout.md#延伸能力)之外，还提供了自适应交叉轴方向上排列个数的布局能力。
 
 利用垂直布局能力可以构建单列或者多列垂直滚动列表，如下图所示。
 
