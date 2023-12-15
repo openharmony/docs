@@ -179,7 +179,16 @@ Swiper(this.swiperController) {
     .textAlign(TextAlign.Center)
     .fontSize(30)
 }
-.indicatorStyle(swco)
+.indicator(
+  Indicator.dot()
+    .left(0)
+    .itemWidth(15)
+    .itemHeight(15)
+    .selectedItemWidth(30)
+    .selectedItemHeight(15)
+    .color(Color.Red)
+    .selectedColor(Color.Blue)
+)
 ```
 
 ![ind](figures/ind.PNG)
