@@ -8,6 +8,8 @@ If the number of tasks to be executed is greater than the number of worker threa
 
 The **TaskPool** APIs return error codes in numeric format. For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
+For details about the precautions for using **TaskPool**, see [Precautions for TaskPool](../../arkts-utils/taskpool-vs-worker.md#precautions-for-taskpool).
+
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
