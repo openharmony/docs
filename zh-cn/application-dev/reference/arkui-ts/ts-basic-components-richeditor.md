@@ -228,7 +228,7 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 
 addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): number
 
-添加builder内容。不支持通过[getSpans](#getspans)等方法获取。
+添加builder内容，不支持通过[getSpans](#getspans)等方法获取，不支持拖拽。
 
 **参数：**
 
