@@ -233,22 +233,12 @@ struct dragPreviewOptionsDemo{
   build() {
     Row() {
       Column() {
-        TextArea({ placeholder: 'please input your word on here' })
-          .margin({ top: 250, bottom: 250 })
-          .placeholderColor(Color.Black)
-          .caretColor(Color.Blue)
-          .fontSize(30)
-          .height("30%")
+        Image('/resource/image.jpeg')
+          .margin({ top: 10 })
           .width("100%")
-          .fontWeight(FontWeight.Bold)
-          .fontFamily("sans-serif")
-          .fontStyle(FontStyle.Normal)
-          .fontColor(Color.Red)
-          .backgroundColor('#FFFFFF')
           .draggable(true)
           .dragPreviewOptions({ mode: DragPreviewMode.AUTO })
       }
-      .backgroundColor('#F1F3F5')
       .width("100%")
       .height("100%")
     }
