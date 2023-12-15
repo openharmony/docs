@@ -91,15 +91,18 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 ```ts
 import deviceManager from "@ohos.driver.deviceManager";
 import { BusinessError } from '@ohos.base';
+import type rpc from '@ohos.rpc';
+
+interface DataType {
+  deviceId : number;
+  remote : rpc.IRemoteObject;
+}
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
   deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
     console.error(`Device is disconnected`);
-  }, (error : BusinessError, data: {
-      deviceId : number;
-      remote : rpc.IRemoteObject;
-  }) => {
+  }, (error : BusinessError, data : DataType) => {
     if (error) {
       console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
       return;
