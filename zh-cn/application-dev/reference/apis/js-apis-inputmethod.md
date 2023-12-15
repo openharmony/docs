@@ -2555,10 +2555,10 @@ on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, input
 **示例：**
 
 ```ts
+import InputMethodSubtype from '@ohos.InputMethodSubtype';
 import { BusinessError } from '@ohos.base';
 
 try {
-  import InputMethodSubtype from '@ohos.InputMethodSubtype';
   inputMethodSetting.on('imeChange', (inputMethodProperty: inputMethod.InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => {
     console.log('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) + " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
   });
