@@ -3634,3 +3634,156 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
     console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
   })
   ```
+
+## UIAbilityContext.requestModalUIExtension
+
+requestModalUIExtension(want: Want): Promise\<void>
+
+应用拉起一个UIExtension模态弹窗，拉起方与被拉起方的信息由want携带。根据want所携带的拉起方bundleName与前台应用的bundleName是否一致，来判断拉起模态窗口的类型。使用Promise形式异步回调。
+
+- 如果bundleName一致，模态弹窗显示后，用户对该弹窗进行响应之前，将无法在当前应用界面执行交互操作。
+- 如果bundleName不一致，模态弹窗显示后，用户对该弹窗进行响应之前，将无法在当前系统界面执行交互操作。
+
+使用规则：
+- 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+- 组件启动规则详见：[组件启动规则（Stage模型）] (../../application-models/component-startup-rules.md)。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的want信息。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'requestModalUIExtension',
+      moduleName: 'requestModalUIExtension',
+      parameters: {
+        bundleName: 'com.example.myapplication'
+      }
+    };
+
+    try {
+      this.context.requestModalUIExtension(want)
+        .then(() => {
+          // 执行正常业务
+          console.info('requestModalUIExtension succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`requestModalUIExtension failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`requestModalUIExtension failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
+
+## UIAbilityContext.requestModalUIExtension
+requestModalUIExtension(want: Want, callback: AsyncCallback\<void>): void
+
+应用拉起一个UIExtension模态弹窗，拉起方与被拉起方的信息由want携带。根据want所携带的拉起方bundleName与前台应用的bundleName是否一致，来判断拉起模态窗口的类型。使用callback形式异步回调。
+
+- 如果bundleName一致，模态弹窗显示后，用户对该弹窗进行响应之前，将无法在当前应用界面执行交互操作。
+- 如果bundleName不一致，模态弹窗显示后，用户对该弹窗进行响应之前，将无法在当前系统界面执行交互操作。
+
+使用规则：
+- 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+- 组件启动规则详见：[组件启动规则（Stage模型）] (../../application-models/component-startup-rules.md)。
+ 
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的want信息。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当拉起UIExtension成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+     let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'requestModalUIExtension',
+      moduleName: 'requestModalUIExtension',
+      parameters: {
+        bundleName: 'com.example.myapplication'
+      }
+    };
+
+    try {
+      this.context.requestModalUIExtension(want, (err: BusinessError) => {
+        if (err.code) { 
+          // 处理业务逻辑错误
+          console.error(`requestModalUIExtension failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        } 
+        // 执行正常业务
+        console.info('requestModalUIExtension succeed');
+      });
+    } catch (err) { 
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`requestModalUIExtension failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
