@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import data_preferences from '@ohos.data.preferences';
+import dataPreferences from '@ohos.data.preferences';
 ```
 
 ## 常量
@@ -26,7 +26,7 @@ import data_preferences from '@ohos.data.preferences';
 | MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为8192个字节。 |
 
 
-## data_preferences.getPreferences
+## dataPreferences.getPreferences
 
 getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
@@ -52,10 +52,10 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 
 let context = featureAbility.getContext();
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 
 try {
-    data_preferences.getPreferences(context, 'myStore', (err: BusinessError, val: data_preferences.Preferences) => {
+    dataPreferences.getPreferences(context, 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -77,12 +77,12 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import window from '@ohos.window';
 
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, val: data_preferences.Preferences) => {
+            dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
                 if (err) {
                 console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
                 return;
@@ -99,7 +99,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.getPreferences
+## dataPreferences.getPreferences
 
 getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
@@ -131,10 +131,10 @@ import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
 
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 try {
-    let promise = data_preferences.getPreferences(context, 'myStore');
-    promise.then((object: data_preferences.Preferences) => {
+    let promise = dataPreferences.getPreferences(context, 'myStore');
+    promise.then((object: dataPreferences.Preferences) => {
         preferences = object;
         console.info("Succeeded in getting preferences.");
     }).catch((err: BusinessError) => {
@@ -154,13 +154,13 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base'
 import window from '@ohos.window';
 
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let promise = data_preferences.getPreferences(this.context, 'myStore');
-            promise.then((object: data_preferences.Preferences) => {
+            let promise = dataPreferences.getPreferences(this.context, 'myStore');
+            promise.then((object: dataPreferences.Preferences) => {
                 preferences = object;
                 console.info("Succeeded in getting preferences.");
             }).catch((err: BusinessError) => {
@@ -175,7 +175,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.getPreferences<sup>10+</sup>
+## dataPreferences.getPreferences<sup>10+</sup>
 
 getPreferences(context: Context, options: Options, callback: AsyncCallback&lt;Preferences&gt;): void
 
@@ -210,11 +210,11 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 
 try {
-    let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
-    data_preferences.getPreferences(context, options, (err: BusinessError, val: data_preferences.Preferences) => {
+    let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+    dataPreferences.getPreferences(context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -237,13 +237,13 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base'
 import window from '@ohos.window';
 
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
-            data_preferences.getPreferences(this.context, options, (err: BusinessError, val: data_preferences.Preferences) => {
+            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
                 if (err) {
                     console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
                     return;
@@ -260,7 +260,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.getPreferences<sup>10+</sup>
+## dataPreferences.getPreferences<sup>10+</sup>
 
 getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 
@@ -300,11 +300,11 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 try {
-    let options: data_preferences.Options =  { name: 'myStore' };
-    let promise = data_preferences.getPreferences(context, options);
-    promise.then((object: data_preferences.Preferences) => {
+    let options: dataPreferences.Options =  { name: 'myStore' };
+    let promise = dataPreferences.getPreferences(context, options);
+    promise.then((object: dataPreferences.Preferences) => {
         preferences = object;
         console.info("Succeeded in getting preferences.");
     }).catch((err: BusinessError) => {
@@ -324,14 +324,14 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base'
 import window from '@ohos.window';
 
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: data_preferences.Options =  { name: 'myStore', dataGroupId:'myId' };
-            let promise = data_preferences.getPreferences(this.context, options);
-            promise.then((object: data_preferences.Preferences) => {
+            let options: dataPreferences.Options =  { name: 'myStore', dataGroupId:'myId' };
+            let promise = dataPreferences.getPreferences(this.context, options);
+            promise.then((object: dataPreferences.Preferences) => {
                 preferences = object;
                 console.info("Succeeded in getting preferences.");
             }).catch((err: BusinessError) => {
@@ -346,7 +346,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.getPreferencesSync<sup>10+</sup>
+## dataPreferences.getPreferencesSync<sup>10+</sup>
 
 getPreferencesSync(context: Context, options: Options): Preferences
 
@@ -386,11 +386,11 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 
 try {
-    let options: data_preferences.Options =  { name: 'myStore' };
-    preferences = data_preferences.getPreferencesSync(context, options);
+    let options: dataPreferences.Options =  { name: 'myStore' };
+    preferences = dataPreferences.getPreferencesSync(context, options);
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
@@ -405,13 +405,13 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base'
 import window from '@ohos.window';
 
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
-            preferences = data_preferences.getPreferencesSync(this.context, options);
+            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            preferences = dataPreferences.getPreferencesSync(this.context, options);
         } catch (err) {
             let code = (err as BusinessError).code;
             let message = (err as BusinessError).message;
@@ -421,7 +421,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.deletePreferences
+## dataPreferences.deletePreferences
 
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -459,7 +459,7 @@ import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 
 try {
-    data_preferences.deletePreferences(context, 'myStore', (err: BusinessError) => {
+    dataPreferences.deletePreferences(context, 'myStore', (err: BusinessError) => {
         if (err) {
             console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -483,7 +483,7 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            data_preferences.deletePreferences(this.context, 'myStore', (err: BusinessError) => {
+            dataPreferences.deletePreferences(this.context, 'myStore', (err: BusinessError) => {
                 if (err) {
                     console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
                     return;
@@ -499,7 +499,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.deletePreferences
+## dataPreferences.deletePreferences
 
 deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
@@ -542,7 +542,7 @@ import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 
 try {
-    let promise = data_preferences.deletePreferences(context, 'myStore');
+    let promise = dataPreferences.deletePreferences(context, 'myStore');
     promise.then(() => {
         console.info("Succeeded in deleting preferences.");
     }).catch((err: BusinessError) => {
@@ -565,7 +565,7 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try{
-            let promise = data_preferences.deletePreferences(this.context, 'myStore');
+            let promise = dataPreferences.deletePreferences(this.context, 'myStore');
             promise.then(() => {
                 console.info("Succeeded in deleting preferences.");
             }).catch((err: BusinessError) => {
@@ -580,7 +580,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.deletePreferences<sup>10+</sup>
+## dataPreferences.deletePreferences<sup>10+</sup>
 
 deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void
 
@@ -620,8 +620,8 @@ import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 
 try {
-    let options: data_preferences.Options = { name: 'myStore' };
-    data_preferences.deletePreferences(context, options, (err: BusinessError) => {
+    let options: dataPreferences.Options = { name: 'myStore' };
+    dataPreferences.deletePreferences(context, options, (err: BusinessError) => {
         if (err) {
             console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -645,8 +645,8 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
-            data_preferences.deletePreferences(this.context, options, (err: BusinessError) => {
+            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
                 if (err) {
                     console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
                     return;
