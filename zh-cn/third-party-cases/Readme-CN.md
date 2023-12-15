@@ -33,10 +33,12 @@
 - [如何为组件的不同触摸区域添加不同交互动作](different-touch-target-event.md)
 - [组件布局中相对定位的分类和使用](relative-position.md)
 - [导航栏的使用编辑](Editing-with-the-navigation-bar.md)
+- [如何通过上下滑动实现亮度和音量调节](set-volume-brightness-through-gesture.md)
 - [搜索框与文字轮播的巧用](Search-box-and-text-carousel.md)
 - [如何控制循环动画的播放停止](how-to-control-the-pause-of-playback-of-looping-animations.md)
 - [自定义输入框](customize-the-input-box.md)
-- [导航栏的使用编辑](Editing-with-the-navigation-bar.md)
+- [如何实现内容的下拉变化](realization-of-collapsible-title-effect.md)
+
 ### 装饰器
 - [控制页面刷新范围](overall-and-part-refresh.md)
 - [如何监听多层状态变化](observed-and-objectlink.md)
@@ -52,6 +54,7 @@
 - [如何创建悬浮窗](float-window.md)
 - [保持屏幕常亮](keep-screen-on.md)
 - [如何创建子窗口并与主窗口通信](subwindow-mainwindow-communication.md)
+- [如何实现横竖屏切换](horizontal-vertical-switch.md)
 
 ### 数据管理
 - [用户首选项的基本使用](preferences-data-process.md)
