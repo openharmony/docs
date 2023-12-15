@@ -23,7 +23,7 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 | type         | [ActionType](#actiontype)   | 是    | 否    | 捏合事件类型                                   |
 | scale        | number      | 是    | 否    | 捏合度，取值范围大于等于0                             |
 
-## Rotate
+## Rotate<sup>11+</sup>
 
 旋转事件。
 

@@ -103,6 +103,58 @@ try {
 }
 ```
 
+## inputConsumer.setShieldStatus<sup>11+</sup>
+
+setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void
+
+设置组合按键屏蔽状态。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
+
+**参数：** 
+
+| 参数名         | 类型                         | 必填   | 说明                                       |
+| ---------- | -------------------------- | ---- | ---------------------------------------- |
+| shieldMode       | number                     | 是    | 屏蔽类型，目前仅支持'FACTORY_MODE'。                       |
+| isShield | boolean  | 是    | 屏蔽类型生效状态，true代表屏蔽类型生效，flase屏蔽类型生效。              |
+
+**示例：** 
+
+```js
+try {
+  inputConsumer.setShieldStatus((FACTORY_MODE: ShieldMode,true: boolean) => {
+        console.log(`set shield status success`);
+  });
+} catch (error) {
+  console.log(`Failed to set shield status,error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputConsumer.getShieldStatus<sup>11+</sup>
+
+getShieldStatus(shieldMode: ShieldMode): boolean;
+
+获取组合按键屏蔽是否生效
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
+
+**参数：** 
+
+| 参数名         | 类型                         | 必填   | 说明                                       |
+| ---------- | -------------------------- | ---- | ---------------------------------------- |
+| shieldMode       | number                     | 是    | 屏蔽类型，目前仅支持'FACTORY_MODE'。                       |
+
+**示例：** 
+
+```js
+try {
+let shieldstatusResult:Boolean =  inputConsumer.getShieldStatus(FACTORY_MODE: ShieldMode);
+ console.log(` get shield status result:${JSON.stringify(shieldstatusResult)}`);
+} catch (error) {
+  console.log(`Failed to get shield status, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
 ## KeyOptions
 
 组合键选项。
@@ -115,3 +167,14 @@ try {
 | finalKey             | number  | 是    |  否 | 最终按键，此项必填，最终按键触发上报回调函数。<br>如组合按键Ctrl+Alt+A中，A称为最终按键按键。 |
 | isFinalKeyDown       | boolean | 是    |  否 | 最终按键状态。<br>ture表示按键按下，false表示按键抬起。 |
 | finalKeyDownDuration | number  | 是    |  否 | 最终按键保持按下持续时间，单位为微秒（μs）。<br>当finalKeyDownDuration为0时，立即触发回调函数。<br>当finalKeyDownDuration大于0时，isFinalKeyDown为true，则最终按键按下超过设置时长后触发回调函数；isFinalKeyDown为false，则最终按键按下到抬起时间小于设置时长时触发回调函数。   |
+
+## shieldMode<sup>11+</sup>
+
+屏蔽状态类型。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
+
+| 屏蔽类型                          | 值    | 描述             |
+| ------------------------------ | ----------- | ---------------- |
+| FACTORY_MODE | 0 | 屏蔽快捷键，工厂模式，屏蔽所有快捷键 |
+
