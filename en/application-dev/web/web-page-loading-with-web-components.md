@@ -124,9 +124,9 @@ struct WebComponent {
           try {
             // Upon button clicking, call loadData to load HTML rich text data.
             this.controller.loadData(
-              '<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>',
-              'text/html',
-              'UTF-8'
+              "<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
+              "text/html",
+              "UTF-8"
             );
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);

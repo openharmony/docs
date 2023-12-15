@@ -33,7 +33,7 @@ Registers a one-time callback for web events of the specified type.
 | Name | Type             | Mandatory| Description                 |
 | ------- | ---------------- | ---- | -------------------- |
 | type     | string          | Yes  | Web event type. The value can be **"webInited"**, indicating completion of web initialization.     |
-| headers | Callback\<void\> | Yes  | Callback to register.|
+| callback | Callback\<void\> | Yes  | Callback to register.|
 
 **Example**
 
@@ -2188,8 +2188,8 @@ Stores this web page. This API uses an asynchronous callback to return the resul
 
 | Name  | Type             | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| baseName | string                | Yes  | Save path. The value cannot be null.                                |
-| autoName | boolean               | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
+| baseName | string                | Yes  | Save path of the web page. The value cannot be null.                                |
+| autoName | boolean               | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. |
 | callback | AsyncCallback\<string> | Yes  | Callback used to return the save path if the operation is successful and null otherwise.                  |
 
 **Error codes**
@@ -2248,8 +2248,8 @@ Stores this web page. This API uses a promise to return the result.
 
 | Name  | Type| Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| baseName | string   | Yes  | Save path. The value cannot be null.                                |
-| autoName | boolean  | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
+| baseName | string   | Yes  | Save path of the web page. The value cannot be null.                                |
+| autoName | boolean  | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. |
 
 **Return value**
 

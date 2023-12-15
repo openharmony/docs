@@ -10,7 +10,7 @@ You can set overlay text for a component.
 
 | Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| overlay | value: string,<br>options?: {<br>align?: [Alignment](ts-appendix-enums.md#alignment), <br>offset?: {x?: number, y?: number}<br>} | {<br>align: Alignment.Center,<br>offset: {0, 0}<br>} | Overlay added to the component.<br> **value**: mask text.<br>**options**: text positioning. **align** indicates the location of the text relative to the component. **[offset](ts-universal-attributes-location.md)** indicates the offset of the text relative to the upper left corner of itself. By default, the text is in the upper left corner of the component.<br>If both **align** and **offset** are set, the text is first positioned relative to the component, and then offset relative to the upper left corner of itself.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| overlay | value: string,<br>options?: {<br>align?: [Alignment](ts-appendix-enums.md#alignment), <br>offset?: {x?: number, y?: number}<br>} | {<br>align: Alignment.TopStart,<br>offset: { x: 0,  y: 0}<br>} | Overlay added to the component.<br> **value**: mask text.<br>**options**: text positioning. **align** indicates the location of the text relative to the component. **[offset](ts-universal-attributes-location.md)** indicates the offset of the text relative to the upper left corner of itself. By default, the text is in the upper left corner of the component.<br>If both **align** and **offset** are set, the text is first positioned relative to the component, and then offset relative to the upper left corner of itself.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Example
 

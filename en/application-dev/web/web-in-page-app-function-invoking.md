@@ -3,8 +3,10 @@
 
 You can use the **Web** component to register application code with frontend pages. After the registration is done, frontend pages can use the registered object names to call application functions.
 
+Two methods are available for registering the application code:
 
-Two methods are available for registering the application code:<br>Call [javaScriptProxy()](../reference/arkui-ts/ts-basic-components-web.md#javascriptproxy) during **Web** component initialization.<br> Call [registerJavaScriptProxy()](../reference/apis/js-apis-webview.md#registerjavascriptproxy) after **Web** component initialization.
+- Call [javaScriptProxy()](../reference/arkui-ts/ts-basic-components-web.md#javascriptproxy) during **Web** component initialization.
+- Call [registerJavaScriptProxy()](../reference/apis/js-apis-webview.md#registerjavascriptproxy) after **Web** component initialization.
 
 
 The following example registers the **test()** function with the frontend page. This way, the **test()** function can be triggered and run on the frontend page.
@@ -16,16 +18,21 @@ The following example registers the **test()** function with the frontend page. 
   // xxx.ets
   import web_webview from '@ohos.web.webview';
 
+  class testClass {
+    constructor() {
+    }
+
+    test(): string {
+      return 'ArkTS Hello World!';
+    }
+  }
+
   @Entry
   @Component
   struct WebComponent {
     webviewController: web_webview.WebviewController = new web_webview.WebviewController();
     // Declare the object to be registered.
-    testObj = {
-      test: () => {
-        return 'ArkTS Hello World!';
-      }
-    }
+    @State testObj: testClass = new testClass();
 
     build() {
       Column() {
@@ -49,19 +56,26 @@ The following example registers the **test()** function with the frontend page. 
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';
+  import business_error from '@ohos.base';
+
+  class testClass {
+    constructor() {
+    }
+  
+    test(): string {
+      return "ArkUI Web Component";
+    }
+  
+    toString(): void {
+      console.log('Web Component toString');
+    }
+  }
 
   @Entry
   @Component
   struct Index {
     webviewController: web_webview.WebviewController = new web_webview.WebviewController();
-    testObj = {
-      test: (data) => {
-        return "ArkUI Web Component";
-      },
-      toString: () => {
-        console.info('Web Component toString');
-      }
-    }
+    @State testObj: testClass = new testClass();
 
     build() {
       Column() {
@@ -70,15 +84,17 @@ The following example registers the **test()** function with the frontend page. 
             try {
               this.webviewController.refresh();
             } catch (error) {
-              console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
             }
           })
         Button('Register JavaScript To Window')
           .onClick(() => {
             try {
-              this.webviewController.registerJavaScriptProxy(this.testObj, "objName", ["test", "toString"]);
+              this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
-              console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
