@@ -17,7 +17,7 @@ LLDB（Low Lever Debugger）是新一代高性能调试器。详细说明参考[
 
 ## 功能列表
 
-此处列举LLDB调试器支持的部分功能，更多功能与相关命令可见：[LLDB工具使用指导](https://gitee.com/openharmony/third_party_llvm-project/blob/master/lldb/README_zh.md)和[LLDB官网手册](https://lldb.llvm.org/use/map.ditamap)。
+此处列举LLDB调试器支持的部分功能，更多功能与相关命令可见：[LLDB工具使用指导](https://gitee.com/openharmony/third_party_llvm-project/blob/master/lldb/README_zh.md)和[LLDB官网手册](https://lldb.llvm.org)。
 
 - 记录日志
 
