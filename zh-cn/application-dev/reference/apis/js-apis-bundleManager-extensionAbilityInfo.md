@@ -24,4 +24,4 @@ ExtensionAbility信息，系统应用可以通过[bundleManager.getBundleInfo](j
 | enabled              | boolean                                                      | 是   | 否   | ExtensionAbility是否可用。                           |
 | readPermission       | string                                                       | 是   | 否   | 读取ExtensionAbility数据所需的权限。                 |
 | writePermission      | string                                                       | 是   | 否   | 向ExtensionAbility写数据所需的权限。                 |
-| extensionAbilityType<sup>11</sup>      | string                                                       | 是   | 否   | ExtensionAbility的类型名称。                 |
+| extensionAbilityTypeName<sup>11</sup>      | string                                 | 是   | 否   | ExtensionAbility的类型名称。                 |
