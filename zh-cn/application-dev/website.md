@@ -681,10 +681,42 @@
     - 日志分析
       - [应用无响应(appfreeze)日志分析指导](dfx/appfreeze-guidelines.md)
       - [进程崩溃(cppcrash)日志分析指导](dfx/cppcrash-guidelines.md)
-  - 国际化
-    - [国际化开发概述](internationalization/international-overview.md)
-    - [Intl开发指导](internationalization/intl-guidelines.md)
-    - [I18n开发指导](internationalization/i18n-guidelines.md)
+  - 国际化和本地化
+    - [国际化和本地化概述](internationalization/i18n-l10n.md)
+    - 应用国际化
+      - [国际化界面设计](internationalization/i18n-ui-design.md)
+      - [区域标识与文化习惯划分](internationalization/i18n-locale-culture.md)
+      - 设置语言与用户偏好
+        - [设置系统语言与区域](internationalization/i18n-system-language-region.md)
+        - [设置应用偏好语言](internationalization/i18n-preferred-language.md)
+        - [设置用户偏好](internationalization/i18n-user-preferences.md)
+      - [时间日期国际化](internationalization/i18n-time-date.md)
+      - [数字与度量衡国际化](internationalization/i18n-numbers-weights-measures.md)
+      - [电话号码格式化](internationalization/i18n-phone-numbers.md)
+      - [设置日历和历法](internationalization/i18n-calendar.md)
+      - 时区与夏令时国际化
+        - [时区](internationalization/i18n-time-zone.md)
+        - [夏令时跳变](internationalization/i18n-dst-transition.md)
+      - 多语言排序
+        - [概述](internationalization/i18n-sorting-overview.md)
+        - [本地习惯排序](internationalization/i18n-sorting-local.md)
+        - [创建索引](internationalization/i18n-sorting-index.md)
+      - [字符处理](internationalization/i18n-character-processing.md)
+      - 本地化名称
+        - [本地化语言与地区名称](internationalization/i18n-language-region-display.md)
+        - [本地化时区名称](internationalization/i18n-time-zone-display.md)
+    - 应用本地化
+      - [提供多语言资源](internationalization/l10n-multilingual-resources.md)
+      - 提升可翻译性
+        - [避免硬编码与拼接](internationalization/l10n-hard-coding-concatenate.md)
+        - [提供翻译场景](internationalization/l10n-translation-scene.md)
+        - [支持单复数](internationalization/l10n-singular-plural.md)
+    - 本地化测试
+      - 伪本地化测试
+        - [伪本地化测试概述](internationalization/pseudo-i18n-testing-overview.md)
+        - [翻译伪本地化测试](internationalization/pseudo-i18n-testing-translation.md)
+        - [界面镜像伪本地化测试](internationalization/pseudo-i18n-testing-mirror.md)
+      - [语言测试](internationalization/linguistic-testing.md)
   - 应用服务
     - [广告标识服务](ads-service/oaid/oaid-service.md)
   - 应用测试
@@ -716,31 +748,59 @@
     - [常见问题](key-features/multi-device-app-dev/faq.md)
   - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
   - Native API相关指导
-    - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
-    - 图形图像
-      - [XComponent开发指导](napi/xcomponent-guidelines.md)
-      - [使用Drawing实现图形绘制与显示](napi/drawing-guidelines.md)
-      - [NativeBuffer开发指导](napi/native-buffer-guidelines.md)
-      - [NativeImage开发指导](napi/native-image-guidelines.md)
-      - [NativeVsync开发指导](napi/native-vsync-guidelines.md)
-      - [NativeWindow开发指导](napi/native-window-guidelines.md)
-      - [Vulkan开发指导](napi/vulkan-guidelines.md)
-    - 资源管理
-      - [Rawfile开发指导](napi/rawfile-guidelines.md)
-    - 资源调度
-      - [FFRT开发指导](napi/ffrt-guidelines.md)
-    - AI
-      - [使用MindSpore Lite引擎进行模型推理](napi/mindspore-lite-guidelines.md)
-      - [使用MindSpore Lite进行离线模型的转换及推理](napi/mindspore-lite-offline-model-guidelines.md)
-      - [Neural Network Runtime对接AI推理框架开发指导](napi/neural-network-runtime-guidelines.md)
-    - 内存管理
-      - [Purgeable memory开发指导](napi/purgeable-memory-guidelines.md)
-    - 设备管理
-      - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
-    - 数据管理
-      - [RelationalStore开发指导](napi/native-relational-store-guidelines.md)
-    - 包管理
-      - [NativeBundle开发指导](napi/native-bundle-guidelines.md)
+    - [NDK开发导读](napi/ndk-development-overview.md)
+    - [创建NDK工程](napi/create-with-ndk.md)
+    - 构建NDK工程
+      - [NDK工程构建概述](napi/build-with-ndk-overview.md)
+      - [使用DevEco Studio模板构建NDK工程](napi/build-with-ndk-ide.md)
+      - [使用命令行CMake构建NDK工程](napi/build-with-ndk-cmake.md)
+      - [在NDK工程中使用预构建库](napi/build-with-ndk-prebuilts.md)
+    - 代码开发
+      - [代码开发概述](napi/develop-code-overview.md)
+      - 使用Node-API实现跨语言交互
+        - [OpenHarmony Node-API简介](napi/napi-introduction.md)
+        - [Node-API支持的数据类型和接口](napi/napi-data-types-interfaces.md)
+        - [Node-API开发规范](napi/napi-guidelines.md)
+        - [使用Node-API实现跨语言交互开发流程](napi/use-napi-process.md)
+        - Node-API典型使用场景
+            - [使用Node-API接口进行异步任务开发](napi/use-napi-asynchronous-task.md)
+            - [使用Node-API接口进行线程安全开发](napi/use-napi-thread-safety.md)
+        - [OpenHarmony Node-API常见问题](napi/use-napi-faqs.md)
+      - 图形图像
+        - [XComponent开发指导](napi/xcomponent-guidelines.md)
+        - [使用Drawing实现图形绘制与显示](napi/drawing-guidelines.md)
+        - [NativeBuffer开发指导](napi/native-buffer-guidelines.md)
+        - [NativeImage开发指导](napi/native-image-guidelines.md)
+        - [NativeVsync开发指导](napi/native-vsync-guidelines.md)
+        - [NativeWindow开发指导](napi/native-window-guidelines.md)
+        - [Vulkan开发指导](napi/vulkan-guidelines.md)
+      - 资源管理
+        - [Rawfile开发指导](napi/rawfile-guidelines.md)
+      - 资源调度
+        - [FFRT开发指导](napi/ffrt-guidelines.md)
+      - AI
+        - [使用MindSpore Lite引擎进行模型推理](napi/mindspore-lite-guidelines.md)
+        - [使用MindSpore Lite进行离线模型的转换及推理](napi/mindspore-lite-offline-model-guidelines.md)
+        - [Neural Network Runtime对接AI推理框架开发指导](napi/neural-network-runtime-guidelines.md)
+      - 内存管理
+        - [Purgeable memory开发指导](napi/purgeable-memory-guidelines.md)
+      - 设备管理
+        - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
+        - [HID DDK开发指导](napi/hid-ddk-guidelines.md)
+      - 数据管理
+        - [RelationalStore开发指导](napi/native-relational-store-guidelines.md)
+      - 包管理
+        - [NativeBundle开发指导](napi/native-bundle-guidelines.md)
+    - 调试和性能分析
+      - [调试和性能分析概述](napi/debug-performance-profiling-overview.md)
+      - [通过DevEco Studio调试](napi/debug-ide.md)
+      - [LLDB高性能调试器](napi/debug-lldb.md)
+      - [C/C++内存错误检测](napi/debug-asan.md)
+    - 硬件兼容性
+      - [硬件兼容性简介](napi/hw-guide.md)
+      - [OpenHarmony ABI](napi/ohos-abi.md)
+      - [CPU特性](napi/cpu-features.md)
+      - [使用Neon指令扩展](napi/neon-guide.md)
   - 性能
     - [性能优化概览](performance/performance-overview.md)
     - ArkTS高性能编程

@@ -574,7 +574,7 @@ getPairState(deviceId: string): BondState
 ```js
 import { BusinessError } from '@ohos.base';
 try {
-    let res: BondState = connection.getPairState("XX:XX:XX:XX:XX:XX");
+    let res: connection.BondState = connection.getPairState("XX:XX:XX:XX:XX:XX");
     console.log('getPairState: ' + res);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);

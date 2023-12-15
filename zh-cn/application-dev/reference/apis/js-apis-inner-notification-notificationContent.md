@@ -170,9 +170,9 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称                         |               值              |   说明   |
-| ---------------------------- | ---------------------------- |----------|
-| LIVE_VIEW_CREATE             | LIVE_VIEW_CREATE             | 创建     |
-| LIVE_VIEW_INCREMENTAL_UPDATE | LIVE_VIEW_INCREMENTAL_UPDATE | 增量更新  |
-| LIVE_VIEW_END                | LIVE_VIEW_END                | 结束     |
-| LIVE_VIEW_FULL_UPDATE        | LIVE_VIEW_FULL_UPDATE        | 全量更新  |
+| 名称                         | 值 |   说明   |
+| ---------------------------- |----|----------|
+| LIVE_VIEW_CREATE             | 0  | 创建     |
+| LIVE_VIEW_INCREMENTAL_UPDATE | 1  | 增量更新 |
+| LIVE_VIEW_END                | 2  | 结束     |
+| LIVE_VIEW_FULL_UPDATE        | 3  | 全量更新 |

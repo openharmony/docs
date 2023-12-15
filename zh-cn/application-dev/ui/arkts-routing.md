@@ -110,6 +110,7 @@ import promptAction from '@ohos.promptAction';
 
   ```ts
   import router from '@ohos.router';
+
   // 在SearchResult页面中
   function onJumpClick(): void {
     router.replaceUrl({
@@ -119,7 +120,8 @@ import promptAction from '@ohos.promptAction';
         console.error(`Invoke replaceUrl failed, code is ${err.code}, message is ${err.message}`);
         return;
       }
-      console.info('Invoke replaceUrl succeeded.');})
+      console.info('Invoke replaceUrl succeeded.');
+    })
   }
   ```
 
