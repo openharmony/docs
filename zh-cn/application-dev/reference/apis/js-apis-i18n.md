@@ -106,7 +106,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 static getSystemLanguages(): Array&lt;string&gt;
 
-获取系统支持的语言列表。语言的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
+获取系统支持的语言列表。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -132,7 +132,7 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 static getSystemCountries(language: string): Array&lt;string&gt;
 
-获取针对输入语言系统支持的国家或地区列表。国家或地区的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
+获取针对输入语言系统支持的国家或地区列表。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -213,7 +213,7 @@ static isSuggested(language: string, region?: string): boolean
 
 static getSystemLanguage(): string
 
-获取系统语言。语言的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
+获取系统语言。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -300,7 +300,7 @@ static setSystemLanguage(language: string): void
 
 static getSystemRegion(): string
 
-获取系统地区。地区的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
+获取系统地区。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -364,7 +364,7 @@ static setSystemRegion(region: string): void
 
 static getSystemLocale(): string
 
-获取系统区域。区域的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
+获取系统区域。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1825,7 +1825,7 @@ getRawOffset(): number
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| number | 时区对象表示的时区与UTC时区的偏差。 |
+| number | 时区对象表示的时区与UTC时区的偏差，单位是毫秒。 |
 
 **示例：**
   ```ts
@@ -1846,7 +1846,7 @@ getOffset(date?: number): number
 
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
-| date | number | 否    | 待计算偏差的时刻 |
+| date | number | 否    | 待计算偏差的时刻，单位是毫秒。默认值：系统时间。 |
 
 **返回值：**
 
@@ -2757,7 +2757,7 @@ constructor(icsPath: String)
 
 ### isHoliday<sup>11+</sup>
 
-isHoliday(date?: Date): boolean;
+isHoliday(date?: Date): boolean
 
 判断指定的日期是否是节假日。
 
