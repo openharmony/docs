@@ -1324,6 +1324,7 @@ try {
 }
 ```
 
+
 ## connection.disconnectAllowedProfiles<sup>11+</sup>
 
 disconnectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
