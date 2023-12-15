@@ -89,7 +89,7 @@ struct AlphabetIndexerSample {
                 .height('5%')
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
-            }.editable(true)
+            }
           }, item => item)
 
           ForEach(this.arrayB, (item) => {
@@ -99,7 +99,7 @@ struct AlphabetIndexerSample {
                 .height('5%')
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
-            }.editable(true)
+            }
           }, item => item)
 
           ForEach(this.arrayC, (item) => {
@@ -109,7 +109,7 @@ struct AlphabetIndexerSample {
                 .height('5%')
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
-            }.editable(true)
+            }
           }, item => item)
 
           ForEach(this.arrayL, (item) => {
@@ -119,7 +119,7 @@ struct AlphabetIndexerSample {
                 .height('5%')
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
-            }.editable(true)
+            }
           }, item => item)
         }
         .width('50%')
