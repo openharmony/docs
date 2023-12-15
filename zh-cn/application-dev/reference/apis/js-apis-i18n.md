@@ -691,7 +691,7 @@ static getUsingLocalDigit(): boolean
   ```
 
 
-## I18n.isRTL<sup>7+</sup>
+## I18n.isRTL
 
 isRTL(locale: string): boolean
 
@@ -1512,7 +1512,7 @@ isBoundary(offset: number): boolean
   ```
 
 
-## I18n.getTimeZone<sup>7+</sup>
+## I18n.getTimeZone
 
 getTimeZone(zoneID?: string): TimeZone
 
@@ -1602,7 +1602,7 @@ getRawOffset(): number
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| number | 时区对象表示的时区与UTC时区的偏差。 |
+| number | 时区对象表示的时区与UTC时区的偏差，单位是毫秒。 |
 
 **示例：**
   ```ts
@@ -1623,13 +1623,13 @@ getOffset(date?: number): number
 
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
-| date | number | 否    | 待计算偏差的时刻。 |
+| date | number | 否    | 待计算偏差的时刻，单位是毫秒。默认值：系统时间。 |
 
 **返回值：**
 
 | 类型     | 说明                      |
 | ------ | ----------------------- |
-| number | 某一时刻时区对象表示的时区与UTC时区的偏差。默认值：系统时间。 |
+| number | 某一时刻时区对象表示的时区与UTC时区的偏差。 |
 
 **示例：**
   ```ts
