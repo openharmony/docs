@@ -4952,7 +4952,7 @@ struct WebComponent {
 
 ### getSecurityLevel<sup>11+</sup>
 
-getSecurityLevel(): SecurityLevel; 
+getSecurityLevel(): SecurityLevel
 
 获取当前网页的安全级别。
 
