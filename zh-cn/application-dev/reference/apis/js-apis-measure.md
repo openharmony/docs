@@ -113,7 +113,7 @@ struct Index {
 | 名称           | 类型                                                                                                | 必填 | 说明                      |
 | -------------- | -------------------------------------------------------------------------------------------------- | ---- | ----------------------------------------------- |
 | textContent | string                                                                                             | 是   | 设置被计算文本内容。                                  |
-| constraintWidth<sup>10+</sup> | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../arkui-ts/ts-types.md#resource)   | 否   | 设置被计算文本布局宽度。<br/>**说明：** 默认单位为vp                               |
+| constraintWidth<sup>10+</sup> | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../arkui-ts/ts-types.md#resource)   | 否   | 设置被计算文本布局宽度。<br/>**说明：** 默认单位为vp，不支持设置百分比字符串。若不设置，则文本SizeOption宽度为单行布局所占最大宽度值，若设置则为设置值。                             |
 | fontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../arkui-ts/ts-types.md#resource)               | 否   | 设置被计算文本字体大小，fontSize为number类型时，使用fp单位。<br/>默认值：16fp。<br/>**说明：** 不支持设置百分比字符串。    |
 | fontStyle      | number&nbsp;\|&nbsp;[FontStyle](../arkui-ts/ts-appendix-enums.md#fontstyle)                        | 否   | 设置被计算文本字体样式。<br>默认值：FontStyle.Normal            |
 | fontWeight     | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[FontWeight](../arkui-ts/ts-appendix-enums.md#fontweight)  | 否   | 设置被计算文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal|
