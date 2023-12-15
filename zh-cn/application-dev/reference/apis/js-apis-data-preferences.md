@@ -1947,7 +1947,7 @@ try {
 
 ### on('multiProcessChange')<sup>10+</sup>
 
-on(type: 'multiProcessChange', callback: &lt;string&gt;): void
+on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
 订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程发生变更后，执行[flush](#flush)方法后，触发callback回调。
 
