@@ -11,7 +11,7 @@ OpenHarmony支持系统睡眠时唤醒执行动作，如在睡眠中低电量情
 约束：
 唤醒后动作特性需要适配：
 
-- 满足唤醒条件（如电量低于阈值）触发电源键事件;
+- 满足唤醒条件（如电量低于阈值）时触发电源键事件;
 - 唤醒原因（如低电量唤醒）保存到内核节点。
 
 配置策略：
@@ -171,7 +171,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     ```
     drivers_peripheral_power_wakeup_cause_path = true
     ```
-6. 修改[hdf_peripheral.cfg](https://gitee.com/openharmony/drivers_peripheral/blob/master/base/hdf_peripheral.cfg)节权限为system。
+6. 在[hdf_peripheral.cfg](https://gitee.com/openharmony/drivers_peripheral/blob/master/base/hdf_peripheral.cfg)的pre-init修改节点权限为system。
     ```
     "chown system system xxx",
     "chown system system yyy",
