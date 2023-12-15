@@ -66,7 +66,7 @@ constructor(locale: string, options?: LocaleOptions)
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string                           | 是    | 区域信息的字符串，由语言、脚本、国家或地区组成。语言、脚本、国家或地区的国际标准及组合方式请见[Intl开发指导](../../internationalization/intl-guidelines.md#设置区域信息) |
-| options             | [LocaleOptions](#localeoptions6) | 否    | 用于创建区域对象的选项。 |
+| options             | [LocaleOptions](#localeoptions) | 否    | 用于创建区域对象的选项。 |
 
 **示例：** 
   ```ts
@@ -207,7 +207,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options              | [DateTimeOptions](#datetimeoptions6) | 否    | 用于创建时间日期格式化的选项。若所有选项均未设置时，year、month、day三个属性的默认值为numeric。 |
+| options              | [DateTimeOptions](#datetimeoptions) | 否    | 用于创建时间日期格式化的选项。若所有选项均未设置时，year、month、day三个属性的默认值为numeric。 |
 
 **示例：** 
   ```ts
@@ -299,7 +299,7 @@ resolvedOptions(): DateTimeOptions
 
 | 类型                                   | 说明                            |
 | ------------------------------------ | ----------------------------- |
-| [DateTimeOptions](#datetimeoptions6) | DateTimeFormat&nbsp;对象的格式化选项。 |
+| [DateTimeOptions](#datetimeoptions) | DateTimeFormat&nbsp;对象的格式化选项。 |
 
 **示例：** 
   ```ts
@@ -372,7 +372,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;    | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options              | [NumberOptions](#numberoptions6) | 否    | 用于创建数字格式化的选项。                |
+| options              | [NumberOptions](#numberoptions) | 否    | 用于创建数字格式化的选项。                |
 
 **示例：** 
   ```ts
@@ -422,7 +422,7 @@ resolvedOptions(): NumberOptions
 
 | 类型                               | 说明                          |
 | -------------------------------- | --------------------------- |
-| [NumberOptions](#numberoptions6) | NumberFormat&nbsp;对象的格式化选项。 |
+| [NumberOptions](#numberoptions) | NumberFormat&nbsp;对象的格式化选项。 |
 
 
 **示例：** 
