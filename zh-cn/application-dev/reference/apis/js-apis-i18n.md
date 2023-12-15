@@ -1852,7 +1852,7 @@ getOffset(date?: number): number
 
 | 类型     | 说明                      |
 | ------ | ----------------------- |
-| number | 某一时刻时区对象表示的时区与UTC时区的偏差。 |
+| number | 某一时刻时区对象表示的时区与UTC时区的偏差。默认值：系统时间。 |
 
 **示例：**
   ```ts
@@ -1873,7 +1873,7 @@ static getAvailableIDs(): Array&lt;string&gt;
 
 | 类型                  | 说明          |
 | ------------------- | ----------- |
-| Array&lt;string&gt; | 系统支持的时区ID列表 |
+| Array&lt;string&gt; | 系统支持的时区ID列表。 |
 
 **示例：**
   ```ts
@@ -1894,7 +1894,7 @@ static getAvailableZoneCityIDs(): Array&lt;string&gt;
 
 | 类型                  | 说明            |
 | ------------------- | ------------- |
-| Array&lt;string&gt; | 系统支持的时区城市ID列表 |
+| Array&lt;string&gt; | 系统支持的时区城市ID列表。 |
 
 **示例：**
   ```ts
@@ -1915,8 +1915,8 @@ static getCityDisplayName(cityID: string, locale: string): string
 
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
-| cityID | string | 是    | 时区城市ID |
-| locale | string | 是    | 区域ID   |
+| cityID | string | 是    | 时区城市ID。 |
+| locale | string | 是    | 区域ID。  |
 
 **返回值：**
 
