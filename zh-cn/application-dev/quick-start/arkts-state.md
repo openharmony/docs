@@ -112,7 +112,7 @@
     this.title.name.value = 'ArkUI'
     ```
 - 当装饰的对象是array时，可以观察到数组本身的赋值和添加、删除、更新数组的变化。例子如下。
-  声明ClassA和Model类。
+  声明Model类。
 
   ```ts
   class Model {
