@@ -7230,7 +7230,7 @@ Web组件返回的请求/响应头对象。
 | Phone         | 6 |电话号码。                                |
 | Unknown       | 7 |未知内容。                                |
 
-## SecurityLevel
+## SecurityLevel<sup>11+</sup>
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
