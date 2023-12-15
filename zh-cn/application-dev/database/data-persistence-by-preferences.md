@@ -48,7 +48,7 @@
 1. 导入`@ohos.data.preferences`模块。
    
    ```ts
-   import data_preferences from '@ohos.data.preferences';
+   import dataPreferences from '@ohos.data.preferences';
    ```
 
 2. 要通过用户首选项实现数据持久化，首先要获取Preferences实例。读取指定文件，将数据加载到Preferences实例，用于数据操作。
@@ -61,13 +61,13 @@
    import { BusinessError } from '@ohos.base';
    import window from '@ohos.window';
 
-   let preferences: data_preferences.Preferences | null = null;
+   let preferences: dataPreferences.Preferences | null = null;
 
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        try {
-         let options: data_preferences.Options = { name: 'myStore' };
-         preferences = data_preferences.getPreferencesSync(this.context, options);
+         let options: dataPreferences.Options = { name: 'myStore' };
+         preferences = dataPreferences.getPreferencesSync(this.context, options);
        } catch (err) {
          let code = (err as BusinessError).code;
          let message = (err as BusinessError).message;
@@ -86,11 +86,11 @@
    import { BusinessError } from '@ohos.base';
    
    let context = featureAbility.getContext();
-   let preferences: data_preferences.Preferences | null = null;
+   let preferences: dataPreferences.Preferences | null = null;
    
    try {
-       let options: data_preferences.Options =  { name: 'myStore' };
-       preferences = data_preferences.getPreferencesSync(context, options);
+       let options: dataPreferences.Options =  { name: 'myStore' };
+       preferences = dataPreferences.getPreferencesSync(context, options);
    } catch (err) {
        let code = (err as BusinessError).code;
      	let message = (err as BusinessError).message;
@@ -215,8 +215,8 @@
    
    ```ts
    try {
-       let options: data_preferences.Options = { name: 'myStore' };
-       data_preferences.deletePreferences(this.context, options, (err: BusinessError) => {
+       let options: dataPreferences.Options = { name: 'myStore' };
+       dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
            if (err) {
                console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
                return;
