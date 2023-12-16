@@ -87,3 +87,33 @@ b) 文本内边距接口命名变更
 变更后：
 
 分段按钮通过buttonPadding、textPadding进行按钮内边距、文本内边距的设置。
+
+## cl.arkui.3 TextInput组件cancelButton接口IconOptions.size参数默认值变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+cancelButton接口不设置IconOptions.size参数，图片的实际尺寸与开发者获取的尺寸不符。
+
+**变更影响**
+
+该变更为非兼容性变更。cancelButton接口不设置IconOptions.size参数，开发者获取的图片尺寸发生变更，变更如下：
+
+变更前：0.00px
+
+变更后：24.00vp
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.3开始。
+
+**变更的接口/组件**
+
+单行文本输入框（TextInput）
+
+**适配指导**
+
+TextInput设置cancelButton时不设置IconOptions.size参数可以获取正确的图片尺寸24.00vp。
