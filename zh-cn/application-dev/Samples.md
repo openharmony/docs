@@ -685,26 +685,26 @@ Preferences.flush()保存并刷新文件内容。
 
 1.首页菜单展示：使用一个module，menuitems完成菜单组件的实现，传入要展示的菜单的strarray类型的资源和菜单点击对应的组件即可。使用Navigation和NavRouter组件实现菜单点击进入功能界面，使用LocalStorage实现应用内Ability内数据共享，点击菜单时标记selectedLabel，在entry中的Capabilities组件中，通过selectedLabel显示对应的功能组件。
 
-2.电量信息：使用[@ohos.batteryInfo.d.ts](reference/apis/js-apis-battery-info.md/)
+2.电量信息：使用[@ohos.batteryInfo.d.ts](reference/apis/js-apis-battery-info.md)
 接口获取电池和充放电状态信息。
 
-3.RunningLock锁：使用[@ohos.runningLock.d.ts](reference/apis/js-apis-runninglock.md/)
+3.RunningLock锁：使用[@ohos.runningLock.d.ts](reference/apis/js-apis-runninglock.md)
 实现对Runninglock锁的创建、查询、持锁、释放等操作。
 
-4.系统电源管理：使用[@ohos.power.d.ts](reference/apis/js-apis-power.md/)
+4.系统电源管理：使用[@ohos.power.d.ts](reference/apis/js-apis-power.md)
 实现获取亮灭屏状态、查询电源模式功能。
 
-5.设置数据项名称：使用[@ohos.settings.d.ts](reference/apis/js-apis-settings.md/)
+5.设置数据项名称：使用[@ohos.settings.d.ts](reference/apis/js-apis-settings.md)
 实现获取获取数据项uri、开关飞行模式、检查应用是否能以悬浮窗形式显示功能。
 
-6.设备状态感知框架：使用[@ohos.stationary.d.ts](reference/apis/js-apis-stationary.md/)
+6.设备状态感知框架：使用[@ohos.stationary.d.ts](reference/apis/js-apis-stationary.md)
 接口提供设备状态感知能力。
 
-7.热管理：使用[@ohos.thermal.d.ts](reference/apis/js-apis-thermal.md/)
+7.热管理：使用[@ohos.thermal.d.ts](reference/apis/js-apis-thermal.md)
 提供热管理相关的接口，查询热档位以及注册温控等级回调。
 
-8.USB管理：使用[@ohos.usbManager.d.ts](reference/apis/js-apis-usbManager.md/)
-实现usb设备列表的获取，使用[@ohos.commonEventManager.d.ts](reference/apis/js-apis-commonEventManager.md/)
+8.USB管理：使用[@ohos.usbManager.d.ts](reference/apis/js-apis-usbManager.md)
+实现usb设备列表的获取，使用[@ohos.commonEventManager.d.ts](reference/apis/js-apis-commonEventManager.md)
 订阅USB设备插入和拔出监听。
 
 ##### 约束与限制
@@ -1586,8 +1586,8 @@ Preferences.flush()保存并刷新文件内容。
 
 2.服务端和两台设备在局域网内组成socket网络，运行时需要注意修改ip地址：
 
-- 服务端地址在[socket.js](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VoiceCallDemo/script/socket.js)第19行修改
-- 客户端地址在[BufferModel.ets](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VoiceCallDemo/entry/src/main/ets/model/BufferModel.ets)，将serverIp替换为服务端IP地址即可
+- 服务端地址在socket.js
+- 客户端地址在BufferModel.ets，将serverIp替换为服务端IP地址即可
 
 3.仅体验语音通话功能时，可以两台设备都手动启动语音通话应用，分别点击接听按钮进入通话页面
 
@@ -1608,9 +1608,9 @@ Preferences.flush()保存并刷新文件内容。
     + 使用@ohos.net.socket 的constructTCPSocketInstance创建TCP socket连接，模拟实现音频流网络传输
     + 3s一次检查网络状态和尝试连接，实现网络异常时的处理逻辑
 + 音频录制：
-    + 使用@ohos.multimedia.audio.AudioCapturer完成音频采集 [具体使用参考](media/using-audiocapturer-for-recording.md/)
+    + 使用@ohos.multimedia.audio.AudioCapturer完成音频采集 [具体使用参考](media/using-audiocapturer-for-recording.md)
 + 音频播放：
-    + 使用@ohos.multimedia.audio.AudioRenderer完成音频播放 [具体使用参考](media/using-audiorenderer-for-playback.md/)
+    + 使用@ohos.multimedia.audio.AudioRenderer完成音频播放 [具体使用参考](media/using-audiorenderer-for-playback.md)
 + 麦克风与扬声器以及通话场景控制：
     + 使用@ohos.multimedia.audio.AudioManager的setAudioScene接口切换通话场景
     + 使用@ohos.multimedia.audio.AudioVolumeGroupManager的setMicrophoneMute接口切换麦克风
@@ -2358,7 +2358,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 使用
 
-1.安装本应用之前，先编译好未签名的应用包，然后在终端执行工程里的脚本[b_sign_hap_release.bat](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/TransientTask/signature/material/b_sign_hap_release.bat) 去生成签名的应用包，再将此签名应用包进行安装即可；
+1.安装本应用之前，先编译好未签名的应用包，然后在终端执行工程里的脚本b_sign_hap_release.bat去生成签名的应用包，再将此签名应用包进行安装即可；
 
 2.进入应用，点击检查更新按钮，点击弹出框更新按钮会进行下载补丁包；
 
@@ -3183,7 +3183,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 懒加载：开发框架提供数据懒加载（LazyForEach组件）从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。
 
-多线程：开发框架提供[多线程并发能力](performance/multi_thread_capability.md/)，允许在同一时间段内同时执行多段代码，进行大量或调度点较分散的任务开发和处理。
+多线程：开发框架提供[多线程并发能力](performance/multi_thread_capability.md)，允许在同一时间段内同时执行多段代码，进行大量或调度点较分散的任务开发和处理。
 
 ##### 约束与限制
 
