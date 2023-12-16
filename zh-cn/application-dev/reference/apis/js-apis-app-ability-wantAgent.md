@@ -1050,7 +1050,7 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
         wantAgent1 = data;
         wantAgent2 = data;
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     }
     //equal回调
     let equalCallback = (err: BusinessError, data: boolean) => {
@@ -1140,7 +1140,7 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
         wantAgent1 = data;
         wantAgent2 = data;
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     }
     try {
         WantAgent.equal(wantAgent1,wantAgent2).then((data)=>{

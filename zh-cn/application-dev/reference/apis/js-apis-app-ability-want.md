@@ -251,7 +251,7 @@ import Want from '@ohos.app.ability.Want';
 
         class UIAbilityB extends UIAbility {
             onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-                console.log(`onCreate, want parameters: ${want.parameters.developerParameters}`);
+                console.log(`onCreate, want parameters: ${want.parameters?.developerParameters}`);
             }
         }
       ```

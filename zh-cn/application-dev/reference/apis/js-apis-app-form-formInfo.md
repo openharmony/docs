@@ -122,7 +122,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | Dimension_2_4      | 3   | 2 x 4 form。   |
 | Dimension_4_4      | 4   | 4 x 4 form。   |
 | Dimension_2_1      | 5   | 2 x 1 form。   |
-| Dimension_1_1      | 6   | 1 x 1 form。   |
+| DIMENSION_1_1      | 6   | 1 x 1 form。   |
 
 
 ## FormInfoFilter
@@ -179,6 +179,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | formName<sup>10+</sup>        | string               | 是    | 否     | 卡片名称。                                 |
 | dimension | number               | 是    | 否     | 卡片规格。   |
 | formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | 是    | 否     | 卡片当前使用状态枚举。   |
+| formDescription<sup>11+</sup> | string         | 是    | 否     | 卡片的描述信息。   |
 
 ## formProviderFilter<sup>10+</sup>
 

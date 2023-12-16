@@ -82,7 +82,7 @@ try {
         }
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -144,7 +144,7 @@ try {
         console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -183,7 +183,7 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
 try {
-    abilityManager.getAbilityRunningInfos((err: BusinessError, data: Array<AbilityRunningInfo>) => {
+    abilityManager.getAbilityRunningInfos((err: BusinessError, data: Array<abilityManager.AbilityRunningInfo>) => {
         if (err) {
             console.error(`getAbilityRunningInfos fail, error: ${JSON.stringify(err)}`);
         } else {
@@ -191,7 +191,7 @@ try {
         }
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -230,13 +230,13 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
 try {
-    abilityManager.getAbilityRunningInfos().then((data: Array<AbilityRunningInfo>) => {
+    abilityManager.getAbilityRunningInfos().then((data: Array<abilityManager.AbilityRunningInfo>) => {
         console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
         console.error(`getAbilityRunningInfos fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -286,7 +286,7 @@ try {
         }
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -339,7 +339,7 @@ try {
         console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -461,7 +461,7 @@ try {
         }
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -511,7 +511,7 @@ try {
     console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -572,7 +572,7 @@ try {
     }
   });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -636,7 +636,7 @@ try {
     console.log(`notifySaveAsResult success`);
   });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -691,7 +691,7 @@ try {
 
 ## abilityManager.off<sup>11+</sup>
 
-off(type: 'abilityForegroundState', observer?: AppForegroundStateObserver): void
+off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): void
 
 取消注册Ability启动和退出的观测器。
 
@@ -721,7 +721,7 @@ off(type: 'abilityForegroundState', observer?: AppForegroundStateObserver): void
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
-let observer_;
+let observer_: abilityManager.AbilityForegroundStateObserver;
 // 1.注册应用启动和退出的监听器
 let observer: abilityManager.AbilityForegroundStateObserver = {
     onAbilityStateChanged(abilityStateData) {
