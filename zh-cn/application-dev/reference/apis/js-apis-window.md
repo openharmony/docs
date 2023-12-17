@@ -340,6 +340,19 @@ import window from '@ohos.window';
 | FLOATING    | 4    | 表示APP自由悬浮形式窗口模式。   |
 | SPLIT_SCREEN  | 5    | 表示APP分屏模式。   |
 
+##  TitleButtionRect11+
+
+标题栏三键位置矩形区域，该区域位置坐标相对窗口右上角。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 类型   | 可读 | 可写 | 说明                                       |
+| ------ | ------ | ---- | ---- | ------------------------------------------ |
+| right  | number | 是   | 是   | 矩形区域的右边界，单位为px，该参数为整数。 |
+| top    | number | 是   | 是   | 矩形区域的上边界，单位为px，该参数为整数。 |
+| width  | number | 是   | 是   | 矩形区域的宽度，单位为px，该参数为整数。   |
+| height | number | 是   | 是   | 矩形区域的高度，单位为px，该参数为整数。   |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -3955,6 +3968,60 @@ try {
   windowClass.off('windowStatusChange');
 } catch (exception) {
   console.error('Failed to disable the listener for window status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### on('windowTitleButtonRectChange')<sup>11+</sup>
+
+on(type: 'windowTitleButtonRectChange', callback: Callback<TitleButtonRect>): void;
+
+开启标题栏三键位置变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                         | 必填 | 说明                                                         |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                       | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏三键位置变化事件。 |
+| callback | Callback<TitleButtonRect&gt; | 是   | 回调函数。返回当前的标题栏三键区域。                         |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.on('windowTitleButtonRectChange', (titleButtonRect) => {
+      console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
+  });
+} catch (exception) {
+  console.error('Failed to enable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('windowTitleButtonRectChange')<sup>11+</sup>
+
+off(type: 'windowTitleButtonRectChange', callback: Callback<TitleButtonRect&gt;): void
+
+关闭标题栏三键位置变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                         | 必填 | 说明                                                         |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                       | 是   | 监听事件，固定为'windowStatusChange'，即窗口模式变化事件。   |
+| callback | Callback<TitleButtonRect&gt; | 否   | 回调函数。返回当前的标题栏三键区域。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有标题栏三键位置变化的监听。 |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.off('windowTitleButtonRectChange');
+} catch (exception) {
+  console.error('Failed to disable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -8572,6 +8639,169 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to set the window to be touchable. Cause: ' + JSON.stringify(err));
 });
+```
+
+###  setWindowDecorVisible11+
+
+setWindowDecorVisible(isVisible: boolean): void
+
+主窗口设置标题栏是否可见。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| isVisible | boolean | 是   | 设置标题栏是否可见，true为可见，false为隐藏。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // 为主窗口加载对应的目标页面。
+        windowStage.loadContent("pages/page", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // 获取应用主窗口。
+        let mainWindow = null;
+        
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            mainWindow = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+
+            let isVisible = false;
+            // 调用setWindowDecorVisible接口。
+            mainWindow.setWindowDecorVisible(enabled, (err) => {
+                if (err.code) {
+                    console.error('Failed to set the visibility of window decor. Cause: ' + JSON.stringify(err));
+                    return;
+                }
+                console.info('Succeeded in setting the visibility of window decor.');
+            });
+        })
+    }
+};
+```
+
+###  setWindowDecorHeight11+
+
+setWindowDecorHeight(height: number): void
+
+设置窗口标题栏高度。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| height | number | 是   | 设置的窗口标题栏高度。该参数为整数，取值范围为[48,100]，单位为px。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+let height: number = 50;
+let windowClass: window.Window = window.findWindow("test");
+try {
+  windowClass.setWindowDecorHeight(height);
+} catch (exception) {
+  console.error('Failed to set the height of window decor. Cause: ' + JSON.stringify(exception));
+}
+```
+
+###  getWindowDecorHeight11+
+
+getWindowDecorHeight(): number;
+
+获取窗口标题栏高度。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 返回的窗口标题栏高度。该参数为整数，取值范围为[48,100]，单位为px。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+let windowClass: window.Window = window.findWindow("test");
+try {
+  let height = windowClass.getWindowDecorHeight();
+} catch (exception) {
+  console.error('Failed to get the height of window decor. Cause: ' + JSON.stringify(exception));
+}
+```
+
+###  getTitleButtonRect11+
+
+getTitleButtonRect(): TitleButtonRect;
+
+获取标题栏三键区域。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 类型            | 说明                                           |
+| --------------- | ---------------------------------------------- |
+| TitleButtonRect | 标题栏三键区域，该区域位置坐标相对窗口右上角。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+let windowClass: window.Window = window.findWindow("test");
+try {
+  let titleButtionArea = windowClass.getWindowDecorHeight();
+  console.info('Succeeded in obtaining the area of title buttons. Data: ' + JSON.stringify(titleButtionArea));
+} catch (exception) {
+  console.error('Failed to get the height of window decor. Cause: ' + JSON.stringify(exception));
+}
 ```
 
 ## WindowStageEventType<sup>9+</sup>
