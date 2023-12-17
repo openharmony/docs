@@ -103,6 +103,58 @@ let isSimActive: boolean = sim.isSimActiveSync(0);
 console.log(`the sim is active:` + isSimActive);
 ```
 
+## sim.isOperatorSimCard<sup>11+</sup>
+
+isOperatorSimCard\(slotId: number, operator: OperatorSimCard\): boolean
+
+Checks whether the SIM card in the specified slot is provided by a specified carrier.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name | Type                                    | Mandatory| Description                               |
+| ------ | --------------------------------------- | ---- | ---------------------------------  |
+| slotId | number                                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| operator | [OperatorSimCard](#operatorsimcard11) | Yes  | Carrier name. (Currently, only SIM cards of China Telecom are supported.)|
+
+**Return value**
+
+| Type                 | Description                              |
+| --------------------- | ---------------------------------- |
+| boolean | Boolean value indicating whether the SIM card in the specified slot is provided by a specified carrier. The value **true** means yes and the value **false** means no.|
+
+**Error codes**
+
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let slotId : number = 0;
+let operator : sim.OperatorSimCard = sim.OperatorSimCard.CHINA_TELECOM_CARD;
+try {
+    let isOperatorSimCard: boolean = sim.isOperatorSimCard(slotId, operator);
+    console.log(`is operator sim card: ` + isOperatorSimCard);
+} catch (error) {
+    console.error("isOperatorSimCard err: " + JSON.stringify(err));
+}
+```
 
 ## sim.getDefaultVoiceSlotId<sup>7+</sup>
 
@@ -4920,3 +4972,15 @@ Enumerates DSDS modes supported by the device.
 | DSDS_MODE_V3       | 1    | DSDS 3.0 mode.     |
 | DSDS_MODE_V5_TDM   | 2    | DSDS 5.0 TDM mode. |
 | DSDS_MODE_V5_DSDA  | 3    | DSDS 5.0 DSDA mode.|
+
+## OperatorSimCard<sup>11+</sup>
+
+Carrier name.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name               | Value                   | Description     |
+| ------------------ | --------------------- | -------- |
+| CHINA_TELECOM_CARD | "china_telecom_card"  | SIM card of China Telecom.|
