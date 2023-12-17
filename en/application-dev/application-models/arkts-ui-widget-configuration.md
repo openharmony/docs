@@ -87,11 +87,11 @@ Widget-related configuration includes **FormExtensionAbility** configuration and
          "supportDimensions": [
            "2*2"
          ],
-         "formConfigAbility": "",
+         "formConfigAbility": "ability://com.example.entry.EntryAbility",
          "dataProxyEnabled": false,
          "isDynamic": true,
          "transparencyEnabled": false,
-         "metadata": {}
+         "metadata": []
        }
      ]
    }
