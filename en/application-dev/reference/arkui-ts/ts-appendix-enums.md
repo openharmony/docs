@@ -526,6 +526,11 @@ This API is supported in ArkTS widgets.
 | BACKGROUND_THICK      | Material that creates a high shallow depth of field effect.  |
 | BACKGROUND_ULTRA_THICK | Material that creates the maximum depth of field effect. |
 | NONE<sup>10+</sup> | No blur. |
+| COMPONENT_ULTRA_THIN<sup>11+</sup> | Component ultra-thin material.|
+| COMPONENT_THIN<sup>11+</sup> | Component thin material.|
+| COMPONENT_REGULAR<sup>11+</sup> | Component regular material.|
+| COMPONENT_THICK<sup>11+</sup> | Component thick material.|
+| COMPONENT_ULTRA_THICK<sup>11+</sup> | Component ultra-thick material.|
 
 ## ThemeColorMode<sup>10+</sup>
 
@@ -574,6 +579,15 @@ This API is supported in ArkTS widgets.
 | LIGHT  | Small area (light)| Spring effect, with stiffness of 410, damping of 38, and initial velocity of 1.| 90% |
 | MIDDLE | Medium area (stable)| Spring effect, with stiffness of 350, damping of 35, and initial velocity of 0.5.| 95% |
 | HEAVY  | Large area (heavy)| Spring effect, with stiffness of 240, damping of 28, and initial velocity of 0.| 95% |
+
+## FoldStatus<sup>11+</sup>
+
+| Name                     | Description        |
+| ----------------------  | ---------- |
+| FOLD_STATUS_UNKNOWN     | The folding status of the device is unknown.|
+| FOLD_STATUS_EXPANDED    | The device is fully open.  |
+| FOLD_STATUS_FOLDED      | The device is folded (completely closed).  |
+| FOLD_STATUS_HALF_FOLDED | The device is half-folded, somehow between fully open and completely closed.|
 
 ## TextContentStyle<sup>10+</sup>
 
@@ -650,7 +664,7 @@ Describes the background effect parameters.
 | ----         |  ----         |   ---- | --------------------------  |
 | radius       | number        |   Yes  |   Radius of the background effect.<br>Value range: [0, +∞)<br>Default value: **0**    |
 | saturation   | number        |   No  |   Saturation of the background effect.<br>Value range: [0, +∞)<br>Default value: **0**    |
-| brightness   | number        |   No  |   Brightness of the background effect.<br>Value range: [0, +∞)<br>Default value: **0**      |
+| brightness   | number        |   No  |   Brightness of the background effect.<br>Value range: [0, +∞)<br>Default value: **0**      | 
 | color        | [Color](ts-appendix-enums.md#color)        |   No  |   Color of the background effect.<br>Default value: Transparent |
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   No | Adaptive color mode used for the background blur effect.<br>Default value: **DEFAULT**  |
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   No  |   Grayscale blur.<br>Default value: **[0,0]** |
@@ -671,3 +685,12 @@ Since API version 11, this API is supported in ArkTS widgets.
 | START | On the leftmost side of the parent component in the horizontal layout; on the top of the parent component in the vertical layout.|
 | CENTER | In the center of the parent component.|
 | END | On the rightmost side of the parent component in the horizontal layout; at the bottom of the parent component in the vertical layout.|
+
+## TextDataDetectorType<sup>11+</sup>
+
+| Name | Description                                  |
+| ----- | -------------------------------------- |
+| PHONE_NUMBER  | Phone number.|
+| URL | URL.|
+| EMAIL | Email.|
+| ADDRESS | Address.|
