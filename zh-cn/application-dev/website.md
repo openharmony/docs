@@ -603,7 +603,7 @@
       - [基于设备分类和数据分级的访问控制](database/access-control-by-device-and-data-level.md)
     - 跨应用数据共享
       - [跨应用数据共享概述](database/data-share-overview.md)
-      - [标准化数据定义](database/unified-data-definition.md)
+      - [标准化数据定义](database/unified-data-definition-overview.md)
       - 一对多跨应用数据共享（仅对系统应用开放）
         - [通过DataShareExtensionAbility实现数据共享](database/share-data-by-datashareextensionability.md)
         - [通过数据管理服务实现数据共享静默访问](database/share-data-by-silent-access.md)
