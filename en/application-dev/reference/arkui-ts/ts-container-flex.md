@@ -291,7 +291,19 @@ struct FlexExample5 {
         AlignContentFlex({ alignContent: FlexAlign.SpaceAround }) // In the multi-row layout, the space between the child component in the first row and the start edge of the column, and that between the child component in the last row and the end edge of the column are both half the size of the space between two adjacent rows.
 
         Text('alignContent:SpaceEvenly').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        AlignContentFlex({ alignContent: FlexAlign.SpaceEvenly}) // In the multi-row layout, the space between the child component in the first row and the start edge of the column, the space between the child component in the last row and the end edge of the column, and the space between any two adjacent rows are the same.
+        Flex({
+          wrap: FlexWrap.Wrap,
+          alignContent: FlexAlign.SpaceEvenly
+        }) {// In the multi-row layout, the space between the child component in the first row and the start edge of the column, the space between the child component in the last row and the end edge of the column, and the space between any two adjacent rows are the same.
+          Text('1').width('50%').height(20).backgroundColor(0xF5DEB3)
+          Text('2').width('50%').height(20).backgroundColor(0xD2B48C)
+          Text('3').width('50%').height(20).backgroundColor(0xF5DEB3)
+          Text('4').width('50%').height(20).backgroundColor(0xD2B48C)
+          Text('5').width('50%').height(20).backgroundColor(0xF5DEB3)
+        }
+        .size({ width: '90%', height: 100 })
+        .padding({ left: 10, right: 10 })
+        .backgroundColor(0xAFEEEE)
       }.width('100%').margin({ top: 5 })
     }.width('100%')
   }
