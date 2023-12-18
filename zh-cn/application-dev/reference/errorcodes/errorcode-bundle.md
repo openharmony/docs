@@ -700,3 +700,16 @@ Failed to install the HAP because debug bundle cannot be installed under non-dev
 
 **处理步骤**<br/>
 执行hdc shell param get const.security.developermode.state，若返回结果为false，说明该设备无法安装调试应用。
+
+## 17700201 abc文件校验失败
+**错误信息**<br/>
+Failed to verify abc.
+
+**错误描述**<br/>
+.abc文件路径校验失败。
+
+**可能原因**<br/>
+.abc文件不可信。
+
+**处理步骤**<br/>
+请传递可信.abc文件路径。

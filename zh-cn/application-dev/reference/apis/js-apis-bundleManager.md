@@ -4507,3 +4507,102 @@ try {
     hilog.error(0x0000, 'testTag', 'getJsonProfile failed.');
 }
 ```
+
+### bundleManager.verifyAbc
+
+verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: AsyncCallback\<void>): void
+
+根据给定的abcPaths和deleteOriginalFiles校验.abc文件。使用callback异步回调。
+
+**需要权限：** ohos.permission.RUN_DYN_CODE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| abcPaths  | Array\<string> | 是   | .abc文件路径。 |
+| deleteOriginalFiles | boolean | 是   | 是否删除.abc文件，true删除，false不删除。|
+| callback | AsyncCallback\<void> | 是 | 回调函数，当获取成功时，err为null；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17700201 | verifyAbc failed. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let abcPaths : Array<string> = ['/data/storage/el2/base/a.abc'];
+
+try {
+    bundleManager.verifyAbc(abcPaths, true, (err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
+        }
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', message);
+}
+```
+
+### bundleManager.verifyAbc
+
+verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void>
+
+根据给定的abcPaths和deleteOriginalFiles校验.abc文件。使用Promise异步回调。
+
+**需要权限：** ohos.permission.RUN_DYN_CODE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| abcPaths  | Array\<string> | 是   | .abc文件路径。 |
+| deleteOriginalFiles | boolean | 是   | 是否删除.abc文件，true删除，false不删除。       |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 17700201 | verifyAbc failed. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let abcPaths : Array<string> = ['/data/storage/el2/base/a.abc'];
+
+try {
+    bundleManager.verifyAbc(abcPaths, true).then((data) => {
+        hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', message);
+}
+```
