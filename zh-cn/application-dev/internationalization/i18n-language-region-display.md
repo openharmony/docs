@@ -8,7 +8,7 @@
 
 ## 开发步骤
 
-接口具体说明请参考[getDisplayCountry](../../reference/apis/js-apis-i18n.md#getdisplaycountry9)和[getDisplayLanguage](../../reference/apis/js-apis-i18n.md#getdisplaylanguage9)的API文档。
+接口具体说明请参考[getDisplayCountry](../reference/apis/js-apis-i18n.md#getdisplaycountry9)和[getDisplayLanguage](../reference/apis/js-apis-i18n.md#getdisplaylanguage9)的API文档。
 
 1. 导入模块。
    ```ts
