@@ -93,13 +93,12 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    > **说明：**
    >
    > 调用[`terminateSelf()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法停止当前UIAbility实例时，默认会保留该实例的快照（Snapshot），即在最近任务列表中仍然能查看到该实例对应的任务。如不需要保留该实例的快照，可以在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，将[abilities标签](../quick-start/module-configuration-file.md#abilities标签)的removeMissionAfterTerminate字段配置为true。
-<<<<<<< HEAD
+
    
-4. 如需要关闭应用所有的UIAbility实例，可以调用[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md)的[`killProcessBySelf()`](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses)方法实现关闭应用所有的进程。
-=======
+
 
 4. 如需要关闭应用所有的UIAbility实例，可以调用[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md)的[`killAllProcesses()`](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses)方法实现关闭应用所有的进程。
->>>>>>> 9152bb1977 (【元能力】文档优化)
+
 
 
 ## 启动应用内的UIAbility并获取返回结果
