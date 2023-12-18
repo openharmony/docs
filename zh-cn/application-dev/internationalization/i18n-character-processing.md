@@ -11,7 +11,7 @@
 
 字符属性用于判断字符类别，如判断字符是否为数字、字母、空格，是否为从右到左语言的字符，是否为表意文字(主要是中文日文韩文)等。
 
-该功能通过Unicode类的[isDigit](../../reference/apis/js-apis-i18n.md#isdigit9)等接口实现，具体开发步骤如下。
+该功能通过Unicode类的[isDigit](../reference/apis/js-apis-i18n.md#isdigit9)等接口实现，具体开发步骤如下。
 
 1. 导入模块。
 
@@ -52,7 +52,7 @@ let type = I18n.Unicode.getType('a'); // type: U_LOWERCASE_LETTER
 
 ### 音译
 
-音译是指以当地语言发音相近的内容替换原本的内容。通过Transliterator类的[transform](../../reference/apis/js-apis-i18n.md#transform9)接口实现，具体开发步骤如下。
+音译是指以当地语言发音相近的内容替换原本的内容。通过Transliterator类的[transform](../reference/apis/js-apis-i18n.md#transform9)接口实现，具体开发步骤如下。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块支持中文汉字转为拼音，但对于多音字无法根据上下文语义有效处理。
@@ -90,7 +90,7 @@ let ids = I18n.Transliterator.getAvailableIDs(); ids: ['ASCII-Latin', 'Accents-A
 
 ### 字符标准化
 
-字符标准化是指按指定的范式标准化字符。通过Normalizer类的[normalize](../../reference/apis/js-apis-i18n.md#normalize10)接口实现，具体开发步骤如下。
+字符标准化是指按指定的范式标准化字符。通过Normalizer类的[normalize](../reference/apis/js-apis-i18n.md#normalize10)接口实现，具体开发步骤如下。
 
 1. 导入模块。
    ```ts
@@ -120,7 +120,7 @@ let normalizedText = normalizer.normalize('\u1E9B\u0323'); // normalizedText: \u
 
 ### 断词换行
 
-断词换行是指根据设定的区域参数获取文本中的分割点，通过[BreakIterator](../../reference/apis/js-apis-i18n.md#breakiterator8)类的接口实现，具体开发步骤如下。
+断词换行是指根据设定的区域参数获取文本中的分割点，通过[BreakIterator](../reference/apis/js-apis-i18n.md#breakiterator8)类的接口实现，具体开发步骤如下。
 
 1. 导入模块。
    ```ts
