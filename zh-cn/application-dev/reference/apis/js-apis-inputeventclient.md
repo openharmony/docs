@@ -63,6 +63,45 @@ try {
   console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+## inputEventClient.injectKeyEvent<sup>11+</sup>
+
+injectKeyEvent(keyEvent: KeyEventData): void
+
+按键(包括单个按键和组合键)事件注入。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
+
+**参数：**
+
+| 参数名       | 类型                    | 必填   | 说明        |
+| -------- | --------------------- | ---- | --------- |
+| keyEvent | [KeyEventData](#keyeventdata11) | 是    | 按键事件注入描述信息。 |
+
+**示例：**
+
+```js
+try {
+  let backKeyDown: inputEventClient.KeyEvent = {
+    isPressed: true,
+    keyCode: 2,
+    keyDownDuration: 0,
+    isIntercepted: false
+  }
+  let eventDown: inputEventClient.KeyEventData = { KeyEvent: backKeyDown }
+  inputEventClient.injectKeyEvent(eventDown);
+
+  let backKeyUp: inputEventClient.KeyEvent = {
+    isPressed: false,
+    keyCode: 2,
+    keyDownDuration: 0,
+    isIntercepted: false
+  };
+  let eventUp: inputEventClient.KeyEventData = { KeyEvent: backKeyUp }
+  inputEventClient.injectKeyEvent(eventUp);
+} catch (error) {
+  console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
 ## inputEventClient.injectMouseEvent<sup>11+</sup>
 
 injectMouseEvent(mouseEvent: MouseEventData): void;
@@ -241,6 +280,16 @@ try {
 | keyCode         | number  | 是    |  否 | 按键键码值。当前仅支持返回键/KEYCODE_BACK键。 |
 | keyDownDuration | number  | 是    |  否 | 按键按下持续时间，单位为微秒（μs）。           |
 | isIntercepted   | boolean | 是    |  否 | 按键是否可以被拦截。<br>ture表示可以被拦截，false表示不可被拦截。 |
+
+## KeyEventData<sup>11+</sup>
+
+按键注入描述信息。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
+
+| 名称        | 类型   | 必填   | 说明      |
+| --------- | ------ | ---- |  ------- |
+| keyEvent | [KeyEvent](#keyevent) | 是    | 按键注入描述信息。   |
 
 ## MouseEventData<sup>11+</sup>
 
