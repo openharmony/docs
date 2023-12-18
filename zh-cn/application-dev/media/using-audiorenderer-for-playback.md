@@ -64,6 +64,8 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 2. 调用start()方法进入running状态，开始渲染音频。
      
     ```ts
+    import { BusinessError } from '@ohos.base';
+
     audioRenderer.start((err: BusinessError) => {
       if (err) {
         console.error(`Renderer start failed, code is ${err.code}, message is ${err.message}`);
@@ -71,7 +73,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
         console.info('Renderer start success.');
       }
     });
-```
+    ```
 
 3. 指定待渲染文件地址，打开文件调用write()方法向缓冲区持续写入音频数据进行渲染播放。如果需要对音频数据进行处理以实现个性化的播放，在写入之前操作即可。
      
@@ -94,6 +96,8 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 4. 调用stop()方法停止渲染。
      
     ```ts
+    import { BusinessError } from '@ohos.base';
+
     audioRenderer.stop((err: BusinessError) => {
       if (err) {
         console.error(`Renderer stop failed, code is ${err.code}, message is ${err.message}`);
@@ -106,6 +110,8 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 5. 调用release()方法销毁实例，释放资源。
      
     ```ts
+    import { BusinessError } from '@ohos.base';
+
     audioRenderer.release((err: BusinessError) => {
       if (err) {
         console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);
@@ -134,7 +140,7 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
 }
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA, // 音频流使用类型
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型
   rendererFlags: 0 // 音频渲染器标志
 }
 let audioRendererOptions: audio.AudioRendererOptions = {

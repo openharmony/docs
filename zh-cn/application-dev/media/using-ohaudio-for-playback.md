@@ -15,8 +15,8 @@ target_link_libraries(sample PUBLIC libohaudio.so)
 开发者通过引入<[native_audiostreambuilder.h](../reference/native-apis/native__audiostreambuilder_8h.md)>和<[native_audiorenderer.h](../reference/native-apis/native__audiorenderer_8h.md)>头文件，使用音频播放相关API。
 
 ```cpp
-#include "ohaudio/native_audiorenderer.h"
-#include "ohaudio/native_audiostreambuilder.h"
+#include <ohaudio/native_audiorenderer.h>
+#include <ohaudio/native_audiostreambuilder.h>
 ```
 
 ## 音频流构造器
@@ -111,8 +111,8 @@ OH_AudioStreamBuilder_Destroy(builder);
 #include <thread>
 #include <chrono>
 #include <ctime>
-#include "ohaudio/native_audiorenderer.h"
-#include "ohaudio/native_audiostreambuilder.h"
+#include <ohaudio/native_audiorenderer.h>
+#include <ohaudio/native_audiostreambuilder.h>
 
 #ifdef __cplusplus
 extern "C" {

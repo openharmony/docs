@@ -77,8 +77,8 @@
       }
 
       try {
-        console.log("openDLPFile:" + JSON.stringify(want));
-        console.log("openDLPFile: delegator:" + JSON.stringify(this.context));
+        console.log('openDLPFile:' + JSON.stringify(want));
+        console.log('openDLPFile: delegator:' + JSON.stringify(this.context));
         this.context.startAbility(want);
       } catch (err) {
         console.error('openDLPFile startAbility failed', (err as BusinessError).code, (err as BusinessError).message);
@@ -109,7 +109,7 @@
    dlpPermission.isInSandbox().then((data)=> {
      console.log('isInSandbox, result: ' + JSON.stringify(data));
    }).catch((err:BusinessError) => {
-     console.log("isInSandbox: "  + JSON.stringify(err));
+     console.log('isInSandbox: ' + JSON.stringify(err));
    });
    ```
 
@@ -119,7 +119,7 @@
    dlpPermission.getDLPPermissionInfo().then((data)=> {
      console.log('getDLPPermissionInfo, result: ' + JSON.stringify(data));
    }).catch((err:BusinessError) => {
-     console.log("getDLPPermissionInfo: "  + JSON.stringify(err));
+     console.log('getDLPPermissionInfo: ' + JSON.stringify(err));
    });
    ```
 
@@ -127,7 +127,7 @@
 
    ```ts
    dlpPermission.getDLPSupportedFileTypes((err, result) => {
-     console.log("getDLPSupportedFileTypes: " + JSON.stringify(err));
+     console.log('getDLPSupportedFileTypes: ' + JSON.stringify(err));
      console.log('getDLPSupportedFileTypes: ' + JSON.stringify(result));
    });
    ```
@@ -176,7 +176,7 @@
 8. 获取DLP文件打开记录。
 
    ```ts
-   async func() {
+   async getDLPFileAccessRecords() {
      try {
        let res:Array<dlpPermission.AccessedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
        console.info('res', JSON.stringify(res))
@@ -188,7 +188,7 @@
 
 9. 获取DLP文件保留沙箱记录。
     ```ts
-    async func() {
+    async getRetentionSandboxList() {
      try {
        let res:Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
        console.info('res', JSON.stringify(res))
@@ -200,7 +200,7 @@
 
 10. 设置沙箱应用配置信息。
     ```ts
-    async func() {
+    async setSandboxAppConfig() {
       try {
         await dlpPermission.setSandboxAppConfig('configInfo'); // 设置沙箱应用配置信息
       } catch (err) {
@@ -211,7 +211,7 @@
 
 11. 清理沙箱应用配置信息。
     ```ts
-    async func() {
+    async cleanSandboxAppConfig() {
       try {
         await dlpPermission.cleanSandboxAppConfig(); // 清理沙箱应用配置信息
       } catch (err) {
@@ -222,7 +222,7 @@
 
 12. 查询沙箱应用配置信息。
     ```ts
-    async func() {
+    async getSandboxAppConfig() {
       try {
         let res:string = await dlpPermission.getSandboxAppConfig(); // 查询沙箱应用配置信息
         console.info('res', JSON.stringify(res))

@@ -27,9 +27,12 @@
    }
    ```
    
-3. 基于应用偏好语言，创建时间日期格式化对象，将时间日期格式化为与一致的格式。
+3. 设置应用的偏好语言。将应用偏好语言设置为目标语言后，该应用的界面会切换为目标语言。设置应用的偏好语言仅影响应用本身，不会影响系统语言设置。
    ```ts
-   let date: Date = new Date(2023, 9, 25);
-   let dateTimeFmt: Intl.DateTimeFormat = new Intl.DateTimeFormat(appPreferredLanguage);
-   let result = dateTimeFmt.format(date); // result = "2023/10/23"(具体显示效果与系统环境相关)
+    try {  
+      I18n.System.getAppPreferredLanguage(“zh-Hans“); // 设置应用偏好语言为zh-Hans
+    } catch(error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
+    }
    ```

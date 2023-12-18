@@ -173,7 +173,7 @@ try {
 
 on(type: "change", listener: Callback&lt;DeviceListener&gt;): void
 
-监听输入设备的热插拔事件。
+监听输入设备的热插拔事件，使用时需连接鼠标键盘等外部设备。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 

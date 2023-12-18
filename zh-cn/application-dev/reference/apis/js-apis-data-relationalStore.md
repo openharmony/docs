@@ -509,7 +509,7 @@ class EntryAbility extends UIAbility {
 
 ## SecurityLevel
 
-数据库的安全级别枚举。
+数据库的安全级别枚举。请使用枚举名称而非枚举值。
 
 > **说明：**
 >
@@ -649,7 +649,7 @@ class EntryAbility extends UIAbility {
 
 ## Field<sup>11+</sup>
 
-用于谓词查询条件的特殊字段。
+用于谓词查询条件的特殊字段。请使用枚举名称而非枚举值。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -739,7 +739,7 @@ class EntryAbility extends UIAbility {
 
 ## ConflictResolution<sup>10+</sup>
 
-插入和修改接口的冲突解决方式。
+插入和修改接口的冲突解决方式。请使用枚举名称而非枚举值。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 

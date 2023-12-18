@@ -15,8 +15,8 @@ target_link_libraries(sample PUBLIC libohaudio.so)
 开发者通过引入<[native_audiostreambuilder.h](../reference/native-apis/native__audiostreambuilder_8h.md)>和<[native_audiocapturer.h](../reference/native-apis/native__audiocapturer_8h.md)>头文件，使用音频录制相关API。
 
 ```cpp
-#include "ohaudio/native_audiocapturer.h"
-#include "ohaudio/native_audiostreambuilder.h"
+#include <ohaudio/native_audiocapturer.h>
+#include <ohaudio/native_audiostreambuilder.h>
 ```
 ## 音频流构造器
 
@@ -107,8 +107,8 @@ OH_AudioStreamBuilder_Destroy(builder);
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
-#include "ohaudio/native_audiocapturer.h"
-#include "ohaudio/native_audiostreambuilder.h"
+#include <ohaudio/native_audiocapturer.h>
+#include <ohaudio/native_audiostreambuilder.h>
 #include <thread>
 #include <chrono>
 
