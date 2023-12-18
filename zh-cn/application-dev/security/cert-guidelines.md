@@ -730,6 +730,7 @@ function sampleCrlEntry(): void {
 
 ```ts
 import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -756,11 +757,12 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
   };
-  let x509CRL: certFramework.X509CRL = null;
+  let x509CRL: certFramework.X509CRL = {} as certFramework.X509CRL;
   try {
     x509CRL = await certFramework.createX509CRL(encodingBlob);
   } catch (err) {
-    console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509CRL;
 }
@@ -782,11 +784,12 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
   };
 
-  let x509Cert: certFramework.X509Cert = null;
+  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
   try {
     x509Cert = await certFramework.createX509Cert(encodingBlob);
   } catch (err) {
-    console.error('createX509Cert failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509Cert;
 }
@@ -794,7 +797,7 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
 async function sample() {
   const x509Cert = await createX509Cert();
   const x509CRL = await createX509CRL();
-  let collection: certFramework.CertCRLCollection = null;
+  let collection: certFramework.CertCRLCollection = {} as certFramework.CertCRLCollection;
   try {
     collection = certFramework.createCertCRLCollection([x509Cert], [x509CRL]);
     console.log('createCertCRLCollection success');

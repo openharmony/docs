@@ -127,35 +127,35 @@ buffer数组的列表。
 
 ## X509CertMatchParameters<sup>11+</sup>
 
-匹配证书的参数。
+匹配证书的参数。如果参数中任一项都未指定，则匹配所有证书。
 
 ### 属性
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 可读 | 可写 | 说明               |
-| -------------- | --------------------------------- | ---- | ---- | ------------------ |
-| x509Cert | [X509Cert](#x509cert)    | 是   | 是   |  指定具体的证书作为过滤条件  |
-| validDate | string    | 是   | 是   |  指定证书有效期必须在给定的参数范围内  |
-| issuer | Uint8Array | 是   | 是   | 指定issuer作为过滤条件，der编码格式 |
-| keyUsage | Array\<boolean> | 是   | 是   | 如果该值设置为null，则不进行校验；如果证书不包含KeyUsage扩展字段，则表示运行任何的KeyUsage |
-| serialNumber | bigint    | 是   | 是   |  指定证书的序列化作为过滤条件  |
-| subject | Uint8Array | 是   | 是   | 指定subject作为过滤条件，der编码格式 |
-| publicKey | [DataBlob](#datablob) | 是   | 是   | 指定证书公钥作为过滤条件 |
-| publicKeyAlgID | string | 是   | 是   | 指定证书公钥的算法作为过滤条件 |
+| 名称           | 类型                              | 必填 | 说明               |
+| -------------- | --------------------------------- | ---- | ------------------ |
+| x509Cert? | [X509Cert](#x509cert)    | 否 |  指定具体的证书对象作为过滤条件。  |
+| validDate? | string    | 否  |  指定证书有效期作为过滤条件。  |
+| issuer? | Uint8Array | 否  | 指定证书颁发者作为过滤条件，为DER编码格式。 |
+| keyUsage? | Array\<boolean> | 否  | 指定密钥用途作为过滤条件。 |
+| serialNumber? | bigint    | 否  |  指定证书的序列号作为过滤条件。  |
+| subject? | Uint8Array | 否  | 指定证书主题作为过滤条件，DER编码格式。 |
+| publicKey? | [DataBlob](#datablob) | 否  | 指定证书公钥作为过滤条件，DER编码格式。 |
+| publicKeyAlgID? | string | 否  | 指定证书公钥的算法作为过滤条件。 |
 
 ## X509CRLMatchParameters<sup>11+</sup>
 
-匹配证书吊销列表的参数。
+匹配证书吊销列表的参数。如果参数中任一项都未指定，则匹配所有证书吊销列表。
 
 ### 属性
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 可读 | 可写 | 说明               |
-| -------------- | --------------------------------- | ---- | ---- | ------------------ |
-| issuer | Array\<Uint8Array> | 是   | 是   | 指定签发者作为过滤条件, 至少要匹配到其中一个issuer  |
-| x509Cert | [X509Cert](#x509cert)        | 是   | 是   | 指定具体的证书作为过滤条件, 判断该证书是否在CRL列表里  |
+| 名称           | 类型                              | 必填 | 说明               |
+| -------------- | --------------------------------- | ---- | ------------------ |
+| issuer? | Array\<Uint8Array> | 否  | 指定颁发者作为过滤条件, 至少要匹配到其中一个issuer。 |
+| x509Cert? | [X509Cert](#x509cert)        | 否  | 指定具体的证书对象作为过滤条件, 判断该证书是否在CRL列表中。 |
 
 
 ## cryptoCert.createX509Cert
@@ -1902,7 +1902,7 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 
 match(param: X509CertMatchParameters): boolean
 
-表示检查X509证书, 判断是否与输入参数匹配。
+判断证书是否与输入参数匹配。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1910,13 +1910,13 @@ match(param: X509CertMatchParameters): boolean
 
 | 参数名    | 类型   | 必填 | 说明                                       |
 | --------- | ------ | ---- | ------------------------------------------ |
-| param | [X509CertMatchParameters](#x509certmatchparameters11) | 是   | 表示X50Cert需校验参数对象 |
+| param | [X509CertMatchParameters](#x509certmatchparameters11) | 是   | 表示需要匹配的参数。 |
 
 **返回值**：
 
 | 类型                  | 说明                                      |
 | --------------------- | ----------------------------------------- |
-| boolean | 当参数匹配时，该方法返回true；否则返回false |
+| boolean | 当参数匹配时，该方法返回true；否则返回false。 |
 
 **错误码：**
 
@@ -1931,6 +1931,7 @@ match(param: X509CertMatchParameters): boolean
 
 ```ts
 import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1958,12 +1959,12 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
   };
 
-  let x509Cert: certFramework.X509Cert = null;
+  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
   try {
     x509Cert = await certFramework.createX509Cert(encodingBlob);
-  }
-  catch (err) {
-    console.error('createX509Cert failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509Cert;
 }
@@ -1986,13 +1987,10 @@ async function matchX509Cert() {
     };
     const result = x509Cert.match(param);
     console.log('call x509Cert match success');
-  }
-  catch (err) {
+  } catch (err) {
     console.error('call x509Cert match failed');
   }
 }
-
-matchX509Cert();
 ```
 ## cryptoCert.createCertExtension<sup>10+</sup>
 
@@ -5771,7 +5769,7 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 
 match(param: X509CRLMatchParameters): boolean
 
-表示检查X509CRL, 判断是否与输入参数匹配。
+判断证书吊销列表是否与输入参数匹配。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5779,13 +5777,13 @@ match(param: X509CRLMatchParameters): boolean
 
 | 参数名    | 类型   | 必填 | 说明                                       |
 | --------- | ------ | ---- | ------------------------------------------ |
-| param | [X509CRLMatchParameters](#x509crlmatchparameters11)| 是   | 表示X509CRL需校验参数对象 |
+| param | [X509CRLMatchParameters](#x509crlmatchparameters11)| 是   | 表示需要匹配的参数。 |
 
 **返回值**：
 
 | 类型                  | 说明                                      |
 | --------------------- | ----------------------------------------- |
-| boolean | 当参数匹配时，该方法返回true；否则返回false |
+| boolean | 当参数匹配时，该方法返回true；否则返回false。 |
 
 **错误码：**
 
@@ -5851,12 +5849,11 @@ const certEncodingBlob: certFramework.EncodingBlob = {
 };
 
 async function crlMatch() {
-  let x509Cert: certFramework.X509Cert = null;
+  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
   try {
     x509Cert = await certFramework.createX509Cert(certEncodingBlob);
     console.log('createX509Cert success');
-  }
-  catch (err) {
+  } catch (err) {
     console.error('createX509Cert failed');
   }
 
@@ -7006,7 +7003,7 @@ certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
 
 createCertCRLCollection(certs: Array\<X509Cert>, crls?: Array\<X509CRL>): CertCRLCollection
 
-表示创建CertCRLCollection的对象，并返回相应的结果。
+表示创建证书和证书吊销列表集合对象，并返回相应的结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7014,14 +7011,14 @@ createCertCRLCollection(certs: Array\<X509Cert>, crls?: Array\<X509CRL>): CertCR
 
 | 参数名   | 类型                                  | 必填 | 说明                           |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
-| certs | Array\<[X509Cert](#x509cert)>    | 是   |  X509Cert数组   |
-| crls | Array\<[X509CRL](#x509crl11)>     | 否   |  X509CRL数组   |
+| certs | Array\<[X509Cert](#x509cert)>    | 是   |  X509Cert数组。  |
+| crls | Array\<[X509CRL](#x509crl11)>     | 否   |  X509CRL数组。  |
 
 **返回值**：
 
 | 类型               | 说明                 |
 | ------------------ | -------------------- |
-| CertCRLCollection | 表示CertCRLCollection对象 |
+| CertCRLCollection | 表示证书和证书吊销列表集合对象。 |
 
 **错误码：**
 
@@ -7062,11 +7059,12 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
   };
-  let x509CRL: certFramework.X509CRL = null;
+  let x509CRL: certFramework.X509CRL = {} as certFramework.X509CRL;
   try {
     x509CRL = await certFramework.createX509CRL(encodingBlob);
   } catch (err) {
-    console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509CRL;
 }
@@ -7088,11 +7086,12 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
   };
 
-  let x509Cert: certFramework.X509Cert = null;
+  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
   try {
     x509Cert = await certFramework.createX509Cert(encodingBlob);
   } catch (err) {
-    console.error('createX509Cert failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509Cert;
 }
@@ -7111,17 +7110,13 @@ async function createCollection() {
 
 ## CertCRLCollection<sup>11+</sup>
 
-CertCRL集合对象。
-
-### 属性
-
-**系统能力：** SystemCapability.Security.Cert
+证书和证书吊销列表集合对象。
 
 ### selectCerts<sup>11+</sup>
 
 selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>>
 
-查找所有与X509CertMatchParameters匹配的Array＜X509Cert＞, 使用Promise方式异步返回结果。
+查找证书和证书吊销列表集合中所有与参数匹配的证书对象，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7129,13 +7124,13 @@ selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>>
 
 | 参数名    | 类型                            | 必填 | 说明      |
 | --------- | ------------------------------- | ---- | ------------ |
-| param | [X509CertMatchParameters](#x509certmatchparameters11) | 是   | 表示X509证书需匹配的参数对象   |
+| param | [X509CertMatchParameters](#x509certmatchparameters11) | 是   | 表示证书需匹配的参数。  |
 
 **返回值**：
 
-| 类型           | 说明        |
-| -------------- | ----------- |
-| Promise\<Array\<[X509Cert](#x509cert)>> | Promise对象 |
+| 类型                                    | 说明          |
+| --------------------------------------- | ------------- |
+| Promise\<Array\<[X509Cert](#x509cert)>> | Promise对象。 |
 
 **错误码：**
 
@@ -7150,6 +7145,7 @@ selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>>
 
 ```ts
 import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -7177,11 +7173,12 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
   };
 
-  let x509Cert: certFramework.X509Cert = null;
+  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
   try {
     x509Cert = await certFramework.createX509Cert(encodingBlob);
   } catch (err) {
-    console.error('createX509Cert failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509Cert;
 }
@@ -7215,7 +7212,7 @@ async function selectCerts() {
 
 selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509Cert>>): void
 
-查找所有与X509CertMatchParameters匹配的Array＜X509Cert＞, 使用Callback回调异步返回结果。
+查找证书和证书吊销列表集合中所有与参数匹配的证书对象, 使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7223,7 +7220,7 @@ selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509
 
 | 参数名    | 类型                            | 必填 | 说明            |
 | --------- | ------------------------------- | ---- | ----------------- |
-| param | [X509CertMatchParameters](#x509certmatchparameters11) | 是   | 表示X509证书需匹配的参数对象     |
+| param | [X509CertMatchParameters](#x509certmatchparameters11) | 是   | 表示证书需匹配的参数。   |
 | callback  | AsyncCallback\<Array\<[X509Cert](#x509cert)>>    | 是   | 回调函数。|
 
 **错误码：**
@@ -7239,6 +7236,7 @@ selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509
 
 ```ts
 import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -7266,11 +7264,12 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
   };
 
-  let x509Cert: certFramework.X509Cert = null;
+  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
   try {
     x509Cert = await certFramework.createX509Cert(encodingBlob);
   } catch (err) {
-    console.error('createX509Cert failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509Cert;
 }
@@ -7305,7 +7304,7 @@ async function selectCerts() {
 
 selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 
-查找所有与X509CRLMatchParameters匹配的Array＜X509CRL＞, 使用Promise方式异步返回结果。
+查找证书和证书吊销列表集合中所有与参数匹配的证书吊销列表对象, 使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7313,13 +7312,13 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 
 | 参数名    | 类型                            | 必填 | 说明      |
 | --------- | ------------------------------- | ---- | ------------ |
-| param | [X509CRLMatchParameters](#x509crlmatchparameters11) | 是   | 表示X509证书吊销列表需匹配的参数对象   |
+| param | [X509CRLMatchParameters](#x509crlmatchparameters11) | 是   | 表示证书吊销列表需匹配的参数。   |
 
 **返回值**：
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| Promise\<Array\<[X509CRL](#x509crl)>> | Promise对象 |
+| Promise\<Array\<[X509CRL](#x509crl)>> | Promise对象。 |
 
 **错误码：**
 
@@ -7334,6 +7333,7 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 
 ```ts
 import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -7360,11 +7360,12 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
   };
-  let x509CRL: certFramework.X509CRL = null;
+  let x509CRL: certFramework.X509CRL = {} as certFramework.X509CRL;
   try {
     x509CRL = await certFramework.createX509CRL(encodingBlob);
   } catch (err) {
-    console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509CRL;
 }
@@ -7393,7 +7394,7 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     encodingFormat: certFramework.EncodingFormat.FORMAT_PEM,
   };
 
-  let x509Cert: certFramework.X509Cert = null;
+  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
   try {
     x509Cert = await certFramework.createX509Cert(certEncodingBlob);
     console.log('createX509Cert success');
@@ -7406,7 +7407,7 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
 async function selectCRLs() {
   const x509CRL = await createX509CRL();
   const x509Cert = await createX509Cert();
-  const collection = certFramework.createCertCRLCollection(null, [x509CRL]);
+  const collection = certFramework.createCertCRLCollection([], [x509CRL]);
 
   const param: certFramework.X509CRLMatchParameters = {
     issuer: [new Uint8Array([0x30, 0x58, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x06, 0x13, 0x02, 0x43, 0x4E, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x08, 0x13, 0x07, 0x4A, 0x69, 0x61, 0x6E, 0x67, 0x73, 0x75, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x07, 0x13, 0x07, 0x4E, 0x61, 0x6E, 0x6A, 0x69, 0x6E, 0x67, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0A, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0B, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x03, 0x13, 0x02, 0x74, 0x73])],
@@ -7425,7 +7426,7 @@ async function selectCRLs() {
 
 selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CRL>>): void
 
-查找所有与X509CRLMatchParameters匹配的Array＜X509CRL＞, 使用Callback回调异步返回结果。
+查找证书和证书吊销列表集合中所有与参数匹配的证书吊销列表对象, 使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7433,7 +7434,7 @@ selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CR
 
 | 参数名    | 类型                            | 必填 | 说明            |
 | --------- | ------------------------------- | ---- | ----------------- |
-| param | [X509CRLMatchParameters](#x509crlmatchparameters11) | 是   | 表示X509证书需匹配的参数对象     |
+| param | [X509CRLMatchParameters](#x509crlmatchparameters11) | 是   | 表示证书吊销列表需匹配的参数对象。 |
 | callback  | AsyncCallback\<Array\<[X509CRL](#x509crl)>>    | 是   | 回调函数。|
 
 **错误码：**
@@ -7449,6 +7450,7 @@ selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CR
 
 ```ts
 import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -7475,11 +7477,12 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
     encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
   };
-  let x509CRL: certFramework.X509CRL = null;
+  let x509CRL: certFramework.X509CRL = {} as certFramework.X509CRL;
   try {
     x509CRL = await certFramework.createX509CRL(encodingBlob);
   } catch (err) {
-    console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509CRL;
 }
@@ -7508,7 +7511,7 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     encodingFormat: certFramework.EncodingFormat.FORMAT_PEM,
   };
 
-  let x509Cert: certFramework.X509Cert = null;
+  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
   try {
     x509Cert = await certFramework.createX509Cert(certEncodingBlob);
     console.log('createX509Cert success');
@@ -7521,7 +7524,7 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
 async function selectCRLs() {
   const x509CRL = await createX509CRL();
   const x509Cert = await createX509Cert();
-  const collection = certFramework.createCertCRLCollection(null, [x509CRL]);
+  const collection = certFramework.createCertCRLCollection([], [x509CRL]);
 
   const param: certFramework.X509CRLMatchParameters = {
     issuer: [new Uint8Array([0x30, 0x58, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x06, 0x13, 0x02, 0x43, 0x4E, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x08, 0x13, 0x07, 0x4A, 0x69, 0x61, 0x6E, 0x67, 0x73, 0x75, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x07, 0x13, 0x07, 0x4E, 0x61, 0x6E, 0x6A, 0x69, 0x6E, 0x67, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0A, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0B, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x03, 0x13, 0x02, 0x74, 0x73])],
