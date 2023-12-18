@@ -24,7 +24,7 @@
    } catch(error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.getAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
-   }
+   } 
    ```
 
 3. 设置应用界面数字。
