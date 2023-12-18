@@ -2348,7 +2348,7 @@ static getType(char: string): string
 
 ### unitConvert<sup>9+</sup>
 
-static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
+unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
 
 将fromUnit的单位转换为toUnit的单位，并根据区域与风格进行格式化。
 
