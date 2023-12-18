@@ -1312,7 +1312,7 @@ getPluralStringValueSync(resId: number, num: number): string
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1360,7 +1360,7 @@ getPluralStringValueSync(resource: Resource, num: number): string
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1416,7 +1416,7 @@ getPluralStringByNameSync(resName: string, num: number): string
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1464,7 +1464,7 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1513,7 +1513,7 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1565,7 +1565,7 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1622,7 +1622,7 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1680,6 +1680,10 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 
 根据传入的数量值，获取资源名称对应的字符串资源，使用callback形式返回字符串。
 
+**说明**
+>
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1724,6 +1728,10 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 
 根据传入的数量值，获取资源名称对应的字符串资源，使用Promise形式返回字符串。
+
+**说明**
+>
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -5354,7 +5362,7 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue9)代替。
 
@@ -5395,7 +5403,7 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue9-1)代替。
 
