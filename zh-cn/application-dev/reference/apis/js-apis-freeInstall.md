@@ -1,6 +1,6 @@
 # @ohos.bundle.freeInstall (freeInstall模块)
 
-本模块提供免安装相关的设置和查询能力，支持BundlePackInfo、DispatchInfo等信息的查询
+本模块提供免安装相关的设置和查询能力，支持BundlePackInfo、DispatchInfo等信息的查询。
 
 > **说明：**
 >

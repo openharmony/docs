@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 ```
 
@@ -18,7 +18,7 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 | --------------------------------------- | ----------- | ---------------- |
 | ohos.permission.GET_DEFAULT_APPLICATION | system_core | 默认应用相关权限。 |
 
-权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)
+权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
 
 
 ## defaultAppMgr.ApplicationType

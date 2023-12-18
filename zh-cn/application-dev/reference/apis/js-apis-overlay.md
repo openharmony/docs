@@ -9,7 +9,7 @@
 ## 导入模块
 
 ``` ts
-import overlay from '@ohos.bundle.overlay'
+import overlay from '@ohos.bundle.overlay';
 ```
 
 ## overlay.setOverlayEnabled
@@ -246,7 +246,7 @@ getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>;
 
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
-| Promise\<OverlayModuleInfo> | Promise对象，返回OverlayModuleInfo|
+| Promise\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)> | Promise对象，返回[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)。|
 
 **错误码：**
 
@@ -290,7 +290,7 @@ getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleI
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | moduleName | string | 是    | 指定当前应用中的overlay特征module的HAP名称。     |
-| callback    | AsyncCallback\<OverlayModuleInfo> | 是    | 回调函数，当获取当前应用中指定的module的overlayModuleInfo信息成功时，err返回null。否则回调函数返回具体错误对象。                   |
+| callback    | AsyncCallback\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)> | 是    | 回调函数，当获取当前应用中指定的module的[overlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息成功时，err返回null。否则回调函数返回具体错误对象。                   |
 
 **错误码：**
 
@@ -339,9 +339,9 @@ getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayMo
 
 **返回值：**
 
-| 类型                        | 说明                 |
-| ------------------------- | ------------------ |
-| Promise\<Array\<OverlayModuleInfo>> | Promise对象，返回\<Array\<OverlayModuleInfo>> |
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Promise\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Promise对象，返回\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>>。 |
 
 **错误码：**
 
@@ -384,7 +384,7 @@ getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<A
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetModuleName | string | 是    | 指定当前应用中的目标module的HAP名称。     |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | 是    | 回调函数，当获取指定的目标module的OverlayModuleInfo成功时，err返回null。否则回调函数返回具体错误对象。                   |
+| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | 是    | 回调函数，当获取指定的目标module的[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)成功时，err返回null。否则回调函数返回具体错误对象。  |
 
 **错误码：**
 
@@ -437,9 +437,9 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promi
 
 **返回值：**
 
-| 类型                        | 说明                 |
-| ------------------------- | ------------------ |
-| Promise\<Array\<OverlayModuleInfo>> | Promise对象，返回\<Array\<OverlayModuleInfo> |
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Promise\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Promise对象，返回\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>>。 |
 
 **错误码：**
 
@@ -490,7 +490,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callbac
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | 是    | 指定应用的bundle名称。                    |
 | moduleName | string | 是    | 指定应用中的overlay module的HAP名称。缺省该字段时，查询接口将查询指定应用中所有module的OverlayModuleInfo信息。     |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | 是    | 回调函数，当获取指定应用中指定module的OverlayModuleInfo信息成功时，err返回null。否则回调函数返回具体错误对象。                   |
+| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | 是    | 回调函数，当获取指定应用中指定module的[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息成功时，err返回null。否则回调函数返回具体错误对象。    |
 
 **错误码：**
 
@@ -543,7 +543,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, callback: AsyncCallback\<Ar
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | 是    | 指定应用的bundle名称。                    |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | 是    | 回调函数，当获取指定应用中所有module的OverlayModuleInfo信息成功时，err返回null。否则回调函数返回具体错误对象。                   |
+| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | 是    | 回调函数，当获取指定应用中所有module的[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息成功时，err返回null。否则回调函数返回具体错误对象。                   |
 
 **错误码：**
 
@@ -599,7 +599,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: s
 
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
-| Promise\<Array\<OverlayModuleInfo>> | Promise对象，返回\<Array\<OverlayModuleInfo>> |
+| Promise\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | Promise对象，返回\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>>。 |
 
 **错误码：**
 
@@ -650,7 +650,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: st
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | 是    | 指定目标应用的bundle名称。                    |
 | moduleName | string | 是    | 指定应用中的目标module的HAP名称。缺省该字段时，查询接口将查询指定应用中所有module所关联的OverlayModuleInfo信息。     |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | 是    | 回调函数，当获取指定应用中指定module关联的所有OverlayModuleInfo信息成功时，err返回null。否则回调函数返回具体错误对象。                   |
+| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | 是    | 回调函数，当获取指定应用中指定module关联的所有[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息成功时，err返回null。否则回调函数返回具体错误对象。                   |
 
 **错误码：**
 
@@ -703,7 +703,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: Asyn
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | 是    | 指定目标应用的bundle名称。                    |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | 是    | 回调函数，当获取指定应用中所有module关联的所有OverlayModuleInfo信息成功时，err返回null。否则回调函数返回具体错误对象。                   |
+| callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | 是    | 回调函数，当获取指定应用中所有module关联的所有[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息成功时，err返回null。否则回调函数返回具体错误对象。                   |
 
 **错误码：**
 

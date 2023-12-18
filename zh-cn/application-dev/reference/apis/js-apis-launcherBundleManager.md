@@ -21,7 +21,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
@@ -31,12 +31,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用Bundle名称。 |
 | userId     | number | 是   | 被查询的用户id。|
-
-**返回值：**
-
-| 类型                                | 说明                                                |
-| ----------------------------------- | --------------------------------------------------- |
-| AsyncCallback\<Array<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>> | callback形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)信息。 |
+| callback | AsyncCallback\<Array<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>> | 是 | callback形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)信息。 |
 
 **错误码：**
 
@@ -77,7 +72,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[Lau
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
@@ -131,7 +126,7 @@ getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[Launche
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
@@ -181,7 +176,7 @@ getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback<Array\<[Launch
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
@@ -190,12 +185,7 @@ getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback<Array\<[Launch
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | -------------- |
 | userId | number | 是   | 被查询的用户id。 |
-
-**返回值：**
-
-| 类型                                | 说明                                                    |
-| ----------------------------------- | ------------------------------------------------------- |
-| AsyncCallback\<Array<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>> | callback形式返回指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。 |
+| callback | AsyncCallback\<Array<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>> | 是 | callback形式返回指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。 |
 
 **错误码：**
 
@@ -234,7 +224,7 @@ getAllLauncherAbilityInfo(userId: number) : Promise<Array\<[LauncherAbilityInfo]
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
@@ -286,19 +276,16 @@ getShortcutInfo(bundleName :string, callback: AsyncCallback<Array\<[ShortcutInfo
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+**参数：**
 
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用Bundle名称。 |
-
-**返回值：**
-
-| 类型                                                         | 说明                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| AsyncCallback\<Array<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>> | callback形式返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。 |
+| callback | AsyncCallback\<Array<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>> | 是 | callback形式返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。 |
 
 **错误码：**
 
@@ -338,9 +325,11 @@ getShortcutInfo(bundleName : string) : Promise<Array\<[ShortcutInfo](js-apis-bun
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+**参数：**
 
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
@@ -388,9 +377,11 @@ getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleM
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+**参数：**
 
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
