@@ -6,7 +6,7 @@
 
 ## 开发步骤
 
-多语言列表按照本地习惯进行排序，通过[Collator](../../reference/apis/js-apis-intl.md#collator8)类的[compare](../../reference/apis/js-apis-intl.md#compare8)接口实现，具体开发步骤如下。
+多语言列表按照本地习惯进行排序，通过[Collator](../reference/apis/js-apis-intl.md#collator8)类的[compare](../reference/apis/js-apis-intl.md#compare8)接口实现，具体开发步骤如下。
 
 1. 导入模块。
    ```ts
