@@ -2402,7 +2402,7 @@ struct WebComponent {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
@@ -2479,7 +2479,7 @@ window.addEventListener('message', function (event) {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
@@ -4903,8 +4903,8 @@ static postUrl(url: string, postData: ArrayBuffer): void
 
 | 参数名  | 类型             | 必填 | 说明                  |
 | ------- | ---------------- | ---- | :-------------------- |
-| url     | string \| Resource | 是   | 需要加载的 URL。      |
-| postData | ArrayBuffer | 否   | 使用"POST"方法传递数据。 该请求必须采用"application/x-www-form-urlencoded"编码。|
+| url     | string | 是   | 需要加载的 URL。      |
+| postData | ArrayBuffer | 是   | 使用"POST"方法传递数据。 该请求必须采用"application/x-www-form-urlencoded"编码。|
 
 **错误码：**
 
