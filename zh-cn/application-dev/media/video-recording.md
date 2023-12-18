@@ -16,7 +16,7 @@
 
 > **说明：**
 > 
-> AVRecorder只负责视频数据的处理，需要与视频数据采集模块配合才能完成视频录制。视频数据采集模块需要通过Surface将视频数据传递给AVRecorder进行数据处理。当前常用的数据采集模块为相机模块，相机模块目前仅对系统应用开放，具体请参考[相机模块](../reference/apis/js-apis-camera.md)。
+> AVRecorder只负责视频数据的处理，需要与视频数据采集模块配合才能完成视频录制。视频数据采集模块需要通过Surface将视频数据传递给AVRecorder进行数据处理。当前常用的数据采集模块为相机模块，具体请参考[相机-录像](camera-recording.md)。
 
 AVRecorder详细的API说明请参考[AVRecorder API参考](../reference/apis/js-apis-media.md#avrecorder9)。
 
