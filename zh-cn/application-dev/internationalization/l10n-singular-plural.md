@@ -24,15 +24,15 @@
 
 - two：2
 
-- few：3~10、103~110，1003...
+- few：3 ~ 10、103 ~ 110，1003...
 
-- many：11~26、11，1011...
+- many：11 ~ 26、11，1011...
 
-- other：100~102、200~202、1000、10000...
+- other：100 ~ 102、200 ~ 202、1000、10000...
 
 ## 开发步骤
 
-接口具体使用方法请参考[getPluralStringValueSync](../../reference/apis/js-apis-resource-manager.md#getpluralstringvaluesync10)的API接口文档。
+接口具体使用方法请参考[getPluralStringValueSync](../reference/apis/js-apis-resource-manager.md#getpluralstringvaluesync10)的API接口文档。
 
 ```ts
 import { BusinessError } from '@ohos.base'; 
