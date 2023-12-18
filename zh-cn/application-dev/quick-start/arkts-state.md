@@ -29,7 +29,7 @@
 | ------------------ | ------------------------------------------------------------ |
 | 装饰器参数         | 无                                                           |
 | 同步类型           | 不与父组件中任何类型的变量同步。                             |
-| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持undefined和null类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@State a : string \| undefined = undefiend`是推荐的，不推荐`@State a: string = undefined`。
+| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date、Map、Set类型。<br/>支持undefined和null类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@State a : string \| undefined = undefiend`是推荐的，不推荐`@State a: string = undefined`。
 <br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。 <br/>类型必须被指定。<br/>不支持any。|
 | 被装饰变量的初始值 | 必须本地初始化。                                               |
 
@@ -200,6 +200,10 @@
   }
   ```
 
+- 当装饰的变量是Map时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
+
+- 当装饰的变量是Set时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
+
 ### 框架行为
 
 - 当状态变量被改变时，查询依赖该状态变量的组件；
@@ -314,6 +318,85 @@ struct MyComponent {
    let obj = new C1(1, 2)
    MyComponent(obj)
    ```
+
+
+### 装饰Map类型变量
+
+\@State支持Map类型，在下面的示例中，message类型为Map<number, string>，点击Button改变message的值，视图会随之刷新。
+
+```ts
+@Entry
+@Component
+struct MapSample {
+  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+          Text(`${item[0]}`).fontSize(30)
+          Text(`${item[1]}`).fontSize(30)
+          Divider()
+        })
+        Button('init map').onClick(() =>{
+          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]])
+        })
+        Button('set new one').onClick(() =>{
+          this.message.set(4, "d")
+        })
+        Button('clear').onClick(() =>{
+          this.message.clear()
+        })
+        Button('replace the first one').onClick(() =>{
+          this.message.set(0, "aa")
+        })
+        Button('delete the first one').onClick(() =>{
+          this.message.delete(0)
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### 装饰Set类型变量
+
+\@State支持Set类型，在下面的示例中，message类型为Set<number>，点击Button改变message的值，视图会随之刷新。
+
+```ts
+@Entry
+@Component
+struct SetSample {
+  @State message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+          Text(`${item[0]}`).fontSize(30)
+          Divider()
+        })
+        Button('init set').onClick(() =>{
+          this.message = new Set([0, 1, 2 ,3,4 ])
+        })
+        Button('set new one').onClick(() =>{
+          this.message.add(5)
+        })
+        Button('clear').onClick(() =>{
+          this.message.clear()
+        })
+        Button('delete the first one').onClick(() =>{
+          this.message.delete(0)
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
 
 ## State支持联合类型实例
 
