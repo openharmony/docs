@@ -228,7 +228,16 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 
 addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): number
 
-添加builder内容。不支持通过[getSpans](#getspans)等方法获取。
+> **说明：**
+>
+> - RichEditor组件添加占位Span，占位Span调用系统的measure方法计算真实的长宽和位置。
+> - 可通过[RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11)设置此builder在RichEditor中的index（一个文字为一个单位）。
+> - 此占位Span不可获焦，支持部分通用属性，占位、删除等能力等同于ImageSpan，长度视为一个文字。
+> - 对此builder节点进行复制或粘贴不生效。
+> - builder的布局约束由RichEditor传下来，如果builder里最外层组件不设置大小，则会用RichEditor的大小作为maxSize。
+> - builder的手势相关事件机制与通用手势事件相同，如果builder中未设置透传，则仅有builder中的子组件响应。
+
+通用属性仅支持[size](ts-universal-attributes-size.md#属性)、[padding](ts-universal-attributes-size.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[aspectRatio](ts-universal-attributes-layout-constraints.md#属性)、[borderStyle](ts-universal-attributes-border.md#属性)、[borderWidth](ts-universal-attributes-border.md#属性)、[borderColor](ts-universal-attributes-border.md#属性)、[borderRadius](ts-universal-attributes-border.md#属性)、[backgroundColor](ts-universal-attributes-attribute-modifier.md#属性)、[backgroundBlurStyle](ts-universal-attributes-background.md#属性)、[opacity](ts-universal-attributes-opacity.md#属性)、[blur](ts-universal-attributes-image-effect.md#属性)、[backdropBlur](ts-universal-attributes-image-effect.md#属性)、[shadow](ts-universal-attributes-image-effect.md#属性)、[grayscale](ts-universal-attributes-image-effect.md#属性)、[brightness](ts-universal-attributes-image-effect.md#属性)、[saturate](ts-universal-attributes-image-effect.md#属性)、[contrast](ts-universal-attributes-image-effect.md#属性)、[invert](ts-universal-attributes-image-effect.md#属性)、[sepia](ts-universal-attributes-image-effect.md#属性)、[hueRotate](ts-universal-attributes-image-effect.md#属性)、[colorBlend](ts-universal-attributes-image-effect.md#属性)、[sphericalEffect](ts-universal-attributes-image-effect.md#属性)、[lightUpEffect](ts-universal-attributes-image-effect.md#属性)、[pixelStretchEffect](ts-universal-attributes-image-effect.md#属性)、[linearGradientBlur](ts-universal-attributes-image-effect.md#属性)、[clip](ts-universal-attributes-sharp-clipping.md#属性)、[mask](ts-universal-attributes-sharp-clipping.md#属性)、[foregroundBlurStyle](ts-universal-attributes-foreground-blur-style.md#属性)、[accessibilityGroup](ts-universal-attributes-accessibility.md#属性)、[accessibilityText](ts-universal-attributes-accessibility.md#属性)、[accessibilityDescription](ts-universal-attributes-accessibility.md#属性)、[accessibilityLevel](ts-universal-attributes-accessibility.md#属性)。
 
 **参数：**
 
