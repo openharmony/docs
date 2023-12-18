@@ -115,8 +115,8 @@ setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void
 
 | 参数名         | 类型                         | 必填   | 说明                                       |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
-| shieldMode       | number                     | 是    | 屏蔽类型，目前仅支持'FACTORY_MODE'。                       |
-| isShield | boolean  | 是    | 屏蔽类型生效状态，true代表屏蔽类型生效，flase屏蔽类型生效。              |
+| shieldMode       | ShieldMode                     | 是    | 屏蔽类型，目前仅支持'FACTORY_MODE'。                       |
+| isShield | boolean  | 是    | 屏蔽类型生效状态，true代表屏蔽类型生效，flase代表不生效。              |
 
 **示例：** 
 
@@ -132,9 +132,9 @@ try {
 
 ## inputConsumer.getShieldStatus<sup>11+</sup>
 
-getShieldStatus(shieldMode: ShieldMode): boolean;
+getShieldStatus(shieldMode: ShieldMode): boolean
 
-获取组合按键屏蔽是否生效
+获取组合按键屏蔽是否生效。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -142,7 +142,13 @@ getShieldStatus(shieldMode: ShieldMode): boolean;
 
 | 参数名         | 类型                         | 必填   | 说明                                       |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
-| shieldMode       | number                     | 是    | 屏蔽类型，目前仅支持'FACTORY_MODE'。                       |
+| shieldMode       | ShieldMode                    | 是    | 屏蔽类型，目前仅支持'FACTORY_MODE'。                       |
+
+**返回值：** 
+
+| 参数         |  说明                                       |
+| ---------- |  ---------------------------------------- |
+| boolean                    | 屏蔽类型生效状态，true代表屏蔽类型生效，flase代表不生效。                       |
 
 **示例：** 
 
@@ -170,11 +176,11 @@ let shieldstatusResult:Boolean =  inputConsumer.getShieldStatus(FACTORY_MODE: Sh
 
 ## shieldMode<sup>11+</sup>
 
-屏蔽状态类型。
+屏蔽类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
 | 屏蔽类型                          | 值    | 描述             |
 | ------------------------------ | ----------- | ---------------- |
-| FACTORY_MODE | 0 | 屏蔽快捷键，工厂模式，屏蔽所有快捷键 |
+| FACTORY_MODE | 0 | 屏蔽类型，屏蔽所有快捷键 |
 
