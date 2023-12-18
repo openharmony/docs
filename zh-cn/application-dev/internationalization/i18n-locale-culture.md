@@ -49,7 +49,7 @@
 
 ## 开发步骤
 
-以时间日期格式化为例，[DateTimeFormat](../../reference/apis/js-apis-intl.md#datetimeformat)类的详细说明请参考API文档。
+以时间日期格式化为例，[DateTimeFormat](../reference/apis/js-apis-intl.md#datetimeformat)类的详细说明请参考API文档。
 
 1. 导入模块。
    ```ts
