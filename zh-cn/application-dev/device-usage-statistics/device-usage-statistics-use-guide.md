@@ -11,7 +11,7 @@
 import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 ```
 
-开发步骤中使用的接口具体请参考[设备使用信息统计API](../reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md#ohosresourcescheduleusagestatistics-设备使用信息统计)文档。
+开发步骤中使用的接口具体请参考[设备使用信息统计API](../reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md)文档。
 
 ## 开发步骤
 
