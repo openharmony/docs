@@ -496,9 +496,10 @@ equalTo(field: string, value: ValueType): RdbPredicates
 
 **示例：**
 
-```js
+```ts
+// 匹配数据表的"NAME"列中值为"Lisa"的字段
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi");
+predicates.equalTo("NAME", "Lisa");
 ```
 
 
@@ -526,9 +527,10 @@ notEqualTo(field: string, value: ValueType): RdbPredicates
 
 **示例：**
 
-```js
+```ts
+// 匹配数据表的"NAME"列中值不为"Lisa"的字段
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.notEqualTo("NAME", "lisi");
+predicates.notEqualTo("NAME", "Lisa");
 ```
 
 
@@ -549,9 +551,9 @@ beginWrap(): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi")
+predicates.equalTo("NAME", "Lisa")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
@@ -575,9 +577,9 @@ endWrap(): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi")
+predicates.equalTo("NAME", "Lisa")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
@@ -601,7 +603,8 @@ or(): RdbPredicates
 
 **示例：**
 
-```js
+```ts
+// 匹配数据表的"NAME"列中值为"Lisa"或"Rose"的字段
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .or()
@@ -624,7 +627,8 @@ and(): RdbPredicates
 
 **示例：**
 
-```js
+```ts
+// 匹配数据表的"NAME"列中值为"Lisa"且"SALARY"列中值为"200.5"的字段
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .and()
@@ -654,7 +658,8 @@ contains(field: string, value: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
+// 匹配数据表的"NAME"列中包含"os"的字段，如"Rose"
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.contains("NAME", "os");
 ```
@@ -682,9 +687,10 @@ beginsWith(field: string, value: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
+// 匹配数据表的"NAME"列中以"Li"开头的字段，如"Lisa"
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.beginsWith("NAME", "os");
+predicates.beginsWith("NAME", "Li");
 ```
 
 ### endsWith
@@ -710,7 +716,8 @@ endsWith(field: string, value: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
+// 匹配数据表的"NAME"列中以"se"结尾的字段，如"Rose"
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.endsWith("NAME", "se");
 ```
@@ -737,7 +744,7 @@ isNull(field: string): RdbPredicates
 
 **示例**：
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.isNull("NAME");
 ```
@@ -764,7 +771,7 @@ isNotNull(field: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.isNotNull("NAME");
 ```
@@ -792,7 +799,8 @@ like(field: string, value: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
+// 匹配数据表的"NAME"列中值类似于"os"的字段，如"Rose"
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.like("NAME", "%os%");
 ```
@@ -820,7 +828,8 @@ glob(field: string, value: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
+// 匹配数据表的"NAME"列中类型为string且值为"?h*g"的字段
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.glob("NAME", "?h*g");
 ```
@@ -849,7 +858,8 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 **示例：**
 
-```js
+```ts
+// 匹配数据表的"AGE"列中大于等于10且小于等于50的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.between("AGE", 10, 50);
 ```
@@ -878,7 +888,8 @@ notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 **示例：**
 
-```js
+```ts
+// 匹配数据表的"AGE"列中小于10或大于50的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notBetween("AGE", 10, 50);
 ```
@@ -906,7 +917,8 @@ greaterThan(field: string, value: ValueType): RdbPredicates
 
 **示例：**
 
-```js
+```ts
+// 匹配数据表的"AGE"列中大于18的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThan("AGE", 18);
 ```
@@ -934,7 +946,8 @@ lessThan(field: string, value: ValueType): RdbPredicates
 
 **示例：**
 
-```js
+```ts
+// 匹配数据表的"AGE"列中小于20的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThan("AGE", 20);
 ```
@@ -962,7 +975,8 @@ greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 **示例：**
 
-```js
+```ts
+// 匹配数据表的"AGE"列中大于等于18的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThanOrEqualTo("AGE", 18);
 ```
@@ -990,7 +1004,8 @@ lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 **示例：**
 
-```js
+```ts
+// 匹配数据表的"AGE"列中小于等于20的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThanOrEqualTo("AGE", 20);
 ```
@@ -1017,7 +1032,7 @@ orderByAsc(field: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.orderByAsc("NAME");
 ```
@@ -1044,7 +1059,7 @@ orderByDesc(field: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.orderByDesc("AGE");
 ```
@@ -1065,7 +1080,7 @@ distinct(): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose").distinct();
 ```
@@ -1092,7 +1107,7 @@ limitAs(value: number): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose").limitAs(3);
 ```
@@ -1119,7 +1134,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose").offsetAs(3);
 ```
@@ -1146,7 +1161,7 @@ groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.groupBy(["AGE", "NAME"]);
 ```
@@ -1174,7 +1189,7 @@ indexedBy(field: string): RdbPredicates
 
 **示例：**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.indexedBy("SALARY_INDEX");
 ```
@@ -1202,7 +1217,8 @@ in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 **示例：**
 
-```js
+```ts
+// 匹配数据表的"AGE"列中在[18，20]中的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("AGE", [18, 20]);
 ```
@@ -1230,7 +1246,8 @@ notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 **示例：**
 
-```js
+```ts
+// 匹配数据表的"NAME"列中不在["Lisa", "Rose"]中的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notIn("NAME", ["Lisa", "Rose"]);
 ```
