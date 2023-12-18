@@ -333,7 +333,7 @@ try {
         }
         windowClass = data;
         console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
-        windowClass.resetSize(500, 1000);
+        windowClass.resize(500, 1000);
     });
 } catch (exception) {
     console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
@@ -6211,7 +6211,7 @@ class myAbility extends UIAbility {
                 }
                 windowClass = data;
                 console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-                windowClass.resetSize(500, 1000);
+                windowClass.resize(500, 1000);
             });
         } catch (exception) {
             console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
