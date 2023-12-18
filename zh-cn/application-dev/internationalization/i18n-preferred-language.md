@@ -6,7 +6,7 @@
 
 ## 开发步骤
 
-接口具体使用方法和说明请参考[getAppPreferredLanguage](../../reference/apis/js-apis-i18n.md#getapppreferredlanguage9)的API接口文档。
+接口具体使用方法和说明请参考[getAppPreferredLanguage](../reference/apis/js-apis-i18n.md#getapppreferredlanguage9)的API接口文档。
 
 以时间日期格式化为例说明。
 
