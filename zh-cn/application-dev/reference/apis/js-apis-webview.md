@@ -4776,7 +4776,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -7897,7 +7897,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -7964,7 +7964,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8031,7 +8031,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8098,7 +8098,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8165,7 +8165,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8233,7 +8233,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8300,7 +8300,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8367,7 +8367,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8434,7 +8434,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8501,7 +8501,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8569,7 +8569,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8637,7 +8637,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8675,7 +8675,7 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -8693,7 +8693,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -8707,7 +8707,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8751,7 +8751,7 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -8769,7 +8769,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -8783,7 +8783,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8792,7 +8792,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8830,7 +8830,7 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -8848,7 +8848,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -8862,7 +8862,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8871,7 +8871,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8903,8 +8903,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -8923,7 +8923,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -8937,7 +8937,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8946,7 +8946,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8995,8 +8995,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9015,7 +9015,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9029,7 +9029,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9038,7 +9038,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9096,8 +9096,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9116,7 +9116,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9130,7 +9130,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9139,7 +9139,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9202,8 +9202,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9222,7 +9222,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9236,7 +9236,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9245,7 +9245,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9304,8 +9304,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9324,7 +9324,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9338,7 +9338,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9347,7 +9347,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9406,8 +9406,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9426,7 +9426,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9440,7 +9440,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9449,7 +9449,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9508,8 +9508,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9528,7 +9528,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9542,7 +9542,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9551,7 +9551,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9620,8 +9620,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9640,7 +9640,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9654,7 +9654,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9663,7 +9663,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9736,8 +9736,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9756,7 +9756,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9770,7 +9770,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9779,7 +9779,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
