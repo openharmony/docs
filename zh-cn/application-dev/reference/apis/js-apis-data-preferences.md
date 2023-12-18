@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```js
-import data_preferences from '@ohos.data.preferences';
+import dataPreferences from '@ohos.data.preferences';
 ```
 
 ## 常量
@@ -26,7 +26,7 @@ import data_preferences from '@ohos.data.preferences';
 | MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为8192个字节。 |
 
 
-## data_preferences.getPreferences
+## dataPreferences.getPreferences
 
 getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
@@ -53,7 +53,7 @@ let context = featureAbility.getContext();
 let preferences = null;
 
 try {
-    data_preferences.getPreferences(context, 'mystore', function (err, val) {
+    dataPreferences.getPreferences(context, 'mystore', function (err, val) {
         if (err) {
 	        console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 	        return;
@@ -76,7 +76,7 @@ let preferences = null;
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
-            data_preferences.getPreferences(this.context, 'mystore', function (err, val) {
+            dataPreferences.getPreferences(this.context, 'mystore', function (err, val) {
                 if (err) {
                     console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
                     return;
@@ -91,7 +91,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.getPreferences
+## dataPreferences.getPreferences
 
 getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
@@ -123,7 +123,7 @@ let context = featureAbility.getContext();
 
 let preferences = null;
 try {
-    let promise = data_preferences.getPreferences(context, 'mystore');
+    let promise = dataPreferences.getPreferences(context, 'mystore');
     promise.then((object) => {
         preferences = object;
         console.info("Succeeded in getting preferences.");
@@ -145,7 +145,7 @@ let preferences = null;
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
-            let promise = data_preferences.getPreferences(this.context, 'mystore');
+            let promise = dataPreferences.getPreferences(this.context, 'mystore');
             promise.then((object) => {
                 preferences = object;
                 console.info("Succeeded in getting preferences.");
@@ -159,7 +159,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.deletePreferences
+## dataPreferences.deletePreferences
 
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -197,7 +197,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
 try {
-    data_preferences.deletePreferences(context, 'mystore', function (err) {
+    dataPreferences.deletePreferences(context, 'mystore', function (err) {
         if (err) {
             console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -216,7 +216,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
-            data_preferences.deletePreferences(this.context, 'mystore', function (err) {
+            dataPreferences.deletePreferences(this.context, 'mystore', function (err) {
                 if (err) {
                     console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
                     return;
@@ -230,7 +230,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.deletePreferences
+## dataPreferences.deletePreferences
 
 deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
@@ -273,7 +273,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
 try {
-    let promise = data_preferences.deletePreferences(context, 'mystore');
+    let promise = dataPreferences.deletePreferences(context, 'mystore');
     promise.then(() => {
         console.info("Succeeded in deleting preferences.");
     }).catch((err) => {
@@ -291,7 +291,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try{
-            let promise = data_preferences.deletePreferences(this.context, 'mystore');
+            let promise = dataPreferences.deletePreferences(this.context, 'mystore');
             promise.then(() => {
                 console.info("Succeeded in deleting preferences.");
             }).catch((err) => {
@@ -304,7 +304,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.removePreferencesFromCache
+## dataPreferences.removePreferencesFromCache
 
 removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -332,7 +332,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
 try {
-    data_preferences.removePreferencesFromCache(context, 'mystore', function (err) {
+    dataPreferences.removePreferencesFromCache(context, 'mystore', function (err) {
         if (err) {
             console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -351,7 +351,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
-            data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
+            dataPreferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
                 if (err) {
                     console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
                     return;
@@ -366,7 +366,7 @@ class EntryAbility extends UIAbility {
 
 ```
 
-## data_preferences.removePreferencesFromCache
+## dataPreferences.removePreferencesFromCache
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
@@ -399,7 +399,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
 try {
-    let promise = data_preferences.removePreferencesFromCache(context, 'mystore');
+    let promise = dataPreferences.removePreferencesFromCache(context, 'mystore');
 	promise.then(() => {
     	console.info("Succeeded in removing preferences.");
     }).catch((err) => {
@@ -418,7 +418,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
-            let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore');
+            let promise = dataPreferences.removePreferencesFromCache(this.context, 'mystore');
             promise.then(() => {
                 console.info("Succeeded in removing preferences.");
             }).catch((err) => {
@@ -435,7 +435,7 @@ class EntryAbility extends UIAbility {
 
 存储实例，提供获取和修改存储数据的接口。
 
-下列接口都需先使用[data_preferences.getPreferences](#data_preferencesgetpreferences)获取到Preferences实例，再通过此实例调用对应接口。
+下列接口都需先使用[dataPreferences.getPreferences](#datapreferencesgetpreferences)获取到Preferences实例，再通过此实例调用对应接口。
 
 
 ### get
@@ -926,7 +926,7 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 ```js
 try {
-	data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+	dataPreferences.getPreferences(this.context, 'mystore', function (err, preferences) {
 		if (err) {
 			console.error("Failed to get preferences.");
 			return;
@@ -976,7 +976,7 @@ off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void
 
 ```js
 try {
-    data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+    dataPreferences.getPreferences(this.context, 'mystore', function (err, preferences) {
         if (err) {
             console.error("Failed to get preferences.");
             return;
