@@ -8,7 +8,7 @@
 
 ## 开发步骤
 
-电话号码格式化通过[PhoneNumberFormat](../../reference/apis/js-apis-i18n.md#phonenumberformat8)的[format](../../reference/apis/js-apis-i18n.md#format8)接口实现，具体开发步骤如下。
+电话号码格式化通过[PhoneNumberFormat](../reference/apis/js-apis-i18n.md#phonenumberformat8)的[format](../reference/apis/js-apis-i18n.md#format8)接口实现，具体开发步骤如下。
 
 1. 导入模块。
    ```ts
