@@ -134,7 +134,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -183,7 +183,7 @@ notificationSubscribe.subscribe(subscriber).then(() => {
 
 subscribeSelf(subscriber: NotificationSubscriber): Promise\<void\>
 
-订阅通知并指定订阅信息（Promise形式）。
+订阅通知并指定订阅信息。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
