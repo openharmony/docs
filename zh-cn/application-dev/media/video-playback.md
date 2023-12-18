@@ -22,7 +22,7 @@
 
 详细的API说明请参考[AVPlayer API参考](../reference/apis/js-apis-media.md#avplayer9)。
 
-1. 创建实例createAVPlayer()，AVPlayer初始化idle状态。
+1. 调用createAVPlayer()创建AVPlayer实例，初始化进入idle状态。
 
 2. 设置业务需要的监听事件，搭配全流程场景使用。支持的监听事件包括：
    | 事件类型 | 说明 |

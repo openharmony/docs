@@ -10,45 +10,45 @@
 
 管理播放实例音效的接口是getAudioEffectMode()查询当前音频播放流的音效模式和setAudioEffectMode(mode: AudioEffectMode)设置当前音频播放流的音效模式，在使用之前，需要使用createAudioRenderer(options: AudioRendererOptions)先创建音频播放流AudioRenderer实例。
 
-1. 步骤一：导入音频接口。
+1. 导入音频接口。
 
-  ```ts
-  import audio from '@ohos.multimedia.audio';
-  ```
+    ```ts
+    import audio from '@ohos.multimedia.audio';
+    ```
 
-2. 步骤二：配置音频渲染参数并创建AudioRenderer实例，音频渲染参数的详细信息可以查看[AudioRendererOptions](../reference/apis/js-apis-audio.md#audiorendereroptions8)，创建AudioRenderer实例时会默认挂载EFFECT_DEFAULT模式音效。
+2. 配置音频渲染参数并创建AudioRenderer实例，音频渲染参数的详细信息可以查看[AudioRendererOptions](../reference/apis/js-apis-audio.md#audiorendereroptions8)，创建AudioRenderer实例时会默认挂载EFFECT_DEFAULT模式音效。
 
-  ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+    ```ts
+    import audio from '@ohos.multimedia.audio';
+    import { BusinessError } from '@ohos.base';
 
-  let audioStreamInfo: audio.AudioStreamInfo = {
-    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-    channels: audio.AudioChannel.CHANNEL_1,
-    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-  };
+    let audioStreamInfo: audio.AudioStreamInfo = {
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+      channels: audio.AudioChannel.CHANNEL_1,
+      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+    };
 
-  let audioRendererInfo: audio.AudioRendererInfo = {
-    usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
-    rendererFlags: 0
-  };
+    let audioRendererInfo: audio.AudioRendererInfo = {
+      usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+      rendererFlags: 0
+    };
 
-  let audioRendererOptions: audio.AudioRendererOptions = {
-    streamInfo: audioStreamInfo,
-    rendererInfo: audioRendererInfo
-  };
+    let audioRendererOptions: audio.AudioRendererOptions = {
+      streamInfo: audioStreamInfo,
+      rendererInfo: audioRendererInfo
+    };
 
-  audio.createAudioRenderer(audioRendererOptions, (err: BusinessError, data: audio.AudioRenderer) => {
-    if (err) {
-      console.error(`Invoke createAudioRenderer failed, code is ${err.code}, message is ${err.message}`);
-      return;
-    } else {
-      console.info('Invoke createAudioRenderer succeeded.');
-      let audioRenderer: audio.AudioRenderer = data;
-    }
-  });
-  ```
+    audio.createAudioRenderer(audioRendererOptions, (err: BusinessError, data: audio.AudioRenderer) => {
+      if (err) {
+        console.error(`Invoke createAudioRenderer failed, code is ${err.code}, message is ${err.message}`);
+        return;
+      } else {
+        console.info('Invoke createAudioRenderer succeeded.');
+        let audioRenderer: audio.AudioRenderer = data;
+      }
+    });
+    ```
 
 ### 查询当前播放实例的音效模式
 
@@ -104,7 +104,7 @@
 
 ### 获取音频流管理接口
 
-1.创建AudioStreamManager实例。在使用AudioStreamManager的API前，需要使用getStreamManager()创建一个AudioStreamManager实例。
+创建AudioStreamManager实例。在使用AudioStreamManager的API前，需要使用getStreamManager()创建一个AudioStreamManager实例。
 
    ```ts
    import audio from '@ohos.multimedia.audio';
