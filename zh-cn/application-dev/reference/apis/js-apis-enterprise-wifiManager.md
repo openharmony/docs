@@ -361,7 +361,7 @@ IP配置信息。
 | PHASE2_AKA | 6 | AKA类型。 |
 | PHASE2_AKA_PRIME | 7 | AKA Prime类型。 |
 
-## wifiManager.isWifiDisabled
+## wifiManager.isWifiDisabled<sup>11+</sup>
 
 isWifiDisabled(admin: Want): boolean
 
@@ -411,9 +411,9 @@ try {
 });
 ```
 
-## wifiManager.disableWifi
+## wifiManager.setWifiDisabled<sup>11+</sup>
 
-disableWifi(admin: Want, isDisabled: boolean): void
+setWifiDisabled(admin: Want, isDisabled: boolean): void
 
 指定设备管理应用设置禁用wifi策略。
 
@@ -450,7 +450,7 @@ let wantTemp: Want = {
 };
 
 try {
-  wifiManager.disableWifi(wantTemp, true);
+  wifiManager.setWifiDisabled(wantTemp, true);
   console.info('Succeeded in set the wifi disabled');
 } catch((err: BusinessError) {
   console.error(`Failed to set the wifi disabled. Code: ${err.code}, message: ${err.message}`);
