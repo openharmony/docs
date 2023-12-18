@@ -45,7 +45,7 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果指定了别名，则通过别名来绑定变量；如果未指定别名，则通过变量名绑定变量。 |
 | 同步类型           | 双向同步。<br/>从\@Provide变量到所有\@Consume变量以及相反的方向的数据同步。双向同步的操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Provide a : string \| undefined = undefiend`是推荐的，不推荐`@Provide a: string = undefined`。
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date、Map、Set类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Provide a : string \| undefined = undefiend`是推荐的，不推荐`@Provide a: string = undefined`。
 <br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>不支持any。<br/>必须指定类型。\@Provide变量的\@Consume变量的类型必须相同。|
 | 被装饰变量的初始值      | 必须指定。                                    |
 
@@ -158,6 +158,10 @@ struct CompA {
 }
 ```
 
+- 当装饰的变量是Map时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
+
+- 当装饰的变量是Set时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
+
 ### 框架行为
 
 1. 初始渲染：
@@ -225,6 +229,116 @@ struct CompA {
         .onClick(() => this.reviewVotes += 1)
       CompB()
     }
+  }
+}
+```
+
+### 装饰Map类型变量
+
+\@Provide，\@Consume支持Map类型，在下面的示例中，message类型为Map<number, string>，点击Button改变message的值，视图会随之刷新。
+
+```ts
+@Component
+struct Child {
+  @Consume message: Map<number, string>
+
+  build() {
+    Column(){
+      ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        Text(`${item[0]}`).fontSize(30)
+        Text(`${item[1]}`).fontSize(30)
+        Divider()
+      })
+      Button('Consume init map').onClick(() =>{
+        this.message = new Map([[0, "a"], [1, "b"], [3, "c"]])
+      })
+      Button('Consume set new one').onClick(() =>{
+        this.message.set(4, "d")
+      })
+      Button('Consume clear').onClick(() =>{
+        this.message.clear()
+      })
+      Button('Consume replace the first item').onClick(() =>{
+        this.message.set(0, "aa")
+      })
+      Button('Consume delete the first item').onClick(() =>{
+        this.message.delete(0)
+      })
+    }
+  }
+}
+
+
+@Entry
+@Component
+struct MapSample {
+  @Provide message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+
+  build() {
+    Row() {
+      Column() {
+        Button('Provide init map').onClick(() =>{
+          this.message = new Map([[0, "a"], [1, "b"], [3, "c"], [4, "d"]])
+        })
+        Child()
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### 装饰Set类型变量
+
+\@Provide，\@Consume支持Set类型，在下面的示例中，message类型为Set<number>，点击Button改变message的值，视图会随之刷新。
+
+```ts
+@Component
+struct Child {
+  @Consume message: Set<number>
+
+  build() {
+    Column() {
+      ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        Text(`${item[0]}`).fontSize(30)
+        Divider()
+      })
+      Button('Consume init set').onClick(() =>{
+        this.message = new Set([0, 1, 2 ,3,4 ])
+      })
+      Button('Consume set new one').onClick(() =>{
+        this.message.add(5)
+      })
+      Button('Consume clear').onClick(() =>{
+        this.message.clear()
+      })
+      Button('Consume delete the first one').onClick(() =>{
+        this.message.delete(0)
+      })
+    }
+    .width('100%')
+  }
+}
+
+
+
+@Entry
+@Component
+struct SetSample {
+  @Provide message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+
+  build() {
+    Row() {
+      Column() {
+        Button('Provide init set').onClick(() =>{
+          this.message = new Set([0, 1, 2 ,3, 4, 5 ])
+        })
+        Child()
+      }
+      .width('100%')
+    }
+    .height('100%')
   }
 }
 ```
