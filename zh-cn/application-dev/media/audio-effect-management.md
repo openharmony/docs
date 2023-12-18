@@ -19,7 +19,6 @@
 2. 步骤二：配置音频渲染参数并创建AudioRenderer实例，音频渲染参数的详细信息可以查看[AudioRendererOptions](../reference/apis/js-apis-audio.md#audiorendereroptions8)，创建AudioRenderer实例时会默认挂载EFFECT_DEFAULT模式音效。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
 
   let audioStreamInfo: audio.AudioStreamInfo = {
@@ -53,6 +52,7 @@
 ### 查询当前播放实例的音效模式
 
   ```ts
+  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
 
   audioRenderer.getAudioEffectMode((err: BusinessError, effectMode: audio.AudioEffectMode) => {
@@ -70,6 +70,7 @@
 关闭系统音效：
 
   ```ts
+  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
 
   audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_NONE, (err: BusinessError) => {
@@ -85,6 +86,7 @@
 开启系统音效默认模式：
 
   ```ts
+  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
 
   audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err: BusinessError) => {
@@ -116,6 +118,7 @@
 ### 查询对应场景的音效模式
 
   ```ts
+  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
 
   audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA, async (err: BusinessError, audioEffectInfoArray: audio.AudioEffectInfoArray) => {
@@ -140,6 +143,7 @@
 
   ```ts
   import audio from '@ohos.multimedia.audio';
+
   let audioManager = audio.getAudioManager();
   let audioSpatializationManager = audioManager.getSpatializationManager();
   ```
@@ -149,8 +153,8 @@
 系统应用开发者可以通过[isSpatializationSupported](../reference/apis/js-apis-audio.md#isspatializationsupported11)接口查询当前系统是否具有空间音频渲染的能力。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
+  
   try {
     let isSpatializationSupported: boolean = audioSpatializationManager.isSpatializationSupported();
     console.info(`AudioSpatializationManager isSpatializationSupported: ${isSpatializationSupported}`);
@@ -167,6 +171,7 @@
   ```ts
   import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
+  
   let deviceDescriptor: audio.AudioDeviceDescriptor = {
     deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
     deviceType : audio.DeviceType.BLUETOOTH_A2DP,
@@ -195,8 +200,8 @@
 系统应用开发者可以通过[isHeadTrackingSupported](../reference/apis/js-apis-audio.md#isheadtrackingsupported11)接口查询当前系统是否具有头动跟踪的能力。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
+  
   try {
     let isHeadTrackingSupported: boolean = audioSpatializationManager.isHeadTrackingSupported();
     console.info(`AudioSpatializationManager isHeadTrackingSupported: ${isHeadTrackingSupported}`);
@@ -213,6 +218,7 @@
   ```ts
   import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
+  
   let deviceDescriptor: audio.AudioDeviceDescriptor = {
     deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
     deviceType : audio.DeviceType.BLUETOOTH_A2DP,
@@ -241,8 +247,8 @@
 系统应用开发者可以通过[setSpatializationEnabled](../reference/apis/js-apis-audio.md#setspatializationenabled11)接口开启/关闭空间音频渲染的效果，入参为true时为开启空间音频渲染，入参为false时为关闭空间音频渲染。该接口仅供空间音频设置类的系统级应用（比如空间音频UX）调用。在开启空间音频渲染时，需要先确保系统和当前发声设备都具有空间音频渲染的能力，同时，如果音频流的AudioEffectMode为EFFECT_NONE，则无论开关，都没有空间音频渲染效果。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
+  
   let enable: boolean = true
   audioSpatializationManager.setSpatializationEnabled(enable, (err: BusinessError) => {
     if (err) {
@@ -258,8 +264,8 @@
 系统应用开发者可以通过[isSpatializationEnabled](../reference/apis/js-apis-audio.md#isspatializationenabled11)接口查询空间音频渲染效果的开关状态，返回true为空间音频渲染开启，false为空间音频渲染关闭。该接口将返回setSpatializationEnabled()接口中成功设置的值，默认为开启。该状态仅为开关状态，实际是否生效还需依赖系统和当前发声设备是否支持空间音频渲染，以及音频流的AudioEffectMode。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
+  
   try {
     let isSpatializationEnabled: boolean = audioSpatializationManager.isSpatializationEnabled();
     console.info(`AudioSpatializationManager isSpatializationEnabled: ${isSpatializationEnabled}`);
@@ -274,8 +280,8 @@
 系统应用开发者可以通过[on('spatializationEnabledChange')](../reference/apis/js-apis-audio.md#onspatializationenabledchange11)接口订阅空间音频渲染效果的开关状态变化事件，回调为true为空间音频渲染被开启，false为空间音频渲染被关闭。当开发者通过setSpatializationEnabled()接口成功地改变了空间音频渲染的开关状态时，回调将被触发。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
+  
   audioSpatializationManager.on('spatializationEnabledChange', (isSpatializationEnabled: boolean) => {
     console.info(`isSpatializationEnabled: ${isSpatializationEnabled}`);
   });
@@ -286,8 +292,8 @@
 系统应用开发者可以通过[off('spatializationEnabledChange')](../reference/apis/js-apis-audio.md#offspatializationenabledchange11)接口取消订阅空间音频渲染效果的开关状态变化事件。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
+  
   audioSpatializationManager.off('spatializationEnabledChange');
   ```
 
@@ -296,9 +302,9 @@
 系统应用开发者可以通过[setHeadTrackingEnabled](../reference/apis/js-apis-audio.md#setheadtrackingenabled11)接口开启/关闭头动跟踪的效果，入参为true时为开启头动跟踪，入参为false时为关闭头动跟踪。该接口仅供空间音频设置类的系统级应用（比如空间音频UX）调用。在开启头动跟踪时，需要先确保系统和当前发声设备都具有头动跟踪的能力，同时，如果音频流的AudioEffectMode为EFFECT_NONE，则无论开关，都没有头动跟踪效果。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
-  let enable: boolean = true
+  
+  let enable: boolean = true;
   audioSpatializationManager.setHeadTrackingEnabled(enable, (err: BusinessError) => {
     if (err) {
       console.error(`Result ERROR: ${err}`);
@@ -313,8 +319,8 @@
 系统应用开发者可以通过[isHeadTrackingEnabled](../reference/apis/js-apis-audio.md#isheadtrackingenabled11)接口查询头动跟踪效果的开关状态，返回true为头动跟踪开启，false为头动跟踪关闭。该接口将返回setHeadTrackingEnabled()接口中成功设置的值，默认为关闭。该状态仅为开关状态，实际是否生效还需依赖系统和当前发声设备是否支持头动跟踪，以及音频流的AudioEffectMode。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
+
   try {
     let isHeadTrackingEnabled: boolean = audioSpatializationManager.isHeadTrackingEnabled();
     console.info(`AudioSpatializationManager isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
@@ -329,8 +335,8 @@
 系统应用开发者可以通过[on('headTrackingEnabledChange')](../reference/apis/js-apis-audio.md#onheadtrackingenabledchange11)接口订阅头动跟踪效果的开关状态变化事件，回调为true为头动跟踪被开启，false为头动跟踪被关闭。当开发者通过setHeadTrackingEnabled()接口成功地改变了头动跟踪的开关状态时，回调将被触发。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
+
   audioSpatializationManager.on('headTrackingEnabledChange', (isHeadTrackingEnabled: boolean) => {
     console.info(`isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
   });
@@ -341,8 +347,6 @@
 系统应用开发者可以通过[off('headTrackingEnabledChange')](../reference/apis/js-apis-audio.md#offheadtrackingenabledchange11)接口取消订阅头动跟踪效果的开关状态变化事件。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
   audioSpatializationManager.off('headTrackingEnabledChange');
   ```
 
@@ -351,6 +355,9 @@
 系统应用开发者可以通过[updateSpatialDeviceState](../reference/apis/js-apis-audio.md#updatespatialdevicestate11)接口更新空间化设备状态，空间化设备状态包含设备的地址、是否具有空间音频渲染的能力、是否具有头动跟踪的能力和设备的形态类型。该接口仅供空间音频设置类的系统级应用（比如空间音频UX）调用。空间化设备状态AudioSpatialDeviceState的具体信息可以参考[AudioSpatialDeviceState](../reference/apis/js-apis-audio.md#audiospatialdevicestate)。
 
   ```ts
+  import audio from '@ohos.multimedia.audio';
+  import { BusinessError } from '@ohos.base';
+
   let spatialDeviceState: audio.AudioSpatialDeviceState = {
     address: "123",
     isSpatializationSupported: true,
