@@ -660,22 +660,30 @@ getDragController(): DragController
 uiContext.getDragController();
 ```
 
-### dragPreview<sup>11+</sup>
+### getDragPreview<sup>11+</sup>
 
-dragPreview(value: CustomBuilder | DragItemInfo): void
+getDragPreview(): DragPreview
 
-设置组件拖拽过程中的预览图。
+返回一个代表拖拽背板的对象。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
+**返回值：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| ----- | ----- | ----- | ----- |
-| value | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是    | 组件拖拽过程中的预览图。<br/>默认值：空<br/>|
+| 类型        | 说明                                            |
+| ------------| ------------------------------------------------|
+| DragPreview | 一个代表拖拽背板的对象，提供背板样式设置的接口。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | Invalid input parameter |
+| 100001   | Internal error |
 
 **示例：**
-请参考[dragPreview用法示例](../arkui-ts/ts-universal-attributes-drag-drop.md#示例2)
+
+请参考[animate](js-apis-arkui-dragController.md#animate11)
 
 ## Font
 
