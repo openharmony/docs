@@ -930,7 +930,7 @@ on(type: "dataReceiveProgress", callback: Callback\<{ receiveSize: number; total
 ```ts
 import http from '@ohos.net.http';
 
-class RequestData{
+class RequestData {
   receiveSize: number = 2000
   totalSize: number = 2000
 }
@@ -965,7 +965,7 @@ off(type: "dataReceiveProgress", callback?: Callback\<{ receiveSize: number, tot
 ```ts
 import http from '@ohos.net.http';
 
-class RequestData{
+class RequestData {
   receiveSize: number = 2000
   totalSize: number = 2000
 }
@@ -975,6 +975,73 @@ httpRequest.on("dataReceiveProgress", (data: RequestData) => {
   console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataReceiveProgress");
+```
+
+### on("dataSendProgress")<sup>11+</sup>
+
+on(type: "dataSendProgress", callback: Callback\<{ sendSize: number; totalSize: number }\>): void
+
+订阅HTTP网络请求数据发送进度事件。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                              |
+| -------- | ----------------------- | ---- | --------------------------------- |
+| type     | string                  | 是   | 订阅的事件类型，'dataSendProgress'。 |
+| callback | AsyncCallback\<{ sendSize: number, totalSize: number }\>   | 是   | 回调函数。<br>sendSize：已发送的数据字节数，totalSize待发送的总字节数。 |
+
+**示例：**
+
+```ts
+import http from '@ohos.net.http';
+
+class SendData {
+  sendSize: number = 2000
+  totalSize: number = 2000
+}
+
+let httpRequest = http.createHttp();
+httpRequest.on("dataSendProgress", (data: SendData) => {
+  console.info("dataSendProgress:"  JSON.stringify(data));
+});
+httpRequest.off("dataSendProgress");
+```
+
+### off("dataSendProgress")<sup>11+</sup>
+
+off(type: "dataSendProgress", callback?: Callback\<{ sendSize: number, totalSize: number }\>): void
+
+取消订阅HTTP网络请求数据发送进度事件。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型               | 必填 | 说明                                   |
+| -------- | ------------------ | ---- | -------------------------------------- |
+| type     | string             | 是   | 取消订阅的事件类型：'dataSendProgress'。 |
+| callback | Callback\<{ sendSize: number, totalSize: number }\>  | 否 | 回调函数。 |
+
+**示例：**
+
+```ts
+import http from '@ohos.net.http';
+
+class SendData {
+  sendSize: number = 2000
+  totalSize: number = 2000
+}
+
+let httpRequest = http.createHttp();
+httpRequest.on("dataSendProgress", (data: SendData) => {
+  console.info("dataSendProgress:" + JSON.stringify(data));
+});
+httpRequest.off("dataSendProgress");
 ```
 
 ## HttpRequestOptions（支持跨平台）
@@ -996,6 +1063,12 @@ httpRequest.off("dataReceiveProgress");
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9支持跨平台)  | 否   | 使用协议。默认值由系统自动指定。                             |
 | usingProxy<sup>10+</sup>     | boolean \| HttpProxy               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为HttpProxy类型时，使用指定网络代理。 |
 | caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持后缀名为.pem的文本格式证书。                             |
+| resumeFrom<sup>11+</sup> | number | 否 | 用于设置上传或下载起始位置。默认值为0。HTTP标准（RFC 7233第3.1节）允许服务器忽略范围请求。使用HTTP PUT时设置此参数，可能出现未知问题。 |
+| resumeTo<sup>11+</sup> | number | 否 | 用于设置上传或下载结束位置。HTTP标准（RFC 7233第3.1节）允许服务器忽略范围请求。使用HTTP PUT时设置此参数，可能出现未知问题。 |
+| clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | 否 | 支持传输客户端证书 |
+| dnsOverHttps<sup>11+</sup> | string | 否 | 如果设置了此参数，则DoH服务器用于名称解析的传入DNS解析服务器URL。<br />-参数必须以以下格式进行URL编码："https://host:port/path"。<br />-必须是HTTPS协议的服务器。 |
+| dnsServers<sup>11+</sup> | Array<string> | 否 | 如果设置了此参数，使用指定的DNS服务器进行DNS解析。<br />-可以设置多个DNS解析服务器，最多3个服务器。如果有3个以上，只取前3个。 |
+| multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | 否 | 当'content-Type'为'multipart/form-data'时，则上传该字段定义的数据字段表单列表。 |
 
 ## RequestMethod（支持跨平台）
 
@@ -1071,6 +1144,53 @@ request方法回调函数的返回值类型。
 | responseCode         | [ResponseCode](#responsecode支持跨平台) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode支持跨平台)。若执行失败，错误码将会从AsyncCallback中的err字段返回。 |
 | header               | Object                                       | 是   | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- content-type：header['content-type']；<br />- status-line：header['status-line']；<br />- date：header.date/header['date']；<br />- server：header.server/header['server']； |
 | cookies<sup>8+</sup> | string                                       | 是   | 服务器返回的 cookies。                                       |
+| performanceTiming<sup>11+</sup> | [PerformanceTiming](#performancetiming11) | 是 | HTTP请求的各个阶段的耗时。|
+
+## ClientCert<sup>11+</sup>
+
+客户端证书类型。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------| --- | ----------- |
+| certPath | string | 是 | 证书路径 |
+| certType | [CertType](#certtype11) | 否 | 证书类型，默认是PEM |
+| keyPath | string | 是 | 证书秘钥的路径 |
+| keyPassword | string | 否  | 证书秘钥的密码 |
+
+## PerformanceTiming<sup>11+</sup>
+
+性能打点（单位：毫秒）。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称       | 类型   | 必填   | 说明                   |
+| ---------- | ------ | ---- | --------------------- |
+| dnsTiming  | number | 是   | 从[request](#request支持跨平台)请求到DNS解析完成耗时。 |
+| tcpTiming  | number | 是   | 从[request](#request支持跨平台)请求到TCP连接完成耗时。 |
+| tlsTiming  | number | 是   | 从[request](#request支持跨平台)请求到TLS连接完成耗时。 |
+| firstSendTiming  | number | 是   | 从[request](#request支持跨平台)请求到开始发送第一个字节的耗时。 |
+| firstReceiveTiming  | number | 是   | 从[request](#request支持跨平台)请求到接收第一个字节的耗时。 |
+| totalFinishTiming  | number | 是   | 从[request](#request支持跨平台)请求到完成请求的耗时。 |
+| redirectTiming  | number | 是   | 从[request](#request支持跨平台)请求到完成所有重定向步骤的耗时。 |
+| responseHeaderTiming  | number | 是   | 从[request](#request支持跨平台)请求到header解析完成的耗时。 |
+| responseBodyTiming  | number | 是   | 从[request](#request支持跨平台)请求到body解析完成的耗时。 |
+| totalTiming  | number | 是   | 从[request](#request支持跨平台)请求回调到应用程序的耗时。 |
+
+## MultiFormData<sup>11+</sup>
+
+多部分表单数据的类型。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| name        | string | 是  | 数据名称                                                                      |
+| contentType | string | 是 | 数据类型，如'text/plain'，'image/png', 'image/jpeg', 'audio/mpeg', 'video/mp4'等 |
+| remoteFileName | string | 否 | 上传到服务器保存为文件的名称。                                                 |
+| data | string \| Object \| ArrayBuffer | 否 | 表单数据内容。                                                 |
+| filePath | string | 否 | 此参数根据文件的内容设置mime部件的正文内容。用于代替data将文件数据设置为数据内容，如果data为空，则必须设置filePath。如果data有值，则filePath不会生效。|
 
 ## http.createHttpResponseCache<sup>9+</sup>（支持跨平台）
 
@@ -1242,3 +1362,16 @@ http协议版本。
 | :-------- | :----------- |
 | HTTP1_1   |  协议http1.1  |
 | HTTP2     |  协议http2    |
+| HTTP3<sup>11+</sup> | 协议http3 |
+
+## CertType<sup>11+</sup>
+
+证书类型的枚举。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称 | 说明       |
+| --- | ---------- |
+| PEM | 证书类型PEM |
+| DER | 证书类型DER |
+| P12 | 证书类型P12 |
