@@ -45,6 +45,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
+import formProvider from '@ohos.application.formProvider';
 var formId = '12400633174999288';
 try {
   formProvider.setFormNextRefreshTime(formId, 5, (error) => {
@@ -98,6 +99,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
+import formProvider from '@ohos.application.formProvider';
 var formId = '12400633174999288';
 try {
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
@@ -144,6 +146,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
+import formProvider from '@ohos.application.formProvider';
 
 var formId = '12400633174999288';
 try {
@@ -199,6 +202,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
+import formProvider from '@ohos.application.formProvider';
 
 let formId = '12400633174999288';
 let obj = formBindingData.createFormBindingData({ temperature: '22c', time: '22:00' });
@@ -241,6 +245,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
+import formProvider from '@ohos.application.formProvider';
 try {
   formProvider.getFormsInfo((error, data) => {
     if (error) {
@@ -283,6 +288,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 ```ts
 import formInfo from '@ohos.app.form.formInfo';
+import formProvider from '@ohos.application.formProvider';
 
 const filter : formInfo.FormInfoFilter = {
     // get info of forms belong to module entry.
@@ -336,6 +342,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 ```ts
 import formInfo from '@ohos.app.form.formInfo';
+import formProvider from '@ohos.application.formProvider';
 
 const filter : formInfo.FormInfoFilter = {
     // get info of forms belong to module entry.
@@ -386,6 +393,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
+import formProvider from '@ohos.application.formProvider';
 
 let want = {
   abilityName: 'FormAbility',
@@ -441,6 +449,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
+import formProvider from '@ohos.application.formProvider';
 let want = {
   abilityName: 'FormAbility',
   parameters: {
@@ -501,6 +510,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
+import formProvider from '@ohos.application.formProvider';
 let want = {
   abilityName: 'FormAbility',
   parameters: {
@@ -550,6 +560,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
+import formProvider from '@ohos.application.formProvider';
 try {
   formProvider.isRequestPublishFormSupported((error, isSupported) => {
   if (error) {
@@ -613,6 +624,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 **Example**
 
 ```ts
+import formProvider from '@ohos.application.formProvider';
 try {
   formProvider.isRequestPublishFormSupported().then((isSupported) => {
     if (isSupported) {

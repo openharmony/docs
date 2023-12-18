@@ -31,6 +31,7 @@ Sets the next refresh time for a widget. This API uses an asynchronous callback 
 **Example**
 
   ```ts
+  import formProvider from '@ohos.application.formProvider';
   let formId = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5, (error, data) => {
       if (error.code) {
@@ -63,6 +64,7 @@ Sets the next refresh time for a widget. This API uses a promise to return the r
 **Example**
 
   ```ts
+  import formProvider from '@ohos.application.formProvider';
   let formId = '12400633174999288';
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
       console.log('formProvider setFormNextRefreshTime success');
@@ -91,6 +93,7 @@ Updates a widget. This API uses an asynchronous callback to return the result.
 
   ```ts
   import formBindingData from '@ohos.application.formBindingData';
+  import formProvider from '@ohos.application.formProvider';
   let formId = '12400633174999288';
   let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
   formProvider.updateForm(formId, obj, (error, data) => {
@@ -113,7 +116,7 @@ Updates a widget. This API uses a promise to return the result.
   | Name| Type                                                                   | Mandatory| Description            |
   | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
   | formId | string                                                                 | Yes  | ID of the widget to update.|
-  | formBindingData.FormBindingData | [FormBindingData](js-apis-application-formBindingData.md#formbindingdat)  | Yes  | Data to be used for the update.   |
+  | formBindingData.FormBindingData | [FormBindingData](js-apis-application-formBindingData.md#formbindingdat) | Yes  | Data to be used for the update.   |
 
 **Return value**
 
@@ -125,6 +128,7 @@ Updates a widget. This API uses a promise to return the result.
 
   ```ts
   import formBindingData from '@ohos.application.formBindingData';
+  import formProvider from '@ohos.application.formProvider';
   let formId = '12400633174999288';
   let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
   formProvider.updateForm(formId, obj).then(() => {
