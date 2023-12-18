@@ -1290,7 +1290,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -1372,7 +1372,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -1547,7 +1547,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2047,7 +2047,7 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当返回值为true时，用户可以调用系统提供的弹窗能力。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当返回值为true时，用户可以调用系统提供的弹窗能力。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2522,8 +2522,15 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    result: WebContextMenuResult | null = null;
     build() {
       Column() {
+        Button('copyImage')
+        .onClick(() => {
+          if (this.result) {
+            this.result.copyImage()
+          }
+        })
         Web({ src: 'www.example.com', controller: this.controller })
           .onContextMenuShow((event) => {
             console.info("x coord = " + event.param.x())
@@ -2615,6 +2622,29 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
       }
     }
   }
+  ```
+
+  加载的html文件。
+  ```html
+  <!DOCTYPE html>
+  <html>
+  <body>
+  <p id="locationInfo">位置信息</p>
+  <button onclick="getLocation()">获取位置</button>
+  <script>
+  var locationInfo=document.getElementById("locationInfo");
+  function getLocation(){
+    if (navigator.geolocation) {
+      <!-- 前端页面访问设备地理位置 -->
+      navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  }
+  function showPosition(position){
+    locationInfo.innerHTML="Latitude: " + position.coords.latitude + "<br />Longitude: " + position.coords.longitude;
+  }
+  </script>
+  </body>
+  </html>
   ```
 
 ### onGeolocationHide
@@ -4658,14 +4688,15 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
         Text(this.webResult).fontSize(20)
         Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
-        .onPageEnd(() => {
+        .onPageEnd((event) => {
           this.controller.runJavaScript({
             script: 'test()',
             callback: (result: string)=> {
               this.webResult = result
               console.info(`The test() return value is: ${result}`)
             }})
-          console.info('url: ', e.url)
+          if (event) {
+            console.info('url: ', event.url)
         })
       }
     }
