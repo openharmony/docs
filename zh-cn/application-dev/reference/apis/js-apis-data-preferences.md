@@ -435,7 +435,7 @@ class EntryAbility extends UIAbility {
 
 存储实例，提供获取和修改存储数据的接口。
 
-下列接口都需先使用[dataPreferences.getPreferences](#data_preferencesgetpreferences)获取到Preferences实例，再通过此实例调用对应接口。
+下列接口都需先使用[dataPreferences.getPreferences](#datapreferencesgetpreferences)获取到Preferences实例，再通过此实例调用对应接口。
 
 
 ### get
