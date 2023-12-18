@@ -382,7 +382,7 @@ isWifiDisabled(admin: Want): boolean
 **返回值：**
 
 | 类型                   | 说明                      |
-| :-------------------- | ------------------------- |
+| --------------------- | ------------------------- |
 | boolean | 返回wifi禁用状态，true表示wifi被禁用，false表示wifi未被禁用。 |
 
 **错误码：**
@@ -398,7 +398,6 @@ isWifiDisabled(admin: Want): boolean
 
 ```ts
 import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -406,7 +405,7 @@ let wantTemp: Want = {
 try {
   boolean result = wifiManager.isWifiDisabled(wantTemp);
   console.info(`Succeeded in query the wifi is disabled or not, result : ${result}`);
-} catch((err: BusinessError) {
+} catch((err) {
   console.error(`Failed to query the wifi is disabled or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -443,7 +442,6 @@ setWifiDisabled(admin: Want, isDisabled: boolean): void
 
 ```ts
 import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -452,7 +450,7 @@ let wantTemp: Want = {
 try {
   wifiManager.setWifiDisabled(wantTemp, true);
   console.info('Succeeded in set the wifi disabled');
-} catch((err: BusinessError) {
+} catch((err) {
   console.error(`Failed to set the wifi disabled. Code: ${err.code}, message: ${err.message}`);
 });
 ```
