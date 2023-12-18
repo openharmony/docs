@@ -86,9 +86,14 @@ interface OHOS.IIdlServiceExt {
 idl_service_ext_impl.ts实现如下：
 
 ```ts
-import {processDataCallback} from './i_idl_service_ext';
-import {insertDataToMapCallback} from './i_idl_service_ext';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import bundleManager from '@ohos.bundle.bundleManager';
 import IdlServiceExtStub from './idl_service_ext_stub';
+import Logger from '../utils/Logger';
+import rpc from '@ohos.rpc';
+import { BusinessError } from '@ohos.base';
+import { insertDataToMapCallback } from './i_idl_service_ext';
+import { processDataCallback } from './i_idl_service_ext';
 
 const ERR_OK = 0;
 const TAG: string = "[IdlServiceExtImpl]";
@@ -97,13 +102,12 @@ const TAG: string = "[IdlServiceExtImpl]";
 export default class ServiceExtImpl extends IdlServiceExtStub {
   processData(data: number, callback: processDataCallback): void {
     // 开发者自行实现业务逻辑
-    console.info(TAG, `processData: ${data}`);
-    callback(ERR_OK, data + 1);
+    Logger.info(TAG, `processData: ${data}`);
   }
 
   insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
     // 开发者自行实现业务逻辑
-    console.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
+    Logger.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
     callback(ERR_OK);
   }
 }
@@ -132,36 +136,38 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 3. 在ServiceExtAbility.ets文件中，增加导入ServiceExtensionAbility的依赖包，自定义类继承ServiceExtensionAbility并实现生命周期回调，在onConnect生命周期回调里，需要将之前定义的ServiceExtImpl对象返回。
 
    ```ts
+   import hilog from '@ohos.hilog';
    import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
    import ServiceExtImpl from '../IdlServiceExt/idl_service_ext_impl';
-   import Want from '@ohos.app.ability.Want';
-   import rpc from '@ohos.rpc';
+   import type Want from '@ohos.app.ability.Want';
+   import type rpc from '@ohos.rpc';
    
-   const TAG: string = "[ServiceExtAbility]";
+   const TAG: string = '[ServiceExtAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
    
    export default class ServiceExtAbility extends ServiceExtensionAbility {
-     serviceExtImpl: ServiceExtImpl = new ServiceExtImpl("ExtImpl");
-
-     onCreate(want: Want) {
-       console.info(TAG, `onCreate, want: ${want.abilityName}`);
+     serviceExtImpl: ServiceExtImpl = new ServiceExtImpl('ExtImpl');
+   
+     onCreate(want: Want): void {
+       hilog.info(DOMAIN_NUMBER, TAG, `onCreate, want: ${want.abilityName}`);
      }
    
-     onRequest(want: Want, startId: number) {
-       console.info(TAG, `onRequest, want: ${want.abilityName}`);
+     onRequest(want: Want, startId: number): void {
+       hilog.info(DOMAIN_NUMBER, TAG, `onRequest, want: ${want.abilityName}`);
      }
    
-     onConnect(want: Want) {
-       console.info(TAG, `onConnect, want: ${want.abilityName}`);
+     onConnect(want: Want): rpc.RemoteObject {
+       hilog.info(DOMAIN_NUMBER, TAG, `onConnect, want: ${want.abilityName}`);
        // 返回ServiceExtImpl对象，客户端获取后便可以与ServiceExtensionAbility进行通信
        return this.serviceExtImpl as rpc.RemoteObject;
      }
    
-     onDisconnect(want: Want) {
-       console.info(TAG, `onDisconnect, want: ${want.abilityName}`);
+     onDisconnect(want: Want): void {
+       hilog.info(DOMAIN_NUMBER, TAG, `onDisconnect, want: ${want.abilityName}`);
      }
    
-     onDestroy() {
-       console.info(TAG, `onDestroy`);
+     onDestroy(): void {
+       hilog.info(DOMAIN_NUMBER, TAG, `onDestroy`);
      }
    }
    ```
@@ -197,54 +203,68 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 
    ```ts
    import common from '@ohos.app.ability.common';
+   import Logger from '../utils/Logger';
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
-
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   
+   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
    let want: Want = {
-     deviceId: "",
-     bundleName: "com.example.myapplication",
-     abilityName: "ServiceExtAbility"
+     deviceId: '',
+     bundleName: 'com.samples.stagemodelabilitydevelop',
+     abilityName: 'ServiceExtAbility'
    };
    context.startServiceExtensionAbility(want).then(() => {
-     console.info('Succeeded in starting ServiceExtensionAbility.');
+     Logger.info('Succeeded in starting ServiceExtensionAbility.');
+     // 成功启动后台服务
+     promptAction.showToast({
+       message: $r('app.string.SuccessfullyStartBackendService')
+     });
    }).catch((err: BusinessError) => {
-     console.error(`Failed to start ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
-   })
+     Logger.error(`Failed to start ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
+   });
    ```
 
 2. 在系统应用中停止一个已启动的ServiceExtensionAbility。
 
    ```ts
    import common from '@ohos.app.ability.common';
+   import Logger from '../utils/Logger';
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
-
-   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   
+   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
    let want: Want = {
-     deviceId: "",
-     bundleName: "com.example.myapplication",
-     abilityName: "ServiceExtAbility"
+     deviceId: '',
+     bundleName: 'com.samples.stagemodelabilitydevelop',
+     abilityName: 'ServiceExtAbility'
    };
    context.stopServiceExtensionAbility(want).then(() => {
-     console.info('Succeeded in stopping ServiceExtensionAbility.');
+     Logger.info('Succeeded in stopping ServiceExtensionAbility.');
+     promptAction.showToast({
+       message: $r('app.string.SuccessfullyStoppedAStartedBackendService')
+     });
    }).catch((err: BusinessError) => {
-     console.error(`Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
-   })
+     Logger.error(`Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
+   });
    ```
 
 3. 已启动的ServiceExtensionAbility停止自身。
 
    ```ts
    import common from '@ohos.app.ability.common';
+   import Logger from '../utils/Logger';
    import { BusinessError } from '@ohos.base';
-
-   let context: common.ServiceExtensionContext = ...; // ServiceExtensionContext
+   
+   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
    context.terminateSelf().then(() => {
-     console.info('Succeeded in terminating self.');
+     Logger.info('Succeeded in terminating self.');
+     // 成功停止当前后台服务
+     promptAction.showToast({
+       message: $r('app.string.SuccessfullyStopStartedBackendService')
+     });
    }).catch((err: BusinessError) => {
-     console.error(`Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
-   })
+     Logger.error(`Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
+   });
    ```
 
 > **说明：**
@@ -264,45 +284,67 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
   
   ```ts
   import common from '@ohos.app.ability.common';
+  import Logger from '../utils/Logger';
   import Want from '@ohos.app.ability.Want';
-
+  
+  let connectionId: number;
   let want: Want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "ServiceExtAbility"
+    deviceId: '',
+    bundleName: 'com.samples.stagemodelabilitydevelop',
+    abilityName: 'ServiceExtAbility'
   };
+  
   let options: common.ConnectOptions = {
-    onConnect(elementName, remote) {
-      /* 此处的入参remote为ServiceExtensionAbility在onConnect生命周期回调中返回的对象,
-       * 开发者通过这个对象便可以与ServiceExtensionAbility进行通信，具体通信方式见下文
-       */
-      console.info('onConnect callback');
+    onConnect(elementName, remote): void {
+      Logger.info('onConnect callback');
       if (remote === null) {
-        console.info(`onConnect remote is null`);
+        Logger.info(`onConnect remote is null`);
         return;
       }
+      let serviceExtProxy: IdlServiceExtProxy = new IdlServiceExtProxy(remote);
+      // 通过接口调用的方式进行通信，屏蔽了RPC通信的细节，简洁明了
+      serviceExtProxy.processData(1, (errorCode: number, retVal: number) => {
+        Logger.info(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
+      });
+      serviceExtProxy.insertDataToMap('theKey', 1, (errorCode: number) => {
+        Logger.info(`insertDataToMap, errorCode: ${errorCode}`);
+      })
     },
-    onDisconnect(elementName) {
-      console.info('onDisconnect callback')
-    },
-    onFailed(code) {
-      console.info('onFailed callback')
+    onDisconnect(elementName): void {
+      Logger.info('onDisconnect callback');
+  },
+    onFailed(code): void {
+      hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback', JSON.stringify(code));
     }
-  }
+  };
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId: number = this.context.connectServiceExtensionAbility(want, options);
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  connectionId = context.connectServiceExtensionAbility(want, options);
+  // 成功连接后台服务
+  promptAction.showToast({
+    message: $r('app.string.SuccessfullyConnectBackendService')
+  });
+  // connectionId = context.connectAbility(want, options);
+  hilog.info(DOMAIN_NUMBER, TAG, `connectionId is : ${connectionId}`);
   ```
 
 - 使用disconnectServiceExtensionAbility()断开与后台服务的连接。
   
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import Logger from '../utils/Logger';
+  
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   // connectionId为调用connectServiceExtensionAbility接口时的返回值，需开发者自行维护
-  this.context.disconnectServiceExtensionAbility(connectionId).then(() => {
-    console.info('disconnectServiceExtensionAbility success');
+  context.disconnectServiceExtensionAbility(connectionId).then(() => {
+    Logger.info('disconnectServiceExtensionAbility success');
+    // 成功断连后台服务
+    promptAction.showToast({
+      message: $r('app.string.SuccessfullyDisconnectBackendService')
+    });
   }).catch((error: BusinessError) => {
-    console.error('disconnectServiceExtensionAbility failed');
-  })
+    Logger.error('disconnectServiceExtensionAbility failed');
+  });
   ```
 
 ## 客户端与服务端通信
@@ -312,33 +354,34 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
 - 使用服务端提供的IDL接口进行通信（推荐）
 
   ```ts
+  import Logger from '../utils/Logger';
   // 客户端需要将服务端对外提供的idl_service_ext_proxy.ts导入到本地工程中
   import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
   import common from '@ohos.app.ability.common';
-
+  
   let options: common.ConnectOptions = {
-    onConnect(elementName, remote) {
-      console.info('onConnect callback');
+    onConnect(elementName, remote): void {
+      Logger.info('onConnect callback');
       if (remote === null) {
-        console.info(`onConnect remote is null`);
+        Logger.info(`onConnect remote is null`);
         return;
       }
       let serviceExtProxy: IdlServiceExtProxy = new IdlServiceExtProxy(remote);
       // 通过接口调用的方式进行通信，屏蔽了RPC通信的细节，简洁明了
       serviceExtProxy.processData(1, (errorCode: number, retVal: number) => {
-        console.info(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
+        Logger.info(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
       });
       serviceExtProxy.insertDataToMap('theKey', 1, (errorCode: number) => {
-        console.info(`insertDataToMap, errorCode: ${errorCode}`);
+        Logger.info(`insertDataToMap, errorCode: ${errorCode}`);
       })
     },
-    onDisconnect(elementName) {
-      console.info('onDisconnect callback')
+    onDisconnect(elementName): void {
+      Logger.info('onDisconnect callback');
     },
-    onFailed(code) {
-      console.info('onFailed callback')
+    onFailed(code): void {
+      hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback', JSON.stringify(code));
     }
-  }
+  };
   ```
 
 - 直接使用[sendMessageRequest](../reference/apis/js-apis-rpc.md#sendmessagerequest9)接口向服务端发送消息（不推荐）
@@ -350,7 +393,7 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
 
   const REQUEST_CODE = 1;
   let options: common.ConnectOptions = {
-    onConnect(elementName, remote) {
+    onConnect(elementName, remote): void {
       console.info('onConnect callback');
       if (remote === null) {
         console.info(`onConnect remote is null`);
@@ -375,10 +418,10 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
         console.info('sendMessageRequest failed');
       });
     },
-    onDisconnect(elementName) {
+    onDisconnect(elementName): void {
       console.info('onDisconnect callback')
     },
-    onFailed(code) {
+    onFailed(code): void {
       console.info('onFailed callback')
     }
   }
@@ -393,38 +436,40 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
   通过调用[getCallingUid()](../reference/apis/js-apis-rpc.md#getcallinguid)接口获取客户端的uid，再调用[getBundleNameByUid()](../reference/apis/js-apis-bundleManager.md#bundlemanagergetbundlenamebyuid)接口获取uid对应的bundleName，从而识别客户端身份。此处需要注意的是[getBundleNameByUid()](../reference/apis/js-apis-bundleManager.md#bundlemanagergetbundlenamebyuid)是一个异步接口，因此服务端无法将校验结果返回给客户端，这种校验方式适合客户端向服务端发起执行异步任务请求的场景，示例代码如下：
 
   ```ts
-  import rpc from '@ohos.rpc';
-  import { BusinessError } from '@ohos.base';
+  import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
   import bundleManager from '@ohos.bundle.bundleManager';
-  import { processDataCallback } from './i_idl_service_ext';
-  import { insertDataToMapCallback } from './i_idl_service_ext';
   import IdlServiceExtStub from './idl_service_ext_stub';
-
+  import Logger from '../utils/Logger';
+  import rpc from '@ohos.rpc';
+  import type { BusinessError } from '@ohos.base';
+  import type { insertDataToMapCallback } from './i_idl_service_ext';
+  import type { processDataCallback } from './i_idl_service_ext';
+  
   const ERR_OK = 0;
   const ERR_DENY = -1;
   const TAG: string = "[IdlServiceExtImpl]";
-
+  
   export default class ServiceExtImpl extends IdlServiceExtStub {
     processData(data: number, callback: processDataCallback): void {
-      console.info(TAG, `processData: ${data}`);
-
+      Logger.info(TAG, `processData: ${data}`);
+  
       let callerUid = rpc.IPCSkeleton.getCallingUid();
       bundleManager.getBundleNameByUid(callerUid).then((callerBundleName) => {
-        console.info(TAG, 'getBundleNameByUid: ' + callerBundleName);
+        Logger.info(TAG, 'getBundleNameByUid: ' + callerBundleName);
         // 对客户端包名进行识别
-        if (callerBundleName != 'com.example.connectextapp') { // 识别不通过
-          console.info(TAG, 'The caller bundle is not in trustlist, reject');
+        if (callerBundleName !== 'com.samples.stagemodelabilitydevelop') { // 识别不通过
+          Logger.info(TAG, 'The caller bundle is not in trustlist, reject');
           return;
         }
         // 识别通过，执行正常业务逻辑
       }).catch((err: BusinessError) => {
-        console.info(TAG, 'getBundleNameByUid failed: ' + err.message);
+        Logger.info(TAG, 'getBundleNameByUid failed: ' + err.message);
       });
     }
-
+  
     insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
       // 开发者自行实现业务逻辑
-      console.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
+      Logger.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
       callback(ERR_OK);
     }
   }
@@ -435,11 +480,14 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
   通过调用[getCallingTokenId()](../reference/apis/js-apis-rpc.md#getcallingtokenid)接口获取客户端的tokenID，再调用[verifyAccessTokenSync()](../reference/apis/js-apis-abilityAccessCtrl.md#verifyaccesstokensync)接口判断客户端是否有某个具体权限，由于当前不支持自定义权限，因此只能校验当前[系统所定义的权限](../security/permission-list.md)。示例代码如下：
 
   ```ts
-  import rpc from '@ohos.rpc';
   import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-  import {processDataCallback} from './i_idl_service_ext';
-  import {insertDataToMapCallback} from './i_idl_service_ext';
+  import bundleManager from '@ohos.bundle.bundleManager';
   import IdlServiceExtStub from './idl_service_ext_stub';
+  import Logger from '../utils/Logger';
+  import rpc from '@ohos.rpc';
+  import type { BusinessError } from '@ohos.base';
+  import type { insertDataToMapCallback } from './i_idl_service_ext';
+  import type { processDataCallback } from './i_idl_service_ext';
   
   const ERR_OK = 0;
   const ERR_DENY = -1;
@@ -452,19 +500,19 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
       let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
       let accessManger = abilityAccessCtrl.createAtManager();
       // 所校验的具体权限由开发者自行选择，此处ohos.permission.SET_WALLPAPER只作为示例
-      let grantStatus =
-          accessManger.verifyAccessTokenSync(callerTokenId, "ohos.permission.SET_WALLPAPER");
+      let grantStatus = accessManger.verifyAccessTokenSync(callerTokenId, 'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED');
       if (grantStatus === abilityAccessCtrl.GrantStatus.PERMISSION_DENIED) {
-          console.info(TAG, `PERMISSION_DENIED`);
-          callback(ERR_DENY, data);   // 鉴权失败，返回错误
-          return;
+        Logger.info(TAG, `PERMISSION_DENIED`);
+        callback(ERR_DENY, data); // 鉴权失败，返回错误
+        return;
       }
-      callback(ERR_OK, data + 1);     // 鉴权通过，执行正常业务逻辑
-    }
+      Logger.info(TAG, 'verify access token success.');
+      callback(ERR_OK, data + 1); // 鉴权通过，执行正常业务逻辑
+    };
   
     insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
       // 开发者自行实现业务逻辑
-      console.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
+      Logger.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
       callback(ERR_OK);
     }
   }
