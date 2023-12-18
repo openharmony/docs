@@ -208,7 +208,7 @@ let formattedNumber8 = numberFormat8.format(123400); // formattedNumber8: 304,92
 
 **格式化风格**
 
-以fromUnit为美制单位cup，toUnit为公制单位liter，数字大小：1000为例。
+以fromUnit为美制单位cup，toUnit为公制单位liter，数字大小：1000为例。 
 
 **表13** 格式化使用的风格(style)
 
