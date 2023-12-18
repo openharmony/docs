@@ -319,7 +319,7 @@ class EntryAbility extends UIAbility {
 
 ## SecurityLevel
 
-数据库的安全级别枚举。
+数据库的安全级别枚举。请使用枚举名称而非枚举值。
 
 > **说明：**
 >
@@ -358,7 +358,7 @@ class EntryAbility extends UIAbility {
 
 ## SyncMode
 
-指数据库同步模式。
+指数据库同步模式。请使用枚举名称而非枚举值。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -369,7 +369,7 @@ class EntryAbility extends UIAbility {
 
 ## SubscribeType
 
-描述订阅类型。
+描述订阅类型。请使用枚举名称而非枚举值。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
