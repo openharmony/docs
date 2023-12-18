@@ -23,7 +23,7 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 | type         | [ActionType](#actiontype)   | 是    | 否    | 捏合事件类型                                   |
 | scale        | number      | 是    | 否    | 捏合度，取值范围大于等于0                             |
 
-## Rotate
+## Rotate<sup>11+</sup>
 
 旋转事件。
 
@@ -31,8 +31,8 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 | 名称             | 类型        | 可读   | 可写   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type<sup>11+</sup> | [ActionType](#actiontype)   | 是    | 否    | 旋转事件类型                                   |
-| angle<sup>11+</sup> | number      | 是    | 否    | 旋转角度                             |
+| type | [ActionType](#actiontype)   | 是    | 否    | 旋转事件类型                                   |
+| angle | number      | 是    | 否    | 旋转角度                             |
 
 ## ThreeFingersSwipe
 
@@ -58,7 +58,7 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 | x        | number      | 是    | 否    | 坐标x                             |
 | y        | number      | 是    | 否    | 坐标y                             |
 
-## ThreeFingersTap
+## ThreeFingersTap<sup>11+</sup>
 
 三指轻点事件。
 
@@ -66,7 +66,7 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 | 名称               | 类型                      | 可读 | 可写 | 说明             |
 | ------------------ | ------------------------- | ---- | ---- | ---------------- |
-| type<sup>11+</sup> | [ActionType](#actiontype) | 是   | 否   | 三指轻点事件类型 |
+| type | [ActionType](#actiontype) | 是   | 否   | 三指轻点事件类型 |
 
 ## ActionType
 
