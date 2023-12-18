@@ -243,9 +243,9 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number)
 
-off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
+off(type: 'environment', callbackId: **number**): **void**;
 
-取消对系统环境变化的监听。使用callback异步回调。
+取消对系统环境变化的监听。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
