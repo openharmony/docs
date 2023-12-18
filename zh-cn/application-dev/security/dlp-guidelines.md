@@ -235,22 +235,26 @@
 13. 以无边框形式打开DLP权限管理应用。此方法只能在UIAbility上下文中调用，只支持Stage模式。
 
     ```ts
+    import dlpPermission from '@ohos.dlpPermission';
     import common from '@ohos.app.ability.common';
- 
-    async func() {
-      try {
-        let context = getContext(this) as common.UIAbilityContext; // 获取当前UIAbilityContext
-        let want = {
-          "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
-          "parameters": {
-             "displayName": "1.txt"
-          }
-        }; // 请求参数
-        let res: dlpPermission.DLPManagerResult = await dlpPermission.startDLPManagerForResult(context, want); // 打开DLP权限管理应用
+    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+    import UIAbility from '@ohos.app.ability.UIAbility'
+    import Want from '@ohos.app.ability.Want';
+    import { BusinessError } from '@ohos.base';
+    
+    try {
+      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+      let want: Want = {
+        "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
+        "parameters": {
+          "displayName": "1.txt"
+        }
+      }; // 请求参数
+      dlpPermission.startDLPManagerForResult(context, want).then((res) => {
         console.info('res.resultCode', res.resultCode);
         console.info('res.want', JSON.stringifg(res.want));
-      } catch (err) {
-        console.error('error', err.code, err.message); // 失败报错
-      }
+      }); // 打开DLP权限管理应用
+    } catch (err) {
+      console.error('error', err.code, err.message); // 失败报错
     }
     ```

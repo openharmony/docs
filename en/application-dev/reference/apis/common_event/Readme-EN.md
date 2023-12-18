@@ -16,4 +16,4 @@
 - [Common Events of the Theme Framework - Lock Screen](commonEvent-screenlock.md)
 - [Common Events of the Time and Time Zone Subsystem](commonEvent-time.md)
 - [Common Events of the Account Subsystem](commonEvent-account.md)
-
+- [Common Events of the Language Subsystem](commonEvent-locale.md)

@@ -1358,13 +1358,23 @@ class testObj {
   constructor() {
   }
 
-  test(): string {
-    console.log('ArkUI Web Component');
-    return "ArkUI Web Component";
+  test(testStr:string): string {
+    console.log('Web Component str' + testStr);
+    return testStr;
   }
 
   toString(): void {
     console.log('Web Component toString');
+  }
+
+  testNumber(testNum:number): number {
+    console.log('Web Component number' + testNum);
+    return testNum;
+  }
+
+  testBool(testBol:boolean): boolean {
+    console.log('Web Component boolean' + testBol);
+    return testBol;
   }
 }
 
@@ -1402,7 +1412,7 @@ struct Index {
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
-            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString"]);
+            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -1430,7 +1440,9 @@ struct Index {
     <script type="text/javascript">
     function htmlTest() {
       // This function call expects to return "ArkUI Web Component"
-      let str=objName.test();
+      let str=objName.test("webtest data");
+      objName.testNumber(1);
+      objName.testBool(true);
       document.getElementById("demo").innerHTML=str;
       console.log('objName.test result:'+ str)
 
@@ -2390,7 +2402,7 @@ struct WebComponent {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
@@ -2467,7 +2479,7 @@ window.addEventListener('message', function (event) {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
@@ -4881,7 +4893,7 @@ struct WebComponent {
 
 ### postUrl<sup>11+</sup>
 
-static postUrl(url: string, postData: ArrayBuffer): void
+postUrl(url: string, postData: ArrayBuffer): void
 
 使用"POST"方法加载带有postData的url。如果url不是网络url，则会使用[loadUrl](#loadurl)方法加载url，忽略postData参数。
 
@@ -4891,8 +4903,8 @@ static postUrl(url: string, postData: ArrayBuffer): void
 
 | 参数名  | 类型             | 必填 | 说明                  |
 | ------- | ---------------- | ---- | :-------------------- |
-| url     | string \| Resource | 是   | 需要加载的 URL。      |
-| postData | ArrayBuffer | 否   | 使用"POST"方法传递数据。 该请求必须采用"application/x-www-form-urlencoded"编码。|
+| url     | string | 是   | 需要加载的 URL。      |
+| postData | ArrayBuffer | 是   | 使用"POST"方法传递数据。 该请求必须采用"application/x-www-form-urlencoded"编码。|
 
 **错误码：**
 
@@ -4945,6 +4957,68 @@ struct WebComponent {
           }
         })
       Web({ src: '', controller: this.controller })
+    }
+  }
+}
+```
+
+### createWebPrintDocumentAdapter<sup>11+</sup>
+
+createWebPrintDocumentAdapter(jobName: string): printDocumentAdapter
+
+**需要权限：** ohos.permission.PRINT
+
+创建web相关打印功能的。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                  |
+| ------- | ------ | ---- | :-------------------- |
+| jobName | string | 是   | 需要打印的文件名。      |
+
+**返回值：**
+
+| 类型                 | 说明                      |
+| -------------------- | ------------------------- |
+| printDocumentAdapter | 返回打印文档的适配器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                                    |
+| -------- | -------------------------------------------------------------------------- |
+| 401 | Invalid input parameter.                                                        |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+import print from '@ohos.print'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('createWebPrintDocumentAdapter')
+        .onClick(() => {
+          try {
+            let webPrintDocadapter = this.controller.createWebPrintDocumentAdapter('example.pdf');
+            print.print('example_jobid', webPrintDocadapter, null, getContext());
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
     }
   }
 }

@@ -26,43 +26,7 @@ Scroll
 
 删除Scroll组件下添加的多余子组件。
 
-##  cl.arkui.2 形状裁剪clip接口变更说明
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-Text组件为基础文本组件，其截断与裁剪由textOverflow属性控制，clip属性不应当在Text组件上使用，否则会与textOverflow属性冲突，在复杂场景下影响Text组件正常显示。
-
-**变更影响**
-
-该变更为不兼容变更，修改后Text组件不支持使用clip属性。
-
-**变更发生版本**
-
-从OpenHarmony SDK 4.1.3.5 开始。
-
-**变更的组件**
-
-受影响的组件有：Text。
-
-**适配指导**
-
-变更前：Text组件支持使用clip属性。
-
-```typescript
-Text('Text Demo').clip(true)
-```
-
-变更后：Text组件不支持使用clip属性，如需设置文本裁剪，请开发者设置textOverflow属性。
-
-```typescript
-Text('Text Demo').textOverflow({ overflow: TextOverflow.Clip })
-```
-
-##  cl.arkui.3 Flex容器子组件交叉轴尺寸设置和交叉轴stretch对齐方式明确优先级
+##  cl.arkui.2 Flex容器子组件交叉轴尺寸设置和交叉轴stretch对齐方式明确优先级
 
 **访问级别**
 

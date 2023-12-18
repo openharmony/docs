@@ -884,6 +884,8 @@ promise.then((data: Array<display.Display>) => {
 | scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。该参数为浮点数，通常与densityPixels相同。                                                                    |
 | xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
 | yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
+| colorSpaces<sup>11+</sup> | Array<[colorSpaceManager.ColorSpace](js-apis-colorSpaceManager.md)> | 是 | 否 | 显示设备支持的所有色域类型。                                                                                                |
+| hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](js-apis-hdrCapability.md)> | 是 | 否 | 显示设备支持的所有HDR格式。                                                                                               |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void

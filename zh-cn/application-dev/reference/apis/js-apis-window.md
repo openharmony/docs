@@ -230,6 +230,7 @@ import window from '@ohos.window';
 | 名称                                  | 类型                  | 可读 | 可写 | 说明                                                                                                     |
 | ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
 | windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。                                                                                                  |
+| drawableRect<sup>11+</sup>            | [Rect](#rect7)             | 是   | 是   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。                                                                                                  |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | 是   | 是   | 窗口类型。                                                                                                  |
 | isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。true表示全屏；false表示非全屏。                                                                     |
 | isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。                                                               |
@@ -303,14 +304,13 @@ import window from '@ohos.window';
 
 窗口生命周期。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
-
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
-| WINDOW_SHOWN      | 1      | 切到前台。 |
-| WINDOW_ACTIVE     | 2      | 获焦状态。 |
-| WINDOW_INACTIVE   | 3      | 失焦状态。 |
-| WINDOW_HIDDEN     | 4      | 切到后台。 |
+| WINDOW_SHOWN      | 1      | 切到前台。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| WINDOW_ACTIVE     | 2      | 获焦状态。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| WINDOW_INACTIVE   | 3      | 失焦状态。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| WINDOW_HIDDEN     | 4      | 切到后台。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| WINDOW_DESTROYED<sup>11+</sup>  | 7      | 窗口销毁。<br> **系统能力：** SystemCapability.Window.SessionManager。|
 
 ## WindowLimits<sup>11+</sup>
 
@@ -318,12 +318,12 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称      | 类型   | 可读 | 可写 | 必填 | 说明                                                         |
-| :-------- | :----- | :--- | :--- | :--- | :----------------------------------------------------------- |
-| maxWidth  | number | 是   | 是   | 否   | 窗口的最大宽度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最大宽度。  |
-| maxHeight | number | 是   | 是   | 否   | 窗口的最大高度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最大高度。  |
-| minWidth  | number | 是   | 是   | 否   | 窗口的最小宽度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小宽度。  |
-| minHeight | number | 是   | 是   | 否   | 窗口的最小高度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小高度。  |
+| 名称      | 类型   | 可读 | 可写 | 说明                                                         |
+| :-------- | :----- | :--- | :--- | :----------------------------------------------------------- |
+| maxWidth  | number | 是   | 是   | 窗口的最大宽度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最大宽度。  |
+| maxHeight | number | 是   | 是   | 窗口的最大高度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最大高度。  |
+| minWidth  | number | 是   | 是   | 窗口的最小宽度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小宽度。  |
+| minHeight | number | 是   | 是   | 窗口的最小高度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小高度。  |
 
 ## WindowStatusType<sup>11+</sup>
 
@@ -6627,6 +6627,54 @@ try {
 } catch (exception) {
   console.error('Failed to change the window limits. Cause:' + JSON.stringify(exception));
 }
+```
+
+
+### setSingleFrameComposerEnabled<sup>11+</sup>
+
+setSingleFrameComposerEnabled(enable: boolean): Promise&lt;void&gt;
+
+禁止/使能单帧合成渲染节点的功能。使用Promise异步回调。
+
+单帧合成渲染节点的功能主要用于跟手性要求较高的场景，使能该功能之后可以降低渲染节点的上屏延时。通过setSingleFrameComposerEnabled接口，如果enable设置为true，则使能单帧合成渲染节点的功能，否则禁止单帧合成渲染节点的功能。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| enable   | boolean                   | 是   | 设置单帧合成渲染节点的功能是否使能，true表示使能，false表示禁止。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let enable = true;
+let windowClass: window.Window = window.findWindow("test");
+let promise = windowClass.setSingleFrameComposerEnabled(enable);
+promise.then(()=> {
+    console.info('Succeeded in enabling the single-frame-composer function.');
+}).catch((err: BusinessError)=>{
+    console.error('Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.');
+});
 ```
 
 ### keepKeyboardOnFocus<sup>11+</sup>

@@ -44,7 +44,7 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 ```ts
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 
-let AccessibilityElement: AccessibilityElement;
+let accessibilityElement: AccessibilityElement;
 ```
 
 ## ElementAttributeValues<sup>10+</sup>
@@ -56,7 +56,7 @@ let AccessibilityElement: AccessibilityElement;
 ```ts
 import { ElementAttributeValues } from '@ohos.application.AccessibilityExtensionAbility';
 
-let ElementAttributeValues: ElementAttributeValues;
+let elementAttributeValues: ElementAttributeValues;
 ```
 
 ## FocusDirection<sup>10+</sup>
@@ -68,7 +68,7 @@ let ElementAttributeValues: ElementAttributeValues;
 ```ts
 import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
 
-let FocusDirection: FocusDirection;
+let focusDirection: FocusDirection;
 ```
 
 ## ElementAttributeKeys<sup>10+</sup>
@@ -83,7 +83,7 @@ let FocusDirection: FocusDirection;
 ```ts
 import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
 
-let ElementAttributeKeys: ElementAttributeKeys;
+let elementAttributeKeys: ElementAttributeKeys;
 ```
 
 ## FocusType<sup>10+</sup>
@@ -95,7 +95,7 @@ let ElementAttributeKeys: ElementAttributeKeys;
 ```ts
 import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
 
-let FocusType: FocusType;
+let focusType: FocusType;
 ```
 
 ## WindowType <sup>10+</sup>
@@ -107,7 +107,7 @@ let FocusType: FocusType;
 ```ts
 import { WindowType } from '@ohos.application.AccessibilityExtensionAbility';
 
-let WindowType: WindowType;
+let windowType: WindowType;
 ```
 
 ## Rect<sup>10+</sup>
@@ -119,7 +119,7 @@ let WindowType: WindowType;
 ```ts
 import { Rect } from '@ohos.application.AccessibilityExtensionAbility';
 
-let Rect: Rect;
+let rect: Rect;
 ```
 
 ## GestureType

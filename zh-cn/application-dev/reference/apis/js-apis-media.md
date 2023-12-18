@@ -672,9 +672,6 @@ on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReas
 **示例：**
 
 ```ts
-// 创建avPlayer实例对象
-let avPlayer = await media.createAVPlayer();
-
 avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
   switch (state) {
     case 'idle':
@@ -1953,11 +1950,6 @@ avPlayer.off('audioInterrupt')
 **示例：**
 
 ```ts
-import media from '@ohos.multimedia.media'
-
-// 创建avPlayer实例对象
-let avPlayer = await media.createAVPlayer();
-
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
   console.info('audio key is ' + key); // 通过key值获取对应的value。key值具体可见[MediaDescriptionKey]
@@ -2896,7 +2888,7 @@ fetchMetadata(callback: AsyncCallback\<AVMetadata>): void
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
+| 5400102  | Operation not allowed. Returned by callback. |
 | 5400106  | Unsupported format. Returned by callback.  |
 
 **示例：**
@@ -2905,10 +2897,10 @@ fetchMetadata(callback: AsyncCallback\<AVMetadata>): void
 // 获取元数据
 avMetadataExtractor.fetchMetadata((error, metadata) => {
   if (error) {
-    console.error(TAG, `fetchMetadata callback failed, err = ${JSON.stringify(error)}`)
-    return
+    console.error(`fetchMetadata callback failed, err = ${JSON.stringify(error)}`);
+    return;
   }
-  console.info(TAG, `fetchMetadata callback success, genre: ${metadata.genre}`)
+  console.info(`fetchMetadata callback success, genre: ${metadata.genre}`);
 })
 ```
 
@@ -2940,7 +2932,7 @@ fetchMetadata(): Promise\<AVMetadata>
 ```ts
 // 获取元信息
 avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
-  console.info(TAG, `fetchMetadata callback success, genre: ${metadata.genre}`)
+  console.info(`fetchMetadata callback success, genre: ${metadata.genre}`)
 }).catch((error: BusinessError) => {
   console.error(`fetchMetadata catchCallback, error message:${error.message}`);
 });
@@ -2966,20 +2958,23 @@ fetchAlbumCover(callback: AsyncCallback\<image.PixelMap>): void
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Returned by callback. |
+| 5400102  | Operation not allowed. Return by callback. |
 | 5400106  | Unsupported format. Returned by callback.  |
 
 **示例：**
 
 ```ts
+import image from '@ohos.multimedia.image';
+let pixel_map : image.PixelMap | undefined = undefined;
+
 //获取专辑封面
 avMetadataExtractor.fetchAlbumCover((error, pixelMap) => {
-  if (err) {
-    console.error(TAG, `fetchAlbumCover callback failed, error = ${JSON.stringify(error)}`)
-    return
+  if (error) {
+    console.error(`fetchAlbumCover callback failed, error = ${JSON.stringify(error)}`);
+    return;
   }
-  this.pixelMap = pixelMap
-}
+  pixel_map = pixelMap;
+});
 ```
 
 ### fetchAlbumCover<sup>11+</sup>
@@ -3008,9 +3003,12 @@ fetchAlbumCover(): Promise\<image.PixelMap>
 **示例：**
 
 ```ts
+import image from '@ohos.multimedia.image';
+let pixel_map : image.PixelMap | undefined = undefined;
+
 // 获取专辑封面
 avMetadataExtractor.fetchAlbumCover().then((pixelMap: image.PixelMap) => {
-  this.pixelMap = pixelMap
+  pixel_map = pixelMap;
 }).catch((error: BusinessError) => {
   console.error(`fetchAlbumCover catchCallback, error message:${error.message}`);
 });
@@ -3044,10 +3042,10 @@ release(callback: AsyncCallback\<void>): void
 //释放资源
 avMetadataExtractor.release((error) => {
   if (error) {
-    console.error(TAG, `release failed, err = ${JSON.stringify(error)}`)
-    return
+    console.error(`release failed, err = ${JSON.stringify(error)}`);
+    return;
   }
-  console.info(TAG, `release success.`)
+  console.info(`release success.`);
 })
 ```
 
@@ -3078,7 +3076,7 @@ release(): Promise\<void>
 ```ts
 //释放资源
 avMetadataExtractor.release().then(() => {
-  console.info(TAG, `release success.`)
+  console.info(`release success.`);
 }).catch((error: BusinessError) => {
   console.error(`release catchCallback, error message:${error.message}`);
 });
@@ -3158,6 +3156,10 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 **示例：**
 
 ```ts
+import image from '@ohos.multimedia.image';
+
+let pixel_map : image.PixelMap | undefined = undefined;
+
 // 初始化入参
 let timeUs: number = 0
 
@@ -3172,10 +3174,10 @@ let param: media.PixelMapParams = {
 // 获取缩略图
 avImageGenerator.fetchFrameByTime(timeUs, queryOption, param, (error, pixelMap) => {
   if (error) {
-    console.error(TAG, `fetchFrameByTime callback failed, err = ${JSON.stringify(error)}`)
+    console.error(`fetchFrameByTime callback failed, err = ${JSON.stringify(error)}`)
     return
   }
-  this.pixelMap = pixelMap
+  pixel_map = pixelMap;
 })
 ```
 
@@ -3215,6 +3217,10 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 **示例：**
 
 ```ts
+import image from '@ohos.multimedia.image';
+
+let pixel_map : image.PixelMap | undefined = undefined;
+
 // 初始化入参
 let timeUs: number = 0
 
@@ -3228,7 +3234,7 @@ let param: media.PixelMapParams = {
 
 // 获取缩略图
 avImageGenerator.fetchFrameByTime(timeUs, queryOption, param).then((pixelMap: image.PixelMap) => {
-  this.pixelMap = pixelMap
+  pixel_map = pixelMap;
 }).catch((error: BusinessError) => {
   console.error(`fetchFrameByTime catchCallback, error message:${error.message}`);
 });
@@ -3264,10 +3270,10 @@ release(callback: AsyncCallback\<void>): void
 //释放资源
 avImageGenerator.release((error) => {
   if (error) {
-    console.error(TAG, `release failed, err = ${JSON.stringify(error)}`)
-    return
+    console.error(`release failed, err = ${JSON.stringify(error)}`);
+    return;
   }
-  console.info(TAG, `release success.`)
+  console.info(`release success.`);
 })
 ```
 
@@ -3300,7 +3306,7 @@ release(): Promise\<void>
 ```ts
 //释放资源
 avImageGenerator.release().then(() => {
-  console.info(TAG, `release success.`)
+  console.info(`release success.`);
 }).catch((error: BusinessError) => {
   console.error(`release catchCallback, error message:${error.message}`);
 });

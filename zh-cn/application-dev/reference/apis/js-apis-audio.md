@@ -396,6 +396,23 @@ async function createTonePlayerBefore(){
 | DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | 分布式输入设备。<br/>此接口为系统接口。    |
 | ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | 分布式输入和输出设备。<br/>此接口为系统接口。 |
 
+## DeviceUsage<sup>11+</sup>
+
+枚举，可获取的设备种类。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**系统接口：** 该接口为系统接口
+
+| 名称                            |  值     | 说明                        |
+| ------------------------------- | ------ |---------------------------|
+| MEDIA_OUTPUT_DEVICES<sup>11+</sup> | 1      | 媒体输出设备。|
+| MEDIA_INPUT_DEVICES<sup>11+</sup>  | 2      | 媒体输入设备。|
+| ALL_MEDIA_DEVICES<sup>11+</sup>    | 3      | 所有媒体设备。|
+| CALL_OUTPUT_DEVICES<sup>11+</sup>  | 4      | 通话输出设备。|
+| CALL_INPUT_DEVICES<sup>11+</sup>   | 8      | 通话输入设备。|
+| ALL_CALL_DEVICES<sup>11+</sup>     | 12     | 所有通话设备。|
+
 ## DeviceRole
 
 枚举，设备角色。
@@ -4268,9 +4285,9 @@ off(type: 'audioRendererChange'): void
 
 以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
 
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 6800101 | nvalid parameter error. |
+| 错误码ID | 错误信息                     |
+| ------- |--------------------------|
+| 6800101 | Invalid parameter error. |
 
 **示例：**
 
@@ -4743,6 +4760,118 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
 ```ts
 audioRoutingManager.off('deviceChange');
+```
+
+### getAvailableDevices<sup>11+</sup>
+
+getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors
+
+获取音频可选设备列表，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名     | 类型                      | 必填 | 说明             |
+| ---------- | ------------------------- | ---- | ---------------- |
+| deviceUsage| [DeviceUsage](#deviceusage) | 是   | 设备的usage。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                      |
+| ------------------------------------------------------------ | ------------------------- |
+| [AudioDeviceDescriptors](#audiodevicedescriptors) | 返回设备列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let data: audio.AudioDeviceDescriptors = audioRoutingManager.getAvailableDevices(audio.DeviceUsage.MEDIA_OUTPUT_DEVICES);
+  console.info(`Indicate that the device list is obtained ${data}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the device list. ${error}`);
+}
+```
+
+### on('availableDeviceChange')<sup>11+</sup>
+
+on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<DeviceChangeAction\>): void
+
+订阅音频可选设备连接变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'availableDeviceChange' |
+| deviceUsage | [DeviceUsage](#deviceusage)                       | 是   | 设备的usage。     |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error. |
+
+**示例：**
+
+```ts
+audioRoutingManager.on('availableDeviceChange', audio.DeviceUsage.MEDIA_OUTPUT_DEVICES, (deviceChanged: audio.DeviceChangeAction) => {
+  console.info('device change type : ' + deviceChanged.type);
+  console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);
+});
+```
+
+### off('availableDeviceChange')<sup>11+</sup>
+
+off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction\>): void
+
+取消订阅音频可选设备连接变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'availableDeviceChange' |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | 否   | 回调函数，返回可选设备更新详情。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error. |
+
+**示例：**
+
+```ts
+audioRoutingManager.off('availableDeviceChange');
 ```
 
 ### selectInputDevice<sup>9+</sup>
@@ -5337,9 +5466,9 @@ getPreferredOutputDeviceForRendererInfoSync(rendererInfo: AudioRendererInfo): Au
 
 以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
 
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 6800101 | invalid parameter error.   |
+| 错误码ID | 错误信息                     |
+| ------- |--------------------------|
+| 6800101 | Invalid parameter error. |
 
 **示例：**
 
@@ -8141,7 +8270,7 @@ setChannelBlendMode(mode: ChannelBlendMode): void
 
 **示例：**
 
-```js
+```ts
 let mode = audio.ChannelBlendMode.MODE_DEFAULT;
 
 audioRenderer.setChannelBlendMode(mode);
@@ -8173,7 +8302,7 @@ setVolumeWithRamp(volume: number, duration: number): void
 
 **示例：**
 
-```js
+```ts
 let volume = 0.5;
 let duration = 1000;
 
@@ -9181,7 +9310,7 @@ getCurrentInputDevices(): AudioDeviceDescriptors
 
 **示例：**
 
-```js
+```ts
 let deviceDescriptors: audio.AudioDeviceDescriptors = audioCapturer.getCurrentInputDevices();
 console.info(`Device id: ${deviceDescriptors[0].id}`);
 console.info(`Device type: ${deviceDescriptors[0].deviceType}`);
@@ -9191,7 +9320,9 @@ console.info(`Device address: ${deviceDescriptors[0].address}`);
 console.info(`Device samplerates: ${deviceDescriptors[0].sampleRates[0]}`);
 console.info(`Device channelcounts: ${deviceDescriptors[0].channelCounts[0]}`);
 console.info(`Device channelmask: ${deviceDescriptors[0].channelMasks[0]}`);
-console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
+if (deviceDescriptors[0].encodingTypes) {
+  console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
+}
 ```
 
 ### getCurrentAudioCapturerChangeInfo<sup>11+</sup>
@@ -9210,7 +9341,7 @@ getCurrentAudioCapturerChangeInfo(): AudioCapturerChangeInfo
 
 **示例：**
 
-```js
+```ts
 let info: audio.AudioCapturerChangeInfo = audioCapturer.getCurrentAudioCapturerChangeInfo();
 console.info(`Info streamId: ${info.streamId}`);
 console.info(`Info source: ${info.capturerInfo.source}`);
@@ -9224,7 +9355,9 @@ console.info(`Info address: ${info.deviceDescriptors[0].address}`);
 console.info(`Info samplerates: ${info.deviceDescriptors[0].sampleRates[0]}`);
 console.info(`Info channelcounts: ${info.deviceDescriptors[0].channelCounts[0]}`);
 console.info(`Info channelmask: ${info.deviceDescriptors[0].channelMasks[0]}`);
-console.info(`Info encodingTypes: ${info.deviceDescriptors[0].encodingTypes[0]}`);
+if (deviceDescriptors[0].encodingTypes) {
+  console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
+}
 ```
 
 ### on('audioInterrupt')<sup>10+</sup>
@@ -9356,7 +9489,7 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
 **示例：**
 
-```js
+```ts
 audioCapturer.on('inputDeviceChange', (deviceChangeInfo: audio.AudioDeviceDescriptors) => {
   console.info(`inputDevice id: ${deviceChangeInfo[0].id}`);
   console.info(`inputDevice deviceRole: ${deviceChangeInfo[0].deviceRole}`);
@@ -9386,7 +9519,7 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 
 **示例：**
 
-```js
+```ts
 audioCapturer.off('inputDeviceChange');
 ```
 
@@ -9413,7 +9546,7 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 
 **示例：**
 
-```js
+```ts
 audioCapturer.on('audioCapturerChange', (capturerChangeInfo: audio.AudioCapturerChangeInfo) => {
   console.info(`audioCapturerChange id: ${capturerChangeInfo[0].id}`);
   console.info(`audioCapturerChange deviceRole: ${capturerChangeInfo[0].deviceRole}`);
@@ -9444,7 +9577,7 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 
 **示例：**
 
-```js
+```ts
 audioCapturer.off('audioCapturerChange');
 ```
 

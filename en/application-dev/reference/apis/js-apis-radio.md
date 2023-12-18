@@ -3439,6 +3439,57 @@ radio.setNetworkCapability(slotId, type, state).then(() => {
 });
 ```
 
+## radio.factoryReset<sup>11+</sup>
+
+factoryReset\(slotId: number\): Promise\<void\>
+
+Restores the radio service to factory settings. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  |                              Type                              | Mandatory| Description                                  |
+| -------- | --------------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                          | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type           | Description                   |
+| --------------- | ----------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.factoryReset(slotId).then(() => {
+    console.log(`factoryReset success`);
+}).catch((err: BusinessError) => {
+    console.error(`factoryReset failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 ## RadioTechnology
 
 Enumerates radio access technologies.

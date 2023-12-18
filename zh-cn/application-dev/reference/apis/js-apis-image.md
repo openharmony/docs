@@ -191,7 +191,7 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 | 参数名 | 类型        | 必填 | 说明                                                                                                  |
 | ------ | ----------- | ---- | ----------------------------------------------------------------------------------------------------- |
-| dst    | ArrayBuffer | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由getPixelBytesNumber接口获取。 |
+| dst    | ArrayBuffer | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由[getPixelBytesNumber](#getpixelbytesnumber7)接口获取。 |
 
 **返回值：**
 
@@ -223,7 +223,7 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                                                                  |
 | -------- | -------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
-| dst      | ArrayBuffer          | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由getPixelBytesNumber接口获取。 |
+| dst      | ArrayBuffer          | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由[getPixelBytesNumber](#getpixelbytesnumber7)接口获取。 |
 | callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。                                                                        |
 
 **示例：**
@@ -565,7 +565,11 @@ import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
-    let rowCount : number = pixelMap.getBytesNumberPerRow();
+    if (err != undefined) {
+        console.error('Failed to create pixelmap.');
+    } else {
+        let rowCount : number = pixelMap.getBytesNumberPerRow();
+    }
 })
 ```
 
@@ -701,7 +705,7 @@ createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
 | 参数名   | 类型                     | 必填 | 说明                     |
 | -------- | ------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback\<PixelMap> | 是   | 获取回调，异步返回结果。 |
+| callback | AsyncCallback\<[PixelMap](#pixelmap7)> | 是   | 获取回调，异步返回结果。 |
 
 **示例：**
 
@@ -1051,6 +1055,99 @@ async function Demo() {
 }
 ```
 
+### applyColorSpace<sup>11+</sup>
+
+applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback: AsyncCallback\<void>): void
+
+根据输入的目标色彩空间对图像像素颜色进行色彩空间转换，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                          |
+| -------- | -------------------- | ---- | ----------------------------- |
+| targetColorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间，支持SRGB、DCI_P3、DISPLAY_P3、ADOBE_RGB_1998。|
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------------------|
+| 401 | If the input parameter is not valid parameter. |
+| 62980104| If the internal object initialized failed |
+| 62980108| If the color space converted failed       |
+| 62980115| If the image parameter invalid            |
+
+**示例：**
+
+```ts
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import {BusinessError} from '@ohos.base'
+
+async function Demo() {
+    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
+    let targetColorSpace : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
+    pixelmap.applyColorSpace(targetColorSpace, (err : BusinessError) => {
+        if (err) {
+            console.error('Failed to apply color space for pixelmap object.');
+        } else {
+            console.log('Succeeded in applying color space for pixelmap object.');
+        }
+    })
+}
+```
+
+### applyColorSpace<sup>11+</sup>
+
+applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\<void>
+
+根据输入的目标色彩空间对图像像素颜色进行色彩空间转换，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型               | 必填 | 说明        |
+| ------ | ------------------ | ---- | ----------- |
+| targetColorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间，支持SRGB、DCI_P3、DISPLAY_P3、ADOBE_RGB_1998。|
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------------------|
+| 401 | If the input parameter is not valid parameter. |
+| 62980104| If the internal object initialized failed |
+| 62980108| If the color space converted failed       |
+| 62980115| If the image parameter invalid            |
+
+**示例：**
+
+```ts
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import {BusinessError} from '@ohos.base'
+
+async function Demo() {
+    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
+    let targetColorSpace : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
+    pixelmap.applyColorSpace(targetColorSpace).then(() => {
+        console.log('Succeeded in applying color space for pixelmap object.');
+    }).catch((error : BusinessError) => {
+        console.error('Failed to apply color space for pixelmap object.');
+    })
+}
+```
+
 ### marshalling<sup>10+</sup>
 
 marshalling(sequence: rpc.MessageSequence): void
@@ -1150,7 +1247,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
 | 类型                             | 说明                  |
 | -------------------------------- | --------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | 异步返回Promise对象。 |
+| Promise\<[PixelMap](#pixelmap7)> | Promise实例，用于异步获取结果，失败时返回错误信息。 |
 
 **错误码：**
 
@@ -1450,7 +1547,7 @@ const imageSourceApi : image.ImageSource = image.createImageSource(data, sourceO
 
 ## image.createImageSource<sup>11+</sup>
 
-createImageSource(rawfile: resourceManager.RawFileDescriptor, options: SourceOptions): ImageSource
+createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOptions): ImageSource
 
 通过图像资源文件的RawFileDescriptor创建图片源实例。
 
@@ -1474,12 +1571,17 @@ createImageSource(rawfile: resourceManager.RawFileDescriptor, options: SourceOpt
 Stage模型
 
 ```ts
+import resourceManager from '@ohos.resourceManager';
+
 // Stage模型
 const context : Context = getContext(this);
 // 获取resourceManager资源管理器
-const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
-const rawFileDescriptor : resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
-const imageSourceApi : image.ImageSource = image.createImageSource(rawFileDescriptor);
+const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor : resourceManager.RawFileDescriptor) => {
+    const imageSourceApi: image.ImageSource = image.createImageSource(rawFileDescriptor);
+}).catch((error : BusinessError) => {
+    console.error(`Failed to get RawFileDescriptor.code is ${error.code}, message is ${error.message}`);
+})
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
@@ -1539,7 +1641,7 @@ const imageSourceIncrementalSApi : image.ImageSource = image.CreateIncrementalSo
 
 ## ImageSource
 
-图片源类，用于获取图片相关信息。在调用ImageSource的方法前，需要先通过createImageSource构建一个ImageSource实例。
+图片源类，用于获取图片相关信息。在调用ImageSource的方法前，需要先通过[createImageSource](#imagecreateimagesource)构建一个ImageSource实例。
 
 ### 属性
 
@@ -1622,7 +1724,7 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 
 | 类型                             | 说明                   |
 | -------------------------------- | ---------------------- |
-| Promise<[ImageInfo](#imageinfo)> | 返回获取到的图片信息。 |
+| Promise<[ImageInfo](#imageinfo)> | Promise实例，用于异步返回获取到的图片信息。 |
 
 **示例：**
 
@@ -1660,9 +1762,12 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 imageSourceApi.getImageProperty("BitsPerSample")
     .then((data : string) => {
 		console.log('Succeeded in getting the value of the specified attribute key of the image.');
+	}).catch((error : BusinessError) => {
+		console.error('Failed to get the value of the specified attribute key of the image.');
 	})
 ```
 
@@ -1748,10 +1853,15 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
     imageSourceApi.getImageProperty("ImageWidth").then((width : string) => {
         console.info(`ImageWidth is :${width}`);
-    })
+    }).catch((error : BusinessError) => {
+        console.error('Failed to get the Image Width.');
+	})
+}).catch((error : BusinessError) => {
+	console.error('Failed to modify the Image Width');
 })
 ```
 
@@ -1786,7 +1896,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120",(err : BusinessError) => 
 
 ### updateData<sup>9+</sup>
 
-updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number): Promise\<void>
+updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number): Promise\<void>
 
 更新增量数据，使用Promise形式返回结果。
 
@@ -1798,7 +1908,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number)
 | ---------- | ----------- | ---- | ------------ |
 | buf        | ArrayBuffer | 是   | 增量数据。   |
 | isFinished | boolean     | 是   | 是否更新完。 |
-| value      | number      | 是   | 偏移量。     |
+| offset      | number      | 是   | 偏移量。     |
 | length     | number      | 是   | 数组长。     |
 
 **返回值：**
@@ -1822,7 +1932,7 @@ imageSourceApi.updateData(array, false, 0, 10).then(() => {
 
 ### updateData<sup>9+</sup>
 
-updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number, callback: AsyncCallback\<void>): void
+updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number, callback: AsyncCallback\<void>): void
 
 更新增量数据，callback形式返回结果。
 
@@ -1834,7 +1944,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number,
 | ---------- | ------------------- | ---- | -------------------- |
 | buf        | ArrayBuffer         | 是   | 增量数据。           |
 | isFinished | boolean             | 是   | 是否更新完。         |
-| value      | number              | 是   | 偏移量。             |
+| offset      | number              | 是   | 偏移量。             |
 | length     | number              | 是   | 数组长。             |
 | callback   | AsyncCallback\<void> | 是   | 回调表示成功或失败。 |
 
@@ -1870,7 +1980,7 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
 | 类型                             | 说明                  |
 | -------------------------------- | --------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | 异步返回Promise对象。 |
+| Promise\<[PixelMap](#pixelmap7)> | Promise实例，用于异步返回创建结果。 |
 
 **示例：**
 
@@ -1902,7 +2012,11 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 ```ts
 import {BusinessError} from '@ohos.base';
 imageSourceApi.createPixelMap((err : BusinessError, pixelMap : image.PixelMap) => {
-    console.info('Succeeded in creating pixelMap object.');
+    if (err != undefined) {
+        console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
+    } else {
+        console.info('Succeeded in creating pixelMap object.');
+    }
 })
 ```
 
@@ -1935,7 +2049,11 @@ let decodingOptions : image.DecodingOptions = {
     index: 0
 };
 imageSourceApi.createPixelMap(decodingOptions, (err : BusinessError, pixelMap : image.PixelMap) => { 
-    console.log('Succeeded in creating pixelMap object.');
+    if (err != undefined) {
+        console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
+    } else {
+        console.log('Succeeded in creating pixelMap object.');
+    }
 })
 ```
 
@@ -2149,6 +2267,7 @@ getDelayTimeList(): Promise<Array\<number>>
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 imageSourceApi.getDelayTimeList().then((delayTimes : Array<number>) => {
     console.log('Succeeded in delayTimes object.');
 }).catch((err: BusinessError) => {
@@ -2228,6 +2347,7 @@ getFrameCount(): Promise\<number>
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 imageSourceApi.getFrameCount().then((frameCount: number) => {
     console.log('Succeeded in getting frame count.');
 }).catch((err : BusinessError) => {
@@ -2309,7 +2429,7 @@ const imagePackerApi : image.ImagePacker = image.createImagePacker();
 
 ## ImagePacker
 
-图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过createImagePacker构建一个ImagePacker实例，当前支持格式有：jpeg webp png。
+图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过[createImagePacker](#imagecreateimagepacker)构建一个ImagePacker实例，当前支持格式有：jpeg、webp、png。
 
 ### 属性
 
@@ -2317,7 +2437,7 @@ const imagePackerApi : image.ImagePacker = image.createImagePacker();
 
 | 名称             | 类型           | 可读 | 可写 | 说明                       |
 | ---------------- | -------------- | ---- | ---- | -------------------------- |
-| supportedFormats | Array\<string> | 是   | 否   | 图片打包支持的格式 jpeg webp png。 |
+| supportedFormats | Array\<string> | 是   | 否   | 图片打包支持的格式 jpeg、webp、png。 |
 
 ### packing
 
@@ -2341,7 +2461,13 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 import {BusinessError} from '@ohos.base';
 const imageSourceApi : image.ImageSource = image.createImageSource(0);
 let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 };
-imagePackerApi.packing(imageSourceApi, packOpts, (err : BusinessError, data : ArrayBuffer) => {})
+imagePackerApi.packing(imageSourceApi, packOpts, (err : BusinessError, data : ArrayBuffer) => {
+    if(err) {
+        console.error('packing failed.');
+    } else {
+        console.log('packing succeeded.');
+    }
+})
 ```
 
 ### packing
@@ -2533,7 +2659,13 @@ let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 };
 const filePath : string = context.cacheDir + "/image_source.jpg";
 let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const imagePackerApi : image.ImagePacker = image.createImagePacker();
-imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err : BusinessError) => {})
+imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err : BusinessError) => {
+    if(err) {
+        console.error('packToFile failed.');
+    } else {
+        console.log('packToFile succeeded.');
+    }
+})
 ```
 
 ### packToFile<sup>11+</sup>
@@ -2580,7 +2712,7 @@ imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(()=>{
 
 ### packToFile<sup>11+</sup>
 
-packToFile (source: Pixelmap, fd: number, options: PackingOption,  callback: AsyncCallback\<void>): void;
+packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: AsyncCallback\<void>): void;
 
 指定打包参数，将PixelMap图片源编码后直接打包进文件。使用callback形式返回结果。
 
@@ -2602,21 +2734,26 @@ import {BusinessError} from '@ohos.base'
 import fs from '@ohos.file.fs'
 
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+const context : Context = getContext(this);
+const path : string = context.cacheDir + "/pixel_map.jpg";
 image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
     let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 }
-    const context : Context = getContext(this);
-	const path : string = context.cacheDir + "/pixel_map.jpg";
     let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     const imagePackerApi : image.ImagePacker = image.createImagePacker();
-    imagePackerApi.packToFile(pixelmap, file.fd, packOpts, (err : BusinessError) => {})
+    imagePackerApi.packToFile(pixelmap, file.fd, packOpts, (err : BusinessError) => {
+        if(err) {
+            console.error('packToFile failed.');
+        } else {
+            console.log('packToFile succeeded.');
+        }
+    })
 })
 ```
 
 ### packToFile<sup>11+</sup>
 
-packToFile (source: Pixelmap, fd: number, options: PackingOption): Promise\<void>
+packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void>
 
 指定打包参数，将PixelMap图片源编码后直接打包进文件。使用Promise形式返回结果。
 
@@ -2643,12 +2780,11 @@ import {BusinessError} from '@ohos.base'
 import fs from '@ohos.file.fs'
 
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+const context : Context = getContext(this);
+const path : string = context.cacheDir + "/pixel_map.jpg";
 image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
     let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 }
-    const context : Context = getContext(this);
-    const path : string = context.cacheDir + "/pixel_map.jpg";
     let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     const imagePackerApi : image.ImagePacker = image.createImagePacker();
     imagePackerApi.packToFile(pixelmap, file.fd, packOpts)
@@ -2879,7 +3015,9 @@ on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-receiver.on('imageArrival', () => {})
+receiver.on('imageArrival', () => {
+    // image arrival, do something.
+})
 ```
 
 ### release<sup>9+</sup>
@@ -2900,7 +3038,13 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base'
-receiver.release((err : BusinessError) => {})
+receiver.release((err : BusinessError) => {
+    if(err) {
+        console.error('release ImageReceiver failed.');
+    } else {
+        console.log('release ImageReceiver succeeded.');
+    }
+})
 ```
 
 ### release<sup>9+</sup>
@@ -2960,7 +3104,7 @@ let creator : image.ImageCreator = image.createImageCreator(8192, 8, image.Image
 ## ImageCreator<sup>9+</sup>
 
 图像创建模块，用于请求图像原生数据区域，并开放给应用编译原生图像数据的能力。
-在调用以下方法前需要先创建ImageCreator实例，ImageCreator不支持多线程。
+在调用以下方法前需要先创建[ImageCreator](#imagecreator9)实例，ImageCreator不支持多线程。
 
 ### 属性
 
@@ -2983,7 +3127,7 @@ dequeueImage(callback: AsyncCallback\<Image>): void
 
 | 参数名        | 类型                                    | 必填 | 说明                 |
 | ------------- | ---------------------------------------| ---- | -------------------- |
-| callback      | AsyncCallback\<Image>                   | 是   | 回调函数，返回最新图片。 |
+| callback      | AsyncCallback\<[Image](#image9)>                   | 是   | 回调函数，返回最新图片。 |
 
 **示例：**
 
@@ -3010,7 +3154,7 @@ dequeueImage(): Promise\<Image>
 
 | 类型             | 说明           |
 | --------------- | ------------- |
-| Promise\<Image> | 返回绘制的图像。 |
+| Promise\<[Image](#image9)> | Promise实例，用于返回最新图片。 |
 
 **示例：**
 
@@ -3035,7 +3179,7 @@ queueImage(interface: Image, callback: AsyncCallback\<void>): void
 
 | 参数名        | 类型                     | 必填 | 说明                 |
 | ------------- | -------------------------| ---- | -------------------- |
-| interface     | Image                    | 是   | 绘制好的buffer图像。 |
+| interface     | [Image](#image9)                    | 是   | 绘制好的buffer图像。 |
 | callback      | AsyncCallback\<void>     | 是   | 获取回调，失败时返回错误信息。 |
 
 **示例：**
@@ -3076,7 +3220,7 @@ queueImage(interface: Image): Promise\<void>
 
 | 参数名          | 类型     | 必填 | 说明                |
 | ------------- | --------| ---- | ------------------- |
-| interface     | Image   | 是   | 绘制好的buffer图像。 |
+| interface     | [Image](#image9)   | 是   | 绘制好的buffer图像。 |
 
 **返回值：**
 
@@ -3247,12 +3391,16 @@ getComponent(componentType: ComponentType): Promise\<Component>
 
 | 类型                              | 说明                              |
 | --------------------------------- | --------------------------------- |
-| Promise<[Component](#component9)> | 用于返回组件缓冲区的promise实例。 |
+| Promise<[Component](#component9)> | Promise实例，用于异步返回组件缓冲区。 |
 
 **示例：**
 
 ```ts
-img.getComponent(4).then((component : image.Component) => { })
+img.getComponent(4).then((component : image.Component) => {
+    console.log('getComponent succeeded.');
+}).catch((error : BusinessError) => {
+    console.error('getComponent failed');
+})
 ```
 
 ### release<sup>9+</sup>
@@ -3319,10 +3467,10 @@ img.release().then(() =>{
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                                         |
 | ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
-| pixels | ArrayBuffer        | 是   | 否   | 像素。                                                       |
-| offset | number             | 是   | 否   | 偏移量。                                                     |
-| stride | number             | 是   | 否   | 像素间距，stride >= region.size.width*4。                   |
-| region | [Region](#region7) | 是   | 否   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
+| pixels | ArrayBuffer        | 是   | 是   | 像素。                                                       |
+| offset | number             | 是   | 是   | 偏移量。                                                     |
+| stride | number             | 是   | 是   | 像素间距，stride >= region.size.width*4。                   |
+| region | [Region](#region7) | 是   | 是   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
 
 ## ImageInfo
 
@@ -3373,7 +3521,7 @@ img.release().then(() =>{
 | 名称     |   值   | 说明                    |
 | -------- | ------ | ----------------------- |
 | UNKNOWN  | 0      | 未知透明度。            |
-| OPAQUE   | 1      | 没有alpha或图片全透明。 |
+| OPAQUE   | 1      | 没有alpha或图片不透明。 |
 | PREMUL   | 2      | RGB前乘alpha。         |
 | UNPREMUL | 3      | RGB不前乘alpha。       |
 
@@ -3431,6 +3579,7 @@ PixelMap的初始化选项。
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
 | index              | number                             | 是   | 是   | 解码图片序号。   |
 | fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。   |
+| desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 是   | 目标色彩空间。 |
 
 ## Region<sup>7+</sup>
 
@@ -3453,7 +3602,7 @@ PixelMap的初始化选项。
 | 名称    | 类型   | 可读 | 可写 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
 | format  | string | 是   | 是   | 目标格式。</br>当前只支持jpg、webp 和 png。 |
-| quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
+| quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。 |
 | bufferSize<sup>9+</sup> | number | 是   | 是   | 接收编码数据的缓冲区大小，单位为Byte。默认为10MB。bufferSize需大于编码后图片大小。 |
 
 ## GetImagePropertyOptions<sup>7+</sup>

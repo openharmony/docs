@@ -4408,20 +4408,23 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensio
 // 示例接口带userId参数查询
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
 let extensionAbilityType = "form";
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let userId = 100;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
 
 try {
-    var data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityType, extensionFlags, userId)
+    let data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityType, extensionFlags, userId)
     hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed.');
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed: %{public}s', message);
 }
 ```
 
@@ -4429,10 +4432,12 @@ try {
 // 示例接口不带userId参数查询
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
 let extensionAbilityType = "form";
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
-let want = {
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -4441,7 +4446,8 @@ try {
     let data = bundleManager.queryExtensionAbilityInfoSync(want, extensionAbilityType, extensionFlags);
     hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed.');
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed: %{public}s', message);
 }
 ```
 
@@ -4489,6 +4495,7 @@ getJsonProfile(profileType: [ProfileType](#profiletype11), bundleName: string, m
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
@@ -4498,7 +4505,8 @@ try {
     let data = bundleManager.getJsonProfile(profileType, bundleName, moduleName)
     hilog.info(0x0000, 'testTag', 'getJsonProfile successfully. Data: %{public}s', data);
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'getJsonProfile failed.');
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getJsonProfile failed: %{public}s', message);
 }
 ```
 
@@ -4625,7 +4633,7 @@ try {
 }
 ```
 
-### bundleManager.verifyAbc
+### bundleManager.verifyAbc<sup>11+</sup>
 
 verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: AsyncCallback\<void>): void
 
@@ -4673,7 +4681,7 @@ try {
 }
 ```
 
-### bundleManager.verifyAbc
+### bundleManager.verifyAbc<sup>11+</sup>
 
 verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void>
 
@@ -4765,6 +4773,7 @@ queryExtensionAbilityInfoSync(extensionAbilityType: string, extensionAbilityFlag
 // 示例接口带userId参数查询
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
+import { BusinessError } from '@ohos.base';
 
 let extensionAbilityType = "form";
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
@@ -4774,7 +4783,8 @@ try {
     let data = bundleManager.queryExtensionAbilityInfoSync(extensionAbilityType, extensionFlags, userId)
     hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed.');
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed: %{public}s', message);
 }
 ```
 
@@ -4782,6 +4792,7 @@ try {
 // 示例接口不带userId参数查询
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
+import { BusinessError } from '@ohos.base';
 
 let extensionAbilityType = "form";
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
@@ -4790,6 +4801,7 @@ try {
     let data = bundleManager.queryExtensionAbilityInfoSync(extensionAbilityType, extensionFlags);
     hilog.info(0x0000, 'testTag', 'queryExtensionAbilityInfoSync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
-    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed.');
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryExtensionAbilityInfoSync failed: %{public}s', message);
 }
 ```

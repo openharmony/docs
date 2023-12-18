@@ -2561,25 +2561,25 @@ async function huksAbort() {
 
 | 名称                                           | 值 |  说明                        |
 | ---------------------------------------------- | -------- |--------------------------- |
-| HUKS_ERR_CODE_PERMISSION_FAIL                  | 201      | 权限错误导致失败。          |
-| HUKS_ERR_CODE_ILLEGAL_ARGUMENT                 | 401      | 参数错误导致失败。          |
-| HUKS_ERR_CODE_NOT_SUPPORTED_API                | 801      | 不支持的API。               |
-| HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED            | 12000001 | 不支持的功能/特性。         |
-| HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT      | 12000002 | 缺少密钥算法参数。          |
-| HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT      | 12000003 | 无效密钥算法参数。          |
-| HUKS_ERR_CODE_FILE_OPERATION_FAIL              | 12000004 | 文件操作失败。              |
-| HUKS_ERR_CODE_COMMUNICATION_FAIL               | 12000005 | 通信失败。                  |
-| HUKS_ERR_CODE_CRYPTO_FAIL                      | 12000006 | 算法库操作失败。            |
-| HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED | 12000007 | 密钥访问失败-密钥访问失效。 |
-| HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED           | 12000008 | 密钥访问失败-密钥认证失败。 |
-| HUKS_ERR_CODE_KEY_AUTH_TIME_OUT                | 12000009 | 密钥访问失败-密钥访问超时。 |
-| HUKS_ERR_CODE_SESSION_LIMIT                    | 12000010 | 密钥操作会话数已达上限。    |
-| HUKS_ERR_CODE_ITEM_NOT_EXIST                   | 12000011 | 目标对象不存在。            |
-| HUKS_ERR_CODE_EXTERNAL_ERROR                   | 12000012 | 外部错误。                  |
-| HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 12000013 | 缺失所需凭据。              |
-| HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 12000014 | 内存不足。                  |
-| HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 12000015 | 调用其他系统服务失败。      |
-| HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET<sup>11+</sup>  | 12000016 | 需要锁屏密码但未设置。     |
+| HUKS_ERR_CODE_PERMISSION_FAIL                  | 201      | 权限错误导致失败。<br> **系统能力：** SystemCapability.Security.Huks.Core          |
+| HUKS_ERR_CODE_ILLEGAL_ARGUMENT                 | 401      | 参数错误导致失败。<br> **系统能力：** SystemCapability.Security.Huks.Core          |
+| HUKS_ERR_CODE_NOT_SUPPORTED_API                | 801      | 不支持的API。<br> **系统能力：** SystemCapability.Security.Huks.Core               |
+| HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED            | 12000001 | 不支持的功能/特性。<br> **系统能力：** SystemCapability.Security.Huks.Core         |
+| HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT      | 12000002 | 缺少密钥算法参数。<br> **系统能力：** SystemCapability.Security.Huks.Core          |
+| HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT      | 12000003 | 无效密钥算法参数。<br> **系统能力：** SystemCapability.Security.Huks.Core          |
+| HUKS_ERR_CODE_FILE_OPERATION_FAIL              | 12000004 | 文件操作失败。<br> **系统能力：** SystemCapability.Security.Huks.Core              |
+| HUKS_ERR_CODE_COMMUNICATION_FAIL               | 12000005 | 通信失败。<br> **系统能力：** SystemCapability.Security.Huks.Core                  |
+| HUKS_ERR_CODE_CRYPTO_FAIL                      | 12000006 | 算法库操作失败。<br> **系统能力：** SystemCapability.Security.Huks.Core            |
+| HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED | 12000007 | 密钥访问失败-密钥访问失效。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED           | 12000008 | 密钥访问失败-密钥认证失败。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_ERR_CODE_KEY_AUTH_TIME_OUT                | 12000009 | 密钥访问失败-密钥访问超时。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_ERR_CODE_SESSION_LIMIT                    | 12000010 | 密钥操作会话数已达上限。<br> **系统能力：** SystemCapability.Security.Huks.Core    |
+| HUKS_ERR_CODE_ITEM_NOT_EXIST                   | 12000011 | 目标对象不存在。<br> **系统能力：** SystemCapability.Security.Huks.Core            |
+| HUKS_ERR_CODE_EXTERNAL_ERROR                   | 12000012 | 外部错误。<br> **系统能力：** SystemCapability.Security.Huks.Core                  |
+| HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 12000013 | 缺失所需凭据。<br> **系统能力：** SystemCapability.Security.Huks.Core              |
+| HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 12000014 | 内存不足。<br> **系统能力：** SystemCapability.Security.Huks.Core                  |
+| HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 12000015 | 调用其他系统服务失败。<br> **系统能力：** SystemCapability.Security.Huks.Core      |
+| HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET<sup>11+</sup>  | 12000016 | 需要锁屏密码但未设置。<br> **系统能力：** SystemCapability.Security.Huks.Extension     |
 
 ## HuksKeyPurpose
 
@@ -2840,6 +2840,18 @@ async function huksAbort() {
 | ------------------------------ | ---- | ------------------------------------------------------------ |
 | HUKS_SECURE_SIGN_WITH_AUTHINFO | 1    | 表示签名类型为携带认证信息。生成或导入密钥时指定该字段，则在使用密钥进行签名时，对待签名的数据添加认证信息后进行签名。 |
 
+## HuksAuthStorageLevel<sup>11+</sup>
+
+表示生成或导入密钥时，指定该密钥的存储安全等级。
+
+**系统能力**：SystemCapability.Security.Huks.Extension
+
+| 名称                           | 值   | 说明                                                         |
+| ------------------------------ | ---- | ------------------------------------------------------------ |
+| HUKS_AUTH_STORAGE_LEVEL_DE | 0    | 表示密钥仅在开机后可访问。 |
+| HUKS_AUTH_STORAGE_LEVEL_CE | 1    | 表示密钥仅在首次解锁后可访问。 |
+| HUKS_AUTH_STORAGE_LEVEL_ECE | 2    | 表示密钥仅在解锁状态时可访问。 |
+
 ## HuksTagType
 
 表示Tag的数据类型。
@@ -2907,6 +2919,7 @@ async function huksAbort() {
 | HUKS_TAG_CHALLENGE_TYPE<sup>9+</sup>                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 309    | 表示密钥使用时生成的challenge类型。从[HuksChallengeType](#hukschallengetype9)中选择   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_CHALLENGE_POS<sup>9+</sup>                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 310    | 表示challenge类型为用户自定义类型时，huks产生的challenge有效长度仅为8字节连续的数据。从[HuksChallengePosition](#hukschallengeposition9)中选择。   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_KEY_AUTH_PURPOSE<sup>10+</sup>                     | HuksTagType.HUKS_TAG_TYPE_UINT \|311     | 表示密钥认证用途的tag   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_AUTH_STORAGE_LEVEL<sup>11+</sup>                     | HuksTagType.HUKS_TAG_TYPE_UINT \|316     | 表示密钥存储安全等级的tag。从[HuksAuthStorageLevel](#huksauthstoragelevel11)中选择。   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_CHALLENGE                              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | 表示attestation时的挑战值。            <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_APPLICATION_ID                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | 表示attestation时拥有该密钥的application的Id。     <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_ID_BRAND<sup>(deprecated)</sup>        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | 表示设备的品牌。从API version 9开始废弃。                      <br> **系统能力：** SystemCapability.Security.Huks.Extension |

@@ -18,7 +18,8 @@
 | longText       | [NotificationLongTextContent](#notificationlongtextcontent)                | 否  | 否  | 长文本类型通知内容。 |
 | multiLine      | [NotificationMultiLineContent](#notificationmultilinecontent)              | 否  | 否  | 多行类型通知内容。   |
 | picture        | [NotificationPictureContent](#notificationpicturecontent)                  | 否  | 否  | 图片类型通知内容。   |
-| systemLiveView<sup>11+</sup> | [NotificationSystemLiveViewContent](#notificationsystemliveviewcontent)    | 否  | 否  | 实况窗类型通知内容（仅对系统应用开放）。|
+| systemLiveView<sup>11+</sup> | [NotificationSystemLiveViewContent](#notificationsystemliveviewcontent)    | 否  | 否  | 系统实况窗类型通知内容（仅对系统应用开放）。|
+| liveView<sup>11+</sup>       | [NotificationLiveViewContent](#notificationliveviewcontent11)              | 否  | 否  | 普通实况窗类型通知内容。|
 
 ## NotificationBasicContent
 
@@ -83,7 +84,7 @@
 
 ## NotificationSystemLiveViewContent
 
-描述实况通知（仅对系统应用开放）。
+描述系统实况窗通知内容（仅对系统应用开放）。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
@@ -149,3 +150,29 @@
 | maxValue        | number         | 否  | 否  | 进度最大值。                       |
 | currentValue    | number         | 否  | 否  | 进度当前值。                       |
 | isPercentage    | boolean        | 否  | 否  | 是否按百分比展示。                   |
+
+## NotificationLiveViewContent<sup>11+</sup>
+
+描述普通实况通知。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+| 名称           | 类型                                                                | 只读| 必填 | 说明                                                  |
+| -------------- | ------------------------------------------------------------------ | --- | --- | ------------------------------------------------------|
+| status         | [LiveViewStatus](#liveviewstatus11)                                | 否  | 是  | 通知状态。                  |
+| version        | number                                                             | 否  | 否  | 通知版本号（如果数据库存储版本号为0xffffffff，则本次更新和结束不校验版本号大小，否则需要校验本次版本号>数据库存储版本号）。不填默认为0xffffffff。|
+| extraInfo      | [key: string] object                                               | 否  | 否  | 实况通知附加内容。           |
+| pictureInfo    | [key: string] Array\<[image.PixelMap](js-apis-image.md#pixelmap7)> | 否  | 否  | 实况通知附加内容中的图片信息。|
+
+## LiveViewStatus<sup>11+</sup>
+
+描述普通实况通知的状态。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+| 名称                         | 值 |   说明   |
+| ---------------------------- |----|----------|
+| LIVE_VIEW_CREATE             | 0  | 创建     |
+| LIVE_VIEW_INCREMENTAL_UPDATE | 1  | 增量更新 |
+| LIVE_VIEW_END                | 2  | 结束     |
+| LIVE_VIEW_FULL_UPDATE        | 3  | 全量更新 |
