@@ -3192,7 +3192,7 @@ unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string,
 
 ### isDigit<sup>(deprecated)</sup>
 
-static isDigit(char: string): boolean
+isDigit(char: string): boolean
 
 判断字符串char是否是数字。
 
@@ -3215,7 +3215,7 @@ static isDigit(char: string): boolean
 
 ### isSpaceChar<sup>(deprecated)</sup>
 
-static isSpaceChar(char: string): boolean
+isSpaceChar(char: string): boolean
 
 判断字符串char是否是空格符。
 
@@ -3238,7 +3238,7 @@ static isSpaceChar(char: string): boolean
 
 ### isWhitespace<sup>(deprecated)</sup>
 
-static isWhitespace(char: string): boolean
+isWhitespace(char: string): boolean
 
 判断字符串char是否是空白符。
 
@@ -3261,7 +3261,7 @@ static isWhitespace(char: string): boolean
 
 ### isRTL<sup>(deprecated)</sup>
 
-static isRTL(char: string): boolean
+isRTL(char: string): boolean
 
 判断字符串char是否是从右到左语言的字符。
 
@@ -3284,7 +3284,7 @@ static isRTL(char: string): boolean
 
 ### isIdeograph<sup>(deprecated)</sup>
 
-static isIdeograph(char: string): boolean
+isIdeograph(char: string): boolean
 
 判断字符串char是否是表意文字。
 
@@ -3307,7 +3307,7 @@ static isIdeograph(char: string): boolean
 
 ### isLetter<sup>(deprecated)</sup>
 
-static isLetter(char: string): boolean
+isLetter(char: string): boolean
 
 判断字符串char是否是字母。
 
@@ -3330,7 +3330,7 @@ static isLetter(char: string): boolean
 
 ### isLowerCase<sup>(deprecated)</sup>
 
-static isLowerCase(char: string): boolean
+isLowerCase(char: string): boolean
 
 判断字符串char是否是小写字母。
 
@@ -3353,7 +3353,7 @@ static isLowerCase(char: string): boolean
 
 ### isUpperCase<sup>(deprecated)</sup>
 
-static isUpperCase(char: string): boolean
+isUpperCase(char: string): boolean
 
 判断字符串char是否是大写字母。
 
@@ -3376,7 +3376,7 @@ static isUpperCase(char: string): boolean
 
 ### getType<sup>(deprecated)</sup>
 
-static getType(char: string): string
+getType(char: string): string
 
 获取输入字符串的一般类别值。
 
