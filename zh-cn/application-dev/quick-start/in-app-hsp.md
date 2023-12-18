@@ -30,21 +30,21 @@ export struct MyTitleBar {
   build() {
     Row() {
       Text($r('app.string.library_title'))
-        .fontColor($r('app.color.white'))
-        .fontSize(25)
-        .margin({left:15})
+        .id('library')
+        .fontFamily('HarmonyHeiTi')
+        .fontWeight(FontWeight.Bold)
+        .fontSize(32)
+        .fontWeight(700)
+        .fontColor($r('app.color.text_color'))
     }
     .width('100%')
-    .height(50)
-    .padding({left:15})
-    .backgroundColor('#0D9FFB')
   }
 }
 ```
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
 // library/src/main/ets/index.ets
-export { MyTitleBar } from './components/MyTitleBar'
+export { MyTitleBar } from './components/MyTitleBar';
 ```
 
 
@@ -53,40 +53,40 @@ export { MyTitleBar } from './components/MyTitleBar'
 ```ts
 // library/src/main/ets/utils/test.ts
 export class Log {
-    static info(msg: string) {
-        console.info(msg);
-    }
+  static info(msg: string): void {
+    console.info(msg);
+  }
 }
 
-export function add(a: number, b: number) {
+export function add(a: number, b: number): number {
   return a + b;
 }
 
-export function minus(a: number, b: number) {
+export function minus(a: number, b: number): number {
   return a - b;
 }
 ```
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
 // library/src/main/ets/index.ets
-export { Log, add, minus } from './utils/test'
+export { Log, add, minus } from './utils/test';
 ```
 ### 导出native方法
 在HSP中也可以包含C++编写的`so`。对于`so`中的`native`方法，HSP通过间接的方式导出，以导出`libnative.so`的乘法接口`multi`为例：
 ```ts
 // library/src/main/ets/utils/nativeTest.ts
-import native from "libnative.so"
+import native from 'liblibrary.so';
 
-export function nativeMulti(a: number, b: number) {
-    let result: number = native.multi(a, b);
-    return result;
+export function nativeMulti(a: number, b: number): number {
+  let result: number = native.multi(a, b);
+  return result;
 }
 ```
 
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
 // library/src/main/ets/index.ets
-export { nativeMulti } from './utils/nativeTest'
+export { nativeMulti } from './utils/nativeTest';
 ```
 
 ### 通过$r访问HSP中的资源
@@ -100,11 +100,13 @@ export { nativeMulti } from './utils/nativeTest'
 ```ts
 // library/src/main/ets/pages/Index.ets
 // 正确用例
-Image($r("app.media.example"))
-  .width("100%")
+Image($r('app.media.example'))
+  .id('example')
+  .borderRadius('48px')
 // 错误用例
 Image("../../resources/base/media/example.png")
-  .width("100%")
+  .id('example')
+  .borderRadius('48px')
 ```
 
 ### 导出HSP中的资源
@@ -119,10 +121,10 @@ Image("../../resources/base/media/example.png")
 // library/src/main/ets/ResManager.ets
 export class ResManager{
   static getPic(): Resource{
-    return $r("app.media.pic");
+    return $r('app.media.pic');
   }
   static getDesc(): Resource{
-    return $r("app.string.shared_desc");
+    return $r('app.string.shared_desc');
   }
 }
 ```
@@ -130,7 +132,7 @@ export class ResManager{
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
 // library/src/main/ets/index.ets
-export { ResManager } from './ResManager'
+export { ResManager } from './ResManager';
 ```
 
 
@@ -140,56 +142,129 @@ export { ResManager } from './ResManager'
 
 ```ts
 // library/src/main/ets/index.ets
-export { Log, add, minus } from './utils/test'
-export { MyTitleBar } from './components/MyTitleBar'
-export { ResManager } from './ResManager'
-export { nativeMulti } from './utils/nativeTest'
+export { Log, add, minus } from './utils/test';
+export { MyTitleBar } from './components/MyTitleBar';
+export { ResManager } from './ResManager';
+export { nativeMulti } from './utils/nativeTest';
 ```
 在使用方的代码中，可以这样使用：
 ```ts
 // entry/src/main/ets/pages/index.ets
-import { Log, add, MyTitleBar, ResManager, nativeMulti } from "library"
+import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from '@ohos.base';
+import Logger from '../logger/Logger';
+import router from '@ohos.router';
+
+const TAG = 'Index';
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = '';
+
   build() {
-    Row() {
-      Column() {
-        MyTitleBar()
-        Text(this.message)
-          .fontSize(30)
-          .fontWeight(FontWeight.Bold)
-        Button('add(1, 2)')
-          .onClick(()=>{
-            Log.info("add button click!");
-            this.message = "result: " + add(1, 2);
-          })
-        // ResManager返回的Resource对象，可以传给组件直接使用，也可以从中取出资源来使用
-        Image(ResManager.getPic())
-          .width("100%")
-        Button('getStringValue')
-          .onClick(()=> {
-            // 先通过当前上下文获取hsp模块的上下文，再获取hsp模块的resourceManager，然后再调用resourceManager的接口获取资源
-            getContext().createModuleContext('library').resourceManager.getStringValue(ResManager.getDesc())
-              .then(value => {
-                console.log("getStringValue is " + value);
-              })
-              .catch((err: BusinessError) => {
-                console.log("getStringValue promise error is " + err);
-              });
-          })
-          .width("50%")
-        Button('nativeMulti(3, 4)')
-          .onClick(()=>{
-            Log.info("nativeMulti button click!");
-            this.message = "result: " + nativeMulti(3, 4);
-          })
+    Column() {
+      List() {
+        ListItem() {
+          MyTitleBar()
+        }
+        .margin({ left: '35px', top: '32px' })
+
+        ListItem() {
+          Text(this.message)
+            .fontFamily('HarmonyHeiTi')
+            .fontSize(18)
+            .textAlign(TextAlign.Start)
+            .width('100%')
+            .fontWeight(FontWeight.Bold)
+        }
+        .width('685px')
+        .margin({ top: 30, bottom: 10 })
+
+        ListItem() {
+          // ResManager返回的Resource对象，可以传给组件直接使用，也可以从中取出资源来使用
+          Image(ResManager.getPic())
+            .id('image')
+            .borderRadius('48px')
+        }
+        .width('685px')
+        .margin({ top: 10, bottom: 10 })
+        .padding({ left: 12, right: 12, top: 4, bottom: 4 })
+
+        ListItem() {
+          Text($r('app.string.add'))
+            .fontSize(18)
+            .textAlign(TextAlign.Start)
+            .width('100%')
+            .fontWeight(500)
+            .height('100%')
+        }
+        .id('add')
+        .borderRadius(24)
+        .width('685px')
+        .height('84px')
+        .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
+        .margin({ top: 10, bottom: 10 })
+        .padding({ left: 12, right: 12, top: 4, bottom: 4 })
+        .onClick(() => {
+          Log.info('add button click!');
+          this.message = 'result: ' + add(1, 2);
+        })
+
+        ListItem() {
+          Text($r('app.string.get_string_value'))
+            .fontSize(18)
+            .textAlign(TextAlign.Start)
+            .width('100%')
+            .fontWeight(500)
+            .height('100%')
+        }
+        .id('getStringValue')
+        .borderRadius(24)
+        .width('685px')
+        .height('84px')
+        .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
+        .margin({ top: 10, bottom: 10 })
+        .padding({ left: 12, right: 12, top: 4, bottom: 4 })
+        .onClick(() => {
+          // 先通过当前上下文获取hsp模块的上下文，再获取hsp模块的resourceManager，然后再调用resourceManager的接口获取资源
+          getContext()
+            .createModuleContext('library')
+            .resourceManager
+            .getStringValue(ResManager.getDesc())
+            .then(value => {
+              Logger.info(TAG, `getStringValue is ${value}`);
+              this.message = 'getStringValue is ' + value;
+            })
+            .catch((err: BusinessError) => {
+              Logger.info(TAG, `getStringValue promise error is ${err}`);
+            });
+        })
+
+        ListItem() {
+          Text($r('app.string.native_multi'))
+            .fontSize(18)
+            .textAlign(TextAlign.Start)
+            .width('100%')
+            .fontWeight(500)
+            .height('100%')
+        }
+        .id('nativeMulti')
+        .borderRadius(24)
+        .width('685px')
+        .height('84px')
+        .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
+        .margin({ top: 10, bottom: 10 })
+        .padding({ left: 12, right: 12, top: 4, bottom: 4 })
+        .onClick(() => {
+          Log.info('nativeMulti button click!');
+          this.message = 'result: ' + nativeMulti(3, 4);
+        })
       }
-      .width('100%')
+      .alignListItem(ListItemAlign.Center)
     }
+    .width('100%')
+    .backgroundColor($r('app.color.page_background'))
     .height('100%')
   }
 }
@@ -197,55 +272,60 @@ struct Index {
 
 ### 页面路由跳转
 
-若开发者想在entry模块中，添加一个按钮跳转至library模块中的menu页面（路径为：`library/src/main/ets/pages/menu.ets`），那么可以在使用方的代码（entry模块下的Index.ets，路径为：`entry/src/main/ets/MainAbility/Index.ets`）里这样使用：
+若开发者想在entry模块中，添加一个按钮跳转至library模块中的menu页面（路径为：`library/src/main/ets/pages/menu.ets`），那么可以在使用方的代码（entry模块下的Index.ets，路径为：`entry/src/main/ets/pages/Index.ets`）里这样使用：
 ```ts
-import router from '@ohos.router';
+import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from '@ohos.base';
+import Logger from '../logger/Logger';
+import router from '@ohos.router';
+
+const TAG = 'Index';
 
 @Entry
 @Component
 struct Index {
-    @State message: string = 'Hello World'
+  @State message: string = '';
 
-    build() {
-    Row() {
-        Column() {
-        Text(this.message)
-            .fontSize(50)
-            .fontWeight(FontWeight.Bold)
-        // 添加按钮，以响应用户点击
-        Button() {
-            Text('click to menu')
-            .fontSize(30)
-            .fontWeight(FontWeight.Bold)
+  build() {
+    Column() {
+      List() {
+        ListItem() {
+          Text($r('app.string.click_to_menu'))
+            .fontSize(18)
+            .textAlign(TextAlign.Start)
+            .width('100%')
+            .fontWeight(500)
+            .height('100%')
         }
-        .type(ButtonType.Capsule)
-        .margin({
-            top: 20
-        })
-        .backgroundColor('#0D9FFB')
-        .width('40%')
-        .height('5%')
-        // 绑定点击事件
+        .id('clickToMenu')
+        .borderRadius(24)
+        .width('685px')
+        .height('84px')
+        .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
+        .margin({ top: 10, bottom: 10 })
+        .padding({ left: 12, right: 12, top: 4, bottom: 4 })
         .onClick(() => {
-            router.pushUrl({
-              url: '@bundle:com.example.hmservice/library/ets/pages/menu'
-            }).then(() => {
-              console.log("push page success");
-            }).catch((err: BusinessError) => {
-              console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-            })
+          router.pushUrl({
+            url: '@bundle:com.samples.hspsample/library/ets/pages/Menu'
+          }).then(() => {
+            console.log('push page success');
+            Logger.info(TAG, 'push page success');
+          }).catch((err: BusinessError) => {
+            Logger.error(TAG, `pushUrl failed, code is ${err.code}, message is ${err.message}`);
+          })
         })
-      .width('100%')
+      }
+      .alignListItem(ListItemAlign.Center)
     }
+    .width('100%')
+    .backgroundColor($r('app.color.page_background'))
     .height('100%')
-    }
   }
 }
 ```
 其中`router.pushUrl`方法的入参中`url`的内容为：
 ```ets
-'@bundle:com.example.hmservice/library/ets/pages/menu'
+'@bundle:com.samples.hspsample/library/ets/pages/Menu'
 ```
 `url`内容的模板为：
 ```ets
@@ -258,36 +338,61 @@ import router from '@ohos.router';
 
 @Entry
 @Component
-struct Index3 { // 路径为：`library/src/main/ets/pages/Index3.ets
-  @State message: string = 'Hello World'
+struct Index3 { // 路径为：`library/src/main/ets/pages/Back.ets
+  @State message: string = 'HSP back page';
 
   build() {
     Row() {
-        Column() {
-        Button('back to HAP page')
-        .width('40%')
-        .height('5%')
-        // 绑定点击事件
-        .onClick(() => {
-          router.back({ //  返回HAP的页面
-            url: 'pages/Index'    // 路径为：`entry/src/main/ets/pages/Index.ets`
-          })
-        })
-        .width('100%')
+      Column() {
+        Text(this.message)
+          .fontFamily('HarmonyHeiTi')
+          .fontWeight(FontWeight.Bold)
+          .fontSize(32)
+          .fontWeight(700)
+          .fontColor($r('app.color.text_color'))
+          .margin({ top: '32px' })
+          .width('624px')
 
-        Button('back to HSP page')
-        .width('40%')
-        .height('5%')
-        // 绑定点击事件
-        .onClick(() => {
-          router.back({ //  返回HSP的页面
-            url: '@bundle:com.example.hmservice/library/ets/pages/Index2'  //路径为：`library/src/main/ets/pages/Index2.ets
+        Button($r('app.string.back_to_HAP'))
+          .id('backToHAP')
+          .fontFamily('HarmonyHeiTi')
+          .height(48)
+          .width('624px')
+          .margin({ top: 550 })
+          .type(ButtonType.Capsule)
+          .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+          .backgroundColor($r('app.color.button_background'))
+          .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
+          .fontSize($r('sys.float.ohos_id_text_size_button1'))
+            // 绑定点击事件
+          .onClick(() => {
+            router.back({ //  返回HAP的页面
+              url: 'pages/Index' // 路径为：`entry/src/main/ets/pages/Index.ets`
+            })
           })
-        })
-        .width('100%')
+
+        Button($r('app.string.back_to_HSP'))
+          .id('backToHSP')
+          .fontFamily('HarmonyHeiTi')
+          .height(48)
+          .width('624px')
+          .margin({ top: '4%' , bottom: '6%' })
+          .type(ButtonType.Capsule)
+          .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+          .backgroundColor($r('app.color.button_background'))
+          .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
+          .fontSize($r('sys.float.ohos_id_text_size_button1'))
+            // 绑定点击事件
+          .onClick(() => {
+            router.back({ //  返回HSP的页面
+              url: '@bundle:com.samples.hspsample/library/ets/pages/Menu' //路径为：`library/src/main/ets/pages/Menu.ets
+            })
+          })
       }
-      .height('100%')
+      .width('100%')
     }
+    .backgroundColor($r('app.color.page_background'))
+    .height('100%')
   }
 }
 ```
@@ -307,7 +412,7 @@ struct Index3 { // 路径为：`library/src/main/ets/pages/Index3.ets
 * 如果从HSP页面返回HSP页面，url的内容为：
 
     ```ets
-    '@bundle:com.example.hmservice/library/ets/pages/Index2'
+    '@bundle:com.samples.hspsample/library/ets/pages/Menu'
     ```
     `url`内容的模板为：
     ```ets
