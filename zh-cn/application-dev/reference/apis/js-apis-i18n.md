@@ -215,6 +215,8 @@ static getSystemLanguage(): string
 
 获取系统语言。
 
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -429,6 +431,8 @@ static setSystemLocale(locale: string): void
 static is24HourClock(): boolean
 
 判断系统时间是否为24小时制。
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
