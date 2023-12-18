@@ -1,4 +1,4 @@
-# 音频输出设备管理
+# 音频输出设备管理(ArkTS)
 
 有时设备同时连接多个音频输出设备，需要指定音频输出设备进行音频播放，此时需要使用AudioRoutingManager接口进行输出设备的管理，API说明可以参考[AudioRoutingManager API文档](../reference/apis/js-apis-audio.md#audioroutingmanager9)。
 
@@ -8,7 +8,6 @@
 
 ```ts
 import audio from '@ohos.multimedia.audio';  // 导入audio模块
-import { BusinessError } from '@ohos.base'; // 导入BusinessError
 
 let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
 
@@ -34,6 +33,8 @@ let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioMa
 使用getDevices()方法可以获取当前所有输出设备的信息。
 
 ```ts
+import audio from '@ohos.multimedia.audio';
+
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
 });
@@ -44,6 +45,8 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data:
 可以设置监听事件来监听设备连接状态的变化，当有设备连接或断开时触发回调：
 
 ```ts
+import audio from '@ohos.multimedia.audio';
+
 // 监听音频设备状态变化
 audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged: audio.DeviceChangeAction) => {
   console.info(`device change type : ${deviceChanged.type}`);  // 设备连接状态变化，0为连接，1为断开连接
@@ -66,6 +69,7 @@ audioRoutingManager.off('deviceChange');
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
 
 let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
     deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
@@ -101,10 +105,11 @@ async function selectOutputDevice() {
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
 
 let rendererInfo: audio.AudioRendererInfo = {
-    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-    rendererFlags : 0,
+    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags : 0
 }
 
 async function getPreferOutputDeviceForRendererInfo() {
@@ -122,8 +127,8 @@ async function getPreferOutputDeviceForRendererInfo() {
 import audio from '@ohos.multimedia.audio';
 
 let rendererInfo: audio.AudioRendererInfo = {
-    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-    rendererFlags : 0,
+    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags : 0
 }
 
 // 监听最高优先级输出设备变化
