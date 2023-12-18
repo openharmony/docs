@@ -16,7 +16,7 @@
 
 ### 时间日期和相对时间格式化
 
-时间日期格式化将表示时间日期的Date对象，通过[DateTimeFormat](../../reference/apis/js-apis-intl.md#datetimeformat)类的[format](../../reference/apis/js-apis-intl.md#format)接口实现格式化，具体开发步骤如下。
+时间日期格式化将表示时间日期的Date对象，通过[DateTimeFormat](../reference/apis/js-apis-intl.md#datetimeformat)类的[format](../reference/apis/js-apis-intl.md#format)接口实现格式化，具体开发步骤如下。
 
 1. 导入模块。
    ```ts
@@ -48,7 +48,7 @@
 
 **时间日期格式化选项**
 
-以时间：2021年9月17日 13:04:00，locale: zh-CN为例，说明[DateTimeOptions](../../reference/apis/js-apis-intl.md#datetimeoptions6)不同的取值和显示结果。
+以时间：2021年9月17日 13:04:00，locale: zh-CN为例，说明[DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions6)不同的取值和显示结果。
 
 **表1** 日期显示格式(dateStyle)
 
@@ -139,7 +139,7 @@ let dateStyle = options.dateStyle; // dateStyle: full
 
 ### 相对时间格式化
 
-格式化相对时间将表示时间日期的Date对象，通过[RelativeTimeFormat](../../reference/apis/js-apis-intl.md#relativetimeformat8)类的[format](../../reference/apis/js-apis-intl.md#format8)接口实现格式化，具体开发步骤如下。
+格式化相对时间将表示时间日期的Date对象，通过[RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8)类的[format](../reference/apis/js-apis-intl.md#format8)接口实现格式化，具体开发步骤如下。
 
 1. 导入模块。
    ```ts
@@ -169,7 +169,7 @@ let dateStyle = options.dateStyle; // dateStyle: full
 
 **相对时间格式化选项**
 
-以相对时间：一天前，locale: fr-FR和en-GB为例，说明[RelativeTimeFormatInputOptions](../../reference/apis/js-apis-intl.md#relativetimeformatinputoptions8)不同的取值和显示结果。
+以相对时间：一天前，locale: fr-FR和en-GB为例，说明[RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions8)不同的取值和显示结果。
 
 **表6** 输出消息格式(numeric)
 
