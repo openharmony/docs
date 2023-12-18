@@ -1658,8 +1658,8 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | :------------------------------- |
-| name   | string                 | 是   | 要发送的消息，包含数据和消息端口。 |
-| ports  | Array\<WebMessagePort> | 是   | 接收该消息的URI。                |
+| name   | string                 | 是   | 要发送的消息名称。 |
+| ports  | Array\<WebMessagePort> | 是   | 要发送的消息端口。                |
 | uri    | string                 | 是   | 接收该消息的URI。                |
 
 **错误码：**
