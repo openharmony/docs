@@ -46,15 +46,15 @@ ExceptionPrompt ({ options: this.options })
 
 PromptOptions定义options的类型。
 
-| 名称         | 类型        | 必填 | 说明                                            |
-| ------------ | ----------- | ---- | ----------------------------------------------- |
-| icon         | ResourceStr | 否   | 指定当前ExceptionPrompt的异常图标式样           |
-| tip          | ResourceStr | 否   | 指定当前ExceptionPrompt的文字提示内容           |
-| marginState  | MarginType  | 是   | 指定当前ExceptionPrompt的边距样式               |
-| touchText    | ResourceStr | 否   | 指定当前ExceptionPrompt的右侧图标按钮的文字内容 |
-| isTouchShown | boolean     | 否   | 指定当前ExceptionPrompt的右侧图标按钮的显隐状态 |
-| marginTop    | number      | 是   | 指定当前ExceptionPrompt的距离顶部的位置         |
-| isShown      | boolean     | 否   | 指定当前ExceptionPrompt的显隐状态               |
+| 名称              | 类型        | 必填 | 说明                                            |
+| ----------------- | ----------- | ---- | ----------------------------------------------- |
+| icon              | ResourceStr | 否   | 指定当前ExceptionPrompt的异常图标式样           |
+| tip               | ResourceStr | 否   | 指定当前ExceptionPrompt的文字提示内容           |
+| marginType        | MarginType  | 是   | 指定当前ExceptionPrompt的边距样式               |
+| touchText         | ResourceStr | 否   | 指定当前ExceptionPrompt的右侧图标按钮的文字内容 |
+| isIconButtonShown | boolean     | 否   | 指定当前ExceptionPrompt的右侧图标按钮的显隐状态 |
+| marginTop         | number      | 是   | 指定当前ExceptionPrompt的距离顶部的位置         |
+| isShown           | boolean     | 否   | 指定当前ExceptionPrompt的显隐状态               |
 
 ## marginState
 
@@ -87,9 +87,9 @@ struct Index {
   @State options: PromptOptions = {
     icon: '',
     tip: '',
-    marginState: MarginType.DEFAULT_MARGIN
+    marginType: MarginType.DEFAULT_MARGIN
     touchText: '',
-    isTouchShown: false,
+    isIconButtonShown: false,
     marginTop: 80,
     isShown:true
   }
@@ -129,9 +129,9 @@ struct CustomDialogExample {
   @State options: PromptOptions = {
     icon: $r('app.media.ic_public_fail'),
     tip: '异常提示！',
-    marginState: MarginType.DEFAULT_MARGIN,
+    marginType: MarginType.DEFAULT_MARGIN,
     touchText: '设置',
-    isTouchShown: true,
+    isIconButtonShown: true,
     marginTop: 5,
     isShown: true
   }
@@ -180,9 +180,9 @@ struct Index1 {
   @State options: PromptOptions = {
     icon: $r('app.media.ic_public_fail'),
     tip: '',
-    marginState: MarginType.DEFAULT_MARGIN,
+    marginType: MarginType.DEFAULT_MARGIN,
     touchText: '',
-    isTouchShown: false,
+    isIconButtonShown: false,
     marginTop: 80,
     isShown: true
   }
