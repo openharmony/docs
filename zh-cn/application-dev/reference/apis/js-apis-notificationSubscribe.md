@@ -24,7 +24,7 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -81,7 +81,7 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -128,7 +128,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo): Promise\<void\>
 
-订阅通知并指定订阅信息（Promise形式）。
+订阅通知并指定订阅信息。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -187,7 +187,7 @@ subscribeSelf(subscriber: NotificationSubscriber): Promise\<void\>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -242,7 +242,7 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -286,13 +286,13 @@ notificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 
 unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
-取消订阅（Promise形式）。
+取消订阅。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -344,7 +344,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -397,13 +397,13 @@ notificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
 
 remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason): Promise\<void\>
 
-根据应用的包信息和通知键值，删除指定通知（Promise形式）。
+根据应用的包信息和通知键值，删除指定通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -462,7 +462,7 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -504,13 +504,13 @@ notificationSubscribe.remove(hashCode, reason, removeCallback);
 
 remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
-通过通知的唯一ID，删除指定通知（Promise形式）。
+通过通知的唯一ID，删除指定通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -559,7 +559,7 @@ remove(hashCodes: Array\<String\>, reason: RemoveReason, callback: AsyncCallback
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -600,13 +600,13 @@ notificationSubscribe.remove(hashCodes, reason, removeCallback);
 
 remove(hashCodes: Array\<String\>, reason: RemoveReason): Promise\<void\>
 
-批量删除指定通知（Promise形式）。
+批量删除指定通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -653,7 +653,7 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -703,7 +703,7 @@ removeAll(callback: AsyncCallback\<void\>): void
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -740,13 +740,13 @@ notificationSubscribe.removeAll(removeAllCallback);
 
 removeAll(bundle?: BundleOption): Promise\<void\>
 
-删除指定应用的所有通知（Promise形式）。
+删除指定应用的所有通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -794,7 +794,7 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -834,13 +834,13 @@ notificationSubscribe.removeAll(userId, removeAllCallback);
 
 removeAll(userId: number): Promise\<void>
 
-删除指定用户下的所有通知（Promise形式）。
+删除指定用户下的所有通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -876,7 +876,7 @@ notificationSubscribe.removeAll(userId).then(() => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 | 名称  | 类型   | 必填 | 说明     |
 | ----- | ------ | --- | -------- |
@@ -887,7 +887,7 @@ notificationSubscribe.removeAll(userId).then(() => {
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 | 名称                 | 值  | 说明                  |
 | -------------------- | --- | -------------------- |
