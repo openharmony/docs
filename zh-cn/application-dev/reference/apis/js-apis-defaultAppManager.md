@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 ```
 
@@ -18,7 +18,7 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 | --------------------------------------- | ----------- | ---------------- |
 | ohos.permission.GET_DEFAULT_APPLICATION | system_core | 默认应用相关权限。 |
 
-权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)
+权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
 
 
 ## defaultAppMgr.ApplicationType
@@ -329,7 +329,7 @@ defaultAppMgr.setDefaultApplication("image/png", {
 
 ## defaultAppMgr.setDefaultApplication
 
-setDefaultApplication(type: string, elementName: ElementName, userId: number, callback: AsyncCallback\<void>) : void;
+setDefaultApplication(type: string, elementName: ElementName, userId: number, callback: AsyncCallback\<void>) : void
 
 以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型设置默认应用，使用callback形式返回结果。
 
@@ -390,7 +390,7 @@ defaultAppMgr.setDefaultApplication("image/png", {
 
 ## defaultAppMgr.setDefaultApplication
 
-setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCallback\<void>) : void;
+setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCallback\<void>) : void
 
 以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型设置默认应用，使用callback形式返回结果。
 
@@ -498,7 +498,7 @@ defaultAppMgr.resetDefaultApplication("image/png", userId)
 
 ## defaultAppMgr.resetDefaultApplication
 
-resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<void>) : void;
+resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<void>) : void
 
 以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型重置默认应用，使用callback形式返回结果。
 
@@ -549,7 +549,7 @@ defaultAppMgr.resetDefaultApplication("image/png", userId, (err, data) => {
 
 ## defaultAppMgr.resetDefaultApplication
 
-resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
+resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void
 
 以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型重置默认应用，使用callback形式返回结果。
 
