@@ -98,7 +98,7 @@ emitter.once(innerEvent, () => {
 
 ## emitter.once<sup>11+</sup>
 
-once(event: string, callback: Callback\<[EventData](#eventdata)\>): void
+once(eventId: string, callback: Callback\<[EventData](#eventdata)\>): void
 
 单次订阅指定事件，并在接收到该事件并执行完相应的回调函数后，自动取消订阅。
 
@@ -247,7 +247,7 @@ emitter.emit(innerEvent, eventData);
 
 ## emitter.emit<sup>11+</sup>
 
-emit(event: string, data?: [EventData](#eventdata)): void
+emit(eventId: string, data?: [EventData](#eventdata)): void
 
 发送指定事件。
 

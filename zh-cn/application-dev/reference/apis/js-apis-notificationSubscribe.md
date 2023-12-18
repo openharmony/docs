@@ -179,6 +179,58 @@ notificationSubscribe.subscribe(subscriber).then(() => {
 ```
 
 
+## notificationSubscribe.subscribeSelf<sup>10+</sup>
+
+subscribeSelf(subscriber: NotificationSubscriber): Promise\<void\>
+
+订阅通知并指定订阅信息（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名       | 类型                      | 必填 | 说明         |
+| ---------- | ------------------------- | ---- | ------------ |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
+
+**返回值：**
+
+| 类型     | 说明               | 
+| ------- |------------------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
+  console.info("Consume callback: " + JSON.stringify(data));
+}
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onConsume: onConsumeCallback
+};
+notificationSubscribe.subscribeSelf(subscriber).then(() => {
+  console.info("subscribeSelf success");
+}).catch((err: Base.BusinessError) => {
+  console.error("subscribeSelf fail: " + JSON.stringify(err));
+});
+```
+
+
 
 ## notificationSubscribe.unsubscribe
 
