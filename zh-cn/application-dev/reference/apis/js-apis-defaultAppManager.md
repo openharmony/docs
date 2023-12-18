@@ -105,7 +105,7 @@ defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err: 
 
 ## defaultAppMgr.isDefaultApplicationSync<sup>10+</sup>
 
-isDefaultApplicationSync(type: string): boolean;
+isDefaultApplicationSync(type: string): boolean
 
 以同步方法根据系统已定义的应用类型判断当前应用是否是该应用类型的默认应用，使用boolean形式返回结果。
 
@@ -300,7 +300,7 @@ defaultAppMgr.getDefaultApplication("image/png", (err: BusinessError, data) => {
 
 ## defaultAppMgr.getDefaultApplicationSync<sup>10+</sup>
 
-getDefaultApplicationSync(type: string, userId?: number): BundleInfo;
+getDefaultApplicationSync(type: string, userId?: number): BundleInfo
 
 以同步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型获取默认应用信息，使用BundleInfo返回结果。
 
@@ -428,7 +428,7 @@ defaultAppMgr.setDefaultApplication("image/png", {
 
 ## defaultAppMgr.setDefaultApplication
 
-setDefaultApplication(type: string, elementName: ElementName, userId: number, callback: AsyncCallback\<void>) : void;
+setDefaultApplication(type: string, elementName: ElementName, userId: number, callback: AsyncCallback\<void>) : void
 
 以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型设置默认应用，使用callback形式返回结果。
 
@@ -491,7 +491,7 @@ defaultAppMgr.setDefaultApplication("image/png", {
 
 ## defaultAppMgr.setDefaultApplication
 
-setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCallback\<void>) : void;
+setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCallback\<void>) : void
 
 以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型设置默认应用，使用callback形式返回结果。
 
@@ -551,7 +551,7 @@ defaultAppMgr.setDefaultApplication("image/png", {
 
 ## defaultAppMgr.setDefaultApplicationSync<sup>10+</sup>
 
-setDefaultApplicationSync(type: string, elementName: ElementName, userId?: number): void;
+setDefaultApplicationSync(type: string, elementName: ElementName, userId?: number): void
 
 以同步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型设置默认应用。
 
@@ -672,7 +672,7 @@ defaultAppMgr.resetDefaultApplication("image/png", userId)
 
 ## defaultAppMgr.resetDefaultApplication
 
-resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<void>) : void;
+resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<void>) : void
 
 以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型重置默认应用，使用callback形式返回结果。
 
@@ -725,7 +725,7 @@ defaultAppMgr.resetDefaultApplication("image/png", userId, (err: BusinessError, 
 
 ## defaultAppMgr.resetDefaultApplication
 
-resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
+resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void
 
 以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型重置默认应用，使用callback形式返回结果。
 
@@ -775,7 +775,7 @@ defaultAppMgr.resetDefaultApplication("image/png", (err: BusinessError, data) =>
 
 ## defaultAppMgr.resetDefaultApplicationSync<sup>10+</sup>
 
-resetDefaultApplicationSync(type: string, userId?: number): void;
+resetDefaultApplicationSync(type: string, userId?: number): void
 
 以同步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型重置默认应用。
 

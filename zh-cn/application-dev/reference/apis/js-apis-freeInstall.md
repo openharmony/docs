@@ -49,7 +49,7 @@ import freeInstall from '@ohos.bundle.freeInstall';
 
 ## freeInstall.setHapModuleUpgradeFlag
 
-setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: UpgradeFlag, callback: AsyncCallback\<void>):void;
+setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: UpgradeFlag, callback: AsyncCallback\<void>):void
 
 设置指定模块是否升级。使用callback异步回调。
 
@@ -99,7 +99,7 @@ try {
 
 ## setHapModuleUpgradeFlag
 
-setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: UpgradeFlag): Promise\<void>;
+setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: UpgradeFlag): Promise\<void>
 
 设置指定模块是否升级。使用Promise异步回调。
 
@@ -153,7 +153,7 @@ try {
 
 ## isHapModuleRemovable
 
-isHapModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCallback\<boolean>): void;
+isHapModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCallback\<boolean>): void
 
 查询指定模块是否可以被移除。使用callback异步回调。
 
@@ -201,7 +201,7 @@ try {
 
 ## isHapModuleRemovable
 
-isHapModuleRemovable(bundleName: string, moduleName: string): Promise\<boolean>;
+isHapModuleRemovable(bundleName: string, moduleName: string): Promise\<boolean>
 
 查询指定模块是否可以被移除。使用Promise异步回调。
 
@@ -253,7 +253,7 @@ try {
 
 ## getBundlePackInfo
 
-getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag, callback: AsyncCallback\<BundlePackInfo>): void;
+getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag, callback: AsyncCallback\<BundlePackInfo>): void
 
 基于bundleName和bundlePackFlag来获取bundlePackInfo。使用callback异步回调。
 
@@ -299,7 +299,7 @@ try {
 ```
 ## getBundlePackInfo
 
-getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\<BundlePackInfo>;
+getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\<BundlePackInfo>
 
 基于bundleName和BundlePackFlag来获取bundlePackInfo。使用Promise异步回调。
 
@@ -350,7 +350,7 @@ try {
 
 ## getDispatchInfo
 
-getDispatchInfo(callback: AsyncCallback\<DispatchInfo>): void;
+getDispatchInfo(callback: AsyncCallback\<DispatchInfo>): void
 
 获取有关dispatch版本的信息。使用callback异步回调。
 
@@ -385,7 +385,7 @@ try {
 
 ## getDispatchInfo
 
-getDispatchInfo(): Promise\<DispatchInfo>;
+getDispatchInfo(): Promise\<DispatchInfo>
 
 获取有关dispatch版本的信息。使用Promise异步回调。
 

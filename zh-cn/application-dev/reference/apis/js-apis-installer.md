@@ -28,7 +28,7 @@ import installer from '@ohos.bundle.installer';
 
 ## BundleInstaller.getBundleInstaller
 
-getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void;
+getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void
 
 获取BundleInstaller对象，使用callback形式返回结果。
 
@@ -64,7 +64,7 @@ try {
 
 ## BundleInstaller.getBundleInstaller
 
-getBundleInstaller(): Promise\<BundleInstaller>;
+getBundleInstaller(): Promise\<BundleInstaller>
 
 获取BundleInstaller对象，使用callback形式返回结果。
 
@@ -97,7 +97,7 @@ try {
 
 ## BundleInstaller.getBundleInstallerSync<sup>10+</sup>
 
-getBundleInstallerSync(): BundleInstaller;
+getBundleInstallerSync(): BundleInstaller
 
 获取并返回BundleInstaller对象。
 
@@ -126,7 +126,7 @@ try {
 ```
 
 ## BundleInstaller.install
-install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
+install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法安装应用，使用callback形式返回结果。
 
@@ -210,7 +210,7 @@ try {
 }
 ```
 ## BundleInstaller.install
-install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
+install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法安装应用，使用callback形式返回结果。
 
@@ -289,7 +289,7 @@ try {
 
 ## BundleInstaller.install
 
-install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<void\>;
+install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<void\>
 
 以异步方法安装应用，使用Promise形式返回结果。
 
@@ -379,7 +379,7 @@ try {
 
 ## BundleInstaller.uninstall
 
-uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
+uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法卸载应用，使用callback形式返回结果。
 
@@ -442,7 +442,7 @@ try {
 
 ## BundleInstaller.uninstall
 
-uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
+uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法卸载应用，使用callback形式返回结果。
 
@@ -497,7 +497,7 @@ try {
 ```
 ## BundleInstaller.uninstall
 
-uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
+uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 以异步方法卸载应用，使用Promise形式返回结果。
 
@@ -563,7 +563,7 @@ try {
 
 ## BundleInstaller.recover
 
-recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
+recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法回滚应用到初次安装时的状态，使用callback形式返回结果。
 
@@ -624,7 +624,7 @@ try {
 
 ## BundleInstaller.recover
 
-recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
+recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法回滚应用到初次安装时的状态，使用callback形式返回结果。
 
@@ -677,7 +677,7 @@ try {
 
 ## BundleInstaller.recover
 
-recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
+recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 以异步方法回滚应用到初次安装时的状态，使用Promise形式返回结果。
 
@@ -740,7 +740,7 @@ try {
 
 ## BundleInstaller.uninstall<sup>10+</sup>
 
-uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : void ;
+uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : void
 
 以异步方法卸载一个共享包，使用callback形式返回结果。
 
@@ -797,7 +797,7 @@ try {
 
 ## BundleInstaller.uninstall<sup>10+</sup>
 
-uninstall(uninstallParam: UninstallParam) : Promise\<void>;
+uninstall(uninstallParam: UninstallParam) : Promise\<void>
 
 以异步方法卸载一个共享包，使用Promise形式返回结果。
 
@@ -859,7 +859,7 @@ try {
 
 ## BundleInstaller.updateBundleForSelf<sup>10+</sup>
 
-updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, callback: AsyncCallback\<void\>): void;
+updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, callback: AsyncCallback\<void\>): void
 
 以异步方法更新当前应用，仅限企业设备上的企业MDM应用调用，且传入的hapFilePaths中的hap必须都属于当前应用，使用callback形式返回结果。
 
@@ -935,7 +935,7 @@ try {
 
 ## BundleInstaller.updateBundleForSelf<sup>10+</sup>
 
-updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void\>): void;
+updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void\>): void
 
 以异步方法更新当前应用，仅限企业设备上的企业MDM应用调用，且传入的hapFilePaths中的hap必须都属于当前应用，使用callback形式返回结果。
 
@@ -1004,7 +1004,7 @@ try {
 
 ## BundleInstaller.updateBundleForSelf<sup>10+</sup>
 
-updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam): Promise\<void\>;
+updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam): Promise\<void\>
 
 以异步方法更新当前应用，仅限企业设备上的企业MDM应用调用，且传入的hapFilePaths中的hap必须都属于当前应用，使用promise形式返回结果。
 

@@ -28,7 +28,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 ## distributedBundle.getRemoteAbilityInfo
 
-getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback\<RemoteAbilityInfo>): void;
+getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback\<RemoteAbilityInfo>): void
 
 以异步方法获取由elementName指定的远程设备上的应用的AbilityInfo信息。使用callback异步回调。
 
@@ -84,7 +84,7 @@ try {
 
 ## distributedBundle.getRemoteAbilityInfo
 
-getRemoteAbilityInfo(elementName: ElementName): Promise\<RemoteAbilityInfo>;
+getRemoteAbilityInfo(elementName: ElementName): Promise\<RemoteAbilityInfo>
 
 以异步方法获取由elementName指定的远程设备上的应用的AbilityInfo信息。使用Promise异步回调。
 
@@ -143,7 +143,7 @@ try {
 
 ## distributedBundle.getRemoteAbilityInfo
 
-getRemoteAbilityInfo(elementNames: Array\<ElementName>, callback: AsyncCallback\<Array\<RemoteAbilityInfo>>): void;
+getRemoteAbilityInfo(elementNames: Array\<ElementName>, callback: AsyncCallback\<Array\<RemoteAbilityInfo>>): void
 
 以异步方法获取由elementName指定的远程设备上的应用的AbilityInfo数组信息。使用callback异步回调。
 
@@ -206,7 +206,7 @@ try {
 
 ## distributedBundle.getRemoteAbilityInfo
 
-getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteAbilityInfo>>;
+getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteAbilityInfo>>
 
 以异步方法获取由elementName指定的远程设备上的应用的AbilityInfo数组信息。使用Promise异步回调。
 
@@ -272,7 +272,7 @@ try {
 
 ## distributedBundle.getRemoteAbilityInfo
 
-getRemoteAbilityInfo(elementName: ElementName, locale: string, callback: AsyncCallback\<RemoteAbilityInfo>): void;
+getRemoteAbilityInfo(elementName: ElementName, locale: string, callback: AsyncCallback\<RemoteAbilityInfo>): void
 
 以异步方法获取由elementName和locale指定的远程设备上的应用的AbilityInfo信息。使用callback异步回调。
 
@@ -329,7 +329,7 @@ try {
 
 ## distributedBundle.getRemoteAbilityInfo
 
-getRemoteAbilityInfo(elementName: ElementName, locale: string): Promise\<RemoteAbilityInfo>;
+getRemoteAbilityInfo(elementName: ElementName, locale: string): Promise\<RemoteAbilityInfo>
 
 以异步方法获取由elementName和locale指定的远程设备上的应用的AbilityInfo信息。使用Promise异步回调。
 
@@ -389,7 +389,7 @@ try {
 
 ## distributedBundle.getRemoteAbilityInfo
 
-getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback: AsyncCallback\<Array\<RemoteAbilityInfo>>): void;
+getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback: AsyncCallback\<Array\<RemoteAbilityInfo>>): void
 
 以异步方法获取由elementName和locale指定的远程设备上的应用的AbilityInfo数组信息。使用callback异步回调。
 
@@ -453,7 +453,7 @@ try {
 
 ## distributedBundle.getRemoteAbilityInfo
 
-getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string): Promise\<Array\<RemoteAbilityInfo>>;
+getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string): Promise\<Array\<RemoteAbilityInfo>>
 
 以异步方法获取由elementName和locale指定的远程设备上的应用的AbilityInfo数组信息。使用Promise异步回调。
 

@@ -15,7 +15,7 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 
 ## launcherBundleManager.getLauncherAbilityInfo<sup>9+</sup>
 
-getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallback<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>) : void;
+getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallback<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>) : void
 
 查询指定bundleName及用户的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。
 
@@ -66,7 +66,7 @@ try {
 
 ## launcherBundleManager.getLauncherAbilityInfo<sup>9+</sup>
 
-getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>;
+getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>
 
 查询指定bundleName及用户的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。
 
@@ -120,7 +120,7 @@ try {
 
 ## launcherBundleManager.getLauncherAbilityInfoSync<sup>10+</sup>
 
-getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>;
+getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>
 
 查询指定bundleName及用户的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。
 
@@ -170,7 +170,7 @@ try {
 
 ## launcherBundleManager.getAllLauncherAbilityInfo<sup>9+</sup>
 
-getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>) : void;
+getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>) : void
 
 查询指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)
 
@@ -218,9 +218,9 @@ try {
 ```
 ## launcherBundleManager.getAllLauncherAbilityInfo<sup>9+</sup>
 
-getAllLauncherAbilityInfo(userId: number) : Promise<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>;
+getAllLauncherAbilityInfo(userId: number) : Promise<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>
 
-查询指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)
+查询指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -270,7 +270,7 @@ try {
 
 ## launcherBundleManager.getShortcutInfo<sup>9+</sup>
 
-getShortcutInfo(bundleName :string, callback: AsyncCallback<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>>) : void;
+getShortcutInfo(bundleName :string, callback: AsyncCallback<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>>) : void
 
 查询当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。
 
@@ -319,7 +319,7 @@ try {
 
 ## launcherBundleManager.getShortcutInfo<sup>9+</sup>
 
-getShortcutInfo(bundleName : string) : Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>>;
+getShortcutInfo(bundleName : string) : Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>>
 
 查询当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。
 
@@ -371,7 +371,7 @@ try {
 
 ## launcherBundleManager.getShortcutInfoSync<sup>10+</sup>
 
-getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>;
+getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>
 
 查询当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。
 
