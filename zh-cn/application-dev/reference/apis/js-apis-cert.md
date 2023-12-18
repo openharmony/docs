@@ -127,35 +127,32 @@ buffer数组的列表。
 
 ## X509CertMatchParameters<sup>11+</sup>
 
-匹配证书的参数。如果参数中任一项都未指定，则匹配所有证书。
-
-### 属性
+用于匹配证书的过滤参数。如果参数中任一项都未指定，则匹配所有证书。
 
 **系统能力：** SystemCapability.Security.Cert
 
 | 名称           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
-| x509Cert? | [X509Cert](#x509cert)    | 否 |  指定具体的证书对象作为过滤条件。  |
-| validDate? | string    | 否  |  指定证书有效期作为过滤条件。  |
-| issuer? | Uint8Array | 否  | 指定证书颁发者作为过滤条件，为DER编码格式。 |
-| keyUsage? | Array\<boolean> | 否  | 指定密钥用途作为过滤条件。 |
-| serialNumber? | bigint    | 否  |  指定证书的序列号作为过滤条件。  |
-| subject? | Uint8Array | 否  | 指定证书主题作为过滤条件，DER编码格式。 |
-| publicKey? | [DataBlob](#datablob) | 否  | 指定证书公钥作为过滤条件，DER编码格式。 |
-| publicKeyAlgID? | string | 否  | 指定证书公钥的算法作为过滤条件。 |
+| x509Cert | [X509Cert](#x509cert)    | 否 |  指定具体的证书对象。  |
+| validDate | string    | 否  |  指定证书有效期。  |
+| issuer | Uint8Array | 否  | 指定证书颁发者，为DER编码格式。 |
+| keyUsage | Array\<boolean> | 否  | 指定密钥用途。 |
+| serialNumber | bigint    | 否  |  指定证书的序列号。  |
+| subject | Uint8Array | 否  | 指定证书主题，DER编码格式。 |
+| publicKey | [DataBlob](#datablob) | 否  | 指定证书公钥，DER编码格式。 |
+| publicKeyAlgID | string | 否  | 指定证书公钥的算法。 |
 
 ## X509CRLMatchParameters<sup>11+</sup>
 
-匹配证书吊销列表的参数。如果参数中任一项都未指定，则匹配所有证书吊销列表。
+用于匹配证书吊销列表的过滤参数。如果参数中任一项都未指定，则匹配所有证书吊销列表。
 
-### 属性
 
 **系统能力：** SystemCapability.Security.Cert
 
 | 名称           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
-| issuer? | Array\<Uint8Array> | 否  | 指定颁发者作为过滤条件, 至少要匹配到其中一个issuer。 |
-| x509Cert? | [X509Cert](#x509cert)        | 否  | 指定具体的证书对象作为过滤条件, 判断该证书是否在CRL列表中。 |
+| issuer | Array\<Uint8Array> | 否  | 指定颁发者作为过滤条件, 至少要匹配到其中一个issuer。 |
+| x509Cert | [X509Cert](#x509cert)        | 否  | 指定具体的证书对象作为过滤条件, 判断该证书是否在CRL列表中。 |
 
 
 ## cryptoCert.createX509Cert
@@ -1972,16 +1969,16 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
 async function matchX509Cert() {
   const x509Cert = await createX509Cert();
   try {
-    //需业务自行赋值
+    // 需业务自行赋值
     const param: certFramework.X509CertMatchParameters = {
       x509Cert,
       validDate: '20231121074700Z',
-      issuer: new Uint8Array([0x30, 0x64, 0x31]), //数据需要业务自行赋值
+      issuer: new Uint8Array([0x30, 0x64, 0x31]), // 数据需要业务自行赋值
       keyUsage: [false, false, false, false, false, false, true, true, true],
       serialNumber: BigInt('232100834349818463'),
-      subject: new Uint8Array([0x30, 0x6c, 0x31]), //数据需要业务自行赋值
+      subject: new Uint8Array([0x30, 0x6c, 0x31]), // 数据需要业务自行赋值
       publicKey: {
-        data: new Uint8Array([0x30, 0x82, 0x01]) //数据需要业务自行赋值
+        data: new Uint8Array([0x30, 0x82, 0x01]) // 数据需要业务自行赋值
       },
       publicKeyAlgID: '1.2.840.113549.1.1.1'
     };
@@ -7128,9 +7125,9 @@ selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>>
 
 **返回值**：
 
-| 类型                                    | 说明          |
-| --------------------------------------- | ------------- |
-| Promise\<Array\<[X509Cert](#x509cert)>> | Promise对象。 |
+| 类型                                    | 说明                                    |
+| --------------------------------------- | --------------------------------------- |
+| Promise\<Array\<[X509Cert](#x509cert)>> | Promise对象。表示匹配到的证书对象数组。 |
 
 **错误码：**
 
@@ -7191,12 +7188,12 @@ async function selectCerts() {
     const param: certFramework.X509CertMatchParameters = {
       x509Cert,
       validDate: '20231121074700Z',
-      issuer: new Uint8Array([0x30, 0x64, 0x31]), //数据需要业务自行赋值      
+      issuer: new Uint8Array([0x30, 0x64, 0x31]), // 数据需要业务自行赋值      
       keyUsage: [false, false, false, false, false, false, true, true, true],
       serialNumber: BigInt('232100834349818463'),
-      subject: new Uint8Array([0x30, 0x6c, 0x31]), //数据需要业务自行赋值
+      subject: new Uint8Array([0x30, 0x6c, 0x31]), // 数据需要业务自行赋值
       publicKey: {
-        data: new Uint8Array([0x30, 0x82, 0x01]) //数据需要业务自行赋值
+        data: new Uint8Array([0x30, 0x82, 0x01]) // 数据需要业务自行赋值
       },
       publicKeyAlgID: '1.2.840.113549.1.1.1'
     };
@@ -7221,7 +7218,7 @@ selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509
 | 参数名    | 类型                            | 必填 | 说明            |
 | --------- | ------------------------------- | ---- | ----------------- |
 | param | [X509CertMatchParameters](#x509certmatchparameters11) | 是   | 表示证书需匹配的参数。   |
-| callback  | AsyncCallback\<Array\<[X509Cert](#x509cert)>>    | 是   | 回调函数。|
+| callback  | AsyncCallback\<Array\<[X509Cert](#x509cert)>>    | 是   | 回调函数。表示匹配到的证书对象数组。 |
 
 **错误码：**
 
@@ -7277,16 +7274,16 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
 async function selectCerts() {
   const x509Cert = await createX509Cert();
   const collection = certFramework.createCertCRLCollection([x509Cert]);
-  //需业务自行赋值
+  // 需业务自行赋值
   const param: certFramework.X509CertMatchParameters = {
     x509Cert,
     validDate: '20231121074700Z',
-    issuer: new Uint8Array([0x30, 0x64, 0x31]), //数据需要业务自行赋值
+    issuer: new Uint8Array([0x30, 0x64, 0x31]), // 数据需要业务自行赋值
     keyUsage: [false, false, false, false, false, false, true, true, true],
     serialNumber: BigInt('232100834349818463'),
-    subject: new Uint8Array([0x30, 0x6c, 0x31]), //数据需要业务自行赋值
+    subject: new Uint8Array([0x30, 0x6c, 0x31]), // 数据需要业务自行赋值
     publicKey: {
-      data: new Uint8Array([0x30, 0x82, 0x01]) //数据需要业务自行赋值
+      data: new Uint8Array([0x30, 0x82, 0x01]) // 数据需要业务自行赋值
     },
     publicKeyAlgID: '1.2.840.113549.1.1.1'
   };
@@ -7318,7 +7315,7 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| Promise\<Array\<[X509CRL](#x509crl)>> | Promise对象。 |
+| Promise\<Array\<[X509CRL](#x509crl)>> | Promise对象。表示匹配到的证书吊销列表对象数组。 |
 
 **错误码：**
 
@@ -7435,7 +7432,7 @@ selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CR
 | 参数名    | 类型                            | 必填 | 说明            |
 | --------- | ------------------------------- | ---- | ----------------- |
 | param | [X509CRLMatchParameters](#x509crlmatchparameters11) | 是   | 表示证书吊销列表需匹配的参数对象。 |
-| callback  | AsyncCallback\<Array\<[X509CRL](#x509crl)>>    | 是   | 回调函数。|
+| callback  | AsyncCallback\<Array\<[X509CRL](#x509crl)>>    | 是   | 回调函数。表示匹配到的证书吊销列表对象数组。 |
 
 **错误码：**
 
