@@ -80,7 +80,7 @@ struct Parent {
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum.c}`)
+      Text(`Parent testNum ${this.testNum[0].c}`)
         .onClick(() => {
           this.testNum[0].c += 1;
         })
