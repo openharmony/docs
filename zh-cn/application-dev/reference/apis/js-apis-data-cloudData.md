@@ -745,7 +745,7 @@ cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, [
     console.error(`row error`);
     return;
   }
-  const res = resultSet.getString(resultSet.getColumnIndex(relaitonalStore.Field.SHARING_RESOURCE_FIELD));
+  const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
   console.info(`sharing resource: ${res}`);
   sharingResource = res;
 }).catch((err: BusinessError) => {
