@@ -45,7 +45,7 @@ Swiper(controller?: SwiperController)
 | duration                    | number                                   | 子组件切换的动画时长，单位为毫秒。<br/>默认值：400                        |
 | vertical                    | boolean                                  | 是否为纵向滑动。<br/>默认值：false                                 |
 | itemSpace                   | number&nbsp;\|&nbsp;string          | 设置子组件与子组件之间间隙。<br/>默认值：0<br/>**说明：** <br/>不支持设置百分比。 |
-| displayMode                 | SwiperDisplayMode                        | 主轴方向上元素排列的模式，优先以displayCount设置的个数显示，displayCount未设置时本属性生效。<br/>默认值：SwiperDisplayMode.Stretch |
+| displayMode                 | [SwiperDisplayMode](#swiperdisplaymode枚举说明) | 主轴方向上元素排列的模式，优先以displayCount设置的个数显示，displayCount未设置时本属性生效。<br/>默认值：SwiperDisplayMode.Stretch |
 | cachedCount<sup>8+</sup>    | number                                   | 设置预加载子组件个数。<br/>默认值：1<br/>**说明：** <br/>cachedCount只在Swiper使用[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)时才生效。 |
 | disableSwipe<sup>8+</sup>   | boolean                                  | 禁用组件滑动切换功能。<br/>默认值：false                              |
 | curve<sup>8+</sup>          | [Curve](ts-appendix-enums.md#curve)  \| string | 设置Swiper的动画曲线，默认为淡入淡出曲线，常用曲线参考[Curve枚举说明](ts-appendix-enums.md#curve)，也可以通过[插值计算](../apis/js-apis-curve.md)模块提供的接口创建自定义的插值曲线对象。<br/>默认值：Curve.Linear |
