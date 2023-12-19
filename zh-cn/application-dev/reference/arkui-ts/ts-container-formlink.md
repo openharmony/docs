@@ -31,7 +31,7 @@ FormLink(value: {
 
 | 参数名      | 参数类型 | 必填 | 参数描述                                                     |
 | ----------- | -------- | ---- | ------------------------------------------------------------ |
-| action      | string   | 是   | action的类型，支持三种预定义的类型：<br/>-&nbsp;"router"：跳转到提供方应用的指定UIAbility。<br/>-&nbsp;"message"：自定义消息，触发后会调用提供方FormExtensionAbility的[onFormEvent()](../apis/js-apis-app-form-formExtensionAbility.md#onformevent)生命周期回调。<br/>-&nbsp;"call"：后台启动提供方应用。触发后会拉起提供方应用的指定UIAbility（仅支持launchType为singleton(../../application-models/uiability-launch-type.md#singleton)的UIAbility，即启动模式为单实例的UIAbility），但不会调度到前台。提供方应用需要具备后台运行权限([ohos.permission.KEEP_BACKGROUND_RUNNING](../../security/permission-list.md#ohospermissionkeep_background_running))。 <br/>**说明：** <br/>不推荐使用router事件刷新卡片UI。|
+| action      | string   | 是   | action的类型，支持三种预定义的类型：<br/>-&nbsp;"router"：跳转到提供方应用的指定UIAbility。<br/>-&nbsp;"message"：自定义消息，触发后会调用提供方FormExtensionAbility的[onFormEvent()](../apis/js-apis-app-form-formExtensionAbility.md#onformevent)生命周期回调。<br/>-&nbsp;"call"：后台启动提供方应用。触发后会拉起提供方应用的指定UIAbility（仅支持launchType为[singleton](../../application-models/uiability-launch-type.md#singleton)的UIAbility，即启动模式为单实例的UIAbility），但不会调度到前台。提供方应用需要具备后台运行权限([ohos.permission.KEEP_BACKGROUND_RUNNING](../../security/permission-list.md#ohospermissionkeep_background_running))。 <br/>**说明：** <br/>不推荐使用router事件刷新卡片UI。|
 | moduleName  | string   | 否   | "router"&nbsp;/&nbsp;"call"&nbsp;类型时跳转的模块名，可选。  |
 | bundleName  | string   | 否   | "router"&nbsp;/&nbsp;"call"&nbsp;类型时跳转的包名，可选。    |
 | abilityName | string   | 是   | "router"&nbsp;/&nbsp;"call"&nbsp;类型时跳转的UIAbility名，必填。 |
