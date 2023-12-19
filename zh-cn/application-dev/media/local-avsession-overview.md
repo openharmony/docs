@@ -38,7 +38,7 @@ import AVSessionManager from '@ohos.multimedia.avsession';
  
 ```ts
 // 创建session
-let context: Context = this.context;
+let context: Context = getContext(this);
 async function createSession() {
   let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
   console.info(`session create done : sessionId : ${session.sessionId}`);
