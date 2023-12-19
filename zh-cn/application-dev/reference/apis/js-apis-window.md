@@ -8691,7 +8691,7 @@ export default class EntryAbility extends UIAbility {
 
             let isVisible = false;
             // 调用setWindowDecorVisible接口。
-            mainWindow.setWindowDecorVisible(enabled, (err) => {
+            mainWindow.setWindowDecorVisible(isVisible, (err) => {
                 if (err.code) {
                     console.error('Failed to set the visibility of window decor. Cause: ' + JSON.stringify(err));
                     return;
