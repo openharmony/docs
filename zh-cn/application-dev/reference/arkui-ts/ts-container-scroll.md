@@ -48,7 +48,7 @@ Scroll(scroller?: Scroller)
 | None       | 不可滚动。               |
 | Free<sup>(deprecated) </sup> | 支持竖直或水平方向滚动<br/> 从API version 9开始废弃|
 
-## scrollSnapOptions<sup>10+</sup>
+## ScrollSnapOptions<sup>10+</sup>
 | 名称       | 参数类型       | 描述       |
 | ---------- | ---------------------------------------- | -------- |
 | snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10枚举说明)   | 设置Scroll组件限位滚动时的对其方式。<br/>**说明：** <br/>1.该属性默认值为ScrollSnapAlign.NONE。<br/>2.该接口仅当snapPagination属性为Dimension时生效，不支持Array\<Dimension\>。 |
@@ -160,7 +160,7 @@ scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign): void
 | --------------------- | -------- | ---- | ------------------------------------------------------------ |
 | value                 | number   | 是   | 要滑动到的目标元素在当前容器中的索引值。      <br/>**说明：** <br/>value值设置成负值或者大于当前容器子组件的最大索引值，视为异常值，本次跳转不生效。                     |
 | smooth<sup>10+ </sup> | boolean  | 否   | 设置滑动到列表项在列表中的索引值时是否有动效，true表示有动效，false表示没有动效。<br/>默认值：false。<br/>**说明：** <br/>当前仅List组件支持该参数。 |
-| align<sup>10+ </sup> | [ScrollAlign](#scrollalign枚举说明)  | 否   | 指定滑动到的元素与当前容器的对齐方式。<br/>List中的默认值为：ScrollAlign.START。Grid中默认值为：ScrollAlign.AUTO<br/>**说明：** <br/>当前仅List、Grid组件支持该参数。 |
+| align<sup>10+ </sup> | [ScrollAlign](#scrollalign10枚举说明)  | 否   | 指定滑动到的元素与当前容器的对齐方式。<br/>List中的默认值为：ScrollAlign.START。Grid中默认值为：ScrollAlign.AUTO<br/>**说明：** <br/>当前仅List、Grid组件支持该参数。 |
 
 ### scrollBy<sup>9+</sup>
 
@@ -224,7 +224,7 @@ getItemRect(index: number): RectResult
 | -------------------  | -------- |
 | [RectResult](ts-types.md#rectresult10) | 子组件的大小和相对于组件的位置。 |
 
-## ScrollAlign枚举说明<sup>10+ </sup>
+## ScrollAlign<sup>10+</sup>枚举说明
 
 | 名称     | 描述                             |
 | ------ | ------------------------------ |
