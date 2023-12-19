@@ -145,7 +145,7 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
 1. 创建PixelMap状态变量。
 
    ```ts
-   @State image: PixelMap = undefined;
+   @State image: PixelMap | undefined = undefined;
    ```
 
 2. 引用多媒体。
@@ -194,7 +194,7 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
          } // 创建图片大小
        
          class imagetmp {
-           image: PixelMap
+           image: PixelMap | undefined = undefined
        
            set(val: PixelMap) {
              this.image = val
