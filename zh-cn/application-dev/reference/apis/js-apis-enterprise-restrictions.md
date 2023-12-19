@@ -517,7 +517,7 @@ setFingerprintAuthDisabled(admin: Want, disabled: boolean): void
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| disabled  | boolean | 是 | true表示禁止使用指纹，false表示允许使用指纹。 |
+| disabled  | boolean | 是 | true表示禁止指纹认证，false表示允许指纹认证。 |
 
 **错误码**：
 
@@ -569,7 +569,7 @@ isFingerprintAuthDisabled(admin: Want): boolean
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| boolean | 返回指纹是否被禁用，true表示指纹被禁用，false表示指纹未被禁用。 |
+| boolean | 返回指纹认证是否被禁用，true表示指纹认证被禁用，false表示指纹认证未被禁用。 |
 
 **错误码**：
 
