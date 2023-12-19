@@ -1738,9 +1738,9 @@ imageSourceApi.getImageInfo(0)
 	})
 ```
 
-### getImageProperty<sup>7+</sup>
+### getImageProperty<sup>11+</sup>
 
-getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>
+getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<string>
 
 获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG文件，且需要包含exif信息。
 
@@ -1750,8 +1750,61 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 
 | 参数名  | 类型                                                 | 必填 | 说明                                 |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------ |
+| key     | [PropertyKey](#propertykey7)                                               | 是   | 图片属性名。                         |
+| options | [ImagePropertyOptions](#imagepropertyoptions11) | 否   | 图片属性，包括图片序号与默认属性值。 |
+
+**返回值：**
+
+| 类型             | 说明                                                              |
+| ---------------- | ----------------------------------------------------------------- |
+| Promise\<string> | Promise实例，用于异步获取图片属性值，如获取失败则返回属性默认值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401  | The parameter check failed.              |
+| 62980111| If the image source data incomplete.             |
+| 62980113| If the image format unknown.             |
+| 62980116| If the image decode failed.              |
+| 62980118| If the image plugin create failed.            |
+| 62980122| If the image decode head abnormal.             |
+| 62980123| If the image unsupport exif.             |
+| 62980135| If the exif value is invalid.             |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+let options : image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
+imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
+.then((data : string) => {
+    console.log('Succeeded in getting the value of the specified attribute key of the image.');
+}).catch((error : BusinessError) => {
+    console.error('Failed to get the value of the specified attribute key of the image.');
+})
+```
+
+### getImageProperty<sup>(deprecated)</sup>
+
+getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>
+
+获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+
+**说明：**
+
+从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名  | 类型                                                 | 必填 | 说明                                 |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------ |
 | key     | string                                               | 是   | 图片属性名。                         |
-| options | [GetImagePropertyOptions](#getimagepropertyoptions7) | 否   | 图片属性，包括图片序号与默认属性值。 |
+| options | [GetImagePropertyOptions](#getimagepropertyoptionsdeprecated) | 否   | 图片属性，包括图片序号与默认属性值。 |
 
 **返回值：**
 
@@ -1771,11 +1824,15 @@ imageSourceApi.getImageProperty("BitsPerSample")
 	})
 ```
 
-### getImageProperty<sup>7+</sup>
+### getImageProperty<sup>(deprecated)</sup>
 
 getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
 获取图片中给定索引处图像的指定属性键的值，用callback形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+
+**说明：**
+
+从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1799,11 +1856,15 @@ imageSourceApi.getImageProperty("BitsPerSample",(error : BusinessError, data : s
 })
 ```
 
-### getImageProperty<sup>7+</sup>
+### getImageProperty<sup>(deprecated)</sup>
 
 getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
 获取图片指定属性键的值，callback形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+
+**说明：**
+
+从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1812,7 +1873,7 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 | 参数名   | 类型                                                 | 必填 | 说明                                                          |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------- |
 | key      | string                                               | 是   | 图片属性名。                                                  |
-| options  | [GetImagePropertyOptions](#getimagepropertyoptions7) | 是   | 图片属性，包括图片序号与默认属性值。                          |
+| options  | [GetImagePropertyOptions](#getimagepropertyoptionsdeprecated) | 是   | 图片属性，包括图片序号与默认属性值。                          |
 | callback | AsyncCallback\<string>                               | 是   | 获取图片属性回调，返回图片属性值，如获取失败则返回属性默认值。|
 
 **示例：**
@@ -1829,11 +1890,70 @@ imageSourceApi.getImageProperty("BitsPerSample",property,(error : BusinessError,
 })
 ```
 
-### modifyImageProperty<sup>9+</sup>
+### modifyImageProperty<sup>11+</sup>
+
+modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
+
+通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| key     | [PropertyKey](#propertykey7)   | 是   | 图片属性名。 |
+| value   | string | 是   | 属性值。     |
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401  | The parameter check failed.              |
+| 62980110| If the image source data error.       |
+| 62980111| If the image source data incomplete.  |
+| 62980113| If the image format unknown.             |
+| 62980116| If the image decode failed.              |
+| 62980118| If the image plugin create failed.       |
+| 62980123| If the image unsupport exif.             |
+| 62980130| If the image source file is abnormal.    |
+| 62980132| If the image source buffer size is abnormal.            |
+| 62980135| If the exif value is invalid.             |
+| 62980146| If the exif failed to be written to the file.        |
+| 62980147| If the file fails to be read.            |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(() => {
+    imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width : string) => {
+        console.info(`ImageWidth is :${width}`);
+    }).catch((error : BusinessError) => {
+        console.error('Failed to get the Image Width.');
+	})
+}).catch((error : BusinessError) => {
+	console.error('Failed to modify the Image Width');
+})
+```
+
+### modifyImageProperty<sup>(deprecated)</sup>
 
 modifyImageProperty(key: string, value: string): Promise\<void>
 
 通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+
+**说明：**
+
+从API version 11开始不再维护，建议使用[modifyImageProperty](#modifyimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1865,11 +1985,15 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
 })
 ```
 
-### modifyImageProperty<sup>9+</sup>
+### modifyImageProperty<sup>(deprecated)</sup>
 
 modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>): void
 
 通过指定的键修改图片属性的值，callback形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+
+**说明：**
+
+从API version 11开始不再维护，建议使用[modifyImageProperty](#modifyimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2796,11 +2920,11 @@ image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
 })
 ```
 
-## image.createImageReceiver<sup>9+</sup>
+## image.createImageReceiver<sup>11+</sup>
 
-createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
+createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageReceiver
 
-通过宽、高、图片格式、容量创建ImageReceiver实例。
+通过图片大小、图片格式、容量创建ImageReceiver实例。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -2811,6 +2935,42 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 | width    | number | 是   | 图像的默认宽度。       |
 | height   | number | 是   | 图像的默认高度。       |
 | format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。  |
+| capacity | number | 是   | 同时访问的最大图像数。 |
+
+**返回值：**
+
+| 类型                             | 说明                                    |
+| -------------------------------- | --------------------------------------- |
+| [ImageReceiver](#imagereceiver9) | 如果操作成功，则返回ImageReceiver实例。 |
+
+**示例：**
+
+```ts
+let size:image.Size = {
+    height: 8192,
+    width: 8
+} 
+let receiver : image.ImageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+```
+
+## image.createImageReceiver<sup>(deprecated)</sup>
+
+createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
+
+通过宽、高、图片格式、容量创建ImageReceiver实例。
+
+**说明：**
+
+从API version 11开始不再维护，建议使用[createImageReceiver](#imagecreateimagereceiver11)代替。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                   |
+| -------- | ------ | ---- | ---------------------- |
+| size    | [Size](#size)  | 是   | 图像的默认大小。       |
+| format   | [ImageFormat](#imageformat9) | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。             |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
 **返回值：**
@@ -3072,11 +3232,47 @@ receiver.release().then(() => {
 })
 ```
 
-## image.createImageCreator<sup>9+</sup>
+## image.createImageCreator<sup>11+</sup>
+
+createImageCreator(size: Size, format: ImageFormat, capacity: number): ImageCreator
+
+通过图片大小、图片格式、容量创建ImageCreator实例。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                   |
+| -------- | ------ | ---- | ---------------------- |
+| size    | [Size](#size)  | 是   | 图像的默认大小。       |
+| format   | [ImageFormat](#imageformat9) | 是   | 图像格式，如YCBCR_422_SP，JPEG。             |
+| capacity | number | 是   | 同时访问的最大图像数。 |
+
+**返回值：**
+
+| 类型                           | 说明                                    |
+| ------------------------------ | --------------------------------------- |
+| [ImageCreator](#imagecreator9) | 如果操作成功，则返回ImageCreator实例。 |
+
+**示例：**
+
+```ts
+let size:image.Size = {
+    height: 8192,
+    width: 8
+} 
+let creator : image.ImageCreator = image.createImageCreator(size, image.ImageFormat.JPEG, 8);
+```
+
+## image.createImageCreator<sup>(deprecated)</sup>
 
 createImageCreator(width: number, height: number, format: number, capacity: number): ImageCreator
 
 通过宽、高、图片格式、容量创建ImageCreator实例。
+
+**说明：**
+
+从API version 11开始不再维护，建议使用[createImageCreator](#imagecreateimagecreator11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -3605,9 +3801,24 @@ PixelMap的初始化选项。
 | quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。 |
 | bufferSize<sup>9+</sup> | number | 是   | 是   | 接收编码数据的缓冲区大小，单位为Byte。默认为10MB。bufferSize需大于编码后图片大小。 |
 
-## GetImagePropertyOptions<sup>7+</sup>
+## ImagePropertyOptions<sup>11+</sup>
 
 表示查询图片属性的索引。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+| 名称         | 类型   | 可读 | 可写 | 说明         |
+| ------------ | ------ | ---- | ---- | ------------ |
+| index        | number | 是   | 是   | 图片序号。   |
+| defaultValue | string | 是   | 是   | 默认属性值。 |
+
+## GetImagePropertyOptions<sup>(deprecated)</sup>
+
+表示查询图片属性的索引。
+
+**说明：**
+
+从API version 11开始不再维护，建议使用[ImagePropertyOptions](#imagepropertyoptions11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
