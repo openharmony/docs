@@ -154,6 +154,7 @@ struct WebComponent {
   ```
 
   加载的html文件。
+
   ```html
   <!-- index.html -->
   <!DOCTYPE html>
