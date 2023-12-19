@@ -46,15 +46,14 @@ ExceptionPrompt ({ options: this.options })
 
 PromptOptions定义options的类型。
 
-| 名称              | 类型        | 必填 | 说明                                            |
-| ----------------- | ----------- | ---- | ----------------------------------------------- |
-| icon              | ResourceStr | 否   | 指定当前ExceptionPrompt的异常图标式样           |
-| tip               | ResourceStr | 否   | 指定当前ExceptionPrompt的文字提示内容           |
-| marginType        | MarginType  | 是   | 指定当前ExceptionPrompt的边距样式               |
-| touchText         | ResourceStr | 否   | 指定当前ExceptionPrompt的右侧图标按钮的文字内容 |
-| isIconButtonShown | boolean     | 否   | 指定当前ExceptionPrompt的右侧图标按钮的显隐状态 |
-| marginTop         | number      | 是   | 指定当前ExceptionPrompt的距离顶部的位置         |
-| isShown           | boolean     | 否   | 指定当前ExceptionPrompt的显隐状态               |
+| 名称       | 类型        | 必填 | 说明                                            |
+| ---------- | ----------- | ---- | ----------------------------------------------- |
+| icon       | ResourceStr | 否   | 指定当前ExceptionPrompt的异常图标式样           |
+| tip        | ResourceStr | 否   | 指定当前ExceptionPrompt的文字提示内容           |
+| marginType | MarginType  | 是   | 指定当前ExceptionPrompt的边距样式               |
+| actionText | ResourceStr | 否   | 指定当前ExceptionPrompt的右侧图标按钮的文字内容 |
+| marginTop  | number      | 是   | 指定当前ExceptionPrompt的距离顶部的位置         |
+| isShown    | boolean     | 否   | 指定当前ExceptionPrompt的显隐状态               |
 
 ## marginState
 
@@ -69,8 +68,8 @@ MarginType定义marginState的类型
 
 | 名称                             | 功能描述                   |
 | -------------------------------- | -------------------------- |
-| onTextClick: () => void          | 点击左侧提示文本的回调函数 |
-| onIconButtonClick: () =&gt; void | 点击右侧图标按钮的回调函数 |
+| onTipClick: () => void           | 点击左侧提示文本的回调函数 |
+| onActionTextClick: () =&gt; void | 点击右侧图标按钮的回调函数 |
 
 ## 示例 1
 
@@ -88,8 +87,7 @@ struct Index {
     icon: '',
     tip: '',
     marginType: MarginType.DEFAULT_MARGIN
-    touchText: '',
-    isIconButtonShown: false,
+    actionText: '',
     marginTop: 80,
     isShown:true
   }
@@ -98,10 +96,10 @@ struct Index {
     Column() {
       ExceptionPrompt({
         options: this.options,
-        onTextClick: () => {
+        onTipClick: () => {
             // Click the text on the left to change into the connecting state
         },
-        onIconButtonClick: () => {
+        onActionTextClick: () => {
             // Click Set Network to open the Set network pop-up interface
         },
       })
@@ -130,8 +128,7 @@ struct CustomDialogExample {
     icon: $r('app.media.ic_public_fail'),
     tip: '异常提示！',
     marginType: MarginType.DEFAULT_MARGIN,
-    touchText: '设置',
-    isIconButtonShown: true,
+    actionText: '设置',
     marginTop: 5,
     isShown: true
   }
@@ -173,7 +170,7 @@ struct Index1 {
   @State MAP_HEIGHT: string = '30%'
   @State duration: number = 2500
   @State tips: string = ''
-  @State touchText: string = ''
+  @State actionText: string = ''
   controller: TextInputController = new TextInputController()
   cancel: () => void
   confirm: () => void
@@ -181,8 +178,7 @@ struct Index1 {
     icon: $r('app.media.ic_public_fail'),
     tip: '',
     marginType: MarginType.DEFAULT_MARGIN,
-    touchText: '',
-    isIconButtonShown: false,
+    actionText: '',
     marginTop: 80,
     isShown: true
   }
