@@ -723,19 +723,18 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 import { BusinessError } from "@ohos.base";
 import relaitonalStore from '@ohos.data.relationalStore';
 
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 let sharingResource: string;
@@ -743,8 +742,8 @@ let predicates = new relaitonalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
 cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, ['uuid', 'data']).then((resultSet) => {
   if (!resultSet.goToFirstRow()) {
-     console.error(`row error`);
-     return;
+    console.error(`row error`);
+    return;
   }
   const res = resultSet.getString(resultSet.getColumnIndex(relaitonalStore.Field.SHARING_RESOURCE_FIELD));
   console.info(`sharing resource: ${res}`);
@@ -778,19 +777,18 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 ```ts
 import relationalStore from '@ohos.data.relationalStore';
 
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 let sharingResource: string;
@@ -834,19 +832,18 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 ```ts
 import relationalStore from '@ohos.data.relationalStore';
 
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 let sharingResource: string;
@@ -894,19 +891,18 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;): Promise&
 ```ts
 import { BusinessError } from "@ohos.base";
 
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 cloudData.sharing.share('sharing_resource_test', participants).then((result) => {
@@ -936,19 +932,18 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;, callback:
 **示例：**
 
 ```ts
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 cloudData.sharing.share('sharing_resource_test', participants, ((err, result) => {
@@ -987,19 +982,18 @@ unshare(sharingResource: string, participants: Array&lt;Participant&gt;): Promis
 ```ts
 import { BusinessError } from "@ohos.base";
 
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 cloudData.sharing.unshare('sharing_resource_test', participants).then((result) => {
@@ -1029,19 +1023,18 @@ unshare(sharingResource: string, participants: Array&lt;Participant&gt;, callbac
 **示例：**
 
 ```ts
-let privilege = {
-  writable: true,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 cloudData.sharing.unshare('sharing_resource_test', participants, ((err, result) => {
@@ -1141,19 +1134,18 @@ changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;)
 ```ts
 import { BusinessError } from "@ohos.base";
 
-let privilege = {
-  writable: false,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 
@@ -1184,19 +1176,18 @@ changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;,
 **示例：**
 
 ```ts
-let privilege = {
-  writable: false,
-  readable: true,
-  creatable: false,
-  deletable: false,
-  shareable: false
-}
-let participants = new Array();
+let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
   role: cloudData.sharing.Role.ROLE_INVITER,
   state: cloudData.sharing.State.STATE_UNKNOWN,
-  privilege: privilege,
+  privilege: {
+    writable: true,
+    readable: true,
+    creatable: false,
+    deletable: false,
+    shareable: false
+  },
   attachInfo: ''
 })
 
