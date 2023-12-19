@@ -1,4 +1,4 @@
-# 使用AudioRenderer开发音频播放功能
+# 使用AudioRenderer开发音频播放功能(ArkTS)
 
 AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音频数据，相比AVPlayer而言，可以在输入前添加数据预处理，更适合有音频开发经验的开发者，以实现更灵活的播放功能。
 
@@ -64,6 +64,8 @@ audio.createAudioRenderer(audioRendererOptions, (err, data) => {
 2. 调用start()方法进入running状态，开始渲染音频。
      
 ```ts
+import { BusinessError } from '@ohos.base';
+
 audioRenderer.start((err: BusinessError) => {
   if (err) {
     console.error(`Renderer start failed, code is ${err.code}, message is ${err.message}`);
@@ -94,6 +96,8 @@ async function read() {
 4. 调用stop()方法停止渲染。
      
 ```ts
+import { BusinessError } from '@ohos.base';
+
 audioRenderer.stop((err: BusinessError) => {
   if (err) {
     console.error(`Renderer stop failed, code is ${err.code}, message is ${err.message}`);
@@ -106,6 +110,8 @@ audioRenderer.stop((err: BusinessError) => {
 5. 调用release()方法销毁实例，释放资源。
      
 ```ts
+import { BusinessError } from '@ohos.base';
+
 audioRenderer.release((err: BusinessError) => {
   if (err) {
     console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);

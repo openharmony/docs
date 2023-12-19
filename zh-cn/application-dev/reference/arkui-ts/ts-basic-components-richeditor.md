@@ -237,6 +237,18 @@ updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateIm
 | ------ | -------- | ---- | -------------------------------------- |
 | value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdatetextspanstyleoptions) | 是 | 文本或者图片的样式选项信息。 |
 
+### updateParagraphStyle<sup>11+</sup>
+
+updateParagraphStyle(value: RichEditorParagraphStyleOptions): void
+
+更新段落的样式。
+
+**参数：**
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| value | [RichEditorParagraphStyleOptions](#richeditorparagraphstyleoptions11) | 是 | 段落的样式选项信息。 |
+
 ### getSpans
 
 getSpans(value?: RichEditorRange): Array<RichEditorTextSpanResult| RichEditorImageSpanResult>
@@ -303,6 +315,34 @@ closeSelectionMenu(): void
 | start | number   | 否 | 需要更新样式的图片起始位置，省略或者设置负值时表示从0开始。 |
 | end | number | 否 | 需要更新样式的图片结束位置，省略或者超出文本范围时表示到结尾。 |
 | imageStyle | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 是 | 图片样式。 |
+
+## RichEditorParagraphStyleOptions<sup>11+</sup>
+
+段落样式选项
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| start | number   | 否 | 需要更新样式的段落起始位置，省略或者设置负值时表示从0开始。 |
+| end | number | 否 | 需要更新样式的段落结束位置，省略、负数或者超出文本范围时表示到结尾。 |
+| style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 是 | 段落样式。 |
+
+## RichEditorParagraphStyle<sup>11+</sup>
+
+段落样式。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| textAlign | [TextAlign](ts-appendix-enums.md#textalign) | 否 | 设置文本段落在水平方向的对齐方式。 |
+| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否 | 设置文本段落缩进。 |
+
+## LeadingMarginPlaceholder<sup>11+</sup>
+
+前导边距跨度。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| pixelMap | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 是 | 图片内容。 |
+| size | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\] | 是 | 图片大小，不支持设置百分比。 |
 
 ## RichEditorTextSpanOptions
 

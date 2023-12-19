@@ -1,4 +1,4 @@
-# 使用OHAudio开发音频播放功能
+# 使用OHAudio开发音频播放功能(C/C++)
 
 OHAudio是OpenHarmony在API version 10中引入的一套全新Native API，此API在设计上实现归一，同时支持普通音频通路和低时延通路。
 
@@ -15,8 +15,8 @@ target_link_libraries(sample PUBLIC libohaudio.so)
 开发者通过引入<[native_audiostreambuilder.h](../reference/native-apis/native__audiostreambuilder_8h.md)>和<[native_audiorenderer.h](../reference/native-apis/native__audiorenderer_8h.md)>头文件，使用音频播放相关API。
 
 ```cpp
-#include "ohaudio/native_audiorenderer.h"
-#include "ohaudio/native_audiostreambuilder.h"
+#include <ohaudio/native_audiorenderer.h>
+#include <ohaudio/native_audiostreambuilder.h>
 ```
 
 ## 音频流构造器
@@ -111,8 +111,8 @@ OH_AudioStreamBuilder_Destroy(builder);
 #include <thread>
 #include <chrono>
 #include <ctime>
-#include "ohaudio/native_audiorenderer.h"
-#include "ohaudio/native_audiostreambuilder.h"
+#include <ohaudio/native_audiorenderer.h>
+#include <ohaudio/native_audiostreambuilder.h>
 
 #ifdef __cplusplus
 extern "C" {

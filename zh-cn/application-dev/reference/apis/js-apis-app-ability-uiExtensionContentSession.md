@@ -594,7 +594,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
-初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionABility。当ExtensionABility通过该接口拉起另外一个Ability，被拉起的Abiltiy可以从onCreate生命周期获取到初始Abiltiy的caller信息。
+初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionABility。当ExtensionAbility通过该接口拉起另外一个Ability，被拉起的Abiltiy可以从onCreate生命周期获取到初始Abiltiy的caller信息。
 
 **系统接口**：此接口为系统接口。
 
@@ -634,7 +634,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
 startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
-初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionABility。当ExtensionABility通过该接口拉起另外一个Ability，被拉起的Abiltiy可以从onCreate生命周期获取到初始Abiltiy的caller信息。
+初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionABility。当ExtensionAbility通过该接口拉起另外一个Ability，被拉起的Abiltiy可以从onCreate生命周期获取到初始Abiltiy的caller信息。
 
 **系统接口**：此接口为系统接口。
 
@@ -673,7 +673,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 
 startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
-初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionABility。当ExtensionABility通过该接口拉起另外一个Ability，被拉起的Abiltiy可以从onCreate生命周期获取到初始Abiltiy的caller信息。
+初始Ability将自己的caller信息（如BundleName、AbilityName等）置于want参数中，传递给中间层的ExtensionABility。当ExtensionAbility通过该接口拉起另外一个Ability，被拉起的Abiltiy可以从onCreate生命周期获取到初始Abiltiy的caller信息。
 
 **系统接口**：此接口为系统接口。
 
