@@ -125,8 +125,11 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
+
 ### 示例1
-各进度条基础属性效果
+
+各进度条基础属性效果。
+
 ```ts
 // xxx.ets
 @Entry
@@ -188,8 +191,11 @@ struct ProgressExample {
 ![progress](figures/arkts-progress.png)
 
 ### 示例2
-环形进度条视觉属性
+
+环形进度条视觉属性。
+
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct ProgressExample {
@@ -213,8 +219,11 @@ struct ProgressExample {
 ![ringProgressStyleEffect](figures/arkts-ringProgressStyleEffect.png)
 
 ### 示例3
-环形进度条动效
+
+环形进度条动效。
+
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct ProgressExample {
@@ -238,8 +247,11 @@ struct ProgressExample {
 ![ringProgressAnimation](figures/arkts-ringProgressAnimation.gif)
 
 ### 示例4
-胶囊形进度条视觉属性
+
+胶囊形进度条视觉属性。
+
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct ProgressExample {
@@ -259,8 +271,11 @@ struct ProgressExample {
 ![capsuleProgressStyleEffect](figures/arkts-capsuleProgressStyleEffect.png)
 
 ### 示例5
-进度平滑动效
+
+进度平滑动效。
+
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct Index {
