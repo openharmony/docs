@@ -59,7 +59,27 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
     connectTimeout: 60000, // 可选，默认为60000ms
     usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
     usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
-    caPath: "", // 可选，默认使用系统预设CA证书，自API 10开始支持该属性
+    caPath: '/path/to/ca.crt', // 可选，默认使用系统预设CA证书，自API 10开始支持该属性
+    clientCert: { // 可选，默认不使用客户端证书，自API 11开始支持该属性
+      certPath: '/path/to/client.crt', // 默认不使用客户端证书，自API 11开始支持该属性
+      keyPath: '/path/to/client.key', // 若证书包含Key信息，传入空字符串，自API 11开始支持该属性
+      certType: http.CertType.PEM, // 可选，默认使用PEM，自API 11开始支持该属性
+      keyPassword: "passwordToKey" // 可选，输入key文件的密码，自API 11开始支持该属性
+    }，
+    multiFormDataList: [ // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效，自API 11开始支持该属性
+      {
+        name: "Part1", // 数据名，自API 11开始支持该属性
+        contentType: 'text/plain', // 数据类型，自API 11开始支持该属性
+        data: 'Example data', // 可选，数据内容，自API 11开始支持该属性
+        remoteFileName: 'example.txt' // 可选，自API 11开始支持该属性
+      }, {
+        name: "Part2", // 数据名，自API 11开始支持该属性
+        contentType: 'text/plain', // 数据类型，自API 11开始支持该属性
+        // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt
+        filePath: `${getContext(this).filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性
+        remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性
+      }
+    ]
   },
   (err: BusinessError, data: http.HttpResponse) => {
     if (!err) {
@@ -1362,7 +1382,7 @@ http协议版本。
 | :-------- | :----------- |
 | HTTP1_1   |  协议http1.1  |
 | HTTP2     |  协议http2    |
-| HTTP3<sup>11+</sup> | 协议http3 |
+| HTTP3<sup>11+</sup> | 协议http3，若系统或服务器不支持，则使用低版本的http协议请求。<br />-仅对https的URL生效，http则会请求失败。 |
 
 ## CertType<sup>11+</sup>
 
