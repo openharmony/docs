@@ -5985,6 +5985,30 @@ async function example() {
 | VIDEO_TYPE |  'video/*' | 视频类型。 |
 | IMAGE_VIDEO_TYPE |  '\*/*' | 图片和视频类型。 |
 
+## RecommendationType<sup>11+</sup>
+
+枚举，推荐的照片类型。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- | ---- |
+| QR_OR_BAR_CODE  |  1 | 二维码或条码。 |
+| QR_CODE |  2 | 二维码。 |
+| BAR_CODE |  3 | 条码。 |
+| ID_CARD |  4 | 身份证。 |
+| PROFILE_PICTURE |  5 | 头像。 |
+
+## RecommendationOptions<sup>11+</sup>
+
+照片推荐选项。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                    | 类型                | 必填 | 说明                          |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| recommendationType | [RecommendationType](#recommendationtype)   | 否   | 可选择的照片推荐类型，若无此参数，则默认为不推荐照片。 |
+
 ## PhotoSelectOptions
 
 图库选择选项。
@@ -5998,6 +6022,7 @@ async function example() {
 | isPhotoTakingSupported<sup>11+</sup> | boolean  | 否   | 支持拍照。 |
 | isEditSupported<sup>11+</sup>       | boolean | 否   | 支持编辑照片。      |
 | isSearchSupported<sup>11+</sup> | boolean  | 否   | 支持搜索。 |
+| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions)   | 否   | 支持照片推荐。      |
 
 ## PhotoSelectResult
 
