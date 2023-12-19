@@ -86,86 +86,86 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   }
   ```
 
-  加载沙箱路径下的本地资源文件。
+加载沙箱路径下的本地资源文件。
 
-  1.通过构造的单例对象GlobalContext获取沙箱路径。
+1. 通过构造的单例对象GlobalContext获取沙箱路径。
 
-    ```ts
-    // GlobalContext.ts
-    export class GlobalContext {
-      private constructor() {}
-      private static instance: GlobalContext;
-      private _objects = new Map<string, Object>();
+   ```ts
+   // GlobalContext.ts
+   export class GlobalContext {
+     private constructor() {}
+     private static instance: GlobalContext;
+     private _objects = new Map<string, Object>();
 
-      public static getContext(): GlobalContext {
-        if (!GlobalContext.instance) {
-          GlobalContext.instance = new GlobalContext();
-        }
-        return GlobalContext.instance;
-      }
+     public static getContext(): GlobalContext {
+       if (!GlobalContext.instance) {
+         GlobalContext.instance = new GlobalContext();
+       }
+       return GlobalContext.instance;
+     }
 
-      getObject(value: string): Object | undefined {
-        return this._objects.get(value);
-      }
+     getObject(value: string): Object | undefined {
+       return this._objects.get(value);
+     }
 
-      setObject(key: string, objectClass: Object): void {
-        this._objects.set(key, objectClass);
-      }
-    }
-    ```
+     setObject(key: string, objectClass: Object): void {
+       this._objects.set(key, objectClass);
+     }
+   }
+   ```
 
-    ```ts
-    // xxx.ets
-    import web_webview from '@ohos.web.webview'
-    import { GlobalContext } from '../GlobalContext'
+   ```ts
+   // xxx.ets
+   import web_webview from '@ohos.web.webview'
+   import { GlobalContext } from '../GlobalContext'
 
-    let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
+   let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
 
-    @Entry
-    @Component
-    struct WebComponent {
-      controller: web_webview.WebviewController = new web_webview.WebviewController()
-      build() {
-        Column() {
-          // 加载沙箱路径文件。
-          Web({ src: url, controller: this.controller })
-        }
-      }
-    }
-    ```
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: web_webview.WebviewController = new web_webview.WebviewController()
+     build() {
+       Column() {
+         // 加载沙箱路径文件。
+         Web({ src: url, controller: this.controller })
+       }
+     }
+   }
+   ```
 
-  2.修改EntryAbility.ts。
+2. 修改EntryAbility.ts。
 
-    以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
-  
-    ```ts
-    // xxx.ts
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-    import Want from '@ohos.app.ability.Want';
-    import web_webview from '@ohos.web.webview';
-    import { GlobalContext } from '../GlobalContext'
+   以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
 
-    export default class EntryAbility extends UIAbility {
-        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-            // 通过在GlobalContext对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
-            GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
-            console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
-        }
-    }
-    ```
+   ```ts
+   // xxx.ts
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import Want from '@ohos.app.ability.Want';
+   import web_webview from '@ohos.web.webview';
+   import { GlobalContext } from '../GlobalContext'
 
-    加载的html文件。
+   export default class EntryAbility extends UIAbility {
+       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+           // 通过在GlobalContext对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
+           GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
+           console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
+       }
+   }
+   ```
 
-    ```html
-    <!-- index.html -->
-    <!DOCTYPE html>
-    <html>
-        <body>
-            <p>Hello World</p>
-        </body>
-    </html>
-    ```
+   加载的html文件。
+
+   ```html
+   <!-- index.html -->
+   <!DOCTYPE html>
+   <html>
+       <body>
+           <p>Hello World</p>
+       </body>
+   </html>
+   ```
 
 ## 属性
 
@@ -2886,7 +2886,6 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
      }
      ```
 
-   ​
 
   2. 实现双向认证。
 
@@ -3005,7 +3004,7 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
           .height('100%')
         }
       }
-      ```
+     ```
 
 ### onPermissionRequest<sup>9+</sup>
 
