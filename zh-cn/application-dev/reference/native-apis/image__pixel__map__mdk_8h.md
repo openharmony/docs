@@ -59,3 +59,5 @@
 | [OH_PixelMap_GetImageInfo](image.md#oh_pixelmap_getimageinfo) (const [NativePixelMap](image.md#nativepixelmap) \*native, [OhosPixelMapInfos](_ohos_pixel_map_infos.md) \*info) | 获取**PixelMap**对象图像信息。 | 
 | [OH_PixelMap_AccessPixels](image.md#oh_pixelmap_accesspixels) (const [NativePixelMap](image.md#nativepixelmap) \*native, void \*\*addr) | 获取native **PixelMap** 对象数据的内存地址，并锁定该内存。 | 
 | [OH_PixelMap_UnAccessPixels](image.md#oh_pixelmap_unaccesspixels) (const [NativePixelMap](image.md#nativepixelmap) \*native) | 释放native **PixelMap**对象数据的内存锁，用于匹配方法[OH_PixelMap_AccessPixels](image.md#oh_pixelmap_accesspixels)。 | 
+
+<!--no_check-->
