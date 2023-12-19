@@ -482,7 +482,7 @@ For details about the audio and video playback demo, see [Audio Playback](../../
 
 | Name                                               | Type                                                        | Readable| Writable| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>9+</sup>                                    | string                                                       | Yes  | Yes  | URL of the media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state. <br>The video formats MP4, MPEG-TS, WebM, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx|
+| url<sup>9+</sup>                                    | string                                                       | Yes  | Yes  | URL of the media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state. <br>The video formats MP4, MPEG-TS, WebM, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx|
 | fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | FD of the media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state.<br>This attribute is required when media assets of an application are continuously stored in a file.<br>The video formats MP4, MPEG-TS, WebM, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example:**<br>Assume that a media file that stores continuous assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent media file, use **src=fd://xx**.|
 | dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | Yes  | Yes  | Descriptor of a streaming media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state.<br>Use scenario: An application starts playing a media file while the file is still being downloaded from the remote to the local host.<br>The video formats MP4, MPEG-TS, WebM, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example:**<br>A user is obtaining an audio and video file from a remote server and wants to play the downloaded file content. To implement this scenario, do as follows:<br>1. Obtain the total file size, in bytes. If the total size cannot be obtained, set **fileSize** to **-1**.<br>2. Implement the **func** callback to fill in data. If **fileSize** is **-1**, the format of **func** is **func(buffer: ArrayBuffer, length: number)**, and the AVPlayer obtains data in sequence; otherwise, the format is **func(buffer: ArrayBuffer, length: number, pos: number)**, and the AVPlayer seeks and obtains data in the required positions.<br>3. Set **AVDataSrcDescriptor {fileSize = size, callback = func}**.<br>**Notes:**<br>If the media file to play is in MP4/M4A format, ensure that the **moov** field (specifying the media information) is before the **mdat** field (specifying the media data) or the fields before the **moov** field is less than 10 MB. Otherwise, the parsing fails and the media file cannot be played.|
 | surfaceId<sup>9+</sup>                              | string                                                       | Yes  | Yes  | Video window ID. By default, there is no video window. It is a static attribute and can be set only when the AVPlayer is in the initialized state.<br>It is used to render the window for video playback and therefore is not required in audio-only playback scenarios.<br>**Example:**<br>[Create a surface ID through XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
@@ -552,7 +552,7 @@ avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason
       console.info('state error called');
       break;
     default:
-      console.info('unkown state :' + state);
+      console.info('unknown state :' + state);
       break;
   }
 })
@@ -1065,7 +1065,7 @@ avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDe
   if ((arrList) != null) {
     console.info('getTrackDescription success');
   } else {
-    console.log(`video getTrackDescription fail, error:${error}`);
+    console.error(`video getTrackDescription fail, error:${error}`);
   }
 });
 ```
@@ -1098,7 +1098,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
   console.info('getTrackDescription success');
 }).catch((error: BusinessError) => {
-  console.info(`video catchCallback, error:${error}`);
+  console.error(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1734,7 +1734,7 @@ Describes an audio and video file asset. It is used to specify a particular asse
 
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| fd     | number | Yes  | Resource handle, which is obtained by calling [resourceManager.getRawFileDescriptor](js-apis-resource-manager.md#getrawfiledescriptordeprecated).    |
+| fd     | number | Yes  | Resource handle, which is obtained by calling [resourceManager.getRawFd](js-apis-resource-manager.md#getrawfd9).    |
 | offset | number | Yes  | Resource offset, which needs to be entered based on the preset asset information. An invalid value causes a failure to parse audio and video assets.|
 | length | number | Yes  | Resource length, which needs to be entered based on the preset asset information. An invalid value causes a failure to parse audio and video assets.|
 
@@ -1816,7 +1816,7 @@ avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDe
       printfItemDescription(arrList[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  // Print the MD_KEY_TRACK_TYPE value of each track.
     }
   } else {
-    console.log(`audio getTrackDescription fail, error:${error}`);
+    console.error(`audio getTrackDescription fail, error:${error}`);
   }
 });
 ```
@@ -3635,7 +3635,7 @@ Enumerates the media error codes.
 
 > **NOTE**
 >
-> This enum is supported since API version 8 and deprecated since API version 9. You are advised to use [Media Error Codes](../errorcodes/errorcode-media.md) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. You are advised to use [Media Error Codes](#averrorcode9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -3666,7 +3666,7 @@ Provides APIs to manage and play audio. Before calling any API in **AudioPlayer*
 
 | Name                           | Type                                                  | Readable| Writable| Description                                                        |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| src                             | string                                                 | Yes  | Yes  | Audio file URI. The mainstream audio formats (M4A, AAC, MP3, OGG, and WAV) are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>**Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.INTERNET|
+| src                             | string                                                 | Yes  | Yes  | Audio file URI. The mainstream audio formats (M4A, AAC, MP3, OGG, and WAV) are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>**Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.INTERNET|
 | fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | Yes  | Yes  | Description of the audio file. This attribute is required when audio assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Music 1 (address offset: 0, byte length: 100)<br>Music 2 (address offset: 101; byte length: 50)<br>Music 3 (address offset: 151, byte length: 150)<br>1. To play music 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play music 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play music 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent music file, use **src=fd://xx**.<br>|
 | loop                            | boolean                                                | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
 | audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | Yes  | Yes  | Audio interruption mode.                                              |
@@ -4091,7 +4091,7 @@ Provides APIs to manage and play video. Before calling any API of **VideoPlayer*
 
 | Name                           | Type                                                  | Readable| Writable| Description                                                        |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>                | string                                                 | Yes  | Yes  | Video URL. The mainstream video formats (MP4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>|
+| url<sup>8+</sup>                | string                                                 | Yes  | Yes  | Video URL. The mainstream video formats (MP4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>|
 | fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | Yes  | Yes  | Description of a video file. This attribute is required when video assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent video file, use **src=fd://xx**.<br>|
 | loop<sup>8+</sup>               | boolean                                                | Yes  | Yes  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
 | videoScaleType<sup>9+</sup>     | [VideoScaleType](#videoscaletype9)                     | Yes  | Yes  | Video scale type.                                              |
