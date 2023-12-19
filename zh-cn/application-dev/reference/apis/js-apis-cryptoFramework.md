@@ -1452,7 +1452,7 @@ static genECCCommonParamsSpec(curveName: string): ECCCommonParamsSpec
 
 | 类型           | 说明                                   |
 | -------------- | -------------------------------------- |
-| ECCCommonParamsSpec | 返回ECC公共密钥参数。 |
+| [ECCCommonParamsSpec](#ecccommonparamsspec10) | 返回ECC公共密钥参数。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2651,7 +2651,7 @@ verifyInitPromise.then((): Promise<void> => {
 
 setVerifySpec(itemType: SignSpecItem, itemValue: number): void
 
-setVerifySpec(itemType: SignSpecItem, itemValue: number\|Uint8Array<sup>11+</sup>): void
+setVerifySpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
 
 设置验签参数。常用的签名参数可以直接通过[createVerify](#cryptoframeworkcreateverify) 来指定，剩余参数可以通过本接口指定。
 
@@ -2666,7 +2666,7 @@ setVerifySpec(itemType: SignSpecItem, itemValue: number\|Uint8Array<sup>11+</sup
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | 是   | 用于指定需要设置的验签参数。 |
-| itemValue | number\|Uint8Array | 是   | 用于指定验签参数的具体值。 |
+| itemValue | number\|Uint8Array<sup>11+</sup> | 是   | 用于指定验签参数的具体值。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
