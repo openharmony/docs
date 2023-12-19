@@ -2160,7 +2160,7 @@ try {
 
 ### executeDrag
 
-executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: AsyncCallback&lt; {event: DragEvent, extraParams: string}&gt;): void
+executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo, callback: AsyncCallback&lt; {event: DragEvent, extraParams: string}&gt;): void
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过回调返回拖拽事件结果。
 
@@ -2171,7 +2171,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
 | custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
-| dragInfo | [DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
 | callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
 
 **错误码：**
@@ -2179,7 +2179,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Invalid input parameter |
-| 100001   | Internal error |
+| 100001   | If some internal handing failed. |
 
 **示例：**
 
@@ -2237,7 +2237,7 @@ struct DragControllerPage {
 
 ### executeDrag
 
-executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&lt;{event: DragEvent, extraParams: string}&gt;
+executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo): Promise&lt;{event: DragEvent, extraParams: string}&gt;
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过Promise返回拖拽事件结果。
 
@@ -2248,7 +2248,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&l
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
 | custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
-| dragInfo | [DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
 
 **返回值：**
 
@@ -2261,7 +2261,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&l
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Invalid input parameter |
-| 100001   | Internal error |
+| 100001   | If some internal handing failed. |
 
 **示例：**
 
@@ -2345,7 +2345,7 @@ struct DragControllerPage {
 
 ### createDragAction
 
-createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: DragInfo): DragAction
+createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: dragController.DragInfo): DragAction
 
 创建拖拽的Action对象，需要显式指定拖拽背板图(可多个)，以及拖拽的数据，跟手点等信息；当通过一个已创建的 Action 对象发起的拖拽未结束时，无法再次创建新的 Action 对象，接口会抛出异常。
 
@@ -2358,7 +2358,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | --------      | ------------------------------------------------------------ | ---- | -------------------------------- |
 | customArray  | Array&lt;[CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明)&gt; | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
-| dragInfo | [DragInfo](js-apis-arkui-dragController.md#dragInfo)                                        | 是   | 拖拽信息。                       |
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#dragInfo)                                        | 是   | 拖拽信息。                       |
 
 **返回值：**
 
@@ -2371,7 +2371,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Invalid input parameter |
-| 100001   | Internal error |
+| 100001   | If some internal handing failed. |
 
 **示例：**
 
@@ -2420,7 +2420,8 @@ struct DragControllerPage {
               data: unifiedData,
               extraParams: ''
             }
-            this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
+            try{
+              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
             if(!this.dragAction){
               console.log("listener dragAction is null");
               return
@@ -2440,6 +2441,9 @@ struct DragControllerPage {
             this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
               console.log("start drag Error:" + err.message);
             })
+            } catch(err) {
+              console.log("create dragAction Error:" + err.message);
+            }
           }
         }
       }).margin({top:20})
