@@ -326,6 +326,89 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.off("alert");
 ```
 
+### registerGlobalCallObject<sup>11+</sup>
+
+registerGlobalCallObject(instanceName: string, globalCallObject: Object): void
+
+在宿主线程的ThreadWorker实例上注册一个对象，该对象上的方法可以在Worker线程中被调用，详细介绍请参见[callGlobalCallObjectMethod](#callglobalcallobjectmethod11)。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                                         |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| instanceName  | string        | 是   | 注册对象时使用的键，调用时可以通过该键值找到相对应的被注册的对象。 |
+| globalCallObject | Object | 是   | 被注册的对象，ThreadWorker实例会持有被注册对象的强引用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ----------------------------------------- |
+| 10200004 | Worker instance is not running.           |
+
+**示例：**
+```ts
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+class TestObj {
+  private message : string = "this is a message from TestObj"
+  public getMessage() : string {
+    return this.message;
+  }
+  public getMessageWithInput(str : string) : string {
+    return this.message + " with input: " + str;
+  }
+}
+let registerObj = new TestObj();
+// 在ThreadWorker实例上注册registerObj
+workerInstance.registerGlobalCallObject("myObj", registerObj);
+workerInstance.postMessage("start worker")
+```
+
+### unregisterGlobalCallObject<sup>11+</sup>
+
+unregisterGlobalCallObject(instanceName?: string): void
+
+取消在宿主线程ThreadWorker实例上注册的对象，该方法会释放ThreadWorker实例中与该键相匹配对象的强引用，没有匹配对象时不会报错。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                                         |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| instanceName  | string        | 否   | 注册对象时使用的键，此参数不填时，会释放ThreadWorker实例中所有已注册的对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ----------------------------------------- |
+| 10200004 | Worker instance is not running.           |
+
+**示例：**
+```ts
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+class TestObj {
+  private message : string = "this is a message from TestObj"
+  public getMessage() : string {
+    return this.message;
+  }
+  public getMessageWithInput(str : string) : string {
+    return this.message + " with input: " + str;
+  }
+}
+let registerObj = new TestObj();
+workerInstance.registerGlobalCallObject("myObj", registerObj);
+// 取消对象注册
+workerInstance.unregisterGlobalCallObject("myObj");
+// 取消ThreadWorker实例上的所有对象注册
+//workerInstance.unregisterGlobalCallObject();
+workerInstance.postMessage("start worker")
+```
 
 ### terminate<sup>9+</sup>
 
@@ -947,6 +1030,66 @@ workerPort.onmessage = (e: MessageEvents): void => {
 }
 ```
 
+### callGlobalCallObjectMethod<sup>11+</sup>
+
+callGlobalCallObjectMethod(instanceName: string, methodName: string, timeout: number, ...args: Object[]): Object
+
+Worker线程调用注册在宿主线程上某个对象的指定方法，调用对于Worker线程是同步的，对于宿主线程是异步的，返回值通过序列化传递。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型                                      | 必填 | 说明                                                         |
+| ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| instanceName | string                                    | 是   | 注册对象时使用的键，用于在宿主线程查找对象。 |
+| methodName | string | 是 | 在已注册对象上调用的方法名，注意该方法不能为使用async或generator修饰的方法，或底层使用了异步机制等异步返回结果的方法，否则会抛出异常。 |
+| timeout | number | 是 | 本次同步调用的等待时间单位为ms，取整数，取值范围为[1-5000]ms。也可取特殊值0，此时表示本次调用等待时间为5000ms。 |
+| args | Object[] | 否 | 注册对象上所调用方法的参数数组。 |
+
+**返回值：**
+
+| 类型                                  | 说明                            |
+| ------------------------------------- | ------------------------------- |
+| Object | 返回值为调用方法在宿主线程的返回值，该返回值必须是可序列化的，具体可见序列化支持类型。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ----------------------------------------- |
+| 10200004 | Worker instance is not running.           |
+| 10200006 | An exception occurred during serialization. |
+| 10200019 | The globalCallObject is not registered. |
+| 10200020 | The method to be called is not callable or is an async method or a generator. |
+| 10200021 | The global call exceeds the timeout. |
+
+**示例：**
+```ts
+// worker.ts
+import worker, { MessageEvents } from '@ohos.worker';
+
+const workerPort = worker.workerPort;
+workerPort.onmessage = (e: MessageEvents): void => {
+  try {
+    // 调用方法无入参
+    let res : string = workerPort.callGlobalCallObjectMethod("myObj", "getMessage", 0) as string;
+    console.info("worker:", res) // worker: this is a message from TestObj
+  } catch (error) {
+    // 异常处理
+    console.error("worker: error code is " + error.code + " error message is " + error.message);
+  }
+  try {
+    // 调用方法有入参
+    let res : string = workerPort.callGlobalCallObjectMethod("myObj", "getMessageWithInput", 0, "hello there!") as string;
+    console.info("worker:", res) //worker: this is a message from TestObj with input: hello there!
+  } catch (error) {
+    // 异常处理
+    console.error("worker: error code is " + error.code + " error message is " + error.message);
+  }
+}
+```
 
 ### close<sup>9+</sup>
 
