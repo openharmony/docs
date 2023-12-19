@@ -24,7 +24,7 @@ struct PropChild {
   @Prop testNum: ClassA; // @Prop 装饰状态变量会深拷贝
 
   build() {
-    Text(`PropChild testNum ${this.testNum.c}`)
+    Text(`PropChild testNum ${this.testNum[0].c}`)
   }
 }
 
