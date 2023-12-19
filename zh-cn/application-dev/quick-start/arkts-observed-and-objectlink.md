@@ -479,6 +479,7 @@ struct IndexPage {
 @ObjectLink支持@Observed装饰类和undefined或null组成的联合类型，在下面的示例中，count类型为ClassA | ClassB | undefined，点击父组件Page2中的Button改变count的属性或者类型，Child中也会对应刷新。
 
 ```ts
+@Observed
 class ClassA {
   public a: number;
 
@@ -487,6 +488,7 @@ class ClassA {
   }
 }
 
+@Observed
 class ClassB {
   public b: number;
 
