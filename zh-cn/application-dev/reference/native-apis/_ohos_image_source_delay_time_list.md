@@ -5,15 +5,11 @@
 
 定义图像源延迟时间列表。由[OH_ImageSource_GetDelayTime](image.md#oh_imagesource_getdelaytime)获取。
 
-\@Syscap SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-**相关模块：**
-
-[Image](image.md)
+**相关模块：** [Image](image.md)
 
 
 ## 汇总
