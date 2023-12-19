@@ -5,15 +5,11 @@
 
 定义图像源属性键值字符串。 此选项给[OH_ImageSource_GetImageProperty](image.md#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](image.md#oh_imagesource_modifyimageproperty)这两个接口使用。
 
-\@Syscap SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-**相关模块：**
-
-[Image](image.md)
+**相关模块：** [Image](image.md)
 
 
 ## 汇总
