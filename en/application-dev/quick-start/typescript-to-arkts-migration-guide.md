@@ -1736,10 +1736,9 @@ let s2: string
 **Severity: error**
 
 In TypeScript, the left-hand side of an `instanceof` expression must be of the type
-`any`, an object type, or a type parameter. Otherwise, the result is `false`.
-In ArkTS, the left-hand side of an expression may be of any reference type. Otherwise,
-a compile-time error occurs. In addition, the left operand in ArkTS
-cannot be a type.
+`any`, an object type, or a type parameter. Otherwise, the result is `false`. 
+In ArkTS, the left-hand side of an expression may be of any reference type, for example, an object, an array, or a function. Otherwise, a compile-time error occurs. In addition, the left operand in ArkTS
+cannot be a type. It must be an object instance.
 
 ### Recipe: `in` Operator Is Not Supported
 
