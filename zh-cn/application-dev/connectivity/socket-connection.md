@@ -8,7 +8,7 @@ Socket 连接主要是通过 Socket 进行数据传输，支持 TCP/UDP/TLS 协�
 
 - Socket：套接字，就是对网络中不同主机上的应用进程之间进行双向通信的端点的抽象。
 - TCP：传输控制协议(Transmission Control Protocol)。是一种面向连接的、可靠的、基于字节流的传输层通信协议。
-- UDP：用户数据报协议协议(User Datagram Protocol)。是一个简单的面向消息的传输层，不需要连接。
+- UDP：用户数据报协议(User Datagram Protocol)。是一个简单的面向消息的传输层，不需要连接。
 - TLS：安全传输层协议(Transport Layer Security)。用于在两个通信应用程序之间提供保密性和数据完整性。
 
 ## 场景介绍
