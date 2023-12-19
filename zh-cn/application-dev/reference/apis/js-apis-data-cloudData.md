@@ -50,24 +50,17 @@ import cloudData from '@ohos.data.cloudData';
 **样例：**
 
 ```ts
-let ExtraData = {
+//token:用于校验应用信息
+//accountId:用户打开的云帐号ID
+//bundleName:应用名
+//containerName:云上数据库名称
+//containerName:云上数据库表名
+
+interface ExtraData {
   eventId: "cloud_data_change",
-  extraData: {
-    "header": {
-      "token": "bbbbbb" //用于校验应用信息
-    },
-    "data": {
-      "accountId": "aaa", //用户打开的云帐号ID
-      "bundleName": "com.bbb.xxx", //应用名
-      "containerName": "alias", //云上数据库名称
-      "recordTypes": [ //云上数据库表名
-        "xxx",
-        "yyy",
-        "zzz",
-      ]
-    }
-  }
+  extraData: '{"header": { "token": "bbbbbb" },"data": {"accountId": "aaa","bundleName": "com.bbb.xxx","containerName": "alias","recordTypes": ["xxx", "yyy", "zzz",] }}'
 }
+
 ```
 
 ## Config
