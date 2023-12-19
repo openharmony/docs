@@ -721,7 +721,7 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 
 ```ts
 import { BusinessError } from "@ohos.base";
-import relaitonalStore from '@ohos.data.relationalStore';
+import relationalStore from '@ohos.data.relationalStore';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -738,7 +738,7 @@ participants.push({
   attachInfo: ''
 })
 let sharingResource: string;
-let predicates = new relaitonalStore.RdbPredicates('test_table');
+let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
 cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, ['uuid', 'data']).then((resultSet) => {
   if (!resultSet.goToFirstRow()) {
@@ -1378,7 +1378,6 @@ confirmInvitation(invitationCode: string, state: State, callback: AsyncCallback&
 **示例：**
 
 ```ts
-
 let shareResource: string;
 cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED, ((err, result) => {
   if (err) {
