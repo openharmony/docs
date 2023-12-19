@@ -7363,6 +7363,40 @@ audioRenderer.setChannelBlendMode(mode);
 console.info(`BlendMode: ${mode}`);
 ```
 
+### setVolumeWithRamp<sup>11+</sup>
+
+setVolumeWithRamp(volume: number, duration: number): void
+
+设置音量渐变模式。使用同步方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volume     | number | 是   | 渐变目标音量值，音量范围为[0.0, 1.0]。                                             |
+| duration     | number | 是   | 渐变持续时间，单位为ms。                                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Input parameter value error.              |
+| 401 | Input parameter type or number mismatch.    |
+
+**示例：**
+
+```ts
+let volume = 0.5;
+let duration = 1000;
+
+audioRenderer.setVolumeWithRamp(volume, duration);
+console.info(`setVolumeWithRamp: ${volume}`);
+```
+
 ### on('audioInterrupt')<sup>9+</sup>
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
