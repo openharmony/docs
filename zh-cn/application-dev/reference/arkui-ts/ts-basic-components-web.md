@@ -132,36 +132,38 @@ struct WebComponent {
    }
    ```
 
-2. 修改EntryAbility.ts。以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
+2. 修改EntryAbility.ts。
 
-  ```ts
-  // xxx.ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
-  import web_webview from '@ohos.web.webview';
-  import { GlobalContext } from '../GlobalContext'
+   以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
 
-  export default class EntryAbility extends UIAbility {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+   ```ts
+   // xxx.ts
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import Want from '@ohos.app.ability.Want';
+   import web_webview from '@ohos.web.webview';
+   import { GlobalContext } from '../GlobalContext'
+
+   export default class EntryAbility extends UIAbility {
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
           // 通过在GlobalContext对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
-          GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
-          console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
-      }
-  }
-  ```
+       GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
+         console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
+     }
+   }
+   ```
 
-  加载的html文件。
+   加载的html文件。
 
-  ```html
-  <!-- index.html -->
-  <!DOCTYPE html>
-  <html>
-      <body>
-          <p>Hello World</p>
-      </body>
-  </html>
-  ```
+   ```html
+   <!-- index.html -->
+   <!DOCTYPE html>
+   <html>
+       <body>
+           <p>Hello World</p>
+       </body>
+   </html>
+   ```
 
 ## 属性
 
