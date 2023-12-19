@@ -46,3 +46,4 @@ Flags说明。用于表示处理Want的方式。
 | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权。                                  |
 | FLAG_AUTH_PERSISTABLE_URI_PERMISSION<sup>10+</sup> | 0x00000040 | 仅对PC应用有效，指示对URI进行永久授权。<br>**系统API**：该接口为系统接口，三方应用不支持调用。<br>当其与FLAG_AUTH_READ_URI_PERMISSION结合，表示授予永久读权限；<br>当其与FLAG_AUTH_WRITE_URI_PERMISSION结合表示授予永久写权限。<br>应用需配置PERMISSION_PROXY_AUTHORIZATION_URI权限该flag才会生效，否则将忽略。|
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 如果未安装指定的功能，请安装该功能。                              |
+| FLAG_START_WITHOUT_TIPS<sup>11+</sup>                | 0x40000000 | 如果隐式启动能力不能匹配任何应用程序，则不会弹出提示对话框。       |

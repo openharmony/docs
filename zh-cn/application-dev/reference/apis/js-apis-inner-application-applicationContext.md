@@ -248,7 +248,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number)
 
-off(type: 'environment', callbackId: **number**): Prominse\<void\>
+off(type: 'environment', callbackId: **number**): Promise\<void\>
 
 取消对系统环境变化的监听。使用callback异步回调。
 
