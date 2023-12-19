@@ -2858,154 +2858,154 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
   }
   ```
 
-对接证书管理的双向认证。
+  对接证书管理的双向认证。
 
-1. 构造单例对象GlobalContext。
+  1. 构造单例对象GlobalContext。
 
-   ```ts
-   // GlobalContext.ts
-   export class GlobalContext {
-     private constructor() {}
-     private static instance: GlobalContext;
-     private _objects = new Map<string, Object>();
+     ```ts
+     // GlobalContext.ts
+     export class GlobalContext {
+       private constructor() {}
+       private static instance: GlobalContext;
+       private _objects = new Map<string, Object>();
 
-     public static getContext(): GlobalContext {
-       if (!GlobalContext.instance) {
-         GlobalContext.instance = new GlobalContext();
+       public static getContext(): GlobalContext {
+         if (!GlobalContext.instance) {
+           GlobalContext.instance = new GlobalContext();
+         }
+         return GlobalContext.instance;
        }
-       return GlobalContext.instance;
-     }
 
-     getObject(value: string): Object | undefined {
-       return this._objects.get(value);
-     }
+       getObject(value: string): Object | undefined {
+         return this._objects.get(value);
+       }
 
-     setObject(key: string, objectClass: Object): void {
-       this._objects.set(key, objectClass);
+       setObject(key: string, objectClass: Object): void {
+         this._objects.set(key, objectClass);
+       }
      }
-   }
-   ```
+     ```
 
    ​
 
-2. 实现双向认证。
+  2. 实现双向认证。
 
-   ```ts
-   // xxx.ets API10
-   import common from '@ohos.app.ability.common';
-   import Want from '@ohos.app.ability.Want';
-   import web_webview from '@ohos.web.webview'
-   import { BusinessError } from '@ohos.base';
-   import bundleManager from '@ohos.bundle.bundleManager'
-   import { GlobalContext } from '../GlobalContext'
+     ```ts
+     // xxx.ets API10
+     import common from '@ohos.app.ability.common';
+     import Want from '@ohos.app.ability.Want';
+     import web_webview from '@ohos.web.webview'
+     import { BusinessError } from '@ohos.base';
+     import bundleManager from '@ohos.bundle.bundleManager'
+     import { GlobalContext } from '../GlobalContext'
 
-   let uri = "";
+      let uri = "";
 
-   export default class CertManagerService {
-     private static sInstance: CertManagerService;
-     private authUri = "";
-     private appUid = "";
+      export default class CertManagerService {
+        private static sInstance: CertManagerService;
+        private authUri = "";
+        private appUid = "";
 
-     public static getInstance(): CertManagerService {
-       if (CertManagerService.sInstance == null) {
-         CertManagerService.sInstance = new CertManagerService();
-       }
-       return CertManagerService.sInstance;
-     }
+        public static getInstance(): CertManagerService {
+          if (CertManagerService.sInstance == null) {
+            CertManagerService.sInstance = new CertManagerService();
+          }
+          return CertManagerService.sInstance;
+        }
 
-     async grantAppPm(callback: (message: string) => void) {
-       let message = '';
-       let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
-       //注：com.example.myapplication需要写实际应用名称
-       try {
-         bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
-           console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-           this.appUid = data.appInfo.uid.toString();
-         }).catch((err: BusinessError) => {
-           console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
-         });
-       } catch (err) {
-         let message = (err as BusinessError).message;
-         console.error('getBundleInfoForSelf failed: %{public}s', message);
-       }
+        async grantAppPm(callback: (message: string) => void) {
+          let message = '';
+          let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
+          //注：com.example.myapplication需要写实际应用名称
+          try {
+            bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
+              console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+              this.appUid = data.appInfo.uid.toString();
+            }).catch((err: BusinessError) => {
+              console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+            });
+          } catch (err) {
+            let message = (err as BusinessError).message;
+            console.error('getBundleInfoForSelf failed: %{public}s', message);
+          }
 
-       //注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
-       let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
-       await abilityContext.startAbilityForResult(
-         {
-           bundleName: "com.ohos.certmanager",
-           abilityName: "MainAbility",
-           uri: "requestAuthorize",
-           parameters: {
-             appUid: this.appUid, //传入申请应用的appUid
-           }
-         } as Want)
-         .then((data: common.AbilityResult) => {
-           if (!data.resultCode && data.want) {
-             if (data.want.parameters) {
-               this.authUri = data.want.parameters.authUri as string; //授权成功后获取返回的authUri
-             }
-           }
-         })
-       message += "after grantAppPm authUri: " + this.authUri;
-       uri = this.authUri;
-       callback(message)
-     }
-   }
+          //注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
+          let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
+          await abilityContext.startAbilityForResult(
+            {
+              bundleName: "com.ohos.certmanager",
+              abilityName: "MainAbility",
+              uri: "requestAuthorize",
+              parameters: {
+                appUid: this.appUid, //传入申请应用的appUid
+              }
+            } as Want)
+            .then((data: common.AbilityResult) => {
+              if (!data.resultCode && data.want) {
+                if (data.want.parameters) {
+                  this.authUri = data.want.parameters.authUri as string; //授权成功后获取返回的authUri
+                }
+              }
+            })
+          message += "after grantAppPm authUri: " + this.authUri;
+          uri = this.authUri;
+          callback(message)
+        }
+      }
 
-   @Entry
-   @Component
-   struct WebComponent {
-     controller: web_webview.WebviewController = new web_webview.WebviewController();
-     @State message: string = 'Hello World' //message主要是调试观察使用
-     certManager = CertManagerService.getInstance();
+      @Entry
+      @Component
+      struct WebComponent {
+        controller: web_webview.WebviewController = new web_webview.WebviewController();
+        @State message: string = 'Hello World' //message主要是调试观察使用
+        certManager = CertManagerService.getInstance();
 
-     build() {
-       Row() {
-         Column() {
-           Row() {
-             //第一步：需要先进行授权，获取到uri
-             Button('GrantApp')
-               .onClick(() => {
-                 this.certManager.grantAppPm((data) => {
-                   this.message = data;
-                 });
-               })
-             //第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
-             Button("ClientCertAuth")
-               .onClick(() => {
-                 this.controller.loadUrl('https://www.example2.com'); //支持双向认证的服务器网站
-               })
-           }
+        build() {
+          Row() {
+            Column() {
+              Row() {
+                //第一步：需要先进行授权，获取到uri
+                Button('GrantApp')
+                  .onClick(() => {
+                    this.certManager.grantAppPm((data) => {
+                      this.message = data;
+                    });
+                  })
+                //第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
+                Button("ClientCertAuth")
+                  .onClick(() => {
+                    this.controller.loadUrl('https://www.example2.com'); //支持双向认证的服务器网站
+                  })
+              }
 
-           Web({ src: 'https://www.example1.com', controller: this.controller })
-             .fileAccess(true)
-             .javaScriptAccess(true)
-             .domStorageAccess(true)
-             .onlineImageAccess(true)
+              Web({ src: 'https://www.example1.com', controller: this.controller })
+                .fileAccess(true)
+                .javaScriptAccess(true)
+                .domStorageAccess(true)
+                .onlineImageAccess(true)
 
-           .onClientAuthenticationRequest((event) => {
-             AlertDialog.show({
-               title: 'ClientAuth',
-               message: 'Text',
-               confirm: {
-                 value: 'Confirm',
-                 action: () => {
-                   event.handler.confirm(uri);
-                 }
-               },
-               cancel: () => {
-                 event.handler.cancel();
-               }
-             })
-           })
-         }
-       }
-       .width('100%')
-       .height('100%')
-     }
-   }
-   ```
+              .onClientAuthenticationRequest((event) => {
+                AlertDialog.show({
+                  title: 'ClientAuth',
+                  message: 'Text',
+                  confirm: {
+                    value: 'Confirm',
+                    action: () => {
+                      event.handler.confirm(uri);
+                    }
+                  },
+                  cancel: () => {
+                    event.handler.cancel();
+                  }
+                })
+              })
+            }
+          }
+          .width('100%')
+          .height('100%')
+        }
+      }
+      ```
 
 ### onPermissionRequest<sup>9+</sup>
 
