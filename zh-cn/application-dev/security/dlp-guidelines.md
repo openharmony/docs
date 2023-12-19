@@ -105,7 +105,7 @@
    dlpPermission.isInSandbox().then((data)=> { 
      console.log('isInSandbox, result: ' + JSON.stringify(data));
    }).catch((err:BusinessError) => {
-     console.log("isInSandbox: "  + JSON.stringify(err));
+     console.log('isInSandbox: ' + JSON.stringify(err));
    });
    ```
 
@@ -115,7 +115,7 @@
    dlpPermission.getDLPPermissionInfo().then((data)=> { 
      console.log('getDLPPermissionInfo, result: ' + JSON.stringify(data));
    }).catch((err:BusinessError) => {
-     console.log("getDLPPermissionInfo: "  + JSON.stringify(err));
+     console.log('getDLPPermissionInfo: ' + JSON.stringify(err));
    });
    ```
 
@@ -123,7 +123,7 @@
 
    ```ts
    dlpPermission.getDLPSupportedFileTypes((err, result) => { 
-     console.log("getDLPSupportedFileTypes: " + JSON.stringify(err));
+     console.log('getDLPSupportedFileTypes: ' + JSON.stringify(err));
      console.log('getDLPSupportedFileTypes: ' + JSON.stringify(result));
    });
    ```
@@ -131,9 +131,14 @@
 6. 判断当前打开文件是否是dlp文件。
   
    ```ts
+   import dlpPermission from '@ohos.dlpPermission';
+   import fs from '@ohos.file.fs';
+   import { BusinessError } from '@ohos.base';
+   
+   let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
    let file = fs.openSync(uri);
    try {
-     let res = await dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件
+     let res = dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件
      console.info('res', res);
    } catch (err) {
      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
@@ -172,7 +177,7 @@
 8. 获取DLP文件打开记录。
 
    ```ts
-   async func() {
+   async getDLPFileAccessRecords() {
      try {
        let res:Array<dlpPermission.AccessedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
        console.info('res', JSON.stringify(res))
@@ -185,7 +190,7 @@
 9. 获取DLP文件保留沙箱记录。
 
    ```ts
-   async func() {
+   async getRetentionSandboxList() {
      try {
        let res:Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
        console.info('res', JSON.stringify(res))

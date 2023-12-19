@@ -41,7 +41,7 @@ Span(value: string | Resource)
 
 ## 事件
 
-通用事件仅支持[点击事件](ts-universal-attributes-click.md)。
+通用事件仅支持[点击事件](ts-universal-events-click.md)。
 
 >  **说明：**
 >

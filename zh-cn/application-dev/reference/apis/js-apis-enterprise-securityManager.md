@@ -109,7 +109,7 @@ let wantTemp: Want = {
 };
 
 try {
-    let result: securityManager.EncryptionStatus = securityManager.getDeviceEncryptionStatus(wantTemp);
+    let result: securityManager.DeviceEncryptionStatus = securityManager.getDeviceEncryptionStatus(wantTemp);
     console.info(`Succeeded in getting device encryption status. isEncrypted: ${result.isEncrypted}`);
 } catch(err) {
     console.error(`Failed to get device encryption status. Code: ${err.code}, message: ${err.message}`);

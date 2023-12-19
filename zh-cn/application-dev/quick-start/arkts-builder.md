@@ -28,7 +28,7 @@
 
 
 ```ts
-this.MyBuilderFunction() { ... }
+this.MyBuilderFunction()
 ```
 
 - 允许在自定义组件内定义一个或多个@Builder方法，该方法被认为是该组件的私有、特殊类型的成员函数。

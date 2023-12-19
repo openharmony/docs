@@ -154,7 +154,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 ![菜单栏2](figures/菜单栏2.jpg)
 
 ```ts
-let TooTmp:Record<string,string|Function> = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
   ...
 }
@@ -168,7 +168,7 @@ Navigation() {
 ![菜单栏](figures/菜单栏.jpg)
 
 ```ts
-let TooTmp:Record<string,string|Function> = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
   ...
 }
@@ -189,10 +189,10 @@ Navigation() {
 ![free3](figures/free3.jpg)
 
 ```ts
-let TooTmp:Record<string,string|Function> = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
-let TooBar: ToolbarItem = {'items':[TooTmp,TooTmp,TooTmp]}
+let TooTmp: ToolbarItem = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+let TooBar: ToolbarItem[] = [TooTmp,TooTmp,TooTmp]
 Navigation() {
   ...
 }
-.toolbarConfiguration([TooBar])
+.toolbarConfiguration(TooBar)
 ```
