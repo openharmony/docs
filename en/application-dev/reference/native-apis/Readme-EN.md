@@ -33,6 +33,7 @@
   - [UsbDdk](_usb_ddk.md)
   - [Hitrace](_hitrace.md)
   - [Vulkan](_vulkan.md)
+  - [Bundle](_bundle.md)
 - Header Files
   - [drawing_bitmap.h](drawing__bitmap_8h.md)
   - [drawing_brush.h](drawing__brush_8h.md)
@@ -92,6 +93,7 @@
   - [native_huks_api.h](native__huks__api_8h.md)
   - [native_huks_param.h](native__huks__param_8h.md)
   - [native_huks_type.h](native__huks__type_8h.md)
+  - [native_interface_bundle.h](native__interface__bundle.md)
   - [oh_cursor.h](oh__cursor_8h.md)
   - [oh_predicates.h](oh__predicates_8h.md)
   - [oh_value_object.h](oh__value__object_8h.md)
@@ -107,6 +109,7 @@
 - Structs
   - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
   - [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)
+  - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
   - [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md)
   - [OH_NativeXComponent_MouseEvent](_o_h___native_x_component___mouse_event.md)
   - [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md)
