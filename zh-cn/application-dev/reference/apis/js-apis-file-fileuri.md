@@ -49,8 +49,8 @@ FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.m
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |    
-| path<sup>10+</sup> | string | 是 | 否 | 获取FileUri对应路径名 |
-| name<sup>10+</sup> | string | 是 | 否 | 获取FileUri对应文件名 |
+| path<sup>10+</sup> | string | 是 | 否 | 获取FileUri对应路径名。 |
+| name<sup>10+</sup> | string | 是 | 否 | 获取FileUri对应文件名。 |
 
 ### constructor<sup>10+</sup>
 
@@ -64,7 +64,7 @@ constructor是FileUri的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| uriOrPath | string | 是 | uri或路径。uri类型：<br/>-&nbsp; 应用沙箱URI：file://\<bundleName>/\<sandboxPath> <br/>-&nbsp; 公共目录文件类URI：file://docs/storage/Users/currentUser/\<publicPath> <br/>-&nbsp; 公共目录媒体类URI：file://media/\<mediaType>/IMG_DATATIME_ID/\<displayName> |
+| uriOrPath | string | 是 | URI或路径。URI类型：<br/>-&nbsp; 应用沙箱URI：file://\<bundleName>/\<sandboxPath> <br/>-&nbsp; 公共目录文件类URI：file://docs/storage/Users/currentUser/\<publicPath> <br/>-&nbsp; 公共目录媒体类URI：file://media/\<mediaType>/IMG_DATATIME_ID/\<displayName> |
 
 **错误码：**
 
@@ -89,13 +89,13 @@ toString(): string
 
 **系统能力：** SystemCapability.FileManagement.AppFileService
 
-返回字符串类型uri。
+返回字符串类型URI。
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回字符串类型uri |
+| string | 返回字符串类型URI。 |
 
 **示例：**
 
@@ -121,7 +121,7 @@ getFullDirectoryUri(): string
 
 | 类型                  | 说明                                |
 | --------------------- |-----------------------------------|
-| string | 获取所在路径URI，文件获取所在路径URI，目录获取当前路径URI |
+| string | 获取所在路径URI，文件获取所在路径URI，目录获取当前路径URI。 |
 
 **错误码：**
 
@@ -159,13 +159,13 @@ getUriFromPath(path: string): string
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| path   | string | 是   | 文件的沙箱路径 |
+| path   | string | 是   | 文件的沙箱路径。 |
 
 **返回值：**
 
   | 类型                           | 说明         |
   | ---------------------------- | ---------- |
-  | string | 返回文件URI |
+  | string | 返回文件URI。 |
 
 **错误码：**  
 
