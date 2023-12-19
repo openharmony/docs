@@ -34,7 +34,7 @@ System parameter value is invalid.
 
 **可能原因**
 
-接口的参数值超出设置范围或者含有特殊字符，比如，"const..param.xxx"。
+接口的参数值超出设置范围或者含有特殊字符，比如，"const.param.xxx"。
 
 **处理步骤**
 
