@@ -403,11 +403,11 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 try {
-  boolean result = wifiManager.isWifiDisabled(wantTemp);
+  let result: boolean = wifiManager.isWifiDisabled(wantTemp);
   console.info(`Succeeded in query the wifi is disabled or not, result : ${result}`);
-} catch((err) {
+} catch(err) {
   console.error(`Failed to query the wifi is disabled or not. Code: ${err.code}, message: ${err.message}`);
-});
+};
 ```
 
 ## wifiManager.setWifiDisabled<sup>11+</sup>
@@ -450,7 +450,7 @@ let wantTemp: Want = {
 try {
   wifiManager.setWifiDisabled(wantTemp, true);
   console.info('Succeeded in set the wifi disabled');
-} catch((err) {
+} catch(err) {
   console.error(`Failed to set the wifi disabled. Code: ${err.code}, message: ${err.message}`);
-});
+};
 ```
