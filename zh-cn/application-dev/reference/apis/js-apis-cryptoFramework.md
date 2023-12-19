@@ -1448,6 +1448,12 @@ static genECCCommonParamsSpec(curveName: string): ECCCommonParamsSpec
 | ------- | ------ | ---- | ---------------------------------------------- |
 | algName | string | 是   | 椭圆曲线相应的NID(Name IDentifier)字符串名称。 |
 
+**返回值：**
+
+| 类型           | 说明                                   |
+| -------------- | -------------------------------------- |
+| ECCCommonParamsSpec | 返回根据椭圆曲线名生成的非对称公共密钥参数。 |
+
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
