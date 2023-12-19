@@ -58,7 +58,7 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 | x        | number      | 是    | 否    | 坐标x                             |
 | y        | number      | 是    | 否    | 坐标y                             |
 
-## ThreeFingersTap
+## ThreeFingersTap<sup>11+</sup>
 
 三指轻点事件。
 
