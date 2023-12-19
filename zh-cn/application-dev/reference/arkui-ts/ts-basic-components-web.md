@@ -135,6 +135,7 @@ struct WebComponent {
 2. 修改EntryAbility.ts。
 
   以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
+
   ```ts
   // xxx.ts
   import UIAbility from '@ohos.app.ability.UIAbility';
@@ -2738,7 +2739,9 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
 | issuers  | Array<string\>                           | 与私钥匹配的证书可接受颁发者。 |
 
   **示例：**
-  未对接证书管理的双向认证
+
+  未对接证书管理的双向认证。
+
   ```ts
   // xxx.ets API9
   import web_webview from '@ohos.web.webview'
