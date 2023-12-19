@@ -3453,7 +3453,7 @@ radio.setNetworkCapability(slotId, type, state).then(() => {
 | RADIO_TECHNOLOGY_WCDMA    | 3    | 无线接入技术WCDMA（Wideband Code Division Multiple Access）。 |
 | RADIO_TECHNOLOGY_HSPA     | 4    | 无线接入技术HSPA（High Speed Packet Access）。               |
 | RADIO_TECHNOLOGY_HSPAP    | 5    | 无线接入技术HSPAP（High Speed packet access (HSPA+) ）。     |
-| RADIO_TECHNOLOGY_TD_SCDMA | 6    | 无线接入技术TDSCDMA（TimeDivision-Synchronous Code Division Multiple Access）。 |
+| RADIO_TECHNOLOGY_TD_SCDMA | 6    | 无线接入技术TD_SCDMA（TimeDivision-Synchronous Code Division Multiple Access）。 |
 | RADIO_TECHNOLOGY_EVDO     | 7    | 无线接入技术EVDO（Evolution Data Only）。                   |
 | RADIO_TECHNOLOGY_EHRPD    | 8    | 无线接入技术EHRPD（Evolved High Rate Package Data）。        |
 | RADIO_TECHNOLOGY_LTE      | 9    | 无线接入技术LTE（Long Term Evolution）。                     |
@@ -3608,7 +3608,7 @@ radio.setNetworkCapability(slotId, type, state).then(() => {
 | isCamped          | boolean                                 |  是  | 获取服务单元的状态。<br>**系统接口：** 此接口为系统接口。          |
 | timeStamp         | number                                  |  是  | 获取单元格信息时获取时间戳。<br>**系统接口：** 此接口为系统接口。    |
 | signalInformation | [SignalInformation](#signalinformation) |  是  | 信号信息。                                                   |
-| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8)\|[WcdmaCellInformation](#wcdmacellinformation8) |  是  | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息\|Wcdma小区信息  <br>**系统接口：** 此接口为系统接口。|
+| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8)\|[WcdmaCellInformation](#wcdmacellinformation8) |  是  | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息\|Wcdma小区信息。  <br>**系统接口：** 此接口为系统接口。|
 
 ## CdmaCellInformation<sup>8+</sup>
 
@@ -3660,7 +3660,7 @@ LTE小区信息。
 | bandwidth     | number  |  是  | 带宽。                  |
 | mcc           | string  |  是  | 移动国家码。            |
 | mnc           | string  |  是  | 移动网号。              |
-| isSupportEndc | boolean |  是  | 是否支持新无线电_双连接 |
+| isSupportEndc | boolean |  是  | 是否支持新无线电_双连接。 |
 
 ## NrCellInformation<sup>8+</sup>
 
