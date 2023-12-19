@@ -48,7 +48,7 @@ alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding):
 | -------- | -------- | -------- | -------- |
 | size | number | 是 | 指定的Buffer对象长度，单位：字节。 |
 | fill | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;number | 否 | 填充至新缓存区的值，默认值: 0。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式（当`fill`为string时，才有意义）。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式（当`fill`为string时，才有意义）。 默认值: 'utf8'。 |
 
 **返回值：**
 
@@ -139,7 +139,7 @@ byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | Share
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | string | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;TypedArray&nbsp;\|&nbsp;DataView&nbsp;\|&nbsp;ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | 是 | 指定字符串。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式。 默认值: 'utf8'。 |
 
 **返回值：**
 
@@ -371,7 +371,7 @@ from(string: String, encoding?: BufferEncoding): Buffer
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | string | String | 是 | 字符串 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式。 默认值: 'utf8'。 |
 
 **返回值：**
 
@@ -633,11 +633,11 @@ entries(): IterableIterator&lt;[number,&nbsp;number]&gt;
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
-let pair = buf.entries()
-let next: IteratorResult<Object[]> = pair.next()
+let pair = buf.entries();
+let next: IteratorResult<Object[]> = pair.next();
 while (!next.done) {
-  console.info("buffer: " + next.value)
-  next = pair.next()
+  console.info("buffer: " + next.value);
+  next = pair.next();
 }
 ```
 
@@ -689,7 +689,7 @@ fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number
 | value | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array&nbsp;\|&nbsp;number | 是 | 用于填充的值。 |
 | offset | number | 否 | 起始偏移量。 默认值: 0。 |
 | end | number | 否 | 结束偏移量（不包含结束位置）。 默认值: 当前对象的字节长度。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式（`value`为string才有意义）。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式（`value`为string才有意义）。 默认值: 'utf8'。 |
 
 **返回值：**
 
@@ -729,7 +729,7 @@ includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, enco
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
 | byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf8'。 |
 
 **返回值：**
 
@@ -761,7 +761,7 @@ indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encod
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要查找的内容。 |
 | byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf8'。 |
 
 **返回值：**
 
@@ -799,7 +799,7 @@ keys(): IterableIterator&lt;number&gt;
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
-let numbers = Array.from(buf.values())
+let numbers = Array.from(buf.values());
 for (const key of numbers) {
   console.log(key.toString());
 }
@@ -819,7 +819,7 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
 | byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf-8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf8'。 |
 
 **返回值：**
 
@@ -1903,7 +1903,7 @@ import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5]);
 let obj = buf1.toJSON();
-console.log(JSON.stringify(obj))
+console.log(JSON.stringify(obj));
 // 打印: {"type":"Buffer","data":[1,2,3,4,5]}
 ```
 
@@ -1919,7 +1919,7 @@ toString(encoding?: string, start?: number, end?: number): string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| encoding | string | 否 | 字符编码格式。 默认值: 'utf-8'。 |
+| encoding | string | 否 | 字符编码格式。 默认值: 'utf8'。 |
 | start  | number | 否 |  开始位置。 默认值: 0。 |
 | end  | number | 否 |  结束位置。 默认值: Buffer.length。 |
 
@@ -1966,7 +1966,7 @@ let pair = buf1.values()
 let next:IteratorResult<number> = pair.next()
 while (!next.done) {
   console.log(next.value.toString());
-  next = pair.next()
+  next = pair.next();
 }
 ```
 
@@ -1985,7 +1985,7 @@ write(str: string, offset?: number, length?: number, encoding?: string): number
 | str | string | 是 | 要写入Buffer的字符串。 |
 | offset | number | 否 | 偏移量。 默认值: 0。 |
 | length | number | 否 | 最大字节长度。 默认值: (Buffer.length - offset)。|
-| encoding | string | 否 | 字符编码。 默认值: 'utf-8'。 |
+| encoding | string | 否 | 字符编码。 默认值: 'utf8'。 |
 
 
 **返回值：**
@@ -2923,8 +2923,8 @@ import buffer from '@ohos.buffer';
 let blob: buffer.Blob  = new buffer.Blob(['a', 'b', 'c']);
 
 class option {
-  endings: string = ""
-  type: string = ""
+  endings: string = "";
+  type: string = "";
 }
 let o1: option = {endings:'native', type: 'MIME'}
 let blob1: buffer.Blob = new buffer.Blob(['a', 'b', 'c'], o1);
@@ -3004,6 +3004,6 @@ import buffer from '@ohos.buffer';
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.text();
 pro.then((val: string) => {
-  console.log(val)
+  console.log(val);
 });
 ```
