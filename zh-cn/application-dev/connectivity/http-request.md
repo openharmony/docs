@@ -29,6 +29,8 @@ HTTP数据请求功能主要由http模块提供。
 | off\('dataEnd'\)<sup>10+</sup>            | 取消订阅HTTP流式响应数据接收完毕事件。 |
 | on\('dataReceiveProgress'\)<sup>10+</sup>        | 订阅HTTP流式响应数据接收进度事件。  |
 | off\('dataReceiveProgress'\)<sup>10+</sup>       | 取消订阅HTTP流式响应数据接收进度事件。 |
+| on\('dataSendProgress'\)<sup>11+</sup>        | 订阅HTTP网络请求数据发送进度事件。  |
+| off\('dataSendProgress'\)<sup>11+</sup>       | 取消订阅HTTP网络请求数据发送进度事件。 |
 
 ## request接口开发步骤
 

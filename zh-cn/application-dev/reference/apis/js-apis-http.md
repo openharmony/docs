@@ -12,7 +12,7 @@
 ```ts
 import http from '@ohos.net.http';
 ```
-
+dataSendProgress
 ## 完整示例
 
 ```ts
@@ -1063,11 +1063,11 @@ httpRequest.off("dataSendProgress");
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9支持跨平台)  | 否   | 使用协议。默认值由系统自动指定。                             |
 | usingProxy<sup>10+</sup>     | boolean \| HttpProxy               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为HttpProxy类型时，使用指定网络代理。 |
 | caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持后缀名为.pem的文本格式证书。                             |
-| resumeFrom<sup>11+</sup> | number | 否 | 用于设置上传或下载起始位置。默认值为0。HTTP标准（RFC 7233第3.1节）允许服务器忽略范围请求。使用HTTP PUT时设置此参数，可能出现未知问题。 |
-| resumeTo<sup>11+</sup> | number | 否 | 用于设置上传或下载结束位置。HTTP标准（RFC 7233第3.1节）允许服务器忽略范围请求。使用HTTP PUT时设置此参数，可能出现未知问题。 |
+| resumeFrom<sup>11+</sup> | number | 否 | 用于设置上传或下载起始位置。HTTP标准（RFC 7233第3.1节）允许服务器忽略范围请求。<br />-使用HTTP PUT时设置此参数，可能出现未知问题。<br />-取值范围是:1~4294967296(4GB)，超出范围则不生效。 |
+| resumeTo<sup>11+</sup> | number | 否 | 用于设置上传或下载结束位置。HTTP标准（RFC 7233第3.1节）允许服务器忽略范围请求。<br />-使用HTTP PUT时设置此参数，可能出现未知问题。<br />-取值范围是:1~4294967296(4GB)，超出范围则不生效。 |
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | 否 | 支持传输客户端证书 |
-| dnsOverHttps<sup>11+</sup> | string | 否 | 如果设置了此参数，则DoH服务器用于名称解析的传入DNS解析服务器URL。<br />-参数必须以以下格式进行URL编码："https://host:port/path"。<br />-必须是HTTPS协议的服务器。 |
-| dnsServers<sup>11+</sup> | Array<string> | 否 | 如果设置了此参数，使用指定的DNS服务器进行DNS解析。<br />-可以设置多个DNS解析服务器，最多3个服务器。如果有3个以上，只取前3个。 |
+| dnsOverHttps<sup>11+</sup> | string | 否 | 设置使用https协议的服务器进行DNS解析。<br />-参数必须以以下格式进行URL编码："https://host:port/path"。 |
+| dnsServers<sup>11+</sup> | Array<string> | 否 | 设置指定的DNS服务器进行DNS解析。<br />-可以设置多个DNS解析服务器，最多3个服务器。如果有3个以上，只取前3个。<br />-服务器必须是IPV4或者IPV6地址。 |
 | multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | 否 | 当'content-Type'为'multipart/form-data'时，则上传该字段定义的数据字段表单列表。 |
 
 ## RequestMethod（支持跨平台）
