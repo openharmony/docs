@@ -29,18 +29,18 @@ When an application is in the DLP sandbox state, the available permissions are r
 
 | API| Description|
 | -------- | -------- |
-| isDLPFile(fd: number): Promise&lt;boolean&gt; <br> isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void| Checks whether a file is a DLP file.|
+| isDLPFile(fd: number): Promise&lt;boolean&gt; <br>isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void| Checks whether a file is a DLP file.|
 | getDLPPermissionInfo(): Promise&lt;DLPPermissionInfo&gt; <br>getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void  | Obtains the permission type of this sandbox application.|
 | getOriginalFileName(fileName: string): string | Obtains the original name of a DLP file.|
 | getDLPSuffix(): string | Obtains the file name extension of a DLP file.|
 | on(type: 'openDLPFile', listener: Callback&lt;AccessedDLPFileInfo&gt;): void | Subscribes to a file open event of a DLP file. The application will be notified when the DLP file is opened.|
-| off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void | Unsubscribes from the file open event of a DLP file.|
+| off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void | Unsubscribes from the file open event of a DLP file.| 
 | isInSandbox(): Promise&lt;boolean&gt; <br>isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void | Checks whether this application is running in a sandbox.|
 | getDLPSupportedFileTypes(): Promise&lt;Array&lt;string&gt;&gt;<br>getDLPSupportedFileTypes(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void | Obtains the file name extension types that can be added with the .dlp.|
-| setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt; <br> setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Sets the sandbox retention state. |
-| cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;<br> cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Cancels the sandbox retention state. |
-| getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandboxInfo&gt;&gt; <br> getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void  <br> getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void| Obtains the sandbox applications in the retention state.|
-| getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt; <br> getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;): void | Obtains the DLP files that are accessed recently.|
+| setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt; <br>setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Sets the sandbox retention state. |
+| cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;<br>cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Cancels the sandbox retention state. |
+| getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandboxInfo&gt;&gt; <br>getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void  <br>getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void| Obtains the sandbox applications in the retention state.|
+| getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt; <br>getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;): void | Obtains the DLP files that are accessed recently.|
 
 ## How to Develop
 
@@ -52,7 +52,7 @@ Procedure
    import dlpPermission from '@ohos.dlpPermission';
    ```
 
-2. Open a DLP file. The system automatically installs a DLP sandbox twin app of your application.
+2. Open a DLP file. The system automatically installs a DLP sandbox twin app of your application. The following code should be used in Ability of the application.
 
     ```ts
     async OpenDlpFile(dlpUri: string, fileName: string, fd: number) {
@@ -74,8 +74,8 @@ Procedure
       
       try {
         console.log("openDLPFile:" + JSON.stringify(want));
-        console.log("openDLPFile: delegator:" + JSON.stringify(CustomGlobal.context));
-        CustomGlobal.context.startAbility(want);
+        console.log("openDLPFile: delegator:" + JSON.stringify(this.context));
+        this.context.startAbility(want);
       } catch (err) {
         console.error('openDLPFile startAbility failed', (err as BusinessError).code, (err as BusinessError).message);
         return;
@@ -141,7 +141,7 @@ Procedure
    fs.closeSync(file);
    ```
 
-6. Subscribe to and unsubscribe from the file open event for a DLP file.
+7. Subscribe to or unsubscribe from the DLP file open events.
 
    ```ts
    event(info: dlpPermission.AccessedDLPFileInfo) {
