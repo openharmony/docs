@@ -423,7 +423,7 @@ extensionAbilities示例：
 
 | 属性 | 含义 | 类型 | 取值范围 | 默认值 |
 | -------- | -------- | -------- | -------- | -------- |
-| name | 必须，填写需要使用的权限名称。 | 字符串 | 自定义。 | 无。 |
+| name | 必选，填写需要使用的权限名称。 | 字符串 | 自定义。 | 无。 |
 | reason | 可选，当申请的权限为user_grant权限时此字段必填，用于描述申请权限的原因。<br/>**说明：**<br/>- 当申请的权限为user_grant权限时，如果未填写该字段则不允许在应用市场上架，并且需要进行多语种适配。 | 字符串 | 使用string类资源引用。格式为$string:&nbsp;\*\*\*。 | 空。 |
 | usedScene | 可选，当申请的权限为user_grant权限时此字段必填。描述权限使用的场景由abilities和when组成。其中abilities可以配置为多个UIAbility组件，when表示调用时机。<br/>**说明：**<br/>- 默认为可选，当申请的权限为user_grant权限时，abilities标签必填，when标签可选。 | abilities：UIAbility或者ExtensionAbility名称的字符串数组<br/>when：字符串 | abilities：UIAbility或者ExtensionAbility组件的名称。<br/>when：inuse（使用时）、always（始终）。 | abilities：空。<br/>when：空。 |
 
