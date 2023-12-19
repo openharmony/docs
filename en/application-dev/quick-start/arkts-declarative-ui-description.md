@@ -136,6 +136,19 @@ Use chainable event methods to configure events supported by built-in components
     .onClick(this.myClickHandler)
   ```
 
+- Example of using an arrow function expression for a declaration, which can be used without **this** binding:
+
+  ```ts
+  fn = () => {
+    console.info(`counter: ${this.counter}`)
+    this.counter++
+  }
+  ...
+  Button('add counter')
+    .onClick(this.fn)
+  ```
+
+
 
 ## Configuring Child Components
 

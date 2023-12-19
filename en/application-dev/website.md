@@ -42,6 +42,7 @@
     - TypeScript to ArkTS Migration Guide
       - [ArkTS Migration Background](quick-start/arkts-migration-background.md)
       - [TypeScript to ArkTS Cookbook](quick-start/typescript-to-arkts-migration-guide.md)
+      - [Adaptation Cases](quick-start/arkts-more-cases.md)
     - UI Paradigm
       - Basic Syntax
         - [Basic Syntax Overview](quick-start/arkts-basic-syntax-overview.md)
@@ -257,7 +258,7 @@
           - [Flex Layout (Flex)](ui/arkts-layout-development-flex-layout.md)
           - [Relative Layout (RelativeContainer)](ui/arkts-layout-development-relative-layout.md)
           - [Responsive Grid Layout (GridRow/GridCol)](ui/arkts-layout-development-grid-layout.md)
-          - [Media Query (mediaquery)](ui/arkts-layout-development-media-query.md)
+          - [Media Query (@ohos.mediaquery)](ui/arkts-layout-development-media-query.md)
           - [Creating a List (List)](ui/arkts-layout-development-create-list.md)
           - [Creating a Grid (Grid/GridItem)](ui/arkts-layout-development-create-grid.md)
           - [Creating a Swiper (Swiper)](ui/arkts-layout-development-create-looping.md)
@@ -279,7 +280,7 @@
         - Component Navigation
           - [Navigation](ui/arkts-navigation-navigation.md)
           - [Tabs](ui/arkts-navigation-tabs.md)
-        - [Page Routing (router)](ui/arkts-routing.md)
+        - [Page Routing (@ohos.router)](ui/arkts-routing.md)
       - Using Graphics
         - [Displaying Images (Image)](ui/arkts-graphics-display.md)
         - [Drawing Geometric Shapes (Shape)](ui/arkts-geometric-shape-drawing.md)

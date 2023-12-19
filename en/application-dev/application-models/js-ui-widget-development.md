@@ -47,25 +47,25 @@ The widget provider consists of the following modules:
 
 The **FormExtensionAbility** class has the following APIs. For details, see [FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md).
 
-| Name| Description|
+| Name                                                                                             | Description|
 | -------- | -------- |
-| onAddForm(want: Want): formBindingData.FormBindingData | Called to notify the widget provider that a widget is being created.|
-| onCastToNormalForm(formId: string): void | Called to notify the widget provider that a temporary widget is being converted to a normal one.|
-| onUpdateForm(formId: string): void | Called to notify the widget provider that a widget is being updated.|
+| onAddForm(want: Want): formBindingData.FormBindingData                                 | Called to notify the widget provider that a widget is being created.|
+| onCastToNormalForm(formId: string): void                                               | Called to notify the widget provider that a temporary widget is being converted to a normal one.|
+| onUpdateForm(formId: string): void                                                     | Called to notify the widget provider that a widget is being updated.|
 | onChangeFormVisibility(newStatus: { [key: string]: number }): void | Called to notify the widget provider that the widget visibility status is being changed.|
-| onFormEvent(formId: string, message: string): void | Called to instruct the widget provider to process a widget event.|
-| onRemoveForm(formId: string): void | Called to notify the widget provider that a widget is being destroyed.|
-| onConfigurationUpdate(config: Configuration): void | Called when the configuration of the environment where the widget is running is being updated.|
-| onShareForm?(formId: string): { [key: string]: Object } | Called to notify the widget provider that the widget host is sharing the widget data.|
+| onFormEvent(formId: string, message: string): void                                     | Called to instruct the widget provider to process a widget event.|
+| onRemoveForm(formId: string): void                                                     | Called to notify the widget provider that a widget is being destroyed.|
+| onConfigurationUpdate(newConfig: Configuration): void                                  | Called when the configuration of the environment where the widget is running is being updated.|
+| onShareForm?(formId: string): { [key: string]: Object }                                | Called to notify the widget provider that the widget host is sharing the widget data.|
 
 The **FormProvider** class has the following APIs. For details, see [FormProvider](../reference/apis/js-apis-app-form-formProvider.md).
 
 | Name| Description|
 | -------- | -------- |
-| setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void; | Sets the next refresh time for a widget. This API uses an asynchronous callback to return the result.|
-| setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;; | Sets the next refresh time for a widget. This API uses a promise to return the result.|
-| updateForm(formId: string, formBindingData: FormBindingData, callback: AsyncCallback&lt;void&gt;): void; | Updates a widget. This API uses an asynchronous callback to return the result.|
-| updateForm(formId: string, formBindingData: FormBindingData): Promise&lt;void&gt;; | Updates a widget. This API uses a promise to return the result.|
+| setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void | Sets the next refresh time for a widget. This API uses an asynchronous callback to return the result.|
+| setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt; | Sets the next refresh time for a widget. This API uses a promise to return the result.|
+| updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback&lt;void&gt;): void | Updates a widget. This API uses an asynchronous callback to return the result.|
+| updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise&lt;void&gt; | Updates a widget. This API uses a promise to return the result.|
 
 The **FormBindingData** class has the following APIs. For details, see [FormBindingData](../reference/apis/js-apis-app-form-formBindingData.md).
 
@@ -93,7 +93,7 @@ The widget provider development based on the [stage model](stage-model-developme
 
 ### Creating a FormExtensionAbility Instance
 
-To create a widget in the stage model, you need to implement the lifecycle callbacks of FormExtensionAbility. Generate a widget template and then perform the following:
+To create a widget in the stage model, you need to implement the lifecycle callbacks of FormExtensionAbility. Create a widget template in DevEco Studio and then perform the following:
 
 1. Import related modules to **EntryFormAbility.ets**.
 
@@ -103,7 +103,6 @@ To create a widget in the stage model, you need to implement the lifecycle callb
    import formBindingData from '@ohos.app.form.formBindingData';
    import formInfo from '@ohos.app.form.formInfo';
    import formProvider from '@ohos.app.form.formProvider';
-   import dataPreferences from '@ohos.data.preferences';
    import Want from '@ohos.app.ability.Want';
    import Base from '@ohos.base';
    ```

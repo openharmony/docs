@@ -215,6 +215,8 @@ static getSystemLanguage(): string
 
 获取系统语言。
 
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -429,6 +431,8 @@ static setSystemLocale(locale: string): void
 static is24HourClock(): boolean
 
 判断系统时间是否为24小时制。
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -854,9 +858,9 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
   ```ts
   let entityRecognizer: I18n.EntityRecognizer = new I18n.EntityRecognizer("zh-CN");
   let text1: string = "如有疑问，请联系158****2312";
-  let result1: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text1); // result[0].type = "phone_number", result[0].begin = 8, result[0].end = 19
+  let result1: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text1); // result1[0].type = "phone_number", result1[0].begin = 8, result1[0].end = 19
   let text2: string = "我们2023年12月1日一起吃饭吧。";
-  let result2: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text2); // result[0].type = "date", result[0].begin = 2, result[0].end = 12
+  let result2: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text2); // result2[0].type = "date", result2[0].begin = 2, result2[0].end = 12
   ```
 
 ## EntityInfoItem<sup>11+</sup>
@@ -3158,7 +3162,7 @@ getFirstPreferredLanguage(): string
 
 ### unitConvert<sup>(deprecated)</sup>
 
-static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
+unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
 
 将fromUnit的单位转换为toUnit的单位，并根据区域与风格进行格式化。
 

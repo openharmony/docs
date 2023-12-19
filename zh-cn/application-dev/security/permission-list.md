@@ -2480,7 +2480,7 @@
 
 **ACL使能**：TRUE
 
-**起始版本**：11
+**起始版本**：10
 
 ## ohos.permission.INSTALL_ENTERPRISE_BUNDLE
 

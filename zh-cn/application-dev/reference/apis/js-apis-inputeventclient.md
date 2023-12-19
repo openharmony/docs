@@ -80,6 +80,8 @@ injectMouseEvent(mouseEvent: MouseEventData): void;
 **示例：**
 
 ```js
+import mouseEvent from '@ohos.multimodalInput.mouseEvent'
+
 try {
   let mouseButtonUpData: mouseEvent.MouseEvent = {
     id: 0,
@@ -154,7 +156,7 @@ catch (error) {
 
 ## inputEventClient.injectTouchEvent<sup>11+</sup>
 
-injectTouchEvent(touchEvent: TouchEventData): void;
+injectTouchEvent(touchEvent: TouchEventData): void
 
 触摸屏事件注入。
 
@@ -169,6 +171,8 @@ injectTouchEvent(touchEvent: TouchEventData): void;
 **示例：**
 
 ```js
+import touchEvent from '@ohos.multimodalInput.touchEvent'
+
 try {
   let touchEvent: touchEvent.Touch = {
     id: 1,
