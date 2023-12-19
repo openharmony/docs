@@ -657,7 +657,8 @@ class EntryAbility extends UIAbility {
 | CURSOR_FIELD        | '#_cursor'     | 用于cursor查找的字段名。|
 | ORIGIN_FIELD        | '#_origin'     | 用于cursor查找时指定数据来源的字段名。    |
 | DELETED_FLAG_FIELD  | '#_deleted_flag' | 用于cursor查找的结果集返回时填充的字段，表示云端删除的数据同步到本地后数据未清理。<br>返回的结果集中，该字段对应的value为false表示数据未清理，true表示数据已清理。|
-
+| OWNER_FIELD        | '#_cloud_owner'     | 用于共享表中查找owner时返回的结果集中填充的字段，表示当前共享记录的共享发起者。|
+| PRIVILEGE_FIELD        | '#_cloud_privilege'   | 	用于共享表中查找共享数据权限时返回的结果集中填充的字段，表示当前共享记录的允许的操作权限。|
 ## SubscribeType
 
 描述订阅类型。请使用枚举名称而非枚举值。
