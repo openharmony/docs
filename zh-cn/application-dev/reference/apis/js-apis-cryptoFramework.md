@@ -479,7 +479,7 @@ buffer数组，提供blob数据类型。
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | DHCommonParamsSpec | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
 | sk     | bigint             | 是   | 是   | 指定DH算法的私钥sk。                 |
 
 ## DHPubKeySpec<sup>11+</sup>
@@ -492,7 +492,7 @@ buffer数组，提供blob数据类型。
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | DHCommonParamsSpec | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
 | pk     | bigint             | 是   | 是   | 指定DH算法的公钥pk。                 |
 
 ## DHKeyPairSpec<sup>11+</sup>
@@ -505,7 +505,7 @@ buffer数组，提供blob数据类型。
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | DHCommonParamsSpec | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
 | sk     | bigint             | 是   | 是   | 指定DH算法的私钥sk。                 |
 | pk     | bigint             | 是   | 是   | 指定DH算法的公钥pk。                 |
 
@@ -1573,6 +1573,12 @@ static genECCCommonParamsSpec(curveName: string): ECCCommonParamsSpec
 | ------- | ------ | ---- | ---------------------------------------------- |
 | algName | string | 是   | 椭圆曲线相应的NID(Name IDentifier)字符串名称。 |
 
+**返回值：**
+
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
+| [ECCCommonParamsSpec](#ecccommonparamsspec10) | 返回ECC公共密钥参数。 |
+
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
@@ -1615,6 +1621,12 @@ static genDHCommonParamsSpec(pLen: number, skLen?: number): DHCommonParamsSpec
 | pLen   | number | 是   | 用于指定DH公共密钥参数中素数P的长度，单位为bit。 |
 | skLen  | number | 否   | 用于指定DH公共密钥参数中私钥的长度，单位为bit。  |
 
+**返回值：**
+
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
+| [DHCommonParamsSpec](#dhcommonparamsspec11) | 返回DH公共密钥参数。 |
+
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
 
@@ -1631,7 +1643,7 @@ static genDHCommonParamsSpec(pLen: number, skLen?: number): DHCommonParamsSpec
 import cryptoFramework from "@ohos.security.cryptoFramework";
 import { BusinessError } from '@ohos.base';
 try {
-    let DHCommonParamsSpec = cryptoFramework.ECCKeyUtil.genDHCommonParamsSpec(2048);
+    let DHCommonParamsSpec = cryptoFramework.DHKeyUtil.genDHCommonParamsSpec(2048);
     console.info(`genDHCommonParamsSpec success`);
 } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -2727,7 +2739,7 @@ async function verifyByPromise() {
 
 setVerifySpec(itemType: SignSpecItem, itemValue: number): void
 
-setVerifySpec(itemType: SignSpecItem, itemValue: number\|Uint8Array<sup>11+</sup>): void
+setVerifySpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
 
 设置验签参数。常用的签名参数可以直接通过[createVerify](#cryptoframeworkcreateverify) 来指定，剩余参数可以通过本接口指定。
 
@@ -2742,7 +2754,7 @@ setVerifySpec(itemType: SignSpecItem, itemValue: number\|Uint8Array<sup>11+</sup
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | 是   | 用于指定需要设置的验签参数。 |
-| itemValue | number\|Uint8Array | 是   | 用于指定验签参数的具体值。 |
+| itemValue | number\|Uint8Array<sup>11+</sup> | 是   | 用于指定验签参数的具体值。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
