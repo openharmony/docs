@@ -72,9 +72,9 @@ httpRequest.request(
     readTimeout: 60000, // 可选，默认为60000ms
     usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
     usingProxy: false, // 可选，默认不使用网络代理，自API 10开始支持该属性
-    caPath:'/path/to/ca.crt', // 可选，默认使用系统预制证书，自API 11开始支持该属性
+    caPath:'/path/to/cacert.pem', // 可选，默认使用系统预制证书，自API 10开始支持该属性
     clientCert: { // 可选，默认不使用客户端证书，自API 11开始支持该属性
-      certPath: '/path/to/client.crt', // 默认不使用客户端证书，自API 11开始支持该属性
+      certPath: '/path/to/client.pem', // 默认不使用客户端证书，自API 11开始支持该属性
       keyPath: '/path/to/client.key', // 若证书包含Key信息，传入空字符串，自API 11开始支持该属性
       certType: http.CertType.PEM, // 可选，默认使用PEM，自API 11开始支持该属性
       keyPassword: "passwordToKey" // 可选，输入key文件的密码，自API 11开始支持该属性
