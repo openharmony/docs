@@ -4642,7 +4642,7 @@ closeRawFd(path: string): Promise&lt;void&gt;
   }
   ```
 
-### getConfigurationSync<sup>11+</sup>
+### getConfigurationSync<sup>10+</sup>
 
 getConfigurationSync(): Configuration
 
@@ -4727,7 +4727,7 @@ getConfiguration(): Promise&lt;Configuration&gt;
   }
   ```
 
-### getDeviceCapabilitySync<sup>11+</sup>
+### getDeviceCapabilitySync<sup>10+</sup>
 
 getDeviceCapabilitySync(): DeviceCapability
 
