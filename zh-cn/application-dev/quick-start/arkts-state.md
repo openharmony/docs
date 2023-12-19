@@ -88,7 +88,7 @@
 
     ```ts
     // class类型
-     @State title: Model = new Model('Hello', new ClassA('World'));
+    @State title: Model = new Model('Hello', new ClassA('World'));
     ```
 
     对\@State装饰变量的赋值。
@@ -102,14 +102,14 @@
 
     ```ts
     // class属性的赋值
-    this.title.value = 'Hi'
+    this.title.value = 'Hi';
     ```
 
     嵌套属性的赋值观察不到。
 
     ```ts
     // 嵌套的属性赋值观察不到
-    this.title.name.value = 'ArkUI'
+    this.title.name.value = 'ArkUI';
     ```
 - 当装饰的对象是array时，可以观察到数组本身的赋值和添加、删除、更新数组的变化。例子如下。
   声明Model类。
@@ -126,37 +126,37 @@
   \@State装饰的对象为Model类型数组时。
 
   ```ts
-  @State title: Model[] = [new Model(11), new Model(1)]
+  @State title: Model[] = [new Model(11), new Model(1)];
   ```
 
   数组自身的赋值可以观察到。
 
   ```ts
-  this.title = [new Model(2)]
+  this.title = [new Model(2)];
   ```
 
   数组项的赋值可以观察到。
 
   ```ts
-  this.title[0] = new Model(2)
+  this.title[0] = new Model(2);
   ```
 
   删除数组项可以观察到。
 
   ```ts
-  this.title.pop()
+  this.title.pop();
   ```
 
   新增数组项可以观察到。
 
   ```ts
-  this.title.push(new Model(12))
+  this.title.push(new Model(12));
   ```
 
   数组项中属性的赋值观察不到。
 
   ```ts
-  this.title[0].value = 6
+  this.title[0].value = 6;
   ```
 
 
