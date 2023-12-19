@@ -508,7 +508,7 @@ class EntryAbility extends UIAbility {
 
 ## SecurityLevel
 
-数据库的安全级别枚举。
+数据库的安全级别枚举。请使用枚举名称而非枚举值。
 
 > **说明：**
 >
@@ -531,12 +531,12 @@ class EntryAbility extends UIAbility {
 
 | 名称                              | 值   | 说明             |
 | ------------------------------- | --- | -------------- |
-| ASSET_NORMAL     | -   | 表示资产状态正常。      |
-| ASSET_INSERT | - | 表示资产需要插入到云端。 |
-| ASSET_UPDATE | - | 表示资产需要更新到云端。 |
-| ASSET_DELETE | - | 表示资产需要在云端删除。 |
-| ASSET_ABNORMAL    | -   | 表示资产状态异常。      |
-| ASSET_DOWNLOADING | -   | 表示资产正在下载到本地设备。 |
+| ASSET_NORMAL     | 1  | 表示资产状态正常。      |
+| ASSET_INSERT | 2 | 表示资产需要插入到云端。 |
+| ASSET_UPDATE | 3 | 表示资产需要更新到云端。 |
+| ASSET_DELETE | 4 | 表示资产需要在云端删除。 |
+| ASSET_ABNORMAL    | 5   | 表示资产状态异常。      |
+| ASSET_DOWNLOADING | 6   | 表示资产正在下载到本地设备。 |
 
 ## Asset<sup>10+</sup>
 
@@ -566,7 +566,7 @@ class EntryAbility extends UIAbility {
 
 ## ValueType
 
-用于表示允许的数据字段类型。
+用于表示允许的数据字段类型，接口参数具体类型根据其功能而定。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -624,27 +624,27 @@ class EntryAbility extends UIAbility {
 
 ## SyncMode
 
-指数据库同步模式。
+指数据库同步模式。请使用枚举名称而非枚举值。
 
 | 名称           | 值   | 说明                               |
 | -------------- | ---- | ---------------------------------- |
-| SYNC_MODE_PUSH                       | 0   | 表示数据从本地设备推送到远程设备。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core                     |
-| SYNC_MODE_PULL                       | 1   | 表示数据从远程设备拉至本地设备。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core                      |
-| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | -   | 表示数据从修改时间较近的一端同步到修改时间较远的一端。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
-| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | -   | 表示数据从本地设备同步到云端。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
-| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | -   | 表示数据从云端同步到本地设备。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
+| SYNC_MODE_PUSH                       | 0   | 表示数据从本地设备推送到远程设备。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| SYNC_MODE_PULL                       | 1   | 表示数据从远程设备拉至本地设备。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | 4   | 表示数据从修改时间较近的一端同步到修改时间较远的一端。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | 5   | 表示数据从本地设备同步到云端。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | 6   | 表示数据从云端同步到本地设备。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## SubscribeType
 
-描述订阅类型。
+描述订阅类型。请使用枚举名称而非枚举值。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 | 名称                  | 值   | 说明               |
 | --------------------- | ---- | ------------------ |
 | SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | -  | 订阅云端数据更改。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
-| SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | -  | 订阅云端数据更改详情。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | 1  | 订阅云端数据更改。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | 2  | 订阅云端数据更改详情。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## ChangeType<sup>10+</sup>
 
@@ -656,8 +656,8 @@ class EntryAbility extends UIAbility {
 
 | 名称                         | 值   | 说明                         |
 | -------------------------- | --- | -------------------------- |
-| DATA_CHANGE  | -   | 表示是数据发生变更。   |
-| ASSET_CHANGE | -   | 表示是资产附件发生了变更。 |
+| DATA_CHANGE  | 0   | 表示是数据发生变更。   |
+| ASSET_CHANGE | 1   | 表示是资产附件发生了变更。 |
 
 ## ChangeInfo<sup>10+</sup>
 
@@ -681,8 +681,8 @@ class EntryAbility extends UIAbility {
 
 | 名称                | 值   | 说明                                                                                                 |
 | ------------------ | --- | -------------------------------------------------------------------------------------------------- |
-| DISTRIBUTED_DEVICE | -  | 表示在不同设备之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core               |
-| DISTRIBUTED_CLOUD  | -   | 表示在设备和云端之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| DISTRIBUTED_DEVICE | 0  | 表示在不同设备之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core               |
+| DISTRIBUTED_CLOUD  | 1   | 表示在设备和云端之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## DistributedConfig<sup>10+</sup>
 
@@ -696,7 +696,7 @@ class EntryAbility extends UIAbility {
 
 ## ConflictResolution<sup>10+</sup>
 
-插入和修改接口的冲突解决方式。
+插入和修改接口的冲突解决方式。请使用枚举名称而非枚举值。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -717,9 +717,9 @@ class EntryAbility extends UIAbility {
 
 | 名称             | 值   | 说明                     |
 | ---------------- | ---- | ------------------------ |
-| SYNC_BEGIN       | -    | 表示端云同步过程开始。   |
-| SYNC_IN_PROGRESS | -    | 表示正在端云同步过程中。 |
-| SYNC_FINISH      | -    | 表示端云同步过程已完成。 |
+| SYNC_BEGIN       | 0    | 表示端云同步过程开始。   |
+| SYNC_IN_PROGRESS | 1    | 表示正在端云同步过程中。 |
+| SYNC_FINISH      | 2    | 表示端云同步过程已完成。 |
 
 ## Statistic<sup>10+</sup>
 
@@ -753,13 +753,13 @@ class EntryAbility extends UIAbility {
 
 | 名称                  | 值   | 说明                                                         |
 | --------------------- | ---- | ------------------------------------------------------------ |
-| SUCCESS               | -    | 表示端云同步过程成功。                                       |
-| UNKNOWN_ERROR         | -    | 表示端云同步过程遇到未知错误。                               |
-| NETWORK_ERROR         | -    | 表示端云同步过程遇到网络错误。                               |
-| CLOUD_DISABLED        | -    | 表示云端不可用。                                             |
-| LOCKED_BY_OTHERS      | -    | 表示有其他设备正在端云同步，本设备无法进行端云同步。<br>请确保无其他设备占用云端资源后，再使用本设备进行端云同步任务。 |
-| RECORD_LIMIT_EXCEEDED | -    | 表示本次端云同步需要同步的条目或大小超出最大值。由云端配置最大值。 |
-| NO_SPACE_FOR_ASSET    | -    | 表示云空间剩余空间小于待同步的资产大小。                     |
+| SUCCESS               | 0    | 表示端云同步过程成功。                                       |
+| UNKNOWN_ERROR         | 1    | 表示端云同步过程遇到未知错误。                               |
+| NETWORK_ERROR         | 2    | 表示端云同步过程遇到网络错误。                               |
+| CLOUD_DISABLED        | 3    | 表示云端不可用。                                             |
+| LOCKED_BY_OTHERS      | 4    | 表示有其他设备正在端云同步，本设备无法进行端云同步。<br>请确保无其他设备占用云端资源后，再使用本设备进行端云同步任务。 |
+| RECORD_LIMIT_EXCEEDED | 5    | 表示本次端云同步需要同步的条目或大小超出最大值。由云端配置最大值。 |
+| NO_SPACE_FOR_ASSET    | 6    | 表示云空间剩余空间小于待同步的资产大小。                     |
 
 ## ProgressDetails<sup>10+</sup>
 
@@ -1232,7 +1232,7 @@ predicates.glob("NAME", "?h*g");
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-将谓词配置为匹配数据字段为ValueType且value在给定范围内的指定字段。
+将谓词配置为匹配数据字段为ValueType且value在给定范围内的指定字段（包含范围边界）。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1261,7 +1261,7 @@ predicates.between("AGE", 10, 50);
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-配置谓词以匹配数据表的field列中值超出给定范围的字段。
+配置谓词以匹配数据表的field列中值超出给定范围的字段（不包含范围边界）。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1271,7 +1271,7 @@ notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | 是   | 数据库表中的列名。         |
 | low    | [ValueType](#valuetype) | 是   | 指示与谓词匹配的最小值。   |
-| high   | [ValueType](#valuetype) | 是   | 指示要与谓词匹配的最大值。 |
+| high   | [ValueType](#valuetype) | 是   | 指示与谓词匹配的最大值。 |
 
 **返回值**：
 

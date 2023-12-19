@@ -1,6 +1,6 @@
 # @ohos.data.preferences (User Preferences)
 
-The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, and supports persistence of the KV pairs when required, as well as modification and query of the data.
+The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, including querying, modifying, and persisting KV pairs.
 
 The key is of the string type, and the value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.
 
@@ -1907,7 +1907,7 @@ Subscribes to data changes. A callback will be triggered to return the new value
 
 | Name  | Type    | Mandatory| Description                                    |
 | -------- | -------- | ---- | ---------------------------------------- |
-| type     | string   | Yes  | Event type. The value is **change**, which indicates data changes.|
+| type     | string                           | Yes  | Event type. The value is **change**, which indicates data changes. |
 | callback | Function | Yes  | Callback invoked to return the data change.<br>**key** indicates the key whose value is changed.    |
 
 **Example**
@@ -2085,7 +2085,7 @@ Unsubscribes from data changes.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The value is **change**, which indicates data changes.                |
+| type     | string   | Yes  | Event type. The value is **change**, which indicates data changes. |
 | callback | Function | No  | Callback to unregister. If this parameter is left blank, all callbacks for data changes will be unregistered.<br>**key** indicates the key whose value is changed.|
 
 **Example**
@@ -2190,7 +2190,7 @@ Enumerates the value types.
 | --------------- | ------------------------------ |
 | number          | The value is a number.            |
 | string          | The value is a string.          |
-| boolean         | The value is of Boolean type.          |
+| boolean         | The value is true or false.           |
 | Array\<number>  | The value is an array of numbers.  |
 | Array\<boolean> | The value is a Boolean array.  |
 | Array\<string>  | The value is an array of strings.|

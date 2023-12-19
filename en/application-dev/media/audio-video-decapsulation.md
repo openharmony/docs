@@ -57,12 +57,12 @@ target_link_libraries(sample PUBLIC libnative_media_avsource.so)
 2. Create a demuxer instance.
 
    ``` c++
-   // Create the FD. You must have the read permission on the file handle when opening the file.
-   std::string fileName = "test.mp4";
-   int fd = open(fileName.c_str(), O_RDONLY);
+   // Create the FD. You must have the read permission on the file handle when opening the file. (filePath indicates the path of the file to be decapsulated. The file must exist.)
+   std::string filePath = "test.mp4";
+   int fd = open(filePath.c_str(), O_RDONLY);
    struct stat fileStatus {};
    size_t fileSize = 0;
-   if (stat(fileName.c_str(), &fileStatus) == 0) {
+   if (stat(filePath.c_str(), &fileStatus) == 0) {
       fileSize = static_cast<size_t>(fileStatus.st_size);
    } else {
       printf("get stat failed");

@@ -45,7 +45,7 @@ getSync(key: string, def?: string): string
 | 14700103 | if permission denied                                         |
 | 14700104 | if system internal error                                     |
 
-以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
+以上错误码详细介绍请参考[系统参数错误码](../errorcodes/errorcode-system-parameterV9.md)。
 
 **示例：**
 
@@ -81,7 +81,7 @@ get(key: string, callback: AsyncCallback&lt;string&gt;): void
 | 14700103 | if permission denied                                         |
 | 14700104 | if system internal error                                     |
 
-以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
+以上错误码详细介绍请参考[系统参数错误码](../errorcodes/errorcode-system-parameterV9.md)。
 
 **示例：**
 
@@ -124,7 +124,7 @@ get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 | 14700103 | if permission denied                                         |
 | 14700104 | if system internal error                                     |
 
-以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
+以上错误码详细介绍请参考[系统参数错误码](../errorcodes/errorcode-system-parameterV9.md)。
 
 **示例：**
 
@@ -173,7 +173,7 @@ get(key: string, def?: string): Promise&lt;string&gt;
 | 14700103 | if permission denied                                         |
 | 14700104 | if system internal error                                     |
 
-以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
+以上错误码详细介绍请参考[系统参数错误码](../errorcodes/errorcode-system-parameterV9.md)。
 
 **示例：**
 
@@ -215,7 +215,7 @@ setSync(key: string, value: string): void
 | 14700103 | if permission denied                                         |
 | 14700104 | if system internal error                                     |
 
-以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
+以上错误码详细介绍请参考[系统参数错误码](../errorcodes/errorcode-system-parameterV9.md)。
 
 **示例：**
 
@@ -253,7 +253,7 @@ set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 | 14700103 | if permission denied                                         |
 | 14700104 | if system internal error                                     |
 
-以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
+以上错误码详细介绍请参考[系统参数错误码](../errorcodes/errorcode-system-parameterV9.md)。
 
 **示例：**
 
@@ -301,7 +301,7 @@ set(key: string, value: string): Promise&lt;void&gt;
 | 14700103 | if permission denied                                         |
 | 14700104 | if system internal error                                     |
 
-以上错误码详细介绍请参考[errorcode-system-parameterV9](../errorcodes/errorcode-system-parameterV9.md)。
+以上错误码详细介绍请参考[系统参数错误码](../errorcodes/errorcode-system-parameterV9.md)。
 
 **示例：**
 

@@ -20,11 +20,11 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 | 参数名                           | 参数类型                                     | 必填   | 参数描述                                     |
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | builder                       | CustomDialog                             | 是    | 自定义弹窗内容构造器。                              |
-| cancel                        | ()&nbsp;=&gt;&nbsp;void                  | 否    | 点击遮障层退出时的回调。                             |
+| cancel                        | ()&nbsp;=&gt;&nbsp;void                  | 否    | 返回、ESC键和点击遮障层弹窗退出时的回调。 |
 | autoCancel                    | boolean                                  | 否    | 是否允许点击遮障层退出。<br>默认值：true                 |
 | alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否    | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
 | offset                        | [Offset](ts-types.md#offset)             | 否    | 弹窗相对alignment所在位置的偏移量。                   |
-| customStyle                   | boolean                                  | 否    | 弹窗容器样式是否自定义。<br>默认值：false，弹窗容器的宽度根据栅格系统自适应，不跟随子节点；高度自适应子节点，最大为窗口高度的90%；圆角为24vp。 |
+| customStyle                   | boolean                                  | 否    | 弹窗容器样式是否自定义。<br>默认值：false，弹窗容器的宽度根据栅格系统自适应，不跟随子节点；高度自适应子节点，最大为窗口高度的90%；圆角为24vp。<br>设置为true时，宽度跟随子节点自适应，圆角为0，弹窗背景色为透明色。 |
 | gridCount<sup>8+</sup>        | number                                   | 否    | 弹窗宽度占[栅格宽度](../../ui/arkts-layout-development-grid-layout.md)的个数。<br>默认为按照窗口大小自适应，异常值按默认值处理，最大栅格数为系统最大栅格数。 |
 | maskColor<sup>10+</sup>       | [ResourceColor](ts-types.md#resourcecolor) | 否    | 自定义蒙层颜色。<br>默认值: 0x33000000              |
 | maskRect<sup>10+</sup>        | [Rectangle](ts-methods-alert-dialog-box.md#rectangle10类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } |
@@ -146,7 +146,7 @@ struct CustomDialogUser {
       textValue: $textValue,
       inputValue: $inputValue
     }),
-    cancel: this.existApp,
+    cancel: this.exitApp,
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -20 },
@@ -169,7 +169,7 @@ struct CustomDialogUser {
     console.info('Callback when the second button is clicked')
   }
 
-  existApp() {
+  exitApp() {
     console.info('Click the callback in the blank area')
   }
 

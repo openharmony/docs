@@ -84,6 +84,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   }
   ```
 
+<<<<<<< HEAD
 加载沙箱路径下的本地资源文件。
 
 1. 通过构造的单例对象GlobalContext获取沙箱路径。
@@ -164,6 +165,85 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
          </body>
      </html>
    ```
+=======
+  加载沙箱路径下的本地资源文件
+
+  1.通过构造的单例对象GlobalContext获取沙箱路径。
+  ```ts
+  // GlobalContext.ts
+  export class GlobalContext {
+    private constructor() {}
+    private static instance: GlobalContext;
+    private _objects = new Map<string, Object>();
+
+    public static getContext(): GlobalContext {
+      if (!GlobalContext.instance) {
+        GlobalContext.instance = new GlobalContext();
+      }
+      return GlobalContext.instance;
+    }
+
+    getObject(value: string): Object | undefined {
+      return this._objects.get(value);
+    }
+
+    setObject(key: string, objectClass: Object): void {
+      this._objects.set(key, objectClass);
+    }
+  }
+  ```
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  import { GlobalContext } from '../GlobalContext'
+
+  let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        // 加载沙箱路径文件。
+        Web({ src: url, controller: this.controller })
+      }
+    }
+  }
+  ```
+
+  2.修改EntryAbility.ts。
+  以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
+  ```ts
+  // xxx.ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
+  import web_webview from '@ohos.web.webview';
+  import { GlobalContext } from '../GlobalContext'
+
+  export default class EntryAbility extends UIAbility {
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+          // 通过在GlobalContext对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
+          GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
+          console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
+      }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+      <body>
+          <p>Hello World</p>
+      </body>
+  </html>
+  ```
+
+>>>>>>> 3f11bc29ed3f824f3b26b2f568c96df7ab487119
 ## 属性
 
 通用属性仅支持[aspectRatio](ts-universal-attributes-layout-constraints.md#属性)、[backdropBlur](ts-universal-attributes-image-effect.md#属性)、[bindContentCover](ts-universal-attributes-modal-transition.md#属性)、[bindContextMenu](ts-universal-attributes-menu.md#属性)、[bindMenu ](ts-universal-attributes-menu.md#属性)、[bindSheet](ts-universal-attributes-sheet-transition.md#属性)、[blur](ts-universal-attributes-image-effect.md#属性)、[border](ts-universal-attributes-border.md#属性)、[borderColor](ts-universal-attributes-border.md#属性)、[borderRadius](ts-universal-attributes-border.md#属性)、[borderStyle](ts-universal-attributes-border.md#属性)、[borderWidth](ts-universal-attributes-border.md#属性)、[clip](ts-universal-attributes-sharp-clipping.md#属性)、[constraintSize](ts-universal-attributes-size.md#属性)、[defaultFocus](ts-universal-attributes-focus.md#属性)、[focusable](ts-universal-attributes-focus.md#属性)、[tabIndex](ts-universal-attributes-focus.md#属性)、[groupDefaultFocus](ts-universal-attributes-focus.md#属性)、[focusOnTouch](ts-universal-attributes-focus.md#属性)、[displayPriority](ts-universal-attributes-layout-constraints.md#属性)、[draggable](ts-universal-attributes-drag-drop.md#属性)、[enabled](ts-universal-attributes-enable.md#属性)、[flexBasis](ts-universal-attributes-flex-layout.md#属性)、[flexGrow](ts-universal-attributes-flex-layout.md#属性)、[flexShrink](ts-universal-attributes-flex-layout.md#属性)、[layoutWeight](ts-universal-attributes-flex-layout.md#属性)、[id](ts-universal-attributes-component-id.md#属性)、[gridOffset](ts-universal-attributes-grid.md#属性)、[gridSpan](ts-universal-attributes-grid.md#属性)、[useSizeType](ts-universal-attributes-grid.md#属性)、[height](ts-universal-attributes-size.md#属性)、[touchable](ts-universal-attributes-click.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[markAnchor](ts-universal-attributes-location.md#属性)、[mask](ts-universal-attributes-sharp-clipping.md#属性)、[offset](ts-universal-attributes-location.md#属性)、[width](ts-universal-attributes-size.md#属性)、[zIndex](ts-universal-attributes-z-order.md#属性)、[visibility](ts-universal-attributes-visibility.md#属性)、[rotate](ts-universal-attributes-transformation.md#属性)、[scale](ts-universal-attributes-transformation.md#属性)、[transform](ts-universal-attributes-transformation.md#属性)、[responseRegion](ts-universal-attributes-touch-target.md#属性)、[padding](ts-universal-attributes-size.md#属性)、[size](ts-universal-attributes-size.md#属性)、[stateStyles](ts-universal-attributes-polymorphic-style.md#属性)、[opacity](ts-universal-attributes-opacity.md#属性)、[shadow](ts-universal-attributes-image-effect.md#属性)、[gesture](ts-gesture-settings.md#绑定手势识别)、[sharedTransition](ts-transition-animation-shared-elements.md#属性)、[transition](ts-transition-animation-component.md#属性)。
@@ -1480,7 +1560,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -1564,7 +1644,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -1743,7 +1823,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2263,7 +2343,7 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当返回值为true时，用户可以调用系统提供的弹窗能力。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当返回值为true时，用户可以调用系统提供的弹窗能力。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2940,8 +3020,15 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    result: WebContextMenuResult | null = null;
     build() {
       Column() {
+        Button('copyImage')
+        .onClick(() => {
+          if (this.result) {
+            this.result.copyImage()
+          }
+        })
         Web({ src: 'www.example.com', controller: this.controller })
           .onContextMenuShow((event) => {
             if (event) {
@@ -3040,34 +3127,23 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
   ```
 
   加载的html文件。
- ```html
-  <!-- index.html -->
+  ```html
   <!DOCTYPE html>
   <html>
-  <head>
-    <meta charset="UTF-8">
-  </head>
   <body>
-  <p id="demo">点击按钮获取您当前坐标 （可能需要比较长的时间获取）：</p>
-  <button onclick="getLocation()">点我</button>
+  <p id="locationInfo">位置信息</p>
+  <button onclick="getLocation()">获取位置</button>
   <script>
-    var x=document.grtElementByld("demo");
-    function getLocation()
-    {
-      if (navigator.geolocation)
-      {
-        navigator.geolocation.getCurrentPosition(showPosition);
-      }
-      else
-      {
-        x.innerHTML="该浏览器不支持获取地理位置。";
-      }
+  var locationInfo=document.getElementById("locationInfo");
+  function getLocation(){
+    if (navigator.geolocation) {
+      <!-- 前端页面访问设备地理位置 -->
+      navigator.geolocation.getCurrentPosition(showPosition);
     }
-
-    function showPosition(position)
-    {
-      x.innerHTML="纬度：" + position.coords.latitude + "经度：" + position.coords.longitude;
-    }
+  }
+  function showPosition(position){
+    locationInfo.innerHTML="Latitude: " + position.coords.latitude + "<br />Longitude: " + position.coords.longitude;
+  }
   </script>
   </body>
   </html>
@@ -5499,15 +5575,15 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
         Text(this.webResult).fontSize(20)
         Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
-        .onPageEnd(() => {
+        .onPageEnd((event) => {
           this.controller.runJavaScript({
             script: 'test()',
             callback: (result: string)=> {
               this.webResult = result
               console.info(`The test() return value is: ${result}`)
             }})
-          if (e) {
-            console.info('url: ', e.url)
+          if (event) {
+            console.info('url: ', event.url)
           }
         })
       }

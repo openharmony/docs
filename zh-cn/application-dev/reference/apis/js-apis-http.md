@@ -87,7 +87,7 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
 > **说明：**
 > console.info()输出的数据中包含换行符会导致数据出现截断现象。
 
-## http.createHttp
+## http.createHttp(支持跨平台)
 
 createHttp(): HttpRequest
 
@@ -112,11 +112,11 @@ import http from '@ohos.net.http';
 let httpRequest = http.createHttp();
 ```
 
-## HttpRequest
+## HttpRequest（支持跨平台）
 
 HTTP请求任务。在调用HttpRequest的方法前，需要先通过createHttp()创建一个任务。
 
-### request
+### request(支持跨平台)
 
 request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 
@@ -132,9 +132,9 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 **参数：**
 
 | 参数名   | 类型                                           | 必填 | 说明                    |
-| -------- | ---------------------------------------------- | ---- | ----------------------- |
+| -------- | ---------------------------------------------- | ---- | ---------------------- |
 | url      | string                                         | 是   | 发起网络请求的URL地址。 |
-| callback | AsyncCallback\<[HttpResponse](#httpresponse)\> | 是   | 回调函数。              |
+| callback | AsyncCallback\<[HttpResponse](#httpresponse支持跨平台)\> | 是   | 回调函数。    |
 
 **错误码：**
 
@@ -195,7 +195,7 @@ httpRequest.request("EXAMPLE_URL", (err: Error, data: http.HttpResponse) => {
 });
 ```
 
-### request
+### request(支持跨平台)
 
 request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpResponse\>):void
 
@@ -213,8 +213,8 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 | 参数名   | 类型                                           | 必填 | 说明                                            |
 | -------- | ---------------------------------------------- | ---- | ----------------------------------------------- |
 | url      | string                                         | 是   | 发起网络请求的URL地址。                         |
-| options  | HttpRequestOptions                             | 是   | 参考[HttpRequestOptions](#httprequestoptions)。 |
-| callback | AsyncCallback\<[HttpResponse](#httpresponse)\> | 是   | 回调函数。                                      |
+| options  | HttpRequestOptions                             | 是   | 参考[HttpRequestOptions](#httprequestoptions支持跨平台)。 |
+| callback | AsyncCallback\<[HttpResponse](#httpresponse支持跨平台)\> | 是   | 回调函数。                            |
 
 **错误码：**
 
@@ -291,7 +291,7 @@ promise.then((data:http.HttpResponse) => {
 });
 ```
 
-### request
+### request(支持跨平台)
 
 request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
@@ -309,13 +309,13 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 | 参数名  | 类型               | 必填 | 说明                                            |
 | ------- | ------------------ | ---- | ----------------------------------------------- |
 | url     | string             | 是   | 发起网络请求的URL地址。                         |
-| options | HttpRequestOptions | 否   | 参考[HttpRequestOptions](#httprequestoptions)。 |
+| options | HttpRequestOptions | 否   | 参考[HttpRequestOptions](#httprequestoptions支持跨平台)。 |
 
 **返回值：**
 
 | 类型                                   | 说明                              |
 | :------------------------------------- | :-------------------------------- |
-| Promise<[HttpResponse](#httpresponse)> | 以Promise形式返回发起请求的结果。 |
+| Promise<[HttpResponse](#httpresponse支持跨平台)> | 以Promise形式返回发起请求的结果。 |
 
 **错误码：**
 
@@ -390,7 +390,7 @@ promise.then((data:http.HttpResponse) => {
 });
 ```
 
-### destroy
+### destroy(支持跨平台)
 
 destroy(): void
 
@@ -495,8 +495,8 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 | 参数名   | 类型                                           | 必填 | 说明                                            |
 | -------- | ---------------------------------------------- | ---- | ----------------------------------------------- |
 | url      | string                                         | 是   | 发起网络请求的URL地址。                         |
-| options  | HttpRequestOptions                             | 是   | 参考[HttpRequestOptions](#httprequestoptions)。 |
-| callback | AsyncCallback\<[number](#responsecode)\>       | 是   | 回调函数。                                      |
+| options  | HttpRequestOptions                             | 是   | 参考[HttpRequestOptions](#httprequestoptions支持跨平台)。 |
+| callback | AsyncCallback\<[number](#responsecode支持跨平台)\>       | 是   | 回调函数。                                      |
 
 **错误码：**
 
@@ -544,14 +544,6 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
-class Header {
-  public contentType: string;
-
-  constructor(contentType: string) {
-    this.contentType = contentType;
-  }
-}
-
 let httpRequest = http.createHttp();
 httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError<void> , data: number) => {
   if (!err) {
@@ -577,13 +569,13 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 | 参数名  | 类型               | 必填 | 说明                                            |
 | ------- | ------------------ | ---- | ----------------------------------------------- |
 | url     | string             | 是   | 发起网络请求的URL地址。                         |
-| options | HttpRequestOptions | 否   | 参考[HttpRequestOptions](#httprequestoptions)。 |
+| options | HttpRequestOptions | 否   | 参考[HttpRequestOptions](#httprequestoptions支持跨平台)。 |
 
 **返回值：**
 
 | 类型                                   | 说明                              |
 | :------------------------------------- | :-------------------------------- |
-| Promise\<[number](#responsecode)\> | 以Promise形式返回发起请求的结果。 |
+| Promise\<[number](#responsecode支持跨平台)\> | 以Promise形式返回发起请求的结果。 |
 
 **错误码：**
 
@@ -639,14 +631,14 @@ class Header {
 }
 
 let httpRequest = http.createHttp();
-let promise = httpRequest.request("EXAMPLE_URL", {
+let promise = httpRequest.requestInStream("EXAMPLE_URL", {
   method: http.RequestMethod.GET,
   connectTimeout: 60000,
   readTimeout: 60000,
   header: new Header('application/json')
 });
-promise.then((data: http.HttpResponse) => {
-  console.info("requestInStream OK!" + JSON.stringify(data));
+promise.then((data: number) => {
+  console.info("requestInStream OK!" + data);
 }).catch((err: Error) => {
   console.info("requestInStream ERROR : err = " + JSON.stringify(err));
 });
@@ -659,7 +651,7 @@ on(type: "headerReceive", callback: AsyncCallback\<Object\>): void
 订阅HTTP Response Header 事件。
 
 > **说明：**
-> 此接口已废弃，建议使用[on("headersReceive")<sup>8+</sup>](#onheadersreceive8)替代。
+> 此接口已废弃，建议使用[on("headersReceive")<sup>8+</sup>](#onheadersreceive8支持跨平台)替代。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -690,7 +682,7 @@ off(type: "headerReceive", callback?: AsyncCallback\<Object\>): void
 
 > **说明：**
 >
->1. 此接口已废弃，建议使用[off("headersReceive")<sup>8+</sup>](#offheadersreceive8)替代。
+>1. 此接口已废弃，建议使用[off("headersReceive")<sup>8+</sup>](#offheadersreceive8支持跨平台)替代。
 >
 >2. 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
@@ -712,7 +704,7 @@ let httpRequest = http.createHttp();
 httpRequest.off("headerReceive");
 ```
 
-### on("headersReceive")<sup>8+</sup>
+### on("headersReceive")<sup>8+</sup>(支持跨平台)
 
 on(type: "headersReceive", callback: Callback\<Object\>): void
 
@@ -739,7 +731,7 @@ httpRequest.on("headersReceive", (header: Object) => {
 httpRequest.off("headersReceive");
 ```
 
-### off("headersReceive")<sup>8+</sup>
+### off("headersReceive")<sup>8+</sup>(支持跨平台)
 
 off(type: "headersReceive", callback?: Callback\<Object\>): void
 
@@ -760,10 +752,16 @@ off(type: "headersReceive", callback?: Callback\<Object\>): void
 **示例：**
 
 ```ts
-示例代码请见on("headersReceive")<sup>8+</sup>
+import http from '@ohos.net.http';
+
+let httpRequest = http.createHttp();
+httpRequest.on("headersReceive", (header: Object) => {
+  console.info("header: " + JSON.stringify(header));
+});
+httpRequest.off("headersReceive");
 ```
 
-### once("headersReceive")<sup>8+</sup>
+### once("headersReceive")<sup>8+</sup>(支持跨平台)
 
 once(type: "headersReceive", callback: Callback\<Object\>): void
 
@@ -789,7 +787,7 @@ httpRequest.once("headersReceive", (header: Object) => {
 });
 ```
 
-### on("dataReceive")<sup>10+</sup>
+### on("dataReceive")<sup>10+</sup>(支持跨平台)
 
 on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 
@@ -819,7 +817,7 @@ httpRequest.on("dataReceive", (data: ArrayBuffer) => {
 httpRequest.off("dataReceive");
 ```
 
-### off("dataReceive")<sup>10+</sup>
+### off("dataReceive")<sup>10+</sup>(支持跨平台)
 
 off(type: "dataReceive", callback?: Callback\<ArrayBuffer\>): void
 
@@ -840,7 +838,13 @@ off(type: "dataReceive", callback?: Callback\<ArrayBuffer\>): void
 **示例：**
 
 ```ts
-示例代码请见on("dataReceive")<sup>10+</sup>
+import http from '@ohos.net.http';
+
+let httpRequest = http.createHttp();
+httpRequest.on("dataReceive", (data: ArrayBuffer) => {
+  console.info("dataReceive length: " + JSON.stringify(data.byteLength));
+});
+httpRequest.off("dataReceive");
 ```
 
 ### on("dataEnd")<sup>10+</sup>
@@ -894,7 +898,13 @@ off(type: "dataEnd", callback?: Callback\<void\>): void
 **示例：**
 
 ```ts
-示例代码请见on("dataEnd")<sup>10+</sup>
+import http from '@ohos.net.http';
+
+let httpRequest = http.createHttp();
+httpRequest.on("dataEnd", () => {
+  console.info("Receive dataEnd !");
+});
+httpRequest.off("dataEnd");
 ```
 
 ### on("dataReceiveProgress")<sup>10+</sup>
@@ -921,8 +931,8 @@ on(type: "dataReceiveProgress", callback: Callback\<{ receiveSize: number; total
 import http from '@ohos.net.http';
 
 class RequestData{
-  receiveSize: number = 2000 
-  totalSize: number = 2000 
+  receiveSize: number = 2000
+  totalSize: number = 2000
 }
 
 let httpRequest = http.createHttp();
@@ -953,10 +963,21 @@ off(type: "dataReceiveProgress", callback?: Callback\<{ receiveSize: number, tot
 **示例：**
 
 ```ts
-示例代码请见on("dataReceiveProgress")<sup>10+</sup>
+import http from '@ohos.net.http';
+
+class RequestData{
+  receiveSize: number = 2000
+  totalSize: number = 2000
+}
+
+let httpRequest = http.createHttp();
+httpRequest.on("dataReceiveProgress", (data: RequestData) => {
+  console.info("dataReceiveProgress:" + JSON.stringify(data));
+});
+httpRequest.off("dataReceiveProgress");
 ```
 
-## HttpRequestOptions
+## HttpRequestOptions（支持跨平台）
 
 发起请求可选参数的类型和取值范围。
 
@@ -964,19 +985,19 @@ off(type: "dataReceiveProgress", callback?: Callback\<{ receiveSize: number, tot
 
 | 名称         | 类型                                          | 必填 | 说明                                                         |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| method         | [RequestMethod](#requestmethod)               | 否   | 请求方式，默认为GET。                                                   |
+| method         | [RequestMethod](#requestmethod支持跨平台)               | 否   | 请求方式，默认为GET。                                                   |
 | extraData      | string \| Object \| ArrayBuffer | 否   | 发送请求的额外数据，默认无此字段。<br />当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。当'content-Type'为'application/x-www-form-urlencoded'时，请求提交的信息主体数据应在key和value进行URL转码后按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码，该字段对应的类型通常为String；当'content-Type'为'text/xml'时，该字段对应的类型通常为String；当'content-Type'为'application/json'时，该字段对应的类型通常为Object；当'content-Type'为'application/octet-stream'时，该字段对应的类型通常为ArrayBuffer；当'content-Type'为'multipart/form-data'且需上传的字段为文件时，该字段对应的类型通常为ArrayBuffer。以上信息仅供参考，并可能根据具体情况有所不同。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送；ArrayBuffer类型的参数不会做拼接处理。 |
-| <span name="expectDataType">[expectDataType<sup>9+</sup>](#result)</span>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。 |
+| expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9支持跨平台)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。 |
 | usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true。   |
 | priority<sup>9+</sup>        | number                          | 否   | 优先级，范围[1,1000]，默认是1。                           |
 | header                       | Object                          | 否   | HTTP请求头字段。默认{'content-Type': 'application/json'}。   |
 | readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。<br />设置为0表示不会出现超时情况。 |
 | connectTimeout               | number                          | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。              |
-| usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | 否   | 使用协议。默认值由系统自动指定。                             |
+| usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9支持跨平台)  | 否   | 使用协议。默认值由系统自动指定。                             |
 | usingProxy<sup>10+</sup>     | boolean \| HttpProxy               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为HttpProxy类型时，使用指定网络代理。 |
 | caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持后缀名为.pem的文本格式证书。                             |
 
-## RequestMethod
+## RequestMethod（支持跨平台）
 
 HTTP 请求方法。
 
@@ -993,7 +1014,7 @@ HTTP 请求方法。
 | TRACE   | "TRACE"   | HTTP 请求 TRACE。   |
 | CONNECT | "CONNECT" | HTTP 请求 CONNECT。 |
 
-## ResponseCode
+## ResponseCode（支持跨平台）
 
 发起请求返回的响应码。
 
@@ -1037,21 +1058,21 @@ HTTP 请求方法。
 | GATEWAY_TIMEOUT   | 504  | 充当网关或代理的服务器，未及时从远端服务器获取请求。         |
 | VERSION           | 505  | 服务器请求的HTTP协议的版本。                                 |
 
-## HttpResponse
+## HttpResponse（支持跨平台）
 
 request方法回调函数的返回值类型。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称               | 类型                                         | 必填 | 说明                                                         |
+| 名称                 | 类型                                         | 必填 | 说明                                                          |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| <span name="result">[result](#expectDataType)</span>               | string \| Object<sup>deprecated 8+</sup> \| ArrayBuffer<sup>8+</sup> | 是   | HTTP请求根据响应头中content-type类型返回对应的响应格式内容，若HttpRequestOptions无expectDataType字段，按如下规则返回：<br />- application/json：返回JSON格式的字符串；<br />- application/octet-stream：ArrayBuffer；<br />- image：ArrayBuffer；<br />- 其他：string。<br /> 若HttpRequestOption有expectDataType字段，开发者需传入与服务器返回类型相同的数据类型。 |
-| resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | 是   | 返回值类型。                           |
-| responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。 |
+| result               | string \| Object<sup>deprecated 8+</sup> \| ArrayBuffer<sup>8+</sup> | 是   | HTTP请求根据响应头中content-type类型返回对应的响应格式内容，若HttpRequestOptions无expectDataType字段，按如下规则返回：<br />- application/json：返回JSON格式的字符串；<br />- application/octet-stream：ArrayBuffer；<br />- image：ArrayBuffer；<br />- 其他：string。<br /> 若HttpRequestOption有expectDataType字段，开发者需传入与服务器返回类型相同的数据类型。 |
+| resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9支持跨平台)             | 是   | 返回值类型。                           |
+| responseCode         | [ResponseCode](#responsecode支持跨平台) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode支持跨平台)。若执行失败，错误码将会从AsyncCallback中的err字段返回。 |
 | header               | Object                                       | 是   | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- content-type：header['content-type']；<br />- status-line：header['status-line']；<br />- date：header.date/header['date']；<br />- server：header.server/header['server']； |
 | cookies<sup>8+</sup> | string                                       | 是   | 服务器返回的 cookies。                                       |
 
-## http.createHttpResponseCache<sup>9+</sup>
+## http.createHttpResponseCache<sup>9+</sup>（支持跨平台）
 
 createHttpResponseCache(cacheSize?: number): HttpResponseCache
 
@@ -1069,7 +1090,7 @@ createHttpResponseCache(cacheSize?: number): HttpResponseCache
 
 | 类型        | 说明                                                         |
 | :---------- | :----------------------------------------------------------- |
-| [HttpResponseCache](#httpresponsecache9) | 返回一个存储HTTP访问请求响应的对象。 |
+| [HttpResponseCache](#httpresponsecache9支持跨平台) | 返回一个存储HTTP访问请求响应的对象。 |
 
 **示例：**
 
@@ -1079,9 +1100,9 @@ import http from '@ohos.net.http';
 let httpResponseCache = http.createHttpResponseCache();
 ```
 
-## HttpResponseCache<sup>9+</sup>
+## HttpResponseCache<sup>9+</sup>（支持跨平台）
 
-存储HTTP访问请求响应的对象。在调用HttpResponseCache的方法前，需要先通过[createHttpResponseCache()](#httpcreatehttpresponsecache9)创建一个任务。
+存储HTTP访问请求响应的对象。在调用HttpResponseCache的方法前，需要先通过[createHttpResponseCache()](#httpcreatehttpresponsecache9支持跨平台)创建一个任务。
 
 ### flush<sup>9+</sup>
 
@@ -1199,7 +1220,7 @@ httpResponseCache.delete().then(() => {
 });
 ```
 
-## HttpDataType<sup>9+</sup>
+## HttpDataType<sup>9+</sup>（支持跨平台）
 
 http的数据类型。
 
@@ -1211,7 +1232,7 @@ http的数据类型。
 | OBJECT              | 1 | 对象类型。    |
 | ARRAY_BUFFER        | 2 | 二进制数组类型。|
 
-## HttpProtocol<sup>9+</sup>
+## HttpProtocol<sup>9+</sup>（支持跨平台）
 
 http协议版本。
 

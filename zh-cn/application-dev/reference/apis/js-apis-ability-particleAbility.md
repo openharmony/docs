@@ -67,7 +67,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): 
 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 
 particleAbility.startAbility(
     {
@@ -118,7 +118,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<void>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise形式返回启动Ability的结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -148,7 +148,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<void>
 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 
 particleAbility.startAbility(
     {
@@ -227,7 +227,7 @@ terminateSelf(): Promise\<void>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | 使用Promise形式返回停止当前Ability结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -398,7 +398,7 @@ startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;voi
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | 使用Promise形式返回启动长时任务的结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -517,7 +517,7 @@ cancelBackgroundRunning(): Promise&lt;void&gt;
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | 使用Promise形式返回取消长时任务的结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -697,7 +697,7 @@ disconnectAbility(connection: number): Promise\<void>
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
 | connection | number               | 是    | 表示断开连接的ServiceAbility的ID。 |
-| Promise\<void> | 使用Promise形式返回结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 

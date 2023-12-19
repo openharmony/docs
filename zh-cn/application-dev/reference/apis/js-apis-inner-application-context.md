@@ -213,7 +213,8 @@ getGroupDir(dataGroupID: string): Promise\<string>
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000011 | The context does not exist. |
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -258,7 +259,7 @@ getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 | ------- | -------- |
 | 16000011 | The context does not exist. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 

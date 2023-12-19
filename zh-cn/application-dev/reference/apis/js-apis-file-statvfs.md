@@ -44,7 +44,7 @@ getFreeSize(path:string):Promise&lt;number&gt;
   statvfs.getFreeSize(path).then((number: number) => {
     console.info("getFreeSize succeed, Size: " + number);
   }).catch((err: BusinessError) => {
-    console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -74,7 +74,7 @@ getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
   let path: string = "/dev";
   statvfs.getFreeSize(path, (err: BusinessError, number: number) => {
     if (err) {
-      console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("getFreeSize succeed, Size: " + number);
     }
@@ -145,7 +145,7 @@ getTotalSize(path: string): Promise&lt;number&gt;
   statvfs.getTotalSize(path).then((number: number) => {
     console.info("getTotalSize succeed, Size: " + number);
   }).catch((err: BusinessError) => {
-    console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
+    console.error("getTotalSize failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -175,7 +175,7 @@ getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
   let path: string = "/dev";
   statvfs.getTotalSize(path, (err: BusinessError, number: number) => {
     if (err) {
-      console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
+      console.error("getTotalSize failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("getTotalSize succeed, Size: " + number);
     }

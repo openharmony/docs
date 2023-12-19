@@ -26,7 +26,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 当一个应用内包含多个UIAbility时，存在应用内启动UIAbility的场景。例如在支付应用中从入口UIAbility启动收付款UIAbility。
 
-假设应用中有两个UIAbility：EntryAbility和FuncAbility（可以在应用的一个Module中，也可以在的不同Module中），需要从EntryAbility的页面中启动FuncAbility。
+假设应用中有两个UIAbility：EntryAbility和FuncAbility（可以在同一个Module中，也可以在不同的Module中），需要从EntryAbility的页面中启动FuncAbility。
 
 1. 在EntryAbility中，通过调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility，[want](../reference/apis/js-apis-app-ability-want.md)为UIAbility实例启动的入口参数，其中bundleName为待启动应用的Bundle名称，abilityName为待启动的Ability名称，moduleName在待启动的UIAbility属于不同的Module时添加，parameters为自定义信息参数。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
    
@@ -93,8 +93,12 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    > **说明：**
    >
    > 调用[`terminateSelf()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法停止当前UIAbility实例时，默认会保留该实例的快照（Snapshot），即在最近任务列表中仍然能查看到该实例对应的任务。如不需要保留该实例的快照，可以在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，将[abilities标签](../quick-start/module-configuration-file.md#abilities标签)的removeMissionAfterTerminate字段配置为true。
+
    
-4. 如需要关闭应用所有的UIAbility实例，可以调用[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md)的[`killProcessBySelf()`](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses)方法实现关闭应用所有的进程。
+
+
+4. 如需要关闭应用所有的UIAbility实例，可以调用[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md)的[`killAllProcesses()`](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses)方法实现关闭应用所有的进程。
+
 
 
 ## 启动应用内的UIAbility并获取返回结果

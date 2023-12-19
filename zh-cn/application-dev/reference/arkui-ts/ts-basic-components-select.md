@@ -14,6 +14,12 @@
 
 Select(options: Array\<[SelectOption](#selectoption对象说明)\>)
 
+**参数：**
+
+| 参数名  | 参数类型                                       | 必填 | 参数描述       |
+| ------- | ---------------------------------------------- | ---- | -------------- |
+| options | Array\<[SelectOption](#selectoption对象说明)\> | 是   | 设置下拉选项。 |
+
 ## SelectOption对象说明
 
 | 参数名 | 参数类型                            | 必填 | 参数描述       |
