@@ -16,7 +16,6 @@ import fs from '@ohos.file.fs';
 
 使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：
 
-**Stage模型**
 
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
@@ -30,18 +29,8 @@ import fs from '@ohos.file.fs';
   }
   ```
 
-**FA模型**
+使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：[应用上下文Context-获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)
 
-  ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-
-  let context = featureAbility.getContext();
-  context.getFilesDir().then((data) => {
-    let pathDir = data;
-  })
-  ```
-
-FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
 
 ## fs.stat
 
@@ -1673,7 +1662,7 @@ readLinesSync(filePath: string, options?: Options): ReaderIterator
   let options: Options = {
     encoding: 'utf-8'
   };
-  let readerIterator = fs.readLines(filePath, options);
+  let readerIterator = fs.readLinesSync(filePath, options);
   for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
     console.info("content: " + it.value);
   }
@@ -2380,7 +2369,7 @@ listFile(path: string, options?: {
   | ------ | ------ | ---- | --------------------------- |
   | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。 |
   | listNum | number | 否    | 列出文件名数量。当设置0时，列出所有文件，默认为0。 |
-  | filter | [Filter](#filter) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
+  | filter | [Filter](#filter10) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
 
 **返回值：**
 
@@ -2442,7 +2431,7 @@ listFile(path: string, options?: {
   | ------ | ------ | ---- | --------------------------- |
   | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。|
   | listNum | number | 否    | 列出文件名数量。当设置0时，列出所有文件，默认为0。 |
-  | filter | [Filter](#filter) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
+  | filter | [Filter](#filter10) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
 
 **错误码：**
 
@@ -2500,7 +2489,7 @@ listFileSync(path: string, options?: {
   | ------ | ------ | ---- | --------------------------- |
   | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。 |
   | listNum | number | 否    | 列出文件名数量。当设置0时，列出所有文件，默认为0。 |
-  | filter | [Filter](#filter) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
+  | filter | [Filter](#filter10) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
 
 **返回值：**
 
@@ -3056,7 +3045,7 @@ createRandomAccessFile(file: string | File, mode: number, callback: AsyncCallbac
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  fs.createRandomAccessFile(file, fs.OpenMode.READ_ONLY (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
+  fs.createRandomAccessFile(file, fs.OpenMode.READ_ONLY, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
     if (err) {
       console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -3168,10 +3157,9 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
   let filePath = pathDir + "/test.txt";
   fs.createStream(filePath, "r+").then((stream: fs.Stream) => {
     console.info("createStream succeed");
+    stream.closeSync();
   }).catch((err: BusinessError) => {
     console.error("createStream failed with error message: " + err.message + ", error code: " + err.code);
-  }).finally(() => {
-    stream.closeSync();
   });
   ```
 
@@ -4340,7 +4328,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
   option.offset = 1;
   option.length = 5;
   let arrayBuffer = new ArrayBuffer(bufferLength);
-  randomaccessfile.write(arrayBuffer, option).then((bytesWritten: number) => {
+  randomAccessFile.write(arrayBuffer, option).then((bytesWritten: number) => {
     console.info("randomAccessFile bytesWritten: " + bytesWritten);
   }).catch((err: BusinessError) => {
     console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
@@ -4438,7 +4426,7 @@ writeSync(buffer: ArrayBuffer | string, options?: { offset?: number; length?: nu
   let option = new Option();
   option.offset = 5;
   option.length = 5;
-  let bytesWritten = randomaccessfile.writeSync("hello, world", option);
+  let bytesWritten = randomAccessFile.writeSync("hello, world", option);
   randomAccessFile.close();
   ```
 
@@ -4483,7 +4471,7 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
   option.offset = 1;
   option.length = 5;
   let arrayBuffer = new ArrayBuffer(bufferLength);
-  randomaccessfile.read(arrayBuffer, option).then((readLength: number) => {
+  randomAccessFile.read(arrayBuffer, option).then((readLength: number) => {
     console.info("randomAccessFile readLength: " + readLength);
   }).catch((err: BusinessError) => {
     console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
@@ -4529,7 +4517,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
   option.offset = 1;
   option.length = 5;
   let arrayBuffer = new ArrayBuffer(length);
-  randomaccessfile.read(arrayBuffer, option, (err: BusinessError, readLength: number) => {
+  randomAccessFile.read(arrayBuffer, option, (err: BusinessError, readLength: number) => {
     if (err) {
       console.error("read failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -4575,7 +4563,7 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
   let randomAccessFile = fs.createRandomAccessFileSync(file);
   let length: number = 4096;
   let arrayBuffer = new ArrayBuffer(length);
-  let readLength = randomaccessfile.readSync(arrayBuffer);
+  let readLength = randomAccessFile.readSync(arrayBuffer);
   randomAccessFile.close();
   fs.closeSync(file);
   ```
