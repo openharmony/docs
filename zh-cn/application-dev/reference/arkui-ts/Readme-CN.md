@@ -218,6 +218,7 @@
     - [文本滑动选择器弹窗（TextPickerDialog）](ts-methods-textpicker-dialog.md)
   - [菜单](ts-methods-menu.md)
 - [自定义组件的生命周期](ts-custom-component-lifecycle.md)
+- [自定义组件内置方法](ts-custom-component-api.md)
 - [应用级变量的状态管理](ts-state-management.md)
 - [像素单位](ts-pixel-units.md)
 - [枚举说明](ts-appendix-enums.md)
