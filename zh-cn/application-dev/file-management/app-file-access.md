@@ -89,7 +89,7 @@ let filesDir = context.filesDir;
 
 function readWriteFile(): void {
   // 打开文件
-  let srcFile = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE);
+  let srcFile = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let destFile = fs.openSync(filesDir + '/destFile.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   // 读取源文件内容并写入至目的文件
   let bufSize = 4096;
