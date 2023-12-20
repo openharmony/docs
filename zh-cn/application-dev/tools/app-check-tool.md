@@ -42,8 +42,8 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
     "stopTime":"2023-11-17 14:48:01:434",
 	"result":[{
 		"files":[
-			"/home/admin/1116Test/duplicate/application-entry-default.hap/libs/armeabi-v7a/example.so",
-			"/home/admin/1116Test/duplicate/entry-default.hap/libs/armeabi-v7a/example.so"
+			"application-entry-default.hap/libs/armeabi-v7a/example.so",
+			"entry-default.hap/libs/armeabi-v7a/example.so"
 		],
 		"md5":"975c41f5727b416b1ffefa5bb0f073b",
 		"size":1108880
@@ -88,10 +88,10 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
             </tr>
             <tr>
                 <td rowspan="2">files</td>
-                <td>/home/admin/1116Test/duplicate/application-entry-default.hap/libs/example.so</td>
+                <td>application-entry-default.hap/libs/example.so</td>
             </tr>
             <tr>
-                <td>/home/admin/1116Test/duplicate/entry-default.hap/libs/example.so</td>
+                <td>entry-default.hap/libs/example.so</td>
             </tr>
         </table>
 </div>
@@ -141,7 +141,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-si
     "startTime":"2023-11-17 14:48:01:458",
     "stopTime":"2023-11-17 14:48:01:491",
 	"result":[{
-			"file":"/home/admin/1116Test/fileSize/application-entry-default.hap/libs/x86_64/example.so",
+			"file":"application-entry-default.hap/libs/x86_64/example.so",
 			"size":1292840
 	}]
 }]
@@ -177,7 +177,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-si
             <td>file</td> <td>size</td>
         </tr>
         <tr>
-            <td>/home/admin/1116Test/fileSize/application-entry-default.hap/libs/x86_64/example.so</td>
+            <td>application-entry-default.hap/libs/x86_64/example.so</td>
             <td>1292840</td>
         </tr>
     </table>
@@ -227,13 +227,13 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
     "startTime":"2023-11-17 14:48:01:497",
     "stopTime":"2023-11-17 14:48:01:537",
 	"pathList":[
-		"/home/admin/1116Test/temporary/application-entry-default.hap",
-		"/home/admin/1116Test/temporary/entry-default.hap"
+		"test.app/application-entry-default.hap",
+		"test.app/entry-default.hap"
 	],
 	"result":[{
 		"files":[{
 			"compress":"false",
-			"file":"/home/admin/1116Test/suffix/application-entry-default.hap/libs/x86_64/example.so",
+			"file":"application-entry-default.hap/libs/x86_64/example.so",
 			"size":1292840
 		}],
 		"suffix":"so",
@@ -241,11 +241,11 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 	},
 	{
 		"files":[{
-			"file":"/home/admin/1116Test/suffix/application-entry-default.hap/ets/modules.abc",
+			"file":"application-entry-default.hap/ets/modules.abc",
 			"size":76304
 		},
 		{
-			"file":"/home/admin/1116Test/suffix/entry-default.hap/ets/modules.abc",
+			"file":"entry-default.hap/ets/modules.abc",
 			"size":8548
 		}],
 		"suffix":"abc",
@@ -281,7 +281,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
         <tr>
 			<td >pathList</td>
 			<td colspan="2">
-				/home/admin/1116Test/temporary/application-entry-default.hap<br>/home/admin/1116Test/temporary/entry-default.hap
+				test.app/application-entry-default.hap<br>test.app/entry-default.hap
 			</td>
 		</tr>
         <tr >
@@ -297,7 +297,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
             <td rowspan="2">files</td>
         </tr>
         <tr>
-            <td>compress:false<br>size:1292840<br>file:/home/admin/1116Test/suffix/application-entry-default.hap/libs/x86_64/example.so </td>
+            <td>compress:false<br>size:1292840<br>file:application-entry-default.hap/libs/x86_64/example.so </td>
         </tr>
         <tr>
             <td width="10%">suffix</td>
@@ -312,7 +312,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
         </tr>
         <tr>
             <td>
-                size:8548<br>file:/home/admin/1116Test/suffix/entry-default.hap/ets/modules.abc<br>size:76304<br>file:/home/admin/1116Test/suffix/application-entry-default.hap/ets/modules.abc<br>
+                size:8548<br>file:entry-default.hap/ets/modules.abc<br>size:76304<br>file:application-entry-default.hap/ets/modules.abc<br>
             </td>
         </tr>
     </table>
@@ -344,6 +344,3 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 | file     | String | 文件路径。                                                          |
 | size     | int    | 文件的大小。                                                        |
 | compress | bool   | 是否是压缩文件(仅so类型文件展示)。<br>true：是压缩文件。<br>false：不是压缩文件。 |
-
-
-
