@@ -1,6 +1,6 @@
-# @ohos.arkui.advanced.ImageTextEditableComponent（网格对象的编辑排序组件）
+# @ohos.arkui.advanced.GridObjectSortComponent（网格对象的编辑排序组件）
 
-ImageTextEditableComponent是用于网格对象的编辑排序组件。
+GridObjectSortComponent是用于网格对象的编辑排序组件。
 
 >  **说明：**
 >
@@ -10,11 +10,11 @@ ImageTextEditableComponent是用于网格对象的编辑排序组件。
 
 ```ets
 import { 
-	ImageTextEditableComponent, 
-	ImageTextEditableComponentItem, 
-	ImageTextEditableComponentOptions, 
-	ImageTextEditableComponentType,
-} from '@ohos.arkui.advanced.ImageTextEditableComponent';
+	GridObjectSortComponent, 
+	GridObjectSortComponentItem, 
+	GridObjectSortComponentOptions, 
+	GridObjectSortComponentType,
+} from '@ohos.arkui.advanced.GridObjectSortComponent';
 ```
 
 ##  子组件
@@ -33,27 +33,27 @@ import {
 
 | 名称     | 类型                             | 装饰器类型 | 必填 | 说明         |
 | -------- | -------------------------------- | ---------- | ---- | ------------ |
-| options  | ImageTextEditableComponentOptions     | @Prop      | 是   | 组件配置信息 |
-| dataList | Array<ImageTextEditableComponentItem> | -     | 是   | 传入的元数据，最大长度为50，数据长度超过50，只会取前50的数据 |
+| options  | GridObjectSortComponentOptions | @Prop      | 是   | 组件配置信息 |
+| dataList | Array<GridObjectSortComponentItem> | -     | 是   | 传入的元数据，最大长度为50，数据长度超过50，只会取前50的数据 |
 
-##  ImageTextEditableComponentOptions
+##  GridObjectSortComponentOptions
 
-ImageTextEditableComponentOptions定义ImageTextEditableComponent组件的类型及参数。
+GridObjectSortComponentOptions定义GridObjectSortComponent组件的类型及参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称           | 类型                      | 必填 | 说明                                                   |
 | -------------- | ------------------------- | ---- | ------------------------------------------------------ |
-| type           | ImageTextEditableComponentType | 否   | 组件展示形态：文字\|图片+文字，默认：ImageTextEditableComponentType.text |
-| imageSize      | number                    | 否   | 图片的尺寸，默认：56                                   |
-| title          | ResourceStr    | 否   | 未编辑状态下显示的标题，默认：频道                     |
-| firstSubtitle  | ResourceStr    | 否   | 第一个子标题，默认：长按拖动排序                       |
-| secondSubtitle | ResourceStr    | 否   | 第二个子标题，默认：点击添加                           |
+| type           | GridObjectSortComponentType | 否   | 组件展示形态：文字\|图片+文字，默认：GridObjectSortComponentType.text |
+| imageSize      | number \| Resource         | 否   | 图片的尺寸，默认：56                                   |
+| normalTitle | ResourceStr    | 否   | 未编辑状态下显示的标题，默认：频道                     |
+| showAreaTitle | ResourceStr    | 否   | 展示区域标题，第一个子标题，默认：长按拖动排序      |
+| addAreaTitle | ResourceStr    | 否   | 添加区域标题，第二个子标题，默认：点击添加                    |
 | editTitle      | ResourceStr    | 否   | 编辑状态下头部标题显示，默认：编辑                     |
 
-## ImageTextEditableComponentType 
+## GridObjectSortComponentType 
 
-ImageTextEditableComponentType 定义ImageTextEditableComponentOptions组件的枚举类型及参数。
+GridObjectSortComponentType 定义GridObjectSortComponentOptions组件的枚举类型及参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -62,9 +62,9 @@ ImageTextEditableComponentType 定义ImageTextEditableComponentOptions组件的�
 | IMAGE_TE | string | 'image_text' | 图片文字类型 |
 | TEXT     | string | 'text'       | 文字类型     |
 
-## ImageTextEditableComponentItem
+## GridObjectSortComponentItem
 
-ImageTextEditableComponentItem定义ImageTextEditableComponent的元数据。
+GridObjectSortComponentItem定义GridObjectSortComponent的元数据。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -73,14 +73,14 @@ ImageTextEditableComponentItem定义ImageTextEditableComponent的元数据。
 | id    | string \| number | 是   | 数据id序号，不可重复                                         |
 | text  | ResourceStr      | 是   | 显示文本信息                                                 |
 | state | boolean          | 是   | 是否已经被添加，添加：true，未添加：false                    |
-| url   | ResourceStr      | 否   | ImageTextEditableComponentType类型为IMAGE_TEXT时，需要传入图片地址 |
+| url   | ResourceStr      | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址 |
 | order | number           | 是   | 顺序序号                                                     |
 
 ##  事件
 
 | 名称                                                         | 功能描述                                 |
 | :----------------------------------------------------------- | ---------------------------------------- |
-| onSave: (select: Array<ImageTextEditableComponentItem>, unselect: Array<ImageTextEditableComponentItem>) =>  void | 保存编辑排序的回调函数，返回编辑后的数据 |
+| onSave: (select: Array<GridObjectSortComponentItem>, unselect: Array<GridObjectSortComponentItem>) =>  void | 保存编辑排序的回调函数，返回编辑后的数据 |
 | onCancel: () => void                                         | 取消保存数据时的回调                     |
 
 ## 示例1
@@ -89,17 +89,17 @@ ImageTextEditableComponentItem定义ImageTextEditableComponent的元数据。
 
 ```ets
 import { 
-	ImageTextEditableComponent, 
-	ImageTextEditableComponentItem, 
-	ImageTextEditableComponentOptions, 
-	ImageTextEditableComponentType, 
-} from '@ohos.arkui.advanced.ImageTextEditableComponent';
-import router from '@ohos.router'
+	GridObjectSortComponent, 
+	GridObjectSortComponentItem, 
+	GridObjectSortComponentOptions, 
+	GridObjectSortComponentType, 
+} from '@ohos.arkui.advanced.GridObjectSortComponent';
+
 
 @Entry
 @Component
 struct Index {
-  @State dataList: ImageTextEditableComponentItem[] = [
+  @State dataList: GridObjectSortComponentItem[] = [
     {
       id: 0,
       text: 'facebook',
@@ -163,21 +163,21 @@ struct Index {
   ]
 
   // 该option中的选项都是非必传项
-  @State option: ImageTextEditableComponentOptions = {
-    type: ImageTextEditableComponentType.TEXT,
+  @State option: GridObjectSortComponentOptions = {
+    type: GridObjectSortComponentType.TEXT,
     imageSize: 56,
-    title: 'test001',
+    normalTitle: 'test001',
     editTitle: 'test002',
-    firstSubtitle: "长按拖动排序",
-    secondSubtitle: "点击添加",
+    showAreaTitle: "长按拖动排序",
+    addAreaTitle: "点击添加",
   }
 
   build() {
     Column() {
-      ImageTextEditableComponent({
+      GridObjectSortComponent({
       		options: this.option, 
       		dataList: this.dataList, 
-      		onSave: (select: Array<ImageTextEditableComponentItem>, unselect: Array<ImageTextEditableComponentItem>) => {
+      		onSave: (select: Array<GridObjectSortComponentItem>, unselect: Array<GridObjectSortComponentItem>) => {
                 // save ToDo
             },
          	onCancel: () =>{
@@ -195,17 +195,17 @@ struct Index {
 
 ```ets
 import { 
-	ImageTextEditableComponent, 
-	ImageTextEditableComponentItem, 
-	ImageTextEditableComponentOptions, 
-	ImageTextEditableComponentType, 
-} from '@ohos.arkui.advanced.ImageTextEditableComponent';
-import router from '@ohos.router'
+	GridObjectSortComponent, 
+	GridObjectSortComponentItem, 
+	GridObjectSortComponentOptions, 
+	GridObjectSortComponentType, 
+} from '@ohos.arkui.advanced.GridObjectSortComponent';
+
 
 @Entry
 @Component
 struct Index {
-  @State dataList: ImageTextEditableComponentItem[] = [
+  @State dataList: GridObjectSortComponentItem[] = [
     {
       id: 0,
       url: $r('app.media.facebook'),
@@ -271,21 +271,21 @@ struct Index {
     },
   ]
 
-  @State option: ImageTextEditableComponentOptions = {
-    type: ImageTextEditableComponentType.IMAGETEXT,
+  @State option: GridObjectSortComponentOptions = {
+    type: GridObjectSortComponentType.IMAGETEXT,
     imageSize: 68,
-    title: '',
+    normalTitle: '',
     editTitle: '',
-    firstSubtitle: "长按拖动排序",
-    secondSubtitle: "点击添加",
+    showAreaTitle: "长按拖动排序",
+    addAreaTitle: "点击添加",
   }
   
   build() {
     Column() {
-      ImageTextEditableComponent({
+      GridObjectSortComponent({
       		options: this.option, 
       		dataList: this.dataList, 
-      			onSave: (select: Array<ImageTextEditableComponentItem>, unselect: Array<ImageTextEditableComponentItem>) => {
+      			onSave: (select: Array<GridObjectSortComponentItem>, unselect: Array<GridObjectSortComponentItem>) => {
                 // save ToDo
             },
          	onCancel: () =>{
