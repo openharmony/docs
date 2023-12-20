@@ -28,11 +28,11 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 ### 属性
 
-| 名称      | 类型                                                         | 可读 | 可写 | 说明                                                         |
-| --------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| eventType | [accessibility.EventType](js-apis-accessibility.md#EventType) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#WindowUpdateType)\| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 是   | 否   | 具体事件类型。<br />EventType：无障碍事件类型；<br />WindowUpdateType：窗口变化类型；TouchGuideType：触摸浏览事件类型；<br />GestureType：手势事件类型；<br />PageUpdateType：页面刷新类型，当前版本暂不支持。 |
-| target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | 是   | 否   | 发生事件的目标组件。                                         |
-| timeStamp | number                                                       | 是   | 否   | 事件时间戳。                                                 |
+| 名称      | 类型                                                         | 可读 | 可写                                 | 说明                                                         |
+| --------- | ------------------------------------------------------------ | ---- |------------------------------------| ------------------------------------------------------------ |
+| eventType | [accessibility.EventType](js-apis-accessibility.md#eventtype) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#windowupdatetype)\| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 是   | 否   | 具体事件类型。<br />EventType：无障碍事件类型；<br />WindowUpdateType：窗口变化类型；TouchGuideType：触摸浏览事件类型；<br />GestureType：手势事件类型；<br />PageUpdateType：页面刷新类型。当前版本暂不支持。 |
+| target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | 是   | 否                                  | 发生事件的目标组件。                                         |
+| timeStamp | number                                                       | 是   | 否                                  | 事件时间戳。                                                 |
 
 
 ## AccessibilityElement<sup>10+</sup>
@@ -44,7 +44,7 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 ```ts
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 
-let AccessibilityElement: AccessibilityElement;
+let accessibilityElement: AccessibilityElement;
 ```
 
 ## ElementAttributeValues<sup>10+</sup>
@@ -56,7 +56,7 @@ let AccessibilityElement: AccessibilityElement;
 ```ts
 import { ElementAttributeValues } from '@ohos.application.AccessibilityExtensionAbility';
 
-let ElementAttributeValues: ElementAttributeValues;
+let elementAttributeValues: ElementAttributeValues;
 ```
 
 ## FocusDirection<sup>10+</sup>
@@ -68,19 +68,22 @@ let ElementAttributeValues: ElementAttributeValues;
 ```ts
 import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
 
-let FocusDirection: FocusDirection;
+let focusDirection: FocusDirection;
 ```
 
 ## ElementAttributeKeys<sup>10+</sup>
 
-ElementAttributeKeys keyof [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)
+| 名称      | 类型                                       | 可读   | 可写   | 说明                                                 |
+| ------- | ---------------------------------------- | ---- | ---- |----------------------------------------------------|
+| ElementAttributeKeys | [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues) | 是    | 否    | 表示ElementAttributeKeys是ElementAttributeValues的key。 |
+
 
 **示例：**
 
 ```ts
 import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
 
-let ElementAttributeKeys: ElementAttributeKeys;
+let elementAttributeKeys: ElementAttributeKeys;
 ```
 
 ## FocusType<sup>10+</sup>
@@ -92,7 +95,7 @@ let ElementAttributeKeys: ElementAttributeKeys;
 ```ts
 import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
 
-let FocusType: FocusType;
+let focusType: FocusType;
 ```
 
 ## WindowType <sup>10+</sup>
@@ -104,7 +107,7 @@ let FocusType: FocusType;
 ```ts
 import { WindowType } from '@ohos.application.AccessibilityExtensionAbility';
 
-let WindowType: WindowType;
+let windowType: WindowType;
 ```
 
 ## Rect<sup>10+</sup>
@@ -116,7 +119,7 @@ let WindowType: WindowType;
 ```ts
 import { Rect } from '@ohos.application.AccessibilityExtensionAbility';
 
-let Rect: Rect;
+let rect: Rect;
 ```
 
 ## GestureType
@@ -143,33 +146,33 @@ let Rect: Rect;
 | downThenLeft  | string          | 表示先向下再向左的手势。 |
 | downThenRight | string          | 表示先向下再向右的手势。 |
 | downThenUp    | string          | 表示先向下再向上的手势。 |
-| twoFingerSingleTap<sup>11+</sup>    | string          | 表示双指单击的手势。 |
-| twoFingerDoubleTap<sup>11+</sup>    | string          | 表示双指双击的手势。 |
-| twoFingerDoubleTapAndHold<sup>11+</sup>    | string          | 表示双指双击长按的手势。 |
-| twoFingerTripleTap<sup>11+</sup>    | string          | 表示双指三击的手势。 |
-| twoFingerTripleTapAndHold<sup>11+</sup>    | string          | 表示双指三击长按的手势。 |
-| threeFingerSingleTap<sup>11+</sup>    | string          | 表示三指单击的手势。 |
-| threeFingerDoubleTap<sup>11+</sup>    | string          | 表示三指双击的手势。 |
-| threeFingerDoubleTapAndHold<sup>11+</sup>    | string          | 表示三指双击长按的手势。 |
-| threeFingerTripleTap<sup>11+</sup>    | string          | 表示三指三击的手势。 |
-| threeFingerTripleTapAndHold<sup>11+</sup>    | string          | 表示三指三击长按的手势。 |
-| fourFingerSingleTap<sup>11+</sup>    | string          | 表示四指单击的手势。 |
-| fourFingerDoubleTap<sup>11+</sup>    | string          | 表示四指双击的手势。 |
-| fourFingerDoubleTapAndHold<sup>11+</sup>    | string          | 表示四指双击长按的手势。 |
-| fourFingerTripleTap<sup>11+</sup>    | string          | 表示四指三击的手势。 |
-| fourFingerTripleTapAndHold<sup>11+</sup>    | string          | 表示四指三击长按的手势。 |
-| threeFingerSwiperUp<sup>11+</sup>    | string          | 表示三指向上滑动的手势。 |
-| threeFingerSwiperDown<sup>11+</sup>    | string          | 表示三指向下滑动的手势。 |
-| threeFingerSwiperLeft<sup>11+</sup>    | string          | 表示三指向左滑动的手势。 |
-| threeFingerSwiperRight<sup>11+</sup>    | string          | 表示三指向右滑动的手势。 |
-| fourFingerSwiperUp<sup>11+</sup>    | string          | 表示四指向上滑动的手势。 |
-| fourFingerSwiperDown<sup>11+</sup>    | string          | 表示四指向下滑动的手势。 |
-| fourFingerSwiperLeft<sup>11+</sup>    | string          | 表示四指向左滑动的手势。 |
-| fourFingerSwiperRight<sup>11+</sup>    | string          | 表示四指向右滑动的手势。 |
+| twoFingerSingleTap<sup>11+</sup>  | string          | 表示双指单击的手势。 |
+| twoFingerDoubleTap<sup>11+</sup>  | string          | 表示双指双击的手势。 |
+| twoFingerDoubleTapAndHold<sup>11+</sup> | string          | 表示双指双击长按的手势。 |
+| twoFingerTripleTap<sup>11+</sup>  | string          | 表示双指三击的手势。 |
+| twoFingerTripleTapAndHold<sup>11+</sup> | string          | 表示双指三击长按的手势。 |
+| threeFingerSingleTap<sup>11+</sup> | string          | 表示三指单击的手势。 |
+| threeFingerDoubleTap<sup>11+</sup> | string          | 表示三指双击的手势。 |
+| threeFingerDoubleTapAndHold<sup>11+</sup> | string          | 表示三指双击长按的手势。 |
+| threeFingerTripleTap<sup>11+</sup> | string          | 表示三指三击的手势。 |
+| threeFingerTripleTapAndHold<sup>11+</sup> | string          | 表示三指三击长按的手势。 |
+| fourFingerSingleTap<sup>11+</sup> | string          | 表示四指单击的手势。 |
+| fourFingerDoubleTap<sup>11+</sup> | string          | 表示四指双击的手势。 |
+| fourFingerDoubleTapAndHold<sup>11+</sup> | string          | 表示四指双击长按的手势。 |
+| fourFingerTripleTap<sup>11+</sup> | string          | 表示四指三击的手势。 |
+| fourFingerTripleTapAndHold<sup>11+</sup> | string          | 表示四指三击长按的手势。 |
+| threeFingerSwipeUp<sup>11+</sup>  | string          | 表示三指向上滑动的手势。 |
+| threeFingerSwipeDown<sup>11+</sup> | string          | 表示三指向下滑动的手势。 |
+| threeFingerSwipeLeft<sup>11+</sup> | string          | 表示三指向左滑动的手势。 |
+| threeFingerSwipeRight<sup>11+</sup> | string          | 表示三指向右滑动的手势。 |
+| fourFingerSwipeUp<sup>11+</sup>   | string          | 表示四指向上滑动的手势。 |
+| fourFingerSwipeDown<sup>11+</sup> | string          | 表示四指向下滑动的手势。 |
+| fourFingerSwipeLeft<sup>11+</sup> | string          | 表示四指向左滑动的手势。 |
+| fourFingerSwipeRight<sup>11+</sup> | string          | 表示四指向右滑动的手势。 |
 
 ## PageUpdateType
 
-页面刷新类型；当前版本暂不支持。
+页面刷新类型。当前版本暂不支持。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 

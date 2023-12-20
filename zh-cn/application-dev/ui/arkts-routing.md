@@ -3,7 +3,7 @@
 
 页面路由指在应用程序中实现不同页面之间的跳转和数据传递。Router模块通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)、[页面返回前增加一个询问框](#页面返回前增加一个询问框)和[命名路由](#命名路由)几个方面介绍Router模块提供的功能。
 
-Router适应于模块间与模块内页面切换，通过每个页面的url实现模块间解耦。模块内页面跳转时，为了实现更好的转场动效场景不建议使用该模块，推荐使用[Navigation](./arkts-navigation-navigation.md)。
+Router适用于[模块](../quick-start/application-package-structure-stage.md)间与模块内页面切换，通过每个页面的url实现模块间解耦。模块内页面跳转时，为了实现更好的转场动效场景不建议使用该模块，推荐使用[Navigation](./arkts-navigation-navigation.md)。
 
 ## 页面跳转
 
@@ -110,6 +110,7 @@ import promptAction from '@ohos.promptAction';
 
   ```ts
   import router from '@ohos.router';
+
   // 在SearchResult页面中
   function onJumpClick(): void {
     router.replaceUrl({
@@ -119,7 +120,8 @@ import promptAction from '@ohos.promptAction';
         console.error(`Invoke replaceUrl failed, code is ${err.code}, message is ${err.message}`);
         return;
       }
-      console.info('Invoke replaceUrl succeeded.');})
+      console.info('Invoke replaceUrl succeeded.');
+    })
   }
   ```
 
@@ -166,16 +168,20 @@ function onJumpClick(): void {
 
 ```ts
 import router from '@ohos.router';
-class infoTmp{
-  age:number = 0
+
+class infoTmp {
+  age: number = 0
 }
-class rouTmp{
-  id:object = ()=>{}
-  info:infoTmp = new infoTmp()
+
+class rouTmp {
+  id: object = () => {
+  }
+  info: infoTmp = new infoTmp()
 }
-const params:rouTmp = router.getParams() as rouTmp; // 获取传递过来的参数对象
-const id:object = params.id // 获取id属性的值
-const age:number = params.info.age // 获取age属性的值
+
+const params: rouTmp = router.getParams() as rouTmp; // 获取传递过来的参数对象
+const id: object = params.id // 获取id属性的值
+const age: number = params.info.age // 获取age属性的值
 ```
 
 
@@ -385,7 +391,7 @@ export struct MyComponent {
 ```ts
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
-const moudel = import('library/src/main/ets/pages/Index')  // 引入共享包中的命名路由页面
+const module = import('library/src/main/ets/pages/Index')  // 引入共享包中的命名路由页面
 @Entry
 @Component
 struct Index {

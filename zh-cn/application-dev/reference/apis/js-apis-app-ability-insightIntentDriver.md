@@ -71,7 +71,7 @@ execute(param: ExecuteParam, callback: AsyncCallback<insightIntent.ExecuteResult
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -153,7 +153,7 @@ execute(param: ExecuteParam): Promise<insightIntent.ExecuteResult>
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 

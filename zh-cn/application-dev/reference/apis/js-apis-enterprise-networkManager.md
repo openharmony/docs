@@ -259,7 +259,7 @@ networkManager.getMac(wantTemp, 'eth0', (err, result) => {
 
 ## networkManager.getMac
 
-getMac(admin: Want, networkInterface: string): Promise\<string>;
+getMac(admin: Want, networkInterface: string): Promise\<string>
 
 指定设备管理应用根据网络接口获取设备MAC地址。使用Promise异步回调。
 
@@ -579,7 +579,6 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy): Promise\<void>
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | httpProxy    | [connection.HttpProxy](js-apis-net-connection.md#httpproxy10)     | 是    | 网络全局Http代理配置信息。                  |
-| isDisabled    | boolean     | 是    | true表示禁用该网络接口，false表示开启该网络接口。                  |
 
 **返回值：**
 

@@ -213,7 +213,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'environment', callbackId: **number**,  callback: AsyncCallback\<void>): void
 
-取消对系统环境变化的监听。
+取消对系统环境变化的监听。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -250,7 +250,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'environment', callbackId: **number**): void
 
-取消对系统环境变化的监听。使用callback异步回调。
+取消对系统环境变化的监听。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -367,7 +367,7 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -408,7 +408,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -449,7 +449,7 @@ killAllProcesses(): Promise\<void\>
 | ------- | -------- |
 | 16000011 | The context does not exist. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -484,7 +484,7 @@ killAllProcesses(callback: AsyncCallback\<void\>): void
 | ------- | -------- |
 | 16000011 | The context does not exist. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -523,7 +523,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 | 16000011 | The context does not exist. |
 | 401 | If the input parameter is not valid parameter. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -560,7 +560,7 @@ setLanguage(language: string): void
 | 16000011 | The context does not exist. |
 | 401 | If the input parameter is not valid parameter. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -596,7 +596,7 @@ clearUpApplicationData(): Promise\<void\>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -631,7 +631,7 @@ clearUpApplicationData(callback: AsyncCallback\<void\>): void
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 

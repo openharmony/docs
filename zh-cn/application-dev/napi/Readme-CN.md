@@ -1,36 +1,55 @@
-# Native API的相关指导
+# napi
 
-- [Native API在应用工程中的使用指导](napi-guidelines.md)
-- 图形图像
-  - [XComponent开发指导](xcomponent-guidelines.md)
-  - [使用Drawing实现图形绘制与显示](drawing-guidelines.md)
-  - [NativeBuffer开发指导](native-buffer-guidelines.md)
-  - [NativeImage开发指导](native-image-guidelines.md)
-  - [NativeVsync开发指导](native-vsync-guidelines.md)
-  - [NativeWindow开发指导](native-window-guidelines.md)
-  - [Vulkan开发指导](vulkan-guidelines.md)
-- 资源管理
-  - [Rawfile开发指导](rawfile-guidelines.md)
-- 资源调度
-  - [FFRT开发指导](ffrt-guidelines.md)
-- AI
-  - [使用MindSpore Lite引擎进行模型推理](mindspore-lite-guidelines.md)
-  - [使用MindSpore Lite进行离线模型的转换及推理](mindspore-lite-offline-model-guidelines.md)
-  - [Neural Network Runtime对接AI推理框架开发指导](neural-network-runtime-guidelines.md)
-- 内存管理
-  - [Purgeable memory开发指导](purgeable-memory-guidelines.md)
-- 设备管理
-  - [USB DDK开发指导](usb-ddk-guidelines.md)
-
-- 数据管理
-  - [RelationalStore开发指导](native-relational-store-guidelines.md)
-
-- 包管理
-  - [NativeBundle开发指导](native-bundle-guidelines.md)
-
+- [NDK开发导读](ndk-development-overview.md)
+- [创建NDK工程](create-with-ndk.md)
+- 构建NDK工程
+    - [NDK工程构建概述](build-with-ndk-overview.md)
+    - [使用DevEco Studio模板构建NDK工程](build-with-ndk-ide.md)
+    - [使用命令行CMake构建NDK工程](build-with-ndk-cmake.md)
+    - [在NDK工程中使用预构建库](build-with-ndk-prebuilts.md)
+- 代码开发
+    - [代码开发概述](develop-code-overview.md)
+    - 使用Node-API实现跨语言交互
+        - [OpenHarmony Node-API简介](napi-introduction.md)
+        - [Node-API支持的数据类型和接口](napi-data-types-interfaces.md)
+        - [Node-API开发规范](napi-guidelines.md)
+        - [使用Node-API实现跨语言交互开发流程](use-napi-process.md)
+        - Node-API典型使用场景
+            - [使用Node-API接口进行异步任务开发](use-napi-asynchronous-task.md)
+            - [使用Node-API接口进行线程安全开发](use-napi-thread-safety.md)
+        - [OpenHarmony Node-API常见问题](use-napi-faqs.md)
+    - 图形图像
+        - [XComponent开发指导](xcomponent-guidelines.md)
+        - [使用Drawing实现图形绘制与显示](drawing-guidelines.md)
+        - [NativeBuffer开发指导](native-buffer-guidelines.md)
+        - [NativeImage开发指导](native-image-guidelines.md)
+        - [NativeVsync开发指导](native-vsync-guidelines.md)
+        - [NativeWindow开发指导](native-window-guidelines.md)
+        - [Vulkan开发指导](vulkan-guidelines.md)
+    - 资源管理
+        - [Rawfile开发指导](rawfile-guidelines.md)
+    - 资源调度
+        - [FFRT开发指导](ffrt-guidelines.md)
+    - AI
+        - [使用MindSpore Lite引擎进行模型推理](mindspore-lite-guidelines.md)
+        - [使用MindSpore Lite进行离线模型的转换及推理](mindspore-lite-offline-model-guidelines.md)
+        - [Neural Network Runtime对接AI推理框架开发指导](neural-network-runtime-guidelines.md)
+    - 内存管理
+        - [Purgeable memory开发指导](purgeable-memory-guidelines.md)
+    - 设备管理
+        - [USB DDK开发指导](usb-ddk-guidelines.md)
+        - [HID DDK开发指导](hid-ddk-guidelines.md)
+    - 数据管理
+        - [RelationalStore开发指导](native-relational-store-guidelines.md)
+    - 包管理
+        - [NativeBundle开发指导](native-bundle-guidelines.md)
+- 调试和性能分析
+    - [调试和性能分析概述](debug-performance-profiling-overview.md)
+    - [通过DevEco Studio调试](debug-ide.md)
+    - [LLDB高性能调试器](debug-lldb.md)
+    - [C/C++内存错误检测](debug-asan.md)
 - 硬件兼容性
-  - [硬件兼容性简介](hw-guide.md)
-  - [OpenHarmony ABI](ohos-abi.md)
-  - [CPU特性](cpu-features.md)
-  - [使用Neon指令扩展](neon-guide.md)
-
+    - [硬件兼容性简介](hw-guide.md)
+    - [OpenHarmony ABI](ohos-abi.md)
+    - [CPU特性](cpu-features.md)
+    - [使用Neon指令扩展](neon-guide.md)

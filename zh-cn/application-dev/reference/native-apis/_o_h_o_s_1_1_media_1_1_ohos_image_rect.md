@@ -5,13 +5,11 @@
 
 定义图像矩形信息。
 
-**起始版本：**
+**系统能力：** SystemCapability.Multimedia.Image
 
-10
+**起始版本：** 10
 
-**相关模块：**
-
-[Image](image.md)
+**相关模块：** [Image](image.md)
 
 
 ## 汇总
@@ -36,7 +34,7 @@
 int32_t OhosImageRect::height
 ```
 
-**描述：**
+**描述**
 
 矩形高度值，用pixels表示
 
@@ -47,7 +45,7 @@ int32_t OhosImageRect::height
 int32_t OhosImageRect::width
 ```
 
-**描述：**
+**描述**
 
 矩形宽度值，用pixels表示
 
@@ -58,7 +56,7 @@ int32_t OhosImageRect::width
 int32_t OhosImageRect::x
 ```
 
-**描述：**
+**描述**
 
 矩形x坐标值
 
@@ -69,6 +67,6 @@ int32_t OhosImageRect::x
 int32_t OhosImageRect::y
 ```
 
-**描述：**
+**描述**
 
 矩形y坐标值

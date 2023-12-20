@@ -1,4 +1,4 @@
-# Audio Recording Stream Management
+# Audio Recording Stream Management (ArkTS)
 
 An audio recording application must notice audio stream state changes and perform corresponding operations. For example, when detecting that the user stops recording, the application must notify the user that the recording finishes.
 

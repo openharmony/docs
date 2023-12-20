@@ -574,7 +574,7 @@ getPairState(deviceId: string): BondState
 ```js
 import { BusinessError } from '@ohos.base';
 try {
-    let res: BondState = connection.getPairState("XX:XX:XX:XX:XX:XX");
+    let res: connection.BondState = connection.getPairState("XX:XX:XX:XX:XX:XX");
     console.log('getPairState: ' + res);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -1169,7 +1169,7 @@ try {
 ```
 
 
-## connection.connectAllowedProfiles
+## connection.connectAllowedProfiles<sup>11+</sup>
 
 connectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1220,7 +1220,7 @@ try {
 ```
 
 
-## connection.connectAllowedProfiles
+## connection.connectAllowedProfiles<sup>11+</sup>
 
 connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 
@@ -1274,7 +1274,7 @@ try {
 ```
 
 
-## connection.disconnectAllowedProfiles
+## connection.disconnectAllowedProfiles<sup>11+</sup>
 
 disconnectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1325,7 +1325,7 @@ try {
 ```
 
 
-## connection.disconnectAllowedProfiles
+## connection.disconnectAllowedProfiles<sup>11+</sup>
 
 disconnectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 
@@ -1378,6 +1378,51 @@ try {
 }
 ```
 
+
+## connection.getRemoteProductId<sup>11+</sup><a name="getRemoteProductId"></a>
+
+getRemoteProductId(deviceId: string): string
+
+获取对端蓝牙设备的Product ID。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明                                |
+| -------- | ------ | ---- | --------------------------------- |
+| deviceId | string | 是    | 表示远程设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| string | 以字符串格式返回设备Product ID。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import connection from '@ohos.bluetooth.connection';
+try {
+  let remoteDeviceProductId = connection.getRemoteProductId('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+  console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+}
+```
 
 ## connection.on('bluetoothDeviceFind')
 

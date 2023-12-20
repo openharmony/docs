@@ -32,7 +32,7 @@
 | ----------- | ---------------------------------------- |
 | 装饰器参数       | 无                                        |
 | 同步类型        | 单向同步：对父组件状态变量值的修改，将同步给子组件\@Prop装饰的变量，子组件\@Prop变量的修改不会同步到父组件的状态变量上。嵌套类型的场景请参考[观察变化](#观察变化)。 |
-| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，支持undefined和null。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Prop支持联合类型实例](#prop支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Prop a : string \| undefined = undefiend`是推荐的，不推荐`@Prop a: string = undefined`。 |
+| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，支持undefined和null。<br/>支持Date、Map、Set类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Prop支持联合类型实例](#prop支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Prop a : string \| undefined = undefiend`是推荐的，不推荐`@Prop a: string = undefined`。 |
 |<br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。 <br/>必须指定类型。<br/>**说明** ：<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)；<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 ||
 | 嵌套传递层数        | 在组件复用场景，建议@Prop深度嵌套数据不要超过5层，嵌套太多会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题，此时更建议使用[\@ObjectLink](arkts-observed-and-objectlink.md)。如果子组件的数据不想同步回父组件，建议采用@Reusable中的aboutToReuse，实现父组件向子组件传递数据，具体用例请参考[组件复用场景](arkts-state-management-best-practices.md)。 |
 | 被装饰变量的初始值   | 允许本地初始化。                                 |
@@ -178,6 +178,10 @@ struct ParentComponent {
 }
 ```
 
+- 当装饰的变量是Map时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
+
+- 当装饰的变量是Set时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
+
 ### 框架行为
 
 要理解\@Prop变量值初始化和更新机制，有必要了解父组件和拥有\@Prop变量的子组件初始渲染和更新流程。
@@ -318,7 +322,7 @@ struct Index {
 初始渲染创建6个子组件实例，每个\@Prop装饰的变量初始化都在本地拷贝了一份数组项。子组件onclick事件处理程序会更改局部变量值。
 
 
-假设我们点击了多次，所有变量的本地取值都是“7”。
+如果点击界面上的“1”、“2”、“3”，将所有变量的本地取值都变为“7”。
 
 
 
@@ -432,9 +436,9 @@ struct ReaderComp {
 
   build() {
     Row() {
-      Text(this.book.title)
-      Text(`...has${this.book.pages} pages!`)
-      Text(`...${this.book.readIt ? "I have read" : 'I have not read it'}`)
+      Text(this.book.title).fontColor('#e6000000')
+      Text(` has ${this.book.pages} pages!`).fontColor('#e6000000')
+      Text(` ${this.book.readIt ? "I have read" : 'I have not read it'}`).fontColor('#e6000000')
         .onClick(() => this.book.readIt = true)
     }
   }
@@ -443,27 +447,65 @@ struct ReaderComp {
 @Entry
 @Component
 struct Library {
-  @State allBooks: Book[] = [new Book("100 secrets of C++", 765), new Book("Effective C++", 651), new Book("The C++ programming language", 1765)];
+  @State allBooks: Book[] = [new Book("C#", 765), new Book("JS", 652), new Book("TS", 765)];
 
   build() {
     Column() {
       Text('library`s all time favorite')
+        .width(312)
+        .height(40)
+        .backgroundColor('#0d000000')
+        .borderRadius(20)
+        .margin(12)
+        .padding({ left: 20 })
+        .fontColor('#e6000000')
       ReaderComp({ book: this.allBooks[2] })
+        .backgroundColor('#0d000000')
+        .width(312)
+        .height(40)
+        .padding({ left: 20, top: 10 })
+        .borderRadius(20)
+        .colorBlend('#e6000000')
       Divider()
       Text('Books on loaan to a reader')
+        .width(312)
+        .height(40)
+        .backgroundColor('#0d000000')
+        .borderRadius(20)
+        .margin(12)
+        .padding({ left: 20 })
+        .fontColor('#e6000000')
       ForEach(this.allBooks, (book: Book) => {
         ReaderComp({ book: book })
+          .margin(12)
+          .width(312)
+          .height(40)
+          .padding({ left: 20, top: 10 })
+          .backgroundColor('#0d000000')
+          .borderRadius(20)
       },
         (book: Book) => book.id.toString())
       Button('Add new')
+        .width(312)
+        .height(40)
+        .margin(12)
+        .fontColor('#FFFFFF 90%')
         .onClick(() => {
-          this.allBooks.push(new Book("The C++ Standard Library", 512));
+          this.allBooks.push(new Book("JA", 512));
         })
       Button('Remove first book')
+        .width(312)
+        .height(40)
+        .margin(12)
+        .fontColor('#FFFFFF 90%')
         .onClick(() => {
           this.allBooks.shift();
         })
       Button("Mark read for everyone")
+        .width(312)
+        .height(40)
+        .margin(12)
+        .fontColor('#FFFFFF 90%')
         .onClick(() => {
           this.allBooks.forEach((book) => book.readIt = true)
         })
@@ -514,18 +556,22 @@ struct MyComponent {
   build() {
     Column() {
       Row() {
-        Text(`From Main: ${this.customCounter}`).width(90).height(40).fontColor('#FF0010')
+        Text(`From Main: ${this.customCounter}`).fontColor('#ff6b6565').margin({ left: -110, top: 12 })
       }
 
       Row() {
-        Button('Click to change locally !').width(180).height(60).margin({ top: 10 })
+        Button('Click to change locally !')
+          .width(288)
+          .height(40)
+          .margin({ left: 30, top: 12 })
+          .fontColor('#FFFFFF，90%')
           .onClick(() => {
             this.customCounter2++
           })
-      }.height(100).width(180)
+      }
 
       Row() {
-        Text(`Custom Local: ${this.customCounter2}`).width(90).height(40).fontColor('#FF0010')
+        Text(`Custom Local: ${this.customCounter2}`).fontColor('#ff6b6565').margin({ left: -110, top: 12 })
       }
     }
   }
@@ -540,19 +586,23 @@ struct MainProgram {
     Column() {
       Row() {
         Column() {
-          Button('Click to change number').width(480).height(60).margin({ top: 10, bottom: 10 })
-            .onClick(() => {
-              this.mainCounter++
-            })
+          // customCounter必须从父组件初始化，因为MyComponent的customCounter成员变量缺少本地初始化；此处，customCounter2可以不做初始化。
+          MyComponent({ customCounter: this.mainCounter })
+          // customCounter2也可以从父组件初始化，父组件初始化的值会覆盖子组件customCounter2的本地初始化的值
+          MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
         }
       }
 
       Row() {
         Column() {
-          // customCounter必须从父组件初始化，因为MyComponent的customCounter成员变量缺少本地初始化；此处，customCounter2可以不做初始化。
-          MyComponent({ customCounter: this.mainCounter })
-          // customCounter2也可以从父组件初始化，父组件初始化的值会覆盖子组件customCounter2的本地初始化的值
-          MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
+          Button('Click to change number')
+            .width(288)
+            .height(40)
+            .margin({ left: 30, top: 12 })
+            .fontColor('#FFFFFF，90%')
+            .onClick(() => {
+              this.mainCounter++
+            })
         }
       }
     }
@@ -599,15 +649,26 @@ struct Parent {
 
   build() {
     Column() {
-      Button('change ClassB name')
-        .onClick(() => {
-          this.votes.name = "aaaaa"
-        })
-      Button('change ClassA title')
-        .onClick(() => {
-          this.votes.a.title = "wwwww"
-        })  
-      Child({ vote: this.votes })
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+        Button('change ClassB name')
+          .width(312)
+          .height(40)
+          .margin(12)
+          .fontColor('#FFFFFF，90%')
+          .onClick(() => {
+            this.votes.name = "aaaaa"
+          })
+        Button('change ClassA title')
+          .width(312)
+          .height(40)
+          .margin(12)
+          .fontColor('#FFFFFF，90%')
+          .onClick(() => {
+            this.votes.a.title = "wwwww"
+          })
+        Child({ vote: this.votes })
+      }
+
     }
 
   }
@@ -616,18 +677,34 @@ struct Parent {
 @Component
 struct Child {
   @Prop vote: ClassB = new ClassB('', new ClassA(''));
+
   build() {
     Column() {
 
-      Text(this.vote.name).fontSize(36).fontColor(Color.Red).margin(50)
+      Text(this.vote.name)
+        .fontSize(16)
+        .margin(12)
+        .width(312)
+        .height(40)
+        .backgroundColor('#ededed')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
+        .fontColor('#e6000000')
         .onClick(() => {
           this.vote.name = 'Bye'
         })
-      Text(this.vote.a.title).fontSize(36).fontColor(Color.Blue)
+      Text(this.vote.a.title)
+        .fontSize(16)
+        .margin(12)
+        .width(312)
+        .height(40)
+        .backgroundColor('#ededed')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
         .onClick(() => {
           this.vote.a.title = "openHarmony"
         })
-      Child1({vote1:this.vote.a})
+      Child1({ vote1: this.vote.a })
 
     }
   }
@@ -636,9 +713,17 @@ struct Child {
 @Component
 struct Child1 {
   @Prop vote1: ClassA = new ClassA('');
+
   build() {
     Column() {
-      Text(this.vote1.title).fontSize(36).fontColor(Color.Red).margin(50)
+      Text(this.vote1.title)
+        .fontSize(16)
+        .margin(12)
+        .width(312)
+        .height(40)
+        .backgroundColor('#ededed')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
         .onClick(() => {
           this.vote1.title = 'Bye Bye'
         })
@@ -649,9 +734,113 @@ struct Child1 {
 
 ![Video-prop-UsageScenario-three](figures/Video-prop-UsageScenario-three.gif)
 
+### 装饰Map类型变量
+
+\@Prop支持Map类型，在下面的示例中，value类型为Map<number, string>，点击Button改变message的值，视图会随之刷新。
+
+```ts
+@Component
+struct Child {
+  @Prop value: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+
+  build() {
+    Column(){
+      ForEach(Array.from(this.value.entries()), (item: [number, string]) => {
+        Text(`${item[0]}`).fontSize(30)
+        Text(`${item[1]}`).fontSize(30)
+        Divider()
+      })
+      Button('child init map').onClick(() =>{
+        this.value = new Map([[0, "a"], [1, "b"], [3, "c"]])
+      })
+      Button('child set new one').onClick(() =>{
+        this.value.set(4, "d")
+      })
+      Button('child clear').onClick(() =>{
+        this.value.clear()
+      })
+      Button('child replace the first one').onClick(() =>{
+        this.value.set(0, "aa")
+      })
+      Button('child delete the first one').onClick(() =>{
+        this.value.delete(0)
+      })
+    }
+  }
+}
+
+
+@Entry
+@Component
+struct MapSample2 {
+  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+
+  build() {
+    Row() {
+      Column() {
+        Child({value:this.message})
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### 装饰Set类型变量
+
+\@Prop支持Set类型，在下面的示例中，message类型为Set<number>，点击Button改变message的值，视图会随之刷新。
+
+```ts
+@Component
+struct Child {
+  @Prop message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+
+  build() {
+    Column() {
+      ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        Text(`${item[0]}`).fontSize(30)
+        Divider()
+      })
+      Button('init set').onClick(() =>{
+        this.message = new Set([0, 1, 2 ,3,4 ])
+      })
+      Button('set new one').onClick(() =>{
+        this.message.add(5)
+      })
+      Button('clear').onClick(() =>{
+        this.message.clear()
+      })
+      Button('delete the first one').onClick(() =>{
+        this.message.delete(0)
+      })
+    }
+    .width('100%')
+  }
+}
+
+
+
+@Entry
+@Component
+struct SetSample11 {
+  @State message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+
+  build() {
+    Row() {
+      Column() {
+        Child({message:this.message})
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ## Prop支持联合类型实例
 
-@Prop支持联合类型和undefined和null，在下面的示例中，count类型为ClassA | undefined，点击父组件Library中的Button改变count的属性或者类型，Child中也会对应刷新。
+@Prop支持联合类型和undefined和null，在下面的示例中，animal类型为Animals | undefined，点击父组件Zoo中的Button改变animal的属性或者类型，Child中也会对应刷新。
 
 ```ts
 class Animals {
@@ -688,7 +877,7 @@ struct Child {
 
 @Entry
 @Component
-struct Library {
+struct Zoo {
   @State animal: Animals | undefined = new Animals("lion");
 
   build() {

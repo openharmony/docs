@@ -94,7 +94,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
    >
    > When [terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) is called to stop the **UIAbility** instance, the snapshot of the instance is retained by default. That is, the mission corresponding to the instance is still displayed in Recents. If you do not want to retain the snapshot, set **removeMissionAfterTerminate** under the [abilities](../quick-start/module-configuration-file.md#abilities) tag to **true** in the [module.json5 file](../quick-start/module-configuration-file.md) of the corresponding UIAbility.
 
-4. To stop all UIAbility instances of the application, call [killProcessBySelf()](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses) of [ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md).
+4. To stop all UIAbility instances of the application, call [killAllProcesses()](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses) of [ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md).
 
 
 ## Starting UIAbility in the Same Application and Obtaining the Return Result
@@ -397,7 +397,8 @@ The window mode is specified by the **windowMode** field in the [StartOptions](.
 The following describes how to start the FuncAbility from the EntryAbility page and display it in floating window mode.
 
 1. Add the [StartOptions](../reference/apis/js-apis-app-ability-startOptions.md) parameter in [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
-2. Set the **windowMode** field in the [StartOptions](../reference/apis/js-apis-app-ability-startOptions.md) parameter to **WINDOW_MODE_FLOATING**.
+2. Set the **windowMode** field in the [StartOptions](../reference/apis/js-apis-app-ability-startOptions.md) parameter to **WINDOW_MODE_FLOATING**. This setting applies only to a system application.
+3. In the case of a third-party application, set the **displayId** field instead.
 
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -783,7 +784,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
    The **UIAbilityContext** attribute implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **UIAbilityContext**, uses **startAbilityByCall** to start the CalleeAbility, obtain the caller object, and register the **onRelease** listener of the CallerAbility. You need to implement processing based on service requirements.
    
    
-      ```ts
+   ```ts
       import UIAbility from '@ohos.app.ability.UIAbility';
       import { Caller } from '@ohos.app.ability.UIAbility';
       import { BusinessError } from '@ohos.base';
@@ -824,5 +825,5 @@ For the CalleeAbility, implement the callback to receive data and the methods to
           }
         }
       }
-      ```
+   ```
 

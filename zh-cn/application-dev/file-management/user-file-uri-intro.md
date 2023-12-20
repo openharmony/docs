@@ -230,3 +230,68 @@ try {
   }
 }
 ```
+## 通过uri复制文件
+
+用户复制文件到指定目录
+
+1. 通过[createFileAccessHelper](../reference/apis/js-apis-fileAccess.md#fileaccesscreatefileaccesshelper)创建fileAccessHelper helper。
+
+2. 获取源文件的srcUri。
+
+3. 获取目的路径的destUri。
+
+4. 获取备用名 fileName。
+
+5. 使用helper.[copyFile](../reference/apis/js-apis-fileAccess.md#copyfile11)(srcUri, destUri, fileName) 进行文件操作。
+
+复制文件代码示例：
+
+```
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
+import fileAccess from '@ohos.file.fileAccess';
+
+async example() {
+    let fileAccessHelper: fileAccess.FileAccessHelper;
+    // wantInfos 从getFileAccessAbilityInfo()获取
+    let wantInfos: Array<Want> = [
+      {
+        bundleName: "com.ohos.UserFile.ExternalFileManager",
+        abilityName: "FileExtensionAbility",
+      },
+    ]
+    try {
+      // context 是EntryAbility 传过来的context
+      let context = getContext(this) as common.UIAbilityContext;
+      fileAccessHelper = fileAccess.createFileAccessHelper(context, wantInfos);
+      if (!fileAccessHelper) {
+        console.error("createFileAccessHelper interface returns an undefined object");
+      }
+      // 以内置存储目录为例
+      // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
+      // 开发者应根据自己实际获取的uri进行开发
+      let sourceUri: string = "file://docs/storage/Users/currentUser/Download/one.txt";
+      // 将文件复制到的位置uri
+      let destUri: string = "file://docs/storage/Users/currentUser/Documents";
+      // 如果文件名冲突，要使用的文件名
+      let displayName: string = "file1.txt";
+      // 存放返回的uri
+      let fileUri: string;
+      try {
+        // 复制文件返回该文件的uri
+        fileUri = await fileAccessHelper.copyFile(sourceUri, destUri, displayName);
+        if (!fileUri) {
+          console.error("copyFile return undefined object");
+        }
+        console.log("copyFile success, fileUri: " + JSON.stringify(fileUri));
+      } catch (err) {
+        let error: BusinessError = err as BusinessError;
+        console.error("copyFile failed, errCode:" + error.code + ", errMessage:" + error.message);
+      }
+    } catch (err) {
+      let error: BusinessError = err as BusinessError;
+      console.error("createFileAccessHelper failed, errCode:" + error.code + ", errMessage:" + error.message);
+    }
+  }
+```

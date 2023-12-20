@@ -819,7 +819,7 @@ class MyDataSource extends BasicDataSource {
   }
   
   public changeData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
+    this.dataArray.splice(index, 1, data);
     this.notifyDataChange(index);
   }
 }
@@ -1493,7 +1493,7 @@ struct ChildComponent {
     message: string;
     imgSrc: Resource;
     constructor(message: string, imgSrc: Resource) {
-      this.message = message;
+        this.message = message;
         this.imgSrc = imgSrc;
     }  
   }
@@ -1627,7 +1627,7 @@ struct ChildComponent {
     message: string;
     imgSrc: Resource;
     constructor(message: string, imgSrc: Resource) {
-      this.message = message;
+        this.message = message;
         this.imgSrc = imgSrc;
     }  
   }

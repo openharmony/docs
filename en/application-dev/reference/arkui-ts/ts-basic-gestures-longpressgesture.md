@@ -25,10 +25,14 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 | Name| Description|
 | -------- | -------- |
 | onAction(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when a long press gesture is recognized.|
-| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the finger used for a long press gesture is lift.|
-| onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after a long press gesture is recognized.|
+| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the finger used for the long press gesture is lift.|
+| onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after the long press gesture is recognized.|
 
+## Attributes
 
+| Name| Type   |Description                                       |
+| ----  | ------  | ---------------------------------------- |
+| tag<sup>11+</sup>   | string  | Tag for the long press gesture. It is used to distinguish the gesture during custom gesture recognition.|
 ## Example
 
 ```ts

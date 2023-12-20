@@ -1,4 +1,4 @@
-# Media Query (mediaquery)
+# MediaQuery (@ohos.mediaquery)
 
 
 ## Overview
@@ -25,14 +25,14 @@ Use the **matchMediaSync** API to set the media query condition and save the ret
 
 
 ```ts
-let listener:mediaquery = mediaquery.matchMediaSync('(orientation: landscape)');
+let listener: mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)');
 ```
 
 Register the **onPortrait** callback using the saved listener, and change the page layout or implement service logic in the callback. When the media query condition is matched, the callback is triggered. The sample code is as follows:
 
 
 ```ts
-onPortrait(mediaQueryResult:mediaquery) {
+onPortrait(mediaQueryResult: mediaquery.MediaQueryResult) {
   if (mediaQueryResult.matches as boolean) {
     // do something here
   } else {
@@ -62,7 +62,7 @@ Examples are as follows:
 
 - **screen and (round-screen: true)**: The query is valid when the device screen is round.
 
-- **(max-height: 800)**: The query is valid when the height is less than or equal to 800.
+- **(max-height: 800vp)**: The query is valid when the height is less than or equal to 800.
 
 - **(height &lt;= 800)**: The query is valid when the height is less than or equal to 800. (The logical operators are recommended when the media features are uncertain.)
 

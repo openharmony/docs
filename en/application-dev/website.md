@@ -14,25 +14,24 @@
       - Multi-HAP Mechanism
         - [Multi-HAP Design Objectives](quick-start/multi-hap-objective.md)
         - [Multi-HAP Build View](quick-start/multi-hap-build-view.md)
-        - [Multi-HAP Development, Debugging, Release, and Deployment Process](quick-start/multi-hap-release-deployment.md)
+        - [Multi-HAP Development, Debugging, Release, and Deployment](quick-start/multi-hap-release-deployment.md)
         - [Multi-HAP Usage Rules](quick-start/multi-hap-rules.md)
         - [Multi-HAP Operation Mechanism and Data Communication Modes](quick-start/multi-hap-principles.md)
-      - [Application Installation and Uninstallation Process](quick-start/application-package-install-uninstall.md)
-      - [Application Package Update Process](quick-start/application-package-update.md)
+      - [Application Installation and Uninstallation](quick-start/application-package-install-uninstall.md)
+      - [Application Package Update](quick-start/application-package-update.md)
       - Shared Package
         - [Shared Package Overview](quick-start/shared-guide.md)
         - [HAR](quick-start/har-package.md)
-        - HSP
-          - [In-Application HSP Development](quick-start/in-app-hsp.md)
+        - [HSP](quick-start/in-app-hsp.md)        
       - Quick Fix
         - [Quick Fix Overview](quick-start/quickfix-principles.md)
         - [CLI-based Quick Fix Development](quick-start/quickfix-debug.md)
     - Application Configuration Files in Stage Model
-      - [Application Configuration File Overview (Stage Model)](quick-start/application-configuration-file-overview-stage.md)
+      - [Application Configuration Files (Stage Model)](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5 Configuration File](quick-start/app-configuration-file.md)
       - [module.json5 Configuration File](quick-start/module-configuration-file.md)
     - Application Configuration Files in FA Model
-      - [Application Configuration File Overview (FA Model)](quick-start/application-configuration-file-overview-fa.md)
+      - [Application Configuration Files (FA Model)](quick-start/application-configuration-file-overview-fa.md)
       - [Internal Structure of the app Tag](quick-start/app-structure.md)
       - [Internal Structure of the deviceConfig Tag](quick-start/deviceconfig-structure.md)
       - [Internal Structure of the module Tag](quick-start/module-structure.md)
@@ -43,6 +42,7 @@
     - TypeScript to ArkTS Migration Guide
       - [ArkTS Migration Background](quick-start/arkts-migration-background.md)
       - [TypeScript to ArkTS Cookbook](quick-start/typescript-to-arkts-migration-guide.md)
+      - [Adaptation Cases](quick-start/arkts-more-cases.md)
     - UI Paradigm
       - Basic Syntax
         - [Basic Syntax Overview](quick-start/arkts-basic-syntax-overview.md)
@@ -77,7 +77,6 @@
         - [MVVM](quick-start/arkts-mvvm.md)
         - [Best Practices for State Management](quick-start/arkts-state-management-best-practices.md)
       - Rendering Control
-        - [Overview of Rendering Control](quick-start/arkts-rendering-control-overview.md)
         - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
         - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
@@ -259,7 +258,7 @@
           - [Flex Layout (Flex)](ui/arkts-layout-development-flex-layout.md)
           - [Relative Layout (RelativeContainer)](ui/arkts-layout-development-relative-layout.md)
           - [Responsive Grid Layout (GridRow/GridCol)](ui/arkts-layout-development-grid-layout.md)
-          - [Media Query (mediaquery)](ui/arkts-layout-development-media-query.md)
+          - [Media Query (@ohos.mediaquery)](ui/arkts-layout-development-media-query.md)
           - [Creating a List (List)](ui/arkts-layout-development-create-list.md)
           - [Creating a Grid (Grid/GridItem)](ui/arkts-layout-development-create-grid.md)
           - [Creating a Swiper (Swiper)](ui/arkts-layout-development-create-looping.md)
@@ -278,10 +277,10 @@
           - [Popup](ui/arkts-popup-and-menu-components-popup.md)
           - [Menu](ui/arkts-popup-and-menu-components-menu.md)
       - Setting Page Routing and Component Navigation
-        - [Page Routing (router)](ui/arkts-routing.md)
         - Component Navigation
           - [Navigation](ui/arkts-navigation-navigation.md)
           - [Tabs](ui/arkts-navigation-tabs.md)
+        - [Page Routing (@ohos.router)](ui/arkts-routing.md)
       - Using Graphics
         - [Displaying Images (Image)](ui/arkts-graphics-display.md)
         - [Drawing Geometric Shapes (Shape)](ui/arkts-geometric-shape-drawing.md)
@@ -1449,6 +1448,7 @@
       - [OffscreenCanvasRenderingContext2D](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
       - [Path2D](reference/arkui-ts/ts-components-canvas-path2d.md)
     - Advanced Components
+      - [@ohos.arkui.advanced.Counter (Counter)](reference/arkui-ts/ohos-arkui-advanced-counter.md)
       - [@ohos.multimedia.avCastPicker (AVCastPicker)](reference/arkui-ts/ohos-multimedia-avcastpicker.md)
     - Security Components
       - [Security Component Universal Attributes](reference/arkui-ts/ts-securitycomponent-attributes.md)
@@ -1456,23 +1456,24 @@
       - [PasteButton](reference/arkui-ts/ts-security-components-pastebutton.md)
       - [SaveButton](reference/arkui-ts/ts-security-components-savebutton.md)
     - Animation
-      - [AnimatorProperty](reference/arkui-ts/ts-animatorproperty.md)
-      - [Explicit Animation](reference/arkui-ts/ts-explicit-animation.md)
+      - [Property Animation (animation)](reference/arkui-ts/ts-animatorproperty.md)
+      - [Explicit Animation (animateTo)](reference/arkui-ts/ts-explicit-animation.md)
       - Transition Animation
-        - [Page Transition](reference/arkui-ts/ts-page-transition-animation.md)
-        - [Component Transition](reference/arkui-ts/ts-transition-animation-component.md)
-        - [Transition of Shared Elements](reference/arkui-ts/ts-transition-animation-shared-elements.md)
-        - [Implicit Shared Element Transition](reference/arkui-ts/ts-transition-animation-geometrytransition.md)
-      - [Motion Path Animation](reference/arkui-ts/ts-motion-path-animation.md)
+        - [Page Transition (pageTransition)](reference/arkui-ts/ts-page-transition-animation.md)
+        - [Component Transition (transition)](reference/arkui-ts/ts-transition-animation-component.md)
+        - [Transition of Shared Elements (sharedTransition)]](reference/arkui-ts/ts-transition-animation-shared-elements.md)
+        - [Implicit Shared Element Transition (geometryTransition)](reference/arkui-ts/ts-transition-animation-geometrytransition.md)
+      - [Motion Path Animation (motionPath)](reference/arkui-ts/ts-motion-path-animation.md)
+      - [Particle Animation (Particle)](reference/arkui-ts/ts-particle-animation.md)
     - Global UI Methods
       - Pop-up Window
-        - [Alert Dialog Box](reference/arkui-ts/ts-methods-alert-dialog-box.md)
-        - [Action Sheet](reference/arkui-ts/ts-methods-action-sheet.md)
-        - [Custom Dialog Box](reference/arkui-ts/ts-methods-custom-dialog-box.md)
-        - [Calendar Picker Dialog Box](reference/arkui-ts/ts-methods-calendarpicker-dialog.md)
-        - [Date Picker Dialog Box](reference/arkui-ts/ts-methods-datepicker-dialog.md)
-        - [Time Picker Dialog Box](reference/arkui-ts/ts-methods-timepicker-dialog.md)
-        - [Text Picker Dialog Box](reference/arkui-ts/ts-methods-textpicker-dialog.md)
+        - [Alert Dialog Box (AlertDialog)](reference/arkui-ts/ts-methods-alert-dialog-box.md)
+        - [Action Sheet (ActionSheet)](reference/arkui-ts/ts-methods-action-sheet.md)
+        - [Custom Dialog Box (CustomDialog)](reference/arkui-ts/ts-methods-custom-dialog-box.md)
+        - [Calendar Picker Dialog Box (CalendarPickerDialog)](reference/arkui-ts/ts-methods-calendarpicker-dialog.md)
+        - [Date Picker Dialog Box (DatePickerDialog)](reference/arkui-ts/ts-methods-datepicker-dialog.md)
+        - [Time Picker Dialog Box (TimePickerDialog)](reference/arkui-ts/ts-methods-timepicker-dialog.md)
+        - [Text Picker Dialog Box (TextPickerDialog)](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [Menu](reference/arkui-ts/ts-methods-menu.md)
     - [Custom Component Lifecycle](reference/arkui-ts/ts-custom-component-lifecycle.md)
     - [State Management with Application-level Variables](reference/arkui-ts/ts-state-management.md)

@@ -91,7 +91,7 @@ Typically, the call event is triggered for touching of buttons. Below is an exam
         });
         this.callee.on('funB', (data: rpc.MessageSequence) => {
           // Obtain all parameters passed in the call event.
-          console.info('FunACall param:' + JSON.stringify(data.readString()));
+          console.info('FunBCall param:' + JSON.stringify(data.readString()));
           return new MyParcelable(2, 'bbb');
         });
       } catch (err) {

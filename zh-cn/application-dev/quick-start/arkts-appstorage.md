@@ -81,7 +81,7 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 \@StorageLink(key)是和AppStorage中key对应的属性建立双向数据同步：
 
-1. 本地修改发生，该修改会被回AppStorage中；
+1. 本地修改发生，该修改会被写回AppStorage中；
 
 2. AppStorage中的修改发生后，该修改会被同步到所有绑定AppStorage对应key的属性上，包括单向（\@StorageProp和通过Prop创建的单向绑定变量）、双向（\@StorageLink和通过Link创建的双向绑定变量）变量和其他实例（比如PersistentStorage）。
 
@@ -198,7 +198,7 @@ struct CompA {
 
 不建议开发者使用@StorageLink和AppStorage的双向同步的机制来实现事件通知，AppStorage是和UI相关的数据存储，改变会带来UI的刷新，相对于一般的事件通知，UI刷新的成本较大。
 
-TapImage中的点击事件，会触发AppStorage中tapIndex对应属性的改变。因为@StorageLink是双向同步，修改会同步会AppStorage中，所以，所有绑定AppStorage的tapIndex自定义组件都会被通知UI刷新。UI刷新带来的成本是巨大的，因此不建议开发者使用此方式来实现基本的事件通知功能。
+TapImage中的点击事件，会触发AppStorage中tapIndex对应属性的改变。因为@StorageLink是双向同步，修改会同步回AppStorage中，所以，所有绑定AppStorage的tapIndex自定义组件都会被通知UI刷新。UI刷新带来的成本是巨大的，因此不建议开发者使用此方式来实现基本的事件通知功能。
 
 
 ```ts

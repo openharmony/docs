@@ -5,15 +5,11 @@
 
 定义图像源解码选项。 此选项给[OH_ImageSource_CreatePixelMap](image.md#oh_imagesource_createpixelmap)和[OH_ImageSource_CreatePixelMapList](image.md#oh_imagesource_createpixelmaplist)这两个接口使用。
 
-\@Syscap SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-**相关模块：**
-
-[Image](image.md)
+**相关模块：** [Image](image.md)
 
 
 ## 汇总

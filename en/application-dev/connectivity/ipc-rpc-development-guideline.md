@@ -175,7 +175,7 @@ Table 1 Native IPC APIs
    sptr<TestAbilityProxy> proxy(new TestAbilityProxy(remoteObject)); // Construct a proxy.
    ```
 
-### **Using JS APIs**
+### **Using ArkTS APIs**
 
 1. Add dependencies.
 
@@ -299,7 +299,7 @@ Table 1 Native IPC APIs
 
 3. Process requests sent from the client.
 
-   Call the **onConnect** API to return a proxy object inherited from **rpc.RemoteObject** after the ability is successfully bound. Implement the **onRemoteMessageRequest** API for the proxy object to process requests sent from the client.
+   Call the **onConnect** API to return a proxy object inherited from [rpc.RemoteObject](../reference/apis/js-apis-rpc.md#remoteobject) after the ability is successfully bound. Implement the [onRemoteMessageRequest](../reference/apis/js-apis-rpc.md#onremotemessagerequest9) API for the proxy object to process requests sent from the client.
 
    ```ts
     import rpc from '@ohos.rpc';
@@ -322,7 +322,7 @@ Table 1 Native IPC APIs
 
 4. Process responses sent from the server.
 
-   Obtain the proxy object from the **onConnect** callback, call **sendRequest** to send a request, and receive the response using a callback or a promise (an object representing the eventual completion or failure of an asynchronous operation and its result value).
+   Receive the proxy object in the **onConnect** callback, call [sendMessageRequest](../reference/apis/js-apis-rpc.md#sendmessagerequest9-2) to send a request, and receive the response using a callback or a promise (an object representing the eventual completion or failure of an asynchronous operation and its result value).
 
    ```ts
     import rpc from '@ohos.rpc';

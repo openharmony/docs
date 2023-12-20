@@ -11,16 +11,20 @@
 
 CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number, maskColor?: ResourceColor, maskRect?: Rectangle, openAnimation?: AnimateParam, closeAnimation?: AnimateParam, showInSubWindow?: boolean, backgroundColor?:ResourceColor, cornerRadius?:Dimension&nbsp;\|&nbsp;BorderRadiuses})
 
+> **说明：**
+>
+> 自定义弹窗的所有参数，不支持动态刷新。
+
 **参数:**
 
 | 参数名                           | 参数类型                                     | 必填   | 参数描述                                     |
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | builder                       | CustomDialog                             | 是    | 自定义弹窗内容构造器。                              |
-| cancel                        | ()&nbsp;=&gt;&nbsp;void                  | 否    | 点击遮障层退出时的回调。                             |
+| cancel                        | ()&nbsp;=&gt;&nbsp;void                  | 否    | 返回、ESC键和点击遮障层弹窗退出时的回调。 |
 | autoCancel                    | boolean                                  | 否    | 是否允许点击遮障层退出。<br>默认值：true                 |
 | alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否    | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
 | offset                        | [Offset](ts-types.md#offset)             | 否    | 弹窗相对alignment所在位置的偏移量。                   |
-| customStyle                   | boolean                                  | 否    | 弹窗容器样式是否自定义。<br>默认值：false，弹窗容器的宽度根据栅格系统自适应，不跟随子节点；高度自适应子节点，最大为窗口高度的90%；圆角为24vp。 |
+| customStyle                   | boolean                                  | 否    | 弹窗容器样式是否自定义。<br>默认值：false，弹窗容器的宽度根据栅格系统自适应，不跟随子节点；高度自适应子节点，最大为窗口高度的90%；圆角为24vp。<br>设置为true时，宽度跟随子节点自适应，圆角为0，弹窗背景色为透明色。 |
 | gridCount<sup>8+</sup>        | number                                   | 否    | 弹窗宽度占[栅格宽度](../../ui/arkts-layout-development-grid-layout.md)的个数。<br>默认为按照窗口大小自适应，异常值按默认值处理，最大栅格数为系统最大栅格数。 |
 | maskColor<sup>10+</sup>       | [ResourceColor](ts-types.md#resourcecolor) | 否    | 自定义蒙层颜色。<br>默认值: 0x33000000              |
 | maskRect<sup>10+</sup>        | [Rectangle](ts-methods-alert-dialog-box.md#rectangle10类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } |
@@ -29,7 +33,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 | showInSubWindow<sup>10+</sup> | boolean                                  | 否    | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。<br>默认值：false，在子窗口不显示弹窗。<br>**说明**：showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。 |
 | backgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)      | 否   | 设置弹窗背板填充。<br />**说明**：如果同时设置了内容构造器的背景色，则backgroundColor会被内容构造器的背景色覆盖。 |
 | cornerRadius<sup>10+</sup>    | [BorderRadiuses](ts-types.md#borderradiuses9) \| [Dimension](ts-types.md#dimension10) | 否   | 设置背板的圆角半径。<br />可分别设置4个圆角的半径。<br />默认值：{ topLeft: '24vp', topRight: '24vp', bottomLeft: '24vp', bottomRight: '24vp' }<br />**说明**：自定义弹窗默认的背板圆角半径为24vp，如果需要使用cornerRadius属性，请和[borderRadius](ts-universal-attributes-border.md)属性一起使用。 |
-| isModal<sup>11+</sup> | boolean | 否 | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层<br/>默认值：true，此时弹窗有蒙层。 |
+| isModal<sup>11+</sup> | boolean | 否 | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。 |
 
 ## CustomDialogController
 
@@ -53,15 +57,15 @@ close(): void
 
 关闭显示的自定义弹窗，若已关闭，则不生效。
 
-
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
 @CustomDialog
 struct CustomDialogExampleTwo {
   controllerTwo?: CustomDialogController
-
   build() {
     Column() {
       Text('我是第二个弹窗')
@@ -77,7 +81,6 @@ struct CustomDialogExampleTwo {
     }
   }
 }
-
 @CustomDialog
 struct CustomDialogExample {
   @Link textValue: string
@@ -130,7 +133,6 @@ struct CustomDialogExample {
     // 如果需要使用border属性或cornerRadius属性，请和borderRadius属性一起使用。
   }
 }
-
 @Entry
 @Component
 struct CustomDialogUser {
@@ -143,18 +145,90 @@ struct CustomDialogUser {
       textValue: $textValue,
       inputValue: $inputValue
     }),
-    cancel: this.existApp,
+    cancel: this.exitApp,
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -20 },
+    gridCount: 4,
+    customStyle: false,
+    cornerRadius: 10,
+  })
+
+  // 在自定义组件即将析构销毁时将dialogControlle置空
+  aboutToDisappear() {
+    this.dialogController = null // 将dialogController置空
+  }
+
+  onCancel() {
+    console.info('Callback when the first button is clicked')
+  }
+
+  onAccept() {
+    console.info('Callback when the second button is clicked')
+  }
+
+  exitApp() {
+    console.info('Click the callback in the blank area')
+  }
+  build() {
+    Column() {
+      Button(this.inputValue)
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.dialogController.open()
+          }
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![zh-cn_image_custom](figures/zh-cn_image_custom.gif)
+
+### 示例2
+
+```ts
+// xxx.ets
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController
+  cancel: () => void = () => {
+  }
+  confirm: () => void = () => {
+  }
+  build() {
+    Column() {
+      Text('可展示在主窗口外的弹窗')
+        .fontSize(30)
+        .height(100)
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.controller != undefined) {
+            this.controller.close()
+          }
+        })
+        .margin(20)
+    }
+  }
+}
+@Entry
+@Component
+struct CustomDialogUser {
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample({
+      cancel: this.onCancel,
+      confirm: this.onAccept
+    }),
+    cancel: this.existApp,
+    autoCancel: true,
+    alignment: DialogAlignment.Center,
     offset: { dx: 0, dy: -20 },
     gridCount: 4,
     showInSubWindow: true,
     isModal: true,
     customStyle: false,
-    backgroundColor: 0xd9ffffff,
     cornerRadius: 10,
   })
-
   // 在自定义组件即将析构销毁时将dialogControlle置空
   aboutToDisappear() {
     this.dialogController = null // 将dialogController置空
@@ -174,7 +248,7 @@ struct CustomDialogUser {
 
   build() {
     Column() {
-      Button(this.inputValue)
+      Button('click me')
         .onClick(() => {
           if (this.dialogController != null) {
             this.dialogController.open()
@@ -185,4 +259,4 @@ struct CustomDialogUser {
 }
 ```
 
-![zh-cn_image_custom](figures/zh-cn_image_custom.gif)
+![zh-cn_image_custom-showinsubwindow](figures/zh-cn_image_custom-showinsubwindow.jpg)

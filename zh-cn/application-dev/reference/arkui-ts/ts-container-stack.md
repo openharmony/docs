@@ -30,7 +30,7 @@ Stack(value?: { alignContent?: Alignment })
 
 | 名称         | 参数类型                                    | 描述                                                         |
 | ------------ | ------------------------------------------- | ------------------------------------------------------------ |
-| alignContent | [Alignment](ts-appendix-enums.md#alignment) | 设置子组件在容器内的对齐方式。<br/>默认值：Alignment.Center<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>该属性与[通用属性align](ts-universal-attributes-location.md)同时设置时，后设置的属性生效。 |
+| alignContent | [Alignment](ts-appendix-enums.md#alignment) | 设置所有子组件在容器内的对齐方式。<br/>默认值：Alignment.Center<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>该属性与[通用属性align](ts-universal-attributes-location.md)同时设置时，后设置的属性生效。 |
 
 
 ## 示例

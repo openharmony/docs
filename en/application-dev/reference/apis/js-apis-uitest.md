@@ -167,7 +167,7 @@ All APIs provided in the **On** class are synchronous. You are advised to use th
 
 ```ts
 import { ON } from '@ohos.UiTest';
-ON.text('123').type('button');
+ON.text('123').type('Button');
 ```
 
 ### text<sup>9+</sup>
@@ -194,8 +194,8 @@ Specifies the text attribute of the target component. Multiple match patterns ar
 **Example**
 
 ```ts
-import { ON } from '@ohos.UiTest';
-let on = ON.text('123'); // Use the static constructor ON to create an On object and specify the text attribute of the target component.
+import { On, ON } from '@ohos.UiTest';
+let on:On = ON.text('123'); // Use the static constructor ON to create an On object and specify the text attribute of the target component.
 ```
 
 ### id<sup>9+</sup>
@@ -221,8 +221,8 @@ Specifies the ID attribute of the target component.
 **Example**
 
 ```ts
-import { ON } from '@ohos.UiTest';
-let on = ON.id('123'); // Use the static constructor ON to create an On object and specify the ID attribute of the target component.
+import { On, ON } from '@ohos.UiTest';
+let on:On = ON.id('123'); // Use the static constructor ON to create an On object and specify the id attribute of the target component.
 ```
 
 
@@ -249,8 +249,8 @@ Specifies the type attribute of the target component.
 **Example**
 
 ```ts
-import { ON } from '@ohos.UiTest';
-let on = ON.type('button'); // Use the static constructor ON to create an On object and specify the type attribute of the target component.
+import { On, ON } from '@ohos.UiTest';
+let on:On = ON.type('Button'); // Use the static constructor ON to create an On object and specify the type attribute of the target component.
 ```
 
 
@@ -258,7 +258,7 @@ let on = ON.type('button'); // Use the static constructor ON to create an On obj
 
 clickable(b?: boolean): On
 
-Specifies the clickable status attribute of the target component.
+Specifies the clickable attribute of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -272,20 +272,20 @@ Specifies the clickable status attribute of the target component.
 
 | Type      | Description                                      |
 | ---------- | ------------------------------------------ |
-| [On](#on9) | **On** object that matches the clickable status attribute of the target component.|
+| [On](#on9) | **On** object that matches the clickable attribute of the target component.|
 
 **Example**
 
 ```ts
-import { ON } from '@ohos.UiTest';
-let on = ON.clickable(true); // Use the static constructor ON to create an On object and specify the clickable status attribute of the target component.
+import { On, ON } from '@ohos.UiTest';
+let on:On = ON.clickable(true); // Use the static constructor ON to create an On object and specify the clickable attribute of the target component.
 ```
 
 ### longClickable<sup>9+</sup>
 
 longClickable(b?: boolean): On
 
-Specifies the long-clickable status attribute of the target component.
+Specifies the long-clickable attribute of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -299,13 +299,13 @@ Specifies the long-clickable status attribute of the target component.
 
 | Type      | Description                                          |
 | ---------- | ---------------------------------------------- |
-| [On](#on9) | **On** object that matches the long-clickable status attribute of the target component.|
+| [On](#on9) | **On** object that matches the long-clickable attribute of the target component.|
 
 **Example**
 
 ```ts
-import { ON } from '@ohos.UiTest';
-let on = ON.longClickable(true); // Use the static constructor ON to create an On object and specify the long-clickable status attribute of the target component.
+import { On, ON } from '@ohos.UiTest';
+let on:On = ON.longClickable(true); // Use the static constructor ON to create an On object and specify the longClickable attribute of the target component.
 ```
 
 
@@ -313,7 +313,7 @@ let on = ON.longClickable(true); // Use the static constructor ON to create an O
 
 scrollable(b?: boolean): On
 
-Specifies the scrollable status attribute of the target component.
+Specifies the scrollable attribute of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -327,20 +327,20 @@ Specifies the scrollable status attribute of the target component.
 
 | Type      | Description                                      |
 | ---------- | ------------------------------------------ |
-| [On](#on9) | **On** object that matches the scrollable status attribute of the target component.|
+| [On](#on9) | **On** object that matches the scrollable attribute of the target component.|
 
 **Example**
 
 ```ts
-import { ON } from '@ohos.UiTest';
-let on = ON.scrollable(true); // Use the static constructor ON to create an On object and specify the scrollable status attribute of the target component.
+import { On, ON } from '@ohos.UiTest';
+let on:On = ON.scrollable(true); // Use the static constructor ON to create an On object and specify the scrollable attribute of the target component.
 ```
 
 ### enabled<sup>9+</sup>
 
 enabled(b?: boolean): On
 
-Specifies the enabled status attribute of the target component.
+Specifies the enabled attribute of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -354,20 +354,20 @@ Specifies the enabled status attribute of the target component.
 
 | Type      | Description                                    |
 | ---------- | ---------------------------------------- |
-| [On](#on9) | **On** object that matches the enabled status attribute of the target component.|
+| [On](#on9) | **On** object that matches the enabled attribute of the target component.|
 
 **Example**
 
 ```ts
-import { ON } from '@ohos.UiTest';
-let on = ON.enabled(true); // Use the static constructor ON to create an On object and specify the enabled status attribute of the target component.
+import { On, ON } from '@ohos.UiTest';
+let on:On = ON.enabled(true); // Use the static constructor ON to create an On object and specify the enabled attribute of the target component.
 ```
 
 ### focused<sup>9+</sup>
 
 focused(b?: boolean): On
 
-Specifies the focused status attribute of the target component.
+Specifies the focused attribute of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -381,20 +381,20 @@ Specifies the focused status attribute of the target component.
 
 | Type      | Description                                    |
 | ---------- | ---------------------------------------- |
-| [On](#on9) | **On** object that matches the focused status attribute of the target component.|
+| [On](#on9) | **On** object that matches the focused attribute of the target component.|
 
 **Example**
 
 ```ts
-import { ON } from '@ohos.UiTest';
-let on = ON.focused(true); // Use the static constructor ON to create an On object and specify the focused status attribute of the target component.
+import { On, ON } from '@ohos.UiTest';
+let on:On = ON.focused(true); // Use the static constructor ON to create an On object and specify the focused attribute of the target component.
 ```
 
 ### selected<sup>9+</sup>
 
 selected(b?: boolean): On
 
-Specifies the selected status attribute of the target component.
+Specifies the selected attribute of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -408,20 +408,20 @@ Specifies the selected status attribute of the target component.
 
 | Type      | Description                                      |
 | ---------- | ------------------------------------------ |
-| [On](#on9) | **On** object that matches the selected status attribute of the target component.|
+| [On](#on9) | **On** object that matches the selected attribute of the target component.|
 
 **Example**
 
 ```ts
-import { ON } from '@ohos.UiTest';
-let on = ON.selected(true); // Use the static constructor ON to create an On object and specify the selected status attribute of the target component.
+import { On, ON } from '@ohos.UiTest';
+let on:On = ON.selected(true); // Use the static constructor ON to create an On object and specify the selected attribute of the target component.
 ```
 
 ### checked<sup>9+</sup>
 
 checked(b?: boolean): On
 
-Specifies the checked status attribute of the target component.
+Specifies the checked attribute of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -435,20 +435,20 @@ Specifies the checked status attribute of the target component.
 
 | Type      | Description                                      |
 | ---------- | ------------------------------------------ |
-| [On](#on9) | **On** object that matches the checked status attribute of the target component.|
+| [On](#on9) | **On** object that matches the checked attribute of the target component.|
 
 **Example**
 
 ```ts
-import { ON } from '@ohos.UiTest';
-let on = ON.checked(true); // Use the static constructor ON to create an On object and specify the checked status attribute of the target component.
+import { On, ON } from '@ohos.UiTest';
+let on:On = ON.checked(true); // Use the static constructor ON to create an On object and specify the checked attribute of the target component.
 ```
 
 ### checkable<sup>9+</sup>
 
 checkable(b?: boolean): On
 
-Specifies the checkable status attribute of the target component.
+Specifies the checkable attribute of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -462,13 +462,13 @@ Specifies the checkable status attribute of the target component.
 
 | Type      | Description                                        |
 | ---------- | -------------------------------------------- |
-| [On](#on9) | **On** object that matches the checkable status attribute of the target component.|
+| [On](#on9) | **On** object that matches the checkable attribute of the target component.|
 
 **Example**
 
 ```ts
-import { ON } from '@ohos.UiTest';
-let on = ON.checkable(true); // Use the static constructor ON to create an On object and specify the checkable status attribute of the target component.
+import { On, ON } from '@ohos.UiTest';
+let on:On = ON.checkable(true); // Use the static constructor ON to create an On object and specify the checkable attribute of the target component.
 ```
 
 ### isBefore<sup>9+</sup>
@@ -494,8 +494,10 @@ Specifies that the target component is located before the given attribute compon
 **Example**
 
 ```ts
-import { ON } from '@ohos.UiTest';
-let on = ON.isBefore(ON.text('123')); // Create an On object using the static constructor ON, specifying that the target component is located before the given attribute component.
+import { On, ON } from '@ohos.UiTest';
+
+// Use the static constructor ON to create an On object and specify that the target component is located before the given attribute component.
+let on:On = ON.type('Button').isBefore(ON.text('123')); // Search for the first <Button> component located before the component whose text is 123.
 ```
 
 ### isAfter<sup>9+</sup>
@@ -521,8 +523,10 @@ Specifies that the target component is located after the given attribute compone
 **Example**
 
 ```ts
-import { ON } from '@ohos.UiTest';
-let on = ON.isAfter(ON.text('123')); // Create an On object using the static constructor ON, specifying that the target component is located after the given attribute component.
+import { On, ON } from '@ohos.UiTest';
+
+// Use the static constructor ON to create an On object and specify that the target component is located after the given attribute component.
+let on:On = ON.type('Text').isAfter(ON.text('123'))  // Search for the first <Text> component located after the component whose text is 123.
 ```
 
 ### within<sup>10+</sup>
@@ -548,8 +552,9 @@ Specifies that the target component is located within the given attribute compon
 **Example**
 
 ```ts
-import { ON } from '@ohos.UiTest';
-let on = ON.within(ON.type('List')); // Create an On object using the static constructor ON, specifying that the target component is located within the given attribute component.
+import { On, ON } from '@ohos.UiTest';
+// Use the static constructor ON to create an On object and specify that the target component is located within the given attribute component.
+let on:On = ON.text('java').within(ON.type('Scroll'));  // Search for the child component whose text is 123 within the <Scroller> component.
 ```
 
 ### inWindow<sup>10+</sup>
@@ -575,8 +580,8 @@ Specifies that the target component is located within the given application wind
 **Example**
 
 ```ts
-import { ON } from '@ohos.UiTest';
-let on = ON.inWindow('com.uitestScene.acts'); // Create an On object using the static constructor ON, specifying that the target component is located within the given application window.
+import { On, ON } from '@ohos.UiTest';
+let on:On = ON.inWindow('com.uitestScene.acts'); // Use the static constructor ON to create an On object and specify that the target component is located within the given application window.
 ```
 
 ## Component<sup>9+</sup>
@@ -605,11 +610,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Driver, ON, Component } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
-    await button.click();
+  let driver:Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('Button'));
+  await button.click();
 }
 ```
 
@@ -633,11 +638,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import {Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
-    await button.doubleClick();
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('Button'));
+  await button.doubleClick();
 }
 ```
 
@@ -661,11 +666,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
-    await button.longClick();
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('Button'));
+  await button.longClick();
 }
 ```
 
@@ -695,11 +700,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
-    let num = await button.getId();
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('Button'));
+  let id = await button.getId();
 }
 ```
 
@@ -729,11 +734,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
-    let text = await button.getText();
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('Button'));
+  let text = await button.getText();
 }
 ```
 
@@ -763,11 +768,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
-    let type = await button.getType();
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('Button'));
+  let type = await button.getType();
 }
 ```
 
@@ -797,11 +802,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
-    let rect = await button.getBounds();
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('Button'));
+  let rect = await button.getBounds();
 }
 ```
 
@@ -831,11 +836,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
-    let point = await button.getBoundsCenter();
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('Button'));
+  let point = await button.getBoundsCenter();
 }
 ```
 
@@ -865,15 +870,15 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
-    if(await button.isClickable()) {
-        console.info('This button can be Clicked');
-    } else {
-        console.info('This button can not be Clicked');
-    }
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('Button'));
+  if(await button.isClickable()) {
+    console.info('This button can be Clicked');
+  } else {
+    console.info('This button can not be Clicked');
+  }
 }
 ```
 
@@ -903,15 +908,15 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
-    if(await button.isLongClickable()) {
-        console.info('This button can longClick');
-    } else {
-        console.info('This button can not longClick');
-    }
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('Button'));
+  if(await button.isLongClickable()) {
+    console.info('This button can longClick');
+  } else {
+    console.info('This button can not longClick');
+  }
 }
 ```
 
@@ -941,15 +946,15 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let checkBox = await driver.findComponent(ON.type('Checkbox'));
-    if(await checkBox.isChecked()) {
-        console.info('This checkBox is checked');
-    } else {
-        console.info('This checkBox is not checked');
-    }
+  let driver: Driver = Driver.create();
+  let checkBox: Component = await driver.findComponent(ON.type('Checkbox'));
+  if(await checkBox.isChecked()) {
+    console.info('This checkBox is checked');
+  } else {
+    console.info('This checkBox is not checked');
+  }
 }
 ```
 
@@ -979,15 +984,15 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let checkBox = await driver.findComponent(ON.type('Checkbox'));
-    if(await checkBox.isCheckable()) {
-        console.info('This checkBox is checkable');
-    } else {
-        console.info('This checkBox is not checkable');
-    }
+  let driver: Driver = Driver.create();
+  let checkBox: Component = await driver.findComponent(ON.type('Checkbox'));
+  if(await checkBox.isCheckable()) {
+    console.info('This checkBox is checkable');
+  } else {
+    console.info('This checkBox is not checkable');
+  }
 }
 ```
 
@@ -1017,15 +1022,15 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let scrollBar = await driver.findComponent(ON.scrollable(true));
-    if(await scrollBar.isScrollable()) {
-        console.info('This scrollBar can be operated');
-    } else {
-        console.info('This scrollBar can not be operated');
-    }
+  let driver: Driver = Driver.create();
+  let scrollBar: Component = await driver.findComponent(ON.scrollable(true));
+  if(await scrollBar.isScrollable()) {
+    console.info('This scrollBar can be operated');
+  } else {
+    console.info('This scrollBar can not be operated');
+  }
 }
 ```
 
@@ -1056,17 +1061,16 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
-    if(await button.isEnabled()) {
-        console.info('This button can be operated');
-    } else {
-        console.info('This button can not be operated');
-    }
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('Button'));
+  if(await button.isEnabled()) {
+    console.info('This button can be operated');
+  } else {
+    console.info('This button can not be operated');
+  }
 }
-
 ```
 
 ### isFocused<sup>9+</sup>
@@ -1095,15 +1099,15 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
-    if(await button.isFocused()) {
-        console.info('This button is focused');
-    } else {
-        console.info('This button is not focused');
-	}
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('Button'));
+  if(await button.isFocused()) {
+    console.info('This button is focused');
+  } else {
+    console.info('This button is not focused');
+  }
 }
 ```
 
@@ -1133,15 +1137,15 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
-    if(await button.isSelected()) {
-        console.info('This button is selected');
-	} else {
-        console.info('This button is not selected');
-    }
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('Button'));
+  if(await button.isSelected()) {
+    console.info('This button is selected');
+  } else {
+    console.info('This button is not selected');
+  }
 }
 ```
 
@@ -1171,11 +1175,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let text = await driver.findComponent(ON.text('hello world'));
-    await text.inputText('123');
+  let driver: Driver = Driver.create();
+  let text: Component = await driver.findComponent(ON.text('hello world'));
+  await text.inputText('123');
 }
 ```
 
@@ -1197,11 +1201,11 @@ Clears text in this component. This API is applicable to text boxes.
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let text = await driver.findComponent(ON.text('hello world'));
-    await text.clearText();
+  let driver: Driver = Driver.create();
+  let text: Component = await driver.findComponent(ON.text('hello world'));
+  await text.clearText();
 }
 ```
 
@@ -1237,11 +1241,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let scrollBar = await driver.findComponent(ON.type('Scroll'));
-    let button = await scrollBar.scrollSearch(ON.text('next page'));
+  let driver: Driver = Driver.create();
+  let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+  let button = await scrollBar.scrollSearch(ON.text('next page'));
 }
 ```
 
@@ -1271,11 +1275,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let scrollBar = await driver.findComponent(ON.type('Scroll'));
-    await scrollBar.scrollToTop();
+  let driver: Driver = Driver.create();
+  let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+  await scrollBar.scrollToTop();
 }
 ```
 
@@ -1305,11 +1309,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let scrollBar = await driver.findComponent(ON.type('Scroll'));
-    await scrollBar.scrollToBottom();
+  let driver: Driver = Driver.create();
+  let scrollBar: Component = await driver.findComponent(ON.type('Scroll'));
+  await scrollBar.scrollToBottom();
 }
 ```
 
@@ -1339,13 +1343,13 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('button'));
-    let text = await driver.findComponent(ON.text('hello world'));
-    await button.dragTo(text);
-    }
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('Button'));
+  let text: Component = await driver.findComponent(ON.text('hello world'));
+  await button.dragTo(text);
+}
 ```
 
 ### pinchOut<sup>9+</sup>
@@ -1374,12 +1378,12 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let image = await driver.findComponent(ON.type('image'));
-    await image.pinchOut(1.5);
-    }
+  let driver: Driver = Driver.create();
+  let image: Component = await driver.findComponent(ON.type('Image'));
+  await image.pinchOut(1.5);
+}
 ```
 
 ### pinchIn<sup>9+</sup>
@@ -1408,12 +1412,12 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let image = await driver.findComponent(ON.type('image'));
-    await image.pinchIn(0.5);
-    }
+  let driver: Driver = Driver.create();
+  let image: Component = await driver.findComponent(ON.type('Image'));
+  await image.pinchIn(0.5);
+}
 ```
 
 ## Driver<sup>9+</sup>
@@ -1449,7 +1453,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
+  let driver: Driver = Driver.create();
 }
 ```
 
@@ -1480,8 +1484,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.delayMs(1000);
+  let driver: Driver = Driver.create();
+  await driver.delayMs(1000);
 }
 ```
 
@@ -1516,10 +1520,10 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let button = await driver.findComponent(ON.text('next page'));
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.text('next page'));
 }
 ```
 
@@ -1554,10 +1558,10 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let buttonList = await driver.findComponents(ON.text('next page'));
+  let driver: Driver = Driver.create();
+  let buttonList: Array<Component> = await driver.findComponents(ON.text('next page'));
 }
 ```
 
@@ -1592,10 +1596,10 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let window = await driver.findWindow({actived: true});
+  let driver: Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({actived: true});
 }
 ```
 
@@ -1631,10 +1635,10 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest';
+import { Component, Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let button = await driver.waitForComponent(ON.text('next page'),500);
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.waitForComponent(ON.text('next page'),500);
 }
 ```
 
@@ -1666,8 +1670,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.assertComponentExist(ON.text('next page'));
+  let driver: Driver = Driver.create();
+  await driver.assertComponentExist(ON.text('next page'));
 }
 ```
 
@@ -1692,8 +1696,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.pressBack();
+  let driver: Driver = Driver.create();
+  await driver.pressBack();
 }
 ```
 
@@ -1724,8 +1728,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.triggerKey(123);
+  let driver: Driver = Driver.create();
+  await driver.triggerKey(123);
 }
 ```
 
@@ -1758,8 +1762,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.triggerCombineKeys(2072, 2047, 2035);
+  let driver: Driver = Driver.create();
+  await driver.triggerCombineKeys(2072, 2047, 2035);
 }
 ```
 
@@ -1776,8 +1780,8 @@ Clicks a specific point of this **Driver** object based on the given coordinates
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X-coordinate of the target point.|
-| y      | number | Yes  | Y-coordinate of the target point.|
+| x      | number | Yes  | X coordinate of the target point.|
+| y      | number | Yes  | Y coordinate of the target point.|
 
 **Error codes**
 
@@ -1792,8 +1796,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.click(100,100);
+  let driver: Driver = Driver.create();
+  await driver.click(100,100);
 }
 ```
 
@@ -1809,8 +1813,8 @@ Double-clicks a specific point of this **Driver** object based on the given coor
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X-coordinate of the target point.|
-| y      | number | Yes  | Y-coordinate of the target point.|
+| x      | number | Yes  | X coordinate of the target point.|
+| y      | number | Yes  | Y coordinate of the target point.|
 
 **Error codes**
 
@@ -1825,8 +1829,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.doubleClick(100,100);
+  let driver: Driver = Driver.create();
+  await driver.doubleClick(100,100);
 }
 ```
 
@@ -1842,8 +1846,8 @@ Long-clicks a specific point of this **Driver** object based on the given coordi
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X-coordinate of the target point.|
-| y      | number | Yes  | Y-coordinate of the target point.|
+| x      | number | Yes  | X coordinate of the target point.|
+| y      | number | Yes  | Y coordinate of the target point.|
 
 **Error codes**
 
@@ -1858,8 +1862,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.longClick(100,100);
+  let driver: Driver = Driver.create();
+  await driver.longClick(100,100);
 }
 ```
 
@@ -1894,8 +1898,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.swipe(100,100,200,200,600);
+  let driver: Driver = Driver.create();
+  await driver.swipe(100,100,200,200,600);
 }
 ```
 
@@ -1930,8 +1934,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.drag(100,100,200,200,600);
+  let driver: Driver = Driver.create();
+  await driver.drag(100,100,200,200,600);
 }
 ```
 
@@ -1968,8 +1972,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.screenCap('/data/storage/el2/base/cache/1.png');
+  let driver: Driver = Driver.create();
+  await driver.screenCap('/data/storage/el2/base/cache/1.png');
 }
 ```
 
@@ -2000,8 +2004,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver, DisplayRotation } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.setDisplayRotation(DisplayRotation.ROTATION_180);
+  let driver: Driver = Driver.create();
+  await driver.setDisplayRotation(DisplayRotation.ROTATION_180);
 }
 ```
 
@@ -2030,10 +2034,10 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { DisplayRotation, Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let rotation = await driver.getDisplayRotation();
+  let driver: Driver = Driver.create();
+  let rotation: DisplayRotation = await driver.getDisplayRotation();
 }
 ```
 
@@ -2064,8 +2068,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.setDisplayRotationEnabled(false);
+  let driver: Driver = Driver.create();
+  await driver.setDisplayRotationEnabled(false);
 }
 ```
 
@@ -2094,10 +2098,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver, } from '@ohos.UiTest';
+
 async function demo() {
-    let driver = Driver.create();
-    let size = await driver.getDisplaySize();
+  let driver: Driver = Driver.create();
+  let size = await driver.getDisplaySize();
 }
 ```
 
@@ -2128,8 +2133,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let density = await driver.getDisplayDensity();
+  let driver: Driver = Driver.create();
+  let density = await driver.getDisplayDensity();
 }
 ```
 
@@ -2154,8 +2159,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.wakeUpDisplay();
+  let driver: Driver = Driver.create();
+  await driver.wakeUpDisplay();
 }
 ```
 
@@ -2180,8 +2185,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.pressHome();
+  let driver: Driver = Driver.create();
+  await driver.pressHome();
 }
 ```
 
@@ -2219,8 +2224,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let idled = await driver.waitForIdle(4000,5000);
+  let driver: Driver = Driver.create();
+  let idled:boolean = await driver.waitForIdle(4000,5000);
 }
 ```
 
@@ -2254,8 +2259,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.fling({x: 500, y: 480},{x: 450, y: 480},5,600);
+  let driver: Driver = Driver.create();
+  await driver.fling({x: 500, y: 480},{x: 450, y: 480},5,600);
 }
 ```
 
@@ -2293,15 +2298,15 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver, PointerMatrix } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let pointers = PointerMatrix.create(2,3);
-    pointers.setPoint(0,0,{x:230,y:480});
-    pointers.setPoint(0,1,{x:250,y:380});
-    pointers.setPoint(0,2,{x:270,y:280});
-    pointers.setPoint(1,0,{x:230,y:680});
-    pointers.setPoint(1,1,{x:240,y:580});
-    pointers.setPoint(1,2,{x:250,y:480});
-    await driver.injectMultiPointerAction(pointers);
+  let driver: Driver = Driver.create();
+  let pointers: PointerMatrix = PointerMatrix.create(2,3);
+  pointers.setPoint(0,0,{x:230,y:480});
+  pointers.setPoint(0,1,{x:250,y:380});
+  pointers.setPoint(0,2,{x:270,y:280});
+  pointers.setPoint(1,0,{x:230,y:680});
+  pointers.setPoint(1,1,{x:240,y:580});
+  pointers.setPoint(1,2,{x:250,y:480});
+  await driver.injectMultiPointerAction(pointers);
 }
 ```
 
@@ -2333,8 +2338,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver, UiDirection } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.fling(UiDirection.DOWN, 10000);
+  let driver: Driver = Driver.create();
+  await driver.fling(UiDirection.DOWN, 10000);
 }
 ```
 
@@ -2372,8 +2377,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.screenCapture('/data/storage/el2/base/cache/1.png', {left: 0, top: 0, right: 100, bottom: 100});
+  let driver: Driver = Driver.create();
+  await driver.screenCapture('/data/storage/el2/base/cache/1.png', {left: 0, top: 0, right: 100, bottom: 100});
 }
 ```
 
@@ -2407,8 +2412,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver,MouseButton } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.mouseClick({x:248, y:194}, MouseButton.MOUSE_BUTTON_LEFT, 2072);
+  let driver: Driver = Driver.create();
+  await driver.mouseClick({x:248, y:194}, MouseButton.MOUSE_BUTTON_LEFT, 2072);
 }
 ```
 
@@ -2422,13 +2427,13 @@ Injects a mouse scroll action at the specified coordinates, with the optional ke
 
 **Parameters**
 
-| Name| Type            | Mandatory| Description                                               |
-| ------ | ---------------- | ---- | --------------------------------------------------- |
-| p      | [Point](#point9) | Yes  | Coordinates of the mouse click.                                   |
-| down   | boolean          | Yes  | Whether the scroll wheel slides downward.                             |
-| d      | number           | Yes  | Number of grids by which the scroll wheel slides. Sliding by one grid means a 120-pixel offset of the target point.|
-| key1   | number           | No  | The first key value.                                |
-| key2   | number           | No  | The second key value.                                |
+| Name| Type            | Mandatory| Description                                                       |
+| ------ | ---------------- | ---- | ----------------------------------------------------------- |
+| p      | [Point](#point9) | Yes  | Coordinates of the mouse click.                                           |
+| down   | boolean          | Yes  | Whether the mouse wheel scrolls downward.<br>**true**: The mouse wheel scrolls downward.<br>**false**: The mouse wheel scrolls upward.|
+| d      | number           | Yes  | Number of cells by which the mouse wheel scrolls. Scrolling by one cell means a 120-pixel offset of the target point.        |
+| key1   | number           | No  | The first key value.                                        |
+| key2   | number           | No  | The second key value.                                        |
 
 **Error codes**
 
@@ -2443,8 +2448,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.mouseScroll({x:360, y:640}, true, 30, 2072)
+  let driver: Driver = Driver.create();
+  await driver.mouseScroll({x:360, y:640}, true, 30, 2072)
 }
 ```
 
@@ -2475,8 +2480,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    await driver.mouseMoveTo({x:100, y:100})
+  let driver: Driver = Driver.create();
+  await driver.mouseMoveTo({x:100, y:100})
 }
 ```
 
@@ -2505,10 +2510,220 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { Driver, UIEventObserver } from '@ohos.UiTest';
+async function demo() {
+  let driver: Driver = Driver.create();
+  let observer: UIEventObserver = await driver.createUIEventObserver()
+}
+```
+
+### mouseScroll<sup>11+</sup>
+
+mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, speed?: number): Promise\<void>
+
+Injects a mouse scroll action at the specified coordinates. You can specify the key or key combination to work with the action, as well as the scroll speed.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type            | Mandatory| Description                                                        |
+| ------ | ---------------- | ---- | ------------------------------------------------------------ |
+| p      | [Point](#point9) | Yes  | Coordinates of the mouse click.                                            |
+| down   | boolean          | Yes  | Whether the mouse wheel scrolls downward.<br>**true**: The mouse wheel scrolls downward.<br>**false**: The mouse wheel scrolls upward. |
+| d      | number           | Yes  | Number of cells by which the mouse wheel scrolls. Scrolling by one cell means a 120-pixel offset of the target point.         |
+| key1   | number           | No  | The first key value.                                         |
+| key2   | number           | No  | The second key value.                                         |
+| speed  | number           | No  | Scroll speed of the mouse wheel, in cells/second.<br>Value range: 1 to 500<br>If the value is not within the range, the default value **20** will be used.|
+
+**Error codes**
+
+For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+
+| ID| Error Message                                        |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+
+**Example**
+
+```ts
 import { Driver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let observer = await driver.createUIEventObserver()
+  let driver: Driver = Driver.create();
+  await driver.mouseScroll({x:360, y:640}, true, 30, 2072,20)
+}
+```
+
+### mouseDoubleClick<sup>11+</sup>
+
+mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>
+
+Injects a double-click action at the specified coordinates, with the optional key or key combination. For example, if the value of **key** is **2072**, the **Ctrl** button is pressed with the double-click.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description               |
+| ------ | ----------------------------- | ---- | ------------------- |
+| p      | [Point](#point9)              | Yes  | Coordinates of the double-click.   |
+| btnId  | [MouseButton](#mousebutton10) | Yes  | Mouse button pressed.   |
+| key1   | number                        | No  | The first key value.|
+| key2   | number                        | No  | The second key value.|
+
+**Error codes**
+
+For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+
+| ID| Error Message                                        |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+
+**Example**
+
+```ts
+import { Driver,MouseButton } from '@ohos.UiTest';
+async function demo() {
+  let driver: Driver = Driver.create();
+  await driver.mouseDoubleClick({x:248, y:194}, MouseButton.MOUSE_BUTTON_LEFT, 2072);
+}
+```
+
+### mouseLongClick<sup>11+</sup>
+
+mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>
+
+Injects a long-press action of the mouse device at the specified coordinates, with the optional key or key combination. For example, if the value of **Key** is **2072**, the **Ctrl** button is long-pressed with the mouse device.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description               |
+| ------ | ----------------------------- | ---- | ------------------- |
+| p      | [Point](#point9)              | Yes  | Coordinates of the long-press of the mouse device.   |
+| btnId  | [MouseButton](#mousebutton10) | Yes  | Mouse button pressed.   |
+| key1   | number                        | No  | The first key value.|
+| key2   | number                        | No  | The second key value.|
+
+**Error codes**
+
+For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+
+| ID| Error Message                                        |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+
+**Example**
+
+```ts
+import { Driver,MouseButton } from '@ohos.UiTest';
+async function demo() {
+  let driver:Driver = Driver.create();
+  await driver.mouseLongClick({x:248, y:194}, MouseButton.MOUSE_BUTTON_LEFT, 2072);
+}
+```
+
+### mouseMoveWithTrack<sup>11+</sup>
+
+mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
+
+Moves the mouse pointer from the start point to the end point.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type            | Mandatory| Description                                                        |
+| ------ | ---------------- | ---- | ------------------------------------------------------------ |
+| from   | [Point](#point9) | Yes  | Coordinates of the start point.                                                |
+| to     | [Point](#point9) | Yes  | Coordinates of the end point.                                                  |
+| speed  | number           | No  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
+
+**Error codes**
+
+For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+
+| ID| Error Message                                        |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+
+**Example**
+
+```ts
+import { Driver } from '@ohos.UiTest';
+async function demo() {
+  let driver: Driver = Driver.create();
+  await driver.mouseMoveWithTrack(100,100,200,200,600);
+}
+```
+
+### mouseDrag<sup>11+</sup>
+
+mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
+
+Drags the mouse pointer from the start point to the end point.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type            | Mandatory| Description                                                        |
+| ------ | ---------------- | ---- | ------------------------------------------------------------ |
+| from   | [Point](#point9) | Yes  | Coordinates of the start point.                                                |
+| to     | [Point](#point9) | Yes  | Coordinates of the end point.                                                  |
+| speed  | number           | No  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
+
+**Error codes**
+
+For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+
+| ID| Error Message                                        |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+
+**Example**
+
+```ts
+import { Driver } from '@ohos.UiTest';
+async function demo() {
+  let driver: Driver = Driver.create();
+  await driver.mouseDrag(100,100,200,200,600);
+}
+```
+
+### inputText<sup>11+</sup>
+
+inputText(p: Point, text: string): Promise\<void>
+
+Enters text at the specified point.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type            | Mandatory| Description              |
+| ------ | ---------------- | ---- | ------------------ |
+| p      | [Point](#point9) | Yes  | Coordinates of the target point.|
+| text   | string           | Yes  | Text to enter.  |
+
+**Error codes**
+
+For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+
+| ID| Error Message                                        |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+
+**Example**
+
+```ts
+import { Component, Driver, ON } from '@ohos.UiTest';
+async function demo() {
+  let driver:Driver = Driver.create();
+  let text: Component = await driver.findComponent(ON.type('TextInput'));
+  let point = await text.getBoundsCenter();
+  await driver.inputText(point, '123');
 }
 ```
 
@@ -2542,7 +2757,7 @@ Creates a **PointerMatrix** object and returns the object created. This API is a
 ```ts
 import { PointerMatrix } from '@ohos.UiTest';
 async function demo() {
-    let pointerMatrix = PointerMatrix.create(2,3);
+  let pointerMatrix: PointerMatrix = PointerMatrix.create(2,3);
 }
 ```
 
@@ -2567,13 +2782,13 @@ Sets the coordinates for the action corresponding to the specified finger and st
 ```ts
 import { PointerMatrix } from '@ohos.UiTest';
 async function demo() {
-    let pointers = PointerMatrix.create(2,3);
-    pointers.setPoint(0,0,{x:230,y:480});
-    pointers.setPoint(0,1,{x:250,y:380});
-    pointers.setPoint(0,2,{x:270,y:280});
-    pointers.setPoint(1,0,{x:230,y:680});
-    pointers.setPoint(1,1,{x:240,y:580});
-    pointers.setPoint(1,2,{x:250,y:480});
+  let pointers: PointerMatrix = PointerMatrix.create(2,3);
+  pointers.setPoint(0,0,{x:230,y:480});
+  pointers.setPoint(0,1,{x:250,y:380});
+  pointers.setPoint(0,2,{x:270,y:280});
+  pointers.setPoint(1,0,{x:230,y:680});
+  pointers.setPoint(1,1,{x:240,y:580});
+  pointers.setPoint(1,2,{x:250,y:480});
 }
 ```
 
@@ -2609,11 +2824,12 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@ohos.UiTest';
+
 async function demo() {
-    let driver = Driver.create();
-    let window = await driver.findWindow({actived: true});
-    let name = await window.getBundleName();
+  let driver: Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({actived: true});
+  let name: string = await window.getBundleName();
 }
 ```
 
@@ -2643,11 +2859,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let window = await driver.findWindow({actived: true});
-    let rect = await window.getBounds();
+  let driver: Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({actived: true});
+  let rect = await window.getBounds();
 }
 ```
 
@@ -2677,11 +2893,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let window = await driver.findWindow({actived: true});
-    let rect = await window.getTitle();
+  let driver: Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({actived: true});
+  let rect = await window.getTitle();
 }
 ```
 
@@ -2711,11 +2927,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let window = await driver.findWindow({actived: true});
-    let mode = await window.getWindowMode();
+  let driver: Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({actived: true});
+  let mode = await window.getWindowMode();
 }
 ```
 
@@ -2745,11 +2961,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let window = await driver.findWindow({actived: true});
-    let focused = await window.isFocused();
+  let driver: Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({actived: true});
+  let focused = await window.isFocused();
 }
 ```
 
@@ -2779,11 +2995,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let window = await driver.findWindow({actived: true});
-    let focused = await window.isActived();
+  let driver: Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({actived: true});
+  let focused = await window.isActived();
 }
 ```
 
@@ -2807,11 +3023,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let window = await driver.findWindow({actived: true});
-    await window.focus();
+  let driver: Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({actived: true});
+  await window.focus();
 }
 ```
 
@@ -2827,8 +3043,8 @@ Moves this window to the target point. This API is applicable to moveable window
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X-coordinate of the target point.|
-| y      | number | Yes  | Y-coordinate of the target point.|
+| x      | number | Yes  | X coordinate of the target point.|
+| y      | number | Yes  | Y coordinate of the target point.|
 
 **Error codes**
 
@@ -2843,11 +3059,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let window = await driver.findWindow({actived: true});
-    await window.moveTo(100, 100);
+  let driver: Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({actived: true});
+  await window.moveTo(100, 100);
 }
 ```
 
@@ -2880,11 +3096,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver, ResizeDirection } from '@ohos.UiTest';
+import { Driver, ResizeDirection, UiWindow } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let window = await driver.findWindow({actived: true});
-    await window.resize(100, 100, ResizeDirection.LEFT);
+  let driver: Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({actived: true});
+  await window.resize(100, 100, ResizeDirection.LEFT);
 }
 ```
 
@@ -2909,11 +3125,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let window = await driver.findWindow({actived: true});
-    await window.split();
+  let driver: Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({actived: true});
+  await window.split();
 }
 ```
 
@@ -2938,11 +3154,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let window = await driver.findWindow({actived: true});
-    await window.maximize();
+  let driver: Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({actived: true});
+  await window.maximize();
 }
 ```
 
@@ -2967,11 +3183,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let window = await driver.findWindow({actived: true});
-    await window.minimize();
+  let driver: Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({actived: true});
+  await window.minimize();
 }
 ```
 
@@ -2996,11 +3212,11 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let window = await driver.findWindow({actived: true});
-    await window.resume();
+  let driver: Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({actived: true});
+  await window.resume();
 }
 ```
 
@@ -3025,17 +3241,17 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import { Driver } from '@ohos.UiTest';
+import { Driver, UiWindow } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let window = await driver.findWindow({actived: true});
-    await window.close();
+  let driver:Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({actived: true});
+  await window.close();
 }
 ```
 
 ## UIEventObserver<sup>10+</sup>
 
-Implements a UI event listener.
+UI event listener.
 
 ### once('toastShow')
 
@@ -3055,16 +3271,16 @@ Subscribes to events of the toast component. This API uses a callback to return 
 **Example**
 
 ```ts
-import { Driver, UIElementInfo } from '@ohos.UiTest';
+import { Driver, UIElementInfo, UIEventObserver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let observer = await driver.createUIEventObserver()
-    let  callback = (UIElementInfo: UIElementInfo)=>{
-        console.info(UIElementInfo.bundleName)
-        console.info(UIElementInfo.text)
-        console.info(UIElementInfo.type)
-     }
-    observer.once('toastShow', callback)
+  let driver: Driver = Driver.create();
+  let observer:  UIEventObserver = await driver.createUIEventObserver()
+  let  callback = (UIElementInfo: UIElementInfo)=>{
+    console.info(UIElementInfo.bundleName)
+    console.info(UIElementInfo.text)
+    console.info(UIElementInfo.type)
+  }
+  observer.once('toastShow', callback)
 }
 ```
 
@@ -3086,16 +3302,16 @@ Subscribes to events of the dialog component. This API uses a callback to return
 **Example**
 
 ```ts
-import { Driver, UIElementInfo } from '@ohos.UiTest';
+import { Driver, UIElementInfo, UIEventObserver } from '@ohos.UiTest';
 async function demo() {
-    let driver = Driver.create();
-    let observer = await driver.createUIEventObserver()
-    let  callback = (UIElementInfo: UIElementInfo)=>{
-        console.info(UIElementInfo.bundleName)
-        console.info(UIElementInfo.text)
-        console.info(UIElementInfo.type)
-     }
-    observer.once('dialogShow', callback)
+  let driver: Driver = Driver.create();
+  let observer: UIEventObserver = await driver.createUIEventObserver()
+  let  callback = (UIElementInfo: UIElementInfo)=>{
+    console.info(UIElementInfo.bundleName)
+    console.info(UIElementInfo.text)
+    console.info(UIElementInfo.type)
+  }
+  observer.once('dialogShow', callback)
 }
 ```
 
@@ -3105,17 +3321,17 @@ The UiTest framework provides a wide range of UI component feature description A
 
 The API capabilities provided by the **By** class exhibit the following features:
 
-- Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component.
+- Allows one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component.
 - Provide multiple match patterns for component attributes.
 - Support absolute positioning and relative positioning for components. APIs such as [By.isBefore<sup>(deprecated)</sup>](#isbeforedeprecated) and [By.isAfter<sup>(deprecated)</sup>](#isafterdeprecated) can be used to specify the features of adjacent components to assist positioning.
 
 All APIs provided in the **By** class are synchronous. You are advised to use the static constructor **BY** to create a **By** object in chain mode.
 
-This class is deprecated since API version 9. You are advised to use [On<sup>9+</sup>](#on9) instead.
+This API is deprecated since API version 9. You are advised to use [On<sup>9+</sup>](#on9) instead.
 
 ```ts
 import { BY } from '@ohos.UiTest';
-BY.text('123').type('button');
+BY.text('123').type('Button');
 ```
 
 ### text<sup>(deprecated)</sup>
@@ -3144,8 +3360,8 @@ This API is deprecated since API version 9. You are advised to use [text<sup>9+<
 **Example**
 
 ```ts
-import { BY } from '@ohos.UiTest';
-let by = BY.text('123'); // Use the static constructor BY to create a By object and specify the text attribute of the target component.
+import { BY, By } from '@ohos.UiTest';
+let by: By = BY.text('123'); // Use the static constructor BY to create a By object and specify the text attribute of the target component.
 ```
 
 
@@ -3174,8 +3390,8 @@ This API is deprecated since API version 9. You are advised to use [id<sup>9+</s
 **Example**
 
 ```ts
-import { BY } from '@ohos.UiTest';
-let by = BY.key('123'); // Use the static constructor BY to create a By object and specify the key attribute of the target component.
+import { By, BY } from '@ohos.UiTest';
+let by: By = BY.key('123'); // Use the static constructor BY to create a By object and specify the key attribute of the target component.
 ```
 
 
@@ -3204,8 +3420,8 @@ This API is deprecated since API version 9.
 **Example**
 
 ```ts
-import { BY } from '@ohos.UiTest';
-let by = BY.id(123); // Use the static constructor BY to create a By object and specify the ID attribute of the target component.
+import { By, BY } from '@ohos.UiTest';
+let by: By = BY.id(123); // Use the static constructor BY to create a By object and specify the id attribute of the target component.
 ```
 
 
@@ -3234,8 +3450,8 @@ This API is deprecated since API version 9. You are advised to use [type<sup>9+<
 **Example**
 
 ```ts
-import { BY } from '@ohos.UiTest';
-let by = BY.type('button'); // Use the static constructor BY to create a By object and specify the type attribute of the target component.
+import { By, BY } from '@ohos.UiTest';
+let by: By = BY.type('Button'); // Use the static constructor BY to create a By object and specify the type attribute of the target component.
 ```
 
 
@@ -3243,7 +3459,7 @@ let by = BY.type('button'); // Use the static constructor BY to create a By obje
 
 clickable(b?: boolean): By
 
-Specifies the clickable status attribute of the target component.
+Specifies the clickable attribute of the target component.
 
 This API is deprecated since API version 9. You are advised to use [clickable<sup>9+</sup>](#clickable9) instead.
 
@@ -3259,13 +3475,13 @@ This API is deprecated since API version 9. You are advised to use [clickable<su
 
 | Type               | Description                                      |
 | ------------------- | ------------------------------------------ |
-| [By](#bydeprecated) | **By** object that matches the clickable status attribute of the target component.|
+| [By](#bydeprecated) | **By** object that matches the clickable attribute of the target component.|
 
 **Example**
 
 ```ts
-import { BY } from '@ohos.UiTest';
-let by = BY.clickable(true); // Use the static constructor BY to create a By object and specify the clickable status attribute of the target component.
+import { By, BY } from '@ohos.UiTest';
+let by: By = BY.clickable(true); // Use the static constructor BY to create a By object and specify the clickable attribute of the target component.
 ```
 
 
@@ -3273,7 +3489,7 @@ let by = BY.clickable(true); // Use the static constructor BY to create a By obj
 
 scrollable(b?: boolean): By
 
-Specifies the scrollable status attribute of the target component.
+Specifies the scrollable attribute of the target component.
 
 This API is deprecated since API version 9. You are advised to use [scrollable<sup>9+</sup>](#scrollable9) instead.
 
@@ -3289,20 +3505,20 @@ This API is deprecated since API version 9. You are advised to use [scrollable<s
 
 | Type               | Description                                      |
 | ------------------- | ------------------------------------------ |
-| [By](#bydeprecated) | **By** object that matches the scrollable status attribute of the target component.|
+| [By](#bydeprecated) | **By** object that matches the scrollable attribute of the target component.|
 
 **Example**
 
 ```ts
-import { BY } from '@ohos.UiTest';
-let by = BY.scrollable(true); // Use the static constructor BY to create a By object and specify the scrollable status attribute of the target component.
+import { By, BY } from '@ohos.UiTest';
+let by: By = BY.scrollable(true); // Use the static constructor BY to create a By object and specify the scrollable attribute of the target component.
 ```
 
 ### enabled<sup>(deprecated)</sup>
 
 enabled(b?: boolean): By
 
-Specifies the enabled status attribute of the target component.
+Specifies the enabled attribute of the target component.
 
 This API is deprecated since API version 9. You are advised to use [enabled<sup>9+</sup>](#enabled9) instead.
 
@@ -3318,20 +3534,20 @@ This API is deprecated since API version 9. You are advised to use [enabled<sup>
 
 | Type               | Description                                    |
 | ------------------- | ---------------------------------------- |
-| [By](#bydeprecated) | **By** object that matches the enabled status attribute of the target component.|
+| [By](#bydeprecated) | **By** object that matches the enabled attribute of the target component.|
 
 **Example**
 
 ```ts
-import { BY } from '@ohos.UiTest';
-let by = BY.enabled(true); // Use the static constructor BY to create a By object and specify the enabled status attribute of the target component.
+import { By, BY } from '@ohos.UiTest';
+let by: By = BY.enabled(true); // Use the static constructor BY to create a By object and specify the enabled attribute of the target component.
 ```
 
 ### focused<sup>(deprecated)</sup>
 
 focused(b?: boolean): By
 
-Specifies the focused status attribute of the target component.
+Specifies the focused attribute of the target component.
 
 This API is deprecated since API version 9. You are advised to use [focused<sup>9+</sup>](#focused9) instead.
 
@@ -3347,13 +3563,13 @@ This API is deprecated since API version 9. You are advised to use [focused<sup>
 
 | Type               | Description                                    |
 | ------------------- | ---------------------------------------- |
-| [By](#bydeprecated) | **By** object that matches the focused status attribute of the target component.|
+| [By](#bydeprecated) | **By** object that matches the focused attribute of the target component.|
 
 **Example**
 
 ```ts
-import { BY } from '@ohos.UiTest';
-let by = BY.focused(true); // Use the static constructor BY to create a By object and specify the focused status attribute of the target component.
+import { By, BY } from '@ohos.UiTest';
+let by: By = BY.focused(true); // Use the static constructor BY to create a By object and specify the focused attribute of the target component.
 ```
 
 ### selected<sup>(deprecated)</sup>
@@ -3376,13 +3592,13 @@ This API is deprecated since API version 9. You are advised to use [selected<sup
 
 | Type               | Description                                      |
 | ------------------- | ------------------------------------------ |
-| [By](#bydeprecated) | **By** object that matches the selected status attribute of the target component.|
+| [By](#bydeprecated) | **By** object that matches the selected attribute of the target component.|
 
 **Example**
 
 ```ts
-import { BY } from '@ohos.UiTest';
-let by = BY.selected(true); // Use the static constructor BY to create a By object and specify the selected status attribute of the target component.
+import { By, BY } from '@ohos.UiTest';
+let by: By = BY.selected(true); // Use the static constructor BY to create a By object and specify the selected attribute of the target component.
 ```
 
 ### isBefore<sup>(deprecated)</sup>
@@ -3410,8 +3626,10 @@ This API is deprecated since API version 9. You are advised to use [isBefore<sup
 **Example**
 
 ```ts
-import { BY } from '@ohos.UiTest';
-let by = BY.isBefore(BY.text('123')); // Use the static constructor BY to create a By object, specifying that the target component is located before the given attribute component.
+import { By, BY } from '@ohos.UiTest';
+
+// Use the static constructor BY to create a by object and specify that the target component is located before the given attribute component.
+let by: By = BY.type('Button').isBefore(BY.text('123')); // Search for the first <Button> component located before the component whose text is 123.
 ```
 
 ### isAfter<sup>(deprecated)</sup>
@@ -3439,17 +3657,18 @@ This API is deprecated since API version 9. You are advised to use [isAfter<sup>
 **Example**
 
 ```ts
-import { BY } from '@ohos.UiTest';
-let by = BY.isAfter(BY.text('123')); // Use the static constructor BY to create a By object, specifying that the target component is located after the given attribute component.
+import { By, BY } from '@ohos.UiTest';
+
+// Use the static constructor BY to create a by object and specify that the target component is located after the given attribute component.
+let by: By = BY.type('Text').isAfter(BY.text('123')); // Search for the first <Text> component located after the component whose text is 123.
 ```
 
 ## UiComponent<sup>(deprecated)</sup>
 
 In **UiTest**, the **UiComponent** class represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
-
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
 
-This class is deprecated since API version 9. You are advised to use [Component<sup>9+</sup>](#component9) instead.
+This API is deprecated since API version 9. You are advised to use [Component<sup>9+</sup>](#component9) instead.
 
 ### click<sup>(deprecated)</sup>
 
@@ -3464,11 +3683,11 @@ This API is deprecated since API version 9. You are advised to use [click<sup>9+
 **Example**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY, Driver, UiComponent } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
-    await button.click();
+  let driver: UiDriver = UiDriver.create();
+  let button: UiComponent = await driver.findComponent(BY.type('Button'));
+  await button.click();
 }
 ```
 
@@ -3485,11 +3704,11 @@ This API is deprecated since API version 9. You are advised to use [doubleClick<
 **Example**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
-    await button.doubleClick();
+  let driver: UiDriver = UiDriver.create();
+  let button: UiComponent = await driver.findComponent(BY.type('Button'));
+  await button.doubleClick();
 }
 ```
 
@@ -3506,11 +3725,11 @@ This API is deprecated since API version 9. You are advised to use [longClick<su
 **Example**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
-    await button.longClick();
+  let driver: UiDriver = UiDriver.create();
+  let button: UiComponent = await driver.findComponent(BY.type('Button'));
+  await button.longClick();
 }
 ```
 
@@ -3533,11 +3752,11 @@ This API is deprecated since API version 9.
 **Example**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
-    let num = await button.getId();
+  let driver: UiDriver = UiDriver.create();
+  let button: UiComponent = await driver.findComponent(BY.type('Button'));
+  let id = await button.getId();
 }
 ```
 
@@ -3560,11 +3779,11 @@ This API is deprecated since API version 9. You are advised to use [getId<sup>9+
 **Example**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
-    let str_key = await button.getKey();
+  let driver: UiDriver = UiDriver.create();
+  let button: UiComponent = await driver.findComponent(BY.type('Button'));
+  let str_key = await button.getKey();
 }
 ```
 
@@ -3587,11 +3806,11 @@ This API is deprecated since API version 9. You are advised to use [getText<sup>
 **Example**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
-    let text = await button.getText();
+  let driver: UiDriver = UiDriver.create();
+  let button: UiComponent = await driver.findComponent(BY.type('Button'));
+  let text = await button.getText();
 }
 ```
 
@@ -3614,11 +3833,11 @@ This API is deprecated since API version 9. You are advised to use [getType<sup>
 **Example**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
-    let type = await button.getType();
+  let driver: UiDriver = UiDriver.create();
+  let button: UiComponent = await driver.findComponent(BY.type('Button'));
+  let type = await button.getType();
 }
 ```
 
@@ -3641,15 +3860,15 @@ This API is deprecated since API version 9. You are advised to use [isClickable<
 **Example**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
-    if(await button.isClickable()) {
-        console.info('This button can be Clicked');
-    } else {
-        console.info('This button can not be Clicked');
-    }
+  let driver: UiDriver = UiDriver.create();
+  let button: UiComponent = await driver.findComponent(BY.type('Button'));
+  if(await button.isClickable()) {
+    console.info('This button can be Clicked');
+  } else {
+    console.info('This button can not be Clicked');
+  }
 }
 ```
 
@@ -3672,15 +3891,15 @@ This API is deprecated since API version 9. You are advised to use [isScrollable
 **Example**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    let scrollBar = await driver.findComponent(BY.scrollable(true));
-    if(await scrollBar.isScrollable()) {
-        console.info('This scrollBar can be operated');
-    } else {
-        console.info('This scrollBar can not be operated');
-    }
+  let driver: UiDriver = UiDriver.create();
+  let scrollBar: UiComponent = await driver.findComponent(BY.scrollable(true));
+  if(await scrollBar.isScrollable()) {
+    console.info('This scrollBar can be operated');
+  } else {
+    console.info('This scrollBar can not be operated');
+  }
 }
 ```
 
@@ -3704,15 +3923,15 @@ This API is deprecated since API version 9. You are advised to use [isEnabled<su
 **Example**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
-    if(await button.isEnabled()) {
-        console.info('This button can be operated');
-    } else {
-        console.info('This button can not be operated');
-    }
+  let driver: UiDriver = UiDriver.create();
+  let button: UiComponent = await driver.findComponent(BY.type('Button'));
+  if(await button.isEnabled()) {
+    console.info('This button can be operated');
+  } else {
+    console.info('This button can not be operated');
+  }
 }
 
 ```
@@ -3736,15 +3955,15 @@ This API is deprecated since API version 9. You are advised to use [isFocused<su
 **Example**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
-    if(await button.isFocused()) {
-        console.info('This button is focused');
-    } else {
-        console.info('This button is not focused');
-	}
+  let driver: UiDriver = UiDriver.create();
+  let button: UiComponent = await driver.findComponent(BY.type('Button'));
+  if(await button.isFocused()) {
+    console.info('This button is focused');
+  } else {
+    console.info('This button is not focused');
+  }
 }
 ```
 
@@ -3767,15 +3986,15 @@ This API is deprecated since API version 9. You are advised to use [isSelected<s
 **Example**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.type('button'));
-    if(await button.isSelected()) {
-        console.info('This button is selected');
-    } else {
-        console.info('This button is not selected');
-    }
+  let driver: UiDriver = UiDriver.create();
+  let button: UiComponent = await driver.findComponent(BY.type('Button'));
+  if(await button.isSelected()) {
+    console.info('This button is selected');
+  } else {
+    console.info('This button is not selected');
+  }
 }
 ```
 
@@ -3798,11 +4017,11 @@ This API is deprecated since API version 9. You are advised to use [inputText<su
 **Example**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    let text = await driver.findComponent(BY.text('hello world'));
-    await text.inputText('123');
+  let driver: UiDriver = UiDriver.create();
+  let text: UiComponent = await driver.findComponent(BY.text('hello world'));
+  await text.inputText('123');
 }
 ```
 
@@ -3831,11 +4050,11 @@ This API is deprecated since API version 9. You are advised to use [scrollSearch
 **Example**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    let scrollBar = await driver.findComponent(BY.type('Scroll'));
-    let button = await scrollBar.scrollSearch(BY.text('next page'));
+  let driver: UiDriver = UiDriver.create();
+  let scrollBar: UiComponent = await driver.findComponent(BY.type('Scroll'));
+  let button = await scrollBar.scrollSearch(BY.text('next page'));
 }
 ```
 
@@ -3868,7 +4087,7 @@ This API is deprecated since API version 9. You are advised to use [create<sup>9
 ```ts
 import { UiDriver } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
+  let driver: UiDriver = UiDriver.create();
 }
 ```
 
@@ -3893,8 +4112,8 @@ This API is deprecated since API version 9. You are advised to use [delayMs<sup>
 ```ts
 import { UiDriver } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    await driver.delayMs(1000);
+  let driver: UiDriver = UiDriver.create();
+  await driver.delayMs(1000);
 }
 ```
 
@@ -3923,10 +4142,10 @@ This API is deprecated since API version 9. You are advised to use [findComponen
 **Example**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    let button = await driver.findComponent(BY.text('next page'));
+  let driver: UiDriver = UiDriver.create();
+  let button: UiComponent = await driver.findComponent(BY.text('next page'));
 }
 ```
 
@@ -3955,10 +4174,10 @@ This API is deprecated since API version 9. You are advised to use [findComponen
 **Example**
 
 ```ts
-import { UiDriver, BY } from '@ohos.UiTest';
+import { UiDriver, BY, UiComponent } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    let buttonList = await driver.findComponents(BY.text('next page'));
+  let driver: UiDriver = UiDriver.create();
+  let buttonList: Array<UiComponent> = await driver.findComponents(BY.text('next page'));
 }
 ```
 
@@ -3992,8 +4211,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```ts
 import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    await driver.assertComponentExist(BY.text('next page'));
+  let driver: UiDriver = UiDriver.create();
+  await driver.assertComponentExist(BY.text('next page'));
 }
 ```
 
@@ -4012,8 +4231,8 @@ This API is deprecated since API version 9. You are advised to use [pressBack<su
 ```ts
 import { UiDriver } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    await driver.pressBack();
+  let driver: UiDriver = UiDriver.create();
+  await driver.pressBack();
 }
 ```
 
@@ -4036,10 +4255,10 @@ This API is deprecated since API version 9. You are advised to use [triggerKey<s
 **Example**
 
 ```ts
-import { UiDriver } from '@ohos.UiTest';
+import { Driver, UiDriver } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    await driver.triggerKey(123);
+  let driver: UiDriver = UiDriver.create();
+  await driver.triggerKey(123);
 }
 ```
 
@@ -4058,16 +4277,16 @@ This API is deprecated since API version 9. You are advised to use [click<sup>9+
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X-coordinate of the target point.|
-| y      | number | Yes  | Y-coordinate of the target point.|
+| x      | number | Yes  | X coordinate of the target point.|
+| y      | number | Yes  | Y coordinate of the target point.|
 
 **Example**
 
 ```ts
 import { UiDriver } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    await driver.click(100,100);
+  let driver: UiDriver = UiDriver.create();
+  await driver.click(100,100);
 }
 ```
 
@@ -4085,16 +4304,16 @@ This API is deprecated since API version 9. You are advised to use [doubleClick<
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X-coordinate of the target point.|
-| y      | number | Yes  | Y-coordinate of the target point.|
+| x      | number | Yes  | X coordinate of the target point.|
+| y      | number | Yes  | Y coordinate of the target point.|
 
 **Example**
 
 ```ts
 import { UiDriver } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    await driver.doubleClick(100,100);
+  let driver: UiDriver = UiDriver.create();
+  await driver.doubleClick(100,100);
 }
 ```
 
@@ -4112,16 +4331,16 @@ This API is deprecated since API version 9. You are advised to use [longClick<su
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X-coordinate of the target point.|
-| y      | number | Yes  | Y-coordinate of the target point.|
+| x      | number | Yes  | X coordinate of the target point.|
+| y      | number | Yes  | Y coordinate of the target point.|
 
 **Example**
 
 ```ts
 import { UiDriver } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    await driver.longClick(100,100);
+  let driver: UiDriver = UiDriver.create();
+  await driver.longClick(100,100);
 }
 ```
 
@@ -4149,8 +4368,8 @@ This API is deprecated since API version 9. You are advised to use [swipe<sup>9+
 ```ts
 import { UiDriver } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    await driver.swipe(100,100,200,200);
+  let driver: UiDriver = UiDriver.create();
+  await driver.swipe(100,100,200,200);
 }
 ```
 
@@ -4181,7 +4400,7 @@ This API is deprecated since API version 9. You are advised to use [screenCap<su
 ```ts
 import { UiDriver } from '@ohos.UiTest';
 async function demo() {
-    let driver = UiDriver.create();
-    await driver.screenCap('/data/storage/el2/base/cache/1.png');
+  let driver: UiDriver = UiDriver.create();
+  await driver.screenCap('/data/storage/el2/base/cache/1.png');
 }
 ```

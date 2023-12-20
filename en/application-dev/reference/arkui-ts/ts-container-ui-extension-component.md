@@ -24,13 +24,23 @@ Not supported
 
 ## APIs
 
-UIExtensionComponent(want: Want)
+UIExtensionComponent(want: Want, options?: UIExtensionOptions)
 
 **Parameters**
 
-| Name | Type                                    | Mandatory  | Description           |
-| ---- | ---------------------------------------- | ---- | --------------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | Yes   | Ability to start.|
+| Name               | Type                                   | Mandatory| Description          |
+| ----                  | ----------------------------------------    | ---- | ---------------    |
+| want                  | [Want](../apis/js-apis-app-ability-want.md) | Yes  | Ability to start. |
+| options<sup>11+</sup> | [UIExtensionOptions](#uiextensionoptions11) | No  | Construction parameters to be transferred.|
+
+## UIExtensionOptions<sup>11+</sup>
+Describes the optional construction parameters during **UIExtensionComponent** construction.
+
+**Parameters**
+
+| Name              | Type                                | Mandatory| Description                                                                                                     |
+| ----                 | ---------------------------------------- | ---- | ---------------                                                                                               |
+| isTransferringCaller | boolean                                  | No  | Whether the UIExtensionComponent forwards the upper-level caller information when it is used for nesting.<br> Default value: **false**|
 
 ## UIExtensionProxy
 
@@ -226,7 +236,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 ```
 
 ```ts
-// Extension Ability entry page file extension.ets
+// Entry page file of the Extension Ability: extension.ets
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
 
 let storage = LocalStorage.GetShared()

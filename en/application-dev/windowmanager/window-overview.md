@@ -35,7 +35,7 @@ The **Window** module has the following features:
 The **Window** module provides system windows and application windows.
 - A **system window** implements specific functionalities of the system. Examples include the volume bar, wallpaper, notification panel, status bar, and navigation bar.
 - An **application window** is related to the application display. Based on the displayed content, application windows are further classified into main windows and subwindows.
-  - A main window shows the application UI and appears on the **Recent tasks** page.
+  - A main window shows the application UI and appears on the **Recents** page.
   - A subwindow is an auxiliary window of an application, such as a dialog box and floating window. It is not displayed on the **Recents** page. Its lifecycle follows that of the main window.
 
 
@@ -43,12 +43,12 @@ The **Window** module provides system windows and application windows.
 
 ### Application Window Mode
 
-The application window mode refers to the display mode of the main window when it is started. Currently, there are three application window modes: full-screen, split-screen, and free window. This support for multiple window modes is known as the multi-window capability.
+The application window mode refers to the display mode of the main window when it is started. Currently, there are three application window modes: full-screen, split-screen, and freeform window. This support for multiple window modes is known as the multi-window capability.
 
 
 -  In **full-screen** mode, the main window is displayed on the entire screen when it is started.
 -  In **split-screen** mode, the main window occupies part of the screen when it is started, and the other part of the screen is occupied by another window. You can resize the two windows by dragging the split line between them.
--  In **free window** mode, the main window may come in any size or position as needed. Multiple free windows can be simultaneously displayed on the screen. These free windows are arranged on the z-axis in the sequence that they are opened or gain the focus. When a free window is clicked or touched, its z-index is incremented and it gains the focus.
+-  In **freeform window** mode, the main window may come in any size or position as needed. Multiple freeform windows can be simultaneously displayed on the screen. These freeform windows are arranged on the z-axis in the sequence that they are opened or gain the focus. When a freeform window is clicked or touched, its z-index is incremented and it gains the focus.
 
 
 ![windowMode](figures/windowMode.png)

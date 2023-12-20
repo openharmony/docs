@@ -1,13 +1,13 @@
-# Camera Recording (Native)
+# Camera Recording (C/C++)
 
 As another important function of the camera application, video recording is the process of cyclic frame capture. To smooth video recording, you can follow step 4 in [Camera Photographing (Native)](native-camera-shooting.md) to set the resolution, flash, focal length, photo quality, and rotation angle.
 
 ## How to Develop
 
-Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
+Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
 
 1. Import the media module. The APIs provided by this module are used to obtain the surface ID and create a photo output stream.
-   
+     
    ```ts
    // Import the media module on the TS side.
    import media from '@ohos.multimedia.media';
@@ -159,7 +159,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 During camera application development, you can listen for the status of the video output stream, including recording start, recording end, and video output errors.
 
 - Register the **'frameStart'** event to listen for recording start events. This event can be registered when a **VideoOutput** instance is created and is triggered when the bottom layer starts exposure for recording for the first time. Video recording starts as long as a result is returned.
-  
+    
   ```c++
   void VideoOutputOnFrameStart(Camera_VideoOutput* videoOutput)
   {
@@ -182,7 +182,7 @@ During camera application development, you can listen for the status of the vide
   ```
 
 - Register the **'frameEnd'** event to listen for recording end events. This event can be registered when a **VideoOutput** instance is created and is triggered when the last frame of recording ends. Video recording ends as long as a result is returned.
-  
+    
   ```c++
   void VideoOutputOnFrameEnd(Camera_VideoOutput* videoOutput, int32_t frameCount)
   {
@@ -191,7 +191,7 @@ During camera application development, you can listen for the status of the vide
   ```
 
 - Register the **'error'** event to listen for video output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
-  
+    
   ```c++
   void VideoOutputOnError(Camera_VideoOutput* videoOutput, Camera_ErrorCode errorCode)
   {

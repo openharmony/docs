@@ -10,14 +10,15 @@ The size attributes set the width, height, and margin of a component.
 ## Attributes
 
 
-| Name            | Type                                    | Description                                      |
-| -------------- | ---------------------------------------- | ---------------------------------------- |
-| width          | [Length](ts-types.md#length)             | Width of the component. By default, the width required to fully hold the component content is used. If the width of the component is greater than that of the parent container, the range of the parent container is drawn.<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
-| height         | [Length](ts-types.md#length)             | Height of the component. By default, the height required to fully hold the component content is used. If the height of the component is greater than that of the parent container, the range of the parent container is drawn.<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
-| size           | {<br>width?: [Length](ts-types.md#length),<br>height?: [Length](ts-types.md#length)<br>} | Size of the component.<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
-| padding        | [Padding](ts-types.md#padding) \| [Length](ts-types.md#length) | Padding of the component.<br>When the parameter is of the **Length** type, the four paddings take effect.<br>Default value: **0**<br>When **padding** is set to a percentage, the width of the parent container is used as the basic value.<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
-| margin         | [Margin](ts-types.md#margin) \| [Length](ts-types.md#length) | Margin of the component.<br>When the parameter is of the **Length** type, the four margins take effect.<br>Default value: **0**<br>When **margin** is set to a percentage, the width of the parent container is used as the basic value. When child components are laid out along the cross axis of the **\<Row>**, **\<Column>**, or **\<Flex>** container, the cross axis size of the child components and the margins add up to the total size of the container.<br>For example, if the width of the **\<Column>** container is 100, the width of the child component is 50, the left margin is 10, and the right margin is 20, then the actual horizontal offset of the child component is 20.<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
-| constraintSize | {<br>minWidth?: [Length](ts-types.md#length),<br>maxWidth?: [Length](ts-types.md#length),<br>minHeight?: [Length](ts-types.md#length),<br>maxHeight?: [Length](ts-types.md#length)<br>} | Constraint size of the component, which is used to limit the size range during component layout. **constraintSize** takes precedence over **width** and **height**. Learn [how the value of this attribute affects the width and height](#impact-of-constraintsize-on-widthheight).<br>Default value:<br>{<br>minWidth: 0,<br>maxWidth: Infinity,<br>minHeight: 0,<br>maxHeight: Infinity<br>}<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
+| Name          | Type                                                    | Description                                                        |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| width          | [Length](ts-types.md#length)                                 | Width of the component. By default, the width required to fully hold the component content is used. If the width of the component is greater than that of the parent container, the range of the parent container is drawn.<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
+| height         | [Length](ts-types.md#length)                                 | Height of the component. By default, the height required to fully hold the component content is used. If the height of the component is greater than that of the parent container, the range of the parent container is drawn.<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
+| size           | {<br>width?: [Length](ts-types.md#length),<br>height?: [Length](ts-types.md#length)<br>} | Size of the component.<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
+| padding        | [Padding](ts-types.md#padding) \| [Length](ts-types.md#length) | Padding of the component.<br>When the parameter is of the **Length** type, the four paddings take effect.<br>Default value: **0**<br>Unit: vp<br>When **padding** is set to a percentage, the width of the parent container is used as the basic value.<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
+| margin         | [Margin](ts-types.md#margin) \| [Length](ts-types.md#length) | Margin of the component.<br>When the parameter is of the **Length** type, the four margins take effect.<br>Default value: **0**<br>Unit: vp<br>When **margin** is set to a percentage, the width of the parent container is used as the basic value. When child components are laid out along the cross axis of the **\<Row>**, **\<Column>**, or **\<Flex>** container, the cross axis size of the child components and the margins add up to the total size of the container.<br>For example, if the width of the **\<Column>** container is 100, the width of the child component is 50, the left margin is 10, and the right margin is 20, then the actual horizontal offset of the child component is 20.<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
+| layoutWeight   | number \| string                                   | Weight of the component during layout. When the container size is determined, the container space is allocated along the main axis among the component and sibling components based on the layout weight, and the component size setting is ignored.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** layouts.<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.|
+| constraintSize | {<br>minWidth?: [Length](ts-types.md#length),<br>maxWidth?: [Length](ts-types.md#length),<br>minHeight?: [Length](ts-types.md#length),<br>maxHeight?: [Length](ts-types.md#length)<br>} | Constraint size of the component, which is used to limit the size range during component layout. **constraintSize** takes precedence over **width** and **height**. Learn [how the value of this attribute affects the width and height](#impact-of-constraintsize-on-widthheight).<br>Default value:<br>{<br>minWidth: 0,<br>maxWidth: Infinity,<br>minHeight: 0,<br>maxHeight: Infinity<br>}<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this API supports the calc calculation feature.|
 
 ## Impact of constraintSize on width/height
 
@@ -43,13 +44,13 @@ struct SizeExample {
     Column({ space: 10 }) {
       Text('margin and padding:').fontSize(12).fontColor(0xCCCCCC).width('90%')
       Row() {
-        // Width: 80; height: 80; margin: 20 (blue area); padding: 10 (white area)
+        // Width: 80; height: 80; margin: 20 (blue area); top, bottom, left, and right paddings: 5, 15, 10, and 20 (white area)
         Row() {
           Row().size({ width: '100%', height: '100%' }).backgroundColor(Color.Yellow)
         }
         .width(80)
         .height(80)
-        .padding(10)
+        .padding({ top: 5, left: 10, bottom: 15, right: 20 })
         .margin(20)
         .backgroundColor(Color.White)
       }.backgroundColor(Color.Blue)
@@ -76,9 +77,13 @@ struct SizeExample {
       }.size({ width: '90%', height: 140 }).backgroundColor(0xAFEEEE)
       // calc calculation feature
       Text('calc:').fontSize(12).fontColor(0xCCCCCC).width('90%')
-      Text('calc test').fontSize(50).fontWeight(FontWeight.Bold).backgroundColor(0xFFFAF0).textAlign(TextAlign.Center)
+      Text('calc test')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+        .backgroundColor(0xFFFAF0)
+        .textAlign(TextAlign.Center)
         .margin('calc(25vp*2)')
-        .size({width:'calc(90%)', height:'calc(50vp + 10%)'})
+        .size({ width: 'calc(90%)', height: 'calc(50vp + 10%)' })
     }.width('100%').margin({ top: 5 })
   }
 }

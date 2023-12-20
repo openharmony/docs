@@ -4,8 +4,7 @@ The **cloudSync** module provides the device-cloud synchronization capabilities 
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module are system APIs and cannot be called by third-party applications.
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -19,9 +18,11 @@ Enumerates the device-cloud synchronization states.
 
 > **NOTE**
 >
-> If a synchronization process event listener is registered for an application, a callback will be invoked to notify the application when any of the following states is changed.
+> If a synchronization progress event listener is registered for an application, a callback will be invoked to notify the application when the device-cloud synchronization state is changed.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
 
 | Name|  Value|  Description|
 | ----- |  ---- |  ---- |
@@ -34,15 +35,17 @@ Enumerates the device-cloud synchronization states.
 
 ## ErrorType
 
-Enumerates the device-cloud synchronization error types.
+Enumerates the device-cloud synchronization errors.
 
 - Currently, **NETWORK_UNAVAILABLE** is returned only when both the mobile network and Wi-Fi are unavailable during synchronization. If either network is available, synchronization can be performed normally.
 - During the synchronization process, if the battery level is lower than 15% in non-charging scenarios, **BATTERY_LEVEL_LOW** will be return when the current upload is complete; if the battery level is lower than 10% in non-charging scenarios, **BATTERY_LEVEL_WARNING** will be returned when the current upload is complete.
-- When synchronization is triggered, if the battery level is lower than 15% in non-charging scenarios, synchronization is not allowed and an error code will be returned by **start()**.
-- If the cloud space is insufficient when a file is uploaded, the upload will fail. 
+- When synchronization is being triggered, if the battery level is lower than 15% in non-charging scenarios, synchronization is not allowed and an error code will be returned by **start()**.
+- If the cloud space is insufficient when a file is uploaded, the upload will fail and there is no such a file in the cloud. 
 - If the local space is insufficient when a file is downloaded, the download will fail. After the local space is released, the file will be downloaded again when synchronization starts.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
 
 | Name|  Value|  Description|
 | ----- |  ---- |  ---- |
@@ -56,18 +59,20 @@ Enumerates the device-cloud synchronization error types.
 
 ## SyncProgress
 
-Defines the device-cloud synchronization process.
+Represents information about the device-cloud synchronization progress.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | state | [SyncState](#syncstate) | Yes  | Device-cloud synchronization state.|
-| error | [ErrorType](#errortype) | Yes  | Synchronization error type.|
+| error | [ErrorType](#errortype) | Yes  | Synchronization error.|
 
 ## GallerySync
 
-Provides APIs to implement device-cloud synchronization of media resources of the Gallery. Before using the APIs of **GallerySync**, you need to create a **GallerySync** instance.
+Provides APIs to implement device-cloud synchronization of media assets in **Gallery**. Before using the APIs of **GallerySync**, you need to create a **GallerySync** instance.
 
 ### constructor
 
@@ -76,6 +81,8 @@ constructor()
 A constructor used to create a **GallerySync** instance.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
 
 **Example**
 
@@ -87,18 +94,20 @@ A constructor used to create a **GallerySync** instance.
 
 on(evt: 'progress', callback: (pg: SyncProgress) => void): void
 
-Subscribes to the synchronization process event.
+Registers a listener for the device-cloud synchronization progress.
 
 **Required permissions**: ohos.permission.CLOUDFILE_SYNC
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
-| evt | string | Yes  | Type of the event to subscribe to. The value is **progress**, which indicates the synchronization process event.|
-| callback | (pg: SyncProgress) => void | Yes  | Callback invoked to return the result. The input parameter is [SyncProgress](#syncprogress), and the return value is **void**.|
+| evt | string | Yes  | Event type. The value is **progress**, which indicates the synchronization progress event.|
+| callback | (pg: SyncProgress) => void | Yes  | Callback invoked to return the synchronization progress event. The input parameter is [SyncProgress](#syncprogress), and the return value is **void**.|
 
 **Error codes**
 
@@ -125,18 +134,20 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 off(evt: 'progress', callback: (pg: SyncProgress) => void): void
 
-Unsubscribes from the synchronization process event.
+Unregisters a listener for the device-cloud synchronization progress.
 
 **Required permissions**: ohos.permission.CLOUDFILE_SYNC
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
-| evt | string | Yes  | Type of the event to unsubscribe from. The value is **progress**, which indicates the synchronization process event.|
-| callback | (pg: SyncProgress) => void | Yes  | Callback for the synchronization process event. The input parameter is [SyncProgress](#syncprogress), and the return value is **void**.|
+| evt | string | Yes  | Event type. The value is **progress**, which indicates the synchronization progress event.|
+| callback | (pg: SyncProgress) => void | Yes  | Callback for the synchronization progress event. The input parameter is [SyncProgress](#syncprogress), and the return value is **void**.|
 
 **Error codes**
 
@@ -167,17 +178,19 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 off(evt: 'progress'): void
 
-Unsubscribes from the synchronization process event.
+Unregisters all listeners for the device-cloud synchronization progress.
 
 **Required permissions**: ohos.permission.CLOUDFILE_SYNC
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
-| evt | string | Yes  | Type of the event to unsubscribe from. The value is **progress**, which indicates the synchronization process event.|
+| evt | string | Yes  | Event type. The value is **progress**, which indicates the synchronization progress event.|
 
 **Error codes**
 
@@ -211,6 +224,8 @@ Starts device-cloud synchronization. This API uses a promise to return the resul
 **Required permissions**: ohos.permission.CLOUDFILE_SYNC
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
 
 **Return value**
 
@@ -257,6 +272,8 @@ Starts device-cloud synchronization. This API uses an asynchronous callback to r
 **Required permissions**: ohos.permission.CLOUDFILE_SYNC
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -306,6 +323,8 @@ Stops device-cloud synchronization. This API uses a promise to return the result
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Type                 | Description            |
@@ -349,6 +368,8 @@ Stops device-cloud synchronization. This API uses an asynchronous callback to re
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name    | Type  | Mandatory| Description|
@@ -386,6 +407,8 @@ Enumerates the download states of a cloud file.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
+**System API**: This is a system API.
+
 | Name|  Value|  Description|
 | ----- |  ---- |  ---- |
 | RUNNING |  0 | The cloud file is being downloaded.|
@@ -395,20 +418,22 @@ Enumerates the download states of a cloud file.
 
 ## DownloadProgress
 
-Defines the download process of a cloud file.
+Represents information about the download progress of a cloud file.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | state | [State](#state) | Yes  | File download state.|
-| processed | number | Yes  | Size of data downloaded.|
-| size | number | Yes  | Current size of the file.|
-| uri | string | Yes  | URI of the file.|
+| processed | number | Yes  | Size of the data downloaded.|
+| size | number | Yes  | Size of the cloud file.|
+| uri | string | Yes  | URI of the cloud file.|
 
 ## Download
 
-Provides APIs for downloading the image files in Gallery. Before using the APIs of **Download**, you need to create a **Download** instance.
+Provides APIs for downloading image files to **Gallery**. Before using the APIs of **Download**, you need to create a **Download** instance.
 
 ### constructor
 
@@ -417,6 +442,8 @@ constructor()
 A constructor used to create a **Download** instance.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
 
 **Example**
 
@@ -428,18 +455,20 @@ A constructor used to create a **Download** instance.
 
 on(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 
-Subscribes to the cloud file download event.
+Registers a listener for the download progress of a cloud file.
 
 **Required permissions**: ohos.permission.CLOUDFILE_SYNC
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
-| evt | string | Yes  | Type of the event to subscribe to. The value is **progress**, which indicates the download process event.|
-| callback | (pg: DownloadProgress) => void | Yes  | Callback invoked to return the result. The input parameter is [DownloadProgress](#downloadprogress), and the return value is **void**.|
+| evt | string | Yes  | Event. The value is **progress**, which indicates the download progress event of a cloud file.|
+| callback | (pg: DownloadProgress) => void | Yes  | Callback invoked to return the registered event. The input parameter is [DownloadProgress](#downloadprogress), and the return value is **void**.|
 
 **Error codes**
 
@@ -466,18 +495,20 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 off(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 
-Unsubscribes from the cloud file download event.
+Unregisters a listener for the download progress of a cloud file.
 
 **Required permissions**: ohos.permission.CLOUDFILE_SYNC
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
-| evt | string | Yes  | Type of the event to unsubscribe from. The value is **progress**, which indicates the synchronization process event.|
-| callback | (pg: DownloadProgress) => void | Yes  | Callback for the cloud file download event. The input parameter is [DownloadProgress](#downloadprogress), and the return value is **void**.|
+| evt | string | Yes  | Event type. The value is **progress**, which indicates the download progress event of a cloud file.|
+| callback | (pg: DownloadProgress) => void | Yes  | Callback for the download progress event of a cloud file. The input parameter is [DownloadProgress](#downloadprogress), and the return value is **void**.|
 
 **Error codes**
 
@@ -508,17 +539,19 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 off(evt: 'progress'): void
 
-Unsubscribes from the cloud file download event.
+Unregisters all listeners for the download progress event of a cloud file.
 
 **Required permissions**: ohos.permission.CLOUDFILE_SYNC
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
-| evt | string | Yes  | Type of the event to unsubscribe from. The value is **progress**, which indicates the download process event.|
+| evt | string | Yes  | Event type. The value is **progress**, which indicates the download progress event of a cloud file.|
 
 **Error codes**
 
@@ -552,6 +585,8 @@ Starts to download a cloud file. This API uses a promise to return the result.
 **Required permissions**: ohos.permission.CLOUDFILE_SYNC
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -605,6 +640,8 @@ Starts to download a cloud file. This API uses an asynchronous callback to retur
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name    | Type  | Mandatory| Description|
@@ -648,11 +685,13 @@ Stops downloading a cloud file. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> Calling **stop** will terminate the download of the current file and clear the cached file. You can use **start** to start the download again.
+> Calling **stop** will terminate the download of the current file and clear the cache file. You can use **start** to start the download again.
 
 **Required permissions**: ohos.permission.CLOUDFILE_SYNC
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -698,11 +737,13 @@ Stops downloading a cloud file. This API uses an asynchronous callback to return
 
 > **NOTE**
 >
-> Calling **stop** will terminate the download of the current file and clear the cached file. You can use **start** to start the download again.
+> Calling **stop** will terminate the download of the current file and clear the cache file. You can use **start** to start the download again.
 
 **Required permissions**: ohos.permission.CLOUDFILE_SYNC
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -736,3 +777,849 @@ For details about the error codes, see [File Management Error Codes](../errorcod
     }
   });
   ```
+## FileSync<sup>11+</sup>
+
+Provides APIs for the file manager application to perform device-cloud synchronization of the files stored in the Drive Kit. Before using the APIs of this class, you need to create a **FileSync** instance.
+
+### constructor<sup>11+</sup>
+
+constructor()
+
+A constructor used to create a **FileSync** instance.
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+
+**Example**
+
+  ```ts
+  let fileSync = new cloudSync.FileSync()
+  ```
+
+### on<sup>11+</sup>
+
+on(event: 'progress', callback: Callback\<SyncProgress>): void
+
+Registers a listener for the device-cloud synchronization progress.
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| event | string | Yes  | Event type. The value is **progress**, which indicates the synchronization progress event.|
+| callback | Callback\<[SyncProgress](#syncprogress)> | Yes  | Callback invoked to return the synchronization progress information.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+
+**Example**
+
+  ```ts
+  let fileSync = new cloudSync.FileSync();
+  let callback = (pg: cloudSync.SyncProgress) => {
+    console.info("file sync state: " + pg.state + "error type:" + pg.error);
+  }
+
+  fileSync.on('progress', callback);
+  ```
+
+### off<sup>11+</sup>
+
+off(event: 'progress', callback?: Callback\<SyncProgress>): void
+
+Unregisters a listener for the device-cloud synchronization progress.
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| event | string | Yes  | Event type. The value is **progress**, which indicates the synchronization progress event.|
+| callback | Callback\<[SyncProgress](#syncprogress)> |  No  | Callback for the synchronization progress event.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+
+**Example**
+
+  ```ts
+  let fileSync = new cloudSync.FileSync();
+
+  let callback = (pg: cloudSync.SyncProgress) => {
+    console.info("file sync state: " + pg.state + "error type:" + pg.error);
+  }
+
+  fileSync.on('progress', callback);
+
+  fileSync.off('progress', callback);
+  ```
+
+### start<sup>11+</sup>
+
+start(): Promise&lt;void&gt;
+
+Starts device-cloud synchronization of a file in the Drive Kit. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type                 | Description            |
+| --------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+| 22400001  | Cloud status not ready. |
+| 22400002  | Network unavailable. |
+| 22400003  | Battery level warning. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let fileSync = new cloudSync.FileSync();
+
+  let callback = (pg: cloudSync.SyncProgress) => {
+    console.info("file sync state: " + pg.state + "error type:" + pg.error);
+  }
+
+  fileSync.on('progress', callback);
+
+  fileSync.start().then(() => {
+	  console.info("start sync successfully");
+  }).catch((err: BusinessError) => {
+	  console.info("start sync failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+### start<sup>11+</sup>
+
+start(callback: AsyncCallback&lt;void&gt;): void
+
+Starts device-cloud synchronization of a file in the Drive Kit. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+| 22400001  | Cloud status not ready. |
+| 22400002  | Network unavailable. |
+| 22400003  | Battery level warning. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let fileSync = new cloudSync.FileSync();
+
+  fileSync.start((err: BusinessError) => {
+    if (err) {
+      console.info("start sync failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("start sync successfully");
+    }
+  });
+  ```
+
+### stop<sup>11+</sup>
+
+stop(): Promise&lt;void&gt;
+
+Stops device-cloud synchronization of the file in the Drive Kit. This API uses a promise to return the result.
+
+Calling **stop** will stop the synchronization process. To resume the synchronization, call [start](#start-11).
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type                 | Description            |
+| --------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let fileSync = new cloudSync.FileSync();
+
+  fileSync.stop().then(() => {
+	  console.info("stop sync successfully");
+  }).catch((err: BusinessError) => {
+	  console.info("stop sync failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+### stop<sup>11+</sup>
+
+stop(callback: AsyncCallback&lt;void&gt;): void
+
+Stops device-cloud synchronization of the file in the Drive Kit. This API uses an asynchronous callback to return the result.
+
+Calling **stop** will stop the synchronization process. To resume the synchronization, call [start](#start11-1).
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let fileSync = new cloudSync.FileSync();
+
+  fileSync.stop((err: BusinessError) => {
+    if (err) {
+      console.info("stop sync failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("stop sync successfully");
+    }
+  });
+  ```
+
+### getLastSyncTime<sup>11+</sup>
+
+getLastSyncTime(): Promise&lt;number&gt;
+
+Obtains the last synchronization time. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type                 | Description            |
+| --------------------- | ---------------- |
+| Promise&lt;number&gt; | Promise used to return the last synchronization time obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let fileSync = new cloudSync.FileSync();
+
+  fileSync.getLastSyncTime.then((timeStamp: number) => {
+    let date = new Date(timeStamp);
+    console.info("get last sync time successfully:"+ date);
+  }).catch((err: BusinessError) => {
+	  console.info("get last sync time failed with error message: " + err.message + ", error code: " + err.code);
+  });
+
+  ```
+
+### getLastSyncTime<sup>11+</sup>
+
+getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void;
+
+Obtains the last synchronization time. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the last synchronization time obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let fileSync = new cloudSync.FileSync();
+
+  fileSync.getLastSyncTime((err: BusinessError, timeStamp: number) => {
+    if (err) {
+      console.info("get last sync time with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      let date = new Date(timeStamp);
+      console.info("get last sync time successfully:"+ date);
+    }
+  });
+  ```
+
+## CloudFileCache<sup>11+</sup>
+
+Provides APIs for the file manager application to download files from the Drive Kit to a local device.
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+### construct<sup>11+</sup>
+constructor()
+
+A constructor used to create a **CloudFileCache** instance.
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**Error codes**
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 401 | The input parameter is invalid. |
+
+**Example**
+
+  ```ts
+  let fileCache = new cloudSync.CloudFileCache();
+  ```
+
+
+### on<sup>11+</sup>
+
+on(event: 'progress', callback: Callback\<DownloadProgress>): void
+
+Registers a listener for the download progress of a file from the Drive Kit.
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| event | string | Yes  | Event type. The value is **progress**, which indicates the download progress event of a file from the Drive Kit.|
+| callback | Callback\<[DownloadProgress](#downloadprogress)> | Yes  | Callback invoked to return the download progress information.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+
+**Example**
+
+  ```ts
+  let fileCache = new cloudSync.CloudFileCache();
+  let callback = (pg: cloudSync.DownloadProgress) => {
+    console.info("download state: " + pg.state);
+  };
+
+  fileCache.on('progress', callback);
+  ```
+
+### off<sup>11+</sup>
+
+off(event: 'progress', callback?: Callback\<DownloadProgress>): void
+
+Unregisters a listener for the download progress of a file from the Drive Kit.
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| event | string | Yes  | Event type. The value is **progress**, which indicates the download progress event of a file from the Drive Kit.|
+| callback | Callback\<[DownloadProgress](#downloadprogress)> | No  | Callback for the download progress event of a file from the Drive Kit.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+| 13900002  | No such file or directory. |
+| 13900025  | No space left on device. |
+| 14000002  | Invalid uri. |
+
+**Example**
+
+  ```ts
+  let fileCache = new cloudSync.CloudFileCache();
+
+  let callback = (pg: cloudSync.DownloadProgress) => {
+    console.info("download state: " + pg.state);
+  }
+
+  fileCache.on('progress', callback);
+
+  fileCache.off('progress', callback);
+  ```
+
+### start<sup>11+</sup>
+
+start(uri: string): Promise&lt;void&gt;
+
+Starts to download a file from the Drive Kit to the local device. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| uri | string | Yes  | URI of the file to download.|
+
+**Return value**
+
+| Type                 | Description            |
+| --------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import fileUri from file.fileUri;
+  let fileCache = new cloudSync.CloudFileCache();
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+
+  fileCache.on('progress', (pg: cloudSync.DownloadProgress) => {
+	  console.info("download state:" + pg.state);
+  });
+
+  fileCache.start(uri).then(() => {
+	  console.info("start download successfully");
+  }).catch((err: BusinessError) => {
+	  console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+| 13900002 | No such file or directory. |
+| 13900025 | No space left on device. |
+| 14000002 | Invalid uri. |
+
+### start<sup>11+</sup>
+
+start(uri: string, callback: AsyncCallback&lt;void&gt;): void
+
+Starts to download a file from the Drive Kit to the local device. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| uri | string | Yes  | URI of the file to download.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+| 13900002 | No such file or directory. |
+| 13900025 | No space left on device. |
+| 14000002 | Invalid uri. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import fileUri from file.fileUri;
+  let fileCache = new cloudSync.CloudFileCache();
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+
+  fileCache.start(uri, (err: BusinessError) => {
+    if (err) {
+      console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("start download successfully");
+    }
+  });
+  ```
+
+### stop<sup>11+</sup>
+
+stop(uri: string): Promise&lt;void&gt;
+
+Stops downloading a file from the Drive Kit to the local device. This API uses a promise to return the result.
+
+Calling **stop** will terminate the download of the current file and clear the cache file. You can use **start** to start the download again.
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| uri | string | Yes  | URI of the file to download.|
+
+**Return value**
+
+| Type                 | Description            |
+| --------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+| 13900002 | No such file or directory. |
+| 14000002 | Invalid uri. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import fileUri from file.fileUri;
+  let fileCache = new cloudSync.CloudFileCache();
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+
+  fileCache.stop(uri).then(() => {
+	  console.info("stop download successfully");
+  }).catch((err: BusinessError) => {
+	  console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+### stop<sup>11+</sup>
+
+stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
+
+Stops downloading a file from the Drive Kit to the local device. This API uses an asynchronous callback to return the result.
+
+Calling **stop** will terminate the download of the current file and clear the cache file. You can use **start** to start the download again.
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| uri | string | Yes  | URI of the file to download.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+| 13900002 | No such file or directory. |
+| 14000002 | Invalid uri. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import fileUri from file.fileUri;
+  let fileCache = new cloudSync.CloudFileCache();
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+
+  fileCache.stop(uri, (err: BusinessError) => {
+    if (err) {
+      console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("stop download successfully");
+    }
+  });
+  ```
+### cleanCache<sup>11+</sup>
+
+cleanCache(uri: string): void;
+
+Deletes a cache file. This API returns the result synchronously.
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| uri | string | Yes  | URI of the cache file to delete.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+| 13900002  | No such file or directory. |
+| 14000002  | Invalid uri. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import fileUri from file.fileUri;
+  let fileCache = new cloudSync.CloudFileCache();
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+
+  try {
+    fileCache.cleanCache(uri);
+  } catch (err: BusinessError) {
+    console.info("clean cache failed with error message: " + err.message + ", error code: " + err.code);
+  } 
+
+  ```
+
+## cloudSync.getFileSyncState<sup>11+</sup>
+
+getFileSyncState(uri: Array&lt;string&gt;): Promise&lt;Array&lt;FileSyncState&gt;&gt;
+
+Obtains the file synchronization state. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| uri | Array&lt;string&gt; | Yes  | URI of the file whose synchronization state is to be obtained.|
+
+**Return value**
+
+| Type                 | Description            |
+| --------------------- | ---------------- |
+| Promise&lt;Array&lt;FileSyncState&gt;&gt; | Promise used to return the synchronization state obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+| 13900002  | No such file or directory. |
+| 14000002  | Invalid uri. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let fileSync = new cloudSync.FileSync();
+
+  let uris: Array<string> = ["file://uri"];
+  fileSync.getFileSyncState(uris).then(function(syncStates: Array<FileSyncState>){
+    console.info("get file sync state successfully");
+  }).catch((err: BusinessError) => {
+	  console.info("get file sync state failed with error message: " + err.message + ", error code: " + err.code);
+  });
+
+  ```
+
+## cloudSync.getFileSyncState<sup>11+</sup>
+
+getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;FileSyncState&gt;&gt;): void
+
+Obtains the file synchronization state. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| uri | Array&lt;string&gt; | Yes  | URI of the file whose synchronization state is to be obtained.|
+| callback | AsyncCallback&lt;Array&lt;FileSyncState&gt;&gt; | Yes  | Callback invoked to return the file synchronization state.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+| 13900002  | No such file or directory. |
+| 14000002  | Invalid uri. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let fileSync = new cloudSync.FileSync();
+
+  let uris: Array<string> = ["file://uri"];
+  fileSync.getFileSyncState(uris, function(err: BusinessError) => {
+    if (err) {
+      console.info("get file sync state with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("get file sync state successfully:"+ date);
+    }
+  });
+  ```
+
+## FileSyncState<sup>11+</sup>
+
+Enumerates the device-cloud file synchronization states.
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+| Name|  Value|  Description|
+| ----- |  ---- |  ---- |
+| UPLOADING |  0 | Uploading.|
+| DOWNLOADING |  1 | Downloading.|
+| COMPLETED |  2 | Synchronization completed.|
+| STOPPED |  3 | Synchronization stopped.|
