@@ -265,7 +265,7 @@ off(type: 'environment', callbackId: **number**): Promise\<void\>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void\> | 以Promise方式返回取消对系统环境变化的监听结果。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **示例：**
 
