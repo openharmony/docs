@@ -220,7 +220,7 @@
 | constructor | number[] | 是    | 创建具有4\*5矩阵的颜色过滤器, 入参为[m\*n]位于m行和n列中矩阵值, 每个值的有效范围是[0, 1], 矩阵是行优先的。 |
 
 
-## CustomBuilder<sup>10+</sup>
+## CustomBuilder<sup>8+</sup>
 
 组件属性方法参数可使用CustomBuilder类型来自定义UI描述。
 
