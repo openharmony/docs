@@ -62,11 +62,11 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 | 名称                  | 描述        |
 | ------------------- | --------- |
-| Go     | 显示为前往样式。   |
+| Go     | 显示为开始样式。   |
 | Search | 显示为搜索样式。  |
 | Send   | 显示为发送样式。  |
 | Next   | 显示为下一个样式。 |
-| Done   | 显示为确认样式。     |
+| Done   | 显示为换行样式。     |
 
 ## InputType枚举说明
 
