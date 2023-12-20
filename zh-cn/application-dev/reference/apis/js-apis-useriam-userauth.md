@@ -759,10 +759,8 @@ on : (name : AuthEventKey, callback : AuthEvent) => void
 订阅指定类型的用户认证事件。
 
 > **说明：**
-> 从 API version 9 开始支持，从 API version 10 开始废弃。
-
-> **说明：**
-> 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行订阅。
+> - 从 API version 9 开始支持，从 API version 10 开始废弃。
+> - 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行订阅。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -828,11 +826,9 @@ off : (name : AuthEventKey) => void
 
 取消订阅特定类型的认证事件。
 
->**说明：**
->从 API version 9 开始支持，从 API version 10 开始废弃。
-
 > **说明：**
-> 需要使用已经成功订阅事件的[AuthInstance](#authinstancedeprecated)对象调用该接口进行取消订阅。
+> - 从 API version 9 开始支持，从 API version 10 开始废弃。
+> - 需要使用已经成功订阅事件的[AuthInstance](#authinstancedeprecated)对象调用该接口进行取消订阅。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -884,10 +880,8 @@ start : () => void
 开始认证。
 
 > **说明：**
-> 从 API version 9 开始支持，从 API version 10 开始废弃。
-
-> **说明：**
-> 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行认证。
+> - 从 API version 9 开始支持，从 API version 10 开始废弃。
+> - 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行认证。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -936,10 +930,8 @@ cancel : () => void
 取消认证。
 
 > **说明：**
-> 从 API version 9 开始支持，从 API version 10 开始废弃。
-
-> **说明：**
-> 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行取消认证，此[AuthInstance](#authinstancedeprecated)需要是正在进行认证的对象。
+> - 从 API version 9 开始支持，从 API version 10 开始废弃。
+> - 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行取消认证，此[AuthInstance](#authinstancedeprecated)需要是正在进行认证的对象。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -980,10 +972,9 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 获取AuthInstance对象，用于执行用户身份认证。
 
 > **说明：**
-> 从 API version 9 开始支持，从 API version 10 开始废弃，请使用[getUserAuthInstance](#getuserauthinstance10)替代。
+> - 从 API version 9 开始支持，从 API version 10 开始废弃，请使用[getUserAuthInstance](#getuserauthinstance10)替代。
+> - 每个AuthInstance只能进行一次认证，若需要再次进行认证则需重新获取AuthInstance。
 
-> **说明：**
-> 每个AuthInstance只能进行一次认证，若需要再次进行认证则需重新获取AuthInstance。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
