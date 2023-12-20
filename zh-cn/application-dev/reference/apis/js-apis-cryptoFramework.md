@@ -1503,58 +1503,6 @@ keyGenPromise.then( pubKey => {
 });
 ```
 
-## cryptoFramework.createCipher
-
-createCipher(transformation: string): Cipher
-
-通过指定算法名称，获取相应的[Cipher](#cipher)实例。
-
-支持的规格详见框架概述“[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)”一节。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-**参数：**
-
-| 参数名         | 类型   | 必填 | 说明                                                         |
-| -------------- | ------ | ---- | ------------------------------------------------------------ |
-| transformation | string | 是   | 待生成Cipher的算法名称（含密钥长度）、加密模式以及填充方法的组合。<br/>具体取值详见框架概述“[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)”一节中的“字符串参数”。 |
-
-> **说明：**
->
-> 1. 目前对称加解密中，PKCS5和PKCS7的实现相同，其padding长度和分组长度保持一致（即PKCS5和PKCS7在3DES中均按照8字节填充，在AES中均按照16字节填充），另有NoPadding表示不填充。
-> <br/>开发者需要自行了解密码学不同分组模式的差异，以便选择合适的参数规格。例如选择ECB和CBC模式时，建议启用填充，否则必须确保明文长度是分组大小的整数倍；选择其他模式时，可以不启用填充，此时密文长度和明文长度一致（即可能不是分组大小的整数倍）。
-> 2. 使用RSA、SM2进行非对称加解密时，必须创建两个Cipher对象分别进行加密和解密操作，而不能对同一个Cipher对象进行加解密。对称加解密没有此要求（即只要算法规格一样，可以对同一个Cipher对象进行加解密操作）。
-
-**返回值：**
-
-| 类型              | 说明                     |
-| ----------------- | ------------------------ |
-| [Cipher](#cipher) | 返回加解密生成器的对象。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401 | invalid parameters.          |
-| 801 | this operation is not supported. |
-| 17620001 | memory error.          |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let cipherAlgName = '3DES192|ECB|PKCS7';
-try {
-  let cipher = cryptoFramework.createCipher(cipherAlgName);
-  console.info(`cipher algName: ${cipher.algName}`);
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`sync error, ${e.code}, ${e.message}`);
-}
-```
-
 ## ECCKeyUtil<sup>11+</sup>
 
 根据椭圆曲线名生成相应的非对称公共密钥参数。
@@ -1648,6 +1596,58 @@ try {
 } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error(`genDHCommonParamsSpec error, ${e.code}, ${e.message}`);
+}
+```
+
+## cryptoFramework.createCipher
+
+createCipher(transformation: string): Cipher
+
+通过指定算法名称，获取相应的[Cipher](#cipher)实例。
+
+支持的规格详见框架概述“[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)”一节。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名         | 类型   | 必填 | 说明                                                         |
+| -------------- | ------ | ---- | ------------------------------------------------------------ |
+| transformation | string | 是   | 待生成Cipher的算法名称（含密钥长度）、加密模式以及填充方法的组合。<br/>具体取值详见框架概述“[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)”一节中的“字符串参数”。 |
+
+> **说明：**
+>
+> 1. 目前对称加解密中，PKCS5和PKCS7的实现相同，其padding长度和分组长度保持一致（即PKCS5和PKCS7在3DES中均按照8字节填充，在AES中均按照16字节填充），另有NoPadding表示不填充。
+> <br/>开发者需要自行了解密码学不同分组模式的差异，以便选择合适的参数规格。例如选择ECB和CBC模式时，建议启用填充，否则必须确保明文长度是分组大小的整数倍；选择其他模式时，可以不启用填充，此时密文长度和明文长度一致（即可能不是分组大小的整数倍）。
+> 2. 使用RSA、SM2进行非对称加解密时，必须创建两个Cipher对象分别进行加密和解密操作，而不能对同一个Cipher对象进行加解密。对称加解密没有此要求（即只要算法规格一样，可以对同一个Cipher对象进行加解密操作）。
+
+**返回值：**
+
+| 类型              | 说明                     |
+| ----------------- | ------------------------ |
+| [Cipher](#cipher) | 返回加解密生成器的对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters.          |
+| 801 | this operation is not supported. |
+| 17620001 | memory error.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let cipherAlgName = '3DES192|ECB|PKCS7';
+try {
+  let cipher = cryptoFramework.createCipher(cipherAlgName);
+  console.info(`cipher algName: ${cipher.algName}`);
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`sync error, ${e.code}, ${e.message}`);
 }
 ```
 
