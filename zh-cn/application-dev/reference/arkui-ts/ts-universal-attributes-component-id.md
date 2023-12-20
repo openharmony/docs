@@ -226,6 +226,8 @@ struct IdExample {
             y: rect.top + (rect.bottom - rect.top) / 2, // 组件中心点y坐标
             screenX: rect.left + (rect.right - rect.left) / 2, // 组件中心点x坐标
             screenY: rect.top + (rect.bottom - rect.top) / 2, // 组件中心点y坐标
+            stopPropagation: () => {
+            },
             timestamp: 1,
             target: {
               area: {
@@ -265,7 +267,9 @@ struct IdExample {
             keySource: 4,
             deviceId: 0,
             metaKey: 0,
-            timestamp: 0
+            timestamp: 0,
+            stopPropagation: () => {
+            }
           }
           sendKeyEvent(keyEvent) // 发送按键事件
         }, 2000)
