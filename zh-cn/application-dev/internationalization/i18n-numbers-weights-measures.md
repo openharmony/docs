@@ -35,7 +35,7 @@
 
 **数字格式化选项**
 
-对于数字，通过[NumberOptions](../reference/apis/js-apis-intl.md#numberoptions6)参数可以设置最小整数位数、最小小数位数、最大小数位数、最低有效位数、最大有效位数、是否分组显示、数字的格式化规格、紧凑型的显示格式，以及数字的显示格式和数字系统。其中，数字的显示格式包括decimal(十进制)、percent(百分数)、currency(货币)、unit(单位)。
+对于数字，通过[NumberOptions](../reference/apis/js-apis-intl.md#numberoptions)参数可以设置最小整数位数、最小小数位数、最大小数位数、最低有效位数、最大有效位数、是否分组显示、数字的格式化规格、紧凑型的显示格式，以及数字的显示格式和数字系统。其中，数字的显示格式包括decimal(十进制)、percent(百分数)、currency(货币)、unit(单位)。
 
 以123000.123为例，各属性参数取值和显示效果如下表所示。
 
@@ -124,7 +124,7 @@ let formattedNumber4 = numberFormat4.format(0.25); // formattedNumber4: 25%
 
 ### 货币和单位格式化
 
-货币和单位的格式化基于数字格式化，在创建货币和单元格式化对象时，将数字的显示风格分别设置为“currency(货币)”和“unit(单位)”。同样，货币和单位的构造函数也支持通过[NumberOptions](../reference/apis/js-apis-intl.md#numberoptions6)设置不同的格式，各属性参数取值和显示效果如下表所示。
+货币和单位的格式化基于数字格式化，在创建货币和单元格式化对象时，将数字的显示风格分别设置为“currency(货币)”和“unit(单位)”。同样，货币和单位的构造函数也支持通过[NumberOptions](../reference/apis/js-apis-intl.md#numberoptions)设置不同的格式，各属性参数取值和显示效果如下表所示。
 
 **货币格式化选项**
 
