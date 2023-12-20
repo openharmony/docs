@@ -52,7 +52,7 @@ PromptOptions定义options的类型。
 | tip        | ResourceStr | 否   | 指定当前ExceptionPrompt的文字提示内容           |
 | marginType | MarginType  | 是   | 指定当前ExceptionPrompt的边距样式               |
 | actionText | ResourceStr | 否   | 指定当前ExceptionPrompt的右侧图标按钮的文字内容 |
-| marginTop  | number      | 是   | 指定当前ExceptionPrompt的距离顶部的位置         |
+| marginTop  | Dimension   | 是   | 指定当前ExceptionPrompt的距离顶部的位置         |
 | isShown    | boolean     | 否   | 指定当前ExceptionPrompt的显隐状态               |
 
 ## marginState
