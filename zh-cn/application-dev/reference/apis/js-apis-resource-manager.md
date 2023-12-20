@@ -261,7 +261,7 @@ import { BusinessError } from '@ohos.base';
 
 **参数：**
 
-| 名称            | 类型                            | 可读   |说明       |
+| 名称            | 类型                            | 必填   |说明       |
 | ------------- | ------------------------------- | ---- | -------- |
 | screenDensity | [ScreenDensity](#screendensity) | 是    | 当前设备屏幕密度 |
 | deviceType    | [DeviceType](#devicetype)       | 是    | 当前设备类型   |
