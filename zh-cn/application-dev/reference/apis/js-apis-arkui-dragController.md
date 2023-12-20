@@ -285,7 +285,7 @@ dragAction.on('statusChange', (dragAndDropInfo)=>{
 
 ### off('statusChange')<sup>11+</sup>
 
- off(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt;): void
+ off(type: 'statusChange', callback?: Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt;): void
 
 取消注册监听拖拽状态改变事件。
 
