@@ -223,31 +223,31 @@ grantPermission(tokenId: number, policies: Array&lt;PolicyInfo>, policyFlag: num
 
 **示例：**
 
-```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import bundleManager from '@ohos.bundle.bundleManager';
-
-async function grantPermissionExample() {
-  try {
-    let uri = "file://docs/storage/Users/username/1.txt";
-    let tokenId = 1000; //tokenId为拉起FilePicker的应用，由FilePicker获取。
-    let policyInfo: fileShare.PolicyInfo = {
-      uri: uri, 
-      operationMode: fileShare.OperationMode.READ_MODE,
-    };
-    let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-    fileShare.grantPermission(tokenId, policies, fileShare.PolicyFlag.ALLOW_PERSISTENCE).then(() => {
-      console.info("grantPermission successfully");
-    }).catch((err: BusinessError) => {
-      console.info("grantPermission failed with error message: " + err.message + ", error code: " + err.code);
-    });
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('grantPermission failed with err: ' + JSON.stringify(err));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import picker from '@ohos.file.picker';
+  import bundleManager from '@ohos.bundle.bundleManager';
+  
+  async function grantPermissionExample() {
+    try {
+      let uri = "file://docs/storage/Users/username/1.txt";
+      let tokenId = 1000; //tokenId为拉起FilePicker的应用，由FilePicker获取。
+      let policyInfo: fileShare.PolicyInfo = {
+        uri: uri, 
+        operationMode: fileShare.OperationMode.READ_MODE,
+      };
+      let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+      fileShare.grantPermission(tokenId, policies, fileShare.PolicyFlag.ALLOW_PERSISTENCE).then(() => {
+        console.info("grantPermission successfully");
+      }).catch((err: BusinessError) => {
+        console.info("grantPermission failed with error message: " + err.message + ", error code: " + err.code);
+      });
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('grantPermission failed with err: ' + JSON.stringify(err));
+    }
   }
-}
-```
+  ```
 
 ## fileShare.persistPermission<sup>11+</sup>
 
@@ -288,34 +288,36 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-
-async function persistPermissionExample() {
-  try {
-    let DocumentSelectOptions = new picker.DocumentSelectOptions();
-    let documentPicker = new picker.DocumentViewPicker();
-    let uris = await documentPicker.select(DocumentSelectOptions);
-    let policyInfo: fileShare.PolicyInfo = {
-      uri: uris[0], 
-      operationMode: fileShare.OperationMode.READ_MODE,
-    };
-    let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-    fileShare.persistPermission(policies).then(() => {
-      console.info("persistPermission successfully");
-    }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
-      console.info("persistPermission failed with error message: " + err.message + ", error code: " + err.code);
-      if (err.code == 13900001) {
-        console.log("error code : " + JSON.stringify(err.data[0].code));
-        console.log("error uri : " + JSON.stringify(err.data[0].uri));
-        console.log("error reason : " + JSON.stringify(err.data[0].message));
-      }
-    });
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('persistPermission failed with err: ' + JSON.stringify(err));
+  import { BusinessError } from '@ohos.base';
+  import picker from '@ohos.file.picker';
+  
+  async function persistPermissionExample() {
+    try {
+      let DocumentSelectOptions = new picker.DocumentSelectOptions();
+      let documentPicker = new picker.DocumentViewPicker();
+      let uris = await documentPicker.select(DocumentSelectOptions);
+      let policyInfo: fileShare.PolicyInfo = {
+        uri: uris[0], 
+        operationMode: fileShare.OperationMode.READ_MODE,
+      };
+      let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+      fileShare.persistPermission(policies).then(() => {
+        console.info("persistPermission successfully");
+      }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
+        console.info("persistPermission failed with error message: " + err.message + ", error code: " + err.code);
+        if (err.code == 13900001 && err.data) {
+          for(let i = 0; i < err.data.length; i++){
+            console.log("error code : " + JSON.stringify(err.data[i].code));
+            console.log("error uri : " + JSON.stringify(err.data[i].uri));
+            console.log("error reason : " + JSON.stringify(err.data[i].message));
+          }
+        }
+      });
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('persistPermission failed with err: ' + JSON.stringify(err));
+    }
   }
-}
   ```
 
 ## fileShare.revokePermission<sup>11+</sup>
@@ -356,36 +358,38 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-
-async function revokePermissionExample() {
-  try {
-    let DocumentSelectOptions = new picker.DocumentSelectOptions();
-    let documentPicker = new picker.DocumentViewPicker();
-    let uris = await documentPicker.select(DocumentSelectOptions);
-    let policyInfo: fileShare.PolicyInfo = {
-      uri: uris[0], 
-      operationMode: fileShare.OperationMode.READ_MODE,
-    };
-    let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-    fileShare.revokePermission(policies).then(() => {
-      console.info("revokePermission successfully");
-    }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
-      console.info("revokePermission failed with error message: " + err.message + ", error code: " + err.code);
-      if (err.code == 13900001) {
-        console.log("error code : " + JSON.stringify(err.data[0].code));
-        console.log("error uri : " + JSON.stringify(err.data[0].uri));
-        console.log("error reason : " + JSON.stringify(err.data[0].message));
-      }
-    });
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('revokePermission failed with err: ' + JSON.stringify(err));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import picker from '@ohos.file.picker';
+  
+  async function revokePermissionExample() {
+    try {
+      let DocumentSelectOptions = new picker.DocumentSelectOptions();
+      let documentPicker = new picker.DocumentViewPicker();
+      let uris = await documentPicker.select(DocumentSelectOptions);
+      let policyInfo: fileShare.PolicyInfo = {
+        uri: uris[0], 
+        operationMode: fileShare.OperationMode.READ_MODE,
+      };
+      let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+      fileShare.revokePermission(policies).then(() => {
+        console.info("revokePermission successfully");
+      }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
+        console.info("revokePermission failed with error message: " + err.message + ", error code: " + err.code);
+          if (err.code == 13900001 && err.data) {
+            for(let i = 0; i < err.data.length; i++){
+              console.log("error code : " + JSON.stringify(err.data[i].code));
+              console.log("error uri : " + JSON.stringify(err.data[i].uri));
+              console.log("error reason : " + JSON.stringify(err.data[i].message));
+            }
+          }
+      });
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('revokePermission failed with err: ' + JSON.stringify(err));
+    }
   }
-}
-```
+  ```
 
 ## fileShare.activatePermission<sup>11+</sup>
 
@@ -425,34 +429,36 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 **示例：**
 
-```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-
-async function activatePermissionExample() {
-  try {
-    let uri = "file://docs/storage/Users/username/tmp.txt";
-    let policyInfo: fileShare.PolicyInfo = {
-      uri: uri,
-      operationMode: fileShare.OperationMode.READ_MODE,
-    };
-    let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-    fileShare.activatePermission(policies).then(() => {
-      console.info("activatePermission successfully");
-    }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
-      console.info("activatePermission failed with error message: " + err.message + ", error code: " + err.code);
-      if (err.code == 13900001) {
-        console.log("error code : " + JSON.stringify(err.data[0].code));
-        console.log("error uri : " + JSON.stringify(err.data[0].uri));
-        console.log("error reason : " + JSON.stringify(err.data[0].message));
-      }
-    });
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('activatePermission failed with err: ' + JSON.stringify(err));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import picker from '@ohos.file.picker';
+  
+  async function activatePermissionExample() {
+    try {
+      let uri = "file://docs/storage/Users/username/tmp.txt";
+      let policyInfo: fileShare.PolicyInfo = {
+        uri: uri,
+        operationMode: fileShare.OperationMode.READ_MODE,
+      };
+      let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+      fileShare.activatePermission(policies).then(() => {
+        console.info("activatePermission successfully");
+      }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
+        console.info("activatePermission failed with error message: " + err.message + ", error code: " + err.code);
+          if (err.code == 13900001 && err.data) {
+            for(let i = 0; i < err.data.length; i++){
+              console.log("error code : " + JSON.stringify(err.data[i].code));
+              console.log("error uri : " + JSON.stringify(err.data[i].uri));
+              console.log("error reason : " + JSON.stringify(err.data[i].message));
+            }
+          }
+      });
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('activatePermission failed with err: ' + JSON.stringify(err));
+    }
   }
-}
-```
+  ```
 
 ## fileShare.deactivatePermission<sup>11+</sup>
 
@@ -491,31 +497,33 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 **示例：**
 
-```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-
-async function deactivatePermissionExample() {
-  try {
-    let uri = "file://docs/storage/Users/username/tmp.txt";
-    let policyInfo: fileShare.PolicyInfo = {
-      uri: uri,
-      operationMode: fileShare.OperationMode.READ_MODE,
-    };
-    let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-    fileShare.deactivatePermission(policies).then(() => {
-      console.info("deactivatePermission successfully");
-    }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
-      console.info("deactivatePermission failed with error message: " + err.message + ", error code: " + err.code);
-      if (err.code == 13900001) {
-        console.log("error code : " + JSON.stringify(err.data[0].code));
-        console.log("error uri : " + JSON.stringify(err.data[0].uri));
-        console.log("error reason : " + JSON.stringify(err.data[0].message));
-      }
-    });
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('deactivatePermission failed with err: ' + JSON.stringify(err));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import picker from '@ohos.file.picker';
+  
+  async function deactivatePermissionExample() {
+    try {
+      let uri = "file://docs/storage/Users/username/tmp.txt";
+      let policyInfo: fileShare.PolicyInfo = {
+        uri: uri,
+        operationMode: fileShare.OperationMode.READ_MODE,
+      };
+      let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+      fileShare.deactivatePermission(policies).then(() => {
+        console.info("deactivatePermission successfully");
+      }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
+        console.info("deactivatePermission failed with error message: " + err.message + ", error code: " + err.code);
+          if (err.code == 13900001 && err.data) {
+            for(let i = 0; i < err.data.length; i++){
+              console.log("error code : " + JSON.stringify(err.data[i].code));
+              console.log("error uri : " + JSON.stringify(err.data[i].uri));
+              console.log("error reason : " + JSON.stringify(err.data[i].message));
+            }
+          }
+      });
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('deactivatePermission failed with err: ' + JSON.stringify(err));
+    }
   }
-}
-```
+  ```
