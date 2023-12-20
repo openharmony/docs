@@ -34,7 +34,7 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 | type         | [ActionType](#actiontype)   | 是    | 否    | 旋转事件类型                                   |
 | angle        | number      | 是    | 否    | 旋转角度                             |
 
-## ThreeFingersSwipe
+## ThreeFingersSwipe<sup>11+</sup>
 
 三指滑动事件。
 
