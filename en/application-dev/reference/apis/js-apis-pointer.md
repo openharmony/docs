@@ -12,7 +12,7 @@ The **pointer** module provides APIs related to pointer attribute management.
 import pointer from '@ohos.multimodalInput.pointer';
 ```
 
-## pointer.setPointerVisible<sup>9+</sup>
+## pointer.setPointerVisible
 
 setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -43,7 +43,7 @@ try {
 }
 ```
 
-## pointer.setPointerVisible<sup>9+</sup>
+## pointer.setPointerVisible
 
 setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
@@ -100,7 +100,7 @@ try {
 }
 ```
 
-## pointer.isPointerVisible<sup>9+</sup>
+## pointer.isPointerVisible
 
 isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -130,7 +130,7 @@ try {
 }
 ```
 
-## pointer.isPointerVisible<sup>9+</sup>
+## pointer.isPointerVisible
 
 isPointerVisible(): Promise&lt;boolean&gt;
 
@@ -181,7 +181,7 @@ try {
 }
 ```
 
-## pointer.setPointerSpeed<sup>9+</sup>
+## pointer.setPointerSpeed
 
 setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -214,7 +214,7 @@ try {
 }
 ```
 
-## pointer.setPointerSpeed<sup>9+</sup>
+## pointer.setPointerSpeed
 
 setPointerSpeed(speed: number): Promise&lt;void&gt;
 
@@ -275,7 +275,7 @@ try {
 }
 ```
 
-## pointer.getPointerSpeed<sup>9+</sup>
+## pointer.getPointerSpeed
 
 getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 
@@ -307,7 +307,7 @@ try {
 }
 ```
 
-## pointer.getPointerSpeed<sup>9+</sup>
+## pointer.getPointerSpeed
 
 getPointerSpeed(): Promise&lt;number&gt;
 
@@ -742,7 +742,7 @@ try {
 }
 ```
 
-## pointer.getPointerStyle<sup>9+</sup>
+## pointer.getPointerStyle
 
 getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): void
 
@@ -755,7 +755,7 @@ Obtains the mouse pointer style. This API uses an asynchronous callback to retur
 | Name      | Type                                      | Mandatory  | Description            |
 | -------- | ---------------------------------------- | ---- | -------------- |
 | windowId | number                                   | Yes   | Window ID.   |
-| callback | AsyncCallback&lt;[PointerStyle](#pointerstyle9)&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;[PointerStyle](#pointerstyle)&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -784,7 +784,7 @@ window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
 });
 ```
 
-## pointer.getPointerStyle<sup>9+</sup>
+## pointer.getPointerStyle
 
 getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 
@@ -802,7 +802,7 @@ Obtains the mouse pointer style. This API uses a promise to return the result.
 
 | Name                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[PointerStyle](#pointerstyle9)&gt; | Promise used to return the result.|
+| Promise&lt;[PointerStyle](#pointerstyle)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -849,7 +849,7 @@ Obtains the mouse pointer style. This API returns the result synchronously.
 
 | Name                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| [PointerStyle](#pointerstyle9) | Mouse pointer style.|
+| [PointerStyle](#pointerstyle) | Mouse pointer style.|
 
 **Example**
 
@@ -862,7 +862,7 @@ try {
 }
 ```
 
-## pointer.setPointerStyle<sup>9+</sup>
+## pointer.setPointerStyle
 
 setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback&lt;void&gt;): void
 
@@ -875,7 +875,7 @@ Sets the mouse pointer style. This API uses an asynchronous callback to return t
 | Name          | Type                            | Mandatory  | Description                                 |
 | ------------ | ------------------------------ | ---- | ----------------------------------- |
 | windowId     | number                         | Yes   | Window ID.                         |
-| pointerStyle | [PointerStyle](#pointerstyle9) | Yes   | Mouse pointer style ID.                            |
+| pointerStyle | [PointerStyle](#pointerstyle) | Yes   | Pointer style.                            |
 | callback     | AsyncCallback&lt;void&gt;      | Yes   | Callback used to return the result.|
 
 **Example**
@@ -903,7 +903,7 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
   }
 });
 ```
-## pointer.setPointerStyle<sup>9+</sup>
+## pointer.setPointerStyle
 
 setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&gt;
 
@@ -916,7 +916,7 @@ Sets the mouse pointer style. This API uses a promise to return the result.
 | Name                 | Type                            | Mandatory  | Description              |
 | ------------------- | ------------------------------ | ---- | ---------------- |
 | windowId            | number                         | Yes   | Window ID.      |
-| pointerStyle        | [PointerStyle](#pointerstyle9) | Yes   | Mouse pointer style ID.         |
+| pointerStyle        | [PointerStyle](#pointerstyle) | Yes   | Pointer style.         |
 | Promise&lt;void&gt; | void                           | Yes   | Promise used to return the result.|
 
 **Example**
@@ -958,7 +958,7 @@ Sets the mouse pointer style. This API returns the result synchronously.
 | Name                 | Type                            | Mandatory  | Description              |
 | ------------------- | ------------------------------ | ---- | ---------------- |
 | windowId            | number                         | Yes   | Window ID.      |
-| pointerStyle        | [PointerStyle](#pointerstyle9) | Yes   | Mouse pointer style ID.         |
+| pointerStyle        | [PointerStyle](#pointerstyle) | Yes   | Pointer style.         |
 
 **Example**
 ```js
@@ -984,7 +984,7 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
 });
 ```
 
-## PointerStyle<sup>9+</sup>
+## PointerStyle
 
 Enumerates mouse pointer styles.
 
@@ -2093,6 +2093,10 @@ setPointerColor(color: number, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the pointer color. This API uses an asynchronous callback to return the result.
 
+**NOTE**
+>
+> When performing this operation, you need to connect an external device, such as a mouse or Bluetooth device.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
 **System API**: This is a system API.
@@ -2125,6 +2129,10 @@ try {
 setPointerColor(color: number): Promise&lt;void&gt;
 
 Sets the pointer color. This API uses a promise to return the result.
+
+**NOTE**
+>
+> When performing this operation, you need to connect an external device, such as a mouse or Bluetooth device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -2159,6 +2167,10 @@ try {
 setPointerColorSync(color: number): void
 
 Sets the mouse pointer color. This API returns the result synchronously.
+
+**NOTE**
+>
+> When performing this operation, you need to connect an external device, such as a mouse or Bluetooth device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 

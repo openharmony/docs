@@ -1,6 +1,6 @@
 # Call Service Development
 
-## Overview
+## Scenario Description
 
 You can implement the call service in either of the following ways:
 - For a system application, use the **dialCall** API to make a voice or video call. The call will be displayed on the application page.
@@ -49,7 +49,6 @@ The **observer** module provides the functions of subscribing to and unsubscribi
 This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/accesstoken-overview.md#basic-principles-for-permission-management) are met. Then, declare the corresponding permission by following instructions in [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
 2. Import the **call** and **observer** modules.
 3. Invoke the **hasVoiceCapability** API to check whether the device supports the voice call function.
-   If the voice call function is supported, the user will be redirected to the dial screen and the dialed number is displayed.
 4. Invoke the **dialCall** API to make a call.
 5. (Optional) Register the observer for call service status changes.
    ```ts
@@ -83,8 +82,7 @@ This permission is of the **system\_basic** level. Before applying for the permi
 
 1. Import the **call** and **observer** modules.
 2. Invoke the **hasVoiceCapability** API to check whether the device supports the voice call function.
-   If the voice call function is supported, the user will be redirected to the dial screen and the dialed number is displayed.
-3. Invoke the **makeCall** API to start the system call application and make a call.
+3. Call the **makeCall** API to launch the dial screen and display the dialed number.
 4. (Optional) Register the observer for call service status changes.
 
    ```ts
@@ -116,3 +114,4 @@ This permission is of the **system\_basic** level. Before applying for the permi
         });
     }
    ```
+

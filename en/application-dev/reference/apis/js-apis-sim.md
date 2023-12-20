@@ -4744,7 +4744,7 @@ Defines the contact number information.
 | alphaTag     | string |  Yes | Tag.    |
 | number       | string |  Yes | Call transfer number.    |
 | recordNumber | number |  No | Record number.|
-| pin2         | string |  Yes | PIN 2.|
+| pin2         | string |  No | PIN 2.|
 
 ## ContactType<sup>8+</sup>
 
