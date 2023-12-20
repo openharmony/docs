@@ -1629,8 +1629,8 @@ nestedScroll(value: NestedScrollOptions)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .nestedScroll({
-            scrollForward: NestedScrollOptions.SELF_FIRST,
-            scrollBackward: NestedScrollOptions.SELF_FIRST,
+            scrollForward: NestedScrollMode.SELF_FIRST,
+            scrollBackward: NestedScrollMode.SELF_FIRST,
           })
       }
     }
