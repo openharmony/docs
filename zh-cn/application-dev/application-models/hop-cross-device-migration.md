@@ -474,7 +474,7 @@ public-SDK不支持开发者使用所有的系统API，例如：全局任务中�
 
 ​		DevEco的自动签名模板默认签名权限为normal级。而本应用设计到ohos.permission.MANAGE_MISSIONS权限为system_core级别。自动生成的签名无法获得足够的权限，所以需要将权限升级为system_core级别，然后签名。
 
-​	c.系统权限设置(以api10目录为例): 将Sdk目录下的openharmony\api版本(如：10)\toolchains\lib\UnsgnedReleasedProfileTemplate.json文件中的"apl":"normal_core"改为"apl":"system_core"。
+​	c.系统权限设置(以api10目录为例): 将Sdk目录下的openharmony\api版本(如：10)\toolchains\lib\UnsignedReleasedProfileTemplate.json文件中的"apl":"normal_core"改为"apl":"system_core"。
 
 1. 点击file->Project Structure。  
    ![hop-cross-device-migration](figures/hop-cross-device-migration2.png)

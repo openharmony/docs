@@ -1518,6 +1518,18 @@
 
 **起始版本**：11
 
+## ohos.permission.ENTERPRISE_MANAGE_WIFI
+
+允许设备管理应用设置WIFI策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.NFC_TAG
 
 允许应用读取Tag卡片。
@@ -2480,7 +2492,7 @@
 
 **ACL使能**：TRUE
 
-**起始版本**：11
+**起始版本**：10
 
 ## ohos.permission.INSTALL_ENTERPRISE_BUNDLE
 
@@ -2918,7 +2930,7 @@
 
 允许系统应用设置主题内容，包括壁纸、图标、皮肤、AOD和字体等。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -3262,6 +3274,18 @@
 
 **起始版本**：11
 
+## ohos.permission.INTERCEPT_INPUT_EVENT
+
+允许系统应用拦截输入事件。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.MANAGE_TRUSTED_RING
 
 允许使用关键资产信任环服务提供的能力。
@@ -3326,7 +3350,7 @@
 
 允许应用支持持久化访问文件Uri。
 
-**权限级别**：normal
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -3675,6 +3699,42 @@
 允许系统SA调用“查找设备”。
 
 **权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_USB_CONFIG
+
+允许应用管理USB设备功能和端口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.WRITE_PRIVACY_PUSH_DATA
+
+允许应用往另一个应用中写入隐私Push数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.START_SYSTEM_DIALOG
+
+允许应用拉起模系统弹窗。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 

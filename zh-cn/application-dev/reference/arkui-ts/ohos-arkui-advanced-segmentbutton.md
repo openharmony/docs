@@ -55,8 +55,9 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[] })
 | backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | 底板颜色，默认值：页签类\#0c182431，单选类/多选类\#0c182431。 |
 | selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 按钮选中态底板颜色，默认值：页签类\#ffffffff，单选类/多选类\#ff007dff。 |
 | imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | 图片尺寸，默认值：{ width: 24, height: 24 }。<br/>**说明：**<br/>`imageSize`属性对仅图标按钮和图标+文本按钮生效，对仅文字按钮无效果。 |
-| buttonMargin            | [Margin](ts-types.md#margin)\|[Dimension](ts-types.md#dimension10) | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: 4, right: 8, bottom: 4, left: 8 }`，图标+文本按钮`{ top: 6, right: 8, bottom: 6, left: 8 }`。 |
-| textMargin              | [Margin](ts-types.md#margin)\|[Dimension](ts-types.md#dimension10) | 文本内边距，默认值：0。                                      |
+| buttonPadding           | [Padding](ts-types.md#padding)\|[Dimension](ts-types.md#dimension10) | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: 4, right: 8, bottom: 4, left: 8 }`，图标+文本按钮`{ top: 6, right: 8, bottom: 6, left: 8 }`。 |
+| textPadding             | [Padding](ts-types.md#padding)\|[Dimension](ts-types.md#dimension10) | 文本内边距，默认值：0。                                      |
+| backgroundBlurStyle     | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | 背景模糊材质，默认值：BlurStyle.NONE                      |
 
 ### constructor
 
@@ -142,8 +143,9 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 | backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | 底板颜色，默认值：页签类\#0c182431，单选类/多选类\#0c182431。 |
 | selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 按钮选中态底板颜色，默认值：页签类\#ffffffff，单选类/多选类\#ff007dff。 |
 | imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | 图片尺寸，默认值：{ width: 24, height: 24 }。<br/>**说明：**<br/>`imageSize`属性对仅图标按钮和图标+文本按钮生效，对仅文字按钮无效果。 |
-| buttonMargin            | [Margin](ts-types.md#margin)\|[Dimension](ts-types.md#dimension10) | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: 4, right: 8, bottom: 4, left: 8 }`，图标+文本按钮`{ top: 6, right: 8, bottom: 6, left: 8 }`。 |
-| textMargin              | [Margin](ts-types.md#margin)\|[Dimension](ts-types.md#dimension10) | 文本内边距，默认值：0。                                      |
+| buttonPadding           | [Padding](ts-types.md#padding)\|[Dimension](ts-types.md#dimension10) | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: 4, right: 8, bottom: 4, left: 8 }`，图标+文本按钮`{ top: 6, right: 8, bottom: 6, left: 8 }`。 |
+| textPadding             | [Padding](ts-types.md#padding)\|[Dimension](ts-types.md#dimension10) | 文本内边距，默认值：0。                                      |
+| backgroundBlurStyle     | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | 背景模糊材质，默认值：BlurStyle.NONE                      |
 
 ## TabSegmentButtonConstructionOptions
 
@@ -453,20 +455,30 @@ SegmentButtonItemOptions的构造参数。
 
 ```ts
 // xxx.ets
-import { SegmentButton, SegmentButtonOptions } from '@ohos.arkui.advanced.SegmentButton'
+import {
+  ItemRestriction,
+  SegmentButton,
+  SegmentButtonItemTuple,
+  SegmentButtonOptions,
+  SegmentButtonTextItem
+} from '@ohos.arkui.advanced.SegmentButton'
 
 @Entry
 @Component
 struct Index {
   @State tabOptions: SegmentButtonOptions = SegmentButtonOptions.tab({
-    buttons: [{ text: '页签按钮1' }, { text: '页签按钮2' }, { text: '页签按钮3' }]
+    buttons: [{ text: '页签按钮1' }, { text: '页签按钮2' }, {
+      text: '页签按钮3'
+    }] as ItemRestriction<SegmentButtonTextItem>,
+    backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State singleSelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
-    buttons: [{ text: '单选按钮1' }, { text: '单选按钮2' }, { text: '单选按钮3' }],
+    buttons: [{ text: '单选按钮1' }, { text: '单选按钮2' }, { text: '单选按钮3' }] as SegmentButtonItemTuple,
     multiply: false,
+    backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State multiplySelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
-    buttons: [{ text: '多选按钮1' }, { text: '多选按钮2' }, { text: '多选按钮3' }],
+    buttons: [{ text: '多选按钮1' }, { text: '多选按钮2' }, { text: '多选按钮3' }] as SegmentButtonItemTuple,
     multiply: true
   })
   @State iconCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
@@ -475,8 +487,9 @@ struct Index {
       { icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
       { icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
       { icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') }
-    ],
-    multiply: false
+    ] as SegmentButtonItemTuple,
+    multiply: false,
+    backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State iconTextCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
     buttons: [
@@ -485,7 +498,7 @@ struct Index {
       { text: '图标3', icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
       { text: '图标4', icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
       { text: '图标5', icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') }
-    ],
+    ] as SegmentButtonItemTuple,
     multiply: true
   })
   @State tabSelectedIndexes: number[] = [1]
@@ -522,25 +535,34 @@ struct Index {
 
 ```ts
 // xxx.ets
-import { SegmentButton, SegmentButtonOptions } from '@ohos.arkui.advanced.SegmentButton'
+import {
+  ItemRestriction,
+  SegmentButton,
+  SegmentButtonItemTuple,
+  SegmentButtonOptions,
+  SegmentButtonTextItem
+} from '@ohos.arkui.advanced.SegmentButton'
 
 @Entry
 @Component
 struct Index {
   @State tabOptions: SegmentButtonOptions = SegmentButtonOptions.tab({
-    buttons: [{ text: '页签按钮1' }, { text: '页签按钮2' }, { text: '页签按钮3' }],
+    buttons: [{ text: '页签按钮1' }, { text: '页签按钮2' }, {
+      text: '页签按钮3'
+    }] as ItemRestriction<SegmentButtonTextItem>,
     backgroundColor: Color.Green,
     selectedBackgroundColor: Color.Orange,
-    textMargin: { top: 10, right: 10, bottom: 10, left: 10 },
+    textPadding: { top: 10, right: 10, bottom: 10, left: 10 },
   })
   @State singleSelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
-    buttons: [{ text: '单选按钮1' }, { text: '单选按钮2' }, { text: '单选按钮3' }],
+    buttons: [{ text: '单选按钮1' }, { text: '单选按钮2' }, { text: '单选按钮3' }] as SegmentButtonItemTuple,
     multiply: false,
     fontColor: Color.Black,
     selectedFontColor: Color.Yellow,
+    backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State multiplySelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
-    buttons: [{ text: '多选按钮1' }, { text: '多选按钮2' }, { text: '多选按钮3' }],
+    buttons: [{ text: '多选按钮1' }, { text: '多选按钮2' }, { text: '多选按钮3' }] as SegmentButtonItemTuple,
     multiply: true,
     fontSize: 18,
     selectedFontSize: 18,
@@ -553,10 +575,11 @@ struct Index {
       { icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
       { icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
       { icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') }
-    ],
+    ] as SegmentButtonItemTuple,
     multiply: false,
     imageSize: { width: 40, height: 40 },
-    buttonMargin: { top: 6, right: 10, bottom: 6, left: 10 }
+    buttonPadding: { top: 6, right: 10, bottom: 6, left: 10 },
+    backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State iconTextCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
     buttons: [
@@ -565,7 +588,7 @@ struct Index {
       { text: '图标3', icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
       { text: '图标4', icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') },
       { text: '图标5', icon: $r('sys.media.ohos_ic_public_email'), selectedIcon: $r('sys.media.ohos_ic_public_clock') }
-    ],
+    ] as SegmentButtonItemTuple,
     multiply: true,
     imageSize: { width: 10, height: 10 },
   })
@@ -600,15 +623,22 @@ struct Index {
 ### 示例3
 
 ```ts
-import { SegmentButton, SegmentButtonOptions, SegmentButtonItemOptionsArray } from '@ohos.arkui.advanced.SegmentButton'
+import {
+  SegmentButton,
+  SegmentButtonOptions,
+  SegmentButtonItemOptionsArray,
+  SegmentButtonItemTuple,
+  SegmentButtonItemOptions
+} from '@ohos.arkui.advanced.SegmentButton'
 
 @Entry
 @Component
 struct Index {
   @State singleSelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
     buttons: [{ text: '1' }, { text: '2' }, { text: '3' },
-      { text: '4' }, { text: '5' }],
+      { text: '4' }, { text: '5' }] as SegmentButtonItemTuple,
     multiply: false,
+    backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State capsuleSelectedIndexes: number[] = [0]
 
@@ -636,7 +666,9 @@ struct Index {
             })
           Button("将按钮2、3替换为splice1、splice2")
             .onClick(() => {
-              this.singleSelectCapsuleOptions.buttons.splice(1, 2, { text: 'splice1' }, { text: 'splice2' })
+              this.singleSelectCapsuleOptions.buttons.splice(1, 2, new SegmentButtonItemOptions({
+                text: 'splice1'
+              }), new SegmentButtonItemOptions({ text: 'splice2' }))
             })
           Button("更改所有按钮文字")
             .onClick(() => {

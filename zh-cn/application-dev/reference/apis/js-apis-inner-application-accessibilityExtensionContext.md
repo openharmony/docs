@@ -900,10 +900,10 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 
 **参数：**
 
-| 参数名         | 类型                                     | 必填   | 说明             |
-| ----------- | ---------------------------------------- | ---- | -------------- |
+| 参数名         | 类型                                     | 必填   | 说明                                                       |
+| ----------- | ---------------------------------------- | ---- |----------------------------------------------------------|
 | actionName | string | 是    | 表示属性的名称，取值参考[Action](./js-apis-accessibility.md#action)。 
-| parameters | object | 否    | 表示执行操作时所需要的参数；默认为空；当前版本暂不支持。     |
+| parameters | object | 否    | 表示执行操作时所需要的参数；默认为空。当前版本暂不支持。                             |
 
 **返回值：**
 
@@ -984,11 +984,11 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 
 **参数：**
 
-| 参数名        | 类型                        | 必填   | 说明                                       |
-| ---------- | ------------------------- | ---- | ---------------------------------------- |
+| 参数名        | 类型                        | 必填   | 说明                                                       |
+| ---------- | ------------------------- | ---- |----------------------------------------------------------|
 | actionName | string                    | 是    | 表示属性的名称，取值参考[Action](./js-apis-accessibility.md#action)。 |
-| parameters | object                    | 是    | 表示执行操作时所需要的参数；默认为空；当前版本暂不支持。                  |
-| callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数，表示执行指定操作的回调。                        |
+| parameters | object                    | 是    | 表示执行操作时所需要的参数；默认为空。当前版本暂不支持。                             |
+| callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数，表示执行指定操作的回调。                                        |
 
 **错误码：**
 

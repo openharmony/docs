@@ -23,6 +23,7 @@ Enumerates the child process start modes.
 | Name                      | Value                            | Description                             |
 | --------                     |  -----------------               |  -----------------               |
 | SELF_FORK |  0   | The child process is forked from the application process. Binder IPC cannot be called in such a child process. Otherwise, the child process will crash.|
+| APP_SPAWN_FORK |  1   | The child process is forked from AppSpawn. Such a child process does not inherit the parent process resources. It does not have application context and therefore does not support API calls that depend on application context.|
 
 ## childProcessManager.startChildProcess
 
@@ -36,7 +37,7 @@ Creates a child process and invokes the entrypoint method of the child process. 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | Yes| Relative path of the source file of the child process. Currently, the source file can be stored only in the module of the entry type.|
+  | srcEntry | string | Yes| Relative path of the source file of the child process. (The source file must be stored in **src/main**. For details, see the sample code below.) Currently, source files can be stored only in modules of the entry type.|
   | startMode | [StartMode](#childprocessmanagerstartmode) | Yes| Start mode of the child process.|
 
 **Return value**
@@ -47,13 +48,13 @@ Creates a child process and invokes the entrypoint method of the child process. 
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
 | 16000062  | The number of child process exceeds upper bound. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -96,19 +97,19 @@ Creates a child process and invokes the entrypoint method of the child process. 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | Yes| Relative path of the source file of the child process. Currently, the source file can be stored only in the module of the entry type.|
+  | srcEntry | string | Yes| Relative path of the source file of the child process. (The source file must be stored in **src/main**. For details, see the sample code below.) Currently, source files can be stored only in modules of the entry type.|
   | startMode | [StartMode](#childprocessmanagerstartmode) | Yes| Start mode of the child process.|
   | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the PID of the child process.|
 
 **Error codes**
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
 | 16000062  | The number of child process exceeds upper bound. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 

@@ -469,7 +469,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | isPersisted     | boolean                           | 否    | 是否持久化保存工作。<br>- true表示持久化保存工作。false表示非持久化保存工作。|
 | isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态。<br>- true表示需要，false表示不需要。   |
 | idleWaitTime    | number                            | 否    | 空闲等待时间，单位为毫秒。           |
-| parameters      | [key: string]: number \| string \| boolean  | 否    | 携带参数信息。 |
+| parameters      | Record<string, number \| string \| boolean>  | 否    | 携带参数信息。 |
 
 ## NetworkType
 

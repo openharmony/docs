@@ -1493,7 +1493,7 @@ struct ChildComponent {
     message: string;
     imgSrc: Resource;
     constructor(message: string, imgSrc: Resource) {
-      this.message = message;
+        this.message = message;
         this.imgSrc = imgSrc;
     }  
   }
@@ -1627,7 +1627,7 @@ struct ChildComponent {
     message: string;
     imgSrc: Resource;
     constructor(message: string, imgSrc: Resource) {
-      this.message = message;
+        this.message = message;
         this.imgSrc = imgSrc;
     }  
   }

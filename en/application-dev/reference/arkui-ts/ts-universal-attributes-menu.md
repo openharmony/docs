@@ -7,6 +7,8 @@ A context menu – a vertical list of items – can be bound to a component and 
 >  - The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
 >  - **CustomBuilder** does not support the use of **bindMenu** and **bindContextMenu** methods. To display a multi-level menu, use the [\<Menu>](ts-basic-components-menu.md) component instead.
+>
+>  - The text in the context menu cannot be selected by long-pressing.
 
 
 ## Attributes
@@ -15,6 +17,7 @@ A context menu – a vertical list of items – can be bound to a component and 
 | Name                          | Type                                    | Description                                      |
 | ---------------------------- | ---------------------------------------- | ---------------------------------------- |
 | bindMenu                     | content: Array<[MenuElement](#menuelement)&gt; \| [CustomBuilder](ts-types.md#custombuilder8),<br>options?: [MenuOptions](#menuoptions10) | Menu bound to the component, which is displayed when the user clicks the component. A menu item can be a combination of text and icons or a custom component.<br>**content**: array of menu item icons and text, or custom component.<br>**options**: parameters of the context menu.|
+| bindMenu                     | isShow<sup>11+</sup>: boolean,<br>content: Array<[MenuElement](#menuelement)&gt; \| [CustomBuilder](ts-types.md#custombuilder8),<br>options?: [MenuOptions](#menuoptions10) | Menu bound to the component, which is displayed when the user clicks the component. A menu item can be a combination of text and icons or a custom component.<br>**isShow**: whether to show the menu. The default value is **false**. Menus can be displayed only after all pages are constructed. Therefore, this parameter cannot be set to **true** during page construction. Otherwise, display position and shape errors will occur. Two-Way binding is not supported.<br>**content**: array of menu item icons and text, or custom component.<br>**options**: parameters of the context menu.|
 | bindContextMenu<sup>8+</sup> | content: [CustomBuilder](ts-types.md#custombuilder8),<br>responseType: [ResponseType](ts-appendix-enums.md#responsetype8)<br>options?: [ContextMenuOptions](#contextmenuoptions10) | Context menu bound to the component, which is displayed when the user long-presses or right-clicks the component. Only custom menu items are supported.<br>**responseType**: how the context menu is triggered, which can be long-press or right-click.<br>**options**: parameters of the context menu.|
 
 ## MenuElement

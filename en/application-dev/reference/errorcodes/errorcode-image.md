@@ -241,7 +241,7 @@ Check the operation procedure or use another image.
 
 **Error Message**
 
-The image source data is incomplete.
+The image source data incomplete.
 
 **Possible Cause**
 

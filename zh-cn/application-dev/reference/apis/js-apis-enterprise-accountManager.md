@@ -147,17 +147,17 @@ disallowAddOsAccountByUser(admin: Want, userId: number, disallow: boolean): void
 
 ```ts
 import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
-accountManager.disallowAddOsAccountByUser(wantTemp, 100, true).then(() => {
-  console.info('Succeeded in disallowing user add os account');
-}).catch((err: BusinessError) => {
+try {
+  accountManager.disallowAddOsAccountByUser(wantTemp, 100, true);
+  console.info(`Succeeded in disallowing user add os account`);
+} catch (err) {
   console.error(`Failed to disallow user add os account. Code: ${err.code}, message: ${err.message}`);
-});
+}
 ```
 
 ## accountManager.isAddOsAccountByUserDisallowed<sup>11+</sup>
@@ -198,17 +198,17 @@ isAddOsAccountByUserDisallowed(admin: Want, userId: number): boolean
 
 ```ts
 import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
-let isDisallowed: boolean = accountManager.isAddOsAccountByUserDisallowed(wantTemp, 100).then(() => {
-  console.info(`Succeeded in querying the user can add os account or not. Result is: ${isDisallowed}`);
-}).catch((err: BusinessError) => {
+try {
+  let isDisallowed: boolean = accountManager.isAddOsAccountByUserDisallowed(wantTemp, 100);
+  console.info(`Succeeded in querying the user can add os account or not: ${isDisallowed}`);
+} catch (err) {
   console.error(`Failed to query the user can add os account or not. Code: ${err.code}, message: ${err.message}`);
-});
+}
 ```
 
 ## accountManager.addOsAccount<sup>11+</sup>
@@ -252,16 +252,16 @@ addOsAccount(admin: Want, name: string, type: osAccount.OsAccountType): osAccoun
 ```ts
 import Want from '@ohos.app.ability.Want';
 import osAccount from '@ohos.account.osAccount';
-import { BusinessError } from '@ohos.base';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
-let info: osAccount.OsAccountInfo = accountManager.addOsAccount(wantTemp, "TestAccountName", osAccount.OsAccountType.NORMAL).then(() => {
+try {
+  let info: osAccount.OsAccountInfo = accountManager.addOsAccount(wantTemp, "TestAccountName", osAccount.OsAccountType.NORMAL);
   console.info(`Succeeded in creating os account: ${JSON.stringify(info)}`);
-}).catch((err: BusinessError) => {
+} catch (err) {
   console.error(`Failed to creating os account. Code: ${err.code}, message: ${err.message}`);
-});
+}
 ```
 

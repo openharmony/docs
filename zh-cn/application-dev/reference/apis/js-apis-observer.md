@@ -28,7 +28,7 @@ on\(type: \'networkStateChange\', callback: Callback\<NetworkState\>\): void
 | 参数名   | 类型                                                      | 必填 | 说明                                                              |
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------------------- |
 | type     | string                                                    | 是   | 网络状态变化事件，参数固定为'networkStateChange'。                 |
-| callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 是   | 以callback形式异步返回结果。参考radio的[NetworkState](js-apis-radio.md#networkstate)|
+| callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 是   | 以callback形式异步返回结果。参考radio的[NetworkState](js-apis-radio.md#networkstate)。|
 
 **错误码：**
 
@@ -68,7 +68,7 @@ on\(type: \'networkStateChange\', options: { slotId: number }, callback: Callbac
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------------------- |
 | type     | string                                                    | 是   | 网络状态变化事件，参数固定为'networkStateChange'。                 |
 | slotId   | number                                                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                             |
-| callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 是   | 以callback形式异步返回结果。参考radio的[NetworkState](js-apis-radio.md#networkstate) |
+| callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 是   | 以callback形式异步返回结果。参考radio的[NetworkState](js-apis-radio.md#networkstate)。 |
 
 **错误码：**
 
@@ -113,7 +113,7 @@ off\(type: \'networkStateChange\', callback?: Callback\<NetworkState\>\): void
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                    | 是   | 网络状态变化事件，参数固定为'networkStateChange'。                 |
-| callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 否   | 以callback形式异步返回结果。参考radio的[NetworkState](js-apis-radio.md#networkstate) |
+| callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 否   | 以callback形式异步返回结果。参考radio的[NetworkState](js-apis-radio.md#networkstate)。 |
 
 **错误码：**
 
@@ -152,7 +152,7 @@ on\(type: \'signalInfoChange\', callback: Callback\<Array\<SignalInformation\>\>
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 信号状态变化事件，参数固定为'signalInfoChange'。              |
-| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 以callback形式异步返回结果。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
+| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 以callback形式异步返回结果。参考radio的[SignalInformation](js-apis-radio.md#signalinformation)。 |
 
 **错误码：**
 
@@ -191,7 +191,7 @@ on\(type: \'signalInfoChange\', options: { slotId: number }, callback: Callback\
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 信号状态变化事件，参数固定为'signalInfoChange'。              |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
-| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 以callback形式异步返回结果。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
+| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 以callback形式异步返回结果。参考radio的[SignalInformation](js-apis-radio.md#signalinformation)。 |
 
 **错误码：**
 
@@ -237,7 +237,7 @@ off\(type: \'signalInfoChange\', callback?: Callback\<Array\<SignalInformation\>
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 信号状态变化事件，参数固定为'signalInfoChange'。              |
-| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 否   | 以callback形式异步返回结果。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
+| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 否   | 以callback形式异步返回结果。参考radio的[SignalInformation](js-apis-radio.md#signalinformation)。 |
 
 **错误码：**
 
@@ -419,7 +419,7 @@ on(type: 'callStateChange', callback: Callback\<{ state: CallState, number: stri
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 通话状态变化事件，参数固定为'callStateChange'。               |
-| callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | 是   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码 |
+| callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | 是   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)，<br />number：电话号码。 |
 
 **错误码：**
 
@@ -462,7 +462,7 @@ on(type: 'callStateChange', options: { slotId: number }, callback: Callback<{ st
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 通话状态变化事件，参数固定为'callStateChange'。               |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
-| callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | 是   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码 |
+| callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | 是   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)，<br />number：电话号码。 |
 
 **错误码：**
 
@@ -512,7 +512,7 @@ off(type: 'callStateChange', callback?: Callback<{ state: CallState, number: str
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 通话状态变化事件，参数固定为'callStateChange'。               |
-| callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | 否   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码 |
+| callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | 否   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)，<br />number：电话号码。 |
 
 **错误码：**
 

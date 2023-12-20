@@ -103,6 +103,58 @@ let isSimActive: boolean = sim.isSimActiveSync(0);
 console.log(`the sim is active:` + isSimActive);
 ```
 
+## sim.isOperatorSimCard<sup>11+</sup>
+
+isOperatorSimCard\(slotId: number, operator: OperatorSimCard\): boolean
+
+获取指定卡槽SIM卡是否为指定运营商卡。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名  | 类型                                     | 必填 | 说明                                |
+| ------ | --------------------------------------- | ---- | ---------------------------------  |
+| slotId | number                                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| operator | [OperatorSimCard](#operatorsimcard11) | 是   | 运营商卡名称。(当前仅支持中国电信卡)|
+
+**返回值：**
+
+| 类型                  | 说明                               |
+| --------------------- | ---------------------------------- |
+| boolean | 返回指定卡槽是否为指定运营商卡，如果是返回true。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let slotId : number = 0;
+let operator : sim.OperatorSimCard = sim.OperatorSimCard.CHINA_TELECOM_CARD;
+try {
+    let isOperatorSimCard: boolean = sim.isOperatorSimCard(slotId, operator);
+    console.log(`is operator sim card: ` + isOperatorSimCard);
+} catch (err) {
+    console.error("isOperatorSimCard err: " + JSON.stringify(err));
+}
+```
 
 ## sim.getDefaultVoiceSlotId<sup>7+</sup>
 
@@ -4920,3 +4972,15 @@ Icc帐户信息。
 | DSDS_MODE_V3       | 1    | 设备支持DSDS 3.0 Mode。      |
 | DSDS_MODE_V5_TDM   | 2    | 设备支持DSDS 5.0 TDM Mode。  |
 | DSDS_MODE_V5_DSDA  | 3    | 设备支持DSDS 5.0 DSDA Mode。 |
+
+## OperatorSimCard<sup>11+</sup>
+
+运营商名称。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+| 名称                | 值                    | 说明      |
+| ------------------ | --------------------- | -------- |
+| CHINA_TELECOM_CARD | "china_telecom_card"  | 中国电信卡。 |

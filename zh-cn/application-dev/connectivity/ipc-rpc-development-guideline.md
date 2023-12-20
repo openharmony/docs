@@ -9,11 +9,11 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
 **表1** Native侧IPC接口
 
-| 类/接口 | 方法 | 功能说明 |
-| -------- | -------- | -------- |
-| IRemoteBroker | sptr&lt;IRemoteObject&gt; AsObject() | 返回通信对象。Stub端返回RemoteObject对象本身，Proxy端返回代理对象。 |
-| IRemoteStub | virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | 请求处理方法，派生类需要重写该方法用来处理Proxy的请求并返回结果。 |
-| IRemoteProxy | Remote()->SendRequest(code, data, reply, option)             | 消息发送方法，业务的Proxy类需要从IRemoteProxy类派生，该方法用来向对端发送消息。 |
+| 接口名                               | 描述                                                             |
+| ------------------------------------ | ---------------------------------------------------------------- |
+| sptr&lt;IRemoteObject&gt; AsObject() | 返回通信对象。Stub端返回RemoteObject对象本身，Proxy端返回代理对象。 |
+| virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | 请求处理方法，派生类需要重写该方法用来处理Proxy的请求并返回结果。 |
+| IRemoteProxy | Remote()->SendRequest(code, data, reply, option)  | 消息发送方法，业务的Proxy类需要从IRemoteProxy类派生，该方法用来向对端发送消息。 |
 
 
 ## 开发步骤
@@ -232,11 +232,11 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
     import Want from '@ohos.app.ability.Want';
     import common from '@ohos.app.ability.common';
     import hilog from '@ohos.hilog';
-    import deviceManager from '@ohos.distributedHardware.deviceManager';
+    import deviceManager from '@ohos.distributedDeviceManager';
     import { BusinessError } from '@ohos.base';
 
     let dmInstance: deviceManager.DeviceManager | undefined;
-    let proxy: rpc.IRemoteObject | undefined = undefined;
+    let proxy: rpc.IRemoteObject | undefined;
     let connectId: number;
 
     // 单个设备绑定Ability
@@ -263,16 +263,8 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
     connectId = this.context.connectServiceExtensionAbility(want,connect);
 
     // 跨设备绑定 
-    let deviceManagerCallback = (err: BusinessError, data: deviceManager.DeviceManager) => {
-      if (err) {
-        hilog.error(0x0000, 'testTag', 'createDeviceManager errCode:' + err.code + ', errMessage:' + err.message);
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'createDeviceManager success');
-      dmInstance = data;
-    }
     try{
-      deviceManager.createDeviceManager("ohos.rpc.test", deviceManagerCallback);
+      dmInstance = deviceManager.createDeviceManager("ohos.rpc.test");
     } catch(error) {
       let err: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'createDeviceManager errCode:' + err.code + ', errMessage:' + err.message);
@@ -280,8 +272,8 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
     // 使用deviceManager获取目标设备NetworkId
     if (dmInstance != undefined) {
-      let deviceList: Array<deviceManager.DeviceInfo> = dmInstance.getTrustedDeviceListSync();
-      let networkId: string = deviceList[0].networkId;
+      let deviceList = dmInstance.getAvailableDeviceListSync();
+      let networkId = deviceList[0].networkId;
       let want: Want = {
         bundleName: "ohos.rpc.test.server",
         abilityName: "ohos.rpc.test.service.ServiceAbility",
@@ -333,25 +325,27 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
     let data = rpc.MessageSequence.create();
     let reply = rpc.MessageSequence.create();
     // 往data里写入参数
-    let proxy: rpc.IRemoteObject | undefined = undefined;
-    proxy.sendMessageRequest(1, data, reply, option)
-      .then((result: rpc.RequestResult) => {
-        if (result.errCode != 0) {
-          hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, errCode: ' + result.errCode);
-          return;
-        }
-        // 从result.reply里读取结果
-      })
-      .catch((e: Error) => {
-        hilog.error(0x0000, 'testTag', 'sendMessageRequest got exception: ' + e);
-      })
-      .finally(() => {
-        data.reclaim();
-        reply.reclaim();
-      })
- 
+    let proxy: rpc.IRemoteObject | undefined;
+    if (proxy != undefined) {
+      proxy.sendMessageRequest(1, data, reply, option)
+        .then((result: rpc.RequestResult) => {
+          if (result.errCode != 0) {
+            hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, errCode: ' + result.errCode);
+            return;
+          }
+          // 从result.reply里读取结果
+        })
+        .catch((e: Error) => {
+          hilog.error(0x0000, 'testTag', 'sendMessageRequest got exception: ' + e);
+        })
+        .finally(() => {
+          data.reclaim();
+          reply.reclaim();
+        })
+    }
+
     // 使用回调函数
-    function sendRequestCallback(err: Error, result: rpc.SendRequestResult) {
+    function sendRequestCallback(err: Error, result: rpc.RequestResult) {
       try {
         if (result.errCode != 0) {
           hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, errCode: ' + result.errCode);
@@ -367,7 +361,9 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
     let datas = rpc.MessageSequence.create();
     let replys = rpc.MessageSequence.create();
     // 往data里写入参数
-    proxy.sendMessageRequest(1, datas, replys, options, sendRequestCallback);
+    if (proxy != undefined) {
+      proxy.sendMessageRequest(1, datas, replys, options, sendRequestCallback);
+    }
    ```
 
 5. 断开连接
@@ -388,7 +384,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
     // FA模型使用此方法断开连接
     // featureAbility.disconnectAbility(connectId, disconnectCallback);
 
-    let proxy: rpc.IRemoteObject | undefined = undefined;
+    let proxy: rpc.IRemoteObject | undefined;
     let connectId: number;
 
     // 单个设备绑定Ability

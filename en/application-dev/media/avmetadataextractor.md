@@ -1,4 +1,4 @@
-# Obtaining Audio/Video Metadata
+# Obtaining Audio/Video Metadata (ArkTS)
 
 You can use **AVMetadataExtractor** to obtain metadata from a raw media asset. This topc walks you through on how to obtain the metadata of an audio asset. The process of obtaining the metadata of a video asset is similar. The only difference is that the process of obtaining the album cover is not required for a video asset, because no album cover is available in the video asset.
 

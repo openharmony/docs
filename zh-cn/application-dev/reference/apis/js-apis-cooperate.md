@@ -280,7 +280,7 @@ import { BusinessError } from '@ohos.base'
 
 let deviceDescriptor = "descriptor";
 try {
-  inputDeviceCooperate.getState(deviceDescriptor, (error: BusinessError, data: boolean) => {
+  inputDeviceCooperate.getState(deviceDescriptor, (error: BusinessError, data: object) => {
     if (error) {
       console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -324,7 +324,7 @@ import { BusinessError } from '@ohos.base'
 
 let deviceDescriptor = "descriptor";
 try {
-  inputDeviceCooperate.getState(deviceDescriptor).then((data: boolean) => {
+  inputDeviceCooperate.getState(deviceDescriptor).then((data: object) => {
     console.log(`Get the status success, data: ${JSON.stringify(data)}`);
   }, (error: BusinessError) => {
     console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -356,8 +356,8 @@ on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, even
 ```ts
 import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
 
-function callback(deviceDescriptor: string, eventMsg: inputDeviceCooperate.EventMsg) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(deviceDescriptor)}`);
+function callback(msg: object) {
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
   return false;
 }
 try {
@@ -390,8 +390,8 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
 
 // 取消注册单个回调函数
-function callbackOn(deviceDescriptor: string, eventMsg: inputDeviceCooperate.EventMsg) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(deviceDescriptor)}`);
+function callbackOn(msg: object) {
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
   return false;
 }
 function callbackOff() {
@@ -409,8 +409,8 @@ try {
 import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
 
 // 取消注册所有回调函数
-function callback(deviceDescriptor: string, eventMsg: inputDeviceCooperate.EventMsg) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(deviceDescriptor)}`);
+function callback(msg: object) {
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
   return false;
 }
 try {

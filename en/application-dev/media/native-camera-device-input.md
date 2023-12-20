@@ -1,10 +1,10 @@
-# Device Input Management (Native)
+# Device Input Management (C/C++)
 
 Before developing a camera application, you must create an independent camera object. The application invokes and controls the camera object to perform basic operations such as preview, photographing, and video recording.
 
 ## How to Develop
 
-Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
+Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
 
 1. Import the NDK.
 
@@ -47,7 +47,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    > If obtaining the object fails, the camera hardware may be occupied or unusable. If it is occupied, wait until it is released.
 
 4. Call **OH_CameraManager_GetSupportedCameras()** to obtain the list of cameras supported by the current device. The list stores the IDs of all cameras supported. If the list is not empty, each ID in the list can be used to create an independent camera object. If the list is empty, no camera is available for the current device and subsequent operations cannot be performed.
-   
+     
    ```c++
    // Obtain the camera list.
    ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
@@ -63,7 +63,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```
 
 5. Call **OH_CameraManager_GetSupportedCameraOutputCapability** to obtain all output streams supported by the current device, such as preview streams and photo streams. The output streams supported are the value of each **profile** field under **CameraOutputCapability**.
-   
+     
    ```c++
    // Create a camera input stream.
    ret = OH_CameraManager_CreateCameraInput(cameraManager, &cameras[cameraDeviceIndex], &cameraInput);

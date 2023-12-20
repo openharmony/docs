@@ -1,4 +1,4 @@
-# 开发音频通话功能
+# 开发音频通话功能(ArkTS)
 
 在音频通话场景下，音频输出（播放对端声音）和音频输入（录制本端声音）会同时进行，应用可以通过使用AudioRenderer来实现音频输出，通过使用AudioCapturer来实现音频输入，同时使用AudioRenderer和AudioCapturer即可实现音频通话功能。
 

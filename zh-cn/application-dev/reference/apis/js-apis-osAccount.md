@@ -4875,7 +4875,7 @@ getAccountInfo(options: GetDomainAccountInfoPluginOptions, callback: AsyncCallba
         message: ""
       };
       let accountInfo: account_osAccount.DomainAccountInfo = {
-        domain: options.domain,
+        domain: options.domain ? options.domain : "",
         accountName: options.accountName,
         accountId: 'xxxx'
       };

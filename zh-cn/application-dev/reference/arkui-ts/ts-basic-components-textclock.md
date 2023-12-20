@@ -31,7 +31,7 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 | 名称   | 参数类型 | 描述                                                         |
 | ------ | -------- | ------------------------------------------------------------ |
 | format | string   | y：年（yyyy表示完整年份，yy表示年份后两位）<br />M：月（若想使用01月则使用MM）<br />d：日（若想使用01日则使用dd）<br />E：星期（若想使用星期六则使用EEEE，若想使用周六则使用E、EE、EEE）<br />H：小时（24小时制）   h：小时（12小时制）    <br/>m：分钟<br/>s：秒<br/>SS：厘秒(format中S个数<3，全部按厘秒处理)<br />SSS：毫秒(format中S个数>=3，全部按毫秒处理)<br/>a：上午/下午（当设置小时制式为H时，该参数不生效）<br />日期间隔符："年月日"、“/”、"-"、"."（可以自定义间隔符样式，间隔符不可以为字母，汉字则作为间隔符处理）<br/>允许自行拼接组合显示格式，即：年、月、日、星期、时、分、秒、毫秒可拆分为子元素，可自行排布组合。时间更新频率最高为一秒一次，不建议单独设置厘秒和毫秒格式。<br />当设置无效字母时（非上述字母被认为是无效字母），该字母会被忽略。如果format全是无效字母时，显示为格式yyyy/MM/dd aa hh:mm:ss.SSS<br />若format为空或者undefined，则使用默认值。<br /><br />- 非卡片中默认值：aa hh:mm:ss<br/>- 卡片中默认值：hh:mm <br />- 卡片中使用时，最小时间单位为分钟。如果设置格式中有秒或厘秒按默认值处理。<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。 |
-| textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明) | 设置文字阴影效果。<br/>**说明**：不支持fill字段。该接口支持以数组形式入参，实现多重文字阴影。<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。|
+| textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明:** 不支持fill字段, 不支持智能取色模式。 <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。 |
 | fontFeature<sup>11+</sup> | string   | 设置文字特性效果，比如数字等宽的特性。<br />格式为：normal \| \<feature-tag-value\><br />-  \<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]<br />- \<feature-tag-value\>的个数可以有多个，中间用','隔开。 <br />例如，使用等宽时钟数字的输入格式为："ss01" on<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。|
 
 以下是format输入的格式样式及对应的显示效果：
@@ -105,7 +105,7 @@ stop()
 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 ## 示例
-
+### 示例1
 ```ts
 @Entry
 @Component
@@ -143,3 +143,20 @@ struct Second {
 }
 ```
 ![text_clock](figures/text_clock.gif)
+
+### 示例2
+``` ts
+@Entry
+@Component
+struct TextClockExample {
+  @State textShadows : ShadowOptions | Array<ShadowOptions> = [{ radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 },{ radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 },
+      { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 },{ radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 },
+      { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 }]
+  build() {
+    Column({ space: 8 }) {
+      TextClock().fontSize(50).textShadow(this.textShadows)
+    }
+  }
+}
+```
+![TextshadowExample](figures/text_clock_textshadow.png)

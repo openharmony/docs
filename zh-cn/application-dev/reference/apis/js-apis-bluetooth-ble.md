@@ -382,7 +382,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -567,7 +567,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -676,7 +676,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -779,7 +779,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -885,7 +885,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -984,7 +984,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -1087,12 +1087,12 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
 
-    ble.stopAdvertising(advhandle)
+    ble.stopAdvertising(advHandle)
         .then(() => {
             console.info("enable success");
     });

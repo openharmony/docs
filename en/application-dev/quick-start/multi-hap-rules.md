@@ -3,9 +3,7 @@
 
 - The App Pack cannot be directly installed on a device. It is only used as a form of application to be released to the application market.
 
-- All HAP files in the App Pack must share the same **bundleName** value in the configuration files.
-
-- All HAP files in the App Pack must share the same **versionCode** value in the configuration files.
+- When packing HAP files into an App Pack, ensure that the settings of **bundleName**, **versionCode**, and other related fields are consistent across JSON files of the HAP files. Otherwise, the HAP validity check will fail. For details, see [HAP Validity Check During APP Packing](../tools/packing-tool.md#packing-commands-for-app-files).
 
 - In an App Pack, each type of device supports only one HAP file of the entry type but zero, one, or more HAP files of the feature type.
 
