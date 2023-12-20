@@ -607,7 +607,7 @@ getStringValue(resId: number, callback: _AsyncCallback&lt;string&gt;): void
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | 是    | 资源ID值           |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
+| callback | _AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
 
 **错误码：**
 
@@ -702,7 +702,7 @@ getStringValue(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | 是    | 资源信息            |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
+| callback | _AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
 
 **错误码：**
 
