@@ -232,7 +232,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
     import Want from '@ohos.app.ability.Want';
     import common from '@ohos.app.ability.common';
     import hilog from '@ohos.hilog';
-	import deviceManager from '@ohos.distributedDeviceManager';
+    import deviceManager from '@ohos.distributedDeviceManager';
     import { BusinessError } from '@ohos.base';
 
     let dmInstance: deviceManager.DeviceManager | undefined;
@@ -361,9 +361,9 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
     let datas = rpc.MessageSequence.create();
     let replys = rpc.MessageSequence.create();
     // 往data里写入参数
-	if (proxy != undefined) {
-	  proxy.sendMessageRequest(1, datas, replys, options, sendRequestCallback);
-	}
+    if (proxy != undefined) {
+      proxy.sendMessageRequest(1, datas, replys, options, sendRequestCallback);
+    }
    ```
 
 5. 断开连接
