@@ -124,7 +124,7 @@ The processing procedure is as follows:
 
 2. The value of the \@Link decorated variable **BasketViewer shopBasket** changes.
 
-3. The state management framework calls the \@Watch callback **BasketViewer onBasketUpdated** to update the value of **BaketViewer TotalPurchase**.
+3. The state management framework calls the \@Watch callback **BasketViewer onBasketUpdated** to update the value of **BasketViewer TotalPurchase**.
 
 4. Because \@Link decorated shopBasket changes (a new item is added), the ForEach component executes the item Builder to render and build the new item. Because the @State decorated totalPurchase variables changes, the **Text** component is also re-rendered. Re-rendering happens asynchronously.
 
@@ -139,7 +139,7 @@ This example is used to clarify the processing steps of custom component updates
 struct TotalView {
   @Prop @Watch('onCountUpdated') count: number;
   @State total: number = 0;
-  // @Watch cb
+  // @Watch callback
   onCountUpdated(propName: string): void {
     this.total += this.count;
   }
