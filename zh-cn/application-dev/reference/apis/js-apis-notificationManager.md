@@ -1087,7 +1087,7 @@ notificationManager.removeAllSlots().then(() => {
 
 setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
 
-设定指定应用的通知使能状态（Callback形式）。
+设定指定应用的通知使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1187,7 +1187,7 @@ notificationManager.setNotificationEnable(bundle, false).then(() => {
 
 isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
-获取指定应用的通知使能状态（Callback形式）。
+获取指定应用的通知使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1287,7 +1287,7 @@ notificationManager.isNotificationEnabled(bundle).then((data: boolean) => {
 
 isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
-获取通知使能状态（Callback形式）。
+获取通知使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1371,7 +1371,7 @@ notificationManager.isNotificationEnabled().then((data: boolean) => {
 
 isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
 
-获取制定用户ID下的通知使能状态（Callback形式）。
+获取制定用户ID下的通知使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1468,7 +1468,7 @@ notificationManager.isNotificationEnabled(userId).then((data: boolean) => {
 
 displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
 
-设定指定应用的角标使能状态（Callback形式）。
+设定指定应用的角标使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1568,7 +1568,7 @@ notificationManager.displayBadge(bundle, false).then(() => {
 
 isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
-获取指定应用的角标使能状态（Callback形式）。
+获取指定应用的角标使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1710,7 +1710,7 @@ notificationManager.setBadgeNumber(badgeNumber).then(() => {
 
 setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 
-设定角标个数，在应用的桌面图标上呈现（Callback形式）。
+设定角标个数，在应用的桌面图标上呈现（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1753,7 +1753,7 @@ notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
-设定指定应用的通知通道（Callback形式）。
+设定指定应用的通知通道（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1861,7 +1861,7 @@ notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 
 getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
-获取指定应用的所有通知通道（Callback形式）。
+获取指定应用的所有通知通道（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1960,7 +1960,7 @@ notificationManager.getSlotsByBundle(bundle).then((data: Array<notificationManag
 
 getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): void
 
-获取指定应用的通知通道数量（Callback形式）。
+获取指定应用的通知通道数量（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2062,7 +2062,7 @@ notificationManager.getSlotNumByBundle(bundle).then((data: number) => {
 
 getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): void
 
-获取当前未删除的所有通知（Callback形式）。
+获取当前未删除的所有通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2146,7 +2146,7 @@ notificationManager.getAllActiveNotifications().then((data: Array<notificationMa
 
 getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 
-获取当前应用未删除的通知数（Callback形式）。
+获取当前应用未删除的通知数（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2222,7 +2222,7 @@ notificationManager.getActiveNotificationCount().then((data: number) => {
 
 getActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): void
 
-获取当前应用未删除的通知列表（Callback形式）。
+获取当前应用未删除的通知列表（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2298,7 +2298,7 @@ notificationManager.getActiveNotifications().then((data: Array<notificationManag
 
 cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
-取消本应用指定组下的通知（Callback形式）。
+取消本应用指定组下的通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2384,7 +2384,7 @@ notificationManager.cancelGroup(groupName).then(() => {
 
 removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCallback\<void\>): void
 
-删除指定应用的指定组下的通知（Callback形式）。
+删除指定应用的指定组下的通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2485,7 +2485,7 @@ notificationManager.removeGroupByBundle(bundleOption, groupName).then(() => {
 
 setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): void
 
-设置免打扰时间（Callback形式）。
+设置免打扰时间（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2591,7 +2591,7 @@ notificationManager.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 
 setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallback\<void\>): void
 
-指定用户设置免打扰时间（Callback形式）。
+指定用户设置免打扰时间（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2705,7 +2705,7 @@ notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 
 getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
-查询免打扰时间（Callback形式）。
+查询免打扰时间（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2792,7 +2792,7 @@ notificationManager.getDoNotDisturbDate().then((data: notificationManager.DoNotD
 
 getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>): void
 
-查询指定用户的免打扰时间（Callback形式）。
+查询指定用户的免打扰时间（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2892,7 +2892,7 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 
  isSupportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
 
-查询是否支持免打扰功能（Callback形式）。
+查询是否支持免打扰功能（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2976,7 +2976,7 @@ notificationManager.isSupportDoNotDisturbMode().then((data: boolean) => {
 
 isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): void
 
-查询模板是否存在（Callback形式）。
+查询模板是否存在（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3062,7 +3062,7 @@ notificationManager.isSupportTemplate(templateName).then((data: boolean) => {
 
 requestEnableNotification(callback: AsyncCallback\<void\>): void
 
-应用请求通知使能（Callback形式）。
+应用请求通知使能（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3141,7 +3141,7 @@ notificationManager.requestEnableNotification().then(() => {
 
 requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void
 
-应用请求通知使能模态弹窗（Callback形式）。
+应用请求通知使能模态弹窗（callback形式）。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -3244,7 +3244,7 @@ class MyAbility extends UIAbility {
 
 setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
-设置设备是否支持分布式通知（Callback形式）。
+设置设备是否支持分布式通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3336,7 +3336,7 @@ notificationManager.setDistributedEnable(enable).then(() => {
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
-查询设备是否支持分布式通知（Callback形式）。
+查询设备是否支持分布式通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3418,7 +3418,7 @@ notificationManager.isDistributedEnabled()
 
 setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void>): void
 
-设置指定应用是否支持分布式通知（Callback形式）。
+设置指定应用是否支持分布式通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3523,7 +3523,7 @@ notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
 
 isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<boolean>): void
 
-根据应用的包获取应用程序是否支持分布式通知（Callback形式）。
+根据应用的包获取应用程序是否支持分布式通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3627,7 +3627,7 @@ notificationManager.isDistributedEnabledByBundle(bundle).then((data: boolean) =>
 
 getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
-获取通知的提醒方式（Callback形式）。
+获取通知的提醒方式（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3961,7 +3961,7 @@ notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 
 setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback\<void>): void
 
-设置指定应用的指定渠道类型的使能状态（Callback形式）。
+设置指定应用的指定渠道类型的使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4061,7 +4061,7 @@ notificationManager.setNotificationEnableSlot(
 
 isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback\<boolean\>): void
 
-获取指定应用的指定渠道类型的使能状态（Callback形式）。
+获取指定应用的指定渠道类型的使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4625,6 +4625,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 | SERVICE_INFORMATION  | 2 | 服务类型。 |
 | CONTENT_INFORMATION  | 3 | 内容类型。 |
 | LIVE_VIEW<sup>11+</sup>            | 4 | 实况窗类型（仅对系统应用开放）。 |
+| CUSTOMER_SERVICE<sup>11+</sup>     | 5 | 客户服务类型。该类型用于用户与商家之间的客服消息，需由用户主动发起。 |
 | OTHER_TYPES          | 0xFFFF | 其他类型。 |
 
 
