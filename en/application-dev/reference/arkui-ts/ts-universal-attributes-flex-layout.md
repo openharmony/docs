@@ -14,7 +14,6 @@
 | flexGrow   | number                                      | Percentage of the parent container's remaining space that is allocated to the component.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | flexShrink | number                                      | Percentage of the parent container's shrink size that is allocated to the component.<br>When the parent container is **\<Row>** or **\<Column>**, the default value is **0**.<br> When the parent container is **\<Flex>**, the default value is **1**.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | alignSelf  | [ItemAlign](ts-appendix-enums.md#itemalign) | Alignment mode of the child components along the cross axis of the parent container. The setting overwrites the **alignItems** setting of the parent container.<br>Default value: **ItemAlign.Auto**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| layoutWeight   | number \| string                                   | Weight of the component during layout. When the container size is determined, the container space is allocated along the main axis among the component and sibling components based on the layout weight, and the component size setting is ignored.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** layouts.<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.|
 
 
 ## Example

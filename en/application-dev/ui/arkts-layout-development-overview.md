@@ -35,9 +35,9 @@ You can use layout-related container components to create a specific layout. For
 
 - Component area (blue block): size of the component and is determined by the width and height attributes.
 
-- Component content area (yellow block): size of the component area minus the paddings of the component. It is used as the layout calculation constraint for component content (or child component) size calculation.
+- Component content area (yellow block): size of the component area minus the [border](../reference/arkui-ts/ts-universal-attributes-size.md) of the component. It serves as the layout constraint for calculating the size of the component content (or child component).
 
-- Component content (green block): size of the component content, for example, size of the text content. The component content may not match the component content area. For example, if fixed width and height values are set, the component content area is the size obtained with the width and height minus the paddings. The component content is the size calculated by the layout engine, which may be less than the component content area. When the component content and component content area do not match, the **align** attribute takes effect, which defines the alignment mode of the component content in the component content area, for example, center aligned.
+- Component content (green block): size of the component content, for example, size of the text content in the component. The component content may not match the component content area. For example, if fixed width and height values are set, the component content area is the size obtained with the width and height minus the paddings and border. The component content is the size calculated by the layout engine, which may be less than the component content area. When the component content and component content area do not match, the[align](../reference/arkui-ts/ts-universal-attributes-location.md) attribute takes effect, which defines the alignment mode of the component content in the component content area, for example, center aligned.
 
 - Component layout bounds (dotted lines): component area plus the margins (if supplied).
 

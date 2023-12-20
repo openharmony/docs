@@ -25,7 +25,7 @@ A key event is triggered when a focusable component, such as **\<Button>**, inte
 | keySource                             | [KeySource](ts-appendix-enums.md#keysource) | Type of the input device that triggers the key event.            |
 | deviceId                              | number                                   | ID of the input device that triggers the key event.            |
 | metaKey                               | number                                   | State of the metakey (that is, the **WIN** key on the Windows keyboard or the **Command** key on the Mac keyboard) when the key is pressed. The value **1** indicates the pressed state, and **0** indicates the unpressed state.|
-| timestamp                             | number                                   | Timestamp when the key is pressed.                |
+| timestamp                             | number                                   | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
 | stopPropagation                       | () => void                               | Stops the event from bubbling upwards or downwards.                 |
 
 
