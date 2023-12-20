@@ -121,13 +121,14 @@ setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void
 **示例：** 
 
 ```js
+let FACTORY_MODE = 0;
 try {
-  inputConsumer.setShieldStatus((FACTORY_MODE: ShieldMode,true: boolean) => {
-        console.log(`set shield status success`);
-  });
+  inputConsumer.setShieldStatus(FACTORY_MODE,true);
+  console.log(`set shield status success`);
 } catch (error) {
-  console.log(`Failed to set shield status,error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.log(`set shield status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
+
 ```
 
 ## inputConsumer.getShieldStatus<sup>11+</sup>
@@ -154,8 +155,9 @@ getShieldStatus(shieldMode: ShieldMode): boolean
 
 ```js
 try {
-let shieldstatusResult:Boolean =  inputConsumer.getShieldStatus(FACTORY_MODE: ShieldMode);
- console.log(` get shield status result:${JSON.stringify(shieldstatusResult)}`);
+  let FACTORY_MODE = 0;
+  let shieldstatusResult:Boolean =  inputConsumer.getShieldStatus(FACTORY_MODE);
+  console.log(` get shield status result:${JSON.stringify(shieldstatusResult)}`);
 } catch (error) {
   console.log(`Failed to get shield status, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
