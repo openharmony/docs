@@ -53,13 +53,13 @@ Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 Multicast socket 接口说明如下表。
 | 接口名                              | 描述                                             |
 | ---------------------------------- | ----------------------------------------------- |
-| constructMulticastSocketInstance   | 创建一个 MulticastSocket 对象。                    |
-| addMembership                      | 加入到指定的多播组 IP 中。                          |
-| dropMembership                     | 从指定的多播组 IP 中退出。                          |
-| setMulticastTTL                    | 设置数据传输跳数 TTL(Time to live) 。              |
-| getMulticastTTL                    | 获取数据传输跳数 TTL 。                            |
-| setLoopbackMode                    | 设置回环模式，允许主机在本地循环接收自己发送的多播数据包。|
-| getLoopbackMode                    | 获取回环模式开启或关闭的状态                         |
+| constructMulticastSocketInstance() | 创建一个 MulticastSocket 对象。                    |
+| addMembership()                    | 加入到指定的多播组 IP 中。                          |
+| dropMembership()                   | 从指定的多播组 IP 中退出。                          |
+| setMulticastTTL()                  | 设置数据传输跳数 TTL(Time to live) 。              |
+| getMulticastTTL()                  | 获取数据传输跳数 TTL 。                            |
+| setLoopbackMode()                  | 设置回环模式，允许主机在本地循环接收自己发送的多播数据包。|
+| getLoopbackMode()                  | 获取回环模式开启或关闭的状态                         |
 | send()                             | 发送数据。                                        |
 | on(type:&nbsp;'message')           | 订阅接收消息事件。                                 |
 | off(type:&nbsp;'message')          | 取消订阅接收消息事件。                              |
@@ -106,7 +106,7 @@ UDP 与 TCP 流程大体类似，下面以 TCP 为例：
 
 7. Socket 连接使用完毕后，主动关闭。
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -197,7 +197,7 @@ setTimeout(() => {
 7. 主动关闭与客户端的连接。
 8. 取消 TCPSocketConnection 和 TCPSocketServer 相关事件的订阅。
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 // 创建一个TCPSocketServer连接，返回一个TCPSocketServer对象。
@@ -286,8 +286,7 @@ setTimeout(() => {
 
 5. 发送数据。
 
-```js
-
+```ts
 import socket from '@ohos.net.socket'
 
 let multicast = socket.constructMulticastSocketInstance();
@@ -339,7 +338,7 @@ multicast.send({ data:'Hello12345', address: { address:'239.255.0.1', port:32123
 
 7. TLSSocket 连接使用完毕后，主动关闭。
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 

@@ -281,8 +281,6 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 ```ts
 import http from '@ohos.net.http';
 
-
-
 class Header {
   public contentType: string;
 
