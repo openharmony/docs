@@ -143,7 +143,7 @@ export struct share_transition_expand {
               .onClick(() => {
                 // 定义展开收起的动画参数
                 animateTo({ curve: curves.springMotion(0.6, 0.9) }, () => {
-                  if(index){
+                  if(index != undefined){
                     this.curIndex = index;
                   }
                   this.isExpand = !this.isExpand;
