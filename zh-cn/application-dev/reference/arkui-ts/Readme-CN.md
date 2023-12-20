@@ -206,6 +206,7 @@
     - [组件内隐式共享元素转场（geometryTransition）](ts-transition-animation-geometrytransition.md)
   - [路径动画（motionPath）](ts-motion-path-animation.md)
   - [粒子动画（Particle）](ts-particle-animation.md)
+  - [显式动画立即下发（animateToImmediately）](ts-explicit-animatetoimmediately.md)
 - 全局UI方法
   - 弹窗
     - [警告弹窗（AlertDialog）](ts-methods-alert-dialog-box.md)
