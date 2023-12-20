@@ -547,7 +547,7 @@ observer.off('callStateChange');
 
 ## observer.on('cellularDataConnectionStateChange')<sup>7+</sup>
 
-on\(type: 'cellularDataConnectionStateChange', callback: Callback\<{ state: DataConnectState, network: RatType}\>\): void
+on\(type: 'cellularDataConnectionStateChange', callback: Callback\<{ state: DataConnectState, network: RatType }\>\): void
 
 订阅蜂窝数据链路连接状态，使用callback方式作为异步方法。
 
@@ -638,7 +638,7 @@ observer.on('cellularDataConnectionStateChange', id, (value: Value) => {
 
 ## observer.off('cellularDataConnectionStateChange')<sup>7+</sup>
 
-off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<{ state: DataConnectState, network: RatType}\>\): void
+off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<{ state: DataConnectState, network: RatType }\>\): void
 
 移除订阅蜂窝数据链路连接状态，使用callback方式作为异步方法。
 
