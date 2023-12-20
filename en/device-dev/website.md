@@ -398,6 +398,7 @@
      - [Preset Application Configuration Guide](subsystems/subsys-preinstall-app-config-guide.md)
   -  Startup
      - [Startup](subsystems/subsys-boot-overview.md)
+     - [Device Boot](subsystems/subsys-boot-deviceboot.md)
      - init Module
        - [init Configuration File](subsystems/subsys-boot-init-cfg.md)
        - [Job Management](subsystems/subsys-boot-init-jobs.md)
@@ -409,10 +410,10 @@
        - [init Run Log Standardization](subsystems/subsys-boot-init-log.md)
        - [Seccomp Policy Development](subsystems/subsys-boot-init-seccomp.md)
        - [DeviceInfo Adaptation](subsystems/subsys-boot-init-deviceInfo.md)
+       - [ueventd](subsystems/subsys-boot-init-ueventd.md)
      - [appspawn Module](subsystems/subsys-boot-appspawn.md)
      - [bootstrap Module](subsystems/subsys-boot-bootstrap.md)
-     - [FAQs](subsystems/subsys-boot-faqs.md)
-     - [Reference](subsystems/subsys-boot-ref.md)
+     - [init Module FAQs](subsystems/subsys-boot-init-faqs.md)
   -  DFX
      - [DFX Overview](subsystems/subsys-dfx-overview.md)
      - [HiLog Development](subsystems/subsys-dfx-hilog-rich.md)
@@ -441,6 +442,8 @@
        - [Charging Current and Voltage Limit Customization](subsystems/subsys-power-charge-current-voltage-limit.md)
        - [Charging Type Customization](subsystems/subsys-power-charge-type-customization.md)
        - [Power-off Charging Animation Customization](subsystems/subsys-power-poweroff-charge-animation.md)
+       - [General Framework for Battery Kernel Node Read/Write](subsystems/subsys-power-charge-common-framework-guide.md)
+       - [uevent Customization](subsystems/subsys-power-battery-uevent-customization.md)
      - Power Consumption Statistics
        - [Power Consumption Statistics Customization](subsystems/subsys-power-stats-power-average-customization.md)
      - Thermal Management
@@ -500,6 +503,7 @@
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)
 - Hands-On Tutorials  
+  
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md) 
 - References
   - FAQs

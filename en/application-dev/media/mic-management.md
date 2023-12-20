@@ -1,4 +1,4 @@
-# Microphone Management
+# Microphone Management (ArkTS)
 
 The microphone is used to record audio data. To deliver an optimal recording effect, you are advised to query the microphone state before starting recording and listen for state changes during recording.
 

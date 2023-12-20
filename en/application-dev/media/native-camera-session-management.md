@@ -1,4 +1,4 @@
-# Camera Session Management (Native)
+# Camera Session Management (C/C++)
 
 Before using the camera application for preview, photographing, video recording, and metadata management, you must create a camera session.
 
@@ -7,15 +7,16 @@ You can implement the following functions in the session:
 - Configure the camera input and output streams. This is mandatory for photographing.
   Configuring an input stream is to add a device input, which means that the user selects a camera for photographing. Configuring an output stream is to select a data output mode. For example, to implement photographing, you must configure both the preview stream and photo stream as the output stream. The data of the preview stream is displayed on the **\<XComponent>**, and that of the photo stream is saved to the Gallery application through the **ImageReceiver** API.
 
-- Perform more operations on the camera hardware. For example, add the flash and adjust the focal length. For details about the supported configurations and APIs, see [Camera API Reference](../reference/apis/js-apis-camera.md).
+- Perform more operations on the camera hardware. For example, add the flash and adjust the focal length. For details about the supported configurations and APIs, see [Camera API Reference](../reference/native-apis/_o_h___camera.md).
 
 - Control session switching. The application can switch the camera mode by removing and adding output streams. For example, to switch from photographing to video recording, the application must remove the photo output stream and add the video output stream.
 
 After the session configuration is complete, the application must commit the configuration and start the session before using the camera functionalities.
 
 ## How to Develop
+
 1. Import the NDK.
-   
+     
    ```c++
     #include "multimedia/camera_framework/camera.h"
     #include "multimedia/camera_framework/camera_input.h"
@@ -33,7 +34,7 @@ After the session configuration is complete, the application must commit the con
    ```
 
 3. Call **OH_CameraManager_CreateCaptureSession** in the **CameraManager** class to create a session.
-   
+     
    ```c++
     Camera_CaptureSession* captureSession = nullptr;
     ret = OH_CameraManager_CreateCaptureSession(cameraManager, &captureSession);
@@ -43,7 +44,7 @@ After the session configuration is complete, the application must commit the con
    ```
 
 4. Call **OH_CaptureSession_BeginConfig** in the **CaptureSession** class to start configuration for the session.
-   
+     
    ```c++
     ret = OH_CaptureSession_BeginConfig(captureSession);
     if (ret != CAMERA_OK) {
@@ -88,7 +89,7 @@ After the session configuration is complete, the application must commit the con
    ```
 
 6. Control the session. You can call **stop()** in the **CaptureSession** class to stop the session, and call **removeOutput()** and **addOutput()** in this class to switch to another session. The code snippet below uses removing the photo stream **photoOutput** and adding the video stream **videoOutput** as an example to complete the switching from photographing to recording.
-   
+     
    ```c++
     ret = OH_CaptureSession_Stop(captureSession);
     if (ret == CAMERA_OK) {

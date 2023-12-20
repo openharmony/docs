@@ -44,6 +44,8 @@
 |setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;|设置沙箱应用配置信息|
 |getSandboxAppConfig(): Promise&lt;string&gt;|查询沙箱应用配置信息|
 |cleanSandboxAppConfig(): Promise&lt;void&gt;|清理沙箱应用配置信息|
+| startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&lt;DLPManagerResult&gt; <br> | 在当前UIAbility界面以无边框形式打开DLP权限管理应用（只支持Stage模式） |
+
 ## 开发步骤
 
 开发步骤
@@ -75,8 +77,8 @@
       }
 
       try {
-        console.log("openDLPFile:" + JSON.stringify(want));
-        console.log("openDLPFile: delegator:" + JSON.stringify(this.context));
+        console.log('openDLPFile:' + JSON.stringify(want));
+        console.log('openDLPFile: delegator:' + JSON.stringify(this.context));
         this.context.startAbility(want);
       } catch (err) {
         console.error('openDLPFile startAbility failed', (err as BusinessError).code, (err as BusinessError).message);
@@ -107,7 +109,7 @@
    dlpPermission.isInSandbox().then((data)=> {
      console.log('isInSandbox, result: ' + JSON.stringify(data));
    }).catch((err:BusinessError) => {
-     console.log("isInSandbox: "  + JSON.stringify(err));
+     console.log('isInSandbox: ' + JSON.stringify(err));
    });
    ```
 
@@ -117,7 +119,7 @@
    dlpPermission.getDLPPermissionInfo().then((data)=> {
      console.log('getDLPPermissionInfo, result: ' + JSON.stringify(data));
    }).catch((err:BusinessError) => {
-     console.log("getDLPPermissionInfo: "  + JSON.stringify(err));
+     console.log('getDLPPermissionInfo: ' + JSON.stringify(err));
    });
    ```
 
@@ -125,7 +127,7 @@
 
    ```ts
    dlpPermission.getDLPSupportedFileTypes((err, result) => {
-     console.log("getDLPSupportedFileTypes: " + JSON.stringify(err));
+     console.log('getDLPSupportedFileTypes: ' + JSON.stringify(err));
      console.log('getDLPSupportedFileTypes: ' + JSON.stringify(result));
    });
    ```
@@ -133,9 +135,14 @@
 6. 判断当前打开文件是否是dlp文件。
 
    ```ts
+   import dlpPermission from '@ohos.dlpPermission';
+   import fs from '@ohos.file.fs';
+   import { BusinessError } from '@ohos.base';
+   
+   let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
    let file = fs.openSync(uri);
    try {
-     let res = await dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件
+     let res = dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件
      console.info('res', res);
    } catch (err) {
      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
@@ -174,7 +181,7 @@
 8. 获取DLP文件打开记录。
 
    ```ts
-   async func() {
+   async getDLPFileAccessRecords() {
      try {
        let res:Array<dlpPermission.AccessedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
        console.info('res', JSON.stringify(res))
@@ -186,19 +193,19 @@
 
 9. 获取DLP文件保留沙箱记录。
     ```ts
-    async func() {
-     try {
-       let res:Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
-       console.info('res', JSON.stringify(res))
-     } catch (err) {
-       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
-     }
+    async getRetentionSandboxList() {
+      try {
+        let res:Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
+        console.info('res', JSON.stringify(res))
+      } catch (err) {
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      }
     }
     ```
 
 10. 设置沙箱应用配置信息。
     ```ts
-    async func() {
+    async setSandboxAppConfig() {
       try {
         await dlpPermission.setSandboxAppConfig('configInfo'); // 设置沙箱应用配置信息
       } catch (err) {
@@ -209,7 +216,7 @@
 
 11. 清理沙箱应用配置信息。
     ```ts
-    async func() {
+    async cleanSandboxAppConfig() {
       try {
         await dlpPermission.cleanSandboxAppConfig(); // 清理沙箱应用配置信息
       } catch (err) {
@@ -220,12 +227,39 @@
 
 12. 查询沙箱应用配置信息。
     ```ts
-    async func() {
+    async getSandboxAppConfig() {
       try {
         let res:string = await dlpPermission.getSandboxAppConfig(); // 查询沙箱应用配置信息
         console.info('res', JSON.stringify(res))
       } catch (err) {
         console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
       }
+    }
+    ```
+
+13. 以无边框形式打开DLP权限管理应用。此方法只能在UIAbility上下文中调用，只支持Stage模式。
+
+    ```ts
+    import dlpPermission from '@ohos.dlpPermission';
+    import common from '@ohos.app.ability.common';
+    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+    import UIAbility from '@ohos.app.ability.UIAbility'
+    import Want from '@ohos.app.ability.Want';
+    import { BusinessError } from '@ohos.base';
+    
+    try {
+      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+      let want: Want = {
+        "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
+        "parameters": {
+          "displayName": "1.txt"
+        }
+      }; // 请求参数
+      dlpPermission.startDLPManagerForResult(context, want).then((res) => {
+        console.info('res.resultCode', res.resultCode);
+        console.info('res.want', JSON.stringifg(res.want));
+      }); // 打开DLP权限管理应用
+    } catch (err) {
+      console.error('error', err.code, err.message); // 失败报错
     }
     ```

@@ -1,4 +1,4 @@
-# Video Decoding
+# Video Decoding (C/C++)
 
 You can call the native APIs provided by the **VideoDecoder** module to decode video, that is, to decode media data into a YUV file or send it for display.
 
@@ -160,7 +160,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // Set the parameters of the display window.
     int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window); // Obtain the window from the XComponent.
     bool isSurfaceMode = true;
-   ```
+   ```  
 
 6. (Optional) Configure the surface parameters of the decoder.
 
@@ -231,18 +231,18 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     After **OH_VideoDecoder_Flush()** is called, the decoder remains in the running state, but the current queue is cleared and the buffer storing the decoded data is freed.
    
     To continue decoding, you must call **OH_VideoDecoder_Start()** again.
-    
+
     ``` c++
-     int32_t ret;
-     // Refresh the decoder.
-     ret = OH_VideoDecoder_Flush(videoDec);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     // Start decoding again.
-     ret = OH_VideoDecoder_Start(videoDec);
+    int32_t ret;
+    // Refresh the decoder.
+    ret = OH_VideoDecoder_Flush(videoDec);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    // Start decoding again.
+    ret = OH_VideoDecoder_Start(videoDec);
     ```
-    
+
 11. (Optional) Call **OH_VideoDecoder_Reset()** to reset the decoder.
 
     After **OH_VideoDecoder_Reset()** is called, the decoder returns to the initialized state. To continue decoding, you must call **OH_VideoDecoder_Configure()** and then **OH_VideoDecoder_Start()**.

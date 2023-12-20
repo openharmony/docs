@@ -669,7 +669,7 @@ font.registerFont({
   familySrc: '/font/medium.ttf'
 });
 ```
-### getStstemFontList
+### getSystemFontList
 
 getSystemFontList(): Array\<string> 
 
@@ -2003,7 +2003,7 @@ try {
 
 ### showActionMenu
 
-showActionMenu(options: promptAction.ActionMenuOptions, callback:promptAction.ActionMenuSuccessResponse):void
+showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt;):void
 
 Shows an action menu. This API uses an asynchronous callback to return the result.
 
@@ -2014,7 +2014,7 @@ Shows an action menu. This API uses an asynchronous callback to return the resul
 | Name     | Type                                      | Mandatory  | Description       |
 | -------- | ---------------------------------------- | ---- | --------- |
 | options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes   | Action menu options.  |
-| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | Yes   | Callback used to return the action menu response result.|
+| callback | AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | Yes   | Callback used to return the action menu response result.|
 
 **Error codes**
 
@@ -2027,40 +2027,31 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 **Example**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { PromptAction } from '@ohos.arkui.UIContext';
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@ohos.base';
-class buttonsMoabl {
-  text: string = ""
-  color: string = ""
-}
-class dataR{
-  err:Error = new Error;
-  data:promptAction.ActionMenuSuccessResponse | undefined = undefined;
-}
-let dataAMSR:dataR = new dataR()
+
 let promptActionF: PromptAction = uiContext.getPromptAction();
 try {
-  if(dataAMSR.data){
-    promptActionF.showActionMenu({
-      title: 'Title Info',
-      buttons: [
-        {
-          text: 'item1',
-          color: '#666666'
-        } as buttonsMoabl,
-        {
-          text: 'item2',
-          color: '#000000'
-        } as buttonsMoabl
-      ]
-    }, (dataAMSR.data))
-    if (dataAMSR.err) {
-      console.info('showActionMenu err: ' + dataAMSR.err);
-    }else{
-      console.info('showActionMenu success callback, click button: ' + dataAMSR.data.index);
+  promptActionF.showActionMenu({
+    title: 'Title Info',
+    buttons: [
+      {
+        text: 'item1',
+        color: '#666666'
+      },
+      {
+        text: 'item2',
+        color: '#000000'
+      }
+    ]
+  }, (err:BusinessError, data:promptAction.ActionMenuSuccessResponse) => {
+    if (err) {
+      console.info('showDialog err: ' + err);
+      return;
     }
-  }
+    console.info('showDialog success callback, click button: ' + data.index);
+  });
 } catch (error) {
   let message = (error as BusinessError).message;
   let code = (error as BusinessError).code;
@@ -2317,6 +2308,8 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 ## KeyboardAvoidMode<sup>11+</sup>
 
 Enumerates the avoidance modes for the virtual keyboard.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  | Description      |
 | ------ | ---------- |

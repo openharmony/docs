@@ -6,6 +6,7 @@
 >
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
+>  - The APIs of this module must be used in the main thread, but not in sub-threads such as Worker and TaskPool.
 
 ## Modules to Import
 
@@ -3543,7 +3544,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 | type | string | Yes| Type of the UIExtensionAbility to start.|
 | wantParam | {[key: string]: any} | Yes| Extended parameter.|
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback to be invoked when the startup fails.|
-| callback | AsyncCallback<void> | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -3600,7 +3601,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses a promise to
 
 | Type| Description|
 | -------- | -------- |
-| Promise<void> | Promise that returns no value.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 

@@ -1,4 +1,4 @@
-# Audio Encoding
+# Audio Encoding (C/C++)
 
 You can call the native APIs provided by the **AudioEncoder** module to encode audio, that is, to compress audio PCM data into a desired format.
 
@@ -53,6 +53,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    #include <multimedia/player_framework/native_avcodec_base.h>
    #include <multimedia/player_framework/native_avformat.h>
    ```
+   
 2. Create an encoder instance.
 
    You can create an encoder by name or MIME type.
@@ -89,6 +90,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    };
    AEncSignal *signal_ = new AEncSignal();
    ```
+   
 3. Call **OH_AudioEncoder_SetCallback()** to set callback functions.
 
    Register the **OH_AVCodecAsyncCallback** struct that defines the following callback function pointers:
@@ -149,13 +151,15 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // Exception handling.
    }
    ```
+   
 4. Call **OH_AudioEncoder_Configure** to configure the encoder.
 
    The following options are mandatory: sampling rate, bit rate, number of audio channels, audio channel type, and bit depth. The maximum input length is optional.
+   
    For FLAC encoding, the compliance level and sampling precision are also mandatory.
-
+   
    The following provides the AAC invoking process.
-
+   
    ```cpp
    int32_t ret;
    // (Mandatory) Configure the audio sampling rate.
@@ -188,9 +192,9 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // Exception handling.
    }
    ```
-
+   
    The following provides the FLAC invoking process.
-
+   
    ```cpp
    int32_t ret;
    // (Mandatory) Configure the audio sampling rate.
@@ -222,11 +226,13 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // Exception handling.
    }
    ```
+   
 5. Call **OH_AudioEncoder_Prepare()** to prepare internal resources for the encoder.
 
    ```c++
    OH_AudioEncoder_Prepare(audioEnc);
    ```
+   
 6. Call **OH_AudioEncoder_Start()** to start the encoder.
 
    ```c++
@@ -242,14 +248,15 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // Exception handling.
    }
    ```
+   
 7. Call **OH_AudioEncoder_PushInputData()** to write the data to encode.
-
+   
    To indicate the End of Stream (EOS), pass in the **AVCODEC_BUFFER_FLAGS_EOS** flag.
-
+   
    For AAC encoding, **FRAME_SIZE** (number of sampling points) is fixed at **1024**.
-
+   
    For FLAC encoding, set **FRAME_SIZE** based on the table below.
-
+   
    | Sampling Rate| FRAME_SIZE|
    | :----: | :----: |
    |  8000  |  576  |
@@ -261,7 +268,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    | 48000 |  4608  |
    | 88200 |  8192  |
    | 96000 |  8192  |
-
+   
    **NOTE**: If **FRAME_SIZE** is not set to **1024** for AAC encoding, an error code is returned. In the case of FLAC encoding, if **FRAME_SIZE** is set to a value greater than the value listed in the table for a given sampling rate, an error code is returned; if **FRAME_SIZE** is set to a value less than the value listed, the encoded file may be damaged.
    
    
@@ -307,10 +314,13 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // End
    }
    ```
+
 9. (Optional) Call **OH_AudioEncoder_Flush()** to refresh the encoder.
 
    After **OH_AudioEncoder_Flush()** is called, the current encoding queue is cleared.
+
    To continue encoding, you must call **OH_AudioEncoder_Start()** again.
+
    You need to call **OH_AudioEncoder_Flush()** in the following cases:
 
    * The EOS of the file is reached.
@@ -328,6 +338,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // Exception handling.
    }
    ```
+
 10. (Optional) Call **OH_AudioEncoder_Reset()** to reset the encoder.
 
     After **OH_AudioEncoder_Reset()** is called, the encoder returns to the initialized state. To continue encoding, you must call **OH_AudioEncoder_Configure()** and then **OH_AudioEncoder_Start()**.
@@ -344,6 +355,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
         // Exception handling.
     }
     ```
+
 11. Call **OH_AudioEncoder_Stop()** to stop the encoder.
 
     ```c++
@@ -353,6 +365,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
         // Exception handling.
     }
     ```
+
 12. Call **OH_AudioEncoder_Destroy()** to destroy the encoder instance and release resources.
 
     **NOTE**: You only need to call this API once.

@@ -17,14 +17,11 @@ Before developing an audio feature, especially before implementing audio data pr
 Before developing features related to audio and video playback, you are advised to understand the following concepts:
 
 - Playback process: network protocol > container format > audio and video codec > graphics/audio rendering
-
 - Network protocols: HLS, HTTP, HTTPS, and more
-
 - Container formats: MP4, MKV, MPEG-TS, WebM, and more
-
 - Encoding formats: H.263/H.264/H.265, MPEG4/MPEG2, and more
 
-## Introduction to Audio Streams 
+## Introduction to Audio Streams
 
 An audio stream is an independent audio data processing unit that has a specific audio format and audio usage scenario information. The audio stream can be used in playback and recording scenarios, and supports independent volume adjustment and audio device routing.
 
@@ -56,7 +53,7 @@ Be familiar with the following about the audio format:
 
 - The common audio sampling rates are supported: 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, and 96000, in units of Hz. For details, see [AudioSamplingRate](../reference/apis/js-apis-audio.md#audiosamplingrate8).
   
-The sampling rate varies according to the device type.
+  The sampling rate varies according to the device type.
   
 - Mono and stereo are supported. For details, see [AudioChannel](../reference/apis/js-apis-audio.md#audiochannel8).
 

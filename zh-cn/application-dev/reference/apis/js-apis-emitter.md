@@ -26,10 +26,10 @@ on(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)
 
 **参数：**
 
-| 参数名   | 类型                                | 必填 | 说明                                                     |
-| -------- | ----------------------------------- | ---- | ------------------------------------------------------ |
-| event    | [InnerEvent](#innerevent)           | 是   | 持续订阅的事件，其中[EventPriority](#eventpriority)，在订阅事件时无需指定，也不生效 |
-| callback | Callback\<[EventData](#eventdata)\> | 是   | 接收到该事件时需要执行的回调处理函数                       |
+| 参数名   | 类型                                | 必填 | 说明                                                         |
+| -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| event    | [InnerEvent](#innerevent)           | 是   | 持续订阅的事件，其中[EventPriority](#eventpriority)，在订阅事件时无需指定，也不生效。 |
+| callback | Callback\<[EventData](#eventdata)\> | 是   | 接收到该事件时需要执行的回调处理函数。                       |
 
 **示例：**
 
@@ -44,6 +44,30 @@ emitter.on(innerEvent, () => {
 });
 ```
 
+## emitter.on<sup>11+</sup>
+
+on(eventId: string, callback:  Callback\<[EventData](#eventdata)\>): void
+
+持续订阅指定事件，并在接收到该事件时，执行对应的回调处理函数。
+
+**系统能力**: `SystemCapability.Notification.Emitter`
+
+**参数：**
+
+| 参数名   | 类型                                | 必填 | 说明                                   |
+| -------- | ----------------------------------- | ---- | -------------------------------------- |
+| event    | string                              | 是   | 持续订阅的事件。                       |
+| callback | Callback\<[EventData](#eventdata)\> | 是   | 接收到该事件时需要执行的回调处理函数。 |
+
+**示例：**
+
+```ts
+// 收到eventId为"eventId"的事件后执行回调函数
+emitter.on("eventId", () => {
+  console.info('callback');
+});
+```
+
 ## emitter.once
 
 once(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)\>): void
@@ -54,10 +78,10 @@ once(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdat
 
 **参数：**
 
-| 参数名   | 类型                                | 必填 | 说明                                                                            |
-| -------- | ----------------------------------- | ---- | ------------------------------------------------------------------------------ |
-| event    | [InnerEvent](#innerevent)           | 是   | 单次订阅的事件，其中[EventPriority](#eventpriority)，在订阅事件时无需指定，也不生效 |
-| callback | Callback\<[EventData](#eventdata)\> | 是   | 接收到该事件时需要执行的回调处理函数                                             |
+| 参数名   | 类型                                | 必填 | 说明                                                         |
+| -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| event    | [InnerEvent](#innerevent)           | 是   | 单次订阅的事件，其中[EventPriority](#eventpriority)，在订阅事件时无需指定，也不生效。 |
+| callback | Callback\<[EventData](#eventdata)\> | 是   | 接收到该事件时需要执行的回调处理函数。                       |
 
 **示例：**
 
@@ -72,6 +96,30 @@ emitter.once(innerEvent, () => {
 });
 ```
 
+## emitter.once<sup>11+</sup>
+
+once(event: string, callback: Callback\<[EventData](#eventdata)\>): void
+
+单次订阅指定事件，并在接收到该事件并执行完相应的回调函数后，自动取消订阅。
+
+**系统能力**: `SystemCapability.Notification.Emitter`
+
+**参数：**
+
+| 参数名   | 类型                                | 必填 | 说明                                   |
+| -------- | ----------------------------------- | ---- | -------------------------------------- |
+| event    | string                              | 是   | 单次订阅的事件。                       |
+| callback | Callback\<[EventData](#eventdata)\> | 是   | 接收到该事件时需要执行的回调处理函数。 |
+
+**示例：**
+
+```ts
+// 收到eventId为"eventId"的事件后执行该回调函数
+emitter.once("eventId", () => {
+    console.info('once callback');
+});
+```
+
 ## emitter.off
 
 off(eventId: number): void
@@ -82,9 +130,9 @@ off(eventId: number): void
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 说明   |
-| ------- | ------ | ---- | ------ |
-| eventId | number | 是   | 事件ID |
+| 参数名  | 类型   | 必填 | 说明     |
+| ------- | ------ | ---- | -------- |
+| eventId | number | 是   | 事件ID。 |
 
 **示例：**
 
@@ -93,7 +141,28 @@ off(eventId: number): void
 emitter.off(1);
 ```
 
-## emitter.off<sup>10+<sup>
+## emitter.off<sup>11+</sup>
+
+off(eventId: string): void
+
+取消订阅指定事件。
+
+**系统能力**: `SystemCapability.Notification.Emitter`
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明     |
+| ------- | ------ | ---- | -------- |
+| eventId | string | 是   | 事件ID。 |
+
+**示例：**
+
+```ts
+// 取消eventID为"eventId"的所有事件回调处理函数
+emitter.off("eventId");
+```
+
+## emitter.off<sup>10+</sup>
 
 off(eventId: number, callback: Callback\<[EventData](#eventdata)\>): void
 
@@ -105,7 +174,7 @@ off(eventId: number, callback: Callback\<[EventData](#eventdata)\>): void
 
 | 参数名  | 类型   | 必填 | 说明   |
 | ------- | ------ | ---- | ------ |
-| eventId | number | 是   | 事件ID |
+| eventId | number | 是   | 事件ID。 |
 | callback<sup>10+</sup> | Callback\<[EventData](#eventdata)\> | 是   | API version 10 新增取消该事件的回调处理函数。   |
 
 **示例：**
@@ -114,6 +183,31 @@ off(eventId: number, callback: Callback\<[EventData](#eventdata)\>): void
 // 取消eventID为1的事件回调处理函数 emitterCallback
 // 如果该回调处理函数没有被订阅，则不做任何处理
 emitter.off(1, () => {
+  console.info('callback');
+});
+```
+
+## emitter.off<sup>11+</sup>
+
+off(eventId: string, callback: Callback\<[EventData](#eventdata)\>): void
+
+取消针对该事件ID的订阅，传入可选参数callback，并且该callback已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
+
+**系统能力**: `SystemCapability.Notification.Emitter`
+
+**参数：**
+
+| 参数名   | 类型                                | 必填 | 说明                       |
+| -------- | ----------------------------------- | ---- | -------------------------- |
+| eventId  | string                              | 是   | 事件ID。                   |
+| callback | Callback\<[EventData](#eventdata)\> | 是   | 取消该事件的回调处理函数。 |
+
+**示例：**
+
+```ts
+// 取消eventID为"eventId"的事件回调处理函数 emitterCallback
+// 如果该回调处理函数没有被订阅，则不做任何处理
+emitter.off("eventId", () => {
   console.info('callback');
 });
 ```
@@ -130,8 +224,8 @@ emit(event: [InnerEvent](#innerevent), data?: [EventData](#eventdata)): void
 
 | 参数名 | 类型                      | 必填 | 说明           |
 | ------ | ------------------------- | ---- | ------------- |
-| event  | [InnerEvent](#innerevent) | 是   | 发送的事件，其中[EventPriority](#eventpriority)用于指定事件被发送的优先级 |
-| data   | [EventData](#eventdata)   | 否   | 事件携带的数据 |
+| event  | [InnerEvent](#innerevent) | 是   | 发送的事件，其中[EventPriority](#eventpriority)用于指定事件被发送的优先级。 |
+| data   | [EventData](#eventdata)   | 否   | 事件携带的数据。 |
 
 **示例：**
 
@@ -149,6 +243,87 @@ let innerEvent: emitter.InnerEvent = {
 };
 
 emitter.emit(innerEvent, eventData);
+```
+
+## emitter.emit<sup>11+</sup>
+
+emit(event: string, data?: [EventData](#eventdata)): void
+
+发送指定事件。
+
+**系统能力**: `SystemCapability.Notification.Emitter`
+
+**参数：**
+
+| 参数名  | 类型                    | 必填 | 说明             |
+| ------- | ----------------------- | ---- | ---------------- |
+| eventId | string                  | 是   | 发送的事件ID。   |
+| data    | [EventData](#eventdata) | 否   | 事件携带的数据。 |
+
+**示例：**
+
+```ts
+let eventData: emitter.EventData = {
+    data: {
+        "content": "c",
+        "id": 1,
+    }
+};
+
+emitter.emit("eventId", eventData);
+```
+
+## emitter.emit<sup>11+</sup>
+
+emit(eventId: string, options: [Options](#options11), data?: [EventData](#eventdata)): void
+
+发送指定优先级事件。
+
+**系统能力**: `SystemCapability.Notification.Emitter`
+
+**参数：**
+
+| 参数名  | 类型                    | 必填 | 说明             |
+| ------- | ----------------------- | ---- | ---------------- |
+| eventId | string                  | 是   | 发送的事件ID。   |
+| options | [Options](#options11)   | 是   | 事件优先级。     |
+| data    | [EventData](#eventdata) | 否   | 事件携带的数据。 |
+
+**示例：**
+
+```ts
+let eventData: emitter.EventData = {
+    data: {
+        "content": "c",
+        "id": 1,
+    }
+};
+
+let options: emitter.Options = {
+    priority: emitter.EventPriority.HIGH
+};
+
+emitter.emit("eventId", options, eventData);
+```
+
+## emitter.getListenerCount<sup>11+</sup>
+
+getListenerCount(eventId: number|string): number
+
+获取指定事件的订阅数。
+
+**系统能力**: `SystemCapability.Notification.Emitter`
+
+**参数：**
+
+| 参数名  | 类型           | 必填 | 说明     |
+| ------- | -------------- | ---- | -------- |
+| eventId | number\|string | 是   | 事件ID。 |
+
+**示例：**
+
+```ts
+let count = emitter.getListenerCount("eventId");
 ```
 
 ## EventPriority
@@ -184,3 +359,14 @@ emitter.emit(innerEvent, eventData);
 | 名称 | 类型           | 可读 | 可写 | 说明           |
 | ---- | ------------------ | ---- | ---- | -------------- |
 | data | [key: string]: any | 是   | 是   | 发送事件时传递的数据，数据类型支持字符串、整型和布尔型。<br> 其中字符串长度最大为10240字节。 |
+
+## Options<sup>11+</sup>
+
+发送事件的优先级。
+
+**系统能力**: `SystemCapability.Notification.Emitter`
+
+| 名称     | 类型                            | 可读 | 可写 | 说明           |
+| -------- | ------------------------------- | ---- | ---- | -------------- |
+| priority | [EventPriority](#eventpriority) | 是   | 是   | 事件的优先级。 |
+

@@ -75,7 +75,8 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
     }
 
     onConfigurationUpdate(config: Configuration) {
-      // Called when the system configuration is updated.
+      // Called when the configuration of the environment where the formExtensionAbility is running is being updated.
+      // is running is being updated. The formExtensionAbility is cleared after 5 seconds of inactivity.
       console.info('[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
     }
 

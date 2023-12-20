@@ -73,12 +73,109 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**系统API:** 此接口为系统接口
+**系统API：** 此接口为系统接口
 
-**模型约束:** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用
 
 | 名称         | 类型     | 必填 | 说明                            |
 | ----------- | --------| ---- | ------------------------------- |
 | name        | string   | 是   | 表示设备的蓝牙名称。 |
 | state |[access.BluetoothState](js-apis-bluetooth-access.md#bluetoothstate)  | 是   | 表示设备的蓝牙状态。 |
 | connectionState | [constant.ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate)  | 是   | 表示设备的蓝牙连接状态。 |
+
+## bluetoothManager.isBluetoothDisabled
+
+isBluetoothDisabled(admin: Want): boolean
+
+以同步方法查询蓝牙是否被禁用。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+
+**返回值：**
+
+| 类型                   | 说明                      |
+| :-------------------- | ------------------------- |
+| boolean | 返回蓝牙禁用状态，true表示蓝牙被禁用，false表示蓝牙未被禁用。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+import bluetoothManager from '@ohos.enterprise.bluetoothManager';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  let isDisabled: boolean = bluetoothManager.isBluetoothDisabled(wantTemp);
+  console.info(`Succeeded in query the bluetooth is disabled or not, isDisabled : ${isDisabled}`);
+} catch(err) {
+  console.error(`Failed to query the bluetooth is disabled or not. Code: ${err.code}, message: ${err.message}`);
+};
+```
+
+## bluetoothManager.setBluetoothDisabled
+
+setBluetoothDisabled(admin: Want, disabled: boolean): void
+
+以同步方法设置禁用蓝牙策略。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                      |
+| ---------- | ----------------------------------- | ---- | ----------------------------------------- |
+| admin      | [Want](js-apis-app-ability-want.md) | 是   | 设备管理应用。                            |
+| disabled   | boolean                             | 是   | true表示禁用蓝牙，false表示解除蓝牙禁用。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | the application is not an administrator of the device.       |
+| 9200002  | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+import bluetoothManager from '@ohos.enterprise.bluetoothManager';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  bluetoothManager.setBluetoothDisabled(wantTemp, true);
+  console.info('Succeeded in set the bluetooth disabled');
+} catch(err) {
+  console.error(`Failed to set the bluetooth disabled. Code: ${err.code}, message: ${err.message}`);
+};
+```

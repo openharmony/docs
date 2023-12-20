@@ -7,7 +7,7 @@ Typically, a widget includes local images or online images downloaded from the n
 1. For the widget to download online images, declare the **ohos.permission.INTERNET** permission for the widget. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md).
 
 2. Update local files in the **onAddForm** lifecycle callback of the EntryFormAbility.
-   
+
    ```ts
    import formBindingData from '@ohos.app.form.formBindingData';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
@@ -15,7 +15,7 @@ Typically, a widget includes local images or online images downloaded from the n
    import Want from '@ohos.app.ability.Want';
    import Base from '@ohos.base';
    import fileFs from '@ohos.file.fs';
-   
+
    export default class EntryFormAbility extends FormExtensionAbility {
      ...
     // When the widget is added, a local image is opened and transferred to the widget page for display.
@@ -44,13 +44,13 @@ Typically, a widget includes local images or online images downloaded from the n
       // Encapsulate the FD in formData and return it to the widget page.
       return formBindingData.createFormBindingData(formData);
     }
-   
+
      ...
    }
    ```
 
 3. Update online files in the **onFormEvent** lifecycle callback of the EntryFormAbility.
-   
+
    ```ts
     import formBindingData from '@ohos.app.form.formBindingData';
     import formProvider from '@ohos.app.form.formProvider';
@@ -171,5 +171,7 @@ Typically, a widget includes local images or online images downloaded from the n
 
 > **NOTE**
 > - The **\<Image>** component displays images in the remote memory based on the **memory://** identifier in the input parameter (**memory://fileName**). The value of **fileName** must be consistent with the key in the object (**'formImages': {key: fd}**) passed by the EntryFormAbility.
-> 
+>
 > - The **\<Image>** component determines whether to update the image by comparing the values of **imgName** consecutively passed by the EntryFormAbility. It updates the image only when the values are different.
+>
+> - To avoid memory leak, when a file is not in used, close it by calling [fs.closeSync](../reference/apis/js-apis-file-fs.md#fsclosesync). The system does not automatically close files.

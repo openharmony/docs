@@ -57,6 +57,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | displayArrow<sup>10+</sup>            | value:[ArrowStyle](#arrowstyle10) \| boolean,<br>isHoverShow?: boolean | Arrow style of the navigation point indicator.<br>- **value**: arrow and background to set. In abnormal scenarios, the default values in the **ArrowStyle** object are used.<br>\- **isHoverShow**: whether to show the arrow only when the mouse pointer hovers over the navigation point indicator.<br>Default value: **false**<br>**NOTE**<br>When **isHoverShow** is set to **false**, the arrow is always displayed and can be clicked to turn pages.<br>When **isHoverShow** is set to **true**, the arrow is displayed only when the mouse pointer hovers over the navigation point indicator, and it can be clicked to turn pages.|
 | nextMargin<sup>10+</sup>    | <br>[Length](ts-types.md#length)<br>| Next margin, used to reveal a small part of the next item.<br>Default value: **0**<br>**NOTE**<br>This attribute is available only when **SwiperDisplayMode** is set to **STRETCH**.<br>When the main axis runs horizontally and either the next margin or previous margin is greater than the calculated width of the child component, neither the next margin nor previous margin is displayed.<br>When the main axis runs vertically and either the next margin or previous margin is greater than the calculated height of the child component, neither the next margin nor previous margin is displayed.|
 | prevMargin<sup>10+</sup>    | <br>[Length](ts-types.md#length)<br>| Previous margin, used to reveal a small part of the previous item.<br>Default value: **0**<br>**NOTE**<br>This attribute is available only when **SwiperDisplayMode** is set to **STRETCH**.<br>When the main axis runs horizontally and either the next margin or previous margin is greater than the calculated width of the child component, neither the next margin nor previous margin is displayed.<br>When the main axis runs vertically and either the next margin or previous margin is greater than the calculated height of the child component, neither the next margin nor previous margin is displayed.|
+| nestedScroll<sup>11+</sup>    | [SwiperNestedScrollMode](#swiperdisplaymode) | Nested scrolling mode of the **\<Swiper>** component and its parent container.<br>Default value: **SwiperNestedScrollMode.SELF_ONLY**<br>**NOTE**<br>When **loop** is set to **true**, the **\<Swiper>** component has no edge effect and does not trigger nested scrolling of its parent container.|
 
 ## SwiperDisplayMode
 
@@ -66,6 +67,13 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | AutoLinear<sup>(deprecated)</sup> | The slide width of the **\<Swiper>** component is equal to that of the child component with the maximum width.<br>This API is deprecated since API version 10. You are advised to use **AUTO_LINEAR** instead.|
 | STRETCH<sup>10+</sup>             | The slide width of the **\<Swiper>** component is equal to the width of the component.            |
 | AUTO_LINEAR<sup>10+</sup>         | The slide width of the **\<Swiper>** component is equal to the width of the leftmost child component in the viewport.             |
+
+## SwiperNestedScrollMode<sup>11+</sup>
+
+| Name         | Description                                      |
+| ------------ | ---------------------------------------- |
+| SELF_ONLY    | The scrolling is contained within the **\<Swiper>** component, and no scroll chaining occurs, that is, the parent container does not scroll when the component scrolling reaches the boundary.|
+| SELF_FIRST   | The **\<Swiper>** component scrolls first, and when it hits the boundary, the parent container scrolls. When the parent container hits the boundary, its edge effect is displayed. If no edge effect is specified for the parent container, the edge effect of the **\<Swiper>** component is displayed instead.|
 
 ## SwiperController
 
@@ -219,11 +227,18 @@ struct SwiperExample {
       .index(1)
       .autoPlay(true)
       .interval(4000)
-      .indicator(true)
       .loop(true)
       .duration(1000)
       .itemSpace(0)
-      .displayArrow({
+      .indicator( // Set the style of the navigation point indicator.
+        new DotIndicator()
+          .itemWidth(15)
+          .itemHeight(15)
+          .selectedItemWidth(15)
+          .selectedItemHeight(15)
+          .color(Color.Gray)
+          .selectedColor(Color.Blue))
+      .displayArrow({ // Set the arrow style of the navigation point indicator.
         showBackground: true,
         isSidebarMiddle: true,
         backgroundSize: 24,
@@ -324,91 +339,7 @@ struct SwiperExample {
       .index(1)
       .autoPlay(true)
       .interval(4000)
-      .indicator(Indicator.dot()
-        .itemWidth(15)
-        .itemHeight(15)
-        .selectedItemWidth(15)
-        .selectedItemHeight(15)
-        .color(Color.Gray)
-        .selectedColor(Color.Blue))
-      .loop(true)
-      .duration(1000)
-      .itemSpace(0)
-      .displayArrow(true, true)
-
-      Row({ space: 12 }) {
-        Button('showNext')
-          .onClick(() => {
-            this.swiperController.showNext()
-          })
-        Button('showPrevious')
-          .onClick(() => {
-            this.swiperController.showPrevious()
-          })
-      }.margin(5)
-    }.width('100%')
-    .margin({ top: 5 })
-  }
-}
-```
-![swiper](figures/swiper-dot.gif)
-
-### Example 3
-```ts
-// xxx.ets
-class MyDataSource implements IDataSource {
-  private list: number[] = []
-
-  constructor(list: number[]) {
-    this.list = list
-  }
-
-  totalCount(): number {
-    return this.list.length
-  }
-
-  getData(index: number): number {
-    return this.list[index]
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-  }
-
-  unregisterDataChangeListener() {
-  }
-}
-
-@Entry
-@Component
-struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
-
-  aboutToAppear(): void {
-    let list: number[] = []
-    for (let i = 1; i <= 10; i++) {
-      list.push(i);
-    }
-    this.data = new MyDataSource(list)
-  }
-
-  build() {
-    Column({ space: 5 }) {
-      Swiper(this.swiperController) {
-        LazyForEach(this.data, (item: string) => {
-          Text(item.toString())
-            .width('90%')
-            .height(160)
-            .backgroundColor(0xAFEEEE)
-            .textAlign(TextAlign.Center)
-            .fontSize(30)
-        }, (item: string) => item)
-      }
-      .cachedCount(2)
-      .index(1)
-      .autoPlay(true)
-      .interval(4000)
-      .indicator(Indicator.digit()
+      .indicator(Indicator.digit() // Set the navigation point indicator of the digit style.
         .right("43%")
         .top(200)
         .fontColor(Color.Gray)

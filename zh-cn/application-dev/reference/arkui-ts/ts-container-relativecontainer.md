@@ -15,10 +15,11 @@
    * 垂直方向为top， center， bottom，对应容器的VerticalAlign.Top， VerticalAlign.Center， VerticalAlign.Bottom。
  * 子组件可以将容器或者其他子组件设为锚点：  
    * 参与相对布局的容器内组件必须设置id，不设置id的组件不显示，容器id固定为__container__。
-   * 此子组件某一方向上的三个位置可以将容器或其他子组件的同方向三个位置为锚点，同方向上设置两个以上锚点的优先级。水平方向Start和Center优先，垂直方向Top和Center优先。
-   * 前端页面设置的子组件尺寸大小不会受到相对布局规则的影响。子组件某个方向上设置两个或以上alignRules时不建议设置此方向尺寸大小。
-   * 对齐后需要额外偏移可设置offset。
+   * 此子组件某一方向上的三个位置（水平方向为left、middle、right，垂直方向为top、center、bottom）可以指定容器或其他子组件同方向的三个位置（水平方向为HorizontalAlign.Start、HorizontalAlign.Center、HorizontalAlign.End，垂直方向为VerticalAlign.Top、VerticalAlign.Center、VerticalAlign.Bottom）为锚点。若同方向上设置两个以上锚点，水平方向Start和Center优先，垂直方向Top和Center优先。例如，水平方向上指定了left以容器的HorizontalAlign.Start为锚点，middle以容器的HorizontalAlign.Center为锚点，又指定right的锚点为容器的HorizontalAlign.End，当组件的width和容器的width不能同时满足3条约束规则时，优先取Start和Center的约束规则。
+   * 当同时存在前端页面设置的子组件尺寸和相对布局规则时，子组件的绘制尺寸取决于约束规则。从API Version 11开始，该规则发生变化，子组件绘制尺寸取决于前端页面设置的尺寸。
+   * 对齐后需要额外偏移可设置offset(API Version 11上新增了bias， 不再使用offset设置额外偏移)。
  * 特殊情况
+   * 根据约束条件和子组件本身的size属性无法确定子组件大小，则子组件不绘制。
    * 互相依赖，环形依赖时容器内子组件全部不绘制。
    * 同方向上两个以上位置设置锚点但锚点位置逆序时此子组件大小为0，即不绘制。
 

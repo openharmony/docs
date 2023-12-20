@@ -8,6 +8,8 @@ If the number of tasks to be executed is greater than the number of worker threa
 
 The **TaskPool** APIs return error codes in numeric format. For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
+For details about the precautions for using **TaskPool**, see [Precautions for TaskPool](../../arkts-utils/taskpool-vs-worker.md#precautions-for-taskpool).
+
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -496,6 +498,83 @@ taskpool.execute(task).then((res: number)=>{
 })
 console.info("testTransfer view byteLength: " + view.byteLength);
 console.info("testTransfer view1 byteLength: " + view1.byteLength);
+```
+
+### sendData<sup>11+</sup>
+
+static sendData(...args: Object[]): void
+
+Sends data to the host thread and triggers the registered callback. Before using this API, you must create a **Task** instance.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                             |
+| -------- | ------------- | ---- | ------------------------------------------------- |
+| args     | Object[]      | Yes  | Data to be used as the input parameter of the registered callback. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message                                |
+| -------- | --------------------------------------- |
+| 10200006  | An exception occurred during serialization. |
+| 10200022  | The function is not called in the taskpool thread. |
+| 10200023  | The function is not called in the concurrent function. |
+| 10200024  | The callback is not registered on the host side. |
+
+**Example**
+
+```ts
+@Concurrent
+function ConcurrentFunc(num: number): number {
+  let res: number = num * 10;
+  taskpool.Task.sendData(res);
+  return num;
+}
+```
+
+### onReceiveData<sup>11+</sup>
+
+onReceiveData(callback?: Function): void
+
+Registers a callback for a task to receive and process data from the worker thread. Before using this API, you must create a **Task** instance.
+
+> **NOTE**<br>
+> If multiple callbacks are registered for the same task, only the last registration takes effect.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| callback | Function | No  | Callback function for processing the data received. The data sent to the host thread is transferred to the callback as an input parameter. If no value is passed in, all the registered callbacks are canceled.|
+
+**Example**
+
+```ts
+@Concurrent
+function ConcurrentFunc(num: number): number {
+  let res: number = num * 10;
+  taskpool.Task.sendData(res);
+  return num;
+}
+
+function pringLog(data: number): void {
+  console.info("taskpool: data is: " + data);
+}
+
+async function testFunc(): Promise<void> {
+  let task: taskpool.Task = new taskpool.Task(ConcurrentFunc, 1);
+  task.onReceiveData(pringLog);
+  let ret: number = await taskpool.execute(task) as number;
+  console.info("taskpool: result is: " + ret);
+}
+
+testFunc();
 ```
 
 ### Attributes

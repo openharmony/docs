@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import cooperate from '@ohos.cooperate'
+import cooperate from '@ohos.cooperate';
 ```
 
 ## cooperate.prepareCooperate
@@ -149,7 +149,7 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number, callback: Asyn
 | 参数名          | 类型                      | 必填 | 说明                                                         |
 | --------------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | targetNetworkId | string                    | 是   | 键鼠穿越目标设备描述符。                                     |
-| inputDeviceId   | number                    | 是   |                                                              |
+| inputDeviceId   | number                    | 是   | 待穿越输入设备标识符。                                       |
 | callback        | AsyncCallback&lt;void&gt; | 是   | 回调函数，键鼠穿越启动成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**

@@ -19,6 +19,7 @@ import window from '@ohos.window';
 
 ## WindowType<sup>7+</sup>
 
+
 Enumerates the window types.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -44,7 +45,7 @@ Enumerates the window types.
 | TYPE_DIALOG<sup>10+</sup>           | 16      | Modal window.<br>**Model restriction**: This API can be used only in the stage model.                                                |
 | TYPE_SCREENSHOT<sup>9+</sup>        | 17      | Screenshot window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                         |
 | TYPE_SYSTEM_TOAST<sup>11+</sup>     | 18      | Toast displayed at the top.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                       |
-
+| TYPE_DIVIDER<sup>11+</sup>          | 19      | Divider.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                |
 ## Configuration<sup>9+</sup>
 
 Defines the parameters for creating a subwindow or system window.
@@ -71,6 +72,7 @@ Enumerates the types of the area where the window cannot be displayed.
 | TYPE_CUTOUT                      | 1    | Notch.                                            |
 | TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2    | Gesture area.                                              |
 | TYPE_KEYBOARD<sup>9+</sup>       | 3    | Soft keyboard area.                                            |
+| TYPE_NAVIGATION_INDICATOR<sup>11+</sup> | 4    | Navigation bar area.                                     |
 
 ## WindowMode<sup>7+</sup>
 
@@ -309,6 +311,34 @@ Enumerates the window lifecycle states.
 | WINDOW_ACTIVE     | 2      | The window gains focus.|
 | WINDOW_INACTIVE   | 3      | The window loses focus.|
 | WINDOW_HIDDEN     | 4      | The window is running in the background.|
+
+## WindowLimits<sup>11+</sup>
+
+Defines the window size limits.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name     | Type  | Readable| Writable| Mandatory| Description                                                        |
+| :-------- | :----- | :--- | :--- | :--- | :----------------------------------------------------------- |
+| maxWidth  | number | Yes  | Yes  | No  | Maximum window width, in pixels. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the maximum width specified by the system. |
+| maxHeight | number | Yes  | Yes  | No  | Maximum window height, in pixels. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the maximum height specified by the system. |
+| minWidth  | number | Yes  | Yes  | No  | Minimum window width, in pixels. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the minimum width specified by the system. |
+| minHeight | number | Yes  | Yes  | No  | Minimum window height, in pixels. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the minimum height specified by the system. |
+
+## WindowStatusType<sup>11+</sup>
+
+Enumerates the window modes.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name      | Value  | Description                         |
+| ---------- | ---- | ----------------------------- |
+| UNDEFINED  | 0    | The window mode is not defined by the application.      |
+| FULL_SCREEN | 1    | The application is displayed in full screen.            |
+| MAXIMIZE    | 2    | The application window is maximized.  |
+| MINIMIZE    | 3    | The application window is minimized.  |
+| FLOATING    | 4    | The application is displayed in a floating window.  |
+| SPLIT_SCREEN  | 5    | The application is displayed in split-screen mode.  |
 
 ## window.createWindow<sup>9+</sup>
 
@@ -1617,6 +1647,18 @@ promise.then((data) => {
 });
 ```
 
+## SpecificSystemBar<sup>11+</sup>
+
+Enumerates the types of system bars that can be displayed or hidden.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name                 | Type      | Description    |
+|---------------------|----------|--------|
+| status              | string   | Status bar.  |
+| navigation          | string   | Navigation bar.  |
+| navigationIndicator | string   | Bottom navigation bar.|
+
 ## Window
 
 Represents the current window instance, which is the basic unit managed by the window manager.
@@ -2029,8 +2071,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | --------------------------------------------- |
-| x        | number                    | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
-| y        | number                    | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
+| x        | number                    | Yes| Distance that the window moves along the x-axis, in pixels. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y        | number                    | Yes| Distance that the window moves along the y-axis, in pixels. A positive value indicates that the window moves downwards. The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                    |
 
 **Error codes**
@@ -2076,8 +2118,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -- | ----- | -- | --------------------------------------------- |
-| x | number | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
-| y | number | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
+| x | number | Yes| Distance that the window moves along the x-axis, in pixels. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y | number | Yes| Distance that the window moves along the y-axis, in pixels. A positive value indicates that the window moves downwards. The value must be an integer.|
 
 **Return value**
 
@@ -2136,8 +2178,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | ------------------------ |
-| width    | number                    | Yes| New width of the window, in px. The value must be an integer.|
-| height   | number                    | Yes| New height of the window, in px. The value must be an integer.|
+| width    | number                    | Yes| New width of the window, in pixels. The value must be an integer.|
+| height   | number                    | Yes| New height of the window, in pixels. The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.               |
 
 **Error codes**
@@ -2193,8 +2235,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | -- | ------------------------ |
-| width  | number | Yes| New width of the window, in px. The value must be an integer.|
-| height | number | Yes| New height of the window, in px. The value must be an integer.|
+| width  | number | Yes| New width of the window, in pixels. The value must be an integer.|
+| height | number | Yes| New height of the window, in pixels. The value must be an integer.|
 
 **Return value**
 
@@ -2585,6 +2627,55 @@ let names: Array<'status' | 'navigation'> = [];
 try {
   let windowClass: window.Window = window.findWindow("test");
   let promise = windowClass.setWindowSystemBarEnable(names);
+  promise.then(() => {
+    console.info('Succeeded in setting the system bar to be invisible.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
+}
+```
+
+### setSpecificSystemBarEnabled<sup>11+</sup>
+
+setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean): Promise&lt;void&gt;
+
+Sets whether to show the navigation bar, status bar, or bottom navigation bar in full-screen mode. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name| Type | Mandatory| Description|
+| ----- | ---------------------------- | -- | --------------------------------- |
+| name  | [SpecificSystemBar](#specificsystembar11) | Yes| Type of the system bar to be shown or hidden.|
+| enable  | boolean | Yes| Whether to show the status bar, navigation bar, or bottom navigation bar. The value **true** means to show them, and **false** means to hide them.|
+
+**Return value**
+
+| Type| Description|
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```ts
+// Hide the bottom navigation bar.
+import { BusinessError } from '@ohos.base';
+
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  let promise = windowClass.setSpecificSystemBarEnabled('navigationIndicator', false);
   promise.then(() => {
     console.info('Succeeded in setting the system bar to be invisible.');
   }).catch((err: BusinessError) => {
@@ -3744,6 +3835,132 @@ try {
   windowClass.off('windowEvent');
 } catch (exception) {
   console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### on('windowVisibilityChange')<sup>11+</sup>
+
+on(type: 'windowVisibilityChange', callback: Callback&lt;boolean&gt;): void
+
+Subscribes to the visibility status change event of this window.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                      | Mandatory| Description                                                        |
+| -------- | --------------------------| ---- | ------------------------------------------------------------ |
+| type     | string                    | Yes  | Event type. The value is fixed at **'windowVisibilityChange'**, indicating the visibility status change event.|
+| callback | Callback&lt;boolean&gt;   | Yes  | Callback used to Callback used to return the visibility status of the window, which is a Boolean value. The value **true** means that the window is visible, and **false** means the opposite.                              |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.on('windowVisibilityChange', (boolean) => {
+    console.info('Window visibility changed, isVisible=' + boolean);
+  });
+} catch (exception) {
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('windowVisibilityChange')<sup>11+</sup>
+
+off(type: 'windowVisibilityChange', callback?: Callback&lt;boolean&gt;): void
+
+Unsubscribes from the visibility status change event of this window.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                  |
+| -------- |----------------------------| ---- |--------------------------------------|
+| type     | string                     | Yes  | Event type. The value is fixed at **'windowVisibilityChange'**, indicating the visibility status change event.|
+| callback | Callback&lt;boolean&gt;    | No  | Callback used to Callback used to return the visibility status of the window. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.           |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.off('windowVisibilityChange');
+} catch (exception) {
+  console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### on('windowStatusChange')<sup>11+</sup>
+
+on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): void
+
+Subscribes to the window status change event.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                          | Mandatory| Description                                                    |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | Yes  | Event type. The value is fixed at **'windowStatusChange'**, indicating the window status change event.|
+| callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | Yes  | Callback used to return the window status.                          |
+
+**Example**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.on('windowStatusChange', (WindowStatusType) => {
+      console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
+  });
+} catch (exception) {
+  console.error('Failed to enable the listener for window status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('windowStatusChange')<sup>11+</sup>
+
+off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): void
+
+Unsubscribes from the window status change event.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                         | Mandatory| Description                                                    |
+| -------- | ----------------------------- | ---- | -------------------------------------------------------- |
+| type     | string                        | Yes  | Event type. The value is fixed at **'windowStatusChange'**, indicating the window status change event.|
+| callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | No  | Callback used to return the window status. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.                          |
+
+**Example**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.off('windowStatusChange');
+} catch (exception) {
+  console.error('Failed to disable the listener for window status changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -5988,13 +6205,17 @@ promise.then(()=> {
 
 ```
 
-### minimize<sup>10+</sup>
+### minimize<sup>11+</sup>
 
 minimize(callback: AsyncCallback&lt;void&gt;): void
 
-Minimizes the main window. This API uses an asynchronous callback to return the result.
+Implements different functionalities based on the caller:
 
-**System API**: This is a system API.
+Minimizes the main window if the caller is a main window. The main window can be restored in the dock bar.
+
+Hides the subwindow if the caller is a subwindow. The subwindow cannot be restored in the dock bar.
+
+This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -6016,49 +6237,31 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // Load content for the main window.
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // Obtain the main window.
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-            // Call minimize.
-            mainWindow.minimize((err) => {
-                if (err.code) {
-                    console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Successfully minimized app main window.');
-            });
-        })
-    }
-};
+let windowClass: window.Window = window.findWindow("test");
+windowClass.minimize((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to minimize the window. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in minimizing the window.');
+});
 
 ```
 
-### minimize<sup>10+</sup>
+### minimize<sup>11+</sup>
 
 minimize(): Promise&lt;void&gt;
 
-Minimizes the main window. This API uses a promise to return the result.
+Implements different functionalities based on the caller:
 
-**System API**: This is a system API.
+Minimizes the main window if the caller is the main window. The main window can be restored in the dock bar.
+
+Hides the subwindow if the caller is a subwindow. The subwindow cannot be restored in the dock bar.
+
+This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -6080,38 +6283,15 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // Load content for the main window.
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // Obtain the main window.
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-            // Promise object of the minimize API.
-            let promise = mainWindow.minimize();
-            promise.then(()=> {
-                console.info('Successfully minimized app main window.');
-            }).catch((err)=>{
-                console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
-            });
-        })
-    }
-};
+let windowClass: window.Window = window.findWindow("test");
+let promise = windowClass.minimize();
+promise.then(() => {
+  console.info('Succeeded in minimizing the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to minimize the window. Cause: ' + JSON.stringify(err));
+});
 
 ```
 
@@ -6399,6 +6579,128 @@ export default class EntryAbility extends UIAbility {
 
 ```
 
+### getWindowLimits<sup>11+</sup>
+
+getWindowLimits(): WindowLimits
+
+Obtains the size limits of this window.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Return value**
+
+| Type                            | Description         |
+| ------------------------------- | ------------------- |
+| [WindowLimits](#windowlimits11) | Window size limits. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| :------ | :----------------------------- |
+| 1300002 | This window state is abnormal. |
+
+**Example**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  let windowLimits = windowClass.getWindowLimits();
+} catch (exception) {
+  console.error('Failed to obtain the window limits of window. Cause: ' + JSON.stringify(exception));
+}
+
+```
+
+###  setWindowLimits<sup>11+</sup>
+
+setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
+
+Sets the size limits for this window. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name         | Type                            | Mandatory | Description                    |
+| :----------- | :------------------------------ | :-------- | :----------------------------- |
+| windowLimits | [WindowLimits](#windowlimits11) | Yes       | Target size limits, in pixels. |
+
+**Return value**
+
+| Type                                           | Description                                 |
+| :--------------------------------------------- | :------------------------------------------ |
+| Promise&lt;[WindowLimits](#windowlimits11)&gt; | Promise used to return the new size limits. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                                 |
+| :------ | :-------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+try {
+  let windowLimits: window.WindowLimits = {
+    maxWidth: 1500,
+    maxHeight: 1000,
+    minWidth: 500,
+    minHeight: 400
+  };
+  let windowClass: window.Window = window.findWindow("test");
+  let promise = windowClass.setWindowLimits(windowLimits);
+    promise.then((data) => {
+    console.info('Succeeded in changing the window limits. Cause:' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to change the window limits. Cause: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to change the window limits. Cause:' + JSON.stringify(exception));
+}
+
+```
+
+### keepKeyboardOnFocus<sup>11+</sup>
+
+keepKeyboardOnFocus(keepKeyboardFlag: boolean): void
+
+Sets whether to keep the soft keyboard created by others when a window has focus. This API can be called only by a system window or an application subwindow.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name             | Type    | Mandatory | Description                                                  |
+| ---------------- | ------- | --------- | ------------------------------------------------------------ |
+| keepKeyboardFlag | boolean | Yes       | Whether to keep the soft keyboard created by others. The value **true** means to keep the soft keyboard, and **false** means the opposite. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation.        |
+
+**Example**
+
+```ts
+try {
+  windowClass.keepKeyboardOnFocus(true);
+} catch (exception) {
+  console.error('Failed to keep keyboard onFocus. Cause: ' + JSON.stringify(exception));
+}
+
+```
+
 ### show<sup>(deprecated)</sup>
 
 show(callback: AsyncCallback&lt;void&gt;): void
@@ -6553,8 +6855,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name     | Type                      | Mandatory | Description                                                  |
 | -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| x        | number                    | Yes       | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer. |
-| y        | number                    | Yes       | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer. |
+| x        | number                    | Yes       | Distance that the window moves along the x-axis, in pixels. A positive value indicates that the window moves to the right. The value must be an integer. |
+| y        | number                    | Yes       | Distance that the window moves along the y-axis, in pixels. A positive value indicates that the window moves downwards. The value must be an integer. |
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Example**
@@ -6592,8 +6894,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name | Type   | Mandatory | Description                                                  |
 | ---- | ------ | --------- | ------------------------------------------------------------ |
-| x    | number | Yes       | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer. |
-| y    | number | Yes       | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer. |
+| x    | number | Yes       | Distance that the window moves along the x-axis, in pixels. A positive value indicates that the window moves to the right. The value must be an integer. |
+| y    | number | Yes       | Distance that the window moves along the y-axis, in pixels. A positive value indicates that the window moves downwards. The value must be an integer. |
 
 **Return value**
 
@@ -6644,8 +6946,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name     | Type                      | Mandatory | Description                                                  |
 | -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| width    | number                    | Yes       | New width of the window, in px. The value must be an integer. |
-| height   | number                    | Yes       | New height of the window, in px. The value must be an integer. |
+| width    | number                    | Yes       | New width of the window, in pixels. The value must be an integer. |
+| height   | number                    | Yes       | New height of the window, in pixels. The value must be an integer. |
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Example**
@@ -6693,8 +6995,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name   | Type   | Mandatory | Description                                                  |
 | ------ | ------ | --------- | ------------------------------------------------------------ |
-| width  | number | Yes       | New width of the window, in px. The value must be an integer. |
-| height | number | Yes       | New height of the window, in px. The value must be an integer. |
+| width  | number | Yes       | New width of the window, in pixels. The value must be an integer. |
+| height | number | Yes       | New height of the window, in pixels. The value must be an integer. |
 
 **Return value**
 
@@ -8344,6 +8646,18 @@ Describes the lifecycle of a window stage.
 | RESUMED<sup>11+</sup> | 5     | The window stage is interactive in the foreground. If the user opens the Recents screen when an application is running in the foreground, the application becomes non-interactive. When the user switches back to the application, the application becomes interactive. |
 | PAUSED<sup>11+</sup>  | 6     | The window stage is non-interactive in the foreground. If the user opens the Recents screen when an application is running in the foreground, the application becomes non-interactive. When the user switches back to the application, the application becomes interactive. |
 
+## SubWindowOptions<sup>11+</sup>
+
+Defines the parameters used for creating a subwindow.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name         | Type    | Readable | Writable | Description                                                  |
+| ------------ | ------- | -------- | -------- | ------------------------------------------------------------ |
+| title        | string  | No       | Yes      | Title of the subwindow.                                      |
+| decorEnabled | boolean | No       | Yes      | Whether to display decorations in the subwindow. The value **true** means to display decorations, and **false** means the opposite. |
+
+
 ## WindowStage<sup>9+</sup>
 
 Implements a window manager, which manages each basic window unit, that is, [Window](#window) instance.
@@ -8608,6 +8922,71 @@ export default class EntryAbility extends UIAbility {
     let windowClass: window.Window | undefined = undefined;
     try {
       let promise = windowStage.createSubWindow('mySubWindow');
+      promise.then((data) => {
+        windowClass = data;
+        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+      }).catch((err: BusinessError) => {
+        console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
+      });
+    } catch (exception) {
+      console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
+    }
+  }
+};
+
+```
+
+### createSubWindowWithOptions<sup>11+</sup>
+
+createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
+
+Creates a subwindow for this window stage. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name    | Type                                    | Mandatory | Description                                 |
+| ------- | --------------------------------------- | --------- | ------------------------------------------- |
+| name    | string                                  | Yes       | Name of the subwindow.                      |
+| options | [SubWindowOptions](#subwindowoptions11) | Yes       | Parameters used for creating the subwindow. |
+
+**Return value**
+
+| Type                             | Description                                   |
+| -------------------------------- | --------------------------------------------- |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300005 | This window stage is abnormal. |
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      let options : window.SubWindowOptions = {
+        title: 'title',
+        decorEnabled: true
+      };
+      let promise = windowStage.createSubWindowWithOptions('mySubWindow', options);
       promise.then((data) => {
         windowClass = data;
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
@@ -9437,6 +9816,7 @@ let windowClass: window.Window | undefined = undefined;
   );
   console.info('complete transition end');
 };
+
 ```
 
 ### animationForHidden<sup>9+</sup>

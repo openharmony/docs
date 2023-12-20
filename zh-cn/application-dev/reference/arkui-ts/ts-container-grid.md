@@ -42,16 +42,17 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他[滚动类组件](ts-container-list.md)绑定同一个滚动控制对象。 |
 | layoutOptions<sup>10+</sup> | GridLayoutOptions | 否 | 滚动Grid布局选项。 |
 
-### GridLayoutOptions<sup>10+</sup>
+## GridLayoutOptions<sup>10+</sup>
 
-布局选项，配合rowsTemplate、columnsTemplate仅设置其中一个的Grid使用，可以替代通过columnStart/columnEnd控制GridItem占用多列、rowStart/rowEnd控制GridItem占用多行的场景。
+布局选项。其中,irregularIndexes和onGetIrregularSizeByIndex可对仅设置rowsTemplate或columnsTemplate的Grid使用，可以指定一个index数组，并为其中的index对应的GridItem设置其占据的行数与列数，使用方法参见示例3；onGetRectByIndex可对同时设置rowsTemplate和columnsTemplate的Grid使用，为指定的index对应的GridItem设置位置和大小，使用方法参见示例4。
 
 **参数：**
 | 名称    | 类型      | 必填   | 描述                    |
 | ----- | ------- | ---- | --------------------- |
 | regularSize  | [number, number]  | 是    | 大小规则的GridItem在Grid中占的行数和列数，只支持占1行1列即[1, 1]。   |
-| irregularIndexes | number[] | 否    | 大小不规则的GridItem在Grid所有子节点中的索引值。onGetIrregularSizeByIndex不设置时irregularIndexes中的GridItem默认占垂直滚动Grid的一整行或水平滚动Grid的一整列。 |
-| onGetIrregularSizeByIndex | (index: number) => [number, number] | 否    | 获取不规则GridItem占用的行数和列数，布局过程中针对irregularIndexes中的index调用，开发者应返回index对应GridItem占用的行数和列数。垂直滚动Grid不支持GridItem占多行，水平滚动Grid不支持GridItem占多列。 |
+| irregularIndexes | number[] | 否    | 指定的GridItem索引在Grid中的大小是不规则的。当不设置onGetIrregularSizeByIndex时，irregularIndexes中GridItem的默认大小为垂直滚动Grid的一整行或水平滚动Grid的一整列。 |
+| onGetIrregularSizeByIndex | (index: number) => [number, number] | 否    | 配合irregularIndexes使用，设置不规则GridItem占用的行数和列数。开发者可为irregularIndexes中指明的index对应的GridItem设置占用的行数和列数。垂直滚动Grid不支持GridItem占多行，水平滚动Grid不支持GridItem占多列。 |
+| onGetRectByIndex<sup>11+</sup> | (index: number) => [number, number,number,number] | 否  |  设置指定索引index对应的GridItem的位置及大小[rowStart,columnStart,rowSpan,columnSpan]。  |
 
 ## 属性
 
@@ -74,7 +75,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 | cellLength<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示一行的高度。<br/>当layoutDirection是Column/ColumnReverse时，表示一列的宽度。<br/>默认值：第一个元素的大小 |
 | multiSelectable<sup>8+</sup> | boolean | 是否开启鼠标框选。<br/>默认值：false<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。<br/>**说明：**<br/> 开启框选后，可以配合Griditem的selected属性和onSelect事件获取GridItem的选中状态，还可以设置[选中态样式](./ts-universal-attributes-polymorphic-style.md)（无默认选中样式）。 |
 | supportAnimation<sup>8+</sup> | boolean | 是否支持动画。当前支持GridItem拖拽动画。<br/>默认值：false<br/>**说明：**<br/> 仅在滚动模式下（只设置rowsTemplate、columnsTemplate其中一个）支持动画。|
-| edgeEffect<sup>10+</sup> | [EdgeEffect](ts-appendix-enums.md#edgeeffect), [EdgeEffectOptions<sup>11+</sup>](ts-container-scroll.md#edgeeffectoptions11对象说明)?: | 设置组件的滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.None<br/> edgeEffectOptions用于设置组件内容大小小于组件自身时，是否开启滑动效果<br/>默认值：false|
+| edgeEffect<sup>10+</sup> | value:[EdgeEffect](ts-appendix-enums.md#edgeeffect), <br/>options?:[EdgeEffectOptions<sup>11+</sup>](ts-container-scroll.md#edgeeffectoptions11对象说明) | 设置边缘滑动效果。<br/>\- value: 设置Grid组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.None<br/>\- options：设置组件内容大小小于组件自身时，是否开启滑动效果。<br/>默认值：false|
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true      |
 | nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10对象说明)         | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。 |
 | friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | 设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9<br/>**说明：** <br/>设置为小于等于0的值时，按默认值处理 |
@@ -324,7 +325,7 @@ struct GridExample {
 
 ### 示例3
 
-使用GridLayoutOptions
+GridLayoutOptions的使用：irregularIndexes与onGetIrregularSizeByIndex。
 
 ```ts
 // xxx.ets
@@ -402,3 +403,67 @@ struct GridExample {
 ```
 
 ![gridLayoutOptions](figures/gridLayoutOptions.png)
+
+### 示例4
+
+GridLayoutOptions的使用：onGetRectByIndex。
+
+```ts
+@Entry
+@Component
+struct GridExample {
+  @State Number: String[] = ['0', '1','2','3','4','5']
+  
+  layoutOptions3: GridLayoutOptions = {
+    regularSize: [1, 1],
+    onGetRectByIndex: (index: number) => {
+      if (index == 0)
+        return [0, 0, 1, 1]
+      else if(index==1)
+        return [0, 1, 2, 2]
+      else if(index==2)
+        return [0 ,3 ,3 ,3]
+      else if(index==3)
+        return [3, 0, 3, 3]
+      else if(index==4)
+        return [4, 3, 2, 2]
+      else
+        return [5, 5, 1, 1]
+    }
+  }
+
+
+  build() {
+    Column({ space: 5 }) {
+      Text('scroll').fontColor(0xCCCCCC).fontSize(9).width('90%')
+
+      Grid(undefined, this.layoutOptions3) {
+        ForEach(this.Number, (day: string) => {
+          GridItem() {
+            Text(day)
+              .fontSize(16)
+              .backgroundColor(0xF9CF93)
+              .width('100%')
+              .height("100%")
+              .textAlign(TextAlign.Center)
+          }
+          .height("100%")
+          .width('100%')
+        }, (day: string) => day)
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr')
+      .rowsTemplate('1fr 1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(10)
+      .scrollBar(BarState.Off)
+      .width('90%')
+      .backgroundColor(0xFAEEE0)
+      .height(300)
+
+    }.width('100%').margin({ top: 5 })
+  }
+}
+
+```
+
+![onGetRectByIndex](figures/onGetRectByIndex.png)

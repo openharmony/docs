@@ -184,8 +184,99 @@ This error code is reported when you perform an invalid operation in the full-sc
 1. Do not move the full-screen window.
 2. Do not resize the full-screen window.
 
-## 1001 Window Null Pointer Exception<sup>(deprecated)</sup>
+## 1300011 Failure in Destroying a PiP Window
 
+**Error Message**
+
+Destroy pip window failed.
+
+**Description**
+
+This error code is reported when destroying a PiP window fails.
+
+**Possible Causes**
+
+The pointer to the PiP window is null.
+
+**Solution**
+
+No action is required.
+
+## 1300012 Abnormal PiP Window Status
+
+**Error Message**
+
+Abnormal state of pip window.
+
+**Description**
+
+This error code is reported when the PiP window status is abnormal.
+
+**Possible Causes**
+
+The PiP window status is abnormal.
+
+**Solution**
+
+No action is required.
+
+## 1300013 Failure in Creating a PiP Window
+
+**Error Message**
+
+Create pip window failed.
+
+**Description**
+
+This error code is reported when creating a PiP window fails.
+
+**Possible Causes**
+
+1. Incorrect parameters are passed in to create the PiP window.
+2. You attempt to start PiP in a non-full-screen window.
+
+**Solution**
+
+1. Correct the input parameters.
+2. Do not start PiP in a non-full-screen window.
+
+## 1300014 PiP Internal Error
+
+**Error Message**
+
+Pip internal error.
+
+**Description**
+
+This error code is reported when an internal error occurs in PiP.
+
+**Possible Causes**
+
+An internal error occurs.
+
+**Solution**
+
+No action is required.
+
+## 1300015 Repeated PiP Operations
+
+**Error Message**
+
+Repeat operation of pip.
+
+**Description**
+
+This error code is reported when a repeated PiP operation is performed.
+
+**Possible Causes**
+
+You attempt to start PiP when it is already started or stop it when it is already stopped.<br>
+
+**Solution**
+
+Do not start or stop PiP repeatedly.
+
+## 1001 Window Null Pointer Exception<sup>(deprecated)</sup>
 **Error Message**
 
 This window nullptr occurs.
@@ -203,7 +294,6 @@ A null pointer is used.
 Operate the window that exists.
 
 ## 1002 Invalid Window Type<sup>(deprecated)</sup>
-
 **Error Message**
 
 This window type is invalid.
@@ -221,7 +311,6 @@ An invalid window type is used. For details about valid window types, see [Windo
 Use a window type supported.
 
 ## 1003 Invalid Window Parameter<sup>(deprecated)</sup>
-
 **Error Message**
 
 This window parameter is invalid.
@@ -239,7 +328,6 @@ Invalid parameters are passed in.
 Correct the parameters.
 
 ## 1004 Ability Service Exception<sup>(deprecated)</sup>
-
 **Error Message**
 
 This system ability service works abnormally.
@@ -257,7 +345,6 @@ When the window is destroyed, the proxy fails to be initialized.
 Restart the device and try again.
 
 ## 1005 IPC Failure<sup>(deprecated)</sup>
-
 **Error Message**
 
 This window IPC failed.
@@ -275,7 +362,6 @@ The window parameters fail to be transferred.
 Before operating a window, ensure that the client and server services in the window are normal.
 
 ## 1007 Application Startup Failure by WindowExtensionAbility<sup>(deprecated)</sup>
-
 **Error Message**
 
 Start ability failed.

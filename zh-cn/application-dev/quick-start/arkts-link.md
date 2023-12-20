@@ -25,7 +25,7 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 装饰器参数                                                   | 无                                                           |
 | 同步类型                                                     | 双向同步。<br/>父组件中\@State,&nbsp;\@StorageLink和\@Link&nbsp;和子组件\@Link可以建立双向数据同步，反之亦然。 |
-| 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Link a : string \| undefined`。 |
+| 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date、Map、Set类型。支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Link a : string \| undefined`。 |
 | <br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>类型必须被指定，且和双向绑定状态变量的类型相同。<br/>不支持any。 |                                                              |
 | 被装饰变量的初始值                                           | 无，禁止本地初始化。                                         |
 
@@ -110,6 +110,10 @@ struct ParentComponent {
 }
 ```
 
+- 当装饰的变量是Map时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
+
+- 当装饰的变量是Set时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
+
 ### 框架行为
 
 \@Link装饰的变量和其所属的自定义组件共享生命周期。
@@ -134,8 +138,11 @@ struct ParentComponent {
 
 ### 简单类型和类对象类型的\@Link
 
-以下示例中，点击父组件ShufflingContainer中的“Parent View: Set yellowButton”和“Parent View: Set GreenButton”，可以从父组件将变化同步给子组件，子组件GreenButton和YellowButton中\@Link装饰变量的变化也会同步给其父组件。
+以下示例中，点击父组件ShufflingContainer中的“Parent View: Set yellowButton”和“Parent View: Set GreenButton”，可以从父组件将变化同步给子组件。
 
+  1.点击子组件GreenButton和YellowButton中的Button，子组件会发生相应变化，将变化同步给父组件。因为@Link是双向同步，会将变化同步给@State。
+  
+  2.当点击父组件ShufflingContainer中的Button时，@State变化，也会同步给@Link，子组件也会发生对应的刷新。
 
 ```ts
 class GreenButtonState {
@@ -282,6 +289,109 @@ struct Parent {
 ![Video-link-UsageScenario-two](figures/Video-link-UsageScenario-two.gif)
 
 上文所述，ArkUI框架可以观察到数组元素的添加，删除和替换。在该示例中\@State和\@Link的类型是相同的number[]，不允许将\@Link定义成number类型（\@Link item : number），并在父组件中用\@State数组中每个数据项创建子组件。如果要使用这个场景，可以参考[\@Prop](arkts-prop.md)和\@Observed。
+
+### 装饰Map类型变量
+
+\@Link支持Map类型，在下面的示例中，value类型为Map<number, string>，点击Button改变message的值，视图会随之刷新。
+
+```ts
+@Component
+struct Child {
+  @Link value: Map<number, string>
+
+  build() {
+    Column(){
+      ForEach(Array.from(this.value.entries()), (item: [number, string]) => {
+        Text(`${item[0]}`).fontSize(30)
+        Text(`${item[1]}`).fontSize(30)
+        Divider()
+      })
+      Button('child init map').onClick(() =>{
+        this.value = new Map([[0, "a"], [1, "b"], [3, "c"]])
+      })
+      Button('child set new one').onClick(() =>{
+        this.value.set(4, "d")
+      })
+      Button('child clear').onClick(() =>{
+        this.value.clear()
+      })
+      Button('child replace the first one').onClick(() =>{
+        this.value.set(0, "aa")
+      })
+      Button('child delete the first one').onClick(() =>{
+        this.value.delete(0)
+      })
+    }
+  }
+}
+
+
+@Entry
+@Component
+struct MapSample2 {
+  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+
+  build() {
+    Row() {
+      Column() {
+        Child({value:this.message})
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### 装饰Set类型变量
+
+\@Link支持Set类型，在下面的示例中，message类型为Set<number>，点击Button改变message的值，视图会随之刷新。
+
+```ts
+@Component
+struct Child {
+  @Link message: Set<number>
+
+  build() {
+    Column() {
+      ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        Text(`${item[0]}`).fontSize(30)
+        Divider()
+      })
+      Button('init set').onClick(() =>{
+        this.message = new Set([0, 1, 2 ,3,4 ])
+      })
+      Button('set new one').onClick(() =>{
+        this.message.add(5)
+      })
+      Button('clear').onClick(() =>{
+        this.message.clear()
+      })
+      Button('delete the first one').onClick(() =>{
+        this.message.delete(0)
+      })
+    }
+    .width('100%')
+  }
+}
+
+
+@Entry
+@Component
+struct SetSample1 {
+  @State message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+
+  build() {
+    Row() {
+      Column() {
+        Child({message:this.message})
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
 
 ## Link支持联合类型实例
 

@@ -34,7 +34,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | Scrollbar status.<br>Default value: **BarState.Auto**<br>**NOTE**<br>If the container component cannot be scrolled, the scrollbar is not displayed. If the size of a child component of a container component is infinite, the scrollbar cannot be dragged or scrolled with the child component.|
 | scrollBarColor | string \| number \| [Color](ts-appendix-enums.md#color)   | Color of the scrollbar.|
 | scrollBarWidth | string \| number         | Width of the scrollbar. This attribute cannot be set in percentage.<br>Default value: **4**<br>Unit: vp<br>**NOTE**<br>If the width of the scrollbar exceeds its height, it will change to the default value.|
-| edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)            | Scroll effect. For details, see **EdgeEffect**.<br>Default value: **EdgeEffect.None**|
+| scrollSnap<sup>10+</sup>     | [ScrollSnapOptions](#scrollsnapoptions10)                     | Scroll snapping mode.|
+| edgeEffect     | value:[EdgeEffect](ts-appendix-enums.md#edgeeffect),<br>options?:[EdgeEffectOptions<sup>11+</sup>](#edgeeffectoptions11)        | Effect used at the edges of the component when the boundary of the scrollable content is reached.<br>\- **value**: effect used at the edges of the **\<Scroll>** component when the boundary of the scrollable content is reached. The spring effect and shadow effect are supported.<br>Default value: **EdgeEffect.None**<br>\- **options**: whether to enable the scroll effect when the component content size is smaller than the component itself.<br>Default value: **true**|
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   Whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the scrolling controller API is not affected.<br>Default value: **true**     |
 | nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](#nestedscrolloptions10)         | Nested scrolling options. You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.|
 | friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | Friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
@@ -47,6 +48,14 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | None       | Scrolling is disabled.              |
 | Free<sup>(deprecated) </sup> | Vertical or horizontal scrolling is supported.<br> This API is deprecated since API version 9.|
 
+## scrollSnapOptions<sup>10+</sup>
+| Name      | Type      | Description      |
+| ---------- | ---------------------------------------- | -------- |
+| snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10)   | Alignment mode for the scroll snap position.<br>**NOTE**<br>1. Default value: **ScrollSnapAlign.NONE**<br>2. This API takes effect only when **snapPagination** is set to **Dimension**. **Array\<Dimension\>** is not supported.|
+| snapPagination | Dimension \| Array\<Dimension\> | Snap points for the **\<Scroll>** component. Each snap point defines the offset from an edge to which the **\<Scroll>** component can scroll.<br>**NOTE**<br>1. A value of the **Dimension** type indicates the size per page. The system automatically works out the position of each snap point based on the value. For example, if the value is **500**, the position of the snap point is [0,500,1000,1500, ...].<br>2. A value of the **Array\<Dimension\>** type indicates an array of snap point positions defined by **Dimension**. The range of each dimension is [0, scrollable distance]. Point 0 and the bottom of the scrollable distance automatically become the snap points.<br>3. If this attribute is not set or **Dimension** is set to a value less than or equal to 0, the value is regarded as an abnormal value. In this case, there is no scroll snapping. When the value is of the **Array\<Dimension\>** type, the items in the array must be monotonically increasing.<br>4. When the value is a percentage, the actual size is the product of the viewport of the **\<Scroll>** component and the percentage value.|
+| enableSnapToStart | boolean   | Whether to enable the snap to start feature. When scroll snapping is defined for the **\<Scroll>** component, setting this attribute to **false** enables the component to scroll between the start edge and the first snap point.<br>**NOTE**<br>1. Default value: **true**<br>2. This attribute takes effect only when **snapPagination** is set to a value of the **Array\<Dimension\>** type; it does not work with values of the **Dimension** type.|
+| enableSnapToEnd | boolean   | Whether to enable the snap to end feature. When scroll snapping is defined for the **\<Scroll>** component, setting this attribute to **false** enables the component to scroll between the end edge and the last snap point.<br>**NOTE**<br>1. Default value: **true**<br>2. This attribute takes effect only when **snapPagination** is set to a value of the **Array\<Dimension\>** type; it does not work with values of the **Dimension** type.|
+
 ## Events
 
 | Name                                                        | Description                                                    |
@@ -57,6 +66,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | onScrollEnd<sup>(deprecated) </sup>(event: () => void)       | Triggered when scrolling stops.<br>This event is deprecated since API version 9. Use the **onScrollStop** event instead.<br>**NOTE**<br>1. This event is triggered when scrolling is stopped by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.|
 | onScrollStart<sup>9+</sup>(event: () => void)                | Triggered when scrolling starts and is initiated by the user's finger dragging the **\<Scroll>** component or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](#scroller) starts.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.|
 | onScrollStop<sup>9+</sup>(event: () => void)                 | Triggered when scrolling stops after the user's finger leaves the screen. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](#scroller) stops.<br>**NOTE**<br>1. This event is triggered when scrolling is stopped by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.|
+| onReachStart<sup>11+</sup>(event: () => void)          | Triggered when the **\<Scroll>** component reaches the start position.<br>**NOTE**<br>This event is triggered once when the component is initialized and once when the component scrolls to the start position. When the component's edge effect is the spring effect, this event is triggered once when the component passes the start position and is triggered again when the component returns to the start position.|
+| onReachEnd<sup>11+</sup>(event: () => void)            | Triggered when the **\<Scroll>** component reaches the end position.<br>**NOTE**<br>When the component's edge effect is the spring effect, this event is triggered once when the component passes the end position and is triggered again when the component returns to the end position.|
 
 >  **NOTE**
 >
@@ -85,8 +96,8 @@ Scrolls to the specified position.
 
 | Name   | Type                                                    | Mandatory| Description                                                    |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| xOffset   | number \| string                                   | Yes  | Horizontal scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is less than 0, no operation is performed. That is, this parameter does not take effect.<br>This parameter is valid only when the scroll axis is the x-axis.|
-| yOffset   | number \| string                                   | Yes  | Vertical scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is less than 0, no operation is performed. That is, this parameter does not take effect.<br>This parameter is valid only when the scroll axis is the y-axis.|
+| xOffset   | number \| string                                   | Yes  | Horizontal scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is less than 0, the offset will be 0 for scrolling without animation; scrolling with animation stops when it reaches the start position.<br>This parameter takes effect only when the scroll axis is the x-axis.|
+| yOffset   | number \| string                                   | Yes  | Vertical scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is less than 0, the offset will be 0 for scrolling without animation; scrolling with animation stops when it reaches the start position.<br>This parameter takes effect only when the scroll axis is the y-axis.|
 | animation | {duration?: number, curve?: [Curve](ts-appendix-enums.md#curve) \| [ICurve](../apis/js-apis-curve.md#icurve)<sup>10+ </sup>} \| boolean<sup>10+ </sup> | No  | Animation configuration, which includes the following:<br>- **duration**: scrolling duration.<br>- **curve**: scrolling curve.<br>- **boolean**: whether to enable the default spring animation.<br>Default value:<br>{<br>duration: 1000,<br>curve: Curve.Ease<br>}<br>boolean: false<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>Currently, the **\<List>**, **\<Scroll>**, **\<Grid>**, and **\<WaterFlow>** support the **Boolean** type and **ICurve**.|
 
 
@@ -163,7 +174,7 @@ Scrolls by the specified amount.
 
 >  **NOTE**
 >
->  This API only works for the **\<Scroll>**, **\<ScrollBar>**, **\<Grid>**, and **\<List>** components.
+>  This API is available for the **\<Scroll>**, **\<List>**, **\<Grid>**, and **\<WaterFlow>** components.
 
 **Parameters**
 
@@ -188,6 +199,33 @@ Checks whether the component has scrolled to the bottom.
 | ------- | -------- |
 | boolean | The value **true** means that the component has scrolled to the bottom, and **false** means the opposite.|
 
+### getItemRect<sup>11+</sup>
+
+getItemRect(index: number): RectResult
+
+Obtains the size and position of a child component.
+
+>  **NOTE**
+>
+>  This API is available for the **\<Scroll>**, **\<List>**, **\<Grid>**, and **\<WaterFlow>** components.
+
+**Parameters**
+
+| Name  | Type  | Mandatory  | Description             |
+| ----- | ------ | ---- | ----------------- |
+| index | number | Yes   | Index of the target child component.|
+
+> **NOTE**
+>
+> - The value of **index** must be the index of a child component visible in the display area. Otherwise, the value is considered invalid.
+> - The size and position returned for an invalid value are both **0**.
+
+**Return value**
+
+| Type      | Description      |
+| -------------------  | -------- |
+| [RectResult](ts-types.md#rectresult10) | Size and position of the child component relative to the component.|
+
 ## ScrollAlign<sup>10+ </sup>
 
 | Name    | Description                            |
@@ -210,6 +248,12 @@ Checks whether the component has scrolled to the bottom.
 | SELF_FIRST | The component scrolls first, and when it hits the boundary, the parent component scrolls. When the parent component hits the boundary, its edge effect is displayed. If no edge effect is specified for the parent component, the edge effect of the child component is displayed instead.       |
 | PARENT_FIRST  | The parent component scrolls first, and when it hits the boundary, the component scrolls. When the component hits the boundary, its edge effect is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
 | PARALLEL  | The component and its parent component scroll at the same time. When both the component and its parent component hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
+
+## EdgeEffectOptions<sup>11+ </sup>
+| Name  | Type  | Description             |
+| ----- | ------ | ----------------- |
+| alwaysEnabled | boolean | Whether to enable the scroll effect when the component content is smaller than the component itself.|
+
 
 ## Example
 ### Example 1
@@ -258,7 +302,7 @@ struct ScrollExample {
 
       Button('scroll 150')
         .height('5%')
-        .onClick(() => { // Click to scroll down to 150.0 vp.
+        .onClick(() => { // Click to scroll down by 150.0 vp.
           this.scroller.scrollBy(0, 150)
         })
         .margin({ top: 10, left: 20 })
@@ -432,3 +476,34 @@ struct StickyNestedScroll {
 }
 ```
 ![NestedScroll2](figures/NestedScroll2.gif)
+### Example 4
+```ts
+@Entry
+@Component
+struct Index {
+  scroller: Scroller = new Scroller;
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  build() {
+    Scroll(this.scroller) {
+      Column() {
+        ForEach(this.arr, (item: number) => {
+          Text(item.toString())
+            .width('90%')
+            .height(200)
+            .backgroundColor(0xFFFFFF)
+            .borderWidth(1)
+            .borderColor(Color.Black)
+            .borderRadius(15)
+            .fontSize(16)
+            .textAlign(TextAlign.Center)
+        }, (item: string) => item)
+      }.width('100%').backgroundColor(0xDCDCDC)
+    }
+    .backgroundColor(Color.Yellow)
+    .height('100%')
+    .edgeEffect(EdgeEffect.Spring)
+    .scrollSnap({snapAlign:ScrollSnapAlign.START, snapPagination:400, enableSnapToStart:true, enableSnapToEnd:true})
+  }
+}
+```
+![NestedScrollSnap](figures/NestedScrollSnap.gif)

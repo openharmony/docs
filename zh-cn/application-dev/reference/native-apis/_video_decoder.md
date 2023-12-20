@@ -42,7 +42,7 @@ VideoDecoder模块提供用于视频解码的函数。
 | [OH_VideoDecoder_PushInputData](#oh_videodecoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, OH_AVCodecBufferAttr attr) | 将填充数据的输入缓冲区提交给视频解码器。 | 
 | [OH_VideoDecoder_RenderOutputData](#oh_videodecoder_renderoutputdata) (OH_AVCodec \*codec, uint32_t index) | 将处理后的输出Buffer返回给解码器，并通知解码器完成在输出表面上渲染Buffer中包含的解码数据。 | 
 | [OH_VideoDecoder_FreeOutputData](#oh_videodecoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index) | 将处理后的输出缓冲区返回到解码器。 | 
-| [OH_VideoDecoder_IsValid](#oh_videodecoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | 检查当前编解码实例是否有效。 | 
+| [OH_VideoDecoder_IsValid](#oh_videodecoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | 检查当前解码实例是否有效。 | 
 
 
 ## 函数说明
@@ -124,7 +124,7 @@ OH_AVCodec* OH_VideoDecoder_CreateByName (const char *name)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| name | 视频编解码器名称。 | 
+| name | 视频解码器名称。 | 
 
 **返回：**
 
@@ -261,7 +261,7 @@ OH_AVErrCode OH_VideoDecoder_IsValid (OH_AVCodec *codec, bool *isValid)
 
 **描述：**
 
-检查当前编解码实例是否有效。
+检查当前解码实例是否有效。
 
 \@syscap SystemCapability.Multimedia.Media.VideoDecoder
 
@@ -270,7 +270,7 @@ OH_AVErrCode OH_VideoDecoder_IsValid (OH_AVCodec *codec, bool *isValid)
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向OH_AVCodec实例的指针。 | 
-| isVaild | 输出参数。指向布尔实例的指针，如果编解码器实例有效，则为true，如果编解码器实例无效，则为false。 | 
+| isVaild | 输出参数。指向布尔实例的指针，如果解码器实例有效，则为true，如果编码器实例无效，则为false。 | 
 
 **返回：**
 

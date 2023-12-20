@@ -376,11 +376,11 @@ function testConvertHmacKey() {
 }
 ```
 
-### 随机生成BrainPool密钥对，并获得二进制数据
+### 随机生成ED25519密钥对，并获得二进制数据
 
 > **说明：**
 >
-> 从API version 11开始， 支持BrainPool非对称密钥随机生成。
+> 从API version 11开始， 支持ED25519非对称密钥随机生成。
 
 示例13：随机生成非对称密钥KeyPair，并获得二进制数据（场景1、3）
 
@@ -388,54 +388,179 @@ function testConvertHmacKey() {
 2. 通过非对称密钥生成器随机生成非对称密钥。
 3. 获取密钥对象的二进制数据。
 
-以使用Promise方式随机生成BrainPool密钥（256位）为例：
+以使用Promise方式随机生成ED25519密钥（256位）为例：
 
 ```ts
 import cryptoFramework from "@ohos.security.cryptoFramework";
 import { BusinessError } from '@ohos.base';
 
-function testGenerateEccKey() {
-  let brainPoolGenerator = cryptoFramework.createAsyKeyGenerator("ECC_BrainPoolP256r1");
-  let promiseAsyKey = brainPoolGenerator.generateKeyPair();
+function generateEd25519() {
+  let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('Ed25519');
+  let promiseAsyKey = asyKeyGenerator.generateKeyPair();
   promiseAsyKey.then(keyPair => {
     let priKeyEncoded = keyPair.priKey.getEncoded();
-    let pubKeyEncoded = keyPair.pubKey.getEncoded();
+    let pubKeyEncodedKey = keyPair.pubKey.getEncoded();
     console.info('priKeyEncoded.data:' + priKeyEncoded.data);
-    console.info('pubKeyEncoded.data:' + pubKeyEncoded.data);
-  }).catch(err => {
-    let e: BusinessError = err as BusinessError;
+    console.info('pubKeyEncodedKey.data:' + pubKeyEncodedKey.data);
+  }).catch(error => {
+    let e: BusinessError = error as BusinessError;
     console.error(`getEncoded failed, ${e.code}, ${e.message}`);
   })
 }
 ```
 
-### 根据BrainPool密钥二进制数据，生成密钥对
+### 根据ED25519密钥二进制数据，生成密钥对
 
  > **说明：**
  >
- > 从API version 11开始， 支持BrainPool密钥转换。
+ > 从API version 11开始， 支持ED25519密钥转换。
 
-示例14：根据指定的BrainPool非对称密钥二进制数据，生成KeyPair对象
+示例14：根据指定的ED25519非对称密钥二进制数据，生成KeyPair对象
 
-1. 获取BrainPool二进制密钥数据，封装成DataBlob对象。
+1. 获取ED25519二进制密钥数据，封装成DataBlob对象。
 2. 调用convertKey方法，传入公钥二进制和私钥二进制（二者非必选项，可只传入其中一个），转换为KeyPair对象。
 
 ```ts
 import cryptoFramework from "@ohos.security.cryptoFramework";
 import { BusinessError } from '@ohos.base';
 
-function convertBrainPool256R1AsyKey() {
-  let pubKeyArray = new Uint8Array([48, 90, 48, 20, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 9, 43, 36, 3, 3, 2, 8, 1, 1, 7, 3, 66, 0, 4, 21, 149, 23, 167, 9, 156, 255, 218, 152, 56, 71, 125, 84, 168, 141, 123, 196, 8, 157, 82, 104, 136, 115, 59, 127, 139, 222, 79, 146, 43, 198, 216, 108, 213, 214, 80, 206, 132, 57, 168, 215, 106, 101, 48, 66, 2, 77, 123, 113, 172, 32, 203, 145, 18, 80, 220, 73, 37, 199, 223, 116, 209, 232, 145]);
-  let priKeyArray = new Uint8Array([48, 50, 2, 1, 1, 4, 32, 109, 50, 4, 206, 219, 50, 170, 109, 230, 29, 250, 0, 98, 96, 119, 93, 151, 75, 12, 123, 107, 184, 143, 207, 88, 211, 96, 193, 148, 146, 131, 134, 160, 11, 6, 9, 43, 36, 3, 3, 2, 8, 1, 1, 7]);
+function convertEd25519AsyKey() {
+  let pubKeyArray = new Uint8Array([48, 42, 48, 5, 6, 3, 43, 101, 112, 3, 33, 0, 23, 11, 72, 48, 63, 63, 33, 29, 251, 203, 108, 66, 160, 234, 78, 182, 40, 166, 7, 197, 94, 234, 168, 142, 106, 26, 148, 124, 94, 117, 229, 146]);
+  let priKeyArray = new Uint8Array([48, 46, 2, 1, 0, 48, 5, 6, 3, 43, 101, 112, 4, 34, 4, 32, 39, 132, 229, 184, 161, 105, 60, 75, 52, 163, 10, 65, 253, 131, 193, 123, 185, 25, 228, 235, 103, 220, 244, 102, 68, 252, 212, 233, 41, 219, 92, 20]);
   let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyArray };
   let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyArray };
-  let generator = cryptoFramework.createAsyKeyGenerator('ECC_BrainPoolP256r1');
+  let generator = cryptoFramework.createAsyKeyGenerator('Ed25519');
   generator.convertKey(pubKeyBlob, priKeyBlob).then(keyPair => {
     console.info('ConvertKey Success');
-  }).catch(err => {
-    let e: BusinessError = err as BusinessError;
+  }).catch(error => {
+    let e: BusinessError = error as BusinessError;
     console.error(`convertKey failed, ${e.code}, ${e.message}`);
-    return;
+  })
+}
+```
+
+### 随机生成X25519密钥对，并获得二进制数据
+
+> **说明：**
+>
+> 从API version 11开始， 支持X25519非对称密钥随机生成。
+
+示例15：随机生成非对称密钥KeyPair，并获得二进制数据（场景1、3）
+
+1. 创建非对称密钥生成器。
+2. 通过非对称密钥生成器随机生成非对称密钥。
+3. 获取密钥对象的二进制数据。
+
+以使用Promise方式随机生成X25519密钥为例：
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+
+function generateX25519() {
+  let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('X25519');
+  let promiseAsyKey = asyKeyGenerator.generateKeyPair();
+  promiseAsyKey.then(keyPair => {
+    let priKeyEncoded = keyPair.priKey.getEncoded();
+    let pubKeyEncodedKey = keyPair.pubKey.getEncoded();
+    console.info('priKeyEncoded.data:' + priKeyEncoded.data);
+    console.info('pubKeyEncodedKey.data:' + pubKeyEncodedKey.data);
+  }).catch(error => {
+    let e: BusinessError = error as BusinessError;
+    console.error(`getEncoded failed, ${e.code}, ${e.message}`);
+  })
+}
+```
+
+### 根据X25519密钥二进制数据，生成密钥对
+
+ > **说明：**
+ >
+ > 从API version 11开始， 支持X25519密钥转换。
+
+示例16：根据指定的X25519非对称密钥二进制数据，生成KeyPair对象
+
+1. 获取X25519二进制密钥数据，封装成DataBlob对象。
+2. 调用convertKey方法，传入公钥二进制和私钥二进制（二者非必选项，可只传入其中一个），转换为KeyPair对象。
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+
+function convertX25519AsyKey() {
+  let pubKeyArray = new Uint8Array([48, 42, 48, 5, 6, 3, 43, 101, 110, 3, 33, 0, 36, 98, 216, 106, 74, 99, 179, 203, 81, 145, 147, 101, 139, 57, 74, 225, 119, 196, 207, 0, 50, 232, 93, 147, 188, 21, 225, 228, 54, 251, 230, 52]);
+  let priKeyArray = new Uint8Array([48, 46, 2, 1, 0, 48, 5, 6, 3, 43, 101, 110, 4, 34, 4, 32, 112, 65, 156, 73, 65, 89, 183, 39, 119, 229, 110, 12, 192, 237, 186, 153, 21, 122, 28, 176, 248, 108, 22, 242, 239, 179, 106, 175, 85, 65, 214, 90]);
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyArray };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyArray };
+  let generator = cryptoFramework.createAsyKeyGenerator('X25519');
+  generator.convertKey(pubKeyBlob, priKeyBlob).then(keyPair => {
+    console.info('ConvertKey Success');
+  }).catch(error => {
+    let e: BusinessError = error as BusinessError;
+    console.error(`convertKey failed, ${e.code}, ${e.message}`);
+  })
+}
+```
+
+### 随机生成DH密钥对，并获得二进制数据
+
+> **说明：**
+>
+> 从API version 11开始， 支持DH非对称密钥随机生成。
+
+示例17：随机生成非对称密钥KeyPair，并获得二进制数据（场景1、3）
+
+1. 创建非对称密钥生成器。
+2. 通过非对称密钥生成器随机生成非对称密钥。
+3. 获取密钥对象的二进制数据。
+
+以使用Promise方式随机生成DH密钥（modp2048）为例：
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+
+function generateDH2048() {
+  let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('DH_modp2048');
+  let promiseAsyKey = asyKeyGenerator.generateKeyPair();
+  promiseAsyKey.then(keyPair => {
+    let priKeyEncoded = keyPair.priKey.getEncoded();
+    let pubKeyEncodedKey = keyPair.pubKey.getEncoded();
+    console.info('priKeyEncoded.data:' + priKeyEncoded.data);
+    console.info('pubKeyEncodedKey.data:' + pubKeyEncodedKey.data);
+  }).catch(error => {
+    let e: BusinessError = error as BusinessError;
+    console.error(`getEncoded failed, ${e.code}, ${e.message}`);
+  })
+}
+```
+
+### 根据DH密钥二进制数据，生成密钥对
+
+ > **说明：**
+ >
+ > 从API version 11开始， 支持DH密钥转换。
+
+示例18：根据指定的DH非对称密钥二进制数据，生成KeyPair对象
+
+1. 获取DH二进制密钥数据，封装成DataBlob对象。
+2. 调用convertKey方法，传入公钥二进制和私钥二进制（二者非必选项，可只传入其中一个），转换为KeyPair对象。
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+
+function convertDHAsyKey() {
+  let pubKeyArray = new Uint8Array([48,129,158,48,87,6,9,42,134,72,134,247,13,1,3,1,48,74,2,65,0,132,110,250,169,110,200,228,17,253,161,228,250,125,252,114,252,44,158,21,55,85,33,24,92,95,47,252,140,1,51,14,139,31,128,123,178,237,132,172,113,126,164,139,40,18,7,98,247,216,11,251,108,151,157,189,177,44,28,231,201,85,91,59,63,2,1,2,2,2,0,128,3,67,0,2,64,126,193,154,51,43,74,231,54,91,145,238,242,161,86,104,49,214,115,218,124,132,131,107,118,194,199,219,138,203,169,42,93,139,176,154,119,213,207,135,53,66,76,55,45,190,22,39,68,140,199,64,11,45,19,81,16,143,113,106,70,170,43,219,205]);
+  let priKeyArray = new Uint8Array([48,113,2,1,0,48,87,6,9,42,134,72,134,247,13,1,3,1,48,74,2,65,0,132,110,250,169,110,200,228,17,253,161,228,250,125,252,114,252,44,158,21,55,85,33,24,92,95,47,252,140,1,51,14,139,31,128,123,178,237,132,172,113,126,164,139,40,18,7,98,247,216,11,251,108,151,157,189,177,44,28,231,201,85,91,59,63,2,1,2,2,2,0,128,4,19,2,17,0,209,36,86,44,20,237,156,208,10,34,123,133,239,159,211,23]);
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyArray };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyArray };
+  let generator = cryptoFramework.createAsyKeyGenerator('DH_modp1536');
+  generator.convertKey(pubKeyBlob, priKeyBlob).then(keyPair => {
+    console.info('ConvertKey Success');
+  }).catch(error => {
+    let e: BusinessError = error as BusinessError;
+    console.error(`convertKey failed, ${e.code}, ${e.message}`);
   })
 }
 ```
@@ -454,6 +579,8 @@ function convertBrainPool256R1AsyKey() {
 > 2. 非对称密钥（公钥PubKey和私钥PriKey），其中公钥和私钥组成密钥对KeyPair。非对称密钥参数具体可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。
 > 3. 从API version 11开始，支持SM2和BrainPool根据密钥参数生成非对称密钥。
 > 4. 从API version 11开始，支持ECC、SM2和BrainPool使用椭圆曲线名生成非对称公共密钥参数。
+> 5. 从API version 11开始，支持ED25519、X25519和DH根据密钥参数生成非对称密钥。
+> 6. 从API version 11开始，支持DH根据素数P的长度和私钥长度生成DH公共密钥参数。
 
 ### 接口及参数说明
 
@@ -643,9 +770,9 @@ function genECCSpec() {
     console.info('ECC_FIELD_TYPE_STR= ' + fieldType); // Fp
     console.info('ECC_FIELD_SIZE_NUM= ' + fieldSize); // 224
     console.info('ECC_CURVE_NAME_STR= ' + curveName); // NID_secp224r1
-    console.info('ECC_SK_BN= ' + sk); // 13778119747216357073357659683695737507340301779601056267183015309936
-    console.info('ECC_PK_X_BN= ' + pkX); // 3749741888804155669271693745637642122620717525020224480206846034137
-    console.info('ECC_PK_Y_BN= ' + pkY); // 16313017516770897204824227468138745078042807996201616247966463613160
+    console.info('ECC_SK_BN= ' + sk);
+    console.info('ECC_PK_X_BN= ' + pkX);
+    console.info('ECC_PK_Y_BN= ' + pkY);
   }).catch(err => {
     let e: BusinessError = err as BusinessError;
     console.error(`generateKeyPair failed, ${e.code}, ${e.message}`);
@@ -783,7 +910,7 @@ function SM2Pk() {
   return pk;
 }
 
-function genSM2KeySpec(keyType) {
+function genSM2KeySpec(keyType: cryptoFramework.AsyKeySpecType) {
   let eccCommonSpec = SM2CommonSpec();
   switch (keyType) {
     case cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC:
@@ -915,9 +1042,9 @@ function genECCSpec() {
     console.info('ECC_FIELD_TYPE_STR= ' + fieldType); // Fp
     console.info('ECC_FIELD_SIZE_NUM= ' + fieldSize); // 256
     console.info('ECC_CURVE_NAME_STR= ' + curveName); // NID_sm2
-    console.info('ECC_SK_BN= ' + sk); // 56479480235622660732354458450495242388814024699176983079126990217590950692816
-    console.info('ECC_PK_X_BN= ' + pkX); // 25876640556044124671600065862987604138827326766844277864287103114779689410969
-    console.info('ECC_PK_Y_BN= ' + pkY); // 85008509515179900410940010536677837594190315475843034493909948601988503938371
+    console.info('ECC_SK_BN= ' + sk);
+    console.info('ECC_PK_X_BN= ' + pkX);
+    console.info('ECC_PK_Y_BN= ' + pkY);
   }).catch(err => {
     let e: BusinessError = err as BusinessError;
     console.error(`generateKeyPair failed, ${e.code}, ${e.message}`);
@@ -925,197 +1052,283 @@ function genECCSpec() {
 }
 ```
 
-
-
-### 根据参数生成BrainPool密钥对，并获得密钥参数开发步骤
+### 根据参数生成ED25519密钥对，并获得密钥参数开发步骤
 
  > **说明：**
  >
- > 从API version 11开始， 支持根据参数生成BrainPool密钥对。
+ > 从API version 11开始， 支持根据参数生成ED25519密钥对。
 
-示例6：根据参数生成BrainPool密钥对，并获得密钥参数（场景1、2）
+示例8：根据参数生成ED25519密钥对，并获得密钥参数（场景1、2）
 
 1. 创建根据密钥参数的非对称密钥生成器。
 2. 通过根据密钥参数的非对称密钥生成器由指定密钥参数生成非对称密钥对。
 3. 获取密钥对象的密钥参数属性。
 
-以使用Promise方式根据密钥参数生成BrainPool密钥为例：
+以使用Promise方式根据密钥参数生成ED25519密钥为例：
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
 import { BusinessError } from '@ohos.base';
 
-function p256r1Spec() {
-  let fieldFp: cryptoFramework.ECFieldFp = {
-    fieldType: "Fp",
-    p: BigInt("0xA9FB57DBA1EEA9BC3E660A909D838D726E3BF623D52620282013481D1F6E5377"),
-  };
-
-  let G = {
-    x: BigInt("0x8BD2AEB9CB7E57CB2C4B482FFC81B7AFB9DE27E1E3BD23C23A4453BD9ACE3262"),
-    y: BigInt("0x547EF835C3DAC4FD97F8461A14611DC9C27745132DED8E545C1D54C72F046997"),
-  };
-
-  let p256rCommonSpec: cryptoFramework.ECCCommonParamsSpec = {
-    algName: "ECC",
-    specType: cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC,
-    field: fieldFp,
-    a: BigInt("0x7D5A0975FC2C3057EEF67530417AFFE7FB8055C126DC5C6CE94A4B44F330B5D9"),
-    b: BigInt("0x26DC5C6CE94A4B44F330B5D9BBD77CBF958416295CF7E1CE6BCCDC18FF8C07B6"),
-    g: G,
-    n: BigInt("0xA9FB57DBA1EEA9BC3E660A909D838D718C397AA3B561A6F7901E0E82974856A7"),
-    h: 1,
-  };
-  return p256rCommonSpec;
+function ed25519Sk() {
+  return BigInt('26338314196010394003047705826246263763817858777633584257903027929486581399289')
 }
 
-function p256r1Sk() {
-  return BigInt('0x327D0E7BEC81EAE32D8D9207B44A759E5334B57EF7DC0576ABEDB22DF0BA7B82')
+function ed25519Pk() {
+  return BigInt('88526073542684289740553502784855485761717378867878721325430646321401727693216')
 }
 
-function p256r1Pk() {
-  let pk: cryptoFramework.Point = {
-    x: BigInt('0x26B2F508F810DAD4AF35D77252EE81536E38F44C7439D74DB2AD28FE83306173'),
-    y: BigInt('0x1F87044FA4259A44A3E606D8A6495E849EA538E9E6FB3D03F06C6F6905E5EDE8')
-  }
-  return pk
-}
-
-function genP256r1KeySpec(keyType) {
-  let eccCommonSpec = p256r1Spec();
+// ED25519
+function genEd25519KeySpec(keyType: cryptoFramework.AsyKeySpecType) {
   switch (keyType) {
-    case cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC:
-      return eccCommonSpec;
     case cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC:
-      let eccPriKeySpec = {
-        algName: "ECC",
+      let ed25519PriKeySpec = {
+        algName: "Ed25519",
         specType: cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC,
-        params: eccCommonSpec,
-        sk: p256r1Sk(),
+        sk: ed25519Sk(),
       };
-      return eccPriKeySpec;
+      return ed25519PriKeySpec;
     case cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC:
-      let eccPubKeySpec = {
-        algName: "ECC",
+      let ed25519PubKeySpec = {
+        algName: "Ed25519",
         specType: cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC,
-        params: eccCommonSpec,
-        pk: p256r1Pk(),
+        pk: ed25519Pk(),
       };
-      return eccPubKeySpec;
+      return ed25519PubKeySpec;
     case cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC:
-      let eccKeyPairSpec = {
-        algName: "ECC",
+      let ed25519KeyPairSpec = {
+        algName: "Ed25519",
         specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
-        params: eccCommonSpec,
-        sk: p256r1Sk(),
-        pk: p256r1Pk(),
+        sk: ed25519Sk(),
+        pk: ed25519Pk(),
       };
-      return eccKeyPairSpec;
+      return ed25519KeyPairSpec;
   }
 }
 
-function p256r1KeySpecGet() {
-  let p256r1KeySpec = genP256r1KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC);
-  let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(p256r1KeySpec);
+function ed25519SpecGet() {
+  let ed25519KeySpec = genEd25519KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC);
+  let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(ed25519KeySpec);
   generatorBySpec.generateKeyPair().then(keyPair => {
-    let eccA = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_A_BN);
-    let eccB = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_B_BN);
-    let eccN = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_N_BN);
-    let eccH = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_H_NUM);
-    let eccSk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_SK_BN);
-    let eccGx = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_G_X_BN);
-    let eccGy = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_G_Y_BN);
-    let eccFpP = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
-    let eccCurveName = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_CURVE_NAME_STR);
-    let eccFieldType = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FIELD_TYPE_STR);
-    let eccFieldSizeNum = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FIELD_SIZE_NUM);
-    let eccPkX = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_X_BN);
-    let eccPkY = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
+    let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ED25519_SK_BN);
+    let pk = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ED25519_PK_BN);
+    console.info('sk: ' + sk);
+    console.info('pk: ' + pk);
+    if (sk === ed25519Sk()) {
+      console.info('ED25519_SK_BN Compare success');
+    }
+    if (pk === ed25519Pk()) {
+      console.info('ED25519_PK_BN Compare success');
+    }
+  }).catch((error: BusinessError) => {
+    console.error(`catch error, ${error.code}, ${error.message}`);
+  })
+}
 
-    if (BigInt(eccA) === p256r1Spec().a) {
-      console.log('ECC_A_BN Compare success');
+```
+
+### 根据参数生成X25519密钥对，并获得密钥参数开发步骤
+
+ > **说明：**
+ >
+ > 从API version 11开始， 支持根据参数生成X25519密钥对。
+
+示例9：根据参数生成X25519密钥对，并获得密钥参数（场景1、2）
+
+1. 创建根据密钥参数的非对称密钥生成器。
+2. 通过根据密钥参数的非对称密钥生成器由指定密钥参数生成非对称密钥对。
+3. 获取密钥对象的密钥参数属性。
+
+以使用Promise方式根据密钥参数生成X25519密钥为例：
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+
+function x25519Sk() {
+  return BigInt('80492519743984536410287031417673280832731199941643693694014394451502905215291')
+}
+
+function x25519Pk() {
+  return BigInt('29236918585986399753398384668566812412856019336455282363269457131759906074454')
+}
+
+// X25519
+function genX25519KeySpec(keyType: cryptoFramework.AsyKeySpecType) {
+  switch (keyType) {
+    case cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC:
+      let x25519PriKeySpec = {
+        algName: "X25519",
+        specType: cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC,
+        sk: x25519Sk(),
+      };
+      return x25519PriKeySpec;
+    case cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC:
+      let x25519PubKeySpec = {
+        algName: "X25519",
+        specType: cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC,
+        pk: x25519Pk(),
+      };
+      return x25519PubKeySpec;
+    case cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC:
+      let x25519KeyPairSpec = {
+        algName: "X25519",
+        specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
+        sk: x25519Sk(),
+        pk: x25519Pk(),
+      };
+      return x25519KeyPairSpec;
+  }
+}
+
+function x25519SpecGet() {
+  let x25519KeySpec = genX25519KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC);
+  let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(x25519KeySpec);
+  generatorBySpec.generateKeyPair().then(keyPair => {
+    let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.X25519_SK_BN);
+    let pk = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.X25519_PK_BN);
+    console.info('sk: ' + sk);
+    console.info('pk: ' + pk);
+    if (sk === x25519Sk()) {
+      console.info('X25519_SK_BN Compare success');
     }
-    if (BigInt(eccB) === p256r1Spec().b) {
-      console.log('ECC_B_BN Compare success');
+    if (pk === x25519Pk()) {
+      console.info('X25519_PK_BN Compare success');
     }
-    if (BigInt(eccN) === p256r1Spec().n) {
-      console.log('ECC_N_BN Compare success');
+  }).catch((error: BusinessError) => {
+    console.error(`catch error, ${error.code}, ${error.message}`);
+  })
+}
+
+```
+
+### 根据参数生成DH密钥对，并获得密钥参数开发步骤
+
+ > **说明：**
+ >
+ > 从API version 11开始， 支持根据参数生成DH密钥对。
+
+示例10：根据参数生成DH密钥对，并获得密钥参数（场景1、2）
+
+1. 创建根据密钥参数的非对称密钥生成器。
+2. 通过根据密钥参数的非对称密钥生成器由指定密钥参数生成非对称密钥对。
+3. 获取密钥对象的密钥参数属性。
+
+以使用Promise方式根据密钥参数生成DH密钥为例：
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+
+function genDH1536KeySpec(keyType: cryptoFramework.AsyKeySpecType) {
+  switch (keyType) {
+    case cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC:
+      let dh1536PriKeySpec = {
+        algName: "DH",
+        specType: cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC,
+        params: {
+          p: BigInt('2410312426921032588552076022197566074856950548502459942654116941958108831682612228890093858261341614673227141477904012196503648957050582631942730706805009223062734745341073406696246014589361659774041027169249453200378729434170325843778659198143763193776859869524088940195577346119843545301547043747207749969763750084308926339295559968882457872412993810129130294592999947926365264059284647209730384947211681434464714438488520940127459844288859336526896320919633919'),
+          g: BigInt('2'),
+          l: 200
+        },
+        sk: BigInt('997343118225696905003934977332505780812546063723514013218065'),
+      };
+      return dh1536PriKeySpec;
+    case cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC:
+      let dh1536PubKeySpec = {
+        algName: "DH",
+        specType: cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC,
+        params: {
+          p: BigInt('2410312426921032588552076022197566074856950548502459942654116941958108831682612228890093858261341614673227141477904012196503648957050582631942730706805009223062734745341073406696246014589361659774041027169249453200378729434170325843778659198143763193776859869524088940195577346119843545301547043747207749969763750084308926339295559968882457872412993810129130294592999947926365264059284647209730384947211681434464714438488520940127459844288859336526896320919633919'),
+          g: BigInt('2'),
+          l: 200
+        },
+        pk: BigInt('944035688785999148818020636992647383048851980176093137097776463942191186132560894521255791377807025846725900511975400775781576181796449015975341288947034375158520145121989002696564293839005026980366684513784732698410122266781361877914416564466091642726851040648502838067375385162283780627089774844030585301271610481185325557457392190099793556485796676706539701687159851255070218877871201913028340581976376152263467895179733091139505911265318545778292126614135621'),
+      };
+      return dh1536PubKeySpec;
+    case cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC:
+      let dh1536KeyPairSpec = {
+        algName: "DH",
+        specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
+        params: {
+          p: BigInt('2410312426921032588552076022197566074856950548502459942654116941958108831682612228890093858261341614673227141477904012196503648957050582631942730706805009223062734745341073406696246014589361659774041027169249453200378729434170325843778659198143763193776859869524088940195577346119843545301547043747207749969763750084308926339295559968882457872412993810129130294592999947926365264059284647209730384947211681434464714438488520940127459844288859336526896320919633919'),
+          g: BigInt('2'),
+          l: 200
+        },
+        sk: BigInt('997343118225696905003934977332505780812546063723514013218065'),
+        pk: BigInt('944035688785999148818020636992647383048851980176093137097776463942191186132560894521255791377807025846725900511975400775781576181796449015975341288947034375158520145121989002696564293839005026980366684513784732698410122266781361877914416564466091642726851040648502838067375385162283780627089774844030585301271610481185325557457392190099793556485796676706539701687159851255070218877871201913028340581976376152263467895179733091139505911265318545778292126614135621'),
+      };
+      return dh1536KeyPairSpec;
+  }
+}
+
+function DH1536SpecGet() {
+  let DH1536KeySpec = genDH1536KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC);
+  let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(DH1536KeySpec);
+  generatorBySpec.generateKeyPair().then(keyPair => {
+    let p = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_P_BN);
+    let g = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_G_BN);
+    let l = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_L_NUM);
+    let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_SK_BN);
+    let pk = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_PK_BN);
+    console.info('p: ' + p);
+    console.info('g: ' + g);
+    console.info('l: ' + l);
+    console.info('sk: ' + sk);
+    console.info('pk: ' + pk);
+    if (p === genDH1536KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC).params.p) {
+      console.info('DH_P_BN Compare success');
     }
-    if (BigInt(eccSk) === p256r1Sk()) {
-      console.log('ECC_SK_BN Compare success');
+    if (g === genDH1536KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC).params.g) {
+      console.info('DH_G_BN Compare success');
     }
-    if (BigInt(eccGx) === p256r1Spec().g.x) {
-      console.log('ECC_G_X_BN Compare success');
+    if (l === genDH1536KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC).params.l) {
+      console.info('DH_L_NUM Compare success');
     }
-    if (BigInt(eccGy) === p256r1Spec().g.y) {
-      console.log('ECC_G_Y_BN Compare success');
+    if (sk === BigInt('997343118225696905003934977332505780812546063723514013218065')) {
+      console.info('DH_SK_BN Compare success');
     }
-    if (BigInt(eccFpP) === (p256r1Spec().field as cryptoFramework.ECFieldFp).p) {
-      console.log('ECC_FP_P_BN Compare success');
+    if (pk === BigInt('944035688785999148818020636992647383048851980176093137097776463942191186132560894521255791377807025846725900511975400775781576181796449015975341288947034375158520145121989002696564293839005026980366684513784732698410122266781361877914416564466091642726851040648502838067375385162283780627089774844030585301271610481185325557457392190099793556485796676706539701687159851255070218877871201913028340581976376152263467895179733091139505911265318545778292126614135621')) {
+      console.info('DH_PK_BN Compare success');
     }
-    if (eccH === p256r1Spec().h) {
-      console.log('ECC_H_NUM Compare success');
-    }
-    if (eccFieldType === p256r1Spec().field.fieldType) {
-      console.log('ECC_FIELD_TYPE_STR Compare success');
-    }
-    if (BigInt(eccPkX) === p256r1Pk().x && BigInt(eccPkY) === p256r1Pk().y) {
-      console.log('ECC_PK_X_BN and ECC_PK_Y_BN Compare success');
-    }
-    console.log('eccCurveName: ' + eccCurveName); // NID_brainpoolP256r1
-    console.log('eccFieldSizeNum: ' + eccFieldSizeNum); // 256
   }).catch((error: BusinessError) => {
     console.error(`catch error, ${error.code}, ${error.message}`);
   })
 }
 ```
 
-### 根据BrainPool椭圆曲线名生成非对称公共密钥参数开发步骤
+### 根据素数P的长度和私钥长度生成DH公共密钥参数开发步骤
 
- > **说明：**
- >
- > 从API version 11开始， 支持根据BrainPool椭圆曲线名生成非对称公共密钥参数。
+> **说明：**
+>
+> 1. 从API version 11开始， 支持根据素数P的长度和私钥长度生成DH公共密钥参数。
+> 1. 生成DH非知名组公共密钥参数具有较长耗时，使用时建议使用知名组。
 
-示例7：根据椭圆曲线名生成非对称公共密钥参数
+示例11：根据素数P的长度和私钥长度生成DH公共密钥参数
 
-传入椭圆曲线相应的NID(Name IDentifier)字符串名称，生成指定的非对称公共密钥参数。
+1. 传入素数P的长度pLen和私钥长度skLen（知名组可不传，使用默认长度），生成指定的DH密钥参数。
 
-以使用Promise方式，根据曲线名NID_brainpoolP256r1生成非对称公共密钥参数为例：
+以知名组“ffdhe3072”，pLen:3072为例：
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework";
+import cryptoFramework from '@ohos.security.cryptoFramework';
 import { BusinessError } from '@ohos.base';
 
-function genECCSpec() {
-  let ECCCommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_brainpoolP256r1')
-  let generator = cryptoFramework.createAsyKeyGeneratorBySpec(ECCCommonParamsSpec)
+function genDHSpec() {
+  // The second parameter here is skLen, which can be used to specify the number of private key bits
+  let DHCommonParamsSpec = cryptoFramework.DHKeyUtil.genDHCommonParamsSpec(3072, 256)
+  let generator = cryptoFramework.createAsyKeyGeneratorBySpec(DHCommonParamsSpec)
   generator.generateKeyPair().then(keyPair => {
-    let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_SK_BN);
-    let fpP = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
-    let a = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_A_BN);
-    let b = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_B_BN);
-    let gx = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_G_X_BN);
-    let gy = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_G_Y_BN);
-    let n = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_N_BN);
-    let h = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_H_NUM);
-    let fieldType = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FIELD_TYPE_STR);
-    let fieldSize = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FIELD_SIZE_NUM);
-    let curveName = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_CURVE_NAME_STR);
-    let pkX = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_X_BN);
-    let pkY = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
-    console.info('ECC_SK_BN= ' + sk); // 24254842455763550901277135926932985888488980059697922472764320680517714950642
-    console.info('ECC_FP_P_BN= ' + fpP); // 76884956397045344220809746629001649093037950200943055203735601445031516197751
-    console.info('ECC_A_BN= ' + a); // 56698187605326110043627228396178346077120614539475214109386828188763884139993
-    console.info('ECC_B_BN= ' + b); // 17577232497321838841075697789794520262950426058923084567046852300633325438902
-    console.info('ECC_G_X_BN= ' + gx); // 63243729749562333355292243550312970334778175571054726587095381623627144114786
-    console.info('ECC_G_Y_BN= ' + gy); // 38218615093753523893122277964030810387585405539772602581557831887485717997975
-    console.info('ECC_N_BN= ' + n); // 76884956397045344220809746629001649092737531784414529538755519063063536359079
-    console.info('ECC_H_NUM= ' + h); // 1
-    console.info('ECC_FIELD_TYPE_STR= ' + fieldType); // Fp
-    console.info('ECC_FIELD_SIZE_NUM= ' + fieldSize); // 256
-    console.info('ECC_CURVE_NAME_STR= ' + curveName); // NID_brainpoolP256r1
-    console.info('ECC_PK_X_BN= ' + pkX); // 21615310258114681010514556739255253599984990387974541396899042279880755467206
-    console.info('ECC_PK_Y_BN= ' + pkY); // 27005769005176918004218505285594389243203176847224630538412921584335813766721
+    let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_SK_BN);
+    let p = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_P_BN);
+    let g = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_G_BN);
+    let l = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_L_NUM);
+    let pk = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_PK_BN);
+    console.info('DH_SK_BN= ' + sk);
+    console.info('DH_P_BN= ' + p); // 5809605995369958062791915965639201402176612226902900533702900882779736177890990861472094774477339581147373410185646378328043729800750470098210924487866935059164371588168047540943981644516632755067501626434556398193186628990071248660819361205119793693985433297036118232914410171876807536457391277857011849897410207519105333355801121109356897459426271845471397952675959440793493071628394122780510124618488232602464649876850458861245784240929258426287699705312584509625419513463605155428017165714465363094021609290561084025893662561222573202082865797821865270991145082200656978177192827024538990239969175546190770645685893438011714430426409338676314743571154537142031573004276428701433036381801705308659830751190352946025482059931306571004727362479688415574702596946457770284148435989129632853918392117997472632693078113129886487399347796982772784615865232621289656944284216824611318709764535152507354116344703769998514148343807
+    console.info('DH_G_BN= ' + g); // 2
+    console.info('DH_L_NUM= ' + l); // 256
+    console.info('DH_PK_BN= ' + pk);
   }).catch(err => {
     let e: BusinessError = err as BusinessError;
     console.error(`generateKeyPair failed, ${e.code}, ${e.message}`);
@@ -2150,7 +2363,7 @@ function testSM4Ecb() {
 2. 使用ECC签名验签操作
 3. 使用RSA签名验签，PSS模式时，获取、设置SignSpecItem参数。
 4. 使用SM2签名验签操作，设置SignSpecItem参数。
-5. 使用BrainPool签名验签操作
+6. 使用ED25519签名验签操作
 
 > **说明：**
 >
@@ -2158,6 +2371,7 @@ function testSM4Ecb() {
 > 2. 从API version 10开始，支持签名验签时字符串参数不带密钥长度。
 > 3. 从API version 11开始，增加支持SM2签名验签，设置SignSpecItem参数。
 > 4. 从API version 11开始，增加支持BrainPool签名验签。
+> 5. 从API version 11开始，支持ED25519签名验签。
 
 ### 接口及参数说明
 
@@ -2628,15 +2842,15 @@ async function sm2SignAndVerify() {
 }
 ```
 
-### BrainPool签名验签开发步骤
+### ED25519签名验签开发步骤
 
 > **说明：**
 >
-> 从API version 11开始， 支持BrainPool签名验签。
+> 从API version 11开始， 支持ED25519签名验签。
 
-示例5：使用BrainPool操作
+示例6：使用ED25519操作
 
-1. 生成BrainPool密钥。通过createAsyKeyGenerator接口创建AsyKeyGenerator对象，并生成BrainPool非对称密钥。
+1. 生成ED25519密钥。通过createAsyKeyGenerator接口创建AsyKeyGenerator对象，并生成ED25519非对称密钥。
 2. 生成Sign对象。通过createSign接口创建Sign对象，执行初始化操作并设置签名私钥。
 3. 执行签名操作。调用doFinal接口生成数据的签名。
 4. 生成Verify对象。通过createVerify接口创建Verify对象，执行初始化操作并设置验签公钥。
@@ -2645,42 +2859,36 @@ async function sm2SignAndVerify() {
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
 import { BusinessError } from '@ohos.base';
+import buffer from '@ohos.buffer';
 
-function stringToUint8Array(str) {
-  var arr = [];
-  for (var i = 0, j = str.length; i < j; ++i) {
-    arr.push(str.charCodeAt(i));
-  }
-  var tmpArray = new Uint8Array(arr);
-  return tmpArray;
+// Convert strings in plaintext into byte streams.
+function stringToUint8Array(str: string) {
+  let arr = new Uint8Array(buffer.from(str, 'utf-8').buffer);
+  return arr;
 }
 
-async function brainPoolSignAndVerify() {
-  let sign = cryptoFramework.createSign('ECC_BrainPoolP160r1|SHA1');
-  let verify = cryptoFramework.createVerify('ECC_BrainPoolP160r1|SHA1');
-  let input1: cryptoFramework.DataBlob = { data: stringToUint8Array("This is Sign test plan1") };
-  let input2: cryptoFramework.DataBlob = { data: stringToUint8Array("This is Sign test plan1") };
+function ed25519SignAndVerify() {
+  let sign = cryptoFramework.createSign('Ed25519');
+  let verify = cryptoFramework.createVerify('Ed25519');
+  let input = { data: stringToUint8Array("This is Sign test plan1") };
   let tempKeyPair: cryptoFramework.KeyPair;
   let SignMessageBlob: cryptoFramework.DataBlob;
-  let p160r1Generate = cryptoFramework.createAsyKeyGenerator('ECC_BrainPoolP160r1');
-  await p160r1Generate.generateKeyPair().then(keyPair => {
+  let generator = cryptoFramework.createAsyKeyGenerator('Ed25519');
+  generator.generateKeyPair().then(keyPair => {
     tempKeyPair = keyPair;
-    return sign.init(tempKeyPair.priKey);
+    return sign.init(tempKeyPair.priKey)
   }).then(() => {
-    return sign.update(input1);
-  }).then(() => {
-    return sign.sign(input2);
+    return sign.sign(input)
   }).then(data => {
-    SignMessageBlob = data
-    console.info('sign data= ' + SignMessageBlob);
-    return verify.init(tempKeyPair.pubKey);
+    SignMessageBlob = data;
+    return verify.init(tempKeyPair.pubKey)
   }).then(() => {
-    return verify.update(input1);
-  }).then(() => {
-    return verify.verify(input2, SignMessageBlob);
-  }).catch(err =>{
-    let e: BusinessError = err as BusinessError;
-    console.error(`error , ${e.code}, ${e.message}`);
+    return verify.verify(input, SignMessageBlob)
+  }).then(ret => {
+    console.info('verify ret= ' + ret);
+  }).catch(error => {
+    let e: BusinessError = error as BusinessError;
+    console.error(`verify failed, ${e.code}, ${e.message}`);
   })
 }
 ```
@@ -2698,6 +2906,8 @@ async function brainPoolSignAndVerify() {
 > 从API version 10开始，支持密钥协商时字符串参数不带密钥长度。
 >
 > 从API version 11开始，增加支持BrainPool密钥协商。
+>
+> 从API version 11开始，支持X25519和DH密钥协商。
 
 ### 接口及参数说明
 
@@ -2750,33 +2960,58 @@ function ecdhCallback() {
 }
 ```
 
-### BrainPool密钥协商开发步骤
+### X25519密钥协商开发步骤
 
  > **说明：**
  >
- > 从API version 11开始， 支持BrainPool密钥协商。
+ > 从API version 11开始， 支持X25519密钥协商。
 
-1. 生成BrainPool密钥。通过createAsyKeyGenerator接口创建AsyKeyGenerator对象，并生成BrainPool非对称密钥。
-2. 基于BrainPool密钥的私钥及公钥执行ECDH操作。
+1. 生成X25519密钥。通过createAsyKeyGenerator接口创建AsyKeyGenerator对象，并生成X25519非对称密钥。
+2. 基于X25519密钥的私钥及公钥执行ECDH操作。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
 import { BusinessError } from '@ohos.base';
 
-let globalKeyPair: cryptoFramework.KeyPair;
-
-function brainPoolPromise() {
-  let brainPoolGenerator = cryptoFramework.createAsyKeyGenerator("ECC_BrainPoolP256r1");
-  let brainPoolKeyAgreement = cryptoFramework.createKeyAgreement("ECC_BrainPoolP256r1");
-  let keyGenPromise = brainPoolGenerator.generateKeyPair();
+function x25519Promise() {
+  let x25519Generator = cryptoFramework.createAsyKeyGenerator("X25519");
+  let x25519KeyAgreement = cryptoFramework.createKeyAgreement("X25519");
+  let keyGenPromise = x25519Generator.generateKeyPair();
   keyGenPromise.then(keyPair => {
-    globalKeyPair = keyPair;
-    return brainPoolKeyAgreement.generateSecret(keyPair.priKey, keyPair.pubKey);
+    return x25519KeyAgreement.generateSecret(keyPair.priKey, keyPair.pubKey);
   }).then((secret) => {
-    console.info("brainPool output is " + secret.data);
+    console.info("generateSecret output is " + secret.data);
   }).catch((err) => {
     let e: BusinessError = err as BusinessError;
-    console.error(`brainPool error, ${e.code}, ${e.message}`);
+    console.error(`generateSecret error, ${e.code}, ${e.message}`);
+  });
+}
+```
+
+### DH密钥协商开发步骤
+
+ > **说明：**
+ >
+ > 从API version 11开始， 支持DH密钥协商。
+
+1. 生成DH密钥。通过createAsyKeyGenerator接口创建AsyKeyGenerator对象，并生成DH非对称密钥。
+2. 基于DH密钥的私钥及公钥执行ECDH操作。
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+
+function dhPromise() {
+  let dhGenerator = cryptoFramework.createAsyKeyGenerator("DH_ffdhe3072");
+  let dhKeyAgreement = cryptoFramework.createKeyAgreement("DH_ffdhe3072");
+  let keyGenPromise = dhGenerator.generateKeyPair();
+  keyGenPromise.then(keyPair => {
+    return dhKeyAgreement.generateSecret(keyPair.priKey, keyPair.pubKey);
+  }).then((secret) => {
+    console.info("generateSecret output is " + secret.data);
+  }).catch((err) => {
+    let e: BusinessError = err as BusinessError;
+    console.error(`generateSecret error, ${e.code}, ${e.message}`);
   });
 }
 ```

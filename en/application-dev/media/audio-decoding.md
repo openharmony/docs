@@ -1,4 +1,4 @@
-# Audio Decoding
+# Audio Decoding (C/C++)
 
 You can call the native APIs provided by the **AudioDecoder** module to decode audio, that is, to decode media data into PCM streams.
 
@@ -95,13 +95,14 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
 3. Call **OH_AudioDecoder_SetCallback()** to set callback functions.
 
    Register the **OH_AVCodecAsyncCallback** struct that defines the following callback function pointers:
+   
    - **OH_AVCodecOnError**, a callback used to report a codec operation error
    - **OH_AVCodecOnStreamChanged**, a callback used to report a codec stream change, for example, audio channel change
    - **OH_AVCodecOnNeedInputData**, a callback used to report input data required, which means that the decoder is ready for receiving data
    - **OH_AVCodecOnNewOutputData**, a callback used to report output data generated, which means that decoding is complete
-
+   
    You need to process the callback functions to ensure that the decoder runs properly.
-
+   
     ```cpp
    // Implement the OH_AVCodecOnError callback function.
    static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
@@ -152,14 +153,14 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
        // Exception handling.
    }
     ```
-
+   
 4. Call **OH_AudioDecoder_Configure()** to configure the decoder.
-
+   
    The following options are mandatory: sampling rate, bit rate, and number of audio channels. The maximum input length is optional.
-
+   
    For AAC decoding, the parameter that specifies whether the data type is Audio Data Transport Stream (ADTS) must be specified. If this parameter is not specified, the data type is considered as Low Overhead Audio Transport Multiplex (LATM).
-
-    ```cpp
+   
+   ```cpp
     // Set the decoding resolution.
     int32_t ret;
     // (Mandatory) Configure the audio sampling rate.
@@ -184,8 +185,8 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
-    ```
-
+   ```
+   
 5. Call **OH_AudioDecoder_Prepare()** to prepare internal resources for the decoder.
 
     ```cpp
@@ -257,7 +258,7 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
     }
     ```
 
-9.  (Optional) Call **OH_AudioDecoder_Flush()** to refresh the decoder.
+9. (Optional) Call **OH_AudioDecoder_Flush()** to refresh the decoder.
 
     After **OH_AudioDecoder_Flush()** is called, the decoder remains in the running state, but the current queue is cleared and the buffer storing the decoded data is freed. To continue decoding, you must call **OH_AudioDecoder_Start()** again.
 
@@ -267,16 +268,16 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
     * An error with **OH_AudioDecoder_IsValid** set to **true** (indicating that the execution can continue) occurs.
     
     ```c++
-    // Refresh the decoder.
-    ret = OH_AudioDecoder_Flush(audioDec);
-    if (ret != AV_ERR_OK) {
-        // Exception handling.
-    }
-    // Start decoding again.
-    ret = OH_AudioDecoder_Start(audioDec);
-    if (ret != AV_ERR_OK) {
-        // Exception handling.
-    }
+        // Refresh the decoder.
+        ret = OH_AudioDecoder_Flush(audioDec);
+        if (ret != AV_ERR_OK) {
+            // Exception handling.
+        }
+        // Start decoding again.
+        ret = OH_AudioDecoder_Start(audioDec);
+        if (ret != AV_ERR_OK) {
+            // Exception handling.
+        }
     ```
     
 10. (Optional) Call **OH_AudioDecoder_Reset()** to reset the decoder.
@@ -298,24 +299,25 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
 
 11. Call **OH_AudioDecoder_Stop()** to stop the decoder.
 
-     ```c++
-     // Stop the decoder.
-     ret = OH_AudioDecoder_Stop(audioDec);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
+      ```c++
+      // Stop the decoder.
+      ret = OH_AudioDecoder_Stop(audioDec);
+      if (ret != AV_ERR_OK) {
+          // Exception handling.
+      }
+      ```
 
 12. Call **OH_AudioDecoder_Destroy()** to destroy the decoder instance and release resources.
 
-    **NOTE**: You only need to call this API once.
+      **NOTE**: You only need to call this API once.
 
-     ```c++
-     // Call OH_AudioDecoder_Destroy to destroy the decoder.
-     ret = OH_AudioDecoder_Destroy(audioDec);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     } else {
-         audioDec = NULL; // The decoder cannot be destroyed repeatedly.
-     }
-     ```
+      ```c++
+      // Call OH_AudioDecoder_Destroy to destroy the decoder.
+      ret = OH_AudioDecoder_Destroy(audioDec);
+      if (ret != AV_ERR_OK) {
+          // Exception handling.
+      } else {
+          audioDec = NULL; // The decoder cannot be destroyed repeatedly.
+      }
+      ```
+

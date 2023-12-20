@@ -12,9 +12,9 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
 
 1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为myabilitystage。
 
-2. 在myabilitystage目录，右键选择“New &gt; TypeScript File”，新建一个TypeScript文件并命名为MyAbilityStage.ts。
+2. 在myabilitystage目录，右键选择“New &gt; TypeScript File”，新建一个TypeScript文件并命名为MyAbilityStage.ets。
 
-3. 打开MyAbilityStage.ts文件，导入AbilityStage的依赖包，自定义类继承AbilityStage并加上需要的生命周期回调，示例中增加了一个`onCreate()`生命周期回调。
+3. 打开MyAbilityStage.ets文件，导入AbilityStage的依赖包，自定义类继承AbilityStage并加上需要的生命周期回调，示例中增加了一个`onCreate()`生命周期回调。
    
    ```ts
    import AbilityStage from '@ohos.app.ability.AbilityStage';
@@ -37,7 +37,7 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
      "module": {
        "name": "entry",
        "type": "entry",
-       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
+       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ets",
        ...
      }
    }
