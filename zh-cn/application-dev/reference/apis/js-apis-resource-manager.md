@@ -596,7 +596,7 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 ### getStringValue<sup>9+</sup>
 
-getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
+getStringValue(resId: number, callback: _AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源ID对应的字符串，使用callback形式返回字符串。
 
@@ -687,7 +687,7 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 ### getStringValue<sup>9+</sup>
 
-getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
+getStringValue(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
 
 用户获取指定resource对象对应的字符串，使用callback形式返回字符串。
 
