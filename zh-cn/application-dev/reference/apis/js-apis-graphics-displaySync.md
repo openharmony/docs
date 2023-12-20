@@ -22,7 +22,7 @@ create(): DisplaySync
 
 | 类型                | 说明                     |
 | ------------------ | ------------------------ |
-| DisplaySync  | 返回当前创建的DisplaySync对象实例。               |
+| [DisplaySync](#displaysync)  | 返回当前创建的DisplaySync对象实例。               |
 
 **示例：**
 ```ts
@@ -31,7 +31,7 @@ private backDisplaySyncBigger: displaySync.DisplaySync = displaySync.create();
 
 ## DisplaySync
  帧率和回调设置示例。用于设置帧率和回调注册，以及启动和停止
-下列API示例中都需先使用[displaySync.create()](#displaySync.create)方法获取到DisplaySync实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[displaySync.create()](#displaysynccreate)方法获取到DisplaySync实例，再通过此实例调用对应方法。
 
 ### IntervalInfo
 
