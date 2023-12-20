@@ -14,8 +14,6 @@ import fileuri from "@ohos.file.fileuri";
 
 使用该功能模块前，需要先获取其应用沙箱路径，开发示例如下：
 
-**Stage模型**
-
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   import window from '@ohos.window';
@@ -27,19 +25,6 @@ import fileuri from "@ohos.file.fileuri";
     }
   }
   ```
-
-**FA模型**
-
-  ```js
-  import featureAbility from '@ohos.ability.featureAbility';
- 
-  let context = featureAbility.getContext();
-  context.getFilesDir().then((data) => {
-    let pathDir = data;
-  })
-  ```
-
-FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
 
 ## FileUri<sup>10+</sup>
 
@@ -127,7 +112,7 @@ getUriFromPath(path: string): string
 
 **错误码：**  
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
 | 401 | The input parameter is invalid |
