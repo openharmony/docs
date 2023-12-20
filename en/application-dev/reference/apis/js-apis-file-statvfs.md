@@ -1,6 +1,6 @@
 # @ohos.file.statvfs (File System Space Statistics)
 
-The **statfs** module provides APIs for obtaining file system information, including the total number of bytes and the number of idle bytes of the file system.
+The **statfs** module provides APIs for obtaining file system information, including the total size and free size a file system, in bytes.
 
 > **NOTE**
 >
@@ -16,7 +16,7 @@ import statvfs from '@ohos.file.statvfs';
 
 getFreeSize(path:string):Promise&lt;number&gt;
 
-Obtains the number of free bytes of the specified file system in asynchronous mode. This API uses a promise to return the result.
+Obtains the free size of the specified file system in bytes. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -30,7 +30,7 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
   | Type                 | Description          |
   | --------------------- | -------------- |
-  | Promise&lt;number&gt; | Promise used to return the number of free bytes obtained.|
+  | Promise&lt;number&gt; | Promise used to return the free size obtained, in bytes.|
 
 **Error codes**
 
@@ -44,7 +44,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   statvfs.getFreeSize(path).then((number: number) => {
     console.info("getFreeSize succeed, Size: " + number);
   }).catch((err: BusinessError) => {
-    console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -52,7 +52,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 
-Obtains the number of free bytes of the specified file system in asynchronous mode. This API uses an asynchronous callback to return the result.
+Obtains the free size of the specified file system in bytes. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -61,7 +61,7 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
   | Name  | Type                       | Mandatory| Description                        |
   | -------- | --------------------------- | ---- | ---------------------------- |
   | path     | string                      | Yes  | File path of the file system.|
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of free bytes obtained.|
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the free size obtained, in bytes.|
 
 **Error codes**
 
@@ -74,7 +74,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let path: string = "/dev";
   statvfs.getFreeSize(path, (err: BusinessError, number: number) => {
     if (err) {
-      console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("getFreeSize succeed, Size: " + number);
     }
@@ -85,7 +85,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 getFreeSizeSync(path:string): number
 
-Obtains the number of free bytes of the specified file system. This API returns the result synchronously.
+Obtains the free size of the specified file system in bytes. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -99,7 +99,7 @@ Obtains the number of free bytes of the specified file system. This API returns 
 
   | Type                 | Description          |
   | --------------------- | -------------- |
-  | number | Promise used to return the number of free bytes obtained.|
+  | number | Free size obtained, in bytes.|
 
 **Error codes**
 
@@ -117,7 +117,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 getTotalSize(path: string): Promise&lt;number&gt;
 
-Obtains the total number of bytes of the specified file system in asynchronous mode. This API uses a promise to return the result.
+Obtains the total size of the specified file system in bytes. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -131,7 +131,7 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
   | Type                 | Description        |
   | --------------------- | ------------ |
-  | Promise&lt;number&gt; | Promise used to return the total number of bytes obtained.|
+  | Promise&lt;number&gt; | Promise used to return the total size obtained, in bytes.|
 
 **Error codes**
 
@@ -145,7 +145,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   statvfs.getTotalSize(path).then((number: number) => {
     console.info("getTotalSize succeed, Size: " + number);
   }).catch((err: BusinessError) => {
-    console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
+    console.error("getTotalSize failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -153,7 +153,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the total number of bytes of the specified file system in asynchronous mode. This API uses an asynchronous callback to return the result.
+Obtains the total size of the specified file system in bytes. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -162,7 +162,7 @@ Obtains the total number of bytes of the specified file system in asynchronous m
   | Name  | Type                       | Mandatory| Description                        |
   | -------- | --------------------------- | ---- | ---------------------------- |
   | path     | string                      | Yes  | File path of the file system.|
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total number of bytes obtained.  |
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total size obtained, in bytes.  |
 
 **Error codes**
 
@@ -175,7 +175,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let path: string = "/dev";
   statvfs.getTotalSize(path, (err: BusinessError, number: number) => {
     if (err) {
-      console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
+      console.error("getTotalSize failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("getTotalSize succeed, Size: " + number);
     }
@@ -186,7 +186,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 getTotalSizeSync(path: string): number
 
-Obtains the total number of bytes of the specified file system. This API returns the result synchronously.
+Obtains the total size of the specified file system in bytes. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -200,7 +200,7 @@ Obtains the total number of bytes of the specified file system. This API returns
 
   | Type                 | Description        |
   | --------------------- | ------------ |
-  | number | Promise used to return the total number of bytes obtained.|
+  | number | Total size obtained, in bytes.|
 
 **Error codes**
 
