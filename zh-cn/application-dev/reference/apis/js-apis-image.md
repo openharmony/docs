@@ -3,6 +3,7 @@
 本模块提供图片处理效果，包括通过属性创建PixelMap、读取图像像素数据、读取区域内的图片数据等。
 
 > **说明：**
+>
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -732,8 +733,8 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                            |
 | -------- | -------------------- | ---- | ------------------------------- |
-| x        | number               | 是   | 宽度的缩放值，其值为输入的倍数。|
-| y        | number               | 是   | 高度的缩放值，其值为输入的倍数。|
+| x        | number               | 是   | 宽度的缩放倍数。|
+| y        | number               | 是   | 高度的缩放倍数。|
 | callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。  |
 
 **示例：**
@@ -756,8 +757,8 @@ scale(x: number, y: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                            |
 | ------ | ------ | ---- | ------------------------------- |
-| x      | number | 是   | 宽度的缩放值，其值为输入的倍数。|
-| y      | number | 是   | 高度的缩放值，其值为输入的倍数。|
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
 
 **返回值：**
 
@@ -1793,9 +1794,9 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 
 获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG文件，且需要包含exif信息。
 
-**说明：**
-
-从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1830,9 +1831,9 @@ getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
 获取图片中给定索引处图像的指定属性键的值，用callback形式返回结果，仅支持JPEG文件，且需要包含exif信息。
 
-**说明：**
-
-从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1862,9 +1863,9 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 
 获取图片指定属性键的值，callback形式返回结果，仅支持JPEG文件，且需要包含exif信息。
 
-**说明：**
-
-从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1951,9 +1952,9 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 
 通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG文件，且需要包含exif信息。
 
-**说明：**
-
-从API version 11开始不再维护，建议使用[modifyImageProperty](#modifyimageproperty11)代替。
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[modifyImageProperty](#modifyimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1991,9 +1992,9 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>):
 
 通过指定的键修改图片属性的值，callback形式返回结果，仅支持JPEG文件，且需要包含exif信息。
 
-**说明：**
-
-从API version 11开始不再维护，建议使用[modifyImageProperty](#modifyimageproperty11)代替。
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[modifyImageProperty](#modifyimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2959,9 +2960,9 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 
 通过宽、高、图片格式、容量创建ImageReceiver实例。
 
-**说明：**
-
-从API version 11开始不再维护，建议使用[createImageReceiver](#imagecreateimagereceiver11)代替。
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[createImageReceiver](#imagecreateimagereceiver11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -3270,9 +3271,9 @@ createImageCreator(width: number, height: number, format: number, capacity: numb
 
 通过宽、高、图片格式、容量创建ImageCreator实例。
 
-**说明：**
-
-从API version 11开始不再维护，建议使用[createImageCreator](#imagecreateimagecreator11)代替。
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[createImageCreator](#imagecreateimagecreator11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -3816,9 +3817,9 @@ PixelMap的初始化选项。
 
 表示查询图片属性的索引。
 
-**说明：**
-
-从API version 11开始不再维护，建议使用[ImagePropertyOptions](#imagepropertyoptions11)代替。
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[ImagePropertyOptions](#imagepropertyoptions11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
