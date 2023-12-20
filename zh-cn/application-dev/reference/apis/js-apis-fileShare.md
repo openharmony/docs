@@ -332,7 +332,7 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 | 参数名 | 类型                 | 必填 | 说明                      |
 | -------- |--------------------| -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息。           |
 
 **返回值：**
 
@@ -343,7 +343,7 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-如果存在URI取消授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
+如果存在URI取消授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult11)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -401,7 +401,7 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                      |
 | -------- | -------- | -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息。           |
 
 **返回值：**
 
@@ -412,7 +412,7 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-如果存在URI使能权限失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
+如果存在URI使能权限失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult11)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -468,7 +468,7 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                      |
 | -------- | -------- | -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息。           |
 
 **返回值：**
 
@@ -479,7 +479,7 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-如果存在URI取消使能权限失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
+如果存在URI取消使能权限失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult11)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
