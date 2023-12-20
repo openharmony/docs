@@ -64,10 +64,10 @@ import fileShare from '@ohos.fileshare';
 
 **系统能力**：SystemCapability.FileManagement.AppFileService
 
-| 名称            | 类型       | 必填  | 说明                                                                                                                                                 |
-|---------------| ---------|-----|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| uri           | string     | 是   | 需要授予或使能权限的URI。                                                                                                                                     |
-| operationMode | number  | 是   | 授予或使能权限的URI访问模式，参考[OperationMode](#operationmode11)，例如：<br/>  fileShare.OperationMode.READ_MODE ：允许读授权 <br/>  fileShare.OperationMode.READ_MODE  \ | fileShare.OperationMode.WRITE_MODE ：允许读写授权 |
+| 名称            | 类型       | 必填  | 说明                                                                                                                                                |
+|---------------| ---------|-----|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| uri           | string     | 是   | 需要授予或使能权限的URI。                                                                                                                                    |
+| operationMode | number  | 是   | 授予或使能权限的URI访问模式，参考[OperationMode](#operationmode11)，例如：<br/>  fileShare.OperationMode.READ_MODE ：允许读授权 <br/>  fileShare.OperationMode.READ_MODE  \| fileShare.OperationMode.WRITE_MODE ：允许读写授权 |
 
 
 ## fileShare.grantUriPermission
