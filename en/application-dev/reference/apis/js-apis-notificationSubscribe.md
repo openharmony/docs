@@ -5,6 +5,8 @@ The **notificationSubscribe** module provides APIs for notification subscription
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -12,9 +14,7 @@ The **notificationSubscribe** module provides APIs for notification subscription
 import notificationSubscribe from '@ohos.notificationSubscribe';
 ```
 
-
-
-## NotificationSubscribe.subscribe
+## notificationSubscribe.subscribe
 
 subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback\<void\>): void
 
@@ -24,7 +24,7 @@ Subscribes to a notification with the subscription information specified. This A
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -67,7 +67,7 @@ let info = {
 notificationSubscribe.subscribe(subscriber, info, subscribeCallback);
 ```
 
-## NotificationSubscribe.subscribe
+## notificationSubscribe.subscribe
 
 subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): void
 
@@ -77,7 +77,7 @@ Subscribes to notifications of all applications under this user. This API uses a
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -117,7 +117,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 
 
-## NotificationSubscribe.subscribe
+## notificationSubscribe.subscribe
 
 subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo): Promise\<void\>
 
@@ -127,7 +127,7 @@ Subscribes to a notification with the subscription information specified. This A
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -164,7 +164,7 @@ notificationSubscribe.subscribe(subscriber).then(() => {
 
 
 
-## NotificationSubscribe.unsubscribe
+## notificationSubscribe.unsubscribe
 
 unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): void
 
@@ -174,7 +174,7 @@ Unsubscribes from a notification. This API uses an asynchronous callback to retu
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -212,7 +212,7 @@ let subscriber = {
 notificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 ```
 
-## NotificationSubscribe.unsubscribe
+## notificationSubscribe.unsubscribe
 
 unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
@@ -222,7 +222,7 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -256,17 +256,17 @@ notificationSubscribe.unsubscribe(subscriber).then(() => {
 });
 ```
 
-## NotificationSubscribe.remove
+## notificationSubscribe.remove
 
 remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
-Removes a notification for a specified application. This API uses an asynchronous callback to return the result.
+Removes a notification based on the bundle information and notification key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -312,17 +312,17 @@ notificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
 
 
 
-## NotificationSubscribe.remove
+## notificationSubscribe.remove
 
 remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason): Promise\<void\>
 
-Removes a notification for a specified application. This API uses a promise to return the result.
+Removes a notification based on the specified bundle information and notification key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -362,17 +362,17 @@ notificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
 });
 ```
 
-## NotificationSubscribe.remove
+## notificationSubscribe.remove
 
 remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
-Removes a specified notification. This API uses an asynchronous callback to return the result.
+Removes a notification based on the specified unique notification ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -397,7 +397,6 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 ```js
 let hashCode = 'hashCode';
-
 function removeCallback(err) {
     if (err) {
         console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
@@ -409,17 +408,17 @@ let reason = notificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
 notificationSubscribe.remove(hashCode, reason, removeCallback);
 ```
 
-## NotificationSubscribe.remove
+## notificationSubscribe.remove
 
 remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
-Removes a specified notification. This API uses a promise to return the result.
+Removes a notification based on the specified unique notification ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -451,7 +450,7 @@ notificationSubscribe.remove(hashCode, reason).then(() => {
 });
 ```
 
-## NotificationSubscribe.removeAll
+## notificationSubscribe.removeAll
 
 removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
@@ -459,7 +458,7 @@ Removes all notifications for a specified application. This API uses an asynchro
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -497,7 +496,7 @@ let bundle = {
 notificationSubscribe.removeAll(bundle, removeAllCallback);
 ```
 
-## NotificationSubscribe.removeAll
+## notificationSubscribe.removeAll
 
 removeAll(callback: AsyncCallback\<void\>): void
 
@@ -507,7 +506,7 @@ Removes all notifications. This API uses an asynchronous callback to return the 
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -535,11 +534,10 @@ function removeAllCallback(err) {
         console.info("removeAll success");
     }
 }
-
 notificationSubscribe.removeAll(removeAllCallback);
 ```
 
-## NotificationSubscribe.removeAll
+## notificationSubscribe.removeAll
 
 removeAll(bundle?: BundleOption): Promise\<void\>
 
@@ -549,7 +547,7 @@ Removes all notifications for a specified application. This API uses a promise t
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -579,7 +577,7 @@ notificationSubscribe.removeAll().then(() => {
 });
 ```
 
-## NotificationSubscribe.removeAll
+## notificationSubscribe.removeAll
 
 removeAll(userId: number, callback: AsyncCallback\<void>): void
 
@@ -589,7 +587,7 @@ Removes all notifications for a specified user. This API uses an asynchronous ca
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -619,13 +617,11 @@ function removeAllCallback(err) {
         console.info("removeAll success");
     }
 }
-
 let userId = 1;
-
 notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
 
-## Notification.removeAll
+## notificationSubscribe.removeAll
 
 removeAll(userId: number): Promise\<void>
 
@@ -635,7 +631,7 @@ Removes all notifications for a specified user. This API uses a promise to retur
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -657,24 +653,21 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```js
-function removeAllCallback(err) {
-    if (err) {
-        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("removeAll success");
-    }
-}
+import Base from '@ohos.base';
 
-let userId = 1;
-
-notificationSubscribe.removeAll(userId, removeAllCallback);
+let userId: number = 1;
+notificationSubscribe.removeAll(userId).then(() => {
+	console.info("removeAll success");
+}).catch((err: Base.BusinessError) => {
+  console.error("removeAll fail: " + JSON.stringify(err));
+});
 ```
 
 ## RemoveReason
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name                | Value | Description                 |
 | -------------------- | --- | -------------------- |

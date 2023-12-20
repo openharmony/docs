@@ -3,8 +3,7 @@
 
 You can publish basic notifications to send SMS messages, prompt messages, and advertisements. Available content types of basic notifications include normal text, long text, multi-line text, and picture-attached.
 
-
-  **Table 1** Basic notification content types
+**Table 1** Basic notification content types
 
 | Type| Description|
 | -------- | -------- |
@@ -45,24 +44,24 @@ The following table describes the APIs for notification publishing. You specify 
    - A normal text notification consists of the **title**, **text**, and **additionalText** parameters, of which **title** and **text** are mandatory. The value of these parameters contains less than 200 bytes.
      
       ```ts
-      let notificationRequest = {
+      let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-      	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // Basic notification
-      	normal: {
-      	  title: 'test_title',
-      	  text: 'test_text',
-      	  additionalText: 'test_additionalText',
-      	}
+          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // Basic notification
+          normal: {
+            title: 'test_title',
+            text: 'test_text',
+            additionalText: 'test_additionalText',
+          }
         }
-      }
+      };
       
       notificationManager.publish(notificationRequest, (err) => {
-          if (err) {
-              console.error(`[ANS] failed to publish, error[${err}]`);
-              return;
-          }
-          console.info(`[ANS] publish success`);
+        if (err) {
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in publishing notification.');
       });
       ```
 
@@ -71,28 +70,28 @@ The following table describes the APIs for notification publishing. You specify 
    - In addition to the parameters in the normal text notification, the long text notification provides the **longText**, **briefText**, and **expandedTitle** parameters. The value of **longText** contains a maximum of 1024 bytes, while that of any other parameters contains less than 200 bytes. By default, a long-text notification looks in the same way as a normal text notification. When expanded, the notification displays the title and content specified in **expandedTitle** and **longText**, respectively.
      
       ```ts
-      let notificationRequest = {
+      let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-      	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // Long-text notification
-      	longText: {
-      	  title: 'test_title',
-      	  text: 'test_text',
-      	  additionalText: 'test_additionalText',
-      	  longText: 'test_longText',
-      	  briefText: 'test_briefText',
-      	  expandedTitle: 'test_expandedTitle',
-      	}
+          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // Long-text notification
+          longText: {
+            title: 'test_title',
+            text: 'test_text',
+            additionalText: 'test_additionalText',
+            longText: 'test_longText',
+            briefText: 'test_briefText',
+            expandedTitle: 'test_expandedTitle',
+          }
         }
-      }
+      };
       
       // Publish the notification.
       notificationManager.publish(notificationRequest, (err) => {
-          if (err) {
-              console.error(`[ANS] failed to publish, error[${err}]`);
-              return;
-          }
-          console.info(`[ANS] publish success`);
+        if (err) {
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in publishing notification.');
       });
       ```
    
@@ -101,27 +100,27 @@ The following table describes the APIs for notification publishing. You specify 
    - In addition to the parameters in the normal text notification, the multi-line text notification provides the **lines**, **briefText**, and **longTitle** parameters. The value of these parameters contains less than 200 bytes. By default, a multi-line notification looks in the same way as a normal text notification. When expanded, the notification displays the title and content specified in **longTitle** and **lines**, respectively.
      
       ```ts
-      let notificationRequest = {
+      let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-      	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // Multi-line text notification
-      	multiLine: {
-      	  title: 'test_title',
-      	  text: 'test_text',
-      	  briefText: 'test_briefText',
-      	  longTitle: 'test_longTitle',
-      	  lines: ['line_01', 'line_02', 'line_03', 'line_04'],
-      	}
+          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // Multi-line text notification
+          multiLine: {
+            title: 'test_title',
+            text: 'test_text',
+            briefText: 'test_briefText',
+            longTitle: 'longTitle',
+            lines: ['line_01', 'line_02', 'line_03', 'line_04'],
+          }
         }
-      }
+      };
       
       // Publish the notification.
       notificationManager.publish(notificationRequest, (err) => {
         if (err) {
-      	console.error(`[ANS] failed to publish, error[${err}]`);
-      	return;
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          return;
         }
-        console.info(`[ANS] publish success`);
+        console.info('Succeeded in publishing notification.');
       });
       ```
    
@@ -130,29 +129,29 @@ The following table describes the APIs for notification publishing. You specify 
    - In addition to the parameters in the normal text notification, the picture-attached text notification provides the **picture**, **briefText**, and **expandedTitle** parameters. The value of **picture** is a pixel map that does not exceed 2 MB.
      
       ```ts
-      let notificationPicture: PixelMap = undefined; // Obtain the pixel map information.
-      let notificationRequest = {
-          id: 1,
-          content: {
-      	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
-              picture: {
-                title: 'test_title',
-                text: 'test_text',
-                additionalText: 'test_additionalText',
-                briefText: 'test_briefText',
-                expandedTitle: 'test_expandedTitle',
-                picture: notificationPicture
-              }
+      let imagePixelMap: PixelMap = undefined; // The image pixel map information needs to be obtained.
+      let notificationRequest: notificationManager.NotificationRequest = {
+        id: 1,
+        content: {
+          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
+          picture: {
+            title: 'test_title',
+            text: 'test_text',
+            additionalText: 'test_additionalText',
+            briefText: 'test_briefText',
+            expandedTitle: 'test_expandedTitle',
+            picture: imagePixelMap
           }
-      }
+        }
+      };
       
       // Publish the notification.
       notificationManager.publish(notificationRequest, (err) => {
-          if (err) {
-      	console.error(`[ANS] failed to publish, error[${err}]`);
-      	return;
-          }
-          console.info(`[ANS] publish success `);
+        if (err) {
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in publishing notification.');
       });
       ```
    
