@@ -2359,7 +2359,7 @@ async function signByPromise() {
 
 setSignSpec(itemType: SignSpecItem, itemValue: number): void
 
-setSignSpec(itemType: SignSpecItem, itemValue: number\|Uint8Array<sup>11+</sup>): void
+setSignSpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
 
 设置签名参数。常用的签名参数可以直接通过[createSign](#cryptoframeworkcreatesign) 来指定，剩余参数可以通过本接口指定。
 
@@ -2372,7 +2372,7 @@ setSignSpec(itemType: SignSpecItem, itemValue: number\|Uint8Array<sup>11+</sup>)
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | 是   | 用于指定需要设置的签名参数。 |
-| itemValue | number\|Uint8Array | 是   | 用于指定签名参数的具体值。 |
+| itemValue | number\|Uint8Array<sup>11+</sup> | 是   | 用于指定签名参数的具体值。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
