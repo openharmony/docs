@@ -14,8 +14,6 @@ import fileuri from "@ohos.file.fileuri";
 
 Before using this module, you need to obtain the path of the file in the application sandbox. The following is an example:
 
-**Stage Model**
-
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   import window from '@ohos.window';
@@ -27,19 +25,6 @@ Before using this module, you need to obtain the path of the file in the applica
     }
   }
   ```
-
-**FA Model**
-
-  ```js
-  import featureAbility from '@ohos.ability.featureAbility';
- 
-  let context = featureAbility.getContext();
-  context.getFilesDir().then((data) => {
-    let pathDir = data;
-  })
-  ```
-
-For details about how to obtain the FA model context, see [Context](js-apis-inner-app-context.md#context).
 
 ## FileUri<sup>10+</sup>
 
@@ -127,7 +112,7 @@ Obtains the URI of a file in synchronous mode.
 
 **Error codes** 
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
 | 401 | The input parameter is invalid |
