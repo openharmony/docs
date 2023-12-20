@@ -117,3 +117,62 @@ cancelButton接口不设置IconOptions.size参数，图片的实际尺寸与开�
 **适配指导**
 
 TextInput设置cancelButton时不设置IconOptions.size参数可以获取正确的图片尺寸24.00vp。
+
+## cl.arkui.4 变更@Prop和@BuilderParam初始化校验规格
+
+**访问级别**
+
+公开接口。
+
+**变更影响**
+
+ 变更@Prop和@BuilderParam初始化校验规格。增加当@Require装饰器和@Prop装饰器或者@BuilderParam装饰器结合使用时，@Prop装饰器或者 @BuilderParam装饰器修饰的变量值必须由父组件构造传参，如父组件未构造传参，编译报错。如果@Prop、@BuilderParam没有和@Require结合使用，不会进行构造传参初始化校验。 
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.3 开始。
+
+**示例：**
+
+```
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Child()
+    }
+  }
+}
+
+@Component
+struct Child {
+  // ERROR: Property buildText must be initialized through the component constructor.
+  @Require @BuilderParam buildText: () => void;
+  // ERROR: Property initBuildText must be initialized through the component constructor.
+  @Require @BuilderParam initBuildText: () => void = buildFuction;
+  // ERROR: Property message must be initialized through the component constructor.
+  @Require @Prop message: string = 'Hello';
+  // ERROR: Property initMessage must be initialized through the component constructor.
+  @Require @Prop initMessage: string;
+  // 删除ERROR: Property 'chindProp' in the custom component 'Child' is missing assignment or initialization.
+  @Prop chindProp: string;
+  // 删除ERROR: Property 'chindBuildParam' in the custom component 'Child' is missing assignment or initialization.
+  @BuilderParam chindBuildParam: () => void;
+
+  build() {
+  }
+}
+
+@Builder
+function buildFuction() {
+}
+```
+
+**变更的接口/组件**
+
+不涉及。
+
+**适配指导**
+
+当\@Require装饰器和\@Prop装饰器或者\@BuilderParam装饰器结合使用时，\@Prop和\@BuilderParam必须在构造时传参。
