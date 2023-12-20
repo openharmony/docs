@@ -8,7 +8,7 @@
 
 任务池API以数字形式返回错误码。有关各个错误码的更多信息，请参阅文档[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
-taskpool使用过程中的相关注意点请见[TaskPool注意事项](../../arkts-utils/taskpool-vs-worker.md#taskpool注意事项)
+taskpool使用过程中的相关注意点请查[TaskPool注意事项](../../arkts-utils/taskpool-introduction.md#taskpool注意事项)。
 
 > **说明：**<br/>
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -628,7 +628,7 @@ taskGroup.addTask(task);
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
 | taskId   | number             | 是   | 否   | 任务的ID。                                                     |
 | state    | [State](#state10)  | 是   | 否   | 任务的状态。                                                    |
-| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行  |
+| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。  |
 
 ## ThreadInfo<sup>10+</sup>
 
