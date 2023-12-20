@@ -48,7 +48,7 @@
 
 **时间日期格式化选项**
 
-以时间：2021年9月17日 13:04:00，locale: zh-CN为例，说明[DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions6)不同的取值和显示结果。
+以时间：2021年9月17日 13:04:00，locale: zh-CN为例，说明[DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions)不同的取值和显示结果。
 
 **表1** 日期显示格式(dateStyle)
 
