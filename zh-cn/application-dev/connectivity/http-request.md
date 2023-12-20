@@ -78,7 +78,7 @@ httpRequest.request(
       keyPath: '/path/to/client.key', // 若证书包含Key信息，传入空字符串，自API 11开始支持该属性
       certType: http.CertType.PEM, // 可选，默认使用PEM，自API 11开始支持该属性
       keyPassword: "passwordToKey" // 可选，输入key文件的密码，自API 11开始支持该属性
-    }，
+    },
     multiFormDataList: [ // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效，自API 11开始支持该属性
       {
         name: "Part1", // 数据名，自API 11开始支持该属性

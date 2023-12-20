@@ -281,6 +281,8 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 ```ts
 import http from '@ohos.net.http';
 
+
+
 class Header {
   public contentType: string;
 
@@ -1024,7 +1026,7 @@ class SendData {
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataSendProgress", (data: SendData) => {
-  console.info("dataSendProgress:"  JSON.stringify(data));
+  console.info("dataSendProgress:", JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
 ```
