@@ -226,7 +226,6 @@ grantPermission(tokenId: number, policies: Array&lt;PolicyInfo>, policyFlag: num
   ```ts
   import { BusinessError } from '@ohos.base';
   import picker from '@ohos.file.picker';
-  import bundleManager from '@ohos.bundle.bundleManager';
   
   async function grantPermissionExample() {
     try {
