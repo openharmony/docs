@@ -2250,11 +2250,11 @@ try {
   let formIds: string[] = [ '12400633174999288' ];
   formHost.clearRouterProxy(formIds, (err: Base.BusinessError) => {
     if (err) {
-        conso.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
+        console.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
     }
   });
-} catch (e: Base.BusinessError) {
-  console.info(`catch error, code: ${e.code}, message: ${e.message}`);
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -2306,10 +2306,10 @@ try {
   formHost.clearRouterProxy(formIds).then(() => {
     console.log('formHost clear rourter proxy success');
   }).catch((err: Base.BusinessError) => {
-    conso.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
+    console.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
   });
-} catch (e: Base.BusinessError) {
-  console.info(`catch error, code: ${e.code}, message: ${e.message}`);
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
