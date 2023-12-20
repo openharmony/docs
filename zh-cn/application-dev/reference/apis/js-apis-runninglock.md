@@ -174,7 +174,7 @@ runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.BACKGROUND)
 .then((data: boolean) => {
     console.info('BACKGROUND lock support status: ' + data);
 })
-.catch((err: { code: number, message: string }) => {
+.catch((err: Error) => {
     console.log('check BACKGROUND lock support status failed, err: ' + err);
 });
 ```
@@ -243,7 +243,7 @@ runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.B
 .then((lock: runningLock.RunningLock) => {
     console.info('created running lock: ' + lock);
 })
-.catch((err: { code: number, message: string }) => {
+.catch((err: Error) => {
     console.log('create running lock failed, err: ' + err);
 });
 ```
@@ -396,7 +396,7 @@ runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.B
     lock.lock(500);
     console.info('create running lock and lock success');
 })
-.catch((err: { code: number, message: string }) => {
+.catch((err: Error) => {
     console.error('create running lock failed, err: ' + err);
 });
 ```
@@ -421,7 +421,7 @@ runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.B
     lock.unlock();
     console.info('create running lock and unlock success');
 })
-.catch((err: { code: number, message: string }) => {
+.catch((err: Error) => {
     console.error('create running lock failed, err: ' + err);
 });
 ```
@@ -449,7 +449,7 @@ runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.B
     let isUsed = lock.isUsed();
     console.info('check running lock used status: ' + isUsed);
 })
-.catch((err: { code: number, message: string }) => {
+.catch((err: Error) => {
     console.error('check running lock used status failed, err: ' + err);
 });
 ```

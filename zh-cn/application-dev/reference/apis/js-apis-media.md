@@ -5101,8 +5101,9 @@ seek(timeMs: number, callback: AsyncCallback\<number>): void
 
 ```ts
 import media from '@ohos.multimedia.media'
+import {BusinessError} from '@ohos.base'
 
-let videoPlayer: media.VideoPlayer;
+let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
@@ -5113,13 +5114,15 @@ media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
 });
 
 let seekTime: number = 5000;
-videoPlayer.seek(seekTime, (err: BusinessError, result: number) => {
-  if (err == null) {
-    console.info('seek success!');
-  } else {
-    console.error('seek fail!');
-  }
-});
+if (videoPlayer) {
+  (videoPlayer as media.VideoPlayer).seek(seekTime, (err: BusinessError, result: number) => {
+    if (err == null) {
+      console.info('seek success!');
+    } else {
+      console.error('seek fail!');
+    }
+  });
+}
 ```
 
 ### seek<sup>(deprecated)</sup>
@@ -5145,8 +5148,9 @@ seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 
 ```ts
 import media from '@ohos.multimedia.media'
+import {BusinessError} from '@ohos.base'
 
-let videoPlayer: media.VideoPlayer;
+let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
@@ -5156,13 +5160,15 @@ media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   }
 });
 let seekTime: number = 5000;
-videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err: BusinessError, result: number) => {
-  if (err == null) {
-    console.info('seek success!');
-  } else {
-    console.error('seek fail!');
-  }
-});
+if (videoPlayer) {
+  (videoPlayer as media.VideoPlayer).seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err: BusinessError, result: number) => {
+    if (err == null) {
+      console.info('seek success!');
+    } else {
+      console.error('seek fail!');
+    }
+  });
+}
 ```
 
 ### seek<sup>(deprecated)</sup>
@@ -5193,8 +5199,9 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 
 ```ts
 import media from '@ohos.multimedia.media'
+import {BusinessError} from '@ohos.base'
 
-let videoPlayer: media.VideoPlayer;
+let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
@@ -5204,17 +5211,19 @@ media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   }
 });
 let seekTime: number = 5000;
-videoPlayer.seek(seekTime).then((seekDoneTime: number) => { // seekDoneTime表示seek完成后的时间点
-  console.info('seek success');
-}).catch((error: BusinessError) => {
-  console.error(`video catchCallback, error:${error}`);
-});
+if (videoPlayer) {
+  (videoPlayer as media.VideoPlayer).seek(seekTime).then((seekDoneTime: number) => { // seekDoneTime表示seek完成后的时间点
+    console.info('seek success');
+  }).catch((error: BusinessError) => {
+    console.error(`video catchCallback, error:${error}`);
+  });
 
-videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime: number) => {
-  console.info('seek success');
-}).catch((error: BusinessError) => {
-  console.error(`video catchCallback, error:${error}`);
-});
+  (videoPlayer as media.VideoPlayer).seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime: number) => {
+    console.info('seek success');
+  }).catch((error: BusinessError) => {
+    console.error(`video catchCallback, error:${error}`);
+  });
+}
 ```
 
 ### setVolume<sup>(deprecated)</sup>
@@ -5420,8 +5429,9 @@ setSpeed(speed:number, callback: AsyncCallback\<number>): void
 
 ```ts
 import media from '@ohos.multimedia.media'
+import {BusinessError} from '@ohos.base'
 
-let videoPlayer: media.VideoPlayer;
+let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
@@ -5431,13 +5441,15 @@ media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   }
 });
 let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
-videoPlayer.setSpeed(speed, (err: BusinessError, result: number) => {
-  if (err == null) {
-    console.info('setSpeed success!');
-  } else {
-    console.error('setSpeed fail!');
-  }
-});
+if (videoPlayer) {
+  (videoPlayer as media.VideoPlayer).setSpeed(speed, (err: BusinessError, result: number) => {
+    if (err == null) {
+      console.info('setSpeed success!');
+    } else {
+      console.error('setSpeed fail!');
+    }
+  });
+}
 ```
 
 ### setSpeed<sup>(deprecated)</sup>
@@ -5467,8 +5479,9 @@ setSpeed(speed:number): Promise\<number>
 
 ```ts
 import media from '@ohos.multimedia.media'
+import {BusinessError} from '@ohos.base'
 
-let videoPlayer: media.VideoPlayer;
+let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
@@ -5478,11 +5491,13 @@ media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   }
 });
 let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
-videoPlayer.setSpeed(speed).then((result: number) => {
-  console.info('setSpeed success');
-}).catch((error: BusinessError) => {
-  console.error(`video catchCallback, error:${error}`);
-});
+if (videoPlayer) {
+  (videoPlayer as media.VideoPlayer).setSpeed(speed).then((result: number) => {
+    console.info('setSpeed success');
+  }).catch((error: BusinessError) => {
+    console.error(`video catchCallback, error:${error}`);
+  });
+}
 ```
 
 ### on('playbackCompleted')<sup>(deprecated)</sup>

@@ -402,9 +402,8 @@ function generateEd25519() {
     let pubKeyEncodedKey = keyPair.pubKey.getEncoded();
     console.info('priKeyEncoded.data:' + priKeyEncoded.data);
     console.info('pubKeyEncodedKey.data:' + pubKeyEncodedKey.data);
-  }).catch(error => {
-    let e: BusinessError = error as BusinessError;
-    console.error(`getEncoded failed, ${e.code}, ${e.message}`);
+  }).catch((error: BusinessError) => {
+    console.error(`getEncoded failed, ${error.code}, ${error.message}`);
   })
 }
 ```
@@ -432,9 +431,8 @@ function convertEd25519AsyKey() {
   let generator = cryptoFramework.createAsyKeyGenerator('Ed25519');
   generator.convertKey(pubKeyBlob, priKeyBlob).then(keyPair => {
     console.info('ConvertKey Success');
-  }).catch(error => {
-    let e: BusinessError = error as BusinessError;
-    console.error(`convertKey failed, ${e.code}, ${e.message}`);
+  }).catch((error: BusinessError) => {
+    console.error(`convertKey failed, ${error.code}, ${error.message}`);
   })
 }
 ```
@@ -465,9 +463,8 @@ function generateX25519() {
     let pubKeyEncodedKey = keyPair.pubKey.getEncoded();
     console.info('priKeyEncoded.data:' + priKeyEncoded.data);
     console.info('pubKeyEncodedKey.data:' + pubKeyEncodedKey.data);
-  }).catch(error => {
-    let e: BusinessError = error as BusinessError;
-    console.error(`getEncoded failed, ${e.code}, ${e.message}`);
+  }).catch((error: BusinessError) => {
+    console.error(`getEncoded failed, ${error.code}, ${error.message}`);
   })
 }
 ```
@@ -495,9 +492,8 @@ function convertX25519AsyKey() {
   let generator = cryptoFramework.createAsyKeyGenerator('X25519');
   generator.convertKey(pubKeyBlob, priKeyBlob).then(keyPair => {
     console.info('ConvertKey Success');
-  }).catch(error => {
-    let e: BusinessError = error as BusinessError;
-    console.error(`convertKey failed, ${e.code}, ${e.message}`);
+  }).catch((error: BusinessError) => {
+    console.error(`convertKey failed, ${error.code}, ${error.message}`);
   })
 }
 ```
@@ -528,9 +524,8 @@ function generateDH2048() {
     let pubKeyEncodedKey = keyPair.pubKey.getEncoded();
     console.info('priKeyEncoded.data:' + priKeyEncoded.data);
     console.info('pubKeyEncodedKey.data:' + pubKeyEncodedKey.data);
-  }).catch(error => {
-    let e: BusinessError = error as BusinessError;
-    console.error(`getEncoded failed, ${e.code}, ${e.message}`);
+  }).catch((error: BusinessError) => {
+    console.error(`getEncoded failed, ${error.code}, ${error.message}`);
   })
 }
 ```
@@ -558,9 +553,8 @@ function convertDHAsyKey() {
   let generator = cryptoFramework.createAsyKeyGenerator('DH_modp1536');
   generator.convertKey(pubKeyBlob, priKeyBlob).then(keyPair => {
     console.info('ConvertKey Success');
-  }).catch(error => {
-    let e: BusinessError = error as BusinessError;
-    console.error(`convertKey failed, ${e.code}, ${e.message}`);
+  }).catch((error: BusinessError) => {
+    console.error(`convertKey failed, ${error.code}, ${error.message}`);
   })
 }
 ```
@@ -2886,9 +2880,8 @@ function ed25519SignAndVerify() {
     return verify.verify(input, SignMessageBlob)
   }).then(ret => {
     console.info('verify ret= ' + ret);
-  }).catch(error => {
-    let e: BusinessError = error as BusinessError;
-    console.error(`verify failed, ${e.code}, ${e.message}`);
+  }).catch((error: BusinessError) => {
+    console.error(`verify failed, ${error.code}, ${error.message}`);
   })
 }
 ```

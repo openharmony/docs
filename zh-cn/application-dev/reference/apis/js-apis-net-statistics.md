@@ -756,27 +756,28 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsIn
 import { BusinessError } from '@ohos.base';
 import statistics from '@ohos.net.statistics';
 
-let iFaceInfo: statistics.IfaceInfo
-
-statistics.getTrafficStatsByIface(iFaceInfo, (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
-  console.log(JSON.stringify(error));
-  console.log(
-    "getTrafficStatsByIface bytes of received = " +
-    JSON.stringify(statsInfo.rxBytes)
-  );
-  console.log(
-    "getTrafficStatsByIface bytes of sent = " +
-    JSON.stringify(statsInfo.txBytes)
-  );
-  console.log(
-    "getTrafficStatsByIface packets of received = " +
-    JSON.stringify(statsInfo.rxPackets)
-  );
-  console.log(
-    "getTrafficStatsByIface packets of sent = " +
-    JSON.stringify(statsInfo.txPackets)
-  );
-});
+let iFaceInfo: statistics.IfaceInfo | null = null;
+if (iFaceInfo) {
+  statistics.getTrafficStatsByIface(iFaceInfo as statistics.IfaceInfo, (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
+    console.log(JSON.stringify(error));
+    console.log(
+      "getTrafficStatsByIface bytes of received = " +
+      JSON.stringify(statsInfo.rxBytes)
+    );
+    console.log(
+      "getTrafficStatsByIface bytes of sent = " +
+      JSON.stringify(statsInfo.txBytes)
+    );
+    console.log(
+      "getTrafficStatsByIface packets of received = " +
+      JSON.stringify(statsInfo.rxPackets)
+    );
+    console.log(
+      "getTrafficStatsByIface packets of sent = " +
+      JSON.stringify(statsInfo.txPackets)
+    );
+  });
+}
 ```
 
 ## statistics.getTrafficStatsByIface<sup>10+</sup>
@@ -819,25 +820,27 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>;
 ```js
 import statistics from '@ohos.net.statistics';
 
-let iFaceInfo: statistics.IfaceInfo
-statistics.getTrafficStatsByIface(iFaceInfo).then((statsInfo: statistics.NetStatsInfo) => {
-  console.log(
-    "getTrafficStatsByIface bytes of received = " +
-    JSON.stringify(statsInfo.rxBytes)
-  );
-  console.log(
-    "getTrafficStatsByIface bytes of sent = " +
-    JSON.stringify(statsInfo.txBytes)
-  );
-  console.log(
-    "getTrafficStatsByIface packets of received = " +
-    JSON.stringify(statsInfo.rxPackets)
-  );
-  console.log(
-    "getTrafficStatsByIface packets of sent = " +
-    JSON.stringify(statsInfo.txPackets)
-  );
-});
+let iFaceInfo: statistics.IfaceInfo | null = null;
+if (iFaceInfo) {
+  statistics.getTrafficStatsByIface(iFaceInfo as statistics.IfaceInfo).then((statsInfo: statistics.NetStatsInfo) => {
+    console.log(
+      "getTrafficStatsByIface bytes of received = " +
+      JSON.stringify(statsInfo.rxBytes)
+    );
+    console.log(
+      "getTrafficStatsByIface bytes of sent = " +
+      JSON.stringify(statsInfo.txBytes)
+    );
+    console.log(
+      "getTrafficStatsByIface packets of received = " +
+      JSON.stringify(statsInfo.rxPackets)
+    );
+    console.log(
+      "getTrafficStatsByIface packets of sent = " +
+      JSON.stringify(statsInfo.txPackets)
+    );
+  });
+}
 ```
 
 ## statistics.getTrafficStatsByUid<sup>10+</sup>
