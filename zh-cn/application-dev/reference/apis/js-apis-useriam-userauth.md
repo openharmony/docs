@@ -169,7 +169,9 @@ off(type: 'result', callback?: IAuthCallback): void
 
 取消订阅用户身份认证结果。
 
-> **说明**：需要使用已经成功订阅事件的[UserAuthInstance](#userauthinstance10)对象调用该接口进行取消订阅。
+> **说明**：
+> 
+> 需要使用已经成功订阅事件的[UserAuthInstance](#userauthinstance10)对象调用该接口进行取消订阅。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -274,7 +276,9 @@ cancel(): void
 
 取消认证。
 
-> **说明**：此时UserAuthInstance需要是正在进行认证的对象。
+> **说明**：
+>
+> 此时UserAuthInstance需要是正在进行认证的对象。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
