@@ -17,7 +17,6 @@ import fileio from '@ohos.fileio';
 
 使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：
 
-**Stage模型**
 
  ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
@@ -31,20 +30,8 @@ import fileio from '@ohos.fileio';
   }
   ```
 
- Stage模型context的具体获取方法参见[Stage模型](js-apis-inner-application-uiAbilityContext.md)。
+使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：[应用上下文Context-获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)
 
-**FA模型**
-
-  ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-
-  let context = featureAbility.getContext();
-  context.getFilesDir().then((data) => {
-    let pathDir = data;
-  })
-  ```
-
- FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
 
 ## fileio.stat
 
@@ -795,12 +782,13 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   import buffer from '@ohos.buffer';
   import { ReadOut } from '@ohos.fileio';
   let filePath = pathDir + "/test.txt";
-  let fd = fileio.openSync(filePath, 0o2);
+  let fd = fileio.openSync(filePath, 0o102, 0o640);
   let arrayBuffer = new ArrayBuffer(4096);
   fileio.read(fd, arrayBuffer).then((readResult: fileio.ReadOut) => {
     console.info("read file data succeed");
     let buf = buffer.from(arrayBuffer, 0, readResult.bytesRead);
     console.log(`The content of file: ${buf.toString()}`);
+    fileio.closeSync(fd);
   }).catch((err: BusinessError) => {
     console.info("read file data failed with error:" + err);
   });
@@ -835,14 +823,15 @@ read(fd: number, buffer: ArrayBuffer, options: { offset?: number; length?: numbe
   import buffer from '@ohos.buffer';
   import { ReadOut } from '@ohos.fileio';
   let filePath = pathDir + "/test.txt";
-  let fd = fileio.openSync(filePath, 0o2);
+  let fd = fileio.openSync(filePath, 0o102, 0o640);
   let arrayBuffer = new ArrayBuffer(4096);
   fileio.read(fd, arrayBuffer, (err: BusinessError, readResult: fileio.ReadOut) => {
-    if (readLen) {
+    if (readResult) {
       console.info("read file data succeed");
       let buf = buffer.from(arrayBuffer, 0, readResult.bytesRead);
       console.info(`The content of file: ${buf.toString()}`);
     }
+    fileio.closeSync(fd);
   });
   ```
 
@@ -877,7 +866,7 @@ readSync(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: 
 
   ```ts
   let filePath = pathDir + "/test.txt";
-  let fd = fileio.openSync(filePath, 0o2);
+  let fd = fileio.openSync(filePath, 0o102, 0o640);
   let buf = new ArrayBuffer(4096);
   let num = fileio.readSync(fd, buf);
   ```
@@ -2991,10 +2980,10 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
 **示例：**
 
-  ```ts
+  ```js
   let filePath = pathDir + "/test.txt";
-  fileio.createWatcher(filePath, 1, async(event: number) => {
-    console.info("event: " + event);
+  fileio.createWatcher(filePath, 1, (err, event) => {
+    console.info("event: " + event + "errmsg: " + JSON.stringify(err));
   });
   
   ```
@@ -3242,10 +3231,10 @@ stop(): Promise&lt;void&gt;
 
 **示例：**
 
-  ```ts
+  ```js
   let filePath = pathDir + "/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, (event: number) => {
-    console.info("event: " + event);
+  let watcher = fileio.createWatcher(filePath, 1, (err, event) => {
+    console.info("event: " + event + "errmsg: " + JSON.stringify(err));
   });
   watcher.stop().then(() => {
     console.info("close watcher succeed");
@@ -3269,10 +3258,10 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```ts
+  ```js
   let filePath = pathDir + "/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, async(event: number) => {
-    console.info("event: " + event);
+  let watcher = fileio.createWatcher(filePath, 1, (err, event) => {
+    console.info("event: " + event + "errmsg: " + JSON.stringify(err));
   });
   watcher.stop(() => {
     console.info("close watcher succeed");
