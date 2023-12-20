@@ -254,7 +254,7 @@ Text($r('app.string.string_world'))
   .fontSize($r('app.float.font_world'))
 
 // 引用string.json资源。Text中$r的第一个参数指定string资源，第二个参数用于替换string.json文件中的%s。
-//如下示例代码value为"We will arrive at five of the clock"。
+// 如下示例代码value为"We will arrive at five of the clock"。
 Text($r('app.string.message_arrive', "five of the clock"))
   .fontColor($r('app.color.color_hello'))
   .fontSize($r('app.float.font_hello'))

@@ -235,8 +235,8 @@ Deletes a key. This API uses an asynchronous callback to return the result.
 
 | Name  | Type                       | Mandatory| Description                                         |
 | -------- | --------------------------- | ---- | --------------------------------------------- |
-| keyAlias | string                      | Yes  | Key alias passed in when the key was generated.          |
-| options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).                     |
+| keyAlias | string                      | Yes  | Alias of the key to delete. It must be the key alias passed in when the key was generated.          |
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to delete, for example, whether to delete all keys or a single key. To delete a single key, pass in an empty **properties**.                     |
 | callback | AsyncCallback\<void>        | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
 
 **Error codes**
@@ -288,7 +288,7 @@ Deletes a key. This API uses a promise to return the result.
 | Name  | Type                       | Mandatory| Description                               |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | Yes  | Key alias passed in when the key was generated.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).           |
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to delete, for example, whether to delete all keys or a single key. To delete a single key, pass in an empty **properties**.           |
 
 **Error codes**
 
@@ -1381,10 +1381,10 @@ Checks whether a key exists. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                   |
-| -------- | --------------------------- | ---- | --------------------------------------- |
-| keyAlias | string                      | Yes  | Alias of the key to check.                 |
-| options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).               |
+| Name  | Type                       | Mandatory| Description                                                    |
+| -------- | --------------------------- | ---- |--------------------------------------------------------|
+| keyAlias | string                      | Yes  | Alias of the key to check.                                           |
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, whether to check all keys or a single key. To check a single key, pass in an empty **properties**.    |
 | callback | AsyncCallback\<boolean>     | Yes  | Callback invoked to return the result. If the key exists, **data** is **true**. If the key does not exist, **error** is the error code.|
 
 **Error codes**
@@ -1400,7 +1400,6 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occured in crypto engine. |
-| 12000011 | The entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 
@@ -1442,7 +1441,7 @@ Checks whether a key exists. This API uses a promise to return the result.
 | Name  | Type                       | Mandatory| Description                    |
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | Yes  | Alias of the key to check.  |
-| options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).|
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, whether to check all keys or a single key. To check a single key, pass in an empty **properties**.|
 
 **Return value**
 
@@ -1463,7 +1462,6 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occured in crypto engine. |
-| 12000011 | The entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 
@@ -2673,11 +2671,11 @@ Deletes a key. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                                              |
-| -------- | ----------------------------------------- | ---- | -------------------------------------------------- |
-| keyAlias | string                                    | Yes  | Key alias passed in when the key was generated.               |
-| options  | [HuksOptions](#huksoptions)               | Yes  | Empty object (leave this parameter empty).                          |
-| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned. If the operation fails, an error code is returned.|
+| Name  | Type                                     | Mandatory| Description                                                |
+| -------- | ----------------------------------------- | ---- |----------------------------------------------------|
+| keyAlias | string                                    | Yes  | Key alias passed in when the key was generated.                               |
+| options  | [HuksOptions](#huksoptions)               | Yes  | Properties of the key to delete, for example, whether to delete all keys or a single key. To delete a single key, pass in an empty **properties**.|
+| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned. If the operation fails, an error code is returned.              |
 
 **Example**
 
@@ -2709,7 +2707,7 @@ Deletes a key. This API uses a promise to return the result.
 | Name  | Type       | Mandatory| Description                                                 |
 | -------- | ----------- | ---- | ----------------------------------------------------- |
 | keyAlias | string      | Yes  | Key alias passed in when the key was generated.|
-| options | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).|
+| options | [HuksOptions](#huksoptions) | Yes  | Properties of the key to delete, for example, whether to delete all keys or a single key. To delete a single key, pass in an empty **properties**.|
 
 **Return value**
 
@@ -3030,7 +3028,7 @@ Checks whether a key exists. This API uses an asynchronous callback to return th
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | keyAlias | string                 | Yes  | Alias of the key to check.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).|
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, whether to check all keys or a single key. To check a single key, pass in an empty **properties**.|
 | callback | AsyncCallback\<boolean> | Yes  | Callback invoked to return the result. The value **true** means the key exists; the value **false** means the opposite.|
 
 **Example**
@@ -3063,7 +3061,7 @@ Checks whether a key exists. This API uses a promise to return the result.
 | Name  | Type       | Mandatory| Description                            |
 | -------- | ----------- | ---- | -------------------------------- |
 | keyAlias | string      | Yes  | Alias of the key to check.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).|
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, whether to check all keys or a single key. To check a single key, pass in an empty **properties**.|
 
 **Return value**
 

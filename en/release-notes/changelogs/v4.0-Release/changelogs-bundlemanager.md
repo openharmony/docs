@@ -1,4 +1,4 @@
-# Bundle Manager Changelogs
+# Bundle Manager Changelog
 ## cl.bundlemanager.1 APP_ACCOUNT_AUTHORIZATION Deleted from ExtensionAbilityType
 
 **APP_ACCOUNT_AUTHORIZATION** is deleted from this version.
@@ -116,7 +116,7 @@ The [distroFilter](../../../application-dev/quick-start/module-configuration-fil
 
 **Change Impact**
 
-If the **distroFilter** tag is used, an error is reported during compilation on DevEco Studio.
+This change is a compatible change. If the **distroFilter** tag is used, no error is reported during compilation on DevEco Studio, but a wavy line is displayed in the editor.
 
 **Adaptation Guide**
 

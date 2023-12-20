@@ -41,33 +41,51 @@
   }
   let AlignRue:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
     'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
-    'left': { 'anchor': '__container__', 'align': HorizontalAlign.End }
+    'right': { 'anchor': '__container__', 'align': HorizontalAlign.End }
   }
+  let Mleft:Record<string,number> = { 'left': 20 }
+  let BWC:Record<string,number|string> = { 'width': 2, 'color': '#6699FF' }
   RelativeContainer() {
-    Row()
-      // 添加其他属性
+    Row().width(100).height(100)
+      .backgroundColor("#FF3333")
       .alignRules(AlignRus)
       .id("row1")
 
-    Row()
-      ...
+    Row().width(100).height(100)
+      .backgroundColor("#FFCC00")
       .alignRules(AlignRue)
       .id("row2")
-  }
+  }.width(300).height(300)
+  .margin(Mleft)
+  .border(BWC)
   ```
 
   ![zh-cn_image_0000001562820901](figures/zh-cn_image_0000001562820901.png)
 
-- 以子元素为锚点。
+- 以兄弟元素为锚点。
 
   ```ts
+  let AlignRus:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
+    'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
+    'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start }
+  }
   let RelConB:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
-    'top': { 'anchor': 'row1', 'align': VerticalAlign.Bottom }
+    'top': { 'anchor': 'row1', 'align': VerticalAlign.Bottom },
+    'left' : { 'anchor': 'row1', 'align': HorizontalAlign.Start }
   }
   let Mleft:Record<string,number> = { 'left': 20 }
   let BWC:Record<string,number|string> = { 'width': 2, 'color': '#6699FF' }
-  RelativeContainer() {RelConB}
-  .width(300).height(300)
+  RelativeContainer() {
+    Row().width(100).height(100)
+      .backgroundColor("#FF3333")
+      .alignRules(AlignRus)
+      .id("row1")
+
+    Row().width(100).height(100)
+      .backgroundColor("#FFCC00")
+      .alignRules(RelConB)
+      .id("row2")
+  }.width(300).height(300)
   .margin(Mleft)
   .border(BWC)
   ```
@@ -90,7 +108,7 @@
 
 ## 场景实例
 
-相对布局内的子元素相对灵活，只要在RelativeContainer容器内，均可以通过alignRules进行相应相应的位置移动。
+相对布局内的子元素相对灵活，只要在RelativeContainer容器内，均可以通过alignRules进行相应的位置移动。
 
 
 ```ts

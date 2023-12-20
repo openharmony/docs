@@ -32,6 +32,9 @@
 
 - 当应用被卸载完成后，设备上的相关数据库文件及临时文件会被自动清除。
 
+- ArkTS侧支持的基本数据类型：number、string、二进制类型数据、boolean。
+
+- 为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
 
 ## 接口说明
 
@@ -49,8 +52,8 @@
 
 
 ## 开发步骤
-
-1. 使用关系型数据库实现数据持久化，需要获取一个RdbStore。示例代码如下所示：
+因Stage模型、FA模型的差异，个别示例代码提供了在两种模型下的对应示例；示例代码未区分模型或没有对应注释说明时默认在两种模型下均适用。
+1. 使用关系型数据库实现数据持久化，需要获取一个RdbStore，其中包括建库、建表、升降级等操作。示例代码如下所示：
 
    Stage模型示例：
      
@@ -60,6 +63,7 @@
    import { BusinessError } from '@ohos.base';
    import window from '@ohos.window';
 
+   // 此处示例在Ability中实现，使用者也可以在其他合理场景中使用
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        const STORE_CONFIG :relationalStore.StoreConfig= {
@@ -69,6 +73,7 @@
          dataGroupId: 'dataGroupID' // 可选参数，仅可在Stage模型下使用，表示为应用组ID，需要向应用市场获取。指定在此Id对应的沙箱路径下创建实例，当此参数不填时，默认在本应用沙箱目录下创建。
        };
 
+       // 判断数据库版本，如果不匹配则需进行升降级操作
        // 假设当前数据库版本为3，表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
        const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // 建表Sql语句
 

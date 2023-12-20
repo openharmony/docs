@@ -18,7 +18,7 @@
 
 \@State装饰的变量拥有以下特点：
 
-- \@State装饰的变量与子组件中的\@Prop、\@Link或\@ObjectLink装饰变量之间建立单向或双向数据同步。
+- \@State装饰的变量与子组件中的\@Prop装饰变量之间建立单向数据同步,与\@Link、\@ObjectLink装饰变量之间建立双向数据同步。
 
 - \@State装饰的变量生命周期与其所属自定义组件的生命周期相同。
 
@@ -37,7 +37,7 @@
 
 | 传递/访问          | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
-| 从父组件初始化     | 可选，从父组件初始化或者本地初始化。如果从父组件初始化将会覆盖本地初始化。<br/>支持父组件中常规变量（常规变量对@Prop赋值，只是数值的初始化，常规变量的变化不会触发UI刷新，只有状态变量才能触发UI刷新）、\@State、\@Link、\@Prop、\@Provide、\@Consume、\@ObjectLink、\@StorageLink、\@StorageProp、\@LocalStorageLink和\@LocalStorageProp装饰的变量，初始化子组件的\@State。 |
+| 从父组件初始化     | 可选，从父组件初始化或者本地初始化。如果从父组件初始化将会覆盖本地初始化。<br/>支持父组件中常规变量（常规变量对@State赋值，只是数值的初始化，常规变量的变化不会触发UI刷新，只有状态变量才能触发UI刷新）、\@State、\@Link、\@Prop、\@Provide、\@Consume、\@ObjectLink、\@StorageLink、\@StorageProp、\@LocalStorageLink和\@LocalStorageProp装饰的变量，初始化子组件的\@State。 |
 | 用于初始化子组件   | \@State装饰的变量支持初始化子组件的常规变量、\@State、\@Link、\@Prop、\@Provide。 |
 | 是否支持组件外访问 | 不支持，只能在组件内访问。                                   |
 
@@ -88,7 +88,7 @@
 
     ```ts
     // class类型
-     @State title: Model = new Model('Hello', new ClassA('World'));
+    @State title: Model = new Model('Hello', new ClassA('World'));
     ```
 
     对\@State装饰变量的赋值。
@@ -102,17 +102,17 @@
 
     ```ts
     // class属性的赋值
-    this.title.value = 'Hi'
+    this.title.value = 'Hi';
     ```
 
     嵌套属性的赋值观察不到。
 
     ```ts
     // 嵌套的属性赋值观察不到
-    this.title.name.value = 'ArkUI'
+    this.title.name.value = 'ArkUI';
     ```
 - 当装饰的对象是array时，可以观察到数组本身的赋值和添加、删除、更新数组的变化。例子如下。
-  声明ClassA和Model类。
+  声明Model类。
 
   ```ts
   class Model {
@@ -126,31 +126,37 @@
   \@State装饰的对象为Model类型数组时。
 
   ```ts
-  @State title: Model[] = [new Model(11), new Model(1)]
+  @State title: Model[] = [new Model(11), new Model(1)];
   ```
 
   数组自身的赋值可以观察到。
 
   ```ts
-  this.title = [new Model(2)]
+  this.title = [new Model(2)];
   ```
 
   数组项的赋值可以观察到。
 
   ```ts
-  this.title[0] = new Model(2)
+  this.title[0] = new Model(2);
   ```
 
   删除数组项可以观察到。
 
   ```ts
-  this.title.pop()
+  this.title.pop();
   ```
 
   新增数组项可以观察到。
 
   ```ts
-  this.title.push(new Model(12))
+  this.title.push(new Model(12));
+  ```
+
+  数组项中属性的赋值观察不到。
+
+  ```ts
+  this.title[0].value = 6;
   ```
 
 - 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。
@@ -300,8 +306,8 @@ struct MyComponent {
       public count:number;
       public increaseBy:number;
       constructor(count: number, increaseBy:number) {
-      this.count = count;
-      this.increaseBy = increaseBy;
+        this.count = count;
+        this.increaseBy = increaseBy;
      }
    }
    let obj = new C1(1, 2)

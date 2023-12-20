@@ -91,7 +91,7 @@
         });
         this.callee.on('funB', (data: rpc.MessageSequence) => {
           // 获取call事件中传递的所有参数
-          console.info('FunACall param:' + JSON.stringify(data.readString()));
+          console.info('FunBCall param:' + JSON.stringify(data.readString()));
           return new MyParcelable(2, 'bbb');
         });
       } catch (err) {

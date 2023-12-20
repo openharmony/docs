@@ -4,7 +4,8 @@ quickFixManager模块提供快速修复的能力，快速修复是系统提供�
 
 > **说明：**
 >
-> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块接口均为系统接口，三方应用不支持调用。
 
 ## 导入模块
 
@@ -71,7 +72,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 | 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
 | 18500008 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 > 说明：调用applyQuickFix接口时，补丁文件所在路径为应用沙箱路径。沙箱路径的获取参考[获取应用的沙箱路径](js-apis-bundle-BundleInstaller.md#获取应用的沙箱路径)，映射到设备上的路径为/proc/&lt;应用进程Id&gt;/root/沙箱路径。
 
@@ -127,7 +128,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 | 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
 | 18500008 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -173,7 +174,7 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
 | 18500001 | The specified bundleName is invalid. |
 | 18500008 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -225,7 +226,7 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
 | 18500001 | The specified bundleName is invalid. |
 | 18500008 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -266,14 +267,14 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 
 **错误码**：
 
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 18500001 | The bundle is not exist or no patch has applied. |
 | 18500009 | The application has a apply quick fix task that is being processed. |
 
 在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。
+
+
 
 **示例：**
 
@@ -312,7 +313,7 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 
 **错误码**：
 
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以下错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |

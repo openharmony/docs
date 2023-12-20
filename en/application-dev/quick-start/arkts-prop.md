@@ -15,7 +15,15 @@ For an \@Prop decorated variable, the value synchronization is uni-directional f
 
 - An @Prop variable is allowed to be modified locally, but the change does not propagate back to its parent component.
 
-- Whenever that data source changes, the @Prop decorated variable gets updated, and any locally made changes are overwritten. In other words, the value is synchronized from the parent component to the (owning) child component, but not from the other way around.
+- Whenever that data source changes, the @Prop decorated variable gets updated, and any locally made changes are overwritten. In other words, the value is synchronized from the parent component to the (owning) child component, but not the other way around.
+
+
+
+## Restrictions
+
+- When decorating variables of complex types, @Prop makes a deep copy, during which all types, except primitive types, Map, Set, Date, and Array, will be lost.
+
+- The \@Prop decorator cannot be used in custom components decorated by \@Entry.
 
 
 ## Rules of Use
@@ -346,7 +354,7 @@ After **replace entire arr** is clicked, the following information is displayed:
 - Because **this.arr[0]** has been changed, the **Child({value: this.arr[0]})** component synchronizes the update of **this.arr[0]** to the instance's \@Prop decorated variable. The same happens for **Child({value: this.arr[1]})** and **Child({value: this.arr[2]})**.
 
 
-- The change of **this.arr** causes **ForEach** to update: The array item with the ID **3** is retained in this update, array items with IDs **1** and **2** are deleted, and array items with IDs **4** and **5** are added. The array before and after the update is **[1, 2, 3]** and **[3, 4, 5]**, respectively. This implies that the **Child** instance generated for item **3** will be moved to the first place, but not updated. In this case, the component value corresponding to **3** is **7**, and the final render result of **ForEach** is **7**, **4**, and **5**.
+- The change of **this.arr** causes **ForEach** to update: According to the diff algorithm, the array item with the ID **3** is retained in this update, array items with IDs **1** and **2** are deleted, and array items with IDs **4** and **5** are added. The array before and after the update is **[1, 2, 3]** and **[3, 4, 5]**, respectively. This implies that the **Child** instance generated for item **3** will be moved to the first place, but not updated. In this case, the component value corresponding to **3** is **7**, and the final render result of **ForEach** is **7**, **4**, and **5**.
 
 
 ### Class Object Type @Prop Synced from @State Class Object Attribute in Parent Component
@@ -419,7 +427,7 @@ class Book {
 
 @Component
 struct ReaderComp {
-  @Prop book: Book = new Book();
+  @Prop book: Book = new Book("", 1);
 
   build() {
     Row() {
@@ -442,10 +450,10 @@ struct Library {
       ReaderComp({ book: this.allBooks[2] })
       Divider()
       Text('Books on loaan to a reader')
-      ForEach(this.allBooks, (book: void) => {
+      ForEach(this.allBooks, (book: Book) => {
         ReaderComp({ book: book })
       },
-        (book: number): number => book.id)
+        (book: Book) => book.id.toString())
       Button('Add new')
         .onClick(() => {
           this.allBooks.push(new Book("The C++ Standard Library", 512));
@@ -631,76 +639,111 @@ struct Child1 {
 }
 ```
 
-## Union Type @Prop 
 
-@Prop supports **undefined**, **null**, and union types. In the following example, the type of **count** is ClassA | undefined. If the attribute or type of **count** is changed when the button in the parent component **Library** is clicked, the change will be synced to the child component.
+## FAQs
+
+### \@Prop Decorated State Variable Not Initialized
+
+The \@Prop decorated state variable must be initialized. If not initialized locally, it must be initialized from the parent component. If it has been initialized locally, initialization from the parent component is optional.
+
+[Incorrect Example]
 
 ```ts
-class Animals {
-  public name: string;
+@Observed
+class ClassA {
+  public c: number = 0;
 
-  constructor(name: string) {
-    this.name = name;
+  constructor(c: number) {
+    this.c = c;
   }
 }
 
 @Component
-struct Child {
-  @Prop animal: Animals | undefined;
+struct PropChild {
+  @Prop testNum: ClassA; // The state variable is not initialized locally.
 
   build() {
-    Column() {
-      Text(`Child's animal is  ${this.animal instanceof Animals ? this.animal.name : 'undefined'}`).fontSize(30)
-
-      Button('Child change animals into tigers')
-        .onClick(() => {
-          // Assign the value of an instance of Animals.
-          this.animal = new Animals("Tiger")
-        })
-
-      Button('Child change animal to undefined')
-        .onClick(() => {
-          // Assign the value undefined.
-          this.animal = undefined
-        })
-
-    }.width('100%')
+    Text(`PropChild testNum ${this.testNum.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
   }
 }
 
 @Entry
 @Component
-struct Library {
-  @State animal: Animals | undefined = new Animals("lion");
+struct Parent {
+  @State testNum: ClassA[] = [new ClassA(1)];
 
   build() {
     Column() {
-      Text(`Parents' animals are  ${this.animal instanceof Animals ? this.animal.name : 'undefined'}`).fontSize(30)
-
-      Child({animal: this.animal})
-
-      Button('Parents change animals into dogs')
+      Text(`Parent testNum ${this.testNum[0].c}`)
         .onClick(() => {
-          // Determine the animal type and update the attribute.
-          if (this.animal instanceof Animals) {
-            this.animal.name = "Dog"
-          } else {
-            console.info('num is undefined, cannot change property')
-          }
+          this.testNum[0].c += 1;
         })
-
-      Button('Parents change animal to undefined')
-        .onClick(() => {
-          // Assign the value undefined.
-          this.animal = undefined
-        })
+        
+      // The @Prop state variable is not initialized locally, nor initialized from the parent component.
+      PropChild1()
     }
   }
 }
 ```
 
-## Restrictions
+[Correct Example]
 
-Deep copy is used when @Prop decorates complex types. During the copy, all types except Map Set Date Array are lost.
+```ts
+@Observed
+class ClassA {
+  public c: number = 0;
+
+  constructor(c: number) {
+    this.c = c;
+  }
+}
+
+@Component
+struct PropChild1 {
+  @Prop testNum: ClassA; // The state variable is not initialized locally.
+
+  build() {
+    Text(`PropChild1 testNum ${this.testNum.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
+  }
+}
+@Component
+struct PropChild2 {
+  @Prop testNum: ClassA = new ClassA(1); // The state variable is initialized locally.
+
+  build() {
+    Text(`PropChild2 testNum ${this.testNum.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State testNum: ClassA[] = [new ClassA(1)];
+
+  build() {
+    Column() {
+      Text(`Parent testNum ${this.testNum[0].c}`)
+        .onClick(() => {
+          this.testNum[0].c += 1;
+        })
+        
+      // @PropChild1 is not initialized locally and must be initialized from the parent component.
+      PropChild1({ testNum: this.testNum[0] })
+      // @PropChild2 is initialized locally. In this case, initialization from the parent component is optional.
+      PropChild2()
+      PropChild2({ testNum: this.testNum[0] })
+    }
+  }
+}
+```
 
 <!--no_check-->

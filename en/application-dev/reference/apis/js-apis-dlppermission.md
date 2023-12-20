@@ -288,7 +288,7 @@ Subscribes to a DLP file open event. The application will be notified when the D
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | 'openDLPFile' | Yes| Event type. The value is **'openDLPFile'**, which indicates a file open event.|
+| type | 'openDLPFile' | Yes| Event type. It has a fixed value of **openDLPFile**, which indicates the DLP file open event.|
 | listener | Callback&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt; | Yes| Callback invoked when a DLP file is opened. A notification will be sent to the application.|
 
 **Error codes**
@@ -311,7 +311,7 @@ import { BusinessError } from '@ohos.base';
 try {
   dlpPermission.on('openDLPFile', (info: dlpPermission.AccessedDLPFileInfo) => {
     console.info('openDlpFile event', info.uri, info.lastOpenTime)
-  // Subscribe to a DLP file open event.
+  // Subscribe to the DLP file open event.
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
@@ -328,7 +328,7 @@ Unsubscribes from the DLP file open event. The application will not be notified 
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | 'openDLPFile' | Yes| Event type. The value is **'openDLPFile'**, which indicates a file open event.|
+| type | 'openDLPFile' | Yes| Event type. It has a fixed value of **openDLPFile**, which indicates the DLP file open event.|
 | listener | Callback&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt; | No| Callback for the DLP file open event. The application will not be notified when a DLP file is opened. By default, this parameter is left blank, which unregisters all callbacks for the file open event.|
 
 **Error codes**
@@ -429,7 +429,7 @@ try {
     if (err) {
       console.error('isInSandbox error,', err.code, err.message);
     } else {
-      console.info('isInSandbox, data');
+      console.info('isInSandbox, data', JSON.stringify(data));
     }
   }); // Whether the application is running in the sandbox.
 } catch (err) {
@@ -522,7 +522,6 @@ try {
 setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 
 Sets the sandbox retention state. This API uses a promise to return the result. 
-
 A sandbox application is automatically installed when a DLP file is opened, and automatically uninstalled when the DLP file is closed. Once the sandbox retention state is set for a DLP file, the sandbox application will not be automatically uninstalled when the DLP file is closed.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
@@ -572,7 +571,6 @@ try {
 setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the sandbox retention state. This API uses an asynchronous callback to return the result. 
-
 A sandbox application is automatically installed when a DLP file is opened, and automatically uninstalled when the DLP file is closed. Once the sandbox retention state is set for a DLP file, the sandbox application will not be automatically uninstalled when the DLP file is closed.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
@@ -608,6 +606,7 @@ try {
       console.error('setRetentionState error,', err.code, err.message);
     } else {
       console.info('setRetentionState success');
+      console.info('res', JSON.stringify(res));
     }
   }); // Set the sandbox retention state.
 } catch (err) {
@@ -722,7 +721,7 @@ Obtains the sandbox applications in the retention state of an application. This 
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt; | Promise used to return the sandbox retention information obtained.|
+| Promise&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | Promise used to return the sandbox retention information obtained.|
 
 **Error codes**
 
@@ -762,7 +761,7 @@ Obtains the sandbox applications in the retention state of an application. This 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name of the application.|
-| callback | AsyncCallback&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -806,7 +805,7 @@ Obtains the sandbox applications in the retention state of this application. Thi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -850,7 +849,7 @@ Obtains the list of DLP files that are accessed recently. This API uses a promis
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt; | Promise used to return the list of recently accessed files obtained.|
+| Promise&lt;Array&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt;&gt; | Promise used to return the list of recently accessed files obtained.|
 
 **Error codes**
 
@@ -888,7 +887,7 @@ Obtains the list of DLP files that are accessed recently. This API uses an async
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt;&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1246,7 +1245,7 @@ Subscribes to a DLP sandbox uninstall event.
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | 'uninstallDLPSandbox' | Yes| Event type.|
+| type | 'uninstallDLPSandbox' | Yes| Event type. It has a fixed value of **uninstallDLPSandbox**, which indicates the DLP sandbox application uninstall event.|
 | listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | Yes| Callback invoked when a sandbox application is uninstalled.|
 
 **Error codes**
@@ -1270,7 +1269,7 @@ import { BusinessError } from '@ohos.base';
 try {
   dlpPermission.on('uninstallDLPSandbox', (info: dlpPermission.DLPSandboxState) => {
     console.info('uninstallDLPSandbox event', info.appIndex, info.bundleName)
-  // Subscribe to a DLP sandbox uninstall event.
+  // Subscribe to the DLP sandbox application uninstall event.
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
@@ -1291,7 +1290,7 @@ Unsubscribes from the DLP sandbox uninstall event.
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | 'uninstallDLPSandbox' | Yes| Event type.|
+| type | 'uninstallDLPSandbox' | Yes| Event type. It has a fixed value of **uninstallDLPSandbox**, which indicates the DLP sandbox application uninstall event.|
 | listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | No| Callback for the sandbox uninstall event. By default, this parameter is left blank, which unregisters all callbacks for the sandbox uninstall event.|
 
 **Error codes**

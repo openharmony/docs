@@ -1,6 +1,6 @@
 # Video Recording
 
-OpenHarmony provides the AVRecorder for you to develop the video recording service. The AVRecorder supports audio recording, audio encoding, video encoding, audio encapsulation, and video encapsulation. It is applicable to simple video recording scenarios and can be used to generate local video files directly.
+The system provides the AVRecorder for you to develop the video recording service. The AVRecorder supports audio recording, audio encoding, video encoding, audio encapsulation, and video encapsulation. It is applicable to simple video recording scenarios and can be used to generate local video files directly.
 
 You will learn how to use the AVRecorder to complete the process of starting, pausing, resuming, and stopping recording.
 
@@ -65,7 +65,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    let avProfile: media.AVRecorderProfile = {
      fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
      videoBitrate: 200000, // Video bit rate.
-     videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. Both MPEG-4 and AVC are supported.
+     videoCodec: media.CodecMimeType.VIDEO_MPEG4, // Video file encoding format. Both MPEG-4 and AVC are supported.
      videoFrameWidth: 640, // Video frame width.
      videoFrameHeight: 480, // Video frame height.
      videoFrameRate: 30 // Video frame rate.
@@ -98,7 +98,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 
 5. Initialize the video data input source.
 
-   This step is performed in the video data collection module. For the camera module, you need to create a **Camera** instance, obtain the camera list, create a camera input stream, and create a video output stream. For details, see [Recording](camera-recording-case.md).
+   This step is performed in the video data collection module. For the camera module, you need to create a **Camera** instance, obtain the camera list, create a camera input stream, and create a video output stream. For details, see [Camera Recording](camera-recording.md).
 
 6. Start recording. 
 
@@ -130,7 +130,7 @@ export class VideoRecorderDemo {
   private avProfile: media.AVRecorderProfile = {
     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
     videoBitrate : 100000, // Video bit rate.
-    videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. Both MPEG-4 and AVC are supported.
+    videoCodec: media.CodecMimeType.VIDEO_MPEG4, // Video file encoding format. Both MPEG-4 and AVC are supported.
     videoFrameWidth: 640, // Video frame width.
     videoFrameHeight: 480, // Video frame height.
     videoFrameRate: 30 // Video frame rate.

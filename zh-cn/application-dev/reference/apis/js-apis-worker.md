@@ -6,6 +6,8 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 
 Worker的上下文对象和主线程的上下文对象是不同的，Worker线程不支持UI操作。
 
+Worker使用过程中的相关注意点请见[Worker注意事项](../../arkts-utils/taskpool-vs-worker.md#worker注意事项)
+
 > **说明：**<br/>
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -32,11 +34,11 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 必填 | 说明 |
 | ---- | -------- | ---- | ---- | -------------- |
-| type | "classic" \| "module" | 是   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。 |
-| name | string   | 是   | 是 | Worker的名称，默认值为 undefined 。 |
-| shared | boolean | 是   | 是 | 表示Worker共享功能，此接口暂不支持。 |
+| type | "classic" \| "module" | 是   | 否 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。 |
+| name | string   | 是   | 否 | Worker的名称，默认值为 undefined 。 |
+| shared | boolean | 是   | 否 | 表示Worker共享功能，此接口暂不支持。 |
 
 
 ## ThreadWorker<sup>9+</sup>
@@ -1710,7 +1712,7 @@ Worker线程用于与宿主线程通信的类，通过postMessage接口发送消
 
 ### postMessage<sup>(deprecated)</sup>
 
-postMessage(messageObject: Object, transfer: Transferable[]): void;
+postMessage(messageObject: Object, transfer: Transferable[]): void
 
 Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
@@ -1728,7 +1730,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 ### postMessage<sup>9+</sup>
 
-postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
+postMessage(messageObject: Object, transfer: ArrayBuffer[]): void
 
 Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
@@ -2121,7 +2123,7 @@ Actor并发模型的交互原理：各个Actor并发地处理主线程任务，�
 
 ```ts
 // main thread(同级目录为例)
-import worker, { MessageEvents } from '@ohos.worker';
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // 主线程中创建Worker对象
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
@@ -2142,6 +2144,10 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 // 在调用terminate后，执行回调onexit
 workerInstance.onexit = () => {
     console.log("main thread terminate");
+}
+
+workerInstance.onerror = (err: ErrorEvent) => {
+    console.log("main error message " + err.message);
 }
 ```
 ```ts
@@ -2179,7 +2185,7 @@ build-profile.json5 配置 :
 ### Stage模型
 ```ts
 // main thread（以不同目录为例）
-import worker, { MessageEvents } from '@ohos.worker';
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // 主线程中创建Worker对象
 const workerInstance = new worker.ThreadWorker("entry/ets/pages/workers/worker.ts");
@@ -2199,6 +2205,10 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 // 在调用terminate后，执行onexit
 workerInstance.onexit = () => {
     console.log("main thread terminate");
+}
+
+workerInstance.onerror = (err: ErrorEvent) => {
+    console.log("main error message " + err.message);
 }
 ```
 ```ts

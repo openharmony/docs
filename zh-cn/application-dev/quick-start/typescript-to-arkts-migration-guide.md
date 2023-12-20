@@ -220,7 +220,7 @@ structural typing是否有助于生成清晰、易理解的代码，关于这一
 **TypeScript**
 
 ```typescript
-var x = {'name': 1, 2: 3}
+var x = { 'name': 'x', 2: '3' }
 
 console.log(x['name'])
 console.log(x[2])
@@ -230,18 +230,18 @@ console.log(x[2])
 
 ```typescript
 class X {
-  public name: number = 0
+  public name: string = ''
 }
-let x: X = {name: 1}
+let x: X = { name: 'x' }
 console.log(x.name)
 
-let y = [1, 2, 3]
+let y = ['a', 'b', 'c']
 console.log(y[2])
 
-// 在需要通过非标识符（即不同类型的key）获取数据的场景中，使用Map<Object, some_type>:
-let z = new Map<Object, number>()
-z.set('name', 1)
-z.set(2, 2)
+// 在需要通过非标识符（即不同类型的key）获取数据的场景中，使用Map<Object, some_type>。
+let z = new Map<Object, string>()
+z.set('name', '1')
+z.set(2, '2')
 console.log(z.get('name'))
 console.log(z.get(2))
 ```
@@ -1646,7 +1646,7 @@ let s2: string
 
 **级别：错误**
 
-在TypeScript中，`instanceof`运算符的左操作数的类型必须为`any`类型、对象类型，或者它是类型参数，否则结果为`false`。在ArkTS中，`instanceof`运算符的左操作数的类型必须为引用类型，否则会发生编译时错误。此外，在ArkTS中，`instanceof`运算符的左操作数不能是类型。
+在TypeScript中，`instanceof`运算符的左操作数的类型必须为`any`类型、对象类型，或者它是类型参数，否则结果为`false`。在ArkTS中，`instanceof`运算符的左操作数的类型必须为引用类型（例如，对象、数组或者函数），否则会发生编译时错误。此外，在ArkTS中，`instanceof`运算符的左操作数不能是类型，必须是对象的实例。
 
 ### 不支持`in`运算符
 
@@ -2248,29 +2248,29 @@ function foo(x: number, y: number, z: number) {
 
 let args: [number, number, number] = [0, 1, 2]
 foo(...args)
-
-let point2d = {x: 1, y: 2}
-let point3d = {...point2d, z: 3}
 ```
 
 **ArkTS**
 
 ```typescript
-function sum_numbers(...numbers: number[]): number {
-  let res = 0
-  for (let n of numbers)
-    res += n
-  return res
-}
-console.log(sum_numbers(1, 2, 3))
-
 function log_numbers(x: number, y: number, z: number) {
   console.log(x, y, z)
 }
 
 let numbers: number[] = [1, 2, 3]
 log_numbers(numbers[0], numbers[1], numbers[2])
+```
 
+**TypeScript**
+
+```typescript
+let point2d = { x: 1, y: 2 }
+let point3d = { ...point2d, z: 3 }
+```
+
+**ArkTS**
+
+```typescript
 class Point2D {
   x: number = 0; y: number = 0
 }
@@ -2284,7 +2284,7 @@ class Point3D {
   }
 }
 
-let p3d = new Point3D({x: 1, y: 2} as Point2D, 3)
+let p3d = new Point3D({ x: 1, y: 2 } as Point2D, 3)
 console.log(p3d.x, p3d.y, p3d.z)
 
 class DerivedFromArray extends Uint16Array {};
@@ -3322,6 +3322,8 @@ class C {
   s: string = ''
   n: number = 0
 }
+
+import('module2').then(() => {}).catch(() => {})  // 动态import
 ```
 
 ### 限制使用`ESObject`类型

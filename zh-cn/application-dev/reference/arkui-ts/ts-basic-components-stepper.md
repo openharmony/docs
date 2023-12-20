@@ -34,7 +34,7 @@ Stepper(value?: { index?: number })
 
 | 名称 | 描述 |
 | -------- | -------- |
-| onFinish(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 步骤导航器最后一个StepperItem的nextLabel被点击时，并且ItemState属性为Normal时，触发该回调&nbsp;。 |
+| onFinish(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 步骤导航器最后一个StepperItem的nextLabel被点击时，并且ItemState属性为Normal时，触发该回调。 |
 | onSkip(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 当前显示的StepperItem状态为ItemState.Skip时，nextLabel被点击时触发该回调。 |
 | onChange(callback:&nbsp;(prevIndex?:&nbsp;number,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 点击当前StepperItem的prevLabel进行步骤切换时触发该回调；或点击当前StepperItem的nextLabel，当前页面不为步骤导航器最后一个StepperItem且ItemState属性为Normal时，触发该回调。<br/>-&nbsp;prevIndex：切换前的步骤页索引值。<br/>-&nbsp;index：切换后的步骤页（前一页或者下一页）索引值。 |
 | onNext(callback:&nbsp;(index?:&nbsp;number,&nbsp;pendingIndex?:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 点击StepperItem的nextLabel切换下一步骤时，当前页面不为步骤导航器最后一个StepperItem且ItemState属性为Normal时，触发该回调。<br/>-&nbsp;index：当前步骤页索引值。<br/>-&nbsp;pendingIndex：下一步骤页索引值。 |

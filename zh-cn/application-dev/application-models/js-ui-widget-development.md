@@ -46,25 +46,25 @@
 
 FormExtensionAbility类拥有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formExtensionAbility.md)。
 
-| 接口名 | 描述 |
+| 接口名                                                                                              | 描述                             |
 | -------- | -------- |
-| onAddForm(want:&nbsp;Want):&nbsp;formBindingData.FormBindingData | 卡片提供方接收创建卡片的通知接口。 |
-| onCastToNormalForm(formId:&nbsp;string):&nbsp;void | 卡片提供方接收临时卡片转常态卡片的通知接口。 |
-| onUpdateForm(formId:&nbsp;string):&nbsp;void | 卡片提供方接收更新卡片的通知接口。 |
-| onChangeFormVisibility(newStatus:&nbsp;{&nbsp;[key:&nbsp;string]:&nbsp;number&nbsp;}):&nbsp;void | 卡片提供方接收修改可见性的通知接口。 |
-| onFormEvent(formId:&nbsp;string,&nbsp;message:&nbsp;string):&nbsp;void | 卡片提供方接收处理卡片事件的通知接口。 |
-| onRemoveForm(formId:&nbsp;string):&nbsp;void | 卡片提供方接收销毁卡片的通知接口。 |
-| onConfigurationUpdate(config:&nbsp;Configuration):&nbsp;void | 当系统配置更新时调用。 |
-| onShareForm?(formId:&nbsp;string):&nbsp;{&nbsp;[key:&nbsp;string]:&nbsp;Object&nbsp;} | 卡片提供方接收卡片分享的通知接口。 |
+| onAddForm(want:&nbsp;Want):&nbsp;formBindingData.FormBindingData                                 | 卡片提供方接收创建卡片的通知接口。              |
+| onCastToNormalForm(formId:&nbsp;string):&nbsp;void                                               | 卡片提供方接收临时卡片转常态卡片的通知接口。         |
+| onUpdateForm(formId:&nbsp;string):&nbsp;void                                                     | 卡片提供方接收更新卡片的通知接口。              |
+| onChangeFormVisibility(newStatus:&nbsp;{&nbsp;[key:&nbsp;string]:&nbsp;number&nbsp;}):&nbsp;void | 卡片提供方接收修改可见性的通知接口。             |
+| onFormEvent(formId:&nbsp;string,&nbsp;message:&nbsp;string):&nbsp;void                           | 卡片提供方接收处理卡片事件的通知接口。            |
+| onRemoveForm(formId:&nbsp;string):&nbsp;void                                                     | 卡片提供方接收销毁卡片的通知接口。              |
+| onConfigurationUpdate(newConfig:&nbsp;Configuration):&nbsp;void                                  | 当系统配置更新时调用。                    |
+| onShareForm?(formId:&nbsp;string):&nbsp;{&nbsp;[key:&nbsp;string]:&nbsp;Object&nbsp;}            | 卡片提供方接收卡片分享的通知接口。              |
 
 formProvider类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formProvider.md)。
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| setFormNextRefreshTime(formId:&nbsp;string,&nbsp;minute:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 设置指定卡片的下一次更新时间。 |
-| setFormNextRefreshTime(formId:&nbsp;string,&nbsp;minute:&nbsp;number):&nbsp;Promise&lt;void&gt;; | 设置指定卡片的下一次更新时间，以promise方式返回。 |
-| updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;FormBindingData,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 更新指定的卡片。 |
-| updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;FormBindingData):&nbsp;Promise&lt;void&gt;; | 更新指定的卡片，以promise方式返回。 |
+| setFormNextRefreshTime(formId:&nbsp;string,&nbsp;minute:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 设置指定卡片的下一次更新时间。 |
+| setFormNextRefreshTime(formId:&nbsp;string,&nbsp;minute:&nbsp;number):&nbsp;Promise&lt;void&gt; | 设置指定卡片的下一次更新时间，以promise方式返回。 |
+| updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;formBindingData.FormBindingData,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 更新指定的卡片。 |
+| updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;formBindingData.FormBindingData):&nbsp;Promise&lt;void&gt; | 更新指定的卡片，以promise方式返回。 |
 
 formBindingData类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formBindingData.md)。
 
@@ -92,7 +92,7 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
 
 ### 创建卡片FormExtensionAbility
 
-创建Stage模型的卡片，需实现FormExtensionAbility生命周期接口。先参考[DevEco Studio服务卡片开发指南](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-service-widget-0000001263280425)生成服务卡片模板。
+创建Stage模型的卡片，需实现FormExtensionAbility生命周期接口。先参考[DevEco Studio服务卡片开发指南](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ide_service_widget-0000001078566997-V3)生成服务卡片模板。
 
 1. 在EntryFormAbility.ets中，导入相关模块。
 
@@ -102,7 +102,6 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
    import formBindingData from '@ohos.app.form.formBindingData';
    import formInfo from '@ohos.app.form.formInfo';
    import formProvider from '@ohos.app.form.formProvider';
-   import dataPreferences from '@ohos.data.preferences';
    import Want from '@ohos.app.ability.Want';
    import Base from '@ohos.base';
    ```

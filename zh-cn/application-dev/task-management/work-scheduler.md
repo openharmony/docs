@@ -11,7 +11,7 @@
 **图1** 延迟任务实现原理  
 ![WorkScheduler](figures/WorkScheduler.png)
 
-应用调用延迟任务接口注册、删除、查询延迟任务，延迟任务管理模块会根据任务设置的条件（通过WorkInfo参数设置，包括网络类型、充电类型、存储状态等）和系统状态（包括内存、功耗、设备温度、用户使用习惯等）统一决策调度时机。
+应用调用延迟任务接口添加、删除、查询延迟任务，延迟任务管理模块会根据任务设置的条件（通过WorkInfo参数设置，包括网络类型、充电类型、存储状态等）和系统状态（包括内存、功耗、设备温度、用户使用习惯等）统一决策调度时机。
 
 当满足调度条件或调度结束时，系统会回调应用[WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md)中 onWorkStart() 或 onWorkStop() 的方法，同时会为应用单独创建一个Extension扩展进程用以承载[WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md)，并给[WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md)一定的活动周期，开发者可以在对应回调方法中实现自己的任务逻辑。
 
@@ -61,10 +61,10 @@
 | stopWork(work: WorkInfo, needCancel?: boolean): void; | 取消延迟任务 |
 | getWorkStatus(workId: number, callback: AsyncCallback&lt;WorkInfo&gt;): void; | 获取延迟任务状态（Callback形式） |
 | getWorkStatus(workId: number): Promise&lt;WorkInfo&gt;; | 获取延迟任务状态（Promise形式） |
-| obtainAllWorks(callback: AsyncCallback&lt;void&gt;): Array&lt;WorkInfo&gt;; | 获取所有延迟任务（Callback形式） |
+| obtainAllWorks(callback: AsyncCallback\<Array\<WorkInfo>>): void; | 获取所有延迟任务（Callback形式） |
 | obtainAllWorks(): Promise&lt;Array&lt;WorkInfo&gt;&gt;; | 获取所有延迟任务（Promise形式） |
 | stopAndClearWorks(): void; | 停止并清除任务 |
-| isLastWorkTimeOut(workId: number, callback: AsyncCallback&lt;void&gt;): boolean; | 获取上次任务是否超时（针对RepeatWork，Callback形式） |
+| isLastWorkTimeOut(workId: number, callback: AsyncCallback\<boolean>): void; | 获取上次任务是否超时（针对RepeatWork，Callback形式） |
 | isLastWorkTimeOut(workId: number): Promise&lt;boolean&gt;; | 获取上次任务是否超时（针对RepeatWork，Promise形式） |
 
 **表3** WorkInfo参数
@@ -210,6 +210,10 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
      console.error(`stopWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
    }
    ```
+
+## 调试补充说明
+
+在IDE调试时，WorkSchedulerExeAbility可以通过[startWork](../reference/apis/js-apis-resourceschedule-workScheduler.md#workschedulerstartwork)向系统提交指定的任务，系统在执行提交的任务时，首先会检查该应用前一次提交的任务是否已执行完成；若之前任务处于执行状态，则新提交的任务需等待前一个任务执行完后，才被执行。若需要系统立即执行新提交的任务，在提交任务前可调用[stopWork](../reference/apis/js-apis-resourceschedule-workScheduler.md#workschedulerstopwork)或[stopAndClearWorks](../reference/apis/js-apis-resourceschedule-workScheduler.md#workschedulerstopandclearworks)方法停止前一次任务。
 
 ## 相关实例
 

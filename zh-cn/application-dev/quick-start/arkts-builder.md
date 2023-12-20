@@ -28,7 +28,7 @@
 
 
 ```ts
-this.MyBuilderFunction() { ... }
+this.MyBuilderFunction()
 ```
 
 - 允许在自定义组件内定义一个或多个@Builder方法，该方法被认为是该组件的私有、特殊类型的成员函数。
@@ -69,6 +69,8 @@ MyGlobalBuilderFunction()
 - 在@Builder修饰的函数内部，不允许改变参数值。
 
 - \@Builder内UI语法遵循[UI语法规则](arkts-create-custom-components.md#build函数)。
+
+- 只有传入一个参数，且参数需要直接传入对象字面量才会按引用传递该参数，其余传递方式均为按值传递。
 
 
 ### 按引用传递参数

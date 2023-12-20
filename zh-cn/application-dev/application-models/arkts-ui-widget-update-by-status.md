@@ -5,7 +5,7 @@
 
 
 - 卡片配置文件：配置每天早上7点触发定时刷新。
-  
+
   ```json
   {
     "forms": [
@@ -31,7 +31,7 @@
   ```
 
 - 卡片页面：卡片具备不同的状态选择，在不同的状态下需要刷新不同的内容，因此在状态发生变化时通过postCardAction通知EntryFormAbility。
-  
+
   ```ts
   let storage = new LocalStorage();
   @Entry(storage)
@@ -41,7 +41,7 @@
     @LocalStorageProp('textB') textB: string = '待刷新...';
     @State selectA: boolean = false;
     @State selectB: boolean = false;
-  
+
     build() {
       Column() {
         Row() {
@@ -58,7 +58,7 @@
             })
           Text('状态A')
         }
-  
+
         Row() {
           Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
             .select(false)
@@ -73,12 +73,12 @@
             })
           Text('状态B')
         }
-  
+
         Row() { // 选中状态A才会进行刷新的内容
           Text('状态A: ')
           Text(this.textA)
         }
-  
+
         Row() { // 选中状态B才会进行刷新的内容
           Text('状态B: ')
           Text(this.textB)
@@ -87,9 +87,9 @@
     }
   }
   ```
-  
+
 - EntryFormAbility：将卡片的状态存储在本地数据库中，在刷新事件回调触发时，通过formId获取当前卡片的状态，然后根据卡片的状态选择不同的刷新内容。
-  
+
   ```ts
   import formInfo from '@ohos.app.form.formInfo'
   import formProvider from '@ohos.app.form.formProvider';
@@ -130,6 +130,7 @@
         console.info("Succeeded to get preferences.");
         await storeDB.delete('A' + formId);
         await storeDB.delete('B' + formId);
+        await storeDB.flush();
       }).catch((err: Base.BusinessError) => {
         console.info(`Failed to get preferences. ${JSON.stringify(err)}`);
       })

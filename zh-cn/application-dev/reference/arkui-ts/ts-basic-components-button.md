@@ -24,7 +24,7 @@ Button(options?: {type?: ButtonType, stateEffect?: boolean})
 
 | 参数名         | 参数类型       | 必填        | 参数描述                              |
 | ----------- | ---------- | ------| --------------------------------- |
-| type        | ButtonType | 否    | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule                           |
+| type        | [ButtonType](#buttontype枚举说明) | 否    | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule                           |
 | stateEffect | boolean    | 否    | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。 |
 
 ### Button
@@ -48,7 +48,7 @@ Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean
 
 | 名称          | 参数类型           | 描述                                |
 | ----------- | ----------- | --------------------------------- |
-| type        | ButtonType  | 设置Button样式。<br/>默认值：ButtonType.Capsule<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| type        | [ButtonType](#buttontype枚举说明) | 设置Button样式。<br/>默认值：ButtonType.Capsule<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | stateEffect | boolean     | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置Button组件label文本和字体的样式。 |
 
@@ -65,7 +65,7 @@ Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean
 >  **说明：**
 >  - 按钮圆角通过[通用属性borderRadius](ts-universal-attributes-border.md)设置（不支持通过border接口设置圆角），且只支持设置参数为[Length](ts-types.md#length)的圆角。
 >  - 当按钮类型为Capsule时，borderRadius设置不生效，按钮圆角始终为宽、高中较小值的一半。
->  - 当按钮类型为Circle时，borderRadius即为按钮半径，若未设置borderRadius按钮半径则为宽、高中较小值的一半。
+>  - 当按钮类型为Circle时，若同时设置了宽和高，则borderRadius不生效，且按钮半径为宽高中较小值的一半；若只设置宽、高中的一个，则borderRadius不生效，且按钮半径为所设宽或所设高值的一半；若不设置宽高，则borderRadius为按钮半径；若borderRadius的值为负，则borderRadius的值按照0处理。
 >  - 按钮文本通过[通用文本样式](ts-universal-attributes-text-style.md)进行设置。
 >  - 设置[颜色渐变](ts-universal-attributes-gradient-color.md)需先设置[backgroundColor](ts-universal-attributes-background.md)为透明色。
 
@@ -74,11 +74,11 @@ Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean
 | 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 否   | 设置Label文本超长时的显示方式。文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格。 |
-| maxLines             | number                                                       | 否   | 设置Label文本的最大行数。默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过textOverflow来指定截断方式。 |
+| maxLines             | number                                                       | 否   | 设置Label文本的最大行数。默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过overflow来指定截断方式。 |
 | minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最小显示字号。需配合maxFontSize以及maxLines或布局大小限制使用。 |
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最大显示字号。需配合minFontSize以及maxLines或布局大小限制使用。 |
-| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#TextHeightAdaptivePolicy10) | 否   | 设置Label文本自适应高度的方式。                              |
-| font                 | [Font](ts-types.md#Font)                                     | 否   | 设置Label文本字体样式。                                      |
+| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置Label文本自适应高度的方式。                              |
+| font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。                                      |
 ## 事件
 
 支持[通用事件](ts-universal-events-click.md)。

@@ -436,11 +436,12 @@ context.getDisplayOrientation().then((data) => {
 });
 ```
 
-## Context.getExternalCacheDir
+## Context.getExternalCacheDir<sup>(deprecated)</sup>
 
 getExternalCacheDir(callback: AsyncCallback\<string>): void
 
 获取应用程序的外部缓存目录（callback形式）。
+> 从API version 7开始不再支持。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -465,11 +466,12 @@ context.getExternalCacheDir((error, data) => {
 });
 ```
 
-## Context.getExternalCacheDir
+## Context.getExternalCacheDir<sup>(deprecated)</sup>
 
 getExternalCacheDir(): Promise\<string>
 
 获取应用程序的外部缓存目录（Promise形式）。
+> 从API version 7开始不再支持。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -509,7 +511,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation, callback: AsyncCal
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import bundleManager from '@ohos.bundle.bundleManager';
+import bundleManager from '@ohos.bundle';
 
 let context: featureAbility.Context = featureAbility.getContext();
 let orientation = bundleManager.DisplayOrientation.LANDSCAPE;
@@ -537,7 +539,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise\<void>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import bundleManager from '@ohos.bundle.bundleManager';
+import bundleManager from '@ohos.bundle';
 
 let context: featureAbility.Context = featureAbility.getContext();
 let orientation = bundleManager.DisplayOrientation.UNSPECIFIED;

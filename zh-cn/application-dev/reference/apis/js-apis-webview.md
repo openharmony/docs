@@ -1358,13 +1358,23 @@ class testObj {
   constructor() {
   }
 
-  test(): string {
-    console.log('ArkUI Web Component');
-    return "ArkUI Web Component";
+  test(testStr:string): string {
+    console.log('Web Component str' + testStr);
+    return testStr;
   }
 
   toString(): void {
     console.log('Web Component toString');
+  }
+
+  testNumber(testNum:number): number {
+    console.log('Web Component number' + testNum);
+    return testNum;
+  }
+
+  testBool(testBol:boolean): boolean {
+    console.log('Web Component boolean' + testBol);
+    return testBol;
   }
 }
 
@@ -1402,7 +1412,7 @@ struct Index {
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
-            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString"]);
+            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -1430,7 +1440,9 @@ struct Index {
     <script type="text/javascript">
     function htmlTest() {
       // This function call expects to return "ArkUI Web Component"
-      let str=objName.test();
+      let str=objName.test("webtest data");
+      objName.testNumber(1);
+      objName.testBool(true);
       document.getElementById("demo").innerHTML=str;
       console.log('objName.test result:'+ str)
 
@@ -2390,7 +2402,7 @@ struct WebComponent {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
@@ -2467,7 +2479,7 @@ window.addEventListener('message', function (event) {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
@@ -2933,8 +2945,8 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 
 | 参数名   | 类型              | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| baseName | string                | 是   | 文件存储路径，该值不能为空。                                 |
-| autoName | boolean               | 是   | 决定是否自动生成文件名。 如果为false，则将baseName作为文件存储路径。 如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。 |
+| baseName | string                | 是   | 生成的离线网页存储位置，该值不能为空。                                 |
+| autoName | boolean               | 是   | 决定是否自动生成文件名。如果为false，则按baseName的文件名存储；如果为true，则根据当前Url自动生成文件名，并按baseName的文件目录存储。 |
 | callback | AsyncCallback\<string> | 是   | 返回文件存储路径，保存网页失败会返回null。                   |
 
 **错误码：**
@@ -2995,8 +3007,8 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 
 | 参数名   | 类型 | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| baseName | string   | 是   | 文件存储路径，该值不能为空。                                 |
-| autoName | boolean  | 是   | 决定是否自动生成文件名。 如果为false，则将baseName作为文件存储路径。 如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。 |
+| baseName | string   | 是   | 生成的离线网页存储位置，该值不能为空。                                 |
+| autoName | boolean  | 是   | 决定是否自动生成文件名。如果为false，则按baseName的文件名存储；如果为true，则根据当前Url自动生成文件名，并按baseName的文件目录存储。 |
 
 **返回值：**
 
@@ -6489,7 +6501,7 @@ getArray(): Array\<string | number | boolean\>
 
 | 类型           | 说明          |
 | --------------| ------------- |
-| Array\<string | number | boolean\> | 返回数组类型的数据。 |
+| Array\<string \| number \| boolean\> | 返回数组类型的数据。 |
 
 **错误码：**
 
@@ -6616,7 +6628,7 @@ getArray(): Array\<string | number | boolean\>
 
 | 类型           | 说明          |
 | --------------| ------------- |
-| Array\<string | number | boolean\> | 返回数组类型的数据。 |
+| Array\<string \| number \| boolean\> | 返回数组类型的数据。 |
 
 **错误码：**
 

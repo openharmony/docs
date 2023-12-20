@@ -10,7 +10,7 @@
 
 ## 子组件
 
-可以包含子组件。
+可以包含单个子组件。
 
 
 ## 接口
@@ -28,7 +28,7 @@ GridItem()
 | columnEnd | number | 指定当前元素终点列号。 |
 | forceRebuild<sup>(deprecated)</sup> | boolean | 设置在触发组件build时是否重新创建此节点。<br/>从API version9开始废弃。GridItem会根据自身属性和子组件变化自行决定是否需要重新创建，无需设置。<br/>默认值：false |
 | selectable<sup>8+</sup> | boolean | 当前GridItem元素是否可以被鼠标框选。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;外层Grid容器的鼠标框选开启时，GridItem的框选才生效。<br/>默认值：true |
-| selected<sup>10+</sup> | boolean | 设置当前GridItem选中状态。该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>**说明：**<br/>该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md)前使用才能生效选中态样式。<br/>默认值：false|
+| selected<sup>10+</sup> | boolean | 设置当前GridItem选中状态。该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>**说明：**<br/>该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md#statestyles)前使用才能生效选中态样式。<br/>默认值：false|
 
 >  **说明：**
 >

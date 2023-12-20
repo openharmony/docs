@@ -18,18 +18,18 @@
 | 参数名 | 描述 | 配置项 | 场景举例 |
 | -------- | -------- | -------- | -------- |
 | DATA_TRANSFER | 数据传输 | dataTransfer | 后台下载大文件，如浏览器后台下载等。 |
-| AUDIO_PLAYBACK | 音频播放 | audioPlayback | 音乐类应用在后台播放音乐。 |
+| AUDIO_PLAYBACK | 音视频播放 | audioPlayback | 音乐类应用在后台播放音乐。 |
 | AUDIO_RECORDING | 录音 | audioRecording | 录音机在后台录音。 |
 | LOCATION | 定位导航 | location | 导航类应用后台导航。 |
 | BLUETOOTH_INTERACTION | 蓝牙相关 | bluetoothInteraction | 通过蓝牙传输分享的文件。 |
 | MULTI_DEVICE_CONNECTION | 多设备互联 | multiDeviceConnection | 分布式业务连接。 |
 | WIFI_INTERACTION | WLAN相关（仅对系统应用开放） | wifiInteraction  | 通过WLAN传输分享的文件。 |
 | VOIP | 音视频通话（仅对系统应用开放） | voip  | 系统聊天类应用后台音频电话。 |
-| TASK_KEEPING | 计算任务（仅对特定设备开放） | taskKeeping  | 杀毒软件 |
+| TASK_KEEPING | 计算任务（仅对特定设备开放） | taskKeeping  | 杀毒软件。 |
 
 
 - 申请了DATA_TRANSFER（数据传输）的长时任务，系统仅会提升应用进程的优先级，降低系统终止应用进程的概率，但仍然会挂起对应的应用进程。对于上传下载对应的功能，需要调用系统[上传下载代理接口](../reference/apis/js-apis-request.md)托管给系统执行。
-- 申请了AUDIO_PLAYBACK（音频播放）的长时任务，要实现后台播放的功能，需要同时申请[媒体会话](../media/avsession-overview.md)。
+- 使用了[媒体会话](../media/avsession-overview.md)服务的音视频应用，才能通过申请AUDIO_PLAYBACK长时任务实现后台播放。
 
 
 ### 约束与限制
@@ -38,7 +38,10 @@
 
 - **数量限制**：一个UIAbility（FA模型则为ServiceAbility）同一时刻仅支持申请一个长时任务，即在一个长时任务结束后才可能继续申请。如果一个应用同时需要申请多个长时任务，需要创建多个UIAbility；一个应用的一个UIAbility申请长时任务后，整个应用下的所有进程均不会被挂起。
 
-- **运行限制**：系统会进行长时任务校验。若应用申请了长时任务，但未真正执行申请类型的长时任务或申请类型的任务已结束，系统会对应用进行管控。例如系统检测到应用申请了AUDIO_PLAYBACK（音频播放），但实际未播放音乐，系统则会终止对应的进程。
+- **运行限制**：在手机产品上，系统会进行长时任务校验。\
+场景1：若应用申请了长时任务，但未真正执行申请类型的长时任务或申请类型的任务已结束，系统会对应用进行管控。例如系统检测到应用申请了AUDIO_PLAYBACK（音频播放），但实际未播放音乐，系统则会终止对应的进程。\
+场景2：若应用没有申请对应的长时任务类型，但执行了相关类型的长时任务，系统会对应用进行管控。例如系统检测到应用只申请了AUDIO_PLAYBACK（音频播放），但实际上除了播放音乐（对应AUDIO_PLAYBACK类型），还在进行录音（对应AUDIO_RECORDING类型），系统会对应用进行管控。\
+场景3：若运行长时任务的进程后台负载持续高于所申请类型的典型负载，系统会对应用进行管控。
 
 > **说明：**
 > 
@@ -57,12 +60,16 @@
 
 ## 开发步骤
 
+本文以申请录音长时任务为例，示例中包含“申请长时任务”和“取消长时任务”两个按钮，显示效果为：
+- 点击“申请长时任务”按钮，应用申请录音长时任务成功，通知栏显示“正在运行录音任务”通知。
+- 点击“取消长时任务”按钮，取消长时任务，通知栏撤销相关通知。
+
 ### Stage模型
 
 1. 需要申请ohos.permission.KEEP_BACKGROUND_RUNNING权限，配置方式请参见[配置文件声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
 
 2. 声明后台模式类型。
-   在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型。
+   在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型（配置文件中填写长时任务类型的配置项）。
 
    
   ```json
@@ -70,8 +77,9 @@
        "abilities": [
            {
                "backgroundModes": [
+               // 长时任务类型的配置项
                "audioRecording"
-               ], // 后台模式类型
+               ], 
            }
        ],
        ...
@@ -79,6 +87,8 @@
   ```
 
 3. 导入模块。
+
+  长时任务相关的模块为backgroundTaskManager和wantAgent，其余模块按实际需要导入。
    
   ```ts
   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
@@ -110,13 +120,14 @@
      startContinuousTask() {
        let wantAgentInfo: wantAgent.WantAgentInfo = {
          // 点击通知后，将要执行的动作列表
+         // 添加需要被拉起应用的bundleName和abilityName
          wants: [
            {
              bundleName: "com.example.myapplication",
              abilityName: "com.example.myapplication.MainAbility"
            }
          ],
-         // 点击通知后，动作类型
+         // 指定点击通知栏消息后的动作是拉起ability
          operationType: wantAgent.OperationType.START_ABILITY,
          // 使用者自定义的一个私有值
          requestCode: 0,
@@ -269,8 +280,6 @@
   export default class BgTaskAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       console.info("[Demo] BgTaskAbility onCreate");
-      this.callee.on('test', sendMsgCallback);
-
       try {
         this.callee.on(MSG_SEND_METHOD, sendMsgCallback)
       } catch (error) {
@@ -400,6 +409,7 @@
 
   let mMyStub: MyStub;
 
+  // 采用connectAbility的方式启动服务
   class MyStub extends rpc.RemoteObject {
     constructor(des: string) {
       super(des);
@@ -422,10 +432,11 @@
     }
   }
 
+  // 采用startAbility的方式启动服务
   class ServiceAbility {
     onStart(want: Want) {
       console.info('ServiceAbility onStart');
-      let mMyStub: MyStub = new MyStub("ServiceAbility-test");
+      mMyStub = new MyStub("ServiceAbility-test");
       // 在执行长时任务前，调用申请接口。
       startContinuousTask();
       processAsyncJobs();

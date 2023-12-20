@@ -42,16 +42,16 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | showPasswordIcon<sup>9+</sup> | boolean | 密码输入模式时，输入框末尾的图标是否显示。<br/>默认值：true |
 | style<sup>9+</sup> | [TextInputStyle](#textinputstyle9枚举说明) \| [TextContentStyle](ts-appendix-enums.md#textcontentstyle10) | 设置输入框为默认风格或内联输入风格（内联输入风格只支持InputType.Normal类型）。<br/>默认值：TextInputStyle.Default |
 | textAlign<sup>9+</sup>   | [TextAlign](ts-appendix-enums.md#textalign) | 设置文本在输入框中的水平对齐方式。<br/>默认值：TextAlign.Start<br/>**说明：**<br/>仅支持TextAlign.Start、TextAlign.Center和TextAlign.End。<br/>可通过[align](ts-universal-attributes-location.md)属性控制文本段落在垂直方向上的位置，此组件中不可通过align属性控制文本段落在水平方向上的位置，即align属性中Alignment.TopStart、Alignment.Top、Alignment.TopEnd效果相同，控制内容在顶部，Alignment.Start、Alignment.Center、Alignment.End效果相同，控制内容垂直居中，Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd效果相同，控制内容在底部。  |
-| selectedBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置文本选中底板颜色。<br/>如果未设置透明度，默认为不透明（例如：“0x80000000”为50%透明度黑色）。 |
+| selectedBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置文本选中底板颜色。<br/>如果未设置不透明度，默认为20%不透明度。 |
 | caretStyle<sup>10+</sup> | {<br/>width:&nbsp;[Length](ts-types.md#length)<br/>} | 设置光标风格，不支持百分比设置。                                        |
 | caretPosition<sup>10+</sup> | number | 设置光标位置。 |
-| showUnit<sup>10+</sup>                | [CustomBuilder](ts-types.md#CustomBuilder8)         | 设置控件作为文本框单位。<br/>默认无单位。 |
+| showUnit<sup>10+</sup>                | [CustomBuilder](ts-types.md#custombuilder8)       | 设置控件作为文本框单位。<br/>默认无单位。<br/>需搭配showUnderline使用，当showUnderline为true时生效。 |
 | showError<sup>10+</sup> | string&nbsp;\|&nbsp;undefined | 设置错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。<br/>**说明：** <br/>当参数类型为string并且输入内容不符合定义规范时，提示错误文本。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2) |
 | showUnderline<sup>10+</sup> | boolean | 设置是否开启下划线。下划线默认颜色为'#33182431'，默认粗细为1px，文本框尺寸48vp（下划线只支持InputType.Normal类型）。<br/>默认值：false |
 | passwordIcon<sup>10+</sup> | [PasswordIcon](#passwordicon10对象说明) | 密码输入模式时，设置输入框末尾的图标。<br/>默认为系统提供的密码图标。 |
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | TextInput获焦时，是否绑定输入法<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
 | selectionMenuHidden<sup>10+</sup> | boolean | 设置长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
-| barState<sup>10+</sup> | [BarState](ts-appendix-enums.md#BarState) | 设置内联输入风格编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
+| barState<sup>10+</sup> | [BarState](ts-appendix-enums.md#barstate) | 设置内联输入风格编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
 | maxLines<sup>10+</sup> | number | 设置内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 <br/>**说明：**<br/>取值范围：(0, +∞)。|
 | customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件，针对系统键盘的enterKeyType属性设置将无效。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[TextInputController](#textinputcontroller8).[stopEditing](#stopediting10)方法控制键盘关闭。 |
 >  **说明：**    
@@ -139,7 +139,9 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number): void
 | -------------- | -------- | ---- | ---------------------- |
 | selectionStart | number   | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
 | selectionEnd   | number   | 是   | 文本选择区域结束位置。 |
-
+>  **说明：**
+>
+>  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
 ### stopEditing<sup>10+</sup>
 
 stopEditing(): void
@@ -292,7 +294,7 @@ struct TextInputExample {
         .width(380)
         .height(60)
         .showError('Error')
-        .showUnit(this.itemEnd.bind(this))
+        .showUnit(this.itemEnd)
 
       Text(`用户名：${this.Text}`)
         .width('95%')

@@ -28,7 +28,7 @@ let photoPicker = new picker.PhotoViewPicker();
 
 select(option?: PhotoSelectOptions): Promise&lt;PhotoSelectResult&gt;
 
-通过选择模式拉起photoPicker界面，用户可以选择一个或多个图片/视频。接口采用promise异步返回形式，传入可选参数PhotoSelectOptions对象，返回PhotoSelectResult对象。
+通过选择模式拉起photoPicker界面，用户可以选择一个或多个图片/视频。接口采用Promise异步返回形式，传入可选参数PhotoSelectOptions对象，返回PhotoSelectResult对象。
 
 **注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
@@ -150,7 +150,7 @@ async function example03() {
 
 save(option?: PhotoSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
-通过保存模式拉起photoPicker界面，用户可以保存一个或多个图片/视频。接口采用promise异步返回形式，传入可选参数PhotoSaveOptions对象，返回保存文件的uri数组。
+通过保存模式拉起photoPicker界面，用户可以保存一个或多个图片/视频。接口采用Promise异步返回形式，传入可选参数PhotoSaveOptions对象，返回保存文件的uri数组。
 
 **注意**：此接口会将文件保存在文件管理器，而不是图库。返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
@@ -282,7 +282,7 @@ let documentPicker = new picker.DocumentViewPicker();
 
 select(option?: DocumentSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
-通过选择模式拉起documentPicker界面，用户可以选择一个或多个文件。接口采用promise异步返回形式，传入可选参数DocumentSelectOptions对象，返回选择文件的uri数组。
+通过选择模式拉起documentPicker界面，用户可以选择一个或多个文件。接口采用Promise异步返回形式，传入可选参数DocumentSelectOptions对象，返回选择文件的uri数组。
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
@@ -401,7 +401,7 @@ async function example09() {
 
 save(option?: DocumentSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
-通过保存模式拉起documentPicker界面，用户可以保存一个或多个文件。接口采用promise异步返回形式，传入可选参数DocumentSaveOptions对象，返回保存文件的uri数组。
+通过保存模式拉起documentPicker界面，用户可以保存一个或多个文件。接口采用Promise异步返回形式，传入可选参数DocumentSaveOptions对象，返回保存文件的uri数组。
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
@@ -533,7 +533,7 @@ let audioPicker = new picker.AudioViewPicker();
 
 select(option?: AudioSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
-通过选择模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以选择一个或多个音频文件。接口采用promise异步返回形式，传入可选参数AudioSelectOptions对象，返回选择音频文件的uri数组。
+通过选择模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以选择一个或多个音频文件。接口采用Promise异步返回形式，传入可选参数AudioSelectOptions对象，返回选择音频文件的uri数组。
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
@@ -651,7 +651,7 @@ async function example15() {
 
 save(option?: AudioSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
-通过保存模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以保存一个或多个音频文件。接口采用promise异步返回形式，传入可选参数AudioSaveOptions对象，返回保存音频文件的uri数组。
+通过保存模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以保存一个或多个音频文件。接口采用Promise异步返回形式，传入可选参数AudioSaveOptions对象，返回保存音频文件的uri数组。
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 

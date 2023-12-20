@@ -26,7 +26,7 @@ Creates an SMS instance based on the protocol data unit (PDU) and specified SMS 
 | ------------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | pdu           | Array&lt;number&gt;                                | Yes  | Protocol data unit, which is obtained from the received SMS message.                          |
 | specification | string                                             | Yes  | SMS protocol type. <br>- **3gpp**: GSM/UMTS/LTE SMS<br>- **3gpp2**: CDMA SMS|
-| callback      | AsyncCallback&lt;[ShortMessage](#shortmessage)&gt; | Yes  | Callback used to return the result.                                                  |
+| callback      | AsyncCallback&lt;[ShortMessage](#shortmessage)&gt; | Yes  | Callback used to return the result. |
 
 **Error codes**
 
@@ -146,10 +146,10 @@ import { BusinessError } from '@ohos.base';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback[]) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
-}
+};
 let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
-}
+};
 let options: sms.SendMessageOptions = {
     slotId: 0,
     content: 'SMS message content';
@@ -201,10 +201,10 @@ import { BusinessError } from '@ohos.base';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-}
+};
 let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-}
+};
 let options: sms.SendMessageOptions = {
     slotId: 0,
     content: 'SMS message content';
@@ -263,10 +263,10 @@ import { BusinessError } from '@ohos.base';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-}
+};
 let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-}
+};
 let options: sms.SendMessageOptions = {
     slotId: 0,
     content: 'SMS message content';
@@ -355,7 +355,7 @@ Sets the default slot ID of the SIM card used to send SMS messages. This API use
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number                    | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: Clears the default configuration.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. |
 
 **Error codes**
 
@@ -1171,7 +1171,7 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 let promise = sms.getAllSimMessages(slotId);
-promise.then((data: sms.SimShortMessage[]) => {
+promise.then((data: sms.SimShortMessage) => {
     console.log(`getAllSimMessages success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getAllSimMessages failed, promise: err->${JSON.stringify(err)}`);
@@ -1306,7 +1306,7 @@ Obtains SMS message segment information. This API uses an asynchronous callback 
 | slotId    | number                                                       | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | message   | string                                                       | Yes  | SMS message.                                     |
 | force7bit | boolean                                                      | Yes  | Whether to use 7-bit coding.                         |
-| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | Yes  | Callback used to return the result.                                 |
+| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -1483,7 +1483,7 @@ promise.then((data: boolean) => {
 
 getImsShortMessageFormat\(callback: AsyncCallback\<string\>\): void
 
-Obtains the SMS format supported by the IMS. This API uses an asynchronous callback to return the result.
+Obtains the SMS format supported by the IMS, for example, **3gpp**, **3gpp2**, or **unknown**. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 

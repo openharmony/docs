@@ -160,8 +160,8 @@ struct SpringMotionDemo {
                 // 跟手过程，使用responsiveSpringMotion曲线
                 animateTo({ curve: curves.responsiveSpringMotion() }, () => {
                   // 减去半径，以使球的中心运动到手指位置
-                  this.positionX = event.touches[0].screenX - this.diameter / 2;
-                  this.positionY = event.touches[0].screenY - this.diameter / 2;
+                  this.positionX = event.touches[0].windowX - this.diameter / 2;
+                  this.positionY = event.touches[0].windowY - this.diameter / 2;
                   console.info(`move, animateTo x:${this.positionX}, y:${this.positionY}`);
                 })
               } else if (event.type === TouchType.Up) {

@@ -18,7 +18,7 @@ ohos.permission.MANAGE_MISSIONS
 
 ## missionManager.on
 
-on(type:'mission', listener: MissionListener): number;
+on(type:'mission', listener: MissionListener): number
 
 Registers a listener to observe the mission status.
 
@@ -32,6 +32,7 @@ Registers a listener to observe the mission status.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
+  | type     | string   | Yes      | Name of the target mission.|
   | listener | [MissionListener](js-apis-inner-application-missionListener.md) | Yes| Mission status listener to register.|
 
 **Return value**
@@ -112,7 +113,7 @@ export default class EntryAbility extends UIAbility {
 
 ## missionManager.off
 
-off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): void;
+off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Deregisters a mission status listener.
 
@@ -126,6 +127,7 @@ Deregisters a mission status listener.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
+  | type     | string   | Yes      | Name of the target mission.|
   | listenerId | number | Yes| Index of the mission status listener to deregister. It is returned by **on()**.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
@@ -209,7 +211,7 @@ export default class EntryAbility extends UIAbility {
 
 ## missionManager.off
 
-off(type: 'mission', listenerId: number): Promise&lt;void&gt;;
+off(type: 'mission', listenerId: number): Promise&lt;void&gt;
 
 Deregisters a mission status listener. This API uses a promise to return the result.
 
@@ -223,6 +225,7 @@ Deregisters a mission status listener. This API uses a promise to return the res
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
+  | type     | string   | Yes      | Name of the target mission.|
   | listenerId | number | Yes| Index of the mission status listener to deregister. It is returned by **on()**.|
 
 **Return value**
@@ -311,7 +314,7 @@ export default class EntryAbility extends UIAbility {
 
 ## missionManager.getMissionInfo
 
-getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void;
+getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void
 
 Obtains the information about a given mission. This API uses an asynchronous callback to return the result.
 
@@ -367,7 +370,7 @@ Obtains the information about a given mission. This API uses an asynchronous cal
 
 ## missionManager.getMissionInfo
 
-getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
+getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;
 
 Obtains the information about a given mission. This API uses a promise to return the result.
 
@@ -410,7 +413,7 @@ try {
 
 ## missionManager.getMissionInfos
 
-getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Array&lt;MissionInfo&gt;&gt;): void;
+getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Array&lt;MissionInfo&gt;&gt;): void
 
 Obtains information about all missions. This API uses an asynchronous callback to return the result.
 
@@ -453,7 +456,7 @@ Obtains information about all missions. This API uses an asynchronous callback t
 
 ## missionManager.getMissionInfos
 
-getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionInfo&gt;&gt;;
+getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionInfo&gt;&gt;
 
 Obtains information about all missions. This API uses a promise to return the result.
 
@@ -495,7 +498,7 @@ try {
 
 ## missionManager.getMissionSnapShot
 
-getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionSnapshot&gt;): void;
+getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionSnapshot&gt;): void
 
 Obtains the snapshot of a given mission. This API uses an asynchronous callback to return the result.
 
@@ -533,7 +536,7 @@ try {
 
 ## missionManager.getMissionSnapShot
 
-getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnapshot&gt;;
+getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnapshot&gt;
 
 Obtains the snapshot of a given mission. This API uses a promise to return the result.
 
@@ -575,7 +578,7 @@ try {
 
 ## missionManager.getLowResolutionMissionSnapShot
 
-getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback\<MissionSnapshot>): void;
+getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback\<MissionSnapshot>): void
 
 Obtains the low-resolution snapshot of a given mission. This API uses an asynchronous callback to return the result.
 
@@ -613,7 +616,7 @@ try {
 
 ## missionManager.getLowResolutionMissionSnapShot
 
-getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<MissionSnapshot>;
+getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<MissionSnapshot>
 
 Obtains the low-resolution snapshot of a given mission. This API uses a promise to return the result.
 
@@ -657,7 +660,7 @@ try {
 
 ## missionManager.lockMission
 
-lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Locks a given mission. This API uses an asynchronous callback to return the result.
 
@@ -703,7 +706,7 @@ try {
 
 ## missionManager.lockMission
 
-lockMission(missionId: number): Promise&lt;void&gt;;
+lockMission(missionId: number): Promise&lt;void&gt;
 
 Locks a given mission. This API uses a promise to return the result.
 
@@ -752,7 +755,7 @@ try {
 
 ## missionManager.unlockMission
 
-unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Unlocks a given mission. This API uses an asynchronous callback to return the result.
 
@@ -797,7 +800,7 @@ try {
 
 ## missionManager.unlockMission
 
-unlockMission(missionId: number): Promise&lt;void&gt;;
+unlockMission(missionId: number): Promise&lt;void&gt;
 
 Unlocks a given mission. This API uses a promise to return the result.
 
@@ -847,7 +850,7 @@ try {
 
 ## missionManager.clearMission
 
-clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Clears a given mission, regardless of whether it is locked. This API uses an asynchronous callback to return the result.
 
@@ -886,7 +889,7 @@ try {
 
 ## missionManager.clearMission
 
-clearMission(missionId: number): Promise&lt;void&gt;;
+clearMission(missionId: number): Promise&lt;void&gt;
 
 Clears a given mission, regardless of whether it is locked. This API uses a promise to return the result.
 
@@ -928,7 +931,7 @@ try {
 
 ## missionManager.clearAllMissions
 
-clearAllMissions(callback: AsyncCallback&lt;void&gt;): void;
+clearAllMissions(callback: AsyncCallback&lt;void&gt;): void
 
 Clears all unlocked missions. This API uses an asynchronous callback to return the result.
 
@@ -937,6 +940,12 @@ Clears all unlocked missions. This API uses an asynchronous callback to return t
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 **System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -958,7 +967,7 @@ try {
 
 ## missionManager.clearAllMissions
 
-clearAllMissions(): Promise&lt;void&gt;;
+clearAllMissions(): Promise&lt;void&gt;
 
 Clears all unlocked missions. This API uses a promise to return the result.
 
@@ -993,7 +1002,7 @@ try {
 
 ## missionManager.moveMissionToFront
 
-moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Switches a given mission to the foreground. This API uses an asynchronous callback to return the result.
 
@@ -1039,7 +1048,7 @@ try {
 
 ## missionManager.moveMissionToFront
 
-moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 Switches a given mission to the foreground, with the startup parameters for the switching specified. This API uses an asynchronous callback to return the result.
 
@@ -1086,7 +1095,7 @@ try {
 
 ## missionManager.moveMissionToFront
 
-moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&gt;;
+moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&gt;
 
 Switches a given mission to the foreground, with the startup parameters for the switching specified. This API uses a promise to return the result.
 
@@ -1137,7 +1146,7 @@ try {
 
 ## missionManager.moveMissionsToForeground<sup>10+</sup>
 
-moveMissionsToForeground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionsToForeground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Switches a batch of missions to the foreground. This API uses an asynchronous callback to return the result.
 
@@ -1203,7 +1212,7 @@ try {
 
 ## missionManager.moveMissionsToForeground<sup>10+</sup>
 
-moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission: number, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission: number, callback: AsyncCallback&lt;void&gt;): void
 
 Switches a batch of missions to the foreground, and moves the mission with the specified ID to the top. This API uses an asynchronous callback to return the result.
 
@@ -1270,7 +1279,7 @@ try {
 
 ## missionManager.moveMissionsToForeground<sup>10+</sup>
 
-moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): Promise&lt;void&gt; ;
+moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): Promise&lt;void&gt;
 
 Switches a batch of missions to the foreground, and moves the mission with the specified ID to the top. This API uses a promise to return the result.
 
@@ -1338,7 +1347,7 @@ try {
 
 ## missionManager.moveMissionsToBackground<sup>10+</sup>
 
-moveMissionsToBackground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void;
+moveMissionsToBackground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 Switches a batch of missions to the background. This API uses an asynchronous callback to return the result. The mission IDs in the callback are sorted by mission level when the missions are switched.
 
@@ -1400,7 +1409,7 @@ try {
 
 ## missionManager.moveMissionsToBackground<sup>10+</sup>
 
-moveMissionsToBackground(missionIds : Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;;
+moveMissionsToBackground(missionIds : Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 Switches a batch of missions to the background. This API uses a promise to return the result. The mission IDs in the promise are sorted by mission level when the missions are switched.
 

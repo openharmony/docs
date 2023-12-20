@@ -13,6 +13,9 @@ You can publish basic notifications to send SMS messages, prompt messages, and a
 | NOTIFICATION_CONTENT_PICTURE | Picture-attached notification.|
 
 Notifications are displayed in the notification panel, which is the only supported subscriber to notifications. Below you can see two examples of the basic notification.
+> **NOTE**
+> 
+> The figures are for reference only. The actual effect may vary.
 
 **Figure 1** Examples of the basic notification
 
@@ -109,7 +112,7 @@ The following table describes the APIs for notification publishing. You specify 
             title: 'test_title',
             text: 'test_text',
             briefText: 'test_briefText',
-            longTitle: 'test_longTitle',
+            longTitle: 'longTitle',
             lines: ['line_01', 'line_02', 'line_03', 'line_04'],
           }
         }
@@ -132,12 +135,12 @@ The following table describes the APIs for notification publishing. You specify 
       ```ts
       import image from '@ohos.multimedia.image';
 
-      let imagePixelMap: image.PixelMap | undefined = undefined; // Obtain the PixelMap information.
-      let color = new ArrayBuffer(0);
+      let imagePixelMap: image.PixelMap | undefined = undefined; // The image pixel map information needs to be obtained.
+      let color = new ArrayBuffer(4);
       image.createPixelMap(color, {
         size: {
-          height: 0,
-          width: 0
+          height: 1,
+          width: 1
         }
       }).then((data: image.PixelMap) => {
         imagePixelMap = data;

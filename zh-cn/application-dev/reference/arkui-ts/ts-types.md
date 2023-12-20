@@ -130,7 +130,7 @@
 | string                              | rgb或者argb格式颜色。示例：'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'。 |
 | [Resource](#resource)               | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。              |
 
-## ColoringStrategy
+## ColoringStrategy<sup>10+</sup>
 
 智能取色枚举类型，用于设置前景色。
 
@@ -209,7 +209,7 @@
 | width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup> | 否    | 边框宽度。   |
 | color  | [ResourceColor](#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | 否    | 边框颜色。   |
 | radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | 否    | 边框圆角半径。 |
-| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| EdgeStyles<sup>9+</sup> | 否    | 边框样式。   |
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#EdgeStyles9)<sup>9+</sup> | 否    | 边框样式。   |
 
 ## ColorFilter<sup>9+</sup>
 
@@ -220,7 +220,7 @@
 | constructor | number[] | 是    | 创建具有4\*5矩阵的颜色过滤器, 入参为[m\*n]位于m行和n列中矩阵值, 每个值的有效范围是[0, 1], 矩阵是行优先的。 |
 
 
-## CustomBuilder<sup>8+</sup>
+## CustomBuilder<sup>10+</sup>
 
 组件属性方法参数可使用CustomBuilder类型来自定义UI描述。
 
@@ -234,7 +234,7 @@
 
 | 名称     | 类型                | 必填   | 说明             |
 | ------ | ----------------- | ---- | -------------- |
-| left   | [Length](#length) | 否    | 组件图像左边沿扩展距离。   |
+| left   | [Length](#length) | 否    | 组件图像左边沿像素扩展距离。 |
 | right  | [Length](#length) | 否    | 组件图像右边沿像素扩展距离。 |
 | top    | [Length](#length) | 否    | 组件图像上边沿像素扩展距离。 |
 | bottom | [Length](#length) | 否    | 组件图像下边沿像素扩展距离。 |
@@ -316,9 +316,9 @@ Swiper组件动画相关信息集合。
 
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| currentOffset | number | Swiper当前显示元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0.|
-| targetOffset | number | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0.|
-| velocity | number | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0.|
+| currentOffset | number | Swiper当前显示元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
+| targetOffset | number | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
+| velocity | number | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0。|
 ## SafeAreaType<sup>10+</sup>
 
 扩展安全区域的枚举类型。

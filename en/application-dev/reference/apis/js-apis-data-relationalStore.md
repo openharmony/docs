@@ -1,6 +1,8 @@
 # @ohos.data.relationalStore (RDB Store)
 
 The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. The worker threads are not supported.
+ArkTS supports the following basic data types: number, string, binary data, and boolean. 
+To ensure successful read and write of data, the data size cannot exceed 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
 
 The **relationalStore** module provides the following functions:
 
@@ -68,7 +70,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, (err: BusinessError, rdbStore
     console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`Get RdbStore successfully.`);
+  console.info('Get RdbStore successfully.');
 })
 ```
 
@@ -78,6 +80,8 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -92,7 +96,7 @@ class EntryAbility extends UIAbility {
         console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
-      console.info(`Get RdbStore successfully.`);
+      console.info('Get RdbStore successfully.');
     })
   }
 }
@@ -139,6 +143,7 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -148,7 +153,7 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
 
 relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
   store = rdbStore;
-  console.info(`Get RdbStore successfully.`)
+  console.info('Get RdbStore successfully.')
 }).catch((err: BusinessError) => {
   console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -161,9 +166,10 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
+
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let store: relationalStore.RdbStore;
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S1
@@ -171,7 +177,7 @@ class EntryAbility extends UIAbility {
 
     relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
       store = rdbStore;
-      console.info(`Get RdbStore successfully.`)
+      console.info('Get RdbStore successfully.')
     }).catch((err: BusinessError) => {
       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
@@ -214,6 +220,7 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
@@ -222,7 +229,7 @@ relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
     return;
   }
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 })
 ```
 
@@ -233,6 +240,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
+
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     relationalStore.deleteRdbStore(this.context, "RdbTest.db", (err: BusinessError) => {
@@ -241,7 +250,7 @@ class EntryAbility extends UIAbility {
         return;
       }
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     })
   }
 }
@@ -287,11 +296,12 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 relationalStore.deleteRdbStore(context, "RdbTest.db").then(()=>{
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -304,11 +314,13 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
+
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     relationalStore.deleteRdbStore(this.context, "RdbTest.db").then(()=>{
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
@@ -353,6 +365,7 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -366,7 +379,7 @@ relationalStore.deleteRdbStore(context, STORE_CONFIG, (err: BusinessError) => {
     return;
   }
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 })
 ```
 
@@ -376,6 +389,8 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
+
+let store: relationalStore.RdbStore | undefined = undefined;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
@@ -389,7 +404,7 @@ class EntryAbility extends UIAbility {
         return;
       }
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     })
   }
 }
@@ -438,6 +453,7 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
 let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -447,7 +463,7 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
 
 relationalStore.deleteRdbStore(context, STORE_CONFIG).then(()=>{
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -460,6 +476,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
 
+let store: relationalStore.RdbStore | undefined = undefined;
+
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -468,7 +486,7 @@ class EntryAbility extends UIAbility {
     };
     relationalStore.deleteRdbStore(this.context, STORE_CONFIG).then(()=>{
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
@@ -487,7 +505,7 @@ Defines the RDB store configuration.
 | name          | string        | Yes  | Database file name.                                           |
 | securityLevel | [SecurityLevel](#securitylevel) | Yes  | Security level of the RDB store.                                       |
 | encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br>The value **true** means to encrypt the RDB store; the value **false** (default) means the opposite.|
-| dataGroupId<sup>10+</sup> | string | No| Application group ID, which needs to be obtained from the AppGallery.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. It specifies the **relationalStore** instance created in the sandbox directory corresponding to the **dataGroupId**. If this parameter is not specified, the **relationalStore** instance is created in the sandbox directory of the application.|
+| dataGroupId<sup>10+</sup> | string | No| Application group ID, which needs to be obtained from AppGallery.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. It specifies the **relationalStore** instance created in the sandbox directory corresponding to **dataGroupId**. If this parameter is not specified, the **relationalStore** instance is created in the sandbox directory of the application.|
 
 ## SecurityLevel
 
@@ -508,7 +526,7 @@ Enumerates the RDB store security levels.
 
 ## AssetStatus<sup>10+</sup>
 
-Enumerates the asset statuses. Use the enum names instead of the enum values.
+Enumerates the asset statuses. Use the enum name rather than the enum value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -613,9 +631,9 @@ Enumerates the database synchronization modes.
 | -------------- | ---- | ---------------------------------- |
 | SYNC_MODE_PUSH                       | 0   | Push data from a local device to a remote device.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core                    |
 | SYNC_MODE_PULL                       | 1   | Pull data from a remote device to a local device.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core                     |
-| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | -   | Synchronize with the data with the latest modification time. Use the enum names instead of the enum values.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
-| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | -   | Synchronize data from a local device to the cloud. Use the enum names instead of the enum values.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client            |
-| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | -   | Synchronize data from the cloud to a local device. Use the enum names instead of the enum values.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client            |
+| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | -   | Synchronize with the data with the latest modification time. Use the enum name rather than the enum value.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | -   | Synchronize data from a local device to the cloud. Use the enum name rather than the enum value.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client            |
+| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | -   | Synchronize data from the cloud to a local device. Use the enum name rather than the enum value.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client            |
 
 ## SubscribeType
 
@@ -626,12 +644,12 @@ Enumerates the subscription types.
 | Name                 | Value  | Description              |
 | --------------------- | ---- | ------------------ |
 | SUBSCRIBE_TYPE_REMOTE | 0    | Subscribe to remote data changes.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | -  | Subscribe to cloud data changes. Use the enum names instead of the enum values.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
-| SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | -  | Subscribe to cloud data change details. Use the enum names instead of the enum values.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | -  | Subscribe to cloud data changes. Use the enum name rather than the enum value.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | -  | Subscribe to cloud data change details. Use the enum name rather than the enum value.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
 
 ## ChangeType<sup>10+</sup>
 
-Enumerates data change types. Use the enum names instead of the enum values.
+Enumerates data change types. Use the enum name rather than the enum value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -658,14 +676,14 @@ Defines the details about the device-cloud synchronization process.
 
 ## DistributedType<sup>10+</sup>
 
-Enumerates the distributed table types. Use the enum names instead of the enum values.
+Enumerates the distributed table types. Use the enum name rather than the enum value.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 | Name               | Value  | Description                                                                                                |
 | ------------------ | --- | -------------------------------------------------------------------------------------------------- |
-| DISTRIBUTED_DEVICE | -  | Distributed database table synchronized between devices.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
-| DISTRIBUTED_CLOUD  | -   | Distributed database table synchronized between the device and the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client |
+| DISTRIBUTED_DEVICE | -  | Distributed database table synchronized between devices.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core              |
+| DISTRIBUTED_CLOUD  | -   | Distributed database table synchronized between the device and the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
 
 ## DistributedConfig<sup>10+</sup>
 
@@ -694,7 +712,7 @@ Defines the resolution to use when **insert()** and **update()** conflict.
 
 ## Progress<sup>10+</sup>
 
-Enumerates the device-cloud synchronization processes. Use the enum names instead of the enum values.
+Enumerates the device-cloud synchronization processes. Use the enum name rather than the enum value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -730,7 +748,7 @@ Represents the upload and download statistics of device-cloud synchronization ta
 
 ## ProgressCode<sup>10+</sup>
 
-Enumerates the device-cloud synchronization states. Use the enum names instead of the enum values.
+Enumerates the device-cloud synchronization states. Use the enum name rather than the enum value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -864,7 +882,7 @@ predicates.inAllDevices();
 equalTo(field: string, value: ValueType): RdbPredicates
 
 
-Sets an **RdbPredicates** to match the field with data type **ValueType** and value equal to the specified value.
+Sets an **RdbPredicates** object to match the fields in the specified column that are equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -893,8 +911,7 @@ predicates.equalTo("NAME", "lisi");
 
 notEqualTo(field: string, value: ValueType): RdbPredicates
 
-
-Sets an **RdbPredicates** to match the field with data type **ValueType** and value not equal to the specified value.
+Sets an **RdbPredicates** object to match the fields in the specified column that are not equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1022,7 +1039,7 @@ predicates.equalTo("NAME", "Lisa")
 
 contains(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** to match a string containing the specified value.
+Sets an **RdbPredicates** object to match the fields in the specified column that contain the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1050,7 +1067,7 @@ predicates.contains("NAME", "os");
 
 beginsWith(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** to match a string that starts with the specified value.
+Sets an **RdbPredicates** object to match the fields in the specified column that begin with the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1078,7 +1095,7 @@ predicates.beginsWith("NAME", "os");
 
 endsWith(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** to match a string that ends with the specified value.
+Sets an **RdbPredicates** object to match the fields in the specified column that end with the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1106,7 +1123,7 @@ predicates.endsWith("NAME", "se");
 
 isNull(field: string): RdbPredicates
 
-Sets an **RdbPredicates** to match the field whose value is null.
+Sets an **RdbPredicates** object to match the fields in the specified column that are **null**.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1133,7 +1150,7 @@ predicates.isNull("NAME");
 
 isNotNull(field: string): RdbPredicates
 
-Sets an **RdbPredicates** to match the field whose value is not null.
+Sets an **RdbPredicates** object to match the fields in the specified column that are not **null**.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1160,7 +1177,7 @@ predicates.isNotNull("NAME");
 
 like(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** to match a string that is similar to the specified value.
+Sets an **RdbPredicates** object to match the fields in the specified column that are similar to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1188,7 +1205,7 @@ predicates.like("NAME", "%os%");
 
 glob(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** to match the specified string.
+Sets an **RdbPredicates** object to match the specified string.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1216,7 +1233,7 @@ predicates.glob("NAME", "?h*g");
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **ValueType** and value within the specified range.
+Sets an **RdbPredicates** object to match the fields in the specified column that are within the given range.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1245,7 +1262,7 @@ predicates.between("AGE", 10, 50);
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **ValueType** and value out of the specified range.
+Sets an **RdbPredicates** object to match the fields in the specified column that are out of the given range.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1274,7 +1291,7 @@ predicates.notBetween("AGE", 10, 50);
 
 greaterThan(field: string, value: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **ValueType** and value greater than the specified value.
+Sets an **RdbPredicates** object to match the fields in the specified column that are greater than the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1302,7 +1319,7 @@ predicates.greaterThan("AGE", 18);
 
 lessThan(field: string, value: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **ValueType** and value less than the specified value.
+Sets an **RdbPredicates** object to match the fields in the specified column that are less than the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1330,7 +1347,7 @@ predicates.lessThan("AGE", 20);
 
 greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **ValueType** and value greater than or equal to the specified value.
+Sets an **RdbPredicates** object to match the fields in the specified column that are greater than or equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1358,7 +1375,7 @@ predicates.greaterThanOrEqualTo("AGE", 18);
 
 lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **ValueType** and value less than or equal to the specified value.
+Sets an **RdbPredicates** object to match the fields in the specified column that are less than or equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1386,7 +1403,7 @@ predicates.lessThanOrEqualTo("AGE", 20);
 
 orderByAsc(field: string): RdbPredicates
 
-Sets an **RdbPredicates** to match the column with values sorted in ascending order.
+Sets an **RdbPredicates** object to sort the fields in the specified column in ascending order.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1413,7 +1430,7 @@ predicates.orderByAsc("NAME");
 
 orderByDesc(field: string): RdbPredicates
 
-Sets an **RdbPredicates** to match the column with values sorted in descending order.
+Sets an **RdbPredicates** object to sort the fields in the specified column in descending order.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1440,7 +1457,7 @@ predicates.orderByDesc("AGE");
 
 distinct(): RdbPredicates
 
-Sets an **RdbPredicates** to filter out duplicate records.
+Sets an **RdbPredicates** object to filter out duplicate records.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1461,7 +1478,7 @@ predicates.equalTo("NAME", "Rose").distinct();
 
 limitAs(value: number): RdbPredicates
 
-Sets an **RdbPredicates** to specify the maximum number of records.
+Sets an **RdbPredicates** object to specify the maximum number of records.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1488,7 +1505,7 @@ predicates.equalTo("NAME", "Rose").limitAs(3);
 
 offsetAs(rowOffset: number): RdbPredicates
 
-Sets an **RdbPredicates** to specify the start position of the returned result.
+Sets an **RdbPredicates** object to specify the start position of the returned result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1515,7 +1532,7 @@ predicates.equalTo("NAME", "Rose").offsetAs(3);
 
 groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
-Sets an **RdbPredicates** to group rows that have the same value into summary rows.
+Sets an **RdbPredicates** object to group rows that have the same value into summary rows.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1570,7 +1587,7 @@ predicates.indexedBy("SALARY_INDEX");
 
 in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **Array&#60;ValueType&#62;** and value within the specified range.
+Sets an **RdbPredicates** object to match the fields in the specified column that are in the given range.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1598,7 +1615,7 @@ predicates.in("AGE", [18, 20]);
 
 notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
-Sets an **RdbPredicates** to match the field with data type **Array&#60;ValueType&#62;** and value out of the specified range.
+Sets an **RdbPredicates** object to match the fields in the specified column that are out of the given range.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3246,7 +3263,7 @@ if(store != undefined) {
       console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Delete table done.`);
+    console.info('Delete table done.');
   })
 }
 ```
@@ -3286,7 +3303,7 @@ if(store != undefined) {
       console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Delete table done.`);
+    console.info('Delete table done.');
   })
 }
 ```
@@ -3329,7 +3346,7 @@ import { BusinessError } from "@ohos.base";
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
 if(store != undefined) {
   (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE).then(() => {
-    console.info(`Delete table done.`);
+    console.info('Delete table done.');
   }).catch((err: BusinessError) => {
     console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3428,6 +3445,7 @@ if(store != undefined) {
 beginTransaction():void
 
 Starts the transaction before executing an SQL statement.
+This API cannot be used in multi-process or multi-thread scenarios.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3482,6 +3500,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
 commit():void
 
 Commits the executed SQL statements.
+This API cannot be used in multi-process or multi-thread scenarios.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3526,6 +3545,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
 rollBack():void
 
 Rolls back the SQL statements that have been executed.
+This API cannot be used in multi-process or multi-thread scenarios.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3604,7 +3624,7 @@ if(store != undefined) {
       console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Backup success.`);
+    console.info('Backup success.');
   })
 }
 ```
@@ -3645,7 +3665,7 @@ import { BusinessError } from "@ohos.base";
 if(store != undefined) {
   let promiseBackup = (store as relationalStore.RdbStore).backup("dbBackup.db");
   promiseBackup.then(() => {
-    console.info(`Backup success.`);
+    console.info('Backup success.');
   }).catch((err: BusinessError) => {
     console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3684,7 +3704,7 @@ if(store != undefined) {
       console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Restore success.`);
+    console.info('Restore success.');
   })
 }
 ```
@@ -3725,7 +3745,7 @@ import { BusinessError } from "@ohos.base";
 if(store != undefined) {
   let promiseRestore = (store as relationalStore.RdbStore).restore("dbBackup.db");
   promiseRestore.then(() => {
-    console.info(`Restore success.`);
+    console.info('Restore success.');
   }).catch((err: BusinessError) => {
     console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3766,7 +3786,7 @@ if(store != undefined) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   })
 }
 ```
@@ -3808,7 +3828,7 @@ import { BusinessError } from "@ohos.base";
 
 if(store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"]).then(() => {
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   }).catch((err: BusinessError) => {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3851,7 +3871,7 @@ if(store != undefined) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   })
 }
 ```
@@ -3897,7 +3917,7 @@ if(store != undefined) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   })
 }
 ```
@@ -3944,7 +3964,7 @@ if(store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
     autoSync: true
   }).then(() => {
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   }).catch((err: BusinessError) => {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
   })
@@ -4127,7 +4147,7 @@ if(store != undefined) {
       console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Sync done.`);
+    console.info('Sync done.');
     for (let i = 0; i < result.length; i++) {
       console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
     }
@@ -4191,7 +4211,7 @@ let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
 if(store != undefined) {
   (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates).then((result: Object[][]) => {
-    console.info(`Sync done.`);
+    console.info('Sync done.');
     for (let i = 0; i < result.length; i++) {
       console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
     }
@@ -4407,7 +4427,7 @@ Registers a data change event listener for the RDB store. When the data in the R
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates data changes.     |
 | type     | [SubscribeType](#subscribetype)    | Yes  | Subscription type to register.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback invoked to return the data change.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud synchronization.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback invoked to return the data change.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br> If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br> If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud synchronization.|
 
 **Example**
 
@@ -4446,7 +4466,7 @@ Registers an intra-process or inter-process event listener for the RDB store. Th
 | Name      | Type           | Mandatory| Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
 | event        | string          | Yes  | Event name to observe.                                              |
-| interProcess | boolean         | Yes  | Type of the event to observe.<br>The value **true** means the inter-process event.<br>The value **false** means the intra-process event.|
+| interProcess | boolean         | Yes  | Type of the event to observe.<br> The value **true** means the inter-process event.<br> The value **false** means the intra-process event.|
 | observer     | Callback\<void> | Yes  | Callback invoked to return the result.                                                  |
 
 **Error codes**
@@ -4565,7 +4585,7 @@ Unregisters the data change event listener.
 | Name      | Type           | Mandatory| Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
 | event        | string          | Yes  | Name of the event.                                          |
-| interProcess | boolean         | Yes  | Type of the event.<br>The value **true** means the inter-process event.<br>The value **false** means the intra-process event.|
+| interProcess | boolean         | Yes  | Type of the event.<br> The value **true** means the inter-process event.<br> The value **false** means the intra-process event.|
 | observer     | Callback\<void> | No  | Callback for the event to unregister.<br/>If this parameter is specified, the specified callback will be unregistered. If this parameter is not specified, all callbacks of the specified event will be unregistered. |
 
 **Error codes**
@@ -4626,11 +4646,13 @@ if(store != undefined) {
 
 ## ResultSet
 
-Provides APIs to access the result set obtained by querying the RDB store. A result set is a set of results returned after **query()** is called.
+Provides APIs to access the **resultSet** object returned by **query()**.
 
 ### Usage
 
 Obtain the **resultSet** object first.
+
+**Example**
 
 ```ts
 let resultSet: relationalStore.ResultSet | undefined = undefined;
@@ -4691,14 +4713,14 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```ts
+```ts
 if(resultSet != undefined) {
   const id = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("ID"));
   const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
   const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
   const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
 }
-  ```
+```
 
 ### getColumnName
 

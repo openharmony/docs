@@ -22,8 +22,7 @@
       - 共享包
         - [共享包概述](quick-start/shared-guide.md)
         - [HAR](quick-start/har-package.md)
-        - HSP
-          - [应用内HSP开发指导](quick-start/in-app-hsp.md)
+        - [HSP](quick-start/in-app-hsp.md)        
       - 应用程序包快速修复
         - [快速修复概述](quick-start/quickfix-principles.md)
         - [快速修复命令行调试开发指导](quick-start/quickfix-debug.md)
@@ -161,8 +160,7 @@
         - [后台服务](application-models/background-services.md)
       - 了解线程模型
         - [线程模型概述](application-models/thread-model-stage.md)
-        - [使用Emitter进行线程间通信](application-models/itc-with-emitter.md)
-        - [使用Worker进行线程间通信](application-models/itc-with-worker.md)
+        - [使用EventHub进行线程内通信](application-models/itc-with-eventHub.md)
       - 任务（Mission）管理
         - [任务（Mission）管理场景介绍](application-models/mission-management-overview.md)
         - [任务（Mission）与启动模式](application-models/mission-management-launch-type.md)
@@ -201,7 +199,7 @@
           - [启动DataAbility](application-models/start-dataability.md)
           - [访问DataAbility](application-models/access-dataability.md)
           - [DataAbility权限控制](application-models/dataability-permission-control.md)
-        - [服务卡片开发指导](application-models/widget-development-fa.md)
+        - [服务卡片开发指导（FA模型）](application-models/widget-development-fa.md)
         - [FA模型的Context](application-models/application-context-fa.md)
         - [信息传递载体Want](application-models/want-fa.md)
         - [组件启动规则（FA模型）](application-models/component-startup-rules-fa.md)
@@ -211,7 +209,7 @@
         - [后台服务](application-models/rpc.md)
       - 了解线程模型
         - [线程模型概述](application-models/thread-model-fa.md)
-        - [线程间通信](application-models/itc-fa-overview.md)
+        - [使用Emitter进行线程间通信](application-models/itc-with-emitter.md)
       - [任务管理](application-models/mission-management-fa.md)
       - [FA模型应用配置文件](application-models/config-file-fa.md)
     - FA模型与Stage模型应用组件互通指导
@@ -396,16 +394,20 @@
     - 并发
       - [并发概述](arkts-utils/concurrency-overview.md)
       - 使用异步并发能力进行开发
-        - [异步并发概述](arkts-utils/async-concurrency-overview.md)
-        - [单次I/O任务开发指导](arkts-utils/single-io-development.md)
+        - [异步并发概述 (Promise和async/await)](arkts-utils/async-concurrency-overview.md)
+        - [单次I/O任务开发指导 (Promise和async/await)](arkts-utils/single-io-development.md)
       - 使用多线程并发能力进行开发
-        - [多线程并发概述](arkts-utils/multi-thread-concurrency-overview.md)
+        - [多线程并发概述 (TaskPool和Worker)](arkts-utils/multi-thread-concurrency-overview.md)
+        - [TaskPool简介](arkts-utils/taskpool-introduction.md)
+        - [Worker简介](arkts-utils/worker-introduction.md)
+        - [TaskPool和Worker的对比 (TaskPool和Worker)](arkts-utils/taskpool-vs-worker.md)
+        - [CPU密集型任务开发指导 (TaskPool和Worker)](arkts-utils/cpu-intensive-task-development.md)
+        - [I/O密集型任务开发指导 (TaskPool)](arkts-utils/io-intensive-task-development.md)
+        - [同步任务开发指导 (TaskPool和Worker)](arkts-utils/sync-task-development.md)
+      - 附录
         - [Actor并发模型对比内存共享并发模型](arkts-utils/actor-model-development-samples.md)
-        - [TaskPool和Worker的对比](arkts-utils/taskpool-vs-worker.md)
-        - [@Concurrent装饰器：校验并发函数](arkts-utils/arkts-concurrent.md)
-        - [CPU密集型任务开发指导](arkts-utils/cpu-intensive-task-development.md)
-        - [I/O密集型任务开发指导](arkts-utils/io-intensive-task-development.md)
-        - [同步任务开发指导](arkts-utils/sync-task-development.md)
+        - [TaskPool和Worker支持的序列化类型](arkts-utils/serialization-support-types.md)
+        - [\@Concurrent装饰器：校验并发函数](arkts-utils/arkts-concurrent.md)
     - 容器类库
       - [容器类库概述](arkts-utils/container-overview.md)
       - [线性容器](arkts-utils/linear-container.md)
@@ -526,7 +528,7 @@
       - [图片编码](media/image-encoding.md)
       - [图片工具](media/image-tool.md)
   - 安全
-    - 访问控制  
+    - 访问控制
       - [访问控制（权限）开发概述](security/accesstoken-overview.md)
       - [访问控制授权申请指导](security/accesstoken-guidelines.md)
       - [访问控制权限校验指导](security/permission-verify-guidelines.md)
@@ -718,27 +720,58 @@
     - [常见问题](key-features/multi-device-app-dev/faq.md)
   - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
   - Native API相关指导
-    - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
-    - 图形图像
-      - [XComponent开发指导](napi/xcomponent-guidelines.md)
-      - [使用Drawing实现图形绘制与显示](napi/drawing-guidelines.md)
-      - [NativeBuffer开发指导](napi/native-buffer-guidelines.md)
-      - [NativeImage开发指导](napi/native-image-guidelines.md)
-      - [NativeVsync开发指导](napi/native-vsync-guidelines.md)
-      - [NativeWindow开发指导](napi/native-window-guidelines.md)
-      - [Vulkan开发指导](napi/vulkan-guidelines.md)
-    - 资源管理
-      - [Rawfile开发指导](napi/rawfile-guidelines.md)
-    - AI
-      - [使用MindSpore Lite引擎进行模型推理](napi/mindspore-lite-guidelines.md)
-      - [使用MindSpore Lite进行离线模型的转换及推理](napi/mindspore-lite-offline-model-guidelines.md)
-      - [Neural Network Runtime对接AI推理框架开发指导](napi/neural-network-runtime-guidelines.md)
-    - 内存管理
-      - [Purgeable memory开发指导](napi/purgeable-memory-guidelines.md)
-    - 设备管理
-      - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
-    - 数据管理
-      - [RelationalStore开发指导](napi/native-relational-store-guidelines.md)
+    - [NDK开发导读](napi/ndk-development-overview.md)
+    - [创建NDK工程](napi/create-with-ndk.md)
+    - 构建NDK工程
+      - [NDK工程构建概述](napi/build-with-ndk-overview.md)
+      - [使用DevEco Studio模板构建NDK工程](napi/build-with-ndk-ide.md)
+      - [使用命令行CMake构建NDK工程](napi/build-with-ndk-cmake.md)
+      - [在NDK工程中使用预构建库](napi/build-with-ndk-prebuilts.md)
+    - 代码开发
+      - [代码开发概述](napi/develop-code-overview.md)
+      - 使用Node-API实现跨语言交互
+        - [OpenHarmony Node-API简介](napi/napi-introduction.md)
+        - [Node-API支持的数据类型和接口](napi/napi-data-types-interfaces.md)
+        - [Node-API开发规范](napi/napi-guidelines.md)
+        - [使用Node-API实现跨语言交互开发流程](napi/use-napi-process.md)
+        - Node-API典型使用场景
+            - [使用Node-API接口进行异步任务开发](napi/use-napi-asynchronous-task.md)
+            - [使用Node-API接口进行线程安全开发](napi/use-napi-thread-safety.md)
+        - [OpenHarmony Node-API常见问题](napi/use-napi-faqs.md)
+      - 图形图像
+        - [XComponent开发指导](napi/xcomponent-guidelines.md)
+        - [使用Drawing实现图形绘制与显示](napi/drawing-guidelines.md)
+        - [NativeBuffer开发指导](napi/native-buffer-guidelines.md)
+        - [NativeImage开发指导](napi/native-image-guidelines.md)
+        - [NativeVsync开发指导](napi/native-vsync-guidelines.md)
+        - [NativeWindow开发指导](napi/native-window-guidelines.md)
+        - [Vulkan开发指导](napi/vulkan-guidelines.md)
+      - 资源管理
+        - [Rawfile开发指导](napi/rawfile-guidelines.md)
+      - 资源调度
+        - [FFRT开发指导](napi/ffrt-guidelines.md)
+      - AI
+        - [使用MindSpore Lite引擎进行模型推理](napi/mindspore-lite-guidelines.md)
+        - [使用MindSpore Lite进行离线模型的转换及推理](napi/mindspore-lite-offline-model-guidelines.md)
+        - [Neural Network Runtime对接AI推理框架开发指导](napi/neural-network-runtime-guidelines.md)
+      - 内存管理
+        - [Purgeable memory开发指导](napi/purgeable-memory-guidelines.md)
+      - 设备管理
+        - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
+      - 数据管理
+        - [RelationalStore开发指导](napi/native-relational-store-guidelines.md)
+      - 包管理
+        - [NativeBundle开发指导](napi/native-bundle-guidelines.md)
+    - 调试和性能分析
+      - [调试和性能分析概述](napi/debug-performance-profiling-overview.md)
+      - [通过DevEco Studio调试](napi/debug-ide.md)
+      - [LLDB高性能调试器](napi/debug-lldb.md)
+      - [C/C++内存错误检测](napi/debug-asan.md)
+    - 硬件兼容性
+      - [硬件兼容性简介](napi/hw-guide.md)
+      - [OpenHarmony ABI](napi/ohos-abi.md)
+      - [CPU特性](napi/cpu-features.md)
+      - [使用Neon指令扩展](napi/neon-guide.md)
   - 性能
     - [性能优化概览](performance/performance-overview.md)
     - ArkTS高性能编程
@@ -755,6 +788,7 @@
       - [精准控制组件的更新范围](performance/precisely-control-render-scope.md)
       - [合理使用renderGroup](performance/reasonable-using-renderGroup.md)
       - [减少动画丢帧](performance/reduce-animation-frame-loss.md)
+      - [Grid高性能开发指导](performance/grid_optimization.md)
     - 提升应用启动和响应速度
       - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
       - [提升应用响应速度](performance/improve-application-response.md)
@@ -767,6 +801,7 @@
       - [列表场景性能提升实践](performance/list-perf-improvment.md)
       - [动效能力实践](performance/animation_practice.md)
       - [性能提升的其他方法](performance/arkts-performance-improvement-recommendation.md)
+      - [运行时动态加载页面提升性能](performance/performance-dynamic-import.md)
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
       - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)
@@ -786,7 +821,7 @@
     - [OpenHarmony SDK 升级助手](tools/openharmony_sdk_upgrade_assistant.md)
 - 示例教程
   - [开发案例](https://gitee.com/openharmony/docs/blob/master/zh-cn/third-party-cases/Readme-CN.md)
-  - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-4.0-Release/README_zh.md)
+  - [示例代码](Samples.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
   - [系统能力SystemCapability使用指南](reference/syscap.md)
@@ -1480,15 +1515,15 @@
       - [Shape](reference/arkui-ts/ts-drawing-components-shape.md)
     - 画布组件
       - [Canvas](reference/arkui-ts/ts-components-canvas-canvas.md)
-      - [CanvasGradient对象](reference/arkui-ts/ts-components-canvas-canvasgradient.md)
+      - [CanvasGradient](reference/arkui-ts/ts-components-canvas-canvasgradient.md)
       - [CanvasPattern](reference/arkui-ts/ts-components-canvas-canvaspattern.md)
-      - [CanvasRenderingContext2D对象](reference/arkui-ts/ts-canvasrenderingcontext2d.md)
-      - [ImageBitmap对象](reference/arkui-ts/ts-components-canvas-imagebitmap.md)
-      - [ImageData对象](reference/arkui-ts/ts-components-canvas-imagedata.md)
+      - [CanvasRenderingContext2D](reference/arkui-ts/ts-canvasrenderingcontext2d.md)
+      - [ImageBitmap](reference/arkui-ts/ts-components-canvas-imagebitmap.md)
+      - [ImageData](reference/arkui-ts/ts-components-canvas-imagedata.md)
       - [Matrix2D](reference/arkui-ts/ts-components-canvas-matrix2d.md)
       - [OffscreenCanvas](reference/arkui-ts/ts-components-offscreencanvas.md)
-      - [OffscreenCanvasRenderingContext2D对象](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
-      - [Path2D对象](reference/arkui-ts/ts-components-canvas-path2d.md)
+      - [OffscreenCanvasRenderingContext2D](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
+      - [Path2D](reference/arkui-ts/ts-components-canvas-path2d.md)
     - 高级组件
       - [@ohos.arkui.advanced.ComposeListItem (列表)](reference/arkui-ts/ts-composite-components-composelistitem.md)
       - [@ohos.arkui.advanced.ComposeTitleBar (头像和单双行文本标题栏)](reference/arkui-ts/ts-composite-components-composetitlebar.md)
@@ -1861,6 +1896,7 @@
       - [UsbDdk](reference/native-apis/_usb_ddk.md)
       - [Hitrace](reference/native-apis/_hitrace.md)
       - [Vulkan](reference/native-apis/_vulkan.md)
+      - [Bundle](reference/native-apis/_bundle.md)
     - 头文件
       - [drawing_bitmap.h](reference/native-apis/drawing__bitmap_8h.md)
       - [drawing_brush.h](reference/native-apis/drawing__brush_8h.md)
@@ -1920,6 +1956,7 @@
       - [native_huks_api.h](reference/native-apis/native__huks__api_8h.md)
       - [native_huks_param.h](reference/native-apis/native__huks__param_8h.md)
       - [native_huks_type.h](reference/native-apis/native__huks__type_8h.md)
+      - [native_interface_bundle.h](reference/native-apis/native__interface__bundle.md)
       - [oh_cursor.h](reference/native-apis/oh__cursor_8h.md)
       - [oh_predicates.h](reference/native-apis/oh__predicates_8h.md)
       - [oh_value_object.h](reference/native-apis/oh__value__object_8h.md)
@@ -1935,6 +1972,7 @@
     - 结构体
       - [OH_Drawing_BitmapFormat](reference/native-apis/_o_h___drawing___bitmap_format.md)
       - [OH_NativeBuffer_Config](reference/native-apis/_o_h___native_buffer___config.md)
+      - [OH_NativeBundle_ApplicationInfo](reference/native-apis/_o_h___native_bundle_application_info.md)
       - [OH_NativeXComponent_Callback](reference/native-apis/_o_h___native_x_component___callback.md)
       - [OH_NativeXComponent_MouseEvent](reference/native-apis/_o_h___native_x_component___mouse_event.md)
       - [OH_NativeXComponent_MouseEvent_Callback](reference/native-apis/_o_h___native_x_component___mouse_event___callback.md)
@@ -2049,6 +2087,7 @@
     - [ArkUI路由/导航开发常见问题(ArkTS)](faqs/faqs-arkui-route-nav.md)
     - [ArkUI动画/交互事件开发常见问题(ArkTS)](faqs/faqs-arkui-animation-interactive-event.md)
   - [ArkUI框架开发常见问题(JS)](faqs/faqs-arkui-js.md)
+  - [ArkTS语言基础类库开发常见问题](faqs/faqs-arkts-utils.md)
   - [Web开发常见问题](faqs/faqs-arkui-web.md)
   - [包管理开发常见问题](faqs/faqs-bundle-management.md)
   - [资源管理开发常见问题](faqs/faqs-globalization.md)

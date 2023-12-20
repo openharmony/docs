@@ -8,7 +8,7 @@ Socket 连接主要是通过 Socket 进行数据传输，支持 TCP/UDP/TLS 协�
 
 - Socket：套接字，就是对网络中不同主机上的应用进程之间进行双向通信的端点的抽象。
 - TCP：传输控制协议(Transmission Control Protocol)。是一种面向连接的、可靠的、基于字节流的传输层通信协议。
-- UDP：用户数据报协议协议(User Datagram Protocol)。是一个简单的面向消息的传输层，不需要连接。
+- UDP：用户数据报协议(User Datagram Protocol)。是一个简单的面向消息的传输层，不需要连接。
 - TLS：安全传输层协议(Transport Layer Security)。用于在两个通信应用程序之间提供保密性和数据完整性。
 
 ## 场景介绍
@@ -25,12 +25,12 @@ Socket 连接主要是通过 Socket 进行数据传输，支持 TCP/UDP/TLS 协�
 
 Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 
-| 接口名                             | 功能描述                                                                       |
+| 接口名                             | 描述                                                                          |
 | ---------------------------------- | ------------------------------------------------------------------------------ |
 | constructUDPSocketInstance()       | 创建一个 UDPSocket 对象。                                                      |
 | constructTCPSocketInstance()       | 创建一个 TCPSocket 对象。                                                      |
 | constructTCPSocketServerInstance() | 创建一个 TCPSocketServer 对象。                                                |
-| listen()                           | 绑定 IP 地址和端口，监听并接受与此套接字建立的 TCPSocket 连接。（仅 TCP 支持） |
+| listen()                           | 绑定 IP 地址和端口，监听并接受与此套接字建立的 TCPSocket 连接。（仅 TCP 支持）    |
 | bind()                             | 绑定 IP 地址和端口。                                                           |
 | send()                             | 发送数据。                                                                     |
 | close()                            | 关闭连接。                                                                     |

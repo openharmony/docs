@@ -33,6 +33,8 @@ import Want from '@ohos.app.ability.Want';
 - 基础用法(在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象)
 
   ```ts
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import Want from '@ohos.app.ability.Want';
   import { BusinessError } from '@ohos.base';
 
@@ -42,7 +44,7 @@ import Want from '@ohos.app.ability.Want';
     abilityName: 'EntryAbility',
     moduleName: 'entry' // moduleName非必选
   };
-  class MyAbility extends UIAbility{
+  class MyAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam){
       this.context.startAbility(want, (error: BusinessError) => {
         // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability

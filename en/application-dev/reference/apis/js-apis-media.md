@@ -203,6 +203,7 @@ media.createAVRecorder().then((recorder: media.AVRecorder) => {
 createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
 
 Creates a **VideoRecorder** instance. This API uses an asynchronous callback to return the result.
+
 Only one **VideoRecorder** instance can be created per device.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
@@ -243,6 +244,7 @@ media.createVideoRecorder((error: BusinessError, video: media.VideoRecorder) => 
 createVideoRecorder(): Promise\<VideoRecorder>
 
 Creates a **VideoRecorder** instance. This API uses a promise to return the result.
+
 Only one **VideoRecorder** instance can be created per device.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
@@ -2756,23 +2758,25 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // Configure the parameters based on those supported by the hardware device.
 let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
-  audioCodec : 'audio/mp4a-latm' as media.CodecMimeType,
+  audioCodec : media.CodecMimeType.AUDIO_AAC,
   audioSampleRate : 48000,
-  fileFormat : 'mp4' as media.ContainerFormatType,
+  fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 2000000,
-  videoCodec : 'video/avc' as media.CodecMimeType,
+  videoCodec : media.CodecMimeType.VIDEO_AVC,
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
 }
 
 let videoConfig: media.VideoRecorderConfig = {
-  audioSourceType : 1,
-  videoSourceType : 0,
+  audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
+  videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : videoProfile,
   url : 'fd://xx',   // The file must be created by the caller and granted with proper permissions.
   rotation : 0,
@@ -2831,19 +2835,19 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
-  audioCodec : 'audio/mp4a-latm' as media.CodecMimeType,
+  audioCodec : media.CodecMimeType.AUDIO_AAC,
   audioSampleRate : 48000,
-  fileFormat : 'mp4' as media.ContainerFormatType,
+  fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 2000000,
-  videoCodec : 'video/avc' as media.CodecMimeType,
+  videoCodec : media.CodecMimeType.VIDEO_AVC,
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
 }
 
 let videoConfig: media.VideoRecorderConfig = {
-  audioSourceType : 1,
-  videoSourceType : 0,
+  audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
+  videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : videoProfile,
   url : 'fd://xx',   // The file must be created by the caller and granted with proper permissions.
   rotation : 0,
@@ -2891,8 +2895,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // asyncallback
-let surfaceID: string;                                               // Surface ID passed to the external system.
+let surfaceID: string; // Surface ID passed to the external system.
 videoRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
   if (err == null) {
     console.info('getInputSurface success');
@@ -3442,7 +3448,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 ```ts
 // This event is reported when an error occurs during the retrieval of videoRecordState.
-videoRecorder.on('error', (error: Error) => {                                  // Set the 'error' event callback.
+videoRecorder.on('error', (error: Error) => {   // Set the 'error' event callback.
   console.error(`audio error called, error: ${error}`);
 })
 ```

@@ -12,7 +12,7 @@
 
 | 名称 | 参数类型 | 参数描述 |
 | -------- | -------- | -------- |
-| transition | TransitionOptions<sup>(deprecated)</sup> \| TransitionEffect<sup>10+</sup>  | 设置组件插入显示和删除隐藏的过渡效果。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>详细描述见TransitionOptions和TransitionEffect对象说明。 |
+| transition | [TransitionOptions](#transitionoptionsdeprecated)<sup>(deprecated)</sup> \| [TransitionEffect](#transitioneffect10对象说明)<sup>10+</sup>  | 设置组件插入显示和删除隐藏的过渡效果。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>详细描述见[TransitionOptions](#transitionoptionsdeprecated)和[TransitionEffect](#transitioneffect10对象说明)对象说明。 |
 
 
 ## TransitionEffect<sup>10+</sup>对象说明
@@ -24,8 +24,8 @@ TransitionEffect以函数的形式指定转场效果。提供了以下接口：
 | scale | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number,<br/>centerX?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string,<br/>centerY?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 是 | 设置组件转场时的缩放效果，为插入时起点和删除时终点的值。<br/>-x：横向放大倍数（或缩小比例）。<br/>-y：纵向放大倍数（或缩小比例）。<br/>-z：当前为二维显示，该参数无效 。<br/>-&nbsp;centerX、centerY指缩放中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为缩放中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。|
 | rotate | {<br/>x?:&nbsp;number,<br/>y?:&nbsp;number,<br/>z?:&nbsp;number,<br/>angle:&nbsp;number&nbsp;\|&nbsp;string,<br/>centerX?:&nbsp;number&nbsp;\|&nbsp;string,<br/>centerY?:&nbsp;number&nbsp;\|&nbsp;string,<br/>centerZ?:&nbsp;number,<br/>perspective?:&nbsp;number<br/>} | 是 | 设置组件转场时的旋转效果，为插入时起点和删除时终点的值。<br/>-x：横向的旋转向量分量。<br/>-y：纵向的旋转向量分量。<br/>-z：竖向的旋转向量分量。<br/>-&nbsp;centerX、centerY指旋转中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为旋转中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。<br/>-centerZ指z轴锚点，即3D旋转中心点的z轴分量，centerZ默认值是0。<br/>-perspective指视距，即视点到z=0平面的距离，perspective默认值是0。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | move | [TransitionEdge](ts-appendix-enums.md#transitionedge10) | 是 | 指定组件转场时从屏幕边缘滑入和滑出的效果，本质为平移效果，为插入时起点和删除时终点的值。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
-| asymmetric | appear: TransitionEffect,<br/>disappear: TransitionEffect<br/> | 是 | 指定非对称的转场效果。<br/>第一个参数指定出现的转场效果，第二个参数指定消失的转场效果。<br/>如不通过asymmetric函数构造TransitionEffect，则表明该效果在组件出现和消失时均生效。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
-| combine | TransitionEffect | 否 | 对TransitionEffect进行链式组合，以形成包含多种转场效果的TransitionEffect。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| asymmetric | appear: [TransitionEffect](#transitioneffect10对象说明),<br/>disappear: [TransitionEffect](#transitioneffect10对象说明)<br/> | 是 | 指定非对称的转场效果。<br/>第一个参数指定出现的转场效果，第二个参数指定消失的转场效果。<br/>如不通过asymmetric函数构造TransitionEffect，则表明该效果在组件出现和消失时均生效。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| combine | [TransitionEffect](#transitioneffect10对象说明) | 否 | 对TransitionEffect进行链式组合，以形成包含多种转场效果的TransitionEffect。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | animation | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) | 否 | 指定该TransitionEffect的动画参数。</br>该参数只用来指定动画参数，其入参AnimateParam的onFinish回调不生效。</br>如果通过combine进行TransitionEffect的组合，前一TransitionEffect的动画参数也可用于后一TransitionEffect。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 
 上表提供的静态函数用于构造TransitionEffect对象，而非静态函数作用于构造好的TransitionEffect对象，以指定多种转场效果的组合效果和动画参数。

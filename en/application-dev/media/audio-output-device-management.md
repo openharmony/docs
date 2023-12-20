@@ -20,15 +20,15 @@ let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of Au
 
 The table below lists the supported audio output devices.
 
-| Name| Value| Description| 
+| Name| Value| Description|
 | -------- | -------- | -------- |
-| EARPIECE | 1 | Earpiece.| 
-| SPEAKER | 2 | Speaker.| 
-| WIRED_HEADSET | 3 | Wired headset with a microphone.| 
-| WIRED_HEADPHONES | 4 | Wired headset without microphone.| 
-| BLUETOOTH_SCO | 7 | Bluetooth device using Synchronous Connection Oriented (SCO) links.| 
-| BLUETOOTH_A2DP | 8 | Bluetooth device using Advanced Audio Distribution Profile (A2DP) links.| 
-| USB_HEADSET | 22 | USB Type-C headset.| 
+| EARPIECE | 1 | Earpiece.|
+| SPEAKER | 2 | Speaker.|
+| WIRED_HEADSET | 3 | Wired headset with a microphone.|
+| WIRED_HEADPHONES | 4 | Wired headset without microphone.|
+| BLUETOOTH_SCO | 7 | Bluetooth device using Synchronous Connection Oriented (SCO) links.|
+| BLUETOOTH_A2DP | 8 | Bluetooth device using Advanced Audio Distribution Profile (A2DP) links.|
+| USB_HEADSET | 22 | USB Type-C headset.|
 
 ## Obtaining Output Device Information
 
@@ -102,7 +102,6 @@ Call **getPreferOutputDeviceForRendererInfo()** to obtain the output device with
 ```ts
 import audio from '@ohos.multimedia.audio';
 let rendererInfo: audio.AudioRendererInfo = {
-    content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0,
 }
@@ -121,7 +120,6 @@ async function getPreferOutputDeviceForRendererInfo() {
 ```ts
 import audio from '@ohos.multimedia.audio';
 let rendererInfo: audio.AudioRendererInfo = {
-    content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0,
 }

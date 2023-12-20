@@ -6,6 +6,8 @@ With the **Worker** module, you can provide a multithreading environment for an 
 
 The **Context** object of the worker thread is different from that of the main thread. The worker thread does not support UI operations.
 
+For details about the precautions for using **Worker**, see [Precautions for Worker](../../arkts-utils/taskpool-vs-worker.md#precautions-for-worker).
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -384,10 +386,10 @@ workerInstance.onexit = () => {
 }
 
 // onexit is executed in either of the following ways:
-// Main thread:
+// Main thread
 workerInstance.terminate();
 
-// Worker thread:
+// Worker thread
 //workerPort.close()
 ```
 
@@ -1456,10 +1458,10 @@ workerInstance.onexit = () => {
 }
 
 // onexit is executed in either of the following ways:
-// Main thread:
+// Main thread
 workerInstance.terminate();
 
-// Worker thread:
+// Worker thread
 //parentPort.close()
 ```
 
@@ -1926,7 +1928,7 @@ Defines the object for which the ownership is to be transferred during data tran
 
 | Name    | Type    | Readable| Writable| Description                             |
 | -------- | -------- | ---- | ---- | --------------------------------- |
-| transfer | Object[] | Yes  | Yes  | **ArrayBuffer** array used to transfer the ownership. The array cannot contain **null**.|
+| transfer | Object[] | Yes  | Yes  | **ArrayBuffer** array used to transfer the ownership. The array cannot be **null**.|
 
 
 ## Event
@@ -2118,7 +2120,7 @@ Each actor concurrently processes tasks of the main thread. For each actor, ther
 
 ## Sample Code
 > **NOTE**<br>
-> Two projects of API version 9 are used as an example. <br>Only the FA model is supported in API version 8 and earlier versions. If you want to use API version 8 or earlier, change the API for constructing the **Worker** instance and the API for creating an object in the worker thread for communicating with the main thread.
+> Two projects of API version 9 are used as an example.<br>Only the FA model is supported in API version 8 and earlier versions. If you want to use API version 8 or earlier, change the API for constructing the **Worker** instance and the API for creating an object in the worker thread for communicating with the main thread.
 ### FA Model
 
 ```ts
@@ -2144,6 +2146,10 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 // Call onexit().
 workerInstance.onexit = () => {
     console.log("main thread terminate");
+}
+
+workerInstance.onerror = (err: ErrorEvent) => {
+    console.log("main error message " + err.message);
 }
 ```
 ```ts
@@ -2201,6 +2207,10 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 // Call onexit().
 workerInstance.onexit = () => {
     console.log("main thread terminate");
+}
+
+workerInstance.onerror = (err: ErrorEvent) => {
+    console.log("main error message " + err.message);
 }
 ```
 ```ts

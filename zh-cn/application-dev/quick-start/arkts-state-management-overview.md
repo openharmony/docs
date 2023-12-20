@@ -21,7 +21,7 @@
 ![zh-cn_image_0000001562352677](figures/zh-cn_image_0000001562352677.png)
 
 
-- View(UI)：UI渲染，一般指自定义组件的build方法和\@Builder装饰的方法内的UI描述。
+- View(UI)：UI渲染，指将build方法内的UI描述和\@Builder装饰的方法内的UI描述映射到界面。
 
 - State：状态，指驱动UI更新的数据。用户通过触发组件的事件方法，改变状态数据。状态数据的改变，引起UI的重新渲染。
 
@@ -30,13 +30,13 @@
 
 - 状态变量：被状态装饰器装饰的变量，状态变量值的改变会引起UI的渲染更新。示例：@State num: number = 1,其中，@State是状态装饰器，num是状态变量。
 
-- 常规变量：没有状态的变量，通常应用于辅助计算。它的改变永远不会引起UI的刷新。
+- 常规变量：常规变量：没有被状态装饰器装饰的变量，通常应用于辅助计算。它的改变永远不会引起UI的刷新。以下示例中increaseBy变量为常规变量。
 
-- 数据源/同步源：状态变量的原始来源，可以同步给不同的状态数据。通常意义为父组件传给子组件的数据。
+- 数据源/同步源：数据源/同步源：状态变量的原始来源，可以同步给不同的状态数据。通常意义为父组件传给子组件的数据。以下示例中数据源为count: 1。
 
 - 命名参数机制：父组件通过指定参数传递给子组件的状态变量，为父子传递同步参数的主要手段。示例：CompA: ({ aProp: this.aProp })。
 
-- 从父组件初始化：父组件传使用命名参数机制，将指定参数传递给子组件。本地初始化的默认值在有父组件传值的情况下，会被覆盖。示例：
+- 从父组件初始化：父组件使用命名参数机制，将指定参数传递给子组件。子组件初始化的默认值在有父组件传值的情况下，会被覆盖。示例：
 
   ```ts
   @Component
@@ -59,9 +59,9 @@
   }
   ```
 
-- 初始化子节点：组件中状态变量可以传递给子组件，初始化子组件对应的状态变量。示例同上。
+- 初始化子节点：父组件中状态变量可以传递给子组件，初始化子组件对应的状态变量。示例同上。
 
-- 本地初始化：变量声明的时候赋值，作为初始化的默认值。示例：\@State count: number = 0。
+- 本地初始化：在变量声明的时候赋值，作为变量的默认值。示例：\@State count: number = 0。
 
 
 ## 装饰器总览
@@ -116,7 +116,7 @@ ArkUI提供了多种装饰器，通过使用这些装饰器，状态变量不仅
 
 - AppStorage是应用程序中的一个特殊的单例LocalStorage对象，是应用级的数据库，和进程绑定，通过[@StorageProp](arkts-appstorage.md#storageprop)和[@StorageLink](arkts-appstorage.md#storagelink)装饰器可以和组件联动。
 
-- AppStorage是应用状态的“中枢”，需要和组件（UI）交互的数据存入AppStorage，比如持久化数据PersistentStorage和环境变量Environment。UI再通过AppStorage提供的装饰器或者API接口，访问这些数据；
+- AppStorage是应用状态的“中枢”，将需要与组件（UI）交互的数据存入AppStorage，比如持久化数据PersistentStorage和环境变量Environment。UI再通过AppStorage提供的装饰器或者API接口，访问这些数据。
 
 - 框架还提供了LocalStorage，AppStorage是LocalStorage特殊的单例。LocalStorage是应用程序声明的应用状态的内存“数据库”，通常用于页面级的状态共享，通过[@LocalStorageProp](arkts-localstorage.md#localstorageprop)和[@LocalStorageLink](arkts-localstorage.md#localstoragelink)装饰器可以和UI联动。
 
@@ -126,7 +126,7 @@ ArkUI提供了多种装饰器，通过使用这些装饰器，状态变量不仅
 \@Watch用于监听状态变量的变化。
 
 
-$$运算符：给内置组件提供TS变量的引用，使得TS变量和内置组件的内部状态保持同步。
+[$$运算符](arkts-two-way-sync.md)：给内置组件提供TS变量的引用，使得TS变量和内置组件的内部状态保持同步。
 
 ## 相关实例
 

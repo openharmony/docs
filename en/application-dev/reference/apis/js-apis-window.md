@@ -19,12 +19,13 @@ import window from '@ohos.window';
 
 ## WindowType<sup>7+</sup>
 
+
 Enumerates the window types.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 | Name                                 | Value| Description                                                                                    |
-| ----------------- | ------ | ------------------ |
+|-------------------------------------| ------ |----------------------------------------------------------------------------------------|
 | TYPE_APP                            | 0      | Application subwindow.<br>**Model restriction**: This API can be used only in the FA model.                                                  |
 | TYPE_SYSTEM_ALERT                   | 1      | System alert window.                                                                             |
 | TYPE_INPUT_METHOD<sup>9+</sup>      | 2      | Input method window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                        |
@@ -354,7 +355,7 @@ try {
     }
     windowClass = data;
     console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
-    windowClass.resetSize(500, 1000);
+    windowClass.resize(500, 1000);
   });
 } catch (exception) {
   console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
@@ -2028,8 +2029,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | --------------------------------------------- |
-| x        | number                    | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
-| y        | number                    | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
+| x        | number                    | Yes| Distance that the window moves along the x-axis, in pixels. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y        | number                    | Yes| Distance that the window moves along the y-axis, in pixels. A positive value indicates that the window moves downwards. The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                    |
 
 **Error codes**
@@ -2075,8 +2076,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -- | ----- | -- | --------------------------------------------- |
-| x | number | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
-| y | number | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
+| x | number | Yes| Distance that the window moves along the x-axis, in pixels. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y | number | Yes| Distance that the window moves along the y-axis, in pixels. A positive value indicates that the window moves downwards. The value must be an integer.|
 
 **Return value**
 
@@ -2135,8 +2136,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | ------------------------ |
-| width    | number                    | Yes| New width of the window, in px. The value must be an integer.|
-| height   | number                    | Yes| New height of the window, in px. The value must be an integer.|
+| width    | number                    | Yes| New width of the window, in pixels. The value must be an integer.|
+| height   | number                    | Yes| New height of the window, in pixels. The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.               |
 
 **Error codes**
@@ -2181,7 +2182,6 @@ The minimum width and height of the main window and subwindow of the application
 The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
 
 The window width and height you set must meet the limits. The rules are as follows:
-
 - If the window width or height you set is less than the minimum width or height limit, then the minimum width or height limit takes effect.
 - If the window width or height you set is greater than the maximum width or height limit, then the maximum width or height limit takes effect.
 
@@ -2193,8 +2193,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | -- | ------------------------ |
-| width  | number | Yes| New width of the window, in px. The value must be an integer.|
-| height | number | Yes| New height of the window, in px. The value must be an integer.|
+| width  | number | Yes| New width of the window, in pixels. The value must be an integer.|
+| height | number | Yes| New height of the window, in pixels. The value must be an integer.|
 
 **Return value**
 
@@ -2856,7 +2856,7 @@ export default class EntryAbility extends UIAbility {
 
 setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-Loads content from a page to this window. This API uses an asynchronous callback to return the result.
+Loads the content of a page, with its path in the current project specified, to this window. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2864,7 +2864,7 @@ Loads content from a page to this window. This API uses an asynchronous callback
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | -------------------- |
-| path     | string                    | Yes| Path of the page from which the content will be loaded.|
+| path     | string                    | Yes| Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.         |
 
 **Error codes**
@@ -2900,7 +2900,7 @@ try {
 
 setUIContent(path: string): Promise&lt;void&gt;
 
-Loads content from a page to this window. This API uses a promise to return the result.
+Loads the content of a page, with its path in the current project specified, to this window. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2908,7 +2908,7 @@ Loads content from a page to this window. This API uses a promise to return the 
 
 | Name| Type| Mandatory| Description|
 | ---- | ------ | -- | ------------------ |
-| path | string | Yes| Path of the page from which the content will be loaded.|
+| path | string | Yes| Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project.|
 
 **Return value**
 
@@ -2947,7 +2947,7 @@ try {
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-Loads content from a page associated with a local storage to this window. This API uses an asynchronous callback to return the result.
+Loads the content of a page, with its path in the current project specified, to this window, and transfers the state attribute to the page through a local storage. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -2957,8 +2957,8 @@ Loads content from a page associated with a local storage to this window. This A
 
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| path     | string                                          | Yes  | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.|
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 | callback | AsyncCallback&lt;void&gt;                       | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -3010,7 +3010,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 
-Loads content from a page associated with a local storage to this window. This API uses a promise to return the result.
+Loads the content of a page, with its path in the current project specified, to this window, and transfers the status attribute to the page through a local storage. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -3020,8 +3020,8 @@ Loads content from a page associated with a local storage to this window. This A
 
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| path    | string                                          | Yes  | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.|
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 
 **Return value**
 
@@ -3070,258 +3070,6 @@ export default class EntryAbility extends UIAbility {
     }
   }
 };
-```
-
-### loadContentByName<sup>11+</sup>
-
-loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
-
-Loads content from the [named route](../../ui/arkts-routing.md#named-route) page associated with a local storage to this window. This API uses an asynchronous callback to return the result.
-
-**Model restriction**: This API can be used only in the stage model.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Parameters**
-
-| Name  | Type                                                   | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| name     | string                                                  | Yes  | Name of the named route page.                                            |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
-| callback | AsyncCallback&lt;void&gt;                               | Yes  | Callback used to return the result.                                                  |
-
-**Error codes**
-
-For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
-
-| ID| Error Message                                     |
-| -------- | --------------------------------------------- |
-| 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
-
-**Example**
-
-```ts
-// ets/entryability/EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
-import * as Index from '../pages/Index'; // Import the named route page.
-
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
-    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
-    let storage: LocalStorage = new LocalStorage();
-    storage.setOrCreate('storageSimpleProp', 121);
-    try {
-      if (!windowClass) {
-        console.info('Failed to load the content. Cause: windowClass is null');
-      } else {
-        (windowClass as window.Window).loadContentByName(Index.entryName, storage, (err: BusinessError) => {
-          const errCode: number = err.code;
-          if (errCode) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-            return;
-          }
-          console.info('Succeeded in loading the content.');
-        });
-      }
-    } catch (exception) {
-      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-    }
-  }
-};
-```
-```ts
-// ets/pages/Index.ets
-export const entryName : string = 'Index';
-@Entry({routeName: entryName, storage : LocalStorage.getShared()})
-@Component
-export struct Index {
-  @State message: string = 'Hello World'
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-### loadContentByName<sup>11+</sup>
-
-loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
-
-Loads content from the [named route](../../ui/arkts-routing.md#named-route) page to this window. This API uses an asynchronous callback to return the result.
-
-**Model restriction**: This API can be used only in the stage model.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Parameters**
-
-| Name  | Type                     | Mandatory| Description            |
-| -------- | ------------------------- | ---- | ---------------- |
-| name     | string                    | Yes  | Name of the named route page.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.      |
-
-**Error codes**
-
-For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
-
-| ID| Error Message                                     |
-| -------- | --------------------------------------------- |
-| 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
-
-**Example**
-
-```ts
-// ets/entryability/EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
-import * as Index from '../pages/Index'; // Import the named route page.
-
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
-    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
-    try {
-      if (!windowClass) {
-        console.info('Failed to load the content. Cause: windowClass is null');
-      } else {
-        (windowClass as window.Window).loadContentByName(Index.entryName, (err: BusinessError) => {
-          const errCode: number = err.code;
-          if (errCode) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-            return;
-          }
-          console.info('Succeeded in loading the content.');
-        });
-      }
-    } catch (exception) {
-      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-    }
-  }
-};
-```
-```ts
-// ets/pages/Index.ets
-export const entryName : string = 'Index';
-@Entry({routeName: entryName})
-@Component
-export struct Index {
-  @State message: string = 'Hello World'
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-### loadContentByName<sup>11+</sup>
-
-loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
-
-Loads content from the [named route](../../ui/arkts-routing.md#named-route) page associated with a local storage to this window. This API uses a promise to return the result.
-
-**Model restriction**: This API can be used only in the stage model.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Parameters**
-
-| Name | Type                                                   | Mandatory| Description                                                        |
-| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| name    | string                                                  | Yes  | Name of the named route page.                                            |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
-
-**Return value**
-
-| Type               | Description                     |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
-
-| ID| Error Message                                     |
-| -------- | --------------------------------------------- |
-| 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
-
-**Example**
-
-```ts
-// ets/entryability/EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
-import * as Index from '../pages/Index'; // Import the named route page.
-
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
-    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
-    let storage: LocalStorage = new LocalStorage();
-    storage.setOrCreate('storageSimpleProp', 121);
-    try {
-      if (!windowClass) {
-        console.info('Failed to load the content. Cause: windowClass is null');
-      } else {
-        let promise = (windowClass as window.Window).loadContentByName(Index.entryName, storage);
-        promise.then(() => {
-          console.info('Succeeded in loading the content.');
-        }).catch((err: BusinessError) => {
-          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-        });
-      }
-    } catch (exception) {
-      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-    }
-  }
-};
-```
-```ts
-// ets/pages/Index.ets
-export const entryName : string = 'Index';
-@Entry({routeName: entryName, storage : LocalStorage.getShared()})
-@Component
-export struct Index {
-  @State message: string = 'Hello World'
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
 ```
 
 ### isWindowShowing<sup>9+</sup>
@@ -3527,6 +3275,8 @@ on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
 
 Subscribes to the click event outside this window.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -3554,6 +3304,8 @@ try {
 off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 
 Unsubscribes from the click event outside this window.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -5305,7 +5057,6 @@ try {
 } catch (exception) {
   console.error('Failed to set backdrop blur. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setBackdropBlurStyle<sup>9+</sup>
@@ -5342,7 +5093,6 @@ try {
 } catch (exception) {
   console.error('Failed to set backdrop blur style. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setShadow<sup>9+</sup>
@@ -5382,7 +5132,6 @@ try {
 } catch (exception) {
   console.error('Failed to set shadow. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setCornerRadius<sup>9+</sup>
@@ -5419,7 +5168,6 @@ try {
 } catch (exception) {
   console.error('Failed to set corner radius. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### raiseToAppTop<sup>10+</sup>
@@ -5463,7 +5211,6 @@ windowClass.raiseToAppTop((err: BusinessError) => {
   }
   console.info('Succeeded in raising the window to app top.');
 });
-
 ```
 
 ### raiseToAppTop<sup>10+</sup>
@@ -5505,9 +5252,7 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
 });
-
 ```
-
 ### setAspectRatio<sup>10+</sup>
 
 setAspectRatio(ratio: number): Promise&lt;void&gt;
@@ -5556,7 +5301,6 @@ try {
 } catch (exception) {
   console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setAspectRatio<sup>10+</sup>
@@ -5604,7 +5348,6 @@ try {
 } catch (exception) {
   console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### resetAspectRatio<sup>10+</sup>
@@ -5648,7 +5391,6 @@ try {
 } catch (exception) {
   console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### resetAspectRatio<sup>10+</sup>
@@ -5694,7 +5436,6 @@ try {
 } catch (exception) {
     console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setWaterMarkFlag<sup>10+</sup>
@@ -5746,7 +5487,6 @@ try {
 } catch (exception) {
   console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setWaterMarkFlag<sup>10+</sup>
@@ -5795,9 +5535,7 @@ try {
 } catch (exception) {
   console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
-
 ### raiseAboveTarget<sup>10+</sup>
 
 raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
@@ -6132,7 +5870,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ------- | --------------------------------------------- |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
+| 1300004 | Unauthorized operation. |
 
 **Example**
 
@@ -6394,8 +6132,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name     | Type                      | Mandatory | Description                                                  |
 | -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| x        | number                    | Yes       | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer. |
-| y        | number                    | Yes       | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer. |
+| x        | number                    | Yes       | Distance that the window moves along the x-axis, in pixels. A positive value indicates that the window moves to the right. The value must be an integer. |
+| y        | number                    | Yes       | Distance that the window moves along the y-axis, in pixels. A positive value indicates that the window moves downwards. The value must be an integer. |
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Example**
@@ -6432,8 +6170,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name | Type   | Mandatory | Description                                                  |
 | ---- | ------ | --------- | ------------------------------------------------------------ |
-| x    | number | Yes       | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer. |
-| y    | number | Yes       | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer. |
+| x    | number | Yes       | Distance that the window moves along the x-axis, in pixels. A positive value indicates that the window moves to the right. The value must be an integer. |
+| y    | number | Yes       | Distance that the window moves along the y-axis, in pixels. A positive value indicates that the window moves downwards. The value must be an integer. |
 
 **Return value**
 
@@ -6483,8 +6221,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name     | Type                      | Mandatory | Description                                                  |
 | -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| width    | number                    | Yes       | New width of the window, in px. The value must be an integer. |
-| height   | number                    | Yes       | New height of the window, in px. The value must be an integer. |
+| width    | number                    | Yes       | New width of the window, in pixels. The value must be an integer. |
+| height   | number                    | Yes       | New height of the window, in pixels. The value must be an integer. |
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Example**
@@ -6531,8 +6269,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name   | Type   | Mandatory | Description                                                  |
 | ------ | ------ | --------- | ------------------------------------------------------------ |
-| width  | number | Yes       | New width of the window, in px. The value must be an integer. |
-| height | number | Yes       | New height of the window, in px. The value must be an integer. |
+| width  | number | Yes       | New width of the window, in pixels. The value must be an integer. |
+| height | number | Yes       | New height of the window, in pixels. The value must be an integer. |
 
 **Return value**
 
@@ -7118,10 +6856,10 @@ Loads content from a page to this window. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                                             |
-| -------- | ------------------------- | --------- | ------------------------------------------------------- |
-| path     | string                    | Yes       | Path of the page from which the content will be loaded. |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                     |
+| Name     | Type                      | Mandatory | Description                                                  |
+| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
+| path     | string                    | Yes       | Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project. |
+| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Example**
 
@@ -7153,9 +6891,9 @@ Loads content from a page to this window. This API uses a promise to return the 
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                             |
-| ---- | ------ | --------- | ------------------------------------------------------- |
-| path | string | Yes       | Path of the page from which the content will be loaded. |
+| Name | Type   | Mandatory | Description                                                  |
+| ---- | ------ | --------- | ------------------------------------------------------------ |
+| path | string | Yes       | Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project. |
 
 **Return value**
 
@@ -7962,7 +7700,6 @@ promise.then(() => {
   console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
 });
 }
-
 ```
 
 ### setPrivacyMode<sup>(deprecated)</sup>
@@ -8001,7 +7738,6 @@ windowClass.setPrivacyMode(isPrivacyMode, (err: BusinessError) => {
   }
   console.info('Succeeded in setting the window to privacy mode.');
 });
-
 ```
 
 ### setPrivacyMode<sup>(deprecated)</sup>
@@ -8342,7 +8078,7 @@ export default class EntryAbility extends UIAbility {
           console.info('Failed to load the content. Cause: windowClass is null');
         }
         else {
-          (windowClass as window.Window).resetSize(500, 1000);
+          (windowClass as window.Window).resize(500, 1000);
         }
       });
 
@@ -8511,7 +8247,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-Loads content from a page associated with a local storage to the main window in this window stage. This API uses an asynchronous callback to return the result.
+Loads the content of a page, with its path in the current project specified, to the main window of this window stage, and transfers the status attribute to the page through a local storage. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -8521,8 +8257,8 @@ Loads content from a page associated with a local storage to the main window in 
 
 | Name     | Type                                                    | Mandatory | Description                                                  |
 | -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| path     | string                                                  | Yes       | Path of the page from which the content will be loaded.      |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes       | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. |
+| path     | string                                                  | Yes       | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project. |
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes       | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
 | callback | AsyncCallback&lt;void&gt;                               | Yes       | Callback used to return the result.                          |
 
 **Error codes**
@@ -8569,7 +8305,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
-Loads content from a page associated with a local storage to the main window in this window stage. This API uses a promise to return the result.
+Loads the content of a page, with its path in the current project specified, to the main window of this window stage, and transfers the status attribute to the page through a local storage. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -8579,8 +8315,8 @@ Loads content from a page associated with a local storage to the main window in 
 
 | Name    | Type                                                    | Mandatory | Description                                                  |
 | ------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| path    | string                                                  | Yes       | Path of the page from which the content will be loaded.      |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No        | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. |
+| path    | string                                                  | Yes       | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project. |
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No        | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
 
 **Return value**
 
@@ -8639,10 +8375,10 @@ Loads content from a page to this window stage. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                                             |
-| -------- | ------------------------- | --------- | ------------------------------------------------------- |
-| path     | string                    | Yes       | Path of the page from which the content will be loaded. |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                     |
+| Name     | Type                      | Mandatory | Description                                                  |
+| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
+| path     | string                    | Yes       | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project. |
+| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Error codes**
 

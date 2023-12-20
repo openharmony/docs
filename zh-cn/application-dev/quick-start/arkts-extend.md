@@ -81,7 +81,7 @@
     build() {
       Row({ space: 10 }) {
         Text(`${this.label}`)
-          .makeMeClick(this.onClickHandler)
+          .makeMeClick(() => {this.onClickHandler()})
       }
     }
   }
@@ -94,7 +94,7 @@
     .fontColor(Color.Red)
     .fontSize(fontSize)
   }
-
+  
   @Entry
   @Component
   struct FancyUse {

@@ -47,7 +47,7 @@ FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.m
 
 setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 
-以异步方法设置数据标签，以promise形式返回结果。
+以异步方法设置数据标签，以Promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -87,7 +87,7 @@ setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
   securityLabel.setSecurityLabel(filePath, "s0").then(() => {
     console.info("setSecurityLabel successfully");
   }).catch((err: BusinessError) => {
-    console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -129,7 +129,7 @@ setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt
   let filePath = pathDir + '/test.txt';
   securityLabel.setSecurityLabel(filePath, "s0", (err: BusinessError) => {
     if (err) {
-      console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("setSecurityLabel successfully.");
     }
@@ -177,7 +177,7 @@ securityLabel.setSecurityLabelSync(filePath, "s0");
 
 getSecurityLabel(path:string):Promise&lt;string&gt;
 
-异步方法获取数据标签，以promise形式返回结果。
+异步方法获取数据标签，以Promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 

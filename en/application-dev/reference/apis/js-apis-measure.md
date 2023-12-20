@@ -62,7 +62,7 @@ struct Index {
 
 measureTextSize(options: MeasureOptions): SizeOptions
 
-Measures the width of the given single-line text.
+Measures the width and height of the given single-line text.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

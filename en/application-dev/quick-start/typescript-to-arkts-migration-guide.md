@@ -281,7 +281,7 @@ data by numeric indices.
 **TypeScript**
 
 ```typescript
-var x = {'name': 1, 2: 3}
+var x = { 'name': 'x', 2: '3' }
 
 console.log(x['name'])
 console.log(x[2])
@@ -291,18 +291,18 @@ console.log(x[2])
 
 ```typescript
 class X {
-  public name: number = 0
+  public name: string = ''
 }
-let x: X = {name: 1}
+let x: X = { name: 'x' }
 console.log(x.name)
 
-let y = [1, 2, 3]
+let y = ['a', 'b', 'c']
 console.log(y[2])
 
 // If you still need a container to store keys of different types, use Map<Object, some_type>.
-let z = new Map<Object, number>()
-z.set('name', 1)
-z.set(2, 2)
+let z = new Map<Object, string>()
+z.set('name', '1')
+z.set(2, '2')
 console.log(z.get('name'))
 console.log(z.get(2))
 ```
@@ -471,7 +471,7 @@ let value_o2: Object = 42
 
 **See also**
 
-* Recipe: Strict Type Checking Is Enforced
+Recipe: Strict Type Checking Is Enforced
 
 ### Recipe: Use `class` Instead of a Type with a Call Signature
 
@@ -516,7 +516,7 @@ doSomething(new DescribableFunction())
 
 **See also**
 
-* Recipe: Use class Instead of a Type with a Constructor Signature
+Recipe: Use class Instead of a Type with a Constructor Signature
 
 ### Recipe: Use `class` Instead of a Type with a Constructor Signature
 
@@ -557,7 +557,7 @@ function fn(s: string): SomeObject {
 
 **See also**
 
-* Recipe: Use `class` Instead of a Type with a Call Signature
+Recipe: Use `class` Instead of a Type with a Call Signature
 
 ### Recipe: Only One Static Block Is Supported
 
@@ -821,7 +821,7 @@ function fn(i: I) {
 
 **See also**
 
-* Recipe: Use `class` Instead of a Type with a Constructor Signature
+Recipe: Use `class` Instead of a Type with a Constructor Signature
 
 ### Recipe: Indexed Access Types Are Not Supported
 
@@ -1933,7 +1933,7 @@ try {
 
 **See also**
 
-* Recipe: `throw` Statements Do Not Accept Values of Arbitrary Types
+Recipe: `throw` Statements Do Not Accept Values of Arbitrary Types
 
 ### Recipe: `for .. in` Is Not Supported
 
@@ -2226,7 +2226,7 @@ function main(): void {
 
 **See also**
 
-* Recipe: `Function.apply`, `Function.bind`, and `Function.call` Are Not Supported
+Recipe: `Function.apply`, `Function.bind`, and `Function.call` Are Not Supported
 
 ### Recipe: Generator Functions Are Not Supported
 
@@ -2364,29 +2364,29 @@ function foo(x: number, y: number, z: number) {
 
 let args: [number, number, number] = [0, 1, 2]
 foo(...args)
-
-let point2d = {x: 1, y: 2}
-let point3d = {...point2d, z: 3}
 ```
 
 **ArkTS**
 
 ```typescript
-function sum_numbers(...numbers: number[]): number {
-  let res = 0
-  for (let n of numbers)
-    res += n
-  return res
-}
-console.log(sum_numbers(1, 2, 3))
-
 function log_numbers(x: number, y: number, z: number) {
   console.log(x, y, z)
 }
 
 let numbers: number[] = [1, 2, 3]
 log_numbers(numbers[0], numbers[1], numbers[2])
+```
 
+**TypeScript**
+
+```typescript
+let point2d = { x: 1, y: 2 }
+let point3d = { ...point2d, z: 3 }
+```
+
+**ArkTS**
+
+```typescript
 class Point2D {
   x: number = 0; y: number = 0
 }
@@ -2400,7 +2400,7 @@ class Point3D {
   }
 }
 
-let p3d = new Point3D({x: 1, y: 2} as Point2D, 3)
+let p3d = new Point3D({ x: 1, y: 2 } as Point2D, 3)
 console.log(p3d.x, p3d.y, p3d.z)
 
 class DerivedFromArray extends Uint16Array {};
@@ -2845,7 +2845,7 @@ import * as m from 'mod'
 
 **See also**
 
-* Recipe: `export = ...` Is Not Supported
+Recipe: `export = ...` Is Not Supported
 
 ### Recipe: `export = ...` Is Not Supported
 
@@ -2890,7 +2890,7 @@ let p = Pt.Point.origin
 
 **See also**
 
-* Recipe: `require` and `import` Assignment Are Not Supported
+Recipe: `require` and `import` Assignment Are Not Supported
 
 ### Recipe: Ambient Module Declaration Is Not Supported
 
@@ -2917,7 +2917,7 @@ import { normalize } from "someModule"
 
 **See also**
 
-* Recipe: Wildcards in Module Names Are Not Supported
+Recipe: Wildcards in Module Names Are Not Supported
 
 ### Recipe: Wildcards in Module Names Are Not Supported
 
@@ -2995,7 +2995,7 @@ mathLib.isPrime(2)
 
 **See also**
 
-* Recipe: Wildcards in Module Names Are Not Supported
+Recipe: Wildcards in Module Names Are Not Supported
 
 ### Recipe: `new.target` Is Not Supported
 
@@ -3092,7 +3092,7 @@ class C {
 
 **See also**
 
-* Recipe: new.target Is Not Supported
+Recipe: new.target Is Not Supported
 
 ### Recipe: `globalThis` Is Not Supported
 
@@ -3153,7 +3153,7 @@ this rule and their layout cannot be changed at runtime.
 
 **See also**
 
-* Recipe: `globalThis` Is Not Supported
+Recipe: `globalThis` Is Not Supported
 
 ### Recipe: `Function.apply`, `Function.bind`, and `Function.call` Are Not Supported
 

@@ -735,7 +735,7 @@ sharing
 
 ## sharing.getSharingState<sup>9+</sup>
 
-getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceState>): void
+getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceState\>): void
 
 Obtains the network sharing state of the specified type. This API uses an asynchronous callback to return the result.
 
@@ -770,7 +770,7 @@ import sharing from '@ohos.net.sharing';
 import { BusinessError } from '@ohos.base';
 
 let SHARING_WIFI = 0;
-sharing.getSharingState(SHARING_WIFI, (error: BusinessError, data: object) => {
+sharing.getSharingState(SHARING_WIFI, (error: BusinessError, data: sharing.SharingIfaceState) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -778,7 +778,7 @@ sharing.getSharingState(SHARING_WIFI, (error: BusinessError, data: object) => {
 
 ## sharing.getSharingState<sup>9+</sup>
 
-getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState>
+getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState\>
 
 Obtains the network sharing state of the specified type. This API uses a promise to return the result.
 
@@ -820,7 +820,7 @@ import { BusinessError } from '@ohos.base';
 let SHARING_WIFI = 0;
 sharing
   .getSharingState(SHARING_WIFI)
-  .then((data: object) => {
+  .then((data: sharing.SharingIfaceState) => {
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
@@ -830,7 +830,7 @@ sharing
 
 ## sharing.getSharableRegexes<sup>9+</sup>
 
-getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<string>>): void
+getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<string\>\>): void
 
 Obtains regular expressions of NICs of a specified type. This API uses an asynchronous callback to return the result.
 

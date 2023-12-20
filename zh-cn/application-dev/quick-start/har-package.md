@@ -22,7 +22,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
   ```
   artifactType字段有以下两种取值，默认缺省为original。
   - original：不混淆。
-  - obfuscation：混淆，目前仅支持uglify混淆。
+  - obfuscation：混淆。
 
 - 在API10中，HAR模块默认开启混淆能力，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行设置，配置如下所示：
 
@@ -65,7 +65,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 - HAR不支持在配置文件中声明pages页面。
 - HAR不支持在build-profile.json5文件的buildOption中配置worker。
 - FA模型与Stage模型的HAR不支持相互引用。
-- Stage模型的HAR，不能引用AppScope内的内容。在编译构建时APPScope中的内容不会打包到HAR中，导致HAR资源引用失败。
+- Stage模型的HAR，不能引用AppScope内的内容。在编译构建时AppScope中的内容不会打包到HAR中，导致HAR资源引用失败。
 
 ## 导出HAR的ArkUI组件、接口、资源
 Index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，统一在Index.ets文件中导出。Index.ets文件是DevEco Studio默认自动生成的，用户也可以自定义，在模块的oh-package.json5文件中的main字段配置入口声明文件，配置如下所示：
