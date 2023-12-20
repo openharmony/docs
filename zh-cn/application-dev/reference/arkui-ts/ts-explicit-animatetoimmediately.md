@@ -12,7 +12,7 @@ animateToImmediately(value: AnimateParam, event: () => void): void
 
 | 参数    | 类型                                | 是否必填 | 描述                                    |
 | ----- | --------------------------------- | ---- | ------------------------------------- |
-| value | [AnimateParam](ts-explicit-animation#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
+| value | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
 | event | () => void                        | 是    | 指定显示动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
 
 ## 示例
