@@ -225,7 +225,6 @@ grantPermission(tokenId: number, policies: Array&lt;PolicyInfo>, policyFlag: num
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
   
   async function grantPermissionExample() {
     try {
@@ -305,7 +304,7 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
       }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
         console.info("persistPermission failed with error message: " + err.message + ", error code: " + err.code);
         if (err.code == 13900001 && err.data) {
-          for(let i = 0; i < err.data.length; i++){
+          for (let i = 0; i < err.data.length; i++) {
             console.log("error code : " + JSON.stringify(err.data[i].code));
             console.log("error uri : " + JSON.stringify(err.data[i].uri));
             console.log("error reason : " + JSON.stringify(err.data[i].message));
@@ -376,7 +375,7 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
       }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
         console.info("revokePermission failed with error message: " + err.message + ", error code: " + err.code);
           if (err.code == 13900001 && err.data) {
-            for(let i = 0; i < err.data.length; i++){
+            for (let i = 0; i < err.data.length; i++) {
               console.log("error code : " + JSON.stringify(err.data[i].code));
               console.log("error uri : " + JSON.stringify(err.data[i].uri));
               console.log("error reason : " + JSON.stringify(err.data[i].message));
@@ -445,7 +444,7 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
       }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
         console.info("activatePermission failed with error message: " + err.message + ", error code: " + err.code);
           if (err.code == 13900001 && err.data) {
-            for(let i = 0; i < err.data.length; i++){
+            for (let i = 0; i < err.data.length; i++) {
               console.log("error code : " + JSON.stringify(err.data[i].code));
               console.log("error uri : " + JSON.stringify(err.data[i].uri));
               console.log("error reason : " + JSON.stringify(err.data[i].message));
@@ -513,7 +512,7 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
       }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
         console.info("deactivatePermission failed with error message: " + err.message + ", error code: " + err.code);
           if (err.code == 13900001 && err.data) {
-            for(let i = 0; i < err.data.length; i++){
+            for (let i = 0; i < err.data.length; i++) {
               console.log("error code : " + JSON.stringify(err.data[i].code));
               console.log("error uri : " + JSON.stringify(err.data[i].uri));
               console.log("error reason : " + JSON.stringify(err.data[i].message));
