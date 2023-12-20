@@ -794,7 +794,774 @@ UDP 其余错误码映射形式为：2301000 + Linux内核错误码。
 
 错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
 
-## socket.constructTCPSocketInstance
+## socket.constructMulticastSocketInstance<sup>11+</sup>
+
+constructMulticastSocketInstance(): MulticastSocket
+
+创建一个MulticastSocket对象。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                               | 说明                    |
+  | :--------------------------------- | :---------------------- |
+| [MulticastSocket](#multicastsocket) | 返回一个MulticastSocket对象。 |
+
+**示例：**
+
+```js
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+```
+## MulticastSocket<sup>11+</sup>
+
+MulticastSocket连接。在调用MulticastSocket的方法前，需要先通过[socket.constructMulticastSocketInstance](#socketconstructmulticastsocketinstance)创建MulticastSocket对象。
+
+### addMembership<sup>11+</sup>
+
+addMembership(multicastAddress: NetAddress, callback: AsyncCallback<void>): void;
+
+加入多播组。使用callback方法作为异步方法。
+
+> **说明：**
+> 多播使用的IP地址属于特定的范围（例如224.0.0.0到239.255.255.255）。
+> 加入多播组后，既可以是发送端，也可以是接收端，相互之间以广播的形式传递数据，不区分客户端或服务端。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名             | 类型                           | 必填 | 说明                                       |
+| ----------------- | ----------------------------- | ---- | ----------------------------------------- |
+| multicastAddress  | [NetAddress](#netaddress)     |  是  | 目标地址信息，参考[NetAddress](#netaddress)。 |
+| callback          | AsyncCallback\<void\>         |  是  | 回调函数。                                  |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301022 | Invalid argument.       |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**示例：**
+
+```js
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let addr: socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 8080
+}
+multicast.addMembership(addr, (err) => {
+  if (err) {
+    console.log('add membership fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('add membership success');
+})
+```
+
+### addMembership<sup>11+</sup>
+
+addMembership(multicastAddress: NetAddress): Promise<void>;
+
+加入多播组。使用Promise方法作为异步方法。。
+
+> **说明：**
+> 多播使用的IP地址属于特定的范围（例如224.0.0.0到239.255.255.255）。
+> 加入多播组后，既可以是发送端，也可以是接收端，相互之间以广播的形式传递数据，不区分客户端或服务端。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名             | 类型                           | 必填 | 说明                                           |
+| ----------------- | ----------------------------- | ---- | --------------------------------------------  |
+| multicastAddress  | [NetAddress](#netaddress)     |  是  | 目标地址信息，参考[NetAddress](#netaddress)。 |
+
+**返回值：**
+
+| 类型            | 说明                                               |
+| :-------------- | :-----------------------------------------------  |
+| Promise\<void\> | 以Promise形式返回MulticastSocket加入多播组的行为结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301022 | Invalid argument.       |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**示例：**
+
+```js
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+let addr: socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 8080
+}
+multicast.addMembership(addr).then(() => {
+  console.log('addMembership success');
+}).catch((err) => {
+  console.log('addMembership fail');
+});
+```
+
+### dropMembership<sup>11+</sup>
+
+dropMembership(multicastAddress: NetAddress, callback: AsyncCallback<void>): void;
+
+退出多播组。使用callback方法作为异步方法。
+
+> **说明：**
+> 多播使用的IP地址属于特定的范围（例如224.0.0.0到239.255.255.255）。
+> 从已加入的多播组中退出，必须在加入多播组之后退出才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名             | 类型                           | 必填 | 说明                                         |
+| ----------------- | ----------------------------- | ---- | ------------------------------------------- |
+| multicastAddress  | [NetAddress](#netaddress)     |  是  | 目标地址信息，参考[NetAddress](#netaddress)。   |
+| callback          | AsyncCallback\<void\>         |  是  | 回调函数。                                    |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**示例：**
+
+```js
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let addr: socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 8080
+}
+multicast.dropMembership(addr, (err) => {
+  if (err) {
+    console.log('drop membership fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('drop membership success');
+})
+```
+
+### dropMembership<sup>11+</sup>
+
+dropMembership(multicastAddress: NetAddress): Promise<void>;
+
+退出多播组。使用Promise方法作为异步方法。。
+
+> **说明：**
+> 多播使用的IP地址属于特定的范围（例如224.0.0.0到239.255.255.255）。
+> 从已加入的多播组中退出，必须在加入多播组之后退出才有效。
+> 在调用addMembership之后，调用此接口才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名             | 类型                                   | 必填 | 说明                                           |
+| ----------------- | ------------------------------------- | ---- | --------------------------------------------  |
+| multicastAddress  | [NetAddress](#netaddress) |  是  | 目标地址信息，参考[NetAddress](#netaddress)。     |
+
+**返回值：**
+
+| 类型            | 说明                                              |
+| :-------------- | :----------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回MulticastSocket加入多播组的执行结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**示例：**
+
+```js
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+let addr: socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 8080
+}
+multicast.dropMembership(addr).then(() => {
+  console.log('drop membership success');
+}).catch((err) => {
+  console.log('drop membership fail');
+});
+```
+
+### setMulticastTTL<sup>11+</sup>
+
+setMulticastTTL(ttl: number, callback: AsyncCallback<void>): void;
+
+设置多播通信时数据包在网络传输过程中路由器最大跳数。使用callback方法作为异步方法。
+
+> **说明：**
+> 用于限制数据包在网络中传输时能够经过的最大路由器跳数的字段，TTL (Time to live)。
+> 范围为 0～255，默认值为 1 。
+> 如果一个多播数据包的 TTL 值为 1，那么它只能被直接连接到发送者的主机接收。如果 TTL 被设置为一个较大的值，那么数据包就能够被传送到更远的网络范围内。
+> 在调用addMembership之后，调用此接口才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名         | 类型                   | 必填 | 说明                         |
+| ------------- | --------------------- | ---- | ----------------------------- |
+| ttl           | number                |  是  | ttl设置数值，类型为数字number。 |
+| callback      | AsyncCallback\<void\> |  是  | 回调函数。                     |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301022 | Invalid argument.       |
+| 2301088 | Not a socket.           |
+
+**示例：**
+
+```js
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let ttl = 8
+multicast.setMulticastTTL(ttl, (err) => {
+  if (err) {
+    console.log('set ttl fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('set ttl success');
+})
+```
+
+### setMulticastTTL<sup>11+</sup>
+
+setMulticastTTL(ttl: number): Promise<void>;
+
+设置多播通信时数据包在网络传输过程中路由器最大跳数。使用Promise方法作为异步方法。。
+
+> **说明：**
+> 用于限制数据包在网络中传输时能够经过的最大路由器跳数的字段，TTL (Time to live)。
+> 范围为 0～255，默认值为 1 。
+> 如果一个多播数据包的 TTL 值为 1，那么它只能被直接连接到发送者的主机接收。如果 TTL 被设置为一个较大的值，那么数据包就能够被传送到更远的网络范围内。
+> 在调用addMembership之后，调用此接口才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名         | 类型                   | 必填 | 说明                           |
+| ------------- | ---------------------- | ---- | ------------------------------ |
+| ttl           | number                 |  是  | ttl设置数值，类型为数字Number。 |
+
+**返回值：**
+
+| 类型            | 说明                                             |
+| :-------------- | :---------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回MulticastSocket设置TTL数值的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**示例：**
+
+```js
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+multicast.setMulticastTTL(8).then(() => {
+  console.log('set ttl success');
+}).catch((err) => {
+  console.log('set ttl failed');
+});
+```
+
+### getMulticastTTL<sup>11+</sup>
+
+getMulticastTTL(callback: AsyncCallback<number>): void;
+
+获取数据包在网络传输过程中路由器最大跳数(TTL)的值。使用callback方法作为异步方法。
+
+> **说明：**
+> 用于限制数据包在网络中传输时能够经过的最大路由器跳数的字段，TTL (Time to live)。
+> 范围为 0～255，默认值为 1 。
+> 如果一个多播数据包的 TTL 值为 1，那么它只能被直接连接到发送者的主机接收。如果 TTL 被设置为一个较大的值，那么数据包就能够被传送到更远的网络范围内。
+> 在调用addMembership之后，调用此接口才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名         | 类型                     | 必填 | 说明                         |
+| ------------- | ----------------------- | ---- | --------------------------- |
+| callback      | AsyncCallback\<number\> |  是  | 回调函数。                    |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+
+**示例：**
+
+```js
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+multicast.getMulticastTTL((err, value) => {
+  if (err) {
+    console.log('set ttl fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('set ttl success, value: ' + JSON.stringify(value));
+})
+```
+
+### getMulticastTTL<sup>11+</sup>
+
+getMulticastTTL(): Promise<number>;
+
+获取数据包在网络传输过程中路由器最大跳数(TTL)的值。使用Promise方法作为异步方法。
+
+> **说明：**
+> 用于限制数据包在网络中传输时能够经过的最大路由器跳数的字段，TTL (Time to live)。
+> 范围为 0～255，默认值为 1 。
+> 如果一个多播数据包的 TTL 值为 1，那么它只能被直接连接到发送者的主机接收。如果 TTL 被设置为一个较大的值，那么数据包就能够被传送到更远的网络范围内。
+> 在调用addMembership之后，调用此接口才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+无                                                            
+
+**返回值：**
+
+| 类型               | 说明                        |
+| :--------------   | --------------------------- |
+| Promise\<number\> | 以Promise形式返回当前TTL数值。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**示例：**
+
+```js
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+multicast.getMulticastTTL().then((value) => {
+  console.log('ttl: ', JSON.stringify(value));
+}).catch((err) => {
+  console.log('set ttl failed');
+});
+```
+
+### setLoopbackMode<sup>11+</sup>
+
+setLoopbackMode(flag: boolean, callback: AsyncCallback<void>): void;
+
+设置多播通信中的环回模式标志位。使用callback方法作为异步方法。
+
+> **说明：**
+> 用于设置环回模式，开启或关闭两种状态，默认为开启状态。
+> 如果一个多播通信中环回模式设置值为 true，那么它允许主机在本地循环接收自己发送的多播数据包。如果为 false，则主机不会接收到自己发送的多播数据包。
+> 在调用addMembership之后，调用此接口才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名         | 类型                  | 必填 | 说明                         |
+| ------------- | --------------------- | ---- | ---------------------------- |
+| flag          | boolean               |  是  | ttl设置数值，类型为boolen 。  |
+| callback      | AsyncCallback\<void\> |  是  | 回调函数。                    |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+
+**示例：**
+
+```js
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+multicast.setLoopbackMode(false, (err) => {
+  if (err) {
+    console.log('set loopback mode fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('set loopback mode success');
+})
+```
+
+### setLoopbackMode<sup>11+</sup>
+
+setLoopbackMode(flag: boolean): Promise<void>;
+
+设置多播通信中的环回模式标志位。使用callback方法作为异步方法。
+
+> **说明：**
+> 用于设置环回模式，开启或关闭两种状态，默认为开启状态。
+> 如果一个多播通信中环回模式设置值为 true，那么它允许主机在本地循环接收自己发送的多播数据包。如果为 false，则主机不会接收到自己发送的多播数据包。
+> 在调用addMembership之后，调用此接口才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名         | 类型                   | 必填 | 说明                             |
+| ------------- | ---------------------- | ---- | -------------------------------- |
+| flag          | boolean                |  是  | 环回模式标志位，类型为数字boolean。|
+
+**返回值：**
+
+| 类型            | 说明                                             |
+| :-------------- | :---------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回MulticastSocket设置环回模式的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**示例：**
+
+```js
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+multicast.setLoopbackMode(false).then(() => {
+  console.log('set loopback mode success');
+}).catch((err) => {
+  console.log('set loopback mode failed');
+});
+```
+
+### getLoopbackMode<sup>11+</sup>
+
+getLoopbackMode(callback: AsyncCallback<boolean>): void;
+
+获取多播通信中的环回模式状态。使用Promise方法作为异步方法。
+
+> **说明：**
+> 用于获取当前环回模式开启或关闭的状态。
+> 如果获取的属性值为 true，表示环回模式是开启的状态，允许主机在本地循环接收自己发送的多播数据包。如果为 false，则表示环回模式是关闭的状态，主机不会接收到自己发送的多播数据包。
+> 在调用addMembership之后，调用此接口才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名         | 类型                     | 必填 | 说明                         |
+| ------------- | ----------------------- | ---- | --------------------------- |
+| callback      | AsyncCallback\<number\> |  是  | 回调函数。                    |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+
+**示例：**
+
+```js
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+multicast.getLoopbackMode((err, value) => {
+  if (err) {
+    console.log('get loopback mode fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('get loopback mode success, value: ' + JSON.stringify(value));
+})
+```
+
+### getLoopbackMode<sup>11+</sup>
+
+getLoopbackMode(): Promise<boolean>;
+
+获取多播通信中的环回模式状态。使用Promise方法作为异步方法。
+
+> **说明：**
+> 用于获取当前环回模式开启或关闭的状态。
+> 如果获取的属性值为 true，表示环回模式是开启的状态，允许主机在本地循环接收自己发送的多播数据包。如果为 false，则表示环回模式是关闭的状态，主机不会接收到自己发送的多播数据包。
+> 在调用addMembership之后，调用此接口才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+无                                                            
+
+**返回值：**
+
+| 类型                | 说明                        |
+| :----------------  | --------------------------- |
+| Promise\<boolean\> | 以Promise形式返回当前TTL数值。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**示例：**
+
+```js
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+multicast.getLoopbackMode().then((value) => {
+  console.log('loopback mode: ', JSON.stringify(value));
+}).catch((err) => {
+  console.log('get loopback mode failed');
+});
+```
+
+### send<sup>11+</sup>
+
+send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
+
+发送数据。使用callback方式作为异步方法。
+
+发送数据前，需要先调用[MulticastSocket.addMembership()](#addmembership11)加入多播组。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                | 必填 | 说明                                                         |
+| -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [UDPSendOptions](#udpsendoptions) | 是   | UDPSocket发送参数，参考[UDPSendOptions](#udpsendoptions)。 |
+| callback | AsyncCallback\<void\>             | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```js
+import socket from '@ohos.net.socket';
+import { BusinessError } from '@ohos.base';
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let sendOptions: socket.UDPSendOptions = {
+  data: 'Hello, server!',
+  address: {
+    address: '239.255.0.1',
+    port: 8080
+  }
+}
+multicast.send(sendOptions, (err) => {
+  if (err) {
+    console.log('send fail');
+    return;
+  }
+  console.log('send success');
+});
+```
+
+### send<sup>11+</sup>
+
+send(options: UDPSendOptions): Promise\<void\>
+
+发送数据。使用Promise方式作为异步方法。
+
+发送数据前，需要先调用[MulticastSocket.addMembership()](#addmembership11)加入多播组。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                                     | 必填 | 说明                                                         |
+| ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [UDPSendOptions](#udpsendoptions) | 是   | UDPSocket发送参数，参考[UDPSendOptions](#udpsendoptions)。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**返回值：**
+
+| 类型            | 说明                              |
+| :-------------- | :------------------------------- |
+| Promise\<void\> | 以Promise形式返回发送数据的执行结果。 |
+
+**示例：**
+
+```js
+import socket from '@ohos.net.socket';
+import { BusinessError } from '@ohos.base';
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let sendOptions: socket.UDPSendOptions = {
+  data: 'Hello, server!',
+  address: {
+    address: '239.255.0.1',
+    port: 8080
+  }
+}
+multicast.send(sendOptions).then(() => {
+  console.log('send success');
+}).catch((err: BusinessError) => {
+  console.log('send fail');
+});
+```
+
+### on('message')<sup>11+</sup>
+
+on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+订阅MulticastSocket接收消息事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                                                    | 必填 | 说明                                 |
+| -------- | ------------------------------------------------------------------------------------- | ---- | ----------------------------------- |
+| type     | string                                                                                | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | 是   | 回调函数。                            |
+
+**示例：**
+
+```js
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
+let messageView = '';
+multicast.on('message', (value: SocketInfo) => {
+  for (let i: number = 0; i < value.message.byteLength; i++) {
+    let messages: number = value.message[i]
+    let message = String.fromCharCode(messages);
+    messageView += message;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+});
+```
+
+### off('message')<sup>11+</sup>
+
+off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+取消订阅消息事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                                                  | 必填 | 说明                                 |
+| -------- | ----------------------------------------------------------------------------------- | ---- | ----------------------------------- |
+| type     | string                                                                              | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。                            |
+
+**示例：**
+
+```js
+import socket from "@ohos.net.socket";
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let messageView = '';
+let callback = (value: SocketInfo) => {
+  for (let i: number = 0; i < value.message.byteLength; i++) {
+    let messages: number = value.message[i]
+    let message = String.fromCharCode(messages);
+    messageView += message;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+}
+multicast.on('message', callback);
+udp.off('message');
+```
+
+## socket.constructTCPSocketInstance<sup>7+</sup>
 
 constructTCPSocketInstance(): TCPSocket
 
