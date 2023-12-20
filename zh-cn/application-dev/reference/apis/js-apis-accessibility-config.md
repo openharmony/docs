@@ -21,7 +21,7 @@ import config from '@ohos.accessibility.config';
 |------------------------------------|--------------------------------------------------------------------------------------------| -------- | -------- |-----------------------------------------------------------|
 | highContrastText                   | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示高对比度文字功能启用状态。                                           |
 | invertColor                        | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示颜色反转功能启用状态。                                             |
-| daltonizationState<sup>11+</sup>   | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示颜色滤镜功能启动状态。配合daltonizationColorFilter使用                 |
+| daltonizationState<sup>11+</sup>   | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示颜色滤镜功能启动状态。配合daltonizationColorFilter使用。                |
 | daltonizationColorFilter           | [Config](#config)&lt;[DaltonizationColorFilter](#daltonizationcolorfilter)&gt;             | 是 | 是 | 表示颜色滤镜功能配置。                                               |
 | contentTimeout                     | [Config](#config)\<number>                                                                 | 是 | 是 | 表示内容显示建议时长配置。取值 0~5000，单位为毫秒。                             |
 | animationOff                       | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示关闭动画功能启用状态。                                             |

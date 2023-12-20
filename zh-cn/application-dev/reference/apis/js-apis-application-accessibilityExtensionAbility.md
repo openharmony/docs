@@ -28,11 +28,11 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 ### 属性
 
-| 名称      | 类型                                                         | 可读 | 可写 | 说明                                                         |
-| --------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| eventType | [accessibility.EventType](js-apis-accessibility.md#EventType) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#WindowUpdateType)\| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 是   | 否   | 具体事件类型。<br />EventType：无障碍事件类型；<br />WindowUpdateType：窗口变化类型；TouchGuideType：触摸浏览事件类型；<br />GestureType：手势事件类型；<br />PageUpdateType：页面刷新类型，当前版本暂不支持。 |
-| target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | 是   | 否   | 发生事件的目标组件。                                         |
-| timeStamp | number                                                       | 是   | 否   | 事件时间戳。                                                 |
+| 名称      | 类型                                                         | 可读 | 可写                                 | 说明                                                         |
+| --------- | ------------------------------------------------------------ | ---- |------------------------------------| ------------------------------------------------------------ |
+| eventType | [accessibility.EventType](js-apis-accessibility.md#eventtype) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#windowupdatetype)\| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 是   | 否   | 具体事件类型。<br />EventType：无障碍事件类型；<br />WindowUpdateType：窗口变化类型；TouchGuideType：触摸浏览事件类型；<br />GestureType：手势事件类型；<br />PageUpdateType：页面刷新类型。当前版本暂不支持。 |
+| target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | 是   | 否                                  | 发生事件的目标组件。                                         |
+| timeStamp | number                                                       | 是   | 否                                  | 事件时间戳。                                                 |
 
 
 ## AccessibilityElement<sup>10+</sup>
@@ -172,7 +172,7 @@ let rect: Rect;
 
 ## PageUpdateType
 
-页面刷新类型；当前版本暂不支持。
+页面刷新类型。当前版本暂不支持。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
