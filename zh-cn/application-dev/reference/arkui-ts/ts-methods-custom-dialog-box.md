@@ -30,6 +30,11 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 | customStyle                   | boolean                                  | 否    | 弹窗容器样式是否自定义。<br>默认值：false，弹窗容器的宽度根据栅格系统自适应，不跟随子节点；高度自适应子节点，最大为窗口高度的90%；圆角为24vp。<br>设置为true时，宽度跟随子节点自适应，圆角为0，弹窗背景色为透明色。 |
 | gridCount<sup>8+</sup> | number                                                       | 否   | 弹窗宽度占[栅格宽度](../../ui/arkts-layout-development-grid-layout.md)的个数。<br>默认为按照窗口大小自适应，异常值按默认值处理，最大栅格数为系统最大栅格数。 |
 
+> **说明：**
+>
+> - 按下返回键和ESC键时会让弹窗退出。
+> - 自定义弹窗仅适用于简单提示场景，不能替代页面使用。由于弹窗存在完全避让输入法行为，即在软键盘弹出时，会自动向上抬起软键盘高度，因此如果弹窗高度过大时，可能会导致部分区域不可见。
+
 ## CustomDialogController
 
 ### 导入对象
