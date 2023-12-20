@@ -119,6 +119,24 @@
 
 在设备SIM卡默认主卡更新时，将会触发事件通知服务发布该系统公共事件。
 
+## COMMON_EVENT_SET_PRIMARY_SLOT_STATUS
+
+提示设置主卡卡槽执行状态已更新。
+
+- 值：usual.event.SET_PRIMARY_SLOT_STATUS
+- 订阅者所需权限：无
+
+在设备设置默认主卡执行状态发生变化时，将会触发事件通知服务发布该系统公共事件。
+
+## COMMON_EVENT_PRIMARY_SLOT_ROAMING
+
+提示默认主卡漫游状态已更新。
+
+- 值：usual.event.PRIMARY_SLOT_ROAMING
+- 订阅者所需权限：无
+
+在设备默认主卡漫游状态发生变化时，将会触发事件通知服务发布该系统公共事件。
+
 ## COMMON_EVENT_SIM_CARD_DEFAULT_VOICE_SUBSCRIPTION_CHANGED
 
 提示SIM卡默认语音主卡已更新。
