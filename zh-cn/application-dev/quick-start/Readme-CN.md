@@ -51,6 +51,7 @@
         - [自定义组件冻结功能](arkts-custom-components-freeze.md)
       - [\@Builder装饰器：自定义构建函数](arkts-builder.md)
       - [\@BuilderParam装饰器：引用\@Builder函数](arkts-builderparam.md)
+      - [wrapBuilder：封装全局@Builder](arkts-wrapBuilder.md)
       - [\@Styles装饰器：定义组件重用样式](arkts-style.md)
       - [\@Extend装饰器：定义扩展组件样式](arkts-extend.md)
       - [stateStyles：多态样式](arkts-statestyles.md)
