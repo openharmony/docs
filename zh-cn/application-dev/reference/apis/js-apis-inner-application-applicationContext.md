@@ -261,6 +261,12 @@ off(type: 'environment', callbackId: **number**): Promise\<void\>
 | type | 'environment' | 是   | 取消监听事件的类型。 |
 | callbackId    | number   | 是   | 注册监听系统环境变化的ID。   |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void\> | 以Promise方式返回取消对系统环境变化的监听结果。 |
+
 **示例：**
 
 ```ts
