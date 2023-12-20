@@ -240,7 +240,7 @@ struct SearchExample {
 // xxx.ets
 @Entry
 @Component
-struct SearchButtoonExample {
+struct SearchExample {
   @State submitValue: string = ''
 
   build() {
