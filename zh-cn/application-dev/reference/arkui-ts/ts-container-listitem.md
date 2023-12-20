@@ -158,7 +158,6 @@ struct ListItemExample {
 @Entry
 @Component
 struct ListItemExample2 {
-  @State message: string = 'Hello World'
   @State arr: number[] = [0, 1, 2, 3, 4]
   @State enterEndDeleteAreaString: string = "not enterEndDeleteArea"
   @State exitEndDeleteAreaString: string = "not exitEndDeleteArea"
