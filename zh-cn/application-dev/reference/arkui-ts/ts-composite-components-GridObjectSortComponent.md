@@ -297,4 +297,4 @@ struct Index {
 }
 ```
 
-![ImageTextEditableComponent](figures/ImageTextEditableComponent.gif)
+![GridObjectSortComponent](figures/GridObjectSortComponent.gif)
