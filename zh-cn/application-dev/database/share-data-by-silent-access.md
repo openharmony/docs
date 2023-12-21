@@ -89,7 +89,7 @@
 
 ### 数据提供方应用的开发
 
-1. 数据提供方需要在module.json5中的proxyDatas节点定义要共享的表的标识，读写权限和基本信息。
+1. 数据提供方需要在module.json5中的proxyDatas节点定义要共享的表的标识，读写权限和基本信息，proxyDatas节点可以在module内名称为entry或feature中进行定义。
 
    **表1** module.json5中proxyDatas节点对应的属性字段
 
@@ -102,19 +102,26 @@
 
    **module.json5配置样例：**
 
-   ```json
-   "proxyDatas":[
-     {
-       "uri": "datashareproxy://com.acts.ohos.data.datasharetest/test",
-       "requiredReadPermission": "ohos.permission.GET_BUNDLE_INFO",
-       "requiredWritePermission": "ohos.permission.KEEP_BACKGROUND_RUNNING",
-       "metadata": {
-         "name": "dataProperties",
-         "resource": "$profile:my_config"
-       }
-     }
-   ]
-   ```
+    ```json
+    {
+      "module": {
+        "name": "entry",  // 注：在name为entry或feature，都可添加proxyDatas
+        "type": "entry",
+        // 添加proxyDatas
+        "proxyDatas":[  // 注：API10以及之前的版本使用的是proxyDatas, API11以及之后的版本使用的是proxyData
+          {
+            "uri": "datashareproxy://com.acts.ohos.data.datasharetest/test",
+            "requiredReadPermission":"ohos.permission.GET_BUNDLE_INFO",
+            "requiredWritePermission":"ohos.permission.KEEP_BACKGROUND_RUNNING",
+            "metadata": {
+              "name": "dataProperties",
+              "resource": "$profile:my_config"
+            }
+          }
+        ]
+      }
+    }
+    ```
    **表2** my_config.json对应属性字段
 
    | 属性名称  | 备注说明                                     | 必填   |
@@ -162,7 +169,7 @@
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        abilityContext = this.context;
-       dataShare.createDataShareHelper(abilityContext, "", {
+       dataShare.createDataShareHelper(abilityContext, dseUri, {
          isProxy: true
        }, (err, data) => {
          dsHelper = data;
@@ -253,7 +260,7 @@
 
 ### 数据提供方应用的开发（可选）
 
-数据提供方需要在module.json5中的proxyDatas节点定义过程数据的标识，读写权限和基本信息。
+数据提供方需要在module.json5中的proxyDatas节点定义过程数据的标识，读写权限和基本信息，proxyDatas节点可以在module内名称为entry或feature中进行定义。
 
 > 注意：
 >
@@ -272,13 +279,18 @@
 **module.json5配置样例：**
 
 ```json
-"proxyDatas": [
-  {
-    "uri": "datashareproxy://com.acts.ohos.data.datasharetest/weather",
-    "requiredReadPermission": "ohos.permission.GET_BUNDLE_INFO",
-    "requiredWritePermission": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+{
+  "module": {
+    "name": "feature",  // 注：在name为entry或feature，都可添加proxyDatas
+    "type": "entry",
+    // 添加proxyDatas
+    "proxyDatas":[  // 注：API10以及之前的版本使用的是proxyDatas, API11以及之后的版本使用的是proxyData
+        "uri": "datashareproxy://com.acts.ohos.data.datasharetest/weather",
+        "requiredReadPermission":"ohos.permission.GET_BUNDLE_INFO",
+        "requiredWritePermission":"ohos.permission.KEEP_BACKGROUND_RUNNING",
+    ]
   }
-]
+}
 ```
 
 ### 数据访问方应用的开发
