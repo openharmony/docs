@@ -286,11 +286,10 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode';
 | KEYCODE_KBD_LAYOUT_NEXT          |  2723 | 下一个键盘布局键                    |
 | KEYCODE_BRIGHTNESS_MIN           |  2724 | 最小亮度键                       |
 | KEYCODE_BRIGHTNESS_MAX           |  2725 | 最大亮度键                       |
-| KEYCODE_KBDINPUTASSIST_PREV      |  2726 | 键盘输入Assist_Previous         |
-| KEYCODE_KBDINPUTASSIST_NEXT      |  2727 | 键盘输入Assist_Next             |
-| KEYCODE_KBDINPUTASSIST_PREVGROUP |  2728 | 键盘输入Assist_Previous         |
-| KEYCODE_KBDINPUTASSIST_NEXTGROUP |  2729 | 键盘输入Assist_Next             |
-| KEYCODE_KBDINPUTASSIST_ACCEPT    |  2730 | 键盘输入Assist_Accept           |
+| KEYCODE_KBDINPUTASSIST_PREV      |  2726 | 键盘输入Assist_Previous，查看输入法输入记录         |
+| KEYCODE_KBDINPUTASSIST_NEXT      |  2727 | 键盘输入Assist_Next，查看输入法输入拓展           |
+| KEYCODE_KBDINPUTASSIST_PREVGROUP |  2728 | 键盘输入Assist_Previous，切换输入组中上一个输入法         |
+| KEYCODE_KBDINPUTASSIST_NEXTGROUP |  2729 | 键盘输入Assist_Next，切换输入组中下一个输入法               |
 | KEYCODE_KBDINPUTASSIST_CANCEL    |  2731 | 键盘输入Assist_Cancel           |
 | KEYCODE_FRONT                    |  2800 | 挡风玻璃除雾器开关                   |
 | KEYCODE_SETUP                    |  2801 | 设置键                         |

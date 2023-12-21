@@ -48,11 +48,11 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 | key         | [Key](#key)      | 是   | 否   | 当前上报的按键             |
 | unicodeChar | number   | 是   | 否   | 按键对应的uniCode字符          |
 | keys        | [Key](#key)[]    | 是   | 否   | 当前处于按下状态的按键列表     |
-| ctrlKey     | boolean  | 是   | 否   | 当前ctrlKey是否处于按下状态    |
-| altKey      | boolean  | 是   | 否   | 当前altKey是否处于按下状态     |
-| shiftKey    | boolean  | 是   | 否   | 当前shiftKey是否处于按下状态   |
-| logoKey     | boolean  | 是   | 否   | 当前logoKey是否处于按下状态    |
-| fnKey       | boolean  | 是   | 否   | 当前fnKey是否处于按下状态      |
-| capsLock    | boolean  | 是   | 否   | 当前capsLock是否处于激活状态   |
-| numLock     | boolean  | 是   | 否   | 当前numLock是否处于激活状态    |
-| scrollLock  | boolean  | 是   | 否   | 当前scrollLock是否处于激活状态 |
+| ctrlKey     | boolean  | 是   | 否   | 当前ctrlKey是否处于按下状态<br/>ture表示处于按下状态，false表示处于抬起状态。    |
+| altKey      | boolean  | 是   | 否   | 当前altKey是否处于按下状态 <br/>ture表示处于按下状态，false表示处于抬起状态。     |
+| shiftKey    | boolean  | 是   | 否   | 当前shiftKey是否处于按下状态 <br/>ture表示处于按下状态，false表示处于抬起状态。   |
+| logoKey     | boolean  | 是   | 否   | 当前logoKey是否处于按下状态 <br/>ture表示处于按下状态，false表示处于抬起状态。    |
+| fnKey       | boolean  | 是   | 否   | 当前fnKey是否处于按下状态 <br/>ture表示处于按下状态，false表示处于抬起状态。      |
+| capsLock    | boolean  | 是   | 否   | 当前capsLock是否处于激活状态 <br/>ture表示处于激活状态，false表示处于未激活状态。   |
+| numLock     | boolean  | 是   | 否   | 当前numLock是否处于激活状态 <br/>ture表示处于激活状态，false表示处于未激活状态。    |
+| scrollLock  | boolean  | 是   | 否   | 当前scrollLock是否处于激活状态 <br/>ture表示处于激活状态，false表示处于未激活状态。 |
