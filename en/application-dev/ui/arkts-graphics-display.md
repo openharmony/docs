@@ -69,7 +69,7 @@ Data sources of the archived type can be classified into local resources, online
   API:
 
   ```
-  Image($rawfile('snap'))
+  Image($rawfile('example1.png'))
   ```
 
 - Media library **file://data/storage**
@@ -411,7 +411,7 @@ struct MyComponent {
 
 You can use the **sourceSize** attribute to set the image decoding size. By setting the decoding size to lower than the source size, you can decrease the image resolution.
 
-In this example, the source image size is 1280 x 960, and the decoding size is 150 x 100 and 400 x 400.
+In this example, the source image size is 1280 x 960, and the decoding size is 150 x 150 and 400 x 400.
 
 
 ```ts
