@@ -136,10 +136,23 @@ Use chainable event methods to configure events supported by built-in components
     .onClick(this.myClickHandler.bind(this))
   ```
 
+- Example of using an arrow function expression for a declaration, which can be used without **this** binding:
+
+  ```ts
+  fn = () => {
+    console.info(`counter: ${this.counter}`)
+    this.counter++
+  }
+  ...
+  Button('add counter')
+    .onClick(this.fn)
+  ```
+
+
 
 ## Configuring Child Components
 
-For a component that supports child components, for example, a container component, add the UI descriptions of the child components inside parentheses. The **\<Column>**, **\<Row>**, **\<Stack>**, **\<Grid>**, and **\<List>** components are all container components.
+For a component with child components, for example, a container component, add the UI descriptions of the child components inside parentheses. The **\<Column>**, **\<Row>**, **\<Stack>**, **\<Grid>**, and **\<List>** components are all container components.
 
 
 - Simple example of configuring child components for the **\<Column>** component:
@@ -155,7 +168,7 @@ For a component that supports child components, for example, a container compone
   }
   ```
 
-- Example of nesting multiple child components in the **\<Column>** component:.
+- Example of nested child components in the **\<Column>** component:.
 
   ```ts
   Column() {

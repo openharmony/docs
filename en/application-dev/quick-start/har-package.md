@@ -2,7 +2,7 @@
 A Harmony Archive (HAR) is a static shared package that can contain code, C++ libraries, resources, and configuration files. It enables modules and projects to share code related to ArkUI components, resources, and more. Unlike a Harmony Ability Package (HAP), a HAR cannot be independently installed on a device. Instead, it can be referenced only as the dependency of an application module.
 
 ## Creating a HAR Module
-You can [create a HAR module in DevEco Studio](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section143510369612). To better protect your source code, enable obfuscation for the HAR module so that DevEco Studio compiles, obfuscates, and compresses code during HAR building. To enable obfuscation, open the **build-profile.json5** file of the HAR module and set **artifactType** to **obfuscation** as follows:
+You can create a HAR module in DevEco Studio. To better protect your source code, enable obfuscation for the HAR module so that DevEco Studio compiles, obfuscates, and compresses code during HAR building. To enable obfuscation, open the **build-profile.json5** file of the HAR module and set **artifactType** to **obfuscation** as follows:
 
 ```json
 {
@@ -12,9 +12,9 @@ You can [create a HAR module in DevEco Studio](https://developer.harmonyos.com/c
   }
 }
 ```
-The value options of **artifactType** are as follows, with the default value being **original**:
-- **original**: Code is not obfuscated.
-- **obfuscation**: Code is obfuscated using Uglify.
+The value options of **artifactType** are as follows:
+- **original** (default value): Code is not obfuscated.
+- **obfuscation**: Code is obfuscated.
 
 > **NOTE**
 >
