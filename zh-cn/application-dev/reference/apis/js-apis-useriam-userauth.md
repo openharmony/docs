@@ -103,7 +103,7 @@ try {
   });
   console.log('auth on success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -159,7 +159,7 @@ try {
   });
   console.log('auth on success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -214,7 +214,7 @@ try {
   });
   console.log('auth off success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -266,7 +266,7 @@ try {
   userAuthInstance.start();
   console.log('auth start success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -311,7 +311,7 @@ try {
   userAuthInstance.cancel();
   console.log('auth cancel success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -367,7 +367,7 @@ try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.log('get userAuth instance success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -441,7 +441,7 @@ try {
   userAuth.sendNotice(noticeType, jsonEventData);
   console.log('sendNotice success');
 } catch (error) {
-  console.log('sendNotice catch error: ' + JSON.stringify(error));
+  console.error('sendNotice catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -491,7 +491,7 @@ try {
   })
   console.log('subscribe authentication event success');
 } catch (error) {
-  console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -537,7 +537,7 @@ try {
   })
   console.log('cancel subscribe authentication event success');
 } catch (error) {
-  console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -589,7 +589,7 @@ try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
   console.log('get userAuthWidgetMgr instance success');
 } catch (error) {
-  console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -629,7 +629,7 @@ try {
   })
   console.log('subscribe authentication event success');
 } catch (error) {
-  console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -719,7 +719,7 @@ try {
   auth.start();
   console.log('authV9 start success');
 } catch (error) {
-  console.log('authV9 error = ' + error);
+  console.error('authV9 error = ' + error);
   // do error
 }
 // 通过callback获取认证过程中的提示信息
@@ -740,7 +740,7 @@ try {
   auth.start();
   console.log('authV9 start success');
 } catch (error) {
-  console.log('authV9 error = ' + error);
+  console.error('authV9 error = ' + error);
   // do error
 }
 ```
@@ -815,7 +815,7 @@ try {
   auth.start();
   console.log('authV9 start success');
 } catch (error) {
-  console.log('authV9 error = ' + error);
+  console.error('authV9 error = ' + error);
   // do error
 }
 ```
@@ -868,7 +868,7 @@ try {
   auth.off('result');
   console.info('cancel subscribe authentication event success');
 } catch (error) {
-  console.info('cancel subscribe authentication event failed, error =' + error);
+  console.error('cancel subscribe authentication event failed, error =' + error);
   // do error
 }
 ```
@@ -919,7 +919,7 @@ try {
   auth.start();
   console.info('authV9 start auth success');
 } catch (error) {
-  console.info('authV9 start auth failed, error = ' + error);
+  console.error('authV9 start auth failed, error = ' + error);
 }
 ```
 
@@ -961,7 +961,7 @@ try {
   auth.cancel();
   console.info('cancel auth success');
 } catch (error) {
-  console.info('cancel auth failed, error = ' + error);
+  console.error('cancel auth failed, error = ' + error);
 }
 ```
 
@@ -1016,7 +1016,7 @@ try {
   let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   console.info('let auth instance success');
 } catch (error) {
-  console.info('get auth instance success failed, error = ' + error);
+  console.error('get auth instance success failed, error = ' + error);
 }
 ```
 
@@ -1059,7 +1059,7 @@ try {
   userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
   console.info('current auth trust level is supported');
 } catch (error) {
-  console.info('current auth trust level is not supported, error = ' + error);
+  console.error('current auth trust level is not supported, error = ' + error);
 }
 ```
 
@@ -1226,8 +1226,8 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
       } else {
         // 此处添加认证失败逻辑
       }
-    } catch (e) {
-      console.info('auth onResult error = ' + e);
+    } catch (error) {
+      console.error('auth onResult error = ' + error);
     }
   }
 });
@@ -1316,8 +1316,8 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
       }  else {
         // 此处添加认证失败逻辑
       }
-    } catch (e) {
-      console.info('auth onResult error = ' + e);
+    } catch (error) {
+      console.error('auth onResult error = ' + error);
     }
   }
 });
@@ -1359,8 +1359,8 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
       }  else {
         // 此处添加认证失败逻辑
       }
-    } catch (e) {
-      console.info('auth onResult error = ' + e);
+    } catch (error) {
+      console.error('auth onResult error = ' + error);
     }
   },
   onAcquireInfo: (module, acquire, extraInfo : userIAM_userAuth.AuthResult) => {
@@ -1368,8 +1368,8 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
       console.info('auth onAcquireInfo module = ' + module);
       console.info('auth onAcquireInfo acquire = ' + acquire);
       console.info('auth onAcquireInfo extraInfo = ' + JSON.stringify(extraInfo));
-    } catch (e) {
-      console.info('auth onAcquireInfo error = ' + e);
+    } catch (error) {
+      console.error('auth onAcquireInfo error = ' + error);
     }
   }
 });
