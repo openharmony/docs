@@ -53,6 +53,8 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 | copyOption<sup>9+</sup>          | [CopyOptions](ts-appendix-enums.md#copyoptions9)        | 设置图片是否可复制。<br>当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。<br>默认值：CopyOptions.None<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：**<br>svg图片不支持复制。 |
 | colorFilter<sup>9+</sup>         | [ColorFilter](ts-types.md#colorfilter9)                 | 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br>当矩阵对角线值为1时，保持图片原有色彩。<br> **计算规则：**<br>如果输入的滤镜矩阵为：<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>像素点为[R, G, B, A]<br>则过滤后的颜色为 [R’, G’, B’, A’]<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | draggable<sup>9+</sup> | boolean                                                 | 设置组件默认拖拽效果，设置为true时，组件可拖拽。<br>不能和[onDragStart](ts-universal-events-drag-drop.md)事件同时使用。<br/>默认值：false<br>**说明：**<br />API version 9的默认值为false，API version 10的默认值为true。 |
+| enableAnalyzer<sup>11+</sup> | boolean                                                 | 设置组件支持AI分析，设置为true时，组件可进行AI分析。<br>不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。<br/>默认值：false<br>**说明：**<br/> 该特性依赖设备能力。 <br/> 图像要求是静态图，且非矢量图，另外支持直接传入pixelmap。 <br/> alt图不支持分析，repeat属性非NO_REPEAT值不支持分析，隐私遮罩模式下不支持分析。<br/> 基于完整图像分析，设置clip、borderRadius等属性导致图像显示不完整，仍基于完整图像分析。<br/> copyOption不影响AI分析功能。 |
+| analyzerConfig<sup>11+</sup> | [ImageAnalyzerConfig](#imageanalyzerconfig)                                                 | 设置AI分析类型，包括主体识别和文字识别功能，默认全部开启。|
 
 >  **说明：**
 >
@@ -78,6 +80,17 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 | -------- | -------------- |
 | Original | 原色渲染模式。 |
 | Template | 黑白渲染模式。 |
+
+## ImageAnalyzerConfig
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+图片AI分析类型配置。
+
+| 名称     | 描述           |
+| -------- | -------------- |
+| SUBJECT | 主体识别功能。 |
+| TEXT | 文字识别功能。 |
 
 ## 事件
 
