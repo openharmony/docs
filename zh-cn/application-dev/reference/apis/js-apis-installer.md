@@ -33,7 +33,7 @@ getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[BundleInstaller](js-apis-bundle-BundleInstaller.md)> | 是   | 回调函数，获取[BundleInstaller](js-apis-bundle-BundleInstaller.md)对象，err为null，data为获取到的BundleInstaller对象；否则为错误对象。 |
+| callback | AsyncCallback\<BundleInstaller> | 是   | 回调函数，获取BundleInstaller对象，err为null，data为获取到的BundleInstaller对象；否则为错误对象。 |
 
 **示例：**
 
@@ -66,7 +66,7 @@ getBundleInstaller(): Promise\<BundleInstaller>
 **返回值：**
 | 类型                                                         | 说明                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
-| Promise\<[BundleInstaller](js-apis-bundle-BundleInstaller.md)> | Promise对象，返回[BundleInstaller](js-apis-bundle-BundleInstaller.md)对象。 |
+| Promise\<BundleInstaller> | Promise对象，返回BundleInstaller对象。 |
 
 **示例：**
 
