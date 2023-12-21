@@ -179,7 +179,8 @@
      
    ```ts
    import { ValuesBucket } from '@ohos.data.ValuesBucket';
-
+   
+   let store: relationalStore.RdbStore | undefined = undefined;
 
    let value1 = 'Lisa';
    let value2 = 18;
