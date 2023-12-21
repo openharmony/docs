@@ -8,9 +8,11 @@
 
 **变更原因**
 
-该变更为非兼容性变更。
+规格优化。
 
 **变更影响**
+
+该变更为兼容性变更。
 
 DatePickerDialog、TimePickerDialog、TextPickerDialog支持通过设置alignment参数调整滑动选择器弹窗相对于窗口的弹出位置。具体受影响的场景见下文：
 
@@ -31,6 +33,10 @@ c) 设置alignment为Center
 变更前：相对于窗口正中位置默认有16vp的向上偏移
 
 变更后：处于窗口正中位置
+
+**API Level** 
+
+11
 
 **变更发生版本**
 
