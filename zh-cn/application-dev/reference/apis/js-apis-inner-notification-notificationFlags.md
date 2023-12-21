@@ -14,6 +14,7 @@
 | ---------------- | ---------------------- | ---- | --------------------------------- |
 | soundEnabled     | [NotificationFlagStatus](#notificationflagstatus) | 否   | 是否启用声音提示。                  |
 | vibrationEnabled | [NotificationFlagStatus](#notificationflagstatus) | 否   | 是否启用振动提醒功能。               |
+| reminderFlags<sup>11+</sup> | number | 否   | 是否启用输入信息提示功能。               |
 
 
 ## NotificationFlagStatus

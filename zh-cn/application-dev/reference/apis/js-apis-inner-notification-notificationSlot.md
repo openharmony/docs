@@ -25,3 +25,4 @@
 | lightColor           | number                | 否  | 通知灯颜色。               |
 | vibrationValues      | Array\<number\>       | 否  | 通知振动样式。              |
 | enabled<sup>9+</sup> | boolean               | 否  | 此通知插槽中的启停状态。         |
+| reminderMode<sup>11+</sup> | number                | 否  | 获取当前通知条目的通知提醒模式。       |
