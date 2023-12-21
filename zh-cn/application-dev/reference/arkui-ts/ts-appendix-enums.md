@@ -694,3 +694,30 @@ Nullable\<T> {
 | URL | 链接 |
 | EMAIL | 邮箱 |
 | ADDRESS | 地址 |
+
+## TextSpanType<sup>11+</sup>
+
+Span类型信息。
+
+| 名称 | 说明 |
+| -------- | -------- |
+| TEXT | Span为文字类型。 |
+| IMAGE | Span为图像类型。|
+| MIXED | Span为图文混合类型。|
+
+## TextResponseType<sup>11+</sup>
+
+| 名称         | 描述            |
+| ---------- | ------------- |
+| RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
+| LONG_PRESS  | 通过长按触发菜单弹出。   |
+| SELECT | 通过鼠标选中触发菜单弹出。 |
+
+## SelectionMenuOptions<sup>11+</sup>
+
+范围信息。
+
+| 名称 | 描述                               |
+| ------ | -------------------------------------- |
+| onAppear | 自定义选择菜单弹出时回调。 |
+| onDisappear | 自定义选择菜单关闭时回调。 |
