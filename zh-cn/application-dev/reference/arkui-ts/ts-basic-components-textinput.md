@@ -96,10 +96,10 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 ## PasswordIcon<sup>10+</sup>对象说明
 
-| 名称       | 类型                                               | 必填 | 描述                                               |
-| ---------- | -------------------------------------------------- | ---- | -------------------------------------------------- |
-| onIconSrc  | string&nbsp;\|[Resource](ts-types.md#resource类型) | 否   | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
-| offIconSrc | string&nbsp;\|[Resource](ts-types.md#resource类型) | 否   | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
+| 名称       | 类型                                                     | 必填 | 描述                                               |
+| ---------- | -------------------------------------------------------- | ---- | -------------------------------------------------- |
+| onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 否   | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
+| offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 否   | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
 
 ## 事件
 
@@ -159,7 +159,7 @@ stopEditing(): void
 
 ### getTextContentRect<sup>10+</sup>
 
-getTextContentRect(): [RectResult](#rectresult)
+getTextContentRect(): [RectResult](#rectresult10)
 
 获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
 
@@ -167,7 +167,7 @@ getTextContentRect(): [RectResult](#rectresult)
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](#rectresult) | 已编辑文本内容的相对组件的位置和大小。 |
+| [RectResult](#rectresult10) | 已编辑文本内容的相对组件的位置和大小。 |
 
 > **说明：**
 >
@@ -246,7 +246,7 @@ struct TextInputExample {
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 14, weight: 400 })
         .caretColor(Color.Blue)
-        .width(300)
+        .width('95%')
         .height(40)
         .margin(20)
         .fontSize(14)
@@ -271,7 +271,7 @@ struct TextInputExample {
         })
       // 密码输入框
       TextInput({ placeholder: 'input your password...' })
-        .width(300)
+        .width('95%')
         .height(40)
         .margin(20)
         .type(InputType.Password)
@@ -279,7 +279,7 @@ struct TextInputExample {
         .showPasswordIcon(true)
       // 内联风格输入框
       TextInput({ text: 'inline style' })
-        .width(300)
+        .width('95%')
         .height(50)
         .margin(20)
         .borderRadius(0)
