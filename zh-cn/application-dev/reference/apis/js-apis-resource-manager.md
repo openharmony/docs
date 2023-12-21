@@ -308,7 +308,7 @@ import { BusinessError } from '@ohos.base';
 >
 > - 资源文件在工程的resources目录中定义，id可通过$r(资源地址).id的方式获取，例如$r('app.string.test').id。
 >
-> - 对于本应用资源，通过 getContext() 或 .context 方法访问特定ID或名称的资源。对于应用内跨包资源有两种访问方式，第一种通过resource对象，第二种创建对应module的context，通过.context访问。
+> - 对于本应用资源，通过 [getContext()](js-apis-ability-featureAbility.md#featureabilitygetcontext) 或 this.context 方法访问特定ID或名称的资源。对于应用内跨包资源有两种访问方式，第一种通过resource对象，第二种创建对应module的context，通过.context访问。
 
 ### getStringSync<sup>9+</sup>
 
