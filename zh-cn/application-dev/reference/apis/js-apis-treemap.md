@@ -312,7 +312,7 @@ map.forEach((value ?: number, key ?: string) : void => {
 
 set(key: K, value: V): Object
 
-向容器中添加一组数据。
+向容器中添加或更新一组数据。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -387,7 +387,7 @@ let result = treeMap.remove("sparrow");
 
 getLowerKey(key: K): K
 
-获取容器中比传入key排序靠前一位的key。
+获取容器中等于key或者比传入key排序靠前一位的key。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -426,7 +426,7 @@ let result = treeMap.getLowerKey("sparrow");
 
 getHigherKey(key: K): K
 
-获取容器中比传入key排序靠后一位的key。
+获取容器中等于key或者比传入key排序靠后一位的key。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -552,10 +552,10 @@ keys(): IterableIterator&lt;K&gt;
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
-let it = treeMap.values();
-let t: IteratorResult<number> = it.next();
+let it = treeMap.keys();
+let t: IteratorResult<string> = it.next();
 while(!t.done) {
-  console.log("TreeMap" + t.value);
+  console.log("TreeMap " + t.value);
   t = it.next()
 }
 ```
