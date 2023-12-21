@@ -17,8 +17,8 @@ websocket客户端结构体。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [onOpen](netstack.md#onopen) | [OH_NetStack_WebsocketClient_OnOpenCallback](netstack.md#oh_netstack_websocketclient_onopencallback) | 
-| [onMessage](netstack.md#onmessage) | [OH_NetStack_WebsocketClient_OnMessageCallback](netstack.md#oh_netstack_websocketclient_onmessagecallback) | 
-| [onError](netstack.md#onerror) | [OH_NetStack_WebsocketClient_OnErrorCallback](netstack.md#oh_netstack_websocketclient_onerrorcallback) | 
-| [onClose](netstack.md#onclose) | [OH_NetStack_WebsocketClient_OnCloseCallback](netstack.md#oh_netstack_websocketclient_onclosecallback) | 
-| [RequestOptions](netstack.md#requestoptions) | [OH_NetStack_WebsocketClient_RequestOptions](h___net_stack___websocket_client___request_options.md) | 
+| [onOpen](netstack.md#onopen) |客户端接收连接消息的回调指针。 | 
+| [onMessage](netstack.md#onmessage) | 客户端接收消息的回调指针。 | 
+| [onError](netstack.md#onerror) | 客户端接收错误消息的回调指针。 | 
+| [onClose](netstack.md#onclose) | 客户端接收关闭消息的回调指针。 | 
+| [RequestOptions](netstack.md#requestoptions) |客户端建立连接请求内容。 | 

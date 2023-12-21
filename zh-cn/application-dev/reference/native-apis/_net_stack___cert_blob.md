@@ -17,6 +17,6 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [type](netstack.md#type) | enum [NetStack_CertType](netstack.md#netstack_certtype) | 
-| [size](netstack.md#size) | uint32_t | 
-| [data](netstack.md#data) | uint8_t \* | 
+| [type](netstack.md#type) | 证书类型。 | 
+| [size](netstack.md#size) | 证书内容长度。 | 
+| [data](netstack.md#data) | 证书内容。| 

@@ -17,6 +17,6 @@ websocket客户端增加header头的链表节点。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [FieldName](netstack.md#fieldname) | const char \* | 
-| [FieldValue](netstack.md#fieldvalue) | const char \* | 
-| [next](netstack.md#next) | struct [OH_NetStack_WebsocketClient_Slist](zh-cn_topic_0000001746500302.xml) \* | 
+| [FieldName](netstack.md#fieldname) | header头的字段名。 | 
+| [FieldValue](netstack.md#fieldvalue) | header头的字段内容。 | 
+| [next](netstack.md#next) | header头链表的next指针。 | 

@@ -3,7 +3,7 @@
 
 ## 概述
 
-websocket客户端和服务端建立连接的参数
+websocket客户端和服务端建立连接的参数。
 
 参数
 
@@ -19,4 +19,4 @@ websocket客户端和服务端建立连接的参数
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| **headers** | struct [OH_NetStack_WebsocketClient_Slist](_o_h___net_stack___websocket_client___slist.md) \* | 
+| headers | header头信息。 | 

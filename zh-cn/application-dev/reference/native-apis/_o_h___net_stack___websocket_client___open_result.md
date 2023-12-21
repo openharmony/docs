@@ -3,7 +3,7 @@
 
 ## 概述
 
-websocket客户端来自服务端连接成功的参数
+websocket客户端来自服务端连接成功的参数。
 
 **起始版本：** 11
 
@@ -17,5 +17,5 @@ websocket客户端来自服务端连接成功的参数
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [code](netstack.md#code-33) | uint32_t | 
-| [reason](netstack.md#reason-33) | const char \* | 
+| [code](netstack.md#code-33) | websocket客户端连接成功码。 | 
+| [reason](netstack.md#reason-33) | websocket客户端连接原因。 | 

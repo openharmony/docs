@@ -17,5 +17,5 @@ websocket客户端来自服务端连接错误的参数
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [errorCode](netstack.md#errorcode) | uint32_t | 
-| [errorMessage](netstack.md#errormessage) | const char \* | 
+| [errorCode](netstack.md#errorcode) | 错误码。 | 
+| [errorMessage](netstack.md#errormessage) | 错误的消息。 | 

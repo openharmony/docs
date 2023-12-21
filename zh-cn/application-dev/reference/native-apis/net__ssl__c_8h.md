@@ -21,4 +21,4 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_NetStack_VerifyCertification](netstack.md#oh_netstack_verifycertification) (const struct [NetStack_CertBlob](_net_stack___cert_blob.md) \*cert, const struct [NetStack_CertBlob](_net_stack___cert_blob.md) \*caCert) | 对外暴露的证书链校验接口。 | 
+| [OH_NetStack_VerifyCertification](netstack.md#oh_netstack_verifycertification) (const struct [NetStack_CertBlob](_net_stack___cert_blob.md) \*cert, const struct [NetStack_CertBlob](_net_stack___cert_blob.md) \*caCert) | 证书链校验接口。 | 
