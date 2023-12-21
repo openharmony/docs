@@ -2709,7 +2709,7 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 import { Driver } from '@ohos.UiTest';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseMoveWithTrack(100,100,200,200,600);
+  await driver.mouseMoveWithTrack({x:100, y:100},{x:200, y:200},600);
 }
 ```
 
@@ -2743,7 +2743,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 import { Driver } from '@ohos.UiTest';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseDrag(100,100,200,200,600);
+  await driver.mouseDrag({x:100, y:100},{x:200, y:200},600);
 }
 ```
 
