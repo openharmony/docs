@@ -19,13 +19,13 @@ clamp函数定义如下：
 
 ![zh-cn_formulaimage_0000001455538697](figures/zh-cn_formulaimage_0000001455538697.png)
 
-**起始版本：**
+**起始版本：** 9
 
-9
+**弃用：** 从API version 11开始，此接口废弃。
 
-**相关模块：**
+**替代：** 推荐使用[NN_QuantParam](_neural_nework_runtime.md#nn_quantparam)。
 
-[NeuralNeworkRuntime](_neural_nework_runtime.md)
+**相关模块：** [NeuralNeworkRuntime](_neural_nework_runtime.md)
 
 
 ## 汇总
@@ -33,12 +33,12 @@ clamp函数定义如下：
 
 ### 成员变量
 
-| 成员变量名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| [quantCount](#quantcount) | 指定numBits、scale和zeroPoint数组的长度。<br/>在per-layer量化的场景下，quantCount通常指定为1，即一个张量所有通道共享一套量化参数；在per-channel量化场景下，quantCount通常和张量通道数一致，每个通道使用自己的量化参数。 | 
-| [numBits](#numbits) | 量化位数。 | 
-| [scale](#scale) | 指向量化公式中量化参数s的指针。 | 
-| [zeroPoint](#zeropoint) | 指向量化公式中量化参数z的指针。 | 
+| [quantCount](#quantcount) | 指定numBits、scale和zeroPoint数组的长度。在per-layer量化的场景下，quantCount通常指定为1，即一个张量所有通道 共享一套量化参数；在per-channel量化场景下，quantCount通常和张量通道数一致，每个通道使用自己的量化参数。 |
+| [numBits](#numbits) | 量化位数 |
+| [scale](#scale) | 指向量化公式中scale数据的指针 |
+| [zeroPoint](#zeropoint) | 指向量化公式中zero point数据的指针 |
 
 
 ## 结构体成员变量说明
@@ -46,49 +46,43 @@ clamp函数定义如下：
 
 ### numBits
 
-  
 ```
 const uint32_t* OH_NN_QuantParam::numBits
 ```
 
-**描述：**
+**描述**
 
-量化位数。
+量化位数
 
 
 ### quantCount
 
-  
 ```
 uint32_t OH_NN_QuantParam::quantCount
 ```
 
-**描述：**
+**描述**
 
-指定numBits、scale和zeroPoint数组的长度。
-
-在per-layer量化的场景下，quantCount通常指定为1，即一个张量所有通道 共享一套量化参数；在per-channel量化场景下，quantCount通常和张量通道数一致，每个通道使用自己的量化参数。
+指定numBits、scale和zeroPoint数组的长度。在per-layer量化的场景下，quantCount通常指定为1，即一个张量所有通道 共享一套量化参数；在per-channel量化场景下，quantCount通常和张量通道数一致，每个通道使用自己的量化参数。
 
 
 ### scale
 
-  
 ```
 const double* OH_NN_QuantParam::scale
 ```
 
-**描述：**
+**描述**
 
-指向量化公式中scale数据的指针。
+指向量化公式中scale数据的指针
 
 
 ### zeroPoint
 
-  
 ```
 const int32_t* OH_NN_QuantParam::zeroPoint
 ```
 
-**描述：**
+**描述**
 
-指向量化公式中zero point数据的指针。
+指向量化公式中zero point数据的指针
