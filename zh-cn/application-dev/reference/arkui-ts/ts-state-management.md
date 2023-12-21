@@ -1025,7 +1025,7 @@ let res2: boolean = storage.delete('PropB'); // true, PropB is deleted from stor
 
 keys(): IterableIterator&lt;string&gt;
 
-返回AppStorage中所有的属性名。
+返回LocalStorage中所有的属性名。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

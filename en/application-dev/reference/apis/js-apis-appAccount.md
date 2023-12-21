@@ -769,7 +769,7 @@ Sets a credential for an app account. This API uses an asynchronous callback to 
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, credentialType, or credential. |
+| 12300002 | Invalid name, credentialType or credential. |
 | 12300003 | Account not found. |
 
 **Example**
@@ -817,7 +817,7 @@ Sets a credential for an app account. This API uses a promise to return the resu
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, credentialType, or credential. |
+| 12300002 | Invalid name, credentialType or credential. |
 | 12300003 | Account not found. |
 
 **Example**
@@ -947,7 +947,7 @@ Sets custom data for an app account. This API uses an asynchronous callback to r
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, key, or value. |
+| 12300002 | Invalid name, key or value. |
 | 12300003 | Account not found. |
 | 12400003 | The number of custom data reaches the upper limit. |
 
@@ -996,7 +996,7 @@ Sets custom data for an app account. This API uses a promise to return the resul
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, key, or value. |
+| 12300002 | Invalid name, key or value. |
 | 12300003 | Account not found. |
 | 12400003 | The number of custom data reaches the upper limit. |
 
@@ -1407,7 +1407,7 @@ Authenticates an app account. This API uses an asynchronous callback to return t
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, owner, or authType. |
+| 12300002 | Invalid name, owner or authType. |
 | 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -1474,7 +1474,7 @@ Authenticates an app account with customized options. This API uses an asynchron
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, owner, authType, or options. |
+| 12300002 | Invalid name, owner, authType or options. |
 | 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -1543,7 +1543,7 @@ Obtains the authorization token of the specified authentication type for an app 
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, owner, or authType. |
+| 12300002 | Invalid name, owner or authType. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 
@@ -1593,7 +1593,7 @@ Obtains the authorization token of the specified authentication type for an app 
 | ID| Error Message|
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, owner, or authType. |
+| 12300002 | Invalid name, owner or authType. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 
@@ -1635,7 +1635,7 @@ Sets an authorization token of the specific authentication type for an app accou
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, authType, or token. |
+| 12300002 | Invalid name, authType or token. |
 | 12300003 | Account not found. |
 | 12400004 | The number of tokens reaches the upper limit. |
 
@@ -1684,7 +1684,7 @@ Sets an authorization token of the specific authentication type for an app accou
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, authType, or token. |
+| 12300002 | Invalid name, authType or token. |
 | 12300003 | Account not found. |
 | 12400004 | The number of tokens reaches the upper limit. |
 
@@ -1727,7 +1727,7 @@ Deletes the authorization token of the specified authentication type for an app 
 | ID| Error Message|
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, owner, authType, or token. |
+| 12300002 | Invalid name, owner, authType or token. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 
@@ -1778,7 +1778,7 @@ Deletes the authorization token of the specified authentication type for an app 
 | ID| Error Message|
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, owner, authType, or token. |
+| 12300002 | Invalid name, owner, authType or token. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 
@@ -1821,7 +1821,7 @@ Sets the visibility of an authorization token to an app. This API uses an asynch
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, authType, or bundleName. |
+| 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 | 12400001 | Application not found. |
@@ -1874,7 +1874,7 @@ Sets the visibility of an authorization token to an app. This API uses a promise
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, authType, or bundleName. |
+| 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 | 12400001 | Application not found. |
@@ -1918,7 +1918,7 @@ Checks the visibility of an authorization token of the specified authentication 
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, authType, or bundleName. |
+| 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 
@@ -1968,7 +1968,7 @@ Checks the visibility of an authorization token of the specified authentication 
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, authType, or bundleName. |
+| 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 
@@ -2397,7 +2397,7 @@ Checks whether an app account has specific labels. This API uses an asynchronous
 | ID| Error Message|
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, owner, or labels. |
+| 12300002 | Invalid name, owner or labels. |
 | 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -2450,7 +2450,7 @@ Checks whether an app account has specific labels. This API uses a promise to re
 | ID| Error Message|
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, owner, or labels. |
+| 12300002 | Invalid name, owner or labels. |
 | 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -2727,7 +2727,7 @@ Verifies the user credential. This API uses an asynchronous callback to return t
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name, owner, or options. |
+| 12300002 | Invalid name, owner or options. |
 | 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -4909,6 +4909,8 @@ Called to redirect a request.
 **Example**
 
   ```ts
+  import Want from '@ohos.app.ability.Want';
+
   class MyAuthenticator extends account_appAccount.Authenticator {
       createAccountImplicitly(
         options: account_appAccount.CreateAccountImplicitlyOptions, callback: account_appAccount.AuthCallback) {
@@ -5019,6 +5021,8 @@ Called to redirect a request.
 **Example**
 
   ```ts
+  import Want from '@ohos.app.ability.Want';
+
   class MyAuthenticator extends account_appAccount.Authenticator {
       addAccountImplicitly(authType: string, callerBundleName: string,
         options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
@@ -5194,6 +5198,7 @@ Obtains the remote object of an authenticator. This API cannot be overloaded.
 
   ```ts
   import rpc from '@ohos.rpc';
+  import Want from '@ohos.app.ability.Want';
   
   class MyAuthenticator extends account_appAccount.Authenticator {
     addAccountImplicitly(authType: string, callerBundleName: string,

@@ -47,7 +47,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   let dmInstance: deviceManager.DeviceManager | null = null;
   try {
@@ -276,8 +276,9 @@ release(): void
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     dmInstance.release();
@@ -315,9 +316,10 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     let deviceInfoList: Array<deviceManager.DeviceInfo> = dmInstance.getTrustedDeviceListSync();
@@ -361,9 +363,10 @@ getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     let deviceInfoList: Array<deviceManager.DeviceInfo> = dmInstance.getTrustedDeviceListSync(true);
@@ -393,9 +396,11 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
+
   try {
     dmInstance.getTrustedDeviceList((err: BusinessError, data: Array<deviceManager.DeviceInfo>) => {
       if (err) {
@@ -430,9 +435,10 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   dmInstance.getTrustedDeviceList().then((data: Array<deviceManager.DeviceInfo>) => {
     console.log('get trusted device info: ' + JSON.stringify(data));
@@ -469,9 +475,10 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     let deviceInfo: deviceManager.DeviceInfo = dmInstance.getLocalDeviceInfoSync();
@@ -501,17 +508,18 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
 
   try {
     dmInstance.getLocalDeviceInfo((err: BusinessError, data: deviceManager.DeviceInfo) => {
-    if (err) {
-      console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
-      return;
-    }
+      if (err) {
+        console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
+        return;
+      }
       console.log('get local device info: ' + JSON.stringify(data));
     });
   } catch (err) {
@@ -540,9 +548,10 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   dmInstance.getLocalDeviceInfo().then((data: deviceManager.DeviceInfo) => {
     console.log('get local device info: ' + JSON.stringify(data));
@@ -572,18 +581,19 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     // 设备网络标识，可以从可信设备列表中获取
-    let networkId = "xxxxxxx"
+    let networkId = "xxxxxxx";
     dmInstance.getDeviceInfo(networkId, (err: BusinessError, data: deviceManager.DeviceInfo) => {
-    if (err) {
-      console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
-      return;
-    }
+      if (err) {
+        console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
+        return;
+      }
       console.log('get device info: ' + JSON.stringify(data));
     });
   } catch (err) {
@@ -618,12 +628,13 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   // 设备网络标识，可以从可信设备列表中获取
-  let networkId = "xxxxxxx"
+  let networkId = "xxxxxxx";
   dmInstance.getDeviceInfo(networkId).then((data: deviceManager.DeviceInfo) => {
     console.log('get device info: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -660,18 +671,19 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   interface SubscribeInfo {
-    subscribeId: number,
-    mode: number, // 主动模式
-    medium: number,  // 自动发现类型，同时支持多种发现类型
-    freq: number,    // 高频率
-    isSameAccount: boolean,
-    isWakeRemote: boolean,
-    capability: number
-  };
+    subscribeId: number;
+    mode: number;   // 主动模式
+    medium: number; // 自动发现类型，同时支持多种发现类型
+    freq: number;   // 高频率
+    isSameAccount: boolean;
+    isWakeRemote: boolean;
+    capability: number;
+  }
 
   // 生成发现标识，随机数确保每次调用发现接口的标识不一致
   let subscribeId = Math.floor(Math.random() * 10000 + 1000);
@@ -722,27 +734,28 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   interface Filters {
-    type: string,
-    value: number
+    type: string;
+    value: number;
   }
 
   interface FilterOptions {
-    filter_op: string, // 可选, 默认"OR"
-    filters: Filters[]
-    }
+    filter_op: string; // 可选, 默认"OR"
+    filters: Filters[];
+  }
 
   interface SubscribeInfo {
-    subscribeId: number,
-    mode: number, // 主动模式
-    medium: number,  // 自动发现类型，同时支持多种发现类型
-    freq: number,    // 高频率
-    isSameAccount: boolean,
-    isWakeRemote: boolean,
-    capability: number
+    subscribeId: number;
+    mode: number;   // 主动模式
+    medium: number; // 自动发现类型，同时支持多种发现类型
+    freq: number;   // 高频率
+    isSameAccount: boolean;
+    isWakeRemote: boolean;
+    capability: number;
   }
 
   // 生成发现标识，随机数确保每次调用发现接口的标识不一致
@@ -762,7 +775,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
         type: "range",
         value: 50 // 需过滤发现设备的距离，单位(cm)
     }
-  ]
+  ];
 
   let filterOptions: FilterOptions = {
     filter_op: "OR", // 可选, 默认"OR"
@@ -804,8 +817,9 @@ stopDeviceDiscovery(subscribeId: number): void
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     // stopDeviceDiscovery和startDeviceDiscovery需配对使用，入参需要和startDeviceDiscovery接口传入的subscribeId值相等
@@ -846,14 +860,15 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   interface PublishInfo {
-    publishId: number,
-    mode: number, // 主动模式
-    freq: number,    // 高频率
-    ranging: boolean  // 支持发现时测距
+    publishId: number;
+    mode: number; // 主动模式
+    freq: number; // 高频率
+    ranging: boolean; // 支持发现时测距
   };
 
   // 生成发布标识，随机数确保每次调用发布接口的标识不一致
@@ -901,8 +916,9 @@ unPublishDeviceDiscovery(publishId: number): void
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     // unPublishDeviceDiscovery和publishDeviceDiscovery配对使用，入参需要和publishDeviceDiscovery接口传入的publishId值相等
@@ -936,32 +952,33 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    deviceId: string = ""
-    pinToken?: number = 0
+    deviceId: string = "";
+    pinToken?: number = 0;
   }
 
   interface DeviceInfo {
-    deviceId: string,
-    deviceName: string
-    deviceType: number,
-    networkId: string,
-    range: number
+    deviceId: string;
+    deviceName: string;
+    deviceType: number;
+    networkId: string;
+    range: number;
   };
 
   interface ExtraInfo {
-    targetPkgName: string,
-    appName: string,
-    appDescription: string,
-    business: string
+    targetPkgName: string;
+    appName: string;
+    appDescription: string;
+    business: string;
   }
 
   interface AuthParam {
-    authType: number,// 认证类型： 1 - 无帐号PIN码认证
-    extraInfo: ExtraInfo
+    authType: number; // 认证类型： 1 - 无帐号PIN码认证
+    extraInfo: ExtraInfo;
   }
 
   // 认证的设备信息，可以从发现的结果中获取
@@ -978,17 +995,17 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
     appName: 'xxx',
     appDescription: 'xxx',
     business: '0'
-  }
+  };
   let authParam: AuthParam = {
     authType: 1,// 认证类型： 1 - 无帐号PIN码认证
     extraInfo: extraInfo
-  }
+  };
 
   try {
     dmInstance.authenticateDevice(deviceInfo, authParam, (err: BusinessError, data: Data) => {
       if (err) {
-          console.error("authenticateDevice errCode:" + err.code + ",errMessage:" + err.message);
-          return;
+        console.error("authenticateDevice errCode:" + err.code + ",errMessage:" + err.message);
+        return;
       }
       console.info("authenticateDevice result:" + JSON.stringify(data));
       let token = data.pinToken;
@@ -1027,15 +1044,16 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   interface DeviceInfo {
-    deviceId: string,
-    deviceName: string,
-    deviceType: number,
-    networkId: string,
-    range: number
+    deviceId: string;
+    deviceName: string;
+    deviceType: number;
+    networkId: string;
+    range: number;
   }
 
   try {
@@ -1075,41 +1093,42 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   interface ExtraInfo {
-    authType: number,
-    token: number
+    authType: number;
+    token: numbe;
   }
 
   interface AuthInfo {
-    authType: number,
-    token: number,
-    extraInfo: ExtraInfo
+    authType: number;
+    token: number;
+    extraInfo: ExtraInf;
   }
 
   class Data {
-    deviceId: string = ""
-    level: number = 0
+    deviceId: string = "";
+    level: number = 0;
   }
 
   let extraInfo: ExtraInfo = {
     authType: 0,
     token: 0
-  }
+  };
 
   let authInfo: AuthInfo = {
     authType: 1,
     token: 123456,
     extraInfo: extraInfo
-  }
+  };
   try {
     dmInstance.verifyAuthInfo(authInfo, (err: BusinessError, data: Data) => {
       if (err) {
-          console.error("verifyAuthInfo errCode:" + err.code + ",errMessage:" + err.message);
-          return;
-    }
+        console.error("verifyAuthInfo errCode:" + err.code + ",errMessage:" + err.message);
+        return;
+      }
     console.info("verifyAuthInfo result:" + JSON.stringify(data));
     });
   } catch (err) {
@@ -1139,8 +1158,9 @@ setUserOperation(operateAction: number, params: string): void;
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
  try {
     /*
@@ -1152,10 +1172,10 @@ setUserOperation(operateAction: number, params: string): void;
       operateAction = 5 - pin码输入框确定操作
     */
     let operation = 0;
-    dmInstance.setUserOperation(operation, "extra")
-    } catch (err) {
-      let e: BusinessError = err as BusinessError;
-      console.error("setUserOperation errCode:" + e.code + ",errMessage:" + e.message);
+    dmInstance.setUserOperation(operation, "extra");
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error("setUserOperation errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -1180,29 +1200,30 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   interface CredentialInfo {
-    version: string,
-    userId: string
+    version: string;
+    userId: string;
   }
 
   class Data {
-    registerInfo: string = ""
+    registerInfo: string = "";
   }
 
   let credentialInfo: CredentialInfo = {
     version: "1.2.3",
     userId: "123"
-  }
+  };
   try {
-    let jsonCredentialInfo = JSON.stringify(credentialInfo)
+    let jsonCredentialInfo = JSON.stringify(credentialInfo);
     dmInstance.requestCredentialRegisterInfo(jsonCredentialInfo, (err: BusinessError, data: Data) => {
       if (data) {
-          console.info("requestCredentialRegisterInfo result:" + JSON.stringify(data));
+        console.info("requestCredentialRegisterInfo result:" + JSON.stringify(data));
       } else {
-          console.info("requestCredentialRegisterInfo result: data is null");
+        console.info("requestCredentialRegisterInfo result: data is null");
       }
     });
   } catch (err) {
@@ -1232,31 +1253,32 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    resultInfo: string = ""
+    resultInfo: string = "";
   }
 
   interface CredentialData {
-    credentialType: number,
-    credentialId: string,
-    serverPk: string,
-    pkInfoSignature : string,
-    pkInfo: string,
-    authCode: string,
-    peerDeviceId: string
+    credentialType: number;
+    credentialId: string;
+    serverPk: string;
+    pkInfoSignature : string;
+    pkInfo: string;
+    authCode: string;
+    peerDeviceId: string;
   }
 
   interface CredentialInfo {
-    processType: number,
-    authType: number,
-    userId: string,
-    deviceId: string,
-    version: string,
-    devicePk : string,
-    credentialData : CredentialData
+    processType: number;
+    authType: number;
+    userId: string;
+    deviceId: string;
+    version: string;
+    devicePk : string;
+    credentialData : CredentialData;
   }
 
   let credentialData: CredentialData = {
@@ -1267,7 +1289,7 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
     pkInfo: "",
     authCode: "",
     peerDeviceId: ""
-  }
+  };
 
 
   let credentialInfo: CredentialInfo = {
@@ -1278,15 +1300,15 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
     version: "1.2.3",
     devicePk : "0000",
     credentialData : credentialData
-  }
+  };
 
   try {
-    let jsonCredentialInfo = JSON.stringify(credentialInfo)
+    let jsonCredentialInfo = JSON.stringify(credentialInfo);
     dmInstance.importCredential(jsonCredentialInfo, (err: BusinessError, data: Data) => {
       if (data) {
-          console.info("importCredential result:" + JSON.stringify(data));
+        console.info("importCredential result:" + JSON.stringify(data));
       } else {
-          console.info("importCredential result: data is null");
+        console.info("importCredential result: data is null");
       }
     });
   } catch (err) {
@@ -1316,32 +1338,33 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    resultInfo: string = ""
+    resultInfo: string = "";
   }
 
   interface QueryInfo {
-    processType: number,
-    authType: number,
-    userId: string
+    processType: number;
+    authType: number;
+    userId: string;
   }
 
   let queryInfo: QueryInfo = {
     processType: 1,
     authType: 1,
     userId: "123"
-  }
+  };
 
   try {
-    let jsonQueryInfo = JSON.stringify(queryInfo)
+    let jsonQueryInfo = JSON.stringify(queryInfo);
     dmInstance.deleteCredential(jsonQueryInfo, (err: BusinessError, data: Data) => {
       if (data) {
-          console.info("deleteCredential result:" + JSON.stringify(data));
+        console.info("deleteCredential result:" + JSON.stringify(data));
       } else {
-          console.info("deleteCredential result: data is null");
+        console.info("deleteCredential result: data is null");
       }
     });
   } catch (err) {
@@ -1366,29 +1389,30 @@ ui状态变更回调。
 
   | 参数名      | 类型                             | 必填 | 说明                            |
   | -------- | ------------------------------------ | ---- | ------------------------------ |
-  | type     | string                                | 是  | 注册的设备管理器 ui 状态回调，以便在状态改变时通知应用。 |
+  | type     | string                                | 是  | 注册的设备管理器 ui 状态回调，以便在状态改变时通知应用，固定为uiStateChange。 |
   | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | 是  | 指示要注册的设备管理器 ui 状态回调，返回ui状态。        |
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    param: string = ""
+    param: string = "";
   }
 
   interface TmpStr {
-    verifyFailed: boolean
+    verifyFailed: boolean;
   }
 
   try {
     dmInstance.on('uiStateChange', (data: Data) => {
-    console.log("uiStateChange executed, dialog closed" + JSON.stringify(data))
-    let tmpStr: TmpStr = JSON.parse(data.param)
-    let isShow = tmpStr.verifyFailed
-    console.log("uiStateChange executed, dialog closed" + isShow)
-  });
+      console.log("uiStateChange executed, dialog closed" + JSON.stringify(data));
+      let tmpStr: TmpStr = JSON.parse(data.param);
+      let isShow = tmpStr.verifyFailed;
+      console.log("uiStateChange executed, dialog closed" + isShow);
+    });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error("uiStateChange errCode:" + e.code + ",errMessage:" + e.message);
@@ -1411,13 +1435,14 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
   | 参数名      | 类型                              | 必填 | 说明                            |
   | -------- | ------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                | 是   | 取消注册的设备管理器 ui 状态回调。 |
+  | type     | string                                | 是   | 取消注册的设备管理器 ui 状态回调，固定为uiStateChange。 |
   | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | 否   | 指示要取消注册的设备管理器 ui 状态，返回UI状态。 |
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     dmInstance.off('uiStateChange');
@@ -1448,20 +1473,21 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChange
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    action: deviceManager.DeviceStateChangeAction = 0
+    action: deviceManager.DeviceStateChangeAction = 0;
     device: deviceManager.DeviceInfo = {
       deviceId: "",
       deviceName: "",
       deviceType: 0,
       networkId: "",
       range: 0,
-      authForm:0,
-    }
+      authForm:0
+    };
   }
 
   try {
@@ -1490,25 +1516,26 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
   | 参数名       | 类型                                     | 必填   | 说明                          |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
-  | type     | string                                   | 是    | 根据应用程序的包名取消注册设备状态回调。        |
+  | type     | string                                   | 是    | 根据应用程序的包名取消注册设备状态回调，固定为deviceStateChange。        |
   | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | 否    | 指示要取消注册的设备状态回调，返回设备状态和设备信息。 |
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    action: deviceManager.DeviceStateChangeAction = 0
+    action: deviceManager.DeviceStateChangeAction = 0;
     device: deviceManager.DeviceInfo = {
       deviceId: "",
       deviceName: "",
       deviceType: 0,
       networkId: "",
       range: 0,
-      authForm:0,
-    }
+      authForm:0
+    };
   }
 
   try {
@@ -1537,25 +1564,26 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
 
   | 参数名       | 类型                                     | 必填   | 说明                         |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
-  | type     | string                                   | 是    | 注册设备发现回调，以便在发现周边设备时通知应用程序。 |
+  | type     | string                                   | 是    | 注册设备发现回调，以便在发现周边设备时通知应用程序，固定为deviceFound。 |
   | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | 是    | 注册设备发现的回调方法。               |
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    subscribeId: number = 0
+    subscribeId: number = 0;
     device: deviceManager.DeviceInfo = {
       deviceId: "",
       deviceName: "",
       deviceType: 0,
       networkId: "",
       range: 0,
-      authForm:0,
-    }
+      authForm:0
+    };
   }
 
   try {
@@ -1584,25 +1612,26 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 
   | 参数名       | 类型                                     | 必填   | 说明                          |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
-  | type     | string                                   | 是    | 取消注册设备发现回调。                 |
+  | type     | string                                   | 是    | 取消注册设备发现回调，固定为deviceFound。                |
   | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | 否    | 指示要取消注册的设备发现回调，返回设备状态和设备信息。 |
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    subscribeId: number = 0
+    subscribeId: number = 0;
     device: deviceManager.DeviceInfo = {
       deviceId: "",
       deviceName: "",
       deviceType: 0,
       networkId: "",
       range: 0,
-      authForm:0,
-    }
+      authForm:0
+    };
   }
 
   try {
@@ -1631,22 +1660,23 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 
   | 参数名       | 类型                                     | 必填   | 说明                             |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                   | 是    | 注册设备发现失败回调，以便在发现周边设备失败时通知应用程序。 |
+  | type     | string                                   | 是    | 注册设备发现失败回调，以便在发现周边设备失败时通知应用程序，固定为discoverFail。 |
   | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 是    | 注册设备发现失败的回调方法。                 |
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    subscribeId: number = 0
-    reason: number = 0
+    subscribeId: number = 0;
+    reason: number = 0;
   }
 
   try {
     dmInstance.on('discoverFail', (data: Data) => {
-        console.info("discoverFail on:" + JSON.stringify(data));
+      console.info("discoverFail on:" + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -1670,17 +1700,18 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 
   | 参数名       | 类型                                     | 必填   | 说明                |
   | -------- | ---------------------------------------- | ---- | ----------------- |
-  | type     | string                                   | 是    | 取消注册设备发现失败回调。     |
+  | type     | string                                   | 是    | 取消注册设备发现失败回调，固定为discoverFail。     |
   | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 否    | 指示要取消注册的设备发现失败回调。 |
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    subscribeId: number = 0
-    reason: number = 0
+    subscribeId: number = 0;
+    reason: number = 0;
   }
 
   try {
@@ -1709,17 +1740,18 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
 
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
-  | type     | string                                   | 是   | 注册发布设备成功回调，以便将发布成功时通知应用程序。 |
+  | type     | string                                   | 是   | 注册发布设备成功回调，以便将发布成功时通知应用程序，固定为publishSuccess。 |
   | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | 是   | 注册设备发布成功的回调方法。               |
 
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    publishId: number = 0
+    publishId: number = 0;
   }
 
   try {
@@ -1748,16 +1780,17 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 
   | 参数名     | 类型                                 | 必填 | 说明                          |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
-  | type     | string                                   | 是   | 取消注册设备发布成功回调。                 |
+  | type     | string                                   | 是   | 取消注册设备发布成功回调，固定为publishSuccess。                 |
   | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | 否   | 指示要取消注册的设备发布成功回调。 |
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    publishId: number = 0
+    publishId: number = 0;
   }
 
   try {
@@ -1786,17 +1819,18 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
 
   | 参数名     | 类型                                              | 必填 | 说明                             |
   | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                                | 是   | 注册设备发布失败回调，以便在发布设备失败时通知应用程序。 |
+  | type     | string                                                | 是   | 注册设备发布失败回调，以便在发布设备失败时通知应用程序，固定为publishFail |
   | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 是   | 注册设备发布失败的回调方法。                 |
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    publishId: number = 0
-    reason: number = 0
+    publishId: number = 0;
+    reason: number = 0;
   }
 
   try {
@@ -1825,17 +1859,18 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
 
   | 参数名     | 类型                                              | 必填 | 说明                |
   | -------- | ----------------------------------------------------- | ---- | ----------------- |
-  | type     | string                                                | 是   | 取消注册设备发布失败回调。     |
+  | type     | string                                                | 是   | 取消注册设备发布失败回调，固定为publishFail。     |
   | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 否   | 指示要取消注册设备发布失败回调。 |
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    publishId: number = 0
-    reason: number = 0
+    publishId: number = 0;
+    reason: number = 0;
   }
 
   try {
@@ -1864,13 +1899,14 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 
   | 参数名       | 类型                    | 必填   | 说明                                       |
   | -------- | ----------------------- | ---- | ---------------------------------------- |
-  | type     | string                  | 是    | 注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序。 |
+  | type     | string                  | 是    | 注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序，固定为serviceDie。 |
   | callback | ()&nbsp;=&gt;&nbsp;void | 是    | 注册serviceDie的回调方法。                       |
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     dmInstance.on("serviceDie", () => {
@@ -1898,13 +1934,14 @@ off(type: 'serviceDie', callback?: () =&gt; void): void
 
   | 参数名       | 类型                    | 必填   | 说明                                       |
   | -------- | ----------------------- | ---- | ---------------------------------------- |
-  | type     | string                  | 是    | 取消注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序。 |
+  | type     | string                  | 是    | 取消注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序，固定为serviceDie。 |
   | callback | ()&nbsp;=&gt;&nbsp;void | 否    | 取消注册serviceDie的回调方法。                     |
 
 **示例：**
 
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     dmInstance.off("serviceDie", () => {

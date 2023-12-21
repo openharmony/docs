@@ -36,7 +36,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | enterKeyType             | [EnterKeyType](#enterkeytype枚举说明) | 设置输入法回车键类型。<br/>默认值：EnterKeyType.Done |
 | caretColor               | [ResourceColor](ts-types.md#resourcecolor)    | 设置输入框光标颜色。<br/>默认值：'#007DFF'。                                |
 | maxLength                | number                                   | 设置文本的最大输入字符数。                            |
-| inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>error?:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void<br/>} | 正则表达式，匹配表达式的输入允许显示，不匹配的输入将被过滤。目前仅支持单个字符匹配，不支持字符串匹配。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被过滤的内容。 |
+| inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>error?:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void<br/>} | 正则表达式，匹配表达式的输入允许显示，不匹配的输入将被过滤。目前仅支持单个字符匹配，不支持字符串匹配。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被过滤的内容。<br/>从API version 11开始，设置inputFilter会导致设置输入框类型(即type接口)附带的文本过滤效果失效。|
 | copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。<br/>默认值：CopyOptions.LocalDevice，支持设备内复制。<br/>设置CopyOptions.None时，当前TextInput中的文字无法被复制或剪切，仅支持粘贴。<br/> |
 | showPasswordIcon<sup>9+</sup> | boolean | 密码输入模式时，输入框末尾的图标是否显示。<br/>默认值：true |
 | style<sup>9+</sup> | [TextInputStyle](#textinputstyle9枚举说明) \| [TextContentStyle](ts-appendix-enums.md#textcontentstyle10) | 设置输入框为默认风格或内联输入风格（内联输入风格只支持InputType.Normal类型）。<br/>默认值：TextInputStyle.Default |
@@ -67,11 +67,11 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 | 名称                  | 描述        |
 | ------------------- | --------- |
-| Go     | 显示为前往样式。   |
+| Go     | 显示为开始样式。   |
 | Search | 显示为搜索样式。  |
 | Send   | 显示为发送样式。  |
 | Next   | 显示为下一个样式。 |
-| Done   | 显示为确认样式。     |
+| Done   | 显示为换行样式。     |
 
 ## InputType枚举说明
 
@@ -96,10 +96,10 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 ## PasswordIcon<sup>10+</sup>对象说明
 
-| 名称       | 类型                                               | 必填 | 描述                                               |
-| ---------- | -------------------------------------------------- | ---- | -------------------------------------------------- |
-| onIconSrc  | string&nbsp;\|[Resource](ts-types.md#resource类型) | 否   | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
-| offIconSrc | string&nbsp;\|[Resource](ts-types.md#resource类型) | 否   | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
+| 名称       | 类型                                                     | 必填 | 描述                                               |
+| ---------- | -------------------------------------------------------- | ---- | -------------------------------------------------- |
+| onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 否   | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
+| offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 否   | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
 
 ## 事件
 
@@ -108,7 +108,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 输入内容发生变化时，触发该回调。<br/>value：输入的文本内容。<br/>触发该事件的条件：<br/>1、键盘输入。<br/>2、粘贴、剪切。<br/>3、键盘快捷键Ctrl+v。 |
-| onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void) | 按下输入法回车键触发该回调，返回值为当前输入法回车键的类型。<br/>enterKeyType：输入法回车键类型。具体类型见[EnterKeyType枚举说明](#enterkeytype枚举说明)。 |
+| onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event<sup>11+</sup>:&nbsp;SubmitEvent)&nbsp;=&gt;&nbsp;void) | 按下输入法回车键触发该回调，返回值为当前输入法回车键的类型以及当前文本是否为编辑态。<br/>enterKeyType：输入法回车键类型。具体类型见[EnterKeyType枚举说明](#enterkeytype枚举说明)。<br/>event：event.text为输入的文本内容，调用event.keepEditableState()函数使当前状态为编辑态。  |
 | onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>(deprecated)</sup> | 输入状态变化时，触发该回调。从API 8开始，建议使用onEditChange。 |
 | onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。 |
 | onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。<br/>value：复制的文本内容。 |
@@ -159,7 +159,7 @@ stopEditing(): void
 
 ### getTextContentRect<sup>10+</sup>
 
-getTextContentRect(): [RectResult](#rectresult)
+getTextContentRect(): [RectResult](#rectresult10)
 
 获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
 
@@ -167,7 +167,7 @@ getTextContentRect(): [RectResult](#rectresult)
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](#rectresult) | 已编辑文本内容的相对组件的位置和大小。 |
+| [RectResult](#rectresult10) | 已编辑文本内容的相对组件的位置和大小。 |
 
 > **说明：**
 >
@@ -246,7 +246,7 @@ struct TextInputExample {
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 14, weight: 400 })
         .caretColor(Color.Blue)
-        .width(300)
+        .width('95%')
         .height(40)
         .margin(20)
         .fontSize(14)
@@ -271,7 +271,7 @@ struct TextInputExample {
         })
       // 密码输入框
       TextInput({ placeholder: 'input your password...' })
-        .width(300)
+        .width('95%')
         .height(40)
         .margin(20)
         .type(InputType.Password)
@@ -279,7 +279,7 @@ struct TextInputExample {
         .showPasswordIcon(true)
       // 内联风格输入框
       TextInput({ text: 'inline style' })
-        .width(300)
+        .width('95%')
         .height(50)
         .margin(20)
         .borderRadius(0)

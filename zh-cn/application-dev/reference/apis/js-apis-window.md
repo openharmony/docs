@@ -6263,6 +6263,43 @@ promise.then(() => {
 });
 ```
 
+### recover<sup>11+</sup>
+
+recover(): Promise&lt;void&gt;
+
+将主窗口从全屏、最大化、分屏模式下还原为浮动窗口，并恢复到进入该模式之前的大小和位置，已经是浮动窗口模式不可再还原。使用Promise异步回调。此接口仅在部分设备类型下生效。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300001 | Repeated operation. |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window = window.findWindow("test");
+let promise = windowClass.recover();
+promise.then(() => {
+  console.info('Succeeded in recovering the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to recover the window. Cause: ' + JSON.stringify(err));
+});
+```
+
 ### setResizeByDragEnabled<sup>10+</sup>
 
 setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void

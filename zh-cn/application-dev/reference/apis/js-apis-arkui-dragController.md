@@ -212,7 +212,7 @@ struct DragControllerPage {
 | data        | [unifiedDataChannel.UnifiedData](js-apis-data-unifiedDataChannel.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。               |
 | extraParams | string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |
 | touchPoint<sup>11+</sup>    | [TouchPoint](../arkui-ts/ts-types.md#touchpoint)  | 否   | 配置跟手点坐标，不配置时，默认居中。      |
-| previewOptions<sup>11+</sup>| DragPreviewOptions                                     | 否   | 拖拽背板自定义配置。 |
+| previewOptions<sup>11+</sup>| [DragPreviewOptions](../arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 拖拽背板自定义配置。 |
 
 ## DragStatus<sup>11+</sup>
 
@@ -220,7 +220,7 @@ struct DragControllerPage {
 
 拖拽开始和结束状态。
 
-| 名称          | 数值                                                   | 说明                                     |
+| 名称          | 值                                                   | 说明                                     |
 | -----------   | ------------------------------------------------------| ---------------------------------------- |
 | STARTED       | 0                                                  | 拖拽已成功发起。         |
 | ENDED        | 1                                                  | 拖拽结束。               |
@@ -245,11 +245,15 @@ struct DragControllerPage {
 
 ### startDrag<sup>11+</sup>
 
-startDrag()：Promise&lt;void&gt;
+startDrag(): Promise&lt;void&gt;
 
 启动拖拽服务，返回Promise对象，回调启动成功和失败的结果。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 100001   | If some internal handling failed |
 
 **示例：**
 ```ts
@@ -267,7 +271,7 @@ on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinf
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 名称     | 类型  | 必填    | 描述             |
+| 参数名     | 类型  | 必填    | 描述             |
 | ------ | ------ | ------- | ---------------- |
 |  type  | string | 是      | 监听事件，固定为'statusChange'，即注册监听拖拽状态改变事件。|
 |  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt; | 是      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo)组件状态。|
@@ -281,17 +285,17 @@ dragAction.on('statusChange', (dragAndDropInfo)=>{
 
 ### off('statusChange')<sup>11+</sup>
 
- off(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt;): void
+ off(type: 'statusChange', callback?: Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt;): void
 
 取消注册监听拖拽状态改变事件。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 名称     | 类型  | 必填    | 描述             |
+| 参数名     | 类型  | 必填    | 描述             |
 | ------ | ------ | ------- | ---------------- |
 |  type  | string | 是      | 监听事件，固定为'statusChange'，即取消监听拖拽状态改变事件。|
-|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt; | 是      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo)组件状态。|
+|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt; | 否      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo)组件状态， 不设置取消所有监听。|
 
 **示例：**
 ```ts
@@ -328,7 +332,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Invalid input parameter |
-| 100001   | Internal error |
+| 100001   | If some internal handling failed |
 
 **示例：**
 
@@ -377,7 +381,8 @@ struct DragControllerPage {
               data: unifiedData,
               extraParams: ''
             }
-            this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
+            try{
+              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
             if(!this.dragAction){
               console.log("listener dragAction is null");
               return
@@ -397,6 +402,9 @@ struct DragControllerPage {
             this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
               console.log("start drag Error:" + err.message);
             })
+            } catch(err) {
+              console.log("create dragAction Error:" + err.message);
+            }
           }
         }
       }).margin({top:20})
@@ -429,13 +437,6 @@ getDragPreview(): DragPreview
 | ------------| ------------------------------------------------|
 | DragPreview | 一个代表拖拽背板的对象，提供背板样式设置的接口。 |
 
-**错误码：**
-
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 401      | Invalid input parameter |
-| 100001   | Internal error |
-
 **示例：**
 
 请参考[animate](#animate11)
@@ -466,7 +467,7 @@ setForegroundColor(color: ResourceColor): void
 
   ### animate<sup>11+</sup>
 
-animate(options: AnimationOptions, handler: Callback&lt;void&gt;): void
+animate(options: AnimationOptions, handler: () => void): void
 
 设置背板蒙版颜色变化动效。
 
@@ -477,7 +478,7 @@ animate(options: AnimationOptions, handler: Callback&lt;void&gt;): void
 | 参数名   | 类型                             | 必填 | 说明                               |
 | -------- | -------------------------------- | ---- | -----------------------------------|
 | options  | [AnimationOptions](#animationoptions11)                | 是   | 动效参数                           |
-| handler  | Callback&lt;void&gt;                         | 是   | 用于修改背板蒙版颜色等属性的回调方法。  |
+| handler  | () => void                         | 是   | 用于修改背板蒙版颜色等属性的回调方法。  |
 
 **示例：**
 

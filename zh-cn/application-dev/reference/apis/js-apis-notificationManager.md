@@ -1937,7 +1937,7 @@ notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 
 ## notificationManager.getSlotFlagsByBundle<sup>11+</sup>
 
-getSlotFlagsByBundle(bundle: BundleOption): Promise\<[NotificationSlotFlags]>
+getSlotFlagsByBundle(bundle: BundleOption): Promise\<number\>
 
 获取指定应用的通知通道标识位（Promise形式）。
 
@@ -1957,7 +1957,7 @@ getSlotFlagsByBundle(bundle: BundleOption): Promise\<[NotificationSlotFlags]>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-|  Promise\<[NotificationSlotFlags]>| 以Promise形式返回获取指定应用的通知通道标识位。 |
+|  Promise\<number\>| 以Promise形式返回获取指定应用的通知通道标识位。 |
 
 **错误码：**
 
@@ -1978,7 +1978,6 @@ import Base from '@ohos.base';
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 notificationManager.getSlotFlagsByBundle(bundle).then(() => {
 	console.info("getSlotFlagsByBundle success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -2425,11 +2424,16 @@ notificationManager.getActiveNotifications().then((data: Array<notificationManag
 
 ## notificationManager.getActiveNotificationByFilter<sup>11+<sup>
 
-getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallback<NotificationRequest>): void
+getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallback\<NotificationRequest\>): void
 
 获取满足条件的普通实况通知信息。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
 
 **参数：**
 
@@ -2480,11 +2484,16 @@ notificationManager.getActiveNotificationByFilter(filter, getActiveNotificationB
 
 ## notificationManager.getActiveNotificationByFilter<sup>11+<sup>
 
-getActiveNotificationByFilter(filter: NotificationFilter): Promise<NotificationRequest>
+getActiveNotificationByFilter(filter: NotificationFilter): Promise\<NotificationRequest\>
 
 获取满足条件的普通实况通知信息。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
 
 **参数：**
 
@@ -4226,7 +4235,6 @@ let setNotificationEnableSlotCallback = (err: Base.BusinessError): void => {
         console.info("setNotificationEnableSlot success");
     }
 };
-
 notificationManager.setNotificationEnableSlot(
     { bundle: "ohos.samples.notification", },
     notificationManager.SlotType.SOCIAL_COMMUNICATION,
@@ -4234,7 +4242,7 @@ notificationManager.setNotificationEnableSlot(
     setNotificationEnableSlotCallback);
 ```
 
-## notificationManager.setNotificationEnableSlot
+## notificationManager.setNotificationEnableSlot<sup>11+</sup>
 
 setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, isForceControl: boolean, callback: AsyncCallback\<void>): void
 
@@ -4319,6 +4327,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
+| 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -4683,7 +4692,7 @@ try{
 }
 ```
 
-## notificationManager.on<sup>10+</sup>
+## notificationManager.on<sup>11+</sup>
 
 on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: (checkInfo: NotificationCheckInfo) => Promise\<NotificationCheckResult\>): void
 
@@ -4710,6 +4719,8 @@ on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
 
 **示例：**
 

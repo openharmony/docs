@@ -15,25 +15,25 @@
 
 ## 开发指导
 
-详细的API说明请参考[ImagePacker API参考]。
+详细的API说明请参考[ImagePacker API参考](../reference/native-apis/image__packer__mdk_8h.md)。
 
 参考以下示例代码，完成图片编码的全流程，包括：创建编码器，初始化资源，编码过程，销毁资源。
 
 在应用开发过程中，开发者应按一定顺序调用方法，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
 
 如下为图片编码调用关系图：
+
 ![Invoking relationship of image native encode](figures/image-encode-native.png)
 
 ### 在 CMake 脚本中链接动态库
+
 ``` cmake
 target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
 ```
 
 ### 开发步骤
 
-1. 引入编码器头文件。
-
-   首先，应用需要引入image_packer_mdk.h头文件。
+1. 引入编码器头文件：image_packer_mdk.h。
 
    ```cpp
    // 引入编码器image_packer_mdk.h头文件。

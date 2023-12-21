@@ -404,7 +404,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 
 getStringSync(resource: Resource): string
 
-用户获取指定resource对象对应的字符串，使用同步方式返回字符串。
+用户获取指定resource对象对应的字符串，使用同步方式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -455,7 +455,7 @@ getStringSync(resource: Resource): string
 
 getStringSync(resource: Resource, ...args: Array<string | number>): string
 
-用户获取指定resource对象对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
+用户获取指定resource对象对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -687,7 +687,7 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定resource对象对应的字符串，使用callback形式返回字符串。
+用户获取指定resource对象对应的字符串，使用callback形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -739,7 +739,7 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
 getStringValue(resource: Resource): Promise&lt;string&gt;
 
-用户获取指定resource对象对应的字符串，使用Promise形式返回字符串。
+用户获取指定resource对象对应的字符串，使用Promise形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -928,7 +928,7 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
-用户获取指定resource对象对应的字符串数组，使用同步方式返回字符串数组。
+用户获取指定resource对象对应的字符串数组，使用同步方式返回字符串数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1111,8 +1111,7 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-用户获取指定resource对象对应的字符串数组，使用callback形式返回回字符串数组。
-
+用户获取指定resource对象对应的字符串数组，使用callback形式返回回字符串数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -1163,7 +1162,7 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
 
 getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
-用户获取指定resource对象对应的字符串数组，使用Promise形式返回字符串数组。
+用户获取指定resource对象对应的字符串数组，使用Promise形式返回字符串数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1313,7 +1312,7 @@ getPluralStringValueSync(resId: number, num: number): string
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1357,11 +1356,11 @@ getPluralStringValueSync(resId: number, num: number): string
 
 getPluralStringValueSync(resource: Resource, num: number): string
 
-根据指定数量获取指定resource对象表示的单复数字符串，使用同步方式返回字符串。
+根据指定数量获取指定resource对象表示的单复数字符串，使用同步方式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1417,7 +1416,7 @@ getPluralStringByNameSync(resName: string, num: number): string
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1465,7 +1464,7 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1514,7 +1513,7 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1562,11 +1561,11 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt;string&gt;): void
 
-根据指定数量获取指定resource对象表示的单复数字符串，使用callback形式返回字符串。
+根据指定数量获取指定resource对象表示的单复数字符串，使用callback形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1619,11 +1618,11 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 
 getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
-根据指定数量获取对指定resource对象表示的单复数字符串，使用Promise形式返回字符串。
+根据指定数量获取对指定resource对象表示的单复数字符串，使用Promise形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1681,6 +1680,10 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 
 根据传入的数量值，获取资源名称对应的字符串资源，使用callback形式返回字符串。
 
+**说明**
+>
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1725,6 +1728,10 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 
 根据传入的数量值，获取资源名称对应的字符串资源，使用Promise形式返回字符串。
+
+**说明**
+>
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1823,7 +1830,7 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
 
 getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
-用户获取指定resource对象对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回字节数组。
+用户获取指定resource对象对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回字节数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2113,7 +2120,7 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定resource对象对应的媒体文件内容，使用callback形式返回字节数组。
+用户获取指定resource对象对应的媒体文件内容，使用callback形式返回字节数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2164,7 +2171,7 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 
 getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback形式返回字节数组。
+用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback形式返回字节数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2216,7 +2223,7 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 
 getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
-用户获取指定resource对象对应的媒体文件内容，使用Promise形式返回字节数组。
+用户获取指定resource对象对应的媒体文件内容，使用Promise形式返回字节数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2270,7 +2277,7 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
-用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用Promise形式返回字节数组。
+用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用Promise形式返回字节数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2556,7 +2563,7 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 
 getMediaContentBase64Sync(resource: Resource, density?: number): string
 
-用户获取指定resource对象对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回字符串。
+用户获取指定resource对象对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2846,7 +2853,7 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定resource对象对应的图片资源Base64编码，使用callback形式返回字符串。
+用户获取指定resource对象对应的图片资源Base64编码，使用callback形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2897,7 +2904,7 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 
 getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback形式返回字符串。
+用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2949,7 +2956,7 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 
 getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
-用户获取指定resource对象对应的图片资源Base64编码，使用Promise形式返回字符串。
+用户获取指定resource对象对应的图片资源Base64编码，使用Promise形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3003,7 +3010,7 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt;
 
-用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用Promise形式返回字符串。
+用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用Promise形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3236,7 +3243,7 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 ### getDrawableDescriptor<sup>10+</sup>
 
-getDrawableDescriptor(resId: number, density?: number): DrawableDescriptor;
+getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor;
 
 用户获取指定资源ID对应的DrawableDescriptor对象，使用同步方式返回资源对应的DrawableDescriptor，用于图标的显示。
 
@@ -3248,6 +3255,7 @@ getDrawableDescriptor(resId: number, density?: number): DrawableDescriptor;
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值 |
 | [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度 |
+| type<sup>11+</sup> | number | 否    | 1表示用于取主题资源包中应用的分层图标资源，0或缺省表示取应用自身图标资源 |
 
 **返回值：**
 
@@ -3282,13 +3290,20 @@ getDrawableDescriptor(resId: number, density?: number): DrawableDescriptor;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
+  try {
+    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, null, 1);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### getDrawableDescriptor<sup>10+</sup>
 
-getDrawableDescriptor(resource: Resource, density?: number): DrawableDescriptor;
+getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor;
 
-用户获取指定resource对应的DrawableDescriptor对象，使用同步方式返回资源对应的DrawableDescriptor，用于图标的显示。
+用户获取指定resource对应的DrawableDescriptor对象，使用同步方式返回资源对应的DrawableDescriptor，用于图标的显示。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3300,6 +3315,7 @@ getDrawableDescriptor(resource: Resource, density?: number): DrawableDescriptor;
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息 |
 | [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度 |
+| type<sup>11+</sup> | number | 否    | 1表示用于取主题资源包中应用的分层图标资源，0或缺省表示取应用自身图标资源 |
 
 **返回值：**
 
@@ -3340,11 +3356,18 @@ getDrawableDescriptor(resource: Resource, density?: number): DrawableDescriptor;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
+  try {
+    this.context.resourceManager.getDrawableDescriptor(resource, null, 1);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### getDrawableDescriptorByName<sup>10+</sup>
 
-getDrawableDescriptorByName(resName: string, density?: number): DrawableDescriptor;
+getDrawableDescriptorByName(resName: string, density?: number, type?: number): DrawableDescriptor;
 
 用户获取指定资源名称对应的DrawableDescriptor对象，使用同步方式返回资源对应的DrawableDescriptor，用于图标的显示。
 
@@ -3356,6 +3379,7 @@ getDrawableDescriptorByName(resName: string, density?: number): DrawableDescript
 | ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称 |
 | [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度 |
+| type<sup>11+</sup> | number | 否    | 1表示用于取主题资源包中应用的分层图标资源，0或缺省表示取应用自身图标资源 |
 
 **返回值：**
 
@@ -3385,6 +3409,13 @@ getDrawableDescriptorByName(resName: string, density?: number): DrawableDescript
   }
   try {
     this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
+  }
+  try {
+    this.context.resourceManager.getDrawableDescriptorByName('icon', null, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3438,7 +3469,7 @@ getBoolean(resId: number): boolean
 
 getBoolean(resource: Resource): boolean
 
-使用同步方式，返回获取指定resource对象对应的布尔结果。
+使用同步方式，返回获取指定resource对象对应的布尔结果。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3583,7 +3614,7 @@ getNumber(resId: number): number
 
 getNumber(resource: Resource): number
 
-用户获取指定resource对象对应的integer数值或者float数值，使用同步方式返回资源对应的数值。
+用户获取指定resource对象对应的integer数值或者float数值，使用同步方式返回资源对应的数值。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3728,7 +3759,7 @@ getColorSync(resId: number) : number;
 
 getColorSync(resource: Resource): number
 
-用户获取指定resource对象对应的颜色值，使用同步方式返回其对应的颜色值。
+用户获取指定resource对象对应的颜色值，使用同步方式返回其对应的颜色值。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3913,7 +3944,7 @@ getColor(resId: number): Promise&lt;number&gt;
 
 getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
-用户获取指定resource对象对应的颜色值，使用callback形式返回其对应的颜色值。
+用户获取指定resource对象对应的颜色值，使用callback形式返回其对应的颜色值。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -3965,7 +3996,7 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
 getColor(resource: Resource): Promise&lt;number&gt;;
 
-用户获取指定resource对象对应的颜色值，使用Promise形式返回其对应的颜色值。
+用户获取指定resource对象对应的颜色值，使用Promise形式返回其对应的颜色值。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4611,7 +4642,7 @@ closeRawFd(path: string): Promise&lt;void&gt;
   }
   ```
 
-### getConfigurationSync
+### getConfigurationSync<sup>10+</sup>
 
 getConfigurationSync(): Configuration
 
@@ -4696,7 +4727,7 @@ getConfiguration(): Promise&lt;Configuration&gt;
   }
   ```
 
-### getDeviceCapabilitySync
+### getDeviceCapabilitySync<sup>10+</sup>
 
 getDeviceCapabilitySync(): DeviceCapability
 
@@ -5331,7 +5362,7 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue9)代替。
 
@@ -5372,7 +5403,7 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue9-1)代替。
 

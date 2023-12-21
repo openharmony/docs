@@ -45,16 +45,17 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果指定了别名，则通过别名来绑定变量；如果未指定别名，则通过变量名绑定变量。 |
 | 同步类型           | 双向同步。<br/>从\@Provide变量到所有\@Consume变量以及相反的方向的数据同步。双向同步的操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Provide a : string \| undefined = undefiend`是推荐的，不推荐`@Provide a: string = undefined`。
-<br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>不支持any。<br/>必须指定类型。\@Provide变量的\@Consume变量的类型必须相同。|
-| 被装饰变量的初始值      | 必须指定。                                    |
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date、Map、Set类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Provide a : string \| undefined = undefiend`是推荐的，不推荐`@Provide a: string = undefined`。
+<br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>不支持any。| 必须指定类型。<br/>\@Provide变量的\@Consume变量的类型必须相同。|
+| 被装饰变量的初始值      | 必须指定，允许重写。                                    |
+| 支持allowOverride参数          | 只要声明了allowOverride，则别名和属性名都可以被Override。示例见\@Provide支持allowOverride参数。 |
 
 | \@Consume变量装饰器 | 说明                                       |
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果提供了别名，则必须有\@Provide的变量和其有相同的别名才可以匹配成功；否则，则需要变量名相同才能匹配成功。 |
 | 同步类型           | 双向：从\@Provide变量（具体请参见\@Provide）到所有\@Consume变量，以及相反的方向。双向同步操作与\@State和\@Link的组合相同。 |
 | 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Consume a : string \| undefined`。
-<br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>不支持any。<br/>必须指定类型。\@Provide变量的\@Consume变量的类型必须相同。<br/>**说明：**<br/>\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。 |
+<br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>不支持any。| 必须指定类型。<br/>\@Provide变量的\@Consume变量的类型必须相同。<br/>\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。 |
 | 被装饰变量的初始值      | 无，禁止本地初始化。                               |
 
 
@@ -158,6 +159,10 @@ struct CompA {
 }
 ```
 
+- 当装饰的变量是Map时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
+
+- 当装饰的变量是Set时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
+
 ### 框架行为
 
 1. 初始渲染：
@@ -229,7 +234,117 @@ struct CompA {
 }
 ```
 
-## Provide_and_Consume支持联合类型实例
+### 装饰Map类型变量
+
+\@Provide，\@Consume支持Map类型，在下面的示例中，message类型为Map<number, string>，点击Button改变message的值，视图会随之刷新。
+
+```ts
+@Component
+struct Child {
+  @Consume message: Map<number, string>
+
+  build() {
+    Column(){
+      ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        Text(`${item[0]}`).fontSize(30)
+        Text(`${item[1]}`).fontSize(30)
+        Divider()
+      })
+      Button('Consume init map').onClick(() =>{
+        this.message = new Map([[0, "a"], [1, "b"], [3, "c"]])
+      })
+      Button('Consume set new one').onClick(() =>{
+        this.message.set(4, "d")
+      })
+      Button('Consume clear').onClick(() =>{
+        this.message.clear()
+      })
+      Button('Consume replace the first item').onClick(() =>{
+        this.message.set(0, "aa")
+      })
+      Button('Consume delete the first item').onClick(() =>{
+        this.message.delete(0)
+      })
+    }
+  }
+}
+
+
+@Entry
+@Component
+struct MapSample {
+  @Provide message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+
+  build() {
+    Row() {
+      Column() {
+        Button('Provide init map').onClick(() =>{
+          this.message = new Map([[0, "a"], [1, "b"], [3, "c"], [4, "d"]])
+        })
+        Child()
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### 装饰Set类型变量
+
+\@Provide，\@Consume支持Set类型，在下面的示例中，message类型为Set<number>，点击Button改变message的值，视图会随之刷新。
+
+```ts
+@Component
+struct Child {
+  @Consume message: Set<number>
+
+  build() {
+    Column() {
+      ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        Text(`${item[0]}`).fontSize(30)
+        Divider()
+      })
+      Button('Consume init set').onClick(() =>{
+        this.message = new Set([0, 1, 2 ,3,4 ])
+      })
+      Button('Consume set new one').onClick(() =>{
+        this.message.add(5)
+      })
+      Button('Consume clear').onClick(() =>{
+        this.message.clear()
+      })
+      Button('Consume delete the first one').onClick(() =>{
+        this.message.delete(0)
+      })
+    }
+    .width('100%')
+  }
+}
+
+
+
+@Entry
+@Component
+struct SetSample {
+  @Provide message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+
+  build() {
+    Row() {
+      Column() {
+        Button('Provide init set').onClick(() =>{
+          this.message = new Set([0, 1, 2 ,3, 4, 5 ])
+        })
+        Child()
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### Provide_and_Consume支持联合类型实例
 
 @Provide和@Consume支持联合类型和undefined和null，在下面的示例中，count类型为string | undefined，点击父组件Parent中的Button改变count的属性或者类型，Child中也会对应刷新。
 
@@ -273,3 +388,78 @@ struct Ancestors {
   }
 }
 ```
+
+### \@Provide支持allowOverride参数
+
+allowOverride：\@Provide重写选项。
+
+> **说明：**
+>
+> 从API version 11开始使用。
+
+| 名称   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| allowOverride | string | 否 | 是否允许@Provide重写。允许在同一组件树下通过allowOverride重写同名的@Provide。如果开发者未写allowOverride，定义同名的@Provide，运行时会报错。 |
+
+```ts
+@Component
+struct MyComponent {
+  @Provide({allowOverride : "reviewVotes"}) reviewVotes: number = 10;
+}
+```
+
+```ts
+@Component
+struct GrandSon {
+  // @Consume装饰的变量通过相同的属性名绑定其祖先内的@Provide装饰的变量
+  @Consume("reviewVotes") reviewVotes: number;
+
+  build() {
+    Column() {
+      Text(`reviewVotes(${this.reviewVotes})`) // Text显示10
+      Button(`reviewVotes(${this.reviewVotes}), give +1`)
+        .onClick(() => this.reviewVotes += 1)
+    }
+    .width('50%')
+  }
+}
+
+@Component
+struct Child {
+  @Provide({allowOverride : "reviewVotes"}) reviewVotes: number = 10;
+  build() {
+    Row({ space: 5 }) {
+      GrandSon()
+    }
+  }
+}
+
+@Component
+struct Parent {
+  @Provide({allowOverride : "reviewVotes"}) reviewVotes: number = 20;
+  build() {
+    Child()
+  }
+}
+
+@Entry
+@Component
+struct GrandParent {
+  @Provide("reviewVotes") reviewVotes: number = 40;
+
+  build() {
+    Column() {
+      Button(`reviewVotes(${this.reviewVotes}), give +1`)
+        .onClick(() => this.reviewVotes += 1)
+      Parent()
+    }
+  }
+}
+```
+
+在上面的示例中：
+- GrandParent声明了@Provide("reviewVotes") reviewVotes: number = 40
+- Parent是GrandParent的子组件，声明@Provide为allowOverride，重写父组件GrandParent的@Provide("reviewVotes") reviewVotes: number = 40。如果不设置allowOverride，则会抛出运行时报错，提示@Provide重复定义。Child同理。
+- GrandSon在初始化@Consume的时候，@Consume装饰的变量通过相同的属性名绑定其最近的祖先的@Provide装饰的变量。
+- GrandSon查找到相同属性名的@Provide在祖先Child中，所以@Consume("reviewVotes") reviewVotes: number初始化数值为10。如果Child中没有定义与@Consume同名的@Provide，则继续向上寻找Parent中的同名@Provide值为20，以此类推。
+- 如果查找到根节点还没有找到key对应的@Provide，则会报初始化@Consume找不到@Provide的报错。
