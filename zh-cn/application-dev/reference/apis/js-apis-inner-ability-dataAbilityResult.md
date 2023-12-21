@@ -26,6 +26,7 @@ import ability from '@ohos.ability.ability';
 
 ```ts
 import ability from '@ohos.ability.ability';
+import Base from '@ohos.base'
 import featureAbility from '@ohos.ability.featureAbility';
 import rdb from '@ohos.data.rdb';
 
@@ -68,11 +69,11 @@ function executeBatchOperation() {
                 console.log('dataAbilityResult.uri: ${dataAbilityResult.uri}');
                 console.log('dataAbilityResult.count: ${dataAbilityResult.count}');
             }
-        }).catch((err) => {
-            console.error(`executeBatch error: ${JSON.stringify(err)}`);
+        }).catch((error: Base.BusinessError) => {
+            console.error(`executeBatch error: ${error.code}`);
         });
-    } catch (err) {
-        console.error(`executeBatch error: ${JSON.stringify(err)}`);
+    } catch (error) {
+        console.error(`executeBatch error: ${(error as Base.BusinessError)}`);
     }
 }
 ```
