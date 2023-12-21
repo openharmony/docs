@@ -42,20 +42,20 @@ let wantInfo: W = {
 
 ```typescript
 function printObj(obj: any) {
-  console.log(obj)
+  console.log(obj);
 }
 
-printObj('abc')
+printObj('abc');
 ```
 
 **建议改法**
 
 ```typescript
 function printObj(obj: string) {
-  console.log(obj)
+  console.log(obj);
 }
 
-printObj('abc')
+printObj('abc');
 ```
 
 ### 标注JSON.parse返回值类型
@@ -68,10 +68,10 @@ class A {
   s: string = ''
   
   foo(str: string) {
-    let tmpStr = JSON.parse(str)
+    let tmpStr = JSON.parse(str);
     if (tmpStr.add != undefined) {
-      this.v = tmpStr.v
-      this.s = tmpStr.s
+      this.v = tmpStr.v;
+      this.s = tmpStr.s;
     }
   }
 }
@@ -85,10 +85,10 @@ class A {
   s: string = ''
   
   foo(str: string) {
-    let tmpStr: Record<string, Object> = JSON.parse(str)
+    let tmpStr: Record<string, Object> = JSON.parse(str);
     if (tmpStr.add != undefined) {
-      this.v = tmpStr.v as number
-      this.s = tmpStr.s as string
+      this.v = tmpStr.v as number;
+      this.s = tmpStr.s as string;
     }
   }
 }
@@ -100,8 +100,8 @@ class A {
 
 ```typescript
 function printProperties(obj: any) {
-  console.log(obj.name)
-  console.log(obj.value)
+  console.log(obj.name);
+  console.log(obj.value);
 }
 ```
 
@@ -109,8 +109,8 @@ function printProperties(obj: any) {
 
 ```typescript
 function printProperties(obj: Record<string, Object>) {
-  console.log(obj.name)
-  console.log(obj.value)
+  console.log(obj.name);
+  console.log(obj.value);
 }
 ```
 
@@ -126,11 +126,11 @@ interface I {
 }
 
 function foo(fn: I) {
-  fn('abc')
+  fn('abc');
 }
 
 foo((value: string) => {
-  console.log(value)
+  console.log(value);
 })
 ```
 
@@ -141,11 +141,11 @@ foo((value: string) => {
 type I = (value: string) => void
 
 function foo(fn: I) {
-  fn('abc')
+  fn('abc');
 }
 
 foo((value: string) => {
-  console.log(value)
+  console.log(value);
 })
 ```
 
@@ -158,7 +158,7 @@ class Controller {
   value: number = 0
 
   constructor(value: number) {
-    this.value = value
+    this.value = value;
   }
 }
 
@@ -170,14 +170,14 @@ class Menu {
   controller: ControllerConstrucotr = Controller
   createController() {
     if (this.controller) {
-      return new this.controller(123)
+      return new this.controller(123);
     }
     return null;
   }
 }
 
-let t = new Menu()
-console.log(t.createController()!.value)
+let t = new Menu();
+console.log(t.createController()!.value);
 ```
 
 **建议改法**
@@ -187,7 +187,7 @@ class Controller {
   value: number = 0
 
   constructor(value: number) {
-    this.value = value
+    this.value = value;
   }
 }
 
@@ -195,19 +195,19 @@ type ControllerConstrucotr = () => Controller;
 
 class Menu {
   controller: ControllerConstrucotr = () => {
-    return new Controller(123)
+    return new Controller(123);
   }
 
   createController() {
     if (this.controller) {
-      return this.controller()
+      return this.controller();
     }
     return null;
   }
 }
 
-let t: Menu = new Menu()
-console.log(t.createController()!.value)
+let t: Menu = new Menu();
+console.log(t.createController()!.value);
 ```
 
 ## arkts-no-indexed-signatures
@@ -218,9 +218,9 @@ console.log(t.createController()!.value)
 
 ```typescript
 function foo(data: { [key: string]: string }) {
-  data['a'] = 'a'
-  data['b'] = 'b'
-  data['c'] = 'c'
+  data['a'] = 'a';
+  data['b'] = 'b';
+  data['c'] = 'c';
 }
 ```
 
@@ -228,9 +228,9 @@ function foo(data: { [key: string]: string }) {
 
 ```typescript
 function foo(data: Record<string, string>) {
-  data['a'] = 'a'
-  data['b'] = 'b'
-  data['c'] = 'c'
+  data['a'] = 'a';
+  data['b'] = 'b';
+  data['c'] = 'c';
 }
 ```
 
@@ -241,7 +241,7 @@ function foo(data: Record<string, string>) {
 ```typescript
 class C {
   getInstance(): this {
-    return this
+    return this;
   }
 }
 ```
@@ -251,7 +251,7 @@ class C {
 ```typescript
 class C {
   getInstance(): C {
-    return this
+    return this;
   }
 }
 ```
@@ -265,7 +265,7 @@ class Person {
   constructor(readonly name: string) {}
 
   getName(): string {
-    return this.name
+    return this.name;
   }
 }
 ```
@@ -276,11 +276,11 @@ class Person {
 class Person {
   name: string
   constructor(name: string) {
-    this.name = name
+    this.name = name;
   }
 
   getName(): string {
-    return this.name
+    return this.name;
   }
 }
 ```
@@ -294,7 +294,7 @@ class Controller {
   value: number = 0
 
   constructor(value: number) {
-    this.value = value
+    this.value = value;
   }
 }
 
@@ -306,14 +306,14 @@ class Menu {
   controller: ControllerConstrucotr = Controller
   createController() {
     if (this.controller) {
-      return new this.controller(123)
+      return new this.controller(123);
     }
     return null;
   }
 }
 
-let t = new Menu()
-console.log(t.createController()!.value)
+let t = new Menu();
+console.log(t.createController()!.value);
 ```
 
 **建议改法**
@@ -323,7 +323,7 @@ class Controller {
   value: number = 0
 
   constructor(value: number) {
-    this.value = value
+    this.value = value;
   }
 }
 
@@ -331,19 +331,19 @@ type ControllerConstrucotr = () => Controller;
 
 class Menu {
   controller: ControllerConstrucotr = () => {
-    return new Controller(123)
+    return new Controller(123);
   }
 
   createController() {
     if (this.controller) {
-      return this.controller()
+      return this.controller();
     }
     return null;
   }
 }
 
-let t: Menu = new Menu()
-console.log(t.createController()!.value)
+let t: Menu = new Menu();
+console.log(t.createController()!.value);
 ```
 
 ## arkts-no-props-by-index
@@ -379,9 +379,9 @@ class A {
 class B extends A {}
 class C extends A {}
 
-let arr: Array<A> = []
+let arr: Array<A> = [];
 
-let originMenusMap:Map<string, C> = new Map(arr.map(item => [item.str, (item instanceof C) ? item : null]))
+let originMenusMap:Map<string, C> = new Map(arr.map(item => [item.str, (item instanceof C) ? item: null]));
 ```
 
 **建议改法**
@@ -393,27 +393,27 @@ class A {
 class B extends A {}
 class C extends A {}
 
-let arr: Array<A> = []
+let arr: Array<A> = [];
 
-let originMenusMap: Map<string, C | null> = new Map<string, C | null>(arr.map<[string, C | null]>(item => [item.str, (item instanceof C) ? item : null]))
+let originMenusMap: Map<string, C | null> = new Map<string, C | null>(arr.map<[string, C | null]>(item => [item.str, (item instanceof C) ? item: null]));
 ```
 
 **原因**
 
-`(item instanceof C) ? item : null` 需要声明类型为`C | null`，由于编译器无法推导出`map`的泛型类型参数，需要显式标注。
+`(item instanceof C) ? item: null` 需要声明类型为`C | null`，由于编译器无法推导出`map`的泛型类型参数，需要显式标注。
 
 ## arkts-no-regexp-literals
 
 **应用代码**
 
 ```typescript
-let regex: RegExp = /\s*/g
+let regex: RegExp = /\s*/g;
 ```
 
 **建议改法**
 
 ```typescript
-let regexp: RegExp = new RegExp('\\s*','g')
+let regexp: RegExp = new RegExp('\\s*','g');
 ```
 
 **原因**
@@ -457,11 +457,11 @@ class Test {
   value: number = 1
 
   constructor(value: number) {
-    this.value = value
+    this.value = value;
   }
 }
 
-let t: Test = { value: 2 }
+let t: Test = { value: 2 };
 ```
 
 **建议改法1**
@@ -472,7 +472,7 @@ class Test {
   value: number = 1
 }
 
-let t: Test = { value: 2 }
+let t: Test = { value: 2 };
 ```
 
 **建议改法2**
@@ -482,11 +482,11 @@ class Test {
   value: number = 1
   
   constructor(value: number) {
-    this.value = value
+    this.value = value;
   }
 }
 
-let t: Test = new Test(2)
+let t: Test = new Test(2);
 ```
 
 **原因**
@@ -497,14 +497,14 @@ class C {
   
   constructor(n: number) {
     if (n < 0) {
-      throw new Error('Negative')
+      throw new Error('Negative');
     }
-    this.value = n
+    this.value = n;
   }
 }
 
-let s: C = new C(-2) 	//抛出异常
-let t: C = { value : -2 }	//ArkTS不支持
+let s: C = new C(-2); 	//抛出异常
+let t: C = { value: -2 };	//ArkTS不支持
 ```
 
 例如在上面的例子中，如果允许使用`C`来标注object literal的类型，那么上述代码中的变量`t`会导致行为的二义性。ArkTS禁止通过object literal来绕过这一行为。
@@ -577,9 +577,9 @@ let obj: Record<string, number | string> = {
 ```typescript
 function foo(obj: { [key: string]: string}): string {
   if (obj != undefined && obj != null) {
-    return obj.value1 + obj.value2
+    return obj.value1 + obj.value2;
   }
-  return ''
+  return '';
 }
 ```
 
@@ -588,9 +588,9 @@ function foo(obj: { [key: string]: string}): string {
 ```typescript
 function foo(obj: Record<string, string>): string {
   if (obj != undefined && obj != null) {
-    return obj.value1 + obj.value2
+    return obj.value1 + obj.value2;
   }
-  return ''
+  return '';
 }
 ```
 
@@ -600,7 +600,7 @@ function foo(obj: Record<string, string>): string {
 
 ```typescript
 (fn) => {
-  fn({ value: 123, name:'' })
+  fn({ value: 123, name:'' });
 }
 ```
 
@@ -613,7 +613,7 @@ class T {
 }
 
 (fn: (v: T) => void) => {
-  fn({ value: 123, name: '' })
+  fn({ value: 123, name: '' });
 }
 ```
 
@@ -626,7 +626,7 @@ interface T {
   foo(value: number): number
 }
 
-let t: T = { foo: (value) => { return value } }
+let t:T = { foo: (value) => { return value } };
 ```
 
 **建议改法1**
@@ -636,7 +636,7 @@ interface T {
   foo: (value: number) => number
 }
 
-let t:T = { foo: (value) => { return value } }
+let t:T = { foo: (value) => { return value } };
 ```
 
 **建议改法2**
@@ -644,11 +644,11 @@ let t:T = { foo: (value) => { return value } }
 ```typescript
 class T {
   foo: (value: number) => number = (value: number) => {
-    return value
+    return value;
   }
 }
 
-let t:T = new T()
+let t:T = new T();
 ```
 
 **原因**
@@ -667,7 +667,7 @@ export default {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Application onCreate');
   },
   onDestroy() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onDestroy')
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onDestroy');
   }
 }
 ```
@@ -682,7 +682,7 @@ class Test {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Application onCreate');
   }
   onDestroy() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onDestroy')
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onDestroy');
   }
 }
 
@@ -742,7 +742,7 @@ function emit(event: string, ...args: Object[]): void {}
 emit('', {
   'action': 11,
   'outers': false
-})
+});
 ```
 
 **建议改法**
@@ -755,7 +755,7 @@ let emitArg: Record<string, number | boolean> = {
    'outers': false
 }
 
-emit('', emitArg)
+emit('', emitArg);
 ```
 
 ## arkts-no-obj-literals-as-types
@@ -819,8 +819,8 @@ function sub(left: number, right: number): number {
   return left - right;
 }
 
-let c1 = new C()
-c1.add = sub
+let c1 = new C();
+c1.add = sub;
 ```
 
 **建议改法**
@@ -837,8 +837,8 @@ function sub(left: number, right: number): number {
   return left - right;
 }
 
-let c1 = new C()
-c1.add = sub
+let c1 = new C();
+c1.add = sub;
 ```
 
 ## arkts-no-polymorphic-unops
@@ -846,19 +846,19 @@ c1.add = sub
 **应用代码**
 
 ```typescript
-let a = +'5'
-let b = -'5'
-let c = ~'5'
-let d = +'string'
+let a = +'5';
+let b = -'5';
+let c = ~'5';
+let d = +'string';
 ```
 
 **建议改法**
 
 ```typescript
-let a = Number.parseInt('5')
-let b = -Number.parseInt('5')
-let c = ~Number.parseInt('5')
-let d = new Number('string')
+let a = Number.parseInt('5');
+let b = -Number.parseInt('5');
+let c = ~Number.parseInt('5');
+let d = new Number('string');
 ```
 
 ## arkts-no-type-query
@@ -875,7 +875,7 @@ export let c = new C()
 
 // module2.ts
 import { c } from './module1'
-let t: typeof c = { value: 123 }
+let t: typeof c = { value: 123 };
 ```
 
 **建议改法**
@@ -890,7 +890,7 @@ export { C }
 
 // module2.ts
 import { C } from './module1'
-let t: C = { value: 123 }
+let t: C = { value: 123 };
 ```
 
 ## arkts-no-in
@@ -898,15 +898,15 @@ let t: C = { value: 123 }
 **应用代码**
 
 ```typescript
-let arr = [10, 20, 30, 40]
-let isIn = 5 in arr
+let arr = [10, 20, 30, 40];
+let isIn = 5 in arr;
 ```
 
 **建议改法**
 
 ```typescript
-let arr = [10, 20, 30, 40]
-let isIn = 5 < arr.length
+let arr = [10, 20, 30, 40];
+let isIn = 5 < arr.length;
 ```
 
 ## arkts-no-destruct-assignment
@@ -914,10 +914,10 @@ let isIn = 5 < arr.length
 **应用代码**
 
 ```typescript
-let map = new Map<string, string>([['a', 'a'], ['b', 'b']])
+let map = new Map<string, string>([['a', 'a'], ['b', 'b']]);
 for (let [key, value] of map) {
-  console.log(key)
-  console.log(value)
+  console.log(key);
+  console.log(value);
 }
 ```
 
@@ -926,12 +926,12 @@ for (let [key, value] of map) {
 使用数组
 
 ```typescript
-let map = new Map<string, string>([['a', 'a'], ['b', 'b']])
+let map = new Map<string, string>([['a', 'a'], ['b', 'b']]);
 for (let arr of map) {
-  let key = arr[0]
-  let value = arr[1]
-  console.log(key)
-  console.log(value)
+  let key = arr[0];
+  let value = arr[1];
+  console.log(key);
+  console.log(value);
 }
 ```
 
@@ -976,7 +976,7 @@ let p: Person = {
 };
 
 for (let t in p) {
-  console.log(p[t])
+  console.log(p[t]);
 }
 ```
 
@@ -989,7 +989,7 @@ let p: Record<string, string> = {
 };
 
 for (let ele of Object.entries(p)) {
-  console.log(ele[1])
+  console.log(ele[1]);
 }
 ```
 
@@ -1028,7 +1028,7 @@ type OptionsFlags = Record<keyof C, string>
 import { BusinessError } from '@ohos.base';
 
 function ThrowError(error: BusinessError) {
-  throw error
+  throw error;
 }
 ```
 
@@ -1038,7 +1038,7 @@ function ThrowError(error: BusinessError) {
 import { BusinessError } from '@ohos.base';
 
 function ThrowError(error: BusinessError) {
-  throw error as Error
+  throw error as Error;
 }
 ```
 
@@ -1054,11 +1054,11 @@ function ThrowError(error: BusinessError) {
 
 ```typescript
 function foo() {
-  console.log(this.value)
+  console.log(this.value);
 }
 
-let obj = { value: 123 }
-foo.apply(obj)
+let obj = { value: 123 };
+foo.apply(obj);
 ```
 
 **建议改法1**
@@ -1073,12 +1073,12 @@ class Test {
   }
   
   foo() {
-    console.log(this.value)
+    console.log(this.value);
   }
 }
 
-let obj: Test = new Test(123)
-obj.foo()
+let obj: Test = new Test(123);
+obj.foo();
 ```
 
 **建议改法2**
@@ -1087,15 +1087,15 @@ obj.foo()
 
 ```typescript
 function foo(obj: Test) {
-  console.log(obj.value)
+  console.log(obj.value);
 }
 
 class Test {
   value: number = 0
 }
 
-let obj: Test = { value: 123 }
-foo(obj)
+let obj: Test = { value: 123 };
+foo(obj);
 ```
 
 **建议改法3**
@@ -1103,15 +1103,15 @@ foo(obj)
 将属性作为参数传入
 ```typescript
 function foo(value: number) {
-  console.log(value)
+  console.log(value);
 }
 
 class Test {
   value: number = 0
 }
 
-let obj: Test = { value: 123 }
-foo(obj.value)
+let obj: Test = { value: 123 };
+foo(obj.value);
 ```
 
 ### class的静态方法内使用this
@@ -1192,7 +1192,7 @@ class Menu {
   controller: ControllerConstrucotr = Controller
   createController() {
     if (this.controller) {
-      return new this.controller(123)
+      return new this.controller(123);
     }
     return null;
   }
@@ -1208,7 +1208,7 @@ console.log(t.createController()!.value)
 class Controller {
   value: number = 0
   constructor(value: number) {
-    this.value = value
+    this.value = value;
   }
 }
 
@@ -1218,14 +1218,14 @@ class Menu {
   controller: ControllerConstrucotr = () => { return new Controller(123) }
   createController() {
     if (this.controller) {
-      return this.controller()
+      return this.controller();
     }
     return null;
   }
 }
 
-let t: Menu = new Menu()
-console.log(t.createController()!.value)
+let t: Menu = new Menu();
+console.log(t.createController()!.value);
 ```
 
 ## arkts-no-globalthis
@@ -1278,7 +1278,7 @@ export class Test {
 
 // file2.ts
 
-print(globalThis.value)
+print(globalThis.value);
 
 ```
 
@@ -1311,15 +1311,15 @@ console.log(GlobalContext.getContext().getObject('value'));
 **应用代码**
 
 ```typescript
-let arr: number[] = [1, 2, 3, 4]
-let str = String.fromCharCode.apply(null, Array.from(arr))
+let arr: number[] = [1, 2, 3, 4];
+let str = String.fromCharCode.apply(null, Array.from(arr));
 ```
 
 **建议改法**
 
 ```typescript
-let arr: number[] = [1, 2, 3, 4]
-let str = String.fromCharCode(...Array.from(arr))
+let arr: number[] = [1, 2, 3, 4];
+let str = String.fromCharCode(...Array.from(arr));
 ```
 
 ### bind定义方法
@@ -1340,7 +1340,7 @@ class Test {
   }
   
   foo() {
-    console.log(this.value)
+    console.log(this.value);
   }
 }
 ```
@@ -1361,7 +1361,7 @@ class Test {
   }
   
   foo() {
-    console.log(this.value)
+    console.log(this.value);
   }
 }
 ```
@@ -1377,7 +1377,7 @@ class A {
 class Test {
   value: number = 1234
   foo: () => void = () => {
-    console.log(this.value)
+    console.log(this.value);
   }
   obj: A = {
     value: this.value,
@@ -1394,19 +1394,19 @@ class Test {
 class A {
   value:number;
   constructor (value:number) {
-    this.value = value
+    this.value = value;
   }
 
   foo() {
-    console.log(this.value)
+    console.log(this.value);
   }
 }
 
-let a1 = new A(1)
-let a2 = new A(2)
+let a1 = new A(1);
+let a2 = new A(2);
 
-a1.foo()
-a1.foo.apply(a2)
+a1.foo();
+a1.foo.apply(a2);
 ```
 
 **建议改法**
@@ -1415,23 +1415,23 @@ a1.foo.apply(a2)
 class A {
   value:number;
   constructor (value:number) {
-    this.value = value
+    this.value = value;
   }
 
   foo() {
-    this.fooApply(this)
+    this.fooApply(this);
   }
 
   fooApply(a: A) {
-    console.log(a.value)
+    console.log(a.value);
   }
 }
 
-let a1 = new A(1)
-let a2 = new A(2)
+let a1 = new A(1);
+let a2 = new A(2);
 
-a1.foo()
-a1.fooApply(a2)
+a1.foo();
+a1.fooApply(a2);
 ```
 
 ## arkts-limited-stdlib
@@ -1443,17 +1443,17 @@ ArkTS不允许使用全局对象的属性和方法： `Infinity, NaN, isFinite, 
 **应用代码**
 
 ```typescript
-console.log(NaN)
-console.log(isFinite(123))
-console.log(parseInt('123'))
+console.log(NaN);
+console.log(isFinite(123));
+console.log(parseInt('123'));
 ```
 
 **建议改法**
 
 ```typescript
-console.log(Number.NaN)
-console.log(Number.isFinite(123))
-console.log(Number.parseInt('123'))
+console.log(Number.NaN);
+console.log(Number.isFinite(123));
+console.log(Number.parseInt('123'));
 ```
 
 ## arkts-strict-typing(StrictModeError)
@@ -1569,8 +1569,8 @@ class Test {
   value: number
   flag: boolean
   constructor(value: number, flag: boolean) {
-    this.value = value
-    this.flag = flag
+    this.value = value;
+    this.flag = flag;
   }
 }
 ```
@@ -1593,7 +1593,7 @@ class Test {
 ```typescript
 function foo(fn: (value?: string) => void, value: string): void {}
 
-foo((value: string) => {}, '') //error
+foo((value: string) => {}, ''); //error
 ```
 
 **建议改法**
@@ -1601,7 +1601,7 @@ foo((value: string) => {}, '') //error
 ```typescript
 function foo(fn: (value?: string) => void, value: string): void {}
 
-foo((value?: string) => {}, '')
+foo((value?: string) => {}, '');
 ```
 
 **原因**
@@ -1610,11 +1610,11 @@ foo((value?: string) => {}, '')
 
 ```typescript
 function foo(fn: (value?: string) => void, value: string): void {
-  let v: string | undefined = undefined
-  fn(v)
+  let v: string | undefined = undefined;
+  fn(v);
 }
 
-foo((value: string) => { console.log(value.toUpperCase()) }, '') // Cannot read properties of undefined (reading 'toUpperCase')
+foo((value: string) => { console.log(value.toUpperCase()) }, ''); // Cannot read properties of undefined (reading 'toUpperCase')
 ```
 
 为了避免运行时的非预期行为，如果在编译时开启了严格类型检查，这段代码将编译不通过，从而可以提醒开发者修改代码，保证程序安全。
@@ -1628,12 +1628,12 @@ class Test {
   private value?: string
   
   public printValue () {
-    console.log(this.value.toLowerCase())
+    console.log(this.value.toLowerCase());
   }
 }
 
-let t = new Test()
-t.printValue()
+let t = new Test();
+t.printValue();
 ```
 
 **建议改法**
@@ -1646,18 +1646,18 @@ class Test {
 
   public printValue () {
     if (this.value) {
-      console.log(this.value.toLowerCase())
+      console.log(this.value.toLowerCase());
     }
   }
 }
 
-let t = new Test()
-t.printValue()
+let t = new Test();
+t.printValue();
 ```
 
 **原因**
 
-在第一段代码中，如果编译期不开启严格空值检查，那么该段代码可以编译通过，但是在运行时会产生非预期的行为。这是因为`t`的属性`value`为`undefined`（这是因为`value?: string`是`value : string | undefined = undefined`的语法糖），在第11行调用`printValue`方法时，由于在该方法体内未对`this.value`的值进行空值检查，而直接按照`string`类型访问其属性，这就导致了运行时的错误。为了避免运行时的非预期行为，如果在编译时开起来严格空值检查，这段代码将编译不通过从而可以提醒开发者修改代码（如按照第二段代码的方式），保证程序安全。
+在第一段代码中，如果编译期不开启严格空值检查，那么该段代码可以编译通过，但是在运行时会产生非预期的行为。这是因为`t`的属性`value`为`undefined`（这是因为`value?: string`是`value: string | undefined = undefined`的语法糖），在第11行调用`printValue`方法时，由于在该方法体内未对`this.value`的值进行空值检查，而直接按照`string`类型访问其属性，这就导致了运行时的错误。为了避免运行时的非预期行为，如果在编译时开起来严格空值检查，这段代码将编译不通过从而可以提醒开发者修改代码（如按照第二段代码的方式），保证程序安全。
 
 ### 函数返回类型不匹配
 
@@ -1687,7 +1687,7 @@ class Test {
 try {
   
 } catch (error) {
-  console.log(error.message)
+  console.log(error.message);
 }
 ```
 
@@ -1699,7 +1699,7 @@ import { BusinessError } from '@ohos.base'
 try {
   
 } catch (error) {
-  console.log((error as BusinessError).message)
+  console.log((error as BusinessError).message);
 }
 ```
 
@@ -1711,18 +1711,18 @@ try {
 class A {
   value: number
   constructor(value: number) {
-    this.value = value
+    this.value = value;
   }
 }
 
 function foo(v: number): A | null {
   if (v > 0) {
-    return new A(v)
+    return new A(v);
   }
-  return null
+  return null;
 }
 
-let a: A = foo()
+let a: A = foo();
 ```
 
 **建议改法1**
@@ -1733,18 +1733,18 @@ let a: A = foo()
 class A {
   value: number
   constructor(value: number) {
-    this.value = value
+    this.value = value;
   }
 }
 
 function foo(v: number): A | null {
   if (v > 0) {
-    return new A(v)
+    return new A(v);
   }
-  return null
+  return null;
 }
 
-let a: A | null = foo(123)
+let a: A | null = foo(123);
 
 if (a != null) {
   // 非空分支
@@ -1761,18 +1761,18 @@ if (a != null) {
 class A {
   value: number
   constructor(value: number) {
-    this.value = value
+    this.value = value;
   }
 }
 
 function foo(v: number): A | null {
   if (v > 0) {
-    return new A(v)
+    return new A(v);
   }
-  return null
+  return null;
 }
 
-let a: A = foo(123)!
+let a: A = foo(123)!;
 ```
 
 ### Cannot invoke an object which possibly 'undefined'
@@ -1784,8 +1784,8 @@ interface A {
   foo?: () => void
 }
 
-let a:A = { foo: () => {} }
-a.foo()
+let a:A = { foo: () => {} };
+a.foo();
 ```
 
 **建议改法1**
@@ -1794,8 +1794,8 @@ a.foo()
 interface A {
   foo: () => void
 }
-let a: A = { foo: () => {} }
-a.foo()
+let a: A = { foo: () => {} };
+a.foo();
 ```
 
 **建议改法2**
@@ -1805,9 +1805,9 @@ interface A {
   foo?: () => void
 }
 
-let a: A = { foo: () => {} }
+let a: A = { foo: () => {} };
 if (a.foo) {
-  a.foo()
+  a.foo();
 }
 ```
 
@@ -1826,11 +1826,11 @@ class Test {
 
 let a: Test
 try {
-  a = { value: 1}
+  a = { value: 1};
 } catch (e) {
-  a.value
+  a.value;
 }
-a.value
+a.value;
 ```
 
 **建议改法**
@@ -1840,17 +1840,17 @@ class Test {
   value: number = 0
 }
 
-let a: Test | null = null
+let a: Test | null = null;
 try {
-  a = { value:1 }
+  a = { value:1 };
 } catch (e) {
   if (a) {
-    a.value
+    a.value;
   }
 }
 
 if (a) {
-  a.value
+  a.value;
 }
 ```
 
@@ -1867,7 +1867,7 @@ if (a) {
 ```typescript
 function foo(a: number): number {
   if (a > 0) {
-    return a
+    return a;
   }
 }
 ```
@@ -1881,7 +1881,7 @@ function foo(a: number): number {
 ```typescript
 function foo(a: number): number | undefined {
   if (a > 0) {
-    return a
+    return a;
   }
   return
 }
@@ -1893,13 +1893,13 @@ function foo(a: number): number | undefined {
 
 ```typescript
 // @ts-nocheck
-var a: any = 123
+var a: any = 123;
 ```
 
 **建议改法**
 
 ```typescript
-let a: number = 123
+let a: number = 123;
 ```
 
 **原因**
@@ -1955,14 +1955,14 @@ class Menu {
   controller: ControllerConstrucotr = Controller
   createController() {
     if (this.controller) {
-      return new this.controller(123)
+      return new this.controller(123);
     }
     return null;
   }
 }
 
-let t = new Menu()
-console.log(t.createController()!.value)
+let t = new Menu();
+console.log(t.createController()!.value);
 ```
 
 **建议改法**
@@ -1978,17 +1978,17 @@ class Controller {
 type ControllerConstrucotr = () => Controller;
 
 class Menu {
-  controller: ControllerConstrucotr = () => { return new Controller(123) }
+  controller: ControllerConstrucotr = () => { return new Controller(123); }
   createController() {
     if (this.controller) {
-      return this.controller()
+      return this.controller();
     }
     return null;
   }
 }
 
-let t: Menu = new Menu()
-console.log(t.createController()!.value)
+let t: Menu = new Menu();
+console.log(t.createController()!.value);
 ```
 
 ### 访问静态属性
@@ -2005,11 +2005,11 @@ class C2 {
 }
 
 function getValue(obj: any) {
-  return obj['value']
+  return obj['value'];
 }
 
-console.log(getValue(C1))
-console.log(getValue(C2))
+console.log(getValue(C1));
+console.log(getValue(C2));
 ```
 
 **建议改法**
@@ -2031,8 +2031,8 @@ function getC2Value(): string {
   return C2.value;
 }
 
-console.log(getC1Value())
-console.log(getC2Value())
+console.log(getC1Value());
+console.log(getC2Value());
 ```
 
 ## arkts-no-side-effects-imports
@@ -2057,15 +2057,15 @@ import('module')
 
 ```typescript
 function foo(value: number): void {
-  console.log(value.toString())
+  console.log(value.toString());
 }
 
 foo.add = (left: number, right: number) => {
-  return left + right
+  return left + right;
 }
 
 foo.sub = (left: number, right: number) => {
-  return left - right
+  return left - right;
 }
 ```
 
@@ -2074,15 +2074,15 @@ foo.sub = (left: number, right: number) => {
 ```typescript
 class Foo {
   static foo(value: number): void {
-    console.log(value.toString())
+    console.log(value.toString());
   }
 
   static add(left: number, right: number): number {
-    return left + right
+    return left + right;
   }
 
   static sub(left: number, right: number): number {
-    return left - right
+    return left - right;
   }
 }
 ```
