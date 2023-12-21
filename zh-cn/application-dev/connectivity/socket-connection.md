@@ -2,21 +2,21 @@
 
 ## 简介
 
-Socket 连接主要是通过 Socket 进行数据传输，支持 TCP/UDP/TLS 协议。
+Socket 连接主要是通过 Socket 进行数据传输，支持 TCP/UDP/Multicast/TLS 协议。
 
 ## 基本概念
 
 - Socket：套接字，就是对网络中不同主机上的应用进程之间进行双向通信的端点的抽象。
 - TCP：传输控制协议(Transmission Control Protocol)。是一种面向连接的、可靠的、基于字节流的传输层通信协议。
 - UDP：用户数据报协议(User Datagram Protocol)。是一个简单的面向消息的传输层，不需要连接。
-- TLS：安全传输层协议(Transport Layer Security)。用于在两个通信应用程序之间提供保密性和数据完整性。
 - Multicast：多播，基于UDP的一种通信模式，用于实现组内所有设备之间广播形式的通信。
+- TLS：安全传输层协议(Transport Layer Security)。用于在两个通信应用程序之间提供保密性和数据完整性。
 
 ## 场景介绍
 
-应用通过 Socket 进行数据传输，支持 TCP/UDP/TLS 协议。主要场景有：
+应用通过 Socket 进行数据传输，支持 TCP/UDP/Multicast/TLS 协议。主要场景有：
 
-- 应用通过 TCP/UDP Socket 进行数据传输
+- 应用通过 TCP/UDP/Multicast Socket 进行数据传输
 - 应用通过 TCP Socket Server 进行数据传输
 - 应用通过 TLS Socket 进行加密数据传输
 
@@ -31,6 +31,7 @@ Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 | constructUDPSocketInstance()       | 创建一个 UDPSocket 对象。                                                      |
 | constructTCPSocketInstance()       | 创建一个 TCPSocket 对象。                                                      |
 | constructTCPSocketServerInstance() | 创建一个 TCPSocketServer 对象。                                                |
+| constructMulticastSocketInstance() | 创建一个 MulticastSocket 对象。                                                |
 | listen()                           | 绑定 IP 地址和端口，监听并接受与此套接字建立的 TCPSocket 连接。（仅 TCP 支持）    |
 | bind()                             | 绑定 IP 地址和端口。                                                           |
 | send()                             | 发送数据。                                                                     |
@@ -39,6 +40,12 @@ Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 | connect()                          | 连接到指定的 IP 地址和端口（仅 TCP 支持）                                      |
 | getRemoteAddress()                 | 获取对端 Socket 地址（仅 TCP 支持，需要先调用 connect 方法）                   |
 | setExtraOptions()                  | 设置 Socket 连接的其他属性。                                                   |
+| addMembership()                    | 加入到指定的多播组 IP 中 (仅 Multicast 支持)。                                 |
+| dropMembership()                   | 从指定的多播组 IP 中退出 (仅 Multicast 支持)。                                 |
+| setMulticastTTL()                  | 设置数据传输跳数 TTL (仅 Multicast 支持)。                                    |
+| getMulticastTTL()                  | 获取数据传输跳数 TTL (仅 Multicast 支持)。                                    |
+| setLoopbackMode()                  | 设置回环模式，允许主机在本地循环接收自己发送的多播数据包 (仅 Multicast 支持)。       |
+| getLoopbackMode()                  | 获取回环模式开启或关闭的状态 (仅 Multicast 支持)。                               |
 | on(type:&nbsp;'message')           | 订阅 Socket 连接的接收消息事件。                                               |
 | off(type:&nbsp;'message')          | 取消订阅 Socket 连接的接收消息事件。                                           |
 | on(type:&nbsp;'close')             | 订阅 Socket 连接的关闭事件。                                                   |
@@ -49,20 +56,6 @@ Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 | off(type:&nbsp;'listening')        | 取消订阅 UDPSocket 连接的数据包消息事件（仅 UDP 支持）。                       |
 | on(type:&nbsp;'connect')           | 订阅 TCPSocket 的连接事件（仅 TCP 支持）。                                     |
 | off(type:&nbsp;'connect')          | 取消订阅 TCPSocket 的连接事件（仅 TCP 支持）。                                 |
-
-Multicast socket 接口说明如下表。
-| 接口名                              | 描述                                             |
-| ---------------------------------- | ----------------------------------------------- |
-| constructMulticastSocketInstance() | 创建一个 MulticastSocket 对象。                    |
-| addMembership()                    | 加入到指定的多播组 IP 中。                          |
-| dropMembership()                   | 从指定的多播组 IP 中退出。                          |
-| setMulticastTTL()                  | 设置数据传输跳数 TTL(Time to live) 。              |
-| getMulticastTTL()                  | 获取数据传输跳数 TTL 。                            |
-| setLoopbackMode()                  | 设置回环模式，允许主机在本地循环接收自己发送的多播数据包。|
-| getLoopbackMode()                  | 获取回环模式开启或关闭的状态                         |
-| send()                             | 发送数据。                                        |
-| on(type:&nbsp;'message')           | 订阅接收消息事件。                                 |
-| off(type:&nbsp;'message')          | 取消订阅接收消息事件。                              |
 
 TLS Socket 连接主要由 tls_socket 模块提供。具体接口说明如下表。
 
@@ -278,26 +271,39 @@ setTimeout(() => {
 
 1. import 需要的 socket 模块。
 
-2. 创建 multicastSocket 对象。
+2. 创建 multicastSocket 多播对象。
 
-3. 加入多播组。
+3. 指定多播 IP 与端口，加入多播组。
 
-4. 开启消息 message 监听
+4. 开启消息 message 监听。
 
-5. 发送数据。
+5. 发送数据，数据以广播的形式传输，同一多播组中已经开启消息 message 监听的多播对象都会接收到数据。
+
+6. 关闭 message 消息的监听。
+
+7. 退出多播组。
 
 ```ts
 import socket from '@ohos.net.socket'
-
+// 创建Multicast对象
 let multicast = socket.constructMulticastSocketInstance();
-multicast.addMembership({ address: '239.255.0.1', port: 32123, family: 1 }, (err) => {
+
+let addr : socket.NetAddress = {
+  address: '239.255.0.1'
+  port: 32123
+  family: 1
+}
+
+// 加入多播组
+multicast.addMembership(addr, (err) => {
   if (err) {
-    console.info('add err' + JSON.stringify(err));
-  } else {
-    console.info('add ok');
+    console.info('add err: ' + JSON.stringify(err));
+    return;
   }
+  console.info('add ok');
 })
 
+// 开启监听消息数据，将接收到的ArrayBuffer类型数据转换为String
 multicast.on('message', (data) => {
   console.info('----监听成功-----')
   console.info('接收的数据: ' + JSON.stringify(data))
@@ -309,12 +315,25 @@ multicast.on('message', (data) => {
   console.info(str)
 })
 
-multicast.send({ data:'Hello12345', address: { address:'239.255.0.1', port:32123, family:1 } }, (err) => {
+// 发送数据
+multicast.send({ data:'Hello12345', address: addr }, (err) => {
   if (err) {
     console.info('发送失败: ' + JSON.stringify(err));
-  } else {
-    console.info('发送成功');
+    return;
   }
+  console.info('发送成功');
+})
+
+// 关闭消息的监听
+multicast.off('message')
+
+// 退出多播组
+multicast.dropMembership(addr, (err) => {
+  if (err) {
+    console.info('drop err ' + JSON.stringify(err));
+    return;
+  }
+  console.info('drop ok');
 })
 ```
 
