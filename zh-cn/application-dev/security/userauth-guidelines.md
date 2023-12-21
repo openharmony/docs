@@ -40,17 +40,17 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 1. 申请权限。调用[getAvailableStatus](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息请参考[Stage模型应用程序包结构](../quick-start/module-configuration-file.md)。
 
-2. 查询认证能力之前需要录入口令/指纹/人脸相关特征。指定[认证类型](../reference/apis/js-apis-useriam-userauth.md#userauthtype8)和[认证等级](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)，调用[getAvailableStatus](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9)接口查询当前的设备是否支持相应的认证能力。
+2. 指定[认证类型](../reference/apis/js-apis-useriam-userauth.md#userauthtype8)和[认证等级](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)，调用[getAvailableStatus](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9)接口查询当前的设备是否支持相应的认证能力。
 
     ```ts
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
     
-    // 查询认证能力是否支持
+    // 查询认证能力是否支持，如果该设备未录入相关特征，就会打印不支持日志信息
     try {
         userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
         console.info('current auth trust level is supported');
     } catch (error) {
-        console.info('current auth trust level is not supported, error = ' + error);
+        console.error('current auth trust level is not supported, error = ' + error);
     }
     ```
 
@@ -91,7 +91,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
       userAuthInstance.start();
       console.log('auth start success');
     } catch (error) {
-      console.log('auth catch error: ' + JSON.stringify(error));
+      console.error('auth catch error: ' + JSON.stringify(error));
     }
     ```
 
@@ -120,7 +120,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
      });
      console.log('auth off success');
    } catch (error) {
-     console.log('auth catch error: ' + JSON.stringify(error));
+     console.error('auth catch error: ' + JSON.stringify(error));
    }
    ```
 
@@ -158,6 +158,6 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
       userAuthInstance.cancel();
       console.log('auth cancel success');
     } catch (error) {
-      console.log('auth catch error: ' + JSON.stringify(error));
+      console.error('auth catch error: ' + JSON.stringify(error));
     }
     ```
