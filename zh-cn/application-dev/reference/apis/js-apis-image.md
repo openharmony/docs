@@ -2209,10 +2209,22 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 62980096| If the operation failed              |
+| 62980099 | If the shared memory data abnormal |
+| 62980101 | If the image data abnormal |
 | 62980103| If the image data unsupport             |
+| 62980106 | If the image too large |
+| 62980109 | If the image crop failed |
 | 62980110| If the image source data error              |
 | 62980111| If the image source data incomplete            |
+| 62980112 | If the image format mismatch |
+| 62980113 | If the image format unknown |
+| 62980115 | If the image invalid parameter |
+| 62980116 | If the image decode failed |
 | 62980118| If the image plugin create failed             |
+| 62980122 | If the image decode head abnormal |
+| 62980137 | If the media invalid operation |
+| 62980173 | If the DMA memory not exist |
+| 62980174 | If the DMA memory data abnormal |
 
 **示例：**
 
@@ -2253,11 +2265,23 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980103| If the image data unsupport             |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980118| If the image plugin create failed             |
+| 62980096 | If the operation failed             |
+| 62980099 | If the shared memory data abnormal  |
+| 62980101 | If the image data abnormal          |
+| 62980103 | If the image data unsupport         |
+| 62980106 | If the image too large              |
+| 62980109 | If the image crop failed            |
+| 62980110 | If the image source data error      |
+| 62980111 | If the image source data incomplete |
+| 62980112 | If the image format mismatch        |
+| 62980113 | If the image format unknown         |
+| 62980115 | If the image invalid parameter      |
+| 62980116 | If the image decode failed          |
+| 62980118 | If the image plugin create failed   |
+| 62980122 | If the image decode head abnormal   |
+| 62980137 | If the media invalid operation      |
+| 62980173 | If the DMA memory not exist         |
+| 62980174 | If the DMA memory data abnormal     |
 
 **示例：**
 
@@ -2293,11 +2317,23 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980103| If the image data unsupport             |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980118| If the image plugin create failed             |
+| 62980096 | If the operation failed             |
+| 62980099 | If the shared memory data abnormal  |
+| 62980101 | If the image data abnormal          |
+| 62980103 | If the image data unsupport         |
+| 62980106 | If the image too large              |
+| 62980109 | If the image crop failed            |
+| 62980110 | If the image source data error      |
+| 62980111 | If the image source data incomplete |
+| 62980112 | If the image format mismatch        |
+| 62980113 | If the image format unknown         |
+| 62980115 | If the image invalid parameter      |
+| 62980116 | If the image decode failed          |
+| 62980118 | If the image plugin create failed   |
+| 62980122 | If the image decode head abnormal   |
+| 62980137 | If the media invalid operation      |
+| 62980173 | If the DMA memory not exist         |
+| 62980174 | If the DMA memory data abnormal     |
 
 **示例：**
 
@@ -2324,7 +2360,7 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
 
 getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
-获取图像延迟时间数组，使用callback形式返回结果。
+获取图像延迟时间数组，使用callback形式返回结果。此接口仅用于gif图片。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2343,10 +2379,14 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 | 62980096| If the operation failed              |
 | 62980110| If the image source data error              |
 | 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
+| 62980112 | If the image format mismatch |
+| 62980113| If the image format unknown |
+| 62980115 | If the image invalid parameter |
+| 62980116| If the image decode failed |
+| 62980118| If the image plugin create failed |
+| 62980122| If the image decode head abnormal |
+| 62980137 | If the media invalid operation |
+| 62980149 | If the media invalid parameter |
 
 **示例：**
 
@@ -2365,7 +2405,7 @@ imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) 
 
 getDelayTimeList(): Promise<Array\<number>>
 
-获取图像延迟时间数组，使用Promise形式返回结果。
+获取图像延迟时间数组，使用Promise形式返回结果。此接口仅用于gif图片。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2381,13 +2421,17 @@ getDelayTimeList(): Promise<Array\<number>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
+| 62980096 | If the operation failed             |
+| 62980110 | If the image source data error      |
+| 62980111 | If the image source data incomplete |
+| 62980112 | If the image format mismatch        |
+| 62980113 | If the image format unknown         |
+| 62980115 | If the image invalid parameter      |
+| 62980116 | If the image decode failed          |
+| 62980118 | If the image plugin create failed   |
+| 62980122 | If the image decode head abnormal   |
+| 62980137 | If the media invalid operation      |
+| 62980149 | If the media invalid parameter      |
 
 **示例：**
 
@@ -2421,12 +2465,15 @@ getFrameCount(callback: AsyncCallback\<number>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 62980096| If the operation failed              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
+| 62980110| If the image source data error |
+| 62980111| If the image source data incomplete |
+| 62980112 | If the image format mismatch |
+| 62980113| If the image format unknown |
+| 62980115 | If the image invalid parameter |
+| 62980116| If the image decode failed |
+| 62980118| If the image plugin create failed |
+| 62980122| If the image decode head abnormal |
+| 62980137 | If the media invalid operation |
 
 **示例：**
 
@@ -2461,13 +2508,16 @@ getFrameCount(): Promise\<number>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
+| 62980096 | If the operation failed             |
+| 62980110 | If the image source data error      |
+| 62980111 | If the image source data incomplete |
+| 62980112 | If the image format mismatch        |
+| 62980113 | If the image format unknown         |
+| 62980115 | If the image invalid parameter      |
+| 62980116 | If the image decode failed          |
+| 62980118 | If the image plugin create failed   |
+| 62980122 | If the image decode head abnormal   |
+| 62980137 | If the media invalid operation      |
 
 **示例：**
 
