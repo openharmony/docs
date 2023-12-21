@@ -64,6 +64,18 @@ MarginType定义marginState的类型
 | DEFAULT_MARGIN | 默认边距：边距1：引用ohos_id_card_margin_start，边距2：引用ohos_id_card_margin_end |
 | FIT_MARGIN     | 可适配边距： 边距1：引用ohos_id_max_padding_start，边距2：引用ohos_id_max_padding_end |
 
+## 默认系统资源配置
+
+| 类型                     | 说明                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| 无网络状态               | 网络未连接：引用ohos_network_not_connected                   |
+| 网络差状态               | 网络连接不稳定，请点击重试：引用ohos_network_connected_unstable |
+| 连不上服务器状态         | 无法连接到服务器，请点击重试：引用ohos_unstable_connect_server |
+| 有网但是获取不到内容状态 | 无法获取位置，请点击重试：引用ohos_custom_network_tips_left  |
+| 自定义提示文字内容状态   |                                                              |
+
+
+
 ## 事件
 
 | 名称                             | 功能描述                   |
@@ -103,6 +115,8 @@ struct Index {
             // Click Set Network to open the Set network pop-up interface
         },
       })
+    }
+  }
 
 ```
 
