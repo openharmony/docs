@@ -15,6 +15,8 @@ AppStorage是在应用启动的时候会被创建的单例。它的目的是为�
 
 AppStorage可以和UI组件同步，且可以在应用业务逻辑中被访问。
 
+AppStorage支持应用的[主线程](../application-models/thread-model-stage.md)内多个UIAbility实例间的状态共享。
+
 AppStorage中的属性可以被双向同步，数据可以是存在于本地或远程设备上，并具有不同的功能，比如数据持久化（详见[PersistentStorage](arkts-persiststorage.md)）。这些数据是通过业务逻辑中实现，与UI解耦，如果希望这些数据在UI中使用，需要用到[@StorageProp](#storageprop)和[@StorageLink](#storagelink)。
 
 
