@@ -89,7 +89,7 @@ libnative_drawing.so
               XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry' })
               .onLoad((xComponentContext) => {
                   this.xComponentContext = xComponentContext as XComponentContext;
-              }).width('640px') // Multiples of 64
+              }).width('640px') // 64的倍数
           }.height('88%')
         }
       }
