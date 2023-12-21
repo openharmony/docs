@@ -27,6 +27,7 @@ Image effects include blur, shadow, spherical effect, and much more.
 | lightUpEffect<sup>10+</sup>      | number                                   | -      | Light up degree of the component.<br>The value ranges from 0 to 1.<br>If the value is **0**, the component is dark. If the value is **1**, the component is fully illuminated. Between 0 and 1, a greater value indicates higher luminance. A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**.<br>This is a system API.|
 | pixelStretchEffect<sup>10+</sup> | [PixelStretchEffectOptions](ts-types.md#pixelstretcheffectoptions10) | -      | Pixel stretch effect options.<br>The **options** parameter includes the length by which a pixel is stretched toward the four edges.<br>**NOTE**<br>1. If the length is a positive value, the original image is stretched, and the image size increases. The edge pixels grow by the set length toward the top, bottom, left, and right edges.<br>2. 2. If the length is a negative value, the original image shrinks as follows, but the image size remains unchanged:<br> <br>(1) The image shrinks from the four edges by the absolute value of length set through **options**.<br>(2) The image is stretched back to the original size with edge pixels.<br>3. Constraints on **options**:<br>(1) The length values for the four edges must be all positive or all negative. That is, the four edges are stretched or shrink at the same time in the same direction.<br>(2) The length values must all be a percentage or a specific value. Combined use of the percentage and specific value is not allowed.<br>(3) If the input value is invalid, the image is displayed as {0, 0, 0, 0}, that is, the image is the same as the original image.<br>This is a system API.|
 | linearGradientBlur<sup>10+</sup> | <br>value: number,<br>{<br>fractionStops:Array\<FractionStop>,<br>direction:[GradientDirection](ts-appendix-enums.md#gradientdirection)<br>} <br> | -      | Linear gradient blur for the component.<br>- **value**: blur radius. A greater value indicates a higher blur degree. If the value is 0, the content is not blurred. Value range: [0, 60]<br>Linear gradient blur consists of two parts: **fractionStops** and **direction**.<br>- **fractionStops**: gradient blur stops. The value is a set of binary arrays, each of which indicates [blur degree, blur position] and consists of numbers ranging from 0 to 1 (those less than 0 evaluate to **0**, and those greater than 1 evaluate to **1**). The blur positions in the arrays must be in ascending order. Noncompliance will be logged. For the blur settings to take effect, the number of binary arrays must be greater than or equal to 2.<br> - **direction**: gradient blur direction. The default value is **[GradientDirection](ts-appendix-enums.md#gradientdirection).Bottom**.<br>Since API version 10, this API is supported in ArkTS widgets.|
+| renderGroup<sup>10+<sup>         | boolean                                  | false  | Whether the component and its child components are rendered off the screen and then drawn together with its parent. If the opacity of the component is not 1, the drawing effect may vary depending on the value.|
 
 ## ShadowOptions
 
@@ -37,6 +38,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | radius  | number \| [Resource](ts-types.md#resource) | Yes   | Blur radius of the shadow.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.|
+| type<sup>10+</sup> | [ShadowType](ts-appendix-enums.md#shadowtype10)  |      No   | Shadow type.<br>Default value: **COLOR**       |
 | color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource) | No   | Color of the shadow.<br>The default color is black.                       |
 | offsetX | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the x-axis.<br>The default value is **0**.                     |
 | offsetY | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the y-axis.<br>The default value is **0**.                     |
@@ -276,6 +278,7 @@ struct PixelStretchExample {
         .fontSize(12)
         .border({ width: 1 })
         .padding(10)
+        .clip(false)
         .width('50%')
         .pixelStretchEffect({top:10,left:10,right:10,bottom:10 })
     }.alignContent(Alignment.Center).width("100%").height("100%")
@@ -352,3 +355,53 @@ struct ImageExample1 {
 ```
 
 ![testlinearGradientBlur](figures/testlinearGradientBlur.png)
+
+### Example 9
+Example of using **renderGroup**:
+```ts
+// xxx.ets
+@Component
+struct Component1 {
+  @Prop renderGroupValue: boolean;
+  build() {
+    Row() {
+      Row() {
+        Row()
+          .backgroundColor(Color.Black)
+          .width(100)
+          .height(100)
+          .opacity(1)
+      }
+      .backgroundColor(Color.White)
+      .width(150)
+      .height(150)
+      .justifyContent(FlexAlign.Center)
+      .opacity(0.6)
+      .renderGroup(this.renderGroupValue)
+    }
+    .backgroundColor(Color.Black)
+    .width(200)
+    .height(200)
+    .justifyContent(FlexAlign.Center)
+    .opacity(1)
+  }
+}
+@Entry
+@Component
+struct RenderGroupExample {
+  build() {
+    Column() {
+      Component1({renderGroupValue: true})
+        .margin(20)
+      Component1({renderGroupValue: false})
+        .margin(20)
+    }
+    .width("100%")
+    .height("100%")
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+![renderGroup](figures/renderGroup.png)
+

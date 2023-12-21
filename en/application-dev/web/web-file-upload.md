@@ -16,7 +16,7 @@ In the following example, when a user clicks the **Upload** button on the fronte
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: WebController = new WebController()
     build() {
       Column() {
         // Load the local.html page.

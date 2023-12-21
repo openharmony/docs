@@ -219,11 +219,18 @@ struct SwiperExample {
       .index(1)
       .autoPlay(true)
       .interval(4000)
-      .indicator(true)
       .loop(true)
       .duration(1000)
       .itemSpace(0)
-      .displayArrow({
+      .indicator( // Set the style of the navigation point indicator.
+        new DotIndicator()
+          .itemWidth(15)
+          .itemHeight(15)
+          .selectedItemWidth(15)
+          .selectedItemHeight(15)
+          .color(Color.Gray)
+          .selectedColor(Color.Blue))
+      .displayArrow({ // Set the arrow style of the navigation point indicator.
         showBackground: true,
         isSidebarMiddle: true,
         backgroundSize: 24,
@@ -324,91 +331,7 @@ struct SwiperExample {
       .index(1)
       .autoPlay(true)
       .interval(4000)
-      .indicator(Indicator.dot()
-        .itemWidth(15)
-        .itemHeight(15)
-        .selectedItemWidth(15)
-        .selectedItemHeight(15)
-        .color(Color.Gray)
-        .selectedColor(Color.Blue))
-      .loop(true)
-      .duration(1000)
-      .itemSpace(0)
-      .displayArrow(true, true)
-
-      Row({ space: 12 }) {
-        Button('showNext')
-          .onClick(() => {
-            this.swiperController.showNext()
-          })
-        Button('showPrevious')
-          .onClick(() => {
-            this.swiperController.showPrevious()
-          })
-      }.margin(5)
-    }.width('100%')
-    .margin({ top: 5 })
-  }
-}
-```
-![swiper](figures/swiper-dot.gif)
-
-### Example 3
-```ts
-// xxx.ets
-class MyDataSource implements IDataSource {
-  private list: number[] = []
-
-  constructor(list: number[]) {
-    this.list = list
-  }
-
-  totalCount(): number {
-    return this.list.length
-  }
-
-  getData(index: number): number {
-    return this.list[index]
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-  }
-
-  unregisterDataChangeListener() {
-  }
-}
-
-@Entry
-@Component
-struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
-
-  aboutToAppear(): void {
-    let list: number[] = []
-    for (let i = 1; i <= 10; i++) {
-      list.push(i);
-    }
-    this.data = new MyDataSource(list)
-  }
-
-  build() {
-    Column({ space: 5 }) {
-      Swiper(this.swiperController) {
-        LazyForEach(this.data, (item: string) => {
-          Text(item.toString())
-            .width('90%')
-            .height(160)
-            .backgroundColor(0xAFEEEE)
-            .textAlign(TextAlign.Center)
-            .fontSize(30)
-        }, (item: string) => item)
-      }
-      .cachedCount(2)
-      .index(1)
-      .autoPlay(true)
-      .interval(4000)
-      .indicator(Indicator.digit()
+      .indicator(Indicator.digit() // Set the navigation point indicator of the digit style.
         .right("43%")
         .top(200)
         .fontColor(Color.Gray)
