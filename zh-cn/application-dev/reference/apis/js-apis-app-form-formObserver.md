@@ -955,7 +955,7 @@ formObserver.on('router', callback);
 
  on(type: 'router', hostBundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
 
-订阅指定卡片使用方的卡片的router事件。使用callback异步回调，返回触发router事件的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)。
+订阅指定卡片使用方的卡片router事件。使用callback异步回调，返回触发router事件的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)。
 
 **需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
 
@@ -1046,7 +1046,7 @@ formObserver.on('message', callback);
 
  on(type: 'message', hostBundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
 
-订阅指定卡片使用方的卡片的message事件。使用callback异步回调，返回触发message事件的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)。
+订阅指定卡片使用方的卡片message事件。使用callback异步回调，返回触发message事件的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)。
 
 **需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
 
@@ -1137,7 +1137,7 @@ formObserver.on('call', callback);
 
  on(type: 'call', hostBundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
 
-订阅指定卡片使用方的卡片的call事件。使用callback异步回调，返回触发call事件的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)。
+订阅指定卡片使用方的卡片call事件。使用callback异步回调，返回触发call事件的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)。
 
 **需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
 
