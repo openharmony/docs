@@ -53,7 +53,7 @@ let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
 function createFile(): void {
-    // 新建并打开文件
+  // 新建并打开文件
   let file = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   // 写入一段内容至文件
   let writeLen = fs.writeSync(file.fd, "Try to write str.");

@@ -23,9 +23,9 @@ uri类型可以归纳为文档类uri和媒体文件uri两类
 
 | uri字段          | 说明        |
 | ------------- | ------------------- |
-| 'file://docs/storage/Users/currentUser/' | 文管的根目录。|
+| 'file://docs/storage/Users/currentUser/' | 文件管理器的根目录。|
 | '\<relative_path\>/' | 文件在根目录下的相对路径。例如：'Download/'和'Documents/'。|
-| 'test.txt' | 用户文件系统中存储的文件名，支持的文件类型为文管支持的所有类型，以文管为准，例如txt、jpg、mp4和mp3等格式的文件。|
+| 'test.txt' | 用户文件系统中存储的文件名，支持的文件类型为文件管理器支持的所有类型，以文件管理器为准，例如txt、jpg、mp4和mp3等格式的文件。|
 
 ### 文档类uri获取方式
 

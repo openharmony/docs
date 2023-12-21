@@ -3,6 +3,7 @@
 本模块提供图片处理效果，包括通过属性创建PixelMap、读取图像像素数据、读取区域内的图片数据等。
 
 > **说明：**
+>
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -732,8 +733,8 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                            |
 | -------- | -------------------- | ---- | ------------------------------- |
-| x        | number               | 是   | 宽度的缩放值，其值为输入的倍数。|
-| y        | number               | 是   | 高度的缩放值，其值为输入的倍数。|
+| x        | number               | 是   | 宽度的缩放倍数。|
+| y        | number               | 是   | 高度的缩放倍数。|
 | callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。  |
 
 **示例：**
@@ -756,8 +757,8 @@ scale(x: number, y: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                            |
 | ------ | ------ | ---- | ------------------------------- |
-| x      | number | 是   | 宽度的缩放值，其值为输入的倍数。|
-| y      | number | 是   | 高度的缩放值，其值为输入的倍数。|
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
 
 **返回值：**
 
@@ -1793,9 +1794,9 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 
 获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG文件，且需要包含exif信息。
 
-**说明：**
-
-从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1830,9 +1831,9 @@ getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
 获取图片中给定索引处图像的指定属性键的值，用callback形式返回结果，仅支持JPEG文件，且需要包含exif信息。
 
-**说明：**
-
-从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1862,9 +1863,9 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 
 获取图片指定属性键的值，callback形式返回结果，仅支持JPEG文件，且需要包含exif信息。
 
-**说明：**
-
-从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1951,9 +1952,9 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 
 通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG文件，且需要包含exif信息。
 
-**说明：**
-
-从API version 11开始不再维护，建议使用[modifyImageProperty](#modifyimageproperty11)代替。
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[modifyImageProperty](#modifyimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1991,9 +1992,9 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>):
 
 通过指定的键修改图片属性的值，callback形式返回结果，仅支持JPEG文件，且需要包含exif信息。
 
-**说明：**
-
-从API version 11开始不再维护，建议使用[modifyImageProperty](#modifyimageproperty11)代替。
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[modifyImageProperty](#modifyimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2208,10 +2209,22 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 62980096| If the operation failed              |
+| 62980099 | If the shared memory data abnormal |
+| 62980101 | If the image data abnormal |
 | 62980103| If the image data unsupport             |
+| 62980106 | If the image too large |
+| 62980109 | If the image crop failed |
 | 62980110| If the image source data error              |
 | 62980111| If the image source data incomplete            |
+| 62980112 | If the image format mismatch |
+| 62980113 | If the image format unknown |
+| 62980115 | If the image invalid parameter |
+| 62980116 | If the image decode failed |
 | 62980118| If the image plugin create failed             |
+| 62980122 | If the image decode head abnormal |
+| 62980137 | If the media invalid operation |
+| 62980173 | If the DMA memory not exist |
+| 62980174 | If the DMA memory data abnormal |
 
 **示例：**
 
@@ -2252,11 +2265,23 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980103| If the image data unsupport             |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980118| If the image plugin create failed             |
+| 62980096 | If the operation failed             |
+| 62980099 | If the shared memory data abnormal  |
+| 62980101 | If the image data abnormal          |
+| 62980103 | If the image data unsupport         |
+| 62980106 | If the image too large              |
+| 62980109 | If the image crop failed            |
+| 62980110 | If the image source data error      |
+| 62980111 | If the image source data incomplete |
+| 62980112 | If the image format mismatch        |
+| 62980113 | If the image format unknown         |
+| 62980115 | If the image invalid parameter      |
+| 62980116 | If the image decode failed          |
+| 62980118 | If the image plugin create failed   |
+| 62980122 | If the image decode head abnormal   |
+| 62980137 | If the media invalid operation      |
+| 62980173 | If the DMA memory not exist         |
+| 62980174 | If the DMA memory data abnormal     |
 
 **示例：**
 
@@ -2292,11 +2317,23 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980103| If the image data unsupport             |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980118| If the image plugin create failed             |
+| 62980096 | If the operation failed             |
+| 62980099 | If the shared memory data abnormal  |
+| 62980101 | If the image data abnormal          |
+| 62980103 | If the image data unsupport         |
+| 62980106 | If the image too large              |
+| 62980109 | If the image crop failed            |
+| 62980110 | If the image source data error      |
+| 62980111 | If the image source data incomplete |
+| 62980112 | If the image format mismatch        |
+| 62980113 | If the image format unknown         |
+| 62980115 | If the image invalid parameter      |
+| 62980116 | If the image decode failed          |
+| 62980118 | If the image plugin create failed   |
+| 62980122 | If the image decode head abnormal   |
+| 62980137 | If the media invalid operation      |
+| 62980173 | If the DMA memory not exist         |
+| 62980174 | If the DMA memory data abnormal     |
 
 **示例：**
 
@@ -2323,7 +2360,7 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
 
 getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
-获取图像延迟时间数组，使用callback形式返回结果。
+获取图像延迟时间数组，使用callback形式返回结果。此接口仅用于gif图片。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2342,10 +2379,14 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 | 62980096| If the operation failed              |
 | 62980110| If the image source data error              |
 | 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
+| 62980112 | If the image format mismatch |
+| 62980113| If the image format unknown |
+| 62980115 | If the image invalid parameter |
+| 62980116| If the image decode failed |
+| 62980118| If the image plugin create failed |
+| 62980122| If the image decode head abnormal |
+| 62980137 | If the media invalid operation |
+| 62980149 | If the media invalid parameter |
 
 **示例：**
 
@@ -2364,7 +2405,7 @@ imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) 
 
 getDelayTimeList(): Promise<Array\<number>>
 
-获取图像延迟时间数组，使用Promise形式返回结果。
+获取图像延迟时间数组，使用Promise形式返回结果。此接口仅用于gif图片。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2380,13 +2421,17 @@ getDelayTimeList(): Promise<Array\<number>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
+| 62980096 | If the operation failed             |
+| 62980110 | If the image source data error      |
+| 62980111 | If the image source data incomplete |
+| 62980112 | If the image format mismatch        |
+| 62980113 | If the image format unknown         |
+| 62980115 | If the image invalid parameter      |
+| 62980116 | If the image decode failed          |
+| 62980118 | If the image plugin create failed   |
+| 62980122 | If the image decode head abnormal   |
+| 62980137 | If the media invalid operation      |
+| 62980149 | If the media invalid parameter      |
 
 **示例：**
 
@@ -2420,12 +2465,15 @@ getFrameCount(callback: AsyncCallback\<number>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 62980096| If the operation failed              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
+| 62980110| If the image source data error |
+| 62980111| If the image source data incomplete |
+| 62980112 | If the image format mismatch |
+| 62980113| If the image format unknown |
+| 62980115 | If the image invalid parameter |
+| 62980116| If the image decode failed |
+| 62980118| If the image plugin create failed |
+| 62980122| If the image decode head abnormal |
+| 62980137 | If the media invalid operation |
 
 **示例：**
 
@@ -2460,13 +2508,16 @@ getFrameCount(): Promise\<number>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
+| 62980096 | If the operation failed             |
+| 62980110 | If the image source data error      |
+| 62980111 | If the image source data incomplete |
+| 62980112 | If the image format mismatch        |
+| 62980113 | If the image format unknown         |
+| 62980115 | If the image invalid parameter      |
+| 62980116 | If the image decode failed          |
+| 62980118 | If the image plugin create failed   |
+| 62980122 | If the image decode head abnormal   |
+| 62980137 | If the media invalid operation      |
 
 **示例：**
 
@@ -2959,9 +3010,9 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 
 通过宽、高、图片格式、容量创建ImageReceiver实例。
 
-**说明：**
-
-从API version 11开始不再维护，建议使用[createImageReceiver](#imagecreateimagereceiver11)代替。
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[createImageReceiver](#imagecreateimagereceiver11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -3270,9 +3321,9 @@ createImageCreator(width: number, height: number, format: number, capacity: numb
 
 通过宽、高、图片格式、容量创建ImageCreator实例。
 
-**说明：**
-
-从API version 11开始不再维护，建议使用[createImageCreator](#imagecreateimagecreator11)代替。
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[createImageCreator](#imagecreateimagecreator11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -3816,9 +3867,9 @@ PixelMap的初始化选项。
 
 表示查询图片属性的索引。
 
-**说明：**
-
-从API version 11开始不再维护，建议使用[ImagePropertyOptions](#imagepropertyoptions11)代替。
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[ImagePropertyOptions](#imagepropertyoptions11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 

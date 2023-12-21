@@ -206,6 +206,7 @@
     - [组件内隐式共享元素转场（geometryTransition）](ts-transition-animation-geometrytransition.md)
   - [路径动画（motionPath）](ts-motion-path-animation.md)
   - [粒子动画（Particle）](ts-particle-animation.md)
+  - [显式动画立即下发（animateToImmediately）](ts-explicit-animatetoimmediately.md)
 - 全局UI方法
   - 弹窗
     - [警告弹窗（AlertDialog）](ts-methods-alert-dialog-box.md)
@@ -217,6 +218,7 @@
     - [文本滑动选择器弹窗（TextPickerDialog）](ts-methods-textpicker-dialog.md)
   - [菜单](ts-methods-menu.md)
 - [自定义组件的生命周期](ts-custom-component-lifecycle.md)
+- [自定义组件内置方法](ts-custom-component-api.md)
 - [应用级变量的状态管理](ts-state-management.md)
 - [像素单位](ts-pixel-units.md)
 - [枚举说明](ts-appendix-enums.md)

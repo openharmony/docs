@@ -73,6 +73,26 @@ getUIInspector(): UIInspector
 uiContext.getUIInspector();
 ```
 
+### getUIObserver<sup>11+</sup>
+
+getUIObserver(): UIObserver
+
+获取UIObserver对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                          | 说明                 |
+| --------------------------- | ------------------ |
+| [UIObserver](#uiobserver11) | 返回UIObserver实例对象。 |
+
+**示例：**
+
+```ts
+uiContext.getUIObserver();
+```
+
 ### getMediaQuery
 
 getMediaQuery(): MediaQuery
@@ -660,22 +680,30 @@ getDragController(): DragController
 uiContext.getDragController();
 ```
 
-### dragPreview<sup>11+</sup>
+### getDragPreview<sup>11+</sup>
 
-dragPreview(value: CustomBuilder | DragItemInfo): void
+getDragPreview(): DragPreview
 
-设置组件拖拽过程中的预览图。
+返回一个代表拖拽背板的对象。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
+**返回值：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| ----- | ----- | ----- | ----- |
-| value | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是    | 组件拖拽过程中的预览图。<br/>默认值：空<br/>|
+| 类型        | 说明                                            |
+| ------------| ------------------------------------------------|
+| DragPreview | 一个代表拖拽背板的对象，提供背板样式设置的接口。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | Invalid input parameter |
+| 100001   | Internal error |
 
 **示例：**
-请参考[dragPreview用法示例](../arkui-ts/ts-universal-attributes-drag-drop.md#示例2)
+
+请参考[animate](js-apis-arkui-dragController.md#animate11)
 
 ## Font
 
@@ -823,6 +851,108 @@ createComponentObserver(id: string): inspector.ComponentObserver
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 let inspector:UIInspector = uiContext.getUIInspector();
 let listener = inspector.createComponentObserver('COMPONENT_ID');
+```
+
+## UIObserver<sup>11+</sup>
+
+以下API需先使用UIContext中的[getUIObserver()](#getuiobserver11)方法获取到UIObserver对象，再通过该对象调用对应方法。
+
+### on('navDestinationUpdate')<sup>11+</sup>
+
+on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
+
+监听NavDestination组件的状态变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.on('navDestinationUpdate', (info) => {
+    console.info('NavDestination state update', JSON.stringify(info));
+});
+```
+
+### off('navDestinationUpdate')<sup>11+</sup>
+
+off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo\>): void
+
+取消监听NavDestination组件的状态变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.off('navDestinationUpdate');
+```
+
+### on('navDestinationUpdate')<sup>11+</sup>
+
+on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback<NavDestinationInfo>): void
+
+监听NavDestination组件的状态变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                   |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
+    console.info('NavDestination state update', JSON.stringify(info));
+});
+```
+
+### off('navDestinationUpdate')<sup>11+</sup>
+
+off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback<NavDestinationInfo>): void
+
+取消监听NavDestination组件的状态变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                   |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.off('navDestinationUpdate', { navigationId: "testId" });
 ```
 
 ## MediaQuery
@@ -2160,7 +2290,7 @@ try {
 
 ### executeDrag
 
-executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: AsyncCallback&lt; {event: DragEvent, extraParams: string}&gt;): void
+executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo, callback: AsyncCallback&lt; {event: DragEvent, extraParams: string}&gt;): void
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过回调返回拖拽事件结果。
 
@@ -2171,7 +2301,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
 | custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
-| dragInfo | [DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
 | callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
 
 **错误码：**
@@ -2179,7 +2309,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Invalid input parameter |
-| 100001   | Internal error |
+| 100001   | If some internal handing failed. |
 
 **示例：**
 
@@ -2237,7 +2367,7 @@ struct DragControllerPage {
 
 ### executeDrag
 
-executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&lt;{event: DragEvent, extraParams: string}&gt;
+executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo): Promise&lt;{event: DragEvent, extraParams: string}&gt;
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过Promise返回拖拽事件结果。
 
@@ -2248,7 +2378,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&l
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
 | custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
-| dragInfo | [DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
 
 **返回值：**
 
@@ -2261,7 +2391,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&l
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Invalid input parameter |
-| 100001   | Internal error |
+| 100001   | If some internal handing failed. |
 
 **示例：**
 
@@ -2345,7 +2475,7 @@ struct DragControllerPage {
 
 ### createDragAction
 
-createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: DragInfo): DragAction
+createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: dragController.DragInfo): DragAction
 
 创建拖拽的Action对象，需要显式指定拖拽背板图(可多个)，以及拖拽的数据，跟手点等信息；当通过一个已创建的 Action 对象发起的拖拽未结束时，无法再次创建新的 Action 对象，接口会抛出异常。
 
@@ -2358,7 +2488,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | --------      | ------------------------------------------------------------ | ---- | -------------------------------- |
 | customArray  | Array&lt;[CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明)&gt; | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
-| dragInfo | [DragInfo](js-apis-arkui-dragController.md#dragInfo)                                        | 是   | 拖拽信息。                       |
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#dragInfo)                                        | 是   | 拖拽信息。                       |
 
 **返回值：**
 
@@ -2371,7 +2501,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Invalid input parameter |
-| 100001   | Internal error |
+| 100001   | If some internal handing failed. |
 
 **示例：**
 
@@ -2420,7 +2550,8 @@ struct DragControllerPage {
               data: unifiedData,
               extraParams: ''
             }
-            this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
+            try{
+              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
             if(!this.dragAction){
               console.log("listener dragAction is null");
               return
@@ -2440,6 +2571,9 @@ struct DragControllerPage {
             this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
               console.log("start drag Error:" + err.message);
             })
+            } catch(err) {
+              console.log("create dragAction Error:" + err.message);
+            }
           }
         }
       }).margin({top:20})

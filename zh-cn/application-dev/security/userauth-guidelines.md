@@ -40,7 +40,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 1. 申请权限。调用[getAvailableStatus](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息请参考[Stage模型应用程序包结构](../quick-start/module-configuration-file.md)。
 
-2. 指定[认证类型](../reference/apis/js-apis-useriam-userauth.md#userauthtype8)和[认证等级](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)，调用[getAvailableStatus](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9)接口查询当前的设备是否支持相应的认证能力。
+2. 查询认证能力之前需要录入口令/指纹/人脸相关特征。指定[认证类型](../reference/apis/js-apis-useriam-userauth.md#userauthtype8)和[认证等级](../reference/apis/js-apis-useriam-userauth.md#authtrustlevel8)，调用[getAvailableStatus](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9)接口查询当前的设备是否支持相应的认证能力。
 
     ```ts
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
@@ -64,7 +64,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 3. 调用[on](../reference/apis/js-apis-useriam-userauth.md#on10)接口订阅认证结果。
 
-4. 调用[start](../reference/apis/js-apis-useriam-userauth.md#start10)接口发起认证，通过[callback](../reference/apis/js-apis-useriam-userauth.md#callback10)回调返回认证结果。
+4. 调用[start](../reference/apis/js-apis-useriam-userauth.md#start10)接口发起认证，通过[onResult](../reference/apis/js-apis-useriam-userauth.md#onresult10)回调返回认证结果。
 
     ```ts
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
