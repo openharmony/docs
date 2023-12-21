@@ -736,7 +736,7 @@ indexedBy(field: string): DataAbilityPredicates
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| indexName | string | 是 | 索引列的名称。 |
+| indexName | string | 是 | 创建的索引列名称。 |
 
 **返回值：**
 
