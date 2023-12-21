@@ -65,7 +65,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 ## SubmitEvent<sup>11+</sup>
 
-用户输入法回车键触发提交事件。
+定义用户提交事件。
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
