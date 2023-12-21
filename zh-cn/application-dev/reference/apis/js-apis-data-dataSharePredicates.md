@@ -87,7 +87,7 @@ predicates.notEqualTo("NAME", "Rose")
 
 beginWrap(): DataSharePredicates
 
-该接口用于向谓词添加左括号。
+该接口用于向谓词添加左括号，相当于sql语句的“(”,必须和右括号一起使用。
 
 目前仅RDB支持该谓词。
 
@@ -453,7 +453,7 @@ predicates.glob("NAME", "?h*g")
 
 between(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
-该接口用于配置谓词以匹配值在指定范围内的字段。包含两端边界值，为左闭右闭区间。
+该接口用于配置谓词以匹配值在指定范围内的字段。包含两端边界值，为左闭右闭区间，该字段的数据类型必须为int类型。
 
 目前仅RDB支持该谓词。
 
@@ -486,7 +486,7 @@ predicates.between("AGE", 10, 50)
 
 notBetween(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
-该接口用于配置谓词以匹配值超出指定范围的字段。不包含两端边界值，为左开右开区间。
+该接口用于配置谓词以匹配值超出指定范围的字段。不包含两端边界值，为左开右开区间，该字段的数据类型必须为int类型。
 
 目前仅RDB支持该谓词。
 
@@ -791,7 +791,7 @@ predicates.groupBy(["AGE", "NAME"])
 
 indexedBy(field: string): DataSharePredicates
 
-该接口用于配置谓词按指定索引列查询结果。
+该接口用于配置谓词按指定索引列查询结果。使用该方法前，需要设置索引列。
 
 目前仅RDB支持该谓词。
 
