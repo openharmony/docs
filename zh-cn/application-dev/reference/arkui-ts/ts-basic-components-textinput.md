@@ -69,9 +69,8 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| keepEditableState| ?(() => void) | 否 | 用户自定义是否为编辑状态。<br/> 调用时保持编辑态。 |
+| keepEditableState| ?(() => void) | 否 | 用户自定义輸入框编辑状态。<br/> 调用时保持编辑态。 |
 | text| string | 否 | 输入框文本内容。<br/>触发事件时赋值。 |
-
 
 ## EnterKeyType枚举说明
 
@@ -118,7 +117,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 输入内容发生变化时，触发该回调。<br/>value：输入的文本内容。<br/>触发该事件的条件：<br/>1、键盘输入。<br/>2、粘贴、剪切。<br/>3、键盘快捷键Ctrl+v。 |
-| onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event<sup>11+</sup>:&nbsp;SubmitEvent)&nbsp;=&gt;&nbsp;void) | 按下输入法回车键触发该回调。<br/>enterKey：输入法回车键类型。具体类型见[EnterKeyType枚举说明](#enterkeytype枚举说明)。<br/>event：提交事件，具体类型见[SubmitEvent事件说明](#SubmitEvent)。 |
+| onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event<sup>11+</sup>:&nbsp;SubmitEvent)&nbsp;=&gt;&nbsp;void) | 按下输入法回车键触发该回调。<br/>enterKey：输入法回车键类型。具体类型见[EnterKeyType枚举说明](#enterkeytype枚举说明)。<br/>event：提交事件，具体类型见[SubmitEvent事件说明](#submitevent11)。 |
 | onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>(deprecated)</sup> | 输入状态变化时，触发该回调。从API 8开始，建议使用onEditChange。 |
 | onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。 |
 | onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。<br/>value：复制的文本内容。 |
