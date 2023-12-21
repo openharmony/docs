@@ -17,7 +17,7 @@ In the **\<Stack>** component shown in Figure 1, the sequence of child elements 
 
 ## How to Develop
 
-The **\<Stack>** component can contain a wide variety of child components, which are stacked in the center by default based on their sizes. While respecting the constraints of **\<Stack>**, child components are laid out in their respective style.
+The **\<Stack>** component can contain various child components, which are stacked in the center by default. While respecting the constraints of **\<Stack>**, child components are laid out in their respective style.
 
 
 
@@ -68,7 +68,7 @@ Stack({ alignContent: Alignment.BottomStart }) {
 
 ![en-us_image_0000001511900544](figures/en-us_image_0000001511900544.png)
 
-In the following figure, the size of the stacked component 3 is greater than that of all the components before it. Therefore, the first two components are completely hidden. To show these components, modify their **zIndex** attribute settings.
+In the preceding figure, the size of the stacked component 3 is greater than that of all the components before it. Therefore, the first two components are completely hidden. To show these components, modify their **zIndex** attribute settings.
 
 
 ```ts

@@ -12,7 +12,7 @@ Configure the component transition animations for when a component is inserted o
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| transition | TransitionOptions | Transition effects when the component is inserted, displayed, deleted, or hidden.<br>If no transition effect is set, an opacity transition from 0 to 1 is applied.<br>**NOTE**<br>Transition parameters, which are all optional. For details, see **TransitionOptions**. |
+| transition | [TransitionOptions](#transitionoptions) | Transition effects when the component is inserted, displayed, deleted, or hidden.<br>If no transition effect is set, an opacity transition from 0 to 1 is applied.<br>**NOTE**<br>Transition parameters, which are all optional. |
 
 ## TransitionOptions
 
