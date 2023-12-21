@@ -937,7 +937,7 @@ try {
 | 参数名           | 类型                                     | 必填 | 说明                                      |
 | ---------------- | ---------------------------------------- | ---- | ----------------------------------------- |
 | type             | string                                   | 是   | 填写'router'，表示订阅卡片的router事件。          |
-| observerCallback | Callback&lt;[formInfo.RunningFormInfo#runningforminfo](js-apis-app-form-formInfo.md)&gt; | 是   | 回调函数。返回触发router事件的卡片的RunningFormInfo。 |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo# Runningforminfo](js-apis-app-form-formInfo.md)&gt; | 是   | 回调函数。返回触发router事件的卡片的RunningFormInfo。 |
 
 **示例：**
 
@@ -967,7 +967,7 @@ formObserver.on('router', callback);
 | ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | type             | string                                   | 是   | 填写'router'，表示订阅卡片的router事件。                             |
 | hostBundleName   | string                                   | 是   | 指定卡片使用方的bundleName。缺省则订阅所有卡片使用方的卡片的router事件。 |
-| observerCallback | Callback&lt;[formInfo.RunningFormInfo#runningforminfo](js-apis-app-form-formInfo.md)&gt; | 是   | 回调函数。返回触发router事件的卡片的RunningFormInfo。                    |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo# Runningforminfo](js-apis-app-form-formInfo.md)&gt; | 是   | 回调函数。返回触发router事件的卡片的RunningFormInfo。                    |
 
 **示例：**
 
@@ -998,7 +998,7 @@ formObserver.on('router', hostBundleName, callback);
 | ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | type             | string                                   | 是   | 填写'router'，表示取消订阅卡片的router事件。                             |
 | hostBundleName   | string                                   | 否   | 指定订阅卡片使用方包的bundleName。<br>填写该参数时，与注册时填写bundleName的on接口对应。<br>缺省则订阅所有卡片使用方点击router类型卡片的事件，与注册时未填写bundleName的on接口相对应。 |
-| observerCallback | Callback&lt;[formInfo.RunningFormInfo#runningforminfo](js-apis-app-form-formInfo.md)&gt; | 否   | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应bundleName下已注册事件回调。<br>需与对应on('router')的callback一致。 |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo# Runningforminfo](js-apis-app-form-formInfo.md)&gt; | 否   | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应bundleName下已注册事件回调。<br>需与对应on('router')的callback一致。 |
 
 **示例：**
 
@@ -1028,7 +1028,7 @@ formObserver.off('router', hostBundleName, callback);
 | 参数名           | 类型                                     | 必填 | 说明                                      |
 | ---------------- | ---------------------------------------- | ---- | ----------------------------------------- |
 | type             | string                                   | 是   | 填写'message'，表示订阅卡片的message事件。         |
-| observerCallback | Callback&lt;[formInfo.RunningFormInfo#runningforminfo](js-apis-app-form-formInfo.md)&gt; | 是   | 回调函数。返回触发message事件的卡片的RunningFormInfo。 |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo# Runningforminfo](js-apis-app-form-formInfo.md)&gt; | 是   | 回调函数。返回触发message事件的卡片的RunningFormInfo。 |
 
 **示例：**
 
@@ -1058,7 +1058,7 @@ formObserver.on('message', callback);
 | ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | type             | string                                   | 是   | 填写'message'，表示订阅卡片的message事件。                            |
 | hostBundleName   | string                                   | 是   | 指定卡片使用方的bundleName。缺省则订阅所有卡片使用方的卡片的message事件。 |
-| observerCallback | Callback&lt;[formInfo.RunningFormInfo#runningforminfo](js-apis-app-form-formInfo.md)&gt; | 是   | 回调函数。返回触发message事件的卡片的RunningFormInfo。                    |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo# Runningforminfo](js-apis-app-form-formInfo.md)&gt; | 是   | 回调函数。返回触发message事件的卡片的RunningFormInfo。                    |
 
 **示例：**
 
@@ -1089,7 +1089,7 @@ formObserver.on('message', hostBundleName, callback);
 | ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | type             | string                                   | 是   | 填写'message'，表示取消订阅卡片的message事件。                         |
 | hostBundleName   | string                                   | 否   | 指定订阅卡片使用方包的bundleName。<br>填写该参数时，与注册时填写bundleName的on接口对应。<br>缺省则取消订阅所有卡片使用方的点击事件，与注册时未填写bundleName的on接口相对应。 |
-| observerCallback | Callback&lt;[formInfo.RunningFormInfo#runningforminfo](js-apis-app-form-formInfo.md)&gt; | 否   | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br>需与对应on('message')的callback一致。 |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo# Runningforminfo](js-apis-app-form-formInfo.md)&gt; | 否   | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br>需与对应on('message')的callback一致。 |
 
 **示例：**
 
@@ -1119,7 +1119,7 @@ formObserver.off('message', hostBundleName, callback);
 | 参数名           | 类型                                     | 必填 | 说明                                      |
 | ---------------- | ---------------------------------------- | ---- | ----------------------------------------- |
 | type             | string                                   | 是   | 填写'call'，表示订阅卡片的call事件。            |
-| observerCallback | Callback&lt;[formInfo.RunningFormInfo#runningforminfo](js-apis-app-form-formInfo.md)&gt; | 是   | 回调函数。返回触发call事件的卡片的RunningFormInfo。 |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo# Runningforminfo](js-apis-app-form-formInfo.md)&gt; | 是   | 回调函数。返回触发call事件的卡片的RunningFormInfo。 |
 
 **示例：**
 
@@ -1149,7 +1149,7 @@ formObserver.on('call', callback);
 | ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | type             | string                                   | 是   | 填写'call'，表示订阅卡片的call事件。                               |
 | hostBundleName   | string                                   | 是   | 指定卡片使用方的bundleName。缺省则订阅所有卡片使用方的卡片的call事件。 |
-| observerCallback | Callback&lt;[formInfo.RunningFormInfo#runningforminfo](js-apis-app-form-formInfo.md)&gt; | 是   | 回调函数。返回触发call事件的卡片的RunningFormInfo。                    |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo# Runningforminfo](js-apis-app-form-formInfo.md)&gt; | 是   | 回调函数。返回触发call事件的卡片的RunningFormInfo。                    |
 
 **示例：**
 
@@ -1180,7 +1180,7 @@ formObserver.on('call', hostBundleName, callback);
 | ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | type             | string                                   | 是   | 填写'call'，表示取消订阅卡片的call事件。                           |
 | hostBundleName   | string                                   | 否   | 指定订阅卡片使用方包的bundleName。<br>填写该参数时，与注册时填写bundleName的on接口对应。<br>缺省则取消订阅所有卡片使用方的点击事件，与注册时未填写bundleName的on接口相对应。 |
-| observerCallback | Callback&lt;[formInfo.RunningFormInfo#runningforminfo](js-apis-app-form-formInfo.md)&gt; | 否   | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br>需与对应on('call')的callback一致。 |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo# Runningforminfo](js-apis-app-form-formInfo.md)&gt; | 否   | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br>需与对应on('call')的callback一致。 |
 
 **示例：**
 
