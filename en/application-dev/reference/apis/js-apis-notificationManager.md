@@ -365,7 +365,7 @@ Notification.cancel(0, cancelCallback);
 
 cancelAll(callback: AsyncCallback\<void\>): void
 
-Cancels all notifications. This API uses an asynchronous callback to return the result.
+Cancels all notifications of this application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -405,7 +405,7 @@ Notification.cancelAll(cancelAllCallback);
 
 cancelAll(): Promise\<void\>
 
-Cancels all notifications. This API uses a promise to return the result.
+Cancels all notifications of this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -867,7 +867,7 @@ Notification.getSlots().then((data) => {
 
 removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 
-Removes a notification slot of a specified type. This API uses an asynchronous callback to return the result.
+Removes a notification slot of a specified type for this application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -909,7 +909,7 @@ Notification.removeSlot(slotType,removeSlotCallback);
 
 removeSlot(slotType: SlotType): Promise\<void\>
 
-Removes a notification slot of a specified type. This API uses a promise to return the result.
+Removes a notification slot of a specified type for this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -946,7 +946,7 @@ Notification.removeSlot(slotType).then(() => {
 
 removeAllSlots(callback: AsyncCallback\<void\>): void
 
-Removes all notification slots. This API uses an asynchronous callback to return the result.
+Removes all notification slots for this application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -985,7 +985,7 @@ Notification.removeAllSlots(removeAllCallBack);
 
 removeAllSlots(): Promise\<void\>
 
-Removes all notification slots. This API uses a promise to return the result.
+Removes all notification slots for this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1109,7 +1109,7 @@ Notification.setNotificationEnable(bundle, false).then(() => {
 
 isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
-Checks whether notification is enabled for a specified application. This API uses an asynchronous callback to return the result.
+Checks whether notification is enabled for the specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1384,7 +1384,7 @@ notificationManager.isNotificationEnabled(userId).then((data) => {
 
 displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
 
-Sets whether to enable the notification badge for a specified application. This API uses an asynchronous callback to return the result.
+Sets whether to enable the notification badge for the specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1676,7 +1676,7 @@ Notification.setSlotByBundle(bundle, notificationSlot).then(() => {
 
 getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
-Obtains the notification slots of a specified application. This API uses an asynchronous callback to return the result.
+Obtains the notification slots of the specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 

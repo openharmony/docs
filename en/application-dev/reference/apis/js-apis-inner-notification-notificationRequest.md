@@ -37,13 +37,13 @@ The **NotificationRequest** module describes the notification request.
 | creatorPid            | number                                        | Yes | No | PID used for creating the notification.             |
 | creatorUserId         | number                                       | Yes | No | ID of the user who creates the notification.          |
 | hashCode              | string                                        | Yes | No | Unique ID of the notification.              |
-| classification        | string                                        | No | No | Notification category.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
+| classification        | string                                        | No | No | Notification category.<br>**System API**: This is a system API.                  |
 | groupName<sup>8+<sup> | string                                        | No | No | Notification group name.                |
 | template<sup>8+<sup> | [NotificationTemplate](./js-apis-inner-notification-notificationTemplate.md) | No | No | Notification template.                  |
-| isRemoveAllowed<sup>8+<sup> | boolean                                | Yes | No | Whether the notification can be removed.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
-| source<sup>8+<sup> | number                                        | Yes | No | Notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
+| isRemoveAllowed<sup>8+<sup> | boolean                                | Yes | No | Whether the notification can be removed.<br>**System API**: This is a system API.<br>**Required permissions**: ohos.permission.SET_UNREMOVABLE_NOTIFICATION |
+| source<sup>8+<sup> | number                                        | Yes | No | Notification source.<br>**System API**: This is a system API.                  |
 | distributedOption<sup>8+<sup> | [DistributedOptions](#distributedoptions)                 | No | No | Distributed notification options.         |
-| deviceId<sup>8+<sup> | string                                        | Yes | No | Device ID of the notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.         |
+| deviceId<sup>8+<sup> | string                                        | Yes | No | Device ID of the notification source.<br>**System API**: This is a system API.         |
 | notificationFlags<sup>8+<sup> | [NotificationFlags](js-apis-inner-notification-notificationFlags.md#notificationflags)                    | Yes | No | Notification flags.         |
 | removalWantAgent<sup>9+<sup> | [WantAgent](js-apis-app-ability-wantAgent.md) | No | No | **WantAgent** instance to which the notification will be redirected when it is removed.         |
 | badgeNumber<sup>9+<sup> | number                    | No | No | Number of notifications displayed on the application icon.         |
@@ -60,4 +60,4 @@ Describes distributed notification options.
 | isDistributed<sup>8+<sup>          | boolean        | No  | No  | Whether the notification is a distributed notification.                 |
 | supportDisplayDevices<sup>8+<sup>  | Array\<string> | No  | No  | List of the devices to which the notification can be synchronized.        |
 | supportOperateDevices<sup>8+<sup>  | Array\<string> | No  | No  | List of the devices on which the notification can be opened.             |
-| remindType<sup>8+<sup>             | number         | Yes  | No  | Notification reminder type.<br>**System API**: This is a system API and cannot be called by third-party applications.                   |
+| remindType<sup>8+<sup>             | number         | Yes  | No  | Notification reminder type.<br>**System API**: This is a system API.                   |

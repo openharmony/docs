@@ -4,7 +4,7 @@
 To receive notifications, an application must subscribe to notifications first. The notification subsystem provides two types of subscription APIs, allowing applications to subscribe to notifications from all applications or notifications from a specific application.
 
 
-You can use the **NotificationSubscriber** object to provide callbacks for subscription events, such as subscription success, notification reception, notification cancellation, and subscription cancellation.
+You can use the [NotificationSubscriber](../reference/apis/js-apis-notification.md#notificationsubscriber) object to provide callbacks for subscription events, such as subscription success, notification reception, notification cancellation, and subscription cancellation.
 
 
 ## Available APIs
@@ -46,26 +46,27 @@ The major APIs for notification subscription are described as follows. For detai
    
    ```ts
    let subscriber = {
-       onConsume: function (data) {
-           let req = data.request;
-           console.info('[ANS] onConsume callback req.id: ' + req.id);
-       },
-       onCancel: function (data) {
-           let req = data.request;
-           console.info('[ANS] onCancel callback req.id: : ' + req.id);
-       },
-       onUpdate: function (data) {
-           console.info('[ANS] onUpdate in test');
-       },
-       onConnect: function () {
-           console.info('[ANS] onConnect in test');
-       },
-       onDisconnect: function () {
-           console.info('[ANS] onDisConnect in test');
-       },
-       onDestroy: function () {
-           console.info('[ANS] onDestroy in test');
-       },
+     onConsume: function (data) {
+       let req = data.request;
+       console.info(`onConsume callback. req.id: ${req.id}`);
+     },
+     onCancel: function (data) {
+       let req = data.request;
+       console.info(`onCancel callback. req.id: ${req.id}`);
+     },
+     onUpdate: function (data) {
+       let req = data.request;
+       console.info(`onUpdate callback. req.id: ${req.id}`);
+     },
+     onConnect: function () {
+       console.info(`onConnect callback.}`);
+     },
+     onDisconnect: function () {
+       console.info(`onDisconnect callback.}`);
+     },
+     onDestroy: function () {
+       console.info(`onDestroy callback.}`);
+     },
    };
    ```
 
@@ -74,9 +75,9 @@ The major APIs for notification subscription are described as follows. For detai
    ```ts
    notificationSubscribe.subscribe(subscriber, (err, data) => { // This API uses an asynchronous callback to return the result.
      if (err) {
-       console.error(`[ANS] failed to subscribe, error[${err}]`);
+       console.error(`Failed to subscribe notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info(`[ANS] subscribeTest success : + ${data}`);
+     console.info(`Succeeded in subscribing to notification. Data: ${data}`);
    });
    ```
