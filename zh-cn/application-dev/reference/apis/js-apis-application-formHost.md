@@ -945,7 +945,7 @@ formHost.acquireFormState(want).then((data: formInfo.FormStateInfo) => {
 
 on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 
-订阅卡片卸载事件。使用callback异步回调。
+订阅应用程序卸载事件。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -970,7 +970,7 @@ formHost.on('formUninstall', (formId: string) => {
 
 off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 
-取消订阅卡片卸载事件。使用callback异步回调。
+取消订阅应用程序卸载事件。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.Form
 
