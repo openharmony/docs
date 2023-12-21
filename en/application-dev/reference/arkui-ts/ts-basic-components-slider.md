@@ -25,7 +25,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | value | number | No| Current progress.<br>Default value: value of **min**<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 | min | number | No| Minimum value.<br>Default value: **0**|
 | max | number | No| Maximum value.<br>Default value: **100**<br>**NOTE**<br>If the value of **min** is greater than or equal to the value of **max**, the default value **0** is used for **min** and the default value **100** is used for **max**.<br>If the value is not within the [min, max] range, the value of **min** or **max**, whichever is closer.|
-| step | number | No| Step of the slider.<br>Default value: **1**<br>Value range: [0.01, max]<br>**NOTE**<br>If this parameter is set to a value less than 0 or a percentage, the default value is used.|
+| step | number | No| Step of the slider.<br>Default value: **1**<br>Value range: [0.01, max]<br>**NOTE**<br>If this parameter is set to a value less than 0, the default value is used.|
 | style | [SliderStyle](#sliderstyle) | No| Style of the slider thumb and track.<br>Default value: **SliderStyle.OutSet**|
 | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | No| Whether the slider moves horizontally or vertically.<br>Default value: **Axis.Horizontal**|
 | reverse<sup>8+</sup> | boolean | No| Whether the slider values are reversed. By default, the values increase from left to right for a horizontal slider and from top to bottom for a vertical slider.<br>Default value: **false**|
@@ -39,7 +39,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 | OutSet | The slider is on the slider track.|
 | InSet | The slider is in the slider track.|
 
-Except touch target attributes, the universal attributes are supported.
+## Attributes
+
+All the [universal attributes](ts-universal-attributes-size.md) except **responseRegion** are supported 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
@@ -63,9 +65,9 @@ Describes the style of the slider in the block direction.
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ----- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type  | [SliderBlockType](#sliderblocktype10)                        | Yes  | Type of the slider in the block direction.<br>Default value: **SliderBlockType.DEFAULT**, indicating the round slider.|
+| type  | [SliderBlockType](#sliderblocktype10)                | Yes  | Type of the slider in the block direction.<br>Default value: **SliderBlockType.DEFAULT**, indicating the round slider.|
 | image | [ResourceStr](ts-types.md#resourcestr)                       | No  | Image resource of the slider.<br>The area size for displaying the image is subject to the **blockSize** attribute. Be mindful of the image size when selecting an image.|
-| shape | [Circle](ts-drawing-components-circle.md) \| [Ellipse](ts-drawing-components-ellipse.md) \| [Path](ts-drawing-components-path.md) \| [Rect](ts-drawing-components-rect.md)  | No  | Custom shape of the slider.                                             |
+| shape | [Circle](ts-drawing-components-circle.md) \| [Ellipse](ts-drawing-components-ellipse.md) \| [Path](ts-drawing-components-path.md) \| [Rect](ts-drawing-components-rect.md)  | No  | Custom shape of the slider.                                  |
 
 ## SliderBlockType<sup>10+</sup>
 

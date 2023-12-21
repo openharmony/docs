@@ -14,7 +14,7 @@ Not supported
 
 ## APIs
 
-TextPicker(options?: {range: string[] | string[][] | Resource | TextPickerRangeContent[] | TextCascadePickerRangeContent[], selected?: number, value?: string})
+TextPicker(options?: {range: string[] | string[][] | Resource | TextPickerRangeContent[] | TextCascadePickerRangeContent[], selected?: number \| number[], value?: string \| string[]})
 
 Creates a text picker based on the selection range specified by **range**.
 
