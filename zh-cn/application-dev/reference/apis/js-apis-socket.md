@@ -927,7 +927,7 @@ dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): v
 
 > **说明：**
 > 多播使用的IP地址属于特定的范围（例如224.0.0.0到239.255.255.255）。
-> 从已加入的多播组中退出，必须在加入多播组之后退出才有效。
+> 从已加入的多播组中退出，必须在加入多播组 [addMembership](#addmembership11) 之后退出才有效。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -975,8 +975,7 @@ dropMembership(multicastAddress: NetAddress): Promise\<void\>;
 
 > **说明：**
 > 多播使用的IP地址属于特定的范围（例如224.0.0.0到239.255.255.255）。
-> 从已加入的多播组中退出，必须在加入多播组之后退出才有效。
-> 在调用addMembership之后，调用此接口才有效。
+> 从已加入的多播组中退出，必须在加入多播组 [addMembership](#addmembership11) 之后退出才有效。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1029,7 +1028,7 @@ setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void;
 > 用于限制数据包在网络中传输时能够经过的最大路由器跳数的字段，TTL (Time to live)。
 > 范围为 0～255，默认值为 1 。
 > 如果一个多播数据包的 TTL 值为 1，那么它只能被直接连接到发送者的主机接收。如果 TTL 被设置为一个较大的值，那么数据包就能够被传送到更远的网络范围内。
-> 在调用addMembership之后，调用此接口才有效。
+> 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1076,7 +1075,7 @@ setMulticastTTL(ttl: number): Promise\<void\>;
 > 用于限制数据包在网络中传输时能够经过的最大路由器跳数的字段，TTL (Time to live)。
 > 范围为 0～255，默认值为 1 。
 > 如果一个多播数据包的 TTL 值为 1，那么它只能被直接连接到发送者的主机接收。如果 TTL 被设置为一个较大的值，那么数据包就能够被传送到更远的网络范围内。
-> 在调用addMembership之后，调用此接口才有效。
+> 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1125,7 +1124,7 @@ getMulticastTTL(callback: AsyncCallback\<number\>): void;
 > 用于限制数据包在网络中传输时能够经过的最大路由器跳数的字段，TTL (Time to live)。
 > 范围为 0～255，默认值为 1 。
 > 如果一个多播数据包的 TTL 值为 1，那么它只能被直接连接到发送者的主机接收。如果 TTL 被设置为一个较大的值，那么数据包就能够被传送到更远的网络范围内。
-> 在调用addMembership之后，调用此接口才有效。
+> 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1169,7 +1168,7 @@ getMulticastTTL(): Promise\<number\>;
 > 用于限制数据包在网络中传输时能够经过的最大路由器跳数的字段，TTL (Time to live)。
 > 范围为 0～255，默认值为 1 。
 > 如果一个多播数据包的 TTL 值为 1，那么它只能被直接连接到发送者的主机接收。如果 TTL 被设置为一个较大的值，那么数据包就能够被传送到更远的网络范围内。
-> 在调用addMembership之后，调用此接口才有效。
+> 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1215,7 +1214,7 @@ setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void;
 > **说明：**
 > 用于设置环回模式，开启或关闭两种状态，默认为开启状态。
 > 如果一个多播通信中环回模式设置值为 true，那么它允许主机在本地循环接收自己发送的多播数据包。如果为 false，则主机不会接收到自己发送的多播数据包。
-> 在调用addMembership之后，调用此接口才有效。
+> 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1259,7 +1258,7 @@ setLoopbackMode(flag: boolean): Promise\<void\>;
 > **说明：**
 > 用于设置环回模式，开启或关闭两种状态，默认为开启状态。
 > 如果一个多播通信中环回模式设置值为 true，那么它允许主机在本地循环接收自己发送的多播数据包。如果为 false，则主机不会接收到自己发送的多播数据包。
-> 在调用addMembership之后，调用此接口才有效。
+> 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1307,7 +1306,7 @@ getLoopbackMode(callback: AsyncCallback\<boolean\>): void;
 > **说明：**
 > 用于获取当前环回模式开启或关闭的状态。
 > 如果获取的属性值为 true，表示环回模式是开启的状态，允许主机在本地循环接收自己发送的多播数据包。如果为 false，则表示环回模式是关闭的状态，主机不会接收到自己发送的多播数据包。
-> 在调用addMembership之后，调用此接口才有效。
+> 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1350,7 +1349,7 @@ getLoopbackMode(): Promise\<boolean\>;
 > **说明：**
 > 用于获取当前环回模式开启或关闭的状态。
 > 如果获取的属性值为 true，表示环回模式是开启的状态，允许主机在本地循环接收自己发送的多播数据包。如果为 false，则表示环回模式是关闭的状态，主机不会接收到自己发送的多播数据包。
-> 在调用addMembership之后，调用此接口才有效。
+> 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1393,7 +1392,7 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
 发送数据。使用callback方式作为异步方法。
 
-发送数据前，需要先调用[MulticastSocket.addMembership()](#addmembership11)加入多播组。
+发送数据前，需要先调用 [addMembership](#addmembership11) 加入多播组。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1417,7 +1416,6 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
 ```ts
 import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
@@ -1428,7 +1426,7 @@ let sendOptions: socket.UDPSendOptions = {
 }
 multicast.send(sendOptions, (err) => {
   if (err) {
-    console.log('send fail');
+    console.log('send fail: ' + JSON.stringify(err));
     return;
   }
   console.log('send success');
@@ -1441,7 +1439,7 @@ send(options: UDPSendOptions): Promise\<void\>
 
 发送数据。使用Promise方式作为异步方法。
 
-发送数据前，需要先调用[MulticastSocket.addMembership()](#addmembership11)加入多播组。
+发送数据前，需要先调用 [addMembership](#addmembership11) 加入多播组。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1470,7 +1468,6 @@ send(options: UDPSendOptions): Promise\<void\>
 
 ```ts
 import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
@@ -1481,8 +1478,8 @@ let sendOptions: socket.UDPSendOptions = {
 }
 multicast.send(sendOptions).then(() => {
   console.log('send success');
-}).catch((err: BusinessError) => {
-  console.log('send fail');
+}).catch((err) => {
+  console.log('send fail, ' + JSON.stringify(err));
 });
 ```
 
@@ -1504,23 +1501,18 @@ on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: Socke
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+import socket from "@ohos.net.socket"
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance()
 
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
-let messageView = '';
-multicast.on('message', (value: SocketInfo) => {
-  for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
-    let message = String.fromCharCode(messages);
-    messageView += message;
+multicast.on('message', (data) => {
+  console.info('接收的数据: ' + JSON.stringify(data))
+  const uintArray = new Uint8Array(data.message)
+  let str = ''
+  for (let i = 0; i < uintArray.length; ++i) {
+    str += String.fromCharCode(uintArray[i])
   }
-  console.log('on message message: ' + JSON.stringify(messageView));
-  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
-});
+  console.info(str)
+})
 ```
 
 ### off('message')<sup>11+</sup>
@@ -1541,24 +1533,18 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
-let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-let messageView = '';
-let callback = (value: SocketInfo) => {
-  for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
-    let message = String.fromCharCode(messages);
-    messageView += message;
+import socket from "@ohos.net.socket"
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance()
+multicast.on('message', (data) => {
+  console.info('接收的数据: ' + JSON.stringify(data))
+  const uintArray = new Uint8Array(data.message)
+  let str = ''
+  for (let i = 0; i < uintArray.length; ++i) {
+    str += String.fromCharCode(uintArray[i])
   }
-  console.log('on message message: ' + JSON.stringify(messageView));
-  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
-}
-multicast.on('message', callback);
-udp.off('message');
+  console.info(str)
+})
+multicast.off('message')
 ```
 
 ## socket.constructTCPSocketInstance<sup>7+</sup>

@@ -305,7 +305,6 @@ multicast.addMembership(addr, (err) => {
 
 // 开启监听消息数据，将接收到的ArrayBuffer类型数据转换为String
 multicast.on('message', (data) => {
-  console.info('----监听成功-----')
   console.info('接收的数据: ' + JSON.stringify(data))
   const uintArray = new Uint8Array(data.message)
   let str = ''
