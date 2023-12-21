@@ -201,3 +201,65 @@ The **url** content template is as follows:
 ```ets
 '@bundle:bundle name/module name/path/page file name (without the extension .ets)'
 ```
+### Going Back to Previous Page with Router
+You can use the **router.back** method to go back, from a page in the HSP, to the previous page, under the prerequisite that the target page is in the redirection path of the source page.
+```ts
+import router from '@ohos.router';
+
+@Entry
+@Component
+struct Index3 {// The path is `library/src/main/ets/pages/Index3.ets.
+  @State message: string = 'Hello World'
+
+  build() {
+    Row() {
+        Column() {
+        Button('back to HAP page')
+        .width('40%')
+        .height('5%')
+        // Bind click events.
+        .onClick(() => {
+          router.back({ // Go back to the HAP page.
+            url: 'pages/Index'    // The path is `entry/src/main/ets/pages/Index.ets`.
+          })
+        })
+        .width('100%')
+
+        Button('back to HSP page')
+        .width('40%')
+        .height('5%')
+        // Bind click events.
+        .onClick(() => {
+          router.back({ // Go back to the HSP page.
+            url: '@bundle:com.example.hmservice/library/ets/pages/Index2'  // The path is `library/src/main/ets/pages/Index2.ets.
+          })
+        })
+        .width('100%')
+      }
+      .height('100%')
+    }
+  }
+}
+```
+
+The **url** parameter in the **router.back** method is described as follows:
+
+* In this example, the URL for going back from the HSP page to the HAP page is as follows:
+
+    ```ets
+    'pages/Index'
+    ```
+    The **url** content template is as follows:
+    ```ets
+    'Page file name (without the extension .ets)
+    ```
+
+* In this example, the URL for going back from the HSP page to the HSP page is as follows:
+
+    ```ets
+    '@bundle:com.example.hmservice/library/ets/pages/Index2'
+    ```
+    The **url** content template is as follows:
+    ```ets
+    '@bundle:bundleName/moduleName/path/page file name (without the extension .ets)'
+    ```

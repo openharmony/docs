@@ -62,7 +62,7 @@ MyGlobalBuilderFunction()
 
 ## Parameter Passing Rules
 
-There are two types of parameter passing for custom builder functions: [by-value parameter passing](#by-value-parameter-passing) and [by-reference parameter passing](#by-reference-parameter-passing). Both of them must comply with the following rules:
+For custom builder functions, parameters can be passed [by value](#by-value-parameter-passing) and [by reference](#by-reference-parameter-passing). Both of them must comply with the following rules:
 
 - The parameter type must be the same as the declared parameter type. The **undefined** or **null** constants as well as expressions evaluating to these values are not allowed.
 
@@ -70,6 +70,7 @@ There are two types of parameter passing for custom builder functions: [by-value
 
 - The custom builder function body follows the same [syntax rules](arkts-create-custom-components.md#build-function) as the **build()** function.
 
+- Parameters are passed by value in all cases except when only one parameter is passed in and the parameter needs to be directly passed to the object literal.
 
 ### By-Reference Parameter Passing
 
