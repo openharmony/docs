@@ -39,10 +39,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| (\*[OH_NetStack_WebsocketClient_OnOpenCallback](#oh_netstack_websocketclient_onopencallback)) (struct [OH_NetStack_WebsocketClient](_o_h___net_stack___websocket_client.md) \*client, [OH_NetStack_WebsocketClient_OpenResult](_o_h___net_stack___websocket_client___open_result.md) openResult) | websocket客户端接收open消息的回调函数定义 | 
-| (\*[OH_NetStack_WebsocketClient_OnMessageCallback](#oh_netstack_websocketclient_onmessagecallback)) (struct [OH_NetStack_WebsocketClient](_o_h___net_stack___websocket_client.md) \*client, char \*data, uint32_t length) | websocket客户端接收数据的回调函数定义 | 
-| (\*[OH_NetStack_WebsocketClient_OnErrorCallback](#oh_netstack_websocketclient_onerrorcallback)) (struct [OH_NetStack_WebsocketClient](_o_h___net_stack___websocket_client.md) \*client, [OH_NetStack_WebsocketClient_ErrorResult](_o_h___net_stack___websocket_client___error_result.md) errorResult) | websocket客户端接收error错误消息的回调函数定义 | 
-| (\*[OH_NetStack_WebsocketClient_OnCloseCallback](#oh_netstack_websocketclient_onclosecallback)) (struct [OH_NetStack_WebsocketClient](_o_h___net_stack___websocket_client.md) \*client, [OH_NetStack_WebsocketClient_CloseResult](_o_h___net_stack___websocket_client___close_result.md) closeResult) | websocket客户端接收close消息的回调函数定义 | 
+| (\*[OH_NetStack_WebsocketClient_OnOpenCallback](#oh_netstack_websocketclient_onopencallback)) (struct [OH_NetStack_WebsocketClient](_o_h___net_stack___websocket_client.md) \*client, [OH_NetStack_WebsocketClient_OpenResult](_o_h___net_stack___websocket_client___open_result.md) openResult) | websocket客户端接收open消息的回调函数定义。 | 
+| (\*[OH_NetStack_WebsocketClient_OnMessageCallback](#oh_netstack_websocketclient_onmessagecallback)) (struct [OH_NetStack_WebsocketClient](_o_h___net_stack___websocket_client.md) \*client, char \*data, uint32_t length) | websocket客户端接收数据的回调函数定义。 | 
+| (\*[OH_NetStack_WebsocketClient_OnErrorCallback](#oh_netstack_websocketclient_onerrorcallback)) (struct [OH_NetStack_WebsocketClient](_o_h___net_stack___websocket_client.md) \*client, [OH_NetStack_WebsocketClient_ErrorResult](_o_h___net_stack___websocket_client___error_result.md) errorResult) | websocket客户端接收error错误消息的回调函数定义。 | 
+| (\*[OH_NetStack_WebsocketClient_OnCloseCallback](#oh_netstack_websocketclient_onclosecallback)) (struct [OH_NetStack_WebsocketClient](_o_h___net_stack___websocket_client.md) \*client, [OH_NetStack_WebsocketClient_CloseResult](_o_h___net_stack___websocket_client___close_result.md) closeResult) | websocket客户端接收close消息的回调函数定义。 | 
 
 
 ### 枚举
