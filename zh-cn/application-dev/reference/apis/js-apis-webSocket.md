@@ -39,7 +39,7 @@ ws.on('open', (err:BusinessError, value: Object) => {
     }
   });
 });
-ws.on('message', (err: BusinessError, value: string) => {
+ws.on('message',(BusinessError<void>, value: string | ArrayBuffer) => {
   console.log("on message, message:" + value);
   // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接
   if (value === 'bye') {
@@ -170,9 +170,11 @@ import webSocket from '@ohos.net.webSocket';
 import { BusinessError } from '@ohos.base';
 
 let ws = webSocket.createWebSocket();
-let header: Map<string, string>
-header.set("key", "value")
-header.set("key2", "value2")
+let header: Map<string, string> | undefined;
+if (header !=undefined) {
+    header.set("key", "value")
+    header.set("key2", "value2")
+}
 let url = "ws://"
 ws.connect(url, header as webSocket.WebSocketRequestOptions, (err: BusinessError, value: Object) => {
   if (!err) {
@@ -392,15 +394,17 @@ import { BusinessError } from '@ohos.base';
 
 let ws = webSocket.createWebSocket();
 
-let options: webSocket.WebSocketCloseOptions
-options.code = 1000
-options.reason = "your reason"
+let options: webSocket.WebSocketCloseOptions | undefined;
+if (options != undefined) {
+    options.code = 1000
+    options.reason = "your reason"
+}
 ws.close(options, (err: BusinessError) => {
-  if (!err) {
-    console.log("close success")
-  } else {
-    console.log("close fail, err is " + JSON.stringify(err))
-  }
+    if (!err) {
+        console.log("close success")
+    } else {
+        console.log("close fail, err is " + JSON.stringify(err))
+    }
 });
 ```
 
@@ -439,14 +443,16 @@ close(options?: WebSocketCloseOptions): Promise\<boolean\>
 import webSocket from '@ohos.net.webSocket';
 
 let ws = webSocket.createWebSocket();
-let options: webSocket.WebSocketCloseOptions
-options.code = 1000
-options.reason = "your reason"
+let options: webSocket.WebSocketCloseOptions | undefined;
+if (options != undefined) {
+    options.code = 1000
+    options.reason = "your reason"
+}
 let promise = ws.close();
 promise.then((value: boolean) => {
-  console.log("close success")
+    console.log("close success")
 }).catch((err:string) => {
-  console.log("close fail, err is " + JSON.stringify(err))
+    console.log("close fail, err is " + JSON.stringify(err))
 });
 ```
 
@@ -476,8 +482,8 @@ class OutValue {
   status: number = 0
   message: string = ""
 }
-ws.on('open', (err: BusinessError, value: OutValue) => {
-  console.log("on open, status:" + value.status + ", message:" + value.message);
+ws.on('open', (err: BusinessError, value: Object) => {
+  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
 });
 ```
 
@@ -510,8 +516,8 @@ class OutValue {
   status: number = 0
   message: string = ""
 }
-let callback1 = (err: BusinessError, value: OutValue) => {
-  console.log("on open, status:" + value.status + ", message:" + value.message);
+let callback1 = (err: BusinessError, value: Object) => {
+ console.log("on open, status:" + ((value as OutValue).status + ", message:" + (value as OutValue).message));
 }
 ws.on('open', callback1);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅
@@ -543,7 +549,7 @@ import webSocket from '@ohos.net.webSocket';
 import { BusinessError } from '@ohos.base';
 
 let ws = webSocket.createWebSocket();
-ws.on('message', (err: BusinessError, value: string) => {
+ws.on('message', (err: BusinessError<void>, value: string | ArrayBuffer) => {
   console.log("on message, message:" + value);
 });
 ```

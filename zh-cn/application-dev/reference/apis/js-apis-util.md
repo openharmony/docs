@@ -52,6 +52,18 @@ format(format: string,  ...args: Object[]): string
 **示例：**
 
 ```ts
+import util from '@ohos.util';
+
+interface utilAddresstype {
+  city: string;
+  country: string;
+}
+interface utilPersontype {
+  name: string;
+  age: number;
+  address: utilAddresstype;
+}
+
 let name = 'John';
 let age = 20;
 let formattedString = util.format('My name is %s and I am %s years old', name, age);
@@ -69,11 +81,11 @@ const pi = 3.141592653;
 formattedString = util.format('The value of pi is %f', pi);
 console.log(formattedString);
 // 输出结果：The value of pi is 3.141592653
-const obj = { name: 'John', age: 20 };
+const obj: Record<string,number | string> = { "name": 'John', "age": 20 };
 formattedString = util.format('The object is %j', obj);
 console.log(formattedString);
 // 输出结果：The object is {"name":"John","age":20}
-const person = {
+const person: utilPersontype = {
   name: 'John',
   age: 20,
   address: {
