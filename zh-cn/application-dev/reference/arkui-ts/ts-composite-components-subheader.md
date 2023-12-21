@@ -89,6 +89,7 @@ struct SubHeaderExample {
     Column() {
       SubHeader({
         icon: $r('app.media.ic_public_community_messages'),
+        secondaryTitle: '子标题',
         primaryTitle: '子标题',
         operationType: OperationType.BUTTON,
         operationItem: [{ value: '操作',
