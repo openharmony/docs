@@ -208,14 +208,14 @@ export class WaterFlowDataSource implements IDataSource {
 ```
 
 ```ts
-// WaterflowDemo.ets
+// Index.ets
 import { WaterFlowDataSource } from './WaterFlowDataSource'
 
 @Entry
 @Component
 struct WaterflowDemo {
-  @State minSize: number = 50
-  @State maxSize: number = 100
+  @State minSize: number = 80
+  @State maxSize: number = 180
   @State fontSize: number = 24
   @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
   scroller: Scroller = new Scroller()
@@ -256,7 +256,7 @@ struct WaterflowDemo {
 
   build() {
     Column({ space: 2 }) {
-      WaterFlow({ footer: () => { this.itemFoot() }, scroller: this.scroller }) {
+      WaterFlow() {
         LazyForEach(this.datasource, (item: number) => {
           FlowItem() {
             Column() {
@@ -267,34 +267,28 @@ struct WaterflowDemo {
                 .layoutWeight(1)
             }
           }
+          .onAppear(() => {
+            // Add data in advance when scrolling is about to end.
+            if (item + 20 == this.datasource.totalCount()) {
+              for (let i = 0; i < 100; i++) {
+                this.datasource.AddLastItem()
+              }
+            }
+          })
           .width('100%')
-          .height(this.itemHeightArray[item])
+          .height(this.itemHeightArray[item % 100])
           .backgroundColor(this.colors[item % 5])
         }, (item: string) => item)
       }
-      .columnsTemplate("1fr 1fr 1fr 1fr")
-      .itemConstraintSize({
-        minWidth: 0,
-        maxWidth: '100%',
-        minHeight: 0,
-        maxHeight: '100%'
-      })
-      .friction(0.6)
+      .columnsTemplate("1fr 1fr")
       .columnsGap(10)
       .rowsGap(5)
-      .onReachStart(() => {
-        console.info("onReachStart")
-      })
-      .onReachEnd(() => {
-        console.info("onReachEnd")
-      })
       .backgroundColor(0xFAEEE0)
       .width('100%')
-      .height('80%')
-      .layoutDirection(FlexDirection.Column)
+      .height('100%')
     }
   }
 }
 ```
 
-![en-us_image_WaterFlow.gif](figures/waterflow.gif)
+![en-us_image_WaterFlow.gif](figures/waterflow-perf-demo.gif)
