@@ -4,7 +4,7 @@
 >
 >  - The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  - The column width and column gap in the grid layout are determined by the nearest parent component **GridContainer**. The component tree that uses grid attributes must contain one **GridContainer** or more.
+>  - The column width and column gap in the grid layout are determined by the nearest parent component **\<GridContainer>**. The component tree that uses grid attributes must contain one **\<GridContainer>** component or more.
 
 
 ## Attributes
@@ -12,7 +12,7 @@
 
 | Name       | Type                                                    | Description                                                        |
 | ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| useSizeType | {<br>xs?: number \| { span: number, offset: number },<br>sm?: number \| { span: number, offset: number },<br>md?: number \| { span: number, offset: number },<br>lg?: number \| { span: number, offset: number }<br>} | Number of occupied columns and offset columns for a specific device width type. **span** indicates the number of occupied columns, and **offset** indicates the number of offset columns.<br>If the value is of the number type, only the number of columns can be set. If the value is in the format of {"span": 1, "offset": 0}, both the number of occupied columns and the number of offset columns need to be set.<br>- **xs** indicates that the device width type is **SizeType.XS**.<br>- **sm** indicates that the device width type is **SizeType.SM**.<br>- **md** indicates that the device width type is **SizeType.MD**.<br>- **lg** indicates that the device width type is **SizeType.LG**.|
+| useSizeType<sup>(deprecated)</sup> | {<br>xs?: number \| { span: number, offset: number },<br>sm?: number \| { span: number, offset: number },<br>md?: number \| { span: number, offset: number },<br>lg?: number \| { span: number, offset: number }<br>} | Number of occupied columns and offset columns for a specific device width type. **span** indicates the number of occupied columns, and **offset** indicates the number of offset columns.<br>If the value is of the number type, only the number of columns can be set. If the value is in the format of {"span": 1, "offset": 0}, both the number of occupied columns and the number of offset columns need to be set.<br>- **xs** indicates that the device width type is **SizeType.XS**.<br>- **sm** indicates that the device width type is **SizeType.SM**.<br>- **md** indicates that the device width type is **SizeType.MD**.<br>- **lg** indicates that the device width type is **SizeType.LG**.|
 | gridSpan    | number                                                       | Default number of occupied columns, that is, the number of occupied columns when **span** in **useSizeType** is not set.<br>**NOTE**<br>If the **span** attribute is set, the component width is determined by the grid layout.<br>Default value: **1**|
 | gridOffset  | number                                                       | Default number of offset columns, that is, the number of offset columns in the start direction of the parent component (which is also the nth column that the component is in) when **offset** in **useSizeType** is not set.<br>**NOTE**<br>- After this attribute is set, the horizontal layout of the current component does not follow the original layout of the parent component. Instead, it offsets along the start direction of the parent component.<br>- Offset = (Column width + Gap) \* Number of columns.<br>- After this attribute is set, sibling components will be arranged relatively to this component, as in the relative layout.<br>Default value: **0**|
 
@@ -110,6 +110,6 @@ struct GridContainerExample1 {
 
 ![en-us_image_0000001212378416](figures/en-us_image_0000001212378416.png)
 
-**Figure 4** Setting gridSpan and gridOffset separately has the same effect as using SizeType for a specific device width type
+**Figure 4** Setting gridSpan and gridOffset separately has the same effect as useSizeType for a specific device width type
 
 ![gridSpan](figures/gridSpan.png)
