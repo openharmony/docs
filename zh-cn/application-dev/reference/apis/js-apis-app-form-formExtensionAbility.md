@@ -51,9 +51,10 @@ import Want from '@ohos.app.ability.Want';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAddForm(want: Want) {
     console.log(`FormExtensionAbility onAddForm, want: ${want.abilityName}`);
-    let dataObj1 = new Map<string, string>();
-    dataObj1.set('temperature', '11c');
-    dataObj1.set('time', '11:00');
+    let dataObj1 = new Record<string, string> = {
+      'temperature': '11c',
+      'time': '11:00',
+    };
 
     let obj1: formBindingData.FormBindingData = formBindingData.createFormBindingData(dataObj1);
     return obj1;

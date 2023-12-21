@@ -46,7 +46,7 @@ export default class EntryAbility extends UIAbility {
                 let screenDensity = config.screenDensity;
                 let displayId = config.displayId;
                 let hasPointerDevice = config.hasPointerDevice;
-            }，
+            },
             onMemoryLevel(level){
                 console.log('onMemoryLevel level: ${level}');
             }
