@@ -47,8 +47,8 @@
 | 同步类型           | 双向同步。<br/>从\@Provide变量到所有\@Consume变量以及相反的方向的数据同步。双向同步的操作与\@State和\@Link的组合相同。 |
 | 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date、Map、Set类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Provide a : string \| undefined = undefiend`是推荐的，不推荐`@Provide a: string = undefined`。
 <br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>不支持any。| 必须指定类型。<br/>\@Provide变量的\@Consume变量的类型必须相同。|
-| 被装饰变量的初始值      | 必须指定，允许重写。                                    |
-| 支持allowOverride参数          | 只要声明了allowOverride，则别名和属性名都可以被Override。示例见\@Provide支持allowOverride参数。 |
+| 被装饰变量的初始值      | 必须指定。                                    |
+| 支持allowOverride参数          | 允许重写，只要声明了allowOverride，则别名和属性名都可以被Override。示例见\@Provide支持allowOverride参数。 |
 
 | \@Consume变量装饰器 | 说明                                       |
 | -------------- | ---------------------------------------- |
