@@ -1,10 +1,8 @@
 # ForEach
 
-
 The development framework provides ForEach to iterate arrays and create components for each array item. ForEach is defined as follows:
 
 
-  
 ```
 ForEach(
     arr: any[], // Array to be iterated
@@ -20,7 +18,7 @@ ForEach(
 ForEach(arr: any[],itemGenerator: (item: any, index?: number) => void, keyGenerator?: (item: any, index?: number) => string):void
 
 
-  Table1 Parameters
+Table 1 Parameters
 
 | Name | Type | Mandatory | Default Value | Description | 
 | -------- | -------- | -------- | -------- | -------- |
@@ -33,21 +31,7 @@ ForEach(arr: any[],itemGenerator: (item: any, index?: number) => void, keyGenera
 > - ForEach must be used in container components.
 > 
 > - The generated child components are allowed in the parent container component of ForEach. The child component generator function can contain the if/else conditional statement, and the if/else conditional statement can contain ForEach.
-> 
-> - The calling sequence of subitem generator functions may be different from that of the data items in the array. During the development, do not assume whether the subitem generator and key value generator functions are executed and the execution sequence. The following is an example of incorrect usage:
->     
->   ```
->   ForEach(anArray, item => {Text(`${++counter}. item.label`)})
->   ```
-> 
->   Below is an example of correct usage:
-> 
->     
->   ```
->   ForEach(anArray.map((item1, index1) => { return { i: index1 + 1, data: item1 }; }), 
->           item => Text(`${item.i}. item.data.label`),
->           item => item.data.id.toString())
->   ```
+
 
 
 ## Example
@@ -80,7 +64,7 @@ struct MyComponent {
 }
 ```
 
-  The following is an example of a complex-type array:
+The following is an example of a complex-type array:
   
 ```
 class Month {
