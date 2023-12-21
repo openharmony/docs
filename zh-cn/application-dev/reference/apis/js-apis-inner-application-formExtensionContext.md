@@ -33,7 +33,6 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
-| 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
@@ -226,14 +225,14 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback&lt
 
 **系统能力**：SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | connection | number | 是 | 在[connectServiceExtensionAbility](#formextensioncontextconnectserviceextensionability10)中返回的number。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当Ability与绑定的服务类型的Ability解绑成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -286,7 +285,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -298,7 +297,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
