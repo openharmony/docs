@@ -69,8 +69,8 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| keepEditableState| ?(() => void) | 否 | 用户自定义輸入框编辑状态。<br/> 调用时保持编辑态。 |
-| text| string | 否 | 输入框文本内容。<br/>触发事件时赋值。 |
+| keepEditableState| ?(() => void) | 否 | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
+| text| string | 否 | 输入框文本内容。 |
 
 ## EnterKeyType枚举说明
 
