@@ -12,7 +12,7 @@ The **pointer** module provides APIs related to pointer attribute management.
 import pointer from '@ohos.multimodalInput.pointer';
 ```
 
-## pointer.setPointerVisible<sup>9+</sup>
+## pointer.setPointerVisible
 
 setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -24,7 +24,7 @@ Sets the visible status of the mouse pointer. This API uses an asynchronous call
 
 | Name      | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| visible  | boolean                   | Yes   | Whether the mouse pointer is visible.|
+| visible  | boolean                   | Yes   | Whether the mouse pointer is visible. The value **true** indicates that the mouse pointer is visible, and the value **false** indicates the opposite.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
@@ -43,7 +43,7 @@ try {
 }
 ```
 
-## pointer.setPointerVisible<sup>9+</sup>
+## pointer.setPointerVisible
 
 setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
@@ -55,7 +55,7 @@ Sets the visible status of the mouse pointer. This API uses a promise to return 
 
 | Name     | Type     | Mandatory  | Description                                      |
 | ------- | ------- | ---- | ---------------------------------------- |
-| visible | boolean | Yes   | Whether the mouse pointer is visible.|
+| visible | boolean | Yes   | Whether the mouse pointer is visible. The value **true** indicates that the mouse pointer is visible, and the value **false** indicates the opposite.|
 
 **Return value**
 
@@ -100,7 +100,7 @@ try {
 }
 ```
 
-## pointer.isPointerVisible<sup>9+</sup>
+## pointer.isPointerVisible
 
 isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -130,7 +130,7 @@ try {
 }
 ```
 
-## pointer.isPointerVisible<sup>9+</sup>
+## pointer.isPointerVisible
 
 isPointerVisible(): Promise&lt;boolean&gt;
 
@@ -168,7 +168,7 @@ Obtains the visible status of the mouse pointer. This API returns the result syn
 
 | Name                    | Description                 |
 | ---------------------- | ------------------- |
-| boolean | Visible status of the mouse pointer.|
+| boolean | Visible status of the mouse pointer. The value **true** indicates that the mouse pointer is visible, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -181,7 +181,7 @@ try {
 }
 ```
 
-## pointer.setPointerSpeed<sup>9+</sup>
+## pointer.setPointerSpeed
 
 setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -214,7 +214,7 @@ try {
 }
 ```
 
-## pointer.setPointerSpeed<sup>9+</sup>
+## pointer.setPointerSpeed
 
 setPointerSpeed(speed: number): Promise&lt;void&gt;
 
@@ -275,7 +275,7 @@ try {
 }
 ```
 
-## pointer.getPointerSpeed<sup>9+</sup>
+## pointer.getPointerSpeed
 
 getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 
@@ -307,7 +307,7 @@ try {
 }
 ```
 
-## pointer.getPointerSpeed<sup>9+</sup>
+## pointer.getPointerSpeed
 
 getPointerSpeed(): Promise&lt;number&gt;
 
@@ -376,7 +376,7 @@ Sets the status of the mouse hover scroll switch. This API uses an asynchronous 
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| state    | boolean                    | Yes   | Status of the mouse hover scroll switch.  |
+| state    | boolean                    | Yes   | Status of the mouse hover scroll switch. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
@@ -409,7 +409,7 @@ Sets the status of the mouse hover scroll switch. This API uses a promise to ret
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean | Yes   | Status of the mouse hover scroll switch.|
+| state | boolean | Yes   | Status of the mouse hover scroll switch. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.|
 
 **Return value**
 
@@ -443,7 +443,7 @@ Obtains the status of the mouse hover scroll switch. This API uses an asynchrono
 
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -471,7 +471,7 @@ Obtains the status of the mouse hover scroll switch. This API uses a promise to 
 
 | Name                   | Description                 |
 | --------------------- | ------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -742,7 +742,7 @@ try {
 }
 ```
 
-## pointer.getPointerStyle<sup>9+</sup>
+## pointer.getPointerStyle
 
 getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): void
 
@@ -755,7 +755,7 @@ Obtains the mouse pointer style. This API uses an asynchronous callback to retur
 | Name      | Type                                      | Mandatory  | Description            |
 | -------- | ---------------------------------------- | ---- | -------------- |
 | windowId | number                                   | Yes   | Window ID.   |
-| callback | AsyncCallback&lt;[PointerStyle](#pointerstyle9)&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;[PointerStyle](#pointerstyle)&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -784,7 +784,7 @@ window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
 });
 ```
 
-## pointer.getPointerStyle<sup>9+</sup>
+## pointer.getPointerStyle
 
 getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 
@@ -802,7 +802,7 @@ Obtains the mouse pointer style. This API uses a promise to return the result.
 
 | Name                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[PointerStyle](#pointerstyle9)&gt; | Promise used to return the result.|
+| Promise&lt;[PointerStyle](#pointerstyle)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -849,7 +849,7 @@ Obtains the mouse pointer style. This API returns the result synchronously.
 
 | Name                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| [PointerStyle](#pointerstyle9) | Mouse pointer style.|
+| [PointerStyle](#pointerstyle) | Mouse pointer style.|
 
 **Example**
 
@@ -862,7 +862,7 @@ try {
 }
 ```
 
-## pointer.setPointerStyle<sup>9+</sup>
+## pointer.setPointerStyle
 
 setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback&lt;void&gt;): void
 
@@ -875,7 +875,7 @@ Sets the mouse pointer style. This API uses an asynchronous callback to return t
 | Name          | Type                            | Mandatory  | Description                                 |
 | ------------ | ------------------------------ | ---- | ----------------------------------- |
 | windowId     | number                         | Yes   | Window ID.                         |
-| pointerStyle | [PointerStyle](#pointerstyle9) | Yes   | Mouse pointer style ID.                            |
+| pointerStyle | [PointerStyle](#pointerstyle) | Yes   | Pointer style.                            |
 | callback     | AsyncCallback&lt;void&gt;      | Yes   | Callback used to return the result.|
 
 **Example**
@@ -903,7 +903,7 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
   }
 });
 ```
-## pointer.setPointerStyle<sup>9+</sup>
+## pointer.setPointerStyle
 
 setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&gt;
 
@@ -916,7 +916,7 @@ Sets the mouse pointer style. This API uses a promise to return the result.
 | Name                 | Type                            | Mandatory  | Description              |
 | ------------------- | ------------------------------ | ---- | ---------------- |
 | windowId            | number                         | Yes   | Window ID.      |
-| pointerStyle        | [PointerStyle](#pointerstyle9) | Yes   | Mouse pointer style ID.         |
+| pointerStyle        | [PointerStyle](#pointerstyle) | Yes   | Pointer style.         |
 | Promise&lt;void&gt; | void                           | Yes   | Promise used to return the result.|
 
 **Example**
@@ -958,7 +958,7 @@ Sets the mouse pointer style. This API returns the result synchronously.
 | Name                 | Type                            | Mandatory  | Description              |
 | ------------------- | ------------------------------ | ---- | ---------------- |
 | windowId            | number                         | Yes   | Window ID.      |
-| pointerStyle        | [PointerStyle](#pointerstyle9) | Yes   | Mouse pointer style ID.         |
+| pointerStyle        | [PointerStyle](#pointerstyle) | Yes   | Pointer style.         |
 
 **Example**
 ```js
@@ -984,7 +984,7 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
 });
 ```
 
-## PointerStyle<sup>9+</sup>
+## PointerStyle
 
 Enumerates mouse pointer styles.
 
@@ -1051,7 +1051,7 @@ Sets the scroll switch of the touchpad. This API uses an asynchronous callback t
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| state | boolean | Yes   | Scroll switch status. The value **true** indicates that the scroll switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
+| state | boolean | Yes   | Scroll switch status. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Example**
@@ -1084,7 +1084,7 @@ Sets the scroll switch of the touchpad. This API uses a promise to return the re
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean| Yes   |  Scroll switch status. The value **true** indicates that the scroll switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
+| state | boolean| Yes   |  Scroll switch status. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
 **Return value**
 
@@ -1118,7 +1118,7 @@ Obtains the scroll switch status of the touchpad. This API uses an asynchronous 
 
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
 **Example**
 
@@ -1146,7 +1146,7 @@ Obtains the scroll switch status of the touchpad. This API uses a promise to ret
 
 | Name                   | Description                 |
 | --------------------- | ------------------- |
-| Promise\<boolean> | Promise used to return the result.|
+| Promise\<boolean> | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
 **Example**
 
@@ -1174,7 +1174,7 @@ Sets the scroll direction of the touchpad. This API uses an asynchronous callbac
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| state | boolean | Yes   | Scroll direction of the touchpad. The value **true** indicates that the scroll direction is the same as the finger moving direction, and the value **false** indicates the opposite. The default value is **true**.  |
+| state | boolean | Yes   | Scroll direction of the touchpad.<br>The value **true** indicates that the scroll direction is the same as the finger moving direction, and the value **false** indicates the opposite.<br>The default value is **true**.  |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Example**
@@ -1207,7 +1207,7 @@ Sets the scroll direction of the touchpad. This API uses a promise to return the
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean| Yes   |  Scroll direction of the touchpad. The value **true** indicates that the scroll direction is the same as the finger moving direction, and the value **false** indicates the opposite. The default value is **true**.    |
+| state | boolean| Yes   |  Scroll direction of the touchpad.<br>The value **true** indicates that the scroll direction is the same as the finger moving direction, and the value **false** indicates the opposite.<br>The default value is **true**.|
 
 **Return value**
 
@@ -1241,7 +1241,7 @@ Obtains the scroll direction of the touchpad. This API uses an asynchronous call
 
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.<br>The value **true** indicates that the scroll direction is the same as the finger moving direction, and the value **false** indicates the opposite.<br>The default value is **true**.|
 
 **Example**
 
@@ -1269,7 +1269,7 @@ Obtains the scroll direction of the touchpad. This API uses a promise to return 
 
 | Name                   | Description                 |
 | --------------------- | ------------------- |
-| Promise\<boolean> | Promise used to return the result.|
+| Promise\<boolean> | Promise used to return the result.<br>The value **true** indicates that the scroll direction is the same as the finger moving direction, and the value **false** indicates the opposite.<br>The default value is **true**.|
 
 **Example**
 
@@ -1297,7 +1297,7 @@ Sets the tap switch of the touchpad. This API uses an asynchronous callback to r
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| state | boolean | Yes   |Tap switch status of the touchpad The value **true** indicates that the tap switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
+| state | boolean | Yes   |Tap switch status of the touchpad The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Example**
@@ -1330,7 +1330,7 @@ Sets the tap switch of the touchpad. This API uses a promise to return the resul
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean| Yes   |  Tap switch status of the touchpad The value **true** indicates that the tap switch is enabled, and the value **false** indicates the opposite. The default value is **true**. |
+| state | boolean| Yes   |  Tap switch status of the touchpad. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**. |
 
 **Return value**
 
@@ -1364,7 +1364,7 @@ Obtains the tap switch status of the touchpad. This API uses an asynchronous cal
 
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
 **Example**
 
@@ -1392,7 +1392,7 @@ Obtains the tap switch status of the touchpad. This API uses a promise to return
 
 | Name                   | Description                 |
 | --------------------- | ------------------- |
-| Promise\<boolean> | Promise used to return the result.|
+| Promise\<boolean> | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
 **Example**
 
@@ -1543,7 +1543,7 @@ Sets the pinch switch of the touchpad. This API uses an asynchronous callback to
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| state | boolean | Yes   |Pinch switch status of the touchpad. The value **true** indicates that the pinch switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
+| state | boolean | Yes   |Pinch switch status of the touchpad. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Example**
@@ -1576,7 +1576,7 @@ Sets the pinch switch of the touchpad. This API uses a promise to return the res
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean| Yes   |  Pinch switch status of the touchpad. The value **true** indicates that the pinch switch is enabled, and the value **false** indicates the opposite. The default value is **true**. |
+| state | boolean| Yes   |  Pinch switch status of the touchpad. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**. |
 
 **Return value**
 
@@ -1610,7 +1610,7 @@ Obtains the pinch switch status of the touchpad. This API uses an asynchronous c
 
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
 **Example**
 
@@ -1638,7 +1638,7 @@ Obtains the pinch switch status of the touchpad. This API uses a promise to retu
 
 | Name                   | Description                 |
 | --------------------- | ------------------- |
-| Promise\<boolean> | Promise used to return the result.|
+| Promise\<boolean> | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
 **Example**
 
@@ -1666,7 +1666,7 @@ Sets the multi-finger swipe switch of the touchpad. This API uses an asynchronou
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| state | boolean | Yes   |Swipe switch status of the touchpad. The value **true** indicates that the swipe switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
+| state | boolean | Yes   |Swipe switch status of the touchpad. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Example**
@@ -1699,7 +1699,7 @@ Sets the swipe switch of the touchpad. This API uses a promise to return the res
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean| Yes   |  Swipe switch status of the touchpad. The value **true** indicates that the swipe switch is enabled, and the value **false** indicates the opposite. The default value is **true**. |
+| state | boolean| Yes   |  Swipe switch status of the touchpad. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**. |
 
 **Return value**
 
@@ -1733,7 +1733,7 @@ Obtains the multi-finger swipe switch status of the touchpad. This API uses an a
 
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
 **Example**
 
@@ -1761,7 +1761,7 @@ Obtains the multi-finger swipe switch status of the touchpad. This API uses a pr
 
 | Name                   | Description                 |
 | --------------------- | ------------------- |
-| Promise\<boolean> | Promise used to return the result.|
+| Promise\<boolean> | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
 **Example**
 
@@ -1801,7 +1801,7 @@ Sets the shortcut menu type of the touchpad. This API uses an asynchronous callb
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| type| RightClickType| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**. |
+| type| [RightClickType](#rightclicktype10)| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**. |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Example**
@@ -1834,7 +1834,7 @@ Sets the shortcut menu type of the touchpad. This API uses a promise to return t
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| type| RightClickType| Yes   | Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**.|
+| type| [RightClickType](#rightclicktype10)| Yes   | Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**.|
 
 **Return value**
 
@@ -1868,7 +1868,7 @@ Obtains the shortcut menu type of the touchpad. This API uses an asynchronous ca
 
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<RightClickType> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback\<[RightClickType](#rightclicktype10)> | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -1896,7 +1896,7 @@ Obtains the shortcut menu type of the touchpad. This API uses a promise to retur
 
 | Name                   | Description                 |
 | --------------------- | ------------------- |
-| Promise\<RightClickType > | Promise used to return the result.|
+| Promise\<[RightClickType](#rightclicktype10) > | Promise used to return the result.|
 
 **Example**
 
@@ -2093,6 +2093,10 @@ setPointerColor(color: number, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the pointer color. This API uses an asynchronous callback to return the result.
 
+**NOTE**
+>
+> When performing this operation, you need to connect an external device, such as a mouse or Bluetooth device.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
 **System API**: This is a system API.
@@ -2125,6 +2129,10 @@ try {
 setPointerColor(color: number): Promise&lt;void&gt;
 
 Sets the pointer color. This API uses a promise to return the result.
+
+**NOTE**
+>
+> When performing this operation, you need to connect an external device, such as a mouse or Bluetooth device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -2159,6 +2167,10 @@ try {
 setPointerColorSync(color: number): void;
 
 Sets the pointer color. This API returns the result synchronously.
+
+**NOTE**
+>
+> When performing this operation, you need to connect an external device, such as a mouse or Bluetooth device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -2262,4 +2274,91 @@ try {
 } catch (error) {
   console.log(`getPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
+```
+
+## pointer.setCustomCursor<sup>11+</sup>
+
+setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, focusY?: number): Promise&lt;void&gt;
+
+Sets a custom cursor. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| windowId  | number  | Yes   | Window ID.                         |
+| pixelMap  | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes   | Pixel map resource.|
+| focusX  | number | No   | Focus x of the custom cursor. The value is greater than or equal to **0**. The default value is **0**.|
+| focusY  | number | No   | Focus y of the custom cursor. The value is greater than or equal to **0**. The default value is **0**.|
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```js
+import image from '@ohos.multimedia.image';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+const svgFileData = await getContext().resourceManager.getMediaContent($r("app.media.icon"));
+const svgBuffer = svgFileData.buffer;
+let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
+svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+  window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+    let windowId = win.getWindowProperties().id;
+      try {
+        pointer.setCustomCursor(windowId, pixelMap).then(() => {
+          console.log(`setCustomCursor success`);
+        });
+      } catch (error) {
+        console.log(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      }
+  });
+});
+```
+
+## pointer.setCustomCursorSync<sup>11+</sup>
+
+setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number, focusY?: number): void
+
+Sets a custom cursor. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| windowId  | number  | Yes   | Window ID.                         |
+| pixelMap  | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes   | Pixel map resource.|
+| focusX  | number | No   | Focus x of the custom cursor. The value is greater than or equal to **0**. The default value is **0**.|
+| focusY  | number | No   | Focus y of the custom cursor. The value is greater than or equal to **0**. The default value is **0**.|
+
+**Example**
+
+```js
+import image from '@ohos.multimedia.image';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+const svgFileData = await getContext().resourceManager.getMediaContent($r("app.media.icon"));
+const svgBuffer = svgFileData.buffer;
+let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
+svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+  window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+    let windowId = win.getWindowProperties().id;
+      try {
+        pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
+        console.log(`setCustomCursorSync success`);
+      } catch (error) {
+        console.log(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      }
+  });
+});
 ```

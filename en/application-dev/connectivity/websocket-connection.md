@@ -1,6 +1,6 @@
 # WebSocket Connection
 
-## Overview
+## When to Use
 
 You can use WebSocket to establish a bidirectional connection between a server and a client. Before doing this, you need to use the **createWebSocket()** API to create a **WebSocket** object and then use the **connect()** API to connect to the server. If the connection is successful, the client will receive a callback of the **open** event. Then, the client can communicate with the server using the **send()** API. When the server sends a message to the client, the client will receive a callback of the **message** event. If the client no longer needs this connection, it can call the **close()** API to disconnect from the server. Then, the client will receive a callback of the **close** event.
 
@@ -10,20 +10,20 @@ If an error occurs in any of the preceding processes, the client will receive a 
 
 The WebSocket connection function is mainly implemented by the WebSocket module. To use related APIs, you must declare the **ohos.permission.INTERNET** permission. The following table describes the related APIs.
 
-| API| Description|
-| -------- | -------- |
-| createWebSocket() | Creates a WebSocket connection.|
-| connect() | Establishes a WebSocket connection to a given URL.|
-| send() | Sends data through the WebSocket connection.|
-| close() | Closes a WebSocket connection.|
-| on(type: 'open') | Enables listening for **open** events of a WebSocket connection.|
-| off(type: 'open') | Disables listening for **open** events of a WebSocket connection.|
-| on(type: 'message') | Enables listening for **message** events of a WebSocket connection.|
+| API             | Description                                     |
+| ------------------ | ----------------------------------------- |
+| createWebSocket()  | Creates a WebSocket connection.                   |
+| connect()          | Establishes a WebSocket connection to a given URL.      |
+| send()             | Sends data through the WebSocket connection.               |
+| close()            | Closes a WebSocket connection.                       |
+| on(type: 'open')   | Enables listening for **open** events of a WebSocket connection.                 |
+| off(type: 'open')   | Disables listening for **open** events of a WebSocket connection.            |
+| on(type: 'message') | Enables listening for **message** events of a WebSocket connection.     |
 | off(type: 'message') | Disables listening for **message** events of a WebSocket connection.|
-| on(type: 'close') | Enables listening for **close** events of a WebSocket connection.|
-| off(type: 'close') | Disables listening for **close** events of a WebSocket connection.|
-| on(type: 'error') | Enables listening for **error** events of a WebSocket connection.|
-| off(type: 'error') | Disables listening for **error** events of a WebSocket connection.|
+| on(type: 'close')   | Enables listening for **close** events of a WebSocket connection.                |
+| off(type: 'close') | Disables listening for **close** events of a WebSocket connection.               |
+| on(type: 'error')  | Enables listening for **error** events of a WebSocket connection.                |
+| off(type: 'error') | Disables listening for **error** events of a WebSocket connection.            |
 
 ## How to Develop
 
@@ -39,13 +39,14 @@ The WebSocket connection function is mainly implemented by the WebSocket module.
 
 ```js
 import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
 
-var defaultIpAddress = "ws://";
+let defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();
-ws.on('open', (err, value) => {
+ws.on('open', (err: BusinessError, value: Object) => {
   console.log("on open, status:" + JSON.stringify(value));
   // When receiving the on('open') event, the client can use the send() API to communicate with the server.
-  ws.send("Hello, server!", (err, value) => {
+  ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("Message sent successfully");
     } else {
@@ -53,11 +54,11 @@ ws.on('open', (err, value) => {
     }
   });
 });
-ws.on('message', (err, value) => {
+ws.on('message', (err: BusinessError, value: string | ArrayBuffer) => {
   console.log("on message, message:" + value);
   // When receiving the `bye` message (the actual message name may differ) from the server, the client proactively disconnects from the server.
   if (value === 'bye') {
-    ws.close((err, value) => {
+    ws.close((err: BusinessError, value: boolean) => {
       if (!err) {
         console.log("Connection closed successfully");
       } else {
@@ -66,13 +67,13 @@ ws.on('message', (err, value) => {
     });
   }
 });
-ws.on('close', (err, value) => {
+ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
   console.log("on close, code is " + value.code + ", reason is " + value.reason);
 });
-ws.on('error', (err) => {
+ws.on('error', (err: BusinessError) => {
   console.log("on error, error:" + JSON.stringify(err));
 });
-ws.connect(defaultIpAddress, (err, value) => {
+ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
   if (!err) {
     console.log("Connected successfully");
   } else {
@@ -80,9 +81,3 @@ ws.connect(defaultIpAddress, (err, value) => {
   }
 });
 ```
-
-## Samples
-
-The following samples are provided to help you better understand how to develop WebSocket connection features:
-
-- [`WebSocket`: WebSocket (ArkTS) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/WebSocket)
