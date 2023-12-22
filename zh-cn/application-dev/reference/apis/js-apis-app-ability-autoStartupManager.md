@@ -31,6 +31,14 @@ on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 | type | string | 是    | 固定取值“systemAutoStartup”，表示为系统应用所调用。 |
 | callback  | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)   | 是    | 监听应用组件开机自启动状态变化的回调对象。      |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
@@ -69,6 +77,14 @@ off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 | type | string              | 是    | 固定取值“systemAutoStartup”，表示为系统应用所调用。 |
 | callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)   | 否 | 监听应用组件开机自启动状态变化的回调对象。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 16000050 | Internal error.                              |
+
+请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
@@ -106,6 +122,16 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 | --------- | ---------------------------------------- | ---- | -------------- |
 | info | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md) | 是    | 要设置的开机自启动应用组件信息。 |
 | callback | AsyncCallback\<void\> | 是 | 回调函数。当设置应用组件开机自启动成功，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 16000004 | Can not start invisible component.           |
+| 16000013 | The application is controlled by EDM.        |
+| 16000050 | Internal error.                              |
+
+请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -146,6 +172,16 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 | ------------- | ------------------------------------------------------------ |
 | Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 16000004 | Can not start invisible component.           |
+| 16000013 | The application is controlled by EDM.        |
+| 16000050 | Internal error.                              |
+
+请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
@@ -181,6 +217,16 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 | --------- | ---------------------------------------- | ---- | -------------- |
 | info | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)   | 是 | 要取消的开机自启动应用组件信息。 |
 | callback | AsyncCallback\<void\> | 是    | 回调函数。当取消应用组件开机自启动成功，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 16000004 | Can not start invisible component.           |
+| 16000013 | The application is controlled by EDM.        |
+| 16000050 | Internal error.                              |
+
+请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -221,6 +267,16 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 | ------------- | ------------------------------------------------------------ |
 | Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 16000004 | Can not start invisible component.           |
+| 16000013 | The application is controlled by EDM.        |
+| 16000050 | Internal error.                              |
+
+请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
@@ -256,6 +312,14 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 | --------- | ---------------------------------------- | ---- | -------------- |
 | callback  | AsyncCallback\<Array\<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)\>\> | 是    | 回调函数。当查询自启动应用组件信息成功，err为undefined，data为获取到的Array\<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)\>；否则为错误对象。      |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例**：
 
 ```ts
@@ -285,6 +349,14 @@ try {
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
 | Promise\<Array\<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)\>\> | Promise对象，返回自启动应用组件信息。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
