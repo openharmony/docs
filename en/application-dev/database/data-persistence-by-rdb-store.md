@@ -8,7 +8,7 @@ A relational database (RDB) store is used to store data in complex relational mo
 
 ## Basic Concepts
 
-- **Predicates**: A representation of the property or feature of a data entity, or the relationship between data entities. It is used to define operation conditions.
+- **Predicates**: a representation of the property or feature of a data entity, or the relationship between data entities. It is used to define operation conditions.
 
 - **ResultSet**: a set of query results, which allows access to the required data in flexible modes.
 
@@ -49,13 +49,13 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
 
 ## How to Develop
-
+Unless otherwise specified, the sample code without "stage model" or "FA model" applies to both models.
 1. Obtain an **RdbStore** instance.<br>Example:
 
    Stage model:
      
    ```js
-   import relationalStore from '@ohos.data.relationalStore'; // Import the module.
+   import relationalStore from '@ohos.data.relationalStore'; // Import modules.
    import UIAbility from '@ohos.app.ability.UIAbility';
    
    class EntryAbility extends UIAbility {
@@ -86,7 +86,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
      
    ```js
-   import relationalStore from '@ohos.data.relationalStore'; // Import the module.
+   import relationalStore from '@ohos.data.relationalStore'; // Import modules.
    import featureAbility from '@ohos.ability.featureAbility';
    
    // Obtain the context.
@@ -118,9 +118,8 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
    > 
    > - When an application calls **getRdbStore()** to obtain an RDB store instance for the first time, the corresponding database file is generated in the application sandbox. When the RDB store is used, temporary files ended with **-wal** and **-shm** may be generated in the same directory as the database file. If you want to move the database files to other places, you must also move these temporary files. After the application is uninstalled, the database files and temporary files generated on the device are also removed.
 
-2. Use **insert()** to insert data to the RDB store.
+2. Use **insert()** to insert data to the RDB store. <br>Example:
      
-   Example:
    ```js
    const valueBucket = {
      'NAME': 'Lisa',
@@ -139,13 +138,12 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
    > **NOTE**
    >
-   > **RelationalStore** does not provide explicit flush operations for data persistence. Data inserted by **insert()** is stored in files persistently.
+   > **RelationalStore** does not provide explicit flush operations for data persistence. The **insert()** method stores data persistently.
 
 3. Modify or delete data based on the specified **Predicates** instance.
 
-   Use **update()** to modify data and **delete()** to delete data.
+   Use **update()** to modify data and **delete()** to delete data. <br>Example:
      
-   Example:
    ```js
    // Modify data.
    const valueBucket = {
@@ -178,9 +176,8 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
 4. Query data based on the conditions specified by **Predicates**.
 
-   Use **query()** to query data. The data obtained is returned in a **ResultSet** object.
+   Use **query()** to query data. The data obtained is returned in a **ResultSet** object. <br>Example:
      
-   Example:
    ```js
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Rose');
@@ -200,9 +197,8 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
 5. Delete the RDB store.
 
-   Use **deleteRdbStore()** to delete the RDB store and related database files.
+   Use **deleteRdbStore()** to delete the RDB store and related database files. <br>Example:
 
-   Example:
    Stage model:
 
      
