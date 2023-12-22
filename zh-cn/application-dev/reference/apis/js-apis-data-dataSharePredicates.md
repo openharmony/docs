@@ -87,7 +87,7 @@ predicates.notEqualTo("NAME", "Rose")
 
 beginWrap(): DataSharePredicates
 
-该接口用于向谓词添加左括号，相当于sql语句的“(”,必须和右括号一起使用。
+该接口用于向谓词添加左括号，相当于sql语句的“(”，必须和右括号一起使用。
 
 目前仅RDB支持该谓词。
 
