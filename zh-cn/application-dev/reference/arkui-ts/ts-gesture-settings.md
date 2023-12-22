@@ -14,8 +14,8 @@
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| gesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定手势。<br/>- gesture:&nbsp;绑定的手势类型，&nbsp;<br>- mask:&nbsp;事件响应设置。 |
-| priorityGesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定优先识别手势。<br/>- gesture: 绑定的手势类型， <br/>- mask: 事件响应设置。<br/>1、默认情况下，子组件优先识别通过gesture绑定的手势，当父组件配置priorityGesture时，父组件优先识别priorityGesture绑定的手势。<br/>2、长按手势时，设置触发长按的最短时间小的组件会优先响应，会忽略priorityGesture设置。|
+| gesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定手势。<br/>- gesture:&nbsp;绑定的手势类型。&nbsp;<br>- mask:&nbsp;事件响应设置。 |
+| priorityGesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定优先识别手势。<br/>- gesture: 绑定的手势类型。 <br/>- mask: 事件响应设置。<br/>1、默认情况下，子组件优先识别通过gesture绑定的手势，当父组件配置priorityGesture时，父组件优先识别priorityGesture绑定的手势。<br/>2、长按手势时，设置触发长按的最短时间小的组件会优先响应，会忽略priorityGesture设置。|
 | parallelGesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定可与子组件手势同时触发的手势。<br/>- gesture:&nbsp;绑定的手势类型。&nbsp;<br>- mask:&nbsp;事件响应设置。<br/>手势事件为非冒泡事件。父组件设置parallelGesture时，父子组件相同的手势事件都可以触发，实现类似冒泡效果。若父子组件中同时绑定单击手势事件和双击手势事件，则只响应单击手势事件。 |
 
 
@@ -35,7 +35,7 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | Normal | 不屏蔽子组件的手势，按照默认手势识别顺序进行识别。 |
-| IgnoreInternal | 屏蔽子组件的手势，包括子组件上系统内置的手势，如子组件为List组件时，内置的滑动手势同样会被屏蔽。 |
+| IgnoreInternal | 屏蔽子组件的手势，包括子组件上系统内置的手势，如子组件为List组件时，内置的滑动手势同样会被屏蔽。 若父子组件区域存在部分重叠，则只会屏蔽父子组件重叠的部分。|
 
 ## 响应手势事件
 
@@ -58,7 +58,7 @@
 | pinchCenterX | number | 捏合手势中心点相对于当前组件元素原始区域左上角x轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
 | pinchCenterY | number | 捏合手势中心点相对于当前组件元素原始区域左上角y轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
 | speed<sup>8+</sup> | number | 滑动手势速度，即所有手指相对当前组件元素原始区域滑动的平均速度，单位为vp/秒，用于SwipeGesture手势触发场景。 |
-| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo对象说明)[] | 触发事件的所有手指信息，用于LongPressGesture与TapGesture手势触发场景。<br/>**说明：**<br/>fingerList数组的第1个元素（即fingerList[0]）为FingerInfo对象。 |
+| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo对象说明)[] | 触发事件的所有手指信息，用于手势触发场景。<br/>**说明：**<br/>fingerList数组的第1个元素（即fingerList[0]）为FingerInfo对象。 |
 | timestamp<sup>8+</sup> | number | 事件时间戳。 |
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象显示区域。 |
 | source<sup>8+</sup> | [SourceType](#sourcetype枚举说明) | 事件输入设备。 |

@@ -48,8 +48,27 @@
 | enableArrow           | boolean                                                      | 否   | 是否显示箭头。如果菜单的大小和位置不足以放置箭头时，不会显示箭头。 <br/>默认值：false, 不显示箭头。<br/>**说明：**<br />enableArrow为true时，placement未设置或者值为非法值，默认在目标物上方显示，否则按照placement的位置优先显示。当前位置显示不下时，会自动调整位置，enableArrow为undefined时，不显示箭头。 |
 | arrowOffset           | [Length](ts-types.md#length)                                 | 否   | 箭头在菜单处的偏移。箭头在菜单水平方向时，偏移量为箭头至最左侧的距离，默认居中。箭头在菜单竖直方向时，偏移量为箭头至最上侧的距离，默认居中。偏移量必须合法且转换为具体数值时大于0才会生效，另外该值生效时不会导致箭头超出菜单四周的安全距离。根据配置的placement来计算是在水平还是竖直方向上偏移。 |
 | preview<sup>11+</sup> | [MenuPreviewMode](ts-appendix-enums.md#menupreviewmode11)\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 否   | 长按悬浮菜单的预览内容样式，可以为目标组件的截图，也可以为用户自定义的内容。<br/>默认值：MenuPreviewMode.NONE, 无预览内容。<br/>**说明：**<br />- 仅支持responseType为ResponseType.LongPress时触发，如果responseType为ResponseType.RightClick，则不会显示预览内容。<br />- 当未设置preview参数或preview参数设置为MenuPreviewMode.NONE时，enableArrow参数生效。<br />- 当preview参数设置为MenuPreviewMode.IMAGE或CustomBuilder时，enableArrow为true时也不显示箭头。 |
+| previewAnimationOptions<sup>11+</sup> | [ContextMenuAnimationOptions](#contextmenuanimationoptions11) | 否    | 控制长按预览显示动画开始倍率和结束倍率（相对预览原图比例）。<br/>默认值：{scale: [0.95, 1.1]}。<br/>**说明：**<br />-倍率设置参数小于等于0时，不生效。<br />-当前只在preview设置为MenuPreviewMode.IMAGE模式时生效。 |
 | onAppear              | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单弹出时的事件回调。                                       |
 | onDisappear           | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单消失时的事件回调。                                       |
+| aboutToAppear              | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单显示动效前的事件回调。                                       |
+| aboutToDisappear           | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单退出动效前的事件回调。                                       |
+
+## ContextMenuAnimationOptions<sup>11+</sup>
+
+| 名称  | 类型                                       | 必填 | 描述                                 |
+| ----- | ------------------------------------------ | ---- | ------------------------------------ |
+| scale | [AnimationRange](#animationrange11)\<number> | 否   | 动画开始和结束时相对预览原图缩放比例。 |
+
+## AnimationRange<sup>11+</sup>
+
+表示动画开始和结束时相对预览原图缩放比例。
+
+系统能力：SystemCapability.ArkUI.ArkUI.Full
+
+| 取值范围         | 说明                                                                           |
+| ---------------- | ------------------------------------------------------------------------------ |
+| [from: T, to: T] | from表示动画开始时相对预览原图缩放比例，to表示动画结束时相对预览原图缩放比例。 |
 
 ## 示例
 
@@ -248,7 +267,9 @@ struct Index {
             .margin(100)
             .fontSize(30)
             .bindContextMenu(this.MyMenu, ResponseType.LongPress,
-              { preview: MenuPreviewMode.IMAGE })
+              { preview: MenuPreviewMode.IMAGE,
+                previewAnimationOptions: {scale: [0.8, 1.0]},
+              })
             .backgroundColor("#ff3df2f5")
         }
       }.width('100%')

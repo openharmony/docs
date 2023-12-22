@@ -10,8 +10,8 @@
 
 ## 导入模块
 
-```ts
-import dragInteraction from '@ohos.deviceStatus.dragInteraction'
+```js
+import dragInteraction from '@ohos.deviceStatus.dragInteraction';
 ```
 
 ## DragState
@@ -111,7 +111,7 @@ try {
 
 ## dragInteraction.getDataSummary()<sup>11+</sup>
 
-function getDataSummary(): Array\<[Summary](#summary11)>;
+getDataSummary(): Array\<[Summary](#summary11)>;
 
 获取所有拖拽对象的摘要。
 

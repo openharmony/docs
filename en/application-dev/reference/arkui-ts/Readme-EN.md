@@ -42,6 +42,7 @@
     - [Foreground Blur](ts-universal-attributes-foreground-blur-style.md)
     - [Click Effect](ts-universal-attributes-click-effect.md)
     - [Accessibility](ts-universal-attributes-accessibility.md)
+    - [Attribute Modifier](ts-universal-attributes-attribute-modifier.md)
     - Touch Interactions
       - [Touch Target](ts-universal-attributes-touch-target.md)
       - [Hit Test Control](ts-universal-attributes-hit-test-behavior.md)
@@ -54,6 +55,7 @@
     - [Safe Area](ts-universal-attributes-expand-safe-area.md)
     - [Special Effect Drawing Combination](ts-universal-attributes-use-effect.md)
     - [Render Fit](ts-universal-attributes-renderfit.md)
+    - [Event Monopolization](ts-universal-attributes-monopolize-events.md)
   - Gesture Handling
     - [Gesture Binding Methods](ts-gesture-settings.md)
     - Basic Gestures
@@ -64,6 +66,7 @@
       - [RotationGesture](ts-basic-gestures-rotationgesture.md)
       - [SwipeGesture](ts-basic-gestures-swipegesture.md)
     - [Combined Gestures](ts-combined-gestures.md)
+    - [Custom Gesture Judgment](ts-gesture-customize-judge.md)
 - Basic Components
   - [AlphabetIndexer](ts-container-alphabet-indexer.md)
   - [Blank](ts-basic-components-blank.md)

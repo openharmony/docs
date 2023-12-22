@@ -13,6 +13,7 @@
     - [组件区域变化事件](ts-universal-component-area-change-event.md)
     - [组件可见区域变化事件](ts-universal-component-visible-area-change-event.md)
     - [组件快捷键事件](ts-universal-events-keyboardshortcut.md)
+    - [自定义事件分发](ts-universal-attributes-on-child-touch-test.md)
   - 通用属性
     - [尺寸设置](ts-universal-attributes-size.md)
     - [位置设置](ts-universal-attributes-location.md)
@@ -91,6 +92,7 @@
   - [Navigation](ts-basic-components-navigation.md)
   - [NavRouter](ts-basic-components-navrouter.md)
   - [NavDestination](ts-basic-components-navdestination.md)
+  - [NodeContianer](ts-basic-components-nodecontainer.md)
   - [PatternLock](ts-basic-components-patternlock.md)
   - [PluginComponent](ts-basic-components-plugincomponent.md)
   - [Progress](ts-basic-components-progress.md)
@@ -125,6 +127,7 @@
   - [EffectComponent](ts-container-effectcomponent.md)
   - [Flex](ts-container-flex.md)
   - [FlowItem](ts-container-flowitem.md)
+  - [FolderStack](ts-container-folderstack.md)
   - [FormLink](ts-container-formlink.md)
   - [GridCol](ts-container-gridcol.md)
   - [GridRow](ts-container-gridrow.md)
@@ -204,6 +207,7 @@
     - [组件内隐式共享元素转场（geometryTransition）](ts-transition-animation-geometrytransition.md)
   - [路径动画（motionPath）](ts-motion-path-animation.md)
   - [粒子动画（Particle）](ts-particle-animation.md)
+  - [显式动画立即下发（animateToImmediately）](ts-explicit-animatetoimmediately.md)
 - 全局UI方法
   - 弹窗
     - [警告弹窗（AlertDialog）](ts-methods-alert-dialog-box.md)
@@ -215,6 +219,7 @@
     - [文本滑动选择器弹窗（TextPickerDialog）](ts-methods-textpicker-dialog.md)
   - [菜单](ts-methods-menu.md)
 - [自定义组件的生命周期](ts-custom-component-lifecycle.md)
+- [自定义组件内置方法](ts-custom-component-api.md)
 - [应用级变量的状态管理](ts-state-management.md)
 - [像素单位](ts-pixel-units.md)
 - [枚举说明](ts-appendix-enums.md)

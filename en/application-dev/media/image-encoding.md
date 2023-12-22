@@ -1,10 +1,12 @@
-# Image Encoding
+# Image Encoding (ArkTS)
 
 Image encoding refers to the process of encoding a pixel map into an archived image in different formats (only in JPEG, WebP, and PNG currently) for subsequent processing, such as storage and transmission.
 
 ## How to Develop
 
 Read [Image API Reference](../reference/apis/js-apis-image.md#imagepacker) for APIs related to image encoding.
+
+### Encoding Images into File Streams
 
 1. Create an **ImagePacker** object.
    
@@ -59,6 +61,7 @@ Method 1: Use **PixelMap** to encode the image and pack it into a file.
    import {BusinessError} from '@ohos.base'
    import fs from '@ohos.file.fs'
    import featureAbility from '@ohos.ability.featureAbility'
+   const context : _Context = featureAbility.getContext();
    const path : string = context.getCacheDir() + "pixel_map.jpg";
    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(pixelMap, file.fd, packOpts).then(() => {

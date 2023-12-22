@@ -76,7 +76,7 @@ setVideo(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&l
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | source | string | 是 | mp4文件的Uri路径。 |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined，否则返回error信息。 |
 
 **示例：**
@@ -116,7 +116,7 @@ setVideo(source: string, wallpaperType: WallpaperType): Promise&lt;void&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | source | string | 是 | mp4文件的Uri路径。 |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 
 **返回值：**
 
@@ -158,7 +158,7 @@ setCustomWallpaper(source: string, wallpaperType: WallpaperType, callback: Async
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | source | string | 是 | 指定的zip资源包。 |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined，否则返回error信息。 |
 
 **示例：**
@@ -198,7 +198,7 @@ setCustomWallpaper(source: string, wallpaperType: WallpaperType): Promise&lt;voi
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | source | string | 是 | 指定的zip资源包。 |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 
 **返回值：**
 
@@ -311,13 +311,13 @@ getColorsSync(wallpaperType: WallpaperType): Array&lt;RgbaColor&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 
 **返回值**：
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Array&lt;[RgbaColor](#rgbacolor)&gt; | 返回壁纸的主要颜色信息。 |
+| Array&lt;[RgbaColor](#rgbacolordeprecated)&gt; | 返回壁纸的主要颜色信息。 |
 
 **示例**：
 
@@ -390,7 +390,7 @@ restore(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，移除壁纸成功，error为undefined，否则返回error信息。 |
 
 **示例：**
@@ -423,7 +423,7 @@ restore(wallpaperType: WallpaperType): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 
 **返回值：**
 
@@ -460,7 +460,7 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType, callback
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined，否则返回error信息。 |
 
 **示例：**
@@ -517,7 +517,7 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 
 **返回值：**
 
@@ -574,7 +574,7 @@ getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
 
 **示例：**
@@ -609,7 +609,7 @@ getImage(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 
 **返回值：**
 
@@ -647,7 +647,7 @@ on(type: 'colorChange', callback: (colors: Array&lt;RgbaColor&gt;, wallpaperType
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 取值为'colorChange'，表示壁纸颜色变化结果上报事件。 |
-| callback | function | 是 | 壁纸颜色变化触发该回调方法，返回壁纸类型和壁纸的主要颜色信息。<br/>- colors<br/>  壁纸的主要颜色信息，其类型见[RgbaColor](#rgbacolor)。<br/>- wallpaperType<br/>  壁纸类型。 |
+| callback | function | 是 | 壁纸颜色变化触发该回调方法，返回壁纸类型和壁纸的主要颜色信息。<br/>- colors<br/>  壁纸的主要颜色信息，其类型见[RgbaColor](#rgbacolordeprecated)。<br/>- wallpaperType<br/>  壁纸类型。 |
 
 **示例：**
 
@@ -679,7 +679,7 @@ off(type: 'colorChange', callback?: (colors: Array&lt;RgbaColor&gt;, wallpaperTy
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 取值为'colorChange'，表示取消订阅壁纸颜色变化结果上报事件。 |
-| callback | function | 否 |   表示要取消的壁纸颜色变化的回调，不填写该参数则取消订阅该type对应的所有回调。<br/>- colors<br/>  壁纸的主要颜色信息，其类型见[RgbaColor](#rgbacolor)。<br/>- wallpaperType<br/>  壁纸类型。 |
+| callback | function | 否 |   表示要取消的壁纸颜色变化的回调，不填写该参数则取消订阅该type对应的所有回调。<br/>- colors<br/>  壁纸的主要颜色信息，其类型见[RgbaColor](#rgbacolordeprecated)。<br/>- wallpaperType<br/>  壁纸类型。 |
 
 **示例：**
 
@@ -724,8 +724,8 @@ getColors(wallpaperType: WallpaperType, callback: AsyncCallback&lt;Array&lt;Rgba
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
-| callback | AsyncCallback&lt;Array&lt;[RgbaColor](#rgbacolor)&gt;&gt; | 是 | 回调函数，返回壁纸的主要颜色信息。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
+| callback | AsyncCallback&lt;Array&lt;[RgbaColor](#rgbacolordeprecated)&gt;&gt; | 是 | 回调函数，返回壁纸的主要颜色信息。 |
 
 **示例：**
 
@@ -757,13 +757,13 @@ getColors(wallpaperType: WallpaperType): Promise&lt;Array&lt;RgbaColor&gt;&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Array&lt;[RgbaColor](#rgbacolor)&gt;&gt; | 返回壁纸的主要颜色信息。 |
+| Promise&lt;Array&lt;[RgbaColor](#rgbacolordeprecated)&gt;&gt; | 返回壁纸的主要颜色信息。 |
 
 **示例：**
 
@@ -793,7 +793,7 @@ getId(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回壁纸的ID。如果配置了指定类型的壁纸就返回一个大于等于0的数，否则返回-1。取值范围是-1到（2^31-1）。 |
 
 **示例：**
@@ -826,7 +826,7 @@ getId(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 
 **返回值：**
 
@@ -1112,7 +1112,7 @@ reset(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，移除壁纸成功，error为undefined，否则返回error信息。 |
 
 **示例：**
@@ -1147,7 +1147,7 @@ reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 
 **返回值：**
 
@@ -1186,7 +1186,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, call
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined，否则返回error信息。 |
 
 **示例：**
@@ -1245,7 +1245,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Pro
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 
 **返回值：**
 
@@ -1305,7 +1305,7 @@ getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，调用成功则返回壁纸文件描述符ID，调用失败则返回error信息。 |
 
 **示例：**
@@ -1340,7 +1340,7 @@ getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 
 **返回值：**
 
@@ -1380,7 +1380,7 @@ getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.Pixel
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;image.PixelMap&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
 
 **示例：**
@@ -1418,7 +1418,7 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 
 **返回值：**
 

@@ -143,7 +143,7 @@ export struct share_transition_expand {
               .onClick(() => {
                 // 定义展开收起的动画参数
                 animateTo({ curve: curves.springMotion(0.6, 0.9) }, () => {
-                  if(index){
+                  if(index != undefined){
                     this.curIndex = index;
                   }
                   this.isExpand = !this.isExpand;
@@ -290,7 +290,7 @@ export struct share_zIndex_expand {
             .onClick(() => {
               // 定义展开收起的动画参数
               animateTo({ curve: curves.springMotion(0.6, 0.9) }, () => {
-                if(index){
+                if(index != undefined){
                   this.curIndex = index;
                 }
                 this.isExpand = !this.isExpand;
@@ -534,6 +534,7 @@ struct AutoAchieveShareTransitionDemo {
 
   // 卡片是否展开
   @State expand: boolean = false;
+  @State scrollState: boolean = true; // 滚动条状态
 
   // 共享元素相关属性
   @State rect_top: number = 0; // 共享元素position
@@ -542,6 +543,7 @@ struct AutoAchieveShareTransitionDemo {
   @State rect_right: number = 0;
 
   // 新建元素相关属性
+  @State rootPosition: number = 0; // 父组件位置
   @State item: string = ''; // 记录展开元素
   @State cardHeight: number = 300; // 卡片高度
   @State cardOpacity: number = 1; // 卡片透明度
@@ -582,6 +584,11 @@ struct AutoAchieveShareTransitionDemo {
             // 设置唯一ID，获取该ID对应组件的属性信息
             .id(item)
             .onClick(() => {
+              let rootStrJson = getInspectorByKey('root');
+              let rootRect: itTmp = JSON.parse(rootStrJson);
+              let rootRectInfo: Array<object> = JSON.parse('[' + rootRect.$rect + ']');
+              let root_rect_top: string = JSON.parse('[' + rootRectInfo[0] + ']')[1];
+              this.rootPosition = Number(root_rect_top);
               // 获取对应组件的位置、大小信息
               let strJson = getInspectorByKey(item);
               let rect:itTmp = JSON.parse(strJson);
@@ -599,11 +606,12 @@ struct AutoAchieveShareTransitionDemo {
               this.item = item;
               this.expand = true;
               this.count += 1;
+              this.scrollState = false;
 
               animateTo({ curve: curves.springMotion() }, () => {
-                this.layoutHeight = 2772 / 3.5;
+                this.layoutHeight = px2vp(2772);
                 this.layoutWidth = '100%';
-                this.layoutOffset = -((Number(rect_top) - 136) / 3.5);
+                this.layoutOffset = -px2vp(this.rect_top - this.rootPosition);
               })
             })
           })
@@ -611,6 +619,7 @@ struct AutoAchieveShareTransitionDemo {
         .width('100%')
         .margin({ top: 20 })
       }
+      .enabled(this.scrollState)
       .height('100%')
 
       // 根据获取的组件信息新建与该组件相同的元素
@@ -653,17 +662,19 @@ struct AutoAchieveShareTransitionDemo {
         // 计算新建组件绝对位置
         .position({
           x: this.layoutWidth == '90%' ? '5%' : 0,
-          y: (this.rect_top - 136) / 3.5
+          y: px2vp(this.rect_top - this.rootPosition)
         })
         .translate({
           y: this.layoutOffset
         })
         .onClick(() => {
           this.count -= 1;
+          this.scrollState = false;
 
           animateTo({
             curve: curves.springMotion(),
             onFinish: (() => {
+              this.scrollState = true;
               if (this.count == 0) {
                 this.expand = false;
               }
@@ -676,6 +687,7 @@ struct AutoAchieveShareTransitionDemo {
         })
       }
     }
+    .id('root')
   }
 }
 ```

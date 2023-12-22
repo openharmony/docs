@@ -1,0 +1,142 @@
+# @ohos.advertising.AdsServiceExtensionAbility (广告扩展服务)
+
+
+本模块为设备厂商提供广告扩展能力，设备厂商可自主实现单广告位请求和多广告位请求的业务逻辑。
+
+
+> **说明：**
+
+> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+> 本模块接口为系统接口。
+
+
+## 导入模块
+
+```ts
+import AdsServiceExtensionAbility from '@ohos.advertising.AdsServiceExtensionAbility';
+```
+
+
+## AdsServiceExtensionAbility.onLoadAd
+
+onLoadAd(adParam: advertising.AdRequestParams, adOptions: advertising.AdOptions, respCallback: RespCallback);
+
+单广告位请求业务实现方法，设备厂商需在该方法中实现广告请求业务逻辑并将结果回调给媒体。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Advertising.Ads
+
+**起始版本：** 11
+
+**参数：**
+
+| **参数名** | **类型** | 必填 | 说明 | 
+| -------- | -------- | -------- | -------- |
+| adParam | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams) | 是 | 广告请求参数。 | 
+| adOptions | advertising.[AdOptions](js-apis-advertising.md#adoptions) | 是 | 广告配置。 | 
+| respCallback | [RespCallback](#adsserviceextensionabilityrespcallback) | 是 | 广告请求回调。 | 
+
+**示例：**
+```ts
+import advertising from '@ohos.advertising';
+import AdsServiceExtensionAbility from '@ohos.advertising.AdsServiceExtensionAbility';
+import { RespCallback } from '@ohos.advertising.AdsServiceExtensionAbility';
+
+export default class AdsExtensionAbility extends AdsServiceExtensionAbility {
+  onLoadAd(adParam: advertising.AdRequestParams, adOptions: advertising.AdOptions, respCallback: RespCallback) {
+    const adType: number = adParam.adType;
+    const ads: Array<advertising.Advertisement> = [];
+    ads.push({adType: adType, uniqueId: '111111', rewardVerifyConfig: null, rewarded: false, shown: false,  clicked: false});
+    ads.push({adType: adType, uniqueId: '222222', rewardVerifyConfig: null, rewarded: false, shown: false,  clicked: false});
+    const slot: string = 'test';
+    const resMap: Map<string, Array<advertising.Advertisement>> = new Map();
+    resMap.set(slot, ads);
+    respCallback(resMap);
+  }
+}
+```
+
+
+## AdsServiceExtensionAbility.onLoadAdWithMultiSlots
+
+onLoadAdWithMultiSlots(adParams: advertising.AdRequestParams[], adOptions: advertising.AdOptions, respCallback: RespCallback);
+
+多广告位请求业务实现方法，设备厂商需在该方法中实现广告请求业务逻辑并将结果回调给媒体。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Advertising.Ads
+
+**起始版本：** 11
+
+**参数：**
+
+| **参数名** | **类型** | 必填 | 说明 | 
+| -------- | -------- | -------- | -------- |
+| adParams | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams)[] | 是 | 广告请求参数。 | 
+| adOptions | advertising.[AdOptions](js-apis-advertising.md#adoptions) | 是 | 广告配置。 | 
+| respCallback | [RespCallback](#adsserviceextensionabilityrespcallback) | 是 | 广告请求回调。 | 
+
+**示例：**
+```ts
+import advertising from '@ohos.advertising';
+import AdsServiceExtensionAbility from '@ohos.advertising.AdsServiceExtensionAbility';
+import { RespCallback } from '@ohos.advertising.AdsServiceExtensionAbility';
+
+export default class AdsExtensionAbility extends AdsServiceExtensionAbility {
+  onLoadAdWithMultiSlots(adParams: advertising.AdRequestParams[], adOptions: advertising.AdOptions, respCallback: RespCallback) {
+    const adType1: number = adParams[0].adType; 
+    const ads1: Array<advertising.Advertisement> = [];
+    ads1.push({adType: adType1, uniqueId: '111111', rewardVerifyConfig: null, rewarded: false, shown: false,  clicked: false});
+    ads1.push({adType: adType1, uniqueId: '222222', rewardVerifyConfig: null, rewarded: false, shown: false,  clicked: false});
+    const slot1: string = 'test1';
+    const adType2: number = adParams[1].adType; 
+    const ads2: Array<advertising.Advertisement> = [];
+    ads2.push({adType: adType2, uniqueId: '333333', rewardVerifyConfig: null, rewarded: false, shown: false,  clicked: false});
+    ads2.push({adType: adType2, uniqueId: '444444', rewardVerifyConfig: null, rewarded: false, shown: false,  clicked: false});
+    const slot2: string = 'test2';
+    const resMap: Map<string, Array<advertising.Advertisement>> = new Map();
+    resMap.set(slot1, ads1);
+    resMap.set(slot2, ads2);
+    respCallback(resMap);
+  }
+}
+```
+
+
+## AdsServiceExtensionAbility.RespCallback
+
+(respData: Map&lt;string, Array&lt;advertising.Advertisement&gt;&gt;);
+
+广告请求回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Advertising.Ads
+
+**起始版本：** 11
+
+**参数：**
+
+
+| **参数名** | **类型** | 必填 | 说明 | 
+| -------- | -------- | -------- | -------- |
+| respData | Map&lt;string, Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt;&gt; | 是 | 广告请求回调数据。 | 
+
+
+**示例：**
+```ts
+import advertising from '@ohos.advertising';
+import { RespCallback } from '@ohos.advertising.AdsServiceExtensionAbility';
+
+function respDemo(respCallback: RespCallback) {
+  const ads: Array<advertising.Advertisement> = [];
+  ads.push({adType: 7, uniqueId: '111111', rewardVerifyConfig: null, rewarded: false, shown: false,  clicked: false})
+  const slot: string = "test";
+  const resMap: Map<string, Array<advertising.Advertisement>> = new Map();
+  resMap.set(slot, ads);
+  respCallback(resMap);
+}
+```

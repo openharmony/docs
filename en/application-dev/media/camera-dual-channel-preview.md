@@ -1,4 +1,4 @@
-# Dual-Channel Preview
+# Dual-Channel Preview (ArkTS)
 
 The camera application controls the camera hardware to implement basic operations such as image display (preview), photo saving (photographing), and video recording. The camera model is developed on the surface model. That is, an application transfers data through the surface. Specifically, it obtains the photo stream through the surface of an **ImageReceiver** object and the preview stream through the surface of an **\<XComponent>** object.
 

@@ -87,7 +87,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   securityLabel.setSecurityLabel(filePath, "s0").then(() => {
     console.info("setSecurityLabel successfully");
   }).catch((err: BusinessError) => {
-    console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -129,7 +129,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let filePath = pathDir + '/test.txt';
   securityLabel.setSecurityLabel(filePath, "s0", (err: BusinessError) => {
     if (err) {
-      console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("setSecurityLabel successfully.");
     }

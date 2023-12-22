@@ -12,7 +12,7 @@
 
 **变更影响**
 
-该变更为非兼容性变更，可能影响三方应用的兼容性。
+对于有听筒的设备，当DeviceFlag为OUTPUT_DEVICES_FLAG、ALL_DEVICES_FLAG时，非通话场景返回值也会包含EARPIECE设备。
 
 **变更发生版本**
 
@@ -26,7 +26,7 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback<AudioDeviceDescriptor
 
 getDevices(deviceFlag: DeviceFlag): Promise<AudioDeviceDescriptors>;
 
-对于有听筒的设备，当DeviceFlag为OUTPUT_DEVICES_FLAG、ALL_DEVICES_FLAG时，只有通话场景返回值才会包含EARPIECE设备;
+对于有听筒的设备，当DeviceFlag为OUTPUT_DEVICES_FLAG、ALL_DEVICES_FLAG时，只有通话场景返回值才会包含EARPIECE设备。
 
 变更后：
 
@@ -34,7 +34,7 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback<AudioDeviceDescriptor
 
 getDevices(deviceFlag: DeviceFlag): Promise<AudioDeviceDescriptors>;
 
-对于有听筒的设备，当DeviceFlag为OUTPUT_DEVICES_FLAG、ALL_DEVICES_FLAG时，非通话场景返回值也会包含EARPIECE设备;
+对于有听筒的设备，当DeviceFlag为OUTPUT_DEVICES_FLAG、ALL_DEVICES_FLAG时，非通话场景返回值也会包含EARPIECE设备。
 
 **适配指导**
 

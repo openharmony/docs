@@ -2,7 +2,6 @@
 
 Generally, the [\<Navigation>](../reference/arkui-ts/ts-basic-components-navigation.md) component functions as the root container of a page and supports three display modes: single-page, column, and adaptive. It is applicable to page redirection within a module and useful in one-time development for multi-device deployment. Draw on this component's routing capability to create a smooth page transition experience, and explore its various title bar styles to present titles seamlessly linked with the content. In one-time development for multi-device deployment scenarios, the **\<Navigation>** component can automatically adapt to the window size; when the window is large enough, it automatically displays content in columns.
 
-
 The pages of the **\<Navigation>** component include the home page and content page. The home page consists of the title bar, content area, and toolbar. You can use [\<NavRouter>](../reference/arkui-ts/ts-basic-components-navrouter.md) as a child component in the content area to implement a navigation bar. The content page displays the content of the [\<NavDestination>](../reference/arkui-ts/ts-basic-components-navdestination.md) child component.
 
 As a special child component of **\<Navigation>**, **\<NavRouter>** provides default processing logic for responding to clicks, eliminating the need for manual logic definition. It has only two child components, the second of which must be **\<NavDestination>**. As a special child component of **\<NavRouter>**, **\<NavDestination>** makes up the content page of the **\<Navigation>** component. When the user clicks the **\<NavRouter>** component, the corresponding **\<NavDestination>** content area is displayed.
@@ -55,7 +54,7 @@ The **\<Navigation>** component uses the **mode** attribute to set the page disp
   @Entry
   @Component
   struct NavigationExample {
-    @State TooTmp:Record<string,string|Function> = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+    @State TooTmp: ToolbarItem = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
     private arr: number[] = [1, 2, 3];
   
     build() {
@@ -98,11 +97,7 @@ The **\<Navigation>** component uses the **mode** attribute to set the page disp
           {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}},
           {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}}
         ])
-        .toolBar({items: [
-          this.TooTmp,
-          this.TooTmp,
-          this.TooTmp
-        ]})
+        .toolbarConfiguration([this.TooTmp, this.TooTmp, this.TooTmp])
       }
       .height('100%')
       .width('100%')
@@ -195,9 +190,9 @@ The toolbar is located at the bottom of the **\<Navigation>** component. You can
 
 ```ts
 let TooTmp:Record<string,string|Function> = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
-let TooBar:Record<string,object[]> = {'items':[TooTmp,TooTmp,TooTmp]}
+let TooBar: ToolbarItem = {'items':[TooTmp,TooTmp,TooTmp]}
 Navigation() {
   ...
 }
-.toolBar(TooBar)
+.toolbarConfiguration([TooBar])
 ```

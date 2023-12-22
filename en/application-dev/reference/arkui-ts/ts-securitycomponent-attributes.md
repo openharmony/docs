@@ -31,6 +31,10 @@ Universal attributes of security components are basic attributes applicable to a
 | borderRadius | [Dimension](ts-types.md#dimension10) | No| Radius of the rounded border corners of the security component.|
 | padding | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | No| Padding of the security component.<br>Default value: 12 vp for the top and bottom paddings and 24 vp for the left and right paddings|
 | textIconSpace | [Dimension](ts-types.md#dimension10) | No| Space between the icon and text on the security component.<br>Default value: **4vp**|
+| width<sup>11+</sup> | [Length](ts-types.md#length) | No| Width of the security component. By default, the security component automatically adapts its width to the content. If the value is less than the minimum width allowed by the current attribute combination, the actual width will be greater than the set value to ensure that content of the security component is fully displayed.|
+| height<sup>11+</sup> | [Length](ts-types.md#length) | No| Height of the security component. By default, the security component automatically adapts its height to the content. If the value is less than the minimum height allowed by the current attribute combination, the actual height will be greater than the set value to ensure that content of the security component is fully displayed.|
+| size<sup>11+</sup> | {<br>width?: [Length](ts-types.md#length),<br>height?: [Length](ts-types.md#length)<br>} | No| Size of the security component. By default, the security component automatically adapts its size to the content. If the value is less than the minimum size allowed by the current attribute combination, the actual size will be greater than the set value to ensure that content of the security component is fully displayed.|
+| constraintSize<sup>11+</sup> | {<br>minWidth?: [Length](ts-types.md#length),<br>maxWidth?: [Length](ts-types.md#length),<br>minHeight?: [Length](ts-types.md#length),<br>maxHeight?: [Length](ts-types.md#length)<br>} | No| Size constraint of the security component. Its priority is higher than that of **Width** and **Height**. Learn [how the value of this attribute affects the width and height](ts-universal-attributes-size.md#impact-of-constraintsize-on-widthheight).<br> As with width and height, the actual size cannot be less than the minimum size allowed by the current attribute combination, so as to ensure that content of the security component is fully displayed.<br>Default value:<br>{<br>minWidth: 0,<br>maxWidth: Infinity,<br>minHeight: 0,<br>maxHeight: Infinity<br>} |
 
 
 ## SecurityComponentLayoutDirection
@@ -50,7 +54,7 @@ Universal attributes of security components are basic attributes applicable to a
 struct Index {
   build() {
     Row() {
-      Column() {
+      Column({space:5}) {
         // Generate a save button and set its security component attributes.
         SaveButton()
           .fontSize(35)
@@ -66,6 +70,8 @@ struct Index {
           .padding({left:50, top:50, bottom:50, right:50})
           .textIconSpace(20)
           .backgroundColor(0x3282f6)
+        SaveButton().size({width:200, height:100})
+        SaveButton().constraintSize({maxWidth:60})
       }.width('100%')
     }.height('100%')
   }

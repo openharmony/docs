@@ -107,7 +107,7 @@ In the following example, **createWebMessagePorts** is used to create message po
   window.addEventListener('message', function (event) {
       if (event.data === '__init_port__') {
           if (event.ports[0] !== null) {
-              h5Port = event.ports[0]; // 1. Save the port sent from the eTS side.
+              h5Port = event.ports[0]; // 1. Save the port number sent from the application side.
               h5Port.onmessage = function (event) {
                 // 2. Receive messages sent from the eTS side.
                 var msg = 'Got message from ets:';
@@ -131,7 +131,7 @@ In the following example, **createWebMessagePorts** is used to create message po
       }
   })
 
-  // 3. Use H5Port to send messages to the eTS side.
+  // 3. Use h5Port to send messages to the application side.
   function PostMsgToEts(data) {
       if (h5Port) {
         h5Port.postMessage(data);

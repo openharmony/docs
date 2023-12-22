@@ -41,7 +41,7 @@ Swiper(this.swiperController) {
   Text("2")
     .width('90%')
     .height('100%')
-    .backgroundColor(Color.Blue)
+    .backgroundColor(Color.Pink)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 }
@@ -181,7 +181,16 @@ Swiper(this.swiperController) {
     .textAlign(TextAlign.Center)
     .fontSize(30)
 }
-.indicatorStyle(swco)
+.indicator(
+  Indicator.dot()
+    .left(0)
+    .itemWidth(15)
+    .itemHeight(15)
+    .selectedItemWidth(30)
+    .selectedItemHeight(15)
+    .color(Color.Red)
+    .selectedColor(Color.Blue)
+)
 ```
 
 ![ind](figures/ind.PNG)

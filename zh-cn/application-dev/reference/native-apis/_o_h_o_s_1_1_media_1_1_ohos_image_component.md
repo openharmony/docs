@@ -5,13 +5,11 @@
 
 定义图像组成信息。
 
-**起始版本：**
+**系统能力：** SystemCapability.Multimedia.Image
 
-10
+**起始版本：** 10
 
-**相关模块：**
-
-[Image](image.md)
+**相关模块：** [Image](image.md)
 
 
 ## 汇总
@@ -37,7 +35,7 @@
 uint8_t* OhosImageComponent::byteBuffer
 ```
 
-**描述：**
+**描述**
 
 像素数据地址
 
@@ -48,7 +46,7 @@ uint8_t* OhosImageComponent::byteBuffer
 int32_t OhosImageComponent::componentType
 ```
 
-**描述：**
+**描述**
 
 像素数据类型
 
@@ -59,7 +57,7 @@ int32_t OhosImageComponent::componentType
 int32_t OhosImageComponent::pixelStride
 ```
 
-**描述：**
+**描述**
 
 像素数据的像素大小
 
@@ -70,7 +68,7 @@ int32_t OhosImageComponent::pixelStride
 int32_t OhosImageComponent::rowStride
 ```
 
-**描述：**
+**描述**
 
 像素数据行宽
 
@@ -81,6 +79,6 @@ int32_t OhosImageComponent::rowStride
 size_t OhosImageComponent::size
 ```
 
-**描述：**
+**描述**
 
 内存中的像素数据大小

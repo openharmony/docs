@@ -19,6 +19,7 @@ import window from '@ohos.window';
 
 ## WindowType<sup>7+</sup>
 
+
 窗口类型枚举。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -229,6 +230,7 @@ import window from '@ohos.window';
 | 名称                                  | 类型                  | 可读 | 可写 | 说明                                                                                                     |
 | ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
 | windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。                                                                                                  |
+| drawableRect<sup>11+</sup>            | [Rect](#rect7)             | 是   | 是   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。                                                                                                  |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | 是   | 是   | 窗口类型。                                                                                                  |
 | isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。true表示全屏；false表示非全屏。                                                                     |
 | isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。                                                               |
@@ -302,14 +304,13 @@ import window from '@ohos.window';
 
 窗口生命周期。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
-
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
-| WINDOW_SHOWN      | 1      | 切到前台。 |
-| WINDOW_ACTIVE     | 2      | 获焦状态。 |
-| WINDOW_INACTIVE   | 3      | 失焦状态。 |
-| WINDOW_HIDDEN     | 4      | 切到后台。 |
+| WINDOW_SHOWN      | 1      | 切到前台。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| WINDOW_ACTIVE     | 2      | 获焦状态。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| WINDOW_INACTIVE   | 3      | 失焦状态。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| WINDOW_HIDDEN     | 4      | 切到后台。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| WINDOW_DESTROYED<sup>11+</sup>  | 7      | 窗口销毁。<br> **系统能力：** SystemCapability.Window.SessionManager。|
 
 ## WindowLimits<sup>11+</sup>
 
@@ -317,12 +318,27 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称      | 类型   | 可读 | 可写 | 必填 | 说明                                                         |
-| :-------- | :----- | :--- | :--- | :--- | :----------------------------------------------------------- |
-| maxWidth  | number | 是   | 是   | 否   | 窗口的最大宽度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最大宽度。  |
-| maxHeight | number | 是   | 是   | 否   | 窗口的最大高度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最大高度。  |
-| minWidth  | number | 是   | 是   | 否   | 窗口的最小宽度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小宽度。  |
-| minHeight | number | 是   | 是   | 否   | 窗口的最小高度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小高度。  |
+| 名称      | 类型   | 可读 | 可写 | 说明                                                         |
+| :-------- | :----- | :--- | :--- | :----------------------------------------------------------- |
+| maxWidth  | number | 是   | 是   | 窗口的最大宽度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最大宽度。  |
+| maxHeight | number | 是   | 是   | 窗口的最大高度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最大高度。  |
+| minWidth  | number | 是   | 是   | 窗口的最小宽度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小宽度。  |
+| minHeight | number | 是   | 是   | 窗口的最小高度。单位为px，该参数为整数。值默认为0，表示该属性不发生变化。下限值为0，上限值为系统限定的最小高度。  |
+
+## WindowStatusType<sup>11+</sup>
+
+窗口模式枚举。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称       | 值   | 说明                          |
+| ---------- | ---- | ----------------------------- |
+| UNDEFINED  | 0    | 表示APP未定义窗口模式。       |
+| FULL_SCREEN | 1    | 表示APP全屏模式。             |
+| MAXIMIZE    | 2    | 表示APP窗口最大化模式。   |
+| MINIMIZE    | 3    | 表示APP窗口最小化模式。   |
+| FLOATING    | 4    | 表示APP自由悬浮形式窗口模式。   |
+| SPLIT_SCREEN  | 5    | 表示APP分屏模式。   |
 
 ## window.createWindow<sup>9+</sup>
 
@@ -1631,6 +1647,18 @@ promise.then((data) => {
 });
 ```
 
+## SpecificSystemBar<sup>11+</sup>
+
+当前支持显示或隐藏的系统栏类型。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称                  | 类型       | 说明     |
+|---------------------|----------|--------|
+| status              | string   | 状态栏。   |
+| navigation          | string   | 导航栏。   |
+| navigationIndicator | string   | 底部导航条。 |
+
 ## Window
 
 当前窗口实例，窗口管理器管理的基本单元。
@@ -2593,6 +2621,55 @@ let names: Array<'status' | 'navigation'> = [];
 try {
   let windowClass: window.Window = window.findWindow("test");
   let promise = windowClass.setWindowSystemBarEnable(names);
+  promise.then(() => {
+    console.info('Succeeded in setting the system bar to be invisible.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
+}
+```
+
+### setSpecificSystemBarEnabled<sup>11+</sup>
+
+setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean): Promise&lt;void&gt;
+
+设置窗口全屏模式时导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型  | 必填 | 说明 |
+| ----- | ---------------------------- | -- | --------------------------------- |
+| name  | [SpecificSystemBar](#specificsystembar11) | 是 | 设置窗口全屏模式时，显示或隐藏的系统栏类型。 |
+| enable  | boolean | 是 | 设置窗口全屏模式时状态栏、导航栏或底部导航条是否显示，true表示显示 false表示隐藏。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+// 此处以隐藏底部导航条为例
+import { BusinessError } from '@ohos.base';
+
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  let promise = windowClass.setSpecificSystemBarEnabled('navigationIndicator', false);
   promise.then(() => {
     console.info('Succeeded in setting the system bar to be invisible.');
   }).catch((err: BusinessError) => {
@@ -3824,6 +3901,60 @@ try {
   windowClass.off('windowVisibilityChange');
 } catch (exception) {
   console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### on('windowStatusChange')<sup>11+</sup>
+
+on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): void
+
+开启窗口模式变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'windowStatusChange'，即窗口模式变化事件。 |
+| callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | 是   | 回调函数。返回当前的窗口模式。                           |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.on('windowStatusChange', (WindowStatusType) => {
+      console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
+  });
+} catch (exception) {
+  console.error('Failed to enable the listener for window status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('windowStatusChange')<sup>11+</sup>
+
+off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): void
+
+关闭窗口模式变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                                                     |
+| -------- | ----------------------------- | ---- | -------------------------------------------------------- |
+| type     | string                        | 是   | 监听事件，固定为'windowStatusChange'，即窗口模式变化事件。 |
+| callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | 否   | 回调函数。返回当前的窗口模式。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有窗口模式变化的监听。                           |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.off('windowStatusChange');
+} catch (exception) {
+  console.error('Failed to disable the listener for window status changes. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -6132,6 +6263,43 @@ promise.then(() => {
 });
 ```
 
+### recover<sup>11+</sup>
+
+recover(): Promise&lt;void&gt;
+
+将主窗口从全屏、最大化、分屏模式下还原为浮动窗口，并恢复到进入该模式之前的大小和位置，已经是浮动窗口模式不可再还原。使用Promise异步回调。此接口仅在部分设备类型下生效。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300001 | Repeated operation. |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window = window.findWindow("test");
+let promise = windowClass.recover();
+promise.then(() => {
+  console.info('Succeeded in recovering the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to recover the window. Cause: ' + JSON.stringify(err));
+});
+```
+
 ### setResizeByDragEnabled<sup>10+</sup>
 
 setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
@@ -6495,6 +6663,87 @@ try {
   });
 } catch (exception) {
   console.error('Failed to change the window limits. Cause:' + JSON.stringify(exception));
+}
+```
+
+
+### setSingleFrameComposerEnabled<sup>11+</sup>
+
+setSingleFrameComposerEnabled(enable: boolean): Promise&lt;void&gt;
+
+禁止/使能单帧合成渲染节点的功能。使用Promise异步回调。
+
+单帧合成渲染节点的功能主要用于跟手性要求较高的场景，使能该功能之后可以降低渲染节点的上屏延时。通过setSingleFrameComposerEnabled接口，如果enable设置为true，则使能单帧合成渲染节点的功能，否则禁止单帧合成渲染节点的功能。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| enable   | boolean                   | 是   | 设置单帧合成渲染节点的功能是否使能，true表示使能，false表示禁止。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let enable = true;
+let windowClass: window.Window = window.findWindow("test");
+let promise = windowClass.setSingleFrameComposerEnabled(enable);
+promise.then(()=> {
+    console.info('Succeeded in enabling the single-frame-composer function.');
+}).catch((err: BusinessError)=>{
+    console.error('Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.');
+});
+```
+
+### keepKeyboardOnFocus<sup>11+</sup>
+
+keepKeyboardOnFocus(keepKeyboardFlag: boolean): void
+
+窗口获焦时保留由其他窗口创建的软键盘，仅支持系统窗口与应用子窗口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名           | 类型    | 必填 | 说明                                                         |
+| ---------------- | ------- | ---- | ------------------------------------------------------------ |
+| keepKeyboardFlag | boolean | 是   | 是否保留其他窗口创建的软键盘。true表示保留；false表示不保留。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------- |
+| 1300002 | This window state is abnormal.           |
+| 1300004 | Unauthorized operation.                  |
+
+**示例：**
+
+```ts
+try {
+  windowClass.keepKeyboardOnFocus(true);
+} catch (exception) {
+  console.error('Failed to keep keyboard onFocus. Cause: ' + JSON.stringify(exception));
 }
 ```
 

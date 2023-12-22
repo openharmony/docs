@@ -12,7 +12,7 @@
 import cardEmulation from '@ohos.nfc.cardEmulation';
 ```
 
-## FeatureType
+## FeatureType<sup>(deprecated)</sup>
 
 定义不同的NFC卡模拟类型。
 
@@ -38,7 +38,7 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 | PAYMENT | "payment" | 卡模拟应用所使用的业务是支付类型。 |
 | OTHER   | "other"   | 卡模拟应用所使用的业务是其他类型。 |
 
-## isSupported
+## isSupported<sup>(deprecated)</sup>
 
 isSupported(feature: number): boolean
 
@@ -104,7 +104,7 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 
 提供HCE卡模拟的实现，主要包括接收对端读卡设备的APDU数据，并响应APDU数据到对端读卡设备。使用HCE相关接口前，必须先判断设备是否支持HCE卡模拟能力。暂不支持使用，仅做接口声明。
 
-### startHCE<sup>8+</sup>
+### startHCE<sup>(deprecated)</sup>
 
 startHCE(aidList: string[]): boolean
 
@@ -123,9 +123,15 @@ startHCE(aidList: string[]): boolean
 | ------- | -------- | ---- | ----------------------- |
 | aidList | string[] | 是   | 动态注册卡模拟的AID列表。 |
 
+**返回值：**
+
+| **类型**  | **说明**                                 |
+| ------- | -------------------------------------- |
+| boolean | true: 启动HCE功能或HCE已启动，&nbsp;false: 启动失败。 |
+
 ### start<sup>9+</sup>
 
-start(elementName: ElementName, aidList: string[]): void
+start(elementName: [ElementName](js-apis-bundleManager-elementName.md#elementname), aidList: string[]): void
 
 启动HCE业务功能。包括设置当前应用为前台优先，动态注册AID列表。暂不支持使用，仅做接口声明。
 
@@ -137,7 +143,7 @@ start(elementName: ElementName, aidList: string[]): void
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | ElementName | 是   | 服务能力的元素名称。 |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | 是   | 服务能力的元素名称。 |
 | aidList | string[] | 是   | 动态注册卡模拟的AID列表，允许为空。 |
 
 **错误码：**
@@ -148,22 +154,29 @@ start(elementName: ElementName, aidList: string[]): void
 | ------- | -------|
 | 3100301 | Card emulation running state is abnormal in service. |
 
-### stopHCE<sup>8+</sup>
+### stopHCE<sup>(deprecated)</sup>
 
 stopHCE(): boolean
 
 停止HCE业务功能。包括退出当前应用前台优先，释放动态注册的AID列表。暂不支持使用，仅做接口声明。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[stop](#stop)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[stop](#stop9)替代。
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
+**返回值：**
+
+| **类型**  | **说明**                                 |
+| ------- | -------------------------------------- |
+| boolean | true: 禁用HCE功能或HCE已禁用，&nbsp;false: 禁用失败。 |
+
+
 ### stop<sup>9+</sup>
 
-stop(elementName: ElementName): void;
+stop(elementName: [ElementName](js-apis-bundleManager-elementName.md#elementname)): void
 
 停止HCE业务功能。包括退出当前应用前台优先，释放动态注册的AID列表。暂不支持使用，仅做接口声明。
 
@@ -175,7 +188,7 @@ stop(elementName: ElementName): void;
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | ElementName | 是   | 服务能力的元素名称。 |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | 是   | 服务能力的元素名称。 |
 
 **错误码：**
 
@@ -187,7 +200,7 @@ stop(elementName: ElementName): void;
 
 ### on<sup>8+</sup>
 
-on(type: "hceCmd", callback: AsyncCallback<number[]>): void;
+on(type: "hceCmd", callback: AsyncCallback<number[]>): void
 
 订阅回调，用于接收对端读卡设备发送的APDU数据。
 
@@ -217,9 +230,9 @@ hceService.on('hceCmd', apduCallback);
 ```
 
 
-### sendResponse<sup>8+</sup>
+### sendResponse<sup>(deprecated)</sup>
 
-sendResponse(responseApdu: number[]): void;
+sendResponse(responseApdu: number[]): void
 
 发送APDU数据到对端读卡设备。暂不支持使用，仅做接口声明。
 
@@ -238,9 +251,9 @@ sendResponse(responseApdu: number[]): void;
 
 ### transmit<sup>9+</sup>
 
-transmit(response: number[]): Promise\<void>;
+transmit(response: number[]): Promise\<void>
 
-发送APDU数据到对端读卡设备。
+发送APDU数据到对端读卡设备，使用Promise异步回调。
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
@@ -250,7 +263,7 @@ transmit(response: number[]): Promise\<void>;
 
 | 参数名       | 类型     | 必填 | 说明                                               |
 | ------------ | -------- | ---- | -------------------------------------------------- |
-| responseApdu | number[] | 是   | 发送到对端读卡设备的符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
+| response | number[] | 是   | 发送到对端读卡设备的符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
 
 **返回值：**
 
@@ -285,7 +298,7 @@ hceService.transmit(responseData).then(() => {
 
 ### transmit<sup>9+</sup>
 
-transmit(response: number[], callback: AsyncCallback\<void>): void;
+transmit(response: number[], callback: AsyncCallback\<void>): void
 
 发送APDU数据到对端读卡设备。暂不支持使用，仅做接口声明。
 
@@ -297,7 +310,7 @@ transmit(response: number[], callback: AsyncCallback\<void>): void;
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| responseApdu | number[] | 是   | 发送到对端读卡设备的符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
+| response | number[] | 是   | 发送到对端读卡设备的符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数void |
 
 **错误码：**

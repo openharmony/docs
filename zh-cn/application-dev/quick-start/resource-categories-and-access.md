@@ -254,7 +254,7 @@ Text($r('app.string.string_world'))
   .fontSize($r('app.float.font_world'))
 
 // 引用string.json资源。Text中$r的第一个参数指定string资源，第二个参数用于替换string.json文件中的%s。
-//如下示例代码value为"We will arrive at five of the clock"。
+// 如下示例代码value为"We will arrive at five of the clock"。
 Text($r('app.string.message_arrive', "five of the clock"))
   .fontColor($r('app.color.color_hello'))
   .fontSize($r('app.float.font_hello'))
@@ -315,6 +315,22 @@ Image($r('sys.media.ohos_app_icon'))
 - 如果限定词目录中包含移动国家码和移动网络码、语言、文字、横竖屏、设备类型、颜色模式限定词，则对应限定词的取值必须与当前的设备状态完全一致，该目录才能够参与设备的资源匹配。例如，限定词目录“zh_CN-car-ldpi”不能参与“en_US”设备的资源匹配。
 
 应用界面加载资源规则，更多请参考国际化和本地化文档。
+
+**overlay机制**
+
+overylay是一种资源替换机制，针对不同品牌、产品的显示风格，开发者可以在不重新打包业务逻辑hap的情况下，通过配置和使用overlay资源包，实现应用界面风格变换。
+
+- 动态overlay使用方式
+
+1、对应的overlay资源包需要放在对应应用安装路径下。如应用com.example.overlay的安装路径：data/app/el1/bundle/public/com.example.overlay/。
+
+2、应用通过[addResource(path)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md#addresource10)，实现资源覆盖；通过[removeResource(path)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md#removeresource10)，实现overlay删除。overlay资源路径需经过元能力的getContext().BundleCodeDir获取此应用对应的沙箱根目录，由应用的沙箱根目录+overlay的hsp名称组成。如：let path = getContext().bundleCodeDir + "hsp名"，其对应沙箱路径为：/data/storage/el1/bundle/enter-release-signed.hsp。
+
+- 静态overlay配置方式
+
+在IDE中创建应用工程时，module的配置文件module.json5中包含targetModuleName和targetPriority字段时，该module将会在安装阶段被识别为overlay特征的module。overlay特征的module一般是为设备上存在的非overlay特征的module提供覆盖的资源文件，以便于targetModuleName指向的module在运行阶段可以使用overlay资源文件展示不同的颜色，标签，主题等等。
+
+该功能默认使能，其使能及去使能请参考[包管理接口](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-overlay.md)。
 
 ## 相关实例
 

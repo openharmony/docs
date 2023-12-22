@@ -2,11 +2,11 @@
 
 In the memory sharing model, multiple threads execute complex tasks simultaneously. These threads depend on the same memory and have the permission to access the memory. Before accessing the memory, a thread must preempt and lock the memory. In this case, other threads have to wait for the thread to release the memory.
 
-In the actor model, each thread is an independent actor, which has its own memory. Actors trigger the behavior of each other through message transfer. Different actors cannot directly access the memory space of each other.
+In the actor model, each thread is an independent actor, which has its own memory. Actors trigger the behavior of each other through message transfer. They cannot directly access the memory space of each other.
 
-Different from the memory sharing model, the actor model provides independent memory space for each thread, preventing memory preemption. This frees developers from considering a series of function and performance problems caused by memory locking and thereby improves development efficiency.
+Different from the memory sharing model, the actor model provides independent memory space for each thread. As such, it avoids memory preemption and resulting function and performance problems.
 
-Because threads in the actor model do not share memory with each other, concurrent tasks and task results must be transmitted through the inter-thread communication.
+In the actor model, concurrent tasks and task results are transmitted through the inter-thread communication.
 
 This topic describes the differences between the two models when solving the producer-consumer problem.
 
@@ -15,9 +15,10 @@ The following figure shows how the producer-consumer problem is resolved in the 
 
 ![Interaction between the producer, consumer, and shared memory container](figures/memory-shared-model-sample.PNG)
 
-To prevent dirty reads and writes caused by simultaneous access, only one producer or consumer can access a shared memory container at a time. That is, different producers and consumers compete for the lock of the container. After a role obtains the lock, other roles have to wait.
+To prevent dirty reads and writes caused by simultaneous access, only one producer or consumer can access a shared memory container at a time. This means that producers and consumers need to compete for the lock of the container. After a role obtains the lock, other roles have to wait.
 
 ```
+// Below is pseudocode and is provided to help you better understand the differences between the memory sharing model and the actor model.
 BufferQueue {
     Queue queue
     Mutex mutex
@@ -48,14 +49,14 @@ let g_bufferQueue = new BufferQueue()
 Producer {
     run() {
         let value = random()
-        // Initiate a cross-thread access to the bufferQueue object.
+        // Initiate cross-thread access to the bufferQueue object.
         g_bufferQueue.add(value)
     }
 }
 
 Consumer {
     run() {
-        // Initiate a cross-thread access to the bufferQueue object.
+        // Initiate cross-thread access to the bufferQueue object.
         let res = g_bufferQueue.take()
         if (res != null) {
             // Add consumption logic.
@@ -85,17 +86,17 @@ In the actor model, different roles do not share memory. Both the producer threa
 import taskpool from '@ohos.taskpool';
 // Cross-thread concurrent tasks
 @Concurrent
-async function produce() {
+async function produce(): Promise<number>{
   // Add production logic.
   console.log("producing...")
   return Math.random()
 }
 
 class Consumer {
-    public consume(value : number) {
-        // Add consumption logic.
-        console.log("consuming value: " + value)
-    }
+  public consume(value : number) {
+    // Add consumption logic.
+    console.log("consuming value: " + value)
+  }
 }
 
 @Entry
@@ -112,16 +113,16 @@ struct Index {
         Button() {
           Text("start")
         }.onClick(() => {
-            let produceTask = new taskpool.Task(produce)
-            let consumer = new Consumer()
-            for (let index = 0; index < 10; index++) {
-                // Execute the asynchronous concurrent production task.
-                taskpool.execute(produceTask).then((res : number) => {
-                    consumer.consume(res)
-                }).catch((e : Error) => {
-                    console.error(e.message)
-                })
-            }
+          let produceTask: taskpool.Task = new taskpool.Task(produce)
+          let consumer: Consumer = new Consumer()
+          for (let index: number = 0; index < 10; index++) {
+            // Execute the asynchronous concurrent production task.
+            taskpool.execute(produceTask).then((res : number) => {
+              consumer.consume(res)
+            }).catch((e : Error) => {
+              console.error(e.message)
+            })
+          }
         })
         .width('20%')
         .height('20%')

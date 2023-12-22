@@ -396,6 +396,23 @@ async function createTonePlayerBefore(){
 | DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | 分布式输入设备。<br/>此接口为系统接口。    |
 | ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | 分布式输入和输出设备。<br/>此接口为系统接口。 |
 
+## DeviceUsage<sup>11+</sup>
+
+枚举，可获取的设备种类。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**系统接口：** 该接口为系统接口
+
+| 名称                            |  值     | 说明                        |
+| ------------------------------- | ------ |---------------------------|
+| MEDIA_OUTPUT_DEVICES<sup>11+</sup> | 1      | 媒体输出设备。|
+| MEDIA_INPUT_DEVICES<sup>11+</sup>  | 2      | 媒体输入设备。|
+| ALL_MEDIA_DEVICES<sup>11+</sup>    | 3      | 所有媒体设备。|
+| CALL_OUTPUT_DEVICES<sup>11+</sup>  | 4      | 通话输出设备。|
+| CALL_INPUT_DEVICES<sup>11+</sup>   | 8      | 通话输入设备。|
+| ALL_CALL_DEVICES<sup>11+</sup>     | 12     | 所有通话设备。|
+
 ## DeviceRole
 
 枚举，设备角色。
@@ -489,6 +506,17 @@ async function createTonePlayerBefore(){
 | --------- | -------- |------|
 | CHANNEL_1 | 0x1 << 0 | 单声道。 |
 | CHANNEL_2 | 0x1 << 1 | 双声道。 |
+| CHANNEL_3<sup>11+</sup> | 3 | 三声道。 |
+| CHANNEL_4<sup>11+</sup> | 4 | 四声道。 |
+| CHANNEL_5<sup>11+</sup> | 5 | 五声道。 |
+| CHANNEL_6<sup>11+</sup> | 6 | 六声道。 |
+| CHANNEL_7<sup>11+</sup> | 7 | 七声道。 |
+| CHANNEL_8<sup>11+</sup> | 8 | 八声道。 |
+| CHANNEL_9<sup>11+</sup> | 9 | 九声道。 |
+| CHANNEL_10<sup>11+</sup> | 10 | 十声道。 |
+| CHANNEL_12<sup>11+</sup> | 12 | 十二声道。 |
+| CHANNEL_14<sup>11+</sup> | 14 | 十四声道。 |
+| CHANNEL_16<sup>11+</sup> | 16 | 十六声道。 |
 
 ## AudioSamplingRate<sup>8+</sup>
 
@@ -520,6 +548,64 @@ async function createTonePlayerBefore(){
 | --------------------- | ------ | --------- |
 | ENCODING_TYPE_INVALID | -1     | 无效。    |
 | ENCODING_TYPE_RAW     | 0      | PCM编码。 |
+
+## AudioChannelLayout<sup>11+</sup>
+
+枚举，音频文件声道布局类型。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称                            |  值              | 说明                                          |
+| ------------------------------ | ---------------- | --------------------------------------------- |
+| CH_LAYOUT_UNKNOWN              | 0x0              | 未知声道布局。                                 |
+| CH_LAYOUT_MONO                 | 0x4              | 声道布局为MONO。                               |
+| CH_LAYOUT_STEREO               | 0x3              | 声道布局为STEREO。                             |
+| CH_LAYOUT_STEREO_DOWNMIX       | 0x60000000       | 声道布局为STEREO-DOWNMIX。                     |
+| CH_LAYOUT_2POINT1              | 0xB              | 声道布局为2.1。                                |
+| CH_LAYOUT_3POINT0              | 0x103            | 声道布局为3.0。                                |
+| CH_LAYOUT_SURROUND             | 0x7              | 声道布局为SURROUND。                           |
+| CH_LAYOUT_3POINT1              | 0xF              | 声道布局为3.1。                                |
+| CH_LAYOUT_4POINT0              | 0x107            | 声道布局为4.0。                                |
+| CH_LAYOUT_QUAD                 | 0x33             | 声道布局为QUAD。                               |
+| CH_LAYOUT_QUAD_SIDE            | 0x603            | 声道布局为QUAD-SIDE。                          |
+| CH_LAYOUT_2POINT0POINT2        | 0x3000000003     | 声道布局为2.0.2。                              |
+| CH_LAYOUT_AMB_ORDER1_ACN_N3D   | 0x100000000001   | 声道排序为ACN_N3D（根据ITU标准）的一阶FOA文件。  |
+| CH_LAYOUT_AMB_ORDER1_ACN_SN3D  | 0x100000001001   | 声道排序为ACN_SN3D（根据ITU标准）的一阶FOA文件。 |
+| CH_LAYOUT_AMB_ORDER1_FUMA      | 0x100000000101   | 声道排序为FUMA（根据ITU标准）的一阶FOA文件。     |
+| CH_LAYOUT_4POINT1              | 0x10F            | 声道布局为4.1                                  |
+| CH_LAYOUT_5POINT0              | 0x607            | 声道布局为5.0。                                |
+| CH_LAYOUT_5POINT0_BACK         | 0x37             | 声道布局为5.0-BACK。                           |
+| CH_LAYOUT_2POINT1POINT2        | 0x300000000B     | 声道布局为2.1.2。                              |
+| CH_LAYOUT_3POINT0POINT2        | 0x3000000007     | 声道布局为3.0.2。                              |
+| CH_LAYOUT_5POINT1              | 0x60F            | 声道布局为5.1。                                |
+| CH_LAYOUT_5POINT1_BACK         | 0x3F             | 声道布局为5.1-BACK。                           |
+| CH_LAYOUT_6POINT0              | 0x707            | 声道布局为6.0。                                |
+| CH_LAYOUT_HEXAGONAL            | 0x137            | 声道布局为HEXAGONAL。                          |
+| CH_LAYOUT_3POINT1POINT2        | 0x500F           | 声道布局为3.1.2。                              |
+| CH_LAYOUT_6POINT0_FRONT        | 0x6C3            | 声道布局为6.0-FRONT。                          |
+| CH_LAYOUT_6POINT1              | 0x70F            | 声道布局为6.1。                                |
+| CH_LAYOUT_6POINT1_BACK         | 0x13F            | 声道布局为6.1-BACK。                           |
+| CH_LAYOUT_6POINT1_FRONT        | 0x6CB            | 声道布局为6.1-FRONT。                          |
+| CH_LAYOUT_7POINT0              | 0x637            | 声道布局为7.0。                                |
+| CH_LAYOUT_7POINT0_FRONT        | 0x6C7            | 声道布局为7.0-FRONT。                          |
+| CH_LAYOUT_7POINT1              | 0x63F            | 声道布局为7.1。                                |
+| CH_LAYOUT_OCTAGONAL            | 0x737            | 声道布局为OCTAGONAL。                          |
+| CH_LAYOUT_5POINT1POINT2        | 0x300000060F     | 声道布局为5.1.2。                              |
+| CH_LAYOUT_7POINT1_WIDE         | 0x6CF            | 声道布局为7.1-WIDE。                           |
+| CH_LAYOUT_7POINT1_WIDE_BACK    | 0xFF             | 声道布局为7.1-WIDE-BACK。                      |
+| CH_LAYOUT_AMB_ORDER2_ACN_N3D   | 0x100000000002   | 声道排序为ACN_N3D（根据ITU标准）的二阶HOA文件。  |
+| CH_LAYOUT_AMB_ORDER2_ACN_SN3D  | 0x100000001002   | 声道排序为ACN_SN3D（根据ITU标准）的二阶HOA文件。 |
+| CH_LAYOUT_AMB_ORDER2_FUMA      | 0x100000000102   | 声道排序为FUMA（根据ITU标准）的二阶HOA文件。     |
+| CH_LAYOUT_5POINT1POINT4        | 0x2D60F          | 声道布局为5.1.4。                              |
+| CH_LAYOUT_7POINT1POINT2        | 0x300000063F     | 声道布局为7.1.2。                              |
+| CH_LAYOUT_7POINT1POINT4        | 0x2D63F          | 声道布局为7.1.4。                              |
+| CH_LAYOUT_10POINT2             | 0x180005737      | 声道布局为10.2。                               |
+| CH_LAYOUT_9POINT1POINT4        | 0x18002D63F      | 声道布局为9.1.4。                              |
+| CH_LAYOUT_9POINT1POINT6        | 0x318002D63F     | 声道布局为9.1.6。                              |
+| CH_LAYOUT_HEXADECAGONAL        | 0x18003F737      | 声道布局为HEXADECAGONAL。                      |
+| CH_LAYOUT_AMB_ORDER3_ACN_N3D   | 0x100000000003   | 声道排序为ACN_N3D（根据ITU标准）的三阶HOA文件。  |
+| CH_LAYOUT_AMB_ORDER3_ACN_SN3D  | 0x100000001003   | 声道排序为ACN_SN3D（根据ITU标准）的三阶HOA文件。 |
+| CH_LAYOUT_AMB_ORDER3_FUMA      | 0x100000000103   | 声道排序为FUMA（根据ITU标准）的三阶HOA文件。     |
 
 ## ContentType<sup>(deprecated)</sup>
 
@@ -668,6 +754,7 @@ async function createTonePlayerBefore(){
 | channels     | [AudioChannel](#audiochannel8)                    | 是   | 音频文件的通道数。 |
 | sampleFormat | [AudioSampleFormat](#audiosampleformat8)          | 是   | 音频采样格式。     |
 | encodingType | [AudioEncodingType](#audioencodingtype8)          | 是   | 音频编码格式。     |
+| channelLayout<sup>11+</sup> | [AudioChannelLayout](#audiochannellayout11)  | 否   | 音频声道布局。     |
 
 ## AudioRendererInfo<sup>8+</sup>
 
@@ -1251,6 +1338,37 @@ getRoutingManager(): AudioRoutingManager
 import audio from '@ohos.multimedia.audio';
 
 let audioRoutingManager: audio.AudioRoutingManager = audioManager.getRoutingManager();
+```
+
+### getSpatializationManager<sup>11+</sup>
+
+getSpatializationManager(): AudioSpatializationManager
+
+获取空间音频管理器。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**返回值：**
+
+| 类型                                       | 说明                          |
+|------------------------------------------| ----------------------------- |
+| [AudioSpatializationManager](#audiospatializationmanager11) | AudioSpatializationManager实例 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.getSpatializationManager();
 ```
 
 ### setVolume<sup>(deprecated)</sup>
@@ -4167,9 +4285,9 @@ off(type: 'audioRendererChange'): void
 
 以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
 
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 6800101 | nvalid parameter error. |
+| 错误码ID | 错误信息                     |
+| ------- |--------------------------|
+| 6800101 | Invalid parameter error. |
 
 **示例：**
 
@@ -4642,6 +4760,118 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
 ```ts
 audioRoutingManager.off('deviceChange');
+```
+
+### getAvailableDevices<sup>11+</sup>
+
+getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors
+
+获取音频可选设备列表，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名     | 类型                      | 必填 | 说明             |
+| ---------- | ------------------------- | ---- | ---------------- |
+| deviceUsage| [DeviceUsage](#deviceusage) | 是   | 设备的usage。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                      |
+| ------------------------------------------------------------ | ------------------------- |
+| [AudioDeviceDescriptors](#audiodevicedescriptors) | 返回设备列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let data: audio.AudioDeviceDescriptors = audioRoutingManager.getAvailableDevices(audio.DeviceUsage.MEDIA_OUTPUT_DEVICES);
+  console.info(`Indicate that the device list is obtained ${data}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the device list. ${error}`);
+}
+```
+
+### on('availableDeviceChange')<sup>11+</sup>
+
+on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<DeviceChangeAction\>): void
+
+订阅音频可选设备连接变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'availableDeviceChange' |
+| deviceUsage | [DeviceUsage](#deviceusage)                       | 是   | 设备的usage。     |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error. |
+
+**示例：**
+
+```ts
+audioRoutingManager.on('availableDeviceChange', audio.DeviceUsage.MEDIA_OUTPUT_DEVICES, (deviceChanged: audio.DeviceChangeAction) => {
+  console.info('device change type : ' + deviceChanged.type);
+  console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);
+});
+```
+
+### off('availableDeviceChange')<sup>11+</sup>
+
+off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction\>): void
+
+取消订阅音频可选设备连接变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'availableDeviceChange' |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | 否   | 回调函数，返回可选设备更新详情。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Invalid parameter error. |
+
+**示例：**
+
+```ts
+audioRoutingManager.off('availableDeviceChange');
 ```
 
 ### selectInputDevice<sup>9+</sup>
@@ -5236,9 +5466,9 @@ getPreferredOutputDeviceForRendererInfoSync(rendererInfo: AudioRendererInfo): Au
 
 以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
 
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 6800101 | invalid parameter error.   |
+| 错误码ID | 错误信息                     |
+| ------- |--------------------------|
+| 6800101 | Invalid parameter error. |
 
 **示例：**
 
@@ -5726,6 +5956,689 @@ let outputAudioRendererFilter: audio.AudioRendererFilter = {
   rendererId : 0
 };
 ```
+
+## AudioSpatializationManager<sup>11+</sup>
+
+空间音频管理。在使用AudioSpatializationManager的接口前，需要使用[getSpatializationManager](#getspatializationmanager11)获取AudioSpatializationManager实例。
+
+### isSpatializationSupported<sup>11+</sup>
+
+isSpatializationSupported(): boolean
+
+获取系统是否支持空间音频，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| boolean | 返回系统是否支持空间音频，true为支持，false为不支持。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+try {
+  let isSpatializationSupported: boolean = audioSpatializationManager.isSpatializationSupported();
+  console.info(`AudioSpatializationManager isSpatializationSupported: ${isSpatializationSupported}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+### isSpatializationSupportedForDevice<sup>11+</sup>
+
+isSpatializationSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boolean
+
+获取指定设备是否支持空间音频，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                 |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
+| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| boolean | 返回指定设备是否支持空间音频，true为支持，false为不支持。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+| 6800101 | Invalid parameter error.                    |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+let deviceDescriptor: audio.AudioDeviceDescriptor = {
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+  id : 1,
+  name : "",
+  address : "123",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : ""
+}
+try {
+  let isSpatializationSupportedForDevice: boolean = audioSpatializationManager.isSpatializationSupportedForDevice(deviceDescriptor);
+  console.info(`AudioSpatializationManager isSpatializationSupportedForDevice: ${isSpatializationSupportedForDevice}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+### isHeadTrackingSupported<sup>11+</sup>
+
+isHeadTrackingSupported(): boolean
+
+获取系统是否支持头动跟踪，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| boolean | 返回系统是否支持头动跟踪，true为支持，false为不支持。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+try {
+  let isHeadTrackingSupported: boolean = audioSpatializationManager.isHeadTrackingSupported();
+  console.info(`AudioSpatializationManager isHeadTrackingSupported: ${isHeadTrackingSupported}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+### isHeadTrackingSupportedForDevice<sup>11+</sup>
+
+isHeadTrackingSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boolean
+
+获取指定设备是否支持头动跟踪，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                 |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
+| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| boolean | 返回指定设备是否支持头动跟踪，true为支持，false为不支持。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+| 6800101 | Invalid parameter error.                    |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+let deviceDescriptor: audio.AudioDeviceDescriptor = {
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+  id : 1,
+  name : "",
+  address : "123",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : ""
+}
+try {
+  let isHeadTrackingSupportedForDevice: boolean = audioSpatializationManager.isHeadTrackingSupportedForDevice(deviceDescriptor);
+  console.info(`AudioSpatializationManager isHeadTrackingSupportedForDevice: ${isHeadTrackingSupportedForDevice}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+### setSpatializationEnabled<sup>11+</sup>
+
+setSpatializationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+根据输入指令，开启/关闭空间音频渲染效果，使用callback方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| enable                      | boolean                                                      | 是   | 表示开启/关闭空间音频渲染。true为开启，false为关闭。  |
+| callback                    | AsyncCallback&lt;void&gt;                                    | 是   | AsyncCallback对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+| 6800101 | Invalid parameter error.                    |
+
+**示例：**
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+
+let enable: boolean = true
+audioSpatializationManager.setSpatializationEnabled(enable, (err: BusinessError) => {
+  if (err) {
+    console.error(`Result ERROR: ${err}`);
+  } else {
+    console.info(`setSpatializationEnabled success`);
+  }
+});
+```
+
+### setSpatializationEnabled<sup>11+</sup>
+
+setSpatializationEnabled(enable: boolean): Promise&lt;void&gt;
+
+根据输入指令，开启/关闭空间音频渲染效果，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**参数：**
+
+| 参数名                 | 类型                                                         | 必填 | 说明                      |
+| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| enable                | boolean                                                      | 是   | 表示开启/关闭空间音频渲染。true为开启，false为关闭。  |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+
+let enable: boolean = true
+audioSpatializationManager.setSpatializationEnabled(enable).then(() => {
+  console.info(`setSpatializationEnabled success`);
+}).catch((err: BusinessError) => {
+  console.error(`Result ERROR: ${err}`);
+});
+```
+
+### isSpatializationEnabled<sup>11+</sup>
+
+isSpatializationEnabled(): boolean
+
+获取空间音频渲染是否开启，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| boolean | 返回空间音频渲染是否开启，true为开启，false为未开启。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+try {
+  let isSpatializationEnabled: boolean = audioSpatializationManager.isSpatializationEnabled();
+  console.info(`AudioSpatializationManager isSpatializationEnabled: ${isSpatializationEnabled}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+### on('spatializationEnabledChange')<sup>11+</sup>
+
+on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
+
+订阅空间音频渲染开关状态变化事件。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChange'。 |
+| callback | Callback<boolean\> | 是   | Callback对象，返回空间音频渲染开关状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+| 6800101 | Invalid parameter error.                    |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+
+audioSpatializationManager.on('spatializationEnabledChange', (isSpatializationEnabled: boolean) => {
+  console.info(`isSpatializationEnabled: ${isSpatializationEnabled}`);
+});
+```
+
+### off('spatializationEnabledChange')<sup>11+</sup>
+
+off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
+
+取消订阅空间音频渲染开关状态变化事件。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChange'。 |
+| callback | Callback<boolean\> | 否   | Callback对象，返回空间音频渲染开关状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+| 6800101 | Invalid parameter error.                    |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+audioSpatializationManager.off('spatializationEnabledChange');
+```
+
+### setHeadTrackingEnabled<sup>11+</sup>
+
+setHeadTrackingEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+根据输入指令，开启/关闭头动跟踪效果，使用callback方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| enable                      | boolean                                                      | 是   | 表示开启/关闭头动跟踪。true为开启，false为关闭。  |
+| callback                    | AsyncCallback&lt;void&gt;                                    | 是   | AsyncCallback对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+| 6800101 | Invalid parameter error.                    |
+
+**示例：**
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+
+let enable: boolean = true
+audioSpatializationManager.setHeadTrackingEnabled(enable, (err: BusinessError) => {
+  if (err) {
+    console.error(`Result ERROR: ${err}`);
+  } else {
+    console.info(`setHeadTrackingEnabled success`);
+  }
+});
+```
+
+### setHeadTrackingEnabled<sup>11+</sup>
+
+setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
+
+根据输入指令，开启/关闭头动跟踪效果，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**参数：**
+
+| 参数名                 | 类型                                                         | 必填 | 说明                      |
+| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| enable                | boolean                                                      | 是   | 表示开启/关闭头动跟踪。true为开启，false为关闭。  |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+
+let enable: boolean = true
+audioSpatializationManager.setHeadTrackingEnabled(enable).then(() => {
+  console.info(`setHeadTrackingEnabled success`);
+}).catch((err: BusinessError) => {
+  console.error(`Result ERROR: ${err}`);
+});
+```
+
+### isHeadTrackingEnabled<sup>11+</sup>
+
+isHeadTrackingEnabled(): boolean
+
+获取头动跟踪是否开启，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| boolean | 返回头动跟踪是否开启，true为开启，false为未开启。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+try {
+  let isHeadTrackingEnabled: boolean = audioSpatializationManager.isHeadTrackingEnabled();
+  console.info(`AudioSpatializationManager isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+### on('headTrackingEnabledChange')<sup>11+</sup>
+
+on(type: 'headTrackingEnabledChange', callback: Callback<boolean\>): void
+
+订阅头动跟踪开关状态变化事件。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'headTrackingEnabledChange'。 |
+| callback | Callback<boolean\> | 是   | Callback对象，返回头动跟踪开关状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+| 6800101 | Invalid parameter error.                    |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+
+audioSpatializationManager.on('headTrackingEnabledChange', (isHeadTrackingEnabled: boolean) => {
+  console.info(`isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
+});
+```
+
+### off('headTrackingEnabledChange')<sup>11+</sup>
+
+off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
+
+取消订阅头动跟踪开关状态变化事件。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'headTrackingEnabledChange'。 |
+| callback | Callback<boolean\> | 否   | Callback对象，返回头动跟踪开关状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+| 6800101 | Invalid parameter error.                    |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+audioSpatializationManager.off('headTrackingEnabledChange');
+```
+
+### updateSpatialDeviceState<sup>11+</sup>
+
+updateSpatialDeviceState(spatialDeviceState: AudioSpatialDeviceState): void
+
+更新空间化设备状态，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| spatialDeviceState     | [AudioSpatialDeviceState](#audiospatialdevicestate11)     | 是   | 需要更新的空间化设备状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+| 6800101 | Invalid parameter error.                    |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+let spatialDeviceState: audio.AudioSpatialDeviceState = {
+  address: "123",
+  isSpatializationSupported: true,
+  isHeadTrackingSupported: true,
+  spatialDeviceType: audio.AudioSpatialDeviceType.SPATIAL_DEVICE_TYPE_IN_EAR_HEADPHONE
+}
+try {
+  audioSpatializationManager.updateSpatialDeviceState(spatialDeviceState);
+  console.info(`AudioSpatializationManager updateSpatialDeviceState success`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+## AudioSpatialDeviceState<sup>11+</sup>
+
+空间化设备状态。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+| 名称                          | 类型                       | 可读 | 可写 | 说明       |
+| ----------------------------- | -------------------------- | ---- | ---- | ---------- |
+| address<sup>11+</sup>                    | string         | 是   | 是   | 空间化设备地址。|
+| isSpatializationSupported<sup>11+</sup>  | boolean        | 是   | 是   | 空间化设备是否支持空间音频渲染。|
+| isHeadTrackingSupported<sup>11+</sup>    | boolean        | 是   | 是   | 空间化设备是否支持头动跟踪。|
+| spatialDeviceType<sup>11+</sup>          | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | 是   | 是   | 空间化设备类型。|
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+
+let spatialDeviceState: audio.AudioSpatialDeviceState = {
+  address: "123",
+  isSpatializationSupported: true,
+  isHeadTrackingSupported: true,
+  spatialDeviceType: audio.AudioSpatialDeviceType.SPATIAL_DEVICE_TYPE_IN_EAR_HEADPHONE
+}
+```
+
+## AudioSpatialDeviceType<sup>11+</sup>
+
+枚举，空间化设备类型。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+| 名称                               |  值     | 说明                       |
+| ---------------------------------- | ------ | ------------------------- |
+| SPATIAL_DEVICE_TYPE_NONE                   | 0      |  无空间化设备类型。  |
+| SPATIAL_DEVICE_TYPE_IN_EAR_HEADPHONE       | 1      |  入耳式耳机。       |
+| SPATIAL_DEVICE_TYPE_HALF_IN_EAR_HEADPHONE  | 2      |  半入耳式耳机。     |
+| SPATIAL_DEVICE_TYPE_OVER_EAR_HEADPHONE     | 3      |  头戴式耳机。       |
+| SPATIAL_DEVICE_TYPE_GLASSES                | 4      |  眼镜式耳机。       |
+| SPATIAL_DEVICE_TYPE_OTHERS                 | 5      |  其他空间化设备类型。|
 
 ## AudioRenderer<sup>8+</sup>
 
@@ -7357,11 +8270,44 @@ setChannelBlendMode(mode: ChannelBlendMode): void
 
 **示例：**
 
-```js
+```ts
 let mode = audio.ChannelBlendMode.MODE_DEFAULT;
 
 audioRenderer.setChannelBlendMode(mode);
 console.info(`BlendMode: ${mode}`);
+```
+### setVolumeWithRamp<sup>11+</sup>
+
+setVolumeWithRamp(volume: number, duration: number): void
+
+设置音量渐变模式。使用同步方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volume     | number | 是   | 渐变目标音量值，音量范围为[0.0, 1.0]。                                             |
+| duration     | number | 是   | 渐变持续时间，单位为ms。                                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Input parameter value error.              |
+| 401 | Input parameter type or number mismatch.    |
+
+**示例：**
+
+```ts
+let volume = 0.5;
+let duration = 1000;
+
+audioRenderer.setVolumeWithRamp(volume, duration);
+console.info(`setVolumeWithRamp: ${volume}`);
 ```
 
 ### on('audioInterrupt')<sup>9+</sup>
@@ -8364,7 +9310,7 @@ getCurrentInputDevices(): AudioDeviceDescriptors
 
 **示例：**
 
-```js
+```ts
 let deviceDescriptors: audio.AudioDeviceDescriptors = audioCapturer.getCurrentInputDevices();
 console.info(`Device id: ${deviceDescriptors[0].id}`);
 console.info(`Device type: ${deviceDescriptors[0].deviceType}`);
@@ -8374,7 +9320,9 @@ console.info(`Device address: ${deviceDescriptors[0].address}`);
 console.info(`Device samplerates: ${deviceDescriptors[0].sampleRates[0]}`);
 console.info(`Device channelcounts: ${deviceDescriptors[0].channelCounts[0]}`);
 console.info(`Device channelmask: ${deviceDescriptors[0].channelMasks[0]}`);
-console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
+if (deviceDescriptors[0].encodingTypes) {
+  console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
+}
 ```
 
 ### getCurrentAudioCapturerChangeInfo<sup>11+</sup>
@@ -8393,7 +9341,7 @@ getCurrentAudioCapturerChangeInfo(): AudioCapturerChangeInfo
 
 **示例：**
 
-```js
+```ts
 let info: audio.AudioCapturerChangeInfo = audioCapturer.getCurrentAudioCapturerChangeInfo();
 console.info(`Info streamId: ${info.streamId}`);
 console.info(`Info source: ${info.capturerInfo.source}`);
@@ -8407,7 +9355,9 @@ console.info(`Info address: ${info.deviceDescriptors[0].address}`);
 console.info(`Info samplerates: ${info.deviceDescriptors[0].sampleRates[0]}`);
 console.info(`Info channelcounts: ${info.deviceDescriptors[0].channelCounts[0]}`);
 console.info(`Info channelmask: ${info.deviceDescriptors[0].channelMasks[0]}`);
-console.info(`Info encodingTypes: ${info.deviceDescriptors[0].encodingTypes[0]}`);
+if (deviceDescriptors[0].encodingTypes) {
+  console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
+}
 ```
 
 ### on('audioInterrupt')<sup>10+</sup>
@@ -8539,7 +9489,7 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
 **示例：**
 
-```js
+```ts
 audioCapturer.on('inputDeviceChange', (deviceChangeInfo: audio.AudioDeviceDescriptors) => {
   console.info(`inputDevice id: ${deviceChangeInfo[0].id}`);
   console.info(`inputDevice deviceRole: ${deviceChangeInfo[0].deviceRole}`);
@@ -8569,7 +9519,7 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 
 **示例：**
 
-```js
+```ts
 audioCapturer.off('inputDeviceChange');
 ```
 
@@ -8596,7 +9546,7 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 
 **示例：**
 
-```js
+```ts
 audioCapturer.on('audioCapturerChange', (capturerChangeInfo: audio.AudioCapturerChangeInfo) => {
   console.info(`audioCapturerChange id: ${capturerChangeInfo[0].id}`);
   console.info(`audioCapturerChange deviceRole: ${capturerChangeInfo[0].deviceRole}`);
@@ -8627,7 +9577,7 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 
 **示例：**
 
-```js
+```ts
 audioCapturer.off('audioCapturerChange');
 ```
 

@@ -135,11 +135,23 @@ off(type: 'draw', callback?: () => void): void
       let onDrawComplete:()=>void=():void=>{
           // do something here
       }
+      let offLayoutComplete:()=>void=():void=>{
+          // do something here
+      }
+      let offDrawComplete:()=>void=():void=>{
+          // do something here
+      }
       let FuncLayout = onLayoutComplete // bind current js instance
       let FuncDraw = onDrawComplete // bind current js instance
+      let OffFuncLayout = offLayoutComplete // bind current js instance
+      let OffFuncDraw = offDrawComplete // bind current js instance
 
       this.listener.on('layout', FuncLayout)
       this.listener.on('draw', FuncDraw)
+
+      // 通过句柄向对应的查询条件取消注册回调，由开发者自行决定在何时调用。
+      // this.listener.off('layout', OffFuncLayout)
+      // this.listener.off('draw', OffFuncDraw)
     }
   }
   ```

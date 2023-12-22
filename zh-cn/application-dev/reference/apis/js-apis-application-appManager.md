@@ -12,11 +12,11 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 import appManager from '@ohos.application.appManager';
 ```
 
-## appManager.isRunningInStabilityTest<sup>8+</sup>
+## appManager.isRunningInStabilityTest
 
-static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
+isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
-查询当前是否处于稳定性测试场景。
+查询当前是否处于稳定性测试场景。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -24,7 +24,7 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回当前是否处于稳定性测试场景。 | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示当前处于稳定性测试场景；返回false表示当前不处于稳定性测试场景。 | 
 
 **示例：**
     
@@ -41,11 +41,11 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
   ```
 
 
-## appManager.isRunningInStabilityTest<sup>8+</sup>
+## appManager.isRunningInStabilityTest
 
-static isRunningInStabilityTest(): Promise&lt;boolean&gt;
+isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
-查询当前是否处于稳定性测试场景。
+查询当前是否处于稳定性测试场景。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -53,7 +53,7 @@ static isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 返回当前是否处于稳定性测试场景。 | 
+  | Promise&lt;boolean&gt; | Promise对象。返回true表示当前处于稳定性测试场景；返回false表示当前不处于稳定性测试场景。 | 
 
 **示例：**
     
@@ -73,7 +73,7 @@ static isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 isRamConstrainedDevice(): Promise\<boolean>
 
-查询是否为ram受限设备。
+查询是否为ram受限设备。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -81,7 +81,7 @@ isRamConstrainedDevice(): Promise\<boolean>
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 是否为ram受限设备。 | 
+  | Promise&lt;boolean&gt; | Promise对象。返回true表示是ram受限设备；返回false表示不是ram受限设备。 | 
 
 **示例：**
     
@@ -100,7 +100,7 @@ isRamConstrainedDevice(): Promise\<boolean>
 
 isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
-查询是否为ram受限设备。
+查询是否为ram受限设备。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -108,7 +108,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回当前是否是ram受限设备。 | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示当前是ram受限设备；返回false表示当前不是ram受限设备。 | 
 
 **示例：**
     
@@ -128,7 +128,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
 getAppMemorySize(): Promise\<number>
 
-获取应用程序的内存大小。
+获取应用程序的内存大小。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -136,7 +136,7 @@ getAppMemorySize(): Promise\<number>
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;number&gt; | 应用程序内存大小, 单位为M。 | 
+  | Promise&lt;number&gt; | Promise对象，返回应用程序内存大小, 单位为M。 | 
 
 **示例：**
     
@@ -155,7 +155,7 @@ getAppMemorySize(): Promise\<number>
 
 getAppMemorySize(callback: AsyncCallback\<number>): void
 
-获取应用程序的内存大小。
+获取应用程序的内存大小。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -163,7 +163,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 应用程序内存大小, 单位为M。 | 
+  | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回应用程序内存大小, 单位为M。 | 
 
 **示例：**
     
@@ -182,7 +182,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void
 
 getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>
 
-获取有关运行进程的信息。
+获取有关运行进程的信息。使用Promise异步回调。
 
 > 从 API Version 9 开始废弃，建议使用[appManager.getRunningProcessInformation<sup>9+</sup>](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation)替代。
 
@@ -194,7 +194,7 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)>> | 获取有关运行进程的信息。 |
+| Promise\<Array\<[ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)>> | Promise对象，返回有关运行进程的信息。 |
 
 **示例：**
     
@@ -213,7 +213,7 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>
 
 getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void
 
-获取有关运行进程的信息。
+获取有关运行进程的信息。使用callback异步回调。
 
 > 从 API Version 9 开始废弃，建议使用[appManager.getRunningProcessInformation<sup>9+</sup>](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation9)替代。
 
@@ -225,7 +225,7 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)>> | 是 | 获取有关运行进程的信息。 |
+| callback | AsyncCallback\<Array\<[ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)>> | 是 | 回调函数，返回有关运行进程的信息。 |
 
 **示例：**
     
@@ -241,7 +241,7 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
   });
   ```
 
-## appManager.registerApplicationStateObserver<sup>8+</sup>
+## appManager.registerApplicationStateObserver
 
 registerApplicationStateObserver(observer: ApplicationStateObserver): number
 
@@ -251,13 +251,19 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) | 是 | 返回观察者的数字代码。 |
+| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) | 是 | 表示程序状态观测器，用于观测应用的生命周期变化。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| number | 已注册观测器的数字代码。|
 
 **示例：**
     
@@ -284,24 +290,24 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number
   console.log('-------- observerCode: ---------', observerCode);
   ```
 
-## appManager.unregisterApplicationStateObserver<sup>8+</sup>
+## appManager.unregisterApplicationStateObserver
 
 unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\<void>): void
 
-取消注册应用程序状态观测器。
+取消注册应用程序状态观测器。使用callback异步回调。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | observerId | number | 是 | 表示观察者的编号代码。 |
-| callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
+| callback | AsyncCallback\<void> | 是 | 表示指定的callback回调方法。 |
 
 **示例：**
     
@@ -319,17 +325,17 @@ unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\
   appManager.unregisterApplicationStateObserver(observerId, unregisterApplicationStateObserverCallback);
   ```
 
-## appManager.unregisterApplicationStateObserver<sup>8+</sup>
+## appManager.unregisterApplicationStateObserver
 
 unregisterApplicationStateObserver(observerId: number): Promise\<void>
 
-取消注册应用程序状态观测器。
+取消注册应用程序状态观测器。使用Promise异步回调。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -341,7 +347,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | 返回执行结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。。 |
 
 **示例：**
     
@@ -360,23 +366,23 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>
   });
   ```
 
-## appManager.getForegroundApplications<sup>8+</sup>
+## appManager.getForegroundApplications
 
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
-获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
+获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。使用callback异步回调。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | callback形式返回所有当前处于前台的应用信息。 |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 回调函数，返回所有当前处于前台的应用信息。 |
 
 **示例：**
     
@@ -392,23 +398,23 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
   });
   ```
 
-## appManager.getForegroundApplications<sup>8+</sup>
+## appManager.getForegroundApplications
 
 getForegroundApplications(): Promise\<Array\<AppStateData>>
 
-获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
+获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。使用Promise异步回调。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Promise形式返回所有当前处于前台的应用信息。 |
+| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Promise对象，返回所有当前处于前台的应用信息。 |
 
 **示例：**
     
@@ -425,7 +431,7 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>
   });
   ```
 
-## appManager.killProcessWithAccount<sup>8+</sup>
+## appManager.killProcessWithAccount
 
 killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
@@ -439,7 +445,7 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -447,6 +453,12 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 应用Bundle名称。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -466,7 +478,7 @@ appManager.killProcessWithAccount(bundleName, accountId)
 ```
 
 
-## appManager.killProcessWithAccount<sup>8+</sup>
+## appManager.killProcessWithAccount
 
 killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCallback\<void\>): void
 
@@ -478,7 +490,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS, ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
@@ -488,7 +500,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 应用Bundle名称。 |
 | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| callback | AsyncCallback\<void\> | 是 | 切断account进程的回调函数。 |
+| callback | AsyncCallback\<void\> | 是 | 回调函数，当切断account进程成功。，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -508,24 +520,24 @@ function killProcessWithAccountCallback(err: BusinessError, data: void) {
 appManager.killProcessWithAccount(bundleName, accountId, killProcessWithAccountCallback);
 ```
 
-## appManager.killProcessesByBundleName<sup>8+</sup>
+## appManager.killProcessesByBundleName
 
 killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>)
 
-通过Bundle名称终止进程。
+通过Bundle名称终止进程。使用callback异步回调。
 
 **需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 表示Bundle名称。 |
-| callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，当通过Bundle名称终止进程成功，err为undefined，否则为错误对象。 |
 
 **示例：**
     
@@ -544,17 +556,17 @@ import { BusinessError } from '@ohos.base';
   appManager.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
   ```
 
-## appManager.killProcessesByBundleName<sup>8+</sup>
+## appManager.killProcessesByBundleName
 
 killProcessesByBundleName(bundleName: string): Promise\<void>
 
-通过Bundle名称终止进程。
+通过Bundle名称终止进程。使用Promise异步回调。
 
 **需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -566,7 +578,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | 返回执行结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -584,24 +596,24 @@ killProcessesByBundleName(bundleName: string): Promise\<void>
     });
   ```
 
-## appManager.clearUpApplicationData<sup>8+</sup>
+## appManager.clearUpApplicationData
 
 clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>)
 
-通过Bundle名称清除应用数据。
+通过Bundle名称清除应用数据。使用callback异步回调。
 
 **需要权限**：ohos.permission.CLEAN_APPLICATION_DATA
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 表示Bundle名称。 |
-| callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数，当通过Bundle名称清除应用数据成功，err为undefined，否则为错误对象。 |
 
 **示例：**
     
@@ -620,17 +632,17 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>)
   appManager.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
   ```
 
-## appManager.clearUpApplicationData<sup>8+</sup>
+## appManager.clearUpApplicationData
 
 clearUpApplicationData(bundleName: string): Promise\<void>
 
-通过Bundle名称清除应用数据。
+通过Bundle名称清除应用数据。使用Promise异步回调。
 
 **需要权限**：ohos.permission.CLEAN_APPLICATION_DATA
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -642,7 +654,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | 返回执行结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
     

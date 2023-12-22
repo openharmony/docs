@@ -200,13 +200,13 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 在布局容器内，可以通过justifyContent属性设置子元素在容器主轴上的排列方式。可以从主轴起始位置开始排布，也可以从主轴结束位置开始排布，或者均匀分割主轴的空间。
 
 
-### Column容器内子元素在主轴上的排列
+### Column容器内子元素在垂直方向上的排列
 
-  **图7** Column容器内子元素在主轴上的排列图 
+  **图7** Column容器内子元素在垂直方向上的排列图 
 
 ![vertial-arrangement-child-column](figures/vertial-arrangement-child-column.png)
 
-- justifyContent(FlexAlign.Start)：元素在主轴方向首端对齐，第一个元素与行首对齐，同时后续的元素与前一个对齐。
+- justifyContent(FlexAlign.Start)：元素在垂直方向方向首端对齐，第一个元素与行首对齐，同时后续的元素与前一个对齐。
 
   ```ts
   Column({}) {
@@ -223,7 +223,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
   ![zh-cn_image_0000001562700501](figures/zh-cn_image_0000001562700501.png)
 
-- justifyContent(FlexAlign.Center)：元素在主轴方向中心对齐，第一个元素与行首的距离与最后一个元素与行尾距离相同。
+- justifyContent(FlexAlign.Center)：元素在垂直方向方向中心对齐，第一个元素与行首的距离与最后一个元素与行尾距离相同。
 
   ```ts
   Column({}) {
@@ -240,7 +240,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
   ![zh-cn_image_0000001562700517](figures/zh-cn_image_0000001562700517.png)
 
-- justifyContent(FlexAlign.End)：元素在主轴方向尾部对齐，最后一个元素与行尾对齐，其他元素与后一个对齐。
+- justifyContent(FlexAlign.End)：元素在垂直方向方向尾部对齐，最后一个元素与行尾对齐，其他元素与后一个对齐。
 
   ```ts
   Column({}) {
@@ -257,7 +257,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
   ![zh-cn_image_0000001562940585](figures/zh-cn_image_0000001562940585.png)
 
-- justifyContent(FlexAlign.Spacebetween)：主轴方向均匀分配元素，相邻元素之间距离相同。第一个元素与行首对齐，最后一个元素与行尾对齐。
+- justifyContent(FlexAlign.SpaceBetween)：垂直方向均匀分配元素，相邻元素之间距离相同。第一个元素与行首对齐，最后一个元素与行尾对齐。
 
   ```ts
   Column({}) {
@@ -274,7 +274,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
   ![zh-cn_image_0000001511900532](figures/zh-cn_image_0000001511900532.png)
 
-- justifyContent(FlexAlign.SpaceAround)：主轴方向均匀分配元素，相邻元素之间距离相同。第一个元素到行首的距离和最后一个元素到行尾的距离是相邻元素之间距离的一半。
+- justifyContent(FlexAlign.SpaceAround)：垂直方向均匀分配元素，相邻元素之间距离相同。第一个元素到行首的距离和最后一个元素到行尾的距离是相邻元素之间距离的一半。
 
   ```ts
   Column({}) {
@@ -291,7 +291,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
   ![zh-cn_image_0000001562700525](figures/zh-cn_image_0000001562700525.png)
 
-- justifyContent(FlexAlign.SpaceEvenly)：主轴方向均匀分配元素，相邻元素之间的距离、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。
+- justifyContent(FlexAlign.SpaceEvenly)：垂直方向均匀分配元素，相邻元素之间的距离、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。
 
   ```ts
   Column({}) {
@@ -309,13 +309,13 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
   ![zh-cn_image_0000001563060785](figures/zh-cn_image_0000001563060785.png)
 
 
-### Row容器内子元素在主轴上的排列
+### Row容器内子元素在水平方向上的排列
 
-  **图8** Row容器内子元素在主轴上的排列图  
+  **图8** Row容器内子元素在水平方向上的排列图  
 
 ![vertial-arrangement-child-row](figures/vertial-arrangement-child-row.png)
 
-- justifyContent(FlexAlign.Start)：元素在主轴方向首端对齐，第一个元素与行首对齐，同时后续的元素与前一个对齐。
+- justifyContent(FlexAlign.Start)：元素在水平方向首端对齐，第一个元素与行首对齐，同时后续的元素与前一个对齐。
 
   ```ts
   Row({}) {
@@ -332,7 +332,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
   ![zh-cn_image_0000001511421356](figures/zh-cn_image_0000001511421356.png)
 
-- justifyContent(FlexAlign.Center)：元素在主轴方向中心对齐，第一个元素与行首的距离与最后一个元素与行尾距离相同。
+- justifyContent(FlexAlign.Center)：元素在水平方向中心对齐，第一个元素与行首的距离与最后一个元素与行尾距离相同。
 
   ```ts
   Row({}) {
@@ -349,7 +349,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
   ![zh-cn_image_0000001511900516](figures/zh-cn_image_0000001511900516.png)
 
-- justifyContent(FlexAlign.End)：元素在主轴方向尾部对齐，最后一个元素与行尾对齐，其他元素与后一个对齐。
+- justifyContent(FlexAlign.End)：元素在水平方向尾部对齐，最后一个元素与行尾对齐，其他元素与后一个对齐。
 
   ```ts
   Row({}) {
@@ -366,7 +366,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
   ![zh-cn_image_0000001562940601](figures/zh-cn_image_0000001562940601.png)
 
-- justifyContent(FlexAlign.Spacebetween)：主轴方向均匀分配元素，相邻元素之间距离相同。第一个元素与行首对齐，最后一个元素与行尾对齐。
+- justifyContent(FlexAlign.SpaceBetween)：水平方向均匀分配元素，相邻元素之间距离相同。第一个元素与行首对齐，最后一个元素与行尾对齐。
 
   ```ts
   Row({}) {
@@ -383,7 +383,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
   ![zh-cn_image_0000001562700521](figures/zh-cn_image_0000001562700521.png)
 
-- justifyContent(FlexAlign.SpaceAround)：主轴方向均匀分配元素，相邻元素之间距离相同。第一个元素到行首的距离和最后一个元素到行尾的距离是相邻元素之间距离的一半。
+- justifyContent(FlexAlign.SpaceAround)：水平方向均匀分配元素，相邻元素之间距离相同。第一个元素到行首的距离和最后一个元素到行尾的距离是相邻元素之间距离的一半。
 
   ```ts
   Row({}) {
@@ -400,7 +400,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
   ![zh-cn_image_0000001562820893](figures/zh-cn_image_0000001562820893.png)
 
-- justifyContent(FlexAlign.SpaceEvenly)：主轴方向均匀分配元素，相邻元素之间的距离、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。
+- justifyContent(FlexAlign.SpaceEvenly)：水平方向均匀分配元素，相邻元素之间的距离、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。
 
   ```ts
   Row({}) {

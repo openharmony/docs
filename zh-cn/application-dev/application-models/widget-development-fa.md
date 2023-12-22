@@ -315,7 +315,7 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
 
 ### 卡片信息的持久化
 
-因大部分卡片提供方都不是常驻服务，只有在需要使用时才会被拉起获取卡片信息，且卡片管理服务支持对卡片进行多实例管理，卡片ID对应实例ID，因此若卡片提供方支持对卡片数据进行配置，则需要对卡片的业务数据按照卡片ID进行持久化管理，以便在后续获取、更新以及拉起时能获取到正确的卡片业务数据。
+因大部分卡片提供方都不是常驻服务，只有在需要使用时才会被拉起获取卡片信息，且卡片管理服务支持对卡片进行多实例管理，卡片ID对应实例ID，因此若卡片提供方支持对卡片数据进行配置，则需要对卡片的业务数据按照卡片ID进行持久化管理，以便在后续获取、更新以及拉起时能获取到正确的卡片业务数据。且需要适配onDestroy卡片删除通知接口，在其中实现卡片实例数据的删除。
 
 
 ```ts
@@ -338,6 +338,18 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
   }
 };
 
+let deleteFormInfo = async (formId: string, context) => {
+  try {
+    const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    // del form info
+    await storage.delete(formId);
+    console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);
+    await storage.flush();
+  } catch (err) {
+    console.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
+  }
+}
+
 ...
   onCreate(want: Want) {
     hilog.info(domain, TAG, 'FormAbility onCreate');
@@ -358,14 +370,9 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
     };
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     return formData;
-  }
+  },
 ...
-```
 
-且需要适配onDestroy卡片删除通知接口，在其中实现卡片实例数据的删除。
-
-
-```ts
 let deleteFormInfo = async (formId: string, context: featureAbility.Context): Promise<void> => {
   try {
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
@@ -379,6 +386,7 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context): Pr
 };
 
 ...
+    // 适配onDestroy卡片删除通知接口，在其中实现卡片实例数据的删除。
   onDestroy(formId: string) {
     // 删除卡片实例数据
     hilog.info(domain, TAG, 'FormAbility onDestroy');

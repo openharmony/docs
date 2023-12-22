@@ -1,4 +1,4 @@
-# Distributed Audio Playback (for System Applications Only)
+# Distributed Audio Playback (for System Applications Only) (ArkTS)
 
 Distributed audio playback enables an application to continue audio playback on another device in the same network.
 

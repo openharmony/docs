@@ -1,4 +1,4 @@
-# Using AVRecorder for Audio Recording
+# Using AVRecorder for Audio Recording (ArkTS)
 
 You will learn how to use the AVRecorder to develop audio recording functionalities including starting, pausing, resuming, and stopping recording.
 
@@ -56,35 +56,35 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    > **NOTE**
    >
    > Pay attention to the following when configuring parameters:
-   > 
+   >
    > - In pure audio recording scenarios, set only audio-related parameters in **avConfig** of **prepare()**.
-   > If video-related parameters are configured, an error will be reported in subsequent steps. If video recording is required, follow the instructions provided in [Video Recording Development](video-recording.md).
-   > 
+   > - If video-related parameters are configured, an error will be reported in subsequent steps. If video recording is required, follow the instructions provided in [Video Recording Development](video-recording.md).
+   >
    > - The [recording formats](avplayer-avrecorder-overview.md#supported-formats) in use must be those supported by the system.
-   > 
+   >
    > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs](../reference/apis/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../file-management/app-file-access.md).
-
    
-   ```ts
-   let avProfile: media.AVRecorderProfile = {
-     audioBitrate: 100000, // Audio bit rate.
-     audioChannels: 2, // Number of audio channels.
-     audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format. Currently, only AAC is supported.
-     audioSampleRate: 48000, // Audio sampling rate.
-     fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // Encapsulation format. Currently, only M4A is supported.
-   }
-   let avConfig: media.AVRecorderConfig = {
-     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // Audio input source. In this example, the microphone is used.
-     profile: avProfile,
-     url: 'fd://35', // Obtain the file descriptor of the created audio file by referring to the sample code in Application File Access and Management.
-   }
-   avRecorder.prepare(avConfig).then(() => {
-     console.log('Invoke prepare succeeded.');
-   }, (err: BusinessError) => {
-     console.error(`Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
-   })
-   ```
-
+   
+      ```ts
+      let avProfile: media.AVRecorderProfile = {
+        audioBitrate: 100000, // Audio bit rate.
+        audioChannels: 2, // Number of audio channels.
+        audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format. Currently, only AAC is supported.
+        audioSampleRate: 48000, // Audio sampling rate.
+        fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // Encapsulation format. Currently, only M4A is supported.
+      }
+      let avConfig: media.AVRecorderConfig = {
+        audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // Audio input source. In this example, the microphone is used.
+        profile: avProfile,
+        url: 'fd://35', // Obtain the file descriptor of the created audio file by referring to the sample code in Application File Access and Management.
+      }
+      avRecorder.prepare(avConfig).then(() => {
+        console.log('Invoke prepare succeeded.');
+      }, (err: BusinessError) => {
+        console.error(`Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
+      })
+      ```
+   
 4. Call **start()** to start recording. The AVRecorder enters the **started** state.
 
 5. Call **pause()** to pause recording. The AVRecorder enters the **paused** state.
