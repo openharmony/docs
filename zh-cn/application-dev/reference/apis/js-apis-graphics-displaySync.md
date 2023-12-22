@@ -14,6 +14,7 @@ import displaySync from '@ohos.graphics.displaySync';
 
 ## displaySync.create
 create(): DisplaySync
+
 创建DisplaySync对象，通过此对象设置UI自绘制内容帧率。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -59,11 +60,6 @@ setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange) : void
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | rateRange       | [ExpectedFrameRateRange](../arkui-ts/ts-animatorproperty.md#expectedframeraterange)| 是   | 设置DisplaySync期望的帧率。|
 
-**返回值：**
-
-| 类型                | 说明                     |
-| ------------------ | ------------------------ |
-| [void]  | 无返回值。 |
 
 **示例：**
 ```ts
@@ -79,7 +75,7 @@ this.backDisplaySyncBigger.setExpectedFrameRateRange(range)
 
 on(type: 'frame', callback: Callback<IntervalInfo>): void
 
-注册每一帧的回调函数。
+订阅每一帧的变化。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -88,30 +84,24 @@ on(type: 'frame', callback: Callback<IntervalInfo>): void
 | 参数名           | 类型                                       | 必填 | 说明                          |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | type | 'frame'| 是   | 设置注册回调的类型（只能是'frame'类型）。|
-| callback    | [Callback<IntervalInfo>](js-apis-base.md)| 是   | 回调函数。|
+| callback    | [Callback<IntervalInfo>](js-apis-base.md)| 是   | 监听函数。|
 
-
-**返回值：**
-
-| 类型                | 说明                     |
-| ------------------ | ------------------------ |
-| [void]  | 无返回值。 |
 
 **示例：**
 ```ts
 let _this = this
-let Bigger = (ii: displaySync.IntervalInfo) => {
+let bigger = (ii: displaySync.IntervalInfo) => {
 _this.drawFirstSize += 1;
-    console.info(_this.TAG, 'Bigger:' + ii.timestamp + ' TargetTimeStamp: ' + ii.targetTimestamp);
+    console.info(_this.TAG, 'bigger:' + ii.timestamp + ' TargetTimeStamp: ' + ii.targetTimestamp);
 }
 
 this.backDisplaySyncBigger.setExpectedFrameRateRange(range)
-this.backDisplaySyncBigger.on("frame", Bigger)
+this.backDisplaySyncBigger.on("frame", bigger)
 ```
 
 ### off(type: 'frame')
 
-取消每一帧的回调函数。
+取消订阅每一帧的变化。
 ```ts
 off(type: 'frame', callback?: Callback<IntervalInfo>): void
 ```
@@ -125,29 +115,23 @@ off(type: 'frame', callback?: Callback<IntervalInfo>): void
 | type | 'frame'| 是   | 设置注册回调的类型（只能是'frame'类型）。|
 | callback    | [Callback<IntervalInfo>](js-apis-base.md)| 是   | 回调函数。|
 
-**返回值：**
-
-| 类型                | 说明                     |
-| ------------------ | ------------------------ |
-| [void]  | 无返回值。 |
 
 **示例：**
 ```ts
-this.backDisplaySyncBigger.off("frame", Bigger)
+let _this = this
+let bigger = (ii: displaySync.IntervalInfo) => {
+_this.drawFirstSize += 1;
+    console.info(_this.TAG, 'bigger:' + ii.timestamp + ' TargetTimeStamp: ' + ii.targetTimestamp);
+}
+this.backDisplaySyncBigger.off("frame", bigger)
 ```
 
-### start()
+### start
 start(): void
 
 开始每帧回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型                | 说明                     |
-| ------------------ | ------------------------ |
-| [void]  | 无返回值。 |
 
 **示例：**
 ```ts
@@ -159,7 +143,7 @@ Button('StartBigger')
         })
 ```
 
-### stop()
+### stop
 
 stop(): void
 
@@ -168,18 +152,13 @@ stop(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**返回值：**
-
-| 类型                | 说明                     |
-| ------------------ | ------------------------ |
-| [void]  | 无返回值。 |
 
 **示例：**
 ```ts
-Button('StartBigger')
+Button('StopBigger')
         .fontSize(30)
         .fontColor(Color.Black)
         .onClick(() => {
-          this.backDisplaySyncBigger.start()
+          this.backDisplaySyncBigger.stop()
         })
 ```
