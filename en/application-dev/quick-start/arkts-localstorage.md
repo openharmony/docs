@@ -1,7 +1,7 @@
 # LocalStorage: UI State Storage
 
 
-LocalStorage provides storage for the page-level UI state. The parameters of the LocalStorage type accepted through the \@Entry decorator share the same LocalStorage instance on the page. LocalStorage also allows for state sharing between pages within a UIAbility.
+LocalStorage provides storage for the page-level UI state. The parameters of the LocalStorage type accepted through the \@Entry decorator share the same LocalStorage instance on the page. LocalStorage also allows for state sharing between pages with UIAbility instances.
 
 
 This topic describes only the LocalStorage application scenarios and related decorators: \@LocalStorageProp and \@LocalStorageLink.
@@ -16,7 +16,7 @@ This topic describes only the LocalStorage application scenarios and related dec
 
 LocalStorage is an in-memory "database" that ArkTS provides for storing state variables that are required to build pages of the application UI.
 
-- An application can create multiple LocalStorage instances. These instances can be shared on a page or, by using the **GetShared** API from the UIAbility, across pages in a UIAbility.
+- An application can create multiple LocalStorage instances. These instances can be shared on a page or, by using the **GetShared** API, across pages in a UIAbility instance.
 
 - The root node of a component tree, that is, the \@Component decorated by \@Entry, can be assigned to a LocalStorage instance. All child instances of this custom component automatically gain access to the same LocalStorage instance.
 
@@ -279,7 +279,7 @@ This example shows how to create a two-way data synchronization between an \@Loc
 // Create a LocalStorage instance.
 let para:Record<string,number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
-// Invoke the link9+ API to create a two-way data synchronization with PropA. linkToPropA is a global variable.
+// Invoke the link API (available in API version 9 or later) to create a two-way data synchronization with PropA. linkToPropA is a global variable.
 let linkToPropA: SubscribedAbstractProperty<object> = storage.link('PropA');
 
 @Entry(storage)
