@@ -36,7 +36,9 @@ struct HelloComponent {
   }
 }
 ```
-
+> **NOTE**
+>
+> To reference the custom component in another file, use the keyword **export** to export the component and then use **import** to import it to the target file.
 
 Multiple **HelloComponent** instances can be created in the **build()** function of other custom components. In this way, **HelloComponent** is reused by those custom components.
 
@@ -73,7 +75,7 @@ To fully understand the preceding example, a knowledge of the following concepts
 
 - [Member Functions/Variables](#member-functionsvariables)
 
-- [Rules of for Custom Component Parameters](#rules-of-for-custom-component-parameters)
+- [Rules for Custom Component Parameters](#rules-for-custom-component-parameters)
 
 - [build Function](#build-function)
 
@@ -87,7 +89,7 @@ To fully understand the preceding example, a knowledge of the following concepts
   >
   > The name or its class or function name of a custom component must be different from that of any built-in components.
 
-- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. After being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. One struct can be decorated by only one \@Component.
+- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. After being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. Each struct can be decorated by only one \@Component.
   > **NOTE**
   >
   > Since API version 9, this decorator is supported in ArkTS widgets.
@@ -108,7 +110,7 @@ To fully understand the preceding example, a knowledge of the following concepts
   }
   ```
 
-- \@Entry: A custom component decorated with \@Entry is used as the default entry component of the page. At most one component can be decorated with \@Entry in a single source file. The \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md).
+- \@Entry: A custom component decorated with \@Entry is used as the default entry component of the page. Only one component can be decorated with \@Entry in a single source file. The \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md).
 
   > **NOTE**
   >
@@ -130,7 +132,7 @@ To fully understand the preceding example, a knowledge of the following concepts
   | Name  | Type  | Mandatory| Description                                                        |
   | ------ | ------ | ---- | ------------------------------------------------------------ |
   | routeName | string | No| Name of the target named route.|
-  | storage | [LocalStorage](arkts-localstorage.md) | No| Storage of page-level UI state.|
+  | storage | [LocalStorage](arkts-localstorage.md) | No| Storage of the page-level UI state.|
 
   ```ts
   @Entry({ routeName : 'myPage' })
@@ -174,7 +176,7 @@ A custom component can also implement member variables with the following restri
 - Local initialization is optional for some member variables and mandatory for others. For details about whether local initialization or initialization from the parent component is required, see [State Management](arkts-state-management-overview.md).
 
 
-## Rules of for Custom Component Parameters
+## Rules for Custom Component Parameters
 
 As can be learnt from preceding examples, a custom component can be created from a **build** or [@Builder](arkts-builder.md) decorated function. During the creation, the custom component's parameters are initialized based on the decorator rules.
 
@@ -245,7 +247,7 @@ Whatever declared in the **build()** function are called UI descriptions. UI des
 
   ```ts
   build() {
-    // Avoid: using console.info directly.
+    // Avoid: using console.info directly in UI description.
     console.info('print debug log');
   }
   ```
@@ -356,7 +358,7 @@ Whatever declared in the **build()** function are called UI descriptions. UI des
   Therefore, do not change any state variable in the **build()** or \@Builder decorated method of a custom component. Otherwise, loop rendering may result. Depending on the update mode (full update or minimum update), **Text('${this.count++}')** imposes different effects:
 
   - Full update: ArkUI may fall into an infinite re-rendering loop because each rendering of the **Text** component changes the application state and causes a new round of re-renders. When **this.col2** is changed, the entire **build** function is executed. As a result, the text bound to **Text(${this.count++})** is also changed. Each time **Text(${this.count++})** is re-rendered, the **this.count** state variable is updated, and a new round of **build** execution follows, resulting in an infinite loop.
-  - Minimum update: When **this.col2** is changed, only the **Column** component is updated, and the **Text** component remains unchanged. When **this.col1** is changed, the entire **Text** component is updated and all of its attribute functions are executed. As a result, the value of **${this.count++}** in the **Text** component is changed. Currently, the UI is updated by component. If an attribute of a component changes, the entire component is updated. Therefore, the overall update link is as follows: **this.col2** = **Color.Red** - > **Text** component re-render - > **this.count++** - > **Text** component re-render. It should be noted that this way of writing causes the **Text** component to be rendered twice during the initial render, which affects the performance.
+  - Minimum update: When **this.col2** is changed, only the **Column** component is updated, and the **Text** component remains unchanged. When **this.col1** is changed, the entire **Text** component is updated and all of its attribute functions are executed. As a result, the value of **${this.count++}** in the **Text** component is changed. Currently, the UI is updated by component. If an attribute of a component changes, the entire component is updated. Therefore, the overall update link is as follows: **this.col1** = **Color.Pink** - > **Text** component re-render - > **this.count++** - > **Text** component re-render. It should be noted that this way of writing causes the **Text** component to be rendered twice during the initial render, which affects the performance.
 
   The behavior of changing the application state in the **build** function may be more covert than that in the preceding example. The following are some examples:
 
@@ -367,7 +369,7 @@ Whatever declared in the **build()** function are called UI descriptions. UI des
   - Modifying the current array: In the following code snippet, **sort()** changes the array **this.arr**, and the subsequent **filter** method returns a new array.
 
     ```ts
-    // Negative example
+    // Avoid the usage below.
     @State arr : Array<...> = [ ... ];
     ForEach(this.arr.sort().filter(...), 
       item => { 

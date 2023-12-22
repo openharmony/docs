@@ -2009,3 +2009,308 @@ try {
   console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
+
+## setRouterProxy<sup>11+</sup>
+
+setRouterProxy(formIds: Array&lt;string&gt;, proxy: Callback&lt;Want&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+设置卡片跳转代理。使用callback异步回调，返回卡片跳转所需要Want信息。
+
+
+
+> **说明：**
+>
+>- 一般情况下，对于桌面添加的卡片，当卡片触发router跳转时，卡片框架会检测其跳转目的地是否合理，是否有跳转权限，然后进行应用跳转。如果卡片使用方添加了卡片，并设置了卡片跳转代理，那么卡片触发router跳转时，卡片框架不会再为其进行跳转操作，会把包含跳转目的地的want参数返回给卡片使用方。因此如果卡片使用方希望使用该want信息进行应用跳转，需要确保自身拥有应用跳转的权限，参考
+[UIAbilityContext.startAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口。
+>
+>- 一个formId最多只能设置一个跳转代理，多次设置后，最后设置的proxy生效。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| formIds  | Array&lt;string&gt;       | 是   | 卡片标识数组。                                               |
+| proxy    | Callback&lt;Want&gt;      | 是   | 回调函数。返回跳转所需要的Want信息。                         |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，当指定卡片设置router跳转代理成功时，error为undefined；否则抛出异常。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401      | If the input parameter is not valid parameter.               |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501003 | The form can not be operated by the current application.     |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+**示例：**
+
+```ts
+import common from '@ohos.app.ability.common';
+import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+@Entry
+@Component
+struct CardExample {
+  private context = getContext(this) as common.UIAbilityContext;
+  @State formId:number = 0;
+  @State fwidth:number = 420;
+  @State fheight:number = 280;
+
+  build() {
+    Column() {
+      FormComponent({
+        id:this.formId,
+        name:"widget",
+        bundle:"com.example.cardprovider",
+        ability:"EntryFormAbility",
+        module:"entry",
+        dimension:FormDimension.Dimension_2_2,
+        temporary:false,
+      })
+        .allowUpdate(true)
+        .size({width:this.fwidth,height:this.fheight})
+        .visibility(Visibility.Visible)
+        .onAcquired((form)=>{
+          console.log(`testTag form info : ${JSON.stringify(form)}`);
+          this.formId = form.id;
+          try {
+            let formIds: string[] = [ this.formId.toString() ];
+            formHost.setRouterProxy(formIds, (want: Want) => {
+              console.info(`formHost recv router event, want: ${JSON.stringify(want)}`);
+              // 卡片使用方自己处理跳转
+              this.context.startAbility(want, (err: Base.BusinessError) => {
+                console.info(`formHost startAbility error, code: ${err.code}, message: ${err.message}`);
+              });
+            }, (err: Base.BusinessError) => {
+              console.error(`set router proxy error, code: ${err.code}, message: ${err.message}`);
+            })
+          } catch (e) {
+            console.log('formHost setRouterProxy catch exception: ' + JSON.stringify(e));
+          }
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+## setRouterProxy<sup>11+</sup>
+
+setRouterProxy(formIds: Array&lt;string&gt;, proxy: Callback&lt;Want&gt;): Promise&lt;void&gt;
+
+设置卡片跳转代理。使用Promise异步回调，返回卡片跳转所需要Want信息。
+
+> **说明：**
+>
+>- 一般情况下，对于桌面添加的卡片，当卡片触发router跳转时，卡片框架会检测其跳转目的地是否合理，是否有跳转权限，然后进行应用跳转。如果卡片使用方添加了卡片，并设置了卡片跳转代理，那么卡片触发router跳转时，卡片框架不会再为其进行跳转操作，会把包含跳转目的地的want参数返回给卡片使用方。因此如果卡片使用方希望使用该want信息进行应用跳转，需要确保自身拥有应用跳转的权限，参考[UIAbilityContext.startAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口。
+>
+>- 一个formId最多只能设置一个跳转代理，多次设置后，最后设置的proxy生效。
+
+
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名  | 类型                 | 必填 | 说明                                 |
+| ------- | -------------------- | ---- | ------------------------------------ |
+| formIds | Array&lt;string&gt;  | 是   | 卡片标识数组。                       |
+| proxy   | Callback&lt;Want&gt; | 是   | 回调函数。返回跳转所需要的Want信息。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401      | If the input parameter is not valid parameter.               |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501003 | The form can not be operated by the current application.     |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+**示例：**
+
+```ts
+import common from '@ohos.app.ability.common';
+import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+@Entry
+@Component
+struct CardExample {
+  private context = getContext(this) as common.UIAbilityContext;
+  @State formId:number = 0;
+  @State fwidth:number = 420;
+  @State fheight:number = 280;
+
+  build() {
+    Column() {
+      FormComponent({
+        id:this.formId,
+        name:"widget",
+        bundle:"com.example.cardprovider",
+        ability:"EntryFormAbility",
+        module:"entry",
+        dimension:FormDimension.Dimension_2_2,
+        temporary:false,
+      })
+        .allowUpdate(true)
+        .size({width:this.fwidth,height:this.fheight})
+        .visibility(Visibility.Visible)
+        .onAcquired((form)=>{
+          console.log(`testTag form info : ${JSON.stringify(form)}`);
+          this.formId = form.id;
+          try {
+            let formIds: string[] = [ this.formId.toString() ];
+            formHost.setRouterProxy(formIds, (want: Want) => {
+              console.info(`formHost recv router event, want: ${JSON.stringify(want)}`);
+              // 卡片使用方自己处理跳转
+              this.context.startAbility(want, (err: Base.BusinessError) => {
+                console.info(`formHost startAbility error, code: ${err.code}, message: ${err.message}`);
+              });
+            }).then(() => {
+              console.info('formHost set router proxy success');
+            }).catch((err: Base.BusinessError) => {
+              console.error(`set router proxy error, code: ${err.code}, message: ${err.message}`);
+            })
+          } catch (e) {
+            console.log('formHost setRouterProxy catch exception: ' + JSON.stringify(e));
+          }
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+## clearRouterProxy<sup>11+</sup>
+
+clearRouterProxy(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+清除卡片跳转代理。使用callback异步回调。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| formIds  | Array&lt;string&gt;;      | 是   | 卡片标识数组。                                               |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，当指定卡片取消router跳转代理成功时，error为undefined；否则抛出异常。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401      | If the input parameter is not valid parameter.               |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501003 | The form can not be operated by the current application.     |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+try {
+  let formIds: string[] = [ '12400633174999288' ];
+  formHost.clearRouterProxy(formIds, (err: Base.BusinessError) => {
+    if (err) {
+        console.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
+    }
+  });
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+
+## clearRouterProxy<sup>11+</sup>
+
+clearRouterProxy(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
+
+清除卡片跳转代理。使用Promise异步回调。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名  | 类型                | 必填 | 说明           |
+| ------- | ------------------- | ---- | -------------- |
+| formIds | Array&lt;string&gt; | 是   | 卡片标识数组。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401      | If the input parameter is not valid parameter.               |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501003 | The form can not be operated by the current application.     |
+
+以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+try {
+  let formIds: string[] = [ '12400633174999288' ];
+  formHost.clearRouterProxy(formIds).then(() => {
+    console.log('formHost clear rourter proxy success');
+  }).catch((err: Base.BusinessError) => {
+    console.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+}
+```
+
+## 

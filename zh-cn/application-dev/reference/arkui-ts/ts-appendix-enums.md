@@ -526,6 +526,11 @@
 | BACKGROUND_THICK      | 远距景深模糊。   |
 | BACKGROUND_ULTRA_THICK | 超远距景深模糊。  |
 | NONE<sup>10+</sup> | 关闭模糊。  |
+| COMPONENT_ULTRA_THIN<sup>11+</sup> | 组件超轻薄材质模糊。 |
+| COMPONENT_THIN<sup>11+</sup> | 组件轻薄材质模糊。 |
+| COMPONENT_REGULAR<sup>11+</sup> | 组件普通材质模糊。 |
+| COMPONENT_THICK<sup>11+</sup> | 组件厚材质模糊。 |
+| COMPONENT_ULTRA_THICK<sup>11+</sup> | 组件超厚材质模糊。 |
 
 ## ThemeColorMode<sup>10+</sup>
 
@@ -574,6 +579,15 @@
 | LIGHT  | 小面积（轻盈） | 弹簧动效， 刚性：410，阻尼：38，初始速度：1 | 90% |
 | MIDDLE | 中面积（稳定） | 弹簧动效， 刚性：350，阻尼：35，初始速度：0.5 | 95% |
 | HEAVY  | 大面积（厚重） | 弹簧动效， 刚性：240，阻尼：28，初始速度：0 | 95% |
+
+## FoldStatus<sup>11+</sup>
+
+| 名称                      | 描述         |
+| ----------------------  | ---------- |
+| FOLD_STATUS_UNKNOWN     | 表示设备当前折叠状态未知。 |
+| FOLD_STATUS_EXPANDED    | 表示设备当前折叠状态为完全展开。   |
+| FOLD_STATUS_FOLDED      | 表示设备当前折叠状态为折叠。   |
+| FOLD_STATUS_HALF_FOLDED | 表示设备当前折叠状态为半折叠。半折叠指完全展开和折叠之间的状态。|
 
 ## TextContentStyle<sup>10+</sup>
 
@@ -672,3 +686,38 @@ Nullable\<T> {
 | CENTER | 位于父组件居中位置。 |
 | END | 水平方向：位于父组件最右侧，垂直方向：位于父组件最下侧。 |
 
+## TextDataDetectorType<sup>11+</sup>
+
+| 名称  | 描述                                   |
+| ----- | -------------------------------------- |
+| PHONE_NUMBER  | 电话号码 |
+| URL | 链接 |
+| EMAIL | 邮箱 |
+| ADDRESS | 地址 |
+
+## TextSpanType<sup>11+</sup>
+
+Span类型信息。
+
+| 名称 | 说明 |
+| -------- | -------- |
+| TEXT | Span为文字类型。 |
+| IMAGE | Span为图像类型。|
+| MIXED | Span为图文混合类型。|
+
+## TextResponseType<sup>11+</sup>
+
+| 名称         | 描述            |
+| ---------- | ------------- |
+| RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
+| LONG_PRESS  | 通过长按触发菜单弹出。   |
+| SELECT | 通过鼠标选中触发菜单弹出。 |
+
+## SelectionMenuOptions<sup>11+</sup>
+
+范围信息。
+
+| 名称 | 描述                               |
+| ------ | -------------------------------------- |
+| onAppear | 自定义选择菜单弹出时回调。 |
+| onDisappear | 自定义选择菜单关闭时回调。 |

@@ -176,6 +176,7 @@ onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo): void
 **示例：**
 
 ```ts
+import systemManager from '@ohos.enterprise.systemManager';
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo) {
     console.info(`Succeeded in calling onSystemUpdate callback, version name  : ${systemUpdateInfo.versionName}`);

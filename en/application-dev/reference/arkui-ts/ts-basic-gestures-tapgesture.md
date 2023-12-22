@@ -29,7 +29,7 @@ TapGesture(value?: { count?: number, fingers?: number })
 
 | Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
-| tag<sup>11+</sup>   | string  | Tag for the tap gesture. It is used to distinguish the gesture during custom gesture recognition.|
+| tag<sup>11+</sup>   | string  | Tag for the tap gesture. It is used to distinguish the gesture during custom gesture judgment.|
 
 ## Example
 

@@ -1,6 +1,6 @@
 # multimedia子系统变更说明
 
-## cl.multimedia.1 getVaildCommandsSync接口变更
+## cl.multimedia.1 getValidCommandsSync接口变更
 
 **访问级别**
 
@@ -8,7 +8,7 @@
 
 **变更原因**
 
-接口原实现返回类型为int数组，不利于开发者理解。修改实现返回字符串数组，类型为AVControlCommandType，更便于开发者的理解与使用。
+接口原实现返回成错误的int类型，现按照接口定义，修改返回为正确的AVControlCommandType类型。
 
 **变更影响**
 
@@ -28,7 +28,7 @@ getValidCommandsSync(): Array<AVControlCommandType>
 
 使用已创建的AVSession，获取controller支持的指令，返回值为int数组
 
-let validCommands = avsession.getController().getVaildCommandsSync();
+let validCommands = avsession.getController().getValidCommandsSync();
 
 例如若应用只注册了play指令回调，validCommands[0]就等于0
 
@@ -36,6 +36,6 @@ let validCommands = avsession.getController().getVaildCommandsSync();
 
 使用已创建的AVSession，获取controller支持的指令，返回值为AVControlCommandType类型的string数组
 
-let validCommands = avsession.getController().getVaildCommandsSync();
+let validCommands = avsession.getController().getValidCommandsSync();
 
 例如若应用只注册了play指令回调，validCommands[0]就等于'play'

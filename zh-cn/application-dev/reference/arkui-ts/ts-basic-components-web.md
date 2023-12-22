@@ -32,7 +32,8 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
 **示例：**
 
-  加载在线网页
+加载在线网页。
+
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
@@ -49,7 +50,8 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   }
   ```
 
-  加载本地网页
+加载本地网页。
+
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
@@ -84,82 +86,86 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   }
   ```
 
-  加载沙箱路径下的本地资源文件
+加载沙箱路径下的本地资源文件。
 
-  1.通过构造的单例对象GlobalContext获取沙箱路径。
-  ```ts
-  // GlobalContext.ts
-  export class GlobalContext {
-    private constructor() {}
-    private static instance: GlobalContext;
-    private _objects = new Map<string, Object>();
+1. 通过构造的单例对象GlobalContext获取沙箱路径。
 
-    public static getContext(): GlobalContext {
-      if (!GlobalContext.instance) {
-        GlobalContext.instance = new GlobalContext();
-      }
-      return GlobalContext.instance;
-    }
+   ```ts
+   // GlobalContext.ts
+   export class GlobalContext {
+     private constructor() {}
+     private static instance: GlobalContext;
+     private _objects = new Map<string, Object>();
 
-    getObject(value: string): Object | undefined {
-      return this._objects.get(value);
-    }
+     public static getContext(): GlobalContext {
+       if (!GlobalContext.instance) {
+         GlobalContext.instance = new GlobalContext();
+       }
+       return GlobalContext.instance;
+     }
 
-    setObject(key: string, objectClass: Object): void {
-      this._objects.set(key, objectClass);
-    }
-  }
-  ```
+     getObject(value: string): Object | undefined {
+       return this._objects.get(value);
+     }
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import { GlobalContext } from '../GlobalContext.ts'
+     setObject(key: string, objectClass: Object): void {
+       this._objects.set(key, objectClass);
+     }
+   }
+   ```
 
-  let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
+   ```ts
+   // xxx.ets
+   import web_webview from '@ohos.web.webview'
+   import { GlobalContext } from '../GlobalContext'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        // 加载沙箱路径文件。
-        Web({ src: url, controller: this.controller })
-      }
-    }
-  }
-  ```
+   let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
 
-  2.修改EntryAbility.ts。
-  以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
-  ```ts
-  // xxx.ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
-  import web_webview from '@ohos.web.webview';
-  import { GlobalContext } from '../GlobalContext'
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: web_webview.WebviewController = new web_webview.WebviewController()
+     build() {
+       Column() {
+         // 加载沙箱路径文件。
+         Web({ src: url, controller: this.controller })
+       }
+     }
+   }
+   ```
 
-  export default class EntryAbility extends UIAbility {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-          // 通过在GlobalContext对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
-          GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
-          console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
-      }
-  }
-  ```
+2. 修改EntryAbility.ts。
 
-  加载的html文件。
-  ```html
-  <!-- index.html -->
-  <!DOCTYPE html>
-  <html>
-      <body>
-          <p>Hello World</p>
-      </body>
-  </html>
-  ```
+   以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
+
+   ```ts
+   // xxx.ts
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import Want from '@ohos.app.ability.Want';
+   import web_webview from '@ohos.web.webview';
+   import { GlobalContext } from '../GlobalContext'
+
+   export default class EntryAbility extends UIAbility {
+       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+           // 通过在GlobalContext对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
+           GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
+           console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
+       }
+   }
+   ```
+
+   加载的html文件。
+
+   ```html
+   <!-- index.html -->
+   <!DOCTYPE html>
+   <html>
+       <body>
+           <p>Hello World</p>
+       </body>
+   </html>
+   ```
 
 ## 属性
 
@@ -1623,8 +1629,8 @@ nestedScroll(value: NestedScrollOptions)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .nestedScroll({
-            scrollForward: NestedScrollOptions.SELF_FIRST,
-            scrollBackward: NestedScrollOptions.SELF_FIRST,
+            scrollForward: NestedScrollMode.SELF_FIRST,
+            scrollBackward: NestedScrollMode.SELF_FIRST,
           })
       }
     }
@@ -1653,7 +1659,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -1737,7 +1743,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -1916,7 +1922,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2436,7 +2442,7 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当返回值为true时，用户可以调用系统提供的弹窗能力。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当返回值为true时，用户可以调用系统提供的弹窗能力。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2854,152 +2860,151 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
 
   对接证书管理的双向认证。
 
-1. 构造单例对象GlobalContext。
+  1. 构造单例对象GlobalContext。
 
-   ```ts
-   // GlobalContext.ts
-   export class GlobalContext {
-     private constructor() {}
-     private static instance: GlobalContext;
-     private _objects = new Map<string, Object>();
+     ```ts
+     // GlobalContext.ts
+     export class GlobalContext {
+       private constructor() {}
+       private static instance: GlobalContext;
+       private _objects = new Map<string, Object>();
 
-     public static getContext(): GlobalContext {
-       if (!GlobalContext.instance) {
-         GlobalContext.instance = new GlobalContext();
-       }
-       return GlobalContext.instance;
-     }
-
-     getObject(value: string): Object | undefined {
-       return this._objects.get(value);
-     }
-
-     setObject(key: string, objectClass: Object): void {
-       this._objects.set(key, objectClass);
-     }
-   }
-   ```
-
-   ​
-
-2. 实现双向认证。
-
-   ```ts
-   // xxx.ets API10
-   import common from '@ohos.app.ability.common';
-   import Want from '@ohos.app.ability.Want';
-   import web_webview from '@ohos.web.webview'
-   import { BusinessError } from '@ohos.base';
-   import bundleManager from '@ohos.bundle.bundleManager'
-   import { GlobalContext } from '../GlobalContext'
-
-   let uri = "";
-
-   export default class CertManagerService {
-     private static sInstance: CertManagerService;
-     private authUri = "";
-     private appUid = "";
-
-     public static getInstance(): CertManagerService {
-       if (CertManagerService.sInstance == null) {
-         CertManagerService.sInstance = new CertManagerService();
-       }
-       return CertManagerService.sInstance;
-     }
-
-     async grantAppPm(callback: (message: string) => void) {
-       let message = '';
-       let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
-       //注：com.example.myapplication需要写实际应用名称
-       try {
-         bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
-           console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-           this.appUid = data.appInfo.uid.toString();
-         }).catch((err: BusinessError) => {
-           console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
-         });
-       } catch (err) {
-         let message = (err as BusinessError).message;
-         console.error('getBundleInfoForSelf failed: %{public}s', message);
-       }
-
-       //注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
-       let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
-       await abilityContext.startAbilityForResult(
-         {
-           bundleName: "com.ohos.certmanager",
-           abilityName: "MainAbility",
-           uri: "requestAuthorize",
-           parameters: {
-             appUid: this.appUid, //传入申请应用的appUid
-           }
-         } as Want)
-         .then((data: common.AbilityResult) => {
-           if (!data.resultCode && data.want) {
-             if (data.want.parameters) {
-               this.authUri = data.want.parameters.authUri as string; //授权成功后获取返回的authUri
-             }
-           }
-         })
-       message += "after grantAppPm authUri: " + this.authUri;
-       uri = this.authUri;
-       callback(message)
-     }
-   }
-
-   @Entry
-   @Component
-   struct WebComponent {
-     controller: web_webview.WebviewController = new web_webview.WebviewController();
-     @State message: string = 'Hello World' //message主要是调试观察使用
-     certManager = CertManagerService.getInstance();
-
-     build() {
-       Row() {
-         Column() {
-           Row() {
-             //第一步：需要先进行授权，获取到uri
-             Button('GrantApp')
-               .onClick(() => {
-                 this.certManager.grantAppPm((data) => {
-                   this.message = data;
-                 });
-               })
-             //第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
-             Button("ClientCertAuth")
-               .onClick(() => {
-                 this.controller.loadUrl('https://www.example2.com'); //支持双向认证的服务器网站
-               })
-           }
-
-           Web({ src: 'https://www.example1.com', controller: this.controller })
-             .fileAccess(true)
-             .javaScriptAccess(true)
-             .domStorageAccess(true)
-             .onlineImageAccess(true)
-
-           .onClientAuthenticationRequest((event) => {
-             AlertDialog.show({
-               title: 'ClientAuth',
-               message: 'Text',
-               confirm: {
-                 value: 'Confirm',
-                 action: () => {
-                   event.handler.confirm(uri);
-                 }
-               },
-               cancel: () => {
-                 event.handler.cancel();
-               }
-             })
-           })
+       public static getContext(): GlobalContext {
+         if (!GlobalContext.instance) {
+           GlobalContext.instance = new GlobalContext();
          }
+         return GlobalContext.instance;
        }
-       .width('100%')
-       .height('100%')
+
+       getObject(value: string): Object | undefined {
+         return this._objects.get(value);
+       }
+
+       setObject(key: string, objectClass: Object): void {
+         this._objects.set(key, objectClass);
+       }
      }
-   }
-   ```
+     ```
+
+
+  2. 实现双向认证。
+
+     ```ts
+     // xxx.ets API10
+     import common from '@ohos.app.ability.common';
+     import Want from '@ohos.app.ability.Want';
+     import web_webview from '@ohos.web.webview'
+     import { BusinessError } from '@ohos.base';
+     import bundleManager from '@ohos.bundle.bundleManager'
+     import { GlobalContext } from '../GlobalContext'
+
+      let uri = "";
+
+      export default class CertManagerService {
+        private static sInstance: CertManagerService;
+        private authUri = "";
+        private appUid = "";
+
+        public static getInstance(): CertManagerService {
+          if (CertManagerService.sInstance == null) {
+            CertManagerService.sInstance = new CertManagerService();
+          }
+          return CertManagerService.sInstance;
+        }
+
+        async grantAppPm(callback: (message: string) => void) {
+          let message = '';
+          let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
+          //注：com.example.myapplication需要写实际应用名称
+          try {
+            bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
+              console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+              this.appUid = data.appInfo.uid.toString();
+            }).catch((err: BusinessError) => {
+              console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+            });
+          } catch (err) {
+            let message = (err as BusinessError).message;
+            console.error('getBundleInfoForSelf failed: %{public}s', message);
+          }
+
+          //注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
+          let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
+          await abilityContext.startAbilityForResult(
+            {
+              bundleName: "com.ohos.certmanager",
+              abilityName: "MainAbility",
+              uri: "requestAuthorize",
+              parameters: {
+                appUid: this.appUid, //传入申请应用的appUid
+              }
+            } as Want)
+            .then((data: common.AbilityResult) => {
+              if (!data.resultCode && data.want) {
+                if (data.want.parameters) {
+                  this.authUri = data.want.parameters.authUri as string; //授权成功后获取返回的authUri
+                }
+              }
+            })
+          message += "after grantAppPm authUri: " + this.authUri;
+          uri = this.authUri;
+          callback(message)
+        }
+      }
+
+      @Entry
+      @Component
+      struct WebComponent {
+        controller: web_webview.WebviewController = new web_webview.WebviewController();
+        @State message: string = 'Hello World' //message主要是调试观察使用
+        certManager = CertManagerService.getInstance();
+
+        build() {
+          Row() {
+            Column() {
+              Row() {
+                //第一步：需要先进行授权，获取到uri
+                Button('GrantApp')
+                  .onClick(() => {
+                    this.certManager.grantAppPm((data) => {
+                      this.message = data;
+                    });
+                  })
+                //第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
+                Button("ClientCertAuth")
+                  .onClick(() => {
+                    this.controller.loadUrl('https://www.example2.com'); //支持双向认证的服务器网站
+                  })
+              }
+
+              Web({ src: 'https://www.example1.com', controller: this.controller })
+                .fileAccess(true)
+                .javaScriptAccess(true)
+                .domStorageAccess(true)
+                .onlineImageAccess(true)
+
+              .onClientAuthenticationRequest((event) => {
+                AlertDialog.show({
+                  title: 'ClientAuth',
+                  message: 'Text',
+                  confirm: {
+                    value: 'Confirm',
+                    action: () => {
+                      event.handler.confirm(uri);
+                    }
+                  },
+                  cancel: () => {
+                    event.handler.cancel();
+                  }
+                })
+              })
+            }
+          }
+          .width('100%')
+          .height('100%')
+        }
+      }
+     ```
 
 ### onPermissionRequest<sup>9+</sup>
 
@@ -3118,8 +3123,15 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    result: WebContextMenuResult | null = null;
     build() {
       Column() {
+        Button('copyImage')
+        .onClick(() => {
+          if (this.result) {
+            this.result.copyImage()
+          }
+        })
         Web({ src: 'www.example.com', controller: this.controller })
           .onContextMenuShow((event) => {
             if (event) {
@@ -3218,38 +3230,27 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
   ```
 
   加载的html文件。
- ```html
-  <!-- index.html -->
+  ```html
   <!DOCTYPE html>
   <html>
-  <head>
-    <meta charset="UTF-8">
-  </head>
   <body>
-  <p id="demo">点击按钮获取您当前坐标 （可能需要比较长的时间获取）：</p>
-  <button onclick="getLocation()">点我</button>
+  <p id="locationInfo">位置信息</p>
+  <button onclick="getLocation()">获取位置</button>
   <script>
-    var x=document.grtElementByld("demo");
-    function getLocation()
-    {
-      if (navigator.geolocation)
-      {
-        navigator.geolocation.getCurrentPosition(showPosition);
-      }
-      else
-      {
-        x.innerHTML="该浏览器不支持获取地理位置。";
-      }
+  var locationInfo=document.getElementById("locationInfo");
+  function getLocation(){
+    if (navigator.geolocation) {
+      <!-- 前端页面访问设备地理位置 -->
+      navigator.geolocation.getCurrentPosition(showPosition);
     }
-
-    function showPosition(position)
-    {
-      x.innerHTML="纬度：" + position.coords.latitude + "经度：" + position.coords.longitude;
-    }
+  }
+  function showPosition(position){
+    locationInfo.innerHTML="Latitude: " + position.coords.latitude + "<br />Longitude: " + position.coords.longitude;
+  }
   </script>
   </body>
   </html>
- ```
+  ```
 
 ### onGeolocationHide
 
@@ -4007,6 +4008,44 @@ onControllerAttached(callback: () => void)
       </body>
   </html>
   ```
+
+### onNavigationEntryCommitted<sup>11+</sup>
+
+onNavigationEntryCommitted(callback: [OnNavigationEntryCommittedCallback](#onnavigationentrycommittedcallback11))
+
+当网页跳转提交时触发该回调。
+
+**参数：**
+
+| 参数名          | 类型                                                                         | 说明                    |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnNavigationEntryCommittedCallback](#onnavigationentrycommittedcallback11) | 网页跳转提交时触发的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onNavigationEntryCommitted((details) => {
+            console.log("onNavigationEntryCommitted: [isMainFrame]= " + details.isMainFrame +
+              ", [isSameDocument]=" + details.isSameDocument +
+              ", [didReplaceEntry]=" + details.didReplaceEntry +
+              ", [navigationType]=" + details.navigationType +
+              ", [url]=" + details.url);
+        })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -5704,15 +5743,15 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
         Text(this.webResult).fontSize(20)
         Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
-        .onPageEnd(() => {
+        .onPageEnd((event) => {
           this.controller.runJavaScript({
             script: 'test()',
             callback: (result: string)=> {
               this.webResult = result
               console.info(`The test() return value is: ${result}`)
             }})
-          if (e) {
-            console.info('url: ', e.url)
+          if (event) {
+            console.info('url: ', event.url)
           }
         })
       }
@@ -5835,3 +5874,37 @@ saveCookie(): boolean
 | ----------- | -------------- | ---- | --------------------- |
 | script      | string         | 是    | 需要注入、执行的JavaScript脚本。 |
 | scriptRules | Array\<string> | 是    | 一组允许来源的匹配规则。          |
+
+## NavigationType<sup>11+</sup>
+
+定义navigation类型。
+
+| 名称                           | 描述           |
+| ----------------------------- | ------------ |
+| UNKNOWN                       | 未知类型。   |
+| MAIN_FRAME_NEW_ENTRY          | 主文档上产生的新的历史节点跳转。   |
+| MAIN_FRAME_EXISTING_ENTRY     | 主文档上产生的到已有的历史节点的跳转。 |
+| NAVIGATION_TYPE_NEW_SUBFRAME  | 子文档上产生的用户触发的跳转。 |
+| NAVIGATION_TYPE_AUTO_SUBFRAME | 子文档上产生的非用户触发的跳转。 |
+
+## LoadCommittedDetails<sup>11+</sup>
+
+提供已提交跳转的网页的详细信息。
+
+| 名称             | 类型                                  | 必填   | 描述                    |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| isMainFrame     | boolean                              | 是    | 是否是主文档。 |
+| isSameDocument  | boolean                              | 是    | 是否在不更改文档的情况下进行的网页跳转。在同文档跳转的示例：1.参考片段跳转；2.pushState或replaceState触发的跳转；3.同一页面历史跳转。  |
+| didReplaceEntry | boolean                              | 是    | 是否提交的新节点替换了已有的节点。另外在一些子文档跳转的场景，虽然没有实际替换已有节点，但是有一些属性发生了变更。  |
+| navigationType  | [NavigationType](#navigationtype11)  | 是    | 网页跳转的类型。       |
+| url             | string                               | 是    | 当前跳转网页的URL。          |
+
+## OnNavigationEntryCommittedCallback<sup>11+</sup>
+
+type OnNavigationEntryCommittedCallback = (loadCommittedDetails: [LoadCommittedDetails](#loadcommitteddetails11)) => void
+
+导航条目提交时触发的回调。
+
+| 参数名                | 参数类型                                           | 参数描述                |
+| -------------------- | ------------------------------------------------ | ------------------- |
+| loadCommittedDetails | [LoadCommittedDetails](#loadcommitteddetails11)  | 提供已提交跳转的网页的详细信息。 |

@@ -35,18 +35,19 @@
 | actionButtons                 | Array\<[NotificationActionButton](js-apis-inner-notification-notificationActionButton.md)\>             |   否  | 否  | 通知按钮，最多三个按钮。                                                          |
 | smallIcon                     | [image.PixelMap](js-apis-image.md#pixelmap7)             |   否  | 否  | 通知小图标。可选字段，大小不超过30KB。                                                 |
 | largeIcon                     | [image.PixelMap](js-apis-image.md#pixelmap7)             |   否  | 否  | 通知大图标。可选字段，大小不超过30KB。                                                 |
+| overlayIcon<sup>11+<sup>      | [image.PixelMap](js-apis-image.md#pixelmap7)             |   否  | 否  | 通知重叠图标。可选字段，大小不超过30KB。<br>**系统接口**: 此接口为系统接口。                                                 |
 | creatorBundleName             | string                                                   |   是  | 否  | 创建通知的包名。                                                              |
 | creatorUid                    | number                                                   |   是  | 否  | 创建通知的UID。                                                             |
 | creatorPid                    | number                                                   |   是  | 否  | 创建通知的PID。                                                             |
 | creatorUserId<sup>8+<sup>     | number                                                   |   是  | 否  | 创建通知的UserId。                                                          |
 | hashCode                      | string                                                   |   是  | 否  | 通知唯一标识。                                                               |
-| classification                | string                                                   |   否  | 否  | 通知分类。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                               |
+| classification                | string                                                   |   否  | 否  | 通知分类。<br>**系统接口**: 此接口为系统接口。                               |
 | groupName<sup>8+<sup>         | string                                                   |   否  | 否  | 组通知名称。                                                                |
 | template<sup>8+<sup>          | [NotificationTemplate](./js-apis-inner-notification-notificationTemplate.md) |   否  | 否  | 通知模板。                                                                 |
-| isRemoveAllowed<sup>8+<sup>   | boolean                                                  |   否  | 否  | 通知是否能被移除（点击通知下方删除按钮无法删除，左滑不出现删除按钮）。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。 |
-| source<sup>8+<sup>            | number                                                   |   是  | 否  | 通知源。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                                |
+| isRemoveAllowed<sup>8+<sup>   | boolean                                                  |   否  | 否  | 通知是否能被移除（点击通知下方删除按钮无法删除，左滑不出现删除按钮）。<br>**系统接口**: 此接口为系统接口。<br>**需要权限**: ohos.permission.SET_UNREMOVABLE_NOTIFICATION |
+| source<sup>8+<sup>            | number                                                   |   是  | 否  | 通知源。<br>**系统接口**: 此接口为系统接口。                                |
 | distributedOption<sup>8+<sup> | [DistributedOptions](#distributedoptions)                |   否  | 否  | 分布式通知的选项。                                                             |
-| deviceId<sup>8+<sup>          | string                                                   |   是  | 否  | 通知源的deviceId。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                       |
+| deviceId<sup>8+<sup>          | string                                                   |   是  | 否  | 通知源的deviceId。<br>**系统接口**: 此接口为系统接口。                       |
 | notificationFlags<sup>8+<sup> | [NotificationFlags](js-apis-inner-notification-notificationFlags.md#notificationflags)                   |   是  | 否  | 获取NotificationFlags。                                                  |
 | removalWantAgent<sup>9+<sup>  | [WantAgent](js-apis-app-ability-wantAgent.md)            |   否  | 否  | 当移除通知时，通知将被重定向到的WantAgent实例。                                          |
 | badgeNumber<sup>9+<sup>       | number                                                   |   否  | 否  | 应用程序图标上显示的通知数。                                                        |
@@ -63,4 +64,34 @@
 | isDistributed<sup>8+<sup>          | boolean        | 否   | 是否为分布式通知。                   |
 | supportDisplayDevices<sup>8+<sup>  | Array\<string> | 否   | 可以同步通知到的设备列表。            |
 | supportOperateDevices<sup>8+<sup>  | Array\<string> | 否   | 可以打开通知的设备列表。              |
-| remindType<sup>8+<sup>             | number         | 否   | 通知的提醒方式。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                    |
+| remindType<sup>8+<sup>             | number         | 否   | 通知的提醒方式。<br>**系统接口**: 此接口为系统接口。                    |
+
+
+## NotificationFilter<sup>11+</sup>
+
+描述查询普通实况窗时的筛选条件。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统接口**: 此接口为系统接口。  
+
+| 名称            | 类型                                   | 必填 | 说明                               |
+| ----------------| ------------------------------------- | ---- | ---------------------------------- |
+| bundle          | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 实况通知的包信息。|
+| notificationKey | [NotificationKey](js-apis-notificationSubscribe.md#notificationkey) | 是   | 通知信息，包含通知ID和通知标签。   |
+| extraInfoKeys   | Array\<string>                        | 否   | 筛选附加信息的键值列表。不填表示查询所有的附加信息。|
+
+
+## NotificationCheckRequest<sup>11+</sup>
+
+描述通知的鉴权信息。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统接口**: 此接口为系统接口。  
+
+| 名称          | 类型                                                       | 必填 | 说明              |
+| --------------| --------------------------------------------------------- | ---- | ----------------- |
+| contentType   | [ContentType](js-apis-notificationManager.md#contenttype) | 是   | 通知类型。         |
+| slotType      | [SlotType](js-apis-notificationManager.md#slottype)       | 是   | 渠道类型。         |
+| extraInfoKeys | Array\<string>                                            | 是   | 实况通知的附加信息。|

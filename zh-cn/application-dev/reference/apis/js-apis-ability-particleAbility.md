@@ -61,13 +61,13 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): 
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 
 particleAbility.startAbility(
     {
@@ -118,7 +118,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<void>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise形式返回启动Ability的结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -142,13 +142,13 @@ startAbility(parameter: StartAbilityParameter): Promise\<void>
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 
 particleAbility.startAbility(
     {
@@ -196,7 +196,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 
 **示例：**
@@ -227,7 +227,7 @@ terminateSelf(): Promise\<void>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | 使用Promise形式返回停止当前Ability结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -240,7 +240,7 @@ terminateSelf(): Promise\<void>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 
 **示例：**
@@ -398,7 +398,7 @@ startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;voi
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | 使用Promise形式返回启动长时任务的结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -517,7 +517,7 @@ cancelBackgroundRunning(): Promise&lt;void&gt;
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | 使用Promise形式返回取消长时任务的结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -590,7 +590,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例**：
 
@@ -650,7 +650,7 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例**：
 
@@ -697,7 +697,7 @@ disconnectAbility(connection: number): Promise\<void>
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
 | connection | number               | 是    | 表示断开连接的ServiceAbility的ID。 |
-| Promise\<void> | 使用Promise形式返回结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -708,7 +708,7 @@ disconnectAbility(connection: number): Promise\<void>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例**：
 

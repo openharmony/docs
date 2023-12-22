@@ -32,10 +32,10 @@
 | ----------- | ---------------------------------------- |
 | 装饰器参数       | 无                                        |
 | 同步类型        | 单向同步：对父组件状态变量值的修改，将同步给子组件\@Prop装饰的变量，子组件\@Prop变量的修改不会同步到父组件的状态变量上。嵌套类型的场景请参考[观察变化](#观察变化)。 |
-| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，支持undefined和null。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Prop支持联合类型实例](#prop支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Prop a : string \| undefined = undefiend`是推荐的，不推荐`@Prop a: string = undefined`。 |
-|<br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。 <br/>必须指定类型。<br/>**说明** ：<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)；<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 ||
+| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，支持undefined和null。<br/>支持Date、Map、Set类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Prop支持联合类型实例](#prop支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Prop a : string \| undefined = undefiend`是推荐的，不推荐`@Prop a: string = undefined`。 |
+| 支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。| 必须指定类型。<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)；<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 |
 | 嵌套传递层数        | 在组件复用场景，建议@Prop深度嵌套数据不要超过5层，嵌套太多会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题，此时更建议使用[\@ObjectLink](arkts-observed-and-objectlink.md)。如果子组件的数据不想同步回父组件，建议采用@Reusable中的aboutToReuse，实现父组件向子组件传递数据，具体用例请参考[组件复用场景](arkts-state-management-best-practices.md)。 |
-| 被装饰变量的初始值   | 允许本地初始化。                                 |
+| 被装饰变量的初始值   | 允许本地初始化。如果在API 11中和[\@Require](arkts-require.md)结合使用，则必须父组件构造传参。 |
 
 
 ## 变量的传递/访问规则说明
@@ -73,7 +73,7 @@
   this.title = new Model('Hi');
   ```
 
-当装饰的类型是Object或者class复杂类型时，可以观察到第一层的属性的变化，属性即Object.keys(observedObject)返回的所有属性；
+- 当装饰的类型是Object或者class复杂类型时，可以观察到第一层的属性的变化，属性即Object.keys(observedObject)返回的所有属性；
 
 ```
 class ClassA {
@@ -100,7 +100,7 @@ this.title.a.value = 'ArkUi'
 
 对于嵌套场景，如果class是被\@Observed装饰的，可以观察到class属性的变化，示例请参考[@Prop嵌套场景](#prop嵌套场景)。
 
-当装饰的类型是数组的时候，可以观察到数组本身的赋值、添加、删除和更新。
+- 当装饰的类型是数组的时候，可以观察到数组本身的赋值、添加、删除和更新。
 
 ```
 // @State装饰的对象为数组时
@@ -177,6 +177,10 @@ struct ParentComponent {
   }
 }
 ```
+
+- 当装饰的变量是Map时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
+
+- 当装饰的变量是Set时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
 
 ### 框架行为
 
@@ -730,9 +734,113 @@ struct Child1 {
 
 ![Video-prop-UsageScenario-three](figures/Video-prop-UsageScenario-three.gif)
 
+### 装饰Map类型变量
+
+\@Prop支持Map类型，在下面的示例中，value类型为Map<number, string>，点击Button改变message的值，视图会随之刷新。
+
+```ts
+@Component
+struct Child {
+  @Prop value: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+
+  build() {
+    Column(){
+      ForEach(Array.from(this.value.entries()), (item: [number, string]) => {
+        Text(`${item[0]}`).fontSize(30)
+        Text(`${item[1]}`).fontSize(30)
+        Divider()
+      })
+      Button('child init map').onClick(() =>{
+        this.value = new Map([[0, "a"], [1, "b"], [3, "c"]])
+      })
+      Button('child set new one').onClick(() =>{
+        this.value.set(4, "d")
+      })
+      Button('child clear').onClick(() =>{
+        this.value.clear()
+      })
+      Button('child replace the first one').onClick(() =>{
+        this.value.set(0, "aa")
+      })
+      Button('child delete the first one').onClick(() =>{
+        this.value.delete(0)
+      })
+    }
+  }
+}
+
+
+@Entry
+@Component
+struct MapSample2 {
+  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+
+  build() {
+    Row() {
+      Column() {
+        Child({value:this.message})
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### 装饰Set类型变量
+
+\@Prop支持Set类型，在下面的示例中，message类型为Set<number>，点击Button改变message的值，视图会随之刷新。
+
+```ts
+@Component
+struct Child {
+  @Prop message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+
+  build() {
+    Column() {
+      ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        Text(`${item[0]}`).fontSize(30)
+        Divider()
+      })
+      Button('init set').onClick(() =>{
+        this.message = new Set([0, 1, 2 ,3,4 ])
+      })
+      Button('set new one').onClick(() =>{
+        this.message.add(5)
+      })
+      Button('clear').onClick(() =>{
+        this.message.clear()
+      })
+      Button('delete the first one').onClick(() =>{
+        this.message.delete(0)
+      })
+    }
+    .width('100%')
+  }
+}
+
+
+
+@Entry
+@Component
+struct SetSample11 {
+  @State message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+
+  build() {
+    Row() {
+      Column() {
+        Child({message:this.message})
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ## Prop支持联合类型实例
 
-@Prop支持联合类型和undefined和null，在下面的示例中，count类型为ClassA | undefined，点击父组件Library中的Button改变count的属性或者类型，Child中也会对应刷新。
+@Prop支持联合类型和undefined和null，在下面的示例中，animal类型为Animals | undefined，点击父组件Zoo中的Button改变animal的属性或者类型，Child中也会对应刷新。
 
 ```ts
 class Animals {
@@ -769,7 +877,7 @@ struct Child {
 
 @Entry
 @Component
-struct Library {
+struct Zoo {
   @State animal: Animals | undefined = new Animals("lion");
 
   build() {

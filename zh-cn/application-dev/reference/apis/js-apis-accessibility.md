@@ -65,23 +65,23 @@ import accessibility from '@ohos.accessibility';
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称                      | 描述                 |
-| ----------------------- | ------------------ |
+| ----------------------- |--------------------|
 | click                   | 表示点击操作。            |
 | longClick               | 表示长按操作。            |
-| scrollForward           | 表示向前滚动操作；当前版本暂不支持。 |
-| scrollBackward          | 表示向后滚动操作；当前版本暂不支持。 |
-| focus                   | 表示获得焦点操作；当前版本暂不支持。 |
-| clearFocus              | 表示清除焦点操作；当前版本暂不支持。 |
-| clearSelection          | 表示清除选择操作；当前版本暂不支持。 |
+| scrollForward           | 表示向前滚动操作。当前版本暂不支持。 |
+| scrollBackward          | 表示向后滚动操作。当前版本暂不支持。 |
+| focus                   | 表示获得焦点操作。当前版本暂不支持。 |
+| clearFocus              | 表示清除焦点操作。当前版本暂不支持。 |
+| clearSelection          | 表示清除选择操作。当前版本暂不支持。 |
 | accessibilityFocus      | 表示获得无障碍焦点操作。       |
 | clearAccessibilityFocus | 表示清除无障碍焦点操作。       |
-| cut                     | 表示剪切操作；当前版本暂不支持。   |
-| copy                    | 表示复制操作；当前版本暂不支持。   |
-| paste                   | 表示粘贴操作；当前版本暂不支持。   |
-| select                  | 表示选择操作，当前版本暂不支持。   |
-| setText                 | 表示设置文本操作；当前版本暂不支持。 |
-| delete                  | 表示删除操作；当前版本暂不支持。   |
-| setSelection            | 表示选择操作；当前版本暂不支持。   |
+| cut                     | 表示剪切操作。当前版本暂不支持。   |
+| copy                    | 表示复制操作。当前版本暂不支持。   |
+| paste                   | 表示粘贴操作。当前版本暂不支持。   |
+| select                  | 表示选择操作。当前版本暂不支持。   |
+| setText                 | 表示设置文本操作。当前版本暂不支持。 |
+| delete                  | 表示删除操作。当前版本暂不支持。   |
+| setSelection            | 表示选择操作。当前版本暂不支持。   |
 
 ## Capability
 
@@ -90,11 +90,11 @@ import accessibility from '@ohos.accessibility';
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称               | 描述                    |
-| ---------------- | --------------------- |
+| ---------------- |-----------------------|
 | retrieve         | 具有检索窗口内容的能力。          |
 | touchGuide       | 具有触摸探索模式的能力。          |
 | keyEventObserver | 具有过滤按键事件的能力。          |
-| zoom             | 具有控制显示放大的能力；当前版本暂不支持。 |
+| zoom             | 具有控制显示放大的能力。当前版本暂不支持。 |
 | gesture          | 具有执行手势动作的能力。          |
 
 ## CaptionsFontEdgeType<sup>8+</sup>
@@ -273,22 +273,22 @@ captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
 
 ### 属性
 
-| 名称               | 类型                                    | 可读   | 可写   | 是否支持可选   | 说明                    |
-| ---------------- | ------------------------------------- | ---- | ---- | ---- | --------------------- |
-| type             | [EventType](#eventtype)               | 是    | 是    | 否    | 无障碍事件类型；不可缺省。              |
-| windowUpdateType | [WindowUpdateType](#windowupdatetype) | 是    | 是    | 是    | 窗口变化类型。               |
-| bundleName       | string                                | 是    | 是    | 否    | 目标应用名；不可缺省。                |
-| componentType    | string                                | 是    | 是    | 是    | 事件源组件类型，如按钮、图表。       |
-| pageId           | number                                | 是    | 是    | 是    | 事件源的页面 ID。            |
-| description      | string                                | 是    | 是    | 是    | 事件描述；当前版本暂不支持。        |
-| triggerAction    | [Action](#action)                     | 是    | 是    | 否    | 触发事件的 Action；不可缺省。         |
-| textMoveUnit     | [TextMoveUnit](#textmoveunit)         | 是    | 是    | 是    | 文本移动粒度；当前版本暂不支持。      |
-| contents         | Array&lt;string&gt;                   | 是    | 是    | 是    | 内容列表。                 |
-| lastContent      | string                                | 是    | 是    | 是    | 最新内容。                 |
-| beginIndex       | number                                | 是    | 是    | 是    | 画面显示条目的开始序号；当前版本暂不支持。 |
-| currentIndex     | number                                | 是    | 是    | 是    | 当前条目序号；当前版本暂不支持。      |
-| endIndex         | number                                | 是    | 是    | 是    | 画面显示条目的结束序号；当前版本暂不支持。 |
-| itemCount        | number                                | 是    | 是    | 是    | 条目总数；当前版本暂不支持。        |
+| 名称               | 类型                                    | 必填  | 说明                    |
+| ---------------- | ------------------------------------- |-----|-----------------------|
+| type             | [EventType](#eventtype)               | 是   | 无障碍事件类型；不可缺省。         |
+| windowUpdateType | [WindowUpdateType](#windowupdatetype) | 否   | 窗口变化类型。               |
+| bundleName       | string                                | 是   | 目标应用名；不可缺省。           |
+| componentType    | string                                | 否   | 事件源组件类型，如按钮、图表。       |
+| pageId           | number                                | 否   | 事件源的页面 ID。            |
+| description      | string                                | 否   | 事件描述。当前版本暂不支持。        |
+| triggerAction    | [Action](#action)                     | 是   | 触发事件的 Action；不可缺省。    |
+| textMoveUnit     | [TextMoveUnit](#textmoveunit)         | 否   | 文本移动粒度。当前版本暂不支持。      |
+| contents         | Array&lt;string&gt;                   | 否   | 内容列表。                 |
+| lastContent      | string                                | 否   | 最新内容。                 |
+| beginIndex       | number                                | 否   | 画面显示条目的开始序号。当前版本暂不支持。 |
+| currentIndex     | number                                | 否   | 当前条目序号。当前版本暂不支持。      |
+| endIndex         | number                                | 否   | 画面显示条目的结束序号。当前版本暂不支持。 |
+| itemCount        | number                                | 否   | 条目总数。当前版本暂不支持。        |
 
 ### constructor
 
@@ -323,18 +323,18 @@ constructor(jsonObject)
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称                      | 描述                     |
-| ----------------------- | ---------------------- |
+| ----------------------- |------------------------|
 | accessibilityFocus      | 描述获得无障碍焦点的事件。          |
 | accessibilityFocusClear | 描述清除无障碍焦点的事件。          |
 | click                   | 描述点击组件的事件。             |
 | longClick               | 描述长按组件的事件。             |
-| select                  | 描述选择组件的事件；当前版本暂不支持。    |
-| hoverEnter              | 描述悬停进入组件的事件；当前版本暂不支持。  |
-| hoverExit               | 描述悬停离开组件的事件；当前版本暂不支持。  |
-| focus                   | 描述组件获得焦点的事件；当前版本暂不支持。  |
-| textUpdate              | 描述组件文本已更改的事件；当前版本暂不支持。 |
-| textSelectionUpdate     | 描述选定文本已更改的事件；当前版本暂不支持。 |
-| scroll                  | 描述滚动视图的事件；当前版本暂不支持。    |
+| select                  | 描述选择组件的事件。当前版本暂不支持。    |
+| hoverEnter              | 描述悬停进入组件的事件。当前版本暂不支持。  |
+| hoverExit               | 描述悬停离开组件的事件。当前版本暂不支持。  |
+| focus                   | 描述组件获得焦点的事件。当前版本暂不支持。  |
+| textUpdate              | 描述组件文本已更改的事件。当前版本暂不支持。 |
+| textSelectionUpdate     | 描述选定文本已更改的事件。当前版本暂不支持。 |
+| scroll                  | 描述滚动视图的事件。当前版本暂不支持。    |
 
 
 ## TextMoveUnit
@@ -374,7 +374,7 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState): Promise&lt;A
 > **说明：**
 >
 > 从API version 7开始支持，从API version 9开始废弃。
-> 推荐使用[getAccessibilityExtensionList()](#accessibilitygetaccessibilityextensionlist9)。
+> 推荐使用[accessibility.getAccessibilityExtensionList()](#accessibilitygetaccessibilityextensionlist9)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -416,7 +416,7 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState,callback: Asyn
 > **说明：**
 >
 > 从API version 7开始支持，从API version 9开始废弃。
-> 推荐使用[getAccessibilityExtensionList()](#accessibilitygetaccessibilityextensionlist9-1)。
+> 推荐使用[accessibility.getAccessibilityExtensionList()](#accessibilitygetaccessibilityextensionlist9-1)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -649,7 +649,7 @@ isOpenAccessibility(): Promise&lt;boolean&gt;
 >
 > 从API version 10开始废弃。
 >
-> 推荐使用[isOpenAccessibilitySync](#accessibilityisopenaccessibilitysync10)。
+> 推荐使用[accessibility.isOpenAccessibilitySync](#accessibilityisopenaccessibilitysync10)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -682,7 +682,7 @@ isOpenAccessibility(callback: AsyncCallback&lt;boolean&gt;): void
 >
 > 从API version 10开始废弃。
 >
-> 推荐使用[isOpenAccessibilitySync](#accessibilityisopenaccessibilitysync10)。
+> 推荐使用[accessibility.isOpenAccessibilitySync](#accessibilityisopenaccessibilitysync10)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -740,7 +740,7 @@ isOpenTouchGuide(): Promise&lt;boolean&gt;
 >
 > 从API version 10开始废弃。
 >
-> 推荐使用[isOpenTouchGuideSync](#accessibilityisopentouchguidesync10)。
+> 推荐使用[accessibility.isOpenTouchGuideSync](#accessibilityisopentouchguidesync10)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
 
@@ -773,7 +773,7 @@ isOpenTouchGuide(callback: AsyncCallback&lt;boolean&gt;): void
 >
 > 从API version 10开始废弃。
 >
-> 推荐使用[isOpenTouchGuideSync](#accessibilityisopentouchguidesync10)。
+> 推荐使用[accessibility.isOpenTouchGuideSync](#accessibilityisopentouchguidesync10)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
 
@@ -829,7 +829,7 @@ sendEvent(event: EventInfo): Promise&lt;void&gt;
 > **说明：**
 >
 > 从API version 7开始支持，从API version 9开始废弃。
-> 推荐使用[sendAccessibilityEvent()](#accessibilitysendaccessibilityevent9)。
+> 推荐使用[accessibility.sendAccessibilityEvent()](#accessibilitysendaccessibilityevent9)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -873,7 +873,7 @@ sendEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): void
 > **说明：**
 >
 > 从API version 7开始支持，从API version 9开始废弃。
-> 推荐使用[sendAccessibilityEvent()](#accessibilitysendaccessibilityevent9-1)。
+> 推荐使用[accessibility.sendAccessibilityEvent()](#accessibilitysendaccessibilityevent9-1)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 

@@ -9,10 +9,7 @@
 ```ts
 import audio from '@ohos.multimedia.audio';  // 导入audio模块
 
-import { BusinessError } from '@ohos.base'; // 导入BusinessError
-
 let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
-
 let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例
 ```
 
@@ -32,6 +29,8 @@ let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioMa
 使用getDevices()方法可以获取当前所有输入设备的信息。
 
 ```ts
+import audio from '@ohos.multimedia.audio';
+
 audioRoutingManager.getDevices(audio.DeviceFlag.INPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
 });
@@ -42,6 +41,8 @@ audioRoutingManager.getDevices(audio.DeviceFlag.INPUT_DEVICES_FLAG).then((data: 
 可以设置监听事件来监听设备连接状态的变化，当有设备连接或断开时触发回调：
 
 ```ts
+import audio from '@ohos.multimedia.audio';
+
 // 监听音频设备状态变化
 audioRoutingManager.on('deviceChange', audio.DeviceFlag.INPUT_DEVICES_FLAG, (deviceChanged: audio.DeviceChangeAction) => {
   console.info('device change type : ' + deviceChanged.type);  // 设备连接状态变化，0为连接，1为断开连接
@@ -66,6 +67,8 @@ audioRoutingManager.off('deviceChange', (deviceChanged: audio.DeviceChangeAction
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+
 let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
     deviceRole : audio.DeviceRole.INPUT_DEVICE,
     deviceType : audio.DeviceType.EARPIECE,

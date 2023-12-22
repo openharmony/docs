@@ -1,4 +1,4 @@
-# Audio Input Device Management
+# Audio Input Device Management (ArkTS)
 
 If a device is connected to multiple audio input devices, you can use **AudioRoutingManager** to specify an audio input device to record audio. For details about the API reference, see [AudioRoutingManager](../reference/apis/js-apis-audio.md#audioroutingmanager9).
 

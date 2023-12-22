@@ -1,4 +1,4 @@
-# Using OHAudio for Audio Playback
+# Using OHAudio for Audio Playback (C/C++)
 
 **OHAudio** is a set of native APIs introduced in API version 10. These APIs are normalized in design and support both common and low-latency audio channels.
 

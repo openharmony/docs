@@ -12,21 +12,23 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
 
 1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为myabilitystage。
 
-2. 在myabilitystage目录，右键选择“New &gt; TypeScript File”，新建一个TypeScript文件并命名为MyAbilityStage.ts。
+2. 在myabilitystage目录，右键选择“New &gt; TypeScript File”，新建一个TypeScript文件并命名为MyAbilityStage.ets。
 
-3. 打开MyAbilityStage.ts文件，导入AbilityStage的依赖包，自定义类继承AbilityStage并加上需要的生命周期回调，示例中增加了一个`onCreate()`生命周期回调。
+3. 打开MyAbilityStage.ets文件，导入AbilityStage的依赖包，自定义类继承AbilityStage并加上需要的生命周期回调，示例中增加了一个`onCreate()`生命周期回调。
    
    ```ts
    import AbilityStage from '@ohos.app.ability.AbilityStage';
-   import Want from '@ohos.app.ability.Want';
+   import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import hilog from '@ohos.hilog';
+   import type Want from '@ohos.app.ability.Want';
    
    export default class MyAbilityStage extends AbilityStage {
-     onCreate() {
+     onCreate(): void {
        // 应用的HAP在首次加载的时，为该Module初始化操作
      }
-     onAcceptWant(want: Want) {
+     onAcceptWant(want: Want): string {
        // 仅specified模式下触发
-       return "MyAbilityStage";
+       return 'MyAbilityStage';
      }
    }
    ```
@@ -37,7 +39,7 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
      "module": {
        "name": "entry",
        "type": "entry",
-       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
+       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ets",
        ...
      }
    }
@@ -62,7 +64,7 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   
   export default class MyAbilityStage extends AbilityStage {
-    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
+    onMemoryLevel(level: AbilityConstant.MemoryLevel): void {
       // 根据系统可用内存的变化情况，释放不必要的内存
     }
   }

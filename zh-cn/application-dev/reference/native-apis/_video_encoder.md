@@ -44,7 +44,7 @@ VideoEncoder模块提供用于视频编码功能的函数。
 | \*[OH_VideoEncoder_CreateByName](#oh_videoencoder_createbyname) (const char \*name) | 通过视频编码器名称创建一个视频编码器实例。使用此接口的前提是知道编码器的确切名称。 | 
 | [OH_VideoEncoder_Destroy](#oh_videoencoder_destroy) (OH_AVCodec \*codec) | 清除编码器的内部资源并销毁编码器实例。 | 
 | [OH_VideoEncoder_SetCallback](#oh_videoencoder_setcallback) (OH_AVCodec \*codec, OH_AVCodecAsyncCallback callback, void \*userData) | 设置异步回调函数，以便您的应用程序能够响应视频编码器事件。 | 
-| [OH_VideoEncoder_Configure](#oh_videoencoder_configure) (OH_AVCodec \*codec, OH_AVFormat \*format) | 配置视频编码器，通常需要配置要编码的视频轨的描述信息。 | 
+| [OH_VideoEncoder_Configure](#oh_videoencoder_configure) (OH_AVCodec \*codec, OH_AVFormat \*format) | 配置视频编码器。 | 
 | [OH_VideoEncoder_Prepare](#oh_videoencoder_prepare) (OH_AVCodec \*codec) | 若要准备编码器的内部资源，必须先调用Configure接口，再调用此接口。 | 
 | [OH_VideoEncoder_Start](#oh_videoencoder_start) (OH_AVCodec \*codec) | 启动编码器, 这个接口必须要在Prepare接口执行成功后调用。 | 
 | [OH_VideoEncoder_Stop](#oh_videoencoder_stop) (OH_AVCodec \*codec) | 停止编码器。 | 
@@ -120,7 +120,7 @@ OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec *codec, OH_AVFormat *format)
 
 **描述：**
 
-配置视频编码器，通常需要配置要编码的视频轨的描述信息。
+配置视频编码器。用于配置要编码的视频轨的描述信息。
 
 必须在调用Prepare之前，调用此接口。
 

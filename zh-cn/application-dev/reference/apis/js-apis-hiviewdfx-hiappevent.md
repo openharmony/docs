@@ -42,17 +42,18 @@ addProcessor(processor: Processor): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 try {
     let processor: hiAppEvent.Processor = {
       name: 'analytics_demo'
     };
     let id: number = hiAppEvent.addProcessor(processor);
-    hiLog.info('hiAppEvent', `addProcessor event was successful, id=${id}`);
-} catch (error) {
-    hiLog.info('hiAppEvent', `failed to addProcessor event, code=${error.code}`);
-} 
+    hilog.info(0x0000, 'hiAppEvent', `addProcessor event was successful, id=${id}`);
+} catch (error: BusinessError) {
+    hilog.info(0x0000, 'hiAppEvent', `failed to addProcessor event, code=${error.code}`);
+}
 ```
 
 ## Processor<sup>11+</sup>
@@ -63,15 +64,16 @@ try {
 
 | 名称                | 类型                     | 必填 | 说明                                                                                                        |
 | ------------------- | ----------------------- | ---- | ---------------------------------------------------------------------------------------------------------- |
-| name                | string                  | 是   | 数据处理者的名称。                                                                                           |
-| debugMode           | boolean                 | 否   | 是否开启debug模式。配置值为true表示开启debug模式，false表示不开启debug模式。                                    |
-| routeInfo           | string                  | 否   | 服务器位置信息，不超过8kB。                                                                                   |
-| onStartReport       | boolean                 | 否   | 数据处理者在启动时是否上报事件。配置值为true表示上报事件，false表示不上报事件。                                   |
-| onBackgroundReport  | boolean                 | 否   | 当应用程序进入后台时是否上报事件。配置值为true表示上报事件，false表示不上报事件。                                 |
-| periodReport        | number                  | 否   | 根据时间周期定时上报事件。单位为秒，数值不小于0，如果为0则不上报。                                                |
-| batchReport         | number                  | 否   | 当事件条数达到数量阈值时上报事件。阈值的数值范围为大于0且小于1000。不在数值范围内则不上报。                         |
-| userIds             | string[]                | 否   | 数据处理者可以上报的用户ID的name数组。name值只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。    |
-| userProperties      | string[]                | 否   | 数据处理者可以上报的用户属性的name数组。name值只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。   |
+| name                | string                  | 是   | 数据处理者的名称。名称只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度非空且不超过256个字符。                                                                                           |
+| debugMode           | boolean                 | 否   | 是否开启debug模式，默认值为false。配置值为true表示开启debug模式，false表示不开启debug模式。                                    |
+| routeInfo           | string                  | 否   | 服务器位置信息，默认为空字符串。传入字符串长度不能超过8KB，超过时会被置为默认值。                                                                                   |
+| appId               | string                  | 否   | 应用id，默认为空字符串。传入字符串长度不能超过8KB，超过时会被置为默认值。 |
+| onStartReport       | boolean                 | 否   | 数据处理者在启动时是否上报事件，默认值为false。配置值为true表示上报事件，false表示不上报事件。                                   |
+| onBackgroundReport  | boolean                 | 否   | 当应用程序进入后台时是否上报事件，默认值为false。配置值为true表示上报事件，false表示不上报事件。                                 |
+| periodReport        | number                  | 否   | 事件定时上报时间周期，单位为秒。传入数值必须大于或等于0，小于0时会被置为默认值0，不进行定时上报。                                                |
+| batchReport         | number                  | 否   | 事件上报阈值，当事件条数达到阈值时上报事件。传入数值必须大于0且小于1000，不在数值范围内会被置为默认值0，不进行上报。                         |
+| userIds             | string[]                | 否   | 数据处理者可以上报的用户ID的name数组。name对应[setUserId](#hiappeventsetuserid11)接口的name参数。    |
+| userProperties      | string[]                | 否   | 数据处理者可以上报的用户属性的name数组。name对应[setUserProperty](#hiappeventsetuserproperty11)接口的name参数。   |
 | eventConfigs        | [AppEventReportConfig](#appeventreportconfig11)[]  | 否   | 数据处理者可以上报的事件数组。                                                                                 |
 
 ## AppEventReportConfig<sup>11+</sup>
@@ -99,7 +101,7 @@ removeProcessor(id: number): void
 | 参数名 | 类型    | 必填 | 说明                         |
 | ------| ------- | ---- | --------------------------- |
 | id    | number  | 是   | 上报事件数据处理者ID。值大于0。|
-	
+
 **错误码：**
 
 | 错误码ID | 错误信息          |
@@ -109,7 +111,8 @@ removeProcessor(id: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 try {
     let processor: hiAppEvent.Processor = {
@@ -117,9 +120,9 @@ try {
     };
     let id: number = hiAppEvent.addProcessor(processor);
     hiAppEvent.removeProcessor(id);
-} catch (error) {
-    hiLog.info('hiAppEvent', `failed to removeProcessor event, code=${error.code}`);
-} 
+} catch (error: BusinessError) {
+    hilog.info(0x0000, 'hiAppEvent', `failed to removeProcessor event, code=${error.code}`);
+}
 ```
 
 ## hiAppEvent.write
@@ -155,6 +158,7 @@ write(info: [AppEventInfo](#appeventinfo), callback: AsyncCallback&lt;void&gt;):
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 let eventParams: Record<string, number | string> = {
   "int_data": 100,
@@ -167,10 +171,10 @@ hiAppEvent.write({
   params: eventParams,
 }, (err: BusinessError) => {
   if (err) {
-    console.error(`code: ${err.code}, message: ${err.message}`);
+    hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.log(`success to write event`);
+  hilog.info(0x0000, 'hiAppEvent', `success to write event`);
 });
 ```
 
@@ -212,6 +216,7 @@ write(info: [AppEventInfo](#appeventinfo)): Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 let eventParams: Record<string, number | string> = {
   "int_data": 100,
@@ -223,9 +228,9 @@ hiAppEvent.write({
   eventType: hiAppEvent.EventType.FAULT,
   params: eventParams,
 }).then(() => {
-  console.log(`success to write event`);
+  hilog.info(0x0000, 'hiAppEvent', `success to write event`);
 }).catch((err: BusinessError) => {
-  console.error(`code: ${err.code}, message: ${err.message}`);
+  hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -303,8 +308,8 @@ setUserId(name: string, value: string): void
 
 | 参数名     | 类型                      | 必填 | 说明           |
 | --------- | ------------------------- | ---- | -------------  |
-| name      | string                    | 是   | 用户ID的key。只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。   |
-| value     | string                    | 是   | 用户ID的值。长度不超过256，当值为null、undefine或空，则清除用户ID。 |
+| name      | string                    | 是   | 用户ID的key。只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度非空且不超过256个字符。   |
+| value     | string                    | 是   | 用户ID的值。长度不超过256，当值为null或空字符串时，则清除用户ID。 |
 
 **错误码：**
 
@@ -315,13 +320,14 @@ setUserId(name: string, value: string): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 try {
   hiAppEvent.setUserId('key', 'value');
-} catch (error) {
-  hiLog.info('hiAppEvent', `failed to setUseId event, code=${error.code}`);
-} 
+} catch (error: BusinessError) {
+  hilog.error(0x0000, 'hiAppEvent', `failed to setUseId event, code=${error.code}`);
+}
 ```
 
 ## hiAppEvent.getUserId<sup>11+</sup>
@@ -353,15 +359,16 @@ getUserId(name: string): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 hiAppEvent.setUserId('key', 'value');
 try {
   let value: string = hiAppEvent.getUserId('key');
-  hiLog.info('hiAppEvent', `getUseId event was successful, userId=${value}`);/* "value" */
-} catch (error) {
-  hiLog.info('hiAppEvent', `failed to getUseId event, code=${error.code}`);
-} 
+  hilog.info(0x0000, 'hiAppEvent', `getUseId event was successful, userId=${value}`);
+} catch (error: BusinessError) {
+  hilog.error(0x0000, 'hiAppEvent', `failed to getUseId event, code=${error.code}`);
+}
 ```
 
 ## hiAppEvent.setUserProperty<sup>11+</sup>
@@ -376,7 +383,7 @@ setUserProperty(name: string, value: string): void
 
 | 参数名     | 类型                      | 必填 | 说明           |
 | --------- | ------------------------- | ---- | -------------- |
-| name      | string                    | 是   | 用户属性的key。 只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。  |
+| name      | string                    | 是   | 用户属性的key。只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度非空且不超过256个字符。  |
 | value     | string                    | 是   | 用户属性的值。长度不超过1024，当值为null、undefine或空，则清除用户ID。  |
 
 **错误码：**
@@ -388,13 +395,14 @@ setUserProperty(name: string, value: string): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 try {
   hiAppEvent.setUserProperty('key', 'value');
-} catch (error) {
-  hiLog.info('hiAppEvent', `failed to setUserProperty event, code=${error.code}`);
-} 
+} catch (error: BusinessError) {
+  hilog.info(0x0000, 'hiAppEvent', `failed to setUserProperty event, code=${error.code}`);
+}
 ```
 
 ## hiAppEvent.getUserProperty<sup>11+</sup>
@@ -426,15 +434,16 @@ getUserProperty(name: string): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 hiAppEvent.setUserProperty('key', 'value');
 try {
   let value: string = hiAppEvent.getUserProperty('key');
-  hiLog.info('hiAppEvent', `getUserProperty event was successful, userProperty=${value}`);/* "value" */
-} catch (error) {
-  hiLog.info('hiAppEvent', `failed to getUserProperty event, code=${error.code}`);
-} 
+  hilog.info(0x0000, 'hiAppEvent', `getUserProperty event was successful, userProperty=${value}`);
+} catch (error: BusinessError) {
+  hilog.error(0x0000, 'hiAppEvent', `failed to getUserProperty event, code=${error.code}`);
+}
 ```
 
 ## hiAppEvent.addWatcher
@@ -488,17 +497,17 @@ hiAppEvent.addWatcher({
   },
   onTrigger: (curRow: number, curSize: number, holder: hiAppEvent.AppEventPackageHolder) => {
     if (holder == null) {
-      console.error("holder is null");
+      hilog.error(0x0000, 'hiAppEvent', "holder is null");
       return;
     }
-    console.info(`curRow=${curRow}, curSize=${curSize}`);
+    hilog.info(0x0000, 'hiAppEvent', `curRow=${curRow}, curSize=${curSize}`);
     let eventPkg: hiAppEvent.AppEventPackage | null = null;
     while ((eventPkg = holder.takeNext()) != null) {
-      console.info(`eventPkg.packageId=${eventPkg.packageId}`);
-      console.info(`eventPkg.row=${eventPkg.row}`);
-      console.info(`eventPkg.size=${eventPkg.size}`);
+      hilog.info(0x0000, 'hiAppEvent', `eventPkg.packageId=${eventPkg.packageId}`);
+      hilog.info(0x0000, 'hiAppEvent', `eventPkg.row=${eventPkg.row}`);
+      hilog.info(0x0000, 'hiAppEvent', `eventPkg.size=${eventPkg.size}`);
       for (const eventInfo of eventPkg.data) {
-        console.info(`eventPkg.data=${eventInfo}`);
+        hilog.info(0x0000, 'hiAppEvent', `eventPkg.data=${eventInfo}`);
       }
     }
   }
@@ -511,14 +520,34 @@ let holder = hiAppEvent.addWatcher({
 if (holder != null) {
   let eventPkg: hiAppEvent.AppEventPackage | null = null;
   while ((eventPkg = holder.takeNext()) != null) {
-    console.info(`eventPkg.packageId=${eventPkg.packageId}`);
-    console.info(`eventPkg.row=${eventPkg.row}`);
-    console.info(`eventPkg.size=${eventPkg.size}`);
+    hilog.info(0x0000, 'hiAppEvent', `eventPkg.packageId=${eventPkg.packageId}`);
+    hilog.info(0x0000, 'hiAppEvent', `eventPkg.row=${eventPkg.row}`);
+    hilog.info(0x0000, 'hiAppEvent', `eventPkg.size=${eventPkg.size}`);
     for (const eventInfo of eventPkg.data) {
-      console.info(`eventPkg.data=${eventInfo}`);
+      hilog.info(0x0000, 'hiAppEvent', `eventPkg.data=${eventInfo}`);
     }
   }
 }
+
+// 3. 观察者可以在实时回调函数onReceive中处理订阅事件
+hiAppEvent.addWatcher({
+  name: "watcher3",
+  appEventFilters: [
+    {
+      domain: "test_domain",
+      eventTypes: [hiAppEvent.EventType.FAULT, hiAppEvent.EventType.BEHAVIOR]
+    }
+  ],
+  onReceive: (domain: string, appEventGroups: Array<hiAppEvent.AppEventGroup>) => {
+    hilog.info(0x0000, 'hiAppEvent', `domain=${domain}`);
+    for (const eventGroup of appEventGroups) {
+      hilog.info(0x0000, 'hiAppEvent', `eventName=${eventGroup.name}`);
+      for (const eventInfo of eventGroup.appEventInfos) {
+        hilog.info(0x0000, 'hiAppEvent', `event=${JSON.stringify(eventInfo)}`, );
+      }
+    }
+  }
+});
 ```
 
 ## hiAppEvent.removeWatcher
@@ -567,9 +596,10 @@ hiAppEvent.removeWatcher(watcher);
 | 名称             | 类型                                                         | 必填 | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | name             | string                                                       | 是   | 观察者名称，用于唯一标识观察者。                             |
-| triggerCondition | [TriggerCondition](#triggercondition)                        | 否   | 订阅回调触发条件，需要与回调函数一同传入才会生效。           |
+| triggerCondition | [TriggerCondition](#triggercondition)                        | 否   | 订阅回调触发条件，需要与回调函数onTrigger一同传入才会生效。           |
 | appEventFilters  | [AppEventFilter](#appeventfilter)[]                          | 否   | 订阅过滤条件，在需要对订阅事件进行过滤时传入。               |
-| onTrigger        | (curRow: number, curSize: number, holder: [AppEventPackageHolder](#appeventpackageholder)) => void | 否   | 订阅回调函数，需要与回调触发条件一同传入才会生效，函数入参说明如下：<br>curRow：在本次回调触发时的订阅事件总数量； <br>curSize：在本次回调触发时的订阅事件总大小，单位为byte；  <br/>holder：订阅数据持有者对象，可以通过其对订阅事件进行处理。 |
+| onTrigger        | (curRow: number, curSize: number, holder: [AppEventPackageHolder](#appeventpackageholder)) => void | 否   | 订阅回调函数，需要与回调触发条件triggerCondition一同传入才会生效，函数入参说明如下：<br>curRow：在本次回调触发时的订阅事件总数量； <br>curSize：在本次回调触发时的订阅事件总大小，单位为byte；  <br/>holder：订阅数据持有者对象，可以通过其对订阅事件进行处理。 |
+| onReceive<sup>11+</sup>        | (domain: string, appEventGroups: Array<[AppEventGroup](#appeventgroup11)>) => void | 否 | 订阅实时回调函数，与回调函数onTrigger同时存在时，只触发此回调，函数入参说明如下：<br>domain：回调事件的领域名称； <br>appEventGroups：回调事件集合。 |
 
 ## TriggerCondition
 
@@ -593,6 +623,7 @@ hiAppEvent.removeWatcher(watcher);
 | ---------- | ------------------------- | ---- | ------------------------ |
 | domain     | string                    | 是   | 需要订阅的事件领域。     |
 | eventTypes | [EventType](#eventtype)[] | 否   | 需要订阅的事件类型集合。 |
+| names<sup>11+</sup>      | string[]                  | 否   | 需要订阅的事件名称集合。 |
 
 ## AppEventPackageHolder
 
@@ -681,6 +712,17 @@ let eventPkg = holder3.takeNext();
 | size      | number   | 是   | 事件包的事件大小，单位为byte。 |
 | data      | string[] | 是   | 事件包的事件信息。             |
 
+## AppEventGroup<sup>11+</sup>
+
+提供了订阅返回的事件组的参数定义。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+| 名称          | 类型                            | 必填  | 说明          |
+| ------------- | ------------------------------- | ---- | ------------- |
+| name          | string                          | 是   | 事件名称。     |
+| appEventInfos | Array<[AppEventInfo](#appeventinfo)> | 是   | 事件对象集合。 |
+
 ## hiAppEvent.clearData
 
 clearData(): void
@@ -710,6 +752,17 @@ hiAppEvent.clearData();
 | BEHAVIOR  | 4    | 行为类型事件。 |
 
 
+## domain<sup>11+</sup>
+
+提供了所有预定义事件的领域名称常量。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+| 名称 | 类型   | 说明       |
+| ---  | ------ | ---------- |
+| OS   | string | 系统领域。 |
+
+
 ## event
 
 提供了所有预定义事件的事件名称常量。
@@ -721,6 +774,8 @@ hiAppEvent.clearData();
 | USER_LOGIN                | string | 用户登录事件。       |
 | USER_LOGOUT               | string | 用户登出事件。       |
 | DISTRIBUTED_SERVICE_START | string | 分布式服务启动事件。 |
+| APP_CRASH<sup>11+</sup>   | string | 应用崩溃事件。       |
+| APP_FREEZE<sup>11+</sup>  | string | 应用卡死事件。       |
 
 
 ## param

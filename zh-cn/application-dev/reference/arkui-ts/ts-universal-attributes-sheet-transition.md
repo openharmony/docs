@@ -22,18 +22,19 @@
 
 | 名称              | 类型                                       | 必填   | 描述              |
 | --------------- | ---------------------------------------- | ---- | --------------- |
-| height          | [SheetSize](#sheetsize)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否    | 半模态高度，默认是LARGE。<br/>**说明：**<br/>底部弹窗竖屏时，当设置sheetDetents时，该属性设置无效。<br/>底部弹窗横屏时，该属性设置无效。<br/>居中弹窗和跟手弹窗设置类型为SheetSize.LARGE和SheetSize.MUDIUM无效，显示默认高度。 |
-| detents<sup>11+</sup> | [([SheetSize.LARGE](#sheetsize) \|[SheetSize.MEDIUM](#sheetsize) \| [Length](ts-types.md#length)), ([SheetSize.LARGE](#sheetsize)\| [SheetSize.MEDIUM](#sheetsize)\| [Length](ts-types.md#length)), ([SheetSize.LARGE](#sheetsize) \| [SheetSize.MEDIUM](#sheetsize)\| [Length](ts-types.md#length))?] | 否 | 半模态页面的切换高度档位。<br/>**说明：**<br/>底部弹窗竖屏生效，元组中第一个高度为初始高度。 |
-| type<sup>11+</sup> | [SheetType.CENTER](#sheettype11)\| [SheetType.POPUP](#sheettype11) | 否 | 半模态页面的样式。 |
+| height          | [SheetSize](#sheetsize)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否    | 半模态高度，默认是LARGE。<br/>**说明：**<br/>底部弹窗竖屏时，当设置sheetDetents时，该属性设置无效。<br/>底部弹窗横屏时，该属性设置无效。<br/>居中弹窗和跟手弹窗设置类型为SheetSize.LARGE和SheetSize.MUDIUM无效，显示默认高度560vp。居中弹窗和跟手弹窗最小高度为320vp，最大高度为窗口短边的90%。当使用Length设置的高度和使用SheetSize.FIT_CONTENT自适应的高度大于最大高度，则显示最大高度，小于最小高度，则显示最小高度。 |
+| detents<sup>11+</sup> | [([SheetSize](#sheetsize) \| [Length](ts-types.md#length)), ( [SheetSize](#sheetsize) \| [Length](ts-types.md#length))?, ([SheetSize](#sheetsize) \| [Length](ts-types.md#length))?] | 否 | 半模态页面的切换高度档位。<br/>**说明：**<br/>底部弹窗竖屏生效，元组中第一个高度为初始高度。 |
+| preferType<sup>11+</sup> | [SheetType.CENTER](#sheettype11) \|  [SheetType.POPUP](#sheettype11) | 否 | 半模态页面的样式。 |
 | showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | 否 | 是否显示关闭图标，默认显示。<br/>**说明：**<br/>Resource需要为boolean类型。 |
 | dragBar         | boolean                                  | 否    | 是否显示控制条，默认显示。   |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否    | 半模态页面的背板颜色。     |
 | blurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 半模态面板的模糊背景。默认无模糊背景。 |
 | maskColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 半模态页面的背景蒙层颜色。 |
 | title<sup>11+</sup> | [SheetTitleOptions](#sheettitleoptions11) \| [CustomBuilder](ts-types.md#custombuilder8) | 否 | 半模态面板的标题。 |
+| enableOutsideInteractive<sup>11+</sup> | boolean | 否 | 半模态所在页面是否允许交互。默认不允许。 |
 | onAppear        | () => void                               | 否    | 半模态页面显示回调函数。    |
 | onDisappear     | () => void                               | 否    | 半模态页面回退回调函数。    |
-| shouldDismiss<sup>11+</sup> | (sheetDismiss: [SheetDismiss](#sheetdismiss11) => void) | 否 | 半模态页面交互式关闭回调函数。<br/>**说明：**<br/>当用户执行下拉关闭/back事件/点击蒙层关闭/关闭按钮关闭交互操作时，如果注册该回调函数，则不会立刻关闭。 |
+| shouldDismiss<sup>11+</sup> | (sheetDismiss: [SheetDismiss](#sheetdismiss11)) => void | 否 | 半模态页面交互式关闭回调函数。<br/>**说明：**<br/>当用户执行下拉关闭/back事件/点击蒙层关闭/关闭按钮关闭交互操作时，如果注册该回调函数，则不会立刻关闭。 |
 
 ## SheetSize
 
@@ -64,7 +65,7 @@
 | title    | ResourceStr | 是   | 半模态面板的主标题。 |
 | subtitle | ResourceStr | 否   | 半模态面板的副标题。 |
 
-## 示例
+## 示例1
 
 ```ts
 // xxx.ets
@@ -128,3 +129,54 @@ struct SheetTransitionExample {
 ```
 
 ![zh-cn_sheet](figures/zh-cn_sheet.gif)
+
+## 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SheetTransitionExample {
+  @State isShow:boolean = false
+  @Builder myBuilder() {
+    Column() {
+      Button("content1")
+        .margin(10)
+        .fontSize(20)
+
+      Button("content2")
+        .margin(10)
+        .fontSize(20)
+    }
+    .width('100%')
+  }
+
+  build() {
+    Column() {
+      Button("transition modal 1")
+        .onClick(() => {
+          this.isShow = true
+        })
+        .fontSize(20)
+        .margin(10)
+        .bindSheet($$this.isShow, this.myBuilder(),{
+          detents:[SheetSize.MEDIUM,SheetSize.LARGE,200],
+          backgroundColor:Color.Gray,
+          blurStyle:BlurStyle.Thick,
+          showClose:true,
+          title:{title:"title", subtitle:"subtitle"},
+          preferType: SheetType.CENTER,
+          shouldDismiss:((sheetDismiss: SheetDismiss)=> {
+            console.log("bind sheet shouldDismiss")
+            sheetDismiss.dismiss()
+          })
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_sheet](figures/zh-cn_sheet2.gif)

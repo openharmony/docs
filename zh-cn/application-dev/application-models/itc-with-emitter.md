@@ -10,38 +10,49 @@ Emitter的开发步骤如下：
 1. 订阅事件
 
    ```ts
-   import emitter from "@ohos.events.emitter";
-
+   import emitter from '@ohos.events.emitter';
+   import promptAction from '@ohos.promptAction';
+   ```
+   ```ts
    // 定义一个eventId为1的事件
    let event: emitter.InnerEvent = {
      eventId: 1
    };
-
+   
    // 收到eventId为1的事件后执行该回调
-   let callback = (eventData: emitter.EventData) => {
-     console.info('event callback');
+   let callback = (eventData: emitter.EventData): void => {
+     promptAction.showToast({
+       message: JSON.stringify(eventData)
+     });
+     Logger.info(TAG, 'event callback:' + JSON.stringify(eventData));
    };
-
+   
    // 订阅eventId为1的事件
    emitter.on(event, callback);
+   promptAction.showToast({
+     message: $r('app.string.emitter_subscribe_success_toast')
+   });
    ```
 
 2. 发送事件
 
    ```ts
-   import emitter from "@ohos.events.emitter";
-   
+   import emitter from '@ohos.events.emitter';
+   ```
+   ```ts
    // 定义一个eventId为1的事件，事件优先级为Low
    let event: emitter.InnerEvent = {
      eventId: 1,
      priority: emitter.EventPriority.LOW
    };
    
-   let data = new Map<string, Object>();
-   data.set("content", "c");
-   data.set("id", 1);
-   data.set("isEmpty", false);
-   let eventData: emitter.EventData = {data};
+   let eventData: emitter.EventData = {
+     data: {
+       content: 'c',
+       id: 1,
+       isEmpty: false
+     }
+   };
    
    // 发送eventId为1的事件，事件内容为eventData
    emitter.emit(event, eventData);

@@ -41,11 +41,11 @@ import fileShare from '@ohos.fileshare';
 
 **系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
-| 名称      | 类型                                  | 说明                |
-|---------|-------------------------------------|-------------------|
-| uri     | string                              | 授予或使能权限失败的URI。         |
-| code    | [PolicyErrorCode](#policyerrorcode) | 授权策略失败的URI对应的错误码。 |
-| message | string                              | 授权策略失败的URI对应的原因。  |
+| 名称      | 类型                                   | 说明                |
+|---------|--------------------------------------|-------------------|
+| uri     | string                               | 授予或使能权限失败的URI。         |
+| code    | [PolicyErrorCode](#policyerrorcode11) | 授权策略失败的URI对应的错误码。 |
+| message | string                               | 授权策略失败的URI对应的原因。  |
 
 ## PolicyInfo<sup>11+</sup>
 
@@ -53,10 +53,10 @@ import fileShare from '@ohos.fileshare';
 
 **系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
-| 名称            | 类型       | 必填  | 说明                                                                                                                                              |
-|---------------| ---------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| uri           | string     | 是   | 需要授予或使能权限的URI。                                                                                                                                  |
-| operationMode | number  | 是   | 授予或使能权限的URI访问模式，参考[OperationMode](#operationmode)，例如：<br/>  fileShare.OperationMode.READ_MODE ：允许读授权 <br/>  fileShare.OperationMode.READ_MODE  \| fileShare.OperationMode.WRITE_MODE ：允许读写授权 |
+| 名称            | 类型       | 必填  | 说明                                                                                                                                                |
+|---------------| ---------|-----|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| uri           | string     | 是   | 需要授予或使能权限的URI。                                                                                                                                    |
+| operationMode | number  | 是   | 授予或使能权限的URI访问模式，参考[OperationMode](#operationmode11)，例如：<br/>  fileShare.OperationMode.READ_MODE ：允许读授权 <br/>  fileShare.OperationMode.READ_MODE  \| fileShare.OperationMode.WRITE_MODE ：允许读写授权 |
 
 
 ## fileShare.grantUriPermission
@@ -174,7 +174,7 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): P
 
 persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法对所选择的文件或目录URI持久化授权，以promise形式返回结果，该接口仅对特定设备开放。
+异步方法对所选择的多个文件或目录URI持久化授权，以promise形式返回结果，该接口仅对特定设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -182,9 +182,9 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型                 | 必填 | 说明                      |
-| -------- |--------------------| -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
+| 参数名 | 类型                                    | 必填 | 说明                      |
+| -------- |---------------------------------------| -------- |-------------------------|
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息。           |
 
 **返回值：**
 
@@ -195,7 +195,7 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-如果存在URI授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
+如果存在URI授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult11)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -209,41 +209,43 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-
-async function persistPermissionExample() {
-  try {
-    let DocumentSelectOptions = new picker.DocumentSelectOptions();
-    let documentPicker = new picker.DocumentViewPicker();
-    let uris = await documentPicker.select(DocumentSelectOptions);
-    let policyInfo: fileShare.PolicyInfo = {
-      uri: uris[0], 
-      operationMode: fileShare.OperationMode.READ_MODE,
-    };
-    let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-    fileShare.persistPermission(policies).then(() => {
-      console.info("persistPermission successfully");
-    }).catch((err: BusinessError) => {
-      console.info("persistPermission failed with error message: " + err.message + ", error code: " + err.code);
-      if (err.code == 13900001) {
-        console.log("error code : " + JSON.stringify(err.data[0].code));
-        console.log("error uri : " + JSON.stringify(err.data[0].uri));
-        console.log("error reason : " + JSON.stringify(err.data[0].message));
-      }
-    });
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('persistPermission failed with err: ' + JSON.stringify(err));
+  import { BusinessError } from '@ohos.base';
+  import picker from '@ohos.file.picker';
+  
+  async function persistPermissionExample() {
+    try {
+      let DocumentSelectOptions = new picker.DocumentSelectOptions();
+      let documentPicker = new picker.DocumentViewPicker();
+      let uris = await documentPicker.select(DocumentSelectOptions);
+      let policyInfo: fileShare.PolicyInfo = {
+        uri: uris[0], 
+        operationMode: fileShare.OperationMode.READ_MODE,
+      };
+      let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+      fileShare.persistPermission(policies).then(() => {
+        console.info("persistPermission successfully");
+      }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
+        console.info("persistPermission failed with error message: " + err.message + ", error code: " + err.code);
+        if (err.code == 13900001 && err.data) {
+          for (let i = 0; i < err.data.length; i++) {
+            console.log("error code : " + JSON.stringify(err.data[i].code));
+            console.log("error uri : " + JSON.stringify(err.data[i].uri));
+            console.log("error reason : " + JSON.stringify(err.data[i].message));
+          }
+        }
+      });
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('persistPermission failed with err: ' + JSON.stringify(err));
+    }
   }
-}
   ```
 
 ## fileShare.revokePermission<sup>11+</sup>
 
 revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
-异步方法对所选择的文件或目录uri取消持久化授权，以promise形式返回结果，该接口仅对特定设备开放。
+异步方法对所选择的多个文件或目录uri取消持久化授权，以promise形式返回结果，该接口仅对特定设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -253,7 +255,7 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 | 参数名 | 类型                 | 必填 | 说明                      |
 | -------- |--------------------| -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息。           |
 
 **返回值：**
 
@@ -264,7 +266,7 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-如果存在URI取消授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
+如果存在URI取消授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult11)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -277,42 +279,44 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-
-async function revokePermissionExample() {
-  try {
-    let DocumentSelectOptions = new picker.DocumentSelectOptions();
-    let documentPicker = new picker.DocumentViewPicker();
-    let uris = await documentPicker.select(DocumentSelectOptions);
-    let policyInfo: fileShare.PolicyInfo = {
-      uri: uris[0], 
-      operationMode: fileShare.OperationMode.READ_MODE,
-    };
-    let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-    fileShare.revokePermission(policies).then(() => {
-      console.info("revokePermission successfully");
-    }).catch((err: BusinessError) => {
-      console.info("revokePermission failed with error message: " + err.message + ", error code: " + err.code);
-      if (err.code == 13900001) {
-        console.log("error code : " + JSON.stringify(err.data[0].code));
-        console.log("error uri : " + JSON.stringify(err.data[0].uri));
-        console.log("error reason : " + JSON.stringify(err.data[0].message));
-      }
-    });
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('revokePermission failed with err: ' + JSON.stringify(err));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import picker from '@ohos.file.picker';
+  
+  async function revokePermissionExample() {
+    try {
+      let DocumentSelectOptions = new picker.DocumentSelectOptions();
+      let documentPicker = new picker.DocumentViewPicker();
+      let uris = await documentPicker.select(DocumentSelectOptions);
+      let policyInfo: fileShare.PolicyInfo = {
+        uri: uris[0], 
+        operationMode: fileShare.OperationMode.READ_MODE,
+      };
+      let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+      fileShare.revokePermission(policies).then(() => {
+        console.info("revokePermission successfully");
+      }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
+        console.info("revokePermission failed with error message: " + err.message + ", error code: " + err.code);
+          if (err.code == 13900001 && err.data) {
+            for (let i = 0; i < err.data.length; i++) {
+              console.log("error code : " + JSON.stringify(err.data[i].code));
+              console.log("error uri : " + JSON.stringify(err.data[i].uri));
+              console.log("error reason : " + JSON.stringify(err.data[i].message));
+            }
+          }
+      });
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('revokePermission failed with err: ' + JSON.stringify(err));
+    }
   }
-}
-```
+  ```
 
 ## fileShare.activatePermission<sup>11+</sup>
 
 activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法使能某个已经永久授权过的文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
+异步方法使能多个已经永久授权过的文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -322,7 +326,7 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                      |
 | -------- | -------- | -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息。           |
 
 **返回值：**
 
@@ -333,7 +337,7 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-如果存在URI使能权限失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
+如果存在URI使能权限失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult11)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -346,40 +350,42 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 **示例：**
 
-```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-
-async function activatePermissionExample() {
-  try {
-    let uri = "file://docs/storage/Users/username/tmp.txt";
-    let policyInfo: fileShare.PolicyInfo = {
-      uri: uri,
-      operationMode: fileShare.OperationMode.READ_MODE,
-    };
-    let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-    fileShare.activatePermission(policies).then(() => {
-      console.info("activatePermission successfully");
-    }).catch((err: BusinessError) => {
-      console.info("activatePermission failed with error message: " + err.message + ", error code: " + err.code);
-      if (err.code == 13900001) {
-        console.log("error code : " + JSON.stringify(err.data[0].code));
-        console.log("error uri : " + JSON.stringify(err.data[0].uri));
-        console.log("error reason : " + JSON.stringify(err.data[0].message));
-      }
-    });
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('activatePermission failed with err: ' + JSON.stringify(err));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import picker from '@ohos.file.picker';
+  
+  async function activatePermissionExample() {
+    try {
+      let uri = "file://docs/storage/Users/username/tmp.txt";
+      let policyInfo: fileShare.PolicyInfo = {
+        uri: uri,
+        operationMode: fileShare.OperationMode.READ_MODE,
+      };
+      let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+      fileShare.activatePermission(policies).then(() => {
+        console.info("activatePermission successfully");
+      }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
+        console.info("activatePermission failed with error message: " + err.message + ", error code: " + err.code);
+          if (err.code == 13900001 && err.data) {
+            for (let i = 0; i < err.data.length; i++) {
+              console.log("error code : " + JSON.stringify(err.data[i].code));
+              console.log("error uri : " + JSON.stringify(err.data[i].uri));
+              console.log("error reason : " + JSON.stringify(err.data[i].message));
+            }
+          }
+      });
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('activatePermission failed with err: ' + JSON.stringify(err));
+    }
   }
-}
-```
+  ```
 
 ## fileShare.deactivatePermission<sup>11+</sup>
 
 deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法取消使能授权过的文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
+异步方法取消使能授权过的多个文件或目录，以promise形式返回结果，该接口仅对特定设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -389,7 +395,7 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                      |
 | -------- | -------- | -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。           |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息。           |
 
 **返回值：**
 
@@ -400,7 +406,7 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-如果存在URI取消使能权限失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult)>形式提供错误信息。
+如果存在URI取消使能权限失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult11)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
@@ -412,31 +418,33 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 **示例：**
 
-```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-
-async function deactivatePermissionExample() {
-  try {
-    let uri = "file://docs/storage/Users/username/tmp.txt";
-    let policyInfo: fileShare.PolicyInfo = {
-      uri: uri,
-      operationMode: fileShare.OperationMode.READ_MODE,
-    };
-    let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-    fileShare.deactivatePermission(policies).then(() => {
-      console.info("deactivatePermission successfully");
-    }).catch((err: BusinessError) => {
-      console.info("deactivatePermission failed with error message: " + err.message + ", error code: " + err.code);
-      if (err.code == 13900001) {
-        console.log("error code : " + JSON.stringify(err.data[0].code));
-        console.log("error uri : " + JSON.stringify(err.data[0].uri));
-        console.log("error reason : " + JSON.stringify(err.data[0].message));
-      }
-    });
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('deactivatePermission failed with err: ' + JSON.stringify(err));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import picker from '@ohos.file.picker';
+  
+  async function deactivatePermissionExample() {
+    try {
+      let uri = "file://docs/storage/Users/username/tmp.txt";
+      let policyInfo: fileShare.PolicyInfo = {
+        uri: uri,
+        operationMode: fileShare.OperationMode.READ_MODE,
+      };
+      let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+      fileShare.deactivatePermission(policies).then(() => {
+        console.info("deactivatePermission successfully");
+      }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
+        console.info("deactivatePermission failed with error message: " + err.message + ", error code: " + err.code);
+          if (err.code == 13900001 && err.data) {
+            for (let i = 0; i < err.data.length; i++) {
+              console.log("error code : " + JSON.stringify(err.data[i].code));
+              console.log("error uri : " + JSON.stringify(err.data[i].uri));
+              console.log("error reason : " + JSON.stringify(err.data[i].message));
+            }
+          }
+      });
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('deactivatePermission failed with err: ' + JSON.stringify(err));
+    }
   }
-}
-```
+  ```

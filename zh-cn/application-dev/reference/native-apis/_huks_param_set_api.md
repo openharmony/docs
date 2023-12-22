@@ -18,7 +18,7 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [native_huks_param.h](native__huks__param_8h.md) | 提供参数集构造、使用和销毁的API。<br>**引用文件**：<huks/native_huks/native_huks_param.h> <br>**库**：libhuks_ndk.z.so | 
+| [native_huks_param.h](native__huks__param_8h.md) | 提供参数集构造、使用和销毁的API。<br>**引用文件**：<huks/native_huks_param.h> <br>**库**：libhuks_ndk.z.so | 
 
 
 ### 函数

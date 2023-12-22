@@ -59,10 +59,10 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
     storageStatistics.getTotalSizeOfVolume(uuid).then((number: number) => {
       console.info("getTotalSizeOfVolume successfully:" + number);
     }).catch((err: BusinessError) => {
-      console.info("getTotalSizeOfVolume failed with error:" + JSON.stringify(err));
+      console.error("getTotalSizeOfVolume failed with error:" + JSON.stringify(err));
     });
   }).catch((err: BusinessError) => {
-    console.info("getAllVolumes failed with error:" + JSON.stringify(err));
+    console.error("getAllVolumes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -107,14 +107,14 @@ getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;):
     let uuid: string = volumes[0].uuid;
     storageStatistics.getTotalSizeOfVolume(uuid, (error: BusinessError, number: number) => {
       if (error) {
-        console.info("getTotalSizeOfVolume failed with error:" + JSON.stringify(error));
+        console.error("getTotalSizeOfVolume failed with error:" + JSON.stringify(error));
       } else {
         // do something
         console.info("getTotalSizeOfVolume successfully:" + number);
       }
     });
   }).catch((err: BusinessError) => {
-    console.info("getAllVolumes failed with error:" + JSON.stringify(err));
+    console.error("getAllVolumes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -165,10 +165,10 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
     storageStatistics.getFreeSizeOfVolume(uuid).then((number: number) => {
       console.info("getFreeSizeOfVolume successfully:" + number);
     }).catch((err: BusinessError) => {
-      console.info("getFreeSizeOfVolume failed with error:" + JSON.stringify(err));
+      console.error("getFreeSizeOfVolume failed with error:" + JSON.stringify(err));
     });
   }).catch((err: BusinessError) => {
-    console.info("getAllVolumes failed with error:" + JSON.stringify(err));
+    console.error("getAllVolumes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -213,14 +213,14 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
     let uuid: string = volumes[0].uuid;
     storageStatistics.getFreeSizeOfVolume(uuid, (error: BusinessError, number: number) => {
       if (error) {
-        console.info("getFreeSizeOfVolume failed with error:" + JSON.stringify(error));
+        console.error("getFreeSizeOfVolume failed with error:" + JSON.stringify(error));
       } else {
         // do something
         console.info("getFreeSizeOfVolume successfully: " + number);
       }
     });
   }).catch((err: BusinessError) => {
-    console.info("getAllVolumes failed with error:" + JSON.stringify(err));
+    console.error("getAllVolumes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -269,7 +269,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
   storageStatistics.getBundleStats(packageName).then((BundleStats: storageStatistics.BundleStats) => {
     console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
   }).catch((err: BusinessError) => {
-    console.info("getBundleStats failed with error:" + JSON.stringify(err));
+    console.error("getBundleStats failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -312,7 +312,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
   let packageName: string = "";
   storageStatistics.getBundleStats(packageName, (error: BusinessError, BundleStats: storageStatistics.BundleStats) => {
     if (error) {
-      console.info("getBundleStats failed with error:" + JSON.stringify(error));
+      console.error("getBundleStats failed with error:" + JSON.stringify(error));
     }  else {
       // do something
       console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
@@ -332,7 +332,7 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
   | 类型                                        | 说明                       |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存空间大小（单位为Byte）      |
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存储空间大小（单位为Byte）      |
 
 **错误码：**
 
@@ -351,7 +351,7 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
   storageStatistics.getCurrentBundleStats().then((BundleStats: storageStatistics.BundleStats) => {
     console.info("getCurrentBundleStats successfully:" + JSON.stringify(BundleStats));
   }).catch((err: BusinessError) => {
-    console.info("getCurrentBundleStats failed with error:"+ JSON.stringify(err));
+    console.error("getCurrentBundleStats failed with error:"+ JSON.stringify(err));
   });
   ```
 
@@ -385,7 +385,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
   import { BusinessError } from '@ohos.base';
   storageStatistics.getCurrentBundleStats((error: BusinessError, bundleStats: storageStatistics.BundleStats) => {
     if (error) {
-      console.info("getCurrentBundleStats failed with error:" + JSON.stringify(error));
+      console.error("getCurrentBundleStats failed with error:" + JSON.stringify(error));
     } else {
       // do something
       console.info("getCurrentBundleStats successfully:" + JSON.stringify(bundleStats));
@@ -440,7 +440,7 @@ getTotalSize(): Promise&lt;number&gt;
   storageStatistics.getTotalSize().then((number: number) => {
     console.info("getTotalSize successfully:" + JSON.stringify(number));
   }).catch((err: BusinessError) => {
-    console.info("getTotalSize failed with error:"+ JSON.stringify(err));
+    console.error("getTotalSize failed with error:"+ JSON.stringify(err));
   });
   ```
 
@@ -480,7 +480,7 @@ getTotalSize(callback: AsyncCallback&lt;number&gt;): void
   import { BusinessError } from '@ohos.base';
   storageStatistics.getTotalSize((error: BusinessError, number: number) => {
     if (error) {
-      console.info("getTotalSize failed with error:" + JSON.stringify(error));
+      console.error("getTotalSize failed with error:" + JSON.stringify(error));
     } else {
       // do something
       console.info("getTotalSize successfully:" + number);
@@ -527,7 +527,7 @@ getTotalSizeSync(): number
     console.info("getTotalSizeSync successfully:" + JSON.stringify(number));
   } catch (err) {
     let error: BusinessError = err as BusinessError;
-    console.info("getTotalSizeSync failed with error:" + JSON.stringify(error));
+    console.error("getTotalSizeSync failed with error:" + JSON.stringify(error));
   }
   ```
 
@@ -568,7 +568,7 @@ getFreeSize(): Promise&lt;number&gt;
   storageStatistics.getFreeSize().then((number: number) => {
     console.info("getFreeSize successfully:" + JSON.stringify(number));
   }).catch((err: BusinessError) => {
-    console.info("getFreeSize failed with error:" + JSON.stringify(err));
+    console.error("getFreeSize failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -608,7 +608,7 @@ getFreeSize(callback: AsyncCallback&lt;number&gt;): void
   import { BusinessError } from '@ohos.base';
   storageStatistics.getFreeSize((error: BusinessError, number: number) => {
     if (error) {
-      console.info("getFreeSize failed with error:" + JSON.stringify(error));
+      console.error("getFreeSize failed with error:" + JSON.stringify(error));
     } else {
       // do something
       console.info("getFreeSize successfully:" + number);
@@ -655,7 +655,7 @@ getFreeSizeSync(): number
     console.info("getFreeSizeSync successfully:" + JSON.stringify(number));
   } catch (err) {
     let error: BusinessError = err as BusinessError;
-    console.info("getFreeSizeSync failed with error:" + JSON.stringify(error));
+    console.error("getFreeSizeSync failed with error:" + JSON.stringify(error));
   }
   ```
 
@@ -696,7 +696,7 @@ getSystemSize(): Promise&lt;number&gt;
   storageStatistics.getSystemSize().then((number: number) => {
     console.info("getSystemSize successfully:" + number);
   }).catch((err: BusinessError) => {
-    console.info("getSystemSize failed with error:" + JSON.stringify(err));
+    console.error("getSystemSize failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -736,7 +736,7 @@ getSystemSize(callback: AsyncCallback&lt;number&gt;): void
   import { BusinessError } from '@ohos.base';
   storageStatistics.getSystemSize((error: BusinessError, number: number) => {
     if (error) {
-      console.info("getSystemSize failed with error:" + JSON.stringify(error));
+      console.error("getSystemSize failed with error:" + JSON.stringify(error));
     } else {
       // do something
       console.info("getSystemSize successfully:" + number);
@@ -781,7 +781,7 @@ getUserStorageStats(): Promise&lt;StorageStats&gt;
   storageStatistics.getUserStorageStats().then((storageStats: storageStatistics.StorageStats) => {
     console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
   }).catch((err: BusinessError) => {
-    console.info("getUserStorageStats failed with error:" + JSON.stringify(err));
+    console.error("getUserStorageStats failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -821,7 +821,7 @@ getUserStorageStats(callback: AsyncCallback&lt;StorageStats&gt;): void
   import { BusinessError } from '@ohos.base';
   storageStatistics.getUserStorageStats((error: BusinessError, storageStats: storageStatistics.StorageStats) => {
     if (error) {
-      console.info("getUserStorageStats failed with error:" + JSON.stringify(error));
+      console.error("getUserStorageStats failed with error:" + JSON.stringify(error));
     } else {
       // do something
       console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
@@ -874,7 +874,7 @@ getUserStorageStats(userId: number): Promise&lt;StorageStats&gt;
   storageStatistics.getUserStorageStats(userId).then((storageStats: storageStatistics.StorageStats) => {
     console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
   }).catch((err: BusinessError) => {
-    console.info("getUserStorageStats failed with error:" + JSON.stringify(err));
+    console.error("getUserStorageStats failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -895,7 +895,7 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
   | userId | number                               | 是   | 用户id |
-  | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | 是   | 返回各类别数据大小之后的回调 |
+  | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | 是   | 返回指定用户各类别存储空间大小之后的回调 |
 
 **错误码：**
 
@@ -917,7 +917,7 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
   let userId: number = 100;
   storageStatistics.getUserStorageStats(userId, (error: BusinessError, storageStats: storageStatistics.StorageStats) => {
     if (error) {
-      console.info("getUserStorageStats failed with error:" + JSON.stringify(error));
+      console.error("getUserStorageStats failed with error:" + JSON.stringify(error));
     } else {
       // do something
       console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));

@@ -23,7 +23,8 @@ import formInfo from '@ohos.app.form.formInfo';
 | bundleName  | string               | 是    | 否     | 卡片所属包的Bundle名称。                   |
 | moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
 | abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
-| name        | string               | 是    | 否     | 卡片名称。                                 |
+| name        | string               | 是    | 否     | 应用/元服务名称。                                 |
+| displayName<sup>11+</sup> | string               | 是    | 否     | 卡片名称。                                 |
 | description | string               | 是    | 否     | 卡片描述。   |
 | descriptionId<sup>10+</sup>      | number               | 是    | 否     | 卡片描述id。               |
 | type        | [FormType](#formtype)             | 是    | 否     | 卡片类型。当前支持JS卡片、ArkTS卡片。 |
@@ -179,6 +180,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | formName<sup>10+</sup>        | string               | 是    | 否     | 卡片名称。                                 |
 | dimension | number               | 是    | 否     | 卡片规格。   |
 | formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | 是    | 否     | 卡片当前使用状态枚举。   |
+| formDescription<sup>11+</sup> | string         | 是    | 否     | 提供方卡片配置文件中的描述信息。   |
 
 ## formProviderFilter<sup>10+</sup>
 

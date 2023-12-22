@@ -109,12 +109,13 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称       | 类型    | 可读 | 可写 | 说明                       |
-| ---------- | ------- | ---- | ---- | -------------------------- |
-| bundleName | string  | 是   | 否   | 窗口归属应用的包名。       |
-| title      | string  | 是   | 否   | 窗口的标题信息。           |
-| focused    | boolean | 是   | 否   | 窗口是否处于获焦状态。     |
-| actived    | boolean | 是   | 否   | 窗口是否正与用户进行交互。 |
+| 名称                 | 类型    | 可读 | 可写 | 说明                                                         |
+| -------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
+| bundleName           | string  | 是   | 否   | 窗口归属应用的包名。                                         |
+| title                | string  | 是   | 否   | 窗口的标题信息。                                             |
+| focused              | boolean | 是   | 否   | 窗口是否处于获焦状态。                                       |
+| actived(deprecated)  | boolean | 是   | 否   | 窗口是否正与用户进行交互。<br>从API11开始，名称变更为active。 |
+| active<sup>11+</sup> | boolean | 是   | 否   | 窗口是否正与用户进行交互。                                   |
 
 ## UiDirection<sup>10+</sup>
 
@@ -575,6 +576,34 @@ inWindow(bundleName: string): On;
 ```ts
 import { On, ON } from '@ohos.UiTest';
 let on:On = ON.inWindow('com.uitestScene.acts'); // 使用静态构造器ON创建On对象，指定目标控件位于给出的应用窗口内。
+```
+
+### description<sup>11+</sup>
+
+description(val: string, pattern?: MatchPattern): On
+
+指定目标控件的描述属性，支持多种匹配模式，返回On对象自身。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名  | 类型                          | 必填 | 说明                                                |
+| ------- | ----------------------------- | ---- | --------------------------------------------------- |
+| val     | string                        | 是   | 控件的描述属性。                                    |
+| pattern | [MatchPattern](#matchpattern) | 否   | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
+
+**返回值：**
+
+| 类型       | 说明                                      |
+| ---------- | ----------------------------------------- |
+| [On](#on9) | 返回指定目标控件description属性的On对象。 |
+
+**示例：**
+
+```ts
+import { On, ON } from '@ohos.UiTest';
+let on:On = ON.description('123'); // 使用静态构造器ON创建On对象，指定目标控件的description属性。
 ```
 
 ## Component<sup>9+</sup>
@@ -1410,6 +1439,40 @@ async function demo() {
   let driver: Driver = Driver.create();
   let image: Component = await driver.findComponent(ON.type('Image'));
   await image.pinchIn(0.5);
+}
+```
+
+### getDescription<sup>11+</sup>
+
+getDescription(): Promise\<string>
+
+获取控件对象的描述信息，使用Promise异步回调。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明                              |
+| ---------------- | --------------------------------- |
+| Promise\<string> | Promise对象，返回控件的描述信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.      |
+
+**示例：**
+
+```ts
+import { Component, Driver, ON } from '@ohos.UiTest';
+async function demo() {
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('Button'));
+  let description = await button.getDescription();
 }
 ```
 
@@ -2646,7 +2709,7 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 import { Driver } from '@ohos.UiTest';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseMoveWithTrack(100,100,200,200,600);
+  await driver.mouseMoveWithTrack({x:100, y:100},{x:200, y:200},600);
 }
 ```
 
@@ -2680,7 +2743,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 import { Driver } from '@ohos.UiTest';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseDrag(100,100,200,200,600);
+  await driver.mouseDrag({x:100, y:100},{x:200, y:200},600);
 }
 ```
 
@@ -2960,11 +3023,13 @@ async function demo() {
 }
 ```
 
-### isActived<sup>9+</sup>
+### isActived<sup>(deprecated)</sup>
 
 isActived(): Promise\<boolean>
 
-判断窗口是否为用户正在交互窗口。
+判断窗口是否为用户正在交互窗口，使用Promise异步回调。
+
+从API version 9开始支持，从API version 11开始废弃，建议使用[isActive<sup>11+</sup>](#isactive11)替代。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2972,7 +3037,7 @@ isActived(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口，true：交互窗口，false：非交互窗口。 |
+| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口，true表示是交互窗口，false表示非交互窗口。 |
 
 **错误码：**
 
@@ -3237,6 +3302,40 @@ async function demo() {
   let driver:Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
   await window.close();
+}
+```
+
+### isActive<sup>11+</sup>
+
+isActive(): Promise\<boolean>
+
+判断窗口是否为用户正在交互窗口。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口，true：交互窗口，false：非交互窗口。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.         |
+
+**示例：**
+
+```ts
+import { Driver, UiWindow } from '@ohos.UiTest';
+async function demo() {
+  let driver: Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({active: true});
+  let focused = await window.isActive();
 }
 ```
 

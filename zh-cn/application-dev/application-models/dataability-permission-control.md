@@ -10,18 +10,22 @@ DataAbility作为服务端，在被拉起的时候，会根据config.json里面�
 
 
 ```json
-"abilities": [{
-  "srcPath": "DataAbility",
-  "name": ".DataAbility",
-  "icon": "$media:icon",
-  "srcLanguage": "ets",
-  "description": "$string:description_dataability",
-  "type": "data",
-  "visible": true,
-  "uri": "dataability://ohos.samples.etsdataability.DataAbility",
-  "readPermission":"ohos.permission.READ_CONTACTS",
-  "writePermission":"ohos.permission.WRITE_CONTACTS"
-}]
+"abilities": [
+  ...
+  {
+    "name": ".DataAbility",
+    "srcLanguage": "ets",
+    "srcPath": "DataAbility",
+    "icon": "$media:icon",
+    "description": "$string:DataAbility_desc",
+    "type": "data",
+    "visible": true,
+    "uri": "dataability://com.samples.famodelabilitydevelop.DataAbility",
+    "readPermission": "ohos.permission.READ_CONTACTS",
+    "writePermission": "ohos.permission.WRITE_CONTACTS"
+  },
+  ...
+]
 ```
 
 客户端在拉起DataAbility的时候，需要校验客户端是否有权限拉起该DataAbility。客户端的权限配置在config.json配置文件的"module"对象的"reqPermissions"对象中，示例如下：
@@ -29,15 +33,19 @@ DataAbility作为服务端，在被拉起的时候，会根据config.json里面�
 
 ```json
 {
+  ...
   "module": {
-    "reqPermissions":{
+    ...
+    "reqPermissions": [
       {
-        "name":"ohos.permission.READ_CONTACTS"
+        "name": "ohos.permission.READ_CONTACTS"
       },
       {
-        "name":"ohos.permission.WRITE_CONTACTS"
-      }
-    }
+        "name": "ohos.permission.WRITE_CONTACTS"
+      },
+      ...
+    ],
+    ...
   }
 }
 ```

@@ -43,6 +43,7 @@
   - [HUKS Error Codes](errorcode-huks.md)
   - [Crypto Framework Error Codes](errorcode-crypto-framework.md)
   - [Certificate Error Codes](errorcode-cert.md)
+  - [Certificate Management Error Codes](errorcode-certManager.md)
   - [User Authentication Error Codes](errorcode-useriam.md)
   - [DLP Service Error Codes](errorcode-dlp.md)
 - Data Management

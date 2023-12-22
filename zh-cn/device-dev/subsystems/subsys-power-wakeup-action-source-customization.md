@@ -8,6 +8,12 @@ OpenHarmony支持系统睡眠时唤醒执行动作，如在睡眠中低电量情
 
 ### 约束与限制
 
+约束：
+唤醒后动作特性需要适配：
+
+- 满足唤醒条件（如电量低于阈值）时触发电源键事件;
+- 唤醒原因（如低电量唤醒）保存到内核节点。
+
 配置策略：
 产品定制的配置路径，需要根据[配置策略](https://gitee.com/openharmony/customization_config_policy)决定。本开发指导中的定制路径以`/vendor`进行举例，请开发者根据具体的产品配置策略，修改定制路径。
 
@@ -17,7 +23,7 @@ OpenHarmony支持系统睡眠时唤醒执行动作，如在睡眠中低电量情
 
 设备要求：
 
-标准系统开发板，如DAYU200/RK3568开源套件。
+标准系统开发板，如DAYU200/Hi3516DV300开源套件。
 
 环境要求：
 
@@ -126,14 +132,50 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     }
     ```
 
-2. 修改powermgr.gni，使能power_manager_feature_wakeup_action特性。
-
+2. 修改[powermgr.gni](https://gitee.com/openharmony/powermgr_power_manager/blob/master/powermgr.gni)，使能power_manager_feature_wakeup_action特性。
+    ```
     power_manager_feature_wakeup_action = true
+    ```
+    
+3. 参考[battery_config.json](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/battery_config.json)中添加如下配置
+    ```json
+    "charge_scene": {
+        "low_battery_thers": {
+          "set": {
+            "path": "xxx"
+          }
+        }
+    }
+    ```
+    其中path为保存低电量阈值的节点路径。
 
-3. 修改batterymgr.battery_manager_feature_set_low_capacity_threshold特性。
-
+4. 修改[batterymgr.gni](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/batterymgr.gni)，使能battery_manager_feature_set_low_capacity_threshold特性。
+    ```
     battery_manager_feature_set_low_capacity_threshold = true
+    ```    
+5. 在[power_config.json](https://gitee.com/openharmony/drivers_peripheral/blob/master/power/interfaces/hdi_service/profile/power_config.json)中添加如下部分
+    ```json
+    {
+        "scene" :{
+            "wakeuo_cause": {
+                "get": {
+                    "path": "yyy"
+                }
+            }
+        }
+    }
+    ```
+    其中get为保存低电量唤醒原因的节点路径。
 
-4. 使系统进入睡眠且系统电量低于下发的阈值。
+5. 修改[power.gni](https://gitee.com/openharmony/drivers_peripheral/blob/master/power/power.gni)，打开drivers_peripheral_power_wakeup_cause_path特性。
+    ```
+    drivers_peripheral_power_wakeup_cause_path = true
+    ```
+6. 在[hdf_peripheral.cfg](https://gitee.com/openharmony/drivers_peripheral/blob/master/base/hdf_peripheral.cfg)的pre-init修改节点权限为system。
+    ```
+    "chown system system xxx",
+    "chown system system yyy",
+    ```
+7. 使系统在睡眠中电量下降至阈值。
 
     设备关机。

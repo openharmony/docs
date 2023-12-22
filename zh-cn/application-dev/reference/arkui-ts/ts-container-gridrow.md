@@ -23,10 +23,10 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 | 参数名 |类型|必填|说明|
 |-----|-----|----|----|
-|gutter|Length \| GutterOption|   否  |栅格布局间距。|
-|columns| number \| GridRowColumnOption |  否  |设置布局列数。|
-|breakpoints|BreakPoints|  否  |设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。|
-|direction|GridRowDirection|   否  |栅格布局排列方向。|
+|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   否  |栅格布局间距。|
+|columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  否  |设置布局列数。|
+|breakpoints|[BreakPoints](#breakpoints)|  否  |设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。|
+|direction|[GridRowDirection](#gridrowdirection枚举类型)|   否  |栅格布局排列方向。|
 
 ## GutterOption
 
@@ -36,8 +36,8 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| x  | Length \| GridRowSizeOption | 否   | 栅格子组件水平方向间距。    |
-| y  | Length \| GridRowSizeOption | 否   | 栅格子组件竖直方向间距。    |
+| x  | [Length](ts-types.md#length) \| [GridRowSizeOption](#gridrowsizeoption) | 否   | 栅格子组件水平方向间距。    |
+| y  | [Length](ts-types.md#length) \| [GridRowSizeOption](#gridrowsizeoption) | 否   | 栅格子组件竖直方向间距。    |
 
 ## GridRowColumnOption
 
@@ -62,12 +62,12 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| xs  | Length | 否    | 在最小宽度类型设备上，栅格子组件的间距。    |
-| sm  | Length | 否    | 在小宽度类型设备上，栅格子组件的间距。      |
-| md  | Length | 否    | 在中等宽度类型设备上，栅格子组件的间距。    |
-| lg  | Length | 否    | 在大宽度类型设备上，栅格子组件的间距。      |
-| xl  | Length | 否    | 在特大宽度类型设备上，栅格子组件的间距。    |
-| xxl | Length | 否    | 在超大宽度类型设备上，栅格子组件的间距。    |
+| xs  | [Length](ts-types.md#length) | 否    | 在最小宽度类型设备上，栅格子组件的间距。    |
+| sm  | [Length](ts-types.md#length) | 否    | 在小宽度类型设备上，栅格子组件的间距。      |
+| md  | [Length](ts-types.md#length) | 否    | 在中等宽度类型设备上，栅格子组件的间距。    |
+| lg  | [Length](ts-types.md#length) | 否    | 在大宽度类型设备上，栅格子组件的间距。      |
+| xl  | [Length](ts-types.md#length) | 否    | 在特大宽度类型设备上，栅格子组件的间距。    |
+| xxl | [Length](ts-types.md#length) | 否    | 在超大宽度类型设备上，栅格子组件的间距。    |
 
 ## BreakPoints
 
@@ -78,7 +78,7 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
 | value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "600vp", "840vp"]    |
-| reference  | BreakpointsReference | 否    | 断点切换参照物。<br>默认值：BreakpointsReference.WindowSize |
+| reference  | [BreakpointsReference](#breakpointsreference枚举类型) | 否    | 断点切换参照物。<br>默认值：BreakpointsReference.WindowSize |
 ```ts
   // 启用xs、sm、md共3个断点
   breakpoints: {value: ["100vp", "200vp"]}
