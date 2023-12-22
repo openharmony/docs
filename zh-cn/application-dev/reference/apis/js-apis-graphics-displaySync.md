@@ -109,7 +109,7 @@ this.backDisplaySyncBigger.setExpectedFrameRateRange(range)
 this.backDisplaySyncBigger.on("frame", Bigger)
 ```
 
-### off(type: 'frame'): void
+### off(type: 'frame')
 
 取消每一帧的回调函数。
 ```ts
@@ -129,8 +129,7 @@ off(type: 'frame', callback?: Callback<IntervalInfo>): void
 
 | 类型                | 说明                     |
 | ------------------ | ------------------------ |
-| [void]  | 无返回值。|
-
+| [void]  | 无返回值。 |
 
 **示例：**
 ```ts
