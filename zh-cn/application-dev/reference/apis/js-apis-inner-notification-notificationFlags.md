@@ -30,4 +30,3 @@
 | TYPE_NONE      | 0   | 默认标志。                         |
 | TYPE_OPEN      | 1   | 通知标志打开。                     |
 | TYPE_CLOSE     | 2   | 通知标志关闭。                     |
-
