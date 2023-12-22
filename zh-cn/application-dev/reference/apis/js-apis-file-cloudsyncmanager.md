@@ -193,7 +193,7 @@ notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | eventId | string | 是   | 变更事件id|
-| extraData | string | 是   | 云端数据变更信息|
+| extraData | ExtraData | 是   | 云端数据变更信息|
 
 
 ## cloudSyncManager.notifyDataChange<sup>11+</sup> 
@@ -211,7 +211,7 @@ notifyDataChange(userId: number, extraData: ExtraData): Promise&lt;void&gt;
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | userId | number | 是   | 账号Id|
-| extraData | string | 是   | 云端数据变更信息|
+| extraData | ExtraData | 是   | 云端数据变更信息|
 
 **返回值：**
 
@@ -235,7 +235,7 @@ notifyDataChange(userId: number, extraData: ExtraData): Promise&lt;void&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   let userId: number = 100;
-  let extraData: ExtraData = {eventId: "eventId", extraData: "data"};
+  let extraData = {eventId: "eventId", extraData: "data"};
   cloudSyncManager.notifyDataChange(userId, extraData).then(() => {
     console.info("notifyDataChange successfully");
   }).catch((err: BusinessError) => {
@@ -258,7 +258,7 @@ notifyDataChange(userId: number, extraData: ExtraData, callback: AsyncCallback&l
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | userId | number | 是   | 用户Id|
-| extraData | string | 是   | 云端数据变更信息|
+| extraData | ExtraData | 是   | 云端数据变更信息|
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步通知端云服务应用的云数据变更之后的回调。 |
 
 **错误码：**
@@ -277,7 +277,7 @@ notifyDataChange(userId: number, extraData: ExtraData, callback: AsyncCallback&l
   ```ts
   import { BusinessError } from '@ohos.base';
   let userId: number = 100;
-  let extraData: ExtraData = {eventId: "eventId", extraData: "data"};
+  let extraData = {eventId: "eventId", extraData: "data"};
   cloudSyncManager.notifyDataChange(userId, extraData, (err: BusinessError) => {
     if (err) {
       console.info("notifyDataChange failed with error message: " + err.message + ", error code: " + err.code);
