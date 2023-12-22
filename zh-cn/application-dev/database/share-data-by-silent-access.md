@@ -89,7 +89,7 @@
 
 ### 数据提供方应用的开发
 
-1. 数据提供方需要在module.json5中的proxyData节点定义要共享的表的标识，读写权限和基本信息，进行配置可参考[配置文件](../quick-start/module-configuration-file.md)。
+1. 数据提供方需要在module.json5中的proxyData节点定义要共享的表的标识，读写权限和基本信息， 配置方法可考参考[配置文件](../quick-start/module-configuration-file.md)。
 
    **表1** module.json5中proxyData节点对应的属性字段
 
@@ -102,19 +102,19 @@
 
    **module.json5配置样例：**
 
-    ```json
-    "proxyData":[
-      {
-        "uri": "datashareproxy://com.acts.ohos.data.datasharetest/test",
-        "requiredReadPermission":"ohos.permission.GET_BUNDLE_INFO",
-        "requiredWritePermission":"ohos.permission.KEEP_BACKGROUND_RUNNING",
-        "metadata": {
-          "name": "dataProperties",
-          "resource": "$profile:my_config"
-        }
-      }
-    ]
-    ```
+   ```json
+   "proxyData":[
+     {
+       "uri": "datashareproxy://com.acts.ohos.data.datasharetest/test",
+       "requiredReadPermission": "ohos.permission.GET_BUNDLE_INFO",
+       "requiredWritePermission": "ohos.permission.KEEP_BACKGROUND_RUNNING",
+       "metadata": {
+         "name": "dataProperties",
+         "resource": "$profile:my_config"
+       }
+     }
+   ]
+   ```
    **表2** my_config.json对应属性字段
 
    | 属性名称  | 备注说明                                     | 必填   |
@@ -253,7 +253,7 @@
 
 ### 数据提供方应用的开发（可选）
 
-数据提供方需要在module.json5中的proxyData节点定义过程数据的标识，读写权限和基本信息，进行配置可参考[配置文件](../quick-start/module-configuration-file.md)。
+数据提供方需要在module.json5中的proxyData节点定义过程数据的标识，读写权限和基本信息， 配置方法可考参考[配置文件](../quick-start/module-configuration-file.md)。
 
 > 注意：
 >
