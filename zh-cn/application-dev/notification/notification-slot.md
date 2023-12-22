@@ -2,6 +2,16 @@
 针对应用需要根据自身需求选择不同的提醒方式，系统提供了通知渠道的创建、获取和移除。对应用自身的通知方式进行管理。
 
 
+## 渠道类型描述
+| SlotType             | 取值   | 分类     | 通知中心 | 横幅 | 锁屏 | 铃声/振动 | 状态栏图标 | 自动亮屏 |
+| -------------------- | ------ | --------| ------- |------|------|----------|-----------|---------|
+| SOCIAL_COMMUNICATION | 1      | 社交通信 | Y | Y | Y | Y | Y | Y |
+| SERVICE_INFORMATION  | 2      | 服务提醒 | Y | N | Y | Y | Y | Y |
+| CONTENT_INFORMATION  | 3      | 内容资讯 | Y | N | N | N | Y | N |
+| CUSTOMER_SERVICE     | 5      | 客服消息 | Y | N | N | N | N | N |
+| OTHER_TYPES          | 0xFFFF | 其他     | Y | N | N | Y | Y | N |
+
+
 ## 接口说明
 1. 通知服务提供了两种创建通知渠道类型的方法：
 
@@ -32,14 +42,6 @@
 | removeAllSlots(callback: AsyncCallback\<void\>): void                          | 删除此应用程序所有通知渠道。使用callback异步回调。      |
 | removeAllSlots(): Promise\<void\>                                              | 删除此应用程序所有通知渠道。使用Promise异步回调。       |
 
-## 渠道类型描述
-| SlotType             | 取值   | 分类     | 通知中心 | 横幅 | 锁屏 | 铃声/振动 | 状态栏图标 | 自动亮屏 |
-| -------------------- | ------ | --------| ------- |------|------|----------|-----------|---------|
-| SOCIAL_COMMUNICATION | 1      | 社交通信 | Y | Y | Y | Y | Y | Y |
-| SERVICE_INFORMATION  | 2      | 服务提醒 | Y | N | Y | Y | Y | Y |
-| CONTENT_INFORMATION  | 3      | 内容资讯 | Y | N | N | N | Y | N |
-| CUSTOMER_SERVICE     | 5      | 客服消息 | Y | N | N | N | N | N |
-| OTHER_TYPES          | 0xFFFF | 其他     | Y | N | N | Y | Y | N |
 
 ## 开发步骤
 
