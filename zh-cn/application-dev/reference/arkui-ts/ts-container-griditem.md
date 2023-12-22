@@ -149,13 +149,13 @@ struct GridItemExample {
 @Entry
 @Component
 struct GridItemExample {
-  @State Number: String[] = ['0', '1', '2']
+  @State numbers: String[] = ['0', '1', '2']
 
   build() {
     Column({ space: 5 }) {
       Grid() {
-        ForEach(this.Number, (day: string) => {
-          ForEach(this.Number, (day: string) => {
+        ForEach(this.numbers, (day: string) => {
+          ForEach(this.numbers, (day: string) => {
             GridItem({style:GridItemStyle.NONE}) {
               Text(day)
                 .fontSize(16)
@@ -178,8 +178,8 @@ struct GridItemExample {
       .padding('4vp')
 
       Grid() {
-        ForEach(this.Number, (day: string) => {
-          ForEach(this.Number, (day: string) => {
+        ForEach(this.numbers, (day: string) => {
+          ForEach(this.numbers, (day: string) => {
             GridItem({style:GridItemStyle.PLAIN}) {
               Text(day)
                 .fontSize(16)

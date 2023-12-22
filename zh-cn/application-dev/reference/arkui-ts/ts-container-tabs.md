@@ -140,7 +140,7 @@ struct TabsExample {
   @State currentIndex: number = 0
   private controller: TabsController = new TabsController()
 
-  @Builder TabBuilder(index: number, name: string) {
+  @Builder tabBuilder(index: number, name: string) {
     Column() {
       Text(name)
         .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
@@ -160,19 +160,19 @@ struct TabsExample {
       Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
         TabContent() {
           Column().width('100%').height('100%').backgroundColor('#00CB87')
-        }.tabBar(this.TabBuilder(0, 'green'))
+        }.tabBar(this.tabBuilder(0, 'green'))
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor('#007DFF')
-        }.tabBar(this.TabBuilder(1, 'blue'))
+        }.tabBar(this.tabBuilder(1, 'blue'))
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor('#FFBF00')
-        }.tabBar(this.TabBuilder(2, 'yellow'))
+        }.tabBar(this.tabBuilder(2, 'yellow'))
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor('#E67C92')
-        }.tabBar(this.TabBuilder(3, 'pink'))
+        }.tabBar(this.tabBuilder(3, 'pink'))
       }
       .vertical(false)
       .barMode(BarMode.Fixed)
