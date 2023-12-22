@@ -381,3 +381,22 @@ Tabs组件动画相关信息集合。
 | ------ | ---------- |
 | X | 跟手点X轴坐标。 |
 | Y | 跟手点Y轴坐标。 |
+
+## TabContentAnimatedTransition<sup>11+</sup>
+
+Tabs自定义切换动画相关信息。
+
+| 名称            | 类型定义                   | 描述                                       |
+| ------------- | ---------------------- | ---------------------------------------- |
+| timeout | number | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。单位ms，默认值为1000.|
+| transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11)) => void | 自定义切换动画具体内容。|
+
+## TabContentTransitionProxy<sup>11+</sup>
+
+Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画的起始和目标页面信息，同时，也可以通过调用该对象的finishTransition接口通知Tabs组件自定义动画已结束。
+
+| 名称            | 类型定义                   | 描述                                       |
+| ------------- | ---------------------- | ---------------------------------------- |
+| from | number | 自定义动画起始页面对应的index值。|
+| to | number | 自定义动画目标页面对应的index值。|
+| finishTransition() | void | 通知Tabs组件，此次自定义动画已结束。|
