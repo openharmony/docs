@@ -117,7 +117,7 @@ The possible causes include the following:
 **Solution**
 
 1. Locate the cause of the authentication failure based on the log.
-2. If the authentication fails due to the configuration of the access control attribute, the key cannot be used any more.
+2. If the authentication fails due to the configuration of the access control attribute, the key cannot be used any longer.
 
 ## 12000008 Failed to Access the Key Due to a Failure in Authentication Token Verification
 
@@ -210,6 +210,8 @@ Enroll the credential or change the authentication type bound to the key.
 
 **Error Message**
 
+Any of the following occurs:
+
 - Insufficient memory.
 - Malloc failed.
 
@@ -235,3 +237,17 @@ The called system service has not started.
 **Solution**
 
 Wait for the system service to start and call the API again.
+
+## 12000016 Lock Screen Password Not Set
+
+**Error Message**
+
+Device password is required but not set.
+
+**Possible Causes**
+
+The key is available only with a lock screen password, however, the lock screen password is not set.
+
+**Solution**
+
+Set a lock screen password for the device or change the key usage restrictions.
