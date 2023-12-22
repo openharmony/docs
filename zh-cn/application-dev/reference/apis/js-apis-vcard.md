@@ -49,12 +49,13 @@ importVCard\(context: Context, filePath: string, callback: AsyncCallback\<void\>
 **示例：**
 
 ```ts
+import window from '@ohos.window';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import vcard from '@ohos.telephony.vcard';
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         let filePath: string = "/data/storage/vcf/contacts.vcf";
         vcard.importVCard(this.context, filePath, (err: BusinessError) => {
             console.log(`callback: err->${JSON.stringify(err)}`);
@@ -101,12 +102,13 @@ importVCard\(context: Context,filePath: string, accountId: number, callback: Asy
 **示例：**
 
 ```ts
+import window from '@ohos.window';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import vcard from '@ohos.telephony.vcard';
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         let filePath: string = "/data/storage/vcf/contacts.vcf";
         let accountId: number = 0;
         vcard.importVCard(this.context, filePath, accountId, (err: BusinessError) => {
@@ -159,12 +161,13 @@ importVCard\(context: Context, filePath: string, accountId?: number\): Promise\<
 **示例：**
 
 ```ts
+import window from '@ohos.window';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import vcard from '@ohos.telephony.vcard';
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         let filePath: string = "/data/storage/vcf/contacts.vcf";
         let accountId: number = 0;
         vcard.importVCard(this.context, filePath, accountId).then(() => {
@@ -212,13 +215,14 @@ exportVCard\(context: Context, predicates: dataSharePredicates.DataSharePredicat
 **示例：**
 
 ```ts
+import window from '@ohos.window';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import vcard from '@ohos.telephony.vcard';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         let predicates = new dataSharePredicates.DataSharePredicates();
         predicates.equalTo("NAME", "Rose");
 
@@ -267,13 +271,14 @@ exportVCard\(context: Context, predicates: dataSharePredicates.DataSharePredicat
 **示例：**
 
 ```ts
+import window from '@ohos.window';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import vcard from '@ohos.telephony.vcard';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         let predicates = new dataSharePredicates.DataSharePredicates();
         predicates.equalTo("NAME", "Rose");
         let options: vcard.VCardBuilderOptions = {
@@ -329,13 +334,14 @@ exportVCard\(context: Context, predicates: dataSharePredicates.DataSharePredicat
 **示例：**
 
 ```ts
+import window from '@ohos.window';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import vcard from '@ohos.telephony.vcard';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         let predicates = new dataSharePredicates.DataSharePredicates();
         predicates.equalTo("NAME", "Rose");
         let options: vcard.VCardBuilderOptions = {
