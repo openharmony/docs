@@ -28,21 +28,21 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 onPageShow?(): void
 
-Invoked when a page is displayed. This callback is used in the routing process or scenarios where the application is switched to the foreground or background. It works only for the custom components decorated by **@Entry**.
+Invoked each time the page is displayed, for example, during page redirection or when the application is switched to the foreground. It works only for the custom components decorated by **@Entry**.
 
 
 ## onPageHide
 
 onPageHide?(): void
 
-Invoked when a page is hidden. This callback is used in the routing process or scenarios where the application is switched to the foreground or background. It works only for the custom components decorated by **@Entry**.
+Invoked each time the page is hidden, for example, during page redirection or when the application is switched to the background. It works only for the custom components decorated by **@Entry**.
 
 
 ## onBackPress
 
 onBackPress?(): void | boolean
 
-Invoked when a user clicks the back button. It works only for the custom components decorated by **@Entry**.
+Invoked when the user clicks the Back button. It works only for the custom components decorated by **@Entry**.
 
 
 ```ts

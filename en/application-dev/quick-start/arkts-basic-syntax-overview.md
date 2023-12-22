@@ -37,6 +37,6 @@ ArkTS extends multiple syntax paradigms to make development a more enjoyable exp
 
 - [@Builder](arkts-builder.md)/[@BuilderParam](arkts-builderparam.md): special method for encapsulating UI descriptions. It enables UI descriptions to be encapsulated and reused in a fine-grained manner.
 
-- [@Extend](arkts-extend.md)/[@Style](arkts-style.md): decorator that extends built-in components and encapsulates attribute styles to combine built-in components more flexibly.
+- [@Extend](arkts-extend.md)/[@Styles](arkts-style.md): decorator that extends built-in components and encapsulates attribute styles to combine built-in components more flexibly.
 
 - [stateStyles](arkts-statestyles.md): polymorphic style, which can be set based on the internal state of the component.
