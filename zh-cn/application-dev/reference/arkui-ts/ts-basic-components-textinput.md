@@ -95,6 +95,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | NEW_PASSWORD<sup>11+<sup> | 新密码输入模式。 |
 | NUMBER_PASSWORD<sup>11+</sup> | 纯数字密码输入模式。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 |
 | SCREEN_LOCK_PASSWORD<sup>11+</sup> | 锁屏应用密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 <br>**系统接口：** 此接口为系统接口。 |
+| NUMBER_DECIMAL<sup>11+</sup>  | 带小数点的数字输入模式。支持数字，小数点（只能存在一个小数点）。 |
 
 ## TextInputStyle<sup>9+</sup>枚举说明
 
