@@ -21,7 +21,7 @@ Swiper作为一个容器组件，在自身尺寸属性未被设置时，会自�
 
 ```ts
 ...
-export let swiperController: SwiperController = new SwiperController()
+private swiperController: SwiperController = new SwiperController()
 ...
 Swiper(this.swiperController) {
   Text("0")
@@ -158,7 +158,7 @@ Swiper(this.swiperController) {
 导航点直径设为30vp，左边距为0，导航点颜色设为红色。
 
 ```ts
-let swco:Record<string,number|Color> = {'size':30,'left':0,'color':Color.Red}
+let swco:Record<string, number | Color> = {'size':30,'left':0,'color':Color.Red}
 Swiper(this.swiperController) {
   Text("0")
     .width('90%')
