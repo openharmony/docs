@@ -45,12 +45,12 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
     ```ts
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
     
-    // 查询认证能力是否支持
+    // 查询认证能力是否支持，如果该设备未录入相关特征，就会打印不支持日志信息
     try {
         userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
         console.info('current auth trust level is supported');
     } catch (error) {
-        console.info('current auth trust level is not supported, error = ' + error);
+        console.error('current auth trust level is not supported, error = ' + error);
     }
     ```
 
@@ -64,7 +64,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 3. 调用[on](../reference/apis/js-apis-useriam-userauth.md#on10)接口订阅认证结果。
 
-4. 调用[start](../reference/apis/js-apis-useriam-userauth.md#start10)接口发起认证，通过[callback](../reference/apis/js-apis-useriam-userauth.md#callback10)回调返回认证结果。
+4. 调用[start](../reference/apis/js-apis-useriam-userauth.md#start10)接口发起认证，通过[onResult](../reference/apis/js-apis-useriam-userauth.md#onresult10)回调返回认证结果。
 
     ```ts
     import userIAM_userAuth from '@ohos.userIAM.userAuth';
@@ -91,7 +91,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
       userAuthInstance.start();
       console.log('auth start success');
     } catch (error) {
-      console.log('auth catch error: ' + JSON.stringify(error));
+      console.error('auth catch error: ' + JSON.stringify(error));
     }
     ```
 
@@ -120,7 +120,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
      });
      console.log('auth off success');
    } catch (error) {
-     console.log('auth catch error: ' + JSON.stringify(error));
+     console.error('auth catch error: ' + JSON.stringify(error));
    }
    ```
 
@@ -158,6 +158,6 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
       userAuthInstance.cancel();
       console.log('auth cancel success');
     } catch (error) {
-      console.log('auth catch error: ' + JSON.stringify(error));
+      console.error('auth catch error: ' + JSON.stringify(error));
     }
     ```

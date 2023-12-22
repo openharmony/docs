@@ -131,7 +131,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 onChangeFormVisibility(newStatus: { [key: string]: number }): void
 
 卡片提供方接收修改可见性的通知接口。  
-仅当formVisibleNotify为true，且为系统应用时才生效。
+该接口仅对系统应用生效，且需要将formVisibleNotify配置为true。
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -237,7 +237,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 onConfigurationUpdate(newConfig: Configuration): void
 
 当系统配置更新时调用。  
-仅当前formExtensionAbility存活时更新配置才会触发此生命周期。需注意：formExtensionAbility创建后5秒内无操作将会被清理。
+仅当前formExtensionAbility存活时更新配置才会触发此生命周期。需要注意：formExtensionAbility创建后5秒内无操作将会被清理。
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -254,9 +254,9 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import { Configuration } from '@ohos.app.ability.Configuration';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onConfigurationUpdate(config: Configuration) {
+  onConfigurationUpdate(newConfig: Configuration) {
     // 仅当前formExtensionAbility存活时更新配置才会触发此生命周期。
-    // 需注意：formExtensionAbility创建后5秒内无操作将会被清理。
+    // 需要注意：formExtensionAbility创建后5秒内无操作将会被清理。
     console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
   }
 };

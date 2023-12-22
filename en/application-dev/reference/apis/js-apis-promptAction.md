@@ -71,7 +71,7 @@ Describes the options for showing the toast.
 | message  | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| Yes  | Text to display.<br>**NOTE**<br>The default font is **'Harmony Sans'**. Other fonts are not supported.|
 | duration | number                                                       | No  | Duration that the toast will remain on the screen. The default value is 1500 ms. The value range is 1500 ms to 10000 ms. If a value less than 1500 ms is set, the default value is used. If the value greater than 10000 ms is set, the upper limit 10000 ms is used.|
 | bottom   | string\| number                                              | No  | Distance between the toast border and the bottom of the screen.<br>Default value: **80vp**            |
-| showMode<sup>11+</sup>   | [ToastShowMode](#toastshowmode)    | No  | Whether to show the toast above the application.<br>Default value: **ToastShowMode.DEFAULT**, which means to show the toast within the application            |
+| showMode<sup>11+</sup>   | [ToastShowMode](#toastshowmode11)    | No  | Whether to show the toast above the application.<br>Default value: **ToastShowMode.DEFAULT**, which means to show the toast within the application            |
 
 ### ToastShowMode<sup>11+</sup>
 
@@ -180,6 +180,8 @@ try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
     message: 'Message Info',
+    isModal: true,
+    showInSubWindow: true,
     buttons: [
       {
         text: 'button1',
@@ -204,7 +206,9 @@ try {
 };
 ```
 
-![en-us_image_0002](figures/en-us_image_0002.gif)
+![en-us_image_0002_showinsubwindow](figures/en-us_image_0002_showinsubwindow.jpg)
+
+
 
 ## ShowDialogOptions
 
@@ -220,6 +224,8 @@ Describes the options for showing the dialog box.
 | alignment<sup>10+</sup>  | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment) | No  | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
 | offset<sup>10+</sup>     | [Offset](../arkui-ts/ts-types.md#offset) | No    | Offset of the dialog box based on the **alignment** settings.<br>Default value: **{ dx: 0 , dy: 0 }**|
 | maskRect<sup>10+</sup>| [Rectangle](../arkui-ts/ts-methods-alert-dialog-box.md#rectangle10) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
+| showInSubWindow<sup>11+</sup> | boolean | No| Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.<br>Default value: **false**, indicating that the dialog box is not displayed in the subwindow<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.|
+| isModal<sup>11+</sup> | boolean | No| Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**|
 
 ## ShowDialogSuccessResponse 
 
@@ -262,6 +268,8 @@ import { BusinessError } from '@ohos.base';
 try {
   promptAction.showActionMenu({
     title: 'Title Info',
+    showInSubWindow: true,
+    isModal: true,
     buttons: [
       {
         text: 'item1',
@@ -286,7 +294,7 @@ try {
 };
 ```
 
-![en-us_image_0005](figures/en-us_image_0005.gif)
+![en-us_image_0005_showinsubwindow](figures/en-us_image_0005_showinsubwindow.jpg)
 
 ## promptAction.showActionMenu
 
@@ -356,10 +364,12 @@ Describes the options for showing the action menu.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name   | Type                                                        | Mandatory| Description                                                        |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| title   | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| No  | Title of the dialog box.                                                  |
-| buttons | [[Button](#button),[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?] | Yes  | Array of menu item buttons. The array structure is **{text:'button', color: '\#666666'}**. Up to six buttons are supported. If there are more than six buttons, only the first six buttons will be displayed.|
+| Name                         | Type                                                        | Mandatory| Description                                                        |
+| ----------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| title                         | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| No  | Title of the dialog box.                                                  |
+| buttons                       | [[Button](#button),[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?] | Yes  | Array of menu item buttons. The array structure is **{text:'button', color: '\#666666'}**. Up to six buttons are supported. If there are more than six buttons, only the first six buttons will be displayed.|
+| showInSubWindow<sup>11+</sup> | boolean                                                      | No  | Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.<br>Default value: **false**, indicating that the dialog box is not displayed in the subwindow<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.|
+| isModal<sup>11+</sup>         | boolean                                                      | No  | Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**|
 
 ## ActionMenuSuccessResponse
 

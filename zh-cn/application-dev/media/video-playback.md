@@ -1,6 +1,6 @@
-# 视频播放
+# 视频播放(ArkTS)
 
-在OpenHarmony系统中，提供两种视频播放开发的方案：
+当前提供两种视频播放开发的方案：
 
 - AVPlayer：功能较完善的音视频播放ArkTS/JS API，集成了流媒体和本地资源解析，媒体资源解封装，视频解码和渲染功能，适用于对媒体资源进行端到端播放的场景，可直接播放mp4、mkv等格式的视频文件。
 
@@ -22,7 +22,7 @@
 
 详细的API说明请参考[AVPlayer API参考](../reference/apis/js-apis-media.md#avplayer9)。
 
-1. 创建实例createAVPlayer()，AVPlayer初始化idle状态。
+1. 调用createAVPlayer()创建AVPlayer实例，初始化进入idle状态。
 
 2. 设置业务需要的监听事件，搭配全流程场景使用。支持的监听事件包括：
    | 事件类型 | 说明 |

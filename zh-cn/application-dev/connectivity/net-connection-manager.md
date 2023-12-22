@@ -35,50 +35,53 @@
 
 完整的JS API说明以及实例代码请参考：[网络连接管理](../reference/apis/js-apis-net-connection.md)。
 
-| 类型 | 接口 | 功能说明 |
-| ---- | ---- | ---- |
-| ohos.net.connection | function getDefaultNet(callback: AsyncCallback\<NetHandle>): void; |获取一个含有默认网络的netId的NetHandle对象，使用callback回调 |
-| ohos.net.connection | function getGlobalHttpProxy<sup>10+</sup>(callback: AsyncCallback\<HttpProxy>): void;| 获取网络的全局代理设置，使用callback回调 |
-| ohos.net.connection | function setGlobalHttpProxy<sup>10+</sup>(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void;| 设置网络全局Http代理配置信息，使用callback回调 |
-| ohos.net.connection | function getAppNet<sup>9+</sup>(callback: AsyncCallback\<NetHandle>): void;| 获取一个App绑定的包含了网络netId的NetHandle对象，使用callback回调 |
-| ohos.net.connection | function setAppNet<sup>9+</sup>(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 绑定App到指定网络，绑定后的App只能通过指定网络访问外网。使用callback回调 |
-| ohos.net.connection | function getDefaultNetSync<sup>9+</sup>(): NetHandle; |使用同步方法获取默认激活的数据网络。可以使用getNetCapabilities去获取网络的类型、拥有的能力等信息。|
-| ohos.net.connection | function hasDefaultNet(callback: AsyncCallback\<boolean>): void; |查询是否有默认网络，使用callback回调 |
-| ohos.net.connection | function getAllNets(callback: AsyncCallback\<Array\<NetHandle>>): void;| 获取所处于连接状态的网络的MetHandle对象列表，使用callback回调 |
-| ohos.net.connection | function getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void; |查询默认网络的链路信息，使用callback回调 |
-| ohos.net.connection | function getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void; |查询默认网络的能力集信息，使用callback回调 |
-| ohos.net.connection | function isDefaultNetMetered<sup>9+</sup>(callback: AsyncCallback\<boolean>): void; |检查当前网络上的数据流量使用是否被计量，使用callback方式作为异步方法 |
-| ohos.net.connection | function reportNetConnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。使用callback回调 |
-| ohos.net.connection | function reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 向网络管理报告网络处于不可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。使用callback回调 |
-| ohos.net.connection | function getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |使用对应网络解析域名，获取所有IP，使用callback回调 |
-| ohos.net.connection | function enableAirplaneMode(callback: AsyncCallback\<void>): void; | 设置网络为飞行模式，使用callback回调 |
-| ohos.net.connection | function disableAirplaneMode(callback: AsyncCallback\<void>): void;| 关闭网络飞行模式，使用callback回调 |
-| ohos.net.connection | function createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection; | 返回一个NetConnection对象，netSpecifier指定关注的网络的各项特征，timeout是超时时间(单位是毫秒)，netSpecifier是timeout的必要条件，两者都没有则表示关注默认网络 |
-| ohos.net.connection.NetHandle | bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void; | 将TCPSocket或UDPSockett绑定到当前网络，使用callback回调 |
-| ohos.net.connection.NetHandle | getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |使用默认网络解析域名，获取所有IP，使用callback回调 |
-| ohos.net.connection.NetHandle | getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void; |使用对应网络解析域名，获取一个IP，调用callbac |
-| ohos.net.connection.NetConnection | on(type: 'netAvailable', callback: Callback\<NetHandle>): void; |监听收到网络可用的事件 |
-| ohos.net.connection.NetConnection | on(type: 'netCapabilitiesChange', callback: Callback\<{ netHandle: NetHandle, netCap: NetCapabilities }>): void; |监听网络能力变化的事件 |
-| ohos.net.connection.NetConnection | on(type: 'netConnectionPropertiesChange', callback: Callback\<{ netHandle: NetHandle, connectionProperties: ConnectionProperties }>): void; |监听网络连接信息变化的事件 |
-| ohos.net.connection.NetConnection | on(type: 'netBlockStatusChange', callback: Callback<{ netHandle: NetHandle, blocked: boolean }>): void; |订阅网络阻塞状态事件，使用callback方式作为异步方法 |
-| ohos.net.connection.NetConnection | on(type: 'netLost', callback: Callback\<NetHandle>): void; |监听网络丢失的事件 |
-| ohos.net.connection.NetConnection | on(type: 'netUnavailable', callback: Callback\<void>): void; |监听网络不可用的事件 |
-| ohos.net.connection.NetConnection | register(callback: AsyncCallback\<void>): void; |注册默认网络或者createNetConnection中指定的网络的监听 |
-| ohos.net.connection.NetConnection | unregister(callback: AsyncCallback\<void>): void; |注销默认网络或者createNetConnection中指定的网络的监听 |
+| 接口名 | 描述 |
+| ---- | ---- |
+| getDefaultNet(callback: AsyncCallback\<NetHandle>): void; |获取一个含有默认网络的netId的NetHandle对象，使用callback回调 |
+| getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void;| 获取网络的全局代理设置，使用callback回调 |
+| setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void;| 设置网络全局Http代理配置信息，使用callback回调 |
+| getAppNet(callback: AsyncCallback\<NetHandle>): void;| 获取一个App绑定的包含了网络netId的NetHandle对象，使用callback回调 |
+| setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 绑定App到指定网络，绑定后的App只能通过指定网络访问外网。使用callback回调 |
+| getDefaultNetSync(): NetHandle; |使用同步方法获取默认激活的数据网络。可以使用getNetCapabilities去获取网络的类型、拥有的能力等信息。|
+| hasDefaultNet(callback: AsyncCallback\<boolean>): void; |查询是否有默认网络，使用callback回调 |
+| getAllNets(callback: AsyncCallback\<Array\<NetHandle>>): void;| 获取所处于连接状态的网络的MetHandle对象列表，使用callback回调 |
+| getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void; |查询默认网络的链路信息，使用callback回调 |
+| getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void; |查询默认网络的能力集信息，使用callback回调 |
+| isDefaultNetMetered(callback: AsyncCallback\<boolean>): void; |检查当前网络上的数据流量使用是否被计量，使用callback方式作为异步方法 |
+| reportNetConnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。使用callback回调 |
+| reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 向网络管理报告网络处于不可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。使用callback回调 |
+| getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |使用对应网络解析域名，获取所有IP，使用callback回调 |
+| enableAirplaneMode(callback: AsyncCallback\<void>): void; | 设置网络为飞行模式，使用callback回调 |
+| disableAirplaneMode(callback: AsyncCallback\<void>): void;| 关闭网络飞行模式，使用callback回调 |
+| createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection; | 返回一个NetConnection对象，netSpecifier指定关注的网络的各项特征，timeout是超时时间(单位是毫秒)，netSpecifier是timeout的必要条件，两者都没有则表示关注默认网络 |
+| bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void; | 将TCPSocket或UDPSockett绑定到当前网络，使用callback回调 |
+| getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |使用默认网络解析域名，获取所有IP，使用callback回调 |
+| getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void; |使用对应网络解析域名，获取一个IP，调用callbac |
+| on(type: 'netAvailable', callback: Callback\<NetHandle>): void; |监听收到网络可用的事件 |
+| on(type: 'netCapabilitiesChange', callback: Callback\<{ netHandle: NetHandle, netCap: NetCapabilities }>): void; |监听网络能力变化的事件 |
+| on(type: 'netConnectionPropertiesChange', callback: Callback\<{ netHandle: NetHandle, connectionProperties: ConnectionProperties }>): void; |监听网络连接信息变化的事件 |
+| on(type: 'netBlockStatusChange', callback: Callback<{ netHandle: NetHandle, blocked: boolean }>): void; |订阅网络阻塞状态事件，使用callback方式作为异步方法 |
+| on(type: 'netLost', callback: Callback\<NetHandle>): void; |监听网络丢失的事件 |
+| on(type: 'netUnavailable', callback: Callback\<void>): void; |监听网络不可用的事件 |
+| register(callback: AsyncCallback\<void>): void; |注册默认网络或者createNetConnection中指定的网络的监听 |
+| unregister(callback: AsyncCallback\<void>): void; |注销默认网络或者createNetConnection中指定的网络的监听 |
 
 ## 接收指定网络的状态变化通知
 
-1. 从@ohos.net.connection.d.ts中导入connection命名空间。
+1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
+此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/accesstoken-overview.md#权限使用的基本原则)。然后参考[配置文件权限声明指导文档](../security/accesstoken-guidelines.md#配置文件权限声明)声明对应权限。
 
-2. 调用createNetConnection方法，指定网络能力、网络类型和超时时间（可选，如不传入代表默认网络；创建不同于默认网络时可通过指定这些参数完成），创建一个NetConnection对象。
+2. 从@ohos.net.connection.d.ts中导入connection命名空间。
 
-3. 调用该对象的on()方法，传入type和callback，订阅关心的事件。
+3. 调用createNetConnection方法，指定网络能力、网络类型和超时时间（可选，如不传入代表默认网络；创建不同于默认网络时可通过指定这些参数完成），创建一个NetConnection对象。
 
-4. 调用该对象的register()方法，订阅指定网络状态变化的通知。
+4. 调用该对象的on()方法，传入type和callback，订阅关心的事件。
 
-5. 当网络可用时，会收到netAvailable事件的回调；当网络不可用时，会收到netUnavailable事件的回调。
+5. 调用该对象的register()方法，订阅指定网络状态变化的通知。
 
-6. 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅。
+6. 当网络可用时，会收到netAvailable事件的回调；当网络不可用时，会收到netUnavailable事件的回调。
+
+7. 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅。
 
 ```ts
 // 引入包名
@@ -100,18 +103,17 @@ let timeout = 10 * 1000;
 // 创建NetConnection对象
 let conn = connection.createNetConnection(netSpecifier, timeout);
 
-// 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户
-conn.on('netAvailable', ((data: connection.NetHandle) => {
-  console.log("net is available, netId is " + data.netId);
-}));
-
-// 订阅事件，如果当前指定网络不可用，通过on_netUnavailable通知用户
-conn.on('netUnavailable', ((data: void) => {
-  console.log("net is unavailable, data is " + JSON.stringify(data));
-}));
-
 // 订阅指定网络状态变化的通知
 conn.register((err: BusinessError, data: void) => {
+  // 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户
+  conn.on('netAvailable', ((data: connection.NetHandle) => {
+    console.log("net is available, netId is " + data.netId);
+  }));
+
+  // 订阅事件，如果当前指定网络不可用，通过on_netUnavailable通知用户
+  conn.on('netUnavailable', ((data: void) => {
+    console.log("net is unavailable, data is " + JSON.stringify(data));
+  }));
 });
 
 // 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅
@@ -123,9 +125,12 @@ conn.unregister((err: BusinessError, data: void) => {
 
 ### 开发步骤
 
-1. 从@ohos.net.connection.d.ts中导入connection命名空间。
+1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
+此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/accesstoken-overview.md#权限使用的基本原则)。然后参考[配置文件权限声明指导文档](../security/accesstoken-guidelines.md#配置文件权限声明)声明对应权限。
 
-2. 调用getAllNets方法，获取所有处于连接状态的网络列表。
+2. 从@ohos.net.connection.d.ts中导入connection命名空间。
+
+3. 调用getAllNets方法，获取所有处于连接状态的网络列表。
 
 ```ts
 // 引入包名
@@ -169,13 +174,16 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 
 ### 开发步骤
 
-1. 从@ohos.net.connection.d.ts中导入connection命名空间。
+1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
+此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/accesstoken-overview.md#权限使用的基本原则)。然后参考[配置文件权限声明指导文档](../security/accesstoken-guidelines.md#配置文件权限声明)声明对应权限。
 
-2. 通过调用getDefaultNet方法，获取默认的数据网络(NetHandle)；或者通过调用getAllNets方法，获取所有处于连接状态的网络列表(Array\<NetHandle>)。
+2. 从@ohos.net.connection.d.ts中导入connection命名空间。
 
-3. 调用getNetCapabilities方法，获取NetHandle对应网络的能力信息。能力信息包含了网络类型(蜂窝网络、Wi-Fi网络、以太网网络等)、网络具体能力等网络信息。
+3. 通过调用getDefaultNet方法，获取默认的数据网络(NetHandle)；或者通过调用getAllNets方法，获取所有处于连接状态的网络列表(Array\<NetHandle>)。
 
-4. 调用getConnectionProperties方法，获取NetHandle对应网络的连接信息。
+4. 调用getNetCapabilities方法，获取NetHandle对应网络的能力信息。能力信息包含了网络类型(蜂窝网络、Wi-Fi网络、以太网网络等)、网络具体能力等网络信息。
+
+5. 调用getConnectionProperties方法，获取NetHandle对应网络的连接信息。
 
 ```ts
 import connection from '@ohos.net.connection';
@@ -211,49 +219,49 @@ connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
   console.log(JSON.stringify(data));
   if (data) {
     GlobalContext.getContext().netHandle = data;
-  }
-})
 
-// 获取netHandle对应网络的能力信息。能力信息包含了网络类型、网络具体能力等网络信息
-connection.getNetCapabilities(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.NetCapabilities) => {
-  console.log(JSON.stringify(err));
+    // 获取netHandle对应网络的能力信息。能力信息包含了网络类型、网络具体能力等网络信息
+    connection.getNetCapabilities(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.NetCapabilities) => {
+      console.log(JSON.stringify(err));
 
-  // 获取网络类型(bearerTypes)
-  let bearerTypes: Set<number> = new Set(data.bearerTypes);
-  let bearerTypesNum = Array.from(bearerTypes.values());
-  for (let item of bearerTypesNum) {
-    if (item == 0) {
-      // 蜂窝网
-      console.log(JSON.stringify("BEARER_CELLULAR"));
-    } else if (item == 1) {
-      // Wi-Fi网络
-      console.log(JSON.stringify("BEARER_WIFI"));
-    } else if (item == 3) {
-      // 以太网网络
-      console.log(JSON.stringify("BEARER_ETHERNET"));
-    }
-  }
-  
-  // 获取网络具体能力(networkCap)
-  let itemNumber : Set<number> = new Set([0, 11, 12, 15, 16]);
-  let dataNumber = Array.from(itemNumber.values());
-  for (let item of dataNumber) {
-    if (item == 0) {
-      // 表示网络可以访问运营商的MMSC（Multimedia Message Service，多媒体短信服务）发送和接收彩信
-      console.log(JSON.stringify("NET_CAPABILITY_MMS"));
-    } else if (item == 11) {
-      // 表示网络流量未被计费
-      console.log(JSON.stringify("NET_CAPABILITY_NOT_METERED"));
-    } else if (item == 12) {
-      // 表示该网络应具有访问Internet的能力，该能力由网络提供者设置
-      console.log(JSON.stringify("NET_CAPABILITY_INTERNET"));
-    } else if (item == 15) {
-      // 表示网络不使用VPN（Virtual Private Network，虚拟专用网络）
-      console.log(JSON.stringify("NET_CAPABILITY_NOT_VPN"));
-    } else if (item == 16) {
-      // 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置
-      console.log(JSON.stringify("NET_CAPABILITY_VALIDATED"));
-    }
+      // 获取网络类型(bearerTypes)
+      let bearerTypes: Set<number> = new Set(data.bearerTypes);
+      let bearerTypesNum = Array.from(bearerTypes.values());
+      for (let item of bearerTypesNum) {
+        if (item == 0) {
+          // 蜂窝网
+          console.log(JSON.stringify("BEARER_CELLULAR"));
+        } else if (item == 1) {
+          // Wi-Fi网络
+          console.log(JSON.stringify("BEARER_WIFI"));
+        } else if (item == 3) {
+          // 以太网网络
+          console.log(JSON.stringify("BEARER_ETHERNET"));
+        }
+      }
+      
+      // 获取网络具体能力(networkCap)
+      let itemNumber : Set<number> = new Set([0, 11, 12, 15, 16]);
+      let dataNumber = Array.from(itemNumber.values());
+      for (let item of dataNumber) {
+        if (item == 0) {
+          // 表示网络可以访问运营商的MMSC（Multimedia Message Service，多媒体短信服务）发送和接收彩信
+          console.log(JSON.stringify("NET_CAPABILITY_MMS"));
+        } else if (item == 11) {
+          // 表示网络流量未被计费
+          console.log(JSON.stringify("NET_CAPABILITY_NOT_METERED"));
+        } else if (item == 12) {
+          // 表示该网络应具有访问Internet的能力，该能力由网络提供者设置
+          console.log(JSON.stringify("NET_CAPABILITY_INTERNET"));
+        } else if (item == 15) {
+          // 表示网络不使用VPN（Virtual Private Network，虚拟专用网络）
+          console.log(JSON.stringify("NET_CAPABILITY_NOT_VPN"));
+        } else if (item == 16) {
+          // 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置
+          console.log(JSON.stringify("NET_CAPABILITY_VALIDATED"));
+        }
+      }
+    })
   }
 })
 
@@ -293,9 +301,12 @@ for (let item of dataNumber) {
 
 ### 开发步骤
 
-1. 从@ohos.net.connection.d.ts中导入connection命名空间。
+1. 声明接口调用所需要的权限：ohos.permission.INTERNET
+此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/accesstoken-overview.md#权限使用的基本原则)。然后参考[配置文件权限声明指导文档](../security/accesstoken-guidelines.md#配置文件权限声明)声明对应权限。
 
-2. 调用getAddressesByName方法，使用默认网络解析主机名以获取所有IP地址。
+2. 从@ohos.net.connection.d.ts中导入connection命名空间。
+
+3. 调用getAddressesByName方法，使用默认网络解析主机名以获取所有IP地址。
 
 ```ts
 // 引入包名

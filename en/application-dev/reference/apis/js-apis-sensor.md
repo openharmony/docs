@@ -4091,12 +4091,13 @@ Enumerates the sensor types.
 Enumerates the accuracy levels of sensor data.
 
 **System capability**: SystemCapability.Sensors.Sensor
-| Name     | Type  | Value| Readable| Writable| Description                    |
-| --------- | ------ | ---- | ------------------------ | ------------------------ | ------------------------ |
-| ACCURACY_UNRELIABLE | number | 0   | Yes | No| The sensor data is unreliable.|
-| ACCURACY_LOW | number | 1   | Yes | No| The sensor data is at a low accuracy level.|
-| ACCURACY_MEDIUM | number | 2   | Yes | No| The sensor data is at a medium accuracy level.|
-| ACCURACY_HIGH | number | 3   | Yes | No| The sensor data is at a high accuracy level.|
+
+| Name   | Value| Description                    |
+| --------- | ---- | ------------------------ |
+| ACCURACY_UNRELIABLE | 0   | The sensor data is unreliable.|
+| ACCURACY_LOW | 1   | The sensor data is at a low accuracy level.|
+| ACCURACY_MEDIUM | 2   | The sensor data is at a medium accuracy level.|
+| ACCURACY_HIGH | 3   | The sensor data is at a high accuracy level.|
 
 ## Response
 
@@ -4443,9 +4444,21 @@ Describes the sensor data reporting frequency.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name    | Type  | Readable| Writable| Description                                       |
-| -------- | ------ | ---- | ---- | ------------------------------------------- |
-| interval | number | Yes  | Yes  | Frequency at which a sensor reports data. The default value is 200,000,000 ns.|
+| Name    | Type                                      | Readable| Writable| Description                                                        |
+| -------- | ------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| interval | number/[SensorFrequency](#sensorfrequency) | Yes  | Yes  | Frequency at which a sensor reports data. The default value is 200,000,000 ns. This attribute has restrictions on the minimum and maximum values, determined by the reporting frequency supported by the hardware.|
+
+## SensorFrequency
+
+Defines the reporting frequency mode of the sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name  | Type  | Readable| Writable| Description                                                        |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| game   | string | Yes  | No  | The sensor reports data every 20,000,000 ns. The frequency takes effect when it is within the frequency range supported by the hardware.|
+| ui     | string | Yes  | No  | The sensor reports data every 60,000,000 ns. The frequency takes effect when it is within the frequency range supported by the hardware.|
+| normal | string | Yes  | No  | The sensor reports data every 200,000,000 ns. The frequency takes effect when it is within the frequency range supported by the hardware.|
 
 ## RotationMatrixResponse
 

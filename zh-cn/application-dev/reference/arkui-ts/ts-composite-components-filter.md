@@ -97,7 +97,7 @@ struct Index {
         }
       }){
         List({ initialIndex: 0 }) {
-          ForEach(this.arr, (item, index: number) => {
+          ForEach(this.arr, (item:string, index: number) => {
             ListItem() {
               Text(item.toString())
                 .width("100%")

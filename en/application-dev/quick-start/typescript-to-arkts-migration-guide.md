@@ -281,7 +281,7 @@ data by numeric indices.
 **TypeScript**
 
 ```typescript
-var x = {'name': 1, 2: 3}
+var x = { 'name': 'x', 2: '3' }
 
 console.log(x['name'])
 console.log(x[2])
@@ -291,18 +291,18 @@ console.log(x[2])
 
 ```typescript
 class X {
-  public name: number = 0
+  public name: string = ''
 }
-let x: X = {name: 1}
+let x: X = { name: 'x' }
 console.log(x.name)
 
-let y = [1, 2, 3]
+let y = ['a', 'b', 'c']
 console.log(y[2])
 
 // If you still need a container to store keys of different types, use Map<Object, some_type>.
-let z = new Map<Object, number>()
-z.set('name', 1)
-z.set(2, 2)
+let z = new Map<Object, string>()
+z.set('name', '1')
+z.set(2, '2')
 console.log(z.get('name'))
 console.log(z.get(2))
 ```
@@ -471,7 +471,7 @@ let value_o2: Object = 42
 
 **See also**
 
-* Recipe: Strict Type Checking Is Enforced
+Recipe: Strict Type Checking Is Enforced
 
 ### Recipe: Use `class` Instead of a Type with a Call Signature
 
@@ -516,7 +516,7 @@ doSomething(new DescribableFunction())
 
 **See also**
 
-* Recipe: Use class Instead of a Type with a Constructor Signature
+Recipe: Use class Instead of a Type with a Constructor Signature
 
 ### Recipe: Use `class` Instead of a Type with a Constructor Signature
 
@@ -557,7 +557,7 @@ function fn(s: string): SomeObject {
 
 **See also**
 
-* Recipe: Use `class` Instead of a Type with a Call Signature
+Recipe: Use `class` Instead of a Type with a Call Signature
 
 ### Recipe: Only One Static Block Is Supported
 
@@ -821,7 +821,7 @@ function fn(i: I) {
 
 **See also**
 
-* Recipe: Use `class` Instead of a Type with a Constructor Signature
+Recipe: Use `class` Instead of a Type with a Constructor Signature
 
 ### Recipe: Indexed Access Types Are Not Supported
 
@@ -1736,10 +1736,9 @@ let s2: string
 **Severity: error**
 
 In TypeScript, the left-hand side of an `instanceof` expression must be of the type
-`any`, an object type, or a type parameter. Otherwise, the result is `false`.
-In ArkTS, the left-hand side of an expression may be of any reference type. Otherwise,
-a compile-time error occurs. In addition, the left operand in ArkTS
-cannot be a type.
+`any`, an object type, or a type parameter. Otherwise, the result is `false`. 
+In ArkTS, the left-hand side of an expression may be of any reference type, for example, an object, an array, or a function. Otherwise, a compile-time error occurs. In addition, the left operand in ArkTS
+cannot be a type. It must be an object instance.
 
 ### Recipe: `in` Operator Is Not Supported
 
@@ -1933,7 +1932,7 @@ try {
 
 **See also**
 
-* Recipe: `throw` Statements Do Not Accept Values of Arbitrary Types
+Recipe: `throw` Statements Do Not Accept Values of Arbitrary Types
 
 ### Recipe: `for .. in` Is Not Supported
 
@@ -2226,7 +2225,7 @@ function main(): void {
 
 **See also**
 
-* Recipe: `Function.apply`, `Function.bind`, and `Function.call` Are Not Supported
+Recipe: `Function.apply`, `Function.bind`, and `Function.call` Are Not Supported
 
 ### Recipe: Generator Functions Are Not Supported
 
@@ -2686,14 +2685,14 @@ ArkTS does not support merging declarations for `enum`. Keep the declaration of 
 **TypeScript**
 
 ```typescript
-enum Color {
+enum ColorSet {
   RED,
   GREEN
 }
-enum Color {
+enum ColorSet {
   YELLOW = 2
 }
-enum Color {
+enum ColorSet {
   BLACK = 3,
   BLUE
 }
@@ -2702,7 +2701,7 @@ enum Color {
 **ArkTS**
 
 ```typescript
-enum Color {
+enum ColorSet {
   RED,
   GREEN,
   YELLOW,
@@ -2845,7 +2844,7 @@ import * as m from 'mod'
 
 **See also**
 
-* Recipe: `export = ...` Is Not Supported
+Recipe: `export = ...` Is Not Supported
 
 ### Recipe: `export = ...` Is Not Supported
 
@@ -2890,7 +2889,7 @@ let p = Pt.Point.origin
 
 **See also**
 
-* Recipe: `require` and `import` Assignment Are Not Supported
+Recipe: `require` and `import` Assignment Are Not Supported
 
 ### Recipe: Ambient Module Declaration Is Not Supported
 
@@ -2917,7 +2916,7 @@ import { normalize } from "someModule"
 
 **See also**
 
-* Recipe: Wildcards in Module Names Are Not Supported
+Recipe: Wildcards in Module Names Are Not Supported
 
 ### Recipe: Wildcards in Module Names Are Not Supported
 
@@ -2995,7 +2994,7 @@ mathLib.isPrime(2)
 
 **See also**
 
-* Recipe: Wildcards in Module Names Are Not Supported
+Recipe: Wildcards in Module Names Are Not Supported
 
 ### Recipe: `new.target` Is Not Supported
 
@@ -3092,7 +3091,7 @@ class C {
 
 **See also**
 
-* Recipe: new.target Is Not Supported
+Recipe: new.target Is Not Supported
 
 ### Recipe: `globalThis` Is Not Supported
 
@@ -3153,7 +3152,7 @@ this rule and their layout cannot be changed at runtime.
 
 **See also**
 
-* Recipe: `globalThis` Is Not Supported
+Recipe: `globalThis` Is Not Supported
 
 ### Recipe: `Function.apply`, `Function.bind`, and `Function.call` Are Not Supported
 

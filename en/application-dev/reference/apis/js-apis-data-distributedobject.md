@@ -24,10 +24,10 @@ Creates a distributed data object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | Context | Yes| Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
-| source | object | Yes| Attributes of the distributed data object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | context | Context | Yes| Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
+  | source | object | Yes| Attributes of the distributed data object.|
 
 **Return value**
 
@@ -102,9 +102,9 @@ Creates a random session ID.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| string | Session ID created.|
+  | Type| Description|
+  | -------- | -------- |
+  | string | Session ID created.|
 
 **Example**
 
@@ -123,7 +123,7 @@ Represents the information returned by the callback of [save](#save9).
 | -------- | -------- | -------- | -------- |
 | sessionId | string | Yes| Unique ID for multi-device collaboration.|
 | version | number | Yes| Version of the distributed data object saved.|
-| deviceId | string | Yes| ID of the device where the distributed data object is stored. The value **local** indicates a local device.|
+| deviceId | string | Yes| ID of the device where the distributed data object is stored. The value **local** indicates the local device.|
 
 ## RevokeSaveSuccessResponse<sup>9+</sup>
 
@@ -151,18 +151,18 @@ Sets a session ID. This API uses an asynchronous callback to return the result. 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| sessionId | string | Yes| ID of a distributed data object on a trusted network. If this parameter is set to "", the distributed data object exits the network.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback invoked when the session ID is successfully set.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | sessionId | string | Yes| ID of a distributed data object on a trusted network. If this parameter is set to "", the distributed data object exits the network.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback invoked when the session ID is successfully set.|
 
 **Error codes**
 
   For details about the error codes, see [Distributed Data Object Error Codes](../errorcodes/errorcode-distributed-dataObject.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 15400001 | Create table failed.|
+  | ID| Error Message|
+  | -------- | -------- |
+  | 15400001 | Create table failed.|
 
 **Example**
 
@@ -173,7 +173,7 @@ g_object.setSessionId(distributedObject.genSessionId(), ()=>{
 });
 // g_object exits the distributed network.
 g_object.setSessionId("", ()=>{
-    console.info("join session");
+    console.info("leave all session");
 });
 ```
 
@@ -189,17 +189,17 @@ Exits all sessions. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the distributed data object exits all sessions. |
 
 **Error codes**
 
   For details about the error codes, see [Distributed Data Object Error Codes](../errorcodes/errorcode-distributed-dataObject.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 15400001 | Create table failed.|
+  | ID| Error Message|
+  | -------- | -------- |
+  | 15400001 | Create table failed.|
 
 **Example**
 
@@ -218,7 +218,7 @@ g_object.setSessionId(() => {
 
 setSessionId(sessionId?: string): Promise&lt;void&gt;
 
-Set a session ID. This API uses a promise to return the result. Automatic synchronization is performed for multiple devices with the same session ID on a trusted network.
+Sets a session ID. This API uses a promise to return the result. Automatic synchronization is performed for multiple devices with the same session ID on a trusted network.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -226,9 +226,9 @@ Set a session ID. This API uses a promise to return the result. Automatic synchr
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| sessionId | string | No| ID of a distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | sessionId | string | No| ID of a distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
 
 **Return value**
 
@@ -240,9 +240,9 @@ Set a session ID. This API uses a promise to return the result. Automatic synchr
 
   For details about the error codes, see [Distributed Data Object Error Codes](../errorcodes/errorcode-distributed-dataObject.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 15400001 | Create table failed.|
+  | ID| Error Message|
+  | -------- | -------- |
+  | 15400001 | Create table failed.|
 
 **Example**
 
@@ -389,10 +389,10 @@ The saved data will be released in the following cases:
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| deviceId | string | Yes| ID of the device where data is stored. The value **local** indicates a local device.|
-| callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Yes| Callback invoked to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | deviceId | string | Yes| ID of the device where data is stored. The value **local** indicates a local device.|
+  | callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Yes| Callback invoked to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
 
 **Example**
 
@@ -429,15 +429,15 @@ The saved data will be released in the following cases:
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
 | deviceId | string | Yes| ID of the device where the data is saved. The default value is **local**, which indicates the local device. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Promise used to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Promise used to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
 
 **Example**
 
@@ -467,9 +467,9 @@ If the object is stored on another device, the data on the local device will be 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Yes| Callback invoked to return **RevokeSaveSuccessResponse**, which contains the session ID.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Yes| Callback invoked to return **RevokeSaveSuccessResponse**, which contains the session ID.|
 
 **Example**
 
@@ -512,9 +512,9 @@ If the object is stored on another device, the data on the local device will be 
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Promise used to return **RevokeSaveSuccessResponse**, which contains the session ID.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Promise used to return **RevokeSaveSuccessResponse**, which contains the session ID.|
 
 **Example**
 
@@ -555,9 +555,9 @@ Creates a distributed data object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| source | object | Yes| Attributes of the distributed data object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | source | object | Yes| Attributes of the distributed data object.|
 
 **Return value**
 
@@ -605,15 +605,15 @@ Sets a session ID. Automatic synchronization is performed for multiple devices w
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| sessionId | string | No| ID of a distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | sessionId | string | No| ID of a distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the session ID is set successfully;<br>returns **false** otherwise. |
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the session ID is set successfully;<br>returns **false** otherwise. |
 
 **Example**
 

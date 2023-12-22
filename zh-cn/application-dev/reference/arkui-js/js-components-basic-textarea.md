@@ -20,19 +20,19 @@
 
 除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
 
-| 名称                               | 类型                      | 默认值   | 必填   | 描述                                       |
-| -------------------------------- | ----------------------- | ----- | ---- | ---------------------------------------- |
-| placeholder                      | string                  | -     | 否    | 多行文本框的提示文本内容。                            |
-| maxlength                        | number                  | -     | 否    | 多行文本框可输入的最多字符数量。                         |
-| headericon                       | string                  | -     | 否    | 在文本输入前的图标展示，该图标不支持点击事件，图标格式为jpg，png和svg。 |
-| extend                           | boolean                 | false | 否    | 文本框是否支持可扩展，设置可扩展属性后文本框高度可以跟随文字自适应。       |
-| value<sup>5+</sup>               | string                  | -     | 否    | 多行文本框的内容。                                |
-| showcounter<sup>5+</sup>         | boolean                 | false | 否    | 文本框是否需要开启计数下标功能，需要配合maxlength一起使用。       |
-| menuoptions<sup>5+</sup>         | Array&lt;MenuOption&gt; | -     | 否    | 设置文本选择弹框点击更多按钮之后显示的菜单项。                  |
-| autofocus<sup>6+</sup>           | boolean                 | false | 否    | 是否自动获焦。                                  |
-| selectedstart<sup>6+</sup>       | number                  | -1    | 否    | 开始选择文本时初始选择位置。                           |
-| selectedend<sup>6+</sup>         | number                  | -1    | 否    | 开始选择文本时结尾选择位置。                           |
-| softkeyboardenabled<sup>6+</sup> | boolean                 | true  | 否    | 编辑时是否弹出系统软键盘。                            |
+| 名称                             | 类型                    | 默认值 | 必填 | 描述                                                         |
+| -------------------------------- | ----------------------- | ------ | ---- | ------------------------------------------------------------ |
+| placeholder                      | string                  | -      | 否   | 多行文本框的提示文本内容。                                   |
+| maxlength                        | number                  | -      | 否   | 多行文本框可输入的最多字符数量。                             |
+| headericon                       | string                  | -      | 否   | 在文本输入前的图标展示，该图标不支持点击事件，图标格式为jpg，png和svg。 |
+| extend                           | boolean                 | false  | 否   | 文本框是否支持可扩展，设置可扩展属性后文本框高度可以跟随文字自适应。 |
+| value<sup>5+</sup>               | string                  | -      | 否   | 多行文本框的内容。                                           |
+| showcounter<sup>5+</sup>         | boolean                 | false  | 否   | 文本框是否需要开启计数下标功能，需要配合maxlength一起使用。  |
+| menuoptions<sup>5+</sup>         | Array&lt;MenuOption&gt; | -      | 否   | 设置文本选择弹框点击更多按钮之后显示的菜单项。               |
+| autofocus<sup>6+</sup>           | boolean                 | false  | 否   | 是否自动获焦。                                               |
+| selectedstart<sup>6+</sup>       | number                  | -1     | 否   | 开始选择文本时初始选择位置。                                 |
+| selectedend<sup>6+</sup>         | number                  | -1     | 否   | 开始选择文本时结尾选择位置。                                 |
+| softkeyboardenabled<sup>6+</sup> | boolean                 | true   | 否   | 编辑时是否弹出系统软键盘。                                   |
 
 **表1** MenuOption<sup>5+</sup>
 

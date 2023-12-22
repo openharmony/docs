@@ -1,4 +1,4 @@
-# 使用AudioRenderer开发音频播放功能
+# 使用AudioRenderer开发音频播放功能(ArkTS)
 
 AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音频数据，相比AVPlayer而言，可以在输入前添加数据预处理，更适合有音频开发经验的开发者，以实现更灵活的播放功能。
 
@@ -30,90 +30,96 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 
 1. 配置音频渲染参数并创建AudioRenderer实例，音频渲染参数的详细信息可以查看[AudioRendererOptions](../reference/apis/js-apis-audio.md#audiorendereroptions8)。
      
-```ts
-import audio from '@ohos.multimedia.audio';
+    ```ts
+    import audio from '@ohos.multimedia.audio';
 
-let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_1,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-};
+    let audioStreamInfo: audio.AudioStreamInfo = {
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+      channels: audio.AudioChannel.CHANNEL_1,
+      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+    };
 
-let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
-  rendererFlags: 0
-};
+    let audioRendererInfo: audio.AudioRendererInfo = {
+      usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+      rendererFlags: 0
+    };
 
-let audioRendererOptions: audio.AudioRendererOptions = {
-  streamInfo: audioStreamInfo,
-  rendererInfo: audioRendererInfo
-};
+    let audioRendererOptions: audio.AudioRendererOptions = {
+      streamInfo: audioStreamInfo,
+      rendererInfo: audioRendererInfo
+    };
 
-audio.createAudioRenderer(audioRendererOptions, (err, data) => {
-  if (err) {
-   console.error(`Invoke createAudioRenderer failed, code is ${err.code}, message is ${err.message}`);
-   return;
-  } else {
-   console.info('Invoke createAudioRenderer succeeded.');
-   let audioRenderer = data;
-  }
-});
-```
+    audio.createAudioRenderer(audioRendererOptions, (err, data) => {
+      if (err) {
+      console.error(`Invoke createAudioRenderer failed, code is ${err.code}, message is ${err.message}`);
+      return;
+      } else {
+      console.info('Invoke createAudioRenderer succeeded.');
+      let audioRenderer = data;
+      }
+    });
+    ```
 
 2. 调用start()方法进入running状态，开始渲染音频。
      
-```ts
-audioRenderer.start((err: BusinessError) => {
-  if (err) {
-    console.error(`Renderer start failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info('Renderer start success.');
-  }
-});
-```
+    ```ts
+    import { BusinessError } from '@ohos.base';
+
+    audioRenderer.start((err: BusinessError) => {
+      if (err) {
+        console.error(`Renderer start failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info('Renderer start success.');
+      }
+    });
+    ```
 
 3. 指定待渲染文件地址，打开文件调用write()方法向缓冲区持续写入音频数据进行渲染播放。如果需要对音频数据进行处理以实现个性化的播放，在写入之前操作即可。
      
-```ts
-import fs from '@ohos.file.fs';
+    ```ts
+    import fs from '@ohos.file.fs';
 
-let context = getContext(this);
-async function read() {
-  const bufferSize: number = await audioRenderer.getBufferSize();
-  let path = context.filesDir;
-  
-  const filePath = path + '/voice_call_data.wav';
-  let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-  let buf = new ArrayBuffer(bufferSize);
-  let readsize: number = await fs.read(file.fd, buf);
-  let writeSize: number = await audioRenderer.write(buf);
-}
-```
+    let context = getContext(this);
+    async function read() {
+      const bufferSize: number = await audioRenderer.getBufferSize();
+      let path = context.filesDir;
+      
+      const filePath = path + '/voice_call_data.wav';
+      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+      let buf = new ArrayBuffer(bufferSize);
+      let readsize: number = await fs.read(file.fd, buf);
+      let writeSize: number = await audioRenderer.write(buf);
+    }
+    ```
 
 4. 调用stop()方法停止渲染。
      
-```ts
-audioRenderer.stop((err: BusinessError) => {
-  if (err) {
-    console.error(`Renderer stop failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info('Renderer stopped.');
-  }
-});
-```
+    ```ts
+    import { BusinessError } from '@ohos.base';
+
+    audioRenderer.stop((err: BusinessError) => {
+      if (err) {
+        console.error(`Renderer stop failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info('Renderer stopped.');
+      }
+    });
+    ```
 
 5. 调用release()方法销毁实例，释放资源。
      
-```ts
-audioRenderer.release((err: BusinessError) => {
-  if (err) {
-    console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info('Renderer released.');
-  } 
-});
-```
+    ```ts
+    import { BusinessError } from '@ohos.base';
+
+    audioRenderer.release((err: BusinessError) => {
+      if (err) {
+        console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info('Renderer released.');
+      } 
+    });
+    ```
 
 ### 完整示例
 
@@ -134,7 +140,7 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
 }
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA, // 音频流使用类型
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型
   rendererFlags: 0 // 音频渲染器标志
 }
 let audioRendererOptions: audio.AudioRendererOptions = {

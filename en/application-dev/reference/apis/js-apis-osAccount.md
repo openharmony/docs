@@ -1795,6 +1795,7 @@ Creates an OS account and associates it with the specified domain account. This 
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or domainInfo. |
+| 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
 | 12300007 | The number of accounts reaches the upper limit. |
@@ -1848,6 +1849,7 @@ Creates an OS account and associates it with the specified domain account. This 
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or domainInfo. |
+| 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
 | 12300007 | The number of accounts reaches the upper limit. |
@@ -4059,7 +4061,7 @@ A constructor used to create an instance for user authentication.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Example** 
+**Example**
   ```ts
   let userAuth = new account_osAccount.UserAuth();
   ```
@@ -4080,7 +4082,7 @@ Obtains version information.
 | :----- | :----------- |
 | number | Version information obtained.|
 
-**Example** 
+**Example**
   ```ts
   let userAuth = new account_osAccount.UserAuth();
   let version: number = userAuth.getVersion();
@@ -4119,7 +4121,7 @@ Obtains the available status of the authentication capability corresponding to t
 | 12300001 | System service exception. |
 | 12300002 | Invalid authType or authTrustLevel. |
 
-**Example** 
+**Example**
   ```ts
   let userAuth = new account_osAccount.UserAuth();
   let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
@@ -4217,7 +4219,7 @@ Obtains the executor property based on the request. This API uses a promise to r
   import { BusinessError } from '@ohos.base';
   let userAuth = new account_osAccount.UserAuth();
   let keys: Array<account_osAccount.GetPropertyType> = [
-    account_osAccount.GetPropertyType.AUTH_SUB_TYPE, 
+    account_osAccount.GetPropertyType.AUTH_SUB_TYPE,
     account_osAccount.GetPropertyType.REMAIN_TIMES,
     account_osAccount.GetPropertyType.FREEZING_TIME
   ];
@@ -4516,7 +4518,7 @@ A constructor used to create an instance for PIN authentication.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Example** 
+**Example**
   ```ts
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
   ```
@@ -4873,7 +4875,7 @@ Obtains information about a domain account.
         message: ""
       };
       let accountInfo: account_osAccount.DomainAccountInfo = {
-        domain: options.domain,
+        domain: options.domain ? options.domain : "",
         accountName: options.accountName,
         accountId: 'xxxx'
       };
@@ -5288,7 +5290,9 @@ Authenticates this domain account in a pop-up window.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL
+**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL<sup>10+</sup>;
+
+No permission is required since API version 11. Use the SDK of the latest version.
 
 **Parameters**
 
@@ -5335,7 +5339,9 @@ Authenticates a domain account in a pop-up window.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL
+**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL<sup>10+</sup>;
+
+No permission is required since API version 11. Use the SDK of the latest version.
 
 **Parameters**
 
@@ -5794,7 +5800,7 @@ A constructor used to create an instance for user IDM.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Example** 
+**Example**
   ```ts
   let userIDM = new account_osAccount.UserIdentityManager();
   ```

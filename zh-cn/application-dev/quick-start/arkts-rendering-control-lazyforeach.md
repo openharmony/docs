@@ -46,15 +46,15 @@ interface IDataSource {
 
 ```ts
 interface DataChangeListener {
-    onDataReloaded(): void; // 重新加载数据时调用
-    onDataAdded(index: number): void; // 添加数据时调用
-    onDataMoved(from: number, to: number): void; // 数据移动起始位置与数据移动目标位置交换时调用
-    onDataDeleted(index: number): void; // 删除数据时调用
-    onDataChanged(index: number): void; // 改变数据时调用
-    onDataAdd(index: number): void; // 添加数据时调用
-    onDataMove(from: number, to: number): void; // 数据移动起始位置与数据移动目标位置交换时调用
-    onDataDelete(index: number): void; // 删除数据时调用
-    onDataChange(index: number): void; // 改变数据时调用
+    onDataReloaded(): void; // 重新加载数据完成后调用
+    onDataAdded(index: number): void; // 添加数据完成后调用
+    onDataMoved(from: number, to: number): void; // 数据移动起始位置与数据移动目标位置交换完成后调用
+    onDataDeleted(index: number): void; // 删除数据完成后调用
+    onDataChanged(index: number): void; // 改变数据完成后调用
+    onDataAdd(index: number): void; // 添加数据完成后调用
+    onDataMove(from: number, to: number): void; // 数据移动起始位置与数据移动目标位置交换完成后调用
+    onDataDelete(index: number): void; // 删除数据完成后调用
+    onDataChange(index: number): void; // 改变数据完成后调用
 }
 ```
 
@@ -819,7 +819,7 @@ class MyDataSource extends BasicDataSource {
   }
   
   public changeData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
+    this.dataArray.splice(index, 1, data);
     this.notifyDataChange(index);
   }
 }
@@ -1493,7 +1493,7 @@ struct ChildComponent {
     message: string;
     imgSrc: Resource;
     constructor(message: string, imgSrc: Resource) {
-      this.message = message;
+        this.message = message;
         this.imgSrc = imgSrc;
     }  
   }
@@ -1627,7 +1627,7 @@ struct ChildComponent {
     message: string;
     imgSrc: Resource;
     constructor(message: string, imgSrc: Resource) {
-      this.message = message;
+        this.message = message;
         this.imgSrc = imgSrc;
     }  
   }

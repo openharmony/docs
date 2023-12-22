@@ -19,7 +19,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ## innerBundleManager.getLauncherAbilityInfos<sup>(deprecated)</sup>
 
-getLauncherAbilityInfos(bundleName: string, userId: number, callback: AsyncCallback&lt;Array&lt;LauncherAbilityInfo&gt;&gt;) : void;
+getLauncherAbilityInfos(bundleName: string, userId: number, callback: AsyncCallback&lt;Array&lt;LauncherAbilityInfo&gt;&gt;) : void
 
 以异步方法根据给定的Bundle名称获取LauncherAbilityInfos，使用callback形式返回结果。
 > 从API version 9开始不再支持。建议使用[launcherBundleManager.getLauncherAbilityInfo](js-apis-launcherBundleManager.md#launcherbundlemanagergetlauncherabilityinfo9)替代。
@@ -79,7 +79,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ## innerBundleManager.on<sup>(deprecated)</sup>
 
-on(type:"BundleStatusChange", bundleStatusCallback : BundleStatusCallback, callback: AsyncCallback&lt;string&gt;) : void;
+on(type:"BundleStatusChange", bundleStatusCallback : BundleStatusCallback, callback: AsyncCallback&lt;string&gt;) : void
 
 注册Callback。
 > 从API version 9开始不再支持。建议使用[bundleMonitor.on](js-apis-bundleMonitor.md#bundlemonitoron)替代。
@@ -138,7 +138,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ## innerBundleManager.off<sup>(deprecated)</sup>
 
-off(type:"BundleStatusChange", callback: AsyncCallback&lt;string&gt;) : void;
+off(type:"BundleStatusChange", callback: AsyncCallback&lt;string&gt;) : void
 
 取消注册Callback。
 > 从API version 9开始不再支持。建议使用[bundleMonitor.off](js-apis-bundleMonitor.md#bundlemonitoroff)替代。
@@ -195,7 +195,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ## innerBundleManager.getAllLauncherAbilityInfos<sup>(deprecated)</sup>
 
-getAllLauncherAbilityInfos(userId: number, callback: AsyncCallback&lt;Array&lt;LauncherAbilityInfo&gt;&gt;) : void;
+getAllLauncherAbilityInfos(userId: number, callback: AsyncCallback&lt;Array&lt;LauncherAbilityInfo&gt;&gt;) : void
 
 以异步方法获取所有的LauncherAbilityInfos，使用callback形式返回结果。
 > 从API version 9开始不再支持。建议使用[launcherBundleManager.getAllLauncherAbilityInfo](js-apis-launcherBundleManager.md#launcherbundlemanagergetalllauncherabilityinfo9)替代。
@@ -252,7 +252,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ## innerBundleManager.getShortcutInfos<sup>(deprecated)</sup>
 
-getShortcutInfos(bundleName :string, callback: AsyncCallback&lt;Array&lt;ShortcutInfo&gt;&gt;) : void;
+getShortcutInfos(bundleName :string, callback: AsyncCallback&lt;Array&lt;ShortcutInfo&gt;&gt;) : void
 
 以异步方法根据给定的Bundle名称获取快捷方式信息，使用callback形式返回结果。
 > 从API version 9开始不再支持。建议使用[launcherBundleManager.getShortcutInfo](js-apis-launcherBundleManager.md#launcherbundlemanagergetshortcutinfo9)替代。

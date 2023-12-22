@@ -41,6 +41,7 @@ Obtains a **CalendarManager** object based on the context.
   // Obtain the context.
   // Obtain a calendarManager object.
   // In the following code, class EntryAbility extends UIAbility and onWindowStageCreate are available in main/ets/entryability/EntryAbility.ets and ohosTest/ets/testability/TestAbility.ets files and can be directly used.
+  // calendarMgr must be obtained in the main thread, not in the worker thread.
   import UIAbility from '@ohos.app.ability.UIAbility';
   import common from '@ohos.app.ability.common';
   import window from '@ohos.window';

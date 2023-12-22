@@ -42,6 +42,7 @@
     - [Foreground Blur](ts-universal-attributes-foreground-blur-style.md)
     - [Click Effect](ts-universal-attributes-click-effect.md)
     - [Accessibility](ts-universal-attributes-accessibility.md)
+    - [Attribute Modifier](ts-universal-attributes-attribute-modifier.md)
     - Touch Interactions
       - [Touch Target](ts-universal-attributes-touch-target.md)
       - [Hit Test Control](ts-universal-attributes-hit-test-behavior.md)
@@ -54,6 +55,7 @@
     - [Safe Area](ts-universal-attributes-expand-safe-area.md)
     - [Special Effect Drawing Combination](ts-universal-attributes-use-effect.md)
     - [Render Fit](ts-universal-attributes-renderfit.md)
+    - [Event Monopolization](ts-universal-attributes-monopolize-events.md)
   - Gesture Handling
     - [Gesture Binding Methods](ts-gesture-settings.md)
     - Basic Gestures
@@ -64,6 +66,7 @@
       - [RotationGesture](ts-basic-gestures-rotationgesture.md)
       - [SwipeGesture](ts-basic-gestures-swipegesture.md)
     - [Combined Gestures](ts-combined-gestures.md)
+    - [Custom Gesture Judgment](ts-gesture-customize-judge.md)
 - Basic Components
   - [AlphabetIndexer](ts-container-alphabet-indexer.md)
   - [Blank](ts-basic-components-blank.md)
@@ -167,6 +170,7 @@
   - [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D](ts-components-canvas-path2d.md)
 - Advanced Components
+  - [@ohos.arkui.advanced.Counter (Counter)](ohos-arkui-advanced-counter.md)
   - [@ohos.multimedia.avCastPicker (AVCastPicker)](ohos-multimedia-avcastpicker.md)
 - Security Components
   - [Security Component Universal Attributes](ts-securitycomponent-attributes.md)
@@ -174,24 +178,24 @@
   - [PasteButton](ts-security-components-pastebutton.md)
   - [SaveButton](ts-security-components-savebutton.md)
 - Animation
-  - [Property Animation](ts-animatorproperty.md)
-  - [Explicit Animation](ts-explicit-animation.md)
+  - [Property Animation (animation)](ts-animatorproperty.md)
+  - [Explicit Animation (animateTo)](ts-explicit-animation.md)
   - Transition Animation
-    - [Page Transition](ts-page-transition-animation.md)
-    - [Component Transition](ts-transition-animation-component.md)
-    - [Transition of Shared Elements](ts-transition-animation-shared-elements.md)
-    - [Implicit Shared Element Transition](ts-transition-animation-geometrytransition.md)
-  - [Motion Path Animation](ts-motion-path-animation.md)
-  - [Particle Animation](ts-particle-animation.md)
+    - [Page Transition (pageTransition)](ts-page-transition-animation.md)
+    - [Component Transition (transition)](ts-transition-animation-component.md)
+    - [Transition of Shared Elements (sharedTransition)](ts-transition-animation-shared-elements.md)
+    - [Implicit Shared Element Transition (geometryTransition)](ts-transition-animation-geometrytransition.md)
+  - [Motion Path Animation (motionPath)](ts-motion-path-animation.md)
+  - [Particle Animation (Particle)](ts-particle-animation.md)
 - Global UI Methods
   - Dialog Boxes
-    - [Alert Dialog Box](ts-methods-alert-dialog-box.md)
-    - [Action Sheet](ts-methods-action-sheet.md)
-    - [Custom Dialog Box](ts-methods-custom-dialog-box.md)
-    - [Calendar Picker Dialog Box](ts-methods-calendarpicker-dialog.md)
-    - [Date Picker Dialog Box](ts-methods-datepicker-dialog.md)
-    - [Time Picker Dialog Box](ts-methods-timepicker-dialog.md)
-    - [Text Picker Dialog Box](ts-methods-textpicker-dialog.md)
+    - [Alert Dialog Box (AlertDialog)](ts-methods-alert-dialog-box.md)
+    - [Action Sheet (ActionSheet)](ts-methods-action-sheet.md)
+    - [Custom Dialog Box (CustomDialog)](ts-methods-custom-dialog-box.md)
+    - [Calendar Picker Dialog Box (CalendarPickerDialog)](ts-methods-calendarpicker-dialog.md)
+    - [Date Picker Dialog Box (DatePickerDialog)](ts-methods-datepicker-dialog.md)
+    - [Time Picker Dialog Box (TimePickerDialog)](ts-methods-timepicker-dialog.md)
+    - [Text Picker Dialog Box (TextPickerDialog)](ts-methods-textpicker-dialog.md)
   - [Menu](ts-methods-menu.md)
 - [Custom Component Lifecycle](ts-custom-component-lifecycle.md)
 - [State Management with Application-level Variables](ts-state-management.md)

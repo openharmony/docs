@@ -217,8 +217,8 @@ Represents WLAN hotspot information.
 
 | **Name**| **Type**| **Readable**| **Writable**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | Yes| No| Service set identifier (SSID) of the hotspot, in UTF-8 format.|
-| bssid | string | Yes| No| Basic service set identifier (BSSID) of the hotspot.|
+| ssid | string | Yes| No| Service set identifier (SSID) of the hotspot, in UTF-8 format. The maximum length is 32 bytes.|
+| bssid | string | Yes| No| Basic service set identifier (BSSID) of the hotspot, for example, **00:11:22:33:44:55**.|
 | capabilities | string | Yes| No| Hotspot capabilities.|
 | securityType | [WifiSecurityType](#wifisecuritytype) | Yes| No| WLAN security type.|
 | rssi | number | Yes| No| Received signal strength indicator (RSSI) of the hotspot, in dBm.|
@@ -310,9 +310,9 @@ Represents the WLAN configuration.
 
 | **Name**| **Type**| **Readable**| **Writable**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | Yes| No| SSID of the hotspot, in UTF-8 format.|
-| bssid | string | Yes| No| BSSID of the hotspot.|
-| preSharedKey | string | Yes| No| PSK of the hotspot.|
+| ssid | string | Yes| No| Hotspot SSID in UTF-8 format. The maximum length is 32 bytes.|
+| bssid | string | Yes| No| Hotspot BSSID, for example, **00:11:22:33:44:55**.|
+| preSharedKey | string | Yes| No| PSK of the hotspot. The maximum length is 64 bytes.|
 | isHiddenSsid | boolean | Yes| No| Whether the network is hidden.|
 | securityType | [WifiSecurityType](#wifisecuritytype) | Yes| No| Security type.|
 | creatorUid | number | Yes| No| ID of the creator.<br>**System API**: This is a system API.|
@@ -837,8 +837,8 @@ Represents the WLAN connection information.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | Yes| No| Hotspot SSID in UTF-8 format.|
-| bssid | string | Yes| No| BSSID of the hotspot.|
+| ssid | string | Yes| No| Hotspot SSID in UTF-8 format. The maximum length is 32 bytes.|
+| bssid | string | Yes| No| Hotspot BSSID, for example, **00:11:22:33:44:55**.|
 | networkId | number | Yes| No| Network configuration ID.<br>**System API**: This is a system API.|
 | rssi | number | Yes| No| RSSI of the hotspot, in dBm.|
 | band | number | Yes| No| Frequency band of the WLAN AP.|

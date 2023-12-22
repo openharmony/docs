@@ -57,7 +57,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
             console.log('BUNDLE_ACTIVE queryBundleEvents promise result ' + JSON.stringify(res[i]));
         }
     }).catch((err : BusinessError)=> {
-        console.log('BUNDLE_ACTIVE queryBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // 异步方法callback方式
@@ -84,7 +84,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise success.');
         console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback result ' + JSON.stringify(res));
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryBundleStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // 异步方法callback方式
@@ -111,7 +111,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise result ' + JSON.stringify(res[i]));
         }
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryCurrentBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // 异步方法callback方式
@@ -141,7 +141,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise result ' + JSON.stringify(res[i]));
         }
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // 异步方法callback方式
@@ -168,7 +168,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     usageStatistics.queryAppGroup().then( (res : number) => {
         console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // callback方式
@@ -194,7 +194,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     usageStatistics.isIdleState("com.ohos.camera").then( (res : boolean) => {
         console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // 异步方法callback方式
@@ -223,7 +223,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
         }
     }).catch( (err : BusinessError)=> {
-        console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // 无maxNum参数异步方法promise方式
@@ -234,7 +234,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
         }
     }).catch( (err : BusinessError)=> {
-        console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // 异步方法callback方式
@@ -274,7 +274,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         console.log('BUNDLE_ACTIVE queryNotificationEventStats promise success.');
         console.log('BUNDLE_ACTIVE queryNotificationEventStats promise result ' + JSON.stringify(res));
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE queryNotificationEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryNotificationEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // 异步方法callback方式
@@ -298,7 +298,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         console.log('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
         console.log('BUNDLE_ACTIVE queryDeviceEventStates promise result ' + JSON.stringify(res));
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // 异步方法callback方式
@@ -322,7 +322,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     usageStatistics.queryAppGroup(bundleName).then( (res : number) => {
         console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // 有bundleName异步方法callback方式
@@ -348,7 +348,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
         console.log('BUNDLE_ACTIVE setAppGroup promise succeeded.');
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // 异步方法callback
@@ -380,7 +380,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     usageStatistics.registerAppGroupCallBack(onBundleGroupChanged).then( () => {
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise succeeded.');
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE registerAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // 异步方法callback形式
@@ -410,7 +410,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     usageStatistics.unregisterAppGroupCallBack().then( () => {
         console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise succeeded.');
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE unregisterAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // callback

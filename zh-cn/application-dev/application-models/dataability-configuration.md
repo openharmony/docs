@@ -44,16 +44,22 @@ config.json配置样例
 
 
 ```json
-"abilities": [{
-  "srcPath": "DataAbility",
-  "name": ".DataAbility",
-  "icon": "$media:icon",
-  "srcLanguage": "ets",
-  "description": "$string:description_dataability",
-  "type": "data",
-  "visible": true,
-  "uri": "dataability://ohos.samples.etsdataability.DataAbility"
-}]
+"abilities": [
+  ...
+  {
+    "name": ".DataAbility",
+    "srcLanguage": "ets",
+    "srcPath": "DataAbility",
+    "icon": "$media:icon",
+    "description": "$string:DataAbility_desc",
+    "type": "data",
+    "visible": true,
+    "uri": "dataability://com.samples.famodelabilitydevelop.DataAbility",
+    "readPermission": "ohos.permission.READ_CONTACTS",
+    "writePermission": "ohos.permission.WRITE_CONTACTS"
+  },
+  ...
+]
 ```
 
 DataAbility支持的配置项及详细说明详见[module对象内部结构](../quick-start/module-structure.md)。

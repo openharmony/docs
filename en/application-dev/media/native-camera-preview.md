@@ -1,13 +1,13 @@
-# Camera Preview (Native)
+# Camera Preview (C/C++)
 
 Preview is the image you see after you start the camera application but before you take photos or record videos.
 
 ## How to Develop
 
-Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
+Read [Camera](../reference/native-apis/_o_h___camera.md) for the API reference.
 
 1. Import the NDK, which provides camera-related attributes and methods.
-   
+     
    ```c++
     // Include the NDK header files in camera_manager.cpp.
     #include "multimedia/camera_framework/camera.h"
@@ -60,8 +60,8 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
     }
    ```
 
-4. Call **OH_CameraManager_GetSupportedCameraOutputCapability** to obtain the preview output capabilities supported by the current device. Then call **OH_CameraManager_CreatePreviewOutput** to create a **PreviewOutput** object, with the parameters set to the **cameraManager** pointer, the first item in the **previewProfiles** array, the surface ID obtained in step 3, and the returned **previewOutput** pointer, respectively.
-   
+4. Call **OH_CameraManager_GetSupportedCameraOutputCapability** to obtain the preview output capabilities supported by the current device. Then call **OH_CameraManager_CreatePreviewOutput** to create a **PreviewOutput** instance, with the parameters set to the **cameraManager** pointer, the first item in the **previewProfiles** array, the surface ID obtained in step 3, and the returned **previewOutput** pointer, respectively.
+     
    ```c++
     ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, previewSurfaceId, &previewOutput);
     if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
@@ -70,7 +70,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```
 
 5. Configure the session. Call **commitConfig()** to commit the session configuration, and then call **start()** to start outputting the preview stream. If the call fails, an error code is returned. For details, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
-   
+     
    ```c++
     ret = OH_PreviewOutput_Start(previewOutput);
     if (ret != CAMERA_OK) {
@@ -79,7 +79,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```
 
 6. Call **stop()** to stop the preview stream. If the call fails, an error code is returned. For details, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
-   
+     
    ```c++
     ret = OH_PreviewOutput_Stop(previewOutput);
     if (ret != CAMERA_OK) {
@@ -92,7 +92,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 During camera application development, you can listen for the preview output stream status, including preview stream start, preview stream end, and preview stream output errors.
 
 - Register the **'frameStart'** event to listen for preview start events. This event can be registered when a **PreviewOutput** object is created and is triggered when the bottom layer starts exposure for the first time. The preview stream starts as long as a result is returned.
-  
+    
   ```c++
     void PreviewOutputOnFrameStart(Camera_PreviewOutput* previewOutput)
     {
@@ -114,7 +114,7 @@ During camera application development, you can listen for the preview output str
   ```
 
 - Register the **'frameEnd'** event to listen for preview end events. This event can be registered when a **PreviewOutput** object is created and is triggered when the last frame of preview ends. The preview stream ends as long as a result is returned.
-  
+    
   ```c++
     void PreviewOutputOnFrameEnd(Camera_PreviewOutput* previewOutput, int32_t frameCount)
     {
@@ -123,7 +123,7 @@ During camera application development, you can listen for the preview output str
   ```
 
 - Register the **'error'** event to listen for preview output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera Error Codes](../reference/apis/js-apis-camera.md#cameraerrorcode).
-  
+    
   ```c++
     void PreviewOutputOnError(Camera_PreviewOutput* previewOutput, Camera_ErrorCode errorCode)
     {

@@ -90,6 +90,26 @@ getPss(): bigint
   let pss: bigint = hidebug.getPss();
   ```
 
+## hidebug.getVss<sup>11+<sup>
+
+getVss(): bigint
+
+获取应用进程虚拟耗用内存大小。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型   | 说明                                     |
+| ------ | ---------------------------------------- |
+| bigint | 返回应用进程虚拟耗用内存大小，单位为kB。 |
+
+**示例：**
+
+  ```ts
+let vss: bigint = hidebug.getVss();
+  ```
+
 ## hidebug.getSharedDirty
 
 getSharedDirty(): bigint
@@ -171,7 +191,7 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-hiviewdfx-hidebug.md)。
+以下错误码的详细介绍请参见[Hidebug错误码](../errorcodes/errorcode-hiviewdfx-hidebug.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
@@ -182,10 +202,10 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import fs from '@ohos.file.fs'
-import hidebug from '@ohos.hidebug'
-import common from '@ohos.app.ability.common'
-import { BusinessError } from '@ohos.base'
+import fs from '@ohos.file.fs';
+import hidebug from '@ohos.hidebug';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 export default class HidebugTest extends UIAbility {
   public testfunc() {
@@ -232,7 +252,7 @@ startJsCpuProfiling(filename : string) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
@@ -298,7 +318,7 @@ dumpJsHeapData(filename : string) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |

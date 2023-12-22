@@ -1,4 +1,4 @@
-# Audio and Video Encapsulation
+# Audio and Video Encapsulation (C/C++)
 
 You can call the native APIs provided by the **AVMuxer** module to encapsulate audio and video, that is, to store encoded audio and video data to a file in a certain format.
 

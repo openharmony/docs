@@ -322,6 +322,7 @@ setSize(size: number): void
   import { BusinessError } from '@ohos.base';
 
   let data = rpc.MessageSequence.create();
+  data.writeString('Hello World');
   try {
     data.setSize(16);
   } catch(error) {
@@ -2662,7 +2663,7 @@ readException(): void
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
 
-  let proxy: rpc.IRemoteObject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
@@ -2695,31 +2696,33 @@ readException(): void
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
   let reply = rpc.MessageSequence.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  proxy.sendMessageRequest(1, data, reply, option)
-    .then((result: rpc.RequestResult) => {
-      if (result.errCode === 0) {
-        hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
-        try {
-          result.reply.readException();
-        } catch(error) {
-          let e: BusinessError = error as BusinessError;
-          hilog.error(0x0000, 'testTag', 'rpc read exception fail, errorCode ' + e.code);
-          hilog.error(0x0000, 'testTag', 'rpc read exception fail, errorMessage ' + e.message);
+  data.writeNoException();
+  data.writeInt(6);
+  if (proxy != undefined) {
+    proxy.sendMessageRequest(1, data, reply, option)
+      .then((result: rpc.RequestResult) => {
+        if (result.errCode === 0) {
+          hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
+          try {
+            result.reply.readException();
+          } catch(error) {
+            let e: BusinessError = error as BusinessError;
+            hilog.error(0x0000, 'testTag', 'rpc read exception fail, errorCode ' + e.code);
+            hilog.error(0x0000, 'testTag', 'rpc read exception fail, errorMessage ' + e.message);
+          }
+          let num = result.reply.readInt();
+          hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
+        } else {
+          hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
         }
-        let msg = result.reply.readString();
-        hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-      } else {
-        hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
-      }
-    }).catch((e: Error) => {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest got exception: ' + e.message);
-    }).finally (() => {
-      hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
-      data.reclaim();
-      reply.reclaim();
-    });
+      }).catch((e: Error) => {
+        hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest got exception: ' + e.message);
+      }).finally (() => {
+        hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
+        data.reclaim();
+        reply.reclaim();
+      });
+  }
   ```
 
 ### writeParcelableArray
@@ -5307,7 +5310,7 @@ readException(): void
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
 
-  let proxy: rpc.IRemoteObject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
@@ -5339,25 +5342,28 @@ readException(): void
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  proxy.sendRequest(1, data, reply, option)
-      .then((result: rpc.SendRequestResult) => {
-          if (result.errCode === 0) {
-              hilog.info(0x0000, 'testTag', 'sendRequest got result');
-              result.reply.readException();
-              let msg = result.reply.readString();
-              hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-          } else {
-              hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
-          }
-      }).catch((e: Error) => {
-          hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest got exception: ' + e.message);
-      }).finally (() => {
-          hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
-          data.reclaim();
-          reply.reclaim();
-      });
+  data.writeNoException();
+  data.writeString('hello');
+  if (proxy != undefined) {
+    let a = proxy.sendRequest(1, data, reply, option) as Object;
+    let b = a as Promise<rpc.SendRequestResult>;
+    b.then((result: rpc.SendRequestResult) => {
+      if (result.errCode === 0) {
+        hilog.info(0x0000, 'testTag', 'sendRequest got result');
+        result.reply.readException();
+        let msg = result.reply.readString();
+        hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
+      } else {
+        hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
+      }
+    }).catch((e: Error) => {
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest got exception: ' + e.message);
+    }).finally (() => {
+      hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
+      data.reclaim();
+      reply.reclaim();
+    });
+  }
   ```
 
 ### writeSequenceableArray
@@ -5634,8 +5640,7 @@ static closeFileDescriptor(fd: number): void
 
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  let parcel = new rpc.MessageParcel();   
-  parcel.closeFileDescriptor(file.fd);
+  rpc.MessageParcel.closeFileDescriptor(file.fd);
   ```
 
 ### dupFileDescriptor<sup>8+</sup>
@@ -5665,8 +5670,7 @@ static dupFileDescriptor(fd: number) :number
 
   let filePath = "path/to/file";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  let parcel = new rpc.MessageParcel();
-  parcel.dupFileDescriptor(file.fd);
+  rpc.MessageParcel.dupFileDescriptor(file.fd);
   ```
 
 ### containFileDescriptors<sup>8+</sup>
@@ -6165,7 +6169,7 @@ asObject(): IRemoteObject
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
 
-  let proxy: rpc.IRemoteObject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
@@ -6193,15 +6197,17 @@ asObject(): IRemoteObject
 
   ```ts
   class TestProxy {
-    remote: rpc.RemoteObject;
-    constructor(remote: rpc.RemoteObject) {
+    remote: rpc.IRemoteObject;
+    constructor(remote: rpc.IRemoteObject) {
       this.remote = remote;
     }
     asObject() {
       return this.remote;
     }
   }
-  let iRemoteObject = new TestProxy(proxy).asObject();
+  if (proxy != undefined) {
+    let iRemoteObject = new TestProxy(proxy).asObject();
+  }
   ```
 
 ## DeathRecipient
@@ -6608,7 +6614,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
 
-  let proxy: rpc.IRemoteObject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
      onConnect: (elementName, remoteProxy) => {
         hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
@@ -6642,17 +6648,19 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   let reply = rpc.MessageParcel.create();
   data.writeInt(1);
   data.writeString("hello");
-  let ret: boolean = proxy.sendRequest(1, data, reply, option);
-  if (ret) {
+  if (proxy != undefined) {
+    let ret: boolean = proxy.sendRequest(1, data, reply, option);
+    if (ret) {
     hilog.info(0x0000, 'testTag', 'sendRequest got result');
     let msg = reply.readString();
     hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-  } else {
-    hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed');
+    } else {
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed');
+    }
+    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
+    data.reclaim();
+    reply.reclaim();
   }
-  hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
-  data.reclaim();
-  reply.reclaim();
   ```
 
 ### sendMessageRequest<sup>9+</sup>
@@ -6689,7 +6697,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
 
-  let proxy: rpc.IRemoteObject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
@@ -6723,23 +6731,26 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   let reply = rpc.MessageSequence.create();
   data.writeInt(1);
   data.writeString("hello");
-  proxy.sendMessageRequest(1, data, reply, option)
+  if (proxy != undefined) {
+    proxy.sendMessageRequest(1, data, reply, option)
     .then((result: rpc.RequestResult) => {
       if (result.errCode === 0) {
         hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
-        result.reply.readException();
+        let num = result.reply.readInt();
         let msg = result.reply.readString();
+        hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
         hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
       } else {
         hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
       }
     }).catch((e: Error) => {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest got exception: ' + e.message);
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, message: ' + e.message);
     }).finally (() => {
       hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
       data.reclaim();
       reply.reclaim();
     });
+  }
   ```
 
 ### sendRequest<sup>8+(deprecated)</sup>
@@ -6778,7 +6789,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
 
-  let proxy: rpc.IRemoteObject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
@@ -6812,23 +6823,27 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   let reply = rpc.MessageParcel.create();
   data.writeInt(1);
   data.writeString("hello");
-  proxy.sendRequest(1, data, reply, option)
-    .then((result: rpc.SendRequestResult) => {
+  if (proxy != undefined) {
+    let a = proxy.sendRequest(1, data, reply, option) as Object;
+    let b = a as Promise<rpc.SendRequestResult>;
+    b.then((result: rpc.SendRequestResult) => {
       if (result.errCode === 0) {
         hilog.info(0x0000, 'testTag', 'sendRequest got result');
-        result.reply.readException();
+        let num = result.reply.readInt();
         let msg = result.reply.readString();
+        hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
         hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
       } else {
         hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
       }
     }).catch((e: Error) => {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest got exception: ' + e.message);
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, message: ' + e.message);
     }).finally (() => {
       hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
       data.reclaim();
       reply.reclaim();
     });
+  }
   ```
 
 ### sendMessageRequest<sup>9+</sup>
@@ -6861,7 +6876,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base'; 
 
-  let proxy: rpc.IRemoteObject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
@@ -6881,8 +6896,9 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   function sendMessageRequestCallback(err: BusinessError, result: rpc.RequestResult) {
     if (result.errCode === 0) {
       hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
-      result.reply.readException();
+      let num = result.reply.readInt();
       let msg = result.reply.readString();
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
       hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
     } else {
       hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
@@ -6909,12 +6925,14 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   let reply = rpc.MessageSequence.create();
   data.writeInt(1);
   data.writeString("hello");
-  try {
-    proxy.sendMessageRequest(1, data, reply, option, sendMessageRequestCallback);
-  } catch(error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc sendMessageRequest fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc sendMessageRequest fail, errorMessage ' + e.message);
+  if (proxy != undefined) {
+    try {
+      proxy.sendMessageRequest(1, data, reply, option, sendMessageRequestCallback);
+    } catch(error) {
+      let e: BusinessError = error as BusinessError;
+      hilog.error(0x0000, 'testTag', 'rpc sendMessageRequest fail, errorCode ' + e.code);
+      hilog.error(0x0000, 'testTag', 'rpc sendMessageRequest fail, errorMessage ' + e.message);
+    }
   }
   ```
 
@@ -6950,7 +6968,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
-  let proxy: rpc.IRemoteObject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
@@ -6970,8 +6988,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   function sendRequestCallback(err: BusinessError, result: rpc.SendRequestResult) {
     if (result.errCode === 0) {
       hilog.info(0x0000, 'testTag', 'sendRequest got result');
-      result.reply.readException();
+      let num = result.reply.readInt();
       let msg = result.reply.readString();
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
       hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
     } else {
       hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
@@ -6995,7 +7014,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   let reply = rpc.MessageParcel.create();
   data.writeInt(1);
   data.writeString("hello");
-  proxy.sendRequest(1, data, reply, option, sendRequestCallback);
+  if (proxy != undefined) {
+    proxy.sendRequest(1, data, reply, option, sendRequestCallback);
+  }
   ```
 
 ### getLocalInterface<sup>9+</sup>
@@ -7037,7 +7058,7 @@ getLocalInterface(interface: string): IRemoteBroker
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
 
-  let proxy: rpc.IRemoteObject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
@@ -7067,13 +7088,15 @@ getLocalInterface(interface: string): IRemoteBroker
   import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
-  try {
+  if (proxy != undefined) {
+    try {
     let broker: rpc.IRemoteBroker = proxy.getLocalInterface("testObject");
     hilog.info(0x0000, 'testTag', 'RpcClient: getLocalInterface is ' + broker);
-  } catch(error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorMessage ' + e.message);
+    } catch(error) {
+      let e: BusinessError = error as BusinessError;
+      hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
+      hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorMessage ' + e.message);
+    }
   }
   ```
 
@@ -7110,7 +7133,7 @@ queryLocalInterface(interface: string): IRemoteBroker
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
 
-  let proxy: rpc.IRemoteObject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
@@ -7139,8 +7162,10 @@ queryLocalInterface(interface: string): IRemoteBroker
   ```ts
   import hilog from '@ohos.hilog';
 
-  let broker: rpc.IRemoteBroker  = proxy.queryLocalInterface("testObject");
-  hilog.info(0x0000, 'testTag', 'RpcClient: queryLocalInterface is ' + broker);
+  if (proxy != undefined) {
+    let broker: rpc.IRemoteBroker = proxy.queryLocalInterface("testObject");
+    hilog.info(0x0000, 'testTag', 'RpcClient: queryLocalInterface is ' + broker);
+  }
   ```
 
 ### registerDeathRecipient<sup>9+</sup>
@@ -7177,7 +7202,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
 
-  let proxy: rpc.IRemoteObject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
@@ -7213,12 +7238,14 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
     }
   }
   let deathRecipient = new MyDeathRecipient();
-  try {
-    proxy.registerDeathRecipient(deathRecipient, 0);
-  } catch(error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'proxy register deathRecipient fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'proxy register deathRecipient fail, errorMessage ' + e.message);
+  if (proxy != undefined) {
+    try {
+      proxy.registerDeathRecipient(deathRecipient, 0);
+    } catch(error) {
+      let e: BusinessError = error as BusinessError;
+      hilog.error(0x0000, 'testTag', 'proxy register deathRecipient fail, errorCode ' + e.code);
+      hilog.error(0x0000, 'testTag', 'proxy register deathRecipient fail, errorMessage ' + e.message);
+    }
   }
   ```
 
@@ -7256,7 +7283,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
 
-  let proxy: rpc.IRemoteObject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
@@ -7291,7 +7318,9 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
     }
   }
   let deathRecipient = new MyDeathRecipient();
-  proxy.addDeathRecipient(deathRecipient, 0);
+  if (proxy != undefined) {
+    proxy.addDeathRecipient(deathRecipient, 0);
+  }
   ```
 
 ### unregisterDeathRecipient<sup>9+</sup>
@@ -7328,7 +7357,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
 
-  let proxy: rpc.IRemoteObject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
@@ -7364,13 +7393,15 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
     }
   }
   let deathRecipient = new MyDeathRecipient();
-  try {
+  if (proxy != undefined) {
+    try {
     proxy.registerDeathRecipient(deathRecipient, 0);
     proxy.unregisterDeathRecipient(deathRecipient, 0);
   } catch(error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'proxy unregister deathRecipient fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'proxy unregister deathRecipient fail, errorMessage ' + e.message);
+  }
   }
   ```
 
@@ -7408,7 +7439,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
 
-  let proxy: rpc.IRemoteObject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
@@ -7443,8 +7474,10 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
     }
   }
   let deathRecipient = new MyDeathRecipient();
-  proxy.addDeathRecipient(deathRecipient, 0);
-  proxy.removeDeathRecipient(deathRecipient, 0);
+  if (proxy != undefined) {
+    proxy.addDeathRecipient(deathRecipient, 0);
+    proxy.removeDeathRecipient(deathRecipient, 0);
+  }
   ```
 
 ### getDescriptor<sup>9+</sup>
@@ -7481,7 +7514,7 @@ getDescriptor(): string
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
 
-  let proxy: rpc.IRemoteObject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
@@ -7510,13 +7543,15 @@ getDescriptor(): string
   import hilog from '@ohos.hilog';
   import { BusinessError } from '@ohos.base';
 
-  try {
-    let descriptor: string = proxy.getDescriptor();
-    hilog.info(0x0000, 'testTag', 'RpcClient: descriptor is ' + descriptor);
-  } catch(error) {
-    let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc get interface descriptor fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc get interface descriptor fail, errorMessage ' + e.message);
+  if (proxy != undefined) {
+    try {
+      let descriptor: string = proxy.getDescriptor();
+      hilog.info(0x0000, 'testTag', 'RpcClient: descriptor is ' + descriptor);
+    } catch(error) {
+      let e: BusinessError = error as BusinessError;
+      hilog.error(0x0000, 'testTag', 'rpc get interface descriptor fail, errorCode ' + e.code);
+      hilog.error(0x0000, 'testTag', 'rpc get interface descriptor fail, errorMessage ' + e.message);
+    }
   }
   ```
 
@@ -7547,7 +7582,7 @@ getInterfaceDescriptor(): string
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
 
-  let proxy: rpc.IRemoteObject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
@@ -7576,8 +7611,10 @@ getInterfaceDescriptor(): string
   ```ts
   import hilog from '@ohos.hilog';
 
-  let descriptor: string = proxy.getInterfaceDescriptor();
-  hilog.info(0x0000, 'testTag', 'RpcClient: descriptor is ' + descriptor);
+  if (proxy != undefined) {
+    let descriptor: string = proxy.getInterfaceDescriptor();
+    hilog.info(0x0000, 'testTag', 'RpcClient: descriptor is ' + descriptor);
+  }
   ```
 
 ### isObjectDead
@@ -7605,7 +7642,7 @@ isObjectDead(): boolean
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
 
-  let proxy: rpc.IRemoteObject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
     onConnect: (elementName, remoteProxy) => {
       hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
@@ -7634,13 +7671,15 @@ isObjectDead(): boolean
   ```ts
   import hilog from '@ohos.hilog';
 
-  let isDead: boolean = proxy.isObjectDead();
-  hilog.info(0x0000, 'testTag', 'RpcClient: isObjectDead is ' + isDead);
+  if (proxy != undefined) {
+    let isDead: boolean = proxy.isObjectDead();
+    hilog.info(0x0000, 'testTag', 'RpcClient: isObjectDead is ' + isDead);
+  }
   ```
 
 ## MessageOption
 
-公共消息选项（int标志，int等待时间），使用标志中指定的标志构造指定的MessageOption对象。
+公共消息选项，使用指定的标志类型，构造指定的MessageOption对象。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
@@ -7649,7 +7688,7 @@ isObjectDead(): boolean
   | TF_SYNC       | 0 (0x00)  | 同步调用标识。                                              |
   | TF_ASYNC      | 1 (0x01)  | 异步调用标识。                                              |
   | TF_ACCEPT_FDS | 16 (0x10) | 指示sendMessageRequest<sup>9+</sup>接口可以返回文件描述符。 |
-  | TF_WAIT_TIME  | 4 (0x4)   | 默认等待时间(单位/秒)。                                     |
+  | TF_WAIT_TIME  | 4 (0x4)   | RPC等待时间(单位/秒)，不用于IPC的情况。                                     |
 
 ### constructor<sup>9+</sup>
 
@@ -7850,7 +7889,7 @@ setWaitTime(waitTime: number): void
 
   | 参数名   | 类型   | 必填 | 说明                  |
   | -------- | ------ | ---- | --------------------- |
-  | waitTime | number | 是   | rpc调用最长等待时间。 |
+  | waitTime | number | 是   | rpc调用最长等待时间，上限为3000秒。 |
 
 **示例：**
 
@@ -8197,13 +8236,9 @@ static restoreCallingIdentity(identity: string): void
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-      let callingIdentity: rpc.IPCSkeleton | undefined = undefined;
-      try {
-        callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
-        hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
-      } finally {
-        rpc.IPCSkeleton.restoreCallingIdentity(callingIdentity);
-      }
+      let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
+      hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
+      rpc.IPCSkeleton.restoreCallingIdentity(callingIdentity);
       return true;
     }
   }
@@ -8238,14 +8273,10 @@ static setCallingIdentity(identity: string): boolean
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-      let callingIdentity: rpc.IPCSkeleton | undefined = undefined;
-      try {
-        callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
-        hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
-      } finally {
-        let ret = rpc.IPCSkeleton.setCallingIdentity("callingIdentity ");
-        hilog.info(0x0000, 'testTag', 'RpcServer: setCallingIdentity is ' + ret);
-      }
+      let callingIdentity = rpc.IPCSkeleton.resetCallingIdentity();
+      hilog.info(0x0000, 'testTag', 'RpcServer: callingIdentity is ' + callingIdentity);
+      let ret = rpc.IPCSkeleton.setCallingIdentity(callingIdentity);
+      hilog.info(0x0000, 'testTag', 'RpcServer: setCallingIdentity is ' + ret);
       return true;
     }
   }
@@ -8380,14 +8411,15 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
     .then((result: rpc.RequestResult) => {
       if (result.errCode === 0) {
         hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
-        result.reply.readException();
+        let num = result.reply.readInt();
         let msg = result.reply.readString();
+        hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
         hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
       } else {
         hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
       }
     }).catch((e: Error) => {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest got exception: ' + e.message);
+      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, message: ' + e.message);
     }).finally (() => {
       hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
       data.reclaim();
@@ -8455,14 +8487,15 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   b.then((result: rpc.SendRequestResult) => {
     if (result.errCode === 0) {
       hilog.info(0x0000, 'testTag', 'sendRequest got result');
-      result.reply.readException();
+      let num = result.reply.readInt();
       let msg = result.reply.readString();
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
       hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
     } else {
       hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
     }
   }).catch((e: Error) => {
-    hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest got exception: ' + e.message);
+    hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, message: ' + e.message);
   }).finally (() => {
     hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
     data.reclaim();
@@ -8502,8 +8535,9 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   function sendRequestCallback(err: BusinessError, result: rpc.RequestResult) {
     if (result.errCode === 0) {
       hilog.info(0x0000, 'testTag', 'sendRequest got result');
-      result.reply.readException();
+      let num = result.reply.readInt();
       let msg = result.reply.readString();
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
       hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
     } else {
       hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
@@ -8569,8 +8603,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   function sendRequestCallback(err: BusinessError, result: rpc.SendRequestResult) {
     if (result.errCode === 0) {
       hilog.info(0x0000, 'testTag', 'sendRequest got result');
-      result.reply.readException();
+      let num = result.reply.readInt();
       let msg = result.reply.readString();
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
       hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
     } else {
       hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
@@ -9314,7 +9349,7 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
   ```ts
   import hilog from '@ohos.hilog';
 
-  let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let ashmem2 = rpc.Ashmem.createAshmemFromExisting(ashmem);
   let size = ashmem2.getAshmemSize();
   hilog.info(0x0000, 'testTag', 'RpcTest: get ashemm by createAshmemFromExisting: ' + ashmem2 + ' size is ' + size);
@@ -9369,7 +9404,7 @@ getAshmemSize(): number
   ```ts
   import hilog from '@ohos.hilog';
 
-  let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let size = ashmem.getAshmemSize();
   hilog.info(0x0000, 'testTag', 'RpcTest: get ashmem is ' + ashmem + ' size is ' + size);
   ```
@@ -9439,7 +9474,7 @@ mapAshmem(mapType: number): boolean
   ```ts
   import hilog from '@ohos.hilog';
 
-  let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapReadAndWrite = ashmem.mapAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
   hilog.info(0x0000, 'testTag', 'RpcTest: map ashmem result is ' + mapReadAndWrite);
   ```
@@ -9497,7 +9532,7 @@ mapReadAndWriteAshmem(): boolean
   ```ts
   import hilog from '@ohos.hilog';
 
-  let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
   hilog.info(0x0000, 'testTag', 'RpcTest: map ashmem result is ' + mapResult);
   ```
@@ -9555,7 +9590,7 @@ mapReadOnlyAshmem(): boolean
   ```ts
   import hilog from '@ohos.hilog';
 
-  let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadOnlyAshmem();
   hilog.info(0x0000, 'testTag', 'RpcTest: Ashmem mapReadOnlyAshmem result is ' + mapResult);
   ```
@@ -9625,7 +9660,7 @@ setProtection(protectionType: number): boolean
   ```ts
   import hilog from '@ohos.hilog';
 
-  let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let result = ashmem.setProtection(ashmem.PROT_READ);
   hilog.info(0x0000, 'testTag', 'RpcTest: Ashmem setProtection result is ' + result);
   ```
@@ -9701,7 +9736,7 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
   ```ts
   import hilog from '@ohos.hilog';
 
-  let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
   hilog.info(0x0000, 'testTag', 'RpcTest map ashmem result is ' + mapResult);
   let ByteArrayVar = [1, 2, 3, 4, 5];
@@ -9786,7 +9821,7 @@ readFromAshmem(size: number, offset: number): number[]
  ``` ts
   import hilog from '@ohos.hilog';
 
-  let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
   hilog.info(0x0000, 'testTag', 'RpcTest map ashmem result is ' + mapResult);
   let ByteArrayVar = [1, 2, 3, 4, 5];
@@ -9833,4 +9868,3 @@ readFromAshmem(size: number, offset: number): number[]
     }
   }
  ```
-

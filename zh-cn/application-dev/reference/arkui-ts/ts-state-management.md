@@ -221,7 +221,7 @@ let res1: boolean = AppStorage.set('PropB', 47) // false
 static setOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
 如果propName已经在AppStorage中存在，并且newValue和propName对应属性的值不同，则设置propName对应属性的值为newValue，否则状态变量不会通知UI刷新propName对应属性的值。
-如果propName不存在，则创建propName属性，值为newValue。setOrCreate只可以创建单个AppStorage的键值对，如果想创建多个AppStrage键值对，可以多次调用此方法。
+如果propName不存在，则创建propName属性，值为newValue。setOrCreate只可以创建单个AppStorage的键值对，如果想创建多个AppStorage键值对，可以多次调用此方法。
 
 **参数：**
 
@@ -1025,7 +1025,7 @@ let res2: boolean = storage.delete('PropB'); // true, PropB is deleted from stor
 
 keys(): IterableIterator&lt;string&gt;
 
-返回AppStorage中所有的属性名。
+返回LocalStorage中所有的属性名。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

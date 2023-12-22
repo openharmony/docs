@@ -17,19 +17,20 @@ import common from '@ohos.app.ability.common';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称          | 类型     | 只读   | 必填   | 说明      |
-| ----------- | ------ | ---- | ---- | ------- |
-| resourceManager     | resmgr.[ResourceManager](js-apis-resource-manager.md#resourcemanager) | 否    | 是    | 资源管理对象。   |
-| applicationInfo | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 否    | 是    | 当前应用程序的信息。 |
-| cacheDir | string | 否    | 是    | 缓存目录。 |
-| tempDir | string | 否    | 是    | 临时目录。 |
-| filesDir | string | 否    | 是    | 文件目录。 |
-| databaseDir | string | 否    | 是    | 数据库目录。 |
-| preferencesDir | string | 否    | 是    | preferences目录。 |
-| bundleCodeDir | string | 否    | 是    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](js-apis-resource-manager.md)访问资源。 |
-| distributedFilesDir | string | 是    | 是    | 分布式文件目录。 |
-| eventHub | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 是    | 事件中心，提供订阅、取消订阅、触发事件对象。 |
-| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 是    | 文件分区信息。 |
+| 名称                  | 类型     | 只读   | 必填   | 说明                                                               |
+|---------------------| ------ | ---- | ---- |------------------------------------------------------------------|
+| resourceManager     | resmgr.[ResourceManager](js-apis-resource-manager.md#resourcemanager) | 否    | 是    | 资源管理对象。                                                          |
+| applicationInfo     | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 否    | 是    | 当前应用程序的信息。                                                       |
+| cacheDir            | string | 否    | 是    | 缓存目录。                                                            |
+| tempDir             | string | 否    | 是    | 临时目录。                                                            |
+| resourceDir         | string | 否    | 是    | 资源目录。                                                            |
+| filesDir            | string | 否    | 是    | 文件目录。                                                            |
+| databaseDir         | string | 否    | 是    | 数据库目录。                                                           |
+| preferencesDir      | string | 否    | 是    | preferences目录。                                                   |
+| bundleCodeDir       | string | 否    | 是    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](js-apis-resource-manager.md)访问资源。 |
+| distributedFilesDir | string | 是    | 是    | 分布式文件目录。                                                         |
+| eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 是    | 事件中心，提供订阅、取消订阅、触发事件对象。                                           |
+| area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 是    | 文件分区信息。                                                          |
 
 ## Context.createBundleContext
 
@@ -215,7 +216,8 @@ getGroupDir(dataGroupID: string): Promise\<string>
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000011 | The context does not exist. |
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -260,7 +262,7 @@ getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 | ------- | -------- |
 | 16000011 | The context does not exist. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 

@@ -28,12 +28,12 @@
 
 | 类型 | 接口 | 功能说明 |
 | ---- | ---- | ---- |
-| ohos.net.ethernet | function setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallback\<void>): void | 配置指定以太网的网络属性，iface为网口名称，ic为配置信息，调用callback |
-| ohos.net.ethernet | function getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>): void | 获取指定以太网的网络属性，iface为网口名称，调用callback |
-| ohos.net.ethernet | function isIfaceActive(iface: string, callback: AsyncCallback\<number>): void | 判断指定网口是否已激活，iface为网卡名称（无参为是否有激活网口），调用callback |
-| ohos.net.ethernet | function getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void; | 获取所有活动的网络接口，调用callback |
-| ohos.net.ethernet | function on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: boolean }\>): void; | 注册网络接口监听函数 |
-| ohos.net.ethernet | function off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: boolean }\>): void; | 解除注册网络接口监听函数 |
+| setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallback\<void>): void | 配置指定以太网的网络属性，iface为网口名称，ic为配置信息，调用callback |
+| getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>): void | 获取指定以太网的网络属性，iface为网口名称，调用callback |
+| isIfaceActive(iface: string, callback: AsyncCallback\<number>): void | 判断指定网口是否已激活，iface为网卡名称（无参为是否有激活网口），调用callback |
+| getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void; | 获取所有活动的网络接口，调用callback |
+| on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: boolean }\>): void; | 注册网络接口监听函数 |
+| off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: boolean }\>): void; | 解除注册网络接口监听函数 |
 
 ## 以太网连接-DHCP模式
 
@@ -76,11 +76,10 @@ ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceC
   } else {
     console.log("getIfaceConfig callback mode = " + data.mode);
     console.log("getIfaceConfig callback ipAddr = " + data.ipAddr);
-    console.log("getIfaceConfig callback routeAddr = " + data.routeAddr);
-    console.log("getIfaceConfig callback gateAddr = " + data.gateAddr);
-    console.log("getIfaceConfig callback maskAddr = " + data.maskAddr);
-    console.log("getIfaceConfig callback dns0Addr = " + data.dns0Addr);
-    console.log("getIfaceConfig callback dns1Addr = " + data.dns1Addr);
+    console.log("getIfaceConfig callback routeAddr = " + data.route);
+    console.log("getIfaceConfig callback gateAddr = " + data.gateway);
+    console.log("getIfaceConfig callback maskAddr = " + data.netMask);
+    console.log("getIfaceConfig callback dns0Addr = " + data.dnsServers);
   }
 });
 ```
@@ -125,11 +124,10 @@ ethernet.isIfaceActive("eth0", (error: BusinessError, data: number) => {
 let ethernetParam: ethernet.InterfaceConfiguration = {
   mode: ethernet.IPSetMode.STATIC,
   ipAddr: "192.168.xx.xx",
-  routeAddr: "192.168.xx.xx",
-  gateAddr: "192.168.xx.xx",
-  maskAddr: "255.255.xx.xx",
-  dnsAddr0: "1.1.xx.xx",
-  dnsAddr1: "2.2.xx.xx"
+  route: "192.168.xx.xx",
+  gateway: "192.168.xx.xx",
+  netMask: "255.255.xx.xx",
+  dnsServers: "1.1.xx.xx"
 }
 
 // setIfaceConfig配置指定以太网的网络属性
@@ -148,11 +146,10 @@ ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceC
   } else {
     console.log("getIfaceConfig callback mode = " + data.mode);
     console.log("getIfaceConfig callback ipAddr = " + data.ipAddr);
-    console.log("getIfaceConfig callback routeAddr = " + data.routeAddr);
-    console.log("getIfaceConfig callback gateAddr = " + data.gateAddr);
-    console.log("getIfaceConfig callback maskAddr = " + data.maskAddr);
-    console.log("getIfaceConfig callback dns0Addr = " + data.dns0Addr);
-    console.log("getIfaceConfig callback dns1Addr = " + data.dns1Addr);
+    console.log("getIfaceConfig callback routeAddr = " + data.route);
+    console.log("getIfaceConfig callback gateAddr = " + data.gateway);
+    console.log("getIfaceConfig callback maskAddr = " + data.netMask);
+    console.log("getIfaceConfig callback dns0Addr = " + data.dnsServers);
   }
 });
 ```

@@ -31,37 +31,40 @@ In addition to the [universal attributes](ts-universal-attributes-size.md) and [
 | Name                      | Type                           | Description                                              |
 | ----------------------- | ----------------------------------- | ------------------------------------------- |
 | textAlign               | [TextAlign](ts-appendix-enums.md#textalign) | Horizontal alignment mode of the text.<br>Default value: **TextAlign.Start**<br>**NOTE**<br>The text takes up the full width of the **\<Text>** component. To set vertical alignment for the text, use the [align](ts-universal-attributes-location.md) attribute. The **align** attribute alone does not control the horizontal position of the text. In other words, **Alignment.TopStart**, **Alignment.Top**, and **Alignment.TopEnd** produce the same effect, top-aligning the text; **Alignment.Start**, **Alignment.Center**, and **Alignment.End** produce the same effect, centered-aligning the text vertically; **Alignment.BottomStart**, **Alignment.Bottom**, and **Alignment.BottomEnd** produce the same effect, bottom-aligning the text. Yet, it can work with the **textAlign** attribute to jointly determine the horizontal position of the text.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| textOverflow            | {overflow: [TextOverflow](ts-appendix-enums.md#textoverflow)} | Display mode when the text is too long.<br>Default value: **{overflow: TextOverflow.Clip}**<br>**NOTE**<br/>Text is clipped at the transition between words. To clip text in the middle of a word, add **\u200B** between characters.<br>If **overflow** is set to **TextOverflow.None**, **TextOverflow.Clip**, or **TextOverflow.Ellipsis**, this attribute must be used with **maxLines**. Otherwise, the setting does not take effect. **TextOverflow.None** produces the same effect as **TextOverflow.Clip**. If **overflow** is set to **TextOverflow.Marquee**, the text scrolls in a line, and neither **maxLines** nor **copyOption** takes effect.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| maxLines                | number | Maximum number of lines in the text.<br>Default value: **Infinity**<br>**NOTE**<br/>By default, text is automatically folded. If this attribute is specified, the text will not exceed the specified number of lines. If there is extra text, you can use **textOverflow** to specify how it is displayed.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| textOverflow            | {overflow: [TextOverflow](ts-appendix-enums.md#textoverflow)} | Display mode when the text is too long.<br>Default value: **{overflow: TextOverflow.Clip}**<br>**NOTE**<br>Text is clipped at the transition between words. To clip text in the middle of a word, add **\u200B** between characters. Since API version 11, you are advised to use this attribute with the **wordBreak** attribute set to **WordBreak.BREAK_ALL** so that word breaks can occur between any two characters when overflow occurs. For details, see [Example](#example-4).<br>If **overflow** is set to **TextOverflow.None**, **TextOverflow.Clip**, or **TextOverflow.Ellipsis**, this attribute must be used with **maxLines** for the settings to take effect. **TextOverflow.None** produces the same effect as **TextOverflow.Clip**. If **overflow** is set to **TextOverflow.Marquee**, the text scrolls in a line, and neither **maxLines** nor **copyOption** takes effect.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| maxLines                | number | Maximum number of lines in the text.<br>**NOTE**<br>By default, text is automatically folded. If this attribute is specified, the text will not exceed the specified number of lines. If there is extra text, you can use **textOverflow** to specify how it is displayed.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | lineHeight              | string \| number \| [Resource](ts-types.md#resource)  | Text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value of the number type, the unit fp is used.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | decoration              | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None,<br>color: Color.Black<br>} <br>Since API version 9, this API is supported in ArkTS widgets.|
-| baselineOffset          | number \| string | Baseline offset of the text. The default value is **0**.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br/>If this attribute is set to a percentage, the default value is used.|
-| letterSpacing           | number \| string | Letter spacing.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br/>If this attribute is set to a percentage, the default value is used.<br> If this attribute is set to a negative value, the letters will overlap each other.|
+| baselineOffset          | number \| string | Baseline offset of the text. The default value is **0**.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>If this attribute is set to a percentage, the default value is used. |
+| letterSpacing           | number \| string | Letter spacing.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>If this attribute is set to a percentage, the default value is used.<br> If this attribute is set to a negative value, the letters will overlap each other. |
 | minFontSize             | number \| string \| [Resource](ts-types.md#resource)      | Minimum font size.<br>For the setting to take effect, this attribute must be used together with **maxFontSize**, **maxLines**, or layout constraint settings.<br>Since API version 9, this API is supported in ArkTS widgets.                              |
 | maxFontSize             | number \| string \| [Resource](ts-types.md#resource)      | Maximum font size.<br>For the setting to take effect, this attribute must be used together with **minFontSize**, **maxLines**, or layout constraint settings.<br>Since API version 9, this API is supported in ArkTS widgets.                               |
 | textCase                | [TextCase](ts-appendix-enums.md#textcase) | Text case.<br>Default value: **TextCase.Normal**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>Default value: **CopyOptions.None**<br>This API is supported in ArkTS widgets.<br>**NOTE**<br/>When this attribute is set to **CopyOptions.InApp** or **CopyOptions.LocalDevice**, a long press on the text will display a context menu that offers the copy and select-all options.|
-| draggable  | boolean | Drag effect of the selected text.<br>This attribute cannot be used with the [onDragStart](ts-universal-events-drag-drop.md) event.<br>It must be used together with **copyOption**. When it is set to **true** and **copyOptions** is set to **CopyOptions.InApp** or **CopyOptions.LocalDevice**, the selected text can be dragged and copied to the text box.<br>Default value: **false**<br>**NOTE**<br/>This API is supported since API version 9.|
-| textShadow<sup>10+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) | Text shadow.|
-| heightAdaptivePolicy<sup>10+</sup> | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | How the adaptive height is determined for the text.<br>Default value: **TextHeightAdaptivePolicy.MAX_LINES_FIRST**<br>**NOTE**<br/>When this attribute is set to **TextHeightAdaptivePolicy.MAX_LINES_FIRST**, the **maxLines** attribute takes precedence for adjusting the text height. If the **maxLines** setting results in a layout beyond the layout constraints, the text will shrink to a font size between `minFontSize` and `maxFontSize` to allow for more content to be shown.<br>When this attribute is set to **TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST**, the **minFontSize** attribute takes precedence for adjusting the text height. If the text can fit in one line with the **minFontSize** setting, the text will enlarge to the largest possible font size between **minFontSize** and **maxFontSize**.<br>When this attribute is set to **TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST**, the layout constraints take precedence for adjusting the text height. If the resultant layout is beyond the layout constraints, the text will shrink to a font size between **minFontSize** and **maxFontSize** to respect the layout constraints. If the layout still exceeds the layout constraints after the font size is reduced to **minFontSize**, the lines that exceed the layout constraints are deleted.|
+| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>Default value: **CopyOptions.None**<br>This API is supported in ArkTS widgets.<br>**NOTE**<br>When this attribute is set to **CopyOptions.InApp** or **CopyOptions.LocalDevice**, a long press on the text will display a context menu that offers the copy and select-all options. |
+| draggable  | boolean | Drag effect of the selected text.<br>This attribute cannot be used with the [onDragStart](ts-universal-events-drag-drop.md) event.<br>It must be used together with **copyOption**. When it is set to **true** and **copyOptions** is set to **CopyOptions.InApp** or **CopyOptions.LocalDevice**, the selected text can be dragged and copied to the text box.<br>Default value: **false**<br>**NOTE**<br>This API is supported since API version 9. |
+| textShadow<sup>10+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)&gt;<sup>11+</sup>  | Text shadow.<br>**NOTE**<br>This API does not work with the **fill** attribute or coloring strategy.<br>If the **\<Text>** component's **clip** attribute is set to true (default), the content (for example, text shadow) outside of the component's content area is clipped. Therefore, to fully show the text shadow when the content exceeds the component's content area, set the **clip** attribute to **false**.<br>Since API version 11, this API supports input parameters in an array to implement multiple text shadows.|
+| heightAdaptivePolicy<sup>10+</sup> | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | How the adaptive height is determined for the text.<br>Default value: **TextHeightAdaptivePolicy.MAX_LINES_FIRST**<br>**NOTE**<br>When this attribute is set to **TextHeightAdaptivePolicy.MAX_LINES_FIRST**, the **maxLines** attribute takes precedence for adjusting the text height. If the **maxLines** setting results in a layout beyond the layout constraints, the text will shrink to a font size between `minFontSize` and `maxFontSize` to allow for more content to be shown.<br>When this attribute is set to **TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST**, the **minFontSize** attribute takes precedence for adjusting the text height. If the text can fit in one line with the **minFontSize** setting, the text will enlarge to the largest possible font size between **minFontSize** and **maxFontSize**.<br>When this attribute is set to **TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST**, the layout constraints take precedence for adjusting the text height. If the resultant layout is beyond the layout constraints, the text will shrink to a font size between **minFontSize** and **maxFontSize** to respect the layout constraints. If the layout still exceeds the layout constraints after the font size is reduced to **minFontSize**, the lines that exceed the layout constraints are deleted. |
 | textIndent<sup>10+</sup> | number \| string | Indentation of the first line.<br>Default value: **0**|
 | font<sup>10+</sup> | [Font](ts-types.md#font) | Text style, covering the font size, font width, Font family, and font style.|
-| wordBreak<sup>11+</sup> | [WorkBreak](ts-appendix-enums.md#wordbreak) | Line break rule.<br>Default value: **WordBreak.BREAK_WORD**<br>**NOTE**<br/><br>Since API version 11, this API is supported in ArkTS widgets.<br>When used with **{overflow: TextOverflow.Ellipsis}** and **maxLines**, **WordBreak.BREAK_ALL** can insert line breaks between letters when overflow occurs and display excess content with an ellipsis (...).|
-| selection<sup>11+</sup> |(selectionStart: number, selectionEnd: number)| Text selection. The selected text is highlighted, and a selection handle is displayed together with a menu of available actions.<br>Default value: (-1, -1)<br>**NOTE**<br/>Since API version 11, this API is supported in ArkTS widgets.<br>When **copyOption** is set to **CopyOptions.None**, the **selection** attribute is not effective.<br>When **overflow** is set to **TextOverflow.Marquee**, the **selection** attribute is not effective.<br>If the value of **selectionStart** is greater than or equal to that of **selectionEnd**, no text will be selected. The value range is [0, textSize], where **textSize** indicates the maximum number of characters in the text content. If the value is less than 0, the value **0** will be used. If the value is greater than **textSize**, **textSize** will be used.<br>If value of **selectionStart** or **selectionEnd** falls within the invisible area, no text will be selected. If clipping is disabled, the text selection outside of the parent component takes effect. |
+| wordBreak<sup>11+</sup> | [WordBreak](ts-appendix-enums.md#wordbreak11) | Line break rule.<br>Default value: **WordBreak.BREAK_WORD**<br>**NOTE**<br>Since API version 11, this API is supported in ArkTS widgets.<br>When used with **{overflow: TextOverflow.Ellipsis}** and **maxLines**, **WordBreak.BREAK_ALL** can insert line breaks between letters when overflow occurs and display excess content with an ellipsis (...). |
+| selection<sup>11+</sup> |(selectionStart: number, selectionEnd: number)| Text selection. The selected text is highlighted, and a selection handle is displayed together with a menu of available actions.<br>Default value: (-1, -1)<br>**NOTE**<br>Since API version 11, this API is supported in ArkTS widgets.<br>When **copyOption** is set to **CopyOptions.None**, the **selection** attribute is not effective.<br>When **overflow** is set to **TextOverflow.Marquee**, the **selection** attribute is not effective.<br>If the value of **selectionStart** is greater than or equal to that of **selectionEnd**, no text will be selected. The value range is [0, textSize], where **textSize** indicates the maximum number of characters in the text content. If the value is less than 0, the value **0** will be used. If the value is greater than **textSize**, **textSize** will be used.<br>If value of **selectionStart** or **selectionEnd** falls within the invisible area, no text will be selected. If clipping is disabled, the text selection outside of the parent component takes effect. |
+| ellipsisMode<sup>11+</sup> |[EllipsisMode](ts-appendix-enums.md#ellipsismode11)| Ellipsis position.<br>Default value: **EllipsisMode.END**<br>**NOTE**<br>Since API version 11, this API is supported in ArkTS widgets.<br>When **ellipsisMode** is set to **EllipsisMode.END**, **overflow** must be set to **TextOverflow.Ellipsis** and **maxLines** must be specified. Setting **ellipsisMode** alone does not take effect.<br>**EllipsisMode.START** and **EllipsisMode.CENTER** take effect only when text overflows in a single line. |
+| enableDataDetector<sup>11+</sup> |boolean| Whether to enable text recognition.<br>Default value: **false**<br>**NOTE**<br>For this API to work, the target device must provide the text recognition capability .<br>When **copyOption** is set to **CopyOptions.None**, this API does not take effect.|
+| dataDetectorConfig<sup>11+</sup> |{<br>types: [TextDataDetectorType](ts-appendix-enums.md#textdatadetectortype11),<br>onDetectResultUpdate: (callback:(result: string) =&gt; void)<br>} | AI-based text recognition.<br>Default value: {<br>types: [ ],<br>onDetectResultUpdate: null<br>} <br>**NOTE**<br>This API must be used together with **enableDataDetector**. It takes effect only when **enableDataDetector** is set to **true**.<br>**types**: types of entities that can be recognized from text. Values **null** and **[]** indicate that all types of entities can be recognized.<br> **onDetectResultUpdate**: callback invoked when text recognition succeeds.<br>**result**: text recognition result, in JSON format. |
 
 >  **NOTE**
 >
 >  The **\<Text>** component cannot contain both text and the child component **\<Span>** or **\<ImageSpan>**. If both of them exist, only the content in **\<Span>** or **\<ImageSpan>** is displayed.
 >
->  For the **\<Text>** component, the default value of the [clip](ts-universal-attributes-sharp-clipping.md) attribute is **true**.
+>  For the **\<Text>** component, the default value of the universal attribute [clip](ts-universal-attributes-sharp-clipping.md) is **true**, which means that the content outside of the component's content area is clipped. To display the content in full, set **clip** to **false**.
 
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                                                        | Description                                                    |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onCopy(callback:(value: string) =&gt; void)<sup>11+</sup> | Triggered when data is copied to the pasteboard, which is displayed when the text box is long pressed.<br>**value**: text to be copied.<br>**NOTE**<br/><br>Since API version 11, this API is supported in ArkTS widgets.<br>Currently, only text can be copied.|
+| Name                                                      | Description                                                  |
+| --------------------------------------------------------- | ------------------------------------------------------------ |
+| onCopy(callback:(value: string) =&gt; void)<sup>11+</sup> | Triggered when data is copied to the pasteboard, which is displayed when the text box is long pressed.<br>**value**: text to be copied.<br>**NOTE**<br>Since API version 11, this API is supported in ArkTS widgets.<br>Currently, only text can be copied. |
 
 ## Example
 
@@ -328,22 +331,24 @@ Example of using **WordBreak**:
 @Component
 struct TextExample4 {
   @State type: string = 'WordBreakType:Normal with clip set to true'
-  @State text: string = 'This is a long and Honorificabilitudinitatibus califragilisticexpialidocious 你好Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉'
+  @State text: string = 'This is set wordBreak to WordBreak text content This is set wordBreak to WordBreak text content.'
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
       Text(this.type).fontSize(9).fontColor(0xCCCCCC)
-      Text(this.text)
+      Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')
         .fontSize(12)
         .border({ width: 1 })
         .wordBreak(WordBreak.NORMAL)
         .lineHeight(20)
+        .maxLines(2)
       Text('WordBreakType:Normal with clip set to false').fontSize(9).fontColor(0xCCCCCC)
-      Text(this.text)
+      Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')
         .fontSize(12)
         .border({ width: 1 })
         .wordBreak(WordBreak.NORMAL)
         .lineHeight(20)
+        .maxLines(2)
         .clip(false)
       Text("WordBreakType:BreakAll").fontSize(9).fontColor(0xCCCCCC)
       Text(this.text)
@@ -359,10 +364,9 @@ struct TextExample4 {
         .border({ width: 1 })
         .maxLines(2)
         .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .textIndent(100)
         .wordBreak(WordBreak.BREAK_WORD)
         .lineHeight(20)
-    }.height(600).width(335).padding({ left: 35, right: 35, top: 35 })
+    }.height(300).width(335).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
@@ -374,11 +378,11 @@ Example of using **selection** and **onCopy**:
 ```ts
 @Entry
 @Component
-struct TextExample4 {
+struct TextExample5 {
   @State onCopy: string = ''
-  @State text: string = 'This is a long and Honorificabilitudinitatibus califragilisticexpialidocious 你好Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉'
+  @State text: string = 'This is set selection to Selection text content This is set selection to Selection text content.'
   @State start: number = 0
-  @State end: number = 90
+  @State end: number = 20
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -396,8 +400,8 @@ struct TextExample4 {
         .margin({left:20})
         .onClick(() => {
           // Change the start point and end point of the text selection.
-          this.start = 60
-          this.end = 200
+          this.start = 10
+          this.end = 30
         })
       Text(this.onCopy).fontSize(12).margin(10).key('copy')
     }.height(600).width(335).padding({ left: 35, right: 35, top: 35 })
@@ -405,4 +409,78 @@ struct TextExample4 {
 }
 ```
 ![](figures/textExample5.jpeg)
-<!--no_check-->
+
+### Example 6
+Example of using **ellipsisMode**:
+
+```ts
+@Entry
+@Component
+struct TextExample6 {
+  @State text: string = 'This is set ellipsisMode to EllipsisMode text content This is set ellipsisMode to EllipsisMode text content.'
+  @State ellipsisModeIndex: number = 0;
+  @State ellipsisMode: EllipsisMode[] = [EllipsisMode.START, EllipsisMode.CENTER, EllipsisMode.END]
+  @State ellipsisModeStr: string[] = ['START', 'CENTER', 'END']
+  build() {
+    Column() {
+      Text(this.text)
+        .fontSize(16)
+        .border({ width: 1 })
+        .lineHeight(20)
+        .maxLines(1)
+        .textOverflow({overflow:TextOverflow.Ellipsis})
+        .ellipsisMode(this.ellipsisMode[this.ellipsisModeIndex])
+        .width(300)
+        .margin({ left: 20, top: 20 })
+
+      Row() {
+        Button ('Change Ellipsis Position:' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick (() => {
+          this.ellipsisModeIndex++
+          if(this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
+            this.ellipsisModeIndex = 0
+          }
+        })
+      }.margin({ top: 10 })
+    }
+  }
+}
+```
+![](figures/textExample6.gif)
+
+### Example 7
+Example of using **enableDataDetector** and **dataDetectorConfig**
+
+```ts
+@Entry
+@Component
+struct TextExample7 {
+  @State phoneNumber: string = '(86) (755) ********';
+  @State url: string = 'Hello World';
+  @State email: string = '***@openharmony.cn';
+  @State address: string = 'XX (province) XX (city) XX (county) XXXX';
+  @State enableDataDetector: boolean = true;
+  @State types: TextDataDetectorType[] = [];
+
+  build() {
+    Row() {
+      Column() {
+        Text(
+          'Phone number' + this.phoneNumber + '\n' +
+          'URL' + this.url + '\n' +
+          'Email' + this.email + '\n' +
+          'Address' + this.address
+        )
+          .fontSize(16)
+          .copyOption(CopyOptions.InApp)
+          .dataDetectorConfig({types : this.types, onDetectResultUpdate: (result: string)=>{}})
+          .textAlign(TextAlign.Center)
+          .borderWidth(1)
+          .padding(10)
+          .width('100%')
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```

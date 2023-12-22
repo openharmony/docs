@@ -85,7 +85,7 @@ Example of the **config.json** file:
         // $string:MainAbility_entry_label is a resource index.
         "label": "$string:MainAbility_entry_label",
         "type": "page",
-        "launchType": "standard"
+        "launchType": "multiton"
       }
     ],
     "distro": {

@@ -49,7 +49,7 @@ DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
 | closeEffect | boolean | 关闭数据占比图表旋转动效和投影效果。<br/>默认值：false <br/>**说明：** <br/> 若未设置trackShadow属性，则该属性控制投影效果的开关，开启投影的效果为投影的默认效果。<br/> 若设置trackShadow属性，则由trackShadow属性值控制投影效果的开关。|
 | valueColors<sup>10+</sup>   | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10对象说明)> | 各数据段颜色，ResourceColor为纯色，LinearGradient为渐变色。|
 | trackBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 底板颜色。<br/>默认值：'#08182431'，格式为十六进制ARGB值，前俩位代表透明度。 |
-| strokeWidth<sup>10+</sup> | [Length](ts-types.md#Length) | 圆环粗细。<br/>默认值：24<br/>单位：vp<br/>**说明：** <br/>设置小于0的值时，按默认值显示。<br/>数据面板的类型为DataPanelType.Line时该属性不生效。 |
+| strokeWidth<sup>10+</sup> | [Length](ts-types.md#length) | 圆环粗细。<br/>默认值：24<br/>单位：vp<br/>**说明：** <br/>设置小于0的值时，按默认值显示。<br/>数据面板的类型为DataPanelType.Line时该属性不生效。 |
 | trackShadow<sup>10+</sup> | [DataPanelShadowOptions](#datapanelshadowoptions10对象说明) | 投影样式。<br/>**说明：** <br/>设置null为不开启投影。|
 
 
@@ -79,7 +79,7 @@ LinearGradient(colorStops: ColorStop[])
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 是 | 颜色值。|
-| offset | [Length](ts-types.md#Length) | 是 | 渐变色断点（0~1之间的比例值，若数据值小于0则置为0，若数据值大于1则置为1）。<br>**说明：** <br/>若传入字符串类型且内容为数字，则转换为对应的数值。<br/>例如'10vp'转换为10，'10%'转换为0.1。 |
+| offset | [Length](ts-types.md#length) | 是 | 渐变色断点（0~1之间的比例值，若数据值小于0则置为0，若数据值大于1则置为1）。<br>**说明：** <br/>若传入字符串类型且内容为数字，则转换为对应的数值。<br/>例如'10vp'转换为10，'10%'转换为0.1。 |
 
 
 

@@ -198,6 +198,12 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
 获取当前应用设置的所有有效（未过期）的代理提醒。使用callback异步回调。
 
+> **说明：**
+>
+> 当到达设置的提醒时间点时，通知中心会弹出相应提醒的通知卡片（通知栏消息）。若未点击通知卡片上的关闭/CLOSE按钮，则代理提醒是有效/未过期的；若点击了关闭/CLOSE按钮，则代理提醒过期。
+>
+> 当代理提醒类型是闹钟时，若设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
+
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **参数**：
@@ -255,6 +261,12 @@ reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<rem
 getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 获取当前应用设置的所有有效（未过期）的代理提醒。使用promise异步回调。
+
+> **说明：**
+>
+> 当到达设置的提醒时间点时，通知中心会弹出相应提醒的通知卡片（通知栏消息）。若未点击通知卡片上的关闭/CLOSE按钮，则代理提醒是有效/未过期的；若点击了关闭/CLOSE按钮，则代理提醒过期。
+>
+> 当代理提醒类型是闹钟时，若设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -552,7 +564,7 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 | titleResource<sup>11+</sup> | string | 否 | 标题的资源ID，用于切换系统语言后读取对应标题信息。 |
 | type | [ActionButtonType](#actionbuttontype) | 是 | 按钮的类型。 |
 | wantAgent<sup>10+</sup> | [WantAgent](#wantagent) | 否 | 点击按钮跳转的ability信息。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
-| dataShareUpdate<sup>11+</sup> | [DataShareUpdate](#datashareupdate) | 否 | 点击按钮将更新应用数据库。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
+| dataShareUpdate<sup>11+</sup> | [DataShareUpdate](#datashareupdate11) | 否 | 点击按钮将更新应用数据库。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
 
 
 ## WantAgent
@@ -579,7 +591,7 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | uri | string | 是 | 数据使用的URI，是跨应用数据访问的唯一标识。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
-| equalTo | [key: string]: number \| string \| boolean | 是 | 指示筛选条件，当前仅支持通过等于筛选。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
+| equalTo | Record<string, number \| string \| boolean> | 是 | 指示筛选条件，当前仅支持通过等于筛选。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
 | value | [ValueBucket](js-apis-data-valuesBucket.md#valuesbucket) | 是 | 指示要更新的数据。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
 
 
@@ -608,18 +620,18 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 | wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时，全屏显示自动拉起目标的ability信息。如果设备正在使用中，则弹出一个通知框。 <br> 说明：该接口为预留接口，暂不支持使用。|
 | ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |
-| snoozeTimes | number | 否 | 指明延迟提醒次数，默认0次。 |
-| timeInterval | number | 否 | 执行延迟提醒间隔（单位：秒），最少5分钟。 |
+| snoozeTimes | number | 否 | 指明延迟提醒次数，默认0次(不适用于倒计时提醒类型)。 |
+| timeInterval | number | 否 | 执行延迟提醒间隔（单位：秒），最少5分钟(不适用于倒计时提醒类型)。 |
 | title | string | 否 | 指明提醒标题。 |
 | content | string | 否 | 指明提醒内容。 |
 | expiredContent | string | 否 | 指明提醒过期后需要显示的内容。 |
-| snoozeContent | string | 否 | 指明延迟提醒时需要显示的内容。 |
+| snoozeContent | string | 否 | 指明延迟提醒时需要显示的内容(不适用于倒计时提醒类型)。 |
 | notificationId | number | 否 | 指明提醒使用的通知的id号，相同id号的提醒会覆盖。 |
 | groupId<sup>11+</sup> | string | 否 | 指明提醒使用相同的组id。相同组id中，一个提醒被点击不在提醒后，组内其他提醒也会被取消。 |
 | slotType | [notification.SlotType](js-apis-notificationManager.md#slottype) | 否 | 指明提醒的slot类型。 |
 | tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，具体请参考[NotificationRequest.tapDismissed](js-apis-inner-notification-notificationRequest.md#notificationrequest)。  |
 | autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，具体请参考[NotificationRequest.autoDeletedTime](js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
-| snoozeSlotType<sup>11+</sup> | [notification.SlotType](js-apis-notificationManager.md#slottype) | 否 | 指明延迟提醒的slot类型。 |
+| snoozeSlotType<sup>11+</sup> | [notification.SlotType](js-apis-notificationManager.md#slottype) | 否 | 指明延迟提醒的slot类型(不适用于倒计时提醒类型)。 |
 | customRingUri<sup>11+</sup> | string | 否 | 指明自定义提示音的uri。 |
 
 ## ReminderRequestCalendar

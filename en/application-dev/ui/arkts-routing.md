@@ -3,7 +3,7 @@
 
 Page routing refers to the redirection and data transfer between different pages in an application. It can be implemented through APIs of the **Router** module. Through different URLs, you can easily navigate users through pages. This document describes the functions provided by the **Router** module from the following aspects: [Page Redirection](#page-redirection), [Page Return](#page-return), [Adding a Confirmation Dialog Box Before Page Return](#adding-a-confirmation-dialog-box-before-page-return), and [Named Route](#named-route).
 
-The **Router** module is applicable to page redirection between modules and within a module. It uses page URLs to decouple modules. Regarding page redirection within a module, prefer [Navigation](./arkts-navigation-navigation.md) over this module to create better transition effects.
+The **Router** module is applicable to page redirection between [modules](../quick-start/application-package-structure-stage.md) and within a module. It uses page URLs to decouple modules. Regarding page redirection within a module, prefer [Navigation](./arkts-navigation-navigation.md) over this module to create better transition effects.
 
 ## Page Redirection
 
@@ -111,6 +111,7 @@ import promptAction from '@ohos.promptAction';
 
   ```ts
   import router from '@ohos.router';
+
   // On the SearchResult page
   function onJumpClick(): void {
     router.replaceUrl({
@@ -120,7 +121,8 @@ import promptAction from '@ohos.promptAction';
         console.error(`Invoke replaceUrl failed, code is ${err.code}, message is ${err.message}`);
         return;
       }
-      console.info('Invoke replaceUrl succeeded.');})
+      console.info('Invoke replaceUrl succeeded.');
+    })
   }
   ```
 
@@ -234,7 +236,7 @@ You can use any of the following methods to return to a page:
 
   This method not only allows you to return to the specified page, but also pass in custom parameter information during the return process. The parameter information can be obtained and parsed by invoking the **router.getParams()** API on the target page.
 
-On the target page, call the **router.getParams()** API at the position where parameters need to be obtained, for example, in the **onPageShow()** lifecycle callback:
+On the target page, call the **router.getParams()** API at the position where parameters need to be obtained, for example, in the [onPageShow()](../quick-start/arkts-page-custom-components-lifecycle.md) lifecycle callback:
 
 
 ```ts
@@ -386,7 +388,7 @@ When the configuration is successful, import the named route page to the page fr
 ```ts
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
-const moudel = import('library/src/main/ets/pages/Index') // Import the named route page in the shared package.
+const module = import('library/src/main/ets/pages/Index') // Import the named route page in the shared package.
 @Entry
 @Component
 struct Index {

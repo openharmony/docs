@@ -61,11 +61,8 @@
 
 - ### HAP
 
-    OpenHarmony Ability Package，一个HAP文件包含应用的所有内容，由代码、资源、三方库及应用配置文件组成，其文件后缀名为.hap。
+    Harmony Ability Package，一个HAP文件包含应用的所有内容，由代码、资源、三方库及应用配置文件组成，其文件后缀名为.hap。
 
-- ### HAR
-
-    OpenHarmony Archive文件。包含代码、资源和配置文件的中间格式。
 
 - ### HCS
 
