@@ -46,6 +46,15 @@
 | Dashed | 显示为一系列短的方形虚线。                 |
 | Solid  | 显示为一条实线。                      |
 
+## OutlineStyle<sup>11+</sup>
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| DOTTED | 显示为一系列圆点，圆点半径为outlineWidth的一半。 |
+| DASHED | 显示为一系列短的方形虚线。                 |
+| SOLID  | 显示为一条实线。                      |
+
 ## LineJoinStyle
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
