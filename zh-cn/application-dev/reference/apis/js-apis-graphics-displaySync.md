@@ -130,6 +130,7 @@ off(type: 'frame', callback?: Callback<IntervalInfo>): void
 | 类型                | 说明                     |
 | ------------------ | ------------------------ |
 | [void]  | 无返回值。|
+
 **示例：**
 ```ts
 this.backDisplaySyncBigger.off("frame", Bigger)
