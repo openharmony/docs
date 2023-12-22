@@ -319,11 +319,11 @@ Defines the RDB store configuration.
 
 ## SecurityLevel
 
-Enumerates the RDB store security levels.
+Enumerates the RDB store security levels. Use the enum name rather than the enum value.
 
 > **NOTE**
 >
-> To perform data synchronization operations, the RDB store security level must be lower than or equal to that of the peer device. For details, see the [Cross-Device Data Synchronization Mechanism]( ../../database/sync-app-data-across-devices-overview.md#cross-device-data-synchronization-mechanism).
+> To perform data synchronization operations, the RDB store security level must be lower than or equal to that of the peer device. For details, see the [Access Control Mechanism in Cross-Device Synchronization](../../database/access-control-by-device-and-data-level.md#access-control-mechanism-in-cross-device-synchronization).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -336,7 +336,7 @@ Enumerates the RDB store security levels.
 
 ## ValueType
 
-Defines the data types allowed.
+Enumerates the types of the value in a KV pair.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -358,7 +358,7 @@ Enumerates the types of the key in a KV pair. This type is not multi-thread safe
 
 ## SyncMode
 
-Enumerates the database synchronization modes.
+Enumerates the database synchronization modes. Use the enum name rather than the enum value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -369,7 +369,7 @@ Enumerates the database synchronization modes.
 
 ## SubscribeType
 
-Enumerates the subscription types.
+Enumerates the subscription types. Use the enum name rather than the enum value.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -496,9 +496,10 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Example**
 
-```js
+```ts
+// Locate data of Lisa in the EMPLOYEE table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi");
+predicates.equalTo("NAME", "Lisa");
 ```
 
 
@@ -526,9 +527,10 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Example**
 
-```js
+```ts
+// Locate data of the employees whose name is not Lisa in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.notEqualTo("NAME", "lisi");
+predicates.notEqualTo("NAME", "Lisa");
 ```
 
 
@@ -549,9 +551,9 @@ Adds a left parenthesis to the **RdbPredicates**.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi")
+predicates.equalTo("NAME", "Lisa")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
@@ -575,9 +577,9 @@ Adds a right parenthesis to the **RdbPredicates**.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi")
+predicates.equalTo("NAME", "Lisa")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
@@ -601,7 +603,8 @@ Adds the OR condition to the **RdbPredicates**.
 
 **Example**
 
-```js
+```ts
+// Locate the employees named Lisa or Rose in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .or()
@@ -624,7 +627,8 @@ Adds the AND condition to the **RdbPredicates**.
 
 **Example**
 
-```js
+```ts
+// Locate the field with name of Lisa and salary of 200.5 in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .and()
@@ -654,7 +658,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Example**
 
-```js
+```ts
+// Locate data of the employees whose name contains os, for example, Rose, in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.contains("NAME", "os");
 ```
@@ -682,9 +687,10 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Example**
 
-```js
+```ts
+// Locate data of the employees whose name begins with Li, for example, Lisa, in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.beginsWith("NAME", "os");
+predicates.beginsWith("NAME", "Li");
 ```
 
 ### endsWith
@@ -710,7 +716,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Example**
 
-```js
+```ts
+// Locate data of the employees whose name ends with se, for example, Rose, in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.endsWith("NAME", "se");
 ```
@@ -737,7 +744,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.isNull("NAME");
 ```
@@ -764,7 +771,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.isNotNull("NAME");
 ```
@@ -792,7 +799,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Example**
 
-```js
+```ts
+// Locate data of the employees whose name is similar to os in the table, for example, Rose.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.like("NAME", "%os%");
 ```
@@ -801,7 +809,7 @@ predicates.like("NAME", "%os%");
 
 glob(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** object to match the specified string.
+Sets an **RdbPredicates** object to locate the fields in the specified column that match the given string.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -820,7 +828,8 @@ Sets an **RdbPredicates** object to match the specified string.
 
 **Example**
 
-```js
+```ts
+// Locate data of the employees whose name matches the "?h*g" string in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.glob("NAME", "?h*g");
 ```
@@ -829,7 +838,7 @@ predicates.glob("NAME", "?h*g");
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are in the given range.
+Sets an **RdbPredicates** object to match the fields in the specified column that are within the given range (including the min. and max. values).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -838,8 +847,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type                   | Mandatory| Description                      |
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | Yes  | Column name in the database table.        |
-| low    | [ValueType](#valuetype) | Yes  | Minimum value to match the **RdbPredicates**.  |
-| high   | [ValueType](#valuetype) | Yes  | Maximum value to match the **RdbPredicates**.|
+| low    | [ValueType](#valuetype) | Yes  | Minimum value to match.  |
+| high   | [ValueType](#valuetype) | Yes  | Maximum value to match.|
 
 **Return value**
 
@@ -849,7 +858,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Example**
 
-```js
+```ts
+// Locate data of the employees with age between 10 and 50 (including 10 and 50) in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.between("AGE", 10, 50);
 ```
@@ -858,7 +868,7 @@ predicates.between("AGE", 10, 50);
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are out of the given range.
+Sets an **RdbPredicates** object to match the fields in the specified column that are out of the given range (excluding the min. and max. values).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -867,8 +877,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type                   | Mandatory| Description                      |
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | Yes  | Column name in the database table.        |
-| low    | [ValueType](#valuetype) | Yes  | Minimum value to match the **RdbPredicates**.  |
-| high   | [ValueType](#valuetype) | Yes  | Maximum value to match the **RdbPredicates**.|
+| low    | [ValueType](#valuetype) | Yes  | Minimum value to match.  |
+| high   | [ValueType](#valuetype) | Yes  | Maximum value to match.|
 
 **Return value**
 
@@ -878,7 +888,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Example**
 
-```js
+```ts
+// Locate data of the employees who are younger than 10 or older than 50 in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notBetween("AGE", 10, 50);
 ```
@@ -906,7 +917,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Example**
 
-```js
+```ts
+// Locate data of the employees who are older than 18 in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThan("AGE", 18);
 ```
@@ -934,7 +946,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Example**
 
-```js
+```ts
+// Locate data of the employees who are younger than 20 in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThan("AGE", 20);
 ```
@@ -962,7 +975,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Example**
 
-```js
+```ts
+// Locate data of the employees who are 18 or older in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThanOrEqualTo("AGE", 18);
 ```
@@ -990,7 +1004,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Example**
 
-```js
+```ts
+// Locate data of the employees who are 20 or younger in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThanOrEqualTo("AGE", 20);
 ```
@@ -1017,7 +1032,7 @@ Sets an **RdbPredicates** object to sort the fields in the specified column in a
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.orderByAsc("NAME");
 ```
@@ -1044,7 +1059,7 @@ Sets an **RdbPredicates** object to sort the fields in the specified column in d
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.orderByDesc("AGE");
 ```
@@ -1065,7 +1080,7 @@ Sets an **RdbPredicates** object to filter out duplicate records.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose").distinct();
 ```
@@ -1092,7 +1107,7 @@ Sets an **RdbPredicates** object to specify the maximum number of records.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose").limitAs(3);
 ```
@@ -1119,7 +1134,7 @@ Sets an **RdbPredicates** object to specify the start position of the returned r
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose").offsetAs(3);
 ```
@@ -1146,7 +1161,7 @@ Sets an **RdbPredicates** object to group rows that have the same value into sum
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.groupBy(["AGE", "NAME"]);
 ```
@@ -1174,7 +1189,7 @@ Sets an **RdbPredicates** object to specify the index column.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.indexedBy("SALARY_INDEX");
 ```
@@ -1202,7 +1217,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Example**
 
-```js
+```ts
+// Locate data of the employees with age of [18, 20] in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("AGE", [18, 20]);
 ```
@@ -1230,7 +1246,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 
 **Example**
 
-```js
+```ts
+// Locate data of all the employees except Lisa and Rose in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notIn("NAME", ["Lisa", "Rose"]);
 ```
@@ -2856,7 +2873,7 @@ Registers a data change event listener for the RDB store. When the data in the R
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates data changes.     |
 | type     | [SubscribeType](#subscribetype)    | Yes  | Subscription type to register.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Callback invoked to return the data change. **Array<string>** indicates the ID of the peer device whose data in the database is changed.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Callback invoked to return the data change. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
 
 **Example**
 
@@ -2877,7 +2894,7 @@ try {
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Unregisters the data change event listener.
+Unregisters the observer of the specified type.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2887,7 +2904,7 @@ Unregisters the data change event listener.
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates data changes.     |
 | type     | [SubscribeType](#subscribetype)     | Yes  | Subscription type to unregister.                              |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Callback for the data change event. **Array<string>** indicates the ID of the peer device whose data in the database is changed.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Callback for the data change. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
 
 **Example**
 
