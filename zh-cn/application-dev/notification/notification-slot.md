@@ -5,13 +5,13 @@
 ## 接口说明
 1. 通知服务提供了两种创建通知渠道类型的方法：
 
-    - 发布通知时，在[NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)的notificationSlotType字段里携带，桌面收到通知后，根据notificationSlotType选择相应的通知渠道进行提醒。
+    - 发布通知时，在[NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)的notificationSlotType字段里携带，如果notificationSlotType对应渠道不存在，通知服务会自动创建。
 
-    - 调用接口[`addSlot()`](../reference/apis/js-apis-notificationManager.md#notificationmanageraddslot-2)设置，后续发布通知时，桌面按创建的notificationSlotType选择相应的通知渠道进行提醒。
+    - 调用接口[`addSlot()`](../reference/apis/js-apis-notificationManager.md#notificationmanageraddslot-2)显式创建，后续发布通知时填入已创建的SlotType。
 
 2. 通知服务支持查询指定类型的通知渠道：
 
-    - 调用接口[`getSlot()`](../reference/apis/js-apis-notificationManager.md#notificationmanagergetslot)查询，可以获取到指定类型的通知渠道是否授权。
+    - 调用接口[`getSlot()`](../reference/apis/js-apis-notificationManager.md#notificationmanagergetslot)查询，可以获取到指定类型的通知渠道是否使能。
 
 3. 通知服务支持移除当前通知渠道类型：
 
@@ -32,6 +32,14 @@
 | removeAllSlots(callback: AsyncCallback\<void\>): void                          | 删除此应用程序所有通知渠道。使用callback异步回调。      |
 | removeAllSlots(): Promise\<void\>                                              | 删除此应用程序所有通知渠道。使用Promise异步回调。       |
 
+## 渠道类型描述
+| SlotType             | 取值   | 分类     | 通知中心 | 横幅 | 锁屏 | 铃声/振动 | 状态栏图标 | 自动亮屏 |
+| -------------------- | ------ | --------| ------- |------|------|----------|-----------|---------|
+| SOCIAL_COMMUNICATION | 1      | 社交通信 | Y | Y | Y | Y | Y | Y |
+| SERVICE_INFORMATION  | 2      | 服务提醒 | Y | N | Y | Y | Y | Y |
+| CONTENT_INFORMATION  | 3      | 内容资讯 | Y | N | N | N | Y | N |
+| CUSTOMER_SERVICE     | 5      | 客服消息 | Y | N | N | N | N | N |
+| OTHER_TYPES          | 0xFFFF | 其他     | Y | N | N | Y | Y | N |
 
 ## 开发步骤
 
