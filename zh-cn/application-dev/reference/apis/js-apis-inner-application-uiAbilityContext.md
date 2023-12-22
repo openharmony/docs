@@ -3646,7 +3646,7 @@ requestModalUIExtension(want: Want): Promise\<void>
 
 使用规则：
 - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
-- 组件启动规则详见：[组件启动规则（Stage模型）] (../../application-models/component-startup-rules.md)。
+- 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -3674,7 +3674,7 @@ requestModalUIExtension(want: Want): Promise\<void>
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -3725,7 +3725,7 @@ requestModalUIExtension(want: Want, callback: AsyncCallback\<void>): void
 
 使用规则：
 - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
-- 组件启动规则详见：[组件启动规则（Stage模型）] (../../application-models/component-startup-rules.md)。
+- 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
  
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -3748,7 +3748,7 @@ requestModalUIExtension(want: Want, callback: AsyncCallback\<void>): void
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
