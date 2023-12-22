@@ -166,15 +166,15 @@ An `enum` type is a value type with a defined set of named values called enum co
 In order to be used, an `enum` constant must be prefixed with an enum `type` name.
 
 ```typescript
-enum Color { Red, Green, Blue }
-let c: Color = Color.Red
+enum ColorSet { Red, Green, Blue }
+let c: ColorSet = ColorSet.Red
 ```
 
 A constant expression can be used to explicitly set the value of an `enum` constant.
 
 ```typescript
-enum Color { White = 0xFF, Grey = 0x7F, Black = 0x00 }
-let c: Color = Color.Black
+enum ColorSet { White = 0xFF, Grey = 0x7F, Black = 0x00 }
+let c: ColorSet = ColorSet.Black
 ```
 
 #### `Union` Type
@@ -813,7 +813,7 @@ class Person {
     this.age = a
   }
 
-  GetName(): string {
+  getName(): string {
     return this.name
   }
 }
@@ -821,7 +821,7 @@ class Person {
 let p1 = new Person('Alice', 25)
 console.log(p1.name)
 let p2 = new Person('Bob', 28)
-console.log(p2.GetName())
+console.log(p2.getName())
 ```
 
 #### Static Fields
@@ -854,14 +854,14 @@ class Person {
   name: string // The compiler automatically sets to undefined
   
   setName(n:string): void {
-  this.name = n
+    this.name = n
   }
   
   getName(): string {
-  // Return type "string" hides from the developers the fact
-  // that name can be undefined. The most correct would be
-  // to write the return type as "string | undefined". By doing so
-  // we tell the users of our API about all possible return values.
+    // Return type "string" hides from the developers the fact
+    // that name can be undefined. The most correct would be
+    // to write the return type as "string | undefined". By doing so
+    // we tell the users of our API about all possible return values.
     return this.name
   }
 }
@@ -968,7 +968,7 @@ The example below illustrates how instanced methods work.
 The `calculateArea` method calculates the area of a rectangle by multiplying the height by the width:
 
 ```typescript
-class Rectangle {
+class RectangleSize {
   private height: number = 0
   private width: number = 0
   constructor(height: number, width: number) {
@@ -983,7 +983,7 @@ class Rectangle {
 To use an instance method, it must be called on an instance of the class:
 
 ```typescript
-let square = new Rectangle(10, 10)
+let square = new RectangleSize(10, 10)
 console.log(square.calculateArea()) // output: 100
 ```
 
@@ -1061,7 +1061,7 @@ The keyword `super` can be used to access instance fields, instance methods and 
 It is often used to extend basic functionality of subclass with the required behavior taken from the super class:
 
 ```typescript
-class Rectangle {
+class RectangleSize {
   protected height: number = 0
   protected width: number = 0
 
@@ -1074,7 +1074,7 @@ class Rectangle {
     /* draw bounds */
   }
 }
-class FilledRectangle extends Rectangle {
+class FilledRectangle extends RectangleSize {
   color = ''
   constructor (h: number, w: number, c: string) {
     super(h, w) // call of super constructor
@@ -1096,14 +1096,14 @@ An overridden method can be marked with the keyword `override` to improve readab
 An overridden method must have the same types of parameters, and same or derived return type as the original method.
 
 ```typescript
-class Rectangle {
+class RectangleSize {
   // ...
   area(): number {
     // implementation
     return 0
   }
 }
-class Square extends Rectangle {
+class Square extends RectangleSize {
   private side: number = 0
   override area(): number {
     return this.side * this.side
@@ -1159,12 +1159,12 @@ In this case the default constructor fills the instance fields with default valu
 The first statement of a constructor body can use the keyword `super` to explicitly call a constructor of the direct superclass.
 
 ```typescript
-class Rectangle {
+class RectangleSize {
   constructor(width: number, height: number) {
     // ...
   }
 }
-class Square extends Rectangle {
+class Square extends RectangleSize {
   constructor(side: number) {
     super(side, side)
   }
@@ -1330,8 +1330,8 @@ Examples:
 interface Style {
   color: string // property
 }
-interface Area {
-  calculateArea(): number // method header
+interface AreaSize {
+  calculateAreaSize(): number // method header
   someMethod(): void;    // method header
 }
 ```
@@ -1340,19 +1340,19 @@ Examples of a class implementing an interface:
 
 ```typescript
 // Interface:
-interface Area {
-  calculateArea(): number // method header
+interface AreaSize {
+  calculateAreaSize(): number // method header
   someMethod(): void;    // method header
 }
 
 // Implementation:
-class Rectangle implements Area {
+class RectangleSize implements AreaSize {
   private width: number = 0
   private height: number = 0
   someMethod(): void {
     console.log('someMethod called')
   }
-  calculateArea(): number {
+  calculateAreaSize(): number {
     this.someMethod() // calls another method and returns result
     return this.width * this.height
   }
@@ -1427,20 +1427,17 @@ Generic types and functions allow creating the code capable to work over a varie
 A class and an interface can be defined as generics, adding parameters to the type definition, like the type parameter `Element` in the following example:
 
 ```typescript
-class Stack<Element> {
-  public pop(): Element {
-    // ...
-  }
+class CustomStack<Element> {
   public push(e: Element): void {
     // ...
   }
 }
 ```
 
-To use type Stack, the type argument must be specified for each type parameter:
+To use type CustomStack, the type argument must be specified for each type parameter:
 
 ```typescript
-let s = new Stack<string>
+let s = new CustomStack<string>()
 s.push('hello')
 ```
 
@@ -1448,7 +1445,7 @@ Compiler ensures type safety while working with generic types and functions.
 See below:
 
 ```typescript
-let s = new Stack<string>
+let s = new CustomStack<string>()
 s.push(55) /* That will be a compile-time error as 55 is not compatible
   with type string */
 ```
