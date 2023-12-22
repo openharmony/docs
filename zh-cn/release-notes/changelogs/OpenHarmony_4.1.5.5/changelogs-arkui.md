@@ -46,3 +46,35 @@ b) showTips 第二个参数设置文本内容时，文本内容可能产生变�
 **适配指导**
 
 默认行为变更，不涉及适配。
+
+## cl.Arkui.2 Progress组件的默认颜色变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+当前Progress组件的默认进度条前景色、默认进度条底色和默认内描边颜色不符合UX规范，因此依照UX规范对相关默认颜色做出变更。
+
+**变更影响**
+
+该变更为兼容性变更，改变了组件默认情况下的显示颜色，提升了组件的默认显示效果。
+
+**API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5开始。
+
+**变更的接口/组件**
+
+API 11前，胶囊样式进度条默认前景色是系统资源中的`ohos_id_color_emphasize_contrary`，默认内描边颜色是系统资源中的`ohos_id_color_emphasize_contrary`，环形样式进度条默认进度条底色是系统资源中的`ohos_id_color_component_normal`。
+
+API 11及以后，胶囊样式进度条默认前景色是系统资源中的`ohos_id_color_emphasize`，前景色不透明度为系统资源中的`ohos_id_alpha_highlight_bg`，默认内描边颜色是系统资源中的`ohos_id_color_emphasize`，内描边颜色不透明度为系统资源中的`ohos_id_alpha_highlight_bg`，环形样式进度条默认进度条底是系统资源中的`ohos_id_color_button_normal`。
+
+**适配指导**
+
+默认颜色变更，不涉及适配。
