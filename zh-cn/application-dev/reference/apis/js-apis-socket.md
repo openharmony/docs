@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 ```
 
@@ -28,7 +28,7 @@ constructUDPSocketInstance(): UDPSocket
 
 **示例：**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 ```
@@ -63,7 +63,7 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -112,7 +112,7 @@ bind(address: NetAddress): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -156,7 +156,7 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -211,7 +211,7 @@ send(options: UDPSendOptions): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -249,7 +249,7 @@ close(callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -281,7 +281,7 @@ close(): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -320,7 +320,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -366,7 +366,7 @@ getState(): Promise\<SocketStateBase\>
 
 **示例：**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -418,7 +418,7 @@ setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -485,7 +485,7 @@ setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -533,7 +533,7 @@ on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: Socke
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
@@ -575,7 +575,7 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 class SocketInfo {
@@ -617,7 +617,7 @@ on(type: 'listening' | 'close', callback: Callback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
@@ -649,7 +649,7 @@ off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
@@ -686,7 +686,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
@@ -715,7 +715,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
@@ -796,7 +796,760 @@ UDP 其余错误码映射形式为：2301000 + Linux内核错误码。
 
 错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
 
-## socket.constructTCPSocketInstance
+## socket.constructMulticastSocketInstance<sup>11+</sup>
+
+constructMulticastSocketInstance(): MulticastSocket
+
+创建一个MulticastSocket对象。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                               | 说明                    |
+  | :--------------------------------- | :---------------------- |
+| [MulticastSocket](#multicastsocket) | 返回一个MulticastSocket对象。 |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+```
+## MulticastSocket<sup>11+</sup>
+
+MulticastSocket连接。在调用MulticastSocket的方法前，需要先通过[socket.constructMulticastSocketInstance](#socketconstructmulticastsocketinstance)创建MulticastSocket对象。
+
+### addMembership<sup>11+</sup>
+
+addMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void;
+
+加入多播组。使用callback方法作为异步方法。
+
+> **说明：**
+> 多播使用的IP地址属于特定的范围（例如224.0.0.0到239.255.255.255）。
+> 加入多播组后，既可以是发送端，也可以是接收端，相互之间以广播的形式传递数据，不区分客户端或服务端。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名             | 类型                           | 必填 | 说明                                       |
+| ----------------- | ----------------------------- | ---- | ----------------------------------------- |
+| multicastAddress  | [NetAddress](#netaddress)     |  是  | 目标地址信息，参考[NetAddress](#netaddress)。 |
+| callback          | AsyncCallback\<void\>         |  是  | 回调函数。                                  |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301022 | Invalid argument.       |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let addr: socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 8080
+}
+multicast.addMembership(addr, (err) => {
+  if (err) {
+    console.log('add membership fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('add membership success');
+})
+```
+
+### addMembership<sup>11+</sup>
+
+addMembership(multicastAddress: NetAddress): Promise\<void\>;
+
+加入多播组。使用Promise方法作为异步方法。。
+
+> **说明：**
+> 多播使用的IP地址属于特定的范围（例如224.0.0.0到239.255.255.255）。
+> 加入多播组后，既可以是发送端，也可以是接收端，相互之间以广播的形式传递数据，不区分客户端或服务端。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名             | 类型                           | 必填 | 说明                                           |
+| ----------------- | ----------------------------- | ---- | --------------------------------------------  |
+| multicastAddress  | [NetAddress](#netaddress)     |  是  | 目标地址信息，参考[NetAddress](#netaddress)。 |
+
+**返回值：**
+
+| 类型            | 说明                                               |
+| :-------------- | :-----------------------------------------------  |
+| Promise\<void\> | 以Promise形式返回MulticastSocket加入多播组的行为结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301022 | Invalid argument.       |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+let addr: socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 8080
+}
+multicast.addMembership(addr).then(() => {
+  console.log('addMembership success');
+}).catch((err) => {
+  console.log('addMembership fail');
+});
+```
+
+### dropMembership<sup>11+</sup>
+
+dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void;
+
+退出多播组。使用callback方法作为异步方法。
+
+> **说明：**
+> 多播使用的IP地址属于特定的范围（例如224.0.0.0到239.255.255.255）。
+> 从已加入的多播组中退出，必须在加入多播组 [addMembership](#addmembership11) 之后退出才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名             | 类型                           | 必填 | 说明                                         |
+| ----------------- | ----------------------------- | ---- | ------------------------------------------- |
+| multicastAddress  | [NetAddress](#netaddress)     |  是  | 目标地址信息，参考[NetAddress](#netaddress)。   |
+| callback          | AsyncCallback\<void\>         |  是  | 回调函数。                                    |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let addr: socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 8080
+}
+multicast.dropMembership(addr, (err) => {
+  if (err) {
+    console.log('drop membership fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('drop membership success');
+})
+```
+
+### dropMembership<sup>11+</sup>
+
+dropMembership(multicastAddress: NetAddress): Promise\<void\>;
+
+退出多播组。使用Promise方法作为异步方法。。
+
+> **说明：**
+> 多播使用的IP地址属于特定的范围（例如224.0.0.0到239.255.255.255）。
+> 从已加入的多播组中退出，必须在加入多播组 [addMembership](#addmembership11) 之后退出才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名             | 类型                                   | 必填 | 说明                                           |
+| ----------------- | ------------------------------------- | ---- | --------------------------------------------  |
+| multicastAddress  | [NetAddress](#netaddress) |  是  | 目标地址信息，参考[NetAddress](#netaddress)。     |
+
+**返回值：**
+
+| 类型            | 说明                                              |
+| :-------------- | :----------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回MulticastSocket加入多播组的执行结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+let addr: socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 8080
+}
+multicast.dropMembership(addr).then(() => {
+  console.log('drop membership success');
+}).catch((err) => {
+  console.log('drop membership fail');
+});
+```
+
+### setMulticastTTL<sup>11+</sup>
+
+setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void;
+
+设置多播通信时数据包在网络传输过程中路由器最大跳数。使用callback方法作为异步方法。
+
+> **说明：**
+> 用于限制数据包在网络中传输时能够经过的最大路由器跳数的字段，TTL (Time to live)。
+> 范围为 0～255，默认值为 1 。
+> 如果一个多播数据包的 TTL 值为 1，那么它只能被直接连接到发送者的主机接收。如果 TTL 被设置为一个较大的值，那么数据包就能够被传送到更远的网络范围内。
+> 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名         | 类型                   | 必填 | 说明                         |
+| ------------- | --------------------- | ---- | ----------------------------- |
+| ttl           | number                |  是  | ttl设置数值，类型为数字number。 |
+| callback      | AsyncCallback\<void\> |  是  | 回调函数。                     |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301022 | Invalid argument.       |
+| 2301088 | Not a socket.           |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let ttl = 8
+multicast.setMulticastTTL(ttl, (err) => {
+  if (err) {
+    console.log('set ttl fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('set ttl success');
+})
+```
+
+### setMulticastTTL<sup>11+</sup>
+
+setMulticastTTL(ttl: number): Promise\<void\>;
+
+设置多播通信时数据包在网络传输过程中路由器最大跳数。使用Promise方法作为异步方法。。
+
+> **说明：**
+> 用于限制数据包在网络中传输时能够经过的最大路由器跳数的字段，TTL (Time to live)。
+> 范围为 0～255，默认值为 1 。
+> 如果一个多播数据包的 TTL 值为 1，那么它只能被直接连接到发送者的主机接收。如果 TTL 被设置为一个较大的值，那么数据包就能够被传送到更远的网络范围内。
+> 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名         | 类型                   | 必填 | 说明                           |
+| ------------- | ---------------------- | ---- | ------------------------------ |
+| ttl           | number                 |  是  | ttl设置数值，类型为数字Number。 |
+
+**返回值：**
+
+| 类型            | 说明                                             |
+| :-------------- | :---------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回MulticastSocket设置TTL数值的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+multicast.setMulticastTTL(8).then(() => {
+  console.log('set ttl success');
+}).catch((err) => {
+  console.log('set ttl failed');
+});
+```
+
+### getMulticastTTL<sup>11+</sup>
+
+getMulticastTTL(callback: AsyncCallback\<number\>): void;
+
+获取数据包在网络传输过程中路由器最大跳数(TTL)的值。使用callback方法作为异步方法。
+
+> **说明：**
+> 用于限制数据包在网络中传输时能够经过的最大路由器跳数的字段，TTL (Time to live)。
+> 范围为 0～255，默认值为 1 。
+> 如果一个多播数据包的 TTL 值为 1，那么它只能被直接连接到发送者的主机接收。如果 TTL 被设置为一个较大的值，那么数据包就能够被传送到更远的网络范围内。
+> 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名         | 类型                     | 必填 | 说明                         |
+| ------------- | ----------------------- | ---- | --------------------------- |
+| callback      | AsyncCallback\<number\> |  是  | 回调函数。                    |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+multicast.getMulticastTTL((err, value) => {
+  if (err) {
+    console.log('set ttl fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('set ttl success, value: ' + JSON.stringify(value));
+})
+```
+
+### getMulticastTTL<sup>11+</sup>
+
+getMulticastTTL(): Promise\<number\>;
+
+获取数据包在网络传输过程中路由器最大跳数(TTL)的值。使用Promise方法作为异步方法。
+
+> **说明：**
+> 用于限制数据包在网络中传输时能够经过的最大路由器跳数的字段，TTL (Time to live)。
+> 范围为 0～255，默认值为 1 。
+> 如果一个多播数据包的 TTL 值为 1，那么它只能被直接连接到发送者的主机接收。如果 TTL 被设置为一个较大的值，那么数据包就能够被传送到更远的网络范围内。
+> 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+无                                                            
+
+**返回值：**
+
+| 类型               | 说明                        |
+| :--------------   | --------------------------- |
+| Promise\<number\> | 以Promise形式返回当前TTL数值。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+multicast.getMulticastTTL().then((value) => {
+  console.log('ttl: ', JSON.stringify(value));
+}).catch((err) => {
+  console.log('set ttl failed');
+});
+```
+
+### setLoopbackMode<sup>11+</sup>
+
+setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void;
+
+设置多播通信中的环回模式标志位。使用callback方法作为异步方法。
+
+> **说明：**
+> 用于设置环回模式，开启或关闭两种状态，默认为开启状态。
+> 如果一个多播通信中环回模式设置值为 true，那么它允许主机在本地循环接收自己发送的多播数据包。如果为 false，则主机不会接收到自己发送的多播数据包。
+> 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名         | 类型                  | 必填 | 说明                         |
+| ------------- | --------------------- | ---- | ---------------------------- |
+| flag          | boolean               |  是  | ttl设置数值，类型为boolen 。  |
+| callback      | AsyncCallback\<void\> |  是  | 回调函数。                    |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+multicast.setLoopbackMode(false, (err) => {
+  if (err) {
+    console.log('set loopback mode fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('set loopback mode success');
+})
+```
+
+### setLoopbackMode<sup>11+</sup>
+
+setLoopbackMode(flag: boolean): Promise\<void\>;
+
+设置多播通信中的环回模式标志位。使用callback方法作为异步方法。
+
+> **说明：**
+> 用于设置环回模式，开启或关闭两种状态，默认为开启状态。
+> 如果一个多播通信中环回模式设置值为 true，那么它允许主机在本地循环接收自己发送的多播数据包。如果为 false，则主机不会接收到自己发送的多播数据包。
+> 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名         | 类型                   | 必填 | 说明                             |
+| ------------- | ---------------------- | ---- | -------------------------------- |
+| flag          | boolean                |  是  | 环回模式标志位，类型为数字boolean。|
+
+**返回值：**
+
+| 类型            | 说明                                             |
+| :-------------- | :---------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回MulticastSocket设置环回模式的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+multicast.setLoopbackMode(false).then(() => {
+  console.log('set loopback mode success');
+}).catch((err) => {
+  console.log('set loopback mode failed');
+});
+```
+
+### getLoopbackMode<sup>11+</sup>
+
+getLoopbackMode(callback: AsyncCallback\<boolean\>): void;
+
+获取多播通信中的环回模式状态。使用Promise方法作为异步方法。
+
+> **说明：**
+> 用于获取当前环回模式开启或关闭的状态。
+> 如果获取的属性值为 true，表示环回模式是开启的状态，允许主机在本地循环接收自己发送的多播数据包。如果为 false，则表示环回模式是关闭的状态，主机不会接收到自己发送的多播数据包。
+> 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名         | 类型                     | 必填 | 说明                         |
+| ------------- | ----------------------- | ---- | --------------------------- |
+| callback      | AsyncCallback\<number\> |  是  | 回调函数。                    |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+multicast.getLoopbackMode((err, value) => {
+  if (err) {
+    console.log('get loopback mode fail, err: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('get loopback mode success, value: ' + JSON.stringify(value));
+})
+```
+
+### getLoopbackMode<sup>11+</sup>
+
+getLoopbackMode(): Promise\<boolean\>;
+
+获取多播通信中的环回模式状态。使用Promise方法作为异步方法。
+
+> **说明：**
+> 用于获取当前环回模式开启或关闭的状态。
+> 如果获取的属性值为 true，表示环回模式是开启的状态，允许主机在本地循环接收自己发送的多播数据包。如果为 false，则表示环回模式是关闭的状态，主机不会接收到自己发送的多播数据包。
+> 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+无                                                            
+
+**返回值：**
+
+| 类型                | 说明                        |
+| :----------------  | --------------------------- |
+| Promise\<boolean\> | 以Promise形式返回当前TTL数值。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+| 2301088 | Not a socket.           |
+| 2301098 | Address in use.         |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+multicast.getLoopbackMode().then((value) => {
+  console.log('loopback mode: ', JSON.stringify(value));
+}).catch((err) => {
+  console.log('get loopback mode failed');
+});
+```
+
+### send<sup>11+</sup>
+
+send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
+
+发送数据。使用callback方式作为异步方法。
+
+发送数据前，需要先调用 [addMembership](#addmembership11) 加入多播组。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                | 必填 | 说明                                                         |
+| -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [UDPSendOptions](#udpsendoptions) | 是   | UDPSocket发送参数，参考[UDPSendOptions](#udpsendoptions)。 |
+| callback | AsyncCallback\<void\>             | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```ts
+import socket from '@ohos.net.socket';
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let sendOptions: socket.UDPSendOptions = {
+  data: 'Hello, server!',
+  address: {
+    address: '239.255.0.1',
+    port: 8080
+  }
+}
+multicast.send(sendOptions, (err) => {
+  if (err) {
+    console.log('send fail: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('send success');
+});
+```
+
+### send<sup>11+</sup>
+
+send(options: UDPSendOptions): Promise\<void\>
+
+发送数据。使用Promise方式作为异步方法。
+
+发送数据前，需要先调用 [addMembership](#addmembership11) 加入多播组。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                                     | 必填 | 说明                                                         |
+| ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [UDPSendOptions](#udpsendoptions) | 是   | UDPSocket发送参数，参考[UDPSendOptions](#udpsendoptions)。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**返回值：**
+
+| 类型            | 说明                              |
+| :-------------- | :------------------------------- |
+| Promise\<void\> | 以Promise形式返回发送数据的执行结果。 |
+
+**示例：**
+
+```ts
+import socket from '@ohos.net.socket';
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let sendOptions: socket.UDPSendOptions = {
+  data: 'Hello, server!',
+  address: {
+    address: '239.255.0.1',
+    port: 8080
+  }
+}
+multicast.send(sendOptions).then(() => {
+  console.log('send success');
+}).catch((err) => {
+  console.log('send fail, ' + JSON.stringify(err));
+});
+```
+
+### on('message')<sup>11+</sup>
+
+on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+订阅MulticastSocket接收消息事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                                                    | 必填 | 说明                                 |
+| -------- | ------------------------------------------------------------------------------------- | ---- | ----------------------------------- |
+| type     | string                                                                                | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | 是   | 回调函数。                            |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket"
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance()
+
+multicast.on('message', (data) => {
+  console.info('接收的数据: ' + JSON.stringify(data))
+  const uintArray = new Uint8Array(data.message)
+  let str = ''
+  for (let i = 0; i < uintArray.length; ++i) {
+    str += String.fromCharCode(uintArray[i])
+  }
+  console.info(str)
+})
+```
+
+### off('message')<sup>11+</sup>
+
+off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+取消订阅消息事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                                                  | 必填 | 说明                                 |
+| -------- | ----------------------------------------------------------------------------------- | ---- | ----------------------------------- |
+| type     | string                                                                              | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。                            |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket"
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance()
+multicast.on('message', (data) => {
+  console.info('接收的数据: ' + JSON.stringify(data))
+  const uintArray = new Uint8Array(data.message)
+  let str = ''
+  for (let i = 0; i < uintArray.length; ++i) {
+    str += String.fromCharCode(uintArray[i])
+  }
+  console.info(str)
+})
+multicast.off('message')
+```
+
+## socket.constructTCPSocketInstance<sup>7+</sup>
 
 constructTCPSocketInstance(): TCPSocket
 
@@ -812,7 +1565,7 @@ constructTCPSocketInstance(): TCPSocket
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 ```
@@ -852,7 +1605,7 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -905,7 +1658,7 @@ bind(address: NetAddress): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -949,7 +1702,7 @@ connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1004,7 +1757,7 @@ connect(options: TCPConnectOptions): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1052,7 +1805,7 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1113,7 +1866,7 @@ send(options: TCPSendOptions): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1162,7 +1915,7 @@ close(callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1200,7 +1953,7 @@ close(): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
@@ -1238,7 +1991,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1289,7 +2042,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1340,7 +2093,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1391,7 +2144,7 @@ getState(): Promise\<SocketStateBase\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1434,7 +2187,7 @@ getSocketFd(callback: AsyncCallback\<number\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1474,7 +2227,7 @@ getSocketFd(): Promise\<number\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1524,7 +2277,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1591,7 +2344,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1639,7 +2392,7 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1680,7 +2433,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1722,7 +2475,7 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1754,7 +2507,7 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1791,7 +2544,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1820,7 +2573,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -1888,7 +2641,7 @@ constructTCPSocketServerInstance(): TCPSocketServer
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 ```
@@ -1931,7 +2684,7 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -1988,7 +2741,7 @@ listen(address: NetAddress): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2034,7 +2787,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2088,7 +2841,7 @@ getState(): Promise\<SocketStateBase\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2142,7 +2895,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2214,7 +2967,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2274,7 +3027,7 @@ on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (data: socket.TCPSocketConnection) => {
@@ -2308,7 +3061,7 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let callback = (data: socket.TCPSocketConnection) => {
@@ -2346,7 +3099,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2381,7 +3134,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2439,7 +3192,7 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
@@ -2488,7 +3241,7 @@ send(options: TCPSendOptions): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2531,7 +3284,7 @@ close(callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2572,7 +3325,7 @@ close(): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
@@ -2614,7 +3367,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2658,7 +3411,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2694,7 +3447,7 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2744,7 +3497,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2794,7 +3547,7 @@ on(type: 'close', callback: Callback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2831,7 +3584,7 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let callback = () => {
@@ -2868,7 +3621,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
@@ -2905,13 +3658,13 @@ off(type: 'error', callback?: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
-let tcpServer: socket = socket.constructTCPSocketServerInstance();
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('error', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -2942,7 +3695,7 @@ constructTLSSocketInstance(): TLSSocket
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 ```
@@ -2979,7 +3732,7 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3029,7 +3782,7 @@ bind(address: NetAddress): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3067,7 +3820,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3114,7 +3867,7 @@ getState(): Promise\<SocketStateBase\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3161,7 +3914,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3226,7 +3979,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3276,7 +4029,7 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3317,7 +4070,7 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3357,7 +4110,7 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3389,7 +4142,7 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3425,7 +4178,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3454,7 +4207,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3479,7 +4232,7 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                                   | 必填 | 说明 |
 | -------- | ---------------------------------------| ----| --------------- |
 | options  | [TLSConnectOptions](#tlsconnectoptions9) | 是   | TLSSocket连接所需要的参数。|
-| callback | AsyncCallback\<void>                  | 是   | 回调函数，成功无返回，失败返回错误码，错误信息。|
+| callback | AsyncCallback\<void\>                  | 是   | 回调函数，成功无返回，失败返回错误码，错误信息。|
 
 **错误码：**
 
@@ -3503,7 +4256,7 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();  // Two way authentication
@@ -3606,7 +4359,7 @@ connect(options: TLSConnectOptions): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();  // Two way authentication
@@ -3694,7 +4447,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3730,7 +4483,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3765,7 +4518,7 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3802,12 +4555,16 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCertificate().then((data: socket.X509CertRawData) => {
-  console.log(data);
+  const decoder = util.TextDecoder.create();
+  const str = decoder.decodeWithStream(data.data);
+  console.log("getCertificate: " + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
 });
@@ -3836,7 +4593,7 @@ getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3872,7 +4629,7 @@ getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3907,7 +4664,7 @@ getProtocol(callback: AsyncCallback\<string\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3944,7 +4701,7 @@ getProtocol():Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -3980,7 +4737,7 @@ getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -4018,7 +4775,7 @@ getCipherSuite(): Promise\<Array\<string\>\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -4052,7 +4809,7 @@ getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -4088,7 +4845,7 @@ getSignatureAlgorithms(): Promise\<Array\<string\>\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -4127,7 +4884,7 @@ send(data: string, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -4173,7 +4930,7 @@ send(data: string): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -4210,7 +4967,7 @@ close(callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -4249,7 +5006,7 @@ close(): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
@@ -4322,7 +5079,7 @@ constructTLSSocketServerInstance(): TLSSocketServer
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -4347,7 +5104,7 @@ listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                                     | 必填 | 说明                                             |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------ |
 | options  | [TLSConnectOptions](#tlsconnectoptions9) | 是   | TLSSocketServer连接所需要的参数。                |
-| callback | AsyncCallback\<void>                     | 是   | 回调函数，成功返回空，失败返回错误码，错误信息。 |
+| callback | AsyncCallback\<void\>                     | 是   | 回调函数，成功返回空，失败返回错误码，错误信息。 |
 
 **错误码：**
 
@@ -4368,7 +5125,7 @@ listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -4436,7 +5193,7 @@ listen(options: TLSConnectOptions): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -4492,7 +5249,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -4553,7 +5310,7 @@ getState(): Promise\<SocketStateBase\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -4614,7 +5371,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -4693,7 +5450,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -4765,9 +5522,11 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -4795,7 +5554,9 @@ tlsServer.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
     console.log("getCertificate callback error = " + err);
   } else {
-    console.log("getCertificate callback = " + data);
+    const decoder = util.TextDecoder.create();
+    const str = decoder.decodeWithStream(data.data);
+    console.log("getCertificate callback: " + str);
   }
 });
 ```
@@ -4827,9 +5588,11 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -4853,8 +5616,10 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 }).catch((err: BusinessError) => {
   console.log("failed: " + JSON.stringify(err));
 });
-tlsServer.getCertificate().then((data: socket.x509certrawdata9) => {
-  console.log(data);
+tlsServer.getCertificate().then((data: socket.X509CertRawData) => {
+  const decoder = util.TextDecoder.create();
+  const str = decoder.decodeWithStream(data.data);
+  console.log("getCertificate: " + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
 });
@@ -4888,7 +5653,7 @@ getProtocol(callback: AsyncCallback\<string\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -4950,7 +5715,7 @@ getProtocol():Promise\<string\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5009,7 +5774,7 @@ on(type: 'connect', callback: Callback\<TLSSocketConnection\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5067,7 +5832,7 @@ off(type: 'connect', callback?: Callback\<TLSSocketConnection\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5129,7 +5894,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5187,7 +5952,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5266,7 +6031,7 @@ send(data: string, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5337,7 +6102,7 @@ send(data: string): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5399,7 +6164,7 @@ close(callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5462,7 +6227,7 @@ close(): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5521,7 +6286,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5581,7 +6346,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5640,9 +6405,11 @@ getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -5669,9 +6436,11 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
     if (err) {
-      console.log("getRemoteCertificate callback error = " + err);
+      console.log("getRemoteCertificate callback error: " + err);
     } else {
-      console.log("getRemoteCertificate callback = " + data);
+      const decoder = util.TextDecoder.create();
+      const str = decoder.decodeWithStream(data.data);
+      console.log("getRemoteCertificate callback: " + str);
     }
   });
 });
@@ -5700,9 +6469,11 @@ getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -5728,7 +6499,9 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteCertificate().then((data: socket.X509CertRawData) => {
-    console.log('getRemoteCertificate success:' + JSON.stringify(data));
+    const decoder = util.TextDecoder.create();
+    const str = decoder.decodeWithStream(data.data);
+    console.log("getRemoteCertificate success: " + str);
   }).catch((err: BusinessError) => {
     console.error("failed" + err);
   });
@@ -5761,7 +6534,7 @@ getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5823,7 +6596,7 @@ getCipherSuite(): Promise\<Array\<string\>\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5882,7 +6655,7 @@ getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -5942,7 +6715,7 @@ getSignatureAlgorithms(): Promise\<Array\<string\>\>
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -6000,7 +6773,7 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -6072,7 +6845,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -6145,7 +6918,7 @@ on(type: 'close', callback: Callback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -6204,7 +6977,7 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -6265,7 +7038,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
@@ -6325,7 +7098,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();

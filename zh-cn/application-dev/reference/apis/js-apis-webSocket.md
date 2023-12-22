@@ -13,13 +13,13 @@
 
 ## 导入模块
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 ```
 
 ## 完整示例
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 import { BusinessError } from '@ohos.base';
 
@@ -83,7 +83,7 @@ createWebSocket(): WebSocket
 
 **示例：**
 
-```js
+```ts
 let ws: webSocket = webSocket.createWebSocket();
 ```
 
@@ -120,7 +120,7 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 import { BusinessError } from '@ohos.base';
 
@@ -165,7 +165,7 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 import { BusinessError } from '@ohos.base';
 
@@ -220,7 +220,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 
 let ws = webSocket.createWebSocket();
@@ -259,7 +259,7 @@ send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 import { BusinessError } from '@ohos.base';
 
@@ -307,7 +307,7 @@ send(data: string | ArrayBuffer): Promise\<boolean\>
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 import { BusinessError } from '@ohos.base';
 
@@ -348,7 +348,7 @@ close(callback: AsyncCallback\<boolean\>): void
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 import { BusinessError } from '@ohos.base';
 
@@ -388,7 +388,7 @@ close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 import { BusinessError } from '@ohos.base';
 
@@ -439,7 +439,7 @@ close(options?: WebSocketCloseOptions): Promise\<boolean\>
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 
 let ws = webSocket.createWebSocket();
@@ -473,7 +473,7 @@ on(type: 'open', callback: AsyncCallback\<Object\>): void
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 import { BusinessError, Callback } from '@ohos.base';
 
@@ -507,7 +507,7 @@ off(type: 'open', callback?: AsyncCallback\<Object\>): void
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 import { BusinessError } from '@ohos.base';
 
@@ -544,7 +544,7 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 import { BusinessError } from '@ohos.base';
 
@@ -575,7 +575,7 @@ off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 
 let ws = webSocket.createWebSocket();
@@ -599,7 +599,7 @@ on(type: 'close', callback: AsyncCallback\<CloseResult\>): void
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 import { BusinessError } from '@ohos.base';
 
@@ -629,7 +629,7 @@ off(type: 'close', callback?: AsyncCallback\<CloseResult\>): void
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 
 let ws = webSocket.createWebSocket();
@@ -653,7 +653,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 import { BusinessError } from '@ohos.base';
 
@@ -683,7 +683,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 let ws = webSocket.createWebSocket();
 ws.off('error');
@@ -706,13 +706,12 @@ on(type: 'dataEnd', callback: Callback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
 
 let ws = webSocket.createWebSocket();
-ws.on('dataEnd', (err: BusinessError) => {
-  console.log("on dataEnd, error:" + JSON.stringify(err))
+ws.on('dataEnd', () => {
+  console.log("on dataEnd")
 });
 ```
 
@@ -736,7 +735,7 @@ off(type: 'dataEnd', callback?: Callback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 import webSocket from '@ohos.net.webSocket';
 let ws = webSocket.createWebSocket();
 ws.off('dataEnd');

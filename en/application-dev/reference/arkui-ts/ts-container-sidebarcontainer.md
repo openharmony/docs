@@ -26,7 +26,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | SideBarContainerType | No| Display type of the sidebar.<br>Default value: **SideBarContainerType.Embed**|
+| type | [SideBarContainerType](#sidebarcontainertype) | No| Display type of the sidebar.<br>Default value: **SideBarContainerType.Embed**|
 
 ## SideBarContainerType
 

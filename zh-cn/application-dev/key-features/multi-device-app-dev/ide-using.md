@@ -10,7 +10,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 ## 工程创建
 
-参考[创建系统工程](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/create_new_project-0000001053342414-V3?catalogVersion=V3)，先创建出最基本的项目工程。可以看到DevEco Studio创建出的默认工程，仅包含一个的entry类型的模块。
+参考[创建系统工程](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/create_new_project-0000001053342414-V2)，先创建出最基本的项目工程。可以看到DevEco Studio创建出的默认工程，仅包含一个的entry类型的模块。
 
 ![zh-cn_image_0000001267274204](figures/zh-cn_image_0000001267274204.png)
 
@@ -51,7 +51,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 ## 新建Module
 
-参考[开发ohpm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3?catalogVersion=V3#section143510369612)，新建三个ohpm模块，分别命名为common、feature1、feature2。参考[添加/删除Module](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/add_new_module-0000001053223741-V3?catalogVersion=V3)，新建一个entry类型的模块，假设命名为“wearable”（仅仅为了说明某一类产品）。示例如下：
+参考[开发ohpm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/har-0000001547134226-V2#section643521083015)，新建三个ohpm模块，分别命名为common、feature1、feature2。参考[添加/删除Module](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/add_new_module-0000001053223741-V2)，新建一个entry类型的模块，假设命名为“wearable”（仅仅为了说明某一类产品）。示例如下：
 
 ![zh-cn_image_0000001315434285](figures/zh-cn_image_0000001315434285.png)
 
@@ -118,7 +118,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 ## 引用ohpm包中的代码
 
-在[开发ohpm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3?catalogVersion=V3#section611662614153)中，仅介绍了如何使用ohpm包中的页面和资源，本小节以例子的形式补充介绍如何使用ohpm包中的类和函数。
+在[开发ohpm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/har-import-0000001547293682-V2)中，仅介绍了如何使用ohpm包中的页面和资源，本小节以例子的形式补充介绍如何使用ohpm包中的类和函数。
 
 示例如下：
 
@@ -138,11 +138,11 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
    ![zh-cn_image_0000001267914120](figures/zh-cn_image_0000001267914120.png)
 
 > **说明：**
-> 如果需要将ohpm包发布供其他开发者使用，具体可参考[发布ohpm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3?catalogVersion=V3#section1213451811512)。
+> 如果需要将ohpm包发布供其他开发者使用，具体可参考[发布ohpm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/har-publish-0000001597973129-V2)。
 
 
 ## 总结
 
 本章主要介绍了如何实现推荐的工程结构，以便更好的进行多设备应用开发。
 
-关于IDE的基本使用，比如如何进行编译构建、如何签名、如何使用预览器等，[DevEco Studio使用指南](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-deveco-studio-overview-0000001263280421)中已经有非常详尽的介绍，本文不再重复介绍。
+关于IDE的基本使用，比如如何进行编译构建、如何签名、如何使用预览器等，[DevEco Studio使用指南](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/tools-overview-0000001558763037-V2)中已经有非常详尽的介绍，本文不再重复介绍。

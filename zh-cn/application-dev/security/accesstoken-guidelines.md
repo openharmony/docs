@@ -138,13 +138,13 @@
 
 ```json
 {
-	// ...
-	"acls":{
-		"allowed-acls":[
-			"ohos.permission.WRITE_AUDIO",
+  // ...
+  "acls":{
+    "allowed-acls":[
+      "ohos.permission.WRITE_AUDIO",
       "ohos.permission.CAPTURE_SCREEN"
-		]
-	}
+    ]
+  }
 }
 ```
 
@@ -297,61 +297,14 @@
 
 4. 处理授权结果。
 
-   调用[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法后，应用程序将等待用户授权的结果。如果用户授权，则可以继续访问目标操作。如果用户拒绝授权，则需要提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限。
-
-   ArkTS语法不支持直接使用globalThis，需要通过一个单例的map来做中转。开发者需要：
-
-   a. 在EntryAbility.ets中导入构建的单例对象GlobalThis。
-      ```ts
-       import { GlobalThis } from '../utils/globalThis'; // 需要根据globalThis.ets的路径自行适配
-      ```
-   b. 在onCreate中添加:
-      ```ts
-       GlobalThis.getInstance().setContext('context', this.context);
-      ```
-
-   > **说明：**
-   >
-   > 由于在ts中引入ets文件会有告警提示，需要将EntryAbility.ts的文件后缀修改为EntryAbility.ets，并在module.json5中同步修改。
-
-   **globalThis.ets示例代码如下：**
-   ```ts
-   import { Context } from '@ohos.abilityAccessCtrl';
-
-   // 构造单例对象
-   export class GlobalThis {
-     private constructor() {}
-     private static instance: GlobalThis;
-     private _uiContexts = new Map<string, Context>();
-
-     public static getInstance(): GlobalThis {
-       if (!GlobalThis.instance) {
-         GlobalThis.instance = new GlobalThis();
-       }
-       return GlobalThis.instance;
-     }
-
-     getContext(key: string): Context | undefined {
-       return this._uiContexts.get(key);
-     }
-
-     setContext(key: string, value: Context): void {
-       this._uiContexts.set(key, value);
-     }
-
-     // 其他需要传递的内容依此扩展
-   }
-   ```
+   调用[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法后，应用程序将等待用户授权的结果。如果用户授权，则可以继续访问目标操作。如果用户拒绝授权，则需要提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限。示例中context的获取方式请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
    ```ts
-   import { Context } from '@ohos.abilityAccessCtrl';
    import { BusinessError } from '@ohos.base';
-   import Want from '@ohos.app.ability.Want';
-   import { GlobalThis } from '../utils/globalThis';
    import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
 
-   function openPermissionsInSystemSettings(): void {
-     let context: Context = GlobalThis.getInstance().getContext('context');
+   function openPermissionsInSystemSettings(context: common.UIAbilityContext): void {
      let wantInfo: Want = {
        action: 'action.settings.app.info',
        parameters: {

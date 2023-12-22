@@ -32,8 +32,13 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 | closeAnimation<sup>10+</sup>  | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) | 否    | 自定义设置弹窗关闭的动画效果相关参数。<br>**说明**：<br>iterations默认值为1，默认播放一次，设置为其他数值时按默认值处理。<br>playMode控制动画播放模式，默认值为PlayMode.Normal，设置为其他数值时按照默认值处理。<br/>页面转场切换时，建议使用默认关闭动效。                    |
 | showInSubWindow<sup>10+</sup> | boolean                                  | 否    | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。<br>默认值：false，在子窗口不显示弹窗。<br>**说明**：showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。 |
 | backgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)      | 否   | 设置弹窗背板填充。<br />**说明**：如果同时设置了内容构造器的背景色，则backgroundColor会被内容构造器的背景色覆盖。 |
-| cornerRadius<sup>10+</sup>    | [BorderRadiuses](ts-types.md#borderradiuses9) \| [Dimension](ts-types.md#dimension10) | 否   | 设置背板的圆角半径。<br />可分别设置4个圆角的半径。<br />默认值：{ topLeft: '24vp', topRight: '24vp', bottomLeft: '24vp', bottomRight: '24vp' }<br />**说明**：自定义弹窗默认的背板圆角半径为24vp，如果需要使用cornerRadius属性，请和[borderRadius](ts-universal-attributes-border.md)属性一起使用。 |
+| cornerRadius<sup>10+</sup>    | [BorderRadiuses](ts-types.md#borderradiuses9) \| [Dimension](ts-types.md#dimension10) | 否   | 设置背板的圆角半径。<br />可分别设置4个圆角的半径。<br />默认值：{ topLeft: '24vp', topRight: '24vp', bottomLeft: '24vp', bottomRight: '24vp' }<br />**说明**：自定义弹窗默认的背板圆角半径为24vp，如果需要使用cornerRadius属性，请和[borderRadius](ts-universal-attributes-border.md#属性)属性一起使用。 |
 | isModal<sup>11+</sup> | boolean | 否 | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。 |
+
+> **说明：**
+>
+> - 按下返回键和ESC键时会让弹窗退出。
+> - 自定义弹窗仅适用于简单提示场景，不能替代页面使用。由于弹窗存在完全避让输入法行为，即在软键盘弹出时，会自动向上抬起软键盘高度，因此如果弹窗高度过大时，可能会导致部分区域不可见。
 
 ## CustomDialogController
 

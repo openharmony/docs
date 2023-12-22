@@ -103,7 +103,7 @@ try {
   });
   console.log('auth on success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -159,7 +159,7 @@ try {
   });
   console.log('auth on success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -169,7 +169,9 @@ off(type: 'result', callback?: IAuthCallback): void
 
 取消订阅用户身份认证结果。
 
-> **说明**：需要使用已经成功订阅事件的[UserAuthInstance](#userauthinstance10)对象调用该接口进行取消订阅。
+> **说明**：
+> 
+> 需要使用已经成功订阅事件的[UserAuthInstance](#userauthinstance10)对象调用该接口进行取消订阅。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -212,7 +214,7 @@ try {
   });
   console.log('auth off success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -264,7 +266,7 @@ try {
   userAuthInstance.start();
   console.log('auth start success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -274,7 +276,9 @@ cancel(): void
 
 取消认证。
 
-> **说明**：此时UserAuthInstance需要是正在进行认证的对象。
+> **说明**：
+>
+> 此时UserAuthInstance需要是正在进行认证的对象。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -307,7 +311,7 @@ try {
   userAuthInstance.cancel();
   console.log('auth cancel success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -363,7 +367,7 @@ try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.log('get userAuth instance success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -437,7 +441,7 @@ try {
   userAuth.sendNotice(noticeType, jsonEventData);
   console.log('sendNotice success');
 } catch (error) {
-  console.log('sendNotice catch error: ' + JSON.stringify(error));
+  console.error('sendNotice catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -487,7 +491,7 @@ try {
   })
   console.log('subscribe authentication event success');
 } catch (error) {
-  console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -533,7 +537,7 @@ try {
   })
   console.log('cancel subscribe authentication event success');
 } catch (error) {
-  console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -585,7 +589,7 @@ try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
   console.log('get userAuthWidgetMgr instance success');
 } catch (error) {
-  console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -625,7 +629,7 @@ try {
   })
   console.log('subscribe authentication event success');
 } catch (error) {
-  console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -715,7 +719,7 @@ try {
   auth.start();
   console.log('authV9 start success');
 } catch (error) {
-  console.log('authV9 error = ' + error);
+  console.error('authV9 error = ' + error);
   // do error
 }
 // 通过callback获取认证过程中的提示信息
@@ -736,7 +740,7 @@ try {
   auth.start();
   console.log('authV9 start success');
 } catch (error) {
-  console.log('authV9 error = ' + error);
+  console.error('authV9 error = ' + error);
   // do error
 }
 ```
@@ -755,10 +759,8 @@ on : (name : AuthEventKey, callback : AuthEvent) => void
 订阅指定类型的用户认证事件。
 
 > **说明：**
-> 从 API version 9 开始支持，从 API version 10 开始废弃。
-
-> **说明：**
-> 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行订阅。
+> - 从 API version 9 开始支持，从 API version 10 开始废弃。
+> - 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行订阅。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -813,7 +815,7 @@ try {
   auth.start();
   console.log('authV9 start success');
 } catch (error) {
-  console.log('authV9 error = ' + error);
+  console.error('authV9 error = ' + error);
   // do error
 }
 ```
@@ -824,11 +826,9 @@ off : (name : AuthEventKey) => void
 
 取消订阅特定类型的认证事件。
 
->**说明：**
->从 API version 9 开始支持，从 API version 10 开始废弃。
-
 > **说明：**
-> 需要使用已经成功订阅事件的[AuthInstance](#authinstancedeprecated)对象调用该接口进行取消订阅。
+> - 从 API version 9 开始支持，从 API version 10 开始废弃。
+> - 需要使用已经成功订阅事件的[AuthInstance](#authinstancedeprecated)对象调用该接口进行取消订阅。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -868,7 +868,7 @@ try {
   auth.off('result');
   console.info('cancel subscribe authentication event success');
 } catch (error) {
-  console.info('cancel subscribe authentication event failed, error =' + error);
+  console.error('cancel subscribe authentication event failed, error =' + error);
   // do error
 }
 ```
@@ -880,10 +880,8 @@ start : () => void
 开始认证。
 
 > **说明：**
-> 从 API version 9 开始支持，从 API version 10 开始废弃。
-
-> **说明：**
-> 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行认证。
+> - 从 API version 9 开始支持，从 API version 10 开始废弃。
+> - 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行认证。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -921,7 +919,7 @@ try {
   auth.start();
   console.info('authV9 start auth success');
 } catch (error) {
-  console.info('authV9 start auth failed, error = ' + error);
+  console.error('authV9 start auth failed, error = ' + error);
 }
 ```
 
@@ -932,10 +930,8 @@ cancel : () => void
 取消认证。
 
 > **说明：**
-> 从 API version 9 开始支持，从 API version 10 开始废弃。
-
-> **说明：**
-> 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行取消认证，此[AuthInstance](#authinstancedeprecated)需要是正在进行认证的对象。
+> - 从 API version 9 开始支持，从 API version 10 开始废弃。
+> - 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行取消认证，此[AuthInstance](#authinstancedeprecated)需要是正在进行认证的对象。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -965,7 +961,7 @@ try {
   auth.cancel();
   console.info('cancel auth success');
 } catch (error) {
-  console.info('cancel auth failed, error = ' + error);
+  console.error('cancel auth failed, error = ' + error);
 }
 ```
 
@@ -976,10 +972,9 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 获取AuthInstance对象，用于执行用户身份认证。
 
 > **说明：**
-> 从 API version 9 开始支持，从 API version 10 开始废弃，请使用[getUserAuthInstance](#getuserauthinstance10)替代。
+> - 从 API version 9 开始支持，从 API version 10 开始废弃，请使用[getUserAuthInstance](#getuserauthinstance10)替代。
+> - 每个AuthInstance只能进行一次认证，若需要再次进行认证则需重新获取AuthInstance。
 
-> **说明：**
-> 每个AuthInstance只能进行一次认证，若需要再次进行认证则需重新获取AuthInstance。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -1021,7 +1016,7 @@ try {
   let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   console.info('let auth instance success');
 } catch (error) {
-  console.info('get auth instance success failed, error = ' + error);
+  console.error('get auth instance success failed, error = ' + error);
 }
 ```
 
@@ -1064,7 +1059,7 @@ try {
   userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
   console.info('current auth trust level is supported');
 } catch (error) {
-  console.info('current auth trust level is not supported, error = ' + error);
+  console.error('current auth trust level is not supported, error = ' + error);
 }
 ```
 
@@ -1231,8 +1226,8 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
       } else {
         // 此处添加认证失败逻辑
       }
-    } catch (e) {
-      console.info('auth onResult error = ' + e);
+    } catch (error) {
+      console.error('auth onResult error = ' + error);
     }
   }
 });
@@ -1321,8 +1316,8 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
       }  else {
         // 此处添加认证失败逻辑
       }
-    } catch (e) {
-      console.info('auth onResult error = ' + e);
+    } catch (error) {
+      console.error('auth onResult error = ' + error);
     }
   }
 });
@@ -1364,8 +1359,8 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
       }  else {
         // 此处添加认证失败逻辑
       }
-    } catch (e) {
-      console.info('auth onResult error = ' + e);
+    } catch (error) {
+      console.error('auth onResult error = ' + error);
     }
   },
   onAcquireInfo: (module, acquire, extraInfo : userIAM_userAuth.AuthResult) => {
@@ -1373,8 +1368,8 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
       console.info('auth onAcquireInfo module = ' + module);
       console.info('auth onAcquireInfo acquire = ' + acquire);
       console.info('auth onAcquireInfo extraInfo = ' + JSON.stringify(extraInfo));
-    } catch (e) {
-      console.info('auth onAcquireInfo error = ' + e);
+    } catch (error) {
+      console.error('auth onAcquireInfo error = ' + error);
     }
   }
 });

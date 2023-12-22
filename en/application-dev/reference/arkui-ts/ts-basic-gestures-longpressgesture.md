@@ -32,7 +32,7 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 
 | Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
-| tag<sup>11+</sup>   | string  | Tag for the long press gesture. It is used to distinguish the gesture during custom gesture recognition.|
+| tag<sup>11+</sup>   | string  | Tag for the long press gesture. It is used to distinguish the gesture during custom gesture judgment.|
 ## Example
 
 ```ts

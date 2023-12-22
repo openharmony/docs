@@ -76,11 +76,10 @@ ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceC
   } else {
     console.log("getIfaceConfig callback mode = " + data.mode);
     console.log("getIfaceConfig callback ipAddr = " + data.ipAddr);
-    console.log("getIfaceConfig callback routeAddr = " + data.routeAddr);
-    console.log("getIfaceConfig callback gateAddr = " + data.gateAddr);
-    console.log("getIfaceConfig callback maskAddr = " + data.maskAddr);
-    console.log("getIfaceConfig callback dns0Addr = " + data.dns0Addr);
-    console.log("getIfaceConfig callback dns1Addr = " + data.dns1Addr);
+    console.log("getIfaceConfig callback routeAddr = " + data.route);
+    console.log("getIfaceConfig callback gateAddr = " + data.gateway);
+    console.log("getIfaceConfig callback maskAddr = " + data.netMask);
+    console.log("getIfaceConfig callback dns0Addr = " + data.dnsServers);
   }
 });
 ```
@@ -125,11 +124,10 @@ ethernet.isIfaceActive("eth0", (error: BusinessError, data: number) => {
 let ethernetParam: ethernet.InterfaceConfiguration = {
   mode: ethernet.IPSetMode.STATIC,
   ipAddr: "192.168.xx.xx",
-  routeAddr: "192.168.xx.xx",
-  gateAddr: "192.168.xx.xx",
-  maskAddr: "255.255.xx.xx",
-  dnsAddr0: "1.1.xx.xx",
-  dnsAddr1: "2.2.xx.xx"
+  route: "192.168.xx.xx",
+  gateway: "192.168.xx.xx",
+  netMask: "255.255.xx.xx",
+  dnsServers: "1.1.xx.xx"
 }
 
 // Call setIfaceConfig to configure the network attributes of the specified Ethernet network.
@@ -148,11 +146,10 @@ ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceC
   } else {
     console.log("getIfaceConfig callback mode = " + data.mode);
     console.log("getIfaceConfig callback ipAddr = " + data.ipAddr);
-    console.log("getIfaceConfig callback routeAddr = " + data.routeAddr);
-    console.log("getIfaceConfig callback gateAddr = " + data.gateAddr);
-    console.log("getIfaceConfig callback maskAddr = " + data.maskAddr);
-    console.log("getIfaceConfig callback dns0Addr = " + data.dns0Addr);
-    console.log("getIfaceConfig callback dns1Addr = " + data.dns1Addr);
+    console.log("getIfaceConfig callback routeAddr = " + data.route);
+    console.log("getIfaceConfig callback gateAddr = " + data.gateway);
+    console.log("getIfaceConfig callback maskAddr = " + data.netMask);
+    console.log("getIfaceConfig callback dns0Addr = " + data.dnsServers);
   }
 });
 ```

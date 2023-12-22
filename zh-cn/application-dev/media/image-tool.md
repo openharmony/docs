@@ -14,7 +14,7 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../refe
 
 1. 获取图片，创建图片源ImageSource。
 
-```ts
+   ```ts
    // 导入相关模块包
    import image from '@ohos.multimedia.image';
 
@@ -25,24 +25,24 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../refe
 
 2. 读取、编辑EXIF信息。
 
-```ts
-  import {BusinessError} from '@ohos.base';
-  // 读取EXIF信息，BitsPerSample为每个像素比特数
-  let options : image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
-  imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options).then((data : string) => {
-      console.log('Succeeded in getting the value of the specified attribute key of the image.');
-  }).catch((error : BusinessError) => {
-      console.error('Failed to get the value of the specified attribute key of the image.');
-  })
-
-   // 编辑EXIF信息
-  imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(() => {
-    imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width : string) => {
-        console.info('The new imageWidth is ' + width);
+    ```ts
+    import {BusinessError} from '@ohos.base';
+    // 读取EXIF信息，BitsPerSample为每个像素比特数
+    let options : image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
+    imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options).then((data : string) => {
+        console.log('Succeeded in getting the value of the specified attribute key of the image.');
     }).catch((error : BusinessError) => {
-        console.error('Failed to get the Image Width.');
+        console.error('Failed to get the value of the specified attribute key of the image.');
     })
-  }).catch((error : BusinessError) => {
-    console.error('Failed to modify the Image Width');
-  })
-```
+
+    // 编辑EXIF信息
+    imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(() => {
+        imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width : string) => {
+            console.info('The new imageWidth is ' + width);
+        }).catch((error : BusinessError) => {
+            console.error('Failed to get the Image Width.');
+        })
+    }).catch((error : BusinessError) => {
+        console.error('Failed to modify the Image Width');
+    })
+    ```
