@@ -36,7 +36,7 @@ Index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，�
 ### 导出ArkUI组件
 ArkUI组件的导出方式与ts的导出方式一致，通过`export`导出ArkUI组件，示例如下：
 ```js
-// library/src/main/ets/components/MainPage/MainPage.ets
+// library/src/main/ets/components/mainpage/MainPage.ets
 @Component
 export struct MainPage {
   @State message: string = 'Hello World'
@@ -56,7 +56,7 @@ export struct MainPage {
 HAR对外暴露的接口，在Index.ets导出文件中声明如下所示：
 ```js
 // library/Index.ets
-export { MainPage } from './src/main/ets/components/MainPage/MainPage'
+export { MainPage } from './src/main/ets/components/mainpage/MainPage'
 ```
 ### 导出ts类和方法
 通过`export`导出ts类和方法，支持导出多个ts类和方法，示例如下所示：
