@@ -154,7 +154,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 | Name  | Type                                          | Mandatory| Description                   |
 | -------- | ---------------------------------------------- | ---- | ---------------------- |
 | url      | string                                         | Yes  | URL for initiating an HTTP request.|
-| callback | AsyncCallback\<[HttpResponse](#httpresponsecross-platform-supported)\>| Yes  | Callback used to return the result.   |
+| callback | AsyncCallback\<[HttpResponse](#httpresponse-cross-platform-supported)\>| Yes  | Callback used to return the result.   |
 
 **Error codes**
 
@@ -233,8 +233,8 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | Name  | Type                                          | Mandatory| Description                                           |
 | -------- | ---------------------------------------------- | ---- | ----------------------------------------------- |
 | url      | string                                         | Yes  | URL for initiating an HTTP request.                        |
-| options  | HttpRequestOptions                             | Yes  | HTTP request options. For details, see [HttpRequestOptions](#httprequestoptionscross-platform-supported).|
-| callback | AsyncCallback\<[HttpResponse](#httpresponsecross-platform-supported)\>| Yes  | Callback used to return the result.                           |
+| options  | HttpRequestOptions                             | Yes  | HTTP request options. For details, see [HttpRequestOptions](#httprequestoptions-cross-platform-supported).|
+| callback | AsyncCallback\<[HttpResponse](#httpresponse-cross-platform-supported)\>| Yes  | Callback used to return the result.                           |
 
 **Error codes**
 
@@ -329,13 +329,13 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | Name | Type              | Mandatory| Description                                           |
 | ------- | ------------------ | ---- | ----------------------------------------------- |
 | url     | string             | Yes  | URL for initiating an HTTP request.                        |
-| options | HttpRequestOptions | No  | HTTP request options. For details, see [HttpRequestOptions](#httprequestoptionscross-platform-supported).|
+| options | HttpRequestOptions | No  | HTTP request options. For details, see [HttpRequestOptions](#httprequestoptions-cross-platform-supported).|
 
 **Return value**
 
 | Type                                  | Description                             |
 | :------------------------------------- | :-------------------------------- |
-| Promise<[HttpResponse](#httpresponsecross-platform-supported)>| Promise used to return the result.|
+| Promise<[HttpResponse](#httpresponse-cross-platform-supported)>| Promise used to return the result.|
 
 **Error codes**
 
@@ -515,8 +515,8 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | Name  | Type                                          | Mandatory| Description                                           |
 | -------- | ---------------------------------------------- | ---- | ----------------------------------------------- |
 | url      | string                                         | Yes  | URL for initiating an HTTP request.                        |
-| options  | HttpRequestOptions                             | Yes  | HTTP request options. For details, see [HttpRequestOptions](#httprequestoptionscross-platform-supported).|
-| callback | AsyncCallback\<[number](#responsecodecross-platform-supported)\>      | Yes  | Callback used to return the result.                                     |
+| options  | HttpRequestOptions                             | Yes  | HTTP request options. For details, see [HttpRequestOptions](#httprequestoptions-cross-platform-supported).|
+| callback | AsyncCallback\<[number](#responsecode-cross-platform-supported)\>      | Yes  | Callback used to return the result.                                     |
 
 **Error codes**
 
@@ -589,13 +589,13 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | Name | Type              | Mandatory| Description                                           |
 | ------- | ------------------ | ---- | ----------------------------------------------- |
 | url     | string             | Yes  | URL for initiating an HTTP request.                        |
-| options | HttpRequestOptions | No  | HTTP request options. For details, see [HttpRequestOptions](#httprequestoptionscross-platform-supported).|
+| options | HttpRequestOptions | No  | HTTP request options. For details, see [HttpRequestOptions](#httprequestoptions-cross-platform-supported).|
 
 **Return value**
 
 | Type                                  | Description                             |
 | :------------------------------------- | :-------------------------------- |
-| Promise\<[number](#responsecodecross-platform-supported)\>| Promise used to return the result.|
+| Promise\<[number](#responsecode-cross-platform-supported)\>| Promise used to return the result.|
 
 **Error codes**
 
@@ -671,7 +671,7 @@ on(type: "headerReceive", callback: AsyncCallback\<Object\>): void
 Registers an observer for HTTP Response Header events.
 
 > **NOTE**
-> This API has been deprecated. You are advised to use [on("headersReceive")<sup>8+</sup>](#onheadersreceive8cross-platform-supported).
+> This API has been deprecated. You are advised to use [on("headersReceive")<sup>8+</sup>](#onheadersreceive8-cross-platform-supported).
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -702,7 +702,7 @@ Unregisters the observer for HTTP Response Header events.
 
 > **NOTE**
 >
->1. This API has been deprecated. You are advised to use [off("headersReceive")<sup>8+</sup>](#onheadersreceive8cross-platform-supported).
+>1. This API has been deprecated. You are advised to use [off("headersReceive")<sup>8+</sup>](#onheadersreceive8-cross-platform-supported).
 >
 >2. You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
@@ -1072,15 +1072,15 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 
 | Name        | Type                                         | Mandatory| Description                                                        |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| method         | [RequestMethod](#requestmethodcross-platform-supported)              | No  | Request method. The default value is **GET**.                                                  |
+| method         | [RequestMethod](#requestmethod-cross-platform-supported)              | No  | Request method. The default value is **GET**.                                                  |
 | extraData      | string \| Object \| ArrayBuffer | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this field serves as the content of the HTTP request and is encoded in UTF-8 format. If **content-Type** is **application/x-www-form-urlencoded**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding and this field is usually in the String format. If **content-Type** is **text/xml**, this field is usually in the String format. If **content-Type** is **application/json**, this field is usually in the Object format. If **content-Type** is **application/octet-stream**, this field is usually in the ArrayBuffer format. If **content-Type** is **multipart/form-data** and the content to be uploaded is a file, this field is usually in the ArrayBuffer format. The preceding information is for reference only and may vary according to the actual situation.<br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.|
-| expectDataType<sup>9+</sup>  | [HttpDataType] (#httpdatatype9cross-platform-supported) | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially.|
+| expectDataType<sup>9+</sup>  | [HttpDataType] (#httpdatatype9-cross-platform-supported) | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially.|
 | usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**.  |
 | priority<sup>9+</sup>        | number                          | No  | Priority. The value range is [1,1000]. The default value is **1**.                          |
 | header                       | Object                          | No  | HTTP request header. The default value is **{'content-Type': 'application/json'}**.  |
 | readTimeout                  | number                          | No  | Read timeout duration. The default value is **60000**, in ms.<br>The value **0** indicates no timeout.|
 | connectTimeout               | number                          | No  | Connection timeout interval. The default value is **60000**, in ms.             |
-| usingProtocol<sup>9+</sup>   | [HttpProtocol] (#httpprotocol9cross-platform-supported) | No  | Protocol. The default value is automatically specified by the system.                            |
+| usingProtocol<sup>9+</sup>   | [HttpProtocol] (#httpprotocol9-cross-platform-supported) | No  | Protocol. The default value is automatically specified by the system.                            |
 | usingProxy<sup>10+</sup>     | boolean \| HttpProxy               | No  | Whether to use HTTP proxy. The default value is **false**, which means not to use HTTP proxy.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **HttpProxy** type, the specified network proxy is used.|
 | caPath<sup>10+</sup>     | string               | No  | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificate, namely, **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **Global.getContext().filesDir**. Currently, only **.pem** certificates are supported.                            |
 | resumeFrom<sup>11+</sup> | number | No| Start position for file upload or download. According to section 3.1 of RFC 7233:<br>- If this field is set when the PUT method is used, unknown problems may occur.<br>- The value ranges from **1** to **4294967296** (4 GB). If the value is out of this range, this field does not take effect.|
@@ -1160,8 +1160,8 @@ Defines the response to an HTTP request.
 | Name                | Type                                        | Mandatory| Description                                                         |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | result               | string \| Object<sup>deprecated 8+</sup> \| ArrayBuffer<sup>8+</sup> | Yes  | Response content returned based on **Content-type** in the response header. If **HttpRequestOptions** does not contain the **expectDataType** field, the response content is returned according to the following rules:<br>- application/json: string in JSON format<br>- application/octet-stream: ArrayBuffer<br>- image: ArrayBuffer<br>- Others: string<br> If **HttpRequestOptions** contains the **expectDataType** field, the response content must be of the same type as the data returned by the server.|
-| resultType<sup>9+</sup> | [HttpDataType] (#httpdatatype9cross-platform-supported)            | Yes  | Type of the return value.                          |
-| responseCode         | [ResponseCode](#responsecodecross-platform-supported)\| number      | Yes  | Result code for an HTTP request. If the callback function is successfully executed, a result code defined in [ResponseCode](#responsecodecross-platform-supported) will be returned. Otherwise, an error code will be returned in the **err** field in **AsyncCallback**.|
+| resultType<sup>9+</sup> | [HttpDataType] (#httpdatatype9-cross-platform-supported)            | Yes  | Type of the return value.                          |
+| responseCode         | [ResponseCode](#responsecode-cross-platform-supported)\| number      | Yes  | Result code for an HTTP request. If the callback function is successfully executed, a result code defined in [ResponseCode](#responsecode-cross-platform-supported) will be returned. Otherwise, an error code will be returned in the **err** field in **AsyncCallback**.|
 | header               | Object                                       | Yes  | Response header. The return value is a string in JSON format. If you want to use specific content in the response, you need to implement parsing of that content. Common fields and parsing methods are as follows:<br>- content-type: header['content-type'];<br>- status-line: header['status-line'];<br>- date: header.date/header['date'];<br>- server: header.server/header['server'];|
 | cookies<sup>8+</sup> | string                                       | Yes  | Cookies returned by the server.                                      |
 | performanceTiming<sup>11+</sup> | [PerformanceTiming](#performancetiming11) | Yes| Time consumed in each phase of an HTTP request.|
@@ -1187,16 +1187,16 @@ Configures the timing for performance tracing, in ms.
 
 | Name      | Type  | Mandatory  | Description                  |
 | ---------- | ------ | ---- | --------------------- |
-| dnsTiming  | number | Yes  | Duration from the time when a [request](#requestcross-platform-supported) is sent to the time when the DNS resolution is complete.|
-| tcpTiming  | number | Yes  | Duration from the time when a [request](#requestcross-platform-supported) is sent to the time when the TCP connection is complete.|
-| tlsTiming  | number | Yes  | Duration from the time when a [request](#requestcross-platform-supported) is sent to the time when the TLS connection is complete.|
-| firstSendTiming  | number | Yes  | Duration from the time when a [request](#requestcross-platform-supported) is sent to the time when the first byte starts to be sent.|
-| firstReceiveTiming  | number | Yes  | Duration from the time when a [request](#requestcross-platform-supported) is sent to the time when the first byte is received.|
-| totalFinishTiming  | number | Yes  | Duration from the time when a [request](#requestcross-platform-supported) is sent to the time when the request is complete.|
-| redirectTiming  | number | Yes  | Duration from the time when a [request](#requestcross-platform-supported) is sent to the time when all redirection steps are complete.|
-| responseHeaderTiming  | number | Yes  | Duration from the time when a [request](#requestcross-platform-supported) is sent to the time when header resolution is complete.|
-| responseBodyTiming  | number | Yes  | Duration from the time when a [request](#requestcross-platform-supported) is sent to the time when body resolution is complete.|
-| totalTiming  | number | Yes  | Duration from the time when a [request](#requestcross-platform-supported) is sent to the time when the application receives the callback.|
+| dnsTiming  | number | Yes  | Duration from the time when a [request](#request-cross-platform-supported) is sent to the time when the DNS resolution is complete.|
+| tcpTiming  | number | Yes  | Duration from the time when a [request](#request-cross-platform-supported) is sent to the time when the TCP connection is complete.|
+| tlsTiming  | number | Yes  | Duration from the time when a [request](#request-cross-platform-supported) is sent to the time when the TLS connection is complete.|
+| firstSendTiming  | number | Yes  | Duration from the time when a [request](#request-cross-platform-supported) is sent to the time when the first byte starts to be sent.|
+| firstReceiveTiming  | number | Yes  | Duration from the time when a [request](#request-cross-platform-supported) is sent to the time when the first byte is received.|
+| totalFinishTiming  | number | Yes  | Duration from the time when a [request](#request-cross-platform-supported) is sent to the time when the request is complete.|
+| redirectTiming  | number | Yes  | Duration from the time when a [request](#request-cross-platform-supported) is sent to the time when all redirection steps are complete.|
+| responseHeaderTiming  | number | Yes  | Duration from the time when a [request](#request-cross-platform-supported) is sent to the time when header resolution is complete.|
+| responseBodyTiming  | number | Yes  | Duration from the time when a [request](#request-cross-platform-supported) is sent to the time when body resolution is complete.|
+| totalTiming  | number | Yes  | Duration from the time when a [request](#request-cross-platform-supported) is sent to the time when the application receives the callback.|
 
 ## MultiFormData<sup>11+</sup>
 
@@ -1230,7 +1230,7 @@ Creates a default object to store responses to HTTP access requests.
 
 | Type       | Description                                                        |
 | :---------- | :----------------------------------------------------------- |
-| [HttpResponseCache](#httpresponsecache9cross-platform-supported)| Object that stores the response to the HTTP request.|
+| [HttpResponseCache](#httpresponsecache9-cross-platform-supported)| Object that stores the response to the HTTP request.|
 
 **Example**
 
@@ -1242,7 +1242,7 @@ let httpResponseCache = http.createHttpResponseCache();
 
 ## HttpResponseCache<sup>9+</sup> (Cross-Platform Supported)
 
-Defines an object that stores the response to an HTTP request. Before calling **HttpResponseCache**, you need to call [createHttpResponseCache()](#httpcreatehttpresponsecache9cross-platform-supported) to create a task.
+Defines an object that stores the response to an HTTP request. Before calling **HttpResponseCache**, you need to call [createHttpResponseCache()](#httpcreatehttpresponsecache9-cross-platform-supported) to create a task.
 
 ### flush<sup>9+</sup>
 
