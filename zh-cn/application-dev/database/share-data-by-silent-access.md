@@ -89,9 +89,9 @@
 
 ### 数据提供方应用的开发
 
-1. 数据提供方需要在module.json5中的proxyDatas节点定义要共享的表的标识，读写权限和基本信息，proxyDatas节点可以在module内名称为entry或feature中进行定义。
+1. 数据提供方需要在module.json5中的proxyData节点定义要共享的表的标识，读写权限和基本信息，进行配置可参考[配置文件](../quick-start/module-configuration-file.md)。
 
-   **表1** module.json5中proxyDatas节点对应的属性字段
+   **表1** module.json5中proxyData节点对应的属性字段
 
    | 属性名称                    | 备注说明                                     | 必填   |
    | ----------------------- | ---------------------------------------- | ---- |
@@ -103,24 +103,17 @@
    **module.json5配置样例：**
 
     ```json
-    {
-      "module": {
-        "name": "entry",  // 注：在name为entry或feature，都可添加proxyDatas
-        "type": "entry",
-        // 添加proxyDatas
-        "proxyDatas":[  // 注：API10以及之前的版本使用的是proxyDatas, API11以及之后的版本使用的是proxyData
-          {
-            "uri": "datashareproxy://com.acts.ohos.data.datasharetest/test",
-            "requiredReadPermission":"ohos.permission.GET_BUNDLE_INFO",
-            "requiredWritePermission":"ohos.permission.KEEP_BACKGROUND_RUNNING",
-            "metadata": {
-              "name": "dataProperties",
-              "resource": "$profile:my_config"
-            }
-          }
-        ]
+    "proxyData":[
+      {
+        "uri": "datashareproxy://com.acts.ohos.data.datasharetest/test",
+        "requiredReadPermission":"ohos.permission.GET_BUNDLE_INFO",
+        "requiredWritePermission":"ohos.permission.KEEP_BACKGROUND_RUNNING",
+        "metadata": {
+          "name": "dataProperties",
+          "resource": "$profile:my_config"
+        }
       }
-    }
+    ]
     ```
    **表2** my_config.json对应属性字段
 
@@ -260,15 +253,15 @@
 
 ### 数据提供方应用的开发（可选）
 
-数据提供方需要在module.json5中的proxyDatas节点定义过程数据的标识，读写权限和基本信息，proxyDatas节点可以在module内名称为entry或feature中进行定义。
+数据提供方需要在module.json5中的proxyData节点定义过程数据的标识，读写权限和基本信息，进行配置可参考[配置文件](../quick-start/module-configuration-file.md)。
 
 > 注意：
 >
-> - 该步骤为可选，可以不对module.json5中的proxyDatas进行配置。
-> - 不配置proxyDatas时，托管数据不允许其他应用访问。
-> - 不配置proxyDatas时，数据标识可以为简写，发布、订阅、查询数据可以使用简写的数据标识，如weather，可以不用全写为datashareproxy://com.acts.ohos.data.datasharetest/weather
+> - 该步骤为可选，可以不对module.json5中的proxyData进行配置。
+> - 不配置proxyData时，托管数据不允许其他应用访问。
+> - 不配置proxyData时，数据标识可以为简写，发布、订阅、查询数据可以使用简写的数据标识，如weather，可以不用全写为datashareproxy://com.acts.ohos.data.datasharetest/weather
 
-**表3** module.json5中proxyDatas节点对应的属性字段
+**表3** module.json5中proxyData节点对应的属性字段
 
 | 属性名称                    | 备注说明                          | 必填   |
 | ----------------------- | ----------------------------- | ---- |
@@ -279,18 +272,13 @@
 **module.json5配置样例：**
 
 ```json
-{
-  "module": {
-    "name": "feature",  // 注：在name为entry或feature，都可添加proxyDatas
-    "type": "entry",
-    // 添加proxyDatas
-    "proxyDatas":[  // 注：API10以及之前的版本使用的是proxyDatas, API11以及之后的版本使用的是proxyData
-        "uri": "datashareproxy://com.acts.ohos.data.datasharetest/weather",
-        "requiredReadPermission":"ohos.permission.GET_BUNDLE_INFO",
-        "requiredWritePermission":"ohos.permission.KEEP_BACKGROUND_RUNNING",
-    ]
+"proxyData": [
+  {
+    "uri": "datashareproxy://com.acts.ohos.data.datasharetest/weather",
+    "requiredReadPermission": "ohos.permission.GET_BUNDLE_INFO",
+    "requiredWritePermission": "ohos.permission.KEEP_BACKGROUND_RUNNING"
   }
-}
+]
 ```
 
 ### 数据访问方应用的开发
@@ -304,7 +292,13 @@
    import { BusinessError } from '@ohos.base';
    ```
 
-2. 创建工具接口类对象。
+2. 定义与数据提供方通信的URI字符串。
+
+   ```ts
+   let dseUri = ('datashareproxy://com.acts.ohos.data.datasharetest/weather');
+   ```
+
+3. 创建工具接口类对象。
 
    ```ts
    let dsHelper: dataShare.DataShareHelper | undefined = undefined;
@@ -313,14 +307,14 @@
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        abilityContext = this.context;
-       dataShare.createDataShareHelper(abilityContext, "", {isProxy : true}, (err, data) => {
+       dataShare.createDataShareHelper(abilityContext, dseUri, {isProxy : true}, (err, data) => {
          dsHelper = data;
        });
      }
    }
    ```
 
-3. 获取到接口类对象后，便可利用其提供的接口访问提供方提供的服务，如进行数据的增、删、改、查等。
+4. 获取到接口类对象后，便可利用其提供的接口访问提供方提供的服务，如进行数据的增、删、改、查等。
 
    ```ts
    // 构建两条数据，第一条为免配置的数据，仅自己使用
@@ -333,7 +327,7 @@
    }
    ```
 
-4. 对指定的数据进行订阅。
+5. 对指定的数据进行订阅。
 
    ```ts
    function onPublishCallback(err: BusinessError, node:dataShare.PublishedDataChangeNode) {
