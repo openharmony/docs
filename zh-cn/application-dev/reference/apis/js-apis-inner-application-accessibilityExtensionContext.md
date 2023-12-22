@@ -139,7 +139,7 @@ setTargetBundleName(targetNames: Array\<string>): Promise\<void>;
 
 | 参数名         | 类型                  | 必填   | 说明       |
 | ----------- | ------------------- | ---- | -------- |
-| targetNames | Array&lt;string&gt; | 是    | 关注的目标包名。 |
+| targetNames | Array&lt;string&gt; | 是    | 设置关注应用的包名，服务接收关注应用的无障碍事件，默认接收所有应用的无障碍事件，取消关注应用则传空数组。 |
 
 **返回值：**
 
@@ -172,7 +172,7 @@ setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void>)
 
 | 参数名         | 类型                        | 必填   | 说明                                       |
 | ----------- | ------------------------- | ---- | ---------------------------------------- |
-| targetNames | Array&lt;string&gt;       | 是    | 关注的目标包名。                                 |
+| targetNames | Array&lt;string&gt;       | 是    | 设置关注应用的包名，服务接收关注应用的无障碍事件，默认接收所有应用的无障碍事件，取消关注应用则传空数组。                                 |
 | callback    | AsyncCallback&lt;void&gt; | 是    | 回调函数，如果设置关注的目标包名失败，则AsyncCallback中err有数据返回。 |
 
 **示例：**
@@ -181,13 +181,17 @@ setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void>)
 import { BusinessError } from '@ohos.base';
 
 let targetNames = ['com.ohos.xyz'];
-axContext.setTargetBundleName(targetNames, (err: BusinessError) => {
-  if (err) {
-    console.error(`failed to set target bundle names, Code is ${err.code}, message is ${err.message}`);
-    return;
-  }
-  console.info(`Succeeded in set target bundle names, targetNames is ${targetNames}`);
-});
+try {
+  axContext.setTargetBundleName(targetNames, (err: BusinessError) => {
+    if (err && err.code) {
+      console.error(`failed to set target bundle names, Code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in set target bundle names, targetNames is ${targetNames}`);
+  });
+} catch (error) {
+  console.error(`failed to set target bundle names, Because ${JSON.stringify(error)}`);
+}
 ```
 
 ## AccessibilityExtensionContext.getFocusElement
