@@ -2359,7 +2359,7 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
 getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定资源ID对应的媒体文件内容，使用callback形式返回字节数组。
+用户获取指定资源名称对应的媒体文件内容，使用callback形式返回字节数组。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2402,7 +2402,7 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用callback形式返回字节数组。
+用户获取指定资源名称对应的指定屏幕密度媒体文件内容，使用callback形式返回字节数组。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
