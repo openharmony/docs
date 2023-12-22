@@ -84,7 +84,7 @@ on(type: 'frame', callback: Callback<IntervalInfo>): void
 | 参数名           | 类型                                       | 必填 | 说明                          |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | type | 'frame'| 是   | 设置注册回调的类型（只能是'frame'类型）。|
-| callback    | [Callback<IntervalInfo>](js-apis-base.md)| 是   | 监听函数。|
+| callback    | [Callback<IntervalInfo>](js-apis-base.md)| 是   | 订阅函数。|
 
 
 **示例：**
@@ -113,7 +113,7 @@ off(type: 'frame', callback?: Callback<IntervalInfo>): void
 | 参数名           | 类型                                       | 必填 | 说明                          |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | type | 'frame'| 是   | 设置注册回调的类型（只能是'frame'类型）。|
-| callback    | [Callback<IntervalInfo>](js-apis-base.md)| 是   | 回调函数。|
+| callback    | [Callback<IntervalInfo>](js-apis-base.md)| 是   | 订阅函数。|
 
 
 **示例：**
